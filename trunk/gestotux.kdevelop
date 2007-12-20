@@ -15,6 +15,7 @@
       <part>kdevtools</part>
       <part>kdevregexptest</part>
       <part>kdevdocumentation</part>
+      <part>kdevctags2</part>
       <part>kdevgrepview</part>
       <part>kdevtexttools</part>
       <part>kdevabbrev</part>
@@ -96,6 +97,9 @@
       <synchronize>true</synchronize>
       <orientation>Vertical</orientation>
     </splitheadersource>
+    <references>
+      <pcs>Qt4</pcs>
+    </references>
   </kdevcppsupport>
   <kdevdoctreeview>
     <ignoretocs>
@@ -157,14 +161,14 @@
   </kdevdebugger>
   <kdevtrollproject>
     <run>
-      <mainprogram></mainprogram>
+      <mainprogram>/home/Programas/gestotux/bin/gestotux</mainprogram>
       <programargs></programargs>
       <directoryradio>executable</directoryradio>
       <globaldebugarguments></globaldebugarguments>
-      <globalcwd>/home/Programas/gestotux</globalcwd>
-      <useglobalprogram>false</useglobalprogram>
+      <globalcwd>/home/Programas/gestotux/bin/</globalcwd>
+      <useglobalprogram>true</useglobalprogram>
       <terminal>false</terminal>
-      <autocompile>false</autocompile>
+      <autocompile>true</autocompile>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
       <envvars/>

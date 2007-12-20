@@ -146,6 +146,7 @@ int main(int argc, char *argv[])
        // Fin de arranque de la base de datos
 	splash->showMessage( "Base de datos Abierta correctamente" );
 	gestotux * mw = new gestotux();
+	mw->inicializar();
 	splash->showMessage( "Cargando Ventana Principal" );
 	mw->show();
 	if( p->value( "maximizado", false ).toBool() )

@@ -37,7 +37,7 @@ preferencias* preferencias::getInstancia()
 
 
 preferencias::preferencias()
- : QSettings( "Tranfuga", "DigiFauno" )
+ : QSettings( "Tranfuga", "GestoTux" )
 {
 }
 
