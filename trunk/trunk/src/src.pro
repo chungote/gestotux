@@ -20,7 +20,9 @@ SOURCES += gestotux.cpp \
  vcliente.cpp \
  visorrecibo.cpp \
  vrecibos.cpp \
- drecibo.cpp
+ drecibo.cpp \
+ eactualizacion.cpp \
+ einfoprograma.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -42,7 +44,9 @@ HEADERS += gestotux.h \
  recibo.h \
  vcliente.h \
  visorrecibo.h \
- vrecibos.h
+ vrecibos.h \
+ eactualizacion.h \
+ einfoprograma.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
