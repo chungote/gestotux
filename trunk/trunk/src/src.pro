@@ -19,7 +19,8 @@ SOURCES += gestotux.cpp \
  recibo.cpp \
  vcliente.cpp \
  visorrecibo.cpp \
- vrecibos.cpp
+ vrecibos.cpp \
+ drecibo.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -48,7 +49,6 @@ CONFIG += warn_on \
           qt \
  exceptions \
  debug_and_release
-TARGET = ../bin/gestotux
 RESOURCES -= application.qrc
 
 CONFIG -= release
@@ -57,8 +57,6 @@ QT += sql \
 svg \
 xml \
 network
-DESTDIR = .
-
 OBJECTS_DIR = obj
 
 UI_DIR = ui
@@ -71,4 +69,8 @@ FPrefGeneral.ui \
 FormAgregarReciboBase.ui \
 FPrefRecibos.ui
 RESOURCES += gestotux.qrc
+
+TARGET = gestotux
+
+DESTDIR = ../bin
 
