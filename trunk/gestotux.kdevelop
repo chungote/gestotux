@@ -10,7 +10,24 @@
       <keyword>Qt</keyword>
     </keywords>
     <versioncontrol>kdevsubversion</versioncontrol>
-    <ignoreparts/>
+    <ignoreparts>
+      <part>kdevquickopen</part>
+      <part>kdevtools</part>
+      <part>kdevregexptest</part>
+      <part>kdevdocumentation</part>
+      <part>kdevgrepview</part>
+      <part>kdevtexttools</part>
+      <part>kdevabbrev</part>
+      <part>kdevopenwith</part>
+      <part>kdevfilelist</part>
+      <part>kdevfilegroups</part>
+      <part>kdevscripting</part>
+      <part>kdevfilter</part>
+      <part>kdevbookmarks</part>
+      <part>kdevreplace</part>
+      <part>kdevsnippet</part>
+      <part>kdevfileview</part>
+    </ignoreparts>
     <projectname>gestotux</projectname>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
@@ -23,6 +40,8 @@
       <group pattern="*.ui" name="User Interface" />
       <group pattern="*.png" name="Icons" />
       <group pattern="*" name="Others" />
+      <hidenonprojectfiles>false</hidenonprojectfiles>
+      <hidenonlocation>false</hidenonlocation>
     </groups>
     <tree>
       <hidenonprojectfiles>false</hidenonprojectfiles>
@@ -149,6 +168,15 @@
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
       <envvars/>
+      <runarguments>
+        <gestotux></gestotux>
+      </runarguments>
+      <cwd>
+        <gestotux>/home/Programas/gestotux</gestotux>
+      </cwd>
+      <debugarguments>
+        <gestotux></gestotux>
+      </debugarguments>
     </run>
     <general>
       <activedir>src</activedir>
@@ -167,6 +195,7 @@
       <replacePaths>false</replacePaths>
       <disableDefaultOpts>true</disableDefaultOpts>
     </qmake>
+    <subclassing/>
   </kdevtrollproject>
   <workspace>
     <openfiles/>
