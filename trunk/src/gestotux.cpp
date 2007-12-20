@@ -21,280 +21,121 @@
 
 #include <QtGui>
 #include "gestotux.h"
-
 #include <QTextEdit>
 #include <QTextStream>
 #include <QCloseEvent>
+#include <QToolBar>
+#include <QMenu>
+#include <QStatusBar>
 #include <QFileDialog>
+#include <QMenuBar>
+#include <QDockWidget>
+#include <QToolBox>
+#include <QSqlDatabase>
+
+#include "reloj.h"
+#include "formacercade.h"
+#include "vcliente.h"
+#include "vrecibos.h"
+#include "preferencias.h"
+#include "formulariocentral.h"
+#include "formagregarrecibo.h"
+#include "formpreferencias.h"
+#include "ebackup.h"
+
+FormularioCentral *gestotux::formCentral = 0;
+QToolBar *gestotux::_barraAcciones = 0;
 
 gestotux::gestotux()
 {
-      textEdit = new QTextEdit;
-      setCentralWidget(textEdit);
-      
-      createActions();
-      createMenus();
-      createToolBars();
-      createStatusBar();
-      
-      readSettings();
-      
-      connect(textEdit->document(), SIGNAL(contentsChanged()),
-            this, SLOT(documentWasModified()));
-      
-      setCurrentFile("");
+// Eliminarse al cerarse
+ this->setAttribute( Qt::WA_DeleteOnClose );
+ setObjectName( "VentanaPrincipal" );
+ setWindowTitle( "gestotux Computacion 0.1" );
+}
+
+void gestotux::inicializar()
+{
+ setCentralWidget( formCen() );
+
+ createActions();
+ createMenus();
+ createToolBar();
+ createStatusBar();
+ crearReloj();
+ bandeja_sistema();
+
+ preferencias *p = preferencias::getInstancia();
+ p->inicio();
+ p->beginGroup( "ventanaPrincipal" );
+ this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
+ p->endGroup();
+
+ setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
 }
 
 void gestotux::closeEvent(QCloseEvent *event)
 {
-      if (maybeSave()) {
-            writeSettings();
-            event->accept();
-      } else {
-            event->ignore();
-      }
-}
-
-void gestotux::newFile()
-{
-      if (maybeSave()) {
-            textEdit->clear();
-            setCurrentFile("");
-      }
-}
-
-void gestotux::open()
-{
-      if (maybeSave()) {
-            QString fileName = QFileDialog::getOpenFileName(this);
-            if (!fileName.isEmpty())
-            loadFile(fileName);
-      }
-}
-
-bool gestotux::save()
-{
-      if (curFile.isEmpty()) {
-            return saveAs();
-      } else {
-            return saveFile(curFile);
-      }
-}
-
-bool gestotux::saveAs()
-{
-      QString fileName = QFileDialog::getSaveFileName(this);
-      if (fileName.isEmpty())
-            return false;
-
-      return saveFile(fileName);
-}
-
-void gestotux::about()
-{
-      QMessageBox::about(this, tr("About Application"),
-            tr("The <b>Application</b> example demonstrates how to "
-                  "write modern GUI applications using Qt, with a menu bar, "
-                  "toolbars, and a status bar."));
-}
-
-void gestotux::documentWasModified()
-{
-      setWindowModified(true);
+ salir();
+ event->accept();
 }
 
 void gestotux::createActions()
 {
-      newAct = new QAction(QIcon(":/filenew.xpm"), tr("&New"), this);
-      newAct->setShortcut(tr("Ctrl+N"));
-      newAct->setStatusTip(tr("Create a new file"));
-      connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
+      exitAct = new QAction( "Salir", this);
+      exitAct->setStatusTip( "Salir del programa" );
+      exitAct->setIcon( QIcon( ":/imagenes/exit.png" ) );
+      connect(exitAct, SIGNAL( triggered() ), this, SLOT( close() ) );
 
-      openAct = new QAction(QIcon(":/fileopen.xpm"), tr("&Open..."), this);
-      openAct->setShortcut(tr("Ctrl+O"));
-      openAct->setStatusTip(tr("Open an existing file"));
-      connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
+      acercade = new QAction( "Acerca de...", this );
+      acercade->setStatusTip( "Muestra informacion del programa" );
+      connect( acercade, SIGNAL( triggered() ), this, SLOT( acerca() ) );
 
-      saveAct = new QAction(QIcon(":/filesave.xpm"), tr("&Save"), this);
-      saveAct->setShortcut(tr("Ctrl+S"));
-      saveAct->setStatusTip(tr("Save the document to disk"));
-      connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
+      ActClientes = new QAction( "Ver Clientes... ", this );
+      ActClientes->setStatusTip( "Muestra la lista de clientes" );
+      ActClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
+      connect( ActClientes, SIGNAL( triggered() ), this, SLOT( verClientes() ) );
 
-      saveAsAct = new QAction(tr("Save &As..."), this);
-      saveAsAct->setStatusTip(tr("Save the document under a new name"));
-      connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
+      ActRecibosAnteriores = new QAction( "Ver Recibos Emitidos", this );
+      ActRecibosAnteriores->setStatusTip( "Muestra la lista de recibos emitidos" );
+      ActRecibosAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
+      connect( ActRecibosAnteriores, SIGNAL( triggered() ), this, SLOT( verRecibos() ) );
 
-      exitAct = new QAction(tr("E&xit"), this);
-      exitAct->setShortcut(tr("Ctrl+Q"));
-      exitAct->setStatusTip(tr("Exit the application"));
-      connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
+      ActNuevoRecibo = new QAction( "Nuevo recibo", this );
+      ActNuevoRecibo->setStatusTip( "Crea un nuevo recibo" );
+      ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
+      connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );
 
-      cutAct = new QAction(QIcon(":/editcut.xpm"), tr("Cu&t"), this);
-      cutAct->setShortcut(tr("Ctrl+X"));
-      cutAct->setStatusTip(tr("Cut the current selection's contents to the "
-                              "clipboard"));
-      connect(cutAct, SIGNAL(triggered()), textEdit, SLOT(cut()));
+      ActPreferencias = new QAction ( "Configuracion" , this );
+      ActPreferencias->setStatusTip( "Modifica las preferencias de la aplicacion" );
+      ActPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
+      connect( ActPreferencias, SIGNAL( triggered() ), this, SLOT( verPreferencias() ) );
 
-      copyAct = new QAction(QIcon(":/editcopy.xpm"), tr("&Copy"), this);
-      copyAct->setShortcut(tr("Ctrl+C"));
-      copyAct->setStatusTip(tr("Copy the current selection's contents to the "
-                              "clipboard"));
-      connect(copyAct, SIGNAL(triggered()), textEdit, SLOT(copy()));
-
-      pasteAct = new QAction(QIcon(":/editpaste.xpm"), tr("&Paste"), this);
-      pasteAct->setShortcut(tr("Ctrl+V"));
-      pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
-                              "selection"));
-      connect(pasteAct, SIGNAL(triggered()), textEdit, SLOT(paste()));
-
-      aboutAct = new QAction(tr("&About"), this);
-      aboutAct->setStatusTip(tr("Show the application's About box"));
-      connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
-
-      aboutQtAct = new QAction(tr("About &Qt"), this);
-      aboutQtAct->setStatusTip(tr("Show the Qt library's About box"));
-      connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-
-      cutAct->setEnabled(false);
-      copyAct->setEnabled(false);
-      connect(textEdit, SIGNAL(copyAvailable(bool)),
-            cutAct, SLOT(setEnabled(bool)));
-      connect(textEdit, SIGNAL(copyAvailable(bool)),
-            copyAct, SLOT(setEnabled(bool)));
+      ActBackup = new QAction( "Backup", this );
+      ActBackup->setStatusTip( "Genera y retaura backups del programa" );
+      ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
+      connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 }
 
 void gestotux::createMenus()
 {
-      fileMenu = menuBar()->addMenu(tr("&File"));
-      fileMenu->addAction(newAct);
-      fileMenu->addAction(openAct);
-      fileMenu->addAction(saveAct);
-      fileMenu->addAction(saveAsAct);
+      fileMenu = menuBar()->addMenu( "&Archivo" );
+      fileMenu->addAction( acercade );
       fileMenu->addSeparator();
-      fileMenu->addAction(exitAct);
+      fileMenu->addAction( exitAct );
 
-      editMenu = menuBar()->addMenu(tr("&Edit"));
-      editMenu->addAction(cutAct);
-      editMenu->addAction(copyAct);
-      editMenu->addAction(pasteAct);
+      QMenu *menuHer = menuBar()->addMenu( "&Herramientas" );
+      menuHer->addAction( ActPreferencias );
+      menuHer->addAction( ActBackup );
+      menuHer->addSeparator();
+      menuHer->addAction( ActClientes );
+      menuHer->addAction( ActRecibosAnteriores );
 
-      menuBar()->addSeparator();
-
-      helpMenu = menuBar()->addMenu(tr("&Help"));
-      helpMenu->addAction(aboutAct);
-      helpMenu->addAction(aboutQtAct);
-}
-
-void gestotux::createToolBars()
-{
-      fileToolBar = addToolBar(tr("File"));
-      fileToolBar->addAction(newAct);
-      fileToolBar->addAction(openAct);
-      fileToolBar->addAction(saveAct);
-
-      editToolBar = addToolBar(tr("Edit"));
-      editToolBar->addAction(cutAct);
-      editToolBar->addAction(copyAct);
-      editToolBar->addAction(pasteAct);
 }
 
 void gestotux::createStatusBar()
 {
-      statusBar()->showMessage(tr("Ready"));
-}
-
-void gestotux::readSettings()
-{
-      QSettings settings("Trolltech", "Application Example");
-      QPoint pos = settings.value("pos", QPoint(200, 200)).toPoint();
-      QSize size = settings.value("size", QSize(400, 400)).toSize();
-      resize(size);
-      move(pos);
-}
-
-void gestotux::writeSettings()
-{
-      QSettings settings("Trolltech", "Application Example");
-      settings.setValue("pos", pos());
-      settings.setValue("size", size());
-}
-
-bool gestotux::maybeSave()
-{
-      if (textEdit->document()->isModified()) {
-            int ret = QMessageBox::warning(this, tr("Application"),
-                        tr("The document has been modified.\n"
-                        "Do you want to save your changes?"),
-                        QMessageBox::Yes | QMessageBox::Default,
-                        QMessageBox::No,
-                        QMessageBox::Cancel | QMessageBox::Escape);
-            if (ret == QMessageBox::Yes)
-            return save();
-            else if (ret == QMessageBox::Cancel)
-            return false;
-      }
-      return true;
-}
-
-void gestotux::loadFile(const QString &fileName)
-{
-      QFile file(fileName);
-      if (!file.open(QFile::ReadOnly | QFile::Text)) {
-            QMessageBox::warning(this, tr("Application"),
-                              tr("Cannot read file %1:\n%2.")
-                              .arg(fileName)
-                              .arg(file.errorString()));
-            return;
-      }
-
-      QTextStream in(&file);
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      textEdit->setPlainText(in.readAll());
-      QApplication::restoreOverrideCursor();
-
-      setCurrentFile(fileName);
-      statusBar()->showMessage(tr("File loaded"), 2000);
-}
-
-bool gestotux::saveFile(const QString &fileName)
-{
-      QFile file(fileName);
-      if (!file.open(QFile::WriteOnly | QFile::Text)) {
-            QMessageBox::warning(this, tr("Application"),
-                              tr("Cannot write file %1:\n%2.")
-                              .arg(fileName)
-                              .arg(file.errorString()));
-            return false;
-      }
-
-      QTextStream out(&file);
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      out << textEdit->toPlainText();
-      QApplication::restoreOverrideCursor();
-
-      setCurrentFile(fileName);
-      statusBar()->showMessage(tr("File saved"), 2000);
-      return true;
-}
-
-void gestotux::setCurrentFile(const QString &fileName)
-{
-      curFile = fileName;
-      textEdit->document()->setModified(false);
-      setWindowModified(false);
-
-      QString shownName;
-      if (curFile.isEmpty())
-            shownName = "untitled.txt";
-      else
-            shownName = strippedName(curFile);
-
-      setWindowTitle(tr("%1[*] - %2").arg(shownName).arg(tr("Application")));
-}
-
-QString gestotux::strippedName(const QString &fullFileName)
-{
-      return QFileInfo(fullFileName).fileName();
+      statusBar()->showMessage( "Listo" );
 }
 
 gestotux::~gestotux()
@@ -302,3 +143,194 @@ gestotux::~gestotux()
 
 }
 
+/*!
+    \fn presupuestador::salir()
+    Guarda la configuracion general y de la ventana y cierra la base de datos
+ */
+void gestotux::salir()
+{
+ preferencias *p = preferencias::getInstancia();
+ p->inicio();
+ p->beginGroup( "ventanaPrincipal" );
+ p->setValue( "estado", saveState( 0 ) );
+ p->endGroup();
+ p->sync();
+ QSqlDatabase DB = QSqlDatabase::database();
+ DB.close();
+ DB.removeDatabase( "hicomp.database" );
+ close();
+}
+
+FormularioCentral *gestotux::formCen()
+{
+ if( gestotux::formCentral == 0 )
+ {
+  gestotux::formCentral = new FormularioCentral();
+ }
+ return gestotux::formCentral;
+}
+
+
+/*!
+    \fn presupuestador::acerca()
+ */
+void gestotux::acerca()
+{
+ FormAcercaDe *f = new FormAcercaDe( this );
+ f->adjustSize();
+ f->show();
+}
+
+
+/*!
+    \fn gestotux::verClientes()
+ */
+void gestotux::verClientes()
+{
+  VCliente *f = new VCliente( this );
+  formCen()->agregarVentana( f );
+}
+
+
+/*!
+    \fn gestotux::verRecibos()
+ */
+void gestotux::verRecibos()
+{
+ VRecibos *f = new VRecibos( this );
+ formCen()->agregarVentana( f );
+}
+
+void gestotux::createToolBar()
+{
+ tb = new QToolBar( "Barra de Herramientas", this );
+ tb->setObjectName( "BarraPrincipal" );
+ this->addToolBar( tb );
+ tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
+ tb->addAction( ActClientes );
+ tb->addAction( ActRecibosAnteriores );
+ tb->addAction( ActNuevoRecibo );
+ tb->addAction( ActBackup );
+ tb->addAction( ActPreferencias );
+
+ _barraAcciones = new QToolBar( "Acciones", this );
+ _barraAcciones->setObjectName( "BarraAcciones" );
+ this->addToolBar( Qt::BottomToolBarArea, _barraAcciones );
+ _barraAcciones->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
+}
+
+
+QToolBar* gestotux::barraAcciones()
+{
+ if( _barraAcciones != 0 )
+ {
+  return _barraAcciones;
+ }
+ else
+ {
+  return 0;
+ }
+}
+
+
+/*!
+    \fn gestotux::crearReloj()
+ */
+void gestotux::crearReloj()
+{
+ QDockWidget *dw = new QDockWidget( "Reloj" , this );
+ dw->setObjectName( "reloj" );
+ dw->setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
+ addDockWidget( Qt::RightDockWidgetArea, dw );
+ Reloj *r = new Reloj( dw );
+ dw->setWidget( r );
+}
+
+
+/*!
+    \fn gestotux::nuevoRecibo()
+ */
+void gestotux::nuevoRecibo()
+{
+ FormAgregarRecibo *f = new FormAgregarRecibo( formCen() );
+ formCen()->agregarVentana( f );
+}
+
+
+/*!
+    \fn gestotux::preferencias()
+ */
+void gestotux::verPreferencias()
+{
+  FormPreferencias *p = new FormPreferencias( this );
+  formCen()->agregarVentana( p );
+}
+
+
+/*!
+    \fn gestotux::verBackup()
+ */
+void gestotux::verBackup()
+{
+  Ebackup *f = new Ebackup( this );
+  formCen()->agregarVentana( f );
+}
+
+
+/*!
+    \fn gestotux::bandeja_sistema()
+ */
+void gestotux::bandeja_sistema()
+{
+ preferencias *p = preferencias::getInstancia();
+ p->inicio();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "General" );
+ if( p->value( "icono_bandeja" ).toBool() == true )
+ {
+   if( QSystemTrayIcon::isSystemTrayAvailable() )
+   {
+    iconoBandeja = new QSystemTrayIcon( this );
+    QMenu *menu = new QMenu( this );
+    menu->addAction( exitAct );
+    iconoBandeja->setIcon( QIcon( ":/imagenes/icono.png" ) );
+    iconoBandeja->setToolTip( "Digifauno" );
+    iconoBandeja->show();
+    connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );
+   }
+   else
+   {
+    qDebug( "No se pudo generar el icono en la bandeja del sistema" );
+    return;
+   }
+ }
+ else
+ {
+  //qDebug( "No quiso tener mensaje en la bandeja" );
+  return;
+ }
+}
+
+
+/*!
+    \fn gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
+ */
+void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
+{
+  switch( razon )
+ {
+  case QSystemTrayIcon::Trigger:
+  case QSystemTrayIcon::MiddleClick:
+  case QSystemTrayIcon::DoubleClick:
+  {
+   if( this->isVisible() )
+   {
+    this->hide();
+   }
+   else
+   {
+    this->show();
+   }
+  }
+ }
+}

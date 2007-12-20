@@ -17,68 +17,80 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-
 #ifndef GESTOTUX_H
 #define GESTOTUX_H
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QSystemTrayIcon>
+#include "formulariocentral.h"
 
 class QAction;
 class QMenu;
-class QTextEdit;
+class barraAbajo;
+class barraLateral;
+class QToolBar;
 
 class gestotux:public QMainWindow
 {
       Q_OBJECT
-
 public:
       gestotux();
       ~gestotux();
+      void inicializar();
+      static FormularioCentral *formCentral;
+      static FormularioCentral *formCen();
+      static QToolBar *barraAcciones();
+      static QToolBar *_barraAcciones;
 
 protected:
       void closeEvent(QCloseEvent *event);
 
-private slots:
-      void newFile();
-      void open();
-      bool save();
-      bool saveAs();
-      void about();
-      void documentWasModified();
+protected slots:
+    void salir();
+    void acerca();
 
 private:
       void createActions();
       void createMenus();
-      void createToolBars();
       void createStatusBar();
-      void readSettings();
-      void writeSettings();
-      bool maybeSave();
-      void loadFile(const QString &fileName);
-      bool saveFile(const QString &fileName);
-      void setCurrentFile(const QString &fileName);
-      QString strippedName(const QString &fullFileName);
+      void createToolBar();
+      void crearReloj();
+    void bandeja_sistema();
 
-      QTextEdit *textEdit;
-      QString curFile;
+      barraLateral *barra;
+      barraAbajo *barraA;
+
+      QToolBar *tb;
+
 
       QMenu *fileMenu;
       QMenu *editMenu;
       QMenu *helpMenu;
-      QToolBar *fileToolBar;
-      QToolBar *editToolBar;
-      QAction *newAct;
-      QAction *openAct;
-      QAction *saveAct;
-      QAction *saveAsAct;
+
+      QAction *ActClientes;
+      QAction *ActRecibosAnteriores;
       QAction *exitAct;
-      QAction *cutAct;
-      QAction *copyAct;
-      QAction *pasteAct;
-      QAction *aboutAct;
-      QAction *aboutQtAct;
+      QAction *acercade;
+      QAction *ActCerrar;
+      QAction *ActPdf;
+      QAction *ActImprimir;
+      QAction *ActNuevoRecibo;
+      QAction *ActPreferencias;
+      QAction *ActBackup;
+
+      QSystemTrayIcon * iconoBandeja;
+
+public slots:
+    void verClientes();
+    void verRecibos();
+    void nuevoRecibo();
+    void verPreferencias();
+    void verBackup();
+
+private slots:
+    void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
+
 };
 
 #endif
