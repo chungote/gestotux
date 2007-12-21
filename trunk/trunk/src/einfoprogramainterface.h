@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
+ *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,48 +17,27 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EVENTANA_H
-#define EVENTANA_H
+#ifndef EINFOPROGRAMAINTERFACE_H
+#define EINFOPROGRAMAINTERFACE_H
 
-#include <QWidget>
-#include <QKeyEvent>
+class QString;
+class QIcon;
 
-/*!
- * 	\brief Ventana base de todas las ventanas
- *
- *  Ventana generica, metodos a implementar y cosas repetitivas implementadas ya
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class EVentana : public QWidget
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class EInfoProgramaInterface
 {
-Q_OBJECT
 public:
-    EVentana( QWidget *padre );
-    ~EVentana();
-    void setNombreVentana( QString texto );
-    QString get_nombre_ventana();
-    void closeEvent ( QCloseEvent * event );
-
-protected:
-   /**
-    * Nombre del archivo html de ayuda para abrir
-    */
-    QString nombre_archivo_ayuda;
-   /**
-    * Nombre interno de la ventana para guardar sus preferencias
-    */
-    QString nombre_ventana;
-   /**
-    * Puntero al widget padre
-    */
-    QWidget *padre;
-
-private:
-    void keyPressEvent( QKeyEvent *event );
-
-public slots:
-    void ayuda();
-
+      virtual ~EInfoProgramaInterface() {};
+      virtual QString nombrePrograma() = 0;
+      virtual QIcon iconoPrograma() = 0;
+      virtual QString usuarioFTP() = 0;
+      virtual QString passFTP() = 0;
+      virtual QString argchivoSVGRecibos() = 0;
 };
+
+Q_DECLARE_INTERFACE( EInfoProgramaInterfase,
+                     "tranfuga.EInfoProgramInterfase/1.0" )
 
 #endif

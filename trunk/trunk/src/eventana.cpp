@@ -129,33 +129,3 @@ void EVentana::ayuda()
 {
     /// @todo implementar slot de ayuda
 }
-
-
-/*!
-    \fn EVentana::close()
-	Reimplementacion de cerrar, para que se cierre la ventana padre que contiene este widget
- */
-void EVentana::close()
-{
-  qobject_cast<QMdiSubWindow *>(this->parent())->close();
-}
-
-
-/*!
-    \fn EVentana::setWindowIcon( QIcon icono )
-	Reimplementacion de setear icono, para que setee el icono a la ventana padre que contiene este widget
-	@param icono Icono a colocar
- */
-void EVentana::setWindowIcon( QIcon icono )
-{
- qobject_cast<QMdiSubWindow *>(this->parent())->setWindowIcon( icono );
-}
-
-
-/*!
-    \fn EVentana::showMaximized()
- */
-void EVentana::showMaximized()
-{
- qobject_cast<QMdiSubWindow *>(this->parent())->showMaximized();
-}
