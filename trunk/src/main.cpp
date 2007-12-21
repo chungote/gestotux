@@ -36,13 +36,8 @@
 
 int main(int argc, char *argv[])
 {
-      //Q_INIT_RESOURCE(application);
+      Q_INIT_RESOURCE(gestotux);
       QApplication app(argc, argv);
-      /*ESeguridad *seguro = new ESeguridad();
-      if( seguro->chequearInstalacion() == false )
-      {
-       exit(-2);
-      }*/
       app.setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
       // Muestro el splash
       QPixmap pixmap(":/imagenes/splash.png");
@@ -50,7 +45,7 @@ int main(int argc, char *argv[])
       splash->show();
       splash->showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual
-      //app.setDesktopSettingsAware( true );
+      app.setDesktopSettingsAware( true );
       preferencias *p = preferencias::getInstancia();
       p->beginGroup( "Preferencias" );
       p->beginGroup( "General" );
@@ -74,7 +69,7 @@ int main(int argc, char *argv[])
       directorio->cd( "traducciones" );
       if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
       {
-     	//app.installTranslator(&tran);
+        app.installTranslator(&tran);
       }
       else
       {

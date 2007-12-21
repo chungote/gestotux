@@ -21,8 +21,7 @@ SOURCES += gestotux.cpp \
  visorrecibo.cpp \
  vrecibos.cpp \
  drecibo.cpp \
- eactualizacion.cpp \
- einfoprograma.cpp
+ eactualizacion.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -46,13 +45,13 @@ HEADERS += gestotux.h \
  visorrecibo.h \
  vrecibos.h \
  eactualizacion.h \
- einfoprograma.h
+ einfoprogramainterface.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
           qt \
  exceptions \
- debug_and_release
+ debug
 RESOURCES -= application.qrc
 
 CONFIG -= release
@@ -77,4 +76,6 @@ RESOURCES += gestotux.qrc
 TARGET = gestotux
 
 DESTDIR = ../bin
+
+INCLUDEPATH += ../plugins
 

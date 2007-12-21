@@ -173,17 +173,17 @@
       <autokdesu>false</autokdesu>
       <envvars/>
       <runarguments>
-        <gestotux/>
+        <gestotux></gestotux>
       </runarguments>
       <cwd>
         <gestotux>/home/Programas/gestotux</gestotux>
       </cwd>
       <debugarguments>
-        <gestotux/>
+        <gestotux></gestotux>
       </debugarguments>
     </run>
     <general>
-      <activedir>src</activedir>
+      <activedir>plugins</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
