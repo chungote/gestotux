@@ -21,23 +21,15 @@
 #define EINFOPROGRAMAINTERFACE_H
 
 class QString;
-class QIcon;
 
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
 class EInfoProgramaInterface
 {
 public:
-      virtual ~EInfoProgramaInterface() {};
-      virtual QString nombrePrograma() = 0;
-      virtual QIcon iconoPrograma() = 0;
-      virtual QString usuarioFTP() = 0;
-      virtual QString passFTP() = 0;
-      virtual QString argchivoSVGRecibos() = 0;
+    virtual ~EInfoProgramaInterface() {}
+    virtual QString nombrePrograma() = 0;
 };
 
-Q_DECLARE_INTERFACE( EInfoProgramaInterfase,
-                     "tranfuga.EInfoProgramInterfase/1.0" )
+Q_DECLARE_INTERFACE(EInfoProgramaInterface,
+                     "tranfuga.EInfoPrograma/1.0");
 
 #endif
