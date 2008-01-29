@@ -51,7 +51,7 @@ gestotux::gestotux()
 // Eliminarse al cerarse
  this->setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "VentanaPrincipal" );
- setWindowTitle( "gestotux Computacion 0.1" );
+ ///@todo setWindowTitle( "gestotux Computacion 0.1" );
 }
 
 void gestotux::inicializar()
@@ -71,7 +71,7 @@ void gestotux::inicializar()
  this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
  p->endGroup();
 
- setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
+ ///@todo setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
 }
 
 void gestotux::closeEvent(QCloseEvent *event)
@@ -157,7 +157,7 @@ void gestotux::salir()
  p->sync();
  QSqlDatabase DB = QSqlDatabase::database();
  DB.close();
- DB.removeDatabase( "hicomp.database" );
+ DB.removeDatabase( "gestotux.database" );
  close();
 }
 
@@ -293,8 +293,8 @@ void gestotux::bandeja_sistema()
     iconoBandeja = new QSystemTrayIcon( this );
     QMenu *menu = new QMenu( this );
     menu->addAction( exitAct );
-    iconoBandeja->setIcon( QIcon( ":/imagenes/icono.png" ) );
-    iconoBandeja->setToolTip( "Digifauno" );
+    ///@todo iconoBandeja->setIcon( QIcon( ":/imagenes/icono.png" ) );
+    iconoBandeja->setToolTip( "Gestotux" );
     iconoBandeja->show();
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );
    }
@@ -333,4 +333,30 @@ void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
    }
   }
  }
+}
+
+
+/*!
+    \fn gestotux::cargarPlugins()
+ */
+bool gestotux::cargarPlugins()
+{
+ pluginsDir = QDir(qApp->applicationDirPath());
+
+ #if defined(Q_OS_WIN)
+     if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+         pluginsDir.cdUp();
+ #elif defined(Q_OS_MAC)
+     if (pluginsDir.dirName() == "MacOS") {
+         pluginsDir.cdUp();
+         pluginsDir.cdUp();
+         pluginsDir.cdUp();
+     }
+ #endif
+     pluginsDir.cd("plugins");
+
+     foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+         QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+         QObject *plugin = loader.instance();
+     }
 }

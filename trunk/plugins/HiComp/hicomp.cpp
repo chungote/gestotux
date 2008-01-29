@@ -17,14 +17,18 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "eactualizacion.h"
+#include "hicomp.h"
+#include <QString>
+#include <QIcon>
 
-EActualizacion::EActualizacion ( QWidget *parent )
-: EVentana ( parent )
-{}
+QString HiComp::nombrePrograma()  const
+{
+ return "HiComp Computacion - 0.1";
+}
 
+Q_EXPORT_PLUGIN2(hicomp, HiComp )
 
-EActualizacion::~EActualizacion()
-{}
-
-
+QIcon HiComp::iconoPrograma() const
+{
+ return QIcon( ":/imagenes/icono.png" );
+}
