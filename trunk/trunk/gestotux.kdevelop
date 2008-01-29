@@ -16,7 +16,6 @@
       <part>kdevregexptest</part>
       <part>kdevdocumentation</part>
       <part>kdevctags2</part>
-      <part>kdevgrepview</part>
       <part>kdevtexttools</part>
       <part>kdevabbrev</part>
       <part>kdevopenwith</part>
@@ -32,8 +31,8 @@
     <projectname>gestotux</projectname>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
-    <defaultencoding/>
+    <description></description>
+    <defaultencoding></defaultencoding>
   </general>
   <kdevfileview>
     <groups>
@@ -85,7 +84,7 @@
       <includePaths>.;</includePaths>
     </codecompletion>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -139,16 +138,16 @@
   </kdevdoctreeview>
   <kdevdebugger>
     <general>
-      <dbgshell/>
+      <dbgshell></dbgshell>
       <breakpoints/>
       <programargs/>
       <gdbpath>/usr/bin/gdb</gdbpath>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
     </general>
     <display>
       <staticmembers>false</staticmembers>
@@ -160,9 +159,9 @@
   <kdevtrollproject>
     <run>
       <mainprogram>/home/Esteban/Programas/gestotux/bin/gestotux</mainprogram>
-      <programargs/>
+      <programargs></programargs>
       <directoryradio>executable</directoryradio>
-      <globaldebugarguments/>
+      <globaldebugarguments></globaldebugarguments>
       <globalcwd>/home/Esteban/Programas/gestotux/bin/</globalcwd>
       <useglobalprogram>true</useglobalprogram>
       <terminal>false</terminal>
@@ -181,15 +180,15 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>src</activedir>
+      <activedir>plugins/HiComp</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
       <runmultiplejobs>false</runmultiplejobs>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
-      <prio>0</prio>
+      <makebin></makebin>
+      <prio>5</prio>
       <envvars/>
     </make>
     <qmake>

@@ -17,14 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "eactualizacion.h"
+#ifndef HICOMP_H
+#define HICOMP_H
 
-EActualizacion::EActualizacion ( QWidget *parent )
-: EVentana ( parent )
-{}
+class QString;
 
+#include <QObject>
+#include <QtPlugin>
+#include "einfoprogramainterface.h"
 
-EActualizacion::~EActualizacion()
-{}
+class HiComp : public QObject, public EInfoProgramaInterface
+{
+ Q_OBJECT
+ Q_INTERFACES(EInfoProgramaInterface)
 
+public:
+    QString nombrePrograma() const;
+    QIcon iconoPrograma()  const;
+};
 
+#endif

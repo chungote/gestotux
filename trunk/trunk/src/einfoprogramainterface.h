@@ -20,16 +20,19 @@
 #ifndef EINFOPROGRAMAINTERFACE_H
 #define EINFOPROGRAMAINTERFACE_H
 
+#include <QtPlugin>
 class QString;
+class QIcon;
 
 class EInfoProgramaInterface
 {
 public:
     virtual ~EInfoProgramaInterface() {}
-    virtual QString nombrePrograma() = 0;
+    virtual QString nombrePrograma() const = 0;
+    virtual QIcon iconoPrograma() const = 0;
 };
 
-Q_DECLARE_INTERFACE(EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.0");
+Q_DECLARE_INTERFACE( EInfoProgramaInterface,
+                     "tranfuga.EInfoPrograma/1.0" );
 
 #endif

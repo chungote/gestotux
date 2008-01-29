@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 {
       Q_INIT_RESOURCE(gestotux);
       QApplication app(argc, argv);
-      app.setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
+      ///@todo app.setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
       // Muestro el splash
       QPixmap pixmap(":/imagenes/splash.png");
       QSplashScreen *splash = new QSplashScreen(pixmap);

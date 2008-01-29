@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QSystemTrayIcon>
+#include <QDir>
 #include "formulariocentral.h"
 
 class QAction;
@@ -91,6 +92,9 @@ public slots:
 private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
 
+private:
+    bool cargarPlugins();
+    QDir pluginsDir;
 };
 
 #endif

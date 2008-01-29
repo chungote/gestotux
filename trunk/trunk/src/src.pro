@@ -71,7 +71,7 @@ formBackup.ui \
 FPrefGeneral.ui \
 FormAgregarReciboBase.ui \
 FPrefRecibos.ui
-RESOURCES += gestotux.qrc
+RESOURCES = gestotux.qrc
 
 TARGET = gestotux
 
