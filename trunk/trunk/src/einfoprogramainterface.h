@@ -22,6 +22,8 @@
 
 #include <QtPlugin>
 class QString;
+class QAction;
+#include <QList>
 class QIcon;
 
 class EInfoProgramaInterface
@@ -30,6 +32,8 @@ public:
     virtual ~EInfoProgramaInterface() {}
     virtual QString nombrePrograma() const = 0;
     virtual QIcon iconoPrograma() const = 0;
+    virtual QList<QAction *> accionesBarra() const = 0;
+    virtual bool inicializar() = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,

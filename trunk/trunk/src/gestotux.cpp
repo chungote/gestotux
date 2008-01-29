@@ -210,6 +210,7 @@ void gestotux::createToolBar()
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
  tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
+ tb->addActions( plugin()->accionesBarra() );
  tb->addAction( ActClientes );
  tb->addAction( ActRecibosAnteriores );
  tb->addAction( ActNuevoRecibo );
@@ -364,8 +365,16 @@ bool gestotux::cargarPlugins()
          if( loader.load() )
          {
 		_plugin = qobject_cast<EInfoProgramaInterface *>( loader.instance() );
-		qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
-		return true;
+		if( _plugin->inicializar() )
+		{
+			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
+			return true;
+		}
+		else
+		{
+			qWarning( "Error de inicializacion en el plug in" );
+			return false;
+		}
 	 }
 	 else
 	 {

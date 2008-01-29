@@ -27,6 +27,7 @@
 #include <QFileDialog>
 #include "gestotux.h"
 #include <QToolBar>
+#include <QPushButton>
 #include <QPrintDialog>
 #include "preferencias.h"
 
@@ -37,6 +38,11 @@ FormularioCentral::FormularioCentral( QWidget *parent )
  setTabShape( QTabWidget::Rounded );
  setUsesScrollButtons( true );
  connect( this, SIGNAL( currentChanged( int ) ), this, SLOT( cambioWidget( int ) ) );
+ QPushButton *boton = new QPushButton( this );
+ boton->setIcon( QIcon( ":/imagenes/cerrartab.png" ) );
+ boton->setFlat( true );
+ connect( boton, SIGNAL( clicked() ), this, SLOT( cerrarActivo() ) );
+ this->setCornerWidget( boton );
 }
 
 

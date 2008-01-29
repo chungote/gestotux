@@ -20,6 +20,8 @@
 #include "hicomp.h"
 #include <QString>
 #include <QIcon>
+#include <QAction>
+#include <QList>
 
 QString HiComp::nombrePrograma()  const
 {
@@ -31,4 +33,37 @@ Q_EXPORT_PLUGIN2(hicomp, HiComp )
 QIcon HiComp::iconoPrograma() const
 {
  return QIcon( ":/imagenes/icono.png" );
+}
+
+/*!
+    \fn HiComp::accionesBarra()
+ */
+QList<QAction *> HiComp::accionesBarra() const
+{
+ return _acciones;
+}
+
+
+/*!
+    \fn HiComp::inicializar()
+ */
+bool HiComp::inicializar()
+{
+ // Genero las acciones y la lista
+ QAction *ActRecibos = new QAction( "Ver Recibos", this );
+ ActRecibos->setToolTip( "Ver los recibos emitidos" );
+ ActRecibos->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
+ connect( ActRecibos, SIGNAL( triggered() ), this, SLOT( verRecibosAnteriores() ) );
+
+ _acciones.append( ActRecibos );
+
+}
+
+
+/*!
+    \fn HiComp::verRecibosAnteriores()
+ */
+void HiComp::verRecibosAnteriores()
+{
+    /// @todo implement me
 }

@@ -21,9 +21,10 @@
 #define HICOMP_H
 
 class QString;
-
 #include <QObject>
 #include <QtPlugin>
+#include <QList>
+#include <QAction>
 #include "einfoprogramainterface.h"
 
 class HiComp : public QObject, public EInfoProgramaInterface
@@ -34,6 +35,13 @@ class HiComp : public QObject, public EInfoProgramaInterface
 public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
+    QList<QAction *> accionesBarra() const;
+    bool inicializar();
+
+private:
+    QList<QAction *> _acciones;
+public slots:
+    void verRecibosAnteriores();
 };
 
 #endif
