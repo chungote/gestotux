@@ -24,6 +24,7 @@
 #include <QCloseEvent>
 #include <QSystemTrayIcon>
 #include <QDir>
+#include <QPluginLoader>
 #include "formulariocentral.h"
 
 class QAction;
@@ -31,6 +32,7 @@ class QMenu;
 class barraAbajo;
 class barraLateral;
 class QToolBar;
+class EInfoProgramaInterface;
 
 class gestotux:public QMainWindow
 {
@@ -40,6 +42,8 @@ public:
       ~gestotux();
       void inicializar();
       static FormularioCentral *formCentral;
+      static EInfoProgramaInterface *_plugin;
+      static EInfoProgramaInterface *plugin();
       static FormularioCentral *formCen();
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
@@ -57,7 +61,7 @@ private:
       void createStatusBar();
       void createToolBar();
       void crearReloj();
-    void bandeja_sistema();
+      void bandeja_sistema();
 
       barraLateral *barra;
       barraAbajo *barraA;
@@ -95,6 +99,7 @@ private slots:
 private:
     bool cargarPlugins();
     QDir pluginsDir;
+    QPluginLoader loader;
 };
 
 #endif

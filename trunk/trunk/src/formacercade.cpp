@@ -17,16 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-
 #include "formacercade.h"
+#include "gestotux.h"
+#include "einfoprogramainterface.h"
 
 FormAcercaDe::FormAcercaDe(QWidget* parent)
 : EVentana( parent ), Ui::FormAcercaDe()
 {
 	setupUi(this);
 	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
-	///@todo LImagen->setPixmap( QPixmap( ":/imagenes/icono.png" ) );
+	LImagen->setPixmap( gestotux::plugin()->iconoPrograma().pixmap( 100, 100 ) );
 
 	label_2->setText(  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; font-weight:600;\">HiComp Internet</span></p></body></html>" );
         label_4->setText( "Version 0.1" );
