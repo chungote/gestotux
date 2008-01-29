@@ -42,20 +42,22 @@
 #include "formagregarrecibo.h"
 #include "formpreferencias.h"
 #include "ebackup.h"
+#include "einfoprogramainterface.h"
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
+EInfoProgramaInterface *gestotux::_plugin = 0;
 
 gestotux::gestotux()
 {
 // Eliminarse al cerarse
  this->setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "VentanaPrincipal" );
- ///@todo setWindowTitle( "gestotux Computacion 0.1" );
 }
 
 void gestotux::inicializar()
-{
+{ 
+ cargarPlugins();
  setCentralWidget( formCen() );
 
  createActions();
@@ -71,7 +73,8 @@ void gestotux::inicializar()
  this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
  p->endGroup();
 
- ///@todo setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
+ setWindowIcon( plugin()->iconoPrograma() );
+ setWindowTitle( plugin()->nombrePrograma() );
 }
 
 void gestotux::closeEvent(QCloseEvent *event)
@@ -293,7 +296,7 @@ void gestotux::bandeja_sistema()
     iconoBandeja = new QSystemTrayIcon( this );
     QMenu *menu = new QMenu( this );
     menu->addAction( exitAct );
-    ///@todo iconoBandeja->setIcon( QIcon( ":/imagenes/icono.png" ) );
+    iconoBandeja->setIcon( plugin()->iconoPrograma() );
     iconoBandeja->setToolTip( "Gestotux" );
     iconoBandeja->show();
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );
@@ -355,8 +358,32 @@ bool gestotux::cargarPlugins()
  #endif
      pluginsDir.cd("plugins");
 
-     foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
-         QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
-         QObject *plugin = loader.instance();
+     foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
+     {
+	loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
+         if( loader.load() )
+         {
+		_plugin = qobject_cast<EInfoProgramaInterface *>( loader.instance() );
+		qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
+		return true;
+	 }
+	 else
+	 {
+		qWarning( "Error al cargar el plugin" );
+		return false;
+	 }
      }
+}
+
+EInfoProgramaInterface *gestotux::plugin()
+{
+ if( _plugin != 0 )
+ {
+  return _plugin;
+ }
+ else
+ {
+  qWarning( "Llamando al plugin antes de cargarlo" );
+  abort();
+ }
 }
