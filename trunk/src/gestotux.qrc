@@ -25,7 +25,7 @@
         <file>imagenes/add_user.png</file>
         <file>imagenes/delete_user.png</file>
         <file>imagenes/search_user.png</file>
-
+	<file>imagenes/cerrartab.png</file>
         <file>imagenes/recibo.png</file>
     </qresource>
 </RCC>

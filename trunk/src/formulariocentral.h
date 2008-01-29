@@ -46,10 +46,6 @@ public slots:
     void imprimirActivo();
     void aPdfActivo();
 
-signals:
-    void puedeImprimir( bool );
-    void puedeCerrar( bool );
-
 protected slots:
     void cambioWidget( int id );
 };
