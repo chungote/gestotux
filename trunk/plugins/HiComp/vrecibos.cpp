@@ -23,6 +23,7 @@
 #include "formmodificarrecibo.h"
 #include "formagregarrecibo.h"
 #include "drecibo.h"
+#include "visorrecibo.h"
 #include <QTableView>
 #include <QAction>
 #include <QToolBar>
@@ -115,10 +116,9 @@ void VRecibos::modificar()
    return;
  }
  QModelIndex indice;
- ///@todo Ver esto!!!
- /*FormModificarRecibo *f = new FormModificarRecibo( gestotux::formCen() );
- gestotux::formCen()->agregarVentana( f );
- f->cargarDatos( indices[0], modelo );*/
+ FormModificarRecibo *f = new FormModificarRecibo();
+ HiComp::tabs()->addTab( f, f->objectName() );
+ f->cargarDatos( indices[0], modelo );
 }
 
 
@@ -138,7 +138,10 @@ void VRecibos::ver()
  {
    if ( indice.isValid() )
    {
-///@todo    gestotux::formCen()->agregarRecibo( indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt() );
+      int id = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
+      visorRecibo *v = new visorRecibo( this );
+      v->verRecibo( id );
+      HiComp::tabs()->addTab( v, v->objectName() );
    }
  }
 }

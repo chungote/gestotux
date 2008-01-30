@@ -18,9 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "formagregarrecibo.h"
-#include "gestotux.h"
-// #include "mrecibo.h"
-//#include "visorrecibo.h"
+#include "mrecibo.h"
+#include "visorrecibo.h"
+#include "hicomp.h"
 
 #include <QLocale>
 #include <QLineEdit>
@@ -34,11 +34,12 @@
 #include <QDate>
 
 FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
- : EVentana(parent), Ui_FormAgregarReciboBase()
+ : QWidget(parent), Ui_FormAgregarReciboBase()
 {
  setupUi( this );
  setObjectName( "Nuevo Recibo" );
  setWindowTitle( "Nuevo Recibo" );
+ setAttribute( Qt::WA_DeleteOnClose );
 
  recargo = 0;
 
@@ -75,7 +76,7 @@ FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
  ActCancelar = new QAction( "Cancelar", this );
  ActCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCancelar->setStatusTip( "Cancela los datos ingresados y no genera un recibo" );
- connect( ActCancelar, SIGNAL( triggered() ), gestotux::formCen(), SLOT( cerrarActivo() ) );
+ connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActGuardarImprimir = new QAction( "Guardar e Imprimir", this );
  ActGuardarImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
@@ -187,7 +188,7 @@ void FormAgregarRecibo::guardar()
   QMessageBox::warning( this, "Error", "Por favor, ingrese un importe" );
   return;
  }
-/* MRecibo *modelo = new MRecibo();
+ MRecibo *modelo = new MRecibo();
  QSqlRecord rec = modelo->record();
  rec.remove( 0 );
  rec.setValue( "cliente", CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ) );
@@ -208,11 +209,13 @@ void FormAgregarRecibo::guardar()
  if( modelo->insertRecord( -1, rec ) )
  {
   QMessageBox::information( this, "Guardado", "Los datos han sido guardados correctamente" );
-  gestotux::formCen()->cerrarActivo();
+  this->close();
   QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
   if( cola.next() )
   {
-//    gestotux::formCen()->agregarRecibo( cola.record().value( "seq" ).toInt() );
+	visorRecibo *v = new visorRecibo();
+	v->verRecibo( cola.record().value( "seq" ).toInt() );
+	HiComp::tabs()->addTab( v, v->nombre() );
   }
   return;
  }
@@ -221,7 +224,7 @@ void FormAgregarRecibo::guardar()
   qWarning( modelo->lastError().text().toLocal8Bit() );
   QMessageBox::critical( this, "Error", "Error al guardar los datos" );
   return;
- }*/
+ }
 }
 
 

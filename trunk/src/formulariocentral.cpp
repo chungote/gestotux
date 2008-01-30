@@ -19,7 +19,6 @@
  ***************************************************************************/
 #include "formulariocentral.h"
 
-//#include "visorrecibo.h"
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
@@ -56,21 +55,27 @@ void FormularioCentral::tabInserted( int index )
 {
  gestotux::barraAcciones()->clear();
  gestotux::barraAcciones()->addActions( this->widget( index )->actions() );
+ setCurrentIndex( index );
 }
 
 void FormularioCentral::tabRemoved( int index )
 {
  gestotux::barraAcciones()->clear();
+ cambioWidget( currentIndex() );
 }
 
 void FormularioCentral::cambioWidget( int id )
 {
- gestotux::barraAcciones()->clear();
- gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
+//  qDebug( QString( "id nuevo: %1" ).arg( id ).toLocal8Bit() );
+ if( id > -1 )
+ {
+  gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
+ }
 }
 
 
 void FormularioCentral::cerrarActivo()
 {
  removeTab( currentIndex() );
+ cambioWidget( currentIndex() );
 }
