@@ -7,8 +7,6 @@ SOURCES += gestotux.cpp \
  reloj.cpp \
  evlista.cpp \
  formacercade.cpp \
- formagregarrecibo.cpp \
- formmodificarrecibo.cpp \
  formpreferencias.cpp \
  formprefhijo.cpp \
  formulariocentral.cpp \
@@ -25,8 +23,6 @@ HEADERS += gestotux.h \
  reloj.h \
  evlista.h \
  formacercade.h \
- formagregarrecibo.h \
- formmodificarrecibo.h \
  formpreferencias.h \
  formprefhijo.h \
  formulariocentral.h \

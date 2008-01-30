@@ -8,7 +8,8 @@ HEADERS += hicomp.h \
  recibo.h \
  mrecibo.h \
  drecibo.h \
- formagregarrecibo.h
+ formagregarrecibo.h \
+ formmodificarrecibo.h
 
 SOURCES += hicomp.cpp \
  visorrecibo.cpp \
@@ -16,7 +17,8 @@ SOURCES += hicomp.cpp \
  recibo.cpp \
  mrecibo.cpp \
  drecibo.cpp \
- formagregarrecibo.cpp
+ formagregarrecibo.cpp \
+ formmodificarrecibo.cpp
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
@@ -31,4 +33,6 @@ QT = gui \
 	xml
 
 FORMS += FormAgregarReciboBase.ui
-
+OBJECTS_DIR = obj
+UI_DIR = ui
+MOC_DIR = moc	
