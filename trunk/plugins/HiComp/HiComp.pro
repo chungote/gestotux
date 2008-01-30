@@ -9,7 +9,9 @@ HEADERS += hicomp.h \
  mrecibo.h \
  drecibo.h \
  formagregarrecibo.h \
- formmodificarrecibo.h
+ formmodificarrecibo.h \
+ formprefhijo.h \
+ fprefrecibos.h
 
 SOURCES += hicomp.cpp \
  visorrecibo.cpp \
@@ -18,7 +20,9 @@ SOURCES += hicomp.cpp \
  mrecibo.cpp \
  drecibo.cpp \
  formagregarrecibo.cpp \
- formmodificarrecibo.cpp
+ formmodificarrecibo.cpp \
+ formprefhijo.cpp \
+ fprefrecibos.cpp
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src

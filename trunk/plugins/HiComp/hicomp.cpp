@@ -19,12 +19,14 @@
  ***************************************************************************/
 #include "hicomp.h"
 #include "vrecibos.h"
+#include "fprefrecibos.h"
 
 #include <QString>
 #include <QIcon>
 #include <QAction>
 #include <QList>
 #include <QTabWidget>
+#include <QWidget>
 
 QTabWidget *HiComp::_formCen = 0;
 QSettings *HiComp::_pref = 0;
@@ -91,4 +93,15 @@ QString HiComp::directorioBackup() const
 QString HiComp::directorioActualizaciones() const
 {
  return "";
+}
+
+
+/*!
+    \fn HiComp::formsPreferencias()
+ */
+QWidgetList HiComp::formsPreferencias()
+{
+ QWidgetList lista;
+ lista.append( new FPrefRecibos() );
+ return lista;
 }

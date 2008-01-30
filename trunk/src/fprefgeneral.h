@@ -39,6 +39,7 @@ class FPrefGeneral : public FormPrefHijo, private Ui::FPrefGeneralBase
 public:
   FPrefGeneral( QWidget* parent = 0 );
   ~FPrefGeneral();
+public slots:
     void cargar();
     void guardar();
     void aplicar();

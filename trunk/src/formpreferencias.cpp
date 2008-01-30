@@ -29,7 +29,8 @@
 #include "preferencias.h"
 #include "formprefhijo.h"
 #include "fprefgeneral.h"
-#include "fprefrecibos.h"
+#include "gestotux.h"
+#include "einfoprogramainterface.h"
 
 FormPreferencias::FormPreferencias(QWidget *parent)
  : EVentana(parent)
@@ -48,15 +49,32 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     configButton->setText( "Estilo" );
     configButton->setTextAlignment( Qt::AlignHCenter );
     configButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-    QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
-    opciones->setIcon( QIcon( ":/imagenes/recibo.png" ) );
-    opciones->setText( "Recibos" );
-    opciones->setTextAlignment( Qt::AlignHCenter );
-    opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
      ////////////////////////////////////////////////////////////////////
      /// Agregar aqui los widgets de configuracion
-     pagesWidget->addWidget( new FPrefGeneral( this ) );
-     pagesWidget->addWidget( new FPrefRecibos( this ) );
+     FPrefGeneral *formGeneral = new FPrefGeneral( this );
+     connect( this, SIGNAL( aplicar() ), formGeneral, SLOT( aplicar() ) );
+     connect( this, SIGNAL( cargar() ), formGeneral, SLOT( cargar() ) );
+     connect( this, SIGNAL( guardar() ), formGeneral, SLOT( guardar() ) );
+     pagesWidget->addWidget( formGeneral );
+     if( !gestotux::plugin()->formsPreferencias().isEmpty() )
+     {
+	QWidget *form;
+	foreach( form, gestotux::plugin()->formsPreferencias() )
+	{
+		// agrego el item a la lista
+		QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
+		opciones->setIcon( form->windowIcon() );
+		opciones->setText( form->windowTitle() );
+		opciones->setTextAlignment( Qt::AlignHCenter );
+		opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+		contentsWidget->addItem( opciones );
+		// Agrego el formulario
+		pagesWidget->addWidget( form );
+		connect( this, SIGNAL( guardar() ), form, SLOT( guardar() ) );
+		connect( this, SIGNAL( cargar() ), form, SLOT( cargar() ) );
+		connect( this, SIGNAL( aplicar() ), form, SLOT( aplicar() ) );
+	}
+    }
 
     ActCerrar  = new QAction( "Cerrar", this );
     ActCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
@@ -66,19 +84,19 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     ActAplicar = new QAction( "Ap&licar", this );
     ActAplicar->setShortcut( QKeySequence( "Ctrl+l" ) );
     ActAplicar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
-    connect( ActAplicar, SIGNAL( triggered() ), this, SLOT( aplicar() ) );
+    connect( ActAplicar, SIGNAL( triggered() ), this, SIGNAL( aplicar() ) );
 
     ActGuardar = new QAction( "&Guardar", this  );
     ActGuardar->setShortcut( QKeySequence( "Ctrl+g" ) );
     ActGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
-    connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
+    connect( ActGuardar, SIGNAL( triggered() ), this, SIGNAL( guardar() ) );
 
     addAction( ActGuardar );
     addAction( ActAplicar );
     addAction( ActCerrar );
 
     nombre_ventana  = "Configuracion";
-    setNombreVentana( "Configuracion de HiComp" );
+    setNombreVentana( "Configuracion de " + gestotux::plugin()->nombrePrograma() );
 
     contentsWidget->setCurrentRow(0);
 
@@ -95,6 +113,8 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     connect(contentsWidget, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
             this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 
+	connect( this, SIGNAL( guardar() ), this, SIGNAL( aplicar() ) );
+
 	// Cargo la ultima pos de el spliter
 	preferencias *p = preferencias::getInstancia();
 	p->beginGroup( "Ventanas" );
@@ -104,7 +124,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 	p->endGroup();
 
 	// Cargo las preferencias
-	cargar();
+	emit cargar();
 }
 
 
@@ -135,29 +155,6 @@ void FormPreferencias::changePage(QListWidgetItem *current, QListWidgetItem *pre
 
 
 /*!
-    \fn FormPreferencias::aplicar()
- */
-void FormPreferencias::aplicar()
-{
- qobject_cast<FormPrefHijo *>(pagesWidget->currentWidget())->aplicar();
-}
-
-
-/*!
-    \fn FormPreferencias::guardar()
- */
-void FormPreferencias::guardar()
-{
- aplicar();
- for( int i = 0; i < pagesWidget->count(); i++ )
- {
-  qobject_cast<FormPrefHijo *>(pagesWidget->widget(i))->guardar();
- }
- close();
-}
-
-
-/*!
     \fn FormPreferencias::cancelar()
  */
 void FormPreferencias::cancelar()
@@ -165,14 +162,3 @@ void FormPreferencias::cancelar()
  close();
 }
 
-
-/*!
-    \fn FormPreferencias::cargar()
- */
-void FormPreferencias::cargar()
-{
-  for( int i = 0; i < pagesWidget->count(); i++ )
- {
-  qobject_cast<FormPrefHijo *>(pagesWidget->widget(i))->cargar();
- }
-}

@@ -17,27 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef FPREFRECIBOS_H
-#define FPREFRECIBOS_H
-
-#include <ui/ui_FPrefRecibos.h>
 #include "formprefhijo.h"
 
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class FPrefRecibos : public FormPrefHijo, Ui_FPrefRecibosBase
+FormPrefHijo::FormPrefHijo(QWidget *parent)
+ : QWidget(parent)
 {
-Q_OBJECT
-public:
-    FPrefRecibos(QWidget *parent = 0);
-    ~FPrefRecibos();
-    void cargar();
-    void aplicar();
-    void guardar();
+}
 
-private slots:
-    void setear();
-};
 
-#endif
+FormPrefHijo::~FormPrefHijo()
+{
+}
+
+

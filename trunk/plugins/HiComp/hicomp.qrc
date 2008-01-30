@@ -3,5 +3,6 @@
          <file>imagenes/icono.png</file>
 	<file>imagenes/anteriores.png</file>
 	<file>recibo.svg</file>
+	<file>imagenes/recibo.png</file>
    </qresource>
 </RCC>

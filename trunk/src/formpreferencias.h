@@ -39,12 +39,9 @@ Q_OBJECT
 public:
     FormPreferencias(QWidget *parent = 0);
     ~FormPreferencias();
-    void cargar();
 
 protected slots:
     void changePage( QListWidgetItem *current, QListWidgetItem *previous );
-    void aplicar();
-    void guardar();
     void cancelar();
 
 private:
@@ -54,6 +51,11 @@ private:
     QAction *ActAplicar;
     QAction *ActCerrar;
     QAction *ActGuardar;
+
+signals:
+	void guardar();
+	void aplicar();
+	void cargar();
 
 };
 

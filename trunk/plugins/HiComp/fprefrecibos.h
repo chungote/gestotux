@@ -17,40 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef HICOMP_H
-#define HICOMP_H
+#ifndef FPREFRECIBOS_H
+#define FPREFRECIBOS_H
 
-class QString;
-class QTabWidget;
-#include <QObject>
-#include <QtPlugin>
-#include <QList>
-#include <QAction>
-#include "einfoprogramainterface.h"
+#include <ui/ui_FPrefRecibos.h>
+#include "formprefhijo.h"
 
-class HiComp : public QObject, public EInfoProgramaInterface
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class FPrefRecibos : public FormPrefHijo, Ui_FPrefRecibosBase
 {
- Q_OBJECT
- Q_INTERFACES(EInfoProgramaInterface)
-
+Q_OBJECT
 public:
-    QString nombrePrograma() const;
-    QIcon iconoPrograma()  const;
-    QList<QAction *> accionesBarra() const;
-    bool inicializar( QTabWidget *formCen, QSettings *pref );
-    static QTabWidget *tabs();
-    static QSettings *pref();
-    QString directorioBackup() const;
-    QString directorioActualizaciones() const;
-    QWidgetList formsPreferencias();
-
-private:
-    QList<QAction *> _acciones;
-    static QTabWidget *_formCen;
-    static QSettings *_pref;
+    FPrefRecibos(QWidget *parent = 0);
+    ~FPrefRecibos();
 
 public slots:
-    void verRecibosAnteriores();
+    void cargar();
+    void aplicar();
+    void guardar();
+
+private slots:
+    void setear();
 };
 
 #endif
