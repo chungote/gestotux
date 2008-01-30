@@ -59,3 +59,5 @@ TARGET = gestotux
 DESTDIR = ../bin
 INCLUDEPATH += ../plugins
 
+DISTFILES += qt_es.qm
+

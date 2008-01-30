@@ -37,7 +37,7 @@
 Recibo::Recibo(QObject *parent)
  : QObject(parent)
 {
- QFile archivo( ":/recibos.svg" );
+ QFile archivo( ":/recibo.svg" );
  if( !archivo.open( QIODevice::ReadOnly ) )
  {
   qCritical( "No se puede encontrar el archivo original de recibo" );
