@@ -32,7 +32,8 @@
 #include <QSqlError>
 #include <QTextStream>
 #include <math.h>
-#include "preferencias.h"
+#include <QSettings>
+#include "hicomp.h"
 
 Recibo::Recibo(QObject *parent)
  : QObject(parent)
@@ -101,7 +102,7 @@ bool Recibo::cargarRegistro( int idDB )
 
 void Recibo::reajusteXML()
 {
- QDomNodeList lista = domdoc.elementsByTagName( "text" );
+ QDomNodeList lista = domdoc.elementsByTagName( "svg:text" );
  if( lista.isEmpty() )
  {
   qWarning( "Error: no existen nodos de texto en el xml!" );
@@ -154,7 +155,7 @@ void Recibo::reajusteXML()
   }
  }
 
- lista = domdoc.elementsByTagName( "rect" );
+ lista = domdoc.elementsByTagName( "svg:rect" );
  for( int i = 0; i< lista.size(); i++ )
  {
   if( lista.item(i).toElement().attribute( "id" ) == "rTexto" )
@@ -190,11 +191,9 @@ void Recibo::imprimir( QPainter *impresora )
    nodo = nodos.item(i).toElement();
   }
  }
- preferencias *p = preferencias::getInstancia();
- p->inicio();
  double defasaje = nodo.attribute( "x" ).toDouble() + nodo.attribute( "width" ).toDouble();
  defasaje *= 30;
- defasaje += p->value( "preferencias/recibos/margen", 40 ).toDouble() * 30;
+ defasaje += HiComp::pref()->value( "preferencias/recibos/margen", 40 ).toDouble() * 30;
  impresora->translate( QPointF( defasaje, 0 ) );
  rend.render( impresora );
 }

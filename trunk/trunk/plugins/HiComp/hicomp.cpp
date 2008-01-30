@@ -27,6 +27,7 @@
 #include <QTabWidget>
 
 QTabWidget *HiComp::_formCen = 0;
+QSettings *HiComp::_pref = 0;
 
 QString HiComp::nombrePrograma()  const
 {
@@ -49,12 +50,10 @@ QList<QAction *> HiComp::accionesBarra() const
 }
 
 
-/*!
-    \fn HiComp::inicializar()
- */
-bool HiComp::inicializar( QTabWidget *formCen )
+bool HiComp::inicializar( QTabWidget *formCen, QSettings *pref )
 {
  _formCen = formCen;
+ _pref = pref;
  // Genero las acciones y la lista
  QAction *ActRecibos = new QAction( "Ver Recibos", this );
  ActRecibos->setToolTip( "Ver los recibos emitidos" );
@@ -66,9 +65,6 @@ bool HiComp::inicializar( QTabWidget *formCen )
 }
 
 
-/*!
-    \fn HiComp::verRecibosAnteriores()
- */
 void HiComp::verRecibosAnteriores()
 {
  VRecibos *f = new VRecibos();
@@ -76,10 +72,23 @@ void HiComp::verRecibosAnteriores()
 }
 
 
-/*!
-    \fn HiComp::tabs()
- */
 QTabWidget *HiComp::tabs()
 {
  return _formCen;
+}
+
+QSettings *HiComp::pref()
+{
+ return _pref;
+}
+
+QString HiComp::directorioBackup() const
+{
+  return "HiComp";
+}
+
+
+QString HiComp::directorioActualizaciones() const
+{
+ return "";
 }

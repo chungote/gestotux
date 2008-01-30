@@ -345,7 +345,7 @@ bool gestotux::cargarPlugins()
          if( loader.load() )
          {
 		_plugin = qobject_cast<EInfoProgramaInterface *>( loader.instance() );
-		if( _plugin->inicializar( formCen() ) )
+		if( _plugin->inicializar( formCen(), preferencias::getInstancia() ) )
 		{
 			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
 			return true;

@@ -25,6 +25,7 @@ class QString;
 class QAction;
 #include <QList>
 class QIcon;
+class QSettings;
 
 class EInfoProgramaInterface
 {
@@ -33,7 +34,7 @@ public:
     virtual QString nombrePrograma() const = 0;
     virtual QIcon iconoPrograma() const = 0;
     virtual QList<QAction *> accionesBarra() const = 0;
-    virtual bool inicializar( QTabWidget *formCen ) = 0;
+    virtual bool inicializar( QTabWidget *formCen, QSettings *pref ) = 0;
     virtual QString directorioBackup() const = 0;
     virtual QString directorioActualizaciones() const = 0;
 };
