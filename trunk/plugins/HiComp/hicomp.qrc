@@ -2,5 +2,6 @@
     <qresource prefix="">
          <file>imagenes/icono.png</file>
 	<file>imagenes/anteriores.png</file>
+	<file>recibo.svg</file>
    </qresource>
 </RCC>

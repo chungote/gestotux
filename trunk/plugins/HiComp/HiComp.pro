@@ -36,3 +36,5 @@ FORMS += FormAgregarReciboBase.ui
 OBJECTS_DIR = obj
 UI_DIR = ui
 MOC_DIR = moc	
+DISTFILES += recibo.svg
+
