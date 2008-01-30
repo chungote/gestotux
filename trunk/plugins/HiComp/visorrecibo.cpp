@@ -19,26 +19,30 @@
  ***************************************************************************/
 #include "visorrecibo.h"
 #include "gestotux.h"
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QFileDialog>
 
 visorRecibo::visorRecibo(QWidget *parent)
  : QSvgWidget( parent )
 {
+ this->setAttribute(  Qt::WA_DeleteOnClose );
  rec = new Recibo( this );
 
  ActImprimir = new QAction( "Imprimir", this );
  ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
  ActImprimir->setStatusTip( "Imprime el recibo actual" );
- connect( ActImprimir, SIGNAL( triggered() ), gestotux::formCen(), SLOT( imprimirActivo() ) );
+ connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
  ActCerrar = new QAction( "Cerrar", this );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCerrar->setStatusTip( "Cierra esta ventana" );
- connect( ActCerrar, SIGNAL( triggered() ), gestotux::formCen(), SLOT( cerrarActivo() ) );
+ connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActPdf = new QAction( "Guardar a PDF", this );
  ActPdf->setStatusTip( "Guarda el contenido de la pestaña actual a un archivo pdf" );
  ActPdf->setIcon( QIcon( ":/imagenes/acroread.png" ) );
- connect( ActPdf, SIGNAL( triggered() ), gestotux::formCen(), SLOT( aPdfActivo() ) );
+ connect( ActPdf, SIGNAL( triggered() ), this, SLOT( aPdf() ) );
 
  addAction( ActCerrar );
  addAction( ActPdf );
@@ -82,3 +86,53 @@ void visorRecibo::verRecibo( int idDB )
   load( rec->obtenerByteArray() );
 }
 
+
+
+/*!
+    \fn visorRecibo::imprimir()
+ */
+void visorRecibo::imprimir()
+{
+ #ifndef QT_NO_PRINTER
+ QPrinter printer( QPrinter::HighResolution );
+ QPrintDialog *dialog = new QPrintDialog( &printer, this );
+ printer.setOrientation( QPrinter::Landscape );
+ dialog->setWindowTitle( "Imprimir" );
+ if ( dialog->exec() != QDialog::Accepted )
+ { return; }
+ 
+ QPainter pintor;
+ pintor.begin( &printer );
+ rec->imprimir( &pintor );
+ pintor.end();
+#endif
+}
+
+
+/*!
+    \fn visorRecibo::aPdf()
+ */
+void visorRecibo::aPdf()
+{
+ #ifndef QT_NO_PRINTER
+     QString fileName = QFileDialog::getSaveFileName( this, "Exportar a PDF",
+			 QDir::homePath() +
+			 QDir::separator() +
+			 rec->titulo(),
+			 "*.pdf");
+     if (!fileName.isEmpty()) {
+         if (QFileInfo(fileName).suffix().isEmpty())
+             fileName.append(".pdf");
+         QPrinter printer( QPrinter::HighResolution );
+         printer.setOutputFormat( QPrinter::PdfFormat );
+         printer.setOrientation( QPrinter::Landscape );
+         printer.setOutputFileName( fileName );
+
+	 // seteo el pintador
+ 	 QPainter pintador;
+	 pintador.begin( &printer );
+         rec->imprimir( &pintador );
+	 pintador.end();
+     }
+ #endif
+}

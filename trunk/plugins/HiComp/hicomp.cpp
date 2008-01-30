@@ -18,10 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "hicomp.h"
+#include "vrecibos.h"
+
 #include <QString>
 #include <QIcon>
 #include <QAction>
 #include <QList>
+#include <QTabWidget>
+
+QTabWidget *HiComp::_formCen = 0;
 
 QString HiComp::nombrePrograma()  const
 {
@@ -47,8 +52,9 @@ QList<QAction *> HiComp::accionesBarra() const
 /*!
     \fn HiComp::inicializar()
  */
-bool HiComp::inicializar()
+bool HiComp::inicializar( QTabWidget *formCen )
 {
+ _formCen = formCen;
  // Genero las acciones y la lista
  QAction *ActRecibos = new QAction( "Ver Recibos", this );
  ActRecibos->setToolTip( "Ver los recibos emitidos" );
@@ -65,5 +71,15 @@ bool HiComp::inicializar()
  */
 void HiComp::verRecibosAnteriores()
 {
-    /// @todo implement me
+ VRecibos *f = new VRecibos();
+ _formCen->addTab( f, f->windowIcon(), f->objectName()  );
+}
+
+
+/*!
+    \fn HiComp::tabs()
+ */
+QTabWidget *HiComp::tabs()
+{
+ return _formCen;
 }

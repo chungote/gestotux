@@ -1,10 +1,34 @@
 TEMPLATE = lib
 CONFIG += plugin 
 TARGET = hicomp
-HEADERS += hicomp.h
-SOURCES += hicomp.cpp
+
+HEADERS += hicomp.h \
+ visorrecibo.h \
+ vrecibos.h \
+ recibo.h \
+ mrecibo.h \
+ drecibo.h \
+ formagregarrecibo.h
+
+SOURCES += hicomp.cpp \
+ visorrecibo.cpp \
+ vrecibos.cpp \
+ recibo.cpp \
+ mrecibo.cpp \
+ drecibo.cpp \
+ formagregarrecibo.cpp
+
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
 TARGETDEPS += ../../bin/gestotux
+
 RESOURCES += hicomp.qrc
+
+QT = gui \
+	core \
+	svg \
+	sql \
+	xml
+
+FORMS += FormAgregarReciboBase.ui
 

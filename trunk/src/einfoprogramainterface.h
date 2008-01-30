@@ -33,7 +33,7 @@ public:
     virtual QString nombrePrograma() const = 0;
     virtual QIcon iconoPrograma() const = 0;
     virtual QList<QAction *> accionesBarra() const = 0;
-    virtual bool inicializar() = 0;
+    virtual bool inicializar( QTabWidget *formCen ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,

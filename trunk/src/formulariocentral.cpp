@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "formulariocentral.h"
 
-#include "visorrecibo.h"
+//#include "visorrecibo.h"
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
@@ -52,94 +52,25 @@ FormularioCentral::~FormularioCentral()
 
 
 
-void FormularioCentral::agregarRecibo( visorRecibo* visor )
+void FormularioCentral::tabInserted( int index )
 {
- int idret = this->addTab( visor, visor->nombre() );
- if( idret == this->currentIndex() )
- {
-  emit currentChanged( idret );
- }
+ gestotux::barraAcciones()->clear();
+ gestotux::barraAcciones()->addActions( this->widget( index )->actions() );
 }
 
-
-void FormularioCentral::agregarRecibo( int idDB )
+void FormularioCentral::tabRemoved( int index )
 {
- visorRecibo *v = new visorRecibo( this );
- v->verRecibo( idDB );
- agregarRecibo( v );
+ gestotux::barraAcciones()->clear();
+}
+
+void FormularioCentral::cambioWidget( int id )
+{
+ gestotux::barraAcciones()->clear();
+ gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
 }
 
 
 void FormularioCentral::cerrarActivo()
 {
- gestotux::barraAcciones()->clear();
- if( this->count() != 0 )
- {
-   this->removeTab( this->currentIndex() );
- }
- if( count() > 0 )
- {
-  gestotux::barraAcciones()->addActions( currentWidget()->actions() );
- }
-}
-
-QString FormularioCentral::nombreActual()
-{
- return this->tabText( this->currentIndex() );
-}
-
-/*!
-    \fn FormularioCentral::agregarVentana( QWidget *ventana )
- */
-void FormularioCentral::agregarVentana( QWidget *ventana )
-{
- int idret = this->addTab( ventana, ventana->windowTitle() );
- if( idret == this->currentIndex() )
- {
-  emit currentChanged( idret );
- }
- this->setCurrentIndex( idret );
-}
-
-
-/*!
-    \fn FormularioCentral::imprimirActivo()
- */
-void FormularioCentral::imprimirActivo()
-{
-#ifndef QT_NO_PRINTER
- QPrinter printer( QPrinter::HighResolution );
- QPrintDialog *dialog = new QPrintDialog( &printer, this );
- printer.setOrientation( QPrinter::Landscape );
- dialog->setWindowTitle( "Imprimir" );
- if ( dialog->exec() != QDialog::Accepted )
-     return;
- qobject_cast<visorRecibo *>(currentWidget())->recibo()->imprimir(&printer);
-#endif
-}
-
-void FormularioCentral::aPdfActivo()
-{
- #ifndef QT_NO_PRINTER
-     QString fileName = QFileDialog::getSaveFileName( this, "Exportar a PDF", QDir::homePath() + QDir::separator() + nombreActual(), "*.pdf");
-     if (!fileName.isEmpty()) {
-         if (QFileInfo(fileName).suffix().isEmpty())
-             fileName.append(".pdf");
-         QPrinter printer( QPrinter::HighResolution );
-         printer.setOutputFormat( QPrinter::PdfFormat );
-         printer.setOrientation( QPrinter::Landscape );
-         printer.setOutputFileName( fileName );
-         qobject_cast<visorRecibo *>(this->currentWidget())->recibo()->imprimir(&printer);
-     }
- #endif
-}
-
-
-/*!
-    \fn FormularioCentral::cambioWidget( int id )
- */
-void FormularioCentral::cambioWidget( int id )
-{
- gestotux::barraAcciones()->clear();
- gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
+ removeTab( currentIndex() );
 }
