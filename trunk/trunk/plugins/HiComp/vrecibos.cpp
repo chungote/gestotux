@@ -31,6 +31,8 @@
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QModelIndex>
+#include <QPrinter>
+#include <QPrintDialog>
 
 
 VRecibos::VRecibos( QWidget *parent )
@@ -182,3 +184,46 @@ void VRecibos::eliminar()
  return;
 }
 
+
+
+/*!
+    \fn VRecibos::imprimir()
+ */
+void VRecibos::imprimir()
+{
+ // Veo la impresora
+#ifndef QT_NO_PRINTER
+ QPrinter printer( QPrinter::HighResolution );
+ QPrintDialog *dialog = new QPrintDialog( &printer, this );
+ printer.setOrientation( QPrinter::Landscape );
+ dialog->setWindowTitle( "Imprimir" );
+ if ( dialog->exec() != QDialog::Accepted )
+ { return; }
+ // veo que quiere imprimir
+ QItemSelectionModel *selectionModel = vista->selectionModel();
+ QModelIndexList indices = selectionModel->selectedRows();
+ if( indices.size() < 1 )
+ {
+   QMessageBox::warning( this, "Seleccione un recibo",
+                   "Por favor, seleccione un recibo para imprimir",
+                   QMessageBox::Ok );
+   return;
+ }
+ // espacio de impresion
+ QPainter pintor;
+ pintor.begin( &printer );
+
+ QModelIndex indice;
+ foreach( indice, indices )
+ {
+   if ( indice.isValid() )
+   {
+    Recibo r;
+    r.cargarRegistro( indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt() );
+    r.imprimir( &pintor );
+   }
+  printer.newPage();
+ }
+ pintor.end();
+#endif
+}

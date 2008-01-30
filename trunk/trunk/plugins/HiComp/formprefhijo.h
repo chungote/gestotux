@@ -17,40 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef HICOMP_H
-#define HICOMP_H
+#ifndef FORMPREFHIJO_H
+#define FORMPREFHIJO_H
 
-class QString;
-class QTabWidget;
-#include <QObject>
-#include <QtPlugin>
-#include <QList>
-#include <QAction>
-#include "einfoprogramainterface.h"
+#include <QWidget>
 
-class HiComp : public QObject, public EInfoProgramaInterface
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class FormPrefHijo : public QWidget
 {
- Q_OBJECT
- Q_INTERFACES(EInfoProgramaInterface)
-
+Q_OBJECT
 public:
-    QString nombrePrograma() const;
-    QIcon iconoPrograma()  const;
-    QList<QAction *> accionesBarra() const;
-    bool inicializar( QTabWidget *formCen, QSettings *pref );
-    static QTabWidget *tabs();
-    static QSettings *pref();
-    QString directorioBackup() const;
-    QString directorioActualizaciones() const;
-    QWidgetList formsPreferencias();
-
-private:
-    QList<QAction *> _acciones;
-    static QTabWidget *_formCen;
-    static QSettings *_pref;
+    FormPrefHijo(QWidget *parent = 0);
+    ~FormPrefHijo();
 
 public slots:
-    void verRecibosAnteriores();
+    virtual void aplicar() = 0;
+    virtual void cargar() = 0;
+    virtual void guardar() = 0;
+
 };
 
 #endif

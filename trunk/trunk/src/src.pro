@@ -11,7 +11,6 @@ SOURCES += gestotux.cpp \
  formprefhijo.cpp \
  formulariocentral.cpp \
  fprefgeneral.cpp \
- fprefrecibos.cpp \
  mclientes.cpp \
  eactualizacion.cpp \
  vcliente.cpp
@@ -27,7 +26,6 @@ HEADERS += gestotux.h \
  formprefhijo.h \
  formulariocentral.h \
  fprefgeneral.h \
- fprefrecibos.h \
  mclientes.h \
  vcliente.h \
  eactualizacion.h \

@@ -50,6 +50,8 @@ protected slots:
     void eliminar();
     void modificar();
     void agregar();
+protected slots:
+    void imprimir();
 };
 
 #endif

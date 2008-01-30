@@ -37,6 +37,7 @@ public:
     virtual bool inicializar( QTabWidget *formCen, QSettings *pref ) = 0;
     virtual QString directorioBackup() const = 0;
     virtual QString directorioActualizaciones() const = 0;
+    virtual QWidgetList formsPreferencias() = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,
