@@ -17,39 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VRECIBOS_H
-#define VRECIBOS_H
+#ifndef FORMAGREGARRECIBO_H
+#define FORMAGREGARRECIBO_H
 
 #include <eventana.h>
+#include <ui/ui_FormAgregarReciboBase.h>
 
-class QAction;
-class QSqlTableModel;
-class QTableView;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class VRecibos : public EVentana
+class FormAgregarRecibo : public EVentana, public Ui_FormAgregarReciboBase
 {
 Q_OBJECT
 public:
-    VRecibos(QWidget *parent = 0);
-    ~VRecibos();
+    FormAgregarRecibo(QWidget *parent = 0);
+    ~FormAgregarRecibo();
+    QString nombre();
 
 private:
-    QAction *ActAgregar;
-    QAction *ActEliminar;
-    QAction *ActImprimir;
-    QAction *ActVer;
-    QAction *ActCerrar;
-    QAction *ActModificar;
-    QSqlTableModel *modelo;
-    QTableView *vista;
+    double recargo;
+    void recalcular();
+
+    QAction* ActCancelar;
+    QAction* ActGuardar;
+    QAction* ActGuardarImprimir;
 
 protected slots:
-    void ver();
-    void eliminar();
-    void modificar();
-    void agregar();
+    void cambioImporte( double );
+    void cambioEstadoPagoMes( int estado );
+    void cambioEstadoRecargos( int estado );
+    void guardar();
+protected slots:
+    void guardarImprimir();
 };
 
 #endif

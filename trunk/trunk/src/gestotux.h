@@ -74,13 +74,13 @@ private:
       QMenu *helpMenu;
 
       QAction *ActClientes;
-      QAction *ActRecibosAnteriores;
+//       QAction *ActRecibosAnteriores;
       QAction *exitAct;
       QAction *acercade;
       QAction *ActCerrar;
       QAction *ActPdf;
       QAction *ActImprimir;
-      QAction *ActNuevoRecibo;
+//       QAction *ActNuevoRecibo;
       QAction *ActPreferencias;
       QAction *ActBackup;
 
@@ -88,8 +88,8 @@ private:
 
 public slots:
     void verClientes();
-    void verRecibos();
-    void nuevoRecibo();
+//     void verRecibos();
+//     void nuevoRecibo();
     void verPreferencias();
     void verBackup();
 

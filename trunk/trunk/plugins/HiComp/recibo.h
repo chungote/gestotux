@@ -23,7 +23,7 @@
 #include <QObject>
 #include <QDomDocument>
 #include <QDate>
-#include <QPrinter>
+#include <QPainter>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -37,7 +37,7 @@ public:
     QByteArray obtenerByteArray();
     QString titulo();
     bool cargarRegistro( int idDB );
-    void imprimir( QPrinter *impresora );
+    void imprimir( QPainter *impresora );
 
 private:
     QString nombre_cliente;

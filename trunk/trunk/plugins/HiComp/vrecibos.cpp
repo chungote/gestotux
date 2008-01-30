@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "vrecibos.h"
 #include "mrecibo.h"
-#include "gestotux.h"
+#include "hicomp.h"
 #include "formmodificarrecibo.h"
 #include "formagregarrecibo.h"
 #include "drecibo.h"
@@ -33,10 +33,10 @@
 
 
 VRecibos::VRecibos( QWidget *parent )
- : EVentana( parent )
+ : QWidget( parent )
 {
- nombre_ventana = "lista_recibos";
- setNombreVentana( "Recibos Emitidos" );
+ setObjectName( "Recibos Emitidos" );
+ this->setAttribute( Qt::WA_DeleteOnClose );
 
  modelo = new MRecibo( this );
 
@@ -73,15 +73,15 @@ VRecibos::VRecibos( QWidget *parent )
  ActEliminar->setStatusTip( "Elimina el recibo seleccionado" );
  connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar() ) );
 
- ActImprimir = new QAction( "Imprimir", this );
- ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
- ActImprimir->setStatusTip( "Imprime el recibo actual" );
- connect( ActImprimir, SIGNAL( triggered() ), gestotux::formCen(), SLOT( imprimirActivo() ) );
+  ActImprimir = new QAction( "Imprimir", this );
+  ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
+  ActImprimir->setStatusTip( "Imprime el recibo actual" );
+  connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
  ActCerrar = new QAction( "Cerrar", this );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCerrar->setStatusTip( "Cierra esta ventana" );
- connect( ActCerrar, SIGNAL( triggered() ), gestotux::formCen(), SLOT( cerrarActivo() ) );
+ connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  addAction( ActVer );
  addAction( ActAgregar );
@@ -99,8 +99,8 @@ VRecibos::~VRecibos()
 
 void VRecibos::agregar()
 {
- FormAgregarRecibo *f = new FormAgregarRecibo( gestotux::formCen() );
- gestotux::formCen()->agregarVentana( f );
+ FormAgregarRecibo *f = new FormAgregarRecibo();
+ HiComp::tabs()->addTab( f, f->objectName() );
 }
 
 void VRecibos::modificar()
@@ -115,9 +115,10 @@ void VRecibos::modificar()
    return;
  }
  QModelIndex indice;
- FormModificarRecibo *f = new FormModificarRecibo( gestotux::formCen() );
+ ///@todo Ver esto!!!
+ /*FormModificarRecibo *f = new FormModificarRecibo( gestotux::formCen() );
  gestotux::formCen()->agregarVentana( f );
- f->cargarDatos( indices[0], modelo );
+ f->cargarDatos( indices[0], modelo );*/
 }
 
 
@@ -137,7 +138,7 @@ void VRecibos::ver()
  {
    if ( indice.isValid() )
    {
-    gestotux::formCen()->agregarRecibo( indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt() );
+///@todo    gestotux::formCen()->agregarRecibo( indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt() );
    }
  }
 }

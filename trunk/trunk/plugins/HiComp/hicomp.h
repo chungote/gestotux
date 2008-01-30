@@ -21,6 +21,7 @@
 #define HICOMP_H
 
 class QString;
+class QTabWidget;
 #include <QObject>
 #include <QtPlugin>
 #include <QList>
@@ -36,10 +37,13 @@ public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
     QList<QAction *> accionesBarra() const;
-    bool inicializar();
+    bool inicializar( QTabWidget *formCen );
+    static QTabWidget *tabs();
 
 private:
     QList<QAction *> _acciones;
+    static QTabWidget *_formCen;
+
 public slots:
     void verRecibosAnteriores();
 };

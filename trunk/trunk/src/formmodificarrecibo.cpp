@@ -29,8 +29,9 @@
 #include <QRadioButton>
 #include <QTextEdit>
 #include <QLineEdit>
-#include "mrecibo.h"
+// #include "mrecibo.h"
 #include <QSqlQuery>
+#include <QSqlTableModel>
 
 FormModificarRecibo::FormModificarRecibo( QWidget *parent )
  : EVentana( parent )
@@ -249,7 +250,7 @@ void FormModificarRecibo::guardar()
  if( modelo->setRecord( indice.row(), rec ) )
  {
   QMessageBox::information( this, "Guardado", "Los datos han sido guardados correctamente" );
-  gestotux::formCen()->cerrarActivo();
+  this->close();
   return;
  }
  else
@@ -267,5 +268,5 @@ void FormModificarRecibo::guardar()
 void FormModificarRecibo::guardarImprimir()
 {
  guardar();
- gestotux::formCen()->imprimirActivo();
+//  gestotux::formCen()->imprimirActivo();
 }

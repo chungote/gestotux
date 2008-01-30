@@ -36,7 +36,6 @@
 #include "reloj.h"
 #include "formacercade.h"
 #include "vcliente.h"
-#include "vrecibos.h"
 #include "preferencias.h"
 #include "formulariocentral.h"
 #include "formagregarrecibo.h"
@@ -99,7 +98,7 @@ void gestotux::createActions()
       ActClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
       connect( ActClientes, SIGNAL( triggered() ), this, SLOT( verClientes() ) );
 
-      ActRecibosAnteriores = new QAction( "Ver Recibos Emitidos", this );
+      /*ActRecibosAnteriores = new QAction( "Ver Recibos Emitidos", this );
       ActRecibosAnteriores->setStatusTip( "Muestra la lista de recibos emitidos" );
       ActRecibosAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
       connect( ActRecibosAnteriores, SIGNAL( triggered() ), this, SLOT( verRecibos() ) );
@@ -107,7 +106,7 @@ void gestotux::createActions()
       ActNuevoRecibo = new QAction( "Nuevo recibo", this );
       ActNuevoRecibo->setStatusTip( "Crea un nuevo recibo" );
       ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
-      connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );
+      connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) ); */
 
       ActPreferencias = new QAction ( "Configuracion" , this );
       ActPreferencias->setStatusTip( "Modifica las preferencias de la aplicacion" );
@@ -132,7 +131,7 @@ void gestotux::createMenus()
       menuHer->addAction( ActBackup );
       menuHer->addSeparator();
       menuHer->addAction( ActClientes );
-      menuHer->addAction( ActRecibosAnteriores );
+//       menuHer->addAction( ActRecibosAnteriores );
 
 }
 
@@ -191,18 +190,17 @@ void gestotux::acerca()
 void gestotux::verClientes()
 {
   VCliente *f = new VCliente( this );
-  formCen()->agregarVentana( f );
+  formCen()->addTab( f, f->objectName() );
 }
 
 
-/*!
-    \fn gestotux::verRecibos()
- */
+/*
 void gestotux::verRecibos()
 {
  VRecibos *f = new VRecibos( this );
  formCen()->agregarVentana( f );
 }
+*/
 
 void gestotux::createToolBar()
 {
@@ -212,8 +210,8 @@ void gestotux::createToolBar()
  tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
  tb->addActions( plugin()->accionesBarra() );
  tb->addAction( ActClientes );
- tb->addAction( ActRecibosAnteriores );
- tb->addAction( ActNuevoRecibo );
+//  tb->addAction( ActRecibosAnteriores );
+//  tb->addAction( ActNuevoRecibo );
  tb->addAction( ActBackup );
  tb->addAction( ActPreferencias );
 
@@ -251,39 +249,28 @@ void gestotux::crearReloj()
 }
 
 
-/*!
-    \fn gestotux::nuevoRecibo()
- */
+/*
 void gestotux::nuevoRecibo()
 {
  FormAgregarRecibo *f = new FormAgregarRecibo( formCen() );
  formCen()->agregarVentana( f );
 }
+*/
 
-
-/*!
-    \fn gestotux::preferencias()
- */
 void gestotux::verPreferencias()
 {
   FormPreferencias *p = new FormPreferencias( this );
-  formCen()->agregarVentana( p );
+  formCen()->addTab( p, p->objectName() );
 }
 
 
-/*!
-    \fn gestotux::verBackup()
- */
 void gestotux::verBackup()
 {
   Ebackup *f = new Ebackup( this );
-  formCen()->agregarVentana( f );
+  formCen()->addTab( f, f->objectName() );
 }
 
 
-/*!
-    \fn gestotux::bandeja_sistema()
- */
 void gestotux::bandeja_sistema()
 {
  preferencias *p = preferencias::getInstancia();
@@ -316,9 +303,6 @@ void gestotux::bandeja_sistema()
 }
 
 
-/*!
-    \fn gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
- */
 void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 {
   switch( razon )
@@ -340,9 +324,6 @@ void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 }
 
 
-/*!
-    \fn gestotux::cargarPlugins()
- */
 bool gestotux::cargarPlugins()
 {
  pluginsDir = QDir(qApp->applicationDirPath());
@@ -365,7 +346,7 @@ bool gestotux::cargarPlugins()
          if( loader.load() )
          {
 		_plugin = qobject_cast<EInfoProgramaInterface *>( loader.instance() );
-		if( _plugin->inicializar() )
+		if( _plugin->inicializar( formCen() ) )
 		{
 			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
 			return true;
@@ -379,6 +360,7 @@ bool gestotux::cargarPlugins()
 	 else
 	 {
 		qWarning( "Error al cargar el plugin" );
+		qWarning( QString( "Error: %1" ).arg( loader.errorString() ).toLocal8Bit() );
 		return false;
 	 }
      }

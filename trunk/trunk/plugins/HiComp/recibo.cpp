@@ -53,33 +53,21 @@ Recibo::Recibo(QObject *parent)
 
 
 Recibo::~Recibo()
-{
-}
+{}
 
 
-
-
-/*!
-    \fn Recibo::obtenerByteArray()
- */
 QByteArray Recibo::obtenerByteArray()
 {
  return( domdoc.toByteArray() );
 }
 
 
-/*!
-    \fn Recibo::titulo()
- */
 QString Recibo::titulo()
 {
  return nombre_cliente;
 }
 
 
-/*!
-    \fn Recibo::cargarRegistro( idDB )
- */
 bool Recibo::cargarRegistro( int idDB )
 {
  QSqlQuery cola( QString( "SELECT c.nombre, c.apellido, c.direccion, r.id, r.texto, r.precio, r.fecha_pago, r.contado, r.cuenta_corriente FROM recibos r, clientes c WHERE r.id = '%1' AND r.cliente = c.id" ).arg( idDB ) );
@@ -111,9 +99,6 @@ bool Recibo::cargarRegistro( int idDB )
 }
 
 
-/*!
-    \fn Recibo::reajusteXML()
- */
 void Recibo::reajusteXML()
 {
  QDomNodeList lista = domdoc.elementsByTagName( "text" );
@@ -191,14 +176,10 @@ void Recibo::reajusteXML()
 }
 
 
-/*!
-    \fn Recibo::imprimir( QPrinter impresora )
- */
-void Recibo::imprimir( QPrinter *impresora )
+void Recibo::imprimir( QPainter *impresora )
 {
  QSvgRenderer rend( this->obtenerByteArray() );
- QPainter pintador( impresora );
- rend.render( &pintador );
+ rend.render( impresora );
  // Calculo el defasaje inicial
  QDomNodeList nodos = domdoc.elementsByTagName( "rect" );
  QDomElement nodo;
@@ -214,14 +195,11 @@ void Recibo::imprimir( QPrinter *impresora )
  double defasaje = nodo.attribute( "x" ).toDouble() + nodo.attribute( "width" ).toDouble();
  defasaje *= 30;
  defasaje += p->value( "preferencias/recibos/margen", 40 ).toDouble() * 30;
- pintador.translate( QPointF( defasaje, 0 ) );
- rend.render( &pintador );
+ impresora->translate( QPointF( defasaje, 0 ) );
+ rend.render( impresora );
 }
 
 
-/*!
-    \fn Recibo::generarNumeroRecibo()
- */
 QString Recibo::generarNumeroRecibo()
 {
   QString t1 = QString::number( num_recibo );
@@ -246,9 +224,6 @@ QString Recibo::generarNumeroRecibo()
 }
 
 
-/*!
-    \fn Recibo::hacerText( QDomNode padre )
- */
 void Recibo::hacerText( QDomNode padre, const double ancho, double x, double y )
 {
  int contador = 0;
@@ -300,8 +275,6 @@ void Recibo::hacerText( QDomNode padre, const double ancho, double x, double y )
  }
  // ver si me queda algo que no se haya completado
 }
-
-
 
 
 double Recibo::anchoCaracter( QString car )

@@ -15,20 +15,14 @@ SOURCES += gestotux.cpp \
  fprefgeneral.cpp \
  fprefrecibos.cpp \
  mclientes.cpp \
- mrecibo.cpp \
- recibo.cpp \
- vcliente.cpp \
- visorrecibo.cpp \
- vrecibos.cpp \
- drecibo.cpp \
- eactualizacion.cpp
+ eactualizacion.cpp \
+ vcliente.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
  eenviobackup.h \
  eventana.h \
  reloj.h \
- drecibo.h \
  evlista.h \
  formacercade.h \
  formagregarrecibo.h \
@@ -39,11 +33,7 @@ HEADERS += gestotux.h \
  fprefgeneral.h \
  fprefrecibos.h \
  mclientes.h \
- mrecibo.h \
- recibo.h \
  vcliente.h \
- visorrecibo.h \
- vrecibos.h \
  eactualizacion.h \
  einfoprogramainterface.h
 TEMPLATE = app
@@ -60,22 +50,16 @@ QT += sql \
 svg \
 xml \
 network
+
 OBJECTS_DIR = obj
-
 UI_DIR = ui
-
 MOC_DIR = moc
-
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
 FPrefGeneral.ui \
-FormAgregarReciboBase.ui \
 FPrefRecibos.ui
 RESOURCES = gestotux.qrc
-
 TARGET = gestotux
-
 DESTDIR = ../bin
-
 INCLUDEPATH += ../plugins
 

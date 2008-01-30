@@ -35,19 +35,14 @@ Q_OBJECT
 public:
     FormularioCentral(  QWidget *parent = 0 );
     ~FormularioCentral();
-    void agregarRecibo( visorRecibo* visor );
-    void agregarRecibo( int idDB );
-
-    QString nombreActual();
-    void agregarVentana( QWidget *ventana );
-
-public slots:
-    void cerrarActivo();
-    void imprimirActivo();
-    void aPdfActivo();
 
 protected slots:
     void cambioWidget( int id );
+    void cerrarActivo();
+
+private:
+    void tabInserted( int index );
+    void tabRemoved( int index );
 };
 
 #endif

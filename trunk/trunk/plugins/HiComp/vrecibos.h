@@ -17,27 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef DRECIBO_H
-#define DRECIBO_H
+#ifndef VRECIBOS_H
+#define VRECIBOS_H
 
-#include <QSqlRelationalDelegate>
-class QPolygonF;
+#include <QWidget>
 
+class QAction;
+class QSqlTableModel;
+class QTableView;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class DRecibo : public QSqlRelationalDelegate
+class VRecibos : public QWidget
 {
 Q_OBJECT
 public:
-    DRecibo(QObject *parent = 0);
-    ~DRecibo();
-    void setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const;
-    void setEditorData ( QWidget * editor, const QModelIndex & index ) const;
-    QWidget * createEditor ( QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
-    void paint( QPainter *painter, const QStyleOptionViewItem &option,  const QModelIndex &index ) const;
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    VRecibos(QWidget *parent = 0);
+    ~VRecibos();
 
+private:
+    QAction *ActAgregar;
+    QAction *ActEliminar;
+    QAction *ActImprimir;
+    QAction *ActVer;
+    QAction *ActCerrar;
+    QAction *ActModificar;
+    QSqlTableModel *modelo;
+    QTableView *vista;
+
+protected slots:
+    void ver();
+    void eliminar();
+    void modificar();
+    void agregar();
 };
 
 #endif

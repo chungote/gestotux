@@ -44,6 +44,9 @@ private:
     QAction *ActPdf;
 
 
+protected slots:
+    void imprimir();
+    void aPdf();
 };
 
 #endif
