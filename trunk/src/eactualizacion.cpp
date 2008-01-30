@@ -19,9 +19,11 @@
  ***************************************************************************/
 #include "eactualizacion.h"
 
-EActualizacion::EActualizacion ( QWidget *parent )
+EActualizacion::EActualizacion( QWidget *parent )
 : EVentana ( parent )
-{}
+{
+
+}
 
 
 EActualizacion::~EActualizacion()

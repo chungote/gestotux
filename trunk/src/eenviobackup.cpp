@@ -21,6 +21,8 @@
 
 #include <QFtp>
 #include "preferencias.h"
+#include "gestotux.h"
+#include "einfoprogramainterface.h"
 #include <QFile>
 #include <QDate>
 
@@ -56,6 +58,7 @@ void EEnvioBackup::run()
  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
  ftp->connectToHost( p->value( "ftp/host", "tranfuga.no-ip.org" ).toString(), p->value( "ftp/puerto", 21 ).toInt() );
  ftp->login();
+ ftp->cd( gestotux::plugin()->directorioBackup() );
  ftp->put( archivo, QDateTime::currentDateTime().toString( "yyyyMMddhhmmsszzz") );
  ftp->close();
  exec();
