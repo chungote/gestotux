@@ -51,7 +51,8 @@ Ebackup::Ebackup( QWidget* parent )
 : EVentana( parent ), Ui_FormBackupBase()
 {
  setupUi(this);
- setWindowTitle( "Copia de Seguridad" );
+ this->setAttribute( Qt::WA_DeleteOnClose );
+ setObjectName( "Copia de Seguridad" );
  PBProgreso->setValue( 0 );
  LDebug->setText( "Presione Iniciar para comenzar" );
  // inicializo el deposito de datos

@@ -36,7 +36,8 @@ QT = gui \
 	sql \
 	xml
 
-FORMS += FormAgregarReciboBase.ui
+FORMS += FormAgregarReciboBase.ui \
+ FPrefRecibos.ui
 OBJECTS_DIR = obj
 UI_DIR = ui
 MOC_DIR = moc	

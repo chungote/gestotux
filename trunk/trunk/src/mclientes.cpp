@@ -27,6 +27,7 @@ MClientes::MClientes( QObject *parent )
  setHeaderData( 1, Qt::Horizontal, "Apellido" );
  setHeaderData( 2, Qt::Horizontal, "Nombre" );
  setHeaderData( 3, Qt::Horizontal, "Direccion" );
+ setHeaderData( 4, Qt::Horizontal, "Telefono/Celular" );
 }
 
 

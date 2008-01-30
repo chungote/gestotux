@@ -50,8 +50,7 @@ UI_DIR = ui
 MOC_DIR = moc
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
-FPrefGeneral.ui \
-FPrefRecibos.ui
+FPrefGeneral.ui
 RESOURCES = gestotux.qrc
 TARGET = gestotux
 DESTDIR = ../bin

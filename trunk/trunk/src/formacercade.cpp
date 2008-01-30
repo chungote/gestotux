@@ -24,6 +24,7 @@
 FormAcercaDe::FormAcercaDe(QWidget* parent)
 : EVentana( parent ), Ui::FormAcercaDe()
 {
+ 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
 	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
 	LImagen->setPixmap( gestotux::plugin()->iconoPrograma().pixmap( 100, 100 ) );

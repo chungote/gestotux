@@ -95,8 +95,8 @@ void visorRecibo::imprimir()
 {
  #ifndef QT_NO_PRINTER
  QPrinter printer( QPrinter::HighResolution );
- QPrintDialog *dialog = new QPrintDialog( &printer, this );
  printer.setOrientation( QPrinter::Landscape );
+ QPrintDialog *dialog = new QPrintDialog( &printer, this );
  dialog->setWindowTitle( "Imprimir" );
  if ( dialog->exec() != QDialog::Accepted )
  { return; }
