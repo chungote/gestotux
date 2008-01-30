@@ -38,7 +38,6 @@
 #include "vcliente.h"
 #include "preferencias.h"
 #include "formulariocentral.h"
-#include "formagregarrecibo.h"
 #include "formpreferencias.h"
 #include "ebackup.h"
 #include "einfoprogramainterface.h"
