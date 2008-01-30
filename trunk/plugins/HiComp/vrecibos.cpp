@@ -143,7 +143,7 @@ void VRecibos::ver()
       int id = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
       visorRecibo *v = new visorRecibo( this );
       v->verRecibo( id );
-      HiComp::tabs()->addTab( v, v->objectName() );
+      HiComp::tabs()->addTab( v, v->nombre() );
    }
  }
 }

@@ -27,7 +27,7 @@ Reloj::Reloj(QWidget *parent)
  : QLCDNumber( parent )
 {
  setSegmentStyle(Filled);
-
+ this->setAttribute( Qt::WA_DeleteOnClose );
  QTimer *timer = new QTimer(this);
  connect( timer, SIGNAL( timeout() ), this, SLOT( showTime() ) );
  timer->start(1000);

@@ -14,7 +14,6 @@
       <part>kdevquickopen</part>
       <part>kdevtools</part>
       <part>kdevregexptest</part>
-      <part>kdevdocumentation</part>
       <part>kdevctags2</part>
       <part>kdevtexttools</part>
       <part>kdevabbrev</part>
@@ -182,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/HiComp</activedir>
+      <activedir>src</activedir>
     </general>
     <make>
       <abortonerror>false</abortonerror>

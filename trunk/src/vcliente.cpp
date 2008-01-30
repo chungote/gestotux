@@ -35,7 +35,8 @@ VCliente::VCliente( QWidget *parent )
  : EVentana( parent )
 {
  nombre_ventana = "lista_clientes";
- setNombreVentana( "Listado de Clientes" );
+ this->setAttribute( Qt::WA_DeleteOnClose );
+ setObjectName( "Listado de Clientes" );
 
  modelo = new MClientes( this );
  modelo->setEditStrategy( QSqlTableModel::OnFieldChange );
