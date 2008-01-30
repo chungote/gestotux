@@ -37,12 +37,16 @@ public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
     QList<QAction *> accionesBarra() const;
-    bool inicializar( QTabWidget *formCen );
+    bool inicializar( QTabWidget *formCen, QSettings *pref );
     static QTabWidget *tabs();
+    static QSettings *pref();
+    QString directorioBackup() const;
+    QString directorioActualizaciones() const;
 
 private:
     QList<QAction *> _acciones;
     static QTabWidget *_formCen;
+    static QSettings *_pref;
 
 public slots:
     void verRecibosAnteriores();
