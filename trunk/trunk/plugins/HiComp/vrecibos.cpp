@@ -194,6 +194,9 @@ void VRecibos::imprimir()
  // Veo la impresora
 #ifndef QT_NO_PRINTER
  QPrinter printer( QPrinter::HighResolution );
+ #ifdef QT_WS_WIN
+  printer.setOutputFormat(QPrinter::NativeFormat);
+ #endif
  printer.setOrientation( QPrinter::Landscape );
  QPrintDialog *dialog = new QPrintDialog( &printer, this );
  dialog->setWindowTitle( "Imprimir" );
