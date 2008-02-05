@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>src</activedir>
+      <activedir>plugins/HiComp</activedir>
     </general>
     <make>
       <abortonerror>false</abortonerror>

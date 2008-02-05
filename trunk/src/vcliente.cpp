@@ -92,6 +92,9 @@ VCliente::~VCliente()
 void VCliente::agregar()
 {
  QSqlRecord registro = modelo->record();
+ registro.setValue( 1, "" );
+ registro.setValue( 2, "" );
+ registro.setValue( 3, "" );
  registro.remove( 0 );
  if( !modelo->insertRecord( -1, registro ) )
  {
