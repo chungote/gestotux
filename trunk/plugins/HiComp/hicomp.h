@@ -51,6 +51,8 @@ private:
 
 public slots:
     void verRecibosAnteriores();
+protected slots:
+    void nuevoRecibo();
 };
 
 #endif

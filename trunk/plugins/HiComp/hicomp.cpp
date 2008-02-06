@@ -20,6 +20,7 @@
 #include "hicomp.h"
 #include "vrecibos.h"
 #include "fprefrecibos.h"
+#include "formagregarrecibo.h"
 
 #include <QString>
 #include <QIcon>
@@ -62,6 +63,12 @@ bool HiComp::inicializar( QTabWidget *formCen, QSettings *pref )
  ActRecibos->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  connect( ActRecibos, SIGNAL( triggered() ), this, SLOT( verRecibosAnteriores() ) );
 
+ QAction *ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
+ ActNuevoRecibo->setToolTip( "Crear un nuevo recibo" );
+ ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
+ connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );
+
+ _acciones.append( ActNuevoRecibo );
  _acciones.append( ActRecibos );
 
 }
@@ -104,4 +111,14 @@ QWidgetList HiComp::formsPreferencias()
  QWidgetList lista;
  lista.append( new FPrefRecibos() );
  return lista;
+}
+
+
+/*!
+    \fn HiComp::nuevoRecibo()
+ */
+void HiComp::nuevoRecibo()
+{
+ FormAgregarRecibo *f = new FormAgregarRecibo();
+ _formCen->addTab( f, f->windowIcon(), f->objectName()  );
 }
