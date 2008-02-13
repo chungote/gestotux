@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
+ *   Copyright (C) 2006 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,37 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VISORRECIBO_H
-#define VISORRECIBO_H
+#ifndef DPRODUCTOS_H
+#define DPRODUCTOS_H
 
-#include <QSvgWidget>
-#include <QAction>
-#include "recibo.h"
+#include <QSqlRelationalDelegate>
 
 /**
+ * 	\brief Clase que ayuda la edicion de Productos
+ *
+ * Delegate que permite personalizar la edicion de los campos del formulario de miembros.\n
+ * Cuando se editan la categoria del producto deja afuera del combobox las categorias de gastos
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class visorRecibo : public QSvgWidget
+class DProductos : public QSqlRelationalDelegate
 {
-  Q_OBJECT
+Q_OBJECT
 public:
-    visorRecibo( QWidget *parent = 0 );
-    ~visorRecibo();
-    QString nombre();
-    Recibo * recibo();
-    void verRecibo( int idDB );
+    DProductos(QObject *parent = 0);
+    ~DProductos();
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
-private:
-    Recibo *rec;
-    QAction *ActCerrar;
-    QAction *ActImprimir;
-    QAction *ActPdf;
-
-public slots:
-    void imprimir();
-
-protected slots:
-    void aPdf();
 };
 
 #endif

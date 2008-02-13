@@ -18,11 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eactualizacion.h"
+#include <QFtp>
 
 EActualizacion::EActualizacion( QWidget *parent )
-: EVentana ( parent )
+: EVentana ( parent ), Ui_FormActualizacionBase()
 {
+ setupUi( this );
 
+ PBAccion->setIcon( QIcon( ":/imagenes/next.png" ) );
+ connect( PBAccion, SIGNAL( clicked() ), this, SLOT( iniciar() ) );
 }
 
 
@@ -30,3 +34,28 @@ EActualizacion::~EActualizacion()
 {}
 
 
+
+
+/*!
+    \fn EActualizacion::detener()
+ */
+void EActualizacion::detener()
+{
+  _continuar_actualizando = false;
+}
+
+
+/*!
+    \fn EActualizacion::iniciar()
+ */
+void EActualizacion::iniciar()
+{
+  _continuar_actualizando = true;
+  PBAccion->setIcon( QIcon( ":/imagenes/stop.png" ) );
+  PBAccion->setText( "Detener" );
+  disconnect( PBAccion, SIGNAL( clicked() ), this, SLOT( iniciar() ) );
+  connect( PBAccion, SIGNAL(clicked() ), this, SLOT( detener() ) );
+
+  ftp = new QFtp( this );
+  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
+}

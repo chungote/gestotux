@@ -18,139 +18,69 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "evlista.h"
-#include <QSplitter>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QBoxLayout>
-#include <QFrame>
-#include <QPushButton>
 #include <QSqlTableModel>
 #include <QTableView>
-#include <QCheckBox>
 #include <QHeaderView>
 #include "preferencias.h"
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QAction>
+#include <QGridLayout>
 
-
-EVLista::EVLista( QWidget *parent,  bool vertical )
+EVLista::EVLista( QWidget *parent )
  : EVentana( parent )
 {
-////////////////////////////////////////////////////////////////////////////////////////
- // Genero el formulario
+ QGridLayout *layout = new QGridLayout( this );
+ vista = new QTableView(this);
+ vista->setSizePolicy( QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding );
+ layout->addWidget( vista );
+ this->setLayout( layout );
 
-    splitter = new QSplitter(this);
-    splitter->setObjectName(QString::fromUtf8("splitter"));
-    if( vertical == false )
-    {
-     boxLayoutgeneral = new QHBoxLayout(this);
-     splitter->setOrientation(Qt::Vertical);
-    }
-    else
-    {
-     boxLayoutgeneral = new QVBoxLayout(this);
-     splitter->setOrientation(Qt::Horizontal);
-    }
-    boxLayoutgeneral->setSpacing(6);
-    boxLayoutgeneral->setMargin(9);
-    boxLayoutgeneral->setObjectName(QString::fromUtf8("LayoutGeneral"));
-    frame = new QFrame(splitter);
-    frame->setObjectName(QString::fromUtf8("FrameBotones"));
-    QSizePolicy sizePolicy(static_cast<QSizePolicy::Policy>(13), static_cast<QSizePolicy::Policy>(3));
-    sizePolicy.setHorizontalStretch(0);
-    sizePolicy.setVerticalStretch(0);
-    sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
-    frame->setSizePolicy(sizePolicy);
-    frame->setFrameShape(QFrame::StyledPanel);
-    frame->setFrameShadow(QFrame::Raised);
-    if( vertical == false )
-    {
-      boxLayout = new QHBoxLayout( frame );
-      frame->setMaximumHeight( 80 );
-    }
-    else
-    {
-      boxLayout = new QVBoxLayout( frame );
-      frame->setMaximumWidth( 300 );
-    }
-    boxLayout->setSpacing(6);
-    boxLayout->setMargin(9);
-    boxLayout->setObjectName(QString::fromUtf8("Layout_Botones"));
-    PBAgregar = new QPushButton(frame);
-    PBAgregar->setObjectName(QString::fromUtf8("PBAgregar"));
-
-    boxLayout->addWidget(PBAgregar);
-
-    PBEliminar = new QPushButton(frame);
-    PBEliminar->setObjectName(QString::fromUtf8("PBEliminar"));
-
-    boxLayout->addWidget(PBEliminar);
-
-    if( vertical == true )
-    {
-	linea = new QFrame(frame);
-        linea->setObjectName(QString::fromUtf8("linea"));
-        linea->setFrameShape(QFrame::HLine);
-        linea->setFrameShadow(QFrame::Sunken);
-
-        boxLayout->addWidget(linea);
-    }
-
-    spacerItem = new QSpacerItem(414, 191, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-    boxLayout->addItem(spacerItem);
-
-    PBCerrar = new QPushButton(frame);
-    PBCerrar->setObjectName(QString::fromUtf8("PBCerrar"));
-
-    boxLayout->addWidget(PBCerrar);
-
-    vista = new QTableView(splitter);
-    vista->setObjectName(QString::fromUtf8("vista"));
-    vista->setSizePolicy( QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding );
-
-    if( vertical == false )
-    {
-      splitter->addWidget(vista);
-      splitter->addWidget(frame);
-      boxLayoutgeneral->addWidget(splitter);
-    }
-    else
-    {
-      splitter->addWidget(frame);
-      splitter->addWidget(vista);
-      boxLayoutgeneral->addWidget(splitter);
-    }
-
- //////////////////////////////////////////////////////////////////////////////////////////
- // Cargo las imagenes en los botones
- ////////////////////////////////////////////////////////////////////////////////////////
- PBAgregar ->setIcon( QIcon( ":/imagenes/add.png" ) );
- PBAgregar ->setText( "&Agregar" );
- PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
- PBEliminar->setText( "&Eliminar" );
- PBCerrar  ->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- PBCerrar  ->setText( "Cer&rar" );
  // Propiedades varias
  vista->setSelectionMode( QAbstractItemView::SingleSelection );
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
  vista->setTextElideMode( Qt::ElideRight );
- // Conecto las señales
- connect( PBCerrar   , SIGNAL( clicked() ), this, SLOT( cerrar()    ) );
- connect( PBAgregar  , SIGNAL( clicked() ), this, SLOT( agregar()   ) );
- connect( PBEliminar , SIGNAL( clicked() ), this, SLOT( eliminar()  ) );
 
- PBAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
- PBEliminar->setShortcut( QKeySequence( "Ctrl+e" ) );
- PBCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
-  //redimensiono a la ultima posicion
- preferencias *p = preferencias::getInstancia();
- p->beginGroup( "Ventanas" );
- p->beginGroup( nombre_ventana );
- splitter->restoreState( p->value("dimensiones" ).toByteArray() );
- p->endGroup();
- p->endGroup();
+ //////////////////////////////////////////////////////////////////////////////////////////
+ // Acciones Genericas
+ ////////////////////////////////////////////////////////////////////////////////////////
+ ActAgregar = new QAction( "&Agregar", this );
+ ActAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+ ActAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
+ ActAgregar->setToolTip( "Agregar un nuevo item ( Ctrl + a )" );
+ connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
+
+ ActModificar = new QAction( "&Modificar", this );
+ ActModificar->setIcon( QIcon( ":/imagenes/editar.png" ) );
+ ActModificar->setShortcut( QKeySequence( "Ctrl+m" ) );
+ ActModificar->setToolTip( "Modifica el item actual ( Ctrl + m )" );
+ connect( ActModificar, SIGNAL( triggered() ), this, SLOT( modificar() ) );
+
+ ActImprimir = new QAction( "&Imprimir", this );
+ ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
+ ActImprimir->setToolTip( "Imprime el/los items seleccionados ( Ctrl + i )" );
+ ActImprimir->setShortcut( QKeySequence( "Ctrl+i" ) );
+ connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+
+ ActEliminar = new QAction( "&Eliminar", this );
+ ActEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+ ActEliminar->setShortcut( QKeySequence( "Ctrl+e" ) );
+ ActEliminar->setToolTip( "Eliminar el o los items seleccionados ( Ctrl + e )" );
+ connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar()  ) );
+
+ ActBuscar = new QAction( "&Buscar", this );
+ ActBuscar->setIcon( QIcon( ":/imagenes/buscar.png" ) );
+ ActBuscar->setShortcut( QKeySequence( "Ctrl+b" ) );
+ ActBuscar->setToolTip( "Buscar items ( Ctrl + b )" );
+ connect( ActBuscar, SIGNAL( triggered() ), this, SLOT( buscar() ) );
+
+ ActCerrar = new QAction( "Cer&rar", this );
+ ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+ ActCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
+ ActCerrar->setToolTip( "Cierra esta ventana ( Ctrl + r )" );
+ connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( cerrar() ) );
+
 }
 
 
@@ -229,20 +159,5 @@ void EVLista::closeEvent( QCloseEvent * c)
  delete vista;
  modelo->submitAll();
  delete modelo;
- //Guardo  las dimensiones
- preferencias *p = preferencias::getInstancia();
- p->beginGroup( "Ventanas" );
- p->beginGroup( nombre_ventana );
- p->setValue( "dimensiones", splitter->saveState() );
- p->endGroup();
- p->endGroup();
  EVentana::closeEvent( c );
-}
-
-/*!
- * \fn EVLista::imprimir()
- *	Por ahora no hace nada
- */
-void EVLista::imprimir()
-{
 }

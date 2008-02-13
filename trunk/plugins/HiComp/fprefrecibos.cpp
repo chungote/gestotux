@@ -53,6 +53,8 @@ void FPrefRecibos::guardar()
   p->setValue( "preferencias/recibos/tam", CBTam->currentIndex() );
   p->setValue( "preferencias/recibos/orientacion", CBOrientacion->currentIndex() );
   p->setValue( "preferencias/recibos/margen", dSBMargen->value() );
+  p->setValue( "preferencias/recibos/tienetexto", GBPagoMes->isChecked() );
+  p->setValue( "preferencias/recibos/textopagomes", LETextoPagoMes->text() );
 }
 
 
@@ -87,6 +89,10 @@ void FPrefRecibos::cargar()
   // Margen
   dSBMargen->setValue( p->value( "preferencias/recibos/margen", 15 ).toDouble() );
   dSBMargen->setMinimum( 0 );
+
+  // Texto del recibo
+  GBPagoMes->setChecked( p->value( "preferencias/recibos/tienetexto", true ).toBool() );
+  LETextoPagoMes->setText( p->value( "preferencias/recibos/textopagomes", "Servicio de Internet del mes de %1" ).toString() );
 }
 
 

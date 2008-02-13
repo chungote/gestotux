@@ -17,52 +17,84 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EVLISTA_H
-#define EVLISTA_H
+#include "mcategorias.h"
 
-#include <eventana.h>
-class QSqlTableModel;
-class QSqlRecord;
-class QAction;
-class QTableView;
+#include <QSqlIndex>
+#include <QSqlDatabase>
 
-/**
- * 	\brief Clase base para todas las ventanas de tipo lista
- *
- *	Clase generica para mostrar un listado simple de datos del programa
- *
- * 	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class EVLista : public EVentana
+MCategorias::MCategorias(QObject *parent)
+ : QSqlTableModel(parent)
 {
-	Q_OBJECT
-public:
-    EVLista(QWidget *parent = 0 );
-    ~EVLista();
-    void closeEvent( QCloseEvent * c);
+ setTable( "categoria" );
+ setHeaderData( 0, Qt::Horizontal, "#ID" );
+ setHeaderData( 1, Qt::Horizontal, "Nombre" );
+ setHeaderData( 2, Qt::Horizontal, "Descripcion" );
+ setHeaderData( 3, Qt::Horizontal, "Tipo" ); // 1 = salida, 0 = entradas
+ setSort( 1, Qt::AscendingOrder );
+ setEditStrategy( QSqlTableModel::OnRowChange );
+ select();
+}
 
-    // Especifico del formulario
-    QTableView *vista;
 
-    // Acciones
-    QAction *ActAgregar;
-    QAction *ActModificar;
-    QAction *ActEliminar;
-    QAction *ActBuscar;
-    QAction *ActImprimir;
-    QAction *ActCerrar;
+MCategorias::~MCategorias()
+{
+}
 
-protected:
-  /**
-   * Puntero a modelo generico para la vista
-   */
-   QSqlTableModel *modelo;
 
-protected slots:
-    void cerrar();
-    void agregar();
-    void eliminar();
-    virtual void antes_de_insertar( int row, QSqlRecord & record ) = 0;
-};
 
-#endif
+
+/*!
+    \fn MCategorias::data( const QModelIndex& item, int role ) const
+ */
+QVariant MCategorias::data( const QModelIndex& item, int role ) const
+{
+if( !item.isValid() )
+ {
+  return QVariant();
+ }
+ else
+ {
+  switch(role)
+  {
+	case Qt::DisplayRole:
+	{
+		switch( item.column() )
+		{
+			case 3:
+			{
+				switch( QSqlTableModel::data( item, role ).toInt() )
+				{
+					case 1:
+					{
+						return "Compras";
+						break;
+					}
+					case 2:
+					{
+						return "Gastos";
+						break;
+					}
+					default:
+					{
+						return "Ventas";
+						break;
+					}
+				}
+				break;
+			}
+			default:
+			{
+				return QSqlTableModel::data( item, role );
+				break;
+			}
+		}
+		break;
+	}
+	default:
+	{
+		return QSqlTableModel::data( item, role );
+		break;
+	}
+  }
+ }
+}

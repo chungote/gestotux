@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
+ *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,37 +17,25 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VISORRECIBO_H
-#define VISORRECIBO_H
+#ifndef MCATEGORIAS_H
+#define MCATEGORIAS_H
 
-#include <QSvgWidget>
-#include <QAction>
-#include "recibo.h"
+#include <QSqlTableModel>
 
 /**
+Modelo que maneja las categorias
+
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class visorRecibo : public QSvgWidget
+class MCategorias : public QSqlTableModel
 {
-  Q_OBJECT
+Q_OBJECT
 public:
-    visorRecibo( QWidget *parent = 0 );
-    ~visorRecibo();
-    QString nombre();
-    Recibo * recibo();
-    void verRecibo( int idDB );
+    MCategorias(QObject *parent = 0);
 
-private:
-    Recibo *rec;
-    QAction *ActCerrar;
-    QAction *ActImprimir;
-    QAction *ActPdf;
+    ~MCategorias();
+    QVariant data( const QModelIndex& item, int role ) const;
 
-public slots:
-    void imprimir();
-
-protected slots:
-    void aPdf();
 };
 
 #endif

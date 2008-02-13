@@ -21,17 +21,27 @@
 #define EACTUALIZACION_H
 
 #include <eventana.h>
+#include "ui/ui_FormActualizacionBase.h"
+
+class QFtp;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EActualizacion : public EVentana
+class EActualizacion : public EVentana, Ui_FormActualizacionBase
 {
 	Q_OBJECT
 public:
     EActualizacion ( QWidget *parent = 0 );
     ~EActualizacion();
 
+public slots:
+    void detener();
+    void iniciar();
+
+private:
+	bool _continuar_actualizando;
+	QFtp *ftp;
 };
 
 #endif

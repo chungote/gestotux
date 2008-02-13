@@ -34,7 +34,7 @@ public:
     virtual QString nombrePrograma() const = 0;
     virtual QIcon iconoPrograma() const = 0;
     virtual QList<QAction *> accionesBarra() const = 0;
-    virtual bool inicializar( QTabWidget *formCen, QSettings *pref ) = 0;
+    virtual bool inicializar( QStackedWidget *formCen, QSettings *pref ) = 0;
     virtual QString directorioBackup() const = 0;
     virtual QString directorioActualizaciones() const = 0;
     virtual QWidgetList formsPreferencias() = 0;

@@ -41,6 +41,8 @@
 #include "formpreferencias.h"
 #include "ebackup.h"
 #include "einfoprogramainterface.h"
+#include "eactualizacion.h"
+#include "vproductos.h"
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
@@ -97,16 +99,6 @@ void gestotux::createActions()
       ActClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
       connect( ActClientes, SIGNAL( triggered() ), this, SLOT( verClientes() ) );
 
-      /*ActRecibosAnteriores = new QAction( "Ver Recibos Emitidos", this );
-      ActRecibosAnteriores->setStatusTip( "Muestra la lista de recibos emitidos" );
-      ActRecibosAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
-      connect( ActRecibosAnteriores, SIGNAL( triggered() ), this, SLOT( verRecibos() ) );
-
-      ActNuevoRecibo = new QAction( "Nuevo recibo", this );
-      ActNuevoRecibo->setStatusTip( "Crea un nuevo recibo" );
-      ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
-      connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) ); */
-
       ActPreferencias = new QAction ( "Configuracion" , this );
       ActPreferencias->setStatusTip( "Modifica las preferencias de la aplicacion" );
       ActPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
@@ -116,12 +108,23 @@ void gestotux::createActions()
       ActBackup->setStatusTip( "Genera y retaura backups del programa" );
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
+
+	ActActualizacion = new QAction( "Actualizar", this );
+	ActActualizacion->setStatusTip( "Busca e instala actualizaciones del programa" );
+// 	ActActualizacion->setIcon( );
+	connect( ActActualizacion, SIGNAL( triggered() ), this, SLOT( actualizaciones() ) );
+
+	ActProductos = new QAction( "Productos", this );
+	ActProductos->setStatusTip( "Mustra el listado de productos" );
+	ActProductos->setIcon( QIcon( ":/imagenes/productos.png" ) );
+	connect( ActProductos, SIGNAL( triggered() ), this, SLOT( verProductos() ) );
 }
 
 void gestotux::createMenus()
 {
       fileMenu = menuBar()->addMenu( "&Archivo" );
       fileMenu->addAction( acercade );
+      //fileMenu->addAction( ActActualizacion );
       fileMenu->addSeparator();
       fileMenu->addAction( exitAct );
 
@@ -130,8 +133,7 @@ void gestotux::createMenus()
       menuHer->addAction( ActBackup );
       menuHer->addSeparator();
       menuHer->addAction( ActClientes );
-//       menuHer->addAction( ActRecibosAnteriores );
-
+      menuHer->addAction( ActProductos );
 }
 
 void gestotux::createStatusBar()
@@ -189,17 +191,9 @@ void gestotux::acerca()
 void gestotux::verClientes()
 {
   VCliente *f = new VCliente( this );
-  formCen()->addTab( f, f->objectName() );
+  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
 }
 
-
-/*
-void gestotux::verRecibos()
-{
- VRecibos *f = new VRecibos( this );
- formCen()->agregarVentana( f );
-}
-*/
 
 void gestotux::createToolBar()
 {
@@ -209,8 +203,6 @@ void gestotux::createToolBar()
  tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
  tb->addActions( plugin()->accionesBarra() );
  tb->addAction( ActClientes );
-//  tb->addAction( ActRecibosAnteriores );
-//  tb->addAction( ActNuevoRecibo );
  tb->addAction( ActBackup );
  tb->addAction( ActPreferencias );
 
@@ -248,25 +240,17 @@ void gestotux::crearReloj()
 }
 
 
-/*
-void gestotux::nuevoRecibo()
-{
- FormAgregarRecibo *f = new FormAgregarRecibo( formCen() );
- formCen()->agregarVentana( f );
-}
-*/
-
 void gestotux::verPreferencias()
 {
   FormPreferencias *p = new FormPreferencias( this );
-  formCen()->addTab( p, p->objectName() );
+  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( p ) ) );
 }
 
 
 void gestotux::verBackup()
 {
   Ebackup *f = new Ebackup( this );
-  formCen()->addTab( f, f->objectName() );
+  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
 }
 
 
@@ -376,4 +360,22 @@ EInfoProgramaInterface *gestotux::plugin()
   qWarning( "Llamando al plugin antes de cargarlo" );
   abort();
  }
+}
+
+
+void gestotux::actualizaciones()
+{
+ EActualizacion *f = new EActualizacion( formCen() );
+ formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
+}
+
+
+
+/*!
+    \fn gestotux::verProductos()
+ */
+void gestotux::verProductos()
+{
+  VProductos *f = new VProductos( formCen() );
+  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
 }

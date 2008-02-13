@@ -20,7 +20,7 @@
 #ifndef FORMULARIOCENTRAL_H
 #define FORMULARIOCENTRAL_H
 
-#include <QTabWidget>
+#include <QStackedWidget>
 
 class visorRecibo;
 
@@ -29,7 +29,7 @@ Formulario Central
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class FormularioCentral : public QTabWidget
+class FormularioCentral : public QStackedWidget
 {
 Q_OBJECT
 public:
@@ -40,9 +40,6 @@ protected slots:
     void cambioWidget( int id );
     void cerrarActivo();
 
-private:
-    void tabInserted( int index );
-    void tabRemoved( int index );
 };
 
 #endif
