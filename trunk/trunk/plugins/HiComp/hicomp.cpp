@@ -26,10 +26,10 @@
 #include <QIcon>
 #include <QAction>
 #include <QList>
-#include <QTabWidget>
+#include <QStackedWidget>
 #include <QWidget>
 
-QTabWidget *HiComp::_formCen = 0;
+QStackedWidget *HiComp::_formCen = 0;
 QSettings *HiComp::_pref = 0;
 
 QString HiComp::nombrePrograma()  const
@@ -53,7 +53,7 @@ QList<QAction *> HiComp::accionesBarra() const
 }
 
 
-bool HiComp::inicializar( QTabWidget *formCen, QSettings *pref )
+bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref )
 {
  _formCen = formCen;
  _pref = pref;
@@ -71,17 +71,19 @@ bool HiComp::inicializar( QTabWidget *formCen, QSettings *pref )
  _acciones.append( ActNuevoRecibo );
  _acciones.append( ActRecibos );
 
+ return true;
+
 }
 
 
 void HiComp::verRecibosAnteriores()
 {
- VRecibos *f = new VRecibos();
- _formCen->addTab( f, f->windowIcon(), f->objectName()  );
+ VRecibos *f = new VRecibos( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
 
-QTabWidget *HiComp::tabs()
+QStackedWidget *HiComp::tabs()
 {
  return _formCen;
 }
@@ -119,6 +121,6 @@ QWidgetList HiComp::formsPreferencias()
  */
 void HiComp::nuevoRecibo()
 {
- FormAgregarRecibo *f = new FormAgregarRecibo();
- _formCen->addTab( f, f->windowIcon(), f->objectName()  );
+ FormAgregarRecibo *f = new FormAgregarRecibo( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

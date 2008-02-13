@@ -31,17 +31,9 @@
 #include "preferencias.h"
 
 FormularioCentral::FormularioCentral( QWidget *parent )
- : QTabWidget( parent )
+ : QStackedWidget( parent )
 {
- setTabPosition( QTabWidget::North );
- setTabShape( QTabWidget::Rounded );
- setUsesScrollButtons( true );
  connect( this, SIGNAL( currentChanged( int ) ), this, SLOT( cambioWidget( int ) ) );
- QPushButton *boton = new QPushButton( this );
- boton->setIcon( QIcon( ":/imagenes/cerrartab.png" ) );
- boton->setFlat( true );
- connect( boton, SIGNAL( clicked() ), this, SLOT( cerrarActivo() ) );
- this->setCornerWidget( boton );
 }
 
 
@@ -50,25 +42,12 @@ FormularioCentral::~FormularioCentral()
 }
 
 
-
-void FormularioCentral::tabInserted( int index )
-{
- gestotux::barraAcciones()->clear();
- gestotux::barraAcciones()->addActions( this->widget( index )->actions() );
- setCurrentIndex( index );
-}
-
-void FormularioCentral::tabRemoved( int index )
-{
- gestotux::barraAcciones()->clear();
- cambioWidget( currentIndex() );
-}
-
 void FormularioCentral::cambioWidget( int id )
 {
 //  qDebug( QString( "id nuevo: %1" ).arg( id ).toLocal8Bit() );
  if( id > -1 )
  {
+  gestotux::barraAcciones()->clear();
   gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
  }
 }
@@ -76,6 +55,6 @@ void FormularioCentral::cambioWidget( int id )
 
 void FormularioCentral::cerrarActivo()
 {
- removeTab( currentIndex() );
+ removeWidget( this->widget( currentIndex() ) );
  cambioWidget( currentIndex() );
 }

@@ -21,7 +21,7 @@
 #define HICOMP_H
 
 class QString;
-class QTabWidget;
+class QStackedWidget;
 #include <QObject>
 #include <QtPlugin>
 #include <QList>
@@ -37,8 +37,8 @@ public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
     QList<QAction *> accionesBarra() const;
-    bool inicializar( QTabWidget *formCen, QSettings *pref );
-    static QTabWidget *tabs();
+    bool inicializar( QStackedWidget *formCen, QSettings *pref );
+    static QStackedWidget *tabs();
     static QSettings *pref();
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
@@ -46,7 +46,7 @@ public:
 
 private:
     QList<QAction *> _acciones;
-    static QTabWidget *_formCen;
+    static QStackedWidget *_formCen;
     static QSettings *_pref;
 
 public slots:

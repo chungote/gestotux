@@ -1,0 +1,4 @@
+- Agregado salto de linea forazo por el texto, no solo por el ancho.
+- Eliminado problema de cola sql suelta por no heredar el modelo en el agregar recibo.
+- Cambiado el sistema de ventanas por pestañas a uno de pila.
+- Agregados modelos para productos y categorias

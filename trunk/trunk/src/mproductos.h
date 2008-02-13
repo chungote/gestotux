@@ -17,37 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VISORRECIBO_H
-#define VISORRECIBO_H
+#ifndef MPRODUCTOS_H
+#define MPRODUCTOS_H
 
-#include <QSvgWidget>
-#include <QAction>
-#include "recibo.h"
+#include <QSqlRelationalTableModel>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class visorRecibo : public QSvgWidget
+class MProductos : public QSqlRelationalTableModel
 {
-  Q_OBJECT
+Q_OBJECT
 public:
-    visorRecibo( QWidget *parent = 0 );
-    ~visorRecibo();
-    QString nombre();
-    Recibo * recibo();
-    void verRecibo( int idDB );
-
-private:
-    Recibo *rec;
-    QAction *ActCerrar;
-    QAction *ActImprimir;
-    QAction *ActPdf;
-
-public slots:
-    void imprimir();
-
-protected slots:
-    void aPdf();
+    MProductos(QObject *parent = 0);
+    ~MProductos();
+    QVariant data(const QModelIndex& item, int role) const;
+    bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 };
 
 #endif

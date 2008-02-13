@@ -232,6 +232,14 @@ void Recibo::hacerText( QDomNode padre, const double ancho, double x, double y )
  QString descripcion2 = descripcion;
  while( contador < descripcion2.count() )
  {
+  // Busco si el caracter no es un fin de linea
+  if( descripcion2.at( contador ) == '\n' )
+  {
+   //fuerzo el salto de linea
+   contador++;
+   total = ancho+1;
+  }
+  // sino sumo el ancho de ese caracter
   if( total < ancho )
   {
     total += anchoCaracter( descripcion2.at( contador ) );

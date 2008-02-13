@@ -46,8 +46,7 @@ protected slots:
     void cambioImporte( double );
     void cambioEstadoPagoMes( int estado );
     void cambioEstadoRecargos( int estado );
-    void guardar();
-protected slots:
+    void guardar( bool imprimir = false );
     void guardarImprimir();
 };
 

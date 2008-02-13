@@ -54,6 +54,7 @@ protected:
 protected slots:
     void salir();
     void acerca();
+    void actualizaciones();
 
 private:
       void createActions();
@@ -74,24 +75,23 @@ private:
       QMenu *helpMenu;
 
       QAction *ActClientes;
-//       QAction *ActRecibosAnteriores;
       QAction *exitAct;
       QAction *acercade;
       QAction *ActCerrar;
       QAction *ActPdf;
       QAction *ActImprimir;
-//       QAction *ActNuevoRecibo;
       QAction *ActPreferencias;
       QAction *ActBackup;
+      QAction *ActActualizacion;
+      QAction *ActProductos;
 
       QSystemTrayIcon * iconoBandeja;
 
 public slots:
     void verClientes();
-//     void verRecibos();
-//     void nuevoRecibo();
     void verPreferencias();
     void verBackup();
+    void verProductos();
 
 private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );

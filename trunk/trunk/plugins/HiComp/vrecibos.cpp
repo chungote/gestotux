@@ -33,6 +33,7 @@
 #include <QModelIndex>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QStackedWidget>
 
 
 VRecibos::VRecibos( QWidget *parent )
@@ -102,8 +103,8 @@ VRecibos::~VRecibos()
 
 void VRecibos::agregar()
 {
- FormAgregarRecibo *f = new FormAgregarRecibo();
- HiComp::tabs()->addTab( f, f->objectName() );
+ FormAgregarRecibo *f = new FormAgregarRecibo( HiComp::tabs() );
+ HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
 }
 
 void VRecibos::modificar()
@@ -118,8 +119,8 @@ void VRecibos::modificar()
    return;
  }
  QModelIndex indice;
- FormModificarRecibo *f = new FormModificarRecibo();
- HiComp::tabs()->addTab( f, f->objectName() );
+ FormModificarRecibo *f = new FormModificarRecibo( HiComp::tabs() );
+ HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
  f->cargarDatos( indices[0], modelo );
 }
 
@@ -143,7 +144,7 @@ void VRecibos::ver()
       int id = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
       visorRecibo *v = new visorRecibo( this );
       v->verRecibo( id );
-      HiComp::tabs()->addTab( v, v->nombre() );
+      HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( v ) ) );
    }
  }
 }

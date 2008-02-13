@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
+ *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,37 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VISORRECIBO_H
-#define VISORRECIBO_H
+#include "dproductos.h"
 
-#include <QSvgWidget>
-#include <QAction>
-#include "recibo.h"
+#include <QModelIndex>
+#include <QComboBox>
 
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class visorRecibo : public QSvgWidget
+DProductos::DProductos(QObject *parent)
+ : QSqlRelationalDelegate(parent)
 {
-  Q_OBJECT
-public:
-    visorRecibo( QWidget *parent = 0 );
-    ~visorRecibo();
-    QString nombre();
-    Recibo * recibo();
-    void verRecibo( int idDB );
+}
 
-private:
-    Recibo *rec;
-    QAction *ActCerrar;
-    QAction *ActImprimir;
-    QAction *ActPdf;
 
-public slots:
-    void imprimir();
+DProductos::~DProductos()
+{
+}
 
-protected slots:
-    void aPdf();
-};
 
-#endif
+QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index ) const
+{
+ switch( index.column() )
+ {
+	case 1:
+	{
+		QComboBox *combo = qobject_cast<QComboBox *>( QSqlRelationalDelegate::createEditor( parent, option, index));
+ 		QSqlTableModel *modelo = qobject_cast<QSqlTableModel *>(combo->model());
+ 		modelo->setFilter( "tipo <> '2'" );
+		combo->setModel( modelo );
+		return combo;
+		break;
+	}
+	default:
+	{
+		return QSqlRelationalDelegate::createEditor(parent, option, index);
+		break;
+	}
+ }
+}

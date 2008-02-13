@@ -31,7 +31,9 @@
 #include <QSqlQuery>
 #include <QRadioButton>
 #include <QSqlError>
+#include <QSettings>
 #include <QDate>
+#include <QStackedWidget>
 
 FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
  : QWidget(parent), Ui_FormAgregarReciboBase()
@@ -169,9 +171,9 @@ void FormAgregarRecibo::cambioImporte( double )
 
 
 /*!
-    \fn FormAgregarRecibo::guardar()
+    \fn FormAgregarRecibo::guardar( bool imprimir )
  */
-void FormAgregarRecibo::guardar()
+void FormAgregarRecibo::guardar( bool imprimir )
 {
  if( !RBCuentaCorriente->isChecked() && !RBContado->isChecked() )
  {
@@ -180,15 +182,45 @@ void FormAgregarRecibo::guardar()
  }
  if( TETexto->toPlainText().isEmpty() )
  {
-  QMessageBox::warning( this, "Error", "Por favor, ingrese un detalle" );
-  return;
+  if( !cBPagoMes->isChecked() )
+  {
+   QMessageBox::warning( this, "Error", "Por favor, ingrese un detalle" );
+   return;
+  }
  }
  if( dSBImporte->value() <= 0 )
  {
   QMessageBox::warning( this, "Error", "Por favor, ingrese un importe" );
   return;
  }
- MRecibo *modelo = new MRecibo();
+ if( cBPagoMes->isChecked() )
+ {
+	// Quiere ponerle texto? - lo busco en las preferencias
+	QSettings *p = HiComp::pref();
+	if( p->value( "preferencias/recibos/tienetexto", false ).toBool() )
+	{
+		TETexto->append( p->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
+	}
+	else
+	// Las preferencias no dicen nada, asi que pregunto
+	{
+		QMessageBox::StandardButton reply;
+		reply = QMessageBox::question( this,
+						"Confirmacion",
+						"Desea que se agrege automaticamente el texto de pago del mes al recibo en el campo de texto?",
+						QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
+		if( reply == QMessageBox::Yes )
+		{
+			TETexto->append( p->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
+		}
+		else if( reply == QMessageBox::Cancel )
+		{
+			return;
+		}
+	
+	}
+ } 
+ MRecibo *modelo = new MRecibo( this );
  QSqlRecord rec = modelo->record();
  rec.remove( 0 );
  rec.setValue( "cliente", CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ) );
@@ -213,9 +245,13 @@ void FormAgregarRecibo::guardar()
   QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
   if( cola.next() )
   {
-	visorRecibo *v = new visorRecibo();
+	visorRecibo *v = new visorRecibo( this );
 	v->verRecibo( cola.record().value( "seq" ).toInt() );
-	HiComp::tabs()->addTab( v, v->nombre() );
+	HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( v ) ) );
+	if( imprimir )
+	{
+		v->imprimir();
+	}
   }
   return;
  }
@@ -233,6 +269,5 @@ void FormAgregarRecibo::guardar()
  */
 void FormAgregarRecibo::guardarImprimir()
 {
- guardar();
-//  gestotux::formCen()->imprimirActivo();
+ guardar( true );
 }

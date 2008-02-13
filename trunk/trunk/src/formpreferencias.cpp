@@ -161,6 +161,13 @@ void FormPreferencias::changePage(QListWidgetItem *current, QListWidgetItem *pre
  */
 void FormPreferencias::cancelar()
 {
+ /*
+ bool _no_guardo = false;
+ for( int i=0; i< this->count(); i++ )
+ {
+  _no_guardo = qobject_cast<FormPrefHijo *>(this->widget(i))->tieneQueGuardar();
+ }
+ */
  close();
 }
 

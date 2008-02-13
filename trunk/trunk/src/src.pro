@@ -13,7 +13,11 @@ SOURCES += gestotux.cpp \
  fprefgeneral.cpp \
  mclientes.cpp \
  eactualizacion.cpp \
- vcliente.cpp
+ vcliente.cpp \
+ mproductos.cpp \
+ mcategorias.cpp \
+ vproductos.cpp \
+ dproductos.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -29,7 +33,11 @@ HEADERS += gestotux.h \
  mclientes.h \
  vcliente.h \
  eactualizacion.h \
- einfoprogramainterface.h
+ einfoprogramainterface.h \
+ mproductos.h \
+ mcategorias.h \
+ vproductos.h \
+ dproductos.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -50,7 +58,8 @@ UI_DIR = ui
 MOC_DIR = moc
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
-FPrefGeneral.ui
+FPrefGeneral.ui \
+ FormActualizacionBase.ui
 RESOURCES = gestotux.qrc
 TARGET = gestotux
 DESTDIR = ../bin
