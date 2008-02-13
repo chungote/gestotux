@@ -1,6 +1,4 @@
 - Agregar creador de db x colas
-- Agregar accion para ver las categorias
-- Al apretar enter en la vista de recibos, abra el recibo
 - Agregar combinaciones de teclas a las acciones
 - Verificar, que no se este usando exactamente la misma instancia de pintado al imprimir varias veces.
 - Implementar impresion en hilo separado

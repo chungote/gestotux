@@ -122,7 +122,7 @@ void EVLista::eliminar()
 {
  //Preguntar al usuario si esta seguro
  QItemSelectionModel *selectionModel = vista->selectionModel();
- QModelIndexList indices = selectionModel->selectedIndexes();
+ QModelIndexList indices = selectionModel->selectedRows();
  if( indices.size() < 1 )
  {
    QMessageBox::warning( this, "Seleccione un item",
