@@ -25,6 +25,7 @@
 class QAction;
 class QSqlTableModel;
 class QTableView;
+class QModelIndex;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
@@ -52,6 +53,8 @@ protected slots:
     void agregar();
 protected slots:
     void imprimir();
+protected slots:
+    void modificar( const QModelIndex& index );
 };
 
 #endif

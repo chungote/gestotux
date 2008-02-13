@@ -56,6 +56,11 @@ VRecibos::VRecibos( QWidget *parent )
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
  vista->setTextElideMode( Qt::ElideRight );
  vista->setSelectionBehavior( QAbstractItemView::SelectRows );
+ vista->setSortingEnabled( true );
+ // permite que no se pueda editar desde la vista
+ vista->setEditTriggers( QAbstractItemView::NoEditTriggers );
+ // edicion
+ connect( vista, SIGNAL( activated( const QModelIndex& ) ), this, SLOT( modificar( const QModelIndex& ) ) );
 
  ActVer = new QAction( "Ver", this );
  ActVer->setIcon( QIcon( ":/imagenes/ver.png" ) );
@@ -230,4 +235,15 @@ void VRecibos::imprimir()
  }
  pintor.end();
 #endif
+}
+
+
+/*!
+    \fn VRecibos::modificar( const QModelIndex& index )
+ */
+void VRecibos::modificar( const QModelIndex& index )
+{
+ FormModificarRecibo *f = new FormModificarRecibo( HiComp::tabs() );
+ HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
+ f->cargarDatos( index, modelo );
 }

@@ -17,7 +17,8 @@ SOURCES += gestotux.cpp \
  mproductos.cpp \
  mcategorias.cpp \
  vproductos.cpp \
- dproductos.cpp
+ dproductos.cpp \
+ vcategorias.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -37,7 +38,8 @@ HEADERS += gestotux.h \
  mproductos.h \
  mcategorias.h \
  vproductos.h \
- dproductos.h
+ dproductos.h \
+ vcategorias.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
