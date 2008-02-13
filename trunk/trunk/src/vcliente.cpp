@@ -32,7 +32,7 @@
 
 
 VCliente::VCliente( QWidget *parent )
- : EVentana( parent )
+ : EVLista( parent )
 {
  nombre_ventana = "lista_clientes";
  this->setAttribute( Qt::WA_DeleteOnClose );
@@ -41,38 +41,12 @@ VCliente::VCliente( QWidget *parent )
  modelo = new MClientes( this );
  modelo->setEditStrategy( QSqlTableModel::OnFieldChange );
 
- vista = new QTableView( this );
- QGridLayout *layout = new QGridLayout( this );
- layout->addWidget( vista );
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
  vista->setTextElideMode( Qt::ElideRight );
  vista->setSelectionBehavior( QAbstractItemView::SelectRows );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
  modelo->select();
-
- crearAcciones();
-
-}
-
-
-void VCliente::crearAcciones()
-{
- ActAgregar = new QAction( "Agregar", this );
- ActAgregar->setStatusTip( "Agregar nuevo cliente" );
- ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
- connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
-
- ActEliminar = new QAction( "Eliminar", this );
- ActEliminar->setStatusTip( "Elimina el usuario seleccionado" );
- ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
- connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar() ) );
-
- ActCerrar = new QAction( "Cerrar", this );
- ActCerrar->setStatusTip( "Cierra la lista de clientes" );
- ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- connect( ActCerrar, SIGNAL( triggered() ), gestotux::formCen(), SLOT( cerrarActivo() ) );
-
 
  addAction( ActAgregar );
  addAction( ActEliminar );
@@ -105,35 +79,11 @@ void VCliente::agregar()
 
 
 /*!
-    \fn VCliente::eliminar()
+    \fn VCliente::antes_de_insertar( int row, QSqlRecord & record )
  */
-void VCliente::eliminar()
+void VCliente::antes_de_insertar( int row, QSqlRecord & record )
 {
- //Preguntar al usuario si esta seguro
- QItemSelectionModel *selectionModel = vista->selectionModel();
- QModelIndexList indices = selectionModel->selectedIndexes();
- if( indices.size() < 1 )
- {
-   QMessageBox::warning( this, "Seleccione un item",
-                   "Por favor, seleccione un item para eliminar",
-                   QMessageBox::Ok );
-   return;
- }
- //Hacer dialogo de confirmacion..
- int ret;
- ret = QMessageBox::warning( this, "Esta seguro?",
-                   QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
-                   "Si", "No" );
- if ( ret == 0 )
- {
-	QModelIndex indice;
-	foreach( indice, indices )
-	{
-		if( indice.isValid() )
-		{
-			modelo->removeRow( indice.row() );
-		}
-	}
- }
- return;
+ record.setValue( "nombre", " " );
+ record.setValue( "apellido", " " );
+ record.setValue( "direccion", " " );
 }

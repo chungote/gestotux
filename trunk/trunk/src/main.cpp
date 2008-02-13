@@ -30,6 +30,7 @@
 #include <QSplashScreen>
 #include <QIcon>
 #include <QApplication>
+#include <QMessageBox>
 #include "gestotux.h"
 #include "preferencias.h"
 #include "eenviobackup.h"
@@ -97,14 +98,15 @@ int main(int argc, char *argv[])
 	 qDebug( "El archivo de Base de datos no existe!");
 	 qDebug( "-------------------------------------------------" );
          // El archivo de base de datos no existe
-         QFile origen( ":/sql/digifauno.origin" );
+         QFile origen( ":/sql/tablas.sql" );
  	 if( origen.open( QIODevice::ReadOnly ) )
 	 {
-		if( !origen.copy( "gestotux.database" ) )
+		QMessageBox::information( 0, "Falta la DB", "La base de datos no se encuentra, se crearan las tablas desde cero. Pero no existiran datos en ellas. Si posee un backup por favor restaurelo." );
+		QTextStream in(&file);
+		while ( !in.atEnd() )
 		{
-			qDebug( "No se pudo copiar el archivo de datos original" );
-	 		qDebug( "-------------------------------------------------" );
-			exit(-1);
+			 QString line = in.readLine();
+			 process_line(line);
 		}
 	 }
 	 else

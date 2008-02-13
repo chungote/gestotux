@@ -25,25 +25,15 @@
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class VCliente : public EVentana
+class VCliente : public EVLista
 {
   Q_OBJECT
 public:
     VCliente( QWidget *parent = 0 );
     ~VCliente();
-
-private:
-    QAction *ActAgregar;
-    QAction *ActEliminar;
-    QAction *ActCerrar;
-    QAction *ActBuscar;
-    QSqlTableModel *modelo;
-    QTableView *vista;
-
-    void crearAcciones();
+    void antes_de_insertar( int row, QSqlRecord & record );
 
 protected slots:
-    void eliminar();
     void agregar();
 };
 

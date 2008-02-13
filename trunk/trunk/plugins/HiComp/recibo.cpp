@@ -113,7 +113,7 @@ void Recibo::reajusteXML()
  {
   if( lista.item(i).toElement().attribute( "id" ) == "tTotal" )
   {
-   lista.item(i).firstChild().toText().setData( QString( "$ %L1" ).arg( total, 10, 'f', 2, QLatin1Char(' ') ) );
+   lista.item(i).firstChild().toText().setData( QString( "$ %L1" ).arg( total, 8, 'f', 2, QLatin1Char(' ') ) );
   }
   else if ( lista.item(i).toElement().attribute( "id" ) == "tCliente" )
   {
