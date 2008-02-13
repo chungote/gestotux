@@ -60,7 +60,7 @@
       <designerpluginpaths/>
     </qt>
     <codecompletion>
-      <automaticCodeCompletion>false</automaticCodeCompletion>
+      <automaticCodeCompletion>true</automaticCodeCompletion>
       <automaticArgumentsHint>true</automaticArgumentsHint>
       <automaticHeaderCompletion>true</automaticHeaderCompletion>
       <codeCompletionDelay>250</codeCompletionDelay>
@@ -181,15 +181,15 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/HiComp</activedir>
+      <activedir>src</activedir>
     </general>
     <make>
-      <abortonerror>false</abortonerror>
+      <abortonerror>true</abortonerror>
       <runmultiplejobs>false</runmultiplejobs>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
       <makebin></makebin>
-      <prio>5</prio>
+      <prio>9</prio>
       <envvars/>
     </make>
     <qmake>

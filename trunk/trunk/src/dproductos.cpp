@@ -32,7 +32,7 @@ DProductos::~DProductos()
 {
 }
 
-
+/*
 QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index ) const
 {
  switch( index.column() )
@@ -41,7 +41,6 @@ QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& 
 	{
 		QComboBox *combo = qobject_cast<QComboBox *>( QSqlRelationalDelegate::createEditor( parent, option, index));
  		QSqlTableModel *modelo = qobject_cast<QSqlTableModel *>(combo->model());
- 		modelo->setFilter( "tipo <> '2'" );
 		combo->setModel( modelo );
 		return combo;
 		break;
@@ -52,4 +51,4 @@ QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& 
 		break;
 	}
  }
-}
+}*/
