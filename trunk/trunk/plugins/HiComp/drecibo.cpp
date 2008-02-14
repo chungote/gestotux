@@ -26,6 +26,13 @@
 DRecibo::DRecibo(QObject *parent)
  : QSqlRelationalDelegate(parent)
 {
+    starPolygon << QPointF(1.0, 0.5);
+    for (int i = 1; i < 5; ++i)
+        starPolygon << QPointF(0.5 + 0.5 * cos(0.8 * i * 3.14),
+                               0.5 + 0.5 * sin(0.8 * i * 3.14));
+    diamondPolygon << QPointF(0.4, 0.5) << QPointF(0.5, 0.4)
+                   << QPointF(0.6, 0.5) << QPointF(0.5, 0.6)
+                   << QPointF(0.4, 0.5);
 }
 
 
@@ -175,22 +182,20 @@ void DRecibo::paint( QPainter *painter, const QStyleOptionViewItem &option, cons
   case 6:
   case 7:
   {
-    // diibujo la ¿estrella? jajajja
-    QPolygonF starPolygon;
-    starPolygon << QPointF(1.0, 0.5);
-    for (int i = 1; i < 5; ++i)
-        starPolygon << QPointF(0.5 + 0.5 * cos(0.8 * i * 3.14),
-                               0.5 + 0.5 * sin(0.8 * i * 3.14));
-
-    QPolygonF diamondPolygon;
-    diamondPolygon << QPointF(0.4, 0.5) << QPointF(0.5, 0.4)
-                   << QPointF(0.6, 0.5) << QPointF(0.5, 0.6)
-                   << QPointF(0.4, 0.5);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(Qt::NoPen);
+    painter->setBackgroundMode( Qt::TransparentMode );
 
-    painter->setBrush( option.palette.highlight() );
+    if( option.state & QStyle::State_Selected )
+    {
+	painter->setBrush( option.palette.alternateBase() );
+        painter->fillRect(option.rect, option.palette.highlight());
+    }
+    else
+    {
+	painter->setBrush( option.palette.highlight() );
+    }
     int yOffset = ( option.rect.height() - PaintingScaleFactor ) / 2;
     int xOffset = ( option.rect.width() - PaintingScaleFactor ) / 2;
     painter->translate( option.rect.x() + xOffset, option.rect.y() + yOffset);

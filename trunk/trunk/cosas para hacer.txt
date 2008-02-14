@@ -1,6 +1,17 @@
-- Agregar creador de db x colas
 - Agregar combinaciones de teclas a las acciones
+- Al poner agregar, que quede autoeditando el que se agrego
+- Hacer que se tomen en serio la orientacion y tamaño de hoja de las preferencias
+- Obtener la lista de tamaños de hojas para cuando estes en wondows
 - Verificar, que no se este usando exactamente la misma instancia de pintado al imprimir varias veces.
 - Implementar impresion en hilo separado
-- Ver que colas quedan inicializadas que esten bloqueando la db
+- Ver que colas quedan inicializadas que esten bloqueando la db (teoricamente no hay)
 - Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
+- Verificar el inicio del programa que no termina de generar la db y queda el archivo de jorunal
+
+====================================================================================================
+A Largo plazo:
+
+Sistema de control de movimientos financieros como fondo cargandose en plugins correspondientes.
+Aumentar las capacidades de las base de datos, haciendola disponible para otros sistemas, como mysql, o postgres
+Agregar sistema para hacer presupuestos
+Agregar sistema para hacer facturas con  formularios preimpresos

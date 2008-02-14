@@ -62,34 +62,46 @@ VRecibos::VRecibos( QWidget *parent )
  // edicion
  connect( vista, SIGNAL( activated( const QModelIndex& ) ), this, SLOT( modificar( const QModelIndex& ) ) );
 
- ActVer = new QAction( "Ver", this );
+ ActVer = new QAction( "&Ver", this );
  ActVer->setIcon( QIcon( ":/imagenes/ver.png" ) );
- ActVer->setStatusTip( "Ver el primer recibo que se encuentra seleccionado" );
+ ActVer->setShortcut( QKeySequence( "Ctrl+v" ) );
+ ActVer->setToolTip( "Ver recibo seleccionado ( Ctrol + v )" );
+ ActVer->setStatusTip( "Ver el primer recibo que se encuentra seleccionado (Ctrl+v)" );
  connect( ActVer, SIGNAL( triggered() ), this, SLOT( ver() ) );
 
  ActAgregar = new QAction( "Agregar", this );
  ActAgregar->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
+ ActAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
  ActAgregar->setStatusTip( "Genera un nuevo recibo" );
+ ActAgregar->setToolTip( "Abre la ventana para agregar un nuevo recibo ( Ctrl + a ) " );
  connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
 
  ActModificar = new QAction( "Modificar", this );
  ActModificar->setIcon( QIcon( ":/imagenes/editar.png" ) );
  ActModificar->setStatusTip( "Modifica el recibo seleccionado" );
+ ActModificar->setToolTip( "Modifica el recibo seleccionado ( Ctrl + m ) " );
+ ActModificar->setShortcut( QKeySequence( "Ctrl+m" ) );
  connect( ActModificar, SIGNAL( triggered() ), this, SLOT( modificar() ) );
 
  ActEliminar = new QAction( "Eliminar", this );
  ActEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
  ActEliminar->setStatusTip( "Elimina el recibo seleccionado" );
+ ActEliminar->setToolTip( "Eliminar registro activo  Ctrl + e ) " );
+ ActEliminar->setShortcut( QKeySequence( "Ctrl+e" ) );
  connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar() ) );
 
   ActImprimir = new QAction( "Imprimir", this );
   ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
-  ActImprimir->setStatusTip( "Imprime el recibo actual" );
+  ActImprimir->setStatusTip( "Imprime el/los recibos seleccionados" );
+  ActImprimir->setShortcut( QKeySequence( "Ctrl + i " ) );
+  ActImprimir->setToolTip( "Imprimir registros seleccionados" );
   connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
  ActCerrar = new QAction( "Cerrar", this );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCerrar->setStatusTip( "Cierra esta ventana" );
+ ActCerrar->setToolTip( "Cierra la ventana actual ( Ctrl + c ) " );
+ ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  addAction( ActVer );

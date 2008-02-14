@@ -5,3 +5,5 @@
 - Agregados lista de productos al usuario y de categorias.
 - Arreglado el ancho de los totales grandes
 - Agregado el sello al recibo
+- añadida combinaciones de teclas a la lista de recibos ( plugin )
+- Mejorado el delegate de recibos, menos memoria y mejor dibujo al estar seleccionado

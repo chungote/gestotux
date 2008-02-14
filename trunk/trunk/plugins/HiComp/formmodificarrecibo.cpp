@@ -42,16 +42,22 @@ FormModificarRecibo::FormModificarRecibo( QWidget *parent )
  ActCerrar = new QAction( "Cerrar", this );
  ActCerrar->setStatusTip( "Cierra la edicion del recibo actual y no guarda los cambios" );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+ ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
+ ActCerrar->setToolTip( "Cierra la edicion, y no guarda los cambios ( Ctrl + c ) " );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActGuardar = new QAction( "Guardar", this );
  ActGuardar->setStatusTip( "Guarda los datos del formulario" );
  ActGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
+ ActGuardar->setShortcut( QKeySequence( "Ctrl+g" ) );
+ ActGuardar->setToolTip( "Guarda los datos del recibo y cierra la ventana ( Ctrl + g )" );
  connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
 
  ActGuardarImprimir = new QAction( "Guardar e Imprimir" , this );
  ActGuardarImprimir->setStatusTip( "Guardar e imprimir el recibo actual" );
  ActGuardarImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
+ ActGuardarImprimir->setShortcut( QKeySequence( "Ctrl+i " ) );
+ ActGuardarImprimir->setToolTip( "Guarda los datos e imprime el recibo" );
  connect( ActGuardarImprimir, SIGNAL( triggered() ), this, SLOT( guardarImprimir() ) );
 
  addAction( ActCerrar );

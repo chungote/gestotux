@@ -29,7 +29,7 @@
 	<file>imagenes/productos.png</file>
 	<file>imagenes/buscar.png</file>
     </qresource>
-    <qrecource prefix="sql">
+    <qresource prefix="sql">
 	<file>tablas.sql</file>
-    </qreource>
+    </qresource>
 </RCC>

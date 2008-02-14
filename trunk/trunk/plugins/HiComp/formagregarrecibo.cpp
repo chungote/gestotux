@@ -73,16 +73,22 @@ FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
  ActGuardar = new QAction( "Guardar", this );
  ActGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
  ActGuardar->setStatusTip( "Guarda el formulario y lo muestra" );
+ ActGuardar->setToolTip( "Guardar ( Ctrl + g )" );
+ ActGuardar->setShortcut( QKeySequence( "ctrl+g" ) );
  connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
 
  ActCancelar = new QAction( "Cancelar", this );
  ActCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCancelar->setStatusTip( "Cancela los datos ingresados y no genera un recibo" );
+ ActCancelar->setShortcut( QKeySequence( "Ctrl+c" ) );
+ ActCancelar->setToolTip( "Cancela los datos ingresados y cierra la ventana ( Ctrl + c ) " );
  connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActGuardarImprimir = new QAction( "Guardar e Imprimir", this );
  ActGuardarImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
  ActGuardarImprimir->setStatusTip( "Guarda los datos e imprime directamente el recibo" );
+ ActGuardarImprimir->setToolTip( "Guarda los datos e imprime el recibo ( Ctrl + i ) " );
+ ActGuardarImprimir->setShortcut( QKeySequence( "Ctrl+i" ) );
  connect( ActGuardarImprimir, SIGNAL( triggered() ), this, SLOT( guardarImprimir() ) );
 
  addAction( ActCancelar );
