@@ -32,16 +32,22 @@ visorRecibo::visorRecibo(QWidget *parent)
  ActImprimir = new QAction( "Imprimir", this );
  ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
  ActImprimir->setStatusTip( "Imprime el recibo actual" );
+  ActImprimir->setShortcut( QKeySequence( "Ctrl+i" ) );
+  ActImprimir->setToolTip( "Imprime el recibo actual" );
  connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
  ActCerrar = new QAction( "Cerrar", this );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCerrar->setStatusTip( "Cierra esta ventana" );
+ ActCerrar->setToolTip( "Cierra la ventana actual ( Ctrl + c ) " );
+ ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActPdf = new QAction( "Guardar a PDF", this );
  ActPdf->setStatusTip( "Guarda el contenido de la pestaña actual a un archivo pdf" );
  ActPdf->setIcon( QIcon( ":/imagenes/acroread.png" ) );
+ ActPdf->setShortcut( QKeySequence( "Ctrl+p" ) );
+ ActPdf->setToolTip( "Guarda el recibo en un archivo PDF ( ctrl + p )" );
  connect( ActPdf, SIGNAL( triggered() ), this, SLOT( aPdf() ) );
 
  addAction( ActCerrar );

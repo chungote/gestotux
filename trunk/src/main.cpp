@@ -97,17 +97,38 @@ int main(int argc, char *argv[])
 	 qDebug( "-------------------------------------------------" );
 	 qDebug( "El archivo de Base de datos no existe!");
 	 qDebug( "-------------------------------------------------" );
+		DB = QSqlDatabase::addDatabase("QSQLITE");
+		DB.setDatabaseName( "gestotux.database" );
+       		if( !DB.open() )
+       		{
+			qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+			abort();
+       		}
          // El archivo de base de datos no existe
          QFile origen( ":/sql/tablas.sql" );
  	 if( origen.open( QIODevice::ReadOnly ) )
 	 {
 		QMessageBox::information( 0, "Falta la DB", "La base de datos no se encuentra, se crearan las tablas desde cero. Pero no existiran datos en ellas. Si posee un backup por favor restaurelo." );
-		QTextStream in(&file);
+		QSqlQuery cola;
+		QTextStream in(&origen);
 		while ( !in.atEnd() )
 		{
 			 QString line = in.readLine();
-			 process_line(line);
+			if( cola.exec( line ) )
+			{
+				qDebug( QString( "Ejecutado: %1" ).arg( line ).toLocal8Bit() );
+			}
+			else
+			{
+				qFatal( QString( "Error fatal al ejecutar la cola: %1" ).arg( line ).toLocal8Bit() );
+				abort();
+			}
 		}
+		// sillegamos hasta aca, todo bien
+		origen.close();
+		QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );
+		DB.close();
+		exit(0);
 	 }
 	 else
 	 {
