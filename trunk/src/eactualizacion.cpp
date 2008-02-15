@@ -18,6 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eactualizacion.h"
+#include "preferencias.h"
+#include "gestotux.h"
+#include "einfoprogramainterface.h"
 #include <QFtp>
 
 EActualizacion::EActualizacion( QWidget *parent )
@@ -58,4 +61,12 @@ void EActualizacion::iniciar()
 
   ftp = new QFtp( this );
   connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
+
+  //Inicio la verificacion
+  // Busco los datos desde el registro para el host y puerto
+  preferencias *p = preferencias::getInstancia();
+  QString host = p->value( "actualizaciones/host", "tranfuga.no-ip.org" ).toString();
+  quint16 puerto = p->value( "actualizaciones/puerto", 21 ).toInt();
+  ftp->connectToHost( host, puerto );
+  ftp->cd( gestotux::plugin()->directorioActualizaciones() );
 }
