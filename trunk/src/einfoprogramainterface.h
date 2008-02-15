@@ -21,9 +21,8 @@
 #define EINFOPROGRAMAINTERFACE_H
 
 #include <QtPlugin>
-class QString;
-class QIcon;
-#include "eplugin.h"
+#include <QString>
+#include <QIcon>
 
 class EInfoProgramaInterface
 {
