@@ -107,7 +107,7 @@ void Ebackup::iniciar()
  if( ChBBaseDatos->isChecked() )
  {
   LDebug->setText( "Generando backup de Base de datos" );
-  if( !generar_db( true, true ) )
+  if( !generar_db( true ) )
   {
    qDebug( "Error al intentar generar la copia de seg de la db" );
    emit cambiarDetener( false );
@@ -123,6 +123,10 @@ void Ebackup::iniciar()
    emit cambiarDetener( false );
    return;
   }
+ }
+ else
+ {
+  PBProgreso->setValue( PBProgreso->maximum() );
  }
  LDebug->setText( "Guardando..." );
  QString nombre = QDate::currentDate().toString( "yyyyMMdd" );
@@ -181,6 +185,8 @@ bool Ebackup::generar_config()
  QStringList::const_iterator iterador;
  for( iterador = claves.constBegin(); iterador != claves.constEnd(); ++iterador )
  {
+	if( !_continuar )
+	{ return false; }
    datos->append( (*iterador).toLocal8Bit().constData() );
    PBProgreso->setValue( PBProgreso->value() + 1 );
    datos->append( "=" );
@@ -292,7 +298,7 @@ bool Ebackup::generar_config()
 	@param datos Hacer backup de los datos de la db
 	@return Verdadero si no existieron errores, falso en caso contrario
  */
-bool Ebackup::generar_db( bool estructura, bool data )
+bool Ebackup::generar_db( bool estructura )
 {
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // calculos para progreso
@@ -308,6 +314,8 @@ bool Ebackup::generar_db( bool estructura, bool data )
   return false;
  }
  int cant_tablas = tam.record().value( 0 ).toInt();
+	if( !_continuar )
+	{ return false; }
  PBProgreso->setRange( 0, cant_tablas + 3 );
  // Intento nuevo
  datos->append( "|->basedatossql->\n" );
@@ -315,6 +323,8 @@ bool Ebackup::generar_db( bool estructura, bool data )
  QSqlQuery cola( "SELECT name, sql FROM sqlite_master WHERE type='table'" );
  while( cola.next() )
  {
+  	if( !_continuar )
+	{ return false; }
   if( estructura )
   {
    datos->append( cola.record().value( "sql" ).toString() + "\n" );
@@ -330,6 +340,8 @@ bool Ebackup::generar_db( bool estructura, bool data )
   QSqlQuery cola1( QString( "SELECT * FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
   while( cola1.next() )
   {
+   	if( !_continuar )
+	{ return false; }
    inicio = "INSERT INTO ";
    QSqlRecord reg = cola1.record();
    inicio.append( cola.record().value( "name" ).toString() );
@@ -456,4 +468,13 @@ bool Ebackup::guardar_a_archivo( QString *nombre )
   destino->close();
   return true;
  }
+}
+
+
+/*!
+    \fn Ebackup::detener()
+ */
+void Ebackup::detener()
+{
+  _continuar = false;
 }

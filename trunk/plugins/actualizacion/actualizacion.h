@@ -17,25 +17,43 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EINFOPROGRAMAINTERFACE_H
-#define EINFOPROGRAMAINTERFACE_H
+#ifndef ACTUALIZACION_H
+#define ACTUALIZACION_H
 
-#include <QtPlugin>
-class QString;
-class QIcon;
+#include <QWidget>
+#include "ui/ui_FormActualizacionBase.h"
 #include "eplugin.h"
 
-class EInfoProgramaInterface
-{
-public:
-    virtual ~EInfoProgramaInterface() {}
-    virtual QString nombrePrograma() const = 0;
-    virtual QIcon iconoPrograma() const = 0;
-    virtual QString directorioBackup() const = 0;
-    virtual QString directorioActualizaciones() const = 0;
-};
+class QFtp;
 
-Q_DECLARE_INTERFACE( EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.0" );
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class actualizacion : public QObject, EPlugin, Ui_FormActualizacionBase
+{
+Q_OBJECT
+Q_INTERFACES(EPlugin)
+
+public:
+    static QStackedWidget *tabs();
+    static QSettings *pref();
+    bool inicializar( QStackedWidget *formCen, QSettings *pref );
+    QList<QAction *> accionesBarra() const;
+    int tipo();
+    QString nombre();
+    QWidgetList formsPreferencias();
+
+public slots:
+    void detener();
+    void iniciar();
+
+private:
+	bool _continuar_actualizando;
+	QFtp *ftp;
+	QList<QAction *> _acciones;
+	static QStackedWidget *_formCen;
+	static QSettings *_pref;
+
+};
 
 #endif

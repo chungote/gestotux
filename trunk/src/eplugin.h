@@ -17,31 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EACTUALIZACION_H
-#define EACTUALIZACION_H
+#ifndef EPLUGIN_H
+#define EPLUGIN_H
 
-#include <eventana.h>
-#include "ui/ui_FormActualizacionBase.h"
-
-class QFtp;
+#include <QtPlugin>
+#include <QString>
+#include <QAction>
+#include <QList>
+#include <QStackedWidget>
+#include <QSettings>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EActualizacion : public EVentana, Ui_FormActualizacionBase
+class EPlugin
 {
-	Q_OBJECT
 public:
-    EActualizacion ( QWidget *parent = 0 );
-    ~EActualizacion();
+    enum tipo
+    {
+      db = 0,
+      comun = 1,
+      info = 2
+    };
+    virtual ~EPlugin() {}
+    virtual QList<QAction *> accionesBarra() const = 0;
+    virtual bool inicializar( QStackedWidget *formCen, QSettings *pref ) = 0;
+    virtual QWidgetList formsPreferencias() = 0;
+    virtual QString nombre() = 0;
+    virtual int tipo() = 0;
 
-public slots:
-    void detener();
-    void iniciar();
 
-private:
-	bool _continuar_actualizando;
-	QFtp *ftp;
 };
+
+Q_DECLARE_INTERFACE( EPlugin,
+                     "tranfuga.EPlugin/1.0" );
 
 #endif

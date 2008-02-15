@@ -58,10 +58,11 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      connect( this, SIGNAL( cargar() ), formGeneral, SLOT( cargar() ) );
      connect( this, SIGNAL( guardar() ), formGeneral, SLOT( guardar() ) );
      pagesWidget->addWidget( formGeneral );
-     if( !gestotux::plugin()->formsPreferencias().isEmpty() )
+     ///@todo ATENCION! CAMBIAR ESTO
+    /* if( !gestotux::pluginInfo()->formsPreferencias().isEmpty() )
      {
 	QWidget *form;
-	foreach( form, gestotux::plugin()->formsPreferencias() )
+	foreach( form, gestotux::pluginInfo()->formsPreferencias() )
 	{
 		// agrego el item a la lista
 		QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
@@ -76,29 +77,36 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 		connect( this, SIGNAL( cargar() ), form, SLOT( cargar() ) );
 		connect( this, SIGNAL( aplicar() ), form, SLOT( aplicar() ) );
 	}
-    }
+    }*/
 
     ActCerrar  = new QAction( "Cerrar", this );
-    ActCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
+    ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
     ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+    ActCerrar->setToolTip( "Cierra la ventana de preferencias ( Ctrl + c )" );
+    ActCerrar->setStatusTip( "Cierra la ventana de preferencias, pero no modifica ningun valor" );
     connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( cancelar()) );
 
     ActAplicar = new QAction( "Ap&licar", this );
     ActAplicar->setShortcut( QKeySequence( "Ctrl+l" ) );
     ActAplicar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
+    ActAplicar->setToolTip( "Aplica los cambios realizados ( Ctrl + l )" );
+    ActAplicar->setStatusTip( "Aplica los cambios realizados a la configuracion" );
     connect( ActAplicar, SIGNAL( triggered() ), this, SIGNAL( aplicar() ) );
 
     ActGuardar = new QAction( "&Guardar", this  );
     ActGuardar->setShortcut( QKeySequence( "Ctrl+g" ) );
     ActGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
+    ActGuardar->setStatusTip( "Guarda la preferencias y cierra la ventana" );
+    ActGuardar->setToolTip( "Guarda las preferencias y cierra la ventana ( Ctrl + g )" );
     connect( ActGuardar, SIGNAL( triggered() ), this, SIGNAL( guardar() ) );
+    connect( ActGuardar, SIGNAL( triggered() ), this, SIGNAL( close() ) );
 
     addAction( ActGuardar );
     addAction( ActAplicar );
     addAction( ActCerrar );
 
     nombre_ventana  = "Configuracion";
-    setNombreVentana( "Configuracion de " + gestotux::plugin()->nombrePrograma() );
+    setNombreVentana( "Configuracion de " + gestotux::pluginInfo()->nombrePrograma() );
 
     contentsWidget->setCurrentRow(0);
 

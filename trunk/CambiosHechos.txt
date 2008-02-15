@@ -7,3 +7,4 @@
 - Agregado el sello al recibo
 - añadida combinaciones de teclas a la lista de recibos ( plugin )
 - Mejorado el delegate de recibos, menos memoria y mejor dibujo al estar seleccionado
+- Añadida funcionalidad de detener en el backup

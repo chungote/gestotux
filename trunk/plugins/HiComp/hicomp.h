@@ -27,11 +27,13 @@ class QStackedWidget;
 #include <QList>
 #include <QAction>
 #include "einfoprogramainterface.h"
+#include "eplugin.h"
 
 class HiComp : public QObject, public EInfoProgramaInterface
 {
  Q_OBJECT
  Q_INTERFACES(EInfoProgramaInterface)
+ Q_INTERFACES(EPlugin)
 
 public:
     QString nombrePrograma() const;
@@ -43,6 +45,8 @@ public:
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
     QWidgetList formsPreferencias();
+    QString nombre();
+    int tipo();
 
 private:
     QList<QAction *> _acciones;

@@ -13,5 +13,6 @@ TEMPLATE = subdirs
 
 DESTDIR = .
 
-SUBDIRS += HiComp
+SUBDIRS += HiComp \
+ actualizacion
 

@@ -244,8 +244,8 @@
     <bzip>true</bzip>
     <archname>%n - %v - %d</archname>
     <appname>GestoTux</appname>
-    <version>0.1</version>
-    <release>alfa</release>
+    <version>0.2</version>
+    <release/>
     <vendor>Tranfuga</vendor>
     <licence>GPLv3</licence>
     <summary/>

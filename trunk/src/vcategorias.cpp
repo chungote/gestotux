@@ -17,28 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "formacercade.h"
-#include "gestotux.h"
-#include "einfoprogramainterface.h"
+#include "vcategorias.h"
 
-FormAcercaDe::FormAcercaDe(QWidget* parent)
-: EVentana( parent ), Ui::FormAcercaDe()
+#include "mcategorias.h"
+#include <QTableView>
+#include <QSqlRecord>
+
+VCategorias::VCategorias( QWidget *parent )
+ : EVLista( parent )
 {
- 	this->setAttribute( Qt::WA_DeleteOnClose );
-	setupUi(this);
-	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
-	LImagen->setPixmap( gestotux::pluginInfo()->iconoPrograma().pixmap( 100, 100 ) );
+ nombre_ventana = "ListaCategorias";
+ setNombreVentana( "Categorias" );
+ modelo = new MCategorias( this );
+ vista->setModel( modelo );
+ modelo->select();
+ vista->hideColumn( 0 );
+ vista->resizeColumnsToContents();
+ vista->sortByColumn( 3 );
 
-	label_2->setText(  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; font-weight:600;\">HiComp Internet</span></p></body></html>" );
-        label_4->setText( "Version 0.1" );
-        label_3->setText( "HiComp es un programa desarrollado especificamente para HiComp Internet.\nRealizado bajo licencia GPL, completamente desarrollado con Software Libre.\nBasado en las librerias Qt.\n\nProgramador y Analista:\nEsteban Zeller <tranfuga_25s@hotmail.com>" );
-        PBCerrar->setText( "Cerrar" );
-
-        nombre_ventana = "formacercaede";
-        setNombreVentana( "Acerca de... " );
+ addAction( ActAgregar );
+ addAction( ActModificar );
+ addAction( ActEliminar );
+ addAction( ActCerrar );
 }
 
-FormAcercaDe::~FormAcercaDe()
+
+VCategorias::~VCategorias()
 {
 }
 
+/*!
+    \fn VCategorias::antes_de_insertar( int row, QSqlRecord & record )
+ */
+void VCategorias::antes_de_insertar( int row, QSqlRecord & record )
+{
+ record.setValue( "nombre", "" );
+}

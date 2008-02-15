@@ -25,6 +25,7 @@
 #include <QSystemTrayIcon>
 #include <QDir>
 #include <QPluginLoader>
+#include <QHash>
 #include "formulariocentral.h"
 
 class QAction;
@@ -33,6 +34,7 @@ class barraAbajo;
 class barraLateral;
 class QToolBar;
 class EInfoProgramaInterface;
+class EPlugin;
 
 class gestotux:public QMainWindow
 {
@@ -42,8 +44,8 @@ public:
       ~gestotux();
       void inicializar();
       static FormularioCentral *formCentral;
-      static EInfoProgramaInterface *_plugin;
-      static EInfoProgramaInterface *plugin();
+      static EInfoProgramaInterface *_pluginInfo;
+      static EInfoProgramaInterface *pluginInfo();
       static FormularioCentral *formCen();
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
@@ -54,7 +56,6 @@ protected:
 protected slots:
     void salir();
     void acerca();
-    void actualizaciones();
 
 private:
       void createActions();
@@ -82,7 +83,6 @@ private:
       QAction *ActImprimir;
       QAction *ActPreferencias;
       QAction *ActBackup;
-      QAction *ActActualizacion;
       QAction *ActProductos;
 
       QSystemTrayIcon * iconoBandeja;
@@ -97,6 +97,7 @@ private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
 
 private:
+    QHash<QString, EPlugin *> _plugins;
     bool cargarPlugins();
     QDir pluginsDir;
     QPluginLoader loader;

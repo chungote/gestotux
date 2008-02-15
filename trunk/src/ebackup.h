@@ -56,17 +56,31 @@ private:
 	* Manejador de archivo de destino
 	*/
 	QFile *destino;
-
+       /*!
+        * Variable para saber si se desea cortar el trabajo
+        */
+	bool _continuar;
+       /*!
+        * Accion para iniciar el backup
+        */
 	QAction *ActIniciar;
+       /*!
+        * Accion para cerrar la ventana
+        */
 	QAction *ActCerrar;
+       /*!
+        * Accion para la barra, de detener
+        */
 	QAction *ActDetener;
 
-    bool generar_db( bool estructura, bool data );
+    bool generar_db( bool estructura );
     bool guardar_a_archivo( QString *nombre );
     bool comprimir();
 
+
 public slots:
     void iniciar();
+    void detener();
 
 signals:
     void cambiarDetener( bool estado );

@@ -7,6 +7,7 @@
 - Ver que colas quedan inicializadas que esten bloqueando la db (teoricamente no hay)
 - Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
 - Verificar el inicio del programa que no termina de generar la db y queda el archivo de jorunal
+- Añadir posibilidad de restaurar backup
 
 ====================================================================================================
 A Largo plazo:

@@ -40,13 +40,13 @@
 #include "formulariocentral.h"
 #include "formpreferencias.h"
 #include "ebackup.h"
+#include "eplugin.h"
 #include "einfoprogramainterface.h"
-#include "eactualizacion.h"
 #include "vproductos.h"
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
-EInfoProgramaInterface *gestotux::_plugin = 0;
+EInfoProgramaInterface *gestotux::_pluginInfo = 0;
 
 gestotux::gestotux()
 {
@@ -58,6 +58,7 @@ gestotux::gestotux()
 void gestotux::inicializar()
 { 
  cargarPlugins();
+
  setCentralWidget( formCen() );
 
  createActions();
@@ -67,14 +68,8 @@ void gestotux::inicializar()
  crearReloj();
  bandeja_sistema();
 
- preferencias *p = preferencias::getInstancia();
- p->inicio();
- p->beginGroup( "ventanaPrincipal" );
- this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
- p->endGroup();
-
- setWindowIcon( plugin()->iconoPrograma() );
- setWindowTitle( plugin()->nombrePrograma() );
+ setWindowIcon( pluginInfo()->iconoPrograma() );
+ setWindowTitle( pluginInfo()->nombrePrograma() );
 }
 
 void gestotux::closeEvent(QCloseEvent *event)
@@ -109,11 +104,6 @@ void gestotux::createActions()
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
-	ActActualizacion = new QAction( "Actualizar", this );
-	ActActualizacion->setStatusTip( "Busca e instala actualizaciones del programa" );
-// 	ActActualizacion->setIcon( );
-	connect( ActActualizacion, SIGNAL( triggered() ), this, SLOT( actualizaciones() ) );
-
 	ActProductos = new QAction( "Productos", this );
 	ActProductos->setStatusTip( "Mustra el listado de productos" );
 	ActProductos->setIcon( QIcon( ":/imagenes/productos.png" ) );
@@ -124,7 +114,6 @@ void gestotux::createMenus()
 {
       fileMenu = menuBar()->addMenu( "&Archivo" );
       fileMenu->addAction( acercade );
-      //fileMenu->addAction( ActActualizacion );
       fileMenu->addSeparator();
       fileMenu->addAction( exitAct );
 
@@ -153,10 +142,6 @@ gestotux::~gestotux()
 void gestotux::salir()
 {
  preferencias *p = preferencias::getInstancia();
- p->inicio();
- p->beginGroup( "ventanaPrincipal" );
- p->setValue( "estado", saveState( 0 ) );
- p->endGroup();
  p->sync();
  QSqlDatabase DB = QSqlDatabase::database();
  DB.close();
@@ -201,7 +186,7 @@ void gestotux::createToolBar()
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
  tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
- tb->addActions( plugin()->accionesBarra() );
+// tb->addActions( plugin()->accionesBarra() );
  tb->addAction( ActClientes );
  tb->addAction( ActBackup );
  tb->addAction( ActPreferencias );
@@ -267,7 +252,7 @@ void gestotux::bandeja_sistema()
     iconoBandeja = new QSystemTrayIcon( this );
     QMenu *menu = new QMenu( this );
     menu->addAction( exitAct );
-    iconoBandeja->setIcon( plugin()->iconoPrograma() );
+    iconoBandeja->setIcon( pluginInfo()->iconoPrograma() );
     iconoBandeja->setToolTip( "Gestotux" );
     iconoBandeja->show();
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );
@@ -328,11 +313,16 @@ bool gestotux::cargarPlugins()
 	loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
          if( loader.load() )
          {
-		_plugin = qobject_cast<EInfoProgramaInterface *>( loader.instance() );
-		if( _plugin->inicializar( formCen(), preferencias::getInstancia() ) )
+		QObject *obj = loader.instance();
+		EPlugin *plug = qobject_cast<EPlugin *>( obj );
+		if( plug->inicializar( formCen(), preferencias::getInstancia() ) )
 		{
+			_plugins.insert( plug->nombre(), plug );
+			if( plug->tipo() == EPlugin::info )
+			{
+				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
+			}
 			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
-			return true;
 		}
 		else
 		{
@@ -349,26 +339,18 @@ bool gestotux::cargarPlugins()
      }
 }
 
-EInfoProgramaInterface *gestotux::plugin()
+EInfoProgramaInterface *gestotux::pluginInfo()
 {
- if( _plugin != 0 )
+ if( _pluginInfo != 0 )
  {
-  return _plugin;
+  return _pluginInfo;
  }
  else
  {
-  qWarning( "Llamando al plugin antes de cargarlo" );
+  qWarning( "Llamando al pluginInfo antes de cargarlo" );
   abort();
  }
 }
-
-
-void gestotux::actualizaciones()
-{
- EActualizacion *f = new EActualizacion( formCen() );
- formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
-}
-
 
 
 /*!
