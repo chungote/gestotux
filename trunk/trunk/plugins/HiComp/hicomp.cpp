@@ -57,6 +57,7 @@ bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref )
 {
  _formCen = formCen;
  _pref = pref;
+ _acciones.clear();
  // Genero las acciones y la lista
  QAction *ActRecibos = new QAction( "Ver Recibos", this );
  ActRecibos->setToolTip( "Ver los recibos emitidos" );
@@ -101,7 +102,7 @@ QString HiComp::directorioBackup() const
 
 QString HiComp::directorioActualizaciones() const
 {
- return "";
+ return "HiComp";
 }
 
 
@@ -123,4 +124,22 @@ void HiComp::nuevoRecibo()
 {
  FormAgregarRecibo *f = new FormAgregarRecibo( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn HiComp::nombre()
+ */
+QString HiComp::nombre()
+{
+ return "hicomp";
+}
+
+
+/*!
+    \fn HiComp::tipo()
+ */
+int HiComp::tipo()
+{
+  return EPlugin::info;
 }

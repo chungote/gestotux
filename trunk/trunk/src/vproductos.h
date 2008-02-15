@@ -17,56 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "eactualizacion.h"
-#include "preferencias.h"
-#include "gestotux.h"
-#include "einfoprogramainterface.h"
-#include <QFtp>
+#ifndef VPRODUCTOS_H
+#define VPRODUCTOS_H
 
-EActualizacion::EActualizacion( QWidget *parent )
-: EVentana ( parent ), Ui_FormActualizacionBase()
+#include <evlista.h>
+
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class VProductos : public EVLista
 {
- setupUi( this );
+Q_OBJECT
+public:
+    VProductos(QWidget *parent = 0);
+    ~VProductos();
+    void closeEvent( QCloseEvent * event );
 
- PBAccion->setIcon( QIcon( ":/imagenes/next.png" ) );
- connect( PBAccion, SIGNAL( clicked() ), this, SLOT( iniciar() ) );
-}
+private slots:
+    void antes_de_insertar(  int row, QSqlRecord &registro );
+protected slots:
+    void verCategorias();
+};
 
-
-EActualizacion::~EActualizacion()
-{}
-
-
-
-
-/*!
-    \fn EActualizacion::detener()
- */
-void EActualizacion::detener()
-{
-  _continuar_actualizando = false;
-}
-
-
-/*!
-    \fn EActualizacion::iniciar()
- */
-void EActualizacion::iniciar()
-{
-  _continuar_actualizando = true;
-  PBAccion->setIcon( QIcon( ":/imagenes/stop.png" ) );
-  PBAccion->setText( "Detener" );
-  disconnect( PBAccion, SIGNAL( clicked() ), this, SLOT( iniciar() ) );
-  connect( PBAccion, SIGNAL(clicked() ), this, SLOT( detener() ) );
-
-  ftp = new QFtp( this );
-  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
-
-  //Inicio la verificacion
-  // Busco los datos desde el registro para el host y puerto
-  preferencias *p = preferencias::getInstancia();
-  QString host = p->value( "actualizaciones/host", "tranfuga.no-ip.org" ).toString();
-  quint16 puerto = p->value( "actualizaciones/puerto", 21 ).toInt();
-  ftp->connectToHost( host, puerto );
-  ftp->cd( gestotux::plugin()->directorioActualizaciones() );
-}
+#endif
