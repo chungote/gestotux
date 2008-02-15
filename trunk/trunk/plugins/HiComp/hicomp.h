@@ -29,11 +29,10 @@ class QStackedWidget;
 #include "einfoprogramainterface.h"
 #include "eplugin.h"
 
-class HiComp : public QObject, public EInfoProgramaInterface
+class HiComp : public QObject, EInfoProgramaInterface, EPlugin
 {
  Q_OBJECT
- Q_INTERFACES(EInfoProgramaInterface)
- Q_INTERFACES(EPlugin)
+ Q_INTERFACES(EInfoProgramaInterface EPlugin)
 
 public:
     QString nombrePrograma() const;
