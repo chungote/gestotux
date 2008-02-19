@@ -19,45 +19,12 @@
  ***************************************************************************/
 #include "actualizacion.h"
 #include <QFtp>
+#include "formactualizacion.h"
 
 QStackedWidget *actualizacion::_formCen = 0;
 QSettings *actualizacion::_pref = 0;
 
 Q_EXPORT_PLUGIN2(actualizar, actualizacion )
-
-/*!
-    \fn EActualizacion::detener()
- */
-void actualizacion::detener()
-{
-  _continuar_actualizando = false;
-}
-
-
-/*!
-    \fn EActualizacion::iniciar()
- */
-void actualizacion::iniciar()
-{
-/*  _continuar_actualizando = true;
-  PBAccion->setIcon( QIcon( ":/imagenes/stop.png" ) );
-  PBAccion->setText( "Detener" );
-  disconnect( PBAccion, SIGNAL( clicked() ), this, SLOT( iniciar() ) );
-  connect( PBAccion, SIGNAL(clicked() ), this, SLOT( detener() ) );
-
-  ftp = new QFtp( this );
-  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
-
-  //Inicio la verificacion
-  // Busco los datos desde el registro para el host y puerto
-  preferencias *p = preferencias::getInstancia();
-  QString host = p->value( "actualizaciones/host", "tranfuga.no-ip.org" ).toString();
-  quint16 puerto = p->value( "actualizaciones/puerto", 21 ).toInt();
-  ftp->connectToHost( host, puerto );
-  ftp->cd( gestotux::plugin()->directorioActualizaciones() );*/
-}
-
-
 
 /*!
     \fn actualizacion::tipo()
@@ -91,6 +58,13 @@ bool actualizacion::inicializar( QStackedWidget *formCen, QSettings *pref )
 {
  _formCen = formCen;
  _pref = pref;
+
+ QAction *ActActualizar = new QAction( "Actualizar", this );
+ ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
+ ActActualizar->setStatusTip( "Actualiza la aplicacion " );
+ connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verForm() ) );
+ 
+ _acciones.append( ActActualizar );
  return true;
 }
 
@@ -111,4 +85,14 @@ QSettings *actualizacion::pref()
 QWidgetList actualizacion::formsPreferencias()
 {
   return QWidgetList();
+}
+
+
+/*!
+    \fn actualizacion::verForm()
+ */
+void actualizacion::verForm()
+{
+ FormActualizacion *f = new FormActualizacion( tabs() );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

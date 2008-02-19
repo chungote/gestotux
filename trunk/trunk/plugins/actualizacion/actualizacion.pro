@@ -12,9 +12,13 @@ OBJECTS_DIR = obj
 UI_DIR = ui
 MOC_DIR = moc
 
-HEADERS = actualizacion.h
+HEADERS = actualizacion.h \
+ formactualizacion.h
 
-SOURCES = actualizacion.cpp
+SOURCES = actualizacion.cpp \
+ formactualizacion.cpp
 
 FORMS = FormActualizacionBase.ui
+
+RESOURCES += actualizacion.qrc
 

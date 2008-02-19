@@ -8,3 +8,7 @@
 - añadida combinaciones de teclas a la lista de recibos ( plugin )
 - Mejorado el delegate de recibos, menos memoria y mejor dibujo al estar seleccionado
 - Añadida funcionalidad de detener en el backup
+- Añadido control de orientacion de la hoja en los recibos, sacados desde las preferencias
+
+19/02/08
+- Agregada las acciones de todos los plugins a las barras

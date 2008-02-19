@@ -17,36 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ACTUALIZACION_H
-#define ACTUALIZACION_H
+
+#ifndef FORMACTUALIZACION_H
+#define FORMACTUALIZACION_H
 
 #include <QWidget>
-#include "eplugin.h"
+#include "ui_FormActualizacionBase.h"
 
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class actualizacion : public QObject, EPlugin
+class QFtp;
+
+class FormActualizacion : public QWidget, private Ui::FormActualizacionBase
 {
-Q_OBJECT
-Q_INTERFACES(EPlugin)
+  Q_OBJECT
 
 public:
-    static QStackedWidget *tabs();
-    static QSettings *pref();
-    bool inicializar( QStackedWidget *formCen, QSettings *pref );
-    QList<QAction *> accionesBarra() const;
-    int tipo();
-    QString nombre();
-    QWidgetList formsPreferencias();
+  FormActualizacion(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  ~FormActualizacion();
+
+protected slots:
+    void iniciar();
+    void detener();
+    void cambioEstado( int estado );
+    void inicio( int id );
+    void terminado( int comando, bool  error );
 
 private:
-	QList<QAction *> _acciones;
-	static QStackedWidget *_formCen;
-	static QSettings *_pref;
-
+	bool _continuar_actualizando;
+	QFtp *ftp;
 public slots:
-    void verForm();
+    void finComando( int comando, bool error );
+private slots:
+    void analizarGeneral();
 };
 
 #endif
+

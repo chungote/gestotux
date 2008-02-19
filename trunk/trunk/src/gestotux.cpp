@@ -198,7 +198,10 @@ void gestotux::createToolBar()
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
  tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
-// tb->addActions( plugin()->accionesBarra() );
+ foreach( EPlugin *plug , plugins() )
+ {
+  tb->addActions( plug->accionesBarra() );
+ }
  tb->addAction( ActClientes );
  tb->addAction( ActBackup );
  tb->addAction( ActPreferencias );
