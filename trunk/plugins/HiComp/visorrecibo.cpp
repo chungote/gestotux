@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "visorrecibo.h"
-#include "gestotux.h"
+#include "hicomp.h"
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QFileDialog>
@@ -104,7 +104,14 @@ void visorRecibo::imprimir()
  #ifdef QT_WS_WIN
   printer.setOutputFormat(QPrinter::NativeFormat);
  #endif
- printer.setOrientation( QPrinter::Landscape );
+ if( HiComp::pref()->value( "preferencias/recibos/orientacion", QPrinter::Landscape ).toInt() == QPrinter::Landscape )
+ {
+   printer.setOrientation( QPrinter::Landscape );
+ }
+ else
+ {
+  printer.setOrientation( QPrinter::Portrait );
+ }
  QPrintDialog *dialog = new QPrintDialog( &printer, this );
  dialog->setWindowTitle( "Imprimir" );
  if ( dialog->exec() != QDialog::Accepted )
@@ -134,7 +141,14 @@ void visorRecibo::aPdf()
              fileName.append(".pdf");
          QPrinter printer( QPrinter::HighResolution );
          printer.setOutputFormat( QPrinter::PdfFormat );
-         printer.setOrientation( QPrinter::Landscape );
+          if( HiComp::pref()->value( "preferencias/recibos/orientacion", QPrinter::Landscape ).toInt() == QPrinter::Landscape )
+ 	  {
+   		printer.setOrientation( QPrinter::Landscape );
+ 	  }
+ 	  else
+ 	  {
+    		printer.setOrientation( QPrinter::Portrait );
+ 	  }
          printer.setOutputFileName( fileName );
 
 	 // seteo el pintador

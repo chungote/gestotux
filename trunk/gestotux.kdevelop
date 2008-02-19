@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>src</activedir>
+      <activedir>plugins/actualizacion</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -197,7 +197,10 @@
       <replacePaths>false</replacePaths>
       <disableDefaultOpts>true</disableDefaultOpts>
     </qmake>
-    <subclassing/>
+    <subclassing>
+      <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.cpp" />
+      <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.h" />
+    </subclassing>
   </kdevtrollproject>
   <workspace>
     <openfiles/>

@@ -215,7 +215,15 @@ void VRecibos::imprimir()
  #ifdef QT_WS_WIN
   printer.setOutputFormat(QPrinter::NativeFormat);
  #endif
- printer.setOrientation( QPrinter::Landscape );
+ ///@todo Poner las propiedades de las hojas desde las preferencias
+ if( HiComp::pref()->value( "preferencias/recibos/orientacion", QPrinter::Landscape ).toInt() == QPrinter::Landscape )
+ {
+   printer.setOrientation( QPrinter::Landscape );
+ }
+ else
+ {
+  printer.setOrientation( QPrinter::Portrait );
+ }
  QPrintDialog *dialog = new QPrintDialog( &printer, this );
  dialog->setWindowTitle( "Imprimir" );
  if ( dialog->exec() != QDialog::Accepted )
