@@ -21,7 +21,6 @@
 #define ACTUALIZACION_H
 
 #include <QWidget>
-#include "ui/ui_FormActualizacionBase.h"
 #include "eplugin.h"
 
 class QFtp;
@@ -29,7 +28,7 @@ class QFtp;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class actualizacion : public QObject, EPlugin, Ui_FormActualizacionBase
+class actualizacion : public QObject, EPlugin
 {
 Q_OBJECT
 Q_INTERFACES(EPlugin)

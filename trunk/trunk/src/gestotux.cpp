@@ -47,6 +47,7 @@
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
 EInfoProgramaInterface *gestotux::_pluginInfo = 0;
+QHash<QString, EPlugin *> *gestotux::_plugins = 0;
 
 gestotux::gestotux()
 {
@@ -67,6 +68,12 @@ void gestotux::inicializar()
  createStatusBar();
  crearReloj();
  bandeja_sistema();
+
+preferencias *p = preferencias::getInstancia();
+p->inicio();
+p->beginGroup( "ventanaPrincipal" );
+this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
+p->endGroup();
 
  setWindowIcon( pluginInfo()->iconoPrograma() );
  setWindowTitle( pluginInfo()->nombrePrograma() );
@@ -143,6 +150,11 @@ void gestotux::salir()
 {
  preferencias *p = preferencias::getInstancia();
  p->sync();
+ p->inicio();
+ p->beginGroup( "ventanaPrincipal" );
+ p->setValue( "estado", saveState( 0 ) );
+ p->endGroup();
+
  QSqlDatabase DB = QSqlDatabase::database();
  DB.close();
  DB.removeDatabase( "gestotux.database" );
@@ -307,6 +319,8 @@ bool gestotux::cargarPlugins()
      }
  #endif
      pluginsDir.cd("plugins");
+	
+	_plugins = new QHash<QString, EPlugin *>();
 
      foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
      {
@@ -317,7 +331,7 @@ bool gestotux::cargarPlugins()
 		EPlugin *plug = qobject_cast<EPlugin *>( obj );
 		if( plug->inicializar( formCen(), preferencias::getInstancia() ) )
 		{
-			_plugins.insert( plug->nombre(), plug );
+			_plugins->insert( plug->nombre(), plug );
 			if( plug->tipo() == EPlugin::info )
 			{
 				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
@@ -360,4 +374,13 @@ void gestotux::verProductos()
 {
   VProductos *f = new VProductos( formCen() );
   formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn gestotux::plugins()
+ */
+QList<EPlugin *> gestotux::plugins()
+{
+  return _plugins->values();
 }
