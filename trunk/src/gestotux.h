@@ -49,6 +49,7 @@ public:
       static FormularioCentral *formCen();
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
+      static QList<EPlugin *> plugins();
 
 protected:
       void closeEvent(QCloseEvent *event);
@@ -97,7 +98,7 @@ private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
 
 private:
-    QHash<QString, EPlugin *> _plugins;
+    static QHash<QString, EPlugin *> *_plugins;
     bool cargarPlugins();
     QDir pluginsDir;
     QPluginLoader loader;

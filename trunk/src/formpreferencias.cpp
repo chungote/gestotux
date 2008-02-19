@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "formpreferencias.h"
+#include "eplugin.h"
 
 #include <QListWidget>
 #include <QStackedWidget>
@@ -59,25 +60,30 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      connect( this, SIGNAL( guardar() ), formGeneral, SLOT( guardar() ) );
      pagesWidget->addWidget( formGeneral );
      ///@todo ATENCION! CAMBIAR ESTO
-    /* if( !gestotux::pluginInfo()->formsPreferencias().isEmpty() )
+     EPlugin *plugin;
+     foreach( plugin, gestotux::plugins() )
      {
-	QWidget *form;
-	foreach( form, gestotux::pluginInfo()->formsPreferencias() )
+	qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
+	if( !plugin->formsPreferencias().isEmpty() )
 	{
-		// agrego el item a la lista
-		QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
-		opciones->setIcon( form->windowIcon() );
-		opciones->setText( form->windowTitle() );
-		opciones->setTextAlignment( Qt::AlignHCenter );
-		opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-		contentsWidget->addItem( opciones );
-		// Agrego el formulario
-		pagesWidget->addWidget( form );
-		connect( this, SIGNAL( guardar() ), form, SLOT( guardar() ) );
-		connect( this, SIGNAL( cargar() ), form, SLOT( cargar() ) );
-		connect( this, SIGNAL( aplicar() ), form, SLOT( aplicar() ) );
+		QWidget *form;
+		foreach( form, plugin->formsPreferencias() )
+		{
+			// agrego el item a la lista
+			QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
+			opciones->setIcon( form->windowIcon() );
+			opciones->setText( form->windowTitle() );
+			opciones->setTextAlignment( Qt::AlignHCenter );
+			opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+			contentsWidget->addItem( opciones );
+			// Agrego el formulario
+			pagesWidget->addWidget( form );
+			connect( this, SIGNAL( guardar() ), form, SLOT( guardar() ) );
+			connect( this, SIGNAL( cargar() ), form, SLOT( cargar() ) );
+			connect( this, SIGNAL( aplicar() ), form, SLOT( aplicar() ) );
+		}
 	}
-    }*/
+     }
 
     ActCerrar  = new QAction( "Cerrar", this );
     ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );

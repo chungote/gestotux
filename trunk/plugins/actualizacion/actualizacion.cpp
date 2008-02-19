@@ -39,7 +39,7 @@ void actualizacion::detener()
  */
 void actualizacion::iniciar()
 {
-  _continuar_actualizando = true;
+/*  _continuar_actualizando = true;
   PBAccion->setIcon( QIcon( ":/imagenes/stop.png" ) );
   PBAccion->setText( "Detener" );
   disconnect( PBAccion, SIGNAL( clicked() ), this, SLOT( iniciar() ) );
@@ -50,7 +50,7 @@ void actualizacion::iniciar()
 
   //Inicio la verificacion
   // Busco los datos desde el registro para el host y puerto
-  /*preferencias *p = preferencias::getInstancia();
+  preferencias *p = preferencias::getInstancia();
   QString host = p->value( "actualizaciones/host", "tranfuga.no-ip.org" ).toString();
   quint16 puerto = p->value( "actualizaciones/puerto", 21 ).toInt();
   ftp->connectToHost( host, puerto );
@@ -110,5 +110,5 @@ QSettings *actualizacion::pref()
  */
 QWidgetList actualizacion::formsPreferencias()
 {
-    /// @todo implement me
+  return QWidgetList();
 }
