@@ -22,6 +22,7 @@
 
 class QString;
 class QStackedWidget;
+class QMenuBar;
 #include <QObject>
 #include <QtPlugin>
 #include <QList>
@@ -46,11 +47,15 @@ public:
     QWidgetList formsPreferencias();
     QString nombre();
     int tipo();
+    void crearMenu( QMenu *m );
 
 private:
     QList<QAction *> _acciones;
     static QStackedWidget *_formCen;
     static QSettings *_pref;
+
+     QAction *ActNuevoRecibo;
+     QAction *ActRecibos;
 
 public slots:
     void verRecibosAnteriores();

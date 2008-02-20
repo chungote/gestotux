@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/actualizacion</activedir>
+      <activedir>src</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>

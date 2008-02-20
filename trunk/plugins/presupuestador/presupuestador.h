@@ -42,11 +42,15 @@ public:
     QWidgetList formsPreferencias();
     QString nombre();
     int tipo();
+    void crearMenu( QMenu *m );
 
 private:
     QList<QAction *> _acciones;
     static QStackedWidget *_formCen;
     static QSettings *_pref;
+
+    QAction *ActPresuAnteriores;
+    QAction *ActNuevoPresu;
 
 protected slots:
     void nuevoPresupuesto();
