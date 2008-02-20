@@ -26,6 +26,7 @@
 #include <QList>
 #include <QStackedWidget>
 #include <QSettings>
+#include <QMenuBar>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -45,7 +46,7 @@ public:
     virtual QWidgetList formsPreferencias() = 0;
     virtual QString nombre() = 0;
     virtual int tipo() = 0;
-
+    virtual void crearMenu( QMenu *m ) = 0;
 
 };
 

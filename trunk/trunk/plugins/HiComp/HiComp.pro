@@ -1,5 +1,6 @@
 TEMPLATE = lib
-CONFIG += plugin 
+CONFIG += plugin \
+		debug
 TARGET = hicomp
 
 HEADERS += hicomp.h \

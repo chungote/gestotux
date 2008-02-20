@@ -22,6 +22,7 @@
 
 #include <QWidget>
 #include "eplugin.h"
+#include <QMenuBar>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -39,12 +40,14 @@ public:
     int tipo();
     QString nombre();
     QWidgetList formsPreferencias();
+    void crearMenu( QMenuBar *m );
+    void crearMenu( QMenu *m );
 
 private:
 	QList<QAction *> _acciones;
 	static QStackedWidget *_formCen;
 	static QSettings *_pref;
-
+	QAction *ActActualizar;
 public slots:
     void verForm();
 };

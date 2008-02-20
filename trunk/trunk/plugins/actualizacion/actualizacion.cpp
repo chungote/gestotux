@@ -59,7 +59,7 @@ bool actualizacion::inicializar( QStackedWidget *formCen, QSettings *pref )
  _formCen = formCen;
  _pref = pref;
 
- QAction *ActActualizar = new QAction( "Actualizar", this );
+ ActActualizar = new QAction( "Actualizar", this );
  ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
  ActActualizar->setStatusTip( "Actualiza la aplicacion " );
  connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verForm() ) );
@@ -95,4 +95,22 @@ void actualizacion::verForm()
 {
  FormActualizacion *f = new FormActualizacion( tabs() );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn actualizacion::crearMenu( QMenuBar *m )
+ */
+void actualizacion::crearMenu( QMenuBar *m )
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn actualizacion::crearMenu( QMenu *m )
+ */
+void actualizacion::crearMenu( QMenu *m )
+{
+    /// @todo implement me
 }

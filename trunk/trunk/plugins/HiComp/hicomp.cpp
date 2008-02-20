@@ -25,6 +25,7 @@
 #include <QString>
 #include <QIcon>
 #include <QAction>
+#include <QMenuBar>
 #include <QList>
 #include <QStackedWidget>
 #include <QWidget>
@@ -53,18 +54,18 @@ QList<QAction *> HiComp::accionesBarra() const
 }
 
 
-bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref )
+bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref  )
 {
  _formCen = formCen;
  _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
- QAction *ActRecibos = new QAction( "Ver Recibos", this );
+ ActRecibos = new QAction( "Ver Recibos", this );
  ActRecibos->setToolTip( "Ver los recibos emitidos" );
  ActRecibos->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  connect( ActRecibos, SIGNAL( triggered() ), this, SLOT( verRecibosAnteriores() ) );
 
- QAction *ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
+ ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
  ActNuevoRecibo->setToolTip( "Crear un nuevo recibo" );
  ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );
@@ -73,7 +74,6 @@ bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref )
  _acciones.append( ActRecibos );
 
  return true;
-
 }
 
 
@@ -142,4 +142,16 @@ QString HiComp::nombre()
 int HiComp::tipo()
 {
   return EPlugin::info;
+}
+
+
+/*!
+    \fn HiComp::crearMenu( QMenuBar *m )
+ */
+void HiComp::crearMenu( QMenu *m )
+{
+ //m->dumpObjectTree();
+ QMenu *menuRecibos = m->addMenu( "Recibos" );
+ menuRecibos->addAction( ActRecibos );
+ menuRecibos->addAction( ActNuevoRecibo );
 }

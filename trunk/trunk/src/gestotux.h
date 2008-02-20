@@ -71,10 +71,9 @@ private:
 
       QToolBar *tb;
 
-
       QMenu *fileMenu;
-      QMenu *editMenu;
-      QMenu *helpMenu;
+      QMenu *menuHer;
+      QMenu *menuAyuda;
 
       QAction *ActClientes;
       QAction *exitAct;

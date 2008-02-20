@@ -22,6 +22,8 @@
 #include "formnuevopresupuesto.h"
 #include "formpresupuestosanteriores.h"
 
+#include <QMenuBar>
+
 QStackedWidget *presupuestador::_formCen = 0;
 QSettings *presupuestador::_pref = 0;
 
@@ -51,12 +53,12 @@ bool presupuestador::inicializar( QStackedWidget *formCen, QSettings *pref )
  _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
- QAction *ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
+ ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
  
- QAction *ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
+ ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
@@ -136,4 +138,13 @@ void presupuestador::nuevoPresupuesto()
 {
  FormNuevoPresupuesto *f = new FormNuevoPresupuesto( tabs() );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn presupuestador::crearmenu( QMenu *m )
+ */
+void presupuestador::crearMenu( QMenu *m )
+{
+    /// @todo implement me
 }
