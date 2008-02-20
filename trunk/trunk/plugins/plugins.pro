@@ -14,5 +14,6 @@ TEMPLATE = subdirs
 DESTDIR = .
 
 SUBDIRS += HiComp \
- actualizacion
+ actualizacion \
+ presupuestador
 
