@@ -43,18 +43,18 @@ CONFIG += warn_on \
           qt \
  exceptions \
  debug
-RESOURCES -= application.qrc
-
-CONFIG -= release
-
 QT += sql \
 svg \
 xml \
 network
 
-OBJECTS_DIR = obj
-UI_DIR = ui
-MOC_DIR = moc
+linux
+{
+ OBJECTS_DIR = obj
+ MOC_DIR = moc
+ UI_DIR = ui
+}
+
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
 FPrefGeneral.ui
