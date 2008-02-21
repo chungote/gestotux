@@ -42,7 +42,7 @@ CONFIG += warn_on \
 	  thread \
           qt \
  exceptions \
- debug
+ console
 QT += sql \
 svg \
 xml \
