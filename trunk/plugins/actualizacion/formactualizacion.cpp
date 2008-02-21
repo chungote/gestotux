@@ -180,9 +180,15 @@ void FormActualizacion::terminado( int comando, bool  error )
   }
   switch( comando )
   {
+   case 3:
+   {
+ 	TELog->append( "Descargando indice" );
+	break;
+   }
    case 4:
    {
 	// Analizar el archivo
+	TELog->append( "Analizando actualizaciones disponibles" );
 	analizarGeneral();
 	break;
    }

@@ -36,7 +36,12 @@ EEnvioBackup::~EEnvioBackup()
 {
 }
 
-
+/*!
+	\fn void EEnvioBackup::run()
+	Este metodo es el que se ejecuta al realiza el inicio del hilo correspondiente.
+	Verifica que el backup no haya sido enviado y si no lo hizo, lo envia. 
+	Utiliza el ultimo archivo de backup que se creo en la pc actual.
+*/
 void EEnvioBackup::run()
 {
  preferencias *p = preferencias::getInstancia();
@@ -66,6 +71,9 @@ void EEnvioBackup::run()
 
 /*!
     \fn EEnvioBackup::finComando( int id, bool error )
+	Slot llamado cada vez que un comando ftp es terminado
+	@param id Numero de comando
+	@param error Indica si hubo error en la ejecución del comando
  */
 void EEnvioBackup::finComando( int id, bool error )
 {

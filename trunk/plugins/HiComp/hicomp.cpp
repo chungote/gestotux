@@ -71,7 +71,6 @@ bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref  )
  connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );
 
  _acciones.append( ActNuevoRecibo );
- _acciones.append( ActRecibos );
 
  return true;
 }
@@ -148,10 +147,17 @@ int HiComp::tipo()
 /*!
     \fn HiComp::crearMenu( QMenuBar *m )
  */
-void HiComp::crearMenu( QMenu *m )
+void HiComp::crearMenu( QMenuBar *m )
 {
- //m->dumpObjectTree();
- QMenu *menuRecibos = m->addMenu( "Recibos" );
- menuRecibos->addAction( ActRecibos );
- menuRecibos->addAction( ActNuevoRecibo );
-}
+ QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
+ if( menuHer == 0 )
+ {
+  qDebug( "Error en las baras de menu" );
+ }
+ else
+ { 
+  QMenu *menuRecibos = menuHer->addMenu( "Recibos" );
+  menuRecibos->addAction( ActRecibos );
+  menuRecibos->addAction( ActNuevoRecibo );
+ }
+} 

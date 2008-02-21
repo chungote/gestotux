@@ -40,9 +40,10 @@ public:
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
     QWidgetList formsPreferencias();
-    QString nombre();
-    int tipo();
-    void crearMenu( QMenu *m );
+    QString nombre() const;
+    int tipo() const;
+    void crearMenu( QMenuBar *m );
+    void verificarTablas();
 
 private:
     QList<QAction *> _acciones;

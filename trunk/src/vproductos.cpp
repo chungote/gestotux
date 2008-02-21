@@ -65,6 +65,9 @@ VProductos::~VProductos()
 
 /*!
     \fn VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
+	Funcion que coloca en el valor predeterminado los valores del registro. Esto evita la falla al insertar el registro.
+	@param row Numero de fila a insertar
+	@param registro Registro a insertar
  */
 void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
 {

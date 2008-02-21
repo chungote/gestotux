@@ -28,6 +28,7 @@
 	<file>imagenes/categorias.png</file>
 	<file>imagenes/productos.png</file>
 	<file>imagenes/buscar.png</file>
+	<file>imagenes/splash.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>tablas.sql</file>

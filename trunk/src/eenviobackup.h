@@ -24,6 +24,13 @@
 class QFtp;
 
 /**
+	\brief Clase de envio de backup al servidor
+
+	Clase que ejecutandose como un hilo independiente del sistema grafico, realiza el envio del backup
+	al servidor central, obteniendo informacion del plugin de informacion.
+	Utiliza un servicio ftp que puede ser configurado desde el plugin o desde las preferencias. Por ahora el
+	sistema utiliza un ftp con login anonimo.
+
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class EEnvioBackup : public QThread
@@ -38,6 +45,9 @@ private slots:
     void finComando( int id, bool error );
 
 private:
+   /*!
+    * Clase que realiza las comunicacion ftp con el servidor
+    */
     QFtp *ftp;
 };
 

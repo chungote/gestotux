@@ -47,7 +47,7 @@ public:
     QWidgetList formsPreferencias();
     QString nombre();
     int tipo();
-    void crearMenu( QMenu *m );
+    void crearMenu( QMenuBar *m );
 
 private:
     QList<QAction *> _acciones;
