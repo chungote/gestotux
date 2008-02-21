@@ -20,7 +20,7 @@
 #ifndef FORMMODIFICARRECIBO_H
 #define FORMMODIFICARRECIBO_H
 
-#include <ui/ui_FormAgregarReciboBase.h>
+#include <ui_FormAgregarReciboBase.h>
 #include <QWidget>
 
 class QSqlTableModel;

@@ -37,10 +37,11 @@ public:
     static QSettings *pref();
     bool inicializar( QStackedWidget *formCen, QSettings *pref );
     QList<QAction *> accionesBarra() const;
-    int tipo();
-    QString nombre();
+    int tipo() const;
+    QString nombre() const;
     QWidgetList formsPreferencias();
     void crearMenu( QMenuBar *m );
+    void verificarTablas();
 
 private:
 	QList<QAction *> _acciones;

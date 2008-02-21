@@ -129,16 +129,16 @@ void HiComp::nuevoRecibo()
 /*!
     \fn HiComp::nombre()
  */
-QString HiComp::nombre()
+QString HiComp::nombre() const
 {
  return "hicomp";
 }
 
 
 /*!
-    \fn HiComp::tipo()
+    \fn HiComp::tipo() 
  */
-int HiComp::tipo()
+int HiComp::tipo() const
 {
   return EPlugin::info;
 }
@@ -161,3 +161,6 @@ void HiComp::crearMenu( QMenuBar *m )
   menuRecibos->addAction( ActNuevoRecibo );
  }
 } 
+
+void HiComp::verificarTablas()
+{}
