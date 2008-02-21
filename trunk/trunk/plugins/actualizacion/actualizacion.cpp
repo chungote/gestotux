@@ -58,13 +58,13 @@ bool actualizacion::inicializar( QStackedWidget *formCen, QSettings *pref )
 {
  _formCen = formCen;
  _pref = pref;
+ _acciones.clear();
 
  ActActualizar = new QAction( "Actualizar", this );
  ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
  ActActualizar->setStatusTip( "Actualiza la aplicacion " );
  connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verForm() ) );
  
- _acciones.append( ActActualizar );
  return true;
 }
 
@@ -103,14 +103,14 @@ void actualizacion::verForm()
  */
 void actualizacion::crearMenu( QMenuBar *m )
 {
-    /// @todo implement me
+ QMenu *menu = m->findChild<QMenu *>( "menuArchivo" );
+ if( menu == 0 )
+ {
+  qDebug( "Error en las baras de menu" );
+ }
+ else
+ { 
+  menu->addAction( ActActualizar );
+ }
 }
 
-
-/*!
-    \fn actualizacion::crearMenu( QMenu *m )
- */
-void actualizacion::crearMenu( QMenu *m )
-{
-    /// @todo implement me
-}

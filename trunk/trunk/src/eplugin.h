@@ -29,8 +29,13 @@
 #include <QMenuBar>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ *  \brief Interface de plugin en general
+ * 
+ *  Clase que sirve como interfaz de un plugin general
+ *  Tambien posee los metodos para integrarse a la ventana principal y asociar los punteros necesarios.
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EPlugin
 {
 public:
@@ -44,9 +49,10 @@ public:
     virtual QList<QAction *> accionesBarra() const = 0;
     virtual bool inicializar( QStackedWidget *formCen, QSettings *pref ) = 0;
     virtual QWidgetList formsPreferencias() = 0;
-    virtual QString nombre() = 0;
-    virtual int tipo() = 0;
-    virtual void crearMenu( QMenu *m ) = 0;
+    virtual QString nombre() const = 0;
+    virtual int tipo() const = 0;
+    virtual void crearMenu( QMenuBar *m ) = 0;
+    virtual void verificarTablas() = 0;
 
 };
 

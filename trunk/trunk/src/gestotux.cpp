@@ -139,7 +139,7 @@ void gestotux::createMenus()
  foreach( EPlugin *plug , plugins() )
  {
   //qDebug( QString("Creando menu de %1" ).arg( plug->nombre() ).toLocal8Bit() );
-  plug->crearMenu( menuHer );
+  plug->crearMenu( menuBar() );
  }
 }
 

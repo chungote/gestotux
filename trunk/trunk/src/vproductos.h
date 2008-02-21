@@ -23,6 +23,10 @@
 #include <evlista.h>
 
 /**
+	\brief  Listado de Productos
+
+	Vista de los productos
+
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class VProductos : public EVLista
@@ -35,6 +39,7 @@ public:
 
 private slots:
     void antes_de_insertar(  int row, QSqlRecord &registro );
+
 protected slots:
     void verCategorias();
 };

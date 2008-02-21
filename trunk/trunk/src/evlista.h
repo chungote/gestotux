@@ -41,15 +41,35 @@ public:
     ~EVLista();
     void closeEvent( QCloseEvent * c);
 
-    // Especifico del formulario
+   /*!
+    * Visor utilizado para ver los datos
+    */
     QTableView *vista;
 
     // Acciones
+   /*!
+    * Accion generica de agregar
+    */
     QAction *ActAgregar;
+   /*!
+    * Accion generica de modificar
+    */
     QAction *ActModificar;
+   /*!
+    * Accion generica de eliminar
+    */
     QAction *ActEliminar;
+   /*!
+    * Accion generica de buscar
+    */
     QAction *ActBuscar;
+   /*!
+    * Accion generica de Imprimir
+    */
     QAction *ActImprimir;
+   /*!
+    * Accion generica de cerrar
+    */
     QAction *ActCerrar;
 
 protected:

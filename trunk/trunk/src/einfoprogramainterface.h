@@ -23,7 +23,12 @@
 #include <QtPlugin>
 #include <QString>
 #include <QIcon>
-
+/*!
+ *  \brief Interfaz de informacion del programa
+ *
+ *   Clase que se utiliza para conocer que metodos va a tener un plugin de informacion
+ *   @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EInfoProgramaInterface
 {
 public:

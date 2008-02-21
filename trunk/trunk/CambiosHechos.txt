@@ -15,4 +15,10 @@
 - Agregado el presupuestador al programa
 
 20/02/08
-- Agregado el sistema de menus para plugins
+- Agregado y mejorado el sistema de menus para plugins
+- Agregada un poco de documentacion a las clases mas importantes
+
+21/02/08
+- Agregado el splash
+- Pasado a la version 0.2
+

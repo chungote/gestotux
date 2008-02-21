@@ -64,7 +64,6 @@ bool presupuestador::inicializar( QStackedWidget *formCen, QSettings *pref )
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
  _acciones.append( ActNuevoPresu );
- _acciones.append( ActPresuAnteriores );
  
  return true;
 
@@ -105,7 +104,7 @@ QWidgetList presupuestador::formsPreferencias()
 /*!
     \fn presupuestador::nombre()
  */
-QString presupuestador::nombre()
+QString presupuestador::nombre() const
 {
  return "presupuestador";
 }
@@ -114,7 +113,7 @@ QString presupuestador::nombre()
 /*!
     \fn presupuestador::tipo()
  */
-int presupuestador::tipo()
+int presupuestador::tipo() const
 {
   return EPlugin::info;
 }
@@ -144,7 +143,26 @@ void presupuestador::nuevoPresupuesto()
 /*!
     \fn presupuestador::crearmenu( QMenu *m )
  */
-void presupuestador::crearMenu( QMenu *m )
+void presupuestador::crearMenu( QMenuBar *m )
+{
+ QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
+ if( menuHer == 0 )
+ {
+  qDebug( "Error en las baras de menu" );
+ }
+ else
+ { 
+  QMenu *menuRecibos = menuHer->addMenu( "Presupuestos" );
+  menuRecibos->addAction( ActNuevoPresu );
+  menuRecibos->addAction( ActPresuAnteriores );
+ }
+}
+
+
+/*!
+    \fn presupuestador::verificarTablas()
+ */
+void presupuestador::verificarTablas()
 {
     /// @todo implement me
 }
