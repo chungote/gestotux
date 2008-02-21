@@ -21,7 +21,7 @@
 #define EBACKUP_H
 
 #include "eventana.h"
-#include "ui/ui_formBackup.h"
+#include "ui_formBackup.h"
 
 class QByteArray;
 class QFile;

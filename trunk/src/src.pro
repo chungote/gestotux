@@ -48,13 +48,6 @@ svg \
 xml \
 network
 
-linux
-{
- OBJECTS_DIR = obj
- MOC_DIR = moc
- UI_DIR = ui
-}
-
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
 FPrefGeneral.ui

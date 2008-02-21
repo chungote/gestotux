@@ -4,17 +4,12 @@ TARGET = presupuestador
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
-TARGETDEPS += ../../bin/gestotux
 
 QT = gui \
 	core \
 	svg \
 	sql \
 	xml
-
-OBJECTS_DIR = obj
-UI_DIR = ui
-MOC_DIR = moc
 
 SOURCES += presupuestador.cpp \
  visorresumen.cpp \

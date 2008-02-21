@@ -27,7 +27,6 @@ SOURCES += hicomp.cpp \
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
-TARGETDEPS += ../../bin/gestotux
 
 RESOURCES += hicomp.qrc
 
@@ -38,10 +37,7 @@ QT = gui \
 	xml
 
 FORMS += FormAgregarReciboBase.ui \
- FPrefRecibos.ui
-OBJECTS_DIR = obj
-UI_DIR = ui
-MOC_DIR = moc	
+ FPrefRecibos.ui	
 DISTFILES += recibo.svg \
  ../../CambiosHechos.txt
 

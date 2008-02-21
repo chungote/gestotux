@@ -22,7 +22,7 @@
 #define FPREFGENERAL_H
 
 #include "formprefhijo.h"
-#include "ui/ui_FPrefGeneral.h"
+#include "ui_FPrefGeneral.h"
 
 /*!
  *	\brief Clase que maneja las preferencias de estilo e inicializacion

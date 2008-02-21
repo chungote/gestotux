@@ -29,7 +29,7 @@ Q_EXPORT_PLUGIN2(actualizar, actualizacion )
 /*!
     \fn actualizacion::tipo()
  */
-int actualizacion::tipo()
+int actualizacion::tipo() const
 {
  return EPlugin::comun;
 }
@@ -38,7 +38,7 @@ int actualizacion::tipo()
 /*!
     \fn actualizacion::nombre()
  */
-QString actualizacion::nombre()
+QString actualizacion::nombre() const
 {
  return "actualizar";
 }
@@ -114,3 +114,5 @@ void actualizacion::crearMenu( QMenuBar *m )
  }
 }
 
+void actualizacion::verificarTablas()
+{}

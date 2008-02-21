@@ -21,7 +21,7 @@
 #define FORMAGREGARRECIBO_H
 
 #include <QWidget>
-#include <ui/ui_FormAgregarReciboBase.h>
+#include "ui_FormAgregarReciboBase.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>

@@ -20,7 +20,7 @@
 #ifndef FPREFRECIBOS_H
 #define FPREFRECIBOS_H
 
-#include <ui/ui_FPrefRecibos.h>
+#include <ui_FPrefRecibos.h>
 #include "formprefhijo.h"
 
 /**
