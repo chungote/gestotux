@@ -50,6 +50,7 @@ public:
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
       static QList<EPlugin *> plugins();
+      static QHash<QString, EPlugin *> *pluginsHash();
 
 protected:
       void closeEvent(QCloseEvent *event);
