@@ -166,3 +166,12 @@ void presupuestador::verificarTablas()
 {
     /// @todo implement me
 }
+
+
+/*!
+    \fn presupuestador::version()
+ */
+double presupuestador::version() const
+{
+  return 0.1;
+}

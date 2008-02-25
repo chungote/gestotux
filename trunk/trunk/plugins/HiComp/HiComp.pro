@@ -12,7 +12,8 @@ HEADERS += hicomp.h \
  formagregarrecibo.h \
  formmodificarrecibo.h \
  formprefhijo.h \
- fprefrecibos.h
+ fprefrecibos.h \
+ filtroclientes.h
 
 SOURCES += hicomp.cpp \
  visorrecibo.cpp \
@@ -23,7 +24,8 @@ SOURCES += hicomp.cpp \
  formagregarrecibo.cpp \
  formmodificarrecibo.cpp \
  formprefhijo.cpp \
- fprefrecibos.cpp
+ fprefrecibos.cpp \
+ filtroclientes.cpp
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
@@ -37,7 +39,17 @@ QT = gui \
 	xml
 
 FORMS += FormAgregarReciboBase.ui \
- FPrefRecibos.ui	
+ FPrefRecibos.ui	 \
+ FiltroClientesBase.ui
+
 DISTFILES += recibo.svg \
  ../../CambiosHechos.txt
 
+win32 {
+    CONFIG += console
+}
+linux-g++ {
+    UI_DIR = ui
+    MOC_DIR = moc
+    OBJECTS_DIR = obj
+}

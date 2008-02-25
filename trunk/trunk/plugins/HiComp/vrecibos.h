@@ -26,6 +26,7 @@ class QAction;
 class QSqlTableModel;
 class QTableView;
 class QModelIndex;
+class QToolBar;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
@@ -45,16 +46,20 @@ private:
     QAction *ActModificar;
     QSqlTableModel *modelo;
     QTableView *vista;
+    QToolBar *d;
 
 protected slots:
     void ver();
     void eliminar();
     void modificar();
     void agregar();
-protected slots:
     void imprimir();
-protected slots:
     void modificar( const QModelIndex& index );
+
+public slots:
+    void close();
+    void cambioClienteFiltro( int id_cliente );
+    void setearFiltrado( bool activo, int id_cliente );
 };
 
 #endif

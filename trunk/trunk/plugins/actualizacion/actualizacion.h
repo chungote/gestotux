@@ -22,15 +22,18 @@
 
 #include <QWidget>
 #include "eplugin.h"
+#include "eactualizacion.h"
 #include <QMenuBar>
+#include <QString>
+#include <QHash>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class actualizacion : public QObject, EPlugin
+class actualizacion : public QObject, EPlugin, EActualizacion
 {
 Q_OBJECT
-Q_INTERFACES(EPlugin)
+Q_INTERFACES(EPlugin EActualizacion)
 
 public:
     static QStackedWidget *tabs();
@@ -42,12 +45,18 @@ public:
     QWidgetList formsPreferencias();
     void crearMenu( QMenuBar *m );
     void verificarTablas();
+    double version() const;
+    void plugs( QHash<QString, EPlugin *> *plugs );
+    void versionPrograma( double ver );
 
 private:
+	QHash<QString, EPlugin *> *_plugs;
+	double _versionGeneral;
 	QList<QAction *> _acciones;
 	static QStackedWidget *_formCen;
 	static QSettings *_pref;
 	QAction *ActActualizar;
+
 public slots:
     void verForm();
 };

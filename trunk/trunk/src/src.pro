@@ -36,7 +36,8 @@ HEADERS += gestotux.h \
  mcategorias.h \
  vproductos.h \
  vcategorias.h \
- eplugin.h
+ eplugin.h \
+ eactualizacion.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -57,4 +58,14 @@ DESTDIR = ../bin
 INCLUDEPATH += ../plugins
 
 DISTFILES += qt_es.qm
+
+win32 {
+    CONFIG += console
+}
+linux-g++ {
+    UI_DIR = ui
+    MOC_DIR = moc
+    OBJECTS_DIR = obj
+
+}
 

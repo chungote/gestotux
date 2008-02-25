@@ -44,6 +44,7 @@ public:
     int tipo() const;
     void crearMenu( QMenuBar *m );
     void verificarTablas();
+    double version() const;
 
 private:
     QList<QAction *> _acciones;

@@ -27,3 +27,11 @@ HEADERS += visorresumen.h \
 RESOURCES = prespuestador.qrc
 FORMS += FormNuevoPresupuestoBase.ui \
  FormPresupuestosAnterioresBase.ui
+win32 {
+ CONFIG += console
+}
+linux-g++ {
+ UI_DIR = ui
+ MOC_DIR = moc
+     OBJECTS_DIR = obj
+}

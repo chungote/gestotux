@@ -164,3 +164,12 @@ void HiComp::crearMenu( QMenuBar *m )
 
 void HiComp::verificarTablas()
 {}
+
+
+/*!
+    \fn HiComp::version()
+ */
+double HiComp::version() const
+{
+  return 0.1;
+}

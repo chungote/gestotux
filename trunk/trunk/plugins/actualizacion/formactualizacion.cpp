@@ -24,6 +24,7 @@
 #include "actualizacion.h"
 #include <QDomDocument>
 #include <QDomNode>
+#include <QDomElement>
 #include <QTextEdit>
 
 FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
@@ -71,12 +72,11 @@ void FormActualizacion::iniciar()
  _continuar_actualizando = true;
 
   ftp = new QFtp( this );
-  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
+  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( terminado( int, bool ) ) );
   connect( ftp, SIGNAL( commandStarted( int ) ), this, SLOT( inicio( int ) ) );
   connect( ftp, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstado( int ) ) );
   connect( ftp, SIGNAL( dataTransferProgress( int, int ) ), this, SLOT( tranferencia( int, int ) ) );
   connect( ftp, SIGNAL( readyRead( int ) ), this, SLOT( datosListos( int ) ) );
-  connect( ftp, SIGNAL( finished( int, bool ) ), this, SLOT( terminado( int, bool ) ) );
 
   //Inicio la verificacion
   // Busco los datos desde el registro para el host y puerto
@@ -87,7 +87,6 @@ void FormActualizacion::iniciar()
   ftp->login();
   ftp->cd( "actualizaciones" );
   ftp->get( "actualizacion.xml" );
-  ftp->close();
 }
 
 
@@ -172,7 +171,7 @@ void FormActualizacion::inicio( int id )
  */
 void FormActualizacion::terminado( int comando, bool  error )
 {
-  TELog->append( QString( "Termino comando %1, error %2" ).arg( comando ).arg( error ) );
+  //TELog->append( QString( "Termino comando %1, error %2" ).arg( comando ).arg( error ) );
   if( error )
   {
    _continuar_actualizando = false;
@@ -188,7 +187,6 @@ void FormActualizacion::terminado( int comando, bool  error )
    case 4:
    {
 	// Analizar el archivo
-	TELog->append( "Analizando actualizaciones disponibles" );
 	analizarGeneral();
 	break;
    }
@@ -212,6 +210,25 @@ void FormActualizacion::analizarGeneral()
    /// El Error va a estar por consola
    return;
   }
+  else
+  {
+   TELog->append( "Descarga correcta." );
+  }
 
- 
+  TELog->append( "Analizando actualizaciones disponibles" );
+  QDomElement docElem = docxml->documentElement();
+  QDomNode n = docElem.firstChild();
+  if( n.toElement().attribute( "version", 0 ).toInt() >= 0.1 )
+  {
+	TELog->append( "Existe una nueva version del programa. Por favor actualicela manualmente" );
+	ftp->close();
+	return;
+  }
+  else
+  {
+   TELog->append( "No se necesita actualizar el programa general." );
+   // Veo cada uno de los plugins
+   ///@todo Como consigo los plugins???
+
+  }
 }
