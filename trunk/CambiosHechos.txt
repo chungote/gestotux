@@ -20,5 +20,8 @@
 
 21/02/08
 - Agregado el splash
-- Pasado a la version 0.2
+- Pasando a la version 0.2
+- Modificado el orden de las acciones en los menus
 
+24/02/08
+- Agregado sistema de filtro de clientes en el visor de recibos

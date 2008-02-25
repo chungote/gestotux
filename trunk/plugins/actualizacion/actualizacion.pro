@@ -8,8 +8,7 @@ DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
 TARGET = actualizar
 
-HEADERS = actualizacion.h \
- formactualizacion.h
+HEADERS = formactualizacion.h
 
 SOURCES = actualizacion.cpp \
  formactualizacion.cpp
@@ -17,4 +16,16 @@ SOURCES = actualizacion.cpp \
 FORMS = FormActualizacionBase.ui
 
 RESOURCES += actualizacion.qrc
+
+win32 {
+    CONFIG += console
+}
+linux-g++ {
+    UI_DIR = ui
+    MOC_DIR = moc
+    OBJECTS_DIR = obj
+    INCLUDEPATH += ../../src \
+.
+}
+HEADERS -= eactualizacion.h
 

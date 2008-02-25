@@ -24,6 +24,7 @@
 #include "formagregarrecibo.h"
 #include "drecibo.h"
 #include "visorrecibo.h"
+#include "filtroclientes.h"
 #include <QTableView>
 #include <QAction>
 #include <QToolBar>
@@ -34,7 +35,8 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QStackedWidget>
-
+#include <QToolBar>
+#include <QMainWindow>
 
 VRecibos::VRecibos( QWidget *parent )
  : QWidget( parent )
@@ -103,6 +105,14 @@ VRecibos::VRecibos( QWidget *parent )
  ActCerrar->setToolTip( "Cierra la ventana actual ( Ctrl + c ) " );
  ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
+
+ d = new QToolBar( this ); 
+ d->setObjectName( "dockFiltroClientes" );
+ FiltroClientes *f = new FiltroClientes( this );
+ d->addWidget( f );
+ qobject_cast<QMainWindow *>(HiComp::tabs()->parentWidget())->addToolBar( Qt::BottomToolBarArea ,d );
+ connect( f, SIGNAL( seteaFiltrado( bool, int ) ), this, SLOT( setearFiltrado( bool, int ) ) );
+ connect( f, SIGNAL( cambioCliente( int ) ), this, SLOT( cambioClienteFiltro( int ) ) );
 
  addAction( ActVer );
  addAction( ActAgregar );
@@ -266,4 +276,45 @@ void VRecibos::modificar( const QModelIndex& index )
  FormModificarRecibo *f = new FormModificarRecibo( HiComp::tabs() );
  HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
  f->cargarDatos( index, modelo );
+}
+
+
+/*!
+    \fn VRecibos::close()
+ */
+void VRecibos::close()
+{
+  d->close();
+  QWidget::close();
+}
+
+
+/*!
+    \fn VRecibos::setearFiltrado( bool activo )
+ */
+void VRecibos::setearFiltrado( bool activo, int id_cliente )
+{
+  if( !activo )
+  {
+   modelo->setFilter( "" );
+   modelo->select();
+   return;
+  }
+  else
+  {
+   qDebug( QString( "cliente = '%1'" ).arg( id_cliente ).toLocal8Bit() );
+   modelo->setFilter( QString( "cliente = '%1'" ).arg( id_cliente )  );
+   modelo->select();
+  }
+}
+
+
+/*!
+    \fn VRecibos::cambioClienteFiltro( int id_cliente )
+ */
+void VRecibos::cambioClienteFiltro( int id_cliente )
+{
+ qDebug( QString( "cliente = '%1'" ).arg( id_cliente ).toLocal8Bit() );
+ modelo->setFilter( QString( "cliente = '%1'" ).arg( id_cliente )  );
+ modelo->select();
 }

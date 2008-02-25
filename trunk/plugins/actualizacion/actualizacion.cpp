@@ -31,7 +31,7 @@ Q_EXPORT_PLUGIN2(actualizar, actualizacion )
  */
 int actualizacion::tipo() const
 {
- return EPlugin::comun;
+ return EPlugin::actualizacion;
 }
 
 
@@ -116,3 +116,22 @@ void actualizacion::crearMenu( QMenuBar *m )
 
 void actualizacion::verificarTablas()
 {}
+
+
+/*!
+    \fn actualizacion::version()
+ */
+double actualizacion::version() const
+{
+  return 0.1;
+}
+
+void actualizacion::plugs( QHash<QString, EPlugin *> *plugs )
+{
+ _plugs = plugs;
+}
+
+void actualizacion::versionPrograma( double v )
+{
+ _versionGeneral = v;
+}

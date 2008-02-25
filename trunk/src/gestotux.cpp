@@ -121,26 +121,28 @@ void gestotux::createMenus()
 {
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
- fileMenu->addAction( acercade );
- fileMenu->addSeparator();
- fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );
  menuHer->setObjectName( "menuHerramientas" );
- menuHer->addAction( ActPreferencias );
- menuHer->addAction( ActBackup );
- menuHer->addSeparator();
  menuHer->addAction( ActClientes );
  menuHer->addAction( ActProductos );
 
  menuAyuda = menuBar()->addMenu( "A&yuda" );
  menuAyuda->setObjectName( "menuAyuda" );
+ menuAyuda->addAction( acercade );
 
  foreach( EPlugin *plug , plugins() )
  {
   //qDebug( QString("Creando menu de %1" ).arg( plug->nombre() ).toLocal8Bit() );
   plug->crearMenu( menuBar() );
  }
+
+ menuHer->addSeparator();
+ menuHer->addAction( ActBackup );
+ menuHer->addAction( ActPreferencias );
+
+ fileMenu->addSeparator();
+ fileMenu->addAction( exitAct );
 }
 
 void gestotux::createStatusBar()
@@ -214,8 +216,6 @@ void gestotux::createToolBar()
   tb->addActions( plug->accionesBarra() );
  }
  tb->addAction( ActClientes );
- tb->addAction( ActBackup );
- tb->addAction( ActPreferencias );
 
  _barraAcciones = new QToolBar( "Acciones", this );
  _barraAcciones->setObjectName( "BarraAcciones" );
@@ -350,6 +350,10 @@ bool gestotux::cargarPlugins()
 			{
 				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
 			}
+			/*if( plug->tipo() == EPlugin::actualizacion )
+			{
+				
+			}*/
 			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
 		}
 		else
@@ -361,7 +365,6 @@ bool gestotux::cargarPlugins()
 	 {
 		qWarning( "Error al cargar el plugin" );
 		qWarning( QString( "Error: %1" ).arg( loader.errorString() ).toLocal8Bit() );
-		return false;
 	 }
      }
 	return true;

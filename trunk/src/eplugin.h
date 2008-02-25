@@ -43,7 +43,8 @@ public:
     {
       db = 0,
       comun = 1,
-      info = 2
+      info = 2,
+      actualizacion = 3
     };
     virtual ~EPlugin() {}
     virtual QList<QAction *> accionesBarra() const = 0;
@@ -53,6 +54,7 @@ public:
     virtual int tipo() const = 0;
     virtual void crearMenu( QMenuBar *m ) = 0;
     virtual void verificarTablas() = 0;
+    virtual double version() const = 0;
 
 };
 

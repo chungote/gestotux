@@ -1,4 +1,5 @@
 - Al poner agregar, que quede autoeditando el que se agrego
+- Agregar filtro por clientes en la vista de recibos
 - Hacer que se tomen en serio el tamaño de hoja de las preferencias
 - Obtener la lista de tamaños de hojas para cuando estes en wondows
 - Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
