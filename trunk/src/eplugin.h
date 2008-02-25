@@ -43,8 +43,7 @@ public:
     {
       db = 0,
       comun = 1,
-      info = 2,
-      actualizacion = 3
+      info = 2
     };
     virtual ~EPlugin() {}
     virtual QList<QAction *> accionesBarra() const = 0;

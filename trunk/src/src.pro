@@ -16,7 +16,8 @@ SOURCES += gestotux.cpp \
  mproductos.cpp \
  mcategorias.cpp \
  vproductos.cpp \
- vcategorias.cpp
+ vcategorias.cpp \
+ formactualizacion.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -37,7 +38,7 @@ HEADERS += gestotux.h \
  vproductos.h \
  vcategorias.h \
  eplugin.h \
- eactualizacion.h
+ formactualizacion.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -51,7 +52,8 @@ network
 
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
-FPrefGeneral.ui
+FPrefGeneral.ui \
+ FormActualizacionBase.ui
 RESOURCES = gestotux.qrc
 TARGET = gestotux
 DESTDIR = ../bin

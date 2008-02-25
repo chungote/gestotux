@@ -30,10 +30,10 @@
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class actualizacion : public QObject, EPlugin, EActualizacion
+class actualizacion : public QObject, public EPlugin, public  EActualizacion
 {
 Q_OBJECT
-Q_INTERFACES(EPlugin EActualizacion)
+Q_INTERFACES(EActualizacion EPlugin)
 
 public:
     static QStackedWidget *tabs();
