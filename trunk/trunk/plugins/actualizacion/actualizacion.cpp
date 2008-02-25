@@ -18,13 +18,10 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "actualizacion.h"
-#include <QFtp>
 #include "formactualizacion.h"
 
 QStackedWidget *actualizacion::_formCen = 0;
 QSettings *actualizacion::_pref = 0;
-
-Q_EXPORT_PLUGIN2(actualizar, actualizacion )
 
 /*!
     \fn actualizacion::tipo()
@@ -135,3 +132,5 @@ void actualizacion::versionPrograma( double v )
 {
  _versionGeneral = v;
 }
+
+Q_EXPORT_PLUGIN2(actualizar, actualizacion );

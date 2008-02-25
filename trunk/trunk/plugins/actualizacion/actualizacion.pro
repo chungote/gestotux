@@ -2,7 +2,8 @@ TEMPLATE = lib
 CONFIG += plugin
 QT += sql \
 xml \
-network
+network \
+debug
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
@@ -24,8 +25,7 @@ linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
-    INCLUDEPATH += ../../src \
-.
+    INCLUDEPATH += ../../src
 }
 HEADERS -= eactualizacion.h
 

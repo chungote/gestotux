@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/HiComp</activedir>
+      <activedir>plugins/presupuestador</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>

@@ -42,7 +42,10 @@
 #include "ebackup.h"
 #include "eplugin.h"
 #include "einfoprogramainterface.h"
+#include "formactualizacion.h"
 #include "vproductos.h"
+
+#define VERSION_PROGRAMA 0.2
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
@@ -115,6 +118,11 @@ void gestotux::createActions()
 	ActProductos->setStatusTip( "Mustra el listado de productos" );
 	ActProductos->setIcon( QIcon( ":/imagenes/productos.png" ) );
 	connect( ActProductos, SIGNAL( triggered() ), this, SLOT( verProductos() ) );
+
+	ActActualizar = new QAction( "Actualizar", this );
+ 	ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
+ 	ActActualizar->setStatusTip( "Actualiza la aplicacion " );
+ 	connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
 }
 
 void gestotux::createMenus()
@@ -141,6 +149,7 @@ void gestotux::createMenus()
  menuHer->addAction( ActBackup );
  menuHer->addAction( ActPreferencias );
 
+ fileMenu->addAction( ActActualizar );
  fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 }
@@ -335,7 +344,6 @@ bool gestotux::cargarPlugins()
      pluginsDir.cd("plugins");
 	
 	_plugins = new QHash<QString, EPlugin *>();
-
      foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
      {
 	loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
@@ -350,10 +358,6 @@ bool gestotux::cargarPlugins()
 			{
 				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
 			}
-			/*if( plug->tipo() == EPlugin::actualizacion )
-			{
-				
-			}*/
 			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
 		}
 		else
@@ -400,4 +404,14 @@ void gestotux::verProductos()
 QList<EPlugin *> gestotux::plugins()
 {
   return _plugins->values();
+}
+
+
+/*!
+    \fn gestotux::verActualizacion()
+ */
+void gestotux::verActualizacion()
+{
+ FormActualizacion *f = new FormActualizacion( formCen() );
+ formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
 }
