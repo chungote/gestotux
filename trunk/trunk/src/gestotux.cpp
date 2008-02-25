@@ -415,3 +415,12 @@ void gestotux::verActualizacion()
  FormActualizacion *f = new FormActualizacion( formCen() );
  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
 }
+
+
+/*!
+    \fn gestotux::pluginsHash()
+ */
+QHash<QString, EPlugin *> *gestotux::pluginsHash()
+{
+    return _plugins;
+}
