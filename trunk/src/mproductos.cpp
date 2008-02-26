@@ -20,6 +20,7 @@
 #include "mproductos.h"
 
 #include <QColor>
+#include <QBrush>
 
 MProductos::MProductos(QObject *parent)
  : QSqlRelationalTableModel(parent)
@@ -108,7 +109,19 @@ if( !item.isValid() )
 	}
 	case Qt::TextAlignmentRole:
 	{
-		return int( Qt::AlignLeft | Qt::AlignVCenter );
+		switch( item.column() )
+		{
+			case 3:
+			{
+				return int( Qt::AlignHCenter | Qt::AlignVCenter );
+				break;
+			}
+			default:
+			{
+				return int( Qt::AlignLeft | Qt::AlignVCenter );
+				break;
+			}
+		}
 		break;
 	}
 	case Qt::ToolTipRole:

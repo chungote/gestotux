@@ -29,7 +29,7 @@
 #include <QGridLayout>
 
 EVLista::EVLista( QWidget *parent )
- : EVentana( parent )
+: EVentana( parent )
 {
  QGridLayout *layout = new QGridLayout( this );
  vista = new QTableView(this);
@@ -67,7 +67,7 @@ EVLista::EVLista( QWidget *parent )
  ActEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
  ActEliminar->setShortcut( QKeySequence( "Ctrl+e" ) );
  ActEliminar->setToolTip( "Eliminar el o los items seleccionados ( Ctrl + e )" );
- connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar()  ) );
+// connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar()  ) );
 
  ActBuscar = new QAction( "&Buscar", this );
  ActBuscar->setIcon( QIcon( ":/imagenes/buscar.png" ) );

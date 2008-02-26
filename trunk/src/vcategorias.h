@@ -21,13 +21,14 @@
 #define VCATEGORIAS_H
 
 #include <evlista.h>
+#include <QObject>
 class QSqlRecord;
 
 /**
-Lista de Categorias
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ *   \brief Lista de Categorias
+ *
+ *   @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VCategorias : public EVLista
 {
 Q_OBJECT
@@ -37,6 +38,8 @@ public:
 
 public slots:
     void antes_de_insertar( int row, QSqlRecord & record );
+    void eliminar();
+
 };
 
 #endif

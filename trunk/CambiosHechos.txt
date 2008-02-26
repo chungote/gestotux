@@ -25,3 +25,6 @@
 
 24/02/08
 - Agregado sistema de filtro de clientes en el visor de recibos
+
+26/02/08
+- Agregada restriccion para que no se puedan eliminar cateogrias que contengan productos
