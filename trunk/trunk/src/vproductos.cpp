@@ -79,6 +79,7 @@ void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
 
 /*!
     \fn VProductos::closeEvent( QCloseEvent * event )
+	Metodo llamado cuando se cierra la ventana
  */
 void VProductos::closeEvent( QCloseEvent * event )
 {
@@ -88,6 +89,7 @@ void VProductos::closeEvent( QCloseEvent * event )
 
 /*!
     \fn VProductos::verCategorias()
+	Slot llamado para ver la lista de categorias
  */
 void VProductos::verCategorias()
 {

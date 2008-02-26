@@ -1,7 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="0" />
+ <DocsAndViews NumberOfDocuments="3" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/vcategorias.h" >
+   <View0 Encoding="" line="29" Type="Source" />
+  </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/vcategorias.cpp" >
+   <View0 Encoding="" line="46" Type="Source" />
+  </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/evlista.cpp" >
+   <View0 Encoding="" line="69" Type="Source" />
+  </Doc2>
+ </DocsAndViews>
  <pluginList>
   <kdevdebugger>
    <breakpointList/>
