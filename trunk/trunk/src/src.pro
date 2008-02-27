@@ -63,6 +63,7 @@ DISTFILES += qt_es.qm
 
 win32 {
     CONFIG += console
+	RC_FILE = gestotux.rc
 }
 linux-g++ {
     UI_DIR = ui
