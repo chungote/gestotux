@@ -65,20 +65,12 @@ bool presupuestador::inicializar( QStackedWidget *formCen, QSettings *pref )
 
  _acciones.append( ActNuevoPresu );
  
- return true;
+ return verificarTablas();
 
 }
 
 
-QStackedWidget *presupuestador::tabs()
-{
- return _formCen;
-}
 
-QSettings *presupuestador::pref()
-{
- return _pref;
-}
 
 QString presupuestador::directorioBackup() const
 {
@@ -162,9 +154,9 @@ void presupuestador::crearMenu( QMenuBar *m )
 /*!
     \fn presupuestador::verificarTablas()
  */
-void presupuestador::verificarTablas()
+bool presupuestador::verificarTablas()
 {
-    /// @todo implement me
+ return true;
 }
 
 
@@ -174,4 +166,14 @@ void presupuestador::verificarTablas()
 double presupuestador::version() const
 {
   return 0.1;
+}
+
+QStackedWidget *presupuestador::tabs()
+{
+ return _formCen;
+}
+
+QSettings *presupuestador::pref()
+{
+ return _pref;
 }

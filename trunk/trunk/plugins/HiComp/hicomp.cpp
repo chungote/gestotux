@@ -72,7 +72,7 @@ bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref  )
 
  _acciones.append( ActNuevoRecibo );
 
- return true;
+ return verificarTablas();
 }
 
 
@@ -162,8 +162,10 @@ void HiComp::crearMenu( QMenuBar *m )
  }
 } 
 
-void HiComp::verificarTablas()
-{}
+bool HiComp::verificarTablas()
+{
+ return true;
+}
 
 
 /*!

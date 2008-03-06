@@ -365,6 +365,7 @@ bool gestotux::cargarPlugins()
 			if( plug->tipo() == EPlugin::info )
 			{
 				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
+				preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
 			}
 			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
 		}

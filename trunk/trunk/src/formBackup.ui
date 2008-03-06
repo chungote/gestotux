@@ -41,13 +41,6 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QCheckBox" name="ChBCompri" >
-         <property name="text" >
-          <string>Comprimir</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
     </layout>

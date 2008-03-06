@@ -28,3 +28,10 @@
 
 26/02/08
 - Agregada restriccion para que no se puedan eliminar cateogrias que contengan productos
+
+27/02/08
+- Agregado plugin de presupuestos
+
+29/02/08
+- Agregado sistema de plugins para presupuestos
+- Agregada verificacion de carga con el plugin de informacion cargado
