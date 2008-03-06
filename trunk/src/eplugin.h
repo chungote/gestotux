@@ -52,7 +52,7 @@ public:
     virtual QString nombre() const = 0;
     virtual int tipo() const = 0;
     virtual void crearMenu( QMenuBar *m ) = 0;
-    virtual void verificarTablas() = 0;
+    virtual bool verificarTablas() = 0;
     virtual double version() const = 0;
 
 };

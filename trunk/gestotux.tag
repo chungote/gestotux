@@ -1,90 +1,6 @@
 <?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
-    <name>actualizacion.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/</path>
-    <filename>actualizacion_8cpp</filename>
-    <includes id="actualizacion_8h" name="actualizacion.h" local="yes" imported="no">actualizacion.h</includes>
-    <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>actualizacion.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/</path>
-    <filename>actualizacion_8h</filename>
-    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
-    <class kind="class">actualizacion</class>
-  </compound>
-  <compound kind="file">
-    <name>formactualizacion.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/</path>
-    <filename>formactualizacion_8cpp</filename>
-    <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
-    <includes id="actualizacion_8h" name="actualizacion.h" local="yes" imported="no">actualizacion.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>formactualizacion.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/</path>
-    <filename>formactualizacion_8h</filename>
-    <includes id="src_2ui_2ui__FormActualizacionBase_8h" name="ui_FormActualizacionBase.h" local="yes" imported="no">ui_FormActualizacionBase.h</includes>
-    <class kind="class">FormActualizacion</class>
-  </compound>
-  <compound kind="file">
-    <name>qrc_actualizacion.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/</path>
-    <filename>qrc__actualizacion_8cpp</filename>
-    <member kind="function">
-      <type>int</type>
-      <name>qCleanupResources_actualizacion</name>
-      <anchorfile>qrc__actualizacion_8cpp.html</anchorfile>
-      <anchor>cfd842110c1cc7a49736c1d0bd5840fd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>qInitResources_actualizacion</name>
-      <anchorfile>qrc__actualizacion_8cpp.html</anchorfile>
-      <anchor>a420635f44119dbf8071e980b8a77cb5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_data</name>
-      <anchorfile>qrc__actualizacion_8cpp.html</anchorfile>
-      <anchor>67a985282ed24629b630f624b668842b</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_name</name>
-      <anchorfile>qrc__actualizacion_8cpp.html</anchorfile>
-      <anchor>7931167bf9d7e883e4194a60d031e431</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_struct</name>
-      <anchorfile>qrc__actualizacion_8cpp.html</anchorfile>
-      <anchor>37a83d7da2ee18badcd100d79aac64d4</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormActualizacionBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/ui/</path>
-    <filename>plugins_2actualizacion_2ui_2ui__FormActualizacionBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormActualizacionBase</class>
-    <class kind="class">Ui_FormActualizacionBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormActualizacionBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>src_2ui_2ui__FormActualizacionBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormActualizacionBase</class>
-    <class kind="class">Ui_FormActualizacionBase</class>
-  </compound>
-  <compound kind="file">
     <name>drecibo.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>drecibo_8cpp</filename>
@@ -104,6 +20,18 @@
     <class kind="class">DRecibo</class>
   </compound>
   <compound kind="file">
+    <name>filtroclientes.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
+    <filename>filtroclientes_8cpp</filename>
+    <includes id="filtroclientes_8h" name="filtroclientes.h" local="yes" imported="no">filtroclientes.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>filtroclientes.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
+    <filename>filtroclientes_8h</filename>
+    <class kind="class">FiltroClientes</class>
+  </compound>
+  <compound kind="file">
     <name>formagregarrecibo.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>formagregarrecibo_8cpp</filename>
@@ -116,7 +44,6 @@
     <name>formagregarrecibo.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>formagregarrecibo_8h</filename>
-    <includes id="src_2ui_2ui__FormAgregarReciboBase_8h" name="ui_FormAgregarReciboBase.h" local="no" imported="no">ui/ui_FormAgregarReciboBase.h</includes>
     <class kind="class">FormAgregarRecibo</class>
   </compound>
   <compound kind="file">
@@ -130,7 +57,6 @@
     <name>formmodificarrecibo.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>formmodificarrecibo_8h</filename>
-    <includes id="src_2ui_2ui__FormAgregarReciboBase_8h" name="ui_FormAgregarReciboBase.h" local="no" imported="no">ui/ui_FormAgregarReciboBase.h</includes>
     <class kind="class">FormModificarRecibo</class>
   </compound>
   <compound kind="file">
@@ -168,7 +94,6 @@
     <name>fprefrecibos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>fprefrecibos_8h</filename>
-    <includes id="src_2ui_2ui__FPrefRecibos_8h" name="ui_FPrefRecibos.h" local="no" imported="no">ui/ui_FPrefRecibos.h</includes>
     <includes id="plugins_2HiComp_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
     <class kind="class">FPrefRecibos</class>
   </compound>
@@ -202,46 +127,6 @@
     <class kind="class">MRecibo</class>
   </compound>
   <compound kind="file">
-    <name>qrc_hicomp.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>qrc__hicomp_8cpp</filename>
-    <member kind="function">
-      <type>int</type>
-      <name>qCleanupResources_hicomp</name>
-      <anchorfile>qrc__hicomp_8cpp.html</anchorfile>
-      <anchor>05e5cb0314fce7d49a2b677e7dcdeef1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>qInitResources_hicomp</name>
-      <anchorfile>qrc__hicomp_8cpp.html</anchorfile>
-      <anchor>f699a6935465e16332856842288c507c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_data</name>
-      <anchorfile>qrc__hicomp_8cpp.html</anchorfile>
-      <anchor>67a985282ed24629b630f624b668842b</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_name</name>
-      <anchorfile>qrc__hicomp_8cpp.html</anchorfile>
-      <anchor>7931167bf9d7e883e4194a60d031e431</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_struct</name>
-      <anchorfile>qrc__hicomp_8cpp.html</anchorfile>
-      <anchor>37a83d7da2ee18badcd100d79aac64d4</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
     <name>recibo.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>recibo_8cpp</filename>
@@ -253,46 +138,6 @@
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>recibo_8h</filename>
     <class kind="class">Recibo</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormAgregarReciboBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/ui/</path>
-    <filename>plugins_2HiComp_2ui_2ui__FormAgregarReciboBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormAgregarReciboBase</class>
-    <class kind="class">Ui_FormAgregarReciboBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormAgregarReciboBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>plugins_2HiComp_2ui__FormAgregarReciboBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormAgregarReciboBase</class>
-    <class kind="class">Ui_FormAgregarReciboBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormAgregarReciboBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>src_2ui_2ui__FormAgregarReciboBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormAgregarReciboBase</class>
-    <class kind="class">Ui_FormAgregarReciboBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FPrefRecibos.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/ui/</path>
-    <filename>plugins_2HiComp_2ui_2ui__FPrefRecibos_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FPrefRecibosBase</class>
-    <class kind="class">Ui_FPrefRecibosBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FPrefRecibos.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>src_2ui_2ui__FPrefRecibos_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FPrefRecibosBase</class>
-    <class kind="class">Ui_FPrefRecibosBase</class>
   </compound>
   <compound kind="file">
     <name>visorrecibo.cpp</name>
@@ -319,6 +164,7 @@
     <includes id="formagregarrecibo_8h" name="formagregarrecibo.h" local="yes" imported="no">formagregarrecibo.h</includes>
     <includes id="drecibo_8h" name="drecibo.h" local="yes" imported="no">drecibo.h</includes>
     <includes id="visorrecibo_8h" name="visorrecibo.h" local="yes" imported="no">visorrecibo.h</includes>
+    <includes id="filtroclientes_8h" name="filtroclientes.h" local="yes" imported="no">filtroclientes.h</includes>
   </compound>
   <compound kind="file">
     <name>vrecibos.h</name>
@@ -336,7 +182,6 @@
     <name>formmodificarpresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formmodificarpresupuesto_8h</filename>
-    <includes id="ui__FormNuevoPresupuestoBase_8h" name="ui_FormNuevoPresupuestoBase.h" local="yes" imported="no">ui_FormNuevoPresupuestoBase.h</includes>
     <class kind="class">FormModificarPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -351,7 +196,6 @@
     <name>formnuevopresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formnuevopresupuesto_8h</filename>
-    <includes id="ui__FormNuevoPresupuestoBase_8h" name="ui_FormNuevoPresupuestoBase.h" local="yes" imported="no">ui_FormNuevoPresupuestoBase.h</includes>
     <class kind="class">FormNuevoPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -368,7 +212,6 @@
     <name>formpresupuestosanteriores.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formpresupuestosanteriores_8h</filename>
-    <includes id="ui__FormPresupuestosAnterioresBase_8h" name="ui_FormPresupuestosAnterioresBase.h" local="yes" imported="no">ui_FormPresupuestosAnterioresBase.h</includes>
     <class kind="class">FormPresupuestosAnteriores</class>
   </compound>
   <compound kind="file">
@@ -401,62 +244,6 @@
     <class kind="class">presupuestador</class>
   </compound>
   <compound kind="file">
-    <name>qrc_prespuestador.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
-    <filename>qrc__prespuestador_8cpp</filename>
-    <member kind="function">
-      <type>int</type>
-      <name>qCleanupResources_prespuestador</name>
-      <anchorfile>qrc__prespuestador_8cpp.html</anchorfile>
-      <anchor>8537fbb110a842171504ded599ce41d4</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>qInitResources_prespuestador</name>
-      <anchorfile>qrc__prespuestador_8cpp.html</anchorfile>
-      <anchor>6fe960fe1349d4413a72b402962b49b2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_data</name>
-      <anchorfile>qrc__prespuestador_8cpp.html</anchorfile>
-      <anchor>67a985282ed24629b630f624b668842b</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_name</name>
-      <anchorfile>qrc__prespuestador_8cpp.html</anchorfile>
-      <anchor>7931167bf9d7e883e4194a60d031e431</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_struct</name>
-      <anchorfile>qrc__prespuestador_8cpp.html</anchorfile>
-      <anchor>37a83d7da2ee18badcd100d79aac64d4</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormNuevoPresupuestoBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/ui/</path>
-    <filename>ui__FormNuevoPresupuestoBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormNuevoPresupuestoBase</class>
-    <class kind="class">Ui_FormNuevoPresupuestoBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormPresupuestosAnterioresBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/ui/</path>
-    <filename>ui__FormPresupuestosAnterioresBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormPresupuestosAnterioresBase</class>
-    <class kind="class">Ui_FormPresupuestosAnterioresBase</class>
-  </compound>
-  <compound kind="file">
     <name>visorresumen.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>visorresumen_8cpp</filename>
@@ -467,6 +254,97 @@
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>visorresumen_8h</filename>
     <class kind="class">visorResumen</class>
+  </compound>
+  <compound kind="file">
+    <name>epresupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>epresupuesto_8h</filename>
+    <class kind="class">EPresupuesto</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregarpresupuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>formagregarpresupuesto_8cpp</filename>
+    <includes id="formagregarpresupuesto_8h" name="formagregarpresupuesto.h" local="yes" imported="no">formagregarpresupuesto.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formagregarpresupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>formagregarpresupuesto_8h</filename>
+    <class kind="class">FormAgregarPresupuesto</class>
+  </compound>
+  <compound kind="file">
+    <name>mpresupuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>mpresupuesto_8cpp</filename>
+    <includes id="mpresupuesto_8h" name="mpresupuesto.h" local="yes" imported="no">mpresupuesto.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mpresupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>mpresupuesto_8h</filename>
+    <class kind="class">MPresupuesto</class>
+  </compound>
+  <compound kind="file">
+    <name>prespuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>prespuesto_8cpp</filename>
+    <includes id="prespuesto_8h" name="prespuesto.h" local="yes" imported="no">prespuesto.h</includes>
+    <includes id="formagregarpresupuesto_8h" name="formagregarpresupuesto.h" local="yes" imported="no">formagregarpresupuesto.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>prespuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>prespuesto_8h</filename>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+    <class kind="class">prespuesto</class>
+  </compound>
+  <compound kind="file">
+    <name>presupuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>presupuesto_8cpp</filename>
+    <includes id="presupuesto_8h" name="presupuesto.h" local="yes" imported="no">presupuesto.h</includes>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>presupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>presupuesto_8h</filename>
+    <includes id="epresupuesto_8h" name="epresupuesto.h" local="yes" imported="no">epresupuesto.h</includes>
+    <class kind="class">Presupuesto</class>
+  </compound>
+  <compound kind="file">
+    <name>presupuestodefault.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/default/</path>
+    <filename>presupuestodefault_8cpp</filename>
+    <includes id="presupuestodefault_8h" name="presupuestodefault.h" local="yes" imported="no">presupuestodefault.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Q_EXPORT_PLUGIN2</name>
+      <anchorfile>presupuestodefault_8cpp.html</anchorfile>
+      <anchor>2157d97d31d4e4983a13deaffb5aaf98</anchor>
+      <arglist>(default, PresupuestoDefault)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>presupuestodefault.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/default/</path>
+    <filename>presupuestodefault_8h</filename>
+    <includes id="epresupuesto_8h" name="epresupuesto.h" local="yes" imported="no">epresupuesto.h</includes>
+    <class kind="class">PresupuestoDefault</class>
+  </compound>
+  <compound kind="file">
+    <name>hicomppresupuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/hicomp/</path>
+    <filename>hicomppresupuesto_8cpp</filename>
+    <includes id="hicomppresupuesto_8h" name="hicomppresupuesto.h" local="yes" imported="no">hicomppresupuesto.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>hicomppresupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/hicomp/</path>
+    <filename>hicomppresupuesto_8h</filename>
+    <includes id="epresupuesto_8h" name="epresupuesto.h" local="no" imported="no">epresupuesto.h</includes>
+    <class kind="class">HiCompPresupuesto</class>
   </compound>
   <compound kind="file">
     <name>ebackup.cpp</name>
@@ -481,7 +359,6 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>ebackup_8h</filename>
     <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
-    <includes id="ui__formBackup_8h" name="ui_formBackup.h" local="yes" imported="no">ui/ui_formBackup.h</includes>
     <class kind="class">Ebackup</class>
   </compound>
   <compound kind="file">
@@ -577,8 +454,22 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>formacercade_8h</filename>
     <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
-    <includes id="ui__FormAcercaDeBase_8h" name="ui_FormAcercaDeBase.h" local="yes" imported="no">ui_FormAcercaDeBase.h</includes>
     <class kind="class">FormAcercaDe</class>
+  </compound>
+  <compound kind="file">
+    <name>formactualizacion.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>formactualizacion_8cpp</filename>
+    <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
+    <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formactualizacion.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>formactualizacion_8h</filename>
+    <class kind="class">FormActualizacion</class>
   </compound>
   <compound kind="file">
     <name>formpreferencias.cpp</name>
@@ -625,7 +516,6 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>fprefgeneral_8h</filename>
     <includes id="src_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
-    <includes id="ui__FPrefGeneral_8h" name="ui_FPrefGeneral.h" local="yes" imported="no">ui/ui_FPrefGeneral.h</includes>
     <class kind="class">FPrefGeneral</class>
   </compound>
   <compound kind="file">
@@ -642,7 +532,22 @@
     <includes id="ebackup_8h" name="ebackup.h" local="yes" imported="no">ebackup.h</includes>
     <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
     <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
+    <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
     <includes id="vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>VERSION_PROGRAMA</name>
+      <anchorfile>gestotux_8cpp.html</anchorfile>
+      <anchor>1429fef2e1d9c4fc4a285689d183f5c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>return</type>
+      <name>true</name>
+      <anchorfile>gestotux_8cpp.html</anchorfile>
+      <anchor>930920b2bc42824a5c03be681830f4b2</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>gestotux.h</name>
@@ -715,46 +620,6 @@
     <class kind="class">preferencias</class>
   </compound>
   <compound kind="file">
-    <name>qrc_gestotux.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>qrc__gestotux_8cpp</filename>
-    <member kind="function">
-      <type>int</type>
-      <name>qCleanupResources_gestotux</name>
-      <anchorfile>qrc__gestotux_8cpp.html</anchorfile>
-      <anchor>813705a57163a2476798264b697818a2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>qInitResources_gestotux</name>
-      <anchorfile>qrc__gestotux_8cpp.html</anchorfile>
-      <anchor>22c3ee10f02fca6af3868bc84a1f3d12</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_data</name>
-      <anchorfile>qrc__gestotux_8cpp.html</anchorfile>
-      <anchor>67a985282ed24629b630f624b668842b</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_name</name>
-      <anchorfile>qrc__gestotux_8cpp.html</anchorfile>
-      <anchor>7931167bf9d7e883e4194a60d031e431</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>qt_resource_struct</name>
-      <anchorfile>qrc__gestotux_8cpp.html</anchorfile>
-      <anchor>37a83d7da2ee18badcd100d79aac64d4</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
     <name>reloj.cpp</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>reloj_8cpp</filename>
@@ -765,40 +630,6 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>reloj_8h</filename>
     <class kind="class">Reloj</class>
-  </compound>
-  <compound kind="file">
-    <name>FormAcercaDeBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>FormAcercaDeBase_8h</filename>
-  </compound>
-  <compound kind="file">
-    <name>formBackup.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>formBackup_8h</filename>
-  </compound>
-  <compound kind="file">
-    <name>ui_FormAcercaDeBase.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>ui__FormAcercaDeBase_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormAcercaDe</class>
-    <class kind="class">Ui_FormAcercaDe</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_formBackup.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>ui__formBackup_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FormBackupBase</class>
-    <class kind="class">Ui_FormBackupBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ui_FPrefGeneral.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>ui__FPrefGeneral_8h</filename>
-    <namespace>Ui</namespace>
-    <class kind="class">Ui::FPrefGeneralBase</class>
-    <class kind="class">Ui_FPrefGeneralBase</class>
   </compound>
   <compound kind="file">
     <name>vcategorias.cpp</name>
@@ -844,102 +675,6 @@
     <filename>vproductos_8h</filename>
     <includes id="evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VProductos</class>
-  </compound>
-  <compound kind="class">
-    <name>actualizacion</name>
-    <filename>classactualizacion.html</filename>
-    <base protection="private">EPlugin</base>
-    <member kind="slot">
-      <type>void</type>
-      <name>verForm</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>e4aa56a07d1310513d3fecf727520fa7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QList&lt; QAction * &gt;</type>
-      <name>accionesBarra</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>35a83f54c0671577982511b71f671237</anchor>
-      <arglist>() const</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>crearMenu</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>e17fb386039ac7855655874f2a79011b</anchor>
-      <arglist>(QMenuBar *m)</arglist>
-    </member>
-    <member kind="function">
-      <type>QWidgetList</type>
-      <name>formsPreferencias</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>fef9d71d4e00ca34abeb0219df39921a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>inicializar</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>9b53c5dfde04aabea7ecab1ad0af11bf</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>nombre</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>aa127c16484c13debaa994845eebd8e4</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>tipo</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>5998fb08befdb2c21ca2bebc1b039b37</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static QSettings *</type>
-      <name>pref</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>3738de3c5b610e9a2c7137833a50ade9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>tabs</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>f7e3048fd285c66b7cc214fdf80c77fa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QList&lt; QAction * &gt;</type>
-      <name>_acciones</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>50cba4cb48f8e6c43875ee452f7e4a75</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActActualizar</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>ddc3fb0775f775d1c073fed004f5ead3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>92eb919a24bcf620b5776b6e16f1b188</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QSettings *</type>
-      <name>_pref</name>
-      <anchorfile>classactualizacion.html</anchorfile>
-      <anchor>0bfa08399320fdb9142d6e4d15b8a058</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>DRecibo</name>
@@ -1012,7 +747,6 @@
     <name>Ebackup</name>
     <filename>classEbackup.html</filename>
     <base>EVentana</base>
-    <base protection="private">Ui_FormBackupBase</base>
     <member kind="slot">
       <type>void</type>
       <name>detener</name>
@@ -1284,21 +1018,81 @@
       <type>virtual QString</type>
       <name>nombre</name>
       <anchorfile>classEPlugin.html</anchorfile>
-      <anchor>59da1584d318d0389155c97e9a1eac5b</anchor>
-      <arglist>()=0</arglist>
+      <anchor>c86b96323afaa8f85278f4e8f78b67fd</anchor>
+      <arglist>() const=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual int</type>
       <name>tipo</name>
       <anchorfile>classEPlugin.html</anchorfile>
-      <anchor>1f065a0eb5947d640e94bba8842ef546</anchor>
+      <anchor>d69b10a5335a1169295462965142841f</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>7d332567f6d2cc5da2eeffb141370255</anchor>
       <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual double</type>
+      <name>version</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>771dc0dc352b8de14df72aa52a36bb12</anchor>
+      <arglist>() const=0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~EPlugin</name>
       <anchorfile>classEPlugin.html</anchorfile>
       <anchor>1d4e986c3d475e01c7471a3efdd4c236</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EPresupuesto</name>
+    <filename>classEPresupuesto.html</filename>
+    <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>nombre</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>a341d512f52055fc00bd5defa31ed2e9</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>obtenerContenido</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>69db1d96801ead63c483ecd5f3d6147d</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>obtenerHtml</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>71a51a416c4f45e00d903435e552a41c</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setRegistro</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>54f19ec8d238c8db65dcdbf01e1e35aa</anchor>
+      <arglist>(const QSqlRecord *rec)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual double</type>
+      <name>version</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>5764f182511d11216befe5b54f059656</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~EPresupuesto</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>3a503fa7ba69122923df173b7d6f3223</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -1487,10 +1281,55 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FiltroClientes</name>
+    <filename>classFiltroClientes.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>cambioCliente</name>
+      <anchorfile>classFiltroClientes.html</anchorfile>
+      <anchor>81d7c8fe26a98c5e0fe909141bf6a0de</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>seteaFiltrado</name>
+      <anchorfile>classFiltroClientes.html</anchorfile>
+      <anchor>ae31f41bf131f70e30b1964ba8c56c84</anchor>
+      <arglist>(bool, int)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FiltroClientes</name>
+      <anchorfile>classFiltroClientes.html</anchorfile>
+      <anchor>3f8ceb746d738abee4d2f675ee5e4672</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FiltroClientes</name>
+      <anchorfile>classFiltroClientes.html</anchorfile>
+      <anchor>d5e2b978d530fbeb01c41f809b02d51a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioClienteSlot</name>
+      <anchorfile>classFiltroClientes.html</anchorfile>
+      <anchor>521f1e733757d025a73637819d074a68</anchor>
+      <arglist>(int idcombo)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>seteaFiltradoSlot</name>
+      <anchorfile>classFiltroClientes.html</anchorfile>
+      <anchor>caf410d225cc46a80f0cb0abc38f1b29</anchor>
+      <arglist>(bool activo)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormAcercaDe</name>
     <filename>classFormAcercaDe.html</filename>
     <base>EVentana</base>
-    <base protection="private">Ui::FormAcercaDe</base>
     <member kind="function">
       <type></type>
       <name>FormAcercaDe</name>
@@ -1509,7 +1348,6 @@
   <compound kind="class">
     <name>FormActualizacion</name>
     <filename>classFormActualizacion.html</filename>
-    <base protection="private">Ui::FormActualizacionBase</base>
     <member kind="slot">
       <type>void</type>
       <name>finComando</name>
@@ -1589,9 +1427,26 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormAgregarPresupuesto</name>
+    <filename>classFormAgregarPresupuesto.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarPresupuesto</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>9043a63e12a97f254622e156498247bc</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarPresupuesto</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>cf87f5f21b260d5bc570d476d27fb900</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormAgregarRecibo</name>
     <filename>classFormAgregarRecibo.html</filename>
-    <base>Ui_FormAgregarReciboBase</base>
     <member kind="function">
       <type></type>
       <name>FormAgregarRecibo</name>
@@ -1687,7 +1542,6 @@
   <compound kind="class">
     <name>FormModificarPresupuesto</name>
     <filename>classFormModificarPresupuesto.html</filename>
-    <base protection="private">Ui::FormNuevoPresupuestoBase</base>
     <member kind="function">
       <type></type>
       <name>FormModificarPresupuesto</name>
@@ -1727,7 +1581,6 @@
   <compound kind="class">
     <name>FormModificarRecibo</name>
     <filename>classFormModificarRecibo.html</filename>
-    <base protection="private">Ui_FormAgregarReciboBase</base>
     <member kind="function">
       <type>void</type>
       <name>cargarDatos</name>
@@ -1844,7 +1697,6 @@
   <compound kind="class">
     <name>FormNuevoPresupuesto</name>
     <filename>classFormNuevoPresupuesto.html</filename>
-    <base protection="private">Ui::FormNuevoPresupuestoBase</base>
     <member kind="function">
       <type></type>
       <name>FormNuevoPresupuesto</name>
@@ -2040,7 +1892,6 @@
   <compound kind="class">
     <name>FormPresupuestosAnteriores</name>
     <filename>classFormPresupuestosAnteriores.html</filename>
-    <base protection="private">Ui::FormPresupuestosAnterioresBase</base>
     <member kind="function">
       <type></type>
       <name>FormPresupuestosAnteriores</name>
@@ -2120,7 +1971,6 @@
     <name>FPrefGeneral</name>
     <filename>classFPrefGeneral.html</filename>
     <base>FormPrefHijo</base>
-    <base protection="private">Ui::FPrefGeneralBase</base>
     <member kind="slot">
       <type>void</type>
       <name>aplicar</name>
@@ -2175,7 +2025,6 @@
     <name>FPrefRecibos</name>
     <filename>classFPrefRecibos.html</filename>
     <base>FormPrefHijo</base>
-    <base protection="private">Ui_FPrefRecibosBase</base>
     <member kind="slot">
       <type>void</type>
       <name>aplicar</name>
@@ -2299,6 +2148,13 @@
       <anchor>a1a4eb97cce79771449a65c5cef21f00</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static QHash&lt; QString, EPlugin * &gt; *</type>
+      <name>pluginsHash</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>aea1dd88faca78e60bac69bf489921e1</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable" static="yes">
       <type>static QToolBar *</type>
       <name>_barraAcciones</name>
@@ -2332,6 +2188,13 @@
       <name>salir</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>c1f6d71336d02b9e3e4b3f1416b9d3af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verActualizacion</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>22c359adc1b67d5bcbe0faa540dc7b09</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -2402,6 +2265,13 @@
       <name>acercade</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>bf1119a9fecc758a87826139cada926c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActActualizar</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>c38491bc1d7cbfcaf9e213bd59505072</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -2596,8 +2466,8 @@
       <type>QString</type>
       <name>nombre</name>
       <anchorfile>classHiComp.html</anchorfile>
-      <anchor>de04829a8657ba6e6823c4524dbe26c6</anchor>
-      <arglist>()</arglist>
+      <anchor>c74346150bdc9f3b1ae7a4fc183e53b1</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -2610,8 +2480,22 @@
       <type>int</type>
       <name>tipo</name>
       <anchorfile>classHiComp.html</anchorfile>
-      <anchor>6eb668f66c2a53121215dc8946053291</anchor>
+      <anchor>37dac9908d16c597c3e9a1dea7af4980</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>8de51a93bf97697e3fc9159b3a25f88c</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>debe54151e6618c1735d3a8c68f8d07d</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static QSettings *</type>
@@ -2671,6 +2555,25 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>HiCompPresupuesto</name>
+    <filename>classHiCompPresupuesto.html</filename>
+    <base protection="private">EPresupuesto</base>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombre</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>9721c7d88f8b37da2b76b56be52b0a8c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>137ce0010e8d7f63da200d02a33a3e72</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>MCategorias</name>
     <filename>classMCategorias.html</filename>
     <member kind="function">
@@ -2724,6 +2627,38 @@
       <name>~MClientes</name>
       <anchorfile>classMClientes.html</anchorfile>
       <anchor>1ef2a2b4fc14f5cc5937b6656af8656e</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MPresupuesto</name>
+    <filename>classMPresupuesto.html</filename>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMPresupuesto.html</anchorfile>
+      <anchor>692540a490a76c90b5ce5c611b0aa388</anchor>
+      <arglist>(const QModelIndex &amp;idx, int role) const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MPresupuesto</name>
+      <anchorfile>classMPresupuesto.html</anchorfile>
+      <anchor>e2f37e94492bece229de6a817e57c4b7</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMPresupuesto.html</anchorfile>
+      <anchor>b79b9b3e6ac2835ca38926c51c027e71</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MPresupuesto</name>
+      <anchorfile>classMPresupuesto.html</anchorfile>
+      <anchor>b4a2e63426656772a39d46803e2e7e54</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -2870,6 +2805,123 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>prespuesto</name>
+    <filename>classprespuesto.html</filename>
+    <base protection="private">EPlugin</base>
+    <member kind="function">
+      <type>QList&lt; QAction * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>e48af8fb666ba0a9b224d0b89219f53a</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearMenu</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>a40c39ef5b7c9c72691a35b204662960</anchor>
+      <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>QWidgetList</type>
+      <name>formsPreferencias</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>552ca468cf56964a5ece706ebd103247</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>inicializar</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>bffdb9f7351bc0a5cff9df3d8abf6a37</anchor>
+      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombre</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>07e3638e9316e0fceb3bb5cfbdf43b0c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>tipo</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>3a9aef5034c9c18cd621dbe26e23813f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>15c78de3f4c5f1a3b9ceadff5163655d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>b007364333dd4577aea2aaed0ce211ec</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QSettings *</type>
+      <name>pref</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>77618b9eb3a60443efdd73295d922013</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QStackedWidget *</type>
+      <name>tabs</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>ad45c4a8b4a233196f642d3e4ece1ba9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>nuevoPresupuesto</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>a0d7a336cff4e115838c6e6e813b141b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; QAction * &gt;</type>
+      <name>_acciones</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>1ec40d0f00e8ecaaf36658059f5ae52b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActNuevoPresu</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>85b8af4de74ef8925f9bd31c57e3b3f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActPresuAnteriores</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>cb9d295ec3e5e5bb30a1f0cbbca4fb9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static QStackedWidget *</type>
+      <name>_formCen</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>1ea8df53e5a4537712d40ba16baa53e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static QSettings *</type>
+      <name>_pref</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>1d8d69e76335d522f9d4c0c7899067ff</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>presupuestador</name>
     <filename>classpresupuestador.html</filename>
     <base protection="private">EInfoProgramaInterface</base>
@@ -2927,8 +2979,8 @@
       <type>QString</type>
       <name>nombre</name>
       <anchorfile>classpresupuestador.html</anchorfile>
-      <anchor>41bdbdaa09ddbf3dfbdabdbfdf891c89</anchor>
-      <arglist>()</arglist>
+      <anchor>6673d315841e24bc582a46cb810c1db2</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -2941,8 +2993,22 @@
       <type>int</type>
       <name>tipo</name>
       <anchorfile>classpresupuestador.html</anchorfile>
-      <anchor>19613e78ac1f5b7178f95f329f312c1e</anchor>
+      <anchor>c9ec501b07700fd5877a983017a2b20b</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classpresupuestador.html</anchorfile>
+      <anchor>87e9ad199e334661d81673f14231c906</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classpresupuestador.html</anchorfile>
+      <anchor>830f0002bd6de1849a35ec455df67283</anchor>
+      <arglist>() const</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static QSettings *</type>
@@ -3005,6 +3071,85 @@
       <name>_pref</name>
       <anchorfile>classpresupuestador.html</anchorfile>
       <anchor>cb0e2662e439a9f6edd9637f0a0a38db</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Presupuesto</name>
+    <filename>classPresupuesto.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classPresupuesto.html</anchorfile>
+      <anchor>5cc53575d197316e9e823a456cf0f40a</anchor>
+      <arglist>(QPainter *pintador)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Presupuesto</name>
+      <anchorfile>classPresupuesto.html</anchorfile>
+      <anchor>e109f5031b2c30042196ecb96cbe8c1b</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>QSqlRecord</type>
+      <name>registro</name>
+      <anchorfile>classPresupuesto.html</anchorfile>
+      <anchor>93c069d556705368233a49125f66d92e</anchor>
+      <arglist>(int id)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~Presupuesto</name>
+      <anchorfile>classPresupuesto.html</anchorfile>
+      <anchor>1cd4e8060fa123dc091f149ab6afa8c6</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PresupuestoDefault</name>
+    <filename>classPresupuestoDefault.html</filename>
+    <base protection="private">EPresupuesto</base>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombre</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>c0c9ff235e248f9de71faa0fed9b6013</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>obtenerContenido</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>98a308e75c1882f502b96adf73347783</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>obtenerHtml</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>7129c3b0b9eaad61419603d591db2229</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRegistro</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>e16e440bc810538e73362d060895474a</anchor>
+      <arglist>(const QSqlRecord *rec)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>430e72f37cc11d2e99081ac2f50666be</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSqlRecord *</type>
+      <name>_rec</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>d013935977e842a855abc14cc526deaa</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3178,1928 +3323,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>Ui_FormAcercaDe</name>
-    <filename>classUi__FormAcercaDe.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>eb9294283b70aabfa88e852b609abdc9</anchor>
-      <arglist>(QWidget *FormAcercaDe)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>d1cb64cd4462091a9c232626ee5a5c76</anchor>
-      <arglist>(QWidget *FormAcercaDe)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>5b7b3b9bc16b2ccfa811255b1697ad3f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>4f8725d9c044c8a6b08afee1e2d9db2f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>e85a6c84f58b41ae3d4d0662068b44d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>c25804343accf9166de91af623cc3c81</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>10972b4b98baa25c2cbf559aeed4e4ae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>6e457d3052d9c2d3273718f3046a5be3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LImagen</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>0a9d87c79085a1044c2d6162399fe9bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QFrame *</type>
-      <name>line</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>30a23fa7487291d66b1d1f37ed490094</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>PBCerrar</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>3eee870fa665bb67e6ab442c33b91da9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>6fa078963cb4363ae599dba6e70adb00</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormAcercaDe.html</anchorfile>
-      <anchor>a9b26396dd9f2fbda465ae50fda7e3a9</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FormActualizacionBase</name>
-    <filename>classUi__FormActualizacionBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>cfb834f33df46b0c793f5479660d0698</anchor>
-      <arglist>(QWidget *FormActualizacionBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>cfb834f33df46b0c793f5479660d0698</anchor>
-      <arglist>(QWidget *FormActualizacionBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>391707606d5b550abbabc231b2f7a7ca</anchor>
-      <arglist>(QWidget *FormActualizacionBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>391707606d5b550abbabc231b2f7a7ca</anchor>
-      <arglist>(QWidget *FormActualizacionBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>CkBGenerales</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>4a61f3bec886356475d5feec9f9bea83</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>CkBGenerales</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>4a61f3bec886356475d5feec9f9bea83</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>GBEspecificas</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>422501fdadb6e0f1fdf924c2fb3cb92d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>GBEspecificas</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>422501fdadb6e0f1fdf924c2fb3cb92d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>ed7eaf616760f44938ca67e19f7e4c8f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>ed7eaf616760f44938ca67e19f7e4c8f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>ed9b79284b1d16af7f3b546f7556ccb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>ed9b79284b1d16af7f3b546f7556ccb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>569718f808272bd069d1d43b66de8378</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>569718f808272bd069d1d43b66de8378</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>4577005d7bb8ae2d9fd4b84b55a49e73</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>4577005d7bb8ae2d9fd4b84b55a49e73</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LEPass</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>29abfd2d57d98282de56e0132213b81a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LEPass</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>29abfd2d57d98282de56e0132213b81a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LEstado</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>28330fc33d1cc51a40b54b1303925d46</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LEstado</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>28330fc33d1cc51a40b54b1303925d46</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LEUsuario</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>79b951203a8368d4f4aedcbaf93ce8ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LEUsuario</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>79b951203a8368d4f4aedcbaf93ce8ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QFrame *</type>
-      <name>line</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>6e1fd978cda36cf42c92bd218ba9a272</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QFrame *</type>
-      <name>line</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>6e1fd978cda36cf42c92bd218ba9a272</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>Ltitulo</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>a9b4eede4b1ab050e7743567c6d8292a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>Ltitulo</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>a9b4eede4b1ab050e7743567c6d8292a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>PBAccion</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>53df63383573e0720721d576ea7b4496</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QProgressBar *</type>
-      <name>PBProgreso</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>4fdf0d61b353dd91fe07f277720c6ddd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QProgressBar *</type>
-      <name>PBProgreso</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>4fdf0d61b353dd91fe07f277720c6ddd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextEdit *</type>
-      <name>TELog</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>939e358442154cabf224782ded0eaf2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextEdit *</type>
-      <name>TELog</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>939e358442154cabf224782ded0eaf2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>da92a358b371db038f1906bdcb6faaa0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>da92a358b371db038f1906bdcb6faaa0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>6d255a6d9cfcd51b8c69b0350f8fb990</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormActualizacionBase.html</anchorfile>
-      <anchor>6d255a6d9cfcd51b8c69b0350f8fb990</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FormAgregarReciboBase</name>
-    <filename>classUi__FormAgregarReciboBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1c790bb5129d9b3751a2f60e4449d6bb</anchor>
-      <arglist>(QWidget *FormAgregarReciboBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1c790bb5129d9b3751a2f60e4449d6bb</anchor>
-      <arglist>(QWidget *FormAgregarReciboBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1c790bb5129d9b3751a2f60e4449d6bb</anchor>
-      <arglist>(QWidget *FormAgregarReciboBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7cc3f8dfc5be6918d067a3f801859b55</anchor>
-      <arglist>(QWidget *FormAgregarReciboBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7cc3f8dfc5be6918d067a3f801859b55</anchor>
-      <arglist>(QWidget *FormAgregarReciboBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7cc3f8dfc5be6918d067a3f801859b55</anchor>
-      <arglist>(QWidget *FormAgregarReciboBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBClientes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>56385bf8b49e0175c817682e432dd51a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBClientes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>56385bf8b49e0175c817682e432dd51a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBClientes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>56385bf8b49e0175c817682e432dd51a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBMeses</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7de7a216223428da54700d08df55bed5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBMeses</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7de7a216223428da54700d08df55bed5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBMeses</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7de7a216223428da54700d08df55bed5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>cBPagoMes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>9ddf76b87f47e05758681fd9bb0f7c54</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>cBPagoMes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>9ddf76b87f47e05758681fd9bb0f7c54</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>cBPagoMes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>9ddf76b87f47e05758681fd9bb0f7c54</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>cBRecargos</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f03d730db71570bf9bddb00b358de1e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>cBRecargos</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f03d730db71570bf9bddb00b358de1e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>cBRecargos</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f03d730db71570bf9bddb00b358de1e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDateEdit *</type>
-      <name>dEFechaPago</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>012f18be8274a6be15b2737f594548b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDateEdit *</type>
-      <name>dEFechaPago</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>012f18be8274a6be15b2737f594548b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDateEdit *</type>
-      <name>dEFechaPago</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>012f18be8274a6be15b2737f594548b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDoubleSpinBox *</type>
-      <name>dSBImporte</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>179cf34a3870d0e35470e5450c574c55</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDoubleSpinBox *</type>
-      <name>dSBImporte</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>179cf34a3870d0e35470e5450c574c55</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDoubleSpinBox *</type>
-      <name>dSBImporte</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>179cf34a3870d0e35470e5450c574c55</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGridLayout *</type>
-      <name>gridLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>6a68ad1e8e6dc90a406d24652790ea05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGridLayout *</type>
-      <name>gridLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>6a68ad1e8e6dc90a406d24652790ea05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGridLayout *</type>
-      <name>gridLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>6a68ad1e8e6dc90a406d24652790ea05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>e6c38b7e2cf8a2701b48207515b465f6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>e6c38b7e2cf8a2701b48207515b465f6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>e6c38b7e2cf8a2701b48207515b465f6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>524bca512521dc6b30aa87104d146911</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>524bca512521dc6b30aa87104d146911</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>524bca512521dc6b30aa87104d146911</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d8e1a28c348c6f7772a8526997e25ab9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d8e1a28c348c6f7772a8526997e25ab9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d8e1a28c348c6f7772a8526997e25ab9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>952f578ec86c40455ef90aeb6a5ffb18</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>952f578ec86c40455ef90aeb6a5ffb18</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>952f578ec86c40455ef90aeb6a5ffb18</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>576201fc80a4190d5e8c2319dd447b96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>576201fc80a4190d5e8c2319dd447b96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>576201fc80a4190d5e8c2319dd447b96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2061acfac3fe3ee910ec83c2b0229f2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2061acfac3fe3ee910ec83c2b0229f2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2061acfac3fe3ee910ec83c2b0229f2c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1877f4338daef08d110d8bf0612c9df6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1877f4338daef08d110d8bf0612c9df6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1877f4338daef08d110d8bf0612c9df6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout4</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f58ed6f52d1655768788bad8b2be51a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout4</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f58ed6f52d1655768788bad8b2be51a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout4</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f58ed6f52d1655768788bad8b2be51a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout5</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b3244fe74eb4eb1710765337077eb8fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout5</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b3244fe74eb4eb1710765337077eb8fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout5</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b3244fe74eb4eb1710765337077eb8fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout6</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d6c3f49f815f8feefa040c58edb2d1ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout6</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d6c3f49f815f8feefa040c58edb2d1ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout6</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d6c3f49f815f8feefa040c58edb2d1ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout7</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1ab3dd9eb69f8174966002a34559084f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout7</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1ab3dd9eb69f8174966002a34559084f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout7</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>1ab3dd9eb69f8174966002a34559084f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout8</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>6824d5c2ba7556f80a18f41b1d3a1bab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout8</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>6824d5c2ba7556f80a18f41b1d3a1bab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout8</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>6824d5c2ba7556f80a18f41b1d3a1bab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout9</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>209273644ecd90fe499ddacb13887bf5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout9</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>209273644ecd90fe499ddacb13887bf5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout9</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>209273644ecd90fe499ddacb13887bf5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d7bf6881554eaca427db72f41ceb4384</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d7bf6881554eaca427db72f41ceb4384</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>d7bf6881554eaca427db72f41ceb4384</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>4ccb61773c556b015b14ccdc07d81e14</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>4ccb61773c556b015b14ccdc07d81e14</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>4ccb61773c556b015b14ccdc07d81e14</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2aab0dc35cfe80347623a20963ddfd8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2aab0dc35cfe80347623a20963ddfd8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2aab0dc35cfe80347623a20963ddfd8a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2b773cae90c1b3e377c55f821baa620a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2b773cae90c1b3e377c55f821baa620a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2b773cae90c1b3e377c55f821baa620a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_6</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>db3ed373de4ee6b0fecfff6819f50791</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_6</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>db3ed373de4ee6b0fecfff6819f50791</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_6</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>db3ed373de4ee6b0fecfff6819f50791</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LETotal</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>222de8b249da781548cb674505d82898</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LETotal</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>222de8b249da781548cb674505d82898</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LETotal</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>222de8b249da781548cb674505d82898</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QFrame *</type>
-      <name>line</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>5837c18877ddd0ca57768a4f6012d59a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QFrame *</type>
-      <name>line</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>5837c18877ddd0ca57768a4f6012d59a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QFrame *</type>
-      <name>line</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>5837c18877ddd0ca57768a4f6012d59a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lmes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>ceffafc0bde2a074e1378653395d12eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lmes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>ceffafc0bde2a074e1378653395d12eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lmes</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>ceffafc0bde2a074e1378653395d12eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>RBContado</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b83d1c19b8bc9e70f4961144e166a65b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>RBContado</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b83d1c19b8bc9e70f4961144e166a65b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>RBContado</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b83d1c19b8bc9e70f4961144e166a65b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>RBCuentaCorriente</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7193e127ff14f8fafb97d4174a7ad4a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>RBCuentaCorriente</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7193e127ff14f8fafb97d4174a7ad4a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>RBCuentaCorriente</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>7193e127ff14f8fafb97d4174a7ad4a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2d1347b8cac531cc8f2b976137f81169</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2d1347b8cac531cc8f2b976137f81169</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>2d1347b8cac531cc8f2b976137f81169</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>853424f3990b214b7f0ba08fc86e9ef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>853424f3990b214b7f0ba08fc86e9ef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>853424f3990b214b7f0ba08fc86e9ef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextEdit *</type>
-      <name>TETexto</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>38cd4cea251e6ba89fe77876c120a438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextEdit *</type>
-      <name>TETexto</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>38cd4cea251e6ba89fe77876c120a438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextEdit *</type>
-      <name>TETexto</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>38cd4cea251e6ba89fe77876c120a438</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>36a4cafbe536a044b8d7638a3868eeb4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>36a4cafbe536a044b8d7638a3868eeb4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>36a4cafbe536a044b8d7638a3868eeb4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f1576cb9ba9500bcd8d2ac8ab1167c4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f1576cb9ba9500bcd8d2ac8ab1167c4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>f1576cb9ba9500bcd8d2ac8ab1167c4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b0c92c75746c9c58b75af5f1a22a3ee8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b0c92c75746c9c58b75af5f1a22a3ee8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout2</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>b0c92c75746c9c58b75af5f1a22a3ee8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>9b87225028a97233cd482a8a713afdff</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>9b87225028a97233cd482a8a713afdff</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout3</name>
-      <anchorfile>classUi__FormAgregarReciboBase.html</anchorfile>
-      <anchor>9b87225028a97233cd482a8a713afdff</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FormBackupBase</name>
-    <filename>classUi__FormBackupBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>63cbc973fe89cf5afbe775260180f4b9</anchor>
-      <arglist>(QWidget *FormBackupBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>dce34f8117ad539322099633186c83ee</anchor>
-      <arglist>(QWidget *FormBackupBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBBaseDatos</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>adae4024f4ab8fed96272d03ebcb0ddf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBCompri</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>2a4d979646b4f95b84c179dc62e42654</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBConfirugacion</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>5674e8d903a39f2cc2b4bfbbc4bbd6ab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>bb675a24fbbd24b31406ac9c3550ccc8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LDebug</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>951d6d030c9a15869c28979ec24f0817</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LTitulo</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>15519ce76052d2a9dc5fabae0c9ff81b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QProgressBar *</type>
-      <name>PBProgreso</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>666d99b0f56eae2ede3f44c3a122ee8e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>0f5273d8d874eb11737411bb8423e97c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormBackupBase.html</anchorfile>
-      <anchor>44d92d6677a07dab46e9aa044d8b1896</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FormNuevoPresupuestoBase</name>
-    <filename>classUi__FormNuevoPresupuestoBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>5a6798fe6213d9a62c53ccf028f77650</anchor>
-      <arglist>(QWidget *FormNuevoPresupuestoBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>a95f1f720220d5845e5eb04aff97af19</anchor>
-      <arglist>(QWidget *FormNuevoPresupuestoBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QDateEdit *</type>
-      <name>DEFecha</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>30b304127d4353115972b3b8220dcfa1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDoubleSpinBox *</type>
-      <name>dSBTotal</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>e18faf2e3cd6ff00fbd40f76ff1637df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>7f1c921ecedccd81866570f546e246dc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>d396fd564108bc9dc66dc1cd80915c9c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout2</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>f0b42331afa4407bf68e692c7ae9afc4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout3</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>8972e330d68ee1938c6185cc7bfc17fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>2bc6373f90e65b930f1288f0a7fdd755</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>9364cfdccafc1739e00de769db48d675</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>c892f52ffa0edb41ee3384cdd163aa5b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>dd28bb24d65b33cae0763f1883ef13cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_5</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>fec91e1b39a066176b63a91b6b1f4b0f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LEDestinatario</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>fd8bb557e774bd3adb65411f89dec6b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpacerItem *</type>
-      <name>spacerItem</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>e512ae28945022550e7ba358b97f97f7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextEdit *</type>
-      <name>TEContenido</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>d28c633898210266831f08e3a72280e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>24dfe2288de1122d334601618886d662</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FormNuevoPresupuestoBase.html</anchorfile>
-      <anchor>0df70a6509b365903c9237f6756e4bf8</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FormPresupuestosAnterioresBase</name>
-    <filename>classUi__FormPresupuestosAnterioresBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FormPresupuestosAnterioresBase.html</anchorfile>
-      <anchor>1b9fe496ba1d522fdb4702ddf8d315a1</anchor>
-      <arglist>(QWidget *FormPresupuestosAnterioresBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FormPresupuestosAnterioresBase.html</anchorfile>
-      <anchor>ec848cb71b986b7ee8729e7745ab4566</anchor>
-      <arglist>(QWidget *FormPresupuestosAnterioresBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QGridLayout *</type>
-      <name>gridLayout</name>
-      <anchorfile>classUi__FormPresupuestosAnterioresBase.html</anchorfile>
-      <anchor>2b740451d97e76c5a502c9b2dc3ffaf4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTableView *</type>
-      <name>TVPresupuestos</name>
-      <anchorfile>classUi__FormPresupuestosAnterioresBase.html</anchorfile>
-      <anchor>90a90ee134fd3c796a58bbc5ac39e630</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FPrefGeneralBase</name>
-    <filename>classUi__FPrefGeneralBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>f14d40bd9ad57aa128b2268457e077e4</anchor>
-      <arglist>(QWidget *FPrefGeneralBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>380a4b87290ff4817f2a8cab1debba15</anchor>
-      <arglist>(QWidget *FPrefGeneralBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBEstilo</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>c960d07ca995c0fe33e8d64a9ca95957</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBBarraProgreso</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>504fa161e2007bcfdd317a12a88fb1ef</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBIconoBandeja</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>5e57ee321c60bfee7770ab0feaebdd86</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBMaximizado</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>a64c88bc2692eb528bcd2e501378a3a8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QCheckBox *</type>
-      <name>ChBSplash</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>cdc5232af0409361a132dfc226994f67</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>d6d8e141ed7f11371ad262948a1000cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_2</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>8cb462760be58aa961e015e1cd5702cb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>8e334ca8bfdc18c3e3a918db85dd8807</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>5764128cab81144bc1e4c497db5971cd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QProgressBar *</type>
-      <name>PBMuestra</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>e0ab7b873191bff0c5972170c7a6b72d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>6dbb8db8fb7540f937d401491ae1da5b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>f0169853e870bbe0cac0aa945781a9fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout2</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>6152646b9bea17607e772b55452c0148</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout3</name>
-      <anchorfile>classUi__FPrefGeneralBase.html</anchorfile>
-      <anchor>0fe9d56353e626898548b97874119c31</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Ui_FPrefRecibosBase</name>
-    <filename>classUi__FPrefRecibosBase.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>f16b27d41c2d398fdadfc0b3051d8860</anchor>
-      <arglist>(QWidget *FPrefRecibosBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>retranslateUi</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>f16b27d41c2d398fdadfc0b3051d8860</anchor>
-      <arglist>(QWidget *FPrefRecibosBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>d76318b024c647eed2e6c64db4ed9a0c</anchor>
-      <arglist>(QWidget *FPrefRecibosBase)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setupUi</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>d76318b024c647eed2e6c64db4ed9a0c</anchor>
-      <arglist>(QWidget *FPrefRecibosBase)</arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBOrientacion</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>295c945341a2f9eba64fcea6e13efd89</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBOrientacion</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>295c945341a2f9eba64fcea6e13efd89</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBTam</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>b990d0a2564fca12578bb92d9b078ea6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>CBTam</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>b990d0a2564fca12578bb92d9b078ea6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDoubleSpinBox *</type>
-      <name>dSBMargen</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>b5317016d4a2191183b46cba83268f7c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QDoubleSpinBox *</type>
-      <name>dSBMargen</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>b5317016d4a2191183b46cba83268f7c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>GBPagoMes</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>4aa1cd932f9b48bb9e85ff0888e8e240</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>96725a511c490bc847fe9e9ef9fe5b51</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>96725a511c490bc847fe9e9ef9fe5b51</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>810cd10941e57fbd36800358cdf8c7a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>810cd10941e57fbd36800358cdf8c7a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>5e183965ae2f4b6f7eeff0303ef3d268</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>groupBox_3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>5e183965ae2f4b6f7eeff0303ef3d268</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>c77c951d958aeb2cbf187d6a7c5bfe79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>c77c951d958aeb2cbf187d6a7c5bfe79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>6e9b5a1206ab6fb512571b2ca9ff7789</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout1</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>6e9b5a1206ab6fb512571b2ca9ff7789</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>243dc81171f695ca339a47823ba8dff1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>243dc81171f695ca339a47823ba8dff1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>94fb7bd86fc2e0fd0d039d4fc0784141</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>94fb7bd86fc2e0fd0d039d4fc0784141</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout4</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>1b9e01ddf92f3bb856652a7c8fbb2d25</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout4</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>1b9e01ddf92f3bb856652a7c8fbb2d25</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHBoxLayout *</type>
-      <name>hboxLayout5</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>6a5dbf12456c742faf70130579382cde</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>6b3fe4bcb928b6d2f933b0e583891a3c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>6b3fe4bcb928b6d2f933b0e583891a3c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>d4036bae8d36bb456c3ec297ab430925</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>d4036bae8d36bb456c3ec297ab430925</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>87bc208c185672535bb79344ee582cb6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>600c9406aeb153190785b025d51da210</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_4</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>600c9406aeb153190785b025d51da210</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_5</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>c56cf06848bbd38ec1b43fa7cc1979e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_5</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>c56cf06848bbd38ec1b43fa7cc1979e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_6</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>d1ec952a8c3dbf17091aa91ed9267ecb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_6</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>d1ec952a8c3dbf17091aa91ed9267ecb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>label_7</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>b12cc5867c1bc5a09d0d643d83f8be13</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>LETextoPagoMes</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>9ec074627719f3b6936f7880a9fc3328</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LNumeroActual</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>ef6f541d776e1082dbd802b25dd97b43</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>LNumeroActual</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>ef6f541d776e1082dbd802b25dd97b43</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>PBSetear</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>53765b53ddfba77a8f4859f259f2e8e7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>PBSetear</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>53765b53ddfba77a8f4859f259f2e8e7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpinBox *</type>
-      <name>sBNuevoNumero</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>2e09cbc917f1eb5385bb1000ea3d9e6f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QSpinBox *</type>
-      <name>sBNuevoNumero</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>2e09cbc917f1eb5385bb1000ea3d9e6f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>cfd316c389256046d95d1f0b476cd4b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>cfd316c389256046d95d1f0b476cd4b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>14305797eef87f8607b76ecf9002baf4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout1</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>14305797eef87f8607b76ecf9002baf4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>107065ec7cca9a0d1219449bb0d09b25</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout2</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>107065ec7cca9a0d1219449bb0d09b25</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>685b29959b9a63478d5abc7d82cb1f48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout3</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>685b29959b9a63478d5abc7d82cb1f48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QVBoxLayout *</type>
-      <name>vboxLayout4</name>
-      <anchorfile>classUi__FPrefRecibosBase.html</anchorfile>
-      <anchor>3de6adafb4d57a73af586f2da5ae55a1</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>VCategorias</name>
     <filename>classVCategorias.html</filename>
     <base>EVLista</base>
@@ -5109,6 +3332,13 @@
       <anchorfile>classVCategorias.html</anchorfile>
       <anchor>09121ae5eb150325637dfff828f85677</anchor>
       <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>eliminar</name>
+      <anchorfile>classVCategorias.html</anchorfile>
+      <anchor>a5d0443fccba52b0c6e827e0a8f8c53a</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -5412,6 +3642,27 @@
   <compound kind="class">
     <name>VRecibos</name>
     <filename>classVRecibos.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>cambioClienteFiltro</name>
+      <anchorfile>classVRecibos.html</anchorfile>
+      <anchor>98995a3da3a785f7c5f33929a6af7cd4</anchor>
+      <arglist>(int id_cliente)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>close</name>
+      <anchorfile>classVRecibos.html</anchorfile>
+      <anchor>00cfd317b44e07ba4c936526810a6672</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>setearFiltrado</name>
+      <anchorfile>classVRecibos.html</anchorfile>
+      <anchor>506d842a1071375c675882c01ee30e62</anchor>
+      <arglist>(bool activo, int id_cliente)</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>VRecibos</name>
@@ -5511,6 +3762,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
+      <type>QToolBar *</type>
+      <name>d</name>
+      <anchorfile>classVRecibos.html</anchorfile>
+      <anchor>48eb4ffa101716e69a50fb6c3aec7656</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>QSqlTableModel *</type>
       <name>modelo</name>
       <anchorfile>classVRecibos.html</anchorfile>
@@ -5525,72 +3783,12 @@
       <arglist></arglist>
     </member>
   </compound>
-  <compound kind="namespace">
-    <name>Ui</name>
-    <filename>namespaceUi.html</filename>
-    <class kind="class">Ui::FormAcercaDe</class>
-    <class kind="class">Ui::FormActualizacionBase</class>
-    <class kind="class">Ui::FormAgregarReciboBase</class>
-    <class kind="class">Ui::FormBackupBase</class>
-    <class kind="class">Ui::FormNuevoPresupuestoBase</class>
-    <class kind="class">Ui::FormPresupuestosAnterioresBase</class>
-    <class kind="class">Ui::FPrefGeneralBase</class>
-    <class kind="class">Ui::FPrefRecibosBase</class>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FormAcercaDe</name>
-    <filename>classUi_1_1FormAcercaDe.html</filename>
-    <base>Ui_FormAcercaDe</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FormActualizacionBase</name>
-    <filename>classUi_1_1FormActualizacionBase.html</filename>
-    <base>Ui_FormActualizacionBase</base>
-    <base>Ui_FormActualizacionBase</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FormAgregarReciboBase</name>
-    <filename>classUi_1_1FormAgregarReciboBase.html</filename>
-    <base>Ui_FormAgregarReciboBase</base>
-    <base>Ui_FormAgregarReciboBase</base>
-    <base>Ui_FormAgregarReciboBase</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FormBackupBase</name>
-    <filename>classUi_1_1FormBackupBase.html</filename>
-    <base>Ui_FormBackupBase</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FormNuevoPresupuestoBase</name>
-    <filename>classUi_1_1FormNuevoPresupuestoBase.html</filename>
-    <base>Ui_FormNuevoPresupuestoBase</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FormPresupuestosAnterioresBase</name>
-    <filename>classUi_1_1FormPresupuestosAnterioresBase.html</filename>
-    <base>Ui_FormPresupuestosAnterioresBase</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FPrefGeneralBase</name>
-    <filename>classUi_1_1FPrefGeneralBase.html</filename>
-    <base>Ui_FPrefGeneralBase</base>
-  </compound>
-  <compound kind="class">
-    <name>Ui::FPrefRecibosBase</name>
-    <filename>classUi_1_1FPrefRecibosBase.html</filename>
-    <base>Ui_FPrefRecibosBase</base>
-    <base>Ui_FPrefRecibosBase</base>
-  </compound>
   <compound kind="dir">
-    <name>Programas/gestotux/plugins/actualizacion/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/</path>
-    <filename>dir_279b7bd9e01afc1579746f04d8a3b869.html</filename>
-    <dir>Programas/gestotux/plugins/actualizacion/ui/</dir>
-    <file>actualizacion.cpp</file>
-    <file>actualizacion.h</file>
-    <file>formactualizacion.cpp</file>
-    <file>formactualizacion.h</file>
-    <file>qrc_actualizacion.cpp</file>
+    <name>Programas/gestotux/plugins/presupuestos/default/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/default/</path>
+    <filename>dir_ceb97763036d132eab4213eab5fbb111.html</filename>
+    <file>presupuestodefault.cpp</file>
+    <file>presupuestodefault.h</file>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/</name>
@@ -5600,12 +3798,20 @@
     <dir>Programas/gestotux/src/</dir>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/plugins/presupuestos/hicomp/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/hicomp/</path>
+    <filename>dir_3370b10ee50b1fc665f7bbf44156e4f6.html</filename>
+    <file>hicomppresupuesto.cpp</file>
+    <file>hicomppresupuesto.h</file>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/plugins/HiComp/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>dir_1451eb9720553d8ad984619be31bc0df.html</filename>
-    <dir>Programas/gestotux/plugins/HiComp/ui/</dir>
     <file>drecibo.cpp</file>
     <file>drecibo.h</file>
+    <file>filtroclientes.cpp</file>
+    <file>filtroclientes.h</file>
     <file>formagregarrecibo.cpp</file>
     <file>formagregarrecibo.h</file>
     <file>formmodificarrecibo.cpp</file>
@@ -5618,10 +3824,8 @@
     <file>hicomp.h</file>
     <file>mrecibo.cpp</file>
     <file>mrecibo.h</file>
-    <file>qrc_hicomp.cpp</file>
     <file>recibo.cpp</file>
     <file>recibo.h</file>
-    <file>ui_FormAgregarReciboBase.h</file>
     <file>visorrecibo.cpp</file>
     <file>visorrecibo.h</file>
     <file>vrecibos.cpp</file>
@@ -5631,15 +3835,15 @@
     <name>Programas/gestotux/plugins/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/</path>
     <filename>dir_2241d903d8b552fecd54d40d9c6f6ba2.html</filename>
-    <dir>Programas/gestotux/plugins/actualizacion/</dir>
     <dir>Programas/gestotux/plugins/HiComp/</dir>
     <dir>Programas/gestotux/plugins/presupuestador/</dir>
+    <dir>Programas/gestotux/plugins/presupuesto/</dir>
+    <dir>Programas/gestotux/plugins/presupuestos/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/presupuestador/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>dir_36fd3c264d272506dee214eadc0d7752.html</filename>
-    <dir>Programas/gestotux/plugins/presupuestador/ui/</dir>
     <file>formmodificarpresupuesto.cpp</file>
     <file>formmodificarpresupuesto.h</file>
     <file>formnuevopresupuesto.cpp</file>
@@ -5650,9 +3854,29 @@
     <file>mpresupuestos.h</file>
     <file>presupuestador.cpp</file>
     <file>presupuestador.h</file>
-    <file>qrc_prespuestador.cpp</file>
     <file>visorresumen.cpp</file>
     <file>visorresumen.h</file>
+  </compound>
+  <compound kind="dir">
+    <name>Programas/gestotux/plugins/presupuesto/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>dir_1da355a7e1088ea8185f3059b3d0f9a3.html</filename>
+    <file>epresupuesto.h</file>
+    <file>formagregarpresupuesto.cpp</file>
+    <file>formagregarpresupuesto.h</file>
+    <file>mpresupuesto.cpp</file>
+    <file>mpresupuesto.h</file>
+    <file>prespuesto.cpp</file>
+    <file>prespuesto.h</file>
+    <file>presupuesto.cpp</file>
+    <file>presupuesto.h</file>
+  </compound>
+  <compound kind="dir">
+    <name>Programas/gestotux/plugins/presupuestos/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/</path>
+    <filename>dir_8c1caafd1b6e337f72e8a511da891945.html</filename>
+    <dir>Programas/gestotux/plugins/presupuestos/default/</dir>
+    <dir>Programas/gestotux/plugins/presupuestos/hicomp/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/</name>
@@ -5664,7 +3888,6 @@
     <name>Programas/gestotux/src/</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>dir_a6a96f4101e30ef9cb693fc53f8c1212.html</filename>
-    <dir>Programas/gestotux/src/ui/</dir>
     <file>ebackup.cpp</file>
     <file>ebackup.h</file>
     <file>eenviobackup.cpp</file>
@@ -5679,6 +3902,8 @@
     <file>evlista.h</file>
     <file>formacercade.cpp</file>
     <file>formacercade.h</file>
+    <file>formactualizacion.cpp</file>
+    <file>formactualizacion.h</file>
     <file>formpreferencias.cpp</file>
     <file>formpreferencias.h</file>
     <file>formprefhijo.cpp</file>
@@ -5698,7 +3923,6 @@
     <file>mproductos.h</file>
     <file>preferencias.cpp</file>
     <file>preferencias.h</file>
-    <file>qrc_gestotux.cpp</file>
     <file>reloj.cpp</file>
     <file>reloj.h</file>
     <file>vcategorias.cpp</file>
@@ -5707,38 +3931,5 @@
     <file>vcliente.h</file>
     <file>vproductos.cpp</file>
     <file>vproductos.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/plugins/presupuestador/ui/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/ui/</path>
-    <filename>dir_a6dd59432d5980d3e72b7cedf448f88d.html</filename>
-    <file>ui_FormNuevoPresupuestoBase.h</file>
-    <file>ui_FormPresupuestosAnterioresBase.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/plugins/HiComp/ui/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/ui/</path>
-    <filename>dir_dba478832248c97dd195d961b20a61d4.html</filename>
-    <file>ui_FormAgregarReciboBase.h</file>
-    <file>ui_FPrefRecibos.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/src/ui/</name>
-    <path>/home/Esteban/Programas/gestotux/src/ui/</path>
-    <filename>dir_00e87ec8fa6972d3d2c4b9841694ad11.html</filename>
-    <file>FormAcercaDeBase.h</file>
-    <file>formBackup.h</file>
-    <file>ui_FormAcercaDeBase.h</file>
-    <file>ui_FormActualizacionBase.h</file>
-    <file>ui_FormAgregarReciboBase.h</file>
-    <file>ui_formBackup.h</file>
-    <file>ui_FPrefGeneral.h</file>
-    <file>ui_FPrefRecibos.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/plugins/actualizacion/ui/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/actualizacion/ui/</path>
-    <filename>dir_185f51ac5fbe404aa773b84368166141.html</filename>
-    <file>ui_FormActualizacionBase.h</file>
   </compound>
 </tagfile>

@@ -81,7 +81,6 @@ Ebackup::Ebackup( QWidget* parent )
  addAction( ActDetener );
  addAction( ActCerrar );
 
- ChBCompri->setCheckState( Qt::Checked );
  ChBBaseDatos->setCheckState( Qt::Checked );
 }
 
@@ -315,7 +314,7 @@ bool Ebackup::generar_db( bool estructura )
  }
  int cant_tablas = tam.record().value( 0 ).toInt();
 	if( !_continuar )
-	{ return false; }
+	{ qDebug( "Detenido x el usuario" );return false; }
  PBProgreso->setRange( 0, cant_tablas + 3 );
  // Intento nuevo
  datos->append( "|->basedatossql->\n" );
@@ -324,7 +323,7 @@ bool Ebackup::generar_db( bool estructura )
  while( cola.next() )
  {
   	if( !_continuar )
-	{ return false; }
+	{ qDebug( "Detenido x el usuario" );return false; }
   if( estructura )
   {
    datos->append( cola.record().value( "sql" ).toString() + "\n" );
@@ -341,7 +340,7 @@ bool Ebackup::generar_db( bool estructura )
   while( cola1.next() )
   {
    	if( !_continuar )
-	{ return false; }
+	{ qDebug( "Detenido x el usuario" );return false; }
    inicio = "INSERT INTO ";
    QSqlRecord reg = cola1.record();
    inicio.append( cola.record().value( "name" ).toString() );
@@ -425,16 +424,7 @@ bool Ebackup::generar_db( bool estructura )
  */
 bool Ebackup::comprimir()
 {
- if( ChBCompri->isChecked() )
- {
-  /*comprimidos->append( qCompress( *datos ) );*/
-  comprimidos->append( *datos );
- }
- else
- {
-  comprimidos->append( *datos );
- }
- return true;
+ comprimidos->append( *datos );
 }
 
 

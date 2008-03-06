@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>src</activedir>
+      <activedir>plugins/presupuesto</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -202,6 +202,8 @@
       <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.h" />
       <subclass uifile="plugins/HiComp/FiltroClientesBase.ui" sourcefile="filtroclientes.cpp" />
       <subclass uifile="plugins/HiComp/FiltroClientesBase.ui" sourcefile="filtroclientes.h" />
+      <subclass uifile="plugins/presupuesto/FormPresupuestoBase.ui" sourcefile="formagregarpresupuesto.cpp" />
+      <subclass uifile="plugins/presupuesto/FormPresupuestoBase.ui" sourcefile="formagregarpresupuesto.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

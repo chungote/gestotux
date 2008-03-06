@@ -1,18 +1,8 @@
-CONFIG += plugin \
-debug \
-exceptions \
- ordered
-QT += sql \
-svg \
-xml \
-network
-
-CONFIG -= release
-
+CONFIG += ordered
 TEMPLATE = subdirs
 
-DESTDIR = .
-
 SUBDIRS += HiComp \
- presupuestador
+ presupuestador \
+ presupuesto \
+ presupuestos
 

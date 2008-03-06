@@ -49,7 +49,7 @@ public:
     QString nombre() const;
     int tipo() const;
     void crearMenu( QMenuBar *m );
-    void verificarTablas();
+    bool verificarTablas();
     double version() const;
 
 private:
