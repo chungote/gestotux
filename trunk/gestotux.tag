@@ -305,6 +305,7 @@
     <filename>presupuesto_8cpp</filename>
     <includes id="presupuesto_8h" name="presupuesto.h" local="yes" imported="no">presupuesto.h</includes>
     <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+    <includes id="prespuesto_8h" name="prespuesto.h" local="yes" imported="no">prespuesto.h</includes>
   </compound>
   <compound kind="file">
     <name>presupuesto.h</name>
@@ -1078,8 +1079,8 @@
       <type>virtual void</type>
       <name>setRegistro</name>
       <anchorfile>classEPresupuesto.html</anchorfile>
-      <anchor>54f19ec8d238c8db65dcdbf01e1e35aa</anchor>
-      <arglist>(const QSqlRecord *rec)=0</arglist>
+      <anchor>6bc0b0c6dec91415c638287c3d1e28dc</anchor>
+      <arglist>(QSqlRecord *rec)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual double</type>
@@ -1442,6 +1443,27 @@
       <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
       <anchor>cf87f5f21b260d5bc570d476d27fb900</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cancelar</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>dc79580b441c0ad9d1f737643cbc0957</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>listaProductos</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>b0d906b5ab33b48350a8897dff648495</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSqlQueryModel *</type>
+      <name>modeloClientes</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>e4bbcd51e22e31d81c8e04120799ed92</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3135,8 +3157,8 @@
       <type>void</type>
       <name>setRegistro</name>
       <anchorfile>classPresupuestoDefault.html</anchorfile>
-      <anchor>e16e440bc810538e73362d060895474a</anchor>
-      <arglist>(const QSqlRecord *rec)</arglist>
+      <anchor>47febe45fe387402460e25e752d16bdb</anchor>
+      <arglist>(QSqlRecord *rec)</arglist>
     </member>
     <member kind="function">
       <type>double</type>

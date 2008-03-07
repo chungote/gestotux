@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="">
+	<file>imagenes/fileclose.png</file>
+	<file>imagenes/guardar.png</file>
+	<file>imagenes/productos.png</file>
+    </qresource>
+</RCC>
