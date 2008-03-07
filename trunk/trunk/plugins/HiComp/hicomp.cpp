@@ -29,6 +29,9 @@
 #include <QList>
 #include <QStackedWidget>
 #include <QWidget>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
 
 QStackedWidget *HiComp::_formCen = 0;
 QSettings *HiComp::_pref = 0;
@@ -164,7 +167,26 @@ void HiComp::crearMenu( QMenuBar *m )
 
 bool HiComp::verificarTablas()
 {
- return true;
+ QSqlQuery cola( "SELECT COUNT(name) FROM sqlite_master WHERE type = 'table' AND name IN ( 'recibos', 'producto' , 'clientes', 'categoria' )" );
+ if( cola.next() )
+ {
+	if( cola.record().value(0).toInt() < 4 )
+	{
+		qWarning( "Error al buscar las tablas del plugin hi comp" );
+		return false;
+	}
+	else
+	{
+		qDebug( "Tablas de " + nombre().toLocal8Bit() + " correctas" );
+		return true;
+	}
+ }
+ else
+ {
+	qWarning( "Error al ejecutar la cola de control de tabla de presupuestos" );
+	qWarning(QString( "Detalle: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
+	return false;
+ }
 }
 
 

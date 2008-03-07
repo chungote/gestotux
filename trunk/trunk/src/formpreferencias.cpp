@@ -147,6 +147,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 FormPreferencias::~FormPreferencias()
 {
 	preferencias *p = preferencias::getInstancia();
+	p->inicio();
 	p->beginGroup( "Ventanas" );
 	p->beginGroup( "Preferencias" );
 	p->setValue( "spliter", Splitter->saveState() );

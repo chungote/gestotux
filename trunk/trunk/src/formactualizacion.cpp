@@ -255,6 +255,7 @@ void FormActualizacion::analizarGeneral()
 		{
 			ftp->get( nodo_os.toElement().attribute( "archivo" ) );
 			///@todo ver donde ponerlo para que al terminar el comando, lo sobreescriba y lo descarge
+			///@todo Ver Como hacer con los plugins especificos
 		}
 	}
 	else

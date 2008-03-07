@@ -204,6 +204,8 @@
       <subclass uifile="plugins/HiComp/FiltroClientesBase.ui" sourcefile="filtroclientes.h" />
       <subclass uifile="plugins/presupuesto/FormPresupuestoBase.ui" sourcefile="formagregarpresupuesto.cpp" />
       <subclass uifile="plugins/presupuesto/FormPresupuestoBase.ui" sourcefile="formagregarpresupuesto.h" />
+      <subclass uifile="plugins/presupuesto/FormListaProductosBase.ui" sourcefile="formlistaproductos.cpp" />
+      <subclass uifile="plugins/presupuesto/FormListaProductosBase.ui" sourcefile="formlistaproductos.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>
