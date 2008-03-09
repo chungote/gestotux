@@ -28,3 +28,30 @@ double HiCompPresupuesto::version() const
 }
 
 Q_EXPORT_PLUGIN2(hicomp, HiCompPresupuesto )
+
+
+/*!
+    \fn HiCompPresupuesto::obtenerHtml()
+ */
+QString HiCompPresupuesto::obtenerHtml()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn HiCompPresupuesto::obtenerContenido()
+ */
+QString HiCompPresupuesto::obtenerContenido()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn HiCompPresupuesto::setRegistro( QSqlRecord rec )
+ */
+void HiCompPresupuesto::setRegistro( QSqlRecord *rec )
+{
+    /// @todo implement me
+}

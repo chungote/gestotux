@@ -32,6 +32,9 @@ Q_INTERFACES(EPresupuesto)
 public:
     QString nombre() const;
     double version() const;
+    void setRegistro( QSqlRecord *rec );
+    QString obtenerHtml();
+    QString obtenerContenido();
 };
 
 #endif
