@@ -13,10 +13,6 @@ SOURCES += gestotux.cpp \
  fprefgeneral.cpp \
  mclientes.cpp \
  vcliente.cpp \
- mproductos.cpp \
- mcategorias.cpp \
- vproductos.cpp \
- vcategorias.cpp \
  formactualizacion.cpp
 HEADERS += gestotux.h \
  preferencias.h \
@@ -33,10 +29,6 @@ HEADERS += gestotux.h \
  mclientes.h \
  vcliente.h \
  einfoprogramainterface.h \
- mproductos.h \
- mcategorias.h \
- vproductos.h \
- vcategorias.h \
  eplugin.h \
  formactualizacion.h
 TEMPLATE = app
@@ -63,7 +55,7 @@ DISTFILES += qt_es.qm
 
 win32 {
     CONFIG += console
-	RC_FILE = gestotux.rc
+    RC_FILE = gestotux.rc
 }
 linux-g++ {
     UI_DIR = ui

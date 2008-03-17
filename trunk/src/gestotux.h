@@ -94,7 +94,6 @@ public slots:
     void verClientes();
     void verPreferencias();
     void verBackup();
-    void verProductos();
 
 private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
