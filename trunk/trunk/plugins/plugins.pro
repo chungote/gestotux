@@ -4,5 +4,7 @@ TEMPLATE = subdirs
 SUBDIRS += HiComp \
  presupuestador \
  presupuesto \
- presupuestos
+ presupuestos \
+ aCarCorr \
+ productos
 

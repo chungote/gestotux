@@ -1,0 +1,18 @@
+todas las caravanas se mueven x tri.
+el tri es como 1 grupo de caravanas
+cada tri tiene 1 nro de dta que t lo asigno senasa para poder mover los animales 
+todos los tri estan formados x animales de una misma categoria, vacas, novillos o terneros 
+os x ejemplo compras 1 jaulta con 50 terneros y los ingresas como ingresos x compra con 1 nro de tri que t lo tiene que asignar el sistema solo y senasa t da el dta 
+ademas tenes que ponerle la fecha de cuando ingresaron los animales a quien se los compraste el campo al q van 
+
+la unica complicacion q puede llegar a tener es que x ejemplo
+vos compraste 1 jaula de terneros con 1 dta
+despues moves algunos de esos animales en 1 tri q armaste y los llevaste a otro campo
+pero para cuando los moviste ya no son terneros ya son novillitos y tenes otro numero d dta x el trslado
+la categoria vieja y el nro de dta anterior no se pueden sobrescribir tienen que quedar en historico como para que vos puedas tener 1 referencia d el movimiento del animal desde que lo compraste hasta que lo vendiste
+cuando vos haces la carga le asignas 1 cat y 1 dta
+los numeros de caravanas son alfanumericos
+no asi es nro d tri que es para control interno nomas
+1 tenes que cargar todos los datos del tri y despues t tiene que aparecer 1 pantalla que t permita ingresar todos los numeros de caravanas x eso el 1er dato q te pide es la cantidad de caravanas
+cada caravana es 1 animal
+ak como se mueven x grupos  de animales osea tri's t permite manejarlos con mas facilidad

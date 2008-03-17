@@ -43,7 +43,6 @@
 #include "eplugin.h"
 #include "einfoprogramainterface.h"
 #include "formactualizacion.h"
-#include "vproductos.h"
 
 #define VERSION_PROGRAMA 0.2
 
@@ -114,11 +113,6 @@ void gestotux::createActions()
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
-	ActProductos = new QAction( "Productos", this );
-	ActProductos->setStatusTip( "Mustra el listado de productos" );
-	ActProductos->setIcon( QIcon( ":/imagenes/productos.png" ) );
-	connect( ActProductos, SIGNAL( triggered() ), this, SLOT( verProductos() ) );
-
 	ActActualizar = new QAction( "Actualizar", this );
  	ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
  	ActActualizar->setStatusTip( "Actualiza la aplicacion " );
@@ -133,7 +127,6 @@ void gestotux::createMenus()
  menuHer = menuBar()->addMenu( "&Herramientas" );
  menuHer->setObjectName( "menuHerramientas" );
  menuHer->addAction( ActClientes );
- menuHer->addAction( ActProductos );
 
  menuAyuda = menuBar()->addMenu( "A&yuda" );
  menuAyuda->setObjectName( "menuAyuda" );
@@ -395,17 +388,6 @@ EInfoProgramaInterface *gestotux::pluginInfo()
   abort();
  }
 }
-
-
-/*!
-    \fn gestotux::verProductos()
- */
-void gestotux::verProductos()
-{
-  VProductos *f = new VProductos( formCen() );
-  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
-}
-
 
 /*!
     \fn gestotux::plugins()
