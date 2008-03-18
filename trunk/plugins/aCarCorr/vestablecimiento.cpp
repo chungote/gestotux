@@ -17,51 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ADMINCARCORR_H
-#define ADMINCARCORR_H
+#include "vestablecimiento.h"
 
-#include <QtPlugin>
-#include <eplugin.h>
-#include <einfoprogramainterface.h>
+#include "mestablecimiento.h"
+#include <QSqlRecord>
+#include <QTableView>
 
-/**
-Plugin principal
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class AdminCarCorr : public QObject, EPlugin, EInfoProgramaInterface
+VEstablecimiento::VEstablecimiento(QWidget *parent)
+ : EVLista(parent)
 {
- Q_OBJECT
- Q_INTERFACES(EPlugin EInfoProgramaInterface)
-public:
-    QIcon iconoPrograma() const;
-    QString directorioActualizaciones() const;
-    QString directorioBackup() const;
-    QString nombrePrograma() const;
-    QList< QAction * > accionesBarra() const;
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    bool inicializar(QStackedWidget* formCen, QSettings* pref);
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    void crearMenu(QMenuBar* m);
+ setAttribute( Qt::WA_DeleteOnClose );
+ modelo = new MEstablecimiento( this );
+ vista->setModel( modelo );
+ vista->hideColumn( 0 );
+ 
+ addAction( ActAgregar );
+ addAction( ActCerrar );
+}
 
-private:
-    QList<QAction *> _acciones;
-    static QStackedWidget *_formCen;
-    static QSettings *_pref;
 
-	QAction *ActEstablecimiento;
-	QAction *ActNuevoEstablecimiento;
-	QAction *ActCategoria;
+VEstablecimiento::~VEstablecimiento()
+{
+}
 
-	QAction *ActAgregarCompra;
-protected slots:
-    void verCategorias();
-public slots:
-    void verEstablecimientos();
-    void agregarCompra();
-};
+void VEstablecimiento::antes_de_insertar(int row, QSqlRecord& record)
+{
+ record.setValue( 1, QString( " " ) );
+ record.remove( 0 );
+}
 
-#endif
+void VEstablecimiento::eliminar()
+{
+	return;
+    EVLista::eliminar();
+}
+

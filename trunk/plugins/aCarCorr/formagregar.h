@@ -17,51 +17,37 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ADMINCARCORR_H
-#define ADMINCARCORR_H
 
-#include <QtPlugin>
-#include <eplugin.h>
-#include <einfoprogramainterface.h>
+#ifndef FORMAGREGAR_H
+#define FORMAGREGAR_H
 
-/**
-Plugin principal
+#include <QWidget>
+#include "ui_FormAgregarBase.h"
+class QAction;
+class QStringListModel;
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class AdminCarCorr : public QObject, EPlugin, EInfoProgramaInterface
+class FormAgregar : public QWidget, private Ui::FormAgregarBase
 {
- Q_OBJECT
- Q_INTERFACES(EPlugin EInfoProgramaInterface)
+  Q_OBJECT
+
 public:
-    QIcon iconoPrograma() const;
-    QString directorioActualizaciones() const;
-    QString directorioBackup() const;
-    QString nombrePrograma() const;
-    QList< QAction * > accionesBarra() const;
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    bool inicializar(QStackedWidget* formCen, QSettings* pref);
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    void crearMenu(QMenuBar* m);
+  FormAgregar(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  ~FormAgregar();
+
+protected:
+	QAction *ActCerrar;
+
+
+protected slots:
+    void cerrar();
+    void eliminarCaravana();
+
+public slots:
+    void agregarCaravana();
 
 private:
-    QList<QAction *> _acciones;
-    static QStackedWidget *_formCen;
-    static QSettings *_pref;
-
-	QAction *ActEstablecimiento;
-	QAction *ActNuevoEstablecimiento;
-	QAction *ActCategoria;
-
-	QAction *ActAgregarCompra;
-protected slots:
-    void verCategorias();
-public slots:
-    void verEstablecimientos();
-    void agregarCompra();
+	QStringListModel *model;
 };
 
 #endif
+

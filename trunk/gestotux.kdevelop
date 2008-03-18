@@ -206,6 +206,8 @@
       <subclass uifile="plugins/presupuesto/FormPresupuestoBase.ui" sourcefile="formagregarpresupuesto.h" />
       <subclass uifile="plugins/presupuesto/FormListaProductosBase.ui" sourcefile="formlistaproductos.cpp" />
       <subclass uifile="plugins/presupuesto/FormListaProductosBase.ui" sourcefile="formlistaproductos.h" />
+      <subclass uifile="plugins/aCarCorr/FormAgregarBase.ui" sourcefile="formagregar.cpp" />
+      <subclass uifile="plugins/aCarCorr/FormAgregarBase.ui" sourcefile="formagregar.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>
