@@ -20,6 +20,7 @@
 #include "admincarcorr.h"
 
 #include <QSqlQuery>
+#include "formagregar.h"
 
 QStackedWidget *AdminCarCorr::_formCen = 0;
 QSettings *AdminCarCorr::_pref = 0;
@@ -85,6 +86,12 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActNuevoEstablecimiento->setToolTip( "Agrega un nuevo establecimiento" );
  connect( ActNuevoEstablecimiento, SIGNAL( triggered() ), this, SLOT( agregarEstablecimiento() ) );
 
+ ActAgregarCompra = new QAction( "Agregar compra", this );
+ ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
+ ActAgregarCompra->setStatusTip( "Agrega una nueva compra" );
+ ActAgregarCompra->setToolTip( "Agrega una nueva compra" );
+ connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
+
  return verificarTablas();
 }
 
@@ -94,6 +101,11 @@ bool AdminCarCorr::verificarTablas()
  if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_categorias' AND type = 'table'" ) )
  {
   qWarning( "Error al buscar la tabla car_categorias" );
+  return false;
+ }
+ if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_establecimientos' AND type = 'table'" ) )
+ {
+  qWarning( "Error al buscar la tabla car_establecimientos" );
   return false;
  }
  return true;
@@ -122,6 +134,8 @@ void AdminCarCorr::crearMenu(QMenuBar* m)
   menuRecibos->addAction( ActEstablecimiento );
   menuRecibos->addAction( ActNuevoEstablecimiento );
   menuHer->addAction( ActCategoria );
+  menuHer->addSeparator();
+  menuHer->addAction( ActAgregarCompra );
  }
 }
 
@@ -145,5 +159,15 @@ void AdminCarCorr::verCategorias()
 void AdminCarCorr::verEstablecimientos()
 {
   VEstablecimiento *f = new VEstablecimiento( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn AdminCarCorr::agregarCompra()
+ */
+void AdminCarCorr::agregarCompra()
+{
+  FormAgregar *f = new FormAgregar( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

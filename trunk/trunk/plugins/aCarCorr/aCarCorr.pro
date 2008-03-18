@@ -26,7 +26,9 @@ HEADERS += admincarcorr.h \
  vcategorias.h \
  evlista.h \
  eventana.h \
- vestablecimiento.h
+ vestablecimiento.h \
+ formagregar.h \
+ mclientes.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -34,7 +36,9 @@ SOURCES += admincarcorr.cpp \
  vcategorias.cpp \
  evlista.cpp \
  eventana.cpp \
- vestablecimiento.cpp
+ vestablecimiento.cpp \
+ formagregar.cpp \
+ mclientes.cpp
 
 TARGET = admincaravanascorrientes
 
@@ -44,4 +48,6 @@ DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
 
 RESOURCES += aCarCorr.qrc
+
+FORMS += FormAgregarBase.ui
 
