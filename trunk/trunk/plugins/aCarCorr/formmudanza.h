@@ -17,20 +17,25 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "mestablecimiento.h"
 
-MEstablecimiento::MEstablecimiento( QObject *parent )
- : QSqlTableModel( parent )
+#ifndef FORMMUDANZA_H
+#define FORMMUDANZA_H
+
+#include <QWidget>
+#include "formmovimiento.h"
+
+class FormMudanza : public FormMovimiento
 {
- setTable( "car_establecimientos" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Nombre" );
- setHeaderData( 2, Qt::Horizontal, "#RESMPA" );
-}
+  Q_OBJECT
 
+public:
+  FormMudanza(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  ~FormMudanza();
 
-MEstablecimiento::~MEstablecimiento()
-{
-}
+public slots:
+    void cerrar();
+    void guardar();
+};
 
+#endif
 

@@ -17,20 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "mestablecimiento.h"
+#include "formventa.h"
 
-MEstablecimiento::MEstablecimiento( QObject *parent )
- : QSqlTableModel( parent )
-{
- setTable( "car_establecimientos" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Nombre" );
- setHeaderData( 2, Qt::Horizontal, "#RESMPA" );
-}
-
-
-MEstablecimiento::~MEstablecimiento()
+FormVenta::FormVenta(QWidget* parent, Qt::WFlags fl ):
+FormMovimiento(parent, fl, FormMovimiento::venta )
 {
 }
 
 
+FormVenta::~FormVenta()
+{
+}
+
+/*!
+    \fn FormVenta::cerrar()
+ */
+void FormVenta::cerrar()
+{
+ close();
+}
+
+
+/*!
+    \fn FormVenta::guardar()
+ */
+void FormVenta::guardar()
+{
+    /// @todo implement me
+}

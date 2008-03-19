@@ -28,7 +28,12 @@ HEADERS += admincarcorr.h \
  eventana.h \
  vestablecimiento.h \
  formagregar.h \
- mclientes.h
+ mclientes.h \
+ formmudanza.h \
+ formmovimiento.h \
+ formventa.h \
+ mtri.h \
+ mcaravanas.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -38,7 +43,12 @@ SOURCES += admincarcorr.cpp \
  eventana.cpp \
  vestablecimiento.cpp \
  formagregar.cpp \
- mclientes.cpp
+ mclientes.cpp \
+ formmudanza.cpp \
+ formmovimiento.cpp \
+ formventa.cpp \
+ mtri.cpp \
+ mcaravanas.cpp
 
 TARGET = admincaravanascorrientes
 
@@ -49,5 +59,5 @@ INCLUDEPATH += ../../src
 
 RESOURCES += aCarCorr.qrc
 
-FORMS += FormAgregarBase.ui
+FORMS += FormMovimientoBase.ui
 

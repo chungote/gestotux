@@ -57,11 +57,16 @@ private:
 	QAction *ActCategoria;
 
 	QAction *ActAgregarCompra;
+	QAction *ActAgregarVenta;
+	QAction *ActAgregarMudanza;
 protected slots:
     void verCategorias();
 public slots:
     void verEstablecimientos();
     void agregarCompra();
+protected slots:
+    void hacerMovimiento();
+    void hacerVenta();
 };
 
 #endif

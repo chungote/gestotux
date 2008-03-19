@@ -22,31 +22,20 @@
 #define FORMAGREGAR_H
 
 #include <QWidget>
-#include "ui_FormAgregarBase.h"
-class QAction;
-class QStringListModel;
+#include "formmovimiento.h"
 
-class FormAgregar : public QWidget, private Ui::FormAgregarBase
+
+class FormAgregar : public FormMovimiento
 {
   Q_OBJECT
-
 public:
   FormAgregar(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormAgregar();
 
-protected:
-	QAction *ActCerrar;
-
-
-protected slots:
-    void cerrar();
-    void eliminarCaravana();
-
 public slots:
-    void agregarCaravana();
+    void cerrar();
+    void guardar();
 
-private:
-	QStringListModel *model;
 };
 
 #endif

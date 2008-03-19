@@ -20,7 +20,6 @@
 #include "admincarcorr.h"
 
 #include <QSqlQuery>
-#include "formagregar.h"
 
 QStackedWidget *AdminCarCorr::_formCen = 0;
 QSettings *AdminCarCorr::_pref = 0;
@@ -92,6 +91,16 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActAgregarCompra->setToolTip( "Agrega una nueva compra" );
  connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
 
+ ActAgregarVenta = new QAction( "Nueva venta", this );
+ connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerVenta() ) );
+
+ ActAgregarMudanza = new QAction( "Nueva mudanza", this );
+ connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
+
+ _acciones.append( ActAgregarVenta );
+ _acciones.append( ActAgregarCompra );
+ _acciones.append( ActAgregarMudanza );
+
  return verificarTablas();
 }
 
@@ -162,12 +171,32 @@ void AdminCarCorr::verEstablecimientos()
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
-
+#include "formagregar.h"
 /*!
     \fn AdminCarCorr::agregarCompra()
  */
 void AdminCarCorr::agregarCompra()
 {
   FormAgregar *f = new FormAgregar( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+#include "formmudanza.h"
+/*!
+    \fn AdminCarCorr::hacerMovimiento()
+ */
+void AdminCarCorr::hacerMovimiento()
+{
+ FormMudanza *f = new FormMudanza( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+#include "formventa.h"
+/*!
+    \fn AdminCarCorr::hacerVenta()
+ */
+void AdminCarCorr::hacerVenta()
+{
+ FormVenta *f = new FormVenta( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

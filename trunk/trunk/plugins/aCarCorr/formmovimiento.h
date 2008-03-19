@@ -17,20 +17,47 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "mestablecimiento.h"
 
-MEstablecimiento::MEstablecimiento( QObject *parent )
- : QSqlTableModel( parent )
+#ifndef FORMMOVIMIENTO_H
+#define FORMMOVIMIENTO_H
+
+#include <QWidget>
+#include "ui_FormMovimientoBase.h"
+class QAction;
+class QStringListModel;
+
+class FormMovimiento : public QWidget, private Ui::FormMovimientoBase
 {
- setTable( "car_establecimientos" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Nombre" );
- setHeaderData( 2, Qt::Horizontal, "#RESMPA" );
-}
+  Q_OBJECT
+
+public:
+  enum tipo
+  {
+    compra,
+    venta,
+    movimiento,
+    indefinido
+  };
+
+  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
+  ~FormMovimiento();
 
 
-MEstablecimiento::~MEstablecimiento()
-{
-}
+protected:
+	QAction *ActCerrar;
+	QAction *ActGuardar;
 
+
+protected slots:
+    virtual void cerrar() = 0;
+    void eliminarCaravana();
+    void agregarCaravana();
+    virtual void guardar() = 0;
+
+private:
+	QStringListModel *model;
+
+};
+
+#endif
 

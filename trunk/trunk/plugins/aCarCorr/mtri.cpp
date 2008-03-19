@@ -17,20 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "mestablecimiento.h"
+#include "mtri.h"
 
-MEstablecimiento::MEstablecimiento( QObject *parent )
- : QSqlTableModel( parent )
+MTri::MTri( QObject *padre )
+ : QSqlRelationalTableModel(padre)
 {
- setTable( "car_establecimientos" );
+ setTable( "car_tri" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Nombre" );
- setHeaderData( 2, Qt::Horizontal, "#RESMPA" );
+ setHeaderData( 1, Qt::Horizontal, "#DTA" );
+ setHeaderData( 2, Qt::Horizontal, "Categoria" );
+ setRelation  ( 2, QSqlRelation ( "car_categorias", "id_categoria", "nombre" ) );
+ setHeaderData( 3, Qt::Horizontal, "Est. Destino" );
+ setRelation  ( 3, QSqlRelation ( "car_establecimientos", "id_establecimiento", "nombre" ) );
+ setHeaderData( 4, Qt::Horizontal, "Est. Origen" );
+ setRelation  ( 4, QSqlRelation ( "car_establecimientos", "id_establecimiento", "nombre" ) );
+ setHeaderData( 5, Qt::Horizontal, "Comprador" );
+ setRelation  ( 5, QSqlRelation ( "clientes", "id", "nombre" ) );
+ setHeaderData( 6, Qt::Horizontal, "Vendedor" );
+ setRelation  ( 6, QSqlRelation ( "clientes", "id", "nombre" ) );
 }
 
 
-MEstablecimiento::~MEstablecimiento()
+MTri::~MTri()
 {
 }
 
+
+QVariant MTri::data(const QModelIndex& item, int role) const
+{
+    return QSqlRelationalTableModel::data(item, role);
+}
+
+bool MTri::setData(const QModelIndex& item, const QVariant& value, int role)
+{
+    return QSqlRelationalTableModel::setData(item, value, role);
+}
 
