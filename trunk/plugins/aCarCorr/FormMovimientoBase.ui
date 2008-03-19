@@ -1,11 +1,11 @@
 <ui version="4.0" >
- <class>FormAgregarBase</class>
- <widget class="QWidget" name="FormAgregarBase" >
+ <class>FormMovimientoBase</class>
+ <widget class="QWidget" name="FormMovimientoBase" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>508</width>
+    <width>527</width>
     <height>548</height>
    </rect>
   </property>
@@ -29,6 +29,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_2" >
        <property name="text" >
         <string>Fecha:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>dEFecha</cstring>
        </property>
       </widget>
      </item>
@@ -57,6 +60,9 @@ p, li { white-space: pre-wrap; }
        <property name="text" >
         <string>Categoria:</string>
        </property>
+       <property name="buddy" >
+        <cstring>CBCategoria</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -81,37 +87,12 @@ p, li { white-space: pre-wrap; }
    <item>
     <layout class="QHBoxLayout" >
      <item>
-      <widget class="QLabel" name="label_3" >
-       <property name="text" >
-        <string>Establecimiento:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="CBEstablecimiento" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="PBAgregarEstablecimiento" >
-       <property name="text" >
-        <string>Agregar</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <widget class="QLabel" name="label_5" >
+      <widget class="QLabel" name="LCliente" >
        <property name="text" >
         <string>Vendedor.</string>
+       </property>
+       <property name="buddy" >
+        <cstring>CBCliente</cstring>
        </property>
       </widget>
      </item>
@@ -137,16 +118,35 @@ p, li { white-space: pre-wrap; }
    <item>
     <layout class="QHBoxLayout" >
      <item>
-      <widget class="QLabel" name="label_6" >
+      <widget class="QLabel" name="LOrigen" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text" >
-        <string>Numero de TRI:</string>
+        <string>Origen:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>CBEstablecimientoOrigen</cstring>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="LETRI" >
-       <property name="readOnly" >
-        <bool>true</bool>
+      <widget class="QComboBox" name="CBEstablecimientoOrigen" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PBAgregarEstablecimientoOrigen" >
+       <property name="text" >
+        <string>Agregar</string>
        </property>
       </widget>
      </item>
@@ -155,14 +155,73 @@ p, li { white-space: pre-wrap; }
    <item>
     <layout class="QHBoxLayout" >
      <item>
-      <widget class="QLabel" name="label_7" >
+      <widget class="QLabel" name="LDestino" >
        <property name="text" >
-        <string>Numero DTA:</string>
+        <string>Destino:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>CBEstablecimientoDestino</cstring>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="LEDTA" />
+      <widget class="QComboBox" name="CBEstablecimientoDestino" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PBAgregarEstablecimientoDestino" >
+       <property name="text" >
+        <string>Agregar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QLabel" name="label_6" >
+         <property name="text" >
+          <string>Numero de TRI:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>LETRI</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="LETRI" >
+         <property name="readOnly" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QLabel" name="label_7" >
+         <property name="text" >
+          <string>Numero DTA:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>LEDTA</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="LEDTA" />
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
@@ -178,6 +237,9 @@ p, li { white-space: pre-wrap; }
          <widget class="QLabel" name="label_8" >
           <property name="text" >
            <string>Numero de caravana:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>LENumCar</cstring>
           </property>
          </widget>
         </item>
@@ -235,6 +297,23 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>dEFecha</tabstop>
+  <tabstop>CBCategoria</tabstop>
+  <tabstop>PBAgregarCategoria</tabstop>
+  <tabstop>CBCliente</tabstop>
+  <tabstop>PBAgregarCliente</tabstop>
+  <tabstop>CBEstablecimientoOrigen</tabstop>
+  <tabstop>PBAgregarEstablecimientoOrigen</tabstop>
+  <tabstop>CBEstablecimientoDestino</tabstop>
+  <tabstop>PBAgregarEstablecimientoDestino</tabstop>
+  <tabstop>LETRI</tabstop>
+  <tabstop>LEDTA</tabstop>
+  <tabstop>LENumCar</tabstop>
+  <tabstop>PBAgregar</tabstop>
+  <tabstop>PBEliminar</tabstop>
+  <tabstop>TVCaravanas</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

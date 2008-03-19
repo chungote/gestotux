@@ -17,20 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "mestablecimiento.h"
+#ifndef MTRI_H
+#define MTRI_H
 
-MEstablecimiento::MEstablecimiento( QObject *parent )
- : QSqlTableModel( parent )
+#include <QSqlRelationalTableModel>
+
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MTri : public QSqlRelationalTableModel
 {
- setTable( "car_establecimientos" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Nombre" );
- setHeaderData( 2, Qt::Horizontal, "#RESMPA" );
-}
+public:
+    MTri( QObject *padre = 0);
+    ~MTri();
+    QVariant data(const QModelIndex& item, int role) const;
+    bool setData(const QModelIndex& item, const QVariant& value, int role);
 
+};
 
-MEstablecimiento::~MEstablecimiento()
-{
-}
-
-
+#endif
