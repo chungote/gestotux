@@ -92,9 +92,11 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
 
  ActAgregarVenta = new QAction( "Nueva venta", this );
+ ActAgregarVenta->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerVenta() ) );
 
  ActAgregarMudanza = new QAction( "Nueva mudanza", this );
+ ActAgregarMudanza->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
 
  _acciones.append( ActAgregarVenta );

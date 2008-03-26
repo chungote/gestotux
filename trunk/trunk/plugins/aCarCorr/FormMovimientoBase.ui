@@ -199,6 +199,21 @@ p, li { white-space: pre-wrap; }
        </item>
        <item>
         <widget class="QLineEdit" name="LETRI" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="autoFillBackground" >
+          <bool>true</bool>
+         </property>
+         <property name="inputMask" >
+          <string/>
+         </property>
+         <property name="text" >
+          <string/>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignCenter</set>
+         </property>
          <property name="readOnly" >
           <bool>true</bool>
          </property>

@@ -35,9 +35,33 @@
 #include "preferencias.h"
 #include "eenviobackup.h"
 
+
+ void myMessageOutput(QtMsgType type, const char *msg)
+ {
+     switch (type) {
+     case QtDebugMsg:
+         fprintf(stderr, "Debug: %s\n", msg);
+         break;
+     case QtWarningMsg:
+	QMessageBox::warning( 0, "Warning de aplicacion", msg );
+         fprintf(stderr, "Warning: %s\n", msg);
+         break;
+     case QtCriticalMsg:
+	QMessageBox::critical( 0, "Error Critico", msg );
+         fprintf(stderr, "Critical: %s\n", msg);
+         break;
+     case QtFatalMsg:
+         fprintf(stderr, "Fatal: %s\n", msg);
+	 QMessageBox::critical( 0, "¡¡¡¡¡¡FATAL!!!!!!", msg );
+         abort();
+     }
+ }
+
+
 int main(int argc, char *argv[])
 {
       Q_INIT_RESOURCE(gestotux);
+	qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash
       QPixmap pixmap(":/imagenes/splash.png");
@@ -187,4 +211,3 @@ int main(int argc, char *argv[])
 	envios->start( QThread::IdlePriority );
       return app.exec();
 }
-

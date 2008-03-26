@@ -26,7 +26,7 @@
 class QAction;
 class QStringListModel;
 
-class FormMovimiento : public QWidget, private Ui::FormMovimientoBase
+class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
 {
   Q_OBJECT
 
@@ -41,6 +41,7 @@ public:
 
   FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
   ~FormMovimiento();
+    void setearNumeroTri();
 
 
 protected:
@@ -57,6 +58,11 @@ protected slots:
 private:
 	QStringListModel *model;
 
+public slots:
+    void agregarCategoria();
+    void agregarCliente();
+    void agregarEstablecimientoOrigen();
+    void agregarEstablecimientoDestino();
 };
 
 #endif
