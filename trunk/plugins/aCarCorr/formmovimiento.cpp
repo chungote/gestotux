@@ -25,6 +25,10 @@
 #include <QListView>
 #include <QMessageBox>
 #include <QHeaderView>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QInputDialog>
+#include <QSqlError>
 
 #include "mestablecimiento.h"
 #include "mcategoria.h"
@@ -61,13 +65,12 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	// Conecto los botones
 	connect( PBAgregarCategoria, SIGNAL( clicked() ), this, SLOT( agregarCategoria() ) );
 	connect( PBAgregarCliente, SIGNAL( clicked() ), this, SLOT( agregarCliente() ) );
-	connect( PBAgregarEstablecimientoOrigen, SIGNAL( clicked() ), this, SLOT( agregarEstablecimiento() ) );
-	connect( PBAgregarEstablecimientoDestino, SIGNAL( clicked() ), this, SLOT( agregarEstablecimiento() ) );
+	connect( PBAgregarEstablecimientoOrigen, SIGNAL( clicked() ), this, SLOT( agregarEstablecimientoOrigen() ) );
+	connect( PBAgregarEstablecimientoDestino, SIGNAL( clicked() ), this, SLOT( agregarEstablecimientoDestino() ) );
 	connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarCaravana() ) );
 	connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarCaravana() ) );
 
-	// Inicializo el modelo
-
+	// Inicializo los modelos
 	CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
 	CBEstablecimientoOrigen->setModelColumn( 1 );
 	qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
@@ -86,8 +89,6 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	CBCliente->setModelColumn( 1 );
 	CBCliente->setCurrentIndex( 0 );
 
-	///@todo Insertar el numero de TRI automaticamente
-	
 	// pongo la fecha de hoy
 	dEFecha->setDate( QDate::currentDate() );
 
@@ -97,6 +98,9 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	TVCaravanas->setModel( model );
 	TVCaravanas->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 	TVCaravanas->horizontalHeader()->hide();
+
+	// Seteo el numero de tri
+	setearNumeroTri();
 
 	switch( accion )
 	{
@@ -170,3 +174,157 @@ void FormMovimiento::eliminarCaravana()
  }
 }
 
+
+
+/*!
+    \fn FormMovimiento::setearNumeroTri()
+ */
+void FormMovimiento::setearNumeroTri()
+{
+ QSqlQuery cola;
+ if( cola.exec( "SELECT seq FROM sqlite_sequence WHERE name = 'car_tri'" ) )
+ {
+  if( cola.next() )
+  {
+	///@todo Agregar una mascara para que el numero salga mejor
+    LETRI->setText( QString( "%1" ).arg( cola.record().value(0).toInt() ) );
+  }
+  else
+  {
+   qWarning( "Error al ejecutar la obtencion del proximo numero de tri (next)" );
+   LETRI->setText( QString( "%1" ).arg( -1 ) );
+  }
+ }
+ else
+ {
+  qWarning( "Error al ejecutar la obtencion del proximo numero de tri" );
+  LETRI->setText( QString( "%1" ).arg( -1 ) );
+ }
+}
+
+
+/*!
+    \fn FormMovimiento::agregarCategoria()
+ */
+void FormMovimiento::agregarCategoria()
+{
+     bool ok;
+    QString text = QInputDialog::getText(this, tr("Nueva Categoria"),
+                                         tr("Nombre de la categoria:"), QLineEdit::Normal,
+                                         "", &ok);
+    if (ok && !text.isEmpty())
+    {
+	QSqlTableModel *mod = qobject_cast<QSqlTableModel *>(CBCategoria->model());
+	QSqlRecord rec = mod->record();
+	rec.remove(0);
+	rec.setValue( "nombre", text );
+	if( mod->insertRecord( -1, rec ) )
+	{
+		///@todo Selecciono el id insertado en el combo automaticamente???
+		return;
+	}
+	else
+	{
+		qWarning( "Error al insertar el registro de categoria" );
+		return;
+	}
+    }
+}
+
+
+/*!
+    \fn FormMovimiento::agregarCliente()
+ */
+void FormMovimiento::agregarCliente()
+{
+    bool ok1,ok2;
+    QString nombre = QInputDialog::getText(this, tr("Nuevo Cliente - Paso 1"),
+                                         tr("Nombre del cliente:"), QLineEdit::Normal,
+                                         "", &ok1);
+    QString apellido = QInputDialog::getText(this, tr("Nuevo Cliente - Paso 2"),
+                                         tr("Apellido del cliente:"), QLineEdit::Normal,
+                                         "", &ok2);
+    if ( ok1 && ok2 && !nombre.isEmpty() && !apellido.isEmpty())
+    {
+	QSqlTableModel *mod = qobject_cast<QSqlTableModel *>(CBCliente->model());
+	QSqlRecord rec = mod->record();
+	rec.remove(0);
+	rec.setValue( "nombre", nombre );
+	rec.setValue( "apellido", apellido );
+	if( mod->insertRecord( -1, rec ) )
+	{
+		///@todo Selecciono el id insertado en el combo automaticamente???
+		return;
+	}
+	else
+	{
+		qWarning( QString( "Error al insertar el registro de cliente \n Error: %1").arg( mod->lastError().text() ).toLocal8Bit() );
+		return;
+	}
+    }
+}
+
+
+/*!
+    \fn FormMovimiento::agregarEstablecimientoOrigen()
+ */
+void FormMovimiento::agregarEstablecimientoOrigen()
+{
+      bool ok1,ok2;
+    QString nombre = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 1"),
+                                         tr("Nombre del Establecimiento:"), QLineEdit::Normal,
+                                         "", &ok1 );
+    QString respma = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 2"),
+                                         tr("Numero de RESPMA:"), QLineEdit::Normal,
+                                         "", &ok2 );
+    if ( ok1 && ok2 && !nombre.isEmpty() && !respma.isEmpty())
+    {
+	QSqlTableModel *mod = qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model());
+	QSqlRecord rec = mod->record();
+	rec.remove(0);
+	rec.setValue( "nombre", nombre );
+	rec.setValue( "respma", respma );
+	if( mod->insertRecord( -1, rec ) )
+	{
+		///@todo Selecciono el id insertado en el combo automaticamente???
+		return;
+	}
+	else
+	{
+		qWarning( QString( "Error al insertar el registro de establecimiento \n Error: %1").arg( mod->lastError().text() ).toLocal8Bit() );
+		return;
+	}
+    }
+}
+
+/*!
+    \fn FormMovimiento::agregarEstablecimientoDestino()
+ */
+void FormMovimiento::agregarEstablecimientoDestino()
+{
+      bool ok1,ok2;
+    QString nombre = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 1"),
+                                         tr("Nombre del Establecimiento:"), QLineEdit::Normal,
+                                         "", &ok1 );
+    QString respma = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 2"),
+                                         tr("Numero de RESPMA:"), QLineEdit::Normal,
+                                         "", &ok2 );
+    if ( ok1 && ok2 && !nombre.isEmpty() && !respma.isEmpty())
+    {
+	QSqlTableModel *mod = qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model());
+	QSqlRecord rec = mod->record();
+	rec.remove(0);
+	rec.setValue( "nombre", nombre );
+	rec.setValue( "respma", respma );
+	if( mod->insertRecord( -1, rec ) )
+	{
+		///@todo Selecciono el id insertado en el combo automaticamente???
+		return;
+	}
+	else
+	{
+		qWarning( QString( "Error al insertar el registro de establecimiento \n Error: %1").arg( mod->lastError().text() ).toLocal8Bit() );
+		return;
+	}
+    }
+}

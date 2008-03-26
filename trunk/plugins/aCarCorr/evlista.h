@@ -37,7 +37,7 @@ class EVLista : public EVentana
 {
 	Q_OBJECT
 public:
-    EVLista(QWidget *parent = 0 );
+    EVLista(QWidget *parent = 0, QObject *child = 0 );
     ~EVLista();
     void closeEvent( QCloseEvent * c);
 
@@ -79,9 +79,9 @@ protected:
    QSqlTableModel *modelo;
 
 protected slots:
-    void cerrar();
-    void agregar();
-    void eliminar();
+    virtual void cerrar();
+    virtual void agregar();
+    virtual void eliminar();
     virtual void antes_de_insertar( int row, QSqlRecord & record ) = 0;
 };
 

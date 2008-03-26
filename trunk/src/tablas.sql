@@ -1,7 +1,11 @@
 BEGIN TRANSACTION;
 CREATE TABLE categoria (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT);
-CREATE TABLE clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, apellido TEXT, nombre TEXT, direccion TEXT, telefono TEXT);
+CREATE TABLE clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, apellido TEXT NOT NULL, nombre TEXT NOT NULL, direccion TEXT, telefono TEXT);
 CREATE TABLE producto (id INTEGER PRIMARY KEY AUTOINCREMENT, id_categoria NUMERIC, nombre TEXT, precio_venta NUMERIC, descripcion BLOB, marca TEXT);
 CREATE TABLE recibos ( id INTEGER PRIMARY KEY AUTOINCREMENT, cliente TEXT, num_mes INTEGER,  texto TEXT, precio NUMBER, fecha_pago TEXT, contado INTEGER, cuenta_corriente INTEGER  );
-CREATE TABLE car_categorias ( id_categoria INTEGER  PRIMARY KEY AUTOINCREMENT,  nombre TEXT )
+CREATE TABLE car_categorias ( id_categoria INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL );
+CREATE TABLE car_establecimientos ( id_establecimiento INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, respma TEXT NOT NULL );
+CREATE TABLE car_caravana ( id_caravana INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT NOT NULL );
+CREATE TABLE car_tri( id_tri INTEGER PRIMARY KEY AUTOINCREMENT, dta TEXT NOT NULL, razon NUMERIC NOT NULL, id_categoria NUMERIC NOT NULL, id_estab_destino NUMERIC, id_estab_origen NUMERIC, id_comprador NUMERIC, id_vendedor NUMERIC );
+CREATE TABLE car_carv_tri( id_caravana INTEGER, id_tri, PRIMARY KEY( id_caravana, id_tri ) );
 COMMIT;

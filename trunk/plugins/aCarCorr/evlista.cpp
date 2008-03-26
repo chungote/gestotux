@@ -28,7 +28,7 @@
 #include <QAction>
 #include <QGridLayout>
 
-EVLista::EVLista( QWidget *parent )
+EVLista::EVLista( QWidget *parent, QObject *child )
 : EVentana( parent )
 {
  QGridLayout *layout = new QGridLayout( this );
@@ -49,37 +49,37 @@ EVLista::EVLista( QWidget *parent )
  ActAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
  ActAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
  ActAgregar->setToolTip( "Agregar un nuevo item ( Ctrl + a )" );
- connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
+ connect( ActAgregar, SIGNAL( triggered() ), child, SLOT( agregar() ) );
 
  ActModificar = new QAction( "&Modificar", this );
  ActModificar->setIcon( QIcon( ":/imagenes/editar.png" ) );
  ActModificar->setShortcut( QKeySequence( "Ctrl+m" ) );
  ActModificar->setToolTip( "Modifica el item actual ( Ctrl + m )" );
- connect( ActModificar, SIGNAL( triggered() ), this, SLOT( modificar() ) );
+ connect( ActModificar, SIGNAL( triggered() ), child, SLOT( modificar() ) );
 
  ActImprimir = new QAction( "&Imprimir", this );
  ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
  ActImprimir->setToolTip( "Imprime el/los items seleccionados ( Ctrl + i )" );
  ActImprimir->setShortcut( QKeySequence( "Ctrl+i" ) );
- connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+ connect( ActImprimir, SIGNAL( triggered() ), child, SLOT( imprimir() ) );
 
  ActEliminar = new QAction( "&Eliminar", this );
  ActEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
  ActEliminar->setShortcut( QKeySequence( "Ctrl+e" ) );
  ActEliminar->setToolTip( "Eliminar el o los items seleccionados ( Ctrl + e )" );
-// connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar()  ) );
+ connect( ActEliminar, SIGNAL( triggered() ), child, SLOT( eliminar()  ) );
 
  ActBuscar = new QAction( "&Buscar", this );
  ActBuscar->setIcon( QIcon( ":/imagenes/buscar.png" ) );
  ActBuscar->setShortcut( QKeySequence( "Ctrl+b" ) );
  ActBuscar->setToolTip( "Buscar items ( Ctrl + b )" );
- connect( ActBuscar, SIGNAL( triggered() ), this, SLOT( buscar() ) );
+ connect( ActBuscar, SIGNAL( triggered() ), child, SLOT( buscar() ) );
 
  ActCerrar = new QAction( "Cer&rar", this );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  ActCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
  ActCerrar->setToolTip( "Cierra esta ventana ( Ctrl + r )" );
- connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( cerrar() ) );
+ connect( ActCerrar, SIGNAL( triggered() ), child, SLOT( cerrar() ) );
 
 }
 
@@ -122,7 +122,7 @@ void EVLista::eliminar()
 {
  //Preguntar al usuario si esta seguro
  QItemSelectionModel *selectionModel = vista->selectionModel();
- QModelIndexList indices = selectionModel->selectedRows();
+ QModelIndexList indices = selectionModel->selectedIndexes();
  if( indices.size() < 1 )
  {
    QMessageBox::warning( this, "Seleccione un item",
@@ -138,11 +138,16 @@ void EVLista::eliminar()
  if ( ret == 0 )
  {
 	QModelIndex indice;
+	int ultima_row = -1;
 	foreach( indice, indices )
 	{
 		if( indice.isValid() )
 		{
-			modelo->removeRow( indice.row() );
+			if( indice.row() != ultima_row )
+			{
+				ultima_row = indice.row();
+				modelo->removeRow( indice.row() );
+			}
 		}
 	}
  }

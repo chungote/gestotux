@@ -21,10 +21,13 @@
 
 #include "mcategoria.h"
 #include <QTableView>
+#include <QSqlQuery>
 #include <QSqlRecord>
+#include <QSqlError>
+#include <QMessageBox>
 
 VCategorias::VCategorias( QWidget *parent )
- : EVLista( parent )
+ : EVLista( parent, this )
 {
  setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "car_categorias" );
@@ -54,6 +57,41 @@ void VCategorias::antes_de_insertar(int row, QSqlRecord& record)
 void VCategorias::eliminar()
 {
 	// Verificar que no existan caravanas con esta categoria
-    EVLista::eliminar();
+	//Busco el id
+	QItemSelectionModel *selectionModel = vista->selectionModel();
+	QModelIndexList lista = selectionModel->selectedIndexes();
+	if( lista.size() < 1 )
+	{
+	   QMessageBox::warning( this, "Seleccione una categoria",
+                   "Por favor, seleccione una o varias categorias para eliminarlas para eliminar",
+                   QMessageBox::Ok );
+	   return;
+	}
+	QModelIndex indice;
+	QStringList lista2;
+	foreach( indice, lista )
+	{
+		lista2.append( vista->model()->data( vista->model()->index( indice.row(), 0 ), Qt::EditRole ).toString() );
+	}
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id_tri) FROM car_tri WHERE id_categoria IN ( %1 )" ).arg( lista2.join( "," ) ) ) )
+    {
+	if( cola.record().value(0).toInt() > 0 )
+	{
+		QMessageBox::warning( this, "No se puede eliminar", "No se puede eliminar la categoria seleccionada, ya que existen TRI que pertenecen a esta categoria." );
+		return;
+	}
+	else
+	{
+		// No hay tris en esa categoria, entonces la elimino
+		EVLista::eliminar();
+	}
+    }
+    else
+    {
+	qWarning( QString( "Error al buscar la cantidad de tris que pertenecen a una categoria\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+	return;
+    }
+
 }
 

@@ -21,6 +21,8 @@
 #define FORMVENTA_H
 
 #include <formmovimiento.h>
+class QSqlQueryModel;
+class QCompleter;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -31,10 +33,15 @@ Q_OBJECT
 public:
     FormVenta( QWidget* parent = 0, Qt::WFlags fl = 0 );
     ~FormVenta();
+    void filtrarPorEstablecimiento( int idCombo );
 
 public slots:
     void cerrar();
     void guardar();
+
+protected:
+    QCompleter * completador;
+    QSqlQueryModel *modelo;
 };
 
 #endif

@@ -21,16 +21,20 @@
 #define VCATEGORIAS_H
 
 #include <evlista.h>
+#include <QObject>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class VCategorias : public EVLista
 {
+ Q_OBJECT
 public:
     VCategorias( QWidget *parent = 0 );
     ~VCategorias();
     virtual void antes_de_insertar(int row, QSqlRecord& record);
+
+protected slots:
     void eliminar();
 
 };

@@ -19,18 +19,18 @@
  ***************************************************************************/
 #include "formagregar.h"
 
+#include <QSqlQuery>
+#include <QSqlRecord>
+
 FormAgregar::FormAgregar(QWidget* parent, Qt::WFlags fl)
 : FormMovimiento( parent, fl, FormMovimiento::compra )
 {
+ 
 }
 
 FormAgregar::~FormAgregar()
 {
 }
-
-
-
-
 
 
 /*!
@@ -39,6 +39,8 @@ FormAgregar::~FormAgregar()
 void FormAgregar::guardar()
 {
     /// @todo implement me
+   //Chequear que no existan los numeros de caravanas ya en la tabla
+
 }
 
 

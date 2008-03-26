@@ -33,7 +33,8 @@ HEADERS += admincarcorr.h \
  formmovimiento.h \
  formventa.h \
  mtri.h \
- mcaravanas.h
+ mcaravanas.h \
+ emovimiento.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -48,7 +49,8 @@ SOURCES += admincarcorr.cpp \
  formmovimiento.cpp \
  formventa.cpp \
  mtri.cpp \
- mcaravanas.cpp
+ mcaravanas.cpp \
+ emovimiento.cpp
 
 TARGET = admincaravanascorrientes
 

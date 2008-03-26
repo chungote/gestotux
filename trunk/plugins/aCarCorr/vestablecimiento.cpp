@@ -30,6 +30,7 @@ VEstablecimiento::VEstablecimiento(QWidget *parent)
  modelo = new MEstablecimiento( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
+ modelo->select();
  
  addAction( ActAgregar );
  addAction( ActCerrar );
@@ -42,7 +43,8 @@ VEstablecimiento::~VEstablecimiento()
 
 void VEstablecimiento::antes_de_insertar(int row, QSqlRecord& record)
 {
- record.setValue( 1, QString( " " ) );
+ record.setValue( 1, QString( "nombre" ) );
+ record.setValue( 2, QString( "#respma" ) );
  record.remove( 0 );
 }
 
