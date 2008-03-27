@@ -1,13 +1,19 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="2" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/evlista.cpp" >
-   <View0 Encoding="" line="60" Type="Source" />
+ <DocsAndViews NumberOfDocuments="4" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/emovimiento.cpp" >
+   <View0 Encoding="" line="321" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/vcategorias.cpp" >
-   <View0 Encoding="" line="30" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/emovimiento.h" >
+   <View0 Encoding="" line="45" Type="Source" />
   </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/formagregar.cpp" >
+   <View0 Encoding="" line="47" Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/ui/ui_FormMovimientoBase.h" >
+   <View0 Encoding="" line="34" Type="Source" />
+  </Doc3>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

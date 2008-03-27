@@ -34,7 +34,7 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
  	this->setAttribute( Qt::WA_DeleteOnClose );
 	CBEstilo->insertItems( -1, QStyleFactory::keys() );
 	connect( ChBBarraProgreso, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoBarra( int ) ) );
-	PBMuestra->setStyleSheet( "QProgressBar:horizontal { border: 1px solid gray; border-radius: 6px; background: white; padding: 0px; text-align: center; text-padding: 4px; text-weight: bold; } QProgressBar::chunk:horizontal { background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 blue, stop: 1 cyan); }" );
+	PBMuestra->setStyleSheet( "QProgressBar:horizontal { border: 1px solid gray; border-radius: 6px; background: white; padding: 0px; text-align: center; } QProgressBar::chunk:horizontal { background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 blue, stop: 1 cyan); }" );
 	QTimer *tiempo = new QTimer( this );
 	tiempo->setInterval( 900 );
 	connect( tiempo, SIGNAL( timeout() ), this, SLOT( avanzarBarra() ) );

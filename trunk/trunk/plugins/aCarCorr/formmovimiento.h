@@ -47,6 +47,7 @@ public:
 protected:
 	QAction *ActCerrar;
 	QAction *ActGuardar;
+	QStringListModel *model;
 
 
 protected slots:
@@ -54,9 +55,6 @@ protected slots:
     void eliminarCaravana();
     void agregarCaravana();
     virtual void guardar() = 0;
-
-private:
-	QStringListModel *model;
 
 public slots:
     void agregarCategoria();
