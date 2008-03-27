@@ -105,7 +105,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     ActGuardar->setStatusTip( "Guarda la preferencias y cierra la ventana" );
     ActGuardar->setToolTip( "Guarda las preferencias y cierra la ventana ( Ctrl + g )" );
     connect( ActGuardar, SIGNAL( triggered() ), this, SIGNAL( guardar() ) );
-    connect( ActGuardar, SIGNAL( triggered() ), this, SIGNAL( close() ) );
+    connect( ActGuardar, SIGNAL( triggered() ), this, SIGNAL( cerrar() ) );
 
     addAction( ActGuardar );
     addAction( ActAplicar );

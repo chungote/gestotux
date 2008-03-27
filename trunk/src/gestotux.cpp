@@ -72,7 +72,7 @@ void gestotux::inicializar()
  bandeja_sistema();
 
 preferencias *p = preferencias::getInstancia();
-p->inicio();
+//p->inicio();
 p->beginGroup( "ventanaPrincipal" );
 this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
 p->endGroup();
@@ -165,7 +165,7 @@ void gestotux::salir()
 {
  preferencias *p = preferencias::getInstancia();
  p->sync();
- p->inicio();
+ //p->inicio();
  p->beginGroup( "ventanaPrincipal" );
  p->setValue( "estado", saveState( 0 ) );
  p->endGroup();
@@ -270,10 +270,13 @@ void gestotux::verBackup()
 void gestotux::bandeja_sistema()
 {
  preferencias *p = preferencias::getInstancia();
- p->inicio();
+ //p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
- if( p->value( "icono_bandeja" ).toBool() == true )
+ bool bandeja = p->value( "icono_bandeja", false ).toBool();
+ p->endGroup();
+ p->endGroup();
+ if( bandeja )
  {
    if( QSystemTrayIcon::isSystemTrayAvailable() )
    {
@@ -369,8 +372,7 @@ bool gestotux::cargarPlugins()
 	 }
 	 else
 	 {
-		qWarning( "Error al cargar el plugin" );
-		qWarning( QString( "Error: %1" ).arg( loader.errorString() ).toLocal8Bit() );
+		qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
 	 }
      }
 	return true;

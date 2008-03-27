@@ -56,6 +56,7 @@ signals:
 	void guardar();
 	void aplicar();
 	void cargar();
+	void cerrar();
 
 };
 
