@@ -36,6 +36,7 @@ public:
     compra,
     venta,
     movimiento,
+    stock,
     indefinido
   };
 
@@ -61,6 +62,8 @@ public slots:
     void agregarCliente();
     void agregarEstablecimientoOrigen();
     void agregarEstablecimientoDestino();
+protected slots:
+    void cargarDesdeArchivo();
 };
 
 #endif

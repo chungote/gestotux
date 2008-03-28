@@ -7,7 +7,7 @@ CREATE TABLE presupuestos_productos ( id INTEGER PRIMARY KEY AUTOINCREMENT, id_p
 CREATE TABLE presupuestos ( id INTEGER PRIMARY KEY AUTOINCREMENT, destinatario TEXT NOT NULL, fecha TEXT NOT NULL, total NUMERIC, contenido BLOB );
 CREATE TABLE car_categorias ( id_categoria INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL );
 CREATE TABLE car_establecimientos ( id_establecimiento INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, respma TEXT NOT NULL );
-CREATE TABLE car_caravana ( id_caravana INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT NOT NULL );
+CREATE TABLE car_caravana ( id_caravana INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT NOT NULL UNIQUE );
 CREATE TABLE car_tri( id_tri INTEGER PRIMARY KEY AUTOINCREMENT, dta TEXT NOT NULL, razon NUMERIC NOT NULL, id_categoria NUMERIC NOT NULL, id_estab_destino NUMERIC, id_estab_origen NUMERIC, id_comprador NUMERIC, id_vendedor NUMERIC );
 CREATE TABLE car_carv_tri( id_caravana INTEGER, id_tri, PRIMARY KEY( id_caravana, id_tri ) );
 COMMIT;

@@ -28,6 +28,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QInputDialog>
+#include <QFileDialog>
 #include <QSqlError>
 
 #include "mestablecimiento.h"
@@ -69,6 +70,9 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	connect( PBAgregarEstablecimientoDestino, SIGNAL( clicked() ), this, SLOT( agregarEstablecimientoDestino() ) );
 	connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarCaravana() ) );
 	connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarCaravana() ) );
+	connect( PBCargarArchivo, SIGNAL( clicked() ), this, SLOT( cargarDesdeArchivo() ) );
+
+	connect( LENumCar, SIGNAL( returnPressed () ), this, SLOT( agregarCaravana() ) );
 
 	// Inicializo los modelos
 	CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
@@ -106,6 +110,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	{
 		case compra:
 		{
+			LTitulo->setText( "Ingreso de caravanas por compra" );
 			LOrigen->hide();
 			CBEstablecimientoOrigen->hide();
 			PBAgregarEstablecimientoOrigen->hide();
@@ -113,6 +118,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 		}
 		case venta:
 		{
+			LTitulo->setText( "Salida de caravanas por venta" );
 			LDestino->hide();
 			CBEstablecimientoDestino->hide();
 			PBAgregarEstablecimientoDestino->hide();
@@ -120,6 +126,32 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 		}
 		case movimiento:
 		{
+			LTitulo->setText( "Movimiento interno de caravanas" );
+			LCliente->hide();
+			CBCliente->hide();
+			PBAgregarCliente->hide();
+			break;
+		}
+		case stock:
+		{
+			LTitulo->setText( "Ingreso de caravanas por stock" );
+			// oculto el origen ( viene del limbo )
+			LOrigen->hide();
+			CBEstablecimientoOrigen->hide();
+			PBAgregarEstablecimientoOrigen->hide();
+			// oculto el comprador/vendedor
+			LCliente->hide();
+			CBCliente->hide();
+			PBAgregarCliente->hide();
+			// Oculto la categoria 
+			LCategoria->hide();
+			CBCategoria->hide();
+			PBAgregarCategoria->hide();
+			// Oculto el DTA y el TRI
+			LTri->hide();
+			LDTA->hide();
+			LETRI->hide();
+			LEDTA->hide();
 			break;
 		}
 		default:
@@ -147,6 +179,10 @@ void FormMovimiento::agregarCaravana()
   return;
  }
  QStringList d = model->stringList();
+ if( d.contains( LENumCar->text() ) )
+ {
+  return;
+ }
  d.append( LENumCar->text() );
  model->setStringList( d );
  LENumCar->clear();
@@ -241,24 +277,24 @@ void FormMovimiento::agregarCliente()
     QString nombre = QInputDialog::getText(this, tr("Nuevo Cliente - Paso 1"),
                                          tr("Nombre del cliente:"), QLineEdit::Normal,
                                          "", &ok1);
+    if( !ok1 )
+    { return; }
     QString apellido = QInputDialog::getText(this, tr("Nuevo Cliente - Paso 2"),
                                          tr("Apellido del cliente:"), QLineEdit::Normal,
                                          "", &ok2);
     if ( ok1 && ok2 && !nombre.isEmpty() && !apellido.isEmpty())
     {
-	QSqlTableModel *mod = qobject_cast<QSqlTableModel *>(CBCliente->model());
-	QSqlRecord rec = mod->record();
-	rec.remove(0);
-	rec.setValue( "nombre", nombre );
-	rec.setValue( "apellido", apellido );
-	if( mod->insertRecord( -1, rec ) )
+	QSqlQuery cola;
+	if( cola.exec( QString( "INSERT INTO clientes( nombre, apellido ) VALUES ( '%1', '%2' )" ).arg( nombre ).arg( apellido ) ) )
 	{
 		///@todo Selecciono el id insertado en el combo automaticamente???
+		qobject_cast<QSqlQueryModel *>(CBCliente->model())->clear();
+		qobject_cast<QSqlQueryModel *>(CBCliente->model())->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
 		return;
 	}
 	else
 	{
-		qWarning( QString( "Error al insertar el registro de cliente \n Error: %1").arg( mod->lastError().text() ).toLocal8Bit() );
+		qWarning( QString( "Error al insertar el registro de cliente \n Error: %1").arg( cola.lastError().text() ).toLocal8Bit() );
 		return;
 	}
     }
@@ -274,6 +310,8 @@ void FormMovimiento::agregarEstablecimientoOrigen()
     QString nombre = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 1"),
                                          tr("Nombre del Establecimiento:"), QLineEdit::Normal,
                                          "", &ok1 );
+    if( !ok1 )
+    { return; }
     QString respma = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 2"),
                                          tr("Numero de RESPMA:"), QLineEdit::Normal,
                                          "", &ok2 );
@@ -306,6 +344,8 @@ void FormMovimiento::agregarEstablecimientoDestino()
     QString nombre = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 1"),
                                          tr("Nombre del Establecimiento:"), QLineEdit::Normal,
                                          "", &ok1 );
+    if( !ok1 )
+    { return; }
     QString respma = QInputDialog::getText(this, tr("Nuevo Establecimiento - Paso 2"),
                                          tr("Numero de RESPMA:"), QLineEdit::Normal,
                                          "", &ok2 );
@@ -326,5 +366,25 @@ void FormMovimiento::agregarEstablecimientoDestino()
 		qWarning( QString( "Error al insertar el registro de establecimiento \n Error: %1").arg( mod->lastError().text() ).toLocal8Bit() );
 		return;
 	}
+    }
+}
+
+
+/*!
+    \fn FormMovimiento::cargarDesdeArchivo()
+ */
+void FormMovimiento::cargarDesdeArchivo()
+{
+     QFileDialog::Options opciones;
+     QString filtroSeleccion;
+    QString archivo = QFileDialog::getOpenFileName( this,
+                                "Importar desde archivo...",
+                                "",
+                                "Todos los archivos (*);;Archivos de texto (*.txt)",
+                                &filtroSeleccion,
+                                opciones);
+    if ( !archivo.isEmpty() )
+    {
+	qWarning( "Esta opcion todavia no fue implementada" );
     }
 }
