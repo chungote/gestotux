@@ -25,6 +25,7 @@
 #include <QString>
 #include <QStringList>
 #include <QDate>
+class QProgressDialog;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -35,17 +36,17 @@ Q_OBJECT
 public:
     enum tipo
     {
-     invalido = 0,
-     stock = 1,
-     compra = 2,
-     venta = 3,
-     mudanza = 4
-    } tipo_mov;
+     invalido,
+     stock,
+     compra,
+     venta,
+     mudanza
+    };
     EMovimiento( QObject *parent = 0 );
     ~EMovimiento();
 
     bool cargarMovimiento( int idDb );
-    int guardar();
+    int guardar( QProgressDialog *dialogo );
 
     QStringList caravanas();
     QString getDTA() const;
@@ -53,13 +54,15 @@ public:
     int tipoMov() const;
 
     void setTipoMov( const tipo& theValue );
-    void setDTA ( const QString& theValue );
+    void setDTA( const QString& theValue );
     void setComprador( int id );
     void setVendedor( int idDB );
     void setEstablecimientoDestino( int idDB );
     void setEstablecimientoOrigen( int idDB );
     void setCategoria( int id );
-    void setFecha ( const QDate& theValue );
+    void setFecha( const QDate& theValue );
+    void eliminarCaravana( QString codigo );
+    bool agregarCaravana( QString codigo, bool verificar = true );
 
 private:
 	QPair<int,QString> destino;
@@ -70,6 +73,7 @@ private:
 	QDate fecha;
 	QString DTA;
 	int id_db;
+	QStringList _caravanas;
 
 private:
     void cargarNombreCategoria( int idDB );
@@ -77,6 +81,12 @@ private:
     void cargarNombreVendedor( int idDB );
     void cargarNombreEstablecimientoDestino( int idDB );
     void cargarNombreEstablecimientoOrigen( int idDB );
+    void setCaravanas( QStringList caravanas );
+    bool guardarCaravana( QString codigo );
+    bool cargarCaravanas();
+    bool asociarCaravana( QString codigo );
+
+    int tipo_mov;
 };
 
 #endif

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>527</width>
-    <height>548</height>
+    <height>642</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -15,6 +15,12 @@
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QLabel" name="LTitulo" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text" >
       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
@@ -27,6 +33,12 @@ p, li { white-space: pre-wrap; }
     <layout class="QHBoxLayout" >
      <item>
       <widget class="QLabel" name="label_2" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text" >
         <string>Fecha:</string>
        </property>
@@ -56,7 +68,7 @@ p, li { white-space: pre-wrap; }
    <item>
     <layout class="QHBoxLayout" >
      <item>
-      <widget class="QLabel" name="label_4" >
+      <widget class="QLabel" name="LCategoria" >
        <property name="text" >
         <string>Categoria:</string>
        </property>
@@ -188,7 +200,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <layout class="QHBoxLayout" >
        <item>
-        <widget class="QLabel" name="label_6" >
+        <widget class="QLabel" name="LTri" >
          <property name="text" >
           <string>Numero de TRI:</string>
          </property>
@@ -224,7 +236,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <layout class="QHBoxLayout" >
        <item>
-        <widget class="QLabel" name="label_7" >
+        <widget class="QLabel" name="LDTA" >
          <property name="text" >
           <string>Numero DTA:</string>
          </property>
@@ -306,6 +318,13 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="PBCargarArchivo" >
+        <property name="text" >
+         <string>Cargar desde archivo...</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

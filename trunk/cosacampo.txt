@@ -1,3 +1,17 @@
+
+Reglas que se estan siguiendo
+====== === == ===== =========
+
+Todos los tri de venta obtienen sus caravanas de uno y solo un establecimiento.
+Todos los tri de compra van a a uno y solo un establecimiento de destino.
+Las caravanas que se agregan por medio de una compra se dan de alta automaticamente.
+Solo se pueden agregar caravanas que no existan previamente en el sistema
+Los movimientos y ventas se haran exclusivamente con caravanas existentes en el sistema
+
+
+Apuntes de charlas con gandhalf
+======= == ======= === ========
+
 todas las caravanas se mueven x tri.
 el tri es como 1 grupo de caravanas
 cada tri tiene 1 nro de dta que t lo asigno senasa para poder mover los animales 

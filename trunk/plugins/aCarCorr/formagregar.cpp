@@ -25,7 +25,6 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QProgressDialog>
-#include <QErrorMessage>
 #include <QMessageBox>
 #include <QStringListModel>
 
@@ -51,6 +50,7 @@ void FormAgregar::guardar()
  dialogo->setMinimum( 0 );
  dialogo->setMaximum( 6 );
  dialogo->setValue( 0 );
+ dialogo->setMinimumDuration( 0 );
  dialogo->show();
  EMovimiento *movimiento = new EMovimiento( this );
  // Tipo de Movimiento
@@ -77,44 +77,27 @@ void FormAgregar::guardar()
  QStringList lista = model->stringList();
  dialogo->setRange( 0, lista.size() );
  dialogo->setValue( 0 );
- QString cadena; QSqlQuery cola;
+ QString cadena;
  foreach( cadena, lista )
  {
-  if( cola.exec( QString( "SELECT COUNT(codigo) FROM car_caravanas WHERE codigo = '%1'" ).arg( cadena ) ) )
-  {
-   if( cola.next() )
-   {
-    if( cola.record().value(0).toInt() >= 1 )
-    {
- 	QErrorMessage *di = new QErrorMessage( this );
-	di->showMessage( QString( "La caravana de codigo %1 ya existe al menos %2 veces en el sistema, no sera guardada en este tri" ).arg( cadena ).arg( cola.record().value(0).toInt() ) );
-	lista.removeAt( lista.indexOf( cadena ) );
-    }
-    dialogo->setValue( dialogo->value() +1 );
-   }
-   else
-   {
-     qWarning( QString( "Error al hace next en buscar codigos de caravanas\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-   }
-  }
-  else
-  {
-    qWarning( QString( "Error al buscar codigos de caravanas\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-  }
+  movimiento->agregarCaravana( cadena );
  }
  // Lista la comprobacion de caravanas
  // comienzo a guardar todo
  dialogo->setLabelText( "Guardando datos..." );
- dialogo->setValue( 0 );
- dialogo->setRange( 0, lista.size() +1 );
- int id = movimiento->guardar();
+ int id = movimiento->guardar( dialogo );
  if( id < 0 )
  {
 	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
+	dialogo->close();
 	return;
  }
- dialogo->setValue( dialogo->value() +1 );
- // guardo las caravanas
+ else
+ {
+  QMessageBox::information( this, "Correcto", "La informacion se a guardado correctamente");
+ }
+ dialogo->close();
+ this->close();
 }
 
 
