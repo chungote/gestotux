@@ -33,14 +33,18 @@ class QProgressDialog;
 class EMovimiento : public QObject
 {
 Q_OBJECT
+
+private:
+
+
 public:
     enum tipo
     {
-     invalido,
-     stock,
-     compra,
-     venta,
-     mudanza
+     invalido = 1,
+     stock = 2,
+     compra = 3,
+     venta = 4,
+     mudanza = 5
     };
     EMovimiento( QObject *parent = 0 );
     ~EMovimiento();
@@ -53,8 +57,8 @@ public:
     QDate getFecha() const;
     int tipoMov() const;
 
-    void setTipoMov( const tipo& theValue );
-    void setDTA( const QString& theValue );
+    void setTipoMov( const int& theValue );
+    bool setDTA( const QString& theValue );
     void setComprador( int id );
     void setVendedor( int idDB );
     void setEstablecimientoDestino( int idDB );
@@ -76,11 +80,11 @@ private:
 	QStringList _caravanas;
 
 private:
-    void cargarNombreCategoria( int idDB );
-    void cargarNombreComprador( int idDB );
-    void cargarNombreVendedor( int idDB );
-    void cargarNombreEstablecimientoDestino( int idDB );
-    void cargarNombreEstablecimientoOrigen( int idDB );
+    void cargarNombreCategoria( const int idDB );
+    void cargarNombreComprador( const int idDB );
+    void cargarNombreVendedor( const int idDB );
+    void cargarNombreEstablecimientoDestino( const int idDB );
+    void cargarNombreEstablecimientoOrigen( const int idDB );
     void setCaravanas( QStringList caravanas );
     bool guardarCaravana( QString codigo );
     bool cargarCaravanas();

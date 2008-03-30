@@ -27,11 +27,13 @@
 #include <QProgressDialog>
 #include <QMessageBox>
 #include <QStringListModel>
+#include <QLabel>
 
 FormAgregar::FormAgregar(QWidget* parent, Qt::WFlags fl)
 : FormMovimiento( parent, fl, FormMovimiento::compra )
 {
- 
+ // titulo
+ LTitulo->setText( "Agregar nuevas caravanas mediante una compra" );
 }
 
 FormAgregar::~FormAgregar()
@@ -44,7 +46,7 @@ FormAgregar::~FormAgregar()
  */
 void FormAgregar::guardar()
 {
-    /// @todo implement me
+ QSqlQuery c( "BEGIN TRANSACTION" );
  QProgressDialog *dialogo = new QProgressDialog( this );
  dialogo->setLabelText( "Guardando datos del TRI" );
  dialogo->setMinimum( 0 );
@@ -57,7 +59,11 @@ void FormAgregar::guardar()
  movimiento->setTipoMov( EMovimiento::compra );
  dialogo->setValue( dialogo->value() + 1 );
  // DTA
- movimiento->setDTA( LEDTA->text() );
+ if( !movimiento->setDTA( LEDTA->text() ) )
+ {
+	dialogo->close();
+	return;
+ }
  dialogo->setValue( dialogo->value() + 1 );
  // Fecha
  movimiento->setFecha( dEFecha->date() );
@@ -90,11 +96,19 @@ void FormAgregar::guardar()
  {
 	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
 	dialogo->close();
+	c.exec( "ROLLBACK TRANSACTION" );
 	return;
  }
  else
  {
-  QMessageBox::information( this, "Correcto", "La informacion se a guardado correctamente");
+  if( c.exec( "COMMIT" ) )
+  {
+   QMessageBox::information( this, "Correcto", "La informacion se ha guardado correctamente");
+  }
+  else
+  {
+   qWarning( QString( "Error al hacer el commit\n Error: %1" ).arg( c.lastError().text() ).toLocal8Bit() );
+  }
  }
  dialogo->close();
  this->close();

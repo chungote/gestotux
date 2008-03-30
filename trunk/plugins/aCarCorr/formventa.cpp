@@ -18,17 +18,25 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "formventa.h"
+#include "emovimiento.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QStringListModel>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QProgressDialog>
+#include <QMessageBox>
 
 FormVenta::FormVenta(QWidget* parent, Qt::WFlags fl ):
 FormMovimiento(parent, fl, FormMovimiento::venta )
 {
- // Verificar si las caravanas provienen del mismo establecimiento siempre
+ LTitulo->setText( "Agregar Venta de Caravanas" );
+ // Verificar si las caravanas provienen del mismo establecimiento siempre - SI
  // si es asi, verificar que no se coloquen caravanas que no existen en ese establecimiento
  // Creo el autocompletar con los datos
- connect( CBEstablecimientoOrigen, SIGNAL( indexChanged( int ) ), this, SLOT( filtrarPorEstablecimiento( int ) ) );
+ CBEstablecimientoOrigen->setCurrentIndex( -1 );
+ connect( CBEstablecimientoOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( filtrarPorEstablecimiento( int ) ) );
 }
 
 
@@ -50,7 +58,71 @@ void FormVenta::cerrar()
  */
 void FormVenta::guardar()
 {
-    /// @todo implement me
+ QSqlQuery c( "BEGIN TRANSACTION" );
+ QProgressDialog *dialogo = new QProgressDialog( this );
+ dialogo->setLabelText( "Guardando datos del TRI" );
+ dialogo->setMinimum( 0 );
+ dialogo->setMaximum( 6 );
+ dialogo->setValue( 0 );
+ dialogo->setMinimumDuration( 0 );
+ dialogo->show();
+ EMovimiento *movimiento = new EMovimiento( this );
+ // Tipo de Movimiento
+ movimiento->setTipoMov( EMovimiento::venta );
+ dialogo->setValue( dialogo->value() + 1 );
+ // DTA
+ if( !movimiento->setDTA( LEDTA->text() ) )
+ {
+	dialogo->close();
+	return;
+ }
+ dialogo->setValue( dialogo->value() + 1 );
+ // Fecha
+ movimiento->setFecha( dEFecha->date() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Categoria
+ movimiento->setCategoria( CBCategoria->model()->data( CBCategoria->model()->index( CBCategoria->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Establecimiento de origen
+ movimiento->setEstablecimientoOrigen( CBEstablecimientoOrigen->model()->data( CBEstablecimientoOrigen->model()->index( CBEstablecimientoOrigen->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Comprador
+ movimiento->setComprador( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Lista de caravanas
+ dialogo->setLabelText( "Comprobando caravanas..." );
+ QStringList lista = model->stringList();
+ dialogo->setRange( 0, lista.size() );
+ dialogo->setValue( 0 );
+ QString cadena;
+ foreach( cadena, lista )
+ {
+  movimiento->agregarCaravana( cadena );
+ }
+ // Lista la comprobacion de caravanas
+ // comienzo a guardar todo
+ dialogo->setLabelText( "Guardando datos..." );
+ int id = movimiento->guardar( dialogo );
+ if( id < 0 )
+ {
+	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
+	dialogo->close();
+	c.exec( "ROLLBACK TRANSACTION" );
+	return;
+ }
+ else
+ {
+  if( c.exec( "COMMIT" ) )
+  {
+   QMessageBox::information( this, "Correcto", "La informacion se ha guardado correctamente");
+  }
+  else
+  {
+   qWarning( QString( "Error al hacer el commit\n Error: %1" ).arg( c.lastError().text() ).toLocal8Bit() );
+  }
+ }
+ dialogo->close();
+ this->close();
 }
 
 
@@ -68,14 +140,27 @@ void FormVenta::filtrarPorEstablecimiento( int idCombo )
  }
  if( modelo == 0 )
  {
-  modelo = new QSqlQueryModel( completador );
+  modelo = new QSqlQueryModel( this );
  }
  // Selecciono todos los tri que tuvieron movimientos hacia ese establecimiento
  // SELECT id_tri FROM car_tri WHERE id_estab_destino = '%1'
  // Despues busco todos las caravanas que estuvieron en esos tri
  // SELECT id_caravana FROM car_carav_tri WHERE id_tri IN (  )
  // Selecciono los codigos que se encuentran en los establecimientos
- modelo->setQuery( QString( "SELECT codigo FROM car_caravanas WHERE id_caravana IN ( SELECT id_caravana FROM car_carav_tri WHERE id_tri IN ( SELECT id_tri FROM car_tri WHERE id_estab_destino = '%1' ) )" ).arg( id_establecimiento ) );
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT codigo FROM car_caravana WHERE id_caravana IN ( SELECT id_caravana FROM car_carv_tri WHERE id_tri IN ( SELECT id_tri FROM car_tri WHERE id_estab_destino = '%1' ) )" ).arg( id_establecimiento ) ) )
+ {
+  qWarning( QString( "Error al ejecutar la cola de autocompletado. Error: %1, %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+  return;
+ }
+ modelo->setQuery( cola );
+ if ( !modelo->lastError().isValid() )
+ {
+   qWarning( QString( "Error al colocar el modelo de autocompletado. Error: %1" ).arg( modelo->lastError().text() ).toLocal8Bit() );
+   return;
+ }
  completador->setModel( modelo );
+ completador->setCompletionMode( QCompleter::UnfilteredPopupCompletion );
  LENumCar->setCompleter( completador );
+ qDebug( "Seteado el autocompletado" );
 }

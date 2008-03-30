@@ -17,29 +17,27 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VCATEGORIAS_H
-#define VCATEGORIAS_H
+#include "formstock.h"
 
-#include <evlista.h>
-#include <QObject>
+#include <QLabel>
 
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class VCategorias : public EVLista
+FormStock::FormStock(QWidget *parent)
+ : FormMovimiento(parent)
 {
- Q_OBJECT
-public:
-    VCategorias( QWidget *parent = 0 );
-    ~VCategorias();
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
-    void buscar();
+  LTitulo->setText( "Agregar nuevas caravanas desde Stock" );
+}
 
-protected slots:
-    void eliminar();
 
-protected slots:
-    void imprimir();
-};
+FormStock::~FormStock()
+{
+}
 
-#endif
+
+void FormStock::cerrar()
+{
+}
+
+void FormStock::guardar()
+{
+}
+

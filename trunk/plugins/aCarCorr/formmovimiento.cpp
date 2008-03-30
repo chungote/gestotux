@@ -75,14 +75,6 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	connect( LENumCar, SIGNAL( returnPressed () ), this, SLOT( agregarCaravana() ) );
 
 	// Inicializo los modelos
-	CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
-	CBEstablecimientoOrigen->setModelColumn( 1 );
-	qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
-
-	CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
-	CBEstablecimientoDestino->setModelColumn( 1 );
-	qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
-
 	CBCategoria->setModel( new MCategoria( CBCategoria ) );
 	CBCategoria->setModelColumn( 1 );
 	qobject_cast<QSqlTableModel *>(CBCategoria->model())->select();
@@ -112,6 +104,9 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 		{
 			LTitulo->setText( "Ingreso de caravanas por compra" );
 			LOrigen->hide();
+			CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
+			CBEstablecimientoDestino->setModelColumn( 1 );
+			qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
 			CBEstablecimientoOrigen->hide();
 			PBAgregarEstablecimientoOrigen->hide();
 			break;
@@ -120,6 +115,9 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 		{
 			LTitulo->setText( "Salida de caravanas por venta" );
 			LDestino->hide();
+			CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
+			CBEstablecimientoOrigen->setModelColumn( 1 );
+			qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
 			CBEstablecimientoDestino->hide();
 			PBAgregarEstablecimientoDestino->hide();
 			break;
@@ -130,6 +128,13 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 			LCliente->hide();
 			CBCliente->hide();
 			PBAgregarCliente->hide();
+			CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
+			CBEstablecimientoOrigen->setModelColumn( 1 );
+			qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
+			
+			CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
+			CBEstablecimientoDestino->setModelColumn( 1 );
+			qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
 			break;
 		}
 		case stock:
@@ -152,6 +157,12 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 			LDTA->hide();
 			LETRI->hide();
 			LEDTA->hide();
+			CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
+			CBEstablecimientoOrigen->setModelColumn( 1 );
+			qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
+			CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
+			CBEstablecimientoDestino->setModelColumn( 1 );
+			qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
 			break;
 		}
 		default:
