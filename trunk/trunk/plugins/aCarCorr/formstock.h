@@ -17,29 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VCATEGORIAS_H
-#define VCATEGORIAS_H
+#ifndef FORMSTOCK_H
+#define FORMSTOCK_H
 
-#include <evlista.h>
-#include <QObject>
+#include <formmovimiento.h>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class VCategorias : public EVLista
+class FormStock : public FormMovimiento
 {
- Q_OBJECT
+Q_OBJECT
 public:
-    VCategorias( QWidget *parent = 0 );
-    ~VCategorias();
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
-    void buscar();
+    FormStock(QWidget *parent = 0);
+
+    ~FormStock();
 
 protected slots:
-    void eliminar();
+    void cerrar();
+    void guardar();
 
-protected slots:
-    void imprimir();
 };
 
 #endif

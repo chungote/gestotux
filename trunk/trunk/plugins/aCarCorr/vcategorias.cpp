@@ -95,3 +95,21 @@ void VCategorias::eliminar()
 
 }
 
+
+
+/*!
+    \fn VCategorias::imprimir()
+ */
+void VCategorias::imprimir()
+{
+ qWarning( "No implementado" );
+}
+
+
+/*!
+    \fn VCategorias::buscar()
+ */
+void VCategorias::buscar()
+{
+ qWarning( "No implementado" );
+}

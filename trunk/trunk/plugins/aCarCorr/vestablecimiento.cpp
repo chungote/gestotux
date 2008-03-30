@@ -24,7 +24,7 @@
 #include <QTableView>
 
 VEstablecimiento::VEstablecimiento(QWidget *parent)
- : EVLista(parent)
+ : EVLista( parent, this )
 {
  setAttribute( Qt::WA_DeleteOnClose );
  modelo = new MEstablecimiento( this );

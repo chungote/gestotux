@@ -97,7 +97,8 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
 
  ActAgregarMudanza = new QAction( "Nueva mudanza", this );
  ActAgregarMudanza->setIcon( QIcon( ":/imagenes/add.png" ) );
- connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
+ ActAgregarMudanza->setToolTip( "Agrega un nuevo tri de mudanza" );
+ connect( ActAgregarMudanza, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
 
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
@@ -117,6 +118,26 @@ bool AdminCarCorr::verificarTablas()
  if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_establecimientos' AND type = 'table'" ) )
  {
   qWarning( "Error al buscar la tabla car_establecimientos" );
+  return false;
+ }
+ if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_caravana' AND type = 'table'" ) )
+ {
+  qWarning( "Error al buscar la tabla car_caravana" );
+  return false;
+ }
+ if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_caravana' AND type = 'table'" ) )
+ {
+  qWarning( "Error al buscar la tabla car_caravana" );
+  return false;
+ }
+ if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_tri' AND type = 'table'" ) )
+ {
+  qWarning( "Error al buscar la tabla car_tri" );
+  return false;
+ }
+ if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_carv_tri' AND type = 'table'" ) )
+ {
+  qWarning( "Error al buscar la tabla car_carv_tri" );
   return false;
  }
  return true;
@@ -147,6 +168,8 @@ void AdminCarCorr::crearMenu(QMenuBar* m)
   menuHer->addAction( ActCategoria );
   menuHer->addSeparator();
   menuHer->addAction( ActAgregarCompra );
+  menuHer->addAction( ActAgregarMudanza );
+  menuHer->addAction( ActAgregarVenta );
  }
 }
 
@@ -200,5 +223,16 @@ void AdminCarCorr::hacerMovimiento()
 void AdminCarCorr::hacerVenta()
 {
  FormVenta *f = new FormVenta( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+
+#include "formmudanza.h"
+/*!
+    \fn AdminCarCorr::hacerMudanza()
+ */
+void AdminCarCorr::hacerMudanza()
+{
+ FormMudanza *f = new FormMudanza( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

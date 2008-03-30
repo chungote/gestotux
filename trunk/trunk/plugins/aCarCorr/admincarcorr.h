@@ -66,6 +66,7 @@ protected slots:
     void agregarCompra();
     void hacerMovimiento();
     void hacerVenta();
+    void hacerMudanza();
 };
 
 #endif

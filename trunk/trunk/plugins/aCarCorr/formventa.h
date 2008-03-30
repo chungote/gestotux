@@ -33,11 +33,13 @@ Q_OBJECT
 public:
     FormVenta( QWidget* parent = 0, Qt::WFlags fl = 0 );
     ~FormVenta();
-    void filtrarPorEstablecimiento( int idCombo );
 
 public slots:
     void cerrar();
     void guardar();
+
+private slots:
+    void filtrarPorEstablecimiento( int idCombo );
 
 protected:
     QCompleter * completador;

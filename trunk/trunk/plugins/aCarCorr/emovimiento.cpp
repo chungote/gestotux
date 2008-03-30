@@ -29,7 +29,7 @@
 EMovimiento::EMovimiento(QObject *parent)
  : QObject(parent)
 {
- setTipoMov( EMovimiento::invalido );
+ tipo_mov = EMovimiento::invalido;
  id_db = -1;
 }
 
@@ -44,11 +44,12 @@ int EMovimiento::tipoMov() const
 }
 
 
-void EMovimiento::setTipoMov( const tipo& theValue )
+void EMovimiento::setTipoMov( const int& theValue )
 {
  if( tipo_mov == EMovimiento::invalido )
  {
   tipo_mov = theValue;
+  qDebug( QString( "Seteado tipo de movimiento a %1 " ).arg( tipo_mov ).toLocal8Bit() );
  }
 }
 
@@ -69,7 +70,8 @@ bool EMovimiento::cargarMovimiento( int idDb )
 	id_db = cola.record().value( "id_tri" ).toInt();
 	setCategoria( cola.record().value( "id_categoria" ).toInt() );
 	// Busco el establecimiento
-	switch( cola.record().value( "razon" ).toInt() )
+	setTipoMov( cola.record().value( "razon" ).toInt() );
+	switch( tipoMov() )
 	{
 		case compra:
 		{
@@ -126,6 +128,8 @@ bool EMovimiento::cargarMovimiento( int idDb )
 
 /*!
     \fn EMovimiento::caravanas()
+	Devuleve la lista de caravanas que componen este tri
+	@return Objecto QStringList con los codigos de caravanas
  */
 QStringList EMovimiento::caravanas()
 {
@@ -148,9 +152,24 @@ QString EMovimiento::getDTA() const
 }
 
 
-void EMovimiento::setDTA ( const QString& theValue )
+bool EMovimiento::setDTA ( const QString& theValue )
 {
-	DTA = theValue;
+	// Verifico que no exista antes
+	QSqlQuery cola;
+	if( cola.exec(QString( "SELECT id_tri FROM car_tri WHERE dta = '%1'" ).arg( theValue ) ) )
+	{
+		if( cola.next() )
+		{
+			qWarning( "El #DTA que esta intentando utilizar para este TRI ya existe" );
+			return false;
+		}
+		else
+		{
+			qDebug( "Seteando DTA" );
+			DTA = theValue;
+			return true;
+		}
+	}
 }
 
 
@@ -159,7 +178,7 @@ void EMovimiento::setDTA ( const QString& theValue )
 	Funcion que carga el nombre de la categoria en la variable del objeto
 	@param idDB identificador de clave primaria de la categoria
  */
-void EMovimiento::cargarNombreCategoria( int idDB )
+void EMovimiento::cargarNombreCategoria( const int idDB )
 {
  QSqlQuery cola2;
  if( cola2.exec( QString( "SELECT nombre FROM car_categorias WHERE id_categoria = '%1'" ).arg( idDB ) ) )
@@ -171,15 +190,17 @@ void EMovimiento::cargarNombreCategoria( int idDB )
  }
  else
  {
- 	qWarning( QString( "Error al buscar el tri\n Error: %1\n %2" ).arg( cola2.lastError().text() ).arg( cola2.lastQuery() ).toLocal8Bit() );
+ 	qWarning( QString( "Error al buscar el nombre de la categoria\n Error: %1\n %2" ).arg( cola2.lastError().text() ).arg( cola2.lastQuery() ).toLocal8Bit() );
  }
 }
 
 
 /*!
     \fn EMovimiento::cargarNombreComprador( int idDB )
+	Funcion que carga el nombre del comprador en la variable del objeto
+	@param idDB identificador de clave primaria del cliente comprador
  */
-void EMovimiento::cargarNombreComprador( int idDB )
+void EMovimiento::cargarNombreComprador( const int idDB )
 {
  QSqlQuery cola2;
  if( cola2.exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( idDB ) ) )
@@ -199,7 +220,7 @@ void EMovimiento::cargarNombreComprador( int idDB )
 /*!
     \fn EMovimiento::setComprador( int id )
  */
-void EMovimiento::setComprador( int id )
+void EMovimiento::setComprador( const int id )
 {
  comprador.first = id;
  cargarNombreComprador( id );
@@ -209,7 +230,7 @@ void EMovimiento::setComprador( int id )
 /*!
     \fn EMovimiento::setCategoria( int id )
  */
-void EMovimiento::setCategoria( int id )
+void EMovimiento::setCategoria( const int id )
 {
  categoria.first = id;
  cargarNombreCategoria( id );
@@ -218,8 +239,10 @@ void EMovimiento::setCategoria( int id )
 
 /*!
     \fn EMovimiento::cargarNombreVendedor( int idDB )
+	Funcion que carga el nombre del vendedor en la variable del objeto
+	@param idDB identificador de clave primaria del cliente vendedor
  */
-void EMovimiento::cargarNombreVendedor( int idDB )
+void EMovimiento::cargarNombreVendedor( const int idDB )
 {
   QSqlQuery cola2;
  if( cola2.exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( idDB ) ) )
@@ -239,7 +262,7 @@ void EMovimiento::cargarNombreVendedor( int idDB )
 /*!
     \fn EMovimiento::setVendedor( int idDB )
  */
-void EMovimiento::setVendedor( int idDB )
+void EMovimiento::setVendedor( const int idDB )
 {
  vendedor.first = idDB;
  cargarNombreVendedor( idDB );
@@ -249,7 +272,7 @@ void EMovimiento::setVendedor( int idDB )
 /*!
     \fn EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
  */
-void EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
+void EMovimiento::cargarNombreEstablecimientoDestino( const int idDB )
 {
  QSqlQuery cola2;
  if( cola2.exec( QString( "SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'" ).arg( idDB ) ) )
@@ -261,7 +284,7 @@ void EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
  }
  else
  {
- 	qWarning( QString( "Error al buscar el tri\n Error: %1\n %2" ).arg( cola2.lastError().text() ).arg( cola2.lastQuery() ).toLocal8Bit() );
+ 	qWarning( QString( "Error al buscar el establecimiento de destino\n Error: %1\n %2" ).arg( cola2.lastError().text() ).arg( cola2.lastQuery() ).toLocal8Bit() );
  }
 }
 
@@ -269,7 +292,7 @@ void EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
 /*!
     \fn EMovimiento::setEstablecimientoDestino( int idDB )
  */
-void EMovimiento::setEstablecimientoDestino( int idDB )
+void EMovimiento::setEstablecimientoDestino( const int idDB )
 {
  destino.first = idDB;
  cargarNombreEstablecimientoDestino( idDB );
@@ -278,7 +301,7 @@ void EMovimiento::setEstablecimientoDestino( int idDB )
 /*!
     \fn EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
  */
-void EMovimiento::cargarNombreEstablecimientoOrigen( int idDB )
+void EMovimiento::cargarNombreEstablecimientoOrigen( const int idDB )
 {
  QSqlQuery cola2;
  if( cola2.exec( QString( "SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'" ).arg( idDB ) ) )
@@ -290,7 +313,7 @@ void EMovimiento::cargarNombreEstablecimientoOrigen( int idDB )
  }
  else
  {
- 	qWarning( QString( "Error al buscar el tri\n Error: %1\n %2" ).arg( cola2.lastError().text() ).arg( cola2.lastQuery() ).toLocal8Bit() );
+ 	qWarning( QString( "Error al buscar el establecimiento de origen\n Error: %1\n %2" ).arg( cola2.lastError().text() ).arg( cola2.lastQuery() ).toLocal8Bit() );
  }
 }
 
@@ -298,7 +321,7 @@ void EMovimiento::cargarNombreEstablecimientoOrigen( int idDB )
 /*!
     \fn EMovimiento::setEstablecimientoDestino( int idDB )
  */
-void EMovimiento::setEstablecimientoOrigen( int idDB )
+void EMovimiento::setEstablecimientoOrigen( const int idDB )
 {
  origen.first = idDB;
  cargarNombreEstablecimientoOrigen( idDB );
@@ -441,8 +464,7 @@ bool EMovimiento::agregarCaravana( QString codigo, bool verificar )
    {
     if( cola.record().value(0).toInt() >= 1 )
     {
- 	QErrorMessage *di = new QErrorMessage( 0 );
-	di->showMessage( QString( "La caravana de codigo %1 ya existe al menos %2 veces en el sistema, no sera guardada en este tri" ).arg( codigo ).arg( cola.record().value(0).toInt() ) );
+ 	qWarning( QString( "La caravana de codigo %1 ya existe al menos %2 veces en el sistema, no sera guardada en este tri" ).arg( codigo ).arg( cola.record().value(0).toInt() ).toLocal8Bit() );
 	return false;
     }
     else
@@ -483,11 +505,11 @@ void EMovimiento::eliminarCaravana( QString codigo )
  */
 bool EMovimiento::guardarCaravana( QString codigo )
 {
- /*switch( tipoMov() )
+ switch( tipoMov() )
  {
  	case compra:
 	case stock:
-	{*/
+	{
 		QSqlQuery cola;
 		if( !cola.exec( QString( "INSERT INTO car_caravana( codigo ) VALUES ( '%1' )" ).arg( codigo ) ) )
 		{
@@ -499,16 +521,25 @@ bool EMovimiento::guardarCaravana( QString codigo )
 			qDebug( "Caravana Agregada" );
 			return true;
 		}
-		/*break;
+		break;
+	}
+	case venta:
+	case mudanza:
+	{
+		qDebug( "La caravana ya debe existir en la db" );
+		return true;
+		break;
 	}
 	default:
 	{
 		qDebug( "No se guardo ninguna caravana. Tipo de movimiento sin implmenetacion" );
 		qDebug( QString::number( tipoMov() ).toLocal8Bit() );
+		return false;
 		break;
 	}
- }*/
+ }
  // Sino es de esos tipos, ya esta dada de alta en la db
+ return false;
 }
 
 

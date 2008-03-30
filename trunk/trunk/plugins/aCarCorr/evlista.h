@@ -83,6 +83,9 @@ protected slots:
     virtual void agregar();
     virtual void eliminar();
     virtual void antes_de_insertar( int row, QSqlRecord & record ) = 0;
+    virtual void buscar();
+    virtual void imprimir();
+    virtual void modificar();
 };
 
 #endif
