@@ -39,5 +39,9 @@ void FormStock::cerrar()
 
 void FormStock::guardar()
 {
+  if( !verificar() )
+ {
+  return;
+ }
 }
 

@@ -62,8 +62,13 @@ public slots:
     void agregarCliente();
     void agregarEstablecimientoOrigen();
     void agregarEstablecimientoDestino();
+
 protected slots:
     void cargarDesdeArchivo();
+    bool verificar();
+
+private:
+	tipo _accion;
 };
 
 #endif

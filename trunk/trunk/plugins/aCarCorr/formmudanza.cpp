@@ -56,7 +56,10 @@ void FormMudanza::cerrar()
  */
 void FormMudanza::guardar()
 {
- 
+  if( !verificar() )
+ {
+  return;
+ }
  QSqlQuery c( "BEGIN TRANSACTION" );
  QProgressDialog *dialogo = new QProgressDialog( this );
  dialogo->setLabelText( "Guardando datos del TRI" );
