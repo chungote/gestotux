@@ -2,13 +2,10 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug \
 exceptions \
  windows
-QT += sql \
-svg \
-xml \
-network
+
+QT += sql
 
 
 win32 {
@@ -35,7 +32,8 @@ HEADERS += admincarcorr.h \
  mtri.h \
  mcaravanas.h \
  emovimiento.h \
- formstock.h
+ formstock.h \
+ eplugin.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -57,9 +55,6 @@ SOURCES += admincarcorr.cpp \
 TARGET = admincaravanascorrientes
 
 DESTDIR = ../../bin/plugins
-
-
-INCLUDEPATH += ../../src
 
 RESOURCES += aCarCorr.qrc
 

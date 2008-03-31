@@ -30,6 +30,7 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include <QSqlError>
+#include <QFile>
 
 #include "mestablecimiento.h"
 #include "mcategoria.h"
@@ -38,6 +39,7 @@
 FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 : QWidget( parent, fl ), Ui::FormMovimientoBase()
 {
+	_accion = accion;
 	setupUi(this);
 	setAttribute( Qt::WA_DeleteOnClose );
 
@@ -78,12 +80,13 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 	CBCategoria->setModel( new MCategoria( CBCategoria ) );
 	CBCategoria->setModelColumn( 1 );
 	qobject_cast<QSqlTableModel *>(CBCategoria->model())->select();
+	CBCategoria->setCurrentIndex( -1 );
 
 	QSqlQueryModel *mcli = new QSqlQueryModel( this );
 	mcli->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
 	CBCliente->setModel( mcli );
 	CBCliente->setModelColumn( 1 );
-	CBCliente->setCurrentIndex( 0 );
+	CBCliente->setCurrentIndex( -1 );
 
 	// pongo la fecha de hoy
 	dEFecha->setDate( QDate::currentDate() );
@@ -176,6 +179,8 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 			break;
 		}
 	}
+	CBEstablecimientoDestino->setCurrentIndex( -1 );
+	CBEstablecimientoOrigen->setCurrentIndex( -1 );
 }
 
 FormMovimiento::~FormMovimiento()
@@ -391,11 +396,116 @@ void FormMovimiento::cargarDesdeArchivo()
     QString archivo = QFileDialog::getOpenFileName( this,
                                 "Importar desde archivo...",
                                 "",
-                                "Todos los archivos (*);;Archivos de texto (*.txt)",
+                                "Archivos de texto (*.txt)",
                                 &filtroSeleccion,
                                 opciones);
     if ( !archivo.isEmpty() )
     {
-	qWarning( "Esta opcion todavia no fue implementada" );
+	QFile arch( archivo );
+	if( !arch.open( QIODevice::ReadOnly ) )
+	{
+		qWarning( "No se puede abrir el archivo como solo lectura" );
+		return;
+	}
+	// Leo el archivo
+	QString cadena( arch.readAll() );
+	QStringList cadenas = cadena.split( "," );
+	if( cadenas.size() <= 0 )
+	{
+		qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
+		return;
+	}
+	model->setStringList( model->stringList() + cadenas );
     }
+}
+
+
+/*!
+    \fn FormMovimiento::verificar()
+ */
+bool FormMovimiento::verificar()
+{
+ // Verifico para todos los formularios el dta y la categoria
+ // la fecha siempre esta puesta en hoy y no va a ser invalida
+ if( CBCategoria->currentIndex() == -1 )
+ {
+ 	qWarning( "No ha seleccionado una categoria. Por favor elija una" );
+ 	return false;
+ }
+ if( LEDTA->text().isEmpty() )
+ {
+	qWarning( "No ha ingresado un Numero de DTA. Por favor ingrese uno" );
+ 	return false;
+ }
+ // Verifico para cada tipo de formulario
+ switch( _accion )
+ {
+	case compra:
+	{
+		// Destino y vendedor
+		if( CBEstablecimientoDestino->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un establecimiento de destino. Por favor elija uno" );
+			return false;
+		}
+		if( CBCliente->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un comprador. Por favor elija uno" );
+			return false;
+		}
+		break;
+	}
+	case venta:
+	{
+		// origen y comprador
+		if( CBEstablecimientoOrigen->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un establecimiento de origen. Por favor elija uno" );
+			return false;
+		}
+		if( CBCliente->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un vendedor. Por favor elija uno" );
+			return false;
+		}
+		break;
+	}
+	case movimiento:
+	{
+		// origen y destino
+		if( CBEstablecimientoOrigen->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un establecimiento de origen. Por favor elija uno" );
+			return false;
+		}
+		if( CBEstablecimientoDestino->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un establecimiento de destino. Por favor elija uno" );
+			return false;
+		}
+		break;
+	}
+	case stock:
+	{	
+		// Destino
+		if( CBEstablecimientoDestino->currentIndex() == -1 )
+		{
+			qWarning( "No ha seleccionado un establecimiento de destino. Por favor elija uno" );
+			return false;
+		}
+		break;
+	}
+	default:
+	{
+		break;
+	}
+ }
+ // verifico que exista al menos una caravana
+ if( model->stringList().isEmpty() )
+ {
+	qWarning( "No hay caravanas ingresadas. Por favor ingrese alguna" );
+	return false;
+ }
+ // Si llege hasta aca, los datos estan bien
+ return true;
 }
