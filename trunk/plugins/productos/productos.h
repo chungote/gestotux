@@ -39,6 +39,8 @@ public:
     int tipo() const;
     void crearMenu( QMenuBar *m );
     double version() const;
+    static QStackedWidget *tabs();
+    static QSettings *pref();
 
 private:
     QList<QAction *> _acciones;
@@ -46,6 +48,8 @@ private:
     static QSettings *_pref;
 
 	QAction *ActProductos;
+public slots:
+    void verProductos();
 };
 
 #endif

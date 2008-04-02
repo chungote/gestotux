@@ -161,3 +161,30 @@ void EVLista::closeEvent( QCloseEvent * c)
  delete modelo;
  EVentana::closeEvent( c );
 }
+
+
+/*!
+    \fn EVLista::buscar()
+ */
+void EVLista::buscar()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn EVLista::imprimir()
+ */
+void EVLista::imprimir()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn EVLista::modificar()
+ */
+void EVLista::modificar()
+{
+    /// @todo implement me
+}

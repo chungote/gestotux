@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "productos.h"
+#include "vproductos.h"
 
 QStackedWidget *productos::_formCen = 0;
 QSettings *productos::_pref = 0;
@@ -67,7 +68,7 @@ bool productos::inicializar( QStackedWidget *formCen, QSettings *pref )
  ActProductos->setToolTip( "Ver la lista de prodcutos" );
  connect( ActProductos, SIGNAL( triggered() ), this, SLOT( verProductos() ) );
 
- //_acciones.append( ActProductos );
+ _acciones.append( ActProductos );
 
  return verificarTablas();
 }
@@ -106,4 +107,25 @@ void productos::crearMenu( QMenuBar *m )
 double productos::version() const
 {
  return 0.1;
+}
+
+
+QStackedWidget *productos::tabs()
+{
+ return _formCen;
+}
+
+QSettings *productos::pref()
+{
+ return _pref;
+}
+
+
+/*!
+    \fn productos::verProductos()
+ */
+void productos::verProductos()
+{
+ VProductos *f = new VProductos( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

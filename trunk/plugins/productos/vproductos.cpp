@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -24,6 +24,7 @@
 #include <QHeaderView>
 #include <QAction>
 #include "gestotux.h"
+#include "mcategorias.h"
 #include "vcategorias.h"
 #include <QSqlRelationalDelegate>
 
@@ -95,4 +96,23 @@ void VProductos::verCategorias()
 {
  VCategorias *f = new VCategorias( this );
  gestotux::formCen()->setCurrentWidget( gestotux::formCen()->widget( gestotux::formCen()->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn VProductos::agregar()
+ */
+void VProductos::agregar()
+{
+ // Ver si existe alguna categoria primero
+ qDebug( "Verificando que existan categorias" );
+ MCategorias *m = new MCategorias();
+ if( m->rowCount() <= 0 )
+ {
+  qWarning( "Por favor, primero ingrese al menos una categoria de productos" );
+  delete m;
+  return;
+ }
+ delete m;
+ EVLista::agregar();
 }

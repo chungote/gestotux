@@ -107,6 +107,7 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  _acciones.append( ActAgregarCompra );
  _acciones.append( ActAgregarMudanza );
 
+ cargarPluginsInformes();
  return verificarTablas();
 }
 
@@ -271,6 +272,7 @@ void AdminCarCorr::cargarPluginsInformes()
  #endif
      pluginsDir.cd("plugins");
      pluginsDir.cd("informes");
+
 	_plugins = new QHash<QString, EInformeInterface *>();
 #ifdef Q_WS_WIN32
 	QStringList filtro;
@@ -282,13 +284,14 @@ void AdminCarCorr::cargarPluginsInformes()
      foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
      {
 #endif
-	loader->setFileName( fileName );
+	loader->setFileName( pluginsDir.absoluteFilePath( fileName ) );
         if( loader->load() )
         {
 		EInformeInterface *plug = qobject_cast<EInformeInterface *>( loader->instance() );
 		if( plug->inicializar() )
 		{
 			_plugins->insert( plug->nombre(), plug );
+			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
 		else
 		{
@@ -297,8 +300,7 @@ void AdminCarCorr::cargarPluginsInformes()
 	}
 	else
 	{
-		qWarning( "Error al cargar el plugin" );
-		qWarning( QString( "Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
+		qWarning( QString( "Error al cargar el plugin. Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
 	}
 	// Fin de la carga del plugin
   }
