@@ -23,6 +23,8 @@
 #include <QtPlugin>
 #include <eplugin.h>
 #include <einfoprogramainterface.h>
+#include <einformeinterface.h>
+#include <QPluginLoader>
 
 /**
 Plugin principal
@@ -46,6 +48,7 @@ public:
     double version() const;
     int tipo() const;
     void crearMenu(QMenuBar* m);
+    QList<EInformeInterface *> plugins();
 
 private:
     QList<QAction *> _acciones;
@@ -60,6 +63,9 @@ private:
 	QAction *ActAgregarVenta;
 	QAction *ActAgregarMudanza;
 
+	static QHash<QString, EInformeInterface *> *_plugins;
+	QPluginLoader *loader;
+
 protected slots:
     void verCategorias();
     void verEstablecimientos();
@@ -67,6 +73,9 @@ protected slots:
     void hacerMovimiento();
     void hacerVenta();
     void hacerMudanza();
+
+private:
+    void cargarPluginsInformes();
 };
 
 #endif

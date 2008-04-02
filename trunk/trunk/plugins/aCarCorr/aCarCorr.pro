@@ -1,3 +1,6 @@
+
+SUBDIRS += aCarCorrPlug.pro
+
 TEMPLATE = lib
 
 CONFIG += dll \
@@ -33,7 +36,9 @@ HEADERS += admincarcorr.h \
  mcaravanas.h \
  emovimiento.h \
  formstock.h \
- eplugin.h
+ eplugin.h \
+ einfoprogramainterface.h \
+ einformeinterface.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \

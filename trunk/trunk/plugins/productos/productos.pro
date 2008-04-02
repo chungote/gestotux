@@ -23,8 +23,14 @@ linux-g++ {
 SOURCES += mcategorias.cpp \
 mproductos.cpp \
 vcategorias.cpp \
-vproductos.cpp
+vproductos.cpp \
+ productos.cpp \
+ eventana.cpp \
+ evlista.cpp
 HEADERS += mcategorias.h \
 mproductos.h \
 vcategorias.h \
-vproductos.h
+vproductos.h \
+ productos.h \
+ eventana.h \
+ evlista.h

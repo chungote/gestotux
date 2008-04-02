@@ -21,7 +21,6 @@
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QHeaderView>
-#include "preferencias.h"
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QMessageBox>

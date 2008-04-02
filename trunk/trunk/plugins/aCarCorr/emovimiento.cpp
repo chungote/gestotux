@@ -170,6 +170,10 @@ bool EMovimiento::setDTA ( const QString& theValue )
 			return true;
 		}
 	}
+	else
+	{
+		qWarning( QString( "Error al buscar si existe anteriormente un dta\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+	}
 }
 
 

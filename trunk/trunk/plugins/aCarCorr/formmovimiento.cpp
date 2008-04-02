@@ -187,6 +187,10 @@ FormMovimiento::~FormMovimiento()
 {
 }
 
+void FormMovimiento::cerrar()
+{
+ close();
+}
 
 void FormMovimiento::agregarCaravana()
 {
@@ -508,4 +512,13 @@ bool FormMovimiento::verificar()
  }
  // Si llege hasta aca, los datos estan bien
  return true;
+}
+
+
+/*!
+    \fn FormMovimiento::hacerInformeSenasa()
+ */
+void FormMovimiento::hacerInformeSenasa()
+{
+ qWarning( "Ver como hacer el informe para el senasa" );
 }

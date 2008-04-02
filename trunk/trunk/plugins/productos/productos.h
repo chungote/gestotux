@@ -17,60 +17,35 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef PRODUCTOS_H
+#define PRODUCTOS_H
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
+#include <QObject>
+#include <eplugin.h>
 
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-class QAction;
-class QStringListModel;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class productos : public QObject, public EPlugin
 {
-  Q_OBJECT
-
+ Q_OBJECT
+ Q_INTERFACES(EPlugin)
 public:
-  enum tipo
-  {
-    compra,
-    venta,
-    movimiento,
-    stock,
-    indefinido
-  };
-
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
-
-
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	QStringListModel *model;
-
-
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
-
-public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
+    QList<QAction *> accionesBarra() const;
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    bool inicializar( QStackedWidget *formCen, QSettings *pref );
+    bool verificarTablas();
+    int tipo() const;
+    void crearMenu( QMenuBar *m );
+    double version() const;
 
 private:
-	tipo _accion;
+    QList<QAction *> _acciones;
+    static QStackedWidget *_formCen;
+    static QSettings *_pref;
+
+	QAction *ActProductos;
 };
 
 #endif
-
