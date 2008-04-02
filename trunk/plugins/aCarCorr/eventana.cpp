@@ -18,9 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eventana.h"
-#include "preferencias.h"
-//#include "ayudante.h"
-
 #include <QString>
 #include <QMdiSubWindow>
 #include <QIcon>
@@ -72,17 +69,6 @@ void EVentana::keyPressEvent( QKeyEvent *event )
  */
 void EVentana::setNombreVentana( QString texto )
 {
- preferencias *p = preferencias::getInstancia();
- p->beginGroup( "Ventanas" );
- p->beginGroup( nombre_ventana );
- this->resize( p->value( "tam", QSize( 600, 600 ) ).toSize() );
- this->move( p->value( "pos", QPoint( 0, 0 ) ).toPoint() );
- if( p->value( "maximizada" ).toBool() )
- {
-  this->setWindowState( Qt::WindowMaximized );
- }
- p->endGroup();
- p->endGroup();
  this->setWindowTitle( texto );
 }
 
@@ -103,19 +89,6 @@ QString EVentana::get_nombre_ventana()
  */
 void EVentana::closeEvent( QCloseEvent * event )
 {
- if ( !nombre_ventana.isEmpty() )
- {
-	preferencias *p = preferencias::getInstancia();
-	p->inicio();
-	p->beginGroup( "Ventanas" );
-	p->beginGroup( nombre_ventana );
-	p->setValue( "tam"       , size() );
-	p->setValue( "pos"       , pos() );
-	p->setValue( "maximizada", !this->isMaximized() );
-	p->endGroup();
-	p->endGroup();
-	//qDebug( QString("Guardadas preferencias de ventana %1").arg( nombre_ventana ).toLocal8Bit() );
- }
  QWidget::closeEvent( event );
 }
 

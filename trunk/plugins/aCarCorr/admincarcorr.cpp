@@ -20,9 +20,12 @@
 #include "admincarcorr.h"
 
 #include <QSqlQuery>
+#include <QDir>
+#include <QHash>
 
 QStackedWidget *AdminCarCorr::_formCen = 0;
 QSettings *AdminCarCorr::_pref = 0;
+QHash<QString, EInformeInterface *> *AdminCarCorr::_plugins = 0;
 
 QIcon AdminCarCorr::iconoPrograma() const
 {
@@ -153,7 +156,7 @@ int AdminCarCorr::tipo() const
  return EPlugin::info;
 }
 
-void AdminCarCorr::crearMenu(QMenuBar* m)
+void AdminCarCorr::crearMenu( QMenuBar* m )
 {
   QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer == 0 )
@@ -170,6 +173,15 @@ void AdminCarCorr::crearMenu(QMenuBar* m)
   menuHer->addAction( ActAgregarCompra );
   menuHer->addAction( ActAgregarMudanza );
   menuHer->addAction( ActAgregarVenta );
+ }
+ // Creo el menu de informes
+ QMenu *menuInformes = new QMenu( m );
+ if( !plugins().isEmpty() )
+ {
+	foreach( EInformeInterface *p, plugins() )
+	{
+		p->crearMenu( menuInformes );
+	}
  }
 }
 
@@ -235,4 +247,76 @@ void AdminCarCorr::hacerMudanza()
 {
  FormMudanza *f = new FormMudanza( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+
+/*!
+    \fn AdminCarCorr::cargarPluginsInformes()
+ */
+void AdminCarCorr::cargarPluginsInformes()
+{
+ loader = new QPluginLoader( this );
+ // Busco los plugins de presupuestos
+ QDir pluginsDir = QDir(qApp->applicationDirPath());
+
+ #if defined(Q_OS_WIN)
+     if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+         pluginsDir.cdUp();
+ #elif defined(Q_OS_MAC)
+     if (pluginsDir.dirName() == "MacOS") {
+         pluginsDir.cdUp();
+         pluginsDir.cdUp();
+         pluginsDir.cdUp();
+     }
+ #endif
+     pluginsDir.cd("plugins");
+     pluginsDir.cd("informes");
+	_plugins = new QHash<QString, EInformeInterface *>();
+#ifdef Q_WS_WIN32
+	QStringList filtro;
+	filtro.append( "*.dll" );
+     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
+     {
+#endif
+#ifdef Q_WS_X11
+     foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
+     {
+#endif
+	loader->setFileName( fileName );
+        if( loader->load() )
+        {
+		EInformeInterface *plug = qobject_cast<EInformeInterface *>( loader->instance() );
+		if( plug->inicializar() )
+		{
+			_plugins->insert( plug->nombre(), plug );
+		}
+		else
+		{
+			qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
+		}
+	}
+	else
+	{
+		qWarning( "Error al cargar el plugin" );
+		qWarning( QString( "Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
+	}
+	// Fin de la carga del plugin
+  }
+}
+
+
+/*!
+    \fn AdminCarCorr::plugins()
+ */
+QList<EInformeInterface *> AdminCarCorr::plugins()
+{
+ if( _plugins == 0 )
+ {
+  QList<EInformeInterface *> lista;
+  return lista;
+ }
+ else
+ {
+  return _plugins->values();
+ }
 }

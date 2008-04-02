@@ -17,60 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef SENASA_H
+#define SENASA_H
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
+#include <einformeinterface.h>
 
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-class QAction;
-class QStringListModel;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class Senasa : public QObject, EInformeInterface
 {
-  Q_OBJECT
-
+Q_OBJECT
+Q_INTERFACES(EInformeInterface)
 public:
-  enum tipo
-  {
-    compra,
-    venta,
-    movimiento,
-    stock,
-    indefinido
-  };
-
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
-
-
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	QStringListModel *model;
-
-
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
-
-public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
-
-private:
-	tipo _accion;
+    QString nombre() const;
+    bool inicializar();
+    double version() const;
+    void crearMenu(QMenu* m);
 };
 
 #endif
-

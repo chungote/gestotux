@@ -17,60 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef EINFORMEINTERFACE_H
+#define EINFORMEINTERFACE_H
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
+#include <QtPlugin>
+class QMenu;
+/**
+Interfaz para hacer un informe
 
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-class QAction;
-class QStringListModel;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class EInformeInterface
 {
-  Q_OBJECT
-
 public:
-  enum tipo
-  {
-    compra,
-    venta,
-    movimiento,
-    stock,
-    indefinido
-  };
+    virtual ~EInformeInterface() {}
+    virtual void crearMenu( QMenu *m ) = 0;
+    virtual double version() const = 0;
+    virtual QString nombre() const = 0;
+    virtual bool inicializar() = 0;
 
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
-
-
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	QStringListModel *model;
-
-
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
-
-public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
-
-private:
-	tipo _accion;
 };
 
-#endif
+Q_DECLARE_INTERFACE(EInformeInterface,
+                    "tranfuga.EInformeInterface/1.0" );
 
+#endif

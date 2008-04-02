@@ -17,60 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "senasa.h"
+#include <QString>
+#include <QMenu>
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
-
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-class QAction;
-class QStringListModel;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+QString Senasa::nombre() const
 {
-  Q_OBJECT
+ return "senasa";
+}
 
-public:
-  enum tipo
-  {
-    compra,
-    venta,
-    movimiento,
-    stock,
-    indefinido
-  };
+bool Senasa::inicializar()
+{
+ return true;
+}
 
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
+double Senasa::version() const
+{
+ return 0.1;
+}
 
+void Senasa::crearMenu(QMenu* m)
+{
+ return;
+}
 
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	QStringListModel *model;
-
-
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
-
-public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
-
-private:
-	tipo _accion;
-};
-
-#endif
-
+Q_EXPORT_PLUGIN2( senasa, Senasa );
