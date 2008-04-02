@@ -363,7 +363,7 @@ bool gestotux::cargarPlugins()
 				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
 				preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
 			}
-			qDebug( QString( "Cargando Plugin: %1" ).arg( fileName ).toLocal8Bit() );
+			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
 		else
 		{

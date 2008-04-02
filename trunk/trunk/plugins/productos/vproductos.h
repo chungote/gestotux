@@ -42,6 +42,7 @@ private slots:
 
 protected slots:
     void verCategorias();
+    void agregar();
 };
 
 #endif
