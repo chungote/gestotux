@@ -29,7 +29,7 @@
 #include <QMessageBox>
 
 FormVenta::FormVenta(QWidget* parent, Qt::WFlags fl ):
-FormMovimiento(parent, fl, FormMovimiento::venta )
+FormMovimiento(parent, fl, venta )
 {
  LTitulo->setText( "Agregar Venta de Caravanas" );
  // Verificar si las caravanas provienen del mismo establecimiento siempre - SI
@@ -72,7 +72,7 @@ void FormVenta::guardar()
  dialogo->show();
  EMovimiento *movimiento = new EMovimiento( this );
  // Tipo de Movimiento
- movimiento->setTipoMov( EMovimiento::venta );
+ movimiento->setTipoMov( venta );
  dialogo->setValue( dialogo->value() + 1 );
  // DTA
  if( !movimiento->setDTA( LEDTA->text() ) )

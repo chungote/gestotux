@@ -36,7 +36,7 @@
 #include "mcategoria.h"
 #include "mclientes.h"
 
-FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
+FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 : QWidget( parent, fl ), Ui::FormMovimientoBase()
 {
 	_accion = accion;
@@ -125,7 +125,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl,  tipo accion )
 			PBAgregarEstablecimientoDestino->hide();
 			break;
 		}
-		case movimiento:
+		case mudanza:
 		{
 			LTitulo->setText( "Movimiento interno de caravanas" );
 			LCliente->hide();
@@ -474,7 +474,7 @@ bool FormMovimiento::verificar()
 		}
 		break;
 	}
-	case movimiento:
+	case mudanza:
 	{
 		// origen y destino
 		if( CBEstablecimientoOrigen->currentIndex() == -1 )

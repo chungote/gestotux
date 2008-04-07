@@ -23,6 +23,7 @@
 
 #include <QWidget>
 #include "ui_FormMovimientoBase.h"
+#include "TipoMovs.h"
 class QAction;
 class QStringListModel;
 
@@ -31,16 +32,7 @@ class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
   Q_OBJECT
 
 public:
-  enum tipo
-  {
-    compra,
-    venta,
-    movimiento,
-    stock,
-    indefinido
-  };
-
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, tipo accion = indefinido );
+  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, int accion = invalido );
   ~FormMovimiento();
     void setearNumeroTri();
     virtual void hacerInformeSenasa();
@@ -69,7 +61,7 @@ protected slots:
     bool verificar();
 
 private:
-	tipo _accion;
+	int _accion;
 };
 
 #endif

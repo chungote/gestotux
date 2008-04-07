@@ -1,2 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS = senasa
+SUBDIRS = senasa \
+ ListadoMovimientos

@@ -8,6 +8,15 @@ CREATE TABLE presupuestos ( id INTEGER PRIMARY KEY AUTOINCREMENT, destinatario T
 CREATE TABLE car_categorias ( id_categoria INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL );
 CREATE TABLE car_establecimientos ( id_establecimiento INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, respma TEXT NOT NULL );
 CREATE TABLE car_caravana ( id_caravana INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT NOT NULL UNIQUE );
-CREATE TABLE car_tri( id_tri INTEGER PRIMARY KEY AUTOINCREMENT, dta TEXT NOT NULL, razon NUMERIC NOT NULL, id_categoria NUMERIC NOT NULL, id_estab_destino NUMERIC, id_estab_origen NUMERIC, id_comprador NUMERIC, id_vendedor NUMERIC );
+CREATE TABLE car_tri( id_tri INTEGER PRIMARY KEY AUTOINCREMENT, dta TEXT NOT NULL, razon NUMERIC NOT NULL,fecha TEXT NOT NULL, id_categoria NUMERIC NOT NULL, id_estab_destino NUMERIC, id_estab_origen NUMERIC, id_comprador NUMERIC, id_vendedor NUMERIC );
 CREATE TABLE car_carv_tri( id_caravana INTEGER, id_tri, PRIMARY KEY( id_caravana, id_tri ) );
+INSERT INTO sqlite_sequence VALUES ( 'car_tri', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'car_categorias', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'car_establecimientos', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'car_caravana', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'car_carav_tri', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'categoria', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'clientes', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'producto', '1' );
+INSERT INTO sqlite_sequence VALUES ( 'recibos', '1' );
 COMMIT;

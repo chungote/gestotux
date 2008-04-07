@@ -97,7 +97,15 @@ int productos::tipo() const
  */
 void productos::crearMenu( QMenuBar *m )
 {
-  return;
+ QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
+ if( menuHer == 0 )
+ {
+  qDebug( "Error en las baras de menu" );
+ }
+ else
+ { 
+  menuHer->addAction( ActProductos );
+ }
 }
 
 

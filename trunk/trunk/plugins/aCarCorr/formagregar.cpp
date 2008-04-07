@@ -20,6 +20,7 @@
 #include "formagregar.h"
 
 #include "emovimiento.h"
+#include "TipoMovs.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -30,7 +31,7 @@
 #include <QLabel>
 
 FormAgregar::FormAgregar(QWidget* parent, Qt::WFlags fl)
-: FormMovimiento( parent, fl, FormMovimiento::compra )
+: FormMovimiento( parent, fl, compra )
 {
  // titulo
  LTitulo->setText( "Agregar nuevas caravanas mediante una compra" );
@@ -56,7 +57,8 @@ void FormAgregar::guardar()
  dialogo->show();
  EMovimiento *movimiento = new EMovimiento( this );
  // Tipo de Movimiento
- movimiento->setTipoMov( EMovimiento::compra );
+//  movimiento->setTipoMov( 3 );
+ movimiento->setTipoMov( compra );
  dialogo->setValue( dialogo->value() + 1 );
  // DTA
  if( !movimiento->setDTA( LEDTA->text() ) )

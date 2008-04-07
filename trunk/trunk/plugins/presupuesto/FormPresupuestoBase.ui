@@ -42,7 +42,11 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QDateEdit" name="dEFecha" />
+         <widget class="QDateEdit" name="dEFecha" >
+          <property name="calendarPopup" >
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

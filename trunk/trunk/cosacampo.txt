@@ -8,6 +8,7 @@ Las caravanas que se agregan por medio de una compra se dan de alta automaticame
 Solo se pueden agregar caravanas que no existan previamente en el sistema
 Los movimientos y ventas se haran exclusivamente con caravanas existentes en el sistema
 
+Los movimiento, cualquiera que sea, debe ser solo en presente o pasado.
 
 Apuntes de charlas con gandhalf
 ======= == ======= === ========
@@ -30,3 +31,23 @@ no asi es nro d tri que es para control interno nomas
 1 tenes que cargar todos los datos del tri y despues t tiene que aparecer 1 pantalla que t permita ingresar todos los numeros de caravanas x eso el 1er dato q te pide es la cantidad de caravanas
 cada caravana es 1 animal
 ak como se mueven x grupos  de animales osea tri's t permite manejarlos con mas facilidad
+
+Informes
+¡¡¡¡¡¡¡¡
+
+necesito que es sitema liste ingesos y egresos
+x compra,venta y traslado
+x fecha
+x cat
+y por campo( establecimiento )
+x ejemplo
+ingreso en tal fecha en tal campo motivo del ingreso ya sea x compra o traslado
+y que liste los numeros de caravanas el numero de tri del movimiento el de dta o tri
+el filtro tiene que ser la fecha el campo el motivo del movimiento
+que vos le pidas q liste ingreso de tal campo de tal fecha a tal fecha
+y que liste x cada lista los mumeros de caravanas los nrs d dta y tri y la cat en formato tabla
+hace el formulario de informes lo mas simple posible
+que t pida si es ingreso o egreso, motivo, de q fecha a que fecha y campo
+que el sistema separe solo x ojas las categorias
+q en la cabecera diga
+listado de ingresos x (motive) fecha campo y categoria

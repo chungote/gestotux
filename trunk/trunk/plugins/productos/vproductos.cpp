@@ -23,7 +23,7 @@
 #include <QSqlRecord>
 #include <QHeaderView>
 #include <QAction>
-#include "gestotux.h"
+#include "productos.h"
 #include "mcategorias.h"
 #include "vcategorias.h"
 #include <QSqlRelationalDelegate>
@@ -94,8 +94,8 @@ void VProductos::closeEvent( QCloseEvent * event )
  */
 void VProductos::verCategorias()
 {
- VCategorias *f = new VCategorias( this );
- gestotux::formCen()->setCurrentWidget( gestotux::formCen()->widget( gestotux::formCen()->addWidget( f ) ) );
+ VCategorias *f = new VCategorias( productos::tabs() );
+ productos::tabs()->setCurrentWidget( productos::tabs()->widget( productos::tabs()->addWidget( f ) ) );
 }
 
 

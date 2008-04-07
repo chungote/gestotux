@@ -30,9 +30,11 @@ class MTProductosPresupuesto : public QSqlRelationalTableModel
 public:
     MTProductosPresupuesto( QObject * parent = 0 );
     ~MTProductosPresupuesto();
+
     QVariant data ( const QModelIndex & item, int role = Qt::DisplayRole ) const;
-    bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
     Qt::ItemFlags flags( const QModelIndex & index ) const;
+    int columnCount( const QModelIndex &parent ) const;
+    bool guardar( const int id_presupuesto ) const;
 
 };
 
