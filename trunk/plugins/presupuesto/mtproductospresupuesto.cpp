@@ -25,15 +25,14 @@
 MTProductosPresupuesto::MTProductosPresupuesto( QObject * parent )
  : QSqlRelationalTableModel( parent)
 {
- QSqlQuery cola( "CREATE TEMPORARY TABLE prod_presupuesto ( id INTEGER AUTOINCREMENT, id_prod INTEGER, cantidad NUMBER )" );
- setTable( "prod_presupuesto" );
+ setTable( "presupuestos_productos" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Id Producto" );
-   setRelation( 1, QSqlRelation( "productos", "id", "nombre" ) );
- setHeaderData( 2, Qt::Horizontal, "Precio Unitario" );
+ setHeaderData( 1, Qt::Horizontal, "#Presupuesto" );
+ setHeaderData( 2, Qt::Horizontal, "Producto" );
+   setRelation( 2, QSqlRelation( "producto", "id", "nombre" ) );
  setHeaderData( 3, Qt::Horizontal, "Cantidad" );
- setHeaderData( 4, Qt::Horizontal, "Sub-Total" );
- 
+ setHeaderData( 4, Qt::Horizontal, "Precio Unitario" );
+ setEditStrategy( QSqlTableModel::OnManualSubmit );
 }
 
 
@@ -42,116 +41,68 @@ MTProductosPresupuesto::~MTProductosPresupuesto()
 }
 
 /*!
-    \fn MTProductosPresupuesto::setData ( const QModelIndex & index, const QVariant & value, int role )
- */
-bool MTProductosPresupuesto::setData ( const QModelIndex & index, const QVariant & value, int role )
-{
- switch( index.column() )
- {
-  case 4:
-  case 2:
-  {
-	return true;
-	break;
-  }
-  case 3:
-  {
-	return QSqlRelationalTableModel::setData( this->index( index.row(), 2 ), value, role );
-	break;
-  }
-  default:
-  {
-   return QSqlRelationalTableModel::setData( index, value, role );
-   break;
-  }
- }
-}
-
-/*!
     \fn MTProductosPresupuesto::data ( const QModelIndex & item, int role ) const
  */
-QVariant MTProductosPresupuesto::data ( const QModelIndex & item, int role ) const
+QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) const
 {
-  switch( item.column() )
+ switch( item.column() )
  {
-  case 2:
-  {
+   // id del producto
+   case 2:
+   {
 	switch( role )
 	{
-		case Qt::DisplayRole:
-		{
-			QSqlQuery cola( QString( "SELECT precio FROM productos WHERE id_producto = '%1'").arg( QSqlRelationalTableModel::data( index( item.row(), 2 ), Qt::UserRole ).toInt() ) );
-			if( cola.next() )
-			{
-				return QString( "$ %L1" ).arg( cola.record().value(0).toDouble() );
-			}
-			else
-			{
-				qWarning( "Error al buscar le precio" );
-				return QVariant();
-			}
-			break;
-		}
 		case Qt::UserRole:
 		{
-			QSqlQuery cola( QString( "SELECT precio FROM productos WHERE id_producto = '%1'").arg( QSqlRelationalTableModel::data( index( item.row(), 2 ), Qt::UserRole ).toInt() ) );
-			if( cola.next() )
+			// retorno el id, si no hay uno puesto, retorno -1
+			if( QSqlRelationalTableModel::data( item, Qt::EditRole ).toInt() >= 0 )
 			{
-				return cola.record().value(0).toDouble();
+				return QSqlRelationalTableModel::data( item, Qt::EditRole ).toInt();
 			}
 			else
 			{
-				qWarning( "Error al buscar le precio" );
-				return QVariant();
+				return -1;
 			}
 			break;
 		}
 		default:
 		{
-			return QVariant();
+			return QSqlRelationalTableModel::data( item, role );
 			break;
 		}
 	}
 	break;
-  }
-  case 4:
-  {
-	switch( role )
+   }
+   // Precio Unitario
+   case 4:
+   {
+	// Busco el id del producto
+	int id = data( index( item.column(), 2 ), Qt::UserRole ).toInt();
+	if( id != -1 )
 	{
-		case Qt::DisplayRole:
+		QSqlQuery cola( QString("SELECT precio FROM producto WHERE id = '%1'").arg( id ) );
+		if( cola.next() )
 		{
-			// calculo el subtotal
-			double cant = data( index( item.row(), 3 ), role ).toDouble();
-			double precio = data( index( item.row(), 3 ), Qt::UserRole ).toDouble();
-			return QString( "$ %L1" ).arg( precio * cant );
-			break;
+			return QString( "$ %L1" ).arg( cola.record().value(0).toString() );
 		}
-		case Qt::TextAlignmentRole:
+		else
 		{
-			return int( Qt::AlignCenter || Qt::AlignVCenter );
-			break;
-		}
-		default:
-		{
+			qWarning( "Error al buscar el precio del producto" );
 			return QVariant();
-			break;
 		}
 	}
+	else
+	{
+		return QVariant();
+	}
 	break;
-  }
-  case 3:
-  {
-	// Necesario para usar el redireccionamiento
-	return QSqlRelationalTableModel::data( index( item.row(), 2 ), role );
-	break;
-  }
-  default:
-  {
-   return QSqlRelationalTableModel::data( item, role );
-   break;
-  }
+   }
+   default:
+   {
+	return QSqlRelationalTableModel::data( item, role );
+  	break;
+   }
  }
-  
 }
 
 
@@ -160,18 +111,36 @@ QVariant MTProductosPresupuesto::data ( const QModelIndex & item, int role ) con
  */
 Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 {
-  switch( index.column() )
+ switch( index.column() )
+ {
+  case 4:
   {
-   case 2:
-   case 4:
-   {
-	return Qt::ItemIsSelectable && !Qt::ItemIsEditable && Qt::ItemIsEnabled;
-	break;
-   }
-   default:
-   {
+	return int( !Qt::ItemIsEditable );
+ 	break;
+  }
+  default:
+  {
     return QSqlRelationalTableModel::flags( index );
     break;
-   }
   }
+ }
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::columnCount( QModelIndex &parent )
+ */
+int MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
+{
+  int conteo = QSqlRelationalTableModel::columnCount() +1;
+  return conteo;
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::guardar( const int id_presupuesto )
+ */
+bool MTProductosPresupuesto::guardar( const int id_presupuesto ) const
+{
+ return false;
 }

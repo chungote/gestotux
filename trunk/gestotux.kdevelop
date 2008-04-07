@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/productos</activedir>
+      <activedir>plugins/aCarCorr/plugins/ListadoMovimientos</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -212,6 +212,8 @@
       <subclass uifile="plugins/aCarCorr/FormMovimientoBase.ui" sourcefile="formmudanza.h" />
       <subclass uifile="plugins/aCarCorr/FormMovimientoBase.ui" sourcefile="formmovimiento.cpp" />
       <subclass uifile="plugins/aCarCorr/FormMovimientoBase.ui" sourcefile="formmovimiento.h" />
+      <subclass uifile="plugins/aCarCorr/plugins/ListadoMovimientos/FormFiltrosBase.ui" sourcefile="formfiltro.cpp" />
+      <subclass uifile="plugins/aCarCorr/plugins/ListadoMovimientos/FormFiltrosBase.ui" sourcefile="formfiltro.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

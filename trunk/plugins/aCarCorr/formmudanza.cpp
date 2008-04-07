@@ -22,12 +22,13 @@
 #include <QSqlQuery>
 #include <QProgressDialog>
 #include "emovimiento.h"
+#include "TipoMovs.h"
 #include <QMessageBox>
 #include <QSqlError>
 #include <QStringListModel>
 
 FormMudanza::FormMudanza(QWidget* parent, Qt::WFlags fl)
-: FormMovimiento( parent, fl, FormMovimiento::movimiento )
+: FormMovimiento( parent, fl, mudanza )
 {
  LTitulo->setText( "Movimiento de Caravanas Interno" );
  //Agrego el completador
@@ -70,7 +71,7 @@ void FormMudanza::guardar()
  dialogo->show();
  EMovimiento *movimiento = new EMovimiento( this );
  // Tipo de Movimiento
- movimiento->setTipoMov( EMovimiento::mudanza );
+ movimiento->setTipoMov( mudanza );
  dialogo->setValue( dialogo->value() + 1 );
  // DTA
  if( !movimiento->setDTA( LEDTA->text() ) )

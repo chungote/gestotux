@@ -18,8 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "formlistaproductos.h"
-
-#include "mtproductospresupuesto.h"
+#include <QSqlRecord>
+#include <QTableView>
+#include <QSqlRelationalDelegate>
 
 FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, Qt::Dialog ), Ui::FormListaProductosBase()
@@ -30,11 +31,19 @@ FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 
 	modelo = new MTProductosPresupuesto( this );
 	TVLista->setModel( modelo );
+	TVLista->setItemDelegate( new QSqlRelationalDelegate( TVLista ) );
+	TVLista->hideColumn( 0 );
+	TVLista->hideColumn( 1 );
 
 	connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close() ) );
 	connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregar() ) );
 	connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminar() ) );
 	connect( PBAceptar, SIGNAL( clicked() ), this, SLOT( aceptar() ) );
+
+	PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+	PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+	PBAceptar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
+	PBCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
 }
 
 FormListaProductos::~FormListaProductos()
@@ -42,3 +51,30 @@ FormListaProductos::~FormListaProductos()
 }
 
 
+
+
+/*!
+    \fn FormListaProductos::agregar()
+ */
+void FormListaProductos::agregar()
+{
+ modelo->insertRecord( -1, QSqlRecord() );
+}
+
+
+/*!
+    \fn FormListaProductos::eliminar()
+ */
+void FormListaProductos::eliminar()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn FormListaProductos::aceptar()
+ */
+void FormListaProductos::aceptar()
+{
+    /// @todo implement me
+}

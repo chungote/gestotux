@@ -26,6 +26,7 @@
 #include <QStringList>
 #include <QDate>
 class QProgressDialog;
+#include "TipoMovs.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -33,19 +34,7 @@ class QProgressDialog;
 class EMovimiento : public QObject
 {
 Q_OBJECT
-
-private:
-
-
 public:
-    enum tipo
-    {
-     invalido = 1,
-     stock = 2,
-     compra = 3,
-     venta = 4,
-     mudanza = 5
-    };
     EMovimiento( QObject *parent = 0 );
     ~EMovimiento();
 

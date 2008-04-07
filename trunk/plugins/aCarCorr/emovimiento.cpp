@@ -29,7 +29,7 @@
 EMovimiento::EMovimiento(QObject *parent)
  : QObject(parent)
 {
- tipo_mov = EMovimiento::invalido;
+ tipo_mov = invalido;
  id_db = -1;
 }
 
@@ -46,10 +46,15 @@ int EMovimiento::tipoMov() const
 
 void EMovimiento::setTipoMov( const int& theValue )
 {
- if( tipo_mov == EMovimiento::invalido )
+ // Esto evita cambiar el tipo de mov despues de setearlo por primera vez
+ if( tipo_mov == invalido && theValue > 1 )
  {
   tipo_mov = theValue;
   qDebug( QString( "Seteado tipo de movimiento a %1 " ).arg( tipo_mov ).toLocal8Bit() );
+ }
+ else
+ {
+  qWarning( "Intentando resetear el tipo de movimiento" );
  }
 }
 
@@ -69,6 +74,7 @@ bool EMovimiento::cargarMovimiento( int idDb )
 	DTA = cola.record().value( "dta" ).toString();
 	id_db = cola.record().value( "id_tri" ).toInt();
 	setCategoria( cola.record().value( "id_categoria" ).toInt() );
+	setFecha( cola.record().value("fecha").toDate() );
 	// Busco el establecimiento
 	setTipoMov( cola.record().value( "razon" ).toInt() );
 	switch( tipoMov() )
@@ -173,6 +179,7 @@ bool EMovimiento::setDTA ( const QString& theValue )
 	else
 	{
 		qWarning( QString( "Error al buscar si existe anteriormente un dta\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+		return false;
 	}
 }
 
@@ -349,14 +356,14 @@ void EMovimiento::setFecha ( const QDate& theValue )
  */
 int EMovimiento::guardar( QProgressDialog *dialogo )
 {
- if( tipoMov() != invalido )
+ if( tipoMov() > invalido )
  {
 	bool estado = true;
 	// Calculo la cantidad para el dialogo
 	dialogo->setRange( 0, (_caravanas.size() * 2) + 1 );
 	dialogo->setValue( 0 );
  	QSqlQuery cola;
-	QString scola = QString( " car_tri( dta, razon, id_categoria, id_estab_destino, id_estab_origen, id_comprador, id_vendedor ) VALUES ( '%1', '%2', '%3', '%4', '%5', '%6', '%7' )" ).arg( DTA ).arg( tipoMov() ).arg( categoria.first ).arg( destino.first ).arg( origen.first ).arg( comprador.first ).arg( vendedor.first );
+	QString scola = QString( " car_tri( dta, fecha, razon, id_categoria, id_estab_destino, id_estab_origen, id_comprador, id_vendedor ) VALUES ( '%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8' )" ).arg( DTA ).arg( fecha.toString(Qt::ISODate) ).arg( tipoMov() ).arg( categoria.first ).arg( destino.first ).arg( origen.first ).arg( comprador.first ).arg( vendedor.first );
    	if( id_db  == -1 )
  	{
   		// Agrego un nuevo registro
@@ -430,7 +437,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
  }
  else
  {
-  qWarning( "Error al intentar guardar o acutalizar el registro, su tipo fue invalido" );
+  qWarning( QString("Error al intentar guardar o acutalizar el registro, su tipo fue invalido. Tipo: %1").arg( tipoMov() ).toLocal8Bit() );
   dialogo->setValue( dialogo->maximum() );
   return -14;
  }
@@ -509,6 +516,11 @@ void EMovimiento::eliminarCaravana( QString codigo )
  */
 bool EMovimiento::guardarCaravana( QString codigo )
 {
+ if( tipoMov() == invalido )
+ {
+  qWarning( "Error en el tipo de movimiento!" );
+  return false;
+ }
  switch( tipoMov() )
  {
  	case compra:

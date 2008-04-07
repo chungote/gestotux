@@ -176,7 +176,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
   menuHer->addAction( ActAgregarVenta );
  }
  // Creo el menu de informes
- QMenu *menuInformes = new QMenu( m );
+ QMenu *menuInformes = m->addMenu( "Informes" );
  if( !plugins().isEmpty() )
  {
 	foreach( EInformeInterface *p, plugins() )
@@ -288,7 +288,7 @@ void AdminCarCorr::cargarPluginsInformes()
         if( loader->load() )
         {
 		EInformeInterface *plug = qobject_cast<EInformeInterface *>( loader->instance() );
-		if( plug->inicializar() )
+		if( plug->inicializar( _formCen ) )
 		{
 			_plugins->insert( plug->nombre(), plug );
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );

@@ -22,6 +22,7 @@
 
 #include <QtPlugin>
 class QMenu;
+class QStackedWidget;
 /**
 Interfaz para hacer un informe
 
@@ -34,7 +35,7 @@ public:
     virtual void crearMenu( QMenu *m ) = 0;
     virtual double version() const = 0;
     virtual QString nombre() const = 0;
-    virtual bool inicializar() = 0;
+    virtual bool inicializar( QStackedWidget *form ) = 0;
 
 };
 

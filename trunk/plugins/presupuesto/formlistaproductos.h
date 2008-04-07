@@ -23,7 +23,7 @@
 
 #include <QWidget>
 #include "ui_FormListaProductosBase.h"
-class MTProductosPresupuesto;
+#include "mtproductospresupuesto.h"
 
 class FormListaProductos : public QWidget, private Ui::FormListaProductosBase
 {
@@ -36,6 +36,10 @@ public:
 private:
   MTProductosPresupuesto *modelo;
 
+protected slots:
+    void agregar();
+    void eliminar();
+    void aceptar();
 };
 
 #endif
