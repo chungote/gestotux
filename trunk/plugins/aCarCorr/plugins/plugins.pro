@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
 SUBDIRS = senasa \
- ListadoMovimientos
+ ListadoMovimientos \
+ InformeCategorizado

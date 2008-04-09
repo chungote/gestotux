@@ -49,6 +49,9 @@ FormFiltro::FormFiltro(QWidget* parent, Qt::WFlags fl)
 	CBTipo->addItem( "Movimiento entre Establecimientos", mudanza );
 	CBTipo->addItem( "Salida por ventas", venta );
 
+	DEFechaEspecifica->setDate( QDate::currentDate() );
+	DEFechaInicio->setDate( QDate::currentDate() );
+	DEFechaFin->setDate( QDate::currentDate() );
 }
 
 FormFiltro::~FormFiltro()

@@ -177,6 +177,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
  }
  // Creo el menu de informes
  QMenu *menuInformes = m->addMenu( "Informes" );
+ menuInformes->setObjectName( "menuInformes" );
  if( !plugins().isEmpty() )
  {
 	foreach( EInformeInterface *p, plugins() )

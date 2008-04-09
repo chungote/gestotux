@@ -123,14 +123,13 @@ void gestotux::createMenus()
 {
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
+ fileMenu->addAction( ActActualizar );
+ fileMenu->addSeparator();
+ fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );
  menuHer->setObjectName( "menuHerramientas" );
  menuHer->addAction( ActClientes );
-
- menuAyuda = menuBar()->addMenu( "A&yuda" );
- menuAyuda->setObjectName( "menuAyuda" );
- menuAyuda->addAction( acercade );
 
  foreach( EPlugin *plug , plugins() )
  {
@@ -142,9 +141,9 @@ void gestotux::createMenus()
  menuHer->addAction( ActBackup );
  menuHer->addAction( ActPreferencias );
 
- fileMenu->addAction( ActActualizar );
- fileMenu->addSeparator();
- fileMenu->addAction( exitAct );
+ menuAyuda = menuBar()->addMenu( "A&yuda" );
+ menuAyuda->setObjectName( "menuAyuda" );
+ menuAyuda->addAction( acercade );
 }
 
 void gestotux::createStatusBar()

@@ -23,6 +23,7 @@
 #include <QObject>
 class QTextDocument;
 class FormFiltro;
+class QTextTable;
 #include <QSqlQuery>
 #include <QDate>
 #include <QPair>
@@ -41,6 +42,8 @@ public:
     void hacerCabecera();
     void setarCabeceraFiltros();
     void generarCola();
+    void generarCabeceraTabla();
+    void colocarContenido();
 
 private:
     QTextDocument *_doc;
@@ -48,6 +51,7 @@ private:
 	int _id_cat,_id_estab,_id_tipo;
 	QPair<QDate,QDate> _rango_fechas;
 	QSqlQuery cola;
+	QTextTable *tabla;
 	QDate _fecha;
 };
 

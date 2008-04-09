@@ -40,18 +40,6 @@ bool InformesMovimientos::inicializar( QStackedWidget *form )
  ActInformeFiltroTotal = new QAction( "Personalizado...", this );
  connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informeCompleto() ) );
 
- ActInformeMovimiento = new QAction( "x tipo de movimiento", this );
- connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informePorMovimiento() ) );
-
- ActInformeCategoria = new QAction( "x Categoria", this );
- connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informePorCategoria() ) );
-
- ActInformeFecha = new QAction( "x Fecha", this );
- connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informePorFecha() ) );
-
- ActInformeEstablecimiento = new QAction( "x Establecimiento", this );
- connect( ActInformeEstablecimiento, SIGNAL( triggered() ), this, SLOT( informePorEstablecimiento() ) );
-
  return true;
 }
 
@@ -62,24 +50,10 @@ double InformesMovimientos::version() const
 
 void InformesMovimientos::crearMenu(QMenu* m)
 {
- m->addAction( ActInformeMovimiento );
- m->addAction( ActInformeCategoria );
- m->addAction( ActInformeFecha );
- m->addAction( ActInformeEstablecimiento );
- m->addSeparator();
  m->addAction( ActInformeFiltroTotal );
 }
 
 Q_EXPORT_PLUGIN2(movimientos, InformesMovimientos );
-
-
-/*!
-    \fn InformesMovimientos::informePorFecha()
- */
-void InformesMovimientos::informePorFecha()
-{
-    /// @todo implement me
-}
 
 
 /*!
