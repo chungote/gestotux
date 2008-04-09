@@ -90,6 +90,16 @@ void ERenderizadorInforme::hacerInforme()
 {
  hacerCabecera();
  setarCabeceraFiltros();
+ generarCola();
+  if( cola.size() == 0 )
+ {
+  qWarning( "No existen resultados para la busqueda con estos parametros." );
+  QTextCursor * cursor = new QTextCursor( _doc );
+  cursor->insertText( "\n\nNo existen resultados" );
+  return;
+ }
+ generarCabeceraTabla();
+ colocarContenido();
 }
 
 
@@ -183,19 +193,23 @@ void ERenderizadorInforme::setarCabeceraFiltros()
   }
   cursor->insertText( texti , formatoCaracter );
  }
-
- // Inserto la tabla
- // Tengo que mostrar el TRI, DTA Y Codigo de caravana
- generarCola();
- if( cola.size() == 0 )
+ if( _filtra_fecha )
  {
-  qWarning( "No existen resultados para la busqueda con estos parametros." );
-  cursor->insertText( "\n\nNo existen resultados" );
-  return;
+  cursor->insertText( QString( "\n Fecha: %1" ).arg( _fecha.toString( "dd/MM/yyyy" ) ) );
  }
+ if( _filtra_rango_fecha )
+ {
+  cursor->insertText( QString( "\n Entre %1 y %2" ).arg( _rango_fechas.first.toString( "dd/MM/yyy" ) ).arg( _rango_fechas.second.toString( "dd/MM/yyy" ) ) );
+ }
+}
+
+
+void ERenderizadorInforme::generarCabeceraTabla() 
+{
  // Genero la tabla
+ QTextCursor *cursor = new QTextCursor( _doc );
  cursor->movePosition( QTextCursor::End );
- QTextTable *tabla = cursor->insertTable( 1, 3 );
+ tabla = cursor->insertTable( 1, 3 );
  QTextTableFormat formatoTabla = tabla->format();
  formatoTabla.setHeaderRowCount( 1 );
 // Ancho de las cabeceras
@@ -209,6 +223,12 @@ void ERenderizadorInforme::setarCabeceraFiltros()
  tabla->cellAt( 0,0 ).firstCursorPosition().insertText( "#TRI" );
  tabla->cellAt( 0,1 ).firstCursorPosition().insertText( "#DTA" );
  tabla->cellAt( 0,2 ).firstCursorPosition().insertText( "#Caravana" );
+}
+
+
+void ERenderizadorInforme::colocarContenido()
+{
+
  if( !cola.isActive() )
  {
   qCritical( "La cola esta inactiva" );
@@ -264,7 +284,7 @@ void ERenderizadorInforme::generarCola()
   {
    where += " AND ";
   }
-  where += QString( " t.fecha = '%1' " ).arg( _fecha.toString() );
+  where += QString( " t.fecha = '%1' " ).arg( _fecha.toString(Qt::ISODate) );
   filtra_algo = true;
  }
  if( _filtra_rango_fecha )

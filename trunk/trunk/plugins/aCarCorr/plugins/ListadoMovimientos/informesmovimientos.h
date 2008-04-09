@@ -41,10 +41,6 @@ public:
 private:
 
 	QAction *ActInformeFiltroTotal;
-	QAction *ActInformeMovimiento;
-	QAction *ActInformeCategoria;
-	QAction *ActInformeFecha;
-	QAction *ActInformeEstablecimiento;
 
 	static QStackedWidget *_formCen;
 
