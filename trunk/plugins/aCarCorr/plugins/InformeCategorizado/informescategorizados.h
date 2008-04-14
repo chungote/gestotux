@@ -36,6 +36,8 @@ public:
     bool inicializar(QStackedWidget* form);
     double version() const;
     void crearMenu(QMenu* m);
+    bool impresionPersonalizada() const;
+    void imprimir();
 private:
 	static QStackedWidget *_formCen;
 };

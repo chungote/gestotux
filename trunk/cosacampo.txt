@@ -10,6 +10,9 @@ Los movimientos y ventas se haran exclusivamente con caravanas existentes en el 
 
 Los movimiento, cualquiera que sea, debe ser solo en presente o pasado.
 
+Cada animal tiene un dueño.
+
+
 Apuntes de charlas con gandhalf
 ======= == ======= === ========
 

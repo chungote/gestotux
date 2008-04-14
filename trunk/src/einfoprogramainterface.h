@@ -37,6 +37,8 @@ public:
     virtual QIcon iconoPrograma() const = 0;
     virtual QString directorioBackup() const = 0;
     virtual QString directorioActualizaciones() const = 0;
+    virtual double version() const = 0;
+    virtual QString empresa() = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,

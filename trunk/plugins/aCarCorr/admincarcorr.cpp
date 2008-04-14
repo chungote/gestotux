@@ -44,7 +44,7 @@ QString AdminCarCorr::directorioBackup() const
 
 QString AdminCarCorr::nombrePrograma() const
 {
- return "Sistema Informatico para Caravanas Administracion Corrientes";
+ return "Caravanas - Administracion Corrientes";
 }
 
 QList< QAction * > AdminCarCorr::accionesBarra() const
@@ -82,12 +82,6 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActEstablecimiento->setShortcut( QKeySequence( "Ctrl+e" ) );
  connect( ActEstablecimiento, SIGNAL( triggered() ), this, SLOT( verEstablecimientos() ) );
 
- ActNuevoEstablecimiento = new QAction( "Agregar Establecimiento", this );
- ActNuevoEstablecimiento->setIcon( QIcon( ":/imagenes/add.png" ) );
- ActNuevoEstablecimiento->setStatusTip( "Agrega un nuevo establecimiento" );
- ActNuevoEstablecimiento->setToolTip( "Agrega un nuevo establecimiento" );
- connect( ActNuevoEstablecimiento, SIGNAL( triggered() ), this, SLOT( agregarEstablecimiento() ) );
-
  ActAgregarCompra = new QAction( "Agregar compra", this );
  ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
  ActAgregarCompra->setStatusTip( "Agrega una nueva compra" );
@@ -98,7 +92,7 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActAgregarVenta->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerVenta() ) );
 
- ActAgregarMudanza = new QAction( "Nueva mudanza", this );
+ ActAgregarMudanza = new QAction( "Nuevo Traslado", this );
  ActAgregarMudanza->setIcon( QIcon( ":/imagenes/add.png" ) );
  ActAgregarMudanza->setToolTip( "Agrega un nuevo tri de mudanza" );
  connect( ActAgregarMudanza, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
@@ -166,9 +160,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
  }
  else
  { 
-  QMenu *menuRecibos = menuHer->addMenu( "Establecimientos" );
-  menuRecibos->addAction( ActEstablecimiento );
-  menuRecibos->addAction( ActNuevoEstablecimiento );
+  menuHer->addAction( ActEstablecimiento );
   menuHer->addAction( ActCategoria );
   menuHer->addSeparator();
   menuHer->addAction( ActAgregarCompra );
@@ -289,10 +281,13 @@ void AdminCarCorr::cargarPluginsInformes()
         if( loader->load() )
         {
 		EInformeInterface *plug = qobject_cast<EInformeInterface *>( loader->instance() );
+		// Genero ahora el visor de informe
 		if( plug->inicializar( _formCen ) )
 		{
 			_plugins->insert( plug->nombre(), plug );
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
+			// Registro en las preferencias el plugin
+			///@todo Registrar el plugin en las preferencias
 		}
 		else
 		{
@@ -322,4 +317,13 @@ QList<EInformeInterface *> AdminCarCorr::plugins()
  {
   return _plugins->values();
  }
+}
+
+
+/*!
+    \fn AdminCarCorr::empresa()
+ */
+QString AdminCarCorr::empresa()
+{
+ return "Administracion Corrientes";
 }
