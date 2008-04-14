@@ -197,3 +197,12 @@ double HiComp::version() const
 {
   return 0.1;
 }
+
+
+/*!
+    \fn HiComp::empresa() const
+ */
+QString HiComp::empresa() const
+{
+ return "HiComp Computacion";
+}

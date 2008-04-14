@@ -45,6 +45,7 @@ public:
     void crearMenu( QMenuBar *m );
     bool verificarTablas();
     double version() const;
+    QString empresa() const;
 
 private:
     QList<QAction *> _acciones;
