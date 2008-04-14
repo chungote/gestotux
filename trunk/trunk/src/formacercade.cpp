@@ -29,9 +29,9 @@ FormAcercaDe::FormAcercaDe(QWidget* parent)
 	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
 	LImagen->setPixmap( gestotux::pluginInfo()->iconoPrograma().pixmap( 100, 100 ) );
 
-	label_2->setText(  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; font-weight:600;\">HiComp Internet</span></p></body></html>" );
-        label_4->setText( "Version 0.1" );
-        label_3->setText( "HiComp es un programa desarrollado especificamente para HiComp Internet.\nRealizado bajo licencia GPL, completamente desarrollado con Software Libre.\nBasado en las librerias Qt.\n\nProgramador y Analista:\nEsteban Zeller <tranfuga_25s@hotmail.com>" );
+	label_2->setText(  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; font-weight:600;\">" + gestotux::pluginInfo()->nombrePrograma() + "</span></p></body></html>" );
+        label_4->setText( QString( "Version %1" ).arg( gestotux::pluginInfo()->version() ) );
+        label_3->setText( gestotux::pluginInfo()->nombrePrograma() + " es un programa desarrollado especificamente para " + gestotux::pluginInfo()->empresa() + ".\nRealizado bajo licencia GPL, completamente desarrollado con Software Libre.\nBasado en las librerias Qt.\n\nProgramador y Analista:\nEsteban Zeller <tranfuga_25s@hotmail.com>" );
         PBCerrar->setText( "Cerrar" );
 
         nombre_ventana = "formacercaede";

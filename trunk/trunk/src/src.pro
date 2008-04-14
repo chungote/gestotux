@@ -53,10 +53,6 @@ INCLUDEPATH += ../plugins
 
 DISTFILES += qt_es.qm
 
-win32 {
-    CONFIG += console
-    RC_FILE = gestotux.rc
-}
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc

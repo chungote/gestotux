@@ -39,7 +39,8 @@ HEADERS += admincarcorr.h \
  eplugin.h \
  einfoprogramainterface.h \
  einformeinterface.h \
- TipoMovs.h
+ TipoMovs.h \
+ einforme.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -56,7 +57,8 @@ SOURCES += admincarcorr.cpp \
  mtri.cpp \
  mcaravanas.cpp \
  emovimiento.cpp \
- formstock.cpp
+ formstock.cpp \
+ einforme.cpp
 
 TARGET = admincaravanascorrientes
 
@@ -64,6 +66,5 @@ DESTDIR = ../../bin/plugins
 
 RESOURCES += aCarCorr.qrc
 
-FORMS += FormMovimientoBase.ui \
- FormFiltrosBase.ui
+FORMS += FormMovimientoBase.ui
 

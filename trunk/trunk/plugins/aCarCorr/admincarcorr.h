@@ -56,7 +56,6 @@ private:
     static QSettings *_pref;
 
 	QAction *ActEstablecimiento;
-	QAction *ActNuevoEstablecimiento;
 	QAction *ActCategoria;
 
 	QAction *ActAgregarCompra;
@@ -76,6 +75,7 @@ protected slots:
 
 private:
     void cargarPluginsInformes();
+    QString empresa();
 };
 
 #endif

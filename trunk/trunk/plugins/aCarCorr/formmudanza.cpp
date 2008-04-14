@@ -108,7 +108,7 @@ void FormMudanza::guardar()
  int id = movimiento->guardar( dialogo );
  if( id < 0 )
  {
-	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
+	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de este traslado" );
 	dialogo->close();
 	c.exec( "ROLLBACK TRANSACTION" );
 	return;

@@ -22,7 +22,6 @@ DESTDIR = ../../../../bin/plugins/informes
 
 HEADERS += informesmovimientos.h \
  formfiltro.h \
- einforme.h \
  erenderizadorinforme.h \
  mcategoria.h \
  mestablecimiento.h \
@@ -30,7 +29,6 @@ HEADERS += informesmovimientos.h \
 
 SOURCES += informesmovimientos.cpp \
  formfiltro.cpp \
- einforme.cpp \
  erenderizadorinforme.cpp \
  mcategoria.cpp \
  mestablecimiento.cpp

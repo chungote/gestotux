@@ -38,6 +38,8 @@ public:
     double version() const;
     void crearMenu(QMenu* m);
     void informePorFecha();
+    bool impresionPersonalizada() const;
+    void imprimir();
 private:
 
 	QAction *ActInformeFiltroTotal;

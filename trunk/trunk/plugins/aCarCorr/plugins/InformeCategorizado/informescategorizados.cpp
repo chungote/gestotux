@@ -40,3 +40,21 @@ void InformesCategorizados::crearMenu(QMenu* m)
 }
 
 Q_EXPORT_PLUGIN2(informecategorizado, InformesCategorizados )
+
+
+/*!
+    \fn InformesCategorizados::impresionPersonalizada()
+ */
+bool InformesCategorizados::impresionPersonalizada() const
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn InformesCategorizados::imprimir()
+ */
+void InformesCategorizados::imprimir()
+{
+    /// @todo implement me
+}

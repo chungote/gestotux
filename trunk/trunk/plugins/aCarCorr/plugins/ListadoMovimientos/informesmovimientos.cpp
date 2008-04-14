@@ -75,3 +75,21 @@ void InformesMovimientos::informeCompleto()
 	render->hacerInforme();
  }
 }
+
+
+/*!
+    \fn InformesMovimientos::impresionPersonalizada()
+ */
+bool InformesMovimientos::impresionPersonalizada() const
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn InformesMovimientos::imprimir()
+ */
+void InformesMovimientos::imprimir()
+{
+    /// @todo implement me
+}

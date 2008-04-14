@@ -17,31 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EINFORMEINTERFACE_H
-#define EINFORMEINTERFACE_H
+#ifndef EINFORME_H
+#define EINFORME_H
 
-#include <QtPlugin>
+#include <QTextEdit>
+class QAction;
 class QMenu;
-class QStackedWidget;
-/**
-Interfaz para hacer un informe
 
+/**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EInformeInterface
+class EInforme : public QTextEdit
 {
+Q_OBJECT
 public:
-    virtual ~EInformeInterface() {}
-    virtual void crearMenu( QMenu *m ) = 0;
-    virtual double version() const = 0;
-    virtual QString nombre() const = 0;
-    virtual bool inicializar( QStackedWidget *form ) = 0;
-    virtual bool impresionPersonalizada() const = 0;
-    virtual void imprimir() = 0;
+    EInforme(QWidget *parent = 0);
+    ~EInforme();
+    QMenu* createStandardContextMenu();
 
+private:
+    QAction *ActCerrar;
+    QAction *ActImprimir;
+
+protected slots:
+    void imprimir();
 };
-
-Q_DECLARE_INTERFACE(EInformeInterface,
-                    "tranfuga.EInformeInterface/1.0" );
 
 #endif
