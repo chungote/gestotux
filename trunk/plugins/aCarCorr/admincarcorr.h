@@ -75,7 +75,7 @@ protected slots:
 
 private:
     void cargarPluginsInformes();
-    QString empresa();
+    QString empresa() const;
 };
 
 #endif

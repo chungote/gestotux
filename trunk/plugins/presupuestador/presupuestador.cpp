@@ -177,3 +177,12 @@ QSettings *presupuestador::pref()
 {
  return _pref;
 }
+
+
+/*!
+    \fn presupuestador::empresa() const
+ */
+QString presupuestador::empresa() const
+{
+    /// @todo implement me
+}

@@ -138,6 +138,11 @@ bool AdminCarCorr::verificarTablas()
   qWarning( "Error al buscar la tabla car_carv_tri" );
   return false;
  }
+ if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_carv_duenos' AND type = 'table'" ) )
+ {
+  qWarning( "Error al buscar la tabla car_carv_tri" );
+  return false;
+ }
  return true;
 }
 
@@ -323,7 +328,7 @@ QList<EInformeInterface *> AdminCarCorr::plugins()
 /*!
     \fn AdminCarCorr::empresa()
  */
-QString AdminCarCorr::empresa()
+QString AdminCarCorr::empresa() const
 {
  return "Administracion Corrientes";
 }

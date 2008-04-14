@@ -52,6 +52,8 @@ FormFiltro::FormFiltro(QWidget* parent, Qt::WFlags fl)
 	DEFechaEspecifica->setDate( QDate::currentDate() );
 	DEFechaInicio->setDate( QDate::currentDate() );
 	DEFechaFin->setDate( QDate::currentDate() );
+
+	adjustSize();
 }
 
 FormFiltro::~FormFiltro()
