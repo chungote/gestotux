@@ -55,11 +55,12 @@ que el sistema separe solo x ojas las categorias
 q en la cabecera diga
 listado de ingresos x (motive) fecha campo y categoria
 
-nbuevas cosa para arreglar:
-======= ==== ==== =========
+nuevas cosas para arreglar:
+====== ===== ==== =========
 
 - en la parte de venta dice vendedor y tiene que decir comprador
 - Redireccionar debug a un archivo
 - ver distintos tipos de carga desde archivo
 - Ver cola de autocompletado
 - eliminar pila de ventanas centrales
+- autoagregar caravana en venta
