@@ -97,6 +97,9 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActAgregarMudanza->setToolTip( "Agrega un nuevo tri de mudanza" );
  connect( ActAgregarMudanza, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
 
+ ActAgregarStock = new QAction( "Ingreso x stock", this );
+ connect( ActAgregarStock, SIGNAL( triggered() ), this, SLOT( agregarStock() ) );
+
  ActDuenos = new QAction( "Dueños", this );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( mostrarDuenos() ) );
 
@@ -345,5 +348,12 @@ QString AdminCarCorr::empresa() const
 void AdminCarCorr::mostrarDuenos()
 {
  VDuenos *f = new VDuenos( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+}
+
+#include "formstock.h"
+void AdminCarCorr::agregarStock()
+{
+ FormStock *f = new FormStock( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

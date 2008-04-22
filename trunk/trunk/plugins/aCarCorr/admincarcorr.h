@@ -62,6 +62,7 @@ private:
 	QAction *ActAgregarCompra;
 	QAction *ActAgregarVenta;
 	QAction *ActAgregarMudanza;
+	QAction *ActAgregarStock;
 
 	static QHash<QString, EInformeInterface *> *_plugins;
 	QPluginLoader *loader;
@@ -73,12 +74,13 @@ protected slots:
     void hacerMovimiento();
     void hacerVenta();
     void hacerMudanza();
+    void mostrarDuenos();
+    void agregarStock();
 
 private:
     void cargarPluginsInformes();
     QString empresa() const;
-protected slots:
-    void mostrarDuenos();
+
 };
 
 #endif
