@@ -39,7 +39,7 @@
 #include "mduenos.h"
 
 //Tempral
-#include <modeltest.h>
+//#include <modeltest.h>
 
 FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 : QWidget( parent, fl ), Ui::FormMovimientoBase()
@@ -246,7 +246,7 @@ void FormMovimiento::setearNumeroTri()
   if( cola.next() )
   {
 	///@todo Agregar una mascara para que el numero salga mejor
-    LETRI->setText( QString( "%1" ).arg( cola.record().value(0).toInt() ) );
+    LETRI->setText( QString( "%1" ).arg( cola.record().value(0).toInt() + 1 ) );
   }
   else
   {
@@ -416,7 +416,7 @@ void FormMovimiento::cargarDesdeArchivo()
 	}
 	// Leo el archivo
 	QString cadena( arch.readAll() );
-	QStringList cadenas = cadena.split( "\n" );
+	QStringList cadenas = cadena.split( "\n", QString::SkipEmptyParts, Qt::CaseInsensitive );
 	if( cadenas.size() <= 0 )
 	{
 		qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
@@ -428,14 +428,21 @@ void FormMovimiento::cargarDesdeArchivo()
 	foreach( cad, cadenas )
 	{
 		QStringList temp = cad.split( ";" );
-		if(!temp[0].isEmpty())
+		if( temp.size() >= 2 )
 		{
-			caravanas.append( temp[0] );
-			qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
-			if( dta.isEmpty() )
+			if(!temp[0].isEmpty())
 			{
-				dta = temp[1];
+				caravanas.append( temp[0] );
+				qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
+				if( dta.isEmpty() )
+				{
+					dta = temp[1];
+				}
 			}
+		}
+		else
+		{
+			qDebug( "Cadena Vacia" );
 		}
 	}
 	bool ok;

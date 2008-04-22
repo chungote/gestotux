@@ -35,8 +35,7 @@ TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
           qt \
- exceptions \
- console
+ exceptions
 QT += sql \
 svg \
 xml \
