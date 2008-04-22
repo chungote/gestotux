@@ -13,7 +13,7 @@ QT += sql
 
 
 win32 {
-    CONFIG += console
+    CONFIG -= console
 }
 linux-g++ {
     UI_DIR = ui
@@ -74,9 +74,3 @@ DESTDIR = ../../bin/plugins
 RESOURCES += aCarCorr.qrc
 
 FORMS += FormMovimientoBase.ui
-
-include(/home/Esteban/Programas/modeltest-0.2/modeltest.pri)
-CONFIG -= release
-
-QMAKE_CXXFLAGS_DEBUG += -ggdb \
--g3
