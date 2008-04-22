@@ -550,8 +550,22 @@ bool EMovimiento::guardarCaravana( QString codigo )
 	case venta:
 	case mudanza:
 	{
+		/* Eliminacion temporal
 		qDebug( "La caravana ya debe existir en la db" );
 		return true;
+		*/
+		QSqlQuery cola;
+		if( !cola.exec( QString( "INSERT OR IGNORE INTO car_caravana( codigo ) VALUES ( '%1' )" ).arg( codigo ) ) )
+		{
+			qWarning( QString( "Error al agregar nueva caravana\n Error: %1\n cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+			return false;
+		}
+		else
+		{
+			qDebug( "Caravana Agregada" );
+			return true;
+		}
+		break;
 		break;
 	}
 	default:

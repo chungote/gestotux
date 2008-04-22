@@ -181,7 +181,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/aCarCorr/plugins/ListadoMovimientos</activedir>
+      <activedir>plugins/aCarCorr</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
