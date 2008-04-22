@@ -97,6 +97,9 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActAgregarMudanza->setToolTip( "Agrega un nuevo tri de mudanza" );
  connect( ActAgregarMudanza, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
 
+ ActDuenos = new QAction( "Dueños", this );
+ connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( mostrarDuenos() ) );
+
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
  _acciones.append( ActAgregarMudanza );
@@ -167,6 +170,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
  { 
   menuHer->addAction( ActEstablecimiento );
   menuHer->addAction( ActCategoria );
+  menuHer->addAction( ActDuenos );
   menuHer->addSeparator();
   menuHer->addAction( ActAgregarCompra );
   menuHer->addAction( ActAgregarMudanza );
@@ -331,4 +335,15 @@ QList<EInformeInterface *> AdminCarCorr::plugins()
 QString AdminCarCorr::empresa() const
 {
  return "Administracion Corrientes";
+}
+
+
+#include "vduenos.h"
+/*!
+    \fn AdminCarCorr::mostrarDuenos()
+ */
+void AdminCarCorr::mostrarDuenos()
+{
+ VDuenos *f = new VDuenos( _formCen );
+ _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }

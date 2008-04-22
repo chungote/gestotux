@@ -21,7 +21,6 @@
 
 #include <QAction>
 #include <QDate>
-#include <QStringListModel>
 #include <QListView>
 #include <QMessageBox>
 #include <QHeaderView>
@@ -31,10 +30,16 @@
 #include <QFileDialog>
 #include <QSqlError>
 #include <QFile>
+#include <QItemDelegate>
 
 #include "mestablecimiento.h"
 #include "mcategoria.h"
 #include "mclientes.h"
+#include "mcaravanadueno.h"
+#include "mduenos.h"
+
+//Tempral
+#include <modeltest.h>
 
 FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 : QWidget( parent, fl ), Ui::FormMovimientoBase()
@@ -92,11 +97,12 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 	dEFecha->setDate( QDate::currentDate() );
 
 	//Inicializo el modelo de las carvanas
-	model = new QStringListModel( TVCaravanas );
-	model->setHeaderData( 0, Qt::Horizontal, "Numero de Caravana" );
+	model = new MCaravanaDueno( TVCaravanas );
+	//new ModelTest(model, this);
 	TVCaravanas->setModel( model );
+	TVCaravanas->setItemDelegate( new QItemDelegate( TVCaravanas ) );
+	TVCaravanas->hideColumn( 0 );
 	TVCaravanas->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-	TVCaravanas->horizontalHeader()->hide();
 
 	// Seteo el numero de tri
 	setearNumeroTri();
@@ -107,6 +113,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 		{
 			LTitulo->setText( "Ingreso de caravanas por compra" );
 			LOrigen->hide();
+			LCliente->setText( "Vendedor:" );
 			CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
 			CBEstablecimientoDestino->setModelColumn( 1 );
 			qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
@@ -117,6 +124,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 		case venta:
 		{
 			LTitulo->setText( "Salida de caravanas por venta" );
+			LCliente->setText( "Comprador:" );
 			LDestino->hide();
 			CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
 			CBEstablecimientoOrigen->setModelColumn( 1 );
@@ -198,14 +206,9 @@ void FormMovimiento::agregarCaravana()
  {
   return;
  }
- QStringList d = model->stringList();
- if( d.contains( LENumCar->text() ) )
- {
-  return;
- }
- d.append( LENumCar->text() );
- model->setStringList( d );
+ model->verificarAgregar( LENumCar->text(), "" );
  LENumCar->clear();
+ LENumCar->setFocus();
 }
 
 /*!
@@ -400,7 +403,7 @@ void FormMovimiento::cargarDesdeArchivo()
     QString archivo = QFileDialog::getOpenFileName( this,
                                 "Importar desde archivo...",
                                 "",
-                                "Archivos de texto (*.txt)",
+                                "Archivo csv (*.csv *.CSV);; Todos los archivos (*.*)",
                                 &filtroSeleccion,
                                 opciones);
     if ( !archivo.isEmpty() )
@@ -413,13 +416,41 @@ void FormMovimiento::cargarDesdeArchivo()
 	}
 	// Leo el archivo
 	QString cadena( arch.readAll() );
-	QStringList cadenas = cadena.split( "," );
+	QStringList cadenas = cadena.split( "\n" );
 	if( cadenas.size() <= 0 )
 	{
 		qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
 		return;
 	}
-	model->setStringList( model->stringList() + cadenas );
+	// separo las cadenas por punto y comas
+	QStringList caravanas;
+	QString cad, dta;
+	foreach( cad, cadenas )
+	{
+		QStringList temp = cad.split( ";" );
+		if(!temp[0].isEmpty())
+		{
+			caravanas.append( temp[0] );
+			qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
+			if( dta.isEmpty() )
+			{
+				dta = temp[1];
+			}
+		}
+	}
+	bool ok;
+	// Busco la lista de dueños
+	MDuenos *duenos = new MDuenos( this );
+	QString dueno = QInputDialog::getItem(this, "Elija el dueño",tr("Elija el dueño"), duenos->getLista(), 0, false, &ok );
+	if( ok )
+	{
+		model->verificarAgregar( caravanas, dueno );
+	}
+	else
+	{
+		model->verificarAgregar( caravanas );
+	}
+	LEDTA->setText( dta );
     }
 }
 
@@ -505,7 +536,7 @@ bool FormMovimiento::verificar()
 	}
  }
  // verifico que exista al menos una caravana
- if( model->stringList().isEmpty() )
+ if( model->listaCaravanas().isEmpty() )
  {
 	qWarning( "No hay caravanas ingresadas. Por favor ingrese alguna" );
 	return false;

@@ -25,7 +25,7 @@
 #include "ui_FormMovimientoBase.h"
 #include "TipoMovs.h"
 class QAction;
-class QStringListModel;
+class MCaravanaDueno;
 
 class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
 {
@@ -41,7 +41,7 @@ public:
 protected:
 	QAction *ActCerrar;
 	QAction *ActGuardar;
-	QStringListModel *model;
+	MCaravanaDueno *model;
 
 
 protected slots:

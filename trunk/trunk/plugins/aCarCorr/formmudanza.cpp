@@ -25,7 +25,7 @@
 #include "TipoMovs.h"
 #include <QMessageBox>
 #include <QSqlError>
-#include <QStringListModel>
+#include "mcaravanadueno.h"
 
 FormMudanza::FormMudanza(QWidget* parent, Qt::WFlags fl)
 : FormMovimiento( parent, fl, mudanza )
@@ -94,7 +94,7 @@ void FormMudanza::guardar()
  dialogo->setValue( dialogo->value() + 1 );
  // Lista de caravanas
  dialogo->setLabelText( "Comprobando caravanas..." );
- QStringList lista = model->stringList();
+ QStringList lista = model->listaCaravanas();
  dialogo->setRange( 0, lista.size() );
  dialogo->setValue( 0 );
  QString cadena;

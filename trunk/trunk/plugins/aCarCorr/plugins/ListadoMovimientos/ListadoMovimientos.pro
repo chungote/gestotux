@@ -25,17 +25,23 @@ HEADERS += informesmovimientos.h \
  erenderizadorinforme.h \
  mcategoria.h \
  mestablecimiento.h \
- TipoMovs.h
+ TipoMovs.h \
+ einforme.h
 
 SOURCES += informesmovimientos.cpp \
  formfiltro.cpp \
  erenderizadorinforme.cpp \
  mcategoria.cpp \
- mestablecimiento.cpp
+ mestablecimiento.cpp \
+ einforme.cpp
 
 CONFIG -= release
 
-INCLUDEPATH += ../..
 
 FORMS += FormFiltrosBase.ui
+
+QMAKE_CXXFLAGS_DEBUG += -ggdb \
+-g3 \
+-O0
+INCLUDEPATH += ../..
 

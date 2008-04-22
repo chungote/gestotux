@@ -6,7 +6,8 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 exceptions \
- windows
+ windows \
+ debug
 
 QT += sql
 
@@ -40,7 +41,10 @@ HEADERS += admincarcorr.h \
  einfoprogramainterface.h \
  einformeinterface.h \
  TipoMovs.h \
- einforme.h
+ einforme.h \
+ mduenos.h \
+ vduenos.h \
+ mcaravanadueno.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -58,7 +62,10 @@ SOURCES += admincarcorr.cpp \
  mcaravanas.cpp \
  emovimiento.cpp \
  formstock.cpp \
- einforme.cpp
+ einforme.cpp \
+ mduenos.cpp \
+ vduenos.cpp \
+ mcaravanadueno.cpp
 
 TARGET = admincaravanascorrientes
 
@@ -68,3 +75,8 @@ RESOURCES += aCarCorr.qrc
 
 FORMS += FormMovimientoBase.ui
 
+include(/home/Esteban/Programas/modeltest-0.2/modeltest.pri)
+CONFIG -= release
+
+QMAKE_CXXFLAGS_DEBUG += -ggdb \
+-g3

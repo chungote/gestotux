@@ -19,10 +19,10 @@
  ***************************************************************************/
 #include "formventa.h"
 #include "emovimiento.h"
+#include "mcaravanadueno.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
-#include <QStringListModel>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QProgressDialog>
@@ -95,7 +95,7 @@ void FormVenta::guardar()
  dialogo->setValue( dialogo->value() + 1 );
  // Lista de caravanas
  dialogo->setLabelText( "Comprobando caravanas..." );
- QStringList lista = model->stringList();
+ QStringList lista = model->listaCaravanas();
  dialogo->setRange( 0, lista.size() );
  dialogo->setValue( 0 );
  QString cadena;

@@ -77,9 +77,12 @@ private:
     void setCaravanas( QStringList caravanas );
     bool guardarCaravana( QString codigo );
     bool cargarCaravanas();
-    bool asociarCaravana( QString codigo );
+    bool asociarCaravana( int id_caravana );
+    bool aduenarCaravana( int id_caravana, int id_cliente, QDate fecha, bool cambiar_dueno = true );
+    int getIDCaravana( QString codigo );
 
     int tipo_mov;
+    
 };
 
 #endif
