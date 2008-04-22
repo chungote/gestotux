@@ -26,6 +26,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QProgressDialog>
+#include <QSqlRecord>
 #include <QMessageBox>
 
 FormVenta::FormVenta(QWidget* parent, Qt::WFlags fl ):
@@ -36,7 +37,7 @@ FormMovimiento(parent, fl, venta )
  // si es asi, verificar que no se coloquen caravanas que no existen en ese establecimiento
  // Creo el autocompletar con los datos
  CBEstablecimientoOrigen->setCurrentIndex( -1 );
- connect( CBEstablecimientoOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( filtrarPorEstablecimiento( int ) ) );
+ //connect( CBEstablecimientoOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( filtrarPorEstablecimiento( int ) ) );
 }
 
 
@@ -136,7 +137,14 @@ void FormVenta::guardar()
 void FormVenta::filtrarPorEstablecimiento( int idCombo )
 {
  // Busco el id del establecimiento del combo
- int id_establecimiento = CBEstablecimientoOrigen->model()->data( CBEstablecimientoOrigen->model()->index( idCombo, 0 ), Qt::UserRole ).toInt();
+ qDebug( "id del combo: %i", idCombo );
+ QSqlQuery cola( QString("SELECT id_establecimiento FROM car_establecimientos WHERE nombre = '%1'" ).arg( CBEstablecimientoOrigen->itemText( idCombo ) ) );
+ if( !cola.next() )
+ {
+  qDebug( "Error al ejecutar la cola de numero de estableceimiento" );
+  return;
+ }
+ int id_establecimiento = cola.record().value(0).toInt();
  LENumCar->setCompleter( 0 );
  if( completador == 0 )
  {
@@ -151,18 +159,12 @@ void FormVenta::filtrarPorEstablecimiento( int idCombo )
  // Despues busco todos las caravanas que estuvieron en esos tri
  // SELECT id_caravana FROM car_carav_tri WHERE id_tri IN (  )
  // Selecciono los codigos que se encuentran en los establecimientos
- QSqlQuery cola;
- if( cola.exec( QString( "SELECT codigo FROM car_caravana WHERE id_caravana IN ( SELECT id_caravana FROM car_carv_tri WHERE id_tri IN ( SELECT id_tri FROM car_tri WHERE id_estab_destino = '%1' ) )" ).arg( id_establecimiento ) ) )
- {
-  qWarning( QString( "Error al ejecutar la cola de autocompletado. Error: %1, %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-  return;
- }
- modelo->setQuery( cola );
- if ( !modelo->lastError().isValid() )
+ modelo->setQuery( QString( "SELECT codigo FROM car_caravana WHERE id_caravana IN ( SELECT id_caravana FROM car_carv_tri WHERE id_tri IN ( SELECT id_tri FROM car_tri WHERE id_estab_destino = '%1' ) )" ).arg( id_establecimiento ) );
+ /*if ( !modelo->lastError().isValid() )
  {
    qWarning( QString( "Error al colocar el modelo de autocompletado. Error: %1" ).arg( modelo->lastError().text() ).toLocal8Bit() );
    return;
- }
+ }*/
  completador->setModel( modelo );
  completador->setCompletionMode( QCompleter::UnfilteredPopupCompletion );
  LENumCar->setCompleter( completador );
