@@ -57,6 +57,7 @@ private:
 
 	QAction *ActEstablecimiento;
 	QAction *ActCategoria;
+	QAction *ActDuenos;
 
 	QAction *ActAgregarCompra;
 	QAction *ActAgregarVenta;
@@ -76,6 +77,8 @@ protected slots:
 private:
     void cargarPluginsInformes();
     QString empresa() const;
+protected slots:
+    void mostrarDuenos();
 };
 
 #endif

@@ -59,8 +59,6 @@ nuevas cosas para arreglar:
 ====== ===== ==== =========
 
 - en la parte de venta dice vendedor y tiene que decir comprador
-- Redireccionar debug a un archivo
-- ver distintos tipos de carga desde archivo
 - Ver cola de autocompletado
 - eliminar pila de ventanas centrales
-- autoagregar caravana en venta
+- autoagregar caravana en venta??

@@ -35,24 +35,29 @@
 #include "preferencias.h"
 #include "eenviobackup.h"
 
+FILE *deb;
 
  void myMessageOutput(QtMsgType type, const char *msg)
  {
      switch (type) {
      case QtDebugMsg:
-         fprintf(stderr, "Debug: %s\n", msg);
+         fprintf(deb, "Debug: %s\n", msg);
+	 fflush(deb);
          break;
      case QtWarningMsg:
 	QMessageBox::warning( 0, "Warning de aplicacion", msg );
-         fprintf(stderr, "Warning: %s\n", msg);
-         break;
+	fprintf(deb, "warning: %s\n", msg);
+	 fflush(deb);
+        break;
      case QtCriticalMsg:
 	QMessageBox::critical( 0, "Error Critico", msg );
-         fprintf(stderr, "Critical: %s\n", msg);
-         break;
+	fprintf(deb, "critico: %s\n", msg);
+	 fflush(deb);
+        break;
      case QtFatalMsg:
-         fprintf(stderr, "Fatal: %s\n", msg);
-	 QMessageBox::critical( 0, "　　　FATAL!!!!!!", msg );
+         fprintf( deb, "Fatal: %s\n", msg);
+	 fflush(deb);
+         QMessageBox::critical( 0, "　　　FATAL!!!!!!", msg );
          abort();
      }
  }
@@ -61,6 +66,7 @@
 int main(int argc, char *argv[])
 {
       Q_INIT_RESOURCE(gestotux);
+	deb = fopen( "debug.txt", "a+" );
 	qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash

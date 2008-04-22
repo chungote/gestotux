@@ -21,6 +21,7 @@
 
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QPair>
 #include <QSqlError>
 #include <QVariant>
 #include <QProgressDialog>
@@ -412,24 +413,31 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 	QString codigo;
 	foreach( codigo, _caravanas )
 	{
-		if( estado )
+		if( !estado )
 		{
-			estado = guardarCaravana( codigo );
-			dialogo->setValue( dialogo->value() + 1 );
-			if( estado )
-			{
-				estado = asociarCaravana( codigo );
-				dialogo->setValue( dialogo->value() + 1 );
-			}
-			else
-			{
-				qDebug( "Error al intenar asociar la caravana" );
-				return -3;
-			}
+			qDebug( "Error en el fro" );
+			return -2;
 		}
-		else
+		estado = guardarCaravana( codigo );
+		dialogo->setValue( dialogo->value() + 1 );
+		if( !estado )
 		{
 			qDebug( "Error al intenar guardar la caravana" );
+			return -3;
+		}
+		int id_caravana = getIDCaravana( codigo );
+		estado = asociarCaravana( id_caravana );
+		dialogo->setValue( dialogo->value() + 1 );
+		if( !estado )
+		{
+			qDebug( "Error al intenar asociar la caravana" );
+			return -3;
+		}
+		/// Asociar el dueño!
+		estado = aduenarCaravana( id_caravana, 0, fecha, false );
+		if( !estado )
+		{
+			qDebug( "Error al asociar el dueño" );
 			return -3;
 		}
 	}
@@ -562,42 +570,19 @@ bool EMovimiento::guardarCaravana( QString codigo )
 /*!
     \fn EMovimiento::asociarCaravana( QString codigo )
  */
-bool EMovimiento::asociarCaravana( QString codigo )
+bool EMovimiento::asociarCaravana( int id_caravana )
 {
  // Siempre existe el codigo de caravana dado de alta al llamar esta funcion
- QSqlQuery cola;
- if( !cola.exec( QString( "SELECT id_caravana FROM car_caravana WHERE codigo = '%1' LIMIT 1" ).arg( codigo ) ) )
+ QSqlQuery cola1;
+ if( !cola1.exec( QString( "INSERT INTO car_carv_tri( id_caravana, id_tri ) VALUES ( '%1' ,'%2' )" ).arg( id_caravana ).arg( id_db ) ) )
  {
-	qWarning( QString( "Error al buscar el id de caravana\n Error: %1\n cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+	qWarning( QString( "Error al agregar nueva caravana\n Error: %1\n cola: %2" ).arg( cola1.lastError().text() ).arg( cola1.lastQuery() ).toLocal8Bit() );
 	return false;
  }
  else
  {
-	if( cola.next() )
-	{
-		int id_caravana = cola.record().value(0).toInt();
-		if( id_caravana <= 0 )
-		{
-			qDebug( "Error al controlar el id de caravana" );
-			return false;
-		}
-		QSqlQuery cola1;
-		if( !cola1.exec( QString( "INSERT INTO car_carv_tri( id_caravana, id_tri ) VALUES ( '%1' ,'%2' )" ).arg( id_caravana ).arg( id_db ) ) )
-		{
-			qWarning( QString( "Error al agregar nueva caravana\n Error: %1\n cola: %2" ).arg( cola1.lastError().text() ).arg( cola1.lastQuery() ).toLocal8Bit() );
-			return false;
-		}
-		else
-		{
-			qDebug( "Asociacion exitosa" );
-			return true;
-		}
-	}
-	else
-	{
-		qWarning( QString( "Error al next de buscar numero de caravana al agregar asociacion\n Error: %1\n cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-		return false;
-	}
+ 	qDebug( "Asociacion exitosa" );
+ 	return true;
  }
 }
 
@@ -621,5 +606,91 @@ bool EMovimiento::cargarCaravanas()
  {
   qWarning( QString( "Error al cargar las caravanas de un tri especifico.\n Error: %1\n cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
   return false;
+ }
+}
+
+
+/*!
+    \fn EMovimiento::aduenarCaravana( int id_caravana, id_cliente, QDate fecha )
+ */
+bool EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha, bool cambiar_dueno )
+{
+ // Genero la asociacion
+ QSqlQuery colas;
+ // Busco si tiene una asociacion anterior
+ if( colas.exec( QString( "SELECT COUNT(id_caravana) FROM car_carv_duenos WHERE id_caravana = '%1' AND id_cliente = '%2' AND fecha_fin IS NULL" ).arg( id_caravana ).arg( id_cliente ) ) )
+ {
+  if( colas.next() )
+  {
+   if( colas.record().value(0).toInt() > 0 )
+   {
+    // Tiene un dueño anterior
+    if( cambiar_dueno )
+    {
+	// pongo fecha de fin en el anterior
+	if( colas.exec( QString( "UPDATE INTO car_carv_duenos SET fecha_fin = '%1' WHERE id_caravana = ( SELECT id_caravana FROM car_caravanas WHERE codigo = '%1' )' AND id_cliente = '%3'" ).arg( id_caravana ).arg( id_cliente ).arg( fecha.toString( Qt::ISODate ) ) ) )
+	{
+		qDebug( "Escrito fin de duenño anterior correcto." );
+		// Escribo el dueño nuevo
+	}	
+	else
+	{
+		qWarning( QString( "Error al actualizar dueño de caravana.escritura del anterior.\n Error: %1\n cola: %2" ).arg( colas.lastError().text() ).arg( colas.lastQuery() ).toLocal8Bit() );
+		return false;
+	}
+    }
+    else
+    {
+     qWarning( "No se cambio el dueño de la caravana!" );
+     return false;
+    }
+   }
+  }
+  else
+  {
+    qWarning( QString( "Error al next en buscar dueño de caravana.\n Error: %1\n cola: %2" ).arg( colas.lastError().text() ).arg( colas.lastQuery() ).toLocal8Bit() );
+    return false;
+  }
+ }
+ else
+ {
+  qWarning( QString( "Error al buscar dueño de caravana.\n Error: %1\n cola: %2" ).arg( colas.lastError().text() ).arg( colas.lastQuery() ).toLocal8Bit() );
+  return false;
+ }
+ // Escribo el dueño nuevo
+ if( colas.exec( QString( "INSERT INTO car_carv_duenos( id_caravana, id_cliente, fecha_inicio, fecha_fin ) VALUES ( '%1', '%2', '%3', null )" ).arg( id_caravana ).arg( id_cliente ).arg( fecha.toString( Qt::ISODate ) ) ) )
+ {
+  return true;
+ }
+ else
+ {
+  qWarning( QString( "Error al insertar dueño de caravana.\n Error: %1\n cola: %2" ).arg( colas.lastError().text() ).arg( colas.lastQuery() ).toLocal8Bit() );
+  return false;
+ }
+}
+
+
+/*!
+    \fn EMovimiento::getIDCaravana( QString codigo )
+ */
+int EMovimiento::getIDCaravana( QString codigo )
+{
+  QSqlQuery cola;
+ if( !cola.exec( QString( "SELECT id_caravana FROM car_caravana WHERE codigo = '%1' LIMIT 1" ).arg( codigo ) ) )
+ {
+	qWarning( QString( "Error al buscar el id de caravana\n Error: %1\n cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+	return -1;
+ }
+ else
+ {
+	if( cola.next() )
+	{
+		return cola.record().value(0).toInt();
+	}
+	else
+	{
+		qWarning( QString( "Error al next de buscar numero de caravanab\n Error: %1\n cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+		return -1;
+	}
  }
 }

@@ -21,13 +21,13 @@
 
 #include "emovimiento.h"
 #include "TipoMovs.h"
+#include "mcaravanadueno.h"
 
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QProgressDialog>
 #include <QMessageBox>
-#include <QStringListModel>
 #include <QLabel>
 
 FormAgregar::FormAgregar(QWidget* parent, Qt::WFlags fl)
@@ -53,11 +53,10 @@ void FormAgregar::guardar()
  dialogo->setMinimum( 0 );
  dialogo->setMaximum( 6 );
  dialogo->setValue( 0 );
- dialogo->setMinimumDuration( 0 );
+ //dialogo->setMinimumDuration( 0 );
  dialogo->show();
  EMovimiento *movimiento = new EMovimiento( this );
  // Tipo de Movimiento
-//  movimiento->setTipoMov( 3 );
  movimiento->setTipoMov( compra );
  dialogo->setValue( dialogo->value() + 1 );
  // DTA
@@ -82,7 +81,7 @@ void FormAgregar::guardar()
  // Chequear que no existan los numeros de caravanas ya en la tabla
  // Busco todos los codigos dados de alta en la tabla de caravanas
  dialogo->setLabelText( "Comprobando caravanas..." );
- QStringList lista = model->stringList();
+ QStringList lista = model->listaCaravanas();
  dialogo->setRange( 0, lista.size() );
  dialogo->setValue( 0 );
  QString cadena;
