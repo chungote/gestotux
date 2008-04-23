@@ -20,9 +20,16 @@
 #include "formstock.h"
 
 #include <QLabel>
+#include <QSqlQuery>
+#include <QProgressDialog>
+#include "emovimiento.h"
+#include <QMessageBox>
+#include "mcaravanadueno.h"
+#include <QSqlError>
+#include "TipoMovs.h"
 
-FormStock::FormStock(QWidget *parent)
- : FormMovimiento(parent)
+FormStock::FormStock( QWidget *parent, Qt::WFlags f )
+ : FormMovimiento( parent, f, stock )
 {
   LTitulo->setText( "Agregar nuevas caravanas desde Stock" );
 }
@@ -35,13 +42,79 @@ FormStock::~FormStock()
 
 void FormStock::cerrar()
 {
+ this->close();
 }
 
 void FormStock::guardar()
 {
-  if( !verificar() )
+ if( !verificar() )
  {
   return;
  }
+ QSqlQuery c( "BEGIN TRANSACTION" );
+ QProgressDialog *dialogo = new QProgressDialog( this );
+ dialogo->setLabelText( "Guardando datos del TRI" );
+ dialogo->setMinimum( 0 );
+ dialogo->setMaximum( 6 );
+ dialogo->setValue( 0 );
+ dialogo->show();
+ EMovimiento *movimiento = new EMovimiento( this );
+ // Tipo de Movimiento
+ movimiento->setTipoMov( stock );
+ dialogo->setValue( dialogo->value() + 1 );
+ // DTA
+ if( !movimiento->setDTA( LEDTA->text() ) )
+ {
+	dialogo->close();
+	return;
+ }
+ dialogo->setValue( dialogo->value() + 1 );
+ // Fecha
+ movimiento->setFecha( dEFecha->date() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Categoria
+ movimiento->setCategoria( CBCategoria->model()->data( CBCategoria->model()->index( CBCategoria->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Establecimiento  de destino
+ movimiento->setEstablecimientoDestino( CBEstablecimientoDestino->model()->data( CBEstablecimientoDestino->model()->index( CBEstablecimientoDestino->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Vendedor
+ movimiento->setVendedor( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ dialogo->setValue( dialogo->value() + 1 );
+ // Chequear que no existan los numeros de caravanas ya en la tabla
+ // Busco todos los codigos dados de alta en la tabla de caravanas
+ dialogo->setLabelText( "Comprobando caravanas..." );
+ QStringList lista = model->listaCaravanas();
+ dialogo->setRange( 0, lista.size() );
+ dialogo->setValue( 0 );
+ QString cadena;
+ foreach( cadena, lista )
+ {
+  movimiento->agregarCaravana( cadena );
+ }
+ // Lista la comprobacion de caravanas
+ // comienzo a guardar todo
+ dialogo->setLabelText( "Guardando datos..." );
+ int id = movimiento->guardar( dialogo );
+ if( id < 0 )
+ {
+	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
+	dialogo->close();
+	c.exec( "ROLLBACK TRANSACTION" );
+	return;
+ }
+ else
+ {
+  if( c.exec( "COMMIT" ) )
+  {
+   QMessageBox::information( this, "Correcto", "La informacion se ha guardado correctamente");
+  }
+  else
+  {
+   qWarning( QString( "Error al hacer el commit\n Error: %1" ).arg( c.lastError().text() ).toLocal8Bit() );
+  }
+ }
+ dialogo->close();
+ this->close();
 }
 

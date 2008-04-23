@@ -17,45 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ERENDERIZADORINFORME_H
-#define ERENDERIZADORINFORME_H
+#ifndef MCARAVANADUENO_H
+#define MCARAVANADUENO_H
 
-#include <QObject>
-class QTextDocument;
-class FormFiltro;
-class QTextTable;
-class QProgressDialog;
-#include <QSqlQuery>
-#include <QDate>
+#include <QAbstractTableModel>
+#include <QAbstractItemModel>
 #include <QPair>
+#include <QHash>
+
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class ERenderizadorInforme : public QObject
+class MCaravanaDueno : public QAbstractTableModel
 {
- Q_OBJECT
+Q_OBJECT
 public:
-    ERenderizadorInforme( QObject *padre = 0);
-    ~ERenderizadorInforme();
-    void setDocumento( QTextDocument *doc );
-    void setPropiedades( FormFiltro *f );
-    void hacerInforme();
-    void hacerCabecera();
-    void setarCabeceraFiltros();
-    void generarCola();
-    void generarCabeceraTabla();
-    void colocarContenido();
-    QTextDocument * documento() const;
-
+    MCaravanaDueno(QObject *parent = 0);
+    ~MCaravanaDueno();
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole );
+    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex() );
+    bool insertRow(int row, const QModelIndex& parent = QModelIndex() );
+    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QVariant data(const QModelIndex& index, int role) const;
+    QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
+    int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
+    int columnCount ( const QModelIndex & parent = QModelIndex() ) const ;
+    QStringList listaCaravanas();
+    bool verificarAgregar( const QString &codigo, const QString &dueno = "" );
+    bool verificarAgregar( const QStringList &listado, const QString &dueno = "");
+    void setDuenosTodos( const QString &dueno );
+    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const ;
 private:
-    QTextDocument *_doc;
-    QProgressDialog *d;
-	bool _filtra_tipo,_filtra_estab,_filtra_categoria,_filtra_fecha,_filtra_rango_fecha;
-	int _id_cat,_id_estab,_id_tipo;
-	QPair<QDate,QDate> _rango_fechas;
-	QSqlQuery cola;
-	QTextTable *tabla;
-	QDate _fecha;
+	QHash<int, QPair<QString,QString> > datos;
 };
 
 #endif

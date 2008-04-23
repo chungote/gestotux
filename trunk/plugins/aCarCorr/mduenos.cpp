@@ -17,45 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ERENDERIZADORINFORME_H
-#define ERENDERIZADORINFORME_H
+#include "mduenos.h"
 
-#include <QObject>
-class QTextDocument;
-class FormFiltro;
-class QTextTable;
-class QProgressDialog;
+#include <QStringList>
 #include <QSqlQuery>
-#include <QDate>
-#include <QPair>
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class ERenderizadorInforme : public QObject
+#include <QSqlRecord>
+
+MDuenos::MDuenos(QObject *parent)
+ : QSqlQueryModel(parent)
 {
- Q_OBJECT
-public:
-    ERenderizadorInforme( QObject *padre = 0);
-    ~ERenderizadorInforme();
-    void setDocumento( QTextDocument *doc );
-    void setPropiedades( FormFiltro *f );
-    void hacerInforme();
-    void hacerCabecera();
-    void setarCabeceraFiltros();
-    void generarCola();
-    void generarCabeceraTabla();
-    void colocarContenido();
-    QTextDocument * documento() const;
+ this->setQuery( "SELECT * FROM clientes WHERE id IN ( SELECT id_cliente FROM car_carv_duenos )" );
+}
 
-private:
-    QTextDocument *_doc;
-    QProgressDialog *d;
-	bool _filtra_tipo,_filtra_estab,_filtra_categoria,_filtra_fecha,_filtra_rango_fecha;
-	int _id_cat,_id_estab,_id_tipo;
-	QPair<QDate,QDate> _rango_fechas;
-	QSqlQuery cola;
-	QTextTable *tabla;
-	QDate _fecha;
-};
 
-#endif
+MDuenos::~MDuenos()
+{
+}
+
+
+
+
+/*!
+    \fn MDuenos::getLista()
+ */
+QStringList MDuenos::getLista()
+{
+ QStringList l;
+ QString anterior = this->query().lastQuery();
+ this->setQuery( "SELECT * FROM clientes" );
+ for( int i = 0; i<rowCount(); i++ )
+ {
+  l.append( QString( "%1, %2" ).arg( this->data( this->index(i,1), Qt::DisplayRole).toString() ).arg( this->data( this->index(i,2), Qt::DisplayRole).toString() ) );
+ }
+ this->setQuery( anterior );
+ return l;
+}

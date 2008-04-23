@@ -27,10 +27,12 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QTextTable>
+#include <QProgressDialog>
 
 ERenderizadorInforme::ERenderizadorInforme( QObject *padre )
 : QObject( padre )
 {
+ _doc = new QTextDocument( this );
 }
 
 
@@ -88,10 +90,19 @@ void ERenderizadorInforme::setPropiedades( FormFiltro *f )
  */
 void ERenderizadorInforme::hacerInforme()
 {
+ d = new QProgressDialog( 0 );
+ d->setLabelText( "Generando cabecera" );
+ d->setMinimumDuration( 0 );
+ d->setRange( 0, 4 );
+ d->setValue( 0 );
  hacerCabecera();
+ d->setValue( 1 );
  setarCabeceraFiltros();
+ d->setValue( 2 );
+ d->setLabelText( "Buscando datos..." );
  generarCola();
-  if( cola.size() == 0 )
+ d->setValue( 3 );
+ if( cola.size() == 0 )
  {
   qWarning( "No existen resultados para la busqueda con estos parametros." );
   QTextCursor * cursor = new QTextCursor( _doc );
@@ -99,7 +110,9 @@ void ERenderizadorInforme::hacerInforme()
   return;
  }
  generarCabeceraTabla();
+ d->setValue( 4 );
  colocarContenido();
+ d->close();
 }
 
 
@@ -228,12 +241,14 @@ void ERenderizadorInforme::generarCabeceraTabla()
 
 void ERenderizadorInforme::colocarContenido()
 {
-
+ _doc->setUndoRedoEnabled( false );
  if( !cola.isActive() )
  {
   qCritical( "La cola esta inactiva" );
   return;
  }
+ d->setLabelText( "Generando informe" );
+ d->setRange( 0, cola.size() );
  while( cola.next() )
  {
   int pos = tabla->rows();
@@ -241,6 +256,7 @@ void ERenderizadorInforme::colocarContenido()
   tabla->cellAt( pos, 0 ).firstCursorPosition().insertText( cola.record().value(0).toString() );
   tabla->cellAt( pos, 1 ).firstCursorPosition().insertText( cola.record().value(1).toString() );
   tabla->cellAt( pos, 2 ).firstCursorPosition().insertText( cola.record().value(2).toString() );
+  d->setValue( d->value() + 1 );
  }
 }
 
@@ -311,4 +327,13 @@ void ERenderizadorInforme::generarCola()
 	return;
  }
 
+}
+
+
+/*!
+    \fn ERenderizadorInforme::documento() const
+ */
+QTextDocument * ERenderizadorInforme::documento() const
+{
+ return _doc;
 }

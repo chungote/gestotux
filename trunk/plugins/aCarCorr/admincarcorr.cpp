@@ -90,6 +90,7 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
 
  ActAgregarVenta = new QAction( "Nueva venta", this );
  ActAgregarVenta->setIcon( QIcon( ":/imagenes/add.png" ) );
+ ActAgregarVenta->setToolTip( "Agregar nueva venta de animales" );
  connect( ActAgregarVenta, SIGNAL( triggered() ), this, SLOT( hacerVenta() ) );
 
  ActAgregarMudanza = new QAction( "Nuevo Traslado", this );
@@ -98,14 +99,19 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  connect( ActAgregarMudanza, SIGNAL( triggered() ), this, SLOT( hacerMudanza() ) );
 
  ActAgregarStock = new QAction( "Ingreso x stock", this );
+ ActAgregarStock->setIcon( QIcon( ":/imagenes/add.png" ) );
+ ActAgregarStock->setToolTip( "Agregar Caravanas a la existencia" );
  connect( ActAgregarStock, SIGNAL( triggered() ), this, SLOT( agregarStock() ) );
 
  ActDuenos = new QAction( "Dueños", this );
+ ActDuenos->setToolTip( "Muestra el listado de personas que estan como dueños" );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( mostrarDuenos() ) );
 
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
  _acciones.append( ActAgregarMudanza );
+ _acciones.append( ActAgregarStock );
+ _acciones.append( ActDuenos );
 
  cargarPluginsInformes();
  return verificarTablas();
@@ -178,6 +184,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
   menuHer->addAction( ActAgregarCompra );
   menuHer->addAction( ActAgregarMudanza );
   menuHer->addAction( ActAgregarVenta );
+  menuHer->addAction( ActAgregarStock );
  }
  // Creo el menu de informes
  QMenu *menuInformes = m->addMenu( "Informes" );
