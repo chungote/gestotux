@@ -29,7 +29,7 @@ class FormStock : public FormMovimiento
 {
 Q_OBJECT
 public:
-    FormStock(QWidget *parent = 0);
+    FormStock(QWidget *parent = 0, Qt::WFlags = 0 );
 
     ~FormStock();
 

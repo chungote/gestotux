@@ -1,0 +1,1 @@
+/home/Esteban/Programas/gestotux/plugins/aCarCorr/mcategoria.cpp

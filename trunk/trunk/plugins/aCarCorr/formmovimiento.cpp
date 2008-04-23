@@ -31,6 +31,7 @@
 #include <QSqlError>
 #include <QFile>
 #include <QItemDelegate>
+#include <QProgressDialog>
 
 #include "mestablecimiento.h"
 #include "mcategoria.h"
@@ -150,7 +151,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 		}
 		case stock:
 		{
-			LTitulo->setText( "Ingreso de caravanas por stock" );
+			LTitulo->setText( "<b>Ingreso de caravanas por stock</b>" );
 			// oculto el origen ( viene del limbo )
 			LOrigen->hide();
 			CBEstablecimientoOrigen->hide();
@@ -159,21 +160,15 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 			LCliente->hide();
 			CBCliente->hide();
 			PBAgregarCliente->hide();
-			// Oculto la categoria 
-			LCategoria->hide();
-			CBCategoria->hide();
-			PBAgregarCategoria->hide();
-			// Oculto el DTA y el TRI
-			LTri->hide();
-			LDTA->hide();
-			LETRI->hide();
-			LEDTA->hide();
 			CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
 			CBEstablecimientoOrigen->setModelColumn( 1 );
 			qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
 			CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
 			CBEstablecimientoDestino->setModelColumn( 1 );
 			qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
+			LDestino->show();
+			PBAgregarEstablecimientoDestino->show();
+			CBEstablecimientoDestino->show();
 			break;
 		}
 		default:
@@ -408,56 +403,85 @@ void FormMovimiento::cargarDesdeArchivo()
                                 opciones);
     if ( !archivo.isEmpty() )
     {
+	QProgressDialog *d = new QProgressDialog( this );
+	d->setLabelText( "Abriendo archivo..." );
+	d->setRange( 0, 3 );
 	QFile arch( archivo );
 	if( !arch.open( QIODevice::ReadOnly ) )
 	{
 		qWarning( "No se puede abrir el archivo como solo lectura" );
 		return;
 	}
+	d->setValue( 1 );
 	// Leo el archivo
 	QString cadena( arch.readAll() );
+	d->setValue( 2 );
 	QStringList cadenas = cadena.split( "\n", QString::SkipEmptyParts, Qt::CaseInsensitive );
 	if( cadenas.size() <= 0 )
 	{
 		qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
 		return;
 	}
+	d->setValue(3);
+	d->setLabelText( "Leyendo caravanas" );
+	d->setRange(0, cadenas.size() * 2 );
 	// separo las cadenas por punto y comas
 	QStringList caravanas;
 	QString cad, dta;
 	foreach( cad, cadenas )
 	{
 		QStringList temp = cad.split( ";" );
+		d->setValue(d->value() + 1);
 		if( temp.size() >= 2 )
 		{
 			if(!temp[0].isEmpty())
 			{
 				caravanas.append( temp[0] );
+				d->setValue(d->value() + 1);
 				qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
 				if( dta.isEmpty() )
 				{
 					dta = temp[1];
 				}
 			}
+			else
+			{
+				d->setValue(d->value() + 1);
+			}
 		}
 		else
 		{
 			qDebug( "Cadena Vacia" );
+			d->setValue(d->value() + 1);
 		}
 	}
 	bool ok;
 	// Busco la lista de dueños
 	MDuenos *duenos = new MDuenos( this );
+	d->setLabelText( "Verificando codigos" );
 	QString dueno = QInputDialog::getItem(this, "Elija el dueño",tr("Elija el dueño"), duenos->getLista(), 0, false, &ok );
 	if( ok )
 	{
-		model->verificarAgregar( caravanas, dueno );
+		d->setRange( 0, caravanas.size() );
+		d->setValue(0);
+		foreach( cad, caravanas )
+		{
+			model->verificarAgregar( cad, dueno );
+			d->setValue( d->value() + 1 );
+		}
 	}
 	else
 	{
-		model->verificarAgregar( caravanas );
+		d->setRange( 0, caravanas.size() );
+		d->setValue(0);
+		foreach( cad, caravanas )
+		{
+			model->verificarAgregar( cad );
+			d->setValue( d->value() + 1 );
+		}
 	}
 	LEDTA->setText( dta );
+	d->close();
     }
 }
 

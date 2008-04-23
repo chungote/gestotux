@@ -69,10 +69,10 @@ void InformesMovimientos::informeCompleto()
 	_formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( fa ) ) );
 	// Genero los contenidos del informe
 	ERenderizadorInforme *render = new ERenderizadorInforme( this );
-	render->setDocumento( fa->document() );
 	render->setPropiedades( f );
 	// lo muestro
 	render->hacerInforme();
+	fa->setDocument( render->documento() );
  }
 }
 

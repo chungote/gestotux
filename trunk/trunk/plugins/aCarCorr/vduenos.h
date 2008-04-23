@@ -17,45 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ERENDERIZADORINFORME_H
-#define ERENDERIZADORINFORME_H
+#ifndef VDUENOS_H
+#define VDUENOS_H
 
-#include <QObject>
-class QTextDocument;
-class FormFiltro;
-class QTextTable;
-class QProgressDialog;
-#include <QSqlQuery>
-#include <QDate>
-#include <QPair>
+#include <QTableView>
+
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class ERenderizadorInforme : public QObject
+class VDuenos : public QTableView
 {
- Q_OBJECT
+Q_OBJECT
 public:
-    ERenderizadorInforme( QObject *padre = 0);
-    ~ERenderizadorInforme();
-    void setDocumento( QTextDocument *doc );
-    void setPropiedades( FormFiltro *f );
-    void hacerInforme();
-    void hacerCabecera();
-    void setarCabeceraFiltros();
-    void generarCola();
-    void generarCabeceraTabla();
-    void colocarContenido();
-    QTextDocument * documento() const;
+    VDuenos(QWidget *parent = 0);
 
-private:
-    QTextDocument *_doc;
-    QProgressDialog *d;
-	bool _filtra_tipo,_filtra_estab,_filtra_categoria,_filtra_fecha,_filtra_rango_fecha;
-	int _id_cat,_id_estab,_id_tipo;
-	QPair<QDate,QDate> _rango_fechas;
-	QSqlQuery cola;
-	QTextTable *tabla;
-	QDate _fecha;
+    ~VDuenos();
+
 };
 
 #endif

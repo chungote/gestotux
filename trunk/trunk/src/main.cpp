@@ -66,7 +66,8 @@ FILE *deb;
 int main(int argc, char *argv[])
 {
       Q_INIT_RESOURCE(gestotux);
-	deb = fopen( "debug.txt", "a+" );
+	deb = fopen( "debug.txt", "w" );
+	fseek( deb, 0, 0 );
 	qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash
