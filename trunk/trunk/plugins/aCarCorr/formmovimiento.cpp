@@ -436,11 +436,16 @@ void FormMovimiento::cargarDesdeArchivo()
 		{
 			if(!temp[0].isEmpty())
 			{
+
 				caravanas.append( temp[0] );
 				d->setValue(d->value() + 1);
 				qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
 				if( dta.isEmpty() )
 				{
+					#ifdef Q_WS_WIN
+					qDebug( QString( "%1" ).arg( temp[1][temp[1].size()] ).toLocal8Bit() );
+					temp[1].remove( temp[1].size()-1, 1 );
+					#endif
 					dta = temp[1];
 				}
 			}
