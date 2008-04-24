@@ -135,8 +135,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 			}
 			default:
 			{
-				qDebug( "Pedido col 0 rol desc" );
-				return QAbstractTableModel::data( index, role );
+				return QVariant();
 				break;
 			}
 		}
