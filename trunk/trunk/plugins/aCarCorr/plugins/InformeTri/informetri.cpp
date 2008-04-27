@@ -17,80 +17,51 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "informesmovimientos.h"
+#include "informetri.h"
 
 #include <QAction>
 #include <QMenu>
-#include "formfiltro.h"
-#include <QStackedWidget>
-#include "erenderizadorinforme.h"
-#include "einforme.h"
 
-QStackedWidget *InformesMovimientos::_formCen = 0;
-
-QString InformesMovimientos::nombre() const
+QString InformeTri::nombre() const
 {
- return "informesMovimientos";
+ return "informetri";
 }
 
-bool InformesMovimientos::inicializar( QStackedWidget *form )
+bool InformeTri::impresionPersonalizada() const
 {
- _formCen = form;
+ return false;
+}
 
- ActInformeFiltroTotal = new QAction( "Personalizado...", this );
- connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informeCompleto() ) );
-
+bool InformeTri::inicializar(QStackedWidget* form)
+{
+ ActInforme = new QAction( "Ver TRI", this );
+ connect( ActInforme, SIGNAL( triggered() ), this, SLOT( verInforme() ) );
+ 
  return true;
 }
 
-double InformesMovimientos::version() const
+double InformeTri::version() const
 {
  return 0.1;
 }
 
-void InformesMovimientos::crearMenu(QMenu* m)
+void InformeTri::crearMenu(QMenu* m)
 {
- m->addAction( ActInformeFiltroTotal );
+ m->addAction( ActInforme );
 }
 
-Q_EXPORT_PLUGIN2(movimientos, InformesMovimientos );
+void InformeTri::imprimir()
+{
+ return;
+}
+
+Q_EXPORT_PLUGIN2(informetri , InformeTri );
 
 
 /*!
-    \fn InformesMovimientos::informeCompleto()
+    \fn InformeTri::verInforme()
  */
-void InformesMovimientos::informeCompleto()
-{
- FormFiltro *f = new FormFiltro( _formCen );
- if( f->exec() == QDialog::Accepted )
- {
-	// Genero un nuevo informe
-	EInforme *fa = new EInforme( _formCen );
-	_formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( fa ) ) );
-	// Genero los contenidos del informe
-	ERenderizadorInforme *render = new ERenderizadorInforme( this );
-	render->setPropiedades( f );
-	// lo muestro
-	render->hacerInforme();
-	fa->setDocument( render->documento() );
-	render->cerrarDialogo();
- }
-}
-
-
-/*!
-    \fn InformesMovimientos::impresionPersonalizada()
- */
-bool InformesMovimientos::impresionPersonalizada() const
-{
-    /// @todo implement me
-}
-
-
-/*!
-    \fn InformesMovimientos::imprimir()
- */
-void InformesMovimientos::imprimir()
+void InformeTri::verInforme()
 {
     /// @todo implement me
 }

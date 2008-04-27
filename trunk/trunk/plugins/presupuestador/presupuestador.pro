@@ -28,10 +28,11 @@ RESOURCES = prespuestador.qrc
 FORMS += FormNuevoPresupuestoBase.ui \
  FormPresupuestosAnterioresBase.ui
 win32 {
- CONFIG += console
+    CONFIG += release
+    CONFIG -= debug
 }
 linux-g++ {
- UI_DIR = ui
- MOC_DIR = moc
-     OBJECTS_DIR = obj
+    UI_DIR = ui
+    MOC_DIR = moc
+    OBJECTS_DIR = obj
 }

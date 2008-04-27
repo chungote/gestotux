@@ -46,6 +46,7 @@ public:
     void generarCabeceraTabla();
     void colocarContenido();
     QTextDocument * documento() const;
+    void cerrarDialogo();
 
 private:
     QTextDocument *_doc;

@@ -2,14 +2,21 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
+debug \
 exceptions
+
 QT += sql \
 xml
-TARGET = informecategorizado
+
+TARGET = informetri
 
 DESTDIR = ../../../../bin/plugins/informes
 
 INCLUDEPATH += ../..
+
+HEADERS += informetri.h
+
+SOURCES += informetri.cpp
 
 win32 {
     CONFIG += release
@@ -20,7 +27,3 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
-HEADERS += informescategorizados.h
-
-SOURCES += informescategorizados.cpp
-

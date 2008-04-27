@@ -21,7 +21,7 @@
 
 #include <QTextDocument>
 #include "formfiltro.h"
-#include "TipoMovs.h"
+#include "../../TipoMovs.h"
 #include <QTextCursor>
 #include <QSqlQuery>
 #include <QSqlRecord>
@@ -112,7 +112,7 @@ void ERenderizadorInforme::hacerInforme()
  generarCabeceraTabla();
  d->setValue( 4 );
  colocarContenido();
- d->close();
+ d->setLabelText( "Mostrando Informe.." );
 }
 
 
@@ -336,4 +336,13 @@ void ERenderizadorInforme::generarCola()
 QTextDocument * ERenderizadorInforme::documento() const
 {
  return _doc;
+}
+
+
+/*!
+    \fn ERenderizadorInforme::cerrarDialogo()
+ */
+void ERenderizadorInforme::cerrarDialogo()
+{
+ d->close();
 }

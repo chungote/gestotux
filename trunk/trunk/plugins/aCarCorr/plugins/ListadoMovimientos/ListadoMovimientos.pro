@@ -8,7 +8,8 @@ QT += sql \
 xml
 
 win32 {
-    CONFIG += console
+    CONFIG += release
+    CONFIG -= debug
 }
 linux-g++ {
     UI_DIR = ui
@@ -23,19 +24,16 @@ DESTDIR = ../../../../bin/plugins/informes
 HEADERS += informesmovimientos.h \
  formfiltro.h \
  erenderizadorinforme.h \
- mcategoria.h \
- mestablecimiento.h \
- TipoMovs.h \
- einforme.h
+ einforme.h \
+ ../../mcategoria.h \
+ ../../mestablecimiento.h
 
 SOURCES += informesmovimientos.cpp \
  formfiltro.cpp \
  erenderizadorinforme.cpp \
- mcategoria.cpp \
- mestablecimiento.cpp \
- einforme.cpp
-
-CONFIG -= release
+ einforme.cpp \
+ ../../mcategoria.cpp \
+ ../../mestablecimiento.cpp
 
 
 FORMS += FormFiltrosBase.ui
@@ -43,5 +41,4 @@ FORMS += FormFiltrosBase.ui
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
 -g3 \
 -O0
-INCLUDEPATH += ../..
 

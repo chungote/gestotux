@@ -35,7 +35,7 @@ public:
     MCaravanaDueno(QObject *parent = 0);
     ~MCaravanaDueno();
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole );
-    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex() );
+    bool removeRow(int row, const QModelIndex& parent = QModelIndex() );
     bool insertRow(int row, const QModelIndex& parent = QModelIndex() );
     Qt::ItemFlags flags(const QModelIndex& index) const;
     QVariant data(const QModelIndex& index, int role) const;

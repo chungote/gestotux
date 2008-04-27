@@ -21,8 +21,8 @@
 #define ADMINCARCORR_H
 
 #include <QtPlugin>
-#include <eplugin.h>
-#include <einfoprogramainterface.h>
+#include "../../src/eplugin.h"
+#include "../../src/einfoprogramainterface.h"
 #include <einformeinterface.h>
 #include <QPluginLoader>
 

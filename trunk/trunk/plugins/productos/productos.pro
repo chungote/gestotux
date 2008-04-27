@@ -13,7 +13,8 @@ DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src
 
 win32 {
-    CONFIG += console
+    CONFIG += release
+    CONFIG -= debug
 }
 linux-g++ {
     UI_DIR = ui

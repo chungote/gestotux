@@ -7,7 +7,8 @@ QT = gui \
 	xml
 
 win32 {
-    CONFIG += console
+    CONFIG += release
+    CONFIG -= debug
 }
 linux-g++ {
     UI_DIR = ui
