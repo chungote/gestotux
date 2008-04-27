@@ -13,7 +13,8 @@ QT += sql
 
 
 win32 {
-    CONFIG -= console
+    CONFIG += release
+    CONFIG -= debug
 }
 linux-g++ {
     UI_DIR = ui
@@ -29,7 +30,6 @@ HEADERS += admincarcorr.h \
  eventana.h \
  vestablecimiento.h \
  formagregar.h \
- mclientes.h \
  formmudanza.h \
  formmovimiento.h \
  formventa.h \
@@ -37,8 +37,6 @@ HEADERS += admincarcorr.h \
  mcaravanas.h \
  emovimiento.h \
  formstock.h \
- eplugin.h \
- einfoprogramainterface.h \
  einformeinterface.h \
  TipoMovs.h \
  einforme.h \
@@ -54,7 +52,6 @@ SOURCES += admincarcorr.cpp \
  eventana.cpp \
  vestablecimiento.cpp \
  formagregar.cpp \
- mclientes.cpp \
  formmudanza.cpp \
  formmovimiento.cpp \
  formventa.cpp \

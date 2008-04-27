@@ -46,7 +46,8 @@ DISTFILES += recibo.svg \
  ../../CambiosHechos.txt
 
 win32 {
-    CONFIG += console
+    CONFIG += release
+    CONFIG -= debug
 }
 linux-g++ {
     UI_DIR = ui

@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
 SUBDIRS = ListadoMovimientos \
- InformeCategorizado
+ InformeCategorizado \
+ InformeTri

@@ -17,37 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef INFORMESMOVIMIENTOS_H
-#define INFORMESMOVIMIENTOS_H
+#ifndef INFORMETRI_H
+#define INFORMETRI_H
 
-#include <QObject>
 #include "../../einformeinterface.h"
-#include <QtPlugin>
 class QAction;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class InformesMovimientos : public QObject, public EInformeInterface
+class InformeTri : public QObject, public EInformeInterface
 {
- Q_OBJECT
- Q_INTERFACES(EInformeInterface)
+Q_OBJECT
+Q_INTERFACES(EInformeInterface)
 public:
     QString nombre() const;
-    bool inicializar( QStackedWidget *form );
+    bool impresionPersonalizada() const;
+    bool inicializar(QStackedWidget* form);
     double version() const;
     void crearMenu(QMenu* m);
-    void informePorFecha();
-    bool impresionPersonalizada() const;
     void imprimir();
 private:
-
-	QAction *ActInformeFiltroTotal;
-
-	static QStackedWidget *_formCen;
-
+	QAction *ActInforme;
 public slots:
-    void informeCompleto();
+    void verInforme();
 };
 
 #endif

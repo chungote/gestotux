@@ -1,1 +1,0 @@
-/home/Esteban/Programas/gestotux/plugins/aCarCorr/mestablecimiento.cpp

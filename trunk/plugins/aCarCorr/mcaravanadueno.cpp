@@ -51,7 +51,7 @@ bool MCaravanaDueno::setData( const QModelIndex& index, const QVariant& value, i
 		}
 		else
 		{
-			return false;//QAbstractTableModel::setData( index, value, role );
+			return false;
 		}
 		break;
 	}
@@ -66,7 +66,6 @@ bool MCaravanaDueno::setData( const QModelIndex& index, const QVariant& value, i
 		}
 		else
 		{
-			//return QAbstractTableModel::setData( index, value, role );	
 			return false;
 		}
 		break;
@@ -82,27 +81,22 @@ bool MCaravanaDueno::setData( const QModelIndex& index, const QVariant& value, i
 		}
 		else
 		{
-			//return QAbstractTableModel::setData( index, value, role );
 			return false;
 		}
 		break;
 	}
  	default:
 	{
-		//return QAbstractTableModel::setData( index, value, role );
 		return false;
 		break;
 	}
  }
 }
 
-bool MCaravanaDueno::removeRows( int row, int count, const QModelIndex& parent )
+bool MCaravanaDueno::removeRow( int row, const QModelIndex& parent )
 {
- beginRemoveRows( parent, rowCount(), rowCount() + 1 );
- for( int i = row; i<= row+count; i++ )
- {
-  datos.remove( i );
- }
+ beginRemoveRows( parent, row, row );
+ datos.remove( row );
  endRemoveRows();
  return true;
 }

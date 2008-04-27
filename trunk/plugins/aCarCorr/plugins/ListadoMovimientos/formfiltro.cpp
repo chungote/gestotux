@@ -20,9 +20,9 @@
 #include "formfiltro.h"
 
 #include <QSqlTableModel>
-#include "emovimiento.h"
-#include "mcategoria.h"
-#include "mestablecimiento.h"
+#include "../../emovimiento.h"
+#include "../../mcategoria.h"
+#include "../../mestablecimiento.h"
 
 FormFiltro::FormFiltro(QWidget* parent, Qt::WFlags fl)
 : QDialog( parent ), Ui::FormFiltrosBase()

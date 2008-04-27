@@ -52,10 +52,13 @@ INCLUDEPATH += ../plugins
 
 DISTFILES += qt_es.qm
 
+win32 {
+    CONFIG += release
+    CONFIG -= debug
+}
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
-
 }
 

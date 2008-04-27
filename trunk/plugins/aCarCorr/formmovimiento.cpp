@@ -35,12 +35,9 @@
 
 #include "mestablecimiento.h"
 #include "mcategoria.h"
-#include "mclientes.h"
+#include "../../src/mclientes.h"
 #include "mcaravanadueno.h"
 #include "mduenos.h"
-
-//Tempral
-//#include <modeltest.h>
 
 FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 : QWidget( parent, fl ), Ui::FormMovimientoBase()
@@ -104,6 +101,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 	TVCaravanas->setItemDelegate( new QItemDelegate( TVCaravanas ) );
 	TVCaravanas->hideColumn( 0 );
 	TVCaravanas->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+	TVCaravanas->setSelectionBehavior( QAbstractItemView::SelectRows );
 
 	// Seteo el numero de tri
 	setearNumeroTri();
@@ -211,7 +209,13 @@ void FormMovimiento::agregarCaravana()
  */
 void FormMovimiento::eliminarCaravana()
 {
- QModelIndexList indexes = TVCaravanas->selectionModel()->selectedRows();
+ QItemSelectionModel *m = TVCaravanas->selectionModel();
+ if( !m->hasSelection() )
+ {
+  QMessageBox::information( this, "Error", "No ha elegido ningun item para eliminar. Por favor seleccione uno o varios y presione el boton eliminar" );
+  return;
+ }
+ QModelIndexList indexes = m->selectedRows(1);
  if( indexes.count() <= 0 )
  {
   QMessageBox::information( this, "Error", "No ha elegido ningun item para eliminar. Por favor seleccione uno o varios y presione el boton eliminar" );
