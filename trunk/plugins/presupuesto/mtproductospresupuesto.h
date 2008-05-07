@@ -21,6 +21,7 @@
 #define MTPRODUCTOSPRESUPUESTO_H
 
 #include <QSqlRelationalTableModel>
+class QVariant;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -34,8 +35,12 @@ public:
     QVariant data ( const QModelIndex & item, int role = Qt::DisplayRole ) const;
     Qt::ItemFlags flags( const QModelIndex & index ) const;
     int columnCount( const QModelIndex &parent ) const;
+    int rowCount( const QModelIndex &parent ) const;
     bool guardar( const int id_presupuesto ) const;
-
+    bool setData( const QModelIndex &item, const QVariant &data, int role = Qt::EditRole );
+    QVariant buscarPrecioProducto( const int fila ) const;
+    QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const ;
+    bool removeRow ( int row, const QModelIndex & parent = QModelIndex() );
 };
 
 #endif
