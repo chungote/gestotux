@@ -402,7 +402,7 @@ void FormMovimiento::cargarDesdeArchivo()
     QString archivo = QFileDialog::getOpenFileName( this,
                                 "Importar desde archivo...",
                                 "",
-                                "Archivo csv (*.csv *.CSV);; Todos los archivos (*.*)",
+                                "Archivo csv (*.csv *.CSV);;Archivo de texto (*.txt);; Todos los archivos (*.*)",
                                 &filtroSeleccion,
                                 opciones);
     if ( !archivo.isEmpty() )
@@ -414,55 +414,89 @@ void FormMovimiento::cargarDesdeArchivo()
 	if( !arch.open( QIODevice::ReadOnly ) )
 	{
 		qWarning( "No se puede abrir el archivo como solo lectura" );
+		d->close();
 		return;
 	}
 	d->setValue( 1 );
 	// Leo el archivo
 	QString cadena( arch.readAll() );
 	d->setValue( 2 );
-	QStringList cadenas = cadena.split( "\n", QString::SkipEmptyParts, Qt::CaseInsensitive );
-	if( cadenas.size() <= 0 )
-	{
-		qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
-		return;
-	}
-	d->setValue(3);
-	d->setLabelText( "Leyendo caravanas" );
-	d->setRange(0, cadenas.size() * 2 );
-	// separo las cadenas por punto y comas
+	QStringList cadenas;
 	QStringList caravanas;
-	QString cad, dta;
-	foreach( cad, cadenas )
+	QString dta, cad;
+	if( filtroSeleccion.contains( "txt" ) )
 	{
-		QStringList temp = cad.split( ";" );
-		d->setValue(d->value() + 1);
-		if( temp.size() >= 2 )
+		qDebug( cadena.toLocal8Bit() );
+		cadenas = cadena.split( "\n", QString::SkipEmptyParts, Qt::CaseInsensitive );
+		if( cadenas.size() <= 0 )
 		{
-			if(!temp[0].isEmpty())
+			qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
+			d->close();
+			return;
+		}
+		d->setValue(3);
+		d->setLabelText( "Leyendo caravanas" );
+		d->setRange(0, cadenas.size() );
+		dta = "";
+		foreach( cad, cadenas )
+		{
+			cad.remove( cad.size()-1, 1 );
+			caravanas.append( cad );
+			d->setValue(d->value() + 1);
+		}
+	}
+	else if( filtroSeleccion.contains( "cvs" ) )
+	{
+		// Inicio archivo csv
+		cadenas = cadena.split( "\n", QString::SkipEmptyParts, Qt::CaseInsensitive );
+		if( cadenas.size() <= 0 )
+		{
+			qWarning( "No se obtuvo ningun codigo de caravana del archivo" );
+			d->close();
+			return;
+		}
+		d->setValue(3);
+		d->setLabelText( "Leyendo caravanas" );
+		d->setRange(0, cadenas.size() * 2 );
+		// separo las cadenas por punto y comas
+		foreach( cad, cadenas )
+		{
+			QStringList temp = cad.split( ";" );
+			d->setValue(d->value() + 1);
+			if( temp.size() >= 2 )
 			{
-
-				caravanas.append( temp[0] );
-				d->setValue(d->value() + 1);
-				qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
-				if( dta.isEmpty() )
+				if(!temp[0].isEmpty())
 				{
-					#ifdef Q_WS_WIN
-					qDebug( QString( "%1" ).arg( temp[1][temp[1].size()] ).toLocal8Bit() );
-					temp[1].remove( temp[1].size()-1, 1 );
-					#endif
-					dta = temp[1];
+	
+					caravanas.append( temp[0] );
+					d->setValue(d->value() + 1);
+					qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
+					if( dta.isEmpty() )
+					{
+						#ifdef Q_WS_WIN
+						qDebug( QString( "%1" ).arg( temp[1][temp[1].size()] ).toLocal8Bit() );
+						temp[1].remove( temp[1].size()-1, 1 );
+						#endif
+						dta = temp[1];
+					}
+				}
+				else
+				{
+					d->setValue(d->value() + 1);
 				}
 			}
 			else
 			{
+				qDebug( "Cadena Vacia" );
 				d->setValue(d->value() + 1);
 			}
 		}
-		else
-		{
-			qDebug( "Cadena Vacia" );
-			d->setValue(d->value() + 1);
-		}
+	} // Fin if tipo de archivo
+	else
+	{
+		qWarning( "La seleccion que hizo no esta soportada para importacion de datos" );
+		d->close();
+		return;
 	}
 	bool ok;
 	// Busco la lista de dueños

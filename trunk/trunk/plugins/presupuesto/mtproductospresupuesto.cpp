@@ -20,6 +20,8 @@
 #include "mtproductospresupuesto.h"
 
 #include <QSqlQuery>
+#include <QStringList>
+#include <QSqlError>
 #include <QSqlRecord>
 
 MTProductosPresupuesto::MTProductosPresupuesto( QObject * parent )
@@ -32,6 +34,7 @@ MTProductosPresupuesto::MTProductosPresupuesto( QObject * parent )
    setRelation( 2, QSqlRelation( "producto", "id", "nombre" ) );
  setHeaderData( 3, Qt::Horizontal, "Cantidad" );
  setHeaderData( 4, Qt::Horizontal, "Precio Unitario" );
+ setHeaderData( 5, Qt::Horizontal, "Sub-Total" );
  setEditStrategy( QSqlTableModel::OnManualSubmit );
 }
 
@@ -45,6 +48,64 @@ MTProductosPresupuesto::~MTProductosPresupuesto()
  */
 QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) const
 {
+ if( item.row() >= QSqlRelationalTableModel::rowCount() )
+ {
+	//qDebug( "Formando fila final" );
+  switch( item.column() )
+  {
+	case 2:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		return "Cant:";
+		break;
+	}
+	case 3:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		return QString( "%L1" ).arg( QSqlRelationalTableModel::rowCount() );
+		break;
+	}
+	case 4:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		return "Total:";
+		break;
+	}
+	case 5:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		// Calculo el precio total
+		double total = 0;
+		for( int i = 0; i< QSqlRelationalTableModel::rowCount(); i++ )
+		{
+			double temp = data( index( i, 5 ), Qt::EditRole ).toDouble();
+			if( temp > 0 )
+			{
+				total += temp;
+			}
+		}
+		return QString( "$ %L1" ).arg( total );
+		break;
+	}
+	default:
+	{
+		return QVariant();
+		break;
+	}
+  }
+ }
  switch( item.column() )
  {
    // id del producto
@@ -55,9 +116,10 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
 		case Qt::UserRole:
 		{
 			// retorno el id, si no hay uno puesto, retorno -1
-			if( QSqlRelationalTableModel::data( item, Qt::EditRole ).toInt() >= 0 )
+			if( QSqlTableModel::data( item, Qt::DisplayRole ).toInt() > 0 )
 			{
-				return QSqlRelationalTableModel::data( item, Qt::EditRole ).toInt();
+				//qDebug( QString("El modelo retorna: %1").arg( QSqlTableModel::data( item, Qt::DisplayRole ).toString() ).toLocal8Bit() );
+				return QSqlTableModel::data( item, Qt::EditRole ).toInt();
 			}
 			else
 			{
@@ -76,19 +138,41 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
    // Precio Unitario
    case 4:
    {
-	// Busco el id del producto
-	int id = data( index( item.column(), 2 ), Qt::UserRole ).toInt();
-	if( id != -1 )
+	switch( role )
 	{
-		QSqlQuery cola( QString("SELECT precio FROM producto WHERE id = '%1'").arg( id ) );
-		if( cola.next() )
+		case Qt::DisplayRole:
 		{
-			return QString( "$ %L1" ).arg( cola.record().value(0).toString() );
+			return QString( "$ %L1" ).arg( buscarPrecioProducto( item.row() ).toDouble() );
+			break;
+		}
+		case Qt::EditRole:
+		{
+			return buscarPrecioProducto( item.row() ).toDouble();
+			break;
+		}
+		default:
+		{
+			return QVariant();
+			break;
+		}
+	}
+	break;
+   }
+   // Sub Total
+   case 5:
+   {
+	if( role == Qt::DisplayRole )
+	{
+		double cant = QSqlTableModel::data( index( item.row(), 3 ), Qt::EditRole ).toDouble();
+		double precio = buscarPrecioProducto( item.row() ).toDouble();
+		if( cant <= 0 && precio <= 0 )
+		{
+			qDebug( QString( "Precio: %1, cant: %2").arg( precio ).arg( cant ).toLocal8Bit() );
+			return QVariant();
 		}
 		else
 		{
-			qWarning( "Error al buscar el precio del producto" );
-			return QVariant();
+			return QString( "$ %L1" ).arg( cant*precio );
 		}
 	}
 	else
@@ -111,6 +195,10 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
  */
 Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 {
+ if( index.row() == QSqlTableModel::rowCount() + 1 )
+ {
+  return int( !Qt::ItemIsEditable );
+ }
  switch( index.column() )
  {
   case 4:
@@ -132,10 +220,15 @@ Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
  */
 int MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
 {
-  int conteo = QSqlRelationalTableModel::columnCount() +1;
+  int conteo = QSqlRelationalTableModel::columnCount() + 2;
   return conteo;
 }
 
+int MTProductosPresupuesto::rowCount( const QModelIndex &parent ) const
+{
+  int conteo = QSqlRelationalTableModel::rowCount() + 1;
+  return conteo;
+}
 
 /*!
     \fn MTProductosPresupuesto::guardar( const int id_presupuesto )
@@ -143,4 +236,117 @@ int MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
 bool MTProductosPresupuesto::guardar( const int id_presupuesto ) const
 {
  return false;
+}
+
+bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &value, int role )
+{
+ switch( item.column() )
+ {
+	// Producto
+	case 2:
+	{
+		// Cuando se setea el producto busco el precio e intento calcular el subtotal
+		bool estado = QSqlRelationalTableModel::setData( item, value, role );
+		if( role == Qt::EditRole )
+		{
+			QVariant estado2 = buscarPrecioProducto( item.row() );
+			if( estado && estado2.isValid() )
+			{
+				emit dataChanged( index( item.row(), 5 ), index( item.row(), 5 ) );
+				emit dataChanged( index( QSqlRelationalTableModel::rowCount() + 1, 5 ), index( QSqlRelationalTableModel::rowCount() + 1, 5 ) );
+				return true;
+			}
+			else
+			{
+				qDebug( "Error en la insercion del precio" );
+				return false;
+			}
+		}
+	}
+	// cantidad
+	case 3:
+	{
+		// Cuando se actualiza la columna de cantidad intento actualizar el subtotal y total
+		if( QSqlRelationalTableModel::setData( item, value, role ) )
+		{
+			emit dataChanged( index( item.row(), 4 ), index( item.row(), 5 ) );
+			emit dataChanged( index( QSqlRelationalTableModel::rowCount() + 1, 2 ), index( QSqlRelationalTableModel::rowCount()+1, 5 ) );
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	}
+	default:
+	{
+		return QSqlRelationalTableModel::setData( item, value, role );
+		break;
+	}
+ }
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::buscarPrecioProducto( const int fila )
+ */
+QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
+{
+ // Busco el id del producto
+ //qDebug( "Busco el precio del producto" );
+ int id = data( index( fila, 2 ), Qt::UserRole ).toInt();
+ //qDebug( QString( "Id_producto = %1" ).arg( id ).toLocal8Bit() );
+ if( id != -1 )
+ {
+ 	QSqlQuery cola( QString("SELECT precio_venta FROM producto WHERE id = '%1'").arg( id ) );
+	if( cola.next() )
+	{
+		//qDebug( "Precio conseguido" );
+		return cola.record().value(0).toDouble();
+	}
+	else
+	{
+		qDebug( "Error al buscar el precio del producto" );
+		qDebug( cola.lastError().text().toLocal8Bit() );
+		return QVariant();
+	}
+ }
+ else
+ {
+	//qDebug( "id retorno valor negativo" );
+ 	return QVariant();
+ }
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const 
+ */
+QModelIndex MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const 
+{
+ if( row >= QSqlRelationalTableModel::rowCount() )
+ {
+	return createIndex( row, column, 0 );
+ }
+ else
+ {
+  return QSqlRelationalTableModel::index( row, column, parent );
+ }
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
+ */
+bool MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
+{
+ if( row >= QSqlRelationalTableModel::rowCount() )
+ {
+  return true;
+ }
+ else
+ {
+  return QSqlRelationalTableModel::removeRow( row, parent );
+ }
 }

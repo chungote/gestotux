@@ -26,12 +26,12 @@ mproductos.cpp \
 vcategorias.cpp \
 vproductos.cpp \
  productos.cpp \
- eventana.cpp \
- evlista.cpp
+ ../../src/eventana.cpp \
+ ../../src/evlista.cpp
 HEADERS += mcategorias.h \
 mproductos.h \
 vcategorias.h \
 vproductos.h \
  productos.h \
- eventana.h \
- evlista.h
+ ../../src/evlista.h \
+ ../../src/eventana.h

@@ -21,6 +21,9 @@
 #include <QSqlRecord>
 #include <QTableView>
 #include <QSqlRelationalDelegate>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QInputDialog>
 
 FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, Qt::Dialog ), Ui::FormListaProductosBase()
@@ -58,7 +61,7 @@ FormListaProductos::~FormListaProductos()
  */
 void FormListaProductos::agregar()
 {
- modelo->insertRecord( -1, QSqlRecord() );
+ modelo->insertRecord( -1, modelo->record() );
 }
 
 
@@ -76,5 +79,5 @@ void FormListaProductos::eliminar()
  */
 void FormListaProductos::aceptar()
 {
-    /// @todo implement me
+     /// @todo implement me
 }
