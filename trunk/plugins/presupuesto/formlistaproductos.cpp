@@ -38,15 +38,18 @@ FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 	TVLista->hideColumn( 0 );
 	TVLista->hideColumn( 1 );
 
-	connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close() ) );
-	connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregar() ) );
+	connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( hide() ) );
+	connect( PBAgregar, SIGNAL( clicked() ), this,  SLOT( agregar() ) );
 	connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminar() ) );
-	connect( PBAceptar, SIGNAL( clicked() ), this, SLOT( aceptar() ) );
+	connect( PBAceptar, SIGNAL( clicked() ), this, SIGNAL( agregarTabla() ) );
 
 	PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
 	PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
 	PBAceptar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
 	PBCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+
+	adjustSize();
+	groupBox->setVisible( PBMas->isChecked() );
 }
 
 FormListaProductos::~FormListaProductos()
@@ -74,10 +77,38 @@ void FormListaProductos::eliminar()
 }
 
 
+
+
+
 /*!
-    \fn FormListaProductos::aceptar()
+    \fn FormListaProductos::modelo() const
  */
-void FormListaProductos::aceptar()
+MTProductosPresupuesto  * FormListaProductos::getModelo() const
 {
-     /// @todo implement me
+ return modelo;
+}
+
+
+/*!
+    \fn FormListaProductos::tituloTabla() const
+ */
+QString FormListaProductos::tituloTabla() const
+{
+ if( CkBTitulo->checkState() == Qt::Checked )
+ {
+   return LETituloTabla->text();
+ }
+ else
+ {
+   return QString();
+ }
+}
+
+
+/*!
+    \fn FormListaProductos::cabeceraColumnas() const
+ */
+bool FormListaProductos::cabeceraColumnas() const
+{
+ return CkBCabeceras->checkState();
 }
