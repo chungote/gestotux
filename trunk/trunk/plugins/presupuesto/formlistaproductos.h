@@ -32,6 +32,9 @@ class FormListaProductos : public QWidget, private Ui::FormListaProductosBase
 public:
   FormListaProductos(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormListaProductos();
+    MTProductosPresupuesto * getModelo() const;
+    QString tituloTabla() const;
+    bool cabeceraColumnas() const;
 
 private:
   MTProductosPresupuesto *modelo;
@@ -39,7 +42,9 @@ private:
 protected slots:
     void agregar();
     void eliminar();
-    void aceptar();
+
+signals:
+    void agregarTabla();
 };
 
 #endif

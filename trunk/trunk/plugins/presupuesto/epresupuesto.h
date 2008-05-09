@@ -22,7 +22,8 @@
 
 #include <QtPlugin>
 class QString;
-class QSqlRecord;
+class QDate;
+class QTextTable;
 /**
  * \brief Interfaz de presupuesto
  *
@@ -36,9 +37,11 @@ public:
     virtual ~EPresupuesto() {}
     virtual QString nombre() const = 0;
     virtual double version() const = 0;
-    virtual void setRegistro( QSqlRecord *rec ) = 0;
     virtual QString obtenerHtml() = 0;
-    virtual QString obtenerContenido() = 0;
+    virtual void setCliente( QString nombre ) = 0;
+    virtual void setFecha( QDate fecha ) = 0;
+    virtual void setTituloPersonalizado( QString titulo ) = 0;
+    virtual QTextTable getTablaProductos() = 0;
 };
 
 Q_DECLARE_INTERFACE(EPresupuesto,

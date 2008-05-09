@@ -6,26 +6,19 @@
     <x>0</x>
     <y>0</y>
     <width>466</width>
-    <height>323</height>
+    <height>444</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <item>
-    <widget class="QLabel" name="label" >
-     <property name="text" >
-      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:11pt; font-weight:600; color:#0000ff;">Lista de productos&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
+  <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
     <layout class="QHBoxLayout" >
      <item>
@@ -52,7 +45,7 @@ p, li { white-space: pre-wrap; }
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
            <height>40</height>
@@ -74,12 +67,100 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="PBMas" >
+         <property name="text" >
+          <string>Mas..</string>
+         </property>
+         <property name="checkable" >
+          <bool>true</bool>
+         </property>
+         <property name="checked" >
+          <bool>false</bool>
+         </property>
+         <property name="flat" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="locale" >
+      <locale country="Argentina" language="Spanish" />
+     </property>
+     <property name="title" >
+      <string>Opciones de formato</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="flat" >
+      <bool>true</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" >
+        <item>
+         <widget class="QCheckBox" name="CkBTitulo" >
+          <property name="text" >
+           <string>Titulo de Tabla</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LETituloTabla" />
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="CkBCabeceras" >
+        <property name="text" >
+         <string>Colocar cabeceras de columnas</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>CkBTitulo</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>LETituloTabla</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>81</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>140</x>
+     <y>381</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PBMas</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>409</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>426</x>
+     <y>358</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -22,6 +22,13 @@
 MPresupuesto::MPresupuesto(QObject *parent)
  : QSqlTableModel(parent)
 {
+ setTable( "presupuestos" );
+ // Descripciondes de las cabeceras
+ setHeaderData( 0, Qt::Horizontal, "#ID" );
+ setHeaderData( 1, Qt::Horizontal, "Destinatario" );
+ setHeaderData( 2, Qt::Horizontal, "Fecha" );
+ setHeaderData( 3, Qt::Horizontal, "Total" );
+ setHeaderData( 4, Qt::Horizontal, "Contenido" );
 }
 
 

@@ -167,7 +167,7 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
 		double precio = buscarPrecioProducto( item.row() ).toDouble();
 		if( cant <= 0 && precio <= 0 )
 		{
-			qDebug( QString( "Precio: %1, cant: %2").arg( precio ).arg( cant ).toLocal8Bit() );
+// 			qDebug( QString( "Precio: %1, cant: %2").arg( precio ).arg( cant ).toLocal8Bit() );
 			return QVariant();
 		}
 		else
@@ -197,20 +197,15 @@ Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 {
  if( index.row() == QSqlTableModel::rowCount() + 1 )
  {
-  return int( !Qt::ItemIsEditable );
+  return int( !Qt::ItemIsEnabled );
  }
- switch( index.column() )
+ if( index.column() >= 4 )
  {
-  case 4:
-  {
-	return int( !Qt::ItemIsEditable );
- 	break;
-  }
-  default:
-  {
+  return int( !Qt::ItemIsEnabled );
+ }
+ else
+ {
     return QSqlRelationalTableModel::flags( index );
-    break;
-  }
  }
 }
 
