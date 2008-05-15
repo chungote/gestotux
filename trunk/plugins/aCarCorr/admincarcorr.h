@@ -80,6 +80,7 @@ protected slots:
 private:
     void cargarPluginsInformes();
     QString empresa() const;
+    QString companeros();
 
 };
 

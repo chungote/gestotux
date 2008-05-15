@@ -364,3 +364,12 @@ void AdminCarCorr::agregarStock()
  FormStock *f = new FormStock( _formCen );
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
+
+
+/*!
+    \fn AdminCarCorr::companeros()
+ */
+QString AdminCarCorr::companeros()
+{
+ return "Exequiel Saavedra <gandhalf@gmail.com> \n Pruebas y graficos";
+}

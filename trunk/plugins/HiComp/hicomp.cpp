@@ -206,3 +206,12 @@ QString HiComp::empresa() const
 {
  return "HiComp Computacion";
 }
+
+
+/*!
+    \fn HiComp::companeros()
+ */
+QString HiComp::companeros()
+{
+ return QString();
+}

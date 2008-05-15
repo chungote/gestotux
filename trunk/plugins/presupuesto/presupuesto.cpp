@@ -34,6 +34,7 @@
 Presupuesto::Presupuesto(QObject *parent)
  : QObject(parent)
 {
+ _plugin = 0;
  loader = new QPluginLoader( this );
  // Busco los plugins de presupuestos
  QDir pluginsDir = QDir(qApp->applicationDirPath());
@@ -84,19 +85,19 @@ Presupuesto::~Presupuesto()
 /*!
     \fn Presupuesto::registro( int id )
  */
-QSqlRecord Presupuesto::registro( int id )
+bool Presupuesto::registro( int id )
 {
-
  QSqlQuery cola( QString( "SELECT * FROM presupuestos WHERE id = '%1'" ).arg( id ) );
  if( cola.next() )
  {
-	return cola.record();
+	_registro = cola.record();
+	return true;
  } 
  else
  {
   qDebug( "Error al buscar el registro de presupuesto" );
   qDebug(  QString( "detalle: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-  return QSqlRecord();
+  return false;
  }
 }
 
@@ -108,3 +109,55 @@ void Presupuesto::imprimir( QPainter *pintador )
 {
     /// @todo implement me
 }
+
+
+/*!
+    \fn Presupuesto::esValido()
+ */
+bool Presupuesto::esValido()
+{  return !( _plugin == 0 ); }
+
+
+QDate Presupuesto::fecha() const
+{ return _plugin->fecha(); }
+
+
+void Presupuesto::setFecha ( const QDate& theValue )
+{ _plugin->setFecha( theValue ); }
+
+
+QString Presupuesto::titulo() const
+{ return _plugin->titulo(); }
+
+void Presupuesto::setTitulo ( const QString& theValue )
+{  _plugin->setTituloPersonalizado( theValue ); }
+
+double Presupuesto::total() const
+{ return _plugin->total(); }
+
+void Presupuesto::setTotal ( double theValue )
+{ _plugin->setTotal( theValue ); }
+
+int Presupuesto::id_cliente() const
+{return _id_cliente; }
+
+void Presupuesto::setId_cliente ( int theValue )
+{ _id_cliente = theValue;}
+
+QString Presupuesto::texto_destinatario() const
+{ return _plugin->cliente(); }
+
+void Presupuesto::setTexto_destinatario ( const QString& theValue )
+{ _plugin->setCliente( theValue ); }
+
+void Presupuesto::generarDoc( const QTextDocument *docCont )
+{
+  if( !esValido() )
+  { return; }
+}
+
+void Presupuesto::generarTablaProductos( QSqlTableModel *modelo, const QString tituloTabla, const bool cabeceras )
+{ _plugin->generarTabla( modelo, tituloTabla, cabeceras ); }
+
+QTextDocument * Presupuesto::previsualizacion()
+{ return _plugin->getDocumento(); }

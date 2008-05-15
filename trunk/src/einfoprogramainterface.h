@@ -39,6 +39,7 @@ public:
     virtual QString directorioActualizaciones() const = 0;
     virtual double version() const = 0;
     virtual QString empresa() const = 0;
+    virtual QString companeros() = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,
