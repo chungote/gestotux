@@ -445,7 +445,7 @@ void FormMovimiento::cargarDesdeArchivo()
 			d->setValue(d->value() + 1);
 		}
 	}
-	else if( filtroSeleccion.contains( "cvs" ) )
+	else if( filtroSeleccion.contains( "csv" ) || filtroSeleccion.contains( "CSV" ) )
 	{
 		// Inicio archivo csv
 		cadenas = cadena.split( "\n", QString::SkipEmptyParts, Qt::CaseInsensitive );

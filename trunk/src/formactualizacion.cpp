@@ -177,29 +177,33 @@ void FormActualizacion::inicio( int id )
 void FormActualizacion::terminado( int comando, bool  error )
 {
   //TELog->append( QString( "Termino comando %1, error %2" ).arg( comando ).arg( error ) );
-  if( error )
-  {
-   _continuar_actualizando = false;
-   return;
-  }
   switch( comando )
   {
    // Coneccion
    case 1:
    {
-      ftp->login();
-      break;
+	if( !error )
+	{
+		ftp->login();
+	}
+      	break;
    }
    // Login
    case 2:
    {
+	if( !error )
+	{
 	  ftp->cd( "actualizaciones" );
-	  break;
+	}
+	break;
    }
    case 3:
    {
-	ftp->get( "actualizacion.xml" );
-	TELog->append( "Descargando indice" );
+	if( !error )
+	{
+		ftp->get( "actualizacion.xml" );
+		TELog->append( "Descargando indice" );
+	}
 	break;
    }
    case 4:
@@ -212,9 +216,14 @@ void FormActualizacion::terminado( int comando, bool  error )
    {
 	if( _arch_dest.find( comando ) != _arch_dest.end() )
 	{
-		// Se termino de descargar el archivo
+		// Se termino de descargar el archivo o tuvo error
 		QPair<QString,QString> par = _arch_dest.value( comando );
 		_arch_dest.remove( comando );
+		if( error )
+		{
+			TELog->append( "Error al descargar el archivo " + par.first );
+			return;
+		}
 		TELog->append( "Se termino de descargar el archivo: " + par.first );
 		QTemporaryFile archivoRecibido( this );
 		archivoRecibido.open();
@@ -224,11 +233,10 @@ void FormActualizacion::terminado( int comando, bool  error )
 		QDir dir( QApplication::applicationDirPath() );
 		dir.cd( "plugins" );
 		dir.cd( par.second );
-		if( QFile::exists( dir.filePath( par.first + ".back" ) ) )
+		if( QFile::exists( dir.filePath( par.first ) ) )
 		{
-			QFile::remove( dir.filePath( par.first + ".back" ) );
+			QFile::remove( dir.filePath( par.first ) );
 		}
-		QFile::rename( dir.filePath( par.first ), dir.filePath( par.first + ".back" ) );
 		if( QFile::copy( QDir::temp().filePath( archivoRecibido.fileName() ), dir.filePath( par.first ) ) )
 		{
 			TELog->append( "Archivo actualizado correctamente" );
@@ -248,6 +256,8 @@ void FormActualizacion::terminado( int comando, bool  error )
 }
 
 
+#include <QSqlQuery>
+#include <QSqlError>
 /*!
     \fn FormActualizacion::analizarGeneral()
  */
@@ -279,6 +289,7 @@ void FormActualizacion::analizarGeneral()
 		TELog->append( "No existen actualizaciones para esta version de Gestotux. Por Favor actualize el programa a una veriosn superior" );
 	}
 	ftp->close();
+	_continuar_actualizando = false;
 	return;
   }
   else
@@ -292,10 +303,17 @@ void FormActualizacion::analizarGeneral()
    QDomNodeList listanodos = docxml->elementsByTagName( "plugin" );
    for( unsigned int i=0; i< listanodos.length(); i++ )
    {
+	if( !_continuar_actualizando )
+	{ return; }
 	QDomNode nodo = listanodos.item( i );
 	qDebug( QString( "Nodo: %1, nombre=%2,version=%3" ).arg( nodo.nodeName() ).arg( nodo.toElement().attribute("nombre") ).arg(nodo.toElement().attribute("version") ).toLocal8Bit() );
 	// Comparo las versiones del programa
 	QString nombre = nodo.toElement().attribute( "nombre" );
+	if( gestotux::pluginsHash()->find( nombre ) == gestotux::pluginsHash()->end() )
+	{
+		qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara" ).arg( nombre ).toLocal8Bit() );
+		continue;
+	}
 	double versionNueva = nodo.toElement().attribute( "version" ).toDouble();
 	double versionAnterior = gestotux::pluginsHash()->value( nombre )->version();
 	if( versionNueva > versionAnterior )
@@ -312,7 +330,7 @@ void FormActualizacion::analizarGeneral()
 		QDomNodeList nodos_archivos = nodo_os.toElement().elementsByTagName( "archivo" );
 		unsigned int posNodo = 0;
 		qDebug( QString( "Encontrado %1 nodos").arg( nodos_archivos.length() ).toLocal8Bit() );
-		while( posNodo < nodos_archivos.length() )
+		while( posNodo < nodos_archivos.length() && _continuar_actualizando )
 		{
 			QDomNode nodo_archivo = nodos_archivos.item(posNodo);
 			QPair<QString,QString> tmp;
@@ -324,6 +342,51 @@ void FormActualizacion::analizarGeneral()
 			_arch_dest.insert( pos, tmp );
 			posNodo++;
 		}
+
+		//Veo si hay actualizaciones de la base de datos
+		qDebug( "Actualizaciones de base de datos" );
+		QDomNodeList nodos_db = n.toElement().elementsByTagName( "db" );
+		if( nodos_db.length() > 0 && _continuar_actualizando )
+		{
+			for( unsigned int i=0; i<nodos_db.length(); i++ )
+			{
+				if( !_continuar_actualizando )
+				{ return; }
+				QDomNode nodo = nodos_db.item(i);
+				// Busco todos los hijos
+				QDomNodeList nodos_colas = nodo.toElement().elementsByTagName( "cola" );
+				if( nodos_colas.length() > 0 && _continuar_actualizando )
+				{
+					for( unsigned int j=0; j < nodos_colas.length(); j++ )
+					{
+						if( !_continuar_actualizando )
+						{ return;}
+						QDomNode nCola = nodos_colas.item(j);
+						if( nCola.nodeName() == "cola" )
+						{
+							QSqlQuery cola;
+							if( cola.exec( nCola.firstChild().toText().data() ) )
+							{
+								qDebug( QString( "Cola ejecutada correctamente: %1" ).arg( cola.executedQuery() ).toLocal8Bit() );
+							}
+							else
+							{
+								qWarning( QString( "La ejecucion de la actualizacion no fue correcta. Cola: %1" ).arg( cola.executedQuery() ).toLocal8Bit() );
+								qDebug( QString( "Error: %1.\n Cola: %2" ).arg( cola.lastError().text() ).arg( cola.executedQuery() ).toLocal8Bit() );
+							}
+						}
+						else
+						{
+							qDebug( QString("Nodo encontrado: %1").arg(nodo.nodeName() ).toLocal8Bit() );
+						}
+					} // Fin for colas
+				}// Fin if nodos_colas
+			}// Fin for dbs
+		}
+		else
+		{
+			qDebug( "No hay actualizaciones para la base de datos" );
+		}
 	}
 	else
 	{
@@ -332,8 +395,8 @@ void FormActualizacion::analizarGeneral()
 
    }
    TELog->append( "Lista la actualizacion" );
-   ftp->close();
   }
+  ftp->close();
 }
 
 
