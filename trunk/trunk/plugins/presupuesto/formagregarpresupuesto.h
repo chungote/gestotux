@@ -26,6 +26,7 @@
 
 class QSqlQueryModel;
 class FormListaProductos;
+class Presupuesto;
 class QTextCursor;
 
 class FormAgregarPresupuesto : public QWidget, private Ui::FormPresupuestoBase
@@ -52,6 +53,10 @@ private:
     */
     FormListaProductos *formLista;
 
+  /*!
+   * Puntero al presupuesto actual
+   */
+    Presupuesto *pre;
   /*!
    * Posicion donde se encuentra la lista de productos
    */

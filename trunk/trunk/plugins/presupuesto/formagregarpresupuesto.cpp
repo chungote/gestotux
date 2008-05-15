@@ -21,6 +21,7 @@
 
 #include <QSqlQueryModel>
 #include <QDate>
+#include "presupuesto.h"
 #include "formlistaproductos.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
@@ -85,7 +86,10 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	formLista = new FormListaProductos( this );
 	connect( formLista, SIGNAL( agregarTabla() ), this, SLOT( ponerTabla() ) );
 
+	// Muestro la previsualizacion
+	TBPrevisualizacion->setDocument( pre->previsualizacion() );
 	TBContenido->setFocus();
+	TWPestanas->setCurrentIndex( 0 );
 }
 
 FormAgregarPresupuesto::~FormAgregarPresupuesto()
@@ -128,77 +132,8 @@ void FormAgregarPresupuesto::ponerTabla()
  	// no existen productos en realidad no hago nada
 	return;
  }
- // Calculo la cantidad de filas mas las opcionales cabeceras
- int filas = formLista->getModelo()->rowCount();
- if( !formLista->tituloTabla().isEmpty() )
- { filas++; }
- if( formLista->cabeceraColumnas() )
- { filas++; }
- if( _tabla == 0 )
- {
-   QTextCursor *cursor = new QTextCursor( TBContenido->document() );
-   _tabla = cursor->insertTable( filas, formLista->getModelo()->columnCount()-2 );
- }
- else
- {
-  // Hago que la tabla quede con la cantidad de filas que tiene el modelo
-  int diferencia = filas - _tabla->rows();
-  if( diferencia > 0 )
-  {
-    _tabla->insertRows( -1, qAbs(diferencia) );
-  }
-  else if( diferencia < 0 )
-  {
-   _tabla->removeRows( -1, qAbs(diferencia) );
-  }
-  else
-  {
-   qDebug( "No se modifico la cantidad de filas" );
-  }
- }
- // Coloco el titulo de la tabla
- int desplazado = 0;
- if( !formLista->tituloTabla().isEmpty() )
- {
-  _tabla->mergeCells( 0,0, 1, formLista->getModelo()->columnCount()-2 );
-  QTextCursor *ctemp = new QTextCursor( _tabla->cellAt( 0, 0 ).firstCursorPosition() );
-  ctemp->setPosition( _tabla->cellAt( 0, 0 ).lastCursorPosition().position(), QTextCursor::KeepAnchor );
-  ctemp->removeSelectedText();
-  _tabla->cellAt( 0, 0 ).firstCursorPosition().insertText( formLista->tituloTabla() );
-  // Sumo el desplazamiento para el inicio de las filas
-  desplazado++;
- }
- // Cabeceras de las columnas
- if( formLista->cabeceraColumnas() )
- {
-  for(int i = 2; i<formLista->getModelo()->columnCount(); i++ )
-  {
-   //Borro lo que estaba antes
-   QTextCursor *ctemp = new QTextCursor( _tabla->cellAt( desplazado, i-2 ).firstCursorPosition() );
-   ctemp->setPosition( _tabla->cellAt( 1, i-2 ).lastCursorPosition().position(), QTextCursor::KeepAnchor );
-   ctemp->removeSelectedText();
-   _tabla->cellAt( desplazado, i-2 ).firstCursorPosition().insertText( formLista->getModelo()->headerData( i, Qt::Horizontal, Qt::DisplayRole ).toString() );
-  }
-  desplazado++;
- }
- //fila va a ser respecto al modelo
- for( int fila = 0; fila < formLista->getModelo()->rowCount(); fila++ )
- {
-  for( int col = 2; col < formLista->getModelo()->columnCount(); col++ )
-  {
-   QTextTableCell celda = _tabla->cellAt( fila+desplazado, col-2 );
-   if( celda.isValid() )
-   {
-    QTextCursor *ctemp = new QTextCursor( celda.firstCursorPosition() );
-    ctemp->setPosition( celda.lastCursorPosition().position(), QTextCursor::KeepAnchor );
-    ctemp->removeSelectedText();
-    if( !celda.firstCursorPosition().isNull() )
-    {
-      celda.firstCursorPosition().insertText( formLista->getModelo()->data( formLista->getModelo()->index( fila, col ), Qt::DisplayRole ).toString() );
-    }
-   }
-  }
- }
+ pre->generarTablaProductos( formLista->getModelo(), formLista->tituloTabla(), formLista->cabeceraColumnas() );
+ ///@todo, ver bien si quiero hacerlo asi
 }
 
 #include <QMessageBox>
@@ -229,7 +164,17 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  mod->setEditStrategy( QSqlTableModel::OnManualSubmit );
  QSqlRecord reg = mod->record();
  // le pongo los valores a el registro
- //reg.setValue( "
+ reg.setValue( "titulo", LETitulo->text() );
+ reg.setValue( "total", dSBTotal->value() );
+ if( RBOtro->isChecked() )
+ {
+  reg.setValue( "destinatario", LEOtro->text() );
+ }
+ else
+ {
+  //Busco el id del cliente
+  //reg.setValue( "id_cliente", id_cliente );
+ }
  if( cerrar )
  {
   this->close();

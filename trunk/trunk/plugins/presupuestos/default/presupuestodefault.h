@@ -22,7 +22,10 @@
 
 #include "epresupuesto.h"
 #include <QObject>
-class QSqlRecord;
+#include <QTextDocument>
+#include <QTextTable>
+#include <QDate>
+class QFile;
 
 /**
  *  \brief Implementacion predeterminada de un presupuesto
@@ -37,15 +40,28 @@ Q_INTERFACES(EPresupuesto)
 public:
     QString nombre() const;
     double version() const;
-    void setRegistro( QSqlRecord *rec );
-    QString obtenerHtml();
-    QString obtenerContenido();
+    QTextTable *tablaProductos();
+    void setTituloPersonalizado( const QString titulo );
+    void setCliente( const QString cliente );
+    void setFecha( const QDate fecha );
+    void setTablaProductos ( QTextTable* theValue );
+    void setTotal( const double t );
+    QTextDocument * getDocumento();
+    QString cliente();
+    QString titulo();
+    double total();
+    QDate fecha();
+    void generarTabla( QSqlTableModel *mod, const QString tituloTabla, const bool cabeceras );
+    void regenerar( const QTextDocument *docCont );
 
-private:
-   /*!
-    * Puntero interno a el registro que se va a modelar
-    */ 
-    QSqlRecord *_rec;
+protected:
+    QTextDocument *_doc;
+    double _total;
+    QString _texto_destinatario;
+    QString _titulo;
+    QDate _fecha;
+    QTextTable *_tablaProductos;
+    QFile *archivo;
 };
 
 #endif

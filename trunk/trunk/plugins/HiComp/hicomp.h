@@ -52,6 +52,7 @@ public:
     bool verificarTablas();
     double version() const;
     QString empresa() const;
+    QString companeros();
 
 private:
     QList<QAction *> _acciones;

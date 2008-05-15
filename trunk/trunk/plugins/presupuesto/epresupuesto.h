@@ -24,6 +24,8 @@
 class QString;
 class QDate;
 class QTextTable;
+class QTextDocument;
+class QSqlTableModel;
 /**
  * \brief Interfaz de presupuesto
  *
@@ -37,14 +39,22 @@ public:
     virtual ~EPresupuesto() {}
     virtual QString nombre() const = 0;
     virtual double version() const = 0;
-    virtual QString obtenerHtml() = 0;
-    virtual void setCliente( QString nombre ) = 0;
-    virtual void setFecha( QDate fecha ) = 0;
-    virtual void setTituloPersonalizado( QString titulo ) = 0;
-    virtual QTextTable getTablaProductos() = 0;
+    virtual void setCliente( const QString nombre ) = 0;
+    virtual void setFecha( const QDate fecha ) = 0;
+    virtual void setTituloPersonalizado( const QString titulo ) = 0;
+    virtual QTextTable *tablaProductos() = 0;
+    virtual void setTotal( const double t ) = 0;
+    virtual QTextDocument *getDocumento() = 0;
+    virtual double total() = 0;
+    virtual QString cliente() = 0;
+    virtual QString titulo() = 0;
+    virtual QDate fecha() = 0;
+    virtual void generarTabla( QSqlTableModel *mod, const QString tituloTabla, const bool cabceras ) = 0;
+    virtual void regenerar( const QTextDocument *doCont ) = 0;
 };
 
 Q_DECLARE_INTERFACE(EPresupuesto,
                     "tranfuga.EPresupuesto/1.0" )
 
 #endif
+

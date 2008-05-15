@@ -186,3 +186,12 @@ QString presupuestador::empresa() const
 {
     /// @todo implement me
 }
+
+
+/*!
+    \fn presupuestador::companeros()
+ */
+QString presupuestador::companeros()
+{
+ return QString();
+}
