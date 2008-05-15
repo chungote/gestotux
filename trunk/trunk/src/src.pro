@@ -35,7 +35,8 @@ TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
           qt \
- exceptions
+ exceptions \
+ debug
 QT += sql \
 svg \
 xml \
@@ -61,4 +62,9 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
+
+CONFIG -= release
+
+QMAKE_CXXFLAGS_DEBUG += -ggdb \
+  -g3
 

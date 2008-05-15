@@ -339,16 +339,16 @@ bool gestotux::cargarPlugins()
      pluginsDir.cd("plugins");
 	
 	_plugins = new QHash<QString, EPlugin *>();
+        QStringList filtro;
 #ifdef Q_WS_WIN32
-	QStringList filtro;
 	filtro.append( "*.dll" );
-     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
-     {
 #endif
 #ifdef Q_WS_X11
-     foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
-     {
+	filtro.append( "*.so" );
 #endif
+     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
+     {
+
 	loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
          if( loader.load() )
          {

@@ -36,24 +36,25 @@ FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
 
-	QAction *ActCerrar = new QAction( "Cerrar", this );
+	ActCerrar = new QAction( "Cerrar", this );
 	ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
 	ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
 	ActCerrar->setToolTip( "Cierra la ventana de actualizacion ( Ctrl + c ) " );
 	ActCerrar->setStatusTip( "Cierra la ventana de actualizaciones" );
 	connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
-	QAction *ActIniciar = new QAction( "Iniciar", this );
+	ActIniciar = new QAction( "Iniciar", this );
 	ActIniciar->setStatusTip( "Inicia la actualizacion" );
 	ActIniciar->setShortcut( QKeySequence( "Ctrl+i" ) );
 	ActIniciar->setIcon( QIcon( ":/imagenes/next.png" ) );
 	connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( iniciar() ) );
 
-	QAction *ActDetener = new QAction( "Detener", this );
+	ActDetener = new QAction( "Detener", this );
 	ActDetener->setIcon( QIcon( ":/imagenes/stop.png" ) );
 	ActDetener->setStatusTip( "Detiene la actualizacion" );
 	ActDetener->setToolTip( "Detiene la actualizacion ( Ctrl +d )" );
 	ActDetener->setShortcut( QKeySequence( "Ctrl+d" ) );
+	ActDetener->setEnabled( false );
 	connect( ActDetener, SIGNAL( triggered()), this, SLOT( detener() ) );
 
 	
@@ -76,20 +77,19 @@ void FormActualizacion::iniciar()
 
   ftp = new QFtp( this );
   connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( terminado( int, bool ) ) );
-  connect( ftp, SIGNAL( commandStarted( int ) ), this, SLOT( inicio( int ) ) );
+  //connect( ftp, SIGNAL( commandStarted( int ) ), this, SLOT( inicio( int ) ) );
   connect( ftp, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstado( int ) ) );
-  connect( ftp, SIGNAL( dataTransferProgress( int, int ) ), this, SLOT( tranferencia( int, int ) ) );
-  connect( ftp, SIGNAL( readyRead( int ) ), this, SLOT( datosListos( int ) ) );
+  connect( ftp, SIGNAL( dataTransferProgress( qint64 , qint64 ) ), this, SLOT( transferencia( qint64, qint64 ) ) );
+  //connect( ftp, SIGNAL( readyRead() ), this, SLOT( datosListos() ) );
 
   //Inicio la verificacion
+  ActIniciar->setEnabled( false );
+  ActDetener->setEnabled( true );
   // Busco los datos desde el registro para el host y puerto
   QSettings *p = preferencias::getInstancia();
   QString host = p->value( "actualizaciones/host", "tranfuga.no-ip.org" ).toString();
   quint16 puerto = p->value( "actualizaciones/puerto", 21 ).toInt();
   ftp->connectToHost( host, puerto );
-  ftp->login();
-  ftp->cd( "actualizaciones" );
-  ftp->get( "actualizacion.xml" );
 }
 
 
@@ -124,6 +124,8 @@ void FormActualizacion::cambioEstado( int estado )
   case QFtp::Unconnected:
   {
 	TELog->append( "Se desconecto del servidor" );
+	ActIniciar->setEnabled( true );
+	ActDetener->setEnabled( false );
 	break;
   }
   case QFtp::HostLookup:
@@ -165,10 +167,10 @@ void FormActualizacion::cambioEstado( int estado )
  */
 void FormActualizacion::inicio( int id )
 {
-  // TELog->append( " Inicio del comando " + id );
+  TELog->append( " Inicio del comando " + id );
 }
 
-
+#include <QTemporaryFile>
 /*!
     \fn FormActualizacion::terminado( int comando, bool  error )
  */
@@ -182,9 +184,22 @@ void FormActualizacion::terminado( int comando, bool  error )
   }
   switch( comando )
   {
+   // Coneccion
+   case 1:
+   {
+      ftp->login();
+      break;
+   }
+   // Login
+   case 2:
+   {
+	  ftp->cd( "actualizaciones" );
+	  break;
+   }
    case 3:
    {
- 	TELog->append( "Descargando indice" );
+	ftp->get( "actualizacion.xml" );
+	TELog->append( "Descargando indice" );
 	break;
    }
    case 4:
@@ -195,6 +210,38 @@ void FormActualizacion::terminado( int comando, bool  error )
    }
    default:
    {
+	if( _arch_dest.find( comando ) != _arch_dest.end() )
+	{
+		// Se termino de descargar el archivo
+		QPair<QString,QString> par = _arch_dest.value( comando );
+		_arch_dest.remove( comando );
+		TELog->append( "Se termino de descargar el archivo: " + par.first );
+		QTemporaryFile archivoRecibido( this );
+		archivoRecibido.open();
+		archivoRecibido.write( ftp->readAll() );
+		qDebug( QString( "Creado archivo temporal: %1 ").arg( archivoRecibido.fileName() ).toLocal8Bit() );
+		// lo coloco en la ubicacion necesaria
+		QDir dir( QApplication::applicationDirPath() );
+		dir.cd( "plugins" );
+		dir.cd( par.second );
+		if( QFile::exists( dir.filePath( par.first + ".back" ) ) )
+		{
+			QFile::remove( dir.filePath( par.first + ".back" ) );
+		}
+		QFile::rename( dir.filePath( par.first ), dir.filePath( par.first + ".back" ) );
+		if( QFile::copy( QDir::temp().filePath( archivoRecibido.fileName() ), dir.filePath( par.first ) ) )
+		{
+			TELog->append( "Archivo actualizado correctamente" );
+		}
+		else
+		{
+			qDebug( "Error al copiar el archivo" );
+		}
+	}
+	else
+	{
+		qDebug( QString("Comando desconocido: %1").arg( comando ).toLocal8Bit() );
+	}
     break;
    }
   }
@@ -207,10 +254,10 @@ void FormActualizacion::terminado( int comando, bool  error )
 void FormActualizacion::analizarGeneral()
 {
   QDomDocument *docxml = new QDomDocument();
-  if( !docxml->setContent( ftp->readAll() ) )
+  if( !docxml->setContent( ftp->readAll(), false ) )
   {
    TELog->append( "Error al analizar el contenido del archivo de actualizaciones" );
-   /// El Error va a estar por consola
+   _continuar_actualizando = false;
    return;
   }
   else
@@ -221,21 +268,32 @@ void FormActualizacion::analizarGeneral()
   TELog->append( "Analizando actualizaciones disponibles" );
   QDomElement docElem = docxml->documentElement();
   QDomNode n = docElem.firstChild();
-  if( n.toElement().attribute( "version", 0 ).toInt() >= 0.1 )
+  if( n.toElement().attribute( "version", 0 ).toInt() >= 0.2 )
   {
-	TELog->append( "Existe una nueva version del programa. Por favor actualicela manualmente" );
+	if( CkBGenerales->isChecked() )
+	{
+		TELog->append( "Existe una nueva version del programa. Por favor actualicela manualmente" );
+	}
+	else
+	{
+		TELog->append( "No existen actualizaciones para esta version de Gestotux. Por Favor actualize el programa a una veriosn superior" );
+	}
 	ftp->close();
 	return;
   }
   else
   {
-   TELog->append( "No se necesita actualizar el programa general." );
+	if( CkBGenerales->isChecked() )
+	{
+		  TELog->append( "No se necesita actualizar el programa general." );
+	}
    // Veo cada uno de los plugins
    //Busco los nodos de plugins
    QDomNodeList listanodos = docxml->elementsByTagName( "plugin" );
-   for( int i=0; i< listanodos.size(); i++ )
+   for( unsigned int i=0; i< listanodos.length(); i++ )
    {
 	QDomNode nodo = listanodos.item( i );
+	qDebug( QString( "Nodo: %1, nombre=%2,version=%3" ).arg( nodo.nodeName() ).arg( nodo.toElement().attribute("nombre") ).arg(nodo.toElement().attribute("version") ).toLocal8Bit() );
 	// Comparo las versiones del programa
 	QString nombre = nodo.toElement().attribute( "nombre" );
 	double versionNueva = nodo.toElement().attribute( "version" ).toDouble();
@@ -249,22 +307,42 @@ void FormActualizacion::analizarGeneral()
 		#ifdef Q_WS_X11
 		QString nombre_os = "linux";
 		#endif
-		QDomNodeList nodos_os = n.toElement().elementsByTagName( nombre_os );
-		QDomNode nodo_os = nodos_os.item( 0 );
-		if( nodo_os.toElement().hasAttribute( "archivo" ) )
+		QDomNode nodo_os = n.toElement().elementsByTagName( nombre_os ).item(0);
+		qDebug( QString( "Nodo OS: %1" ).arg( nodo.nodeName() ).toLocal8Bit() );
+		QDomNodeList nodos_archivos = nodo_os.toElement().elementsByTagName( "archivo" );
+		unsigned int posNodo = 0;
+		qDebug( QString( "Encontrado %1 nodos").arg( nodos_archivos.length() ).toLocal8Bit() );
+		while( posNodo < nodos_archivos.length() )
 		{
-			ftp->get( nodo_os.toElement().attribute( "archivo" ) );
-			///@todo ver donde ponerlo para que al terminar el comando, lo sobreescriba y lo descarge
-			///@todo Ver Como hacer con los plugins especificos
+			QDomNode nodo_archivo = nodos_archivos.item(posNodo);
+			QPair<QString,QString> tmp;
+			tmp.first = nodo_archivo.toElement().attribute( "nombre" );
+			tmp.second = nodo_archivo.toElement().attribute( "directorio_destino" );
+			qDebug( QString( "Encontrado archivo %1, dir %2" ).arg( tmp.first ).arg( tmp.second ).toLocal8Bit() );
+			TELog->append( QString( "Descargando archivo %1..." ).arg( tmp.first ) );
+			int pos = ftp->get( tmp.first );
+			_arch_dest.insert( pos, tmp );
+			posNodo++;
 		}
 	}
 	else
 	{
-		TELog->append( QString( "El plugin %1 no necesita actualizarse" ).arg( nombre ) );
+		TELog->append( QString( "El plugin %1 no necesita actualizarse." ).arg( nombre ) );
 	}
 
    }
    TELog->append( "Lista la actualizacion" );
    ftp->close();
   }
+}
+
+
+/*!
+    \fn FormActualizacion::transferencia( qint64 echo, qint64 total )
+ */
+void FormActualizacion::transferencia( qint64 echo, qint64 total )
+{
+ //qDebug( QString("transferencia %1 de %2 ").arg(echo).arg(total).toLocal8Bit() );
+ PBProgreso->setRange( 0, total );
+ PBProgreso->setValue( echo );
 }
