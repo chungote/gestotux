@@ -24,7 +24,10 @@
 #include <QWidget>
 #include "ui_FormActualizacionBase.h"
 
+#include <QHash>
+#include <QPair>
 class QFtp;
+
 
 class FormActualizacion : public QWidget, private Ui::FormActualizacionBase
 {
@@ -40,12 +43,21 @@ protected slots:
     void cambioEstado( int estado );
     void inicio( int id );
     void terminado( int comando, bool  error );
+    void transferencia( qint64 echo, qint64 total );
+
 
 private:
 	bool _continuar_actualizando;
 	QFtp *ftp;
+	QHash<int, QPair<QString,QString> > _arch_dest;
+
+	QAction *ActDetener;
+	QAction *ActIniciar;
+	QAction *ActCerrar;
+
 public slots:
     void finComando( int comando, bool error );
+
 private slots:
     void analizarGeneral();
 };
