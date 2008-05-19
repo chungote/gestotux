@@ -4,5 +4,4 @@ CONFIG += ordered
 
 DESTDIR = .
 
-SUBDIRS += hicomp \
-default
+SUBDIRS += default

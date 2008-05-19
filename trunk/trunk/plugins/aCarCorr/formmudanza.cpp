@@ -65,7 +65,7 @@ void FormMudanza::guardar()
  QProgressDialog *dialogo = new QProgressDialog( this );
  dialogo->setLabelText( "Guardando datos del TRI" );
  dialogo->setMinimum( 0 );
- dialogo->setMaximum( 6 );
+ dialogo->setMaximum( 7 );
  dialogo->setValue( 0 );
  dialogo->setMinimumDuration( 0 );
  dialogo->show();
@@ -79,6 +79,8 @@ void FormMudanza::guardar()
 	dialogo->close();
 	return;
  }
+ dialogo->setValue( dialogo->value() + 1 );
+ movimiento->setNumGuia( LEGuia->text() );
  dialogo->setValue( dialogo->value() + 1 );
  // Fecha
  movimiento->setFecha( dEFecha->date() );

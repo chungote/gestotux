@@ -56,6 +56,7 @@ public:
     void setFecha( const QDate& theValue );
     void eliminarCaravana( QString codigo );
     bool agregarCaravana( QString codigo, bool verificar = true );
+    void setNumGuia( const QString numeroGuia );
 
 private:
 	QPair<int,QString> destino;
@@ -65,6 +66,7 @@ private:
 	QPair<int,QString> categoria;
 	QDate fecha;
 	QString DTA;
+	QString _numGuia;
 	int id_db;
 	QStringList _caravanas;
 

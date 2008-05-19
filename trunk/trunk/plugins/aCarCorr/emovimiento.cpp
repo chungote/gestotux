@@ -364,7 +364,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 	dialogo->setRange( 0, (_caravanas.size() * 2) + 1 );
 	dialogo->setValue( 0 );
  	QSqlQuery cola;
-	QString scola = QString( " car_tri( dta, fecha, razon, id_categoria, id_estab_destino, id_estab_origen, id_comprador, id_vendedor ) VALUES ( '%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8' )" ).arg( DTA ).arg( fecha.toString(Qt::ISODate) ).arg( tipoMov() ).arg( categoria.first ).arg( destino.first ).arg( origen.first ).arg( comprador.first ).arg( vendedor.first );
+	QString scola = QString( " car_tri( dta, guia, fecha, razon, id_categoria, id_estab_destino, id_estab_origen, id_comprador, id_vendedor ) VALUES ( '%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8'. '%9' )" ).arg( DTA ).arg( _numGuia ).arg( fecha.toString(Qt::ISODate) ).arg( tipoMov() ).arg( categoria.first ).arg( destino.first ).arg( origen.first ).arg( comprador.first ).arg( vendedor.first );
    	if( id_db  == -1 )
  	{
   		// Agrego un nuevo registro
@@ -707,4 +707,13 @@ int EMovimiento::getIDCaravana( QString codigo )
 		return -1;
 	}
  }
+}
+
+
+/*!
+    \fn EMovimiento::setNumGuia( const QString numeroGuia )
+ */
+void EMovimiento::setNumGuia( const QString numeroGuia )
+{
+ _numGuia = numeroGuia;
 }

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   	   			   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -67,7 +67,7 @@ void FormVenta::guardar()
  QProgressDialog *dialogo = new QProgressDialog( this );
  dialogo->setLabelText( "Guardando datos del TRI" );
  dialogo->setMinimum( 0 );
- dialogo->setMaximum( 6 );
+ dialogo->setMaximum( 7 );
  dialogo->setValue( 0 );
  dialogo->setMinimumDuration( 0 );
  dialogo->show();
@@ -81,6 +81,8 @@ void FormVenta::guardar()
 	dialogo->close();
 	return;
  }
+ dialogo->setValue( dialogo->value() + 1 );
+ movimiento->setNumGuia( LEGuia->text() );
  dialogo->setValue( dialogo->value() + 1 );
  // Fecha
  movimiento->setFecha( dEFecha->date() );

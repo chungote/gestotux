@@ -12,7 +12,7 @@
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
     <widget class="QLabel" name="LTitulo" >
      <property name="sizePolicy" >
@@ -192,6 +192,20 @@ p, li { white-space: pre-wrap; }
         <string>Agregar</string>
        </property>
       </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <widget class="QLabel" name="LGuia" >
+       <property name="text" >
+        <string>Numero de Guia:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="LEGuia" />
      </item>
     </layout>
    </item>

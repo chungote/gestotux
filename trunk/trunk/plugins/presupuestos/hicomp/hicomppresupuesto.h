@@ -22,6 +22,7 @@
 
 #include <epresupuesto.h>
 
+class QSqlRecord;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
