@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -35,6 +35,7 @@ MTri::MTri( QObject *padre )
  setRelation  ( 5, QSqlRelation ( "clientes", "id", "nombre" ) );
  setHeaderData( 6, Qt::Horizontal, "Vendedor" );
  setRelation  ( 6, QSqlRelation ( "clientes", "id", "nombre" ) );
+ setHeaderData( 7, Qt::Horizontal, "# Guia" );
 }
 
 
