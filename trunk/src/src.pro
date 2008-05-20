@@ -13,7 +13,8 @@ SOURCES += gestotux.cpp \
  fprefgeneral.cpp \
  mclientes.cpp \
  vcliente.cpp \
- formactualizacion.cpp
+ formactualizacion.cpp \
+ esplash.cpp
 HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
@@ -30,7 +31,8 @@ HEADERS += gestotux.h \
  vcliente.h \
  einfoprogramainterface.h \
  eplugin.h \
- formactualizacion.h
+ formactualizacion.h \
+ esplash.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \

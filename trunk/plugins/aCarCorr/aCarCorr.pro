@@ -11,17 +11,6 @@ exceptions \
 
 QT += sql
 
-
-win32 {
-    CONFIG += release
-    CONFIG -= debug
-}
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
-
 HEADERS += admincarcorr.h \
  mcategoria.h \
  mestablecimiento.h \
@@ -71,3 +60,14 @@ DESTDIR = ../../bin/plugins
 RESOURCES += aCarCorr.qrc
 
 FORMS += FormMovimientoBase.ui
+
+win32 {
+    CONFIG += release
+    CONFIG -= debug
+}
+linux-g++ {
+    UI_DIR = ui
+    MOC_DIR = moc
+    OBJECTS_DIR = obj
+    QMAKE_EXTRA_TARGETS += /home/ftp/actualizaciones/$TARGET
+}
