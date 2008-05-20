@@ -160,7 +160,7 @@ bool AdminCarCorr::verificarTablas()
 
 double AdminCarCorr::version() const
 {
- return 0.1;
+ return 0.11;
 }
 
 int AdminCarCorr::tipo() const

@@ -1,10 +1,25 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="1" >
+ <DocsAndViews NumberOfDocuments="6" >
   <Doc0 NumberOfViews="1" URL="file:///home/ftp/actualizaciones/actualizacion.xml" >
-   <View0 Encoding="" line="2" Type="Source" />
+   <View0 Encoding="" Type="Source" />
   </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/esplash.cpp" >
+   <View0 Encoding="" Type="Source" />
+  </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/bin/debug.txt" >
+   <View0 Encoding="" Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/main.cpp" >
+   <View0 Encoding="" Type="Source" />
+  </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/esplash.h" >
+   <View0 Encoding="" line="37" Type="Source" />
+  </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/admincarcorr.cpp" >
+   <View0 Encoding="" line="162" Type="Source" />
+  </Doc5>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

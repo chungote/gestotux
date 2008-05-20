@@ -28,7 +28,7 @@
 	<file>imagenes/categorias.png</file>
 	<file>imagenes/productos.png</file>
 	<file>imagenes/buscar.png</file>
-	<file>imagenes/splash.png</file>
+	<file>imagenes/splash.svg</file>
 	<file>imagenes/actualizar.png</file>
     </qresource>
     <qresource prefix="sql">

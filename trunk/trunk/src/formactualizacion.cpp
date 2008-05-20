@@ -264,9 +264,11 @@ void FormActualizacion::terminado( int comando, bool  error )
 void FormActualizacion::analizarGeneral()
 {
   QDomDocument *docxml = new QDomDocument();
-  if( !docxml->setContent( ftp->readAll(), false ) )
+  int linea,columna; QString mensaje;
+  if( !docxml->setContent( ftp->readAll(), false, &mensaje, &linea, &columna ) )
   {
-   TELog->append( "Error al analizar el contenido del archivo de actualizaciones" );
+   TELog->append( "Error al cargar el contenido del archivo de actualizaciones" );
+   qDebug( QString( "Error: f:%1,c:%2; m=%3 " ).arg( linea ).arg(columna ).arg(mensaje ).toLocal8Bit() );
    _continuar_actualizando = false;
    return;
   }
