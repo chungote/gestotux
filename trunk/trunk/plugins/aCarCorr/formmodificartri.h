@@ -17,26 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef FORMMODIFICARTRI_H
+#define FORMMODIFICARTRI_H
 
-#ifndef FORMAGREGAR_H
-#define FORMAGREGAR_H
+#include <formmovimiento.h>
+#include "emovimiento.h"
 
-#include <QWidget>
-#include "formmovimiento.h"
+/**
+Formulario que modifica un tri determinado
 
-
-class FormAgregar : public FormMovimiento
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class FormModificarTri : public FormMovimiento
 {
-  Q_OBJECT
+Q_OBJECT
 public:
-  FormAgregar(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FormAgregar();
+    FormModificarTri(QWidget *parent = 0, int accion = invalido, int id_tri = -1 );
+    ~FormModificarTri();
 
-public slots:
-    void cerrar();
+protected slots:
     void guardar();
 
+private:
+    EMovimiento *movimiento;
 };
 
 #endif
-

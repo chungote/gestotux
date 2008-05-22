@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
+    <width>543</width>
     <height>685</height>
    </rect>
   </property>
@@ -384,8 +384,6 @@ Dueño</string>
       </item>
      </layout>
      <zorder>PBCargarArchivo</zorder>
-     <zorder>LCantidadAnimales</zorder>
-     <zorder>SBCantidadAnimales</zorder>
      <zorder></zorder>
     </widget>
    </item>

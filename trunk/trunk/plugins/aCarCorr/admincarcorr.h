@@ -58,6 +58,7 @@ private:
 	QAction *ActEstablecimiento;
 	QAction *ActCategoria;
 	QAction *ActDuenos;
+	QAction *ActModificarTri;
 
 	QAction *ActAgregarCompra;
 	QAction *ActAgregarVenta;
@@ -81,6 +82,7 @@ private:
     void cargarPluginsInformes();
     QString empresa() const;
     QString companeros();
+    void modificarTri();
 
 };
 

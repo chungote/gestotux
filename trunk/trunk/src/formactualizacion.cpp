@@ -29,7 +29,7 @@
 #include <QDomElement>
 #include <QTextEdit>
 #include <QDomNodeList>
-
+ 
 FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::FormActualizacionBase()
 {

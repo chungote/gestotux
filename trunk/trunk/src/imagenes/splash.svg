@@ -9,8 +9,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="528.64172"
-   height="344.47018"
+   width="290.60031"
+   height="182.28639"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
@@ -163,11 +163,11 @@
     <linearGradient
        id="linearGradient3157">
       <stop
-         style="stop-color:#000000;stop-opacity:0.11458334;"
+         style="stop-color:#ffffff;stop-opacity:1;"
          offset="0"
          id="stop3159" />
       <stop
-         style="stop-color:#000000;stop-opacity:0;"
+         style="stop-color:#d8d8d8;stop-opacity:1;"
          offset="1"
          id="stop3161" />
     </linearGradient>
@@ -218,17 +218,38 @@
        xlink:href="#linearGradient3157"
        id="linearGradient4150"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.6401683,0,0,0.7428765,49.556523,-1035.7265)"
-       x1="-451.42856"
-       y1="435.21933"
-       x2="-442.44006"
-       y2="582.42279" />
+       gradientTransform="matrix(-0.4943481,3.9826662e-3,1.9699944e-3,-0.5736763,-18.841483,875.92563)"
+       x1="-318.8071"
+       y1="674.95935"
+       x2="-297.89072"
+       y2="455.31052" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3165"
        id="linearGradient4152"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.6401683,0,0,0.7428765,-590.47601,-48.898634)"
+       gradientTransform="matrix(-0.4943481,3.9826662e-3,1.9699944e-3,-0.5736763,478.01865,109.87947)"
+       spreadMethod="reflect"
+       x1="106.98804"
+       y1="-654.5968"
+       x2="918.30243"
+       y2="-654.5968" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3157"
+       id="linearGradient2436"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.4943481,3.9826662e-3,1.9699944e-3,-0.5736763,-18.841483,875.92563)"
+       x1="-318.8071"
+       y1="674.95935"
+       x2="-297.89072"
+       y2="455.31052" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3165"
+       id="linearGradient2438"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.4943481,3.9826662e-3,1.9699944e-3,-0.5736763,478.01865,109.87947)"
        spreadMethod="reflect"
        x1="106.98804"
        y1="-654.5968"
@@ -237,24 +258,26 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#b8b8b8"
      bordercolor="#666666"
      borderopacity="1.0"
      gridtolerance="10000"
      guidetolerance="10"
      objecttolerance="10"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="446.3093"
-     inkscape:cy="520"
+     inkscape:zoom="0.7"
+     inkscape:cx="227.38599"
+     inkscape:cy="252.49787"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1018"
      inkscape:window-height="679"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     showgrid="false" />
+     showgrid="false"
+     inkscape:showpageshadow="true"
+     showborder="false" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -270,49 +293,54 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-15.412312,-350.97051)">
-    <rect
-       style="fill:url(#linearGradient4150);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4152);stroke-width:1.891608;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4140"
-       width="517.6217"
-       height="320.49808"
-       x="-521.10767"
-       y="-695.43219"
-       rx="9.1452589"
-       ry="14.857528"
-       transform="matrix(-0.9990072,4.4548244e-2,-3.3066769e-2,-0.9994531,0,0)"
-       inkscape:export-filename="/home/Esteban/Programas/gestotux/src/imagenes/splash.png"
-       inkscape:export-xdpi="43.59"
-       inkscape:export-ydpi="43.59" />
-    <text
+     transform="translate(-22.287369,-361.36332)">
+    <g
+       id="g2429"
+       transform="matrix(0.7228344,0,0,0.7228344,6.177292,100.15748)">
+      <path
+         id="rect4140"
+         d="M 423.58588,362.09368 C 290.34647,363.16711 157.10706,364.24054 23.867651,365.31397 C 23.584345,447.81456 23.301039,530.31515 23.017734,612.81574 C 156.25715,611.74231 289.49655,610.66888 422.73597,609.59545 C 423.01927,527.09486 423.30258,444.59427 423.58588,362.09368 z"
+         style="fill:url(#linearGradient2436);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient2438);stroke-width:1.46072876;stroke-miterlimit:4;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="43.59"
+         inkscape:export-xdpi="43.59"
+         inkscape:export-filename="/home/Esteban/Programas/gestotux/src/imagenes/splash.png"
+         transform="scale(1.0277475,0.9730016)"
+         sodipodi:linespacing="125%"
+         id="text4142"
+         y="612.23395"
+         x="241.49261"
+         style="font-size:67.41883087px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:GlaserSteD;-inkscape-font-specification:GlaserSteD"
+         xml:space="preserve"><tspan
+           y="612.23395"
+           x="241.49261"
+           id="tspan4144"
+           sodipodi:role="line">GestoTux</tspan></text>
+      <text
+         inkscape:export-ydpi="43.59"
+         inkscape:export-xdpi="43.59"
+         inkscape:export-filename="/home/Esteban/Programas/gestotux/src/imagenes/splash.png"
+         transform="scale(0.8618277,1.1603247)"
+         sodipodi:linespacing="125%"
+         id="text4146"
+         y="464.78391"
+         x="435.33682"
+         style="font-size:33.16785049px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Vemana2000;-inkscape-font-specification:Vemana2000"
+         xml:space="preserve"><tspan
+           y="464.78391"
+           x="435.33682"
+           id="tspan4148"
+           sodipodi:role="line">0.3</tspan></text>
+    </g>
+    <flowRoot
        xml:space="preserve"
-       style="font-size:88.29289246px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Stencil"
-       x="285.61044"
-       y="559.86798"
-       id="text4142"
-       sodipodi:linespacing="125%"
-       transform="scale(0.8475993,1.1798028)"
-       inkscape:export-filename="/home/Esteban/Programas/gestotux/src/imagenes/splash.png"
-       inkscape:export-xdpi="43.59"
-       inkscape:export-ydpi="43.59"><tspan
-         sodipodi:role="line"
-         id="tspan4144"
-         x="285.61044"
-         y="559.86798">GestoTux</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:42.95013046px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Ani"
-       x="501.40375"
-       y="510.01212"
-       id="text4146"
-       sodipodi:linespacing="125%"
-       transform="scale(0.8618277,1.1603247)"
-       inkscape:export-filename="/home/Esteban/Programas/gestotux/src/imagenes/splash.png"
-       inkscape:export-xdpi="43.59"
-       inkscape:export-ydpi="43.59"><tspan
-         sodipodi:role="line"
-         id="tspan4148"
-         x="501.40375"
-         y="510.01212">0.2</tspan></text>
-  </g>
+       id="flowRoot2425"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2427"><rect
+           id="rect2429"
+           width="511.42856"
+           height="22.857143"
+           x="2.8571429"
+           y="12.272056" /></flowRegion><flowPara
+         id="flowPara2431" /></flowRoot>  </g>
 </svg>

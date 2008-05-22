@@ -21,7 +21,7 @@
 #include <QFile>
 #include <QDir>
 #include <QApplication>
-
+ 
 ESplash::ESplash(QWidget *parent)
  : QSvgWidget( parent )
 {

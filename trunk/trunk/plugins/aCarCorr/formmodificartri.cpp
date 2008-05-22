@@ -17,26 +17,60 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-#ifndef FORMAGREGAR_H
-#define FORMAGREGAR_H
-
-#include <QWidget>
-#include "formmovimiento.h"
+#include "formmodificartri.h"
+#include <QSqlQuery>
 
 
-class FormAgregar : public FormMovimiento
+FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
+: FormMovimiento( parent, 0, accion )
 {
-  Q_OBJECT
-public:
-  FormAgregar(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FormAgregar();
+ movimiento = new EMovimiento( this );
+ movimiento->cargarMovimiento( id_tri );
+ // Cargo los datos en su correspondiente lugar
+ dEFecha->setDate( movimiento->getFecha() );
+ LETRI->setText( QString( "%1" ).arg( movimiento->getTri() ) );
+ switch( accion )
+ {
+	case compra:
+	{
+		// Coloco el vendedor
+		// Coloco el establecimiento de destino
+		break;
+	}
+	case venta:
+	{
+		// Pongo el comprado
+		// Pongo el establecimiento de origen
+		break;
+	}
+	case mudanza:
+	{
+		// Coloco el establecimiento de destino
+		// Pongo el establecimiento de origen
+		break;
+	}
+	case stock:
+	{
+		// Pongo el establecimiento de destino
+		break;
+	}
+	default:
+	{
+		break;
+	}
+ } // fin switch de tipo de accion
+}
 
-public slots:
-    void cerrar();
-    void guardar();
 
-};
+FormModificarTri::~FormModificarTri()
+{
+}
 
-#endif
 
+/*!
+    \fn FormModificarTri::guardar
+ */
+void FormModificarTri::guardar()
+{
+    /// @todo implement me
+}

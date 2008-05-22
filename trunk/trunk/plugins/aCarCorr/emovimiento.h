@@ -1,4 +1,4 @@
-/***************************************************************************
+ /***************************************************************************
  *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
@@ -57,6 +57,7 @@ public:
     void eliminarCaravana( QString codigo );
     bool agregarCaravana( QString codigo, bool verificar = true );
     void setNumGuia( const QString numeroGuia );
+    int getTri() const;
 
 private:
 	QPair<int,QString> destino;

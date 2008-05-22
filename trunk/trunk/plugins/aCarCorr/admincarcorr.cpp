@@ -1,4 +1,4 @@
-/***************************************************************************
+ /***************************************************************************
  *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
@@ -110,6 +110,10 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActDuenos = new QAction( "Dueños", this );
  ActDuenos->setToolTip( "Muestra el listado de personas que estan como dueños" );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( mostrarDuenos() ) );
+
+ ActModificarTri = new QAction( "Modificar Tri", this );
+ ActModificarTri->setToolTip( "Permite modificar un numero especifico de tri" );
+ connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
 
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
@@ -376,4 +380,34 @@ void AdminCarCorr::agregarStock()
 QString AdminCarCorr::companeros()
 {
  return "Exequiel Saavedra <gandhalf@gmail.com> \n Pruebas y graficos";
+}
+
+#include <QSqlRecord>
+#include <QInputDialog>
+#include "formmodificartri.h"
+void AdminCarCorr::modificarTri()
+{
+ // Pregunto que numero de tri quiere modificar
+ bool ok;
+ QStringList lista;
+ QSqlQuery cola( "SELECT id_tri FROM car_tri" );
+ while( cola.next() )
+ {
+  lista.append( cola.record().value(0).toString() );
+ }
+ QString id_tri = QInputDialog::getItem( 0, tr("Elija el tri"), tr("# Tri :"), lista, 0, false, &ok );
+ if( !id_tri.isNull() && ok )
+ {
+  // Cargo el formulario con el tri que corresponda
+  if( cola.exec( QString( "SELECT razon FROM car_tri WHERE id_tri = '%1'" ).arg( id_tri ) ) )
+  {
+   FormModificarTri *f = new FormModificarTri( _formCen, cola.record().value(0).toInt(), id_tri.toInt() );
+   _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+   return;
+  }
+ }
+ else
+ {
+  return;
+ }
 }
