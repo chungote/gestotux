@@ -17,53 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "mprefcategorias.h"
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
-
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-#include "TipoMovs.h"
-class QAction;
-class MCaravanaDueno;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+MPrefCategorias::MPrefCategorias(QObject *parent)
+ : QSqlTableModel(parent)
 {
-  Q_OBJECT
-
-public:
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, int accion = invalido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
+ setTable( "car_categorias" );
+ setHeaderData( 0, Qt::Horizontal,"#id_db" );
+ setHeaderData( 1, Qt::Horizontal, "Categoria" );
+ select();
+}
 
 
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	MCaravanaDueno *model;
+MPrefCategorias::~MPrefCategorias()
+{
+}
 
 
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
+QVariant MPrefCategorias::data(const QModelIndex& index, int role) const
+{
+ return QSqlTableModel::data( index, role );
+}
 
-public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
-    void habilitarCantidadAnimales( int categoria );
-
-private:
-	int _accion;
-};
-
-#endif
+bool MPrefCategorias::setData(const QModelIndex& index, const QVariant& value, int role)
+{
+    return QSqlTableModel::setData(index, value, role);
+}
 

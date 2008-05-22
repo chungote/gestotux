@@ -31,7 +31,11 @@ HEADERS += admincarcorr.h \
  einforme.h \
  mduenos.h \
  vduenos.h \
- mcaravanadueno.h
+ mcaravanadueno.h \
+ formmodificartri.h \
+ formprefcaravanas.h \
+ ../../src/formprefhijo.h \
+ mprefcategorias.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -51,7 +55,11 @@ SOURCES += admincarcorr.cpp \
  einforme.cpp \
  mduenos.cpp \
  vduenos.cpp \
- mcaravanadueno.cpp
+ mcaravanadueno.cpp \
+ formmodificartri.cpp \
+ formprefcaravanas.cpp \
+ ../../src/formprefhijo.cpp \
+ mprefcategorias.cpp
 
 TARGET = admincaravanascorrientes
 
@@ -59,7 +67,8 @@ DESTDIR = ../../bin/plugins
 
 RESOURCES += aCarCorr.qrc
 
-FORMS += FormMovimientoBase.ui
+FORMS += FormMovimientoBase.ui \
+ FormPrefCaravanas.ui
 
 win32 {
     CONFIG += release

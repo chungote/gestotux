@@ -99,6 +99,12 @@ void FormActualizacion::iniciar()
 void FormActualizacion::detener()
 {
   _continuar_actualizando = false;
+  ftp->clearPendingCommands();
+  ftp->close();
+  ActDetener->setEnabled( false );
+  ActIniciar->setEnabled( true );
+  transferencia( 0, 0 );
+  TELog->append( "Cancelado" );
 }
 
 
@@ -231,7 +237,6 @@ void FormActualizacion::terminado( int comando, bool  error )
 		qDebug( QString( "Creado archivo temporal: %1 ").arg( archivoRecibido.fileName() ).toLocal8Bit() );
 		// lo coloco en la ubicacion necesaria
 		QDir dir( QApplication::applicationDirPath() );
-		dir.cd( "plugins" );
 		dir.cd( par.second );
 		if( QFile::exists( dir.filePath( par.first ) ) )
 		{
@@ -275,12 +280,17 @@ void FormActualizacion::analizarGeneral()
   else
   {
    TELog->append( "Descarga correcta." );
+   qDebug( "Descarga Correcta" );
   }
 
   TELog->append( "Analizando actualizaciones disponibles" );
   QDomElement docElem = docxml->documentElement();
-  QDomNode n = docElem.firstChild();
-  if( n.toElement().attribute( "version", 0 ).toInt() >= 0.2 )
+  qDebug( QString( "Primer hijo: %1" ).arg( docElem.tagName() ).toLocal8Bit() );
+  if( docElem.tagName() == "actualizacion" )
+  {
+	qDebug( "Encontrado nodo de actualizacion" );
+  }
+  if( docElem.attribute( "version", 0 ).toDouble() > 0.2 )
   {
 	if( CkBGenerales->isChecked() )
 	{
@@ -290,6 +300,7 @@ void FormActualizacion::analizarGeneral()
 	{
 		TELog->append( "No existen actualizaciones para esta version de Gestotux. Por Favor actualize el programa a una veriosn superior" );
 	}
+	ftp->clearPendingCommands();
 	ftp->close();
 	_continuar_actualizando = false;
 	return;
@@ -300,105 +311,176 @@ void FormActualizacion::analizarGeneral()
 	{
 		  TELog->append( "No se necesita actualizar el programa general." );
 	}
-   // Veo cada uno de los plugins
-   //Busco los nodos de plugins
-   QDomNodeList listanodos = docxml->elementsByTagName( "plugin" );
-   for( unsigned int i=0; i< listanodos.length(); i++ )
-   {
-	if( !_continuar_actualizando )
-	{ return; }
-	QDomNode nodo = listanodos.item( i );
-	qDebug( QString( "Nodo: %1, nombre=%2,version=%3" ).arg( nodo.nodeName() ).arg( nodo.toElement().attribute("nombre") ).arg(nodo.toElement().attribute("version") ).toLocal8Bit() );
-	// Comparo las versiones del programa
-	QString nombre = nodo.toElement().attribute( "nombre" );
-	if( gestotux::pluginsHash()->find( nombre ) == gestotux::pluginsHash()->end() )
-	{
-		qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara" ).arg( nombre ).toLocal8Bit() );
-		continue;
-	}
-	double versionNueva = nodo.toElement().attribute( "version" ).toDouble();
-	double versionAnterior = gestotux::pluginsHash()->value( nombre )->version();
-	if( versionNueva > versionAnterior )
-	{
-		TELog->append( QString( "Actualizando plugin %1..." ).arg( nombre ) );
-		#ifdef Q_WS_WIN32
-		QString nombre_os = "windows";
-		#endif
-		#ifdef Q_WS_X11
-		QString nombre_os = "linux";
-		#endif
-		QDomNode nodo_os = n.toElement().elementsByTagName( nombre_os ).item(0);
-		qDebug( QString( "Nodo OS: %1" ).arg( nodo.nodeName() ).toLocal8Bit() );
-		QDomNodeList nodos_archivos = nodo_os.toElement().elementsByTagName( "archivo" );
-		unsigned int posNodo = 0;
-		qDebug( QString( "Encontrado %1 nodos").arg( nodos_archivos.length() ).toLocal8Bit() );
-		while( posNodo < nodos_archivos.length() && _continuar_actualizando )
-		{
-			QDomNode nodo_archivo = nodos_archivos.item(posNodo);
-			QPair<QString,QString> tmp;
-			tmp.first = nodo_archivo.toElement().attribute( "nombre" );
-			tmp.second = nodo_archivo.toElement().attribute( "directorio_destino" );
-			qDebug( QString( "Encontrado archivo %1, dir %2" ).arg( tmp.first ).arg( tmp.second ).toLocal8Bit() );
-			TELog->append( QString( "Descargando archivo %1..." ).arg( tmp.first ) );
-			int pos = ftp->get( tmp.first );
-			_arch_dest.insert( pos, tmp );
-			posNodo++;
-		}
+	//Ingreso al directorio de la version del programa
+	ftp->cd( QString::number( docElem.attribute( "version", 0 ).toDouble() ) );
+	qDebug( QString( "entrando en: %1" ).arg( docElem.attribute( "version", 0 ).toDouble() ).toLocal8Bit() );
 
-		//Veo si hay actualizaciones de la base de datos
-		qDebug( "Actualizaciones de base de datos" );
-		QDomNodeList nodos_db = n.toElement().elementsByTagName( "db" );
-		if( nodos_db.length() > 0 && _continuar_actualizando )
+	// Busco si hay algo dentro de archivos
+	/*QDomNode nodo_archivos = docxml->elementsByTagName( "archivos" ).item(0);
+	if( nodo_archivos.hasChildNodes() )
+	{
+		qDebug( "Encontrada etiqueta de archivos generales" );
+		///@todo Esto todavia no defini como lo voy a hacer
+	}*/
+	qDebug( QString( "Encontrada version :%1" ).arg( docElem.attribute( "version", 0 ) ).toLocal8Bit() );
+	// Busco los plugins
+	while( docElem.hasChildNodes() )
+	{
+		if( !_continuar_actualizando )
+		{ return; }
+		QDomNode nodoA = docElem.firstChild();
+		if( nodoA.toElement().tagName() == "plugin" )
 		{
-			for( unsigned int i=0; i<nodos_db.length(); i++ )
+			// Tengo instalado el plugin??
+			qDebug( QString( "Encontrado plugin %1" ).arg( nodoA.toElement().attribute( "nombre" ) ).toLocal8Bit() );	
+			QString nombre = nodoA.toElement().attribute( "nombre" );
+			if( gestotux::pluginsHash()->find( nombre ) == gestotux::pluginsHash()->end() )
 			{
-				if( !_continuar_actualizando )
-				{ return; }
-				QDomNode nodo = nodos_db.item(i);
-				// Busco todos los hijos
-				QDomNodeList nodos_colas = nodo.toElement().elementsByTagName( "cola" );
-				if( nodos_colas.length() > 0 && _continuar_actualizando )
+				qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara" ).arg( nombre ).toLocal8Bit() );
+				docElem.removeChild( nodoA );
+				continue;
+			}
+			// ingreso a la carpeta del plugin
+			ftp->cd( nombre );
+			qDebug( QString( "Entrando en la carpeta: %1" ).arg( nombre ).toLocal8Bit() );
+			QMap<double,QDomNode> versiones;
+			// Este nodo debe tener tantos nodos como versiones disponibles
+			while( nodoA.hasChildNodes() )
+			{
+				QDomNode nodoVersion = nodoA.firstChild();
+				if( nodoVersion.toElement().tagName() == "version" )
 				{
-					for( unsigned int j=0; j < nodos_colas.length(); j++ )
+					//veo que numero de version es
+					double version  = nodoVersion.toElement().attribute( "numero" ).toDouble();
+					qDebug( QString( "Encontrada version %1" ).arg( version ).toLocal8Bit() );	
+					if( version >= gestotux::pluginsHash()->value( nombre )->version() )
+					{
+						// Lo ingreso a la lista de actualizaciones de forma ordenanda
+						qDebug( "Version agregada" );
+						versiones.insert( version, nodoVersion );
+						nodoA.removeChild( nodoVersion );
+					}
+					else
+					{
+						// actualizacion vieja, la elimino del arbol
+						nodoA.removeChild( nodoVersion );
+						continue;
+					}
+				}
+				else
+				{
+					// No puede haber de otro tipo, lo elimino
+					qDebug( "Encontrado nodo que no es version" );
+					nodoA.removeChild( nodoVersion );
+				}
+			}
+			// Ejecuto las actualizaciones de forma ordenada
+			qDebug( "Ordenando versiones" );
+			QList<double> lista = versiones.keys();
+			qStableSort( lista.begin(), lista.end() );
+			if( lista.size() == 0 )
+			{
+				qDebug( "La lista de actualizaciones esta vacia" );
+			}
+			while( lista.size() > 0 )
+			{
+				QDomNode nodoB = versiones[lista.first()];
+				// Trabajo con el nodo
+				// Busco los hijos que son archivos
+				TELog->append( QString( "Actualizando plugin %1..." ).arg( nombre ) );
+				// Ingreso al directorio de la version del plugin
+				ftp->cd( QString::number( lista.first() ) );
+				#ifdef Q_WS_WIN32
+				QString nombre_os = "windows";
+				#endif
+				#ifdef Q_WS_X11
+				QString nombre_os = "linux";
+				#endif
+				QDomNode nodo_os = nodoB.toElement().elementsByTagName( nombre_os ).item(0);
+				qDebug( QString( "Nodo OS: %1" ).arg( nodo_os.nodeName() ).toLocal8Bit() );
+				QDomNodeList nodos_archivos = nodo_os.toElement().elementsByTagName( "archivo" );
+				unsigned int posNodo = 0;
+				qDebug( QString( "Encontrado %1 nodos").arg( nodos_archivos.length() ).toLocal8Bit() );
+				while( posNodo < nodos_archivos.length() && _continuar_actualizando )
+				{
+					QDomNode nodo_archivo = nodos_archivos.item(posNodo);
+					QPair<QString,QString> tmp;
+					tmp.first = nodo_archivo.toElement().attribute( "nombre" );
+					tmp.second = nodo_archivo.toElement().attribute( "directorio_destino" );
+					qDebug( QString( "Encontrado archivo %1, dir %2" ).arg( tmp.first ).arg( tmp.second ).toLocal8Bit() );
+					TELog->append( QString( "Descargando archivo %1..." ).arg( tmp.first ) );
+					int pos = ftp->get( tmp.first );
+					_arch_dest.insert( pos, tmp );
+					posNodo++;
+				}
+				//Veo si hay actualizaciones de la base de datos
+				qDebug( "Actualizaciones de base de datos" );
+				QDomNodeList nodos_db = nodoB.toElement().elementsByTagName( "db" );
+				if( nodos_db.length() > 0 && _continuar_actualizando )
+				{
+					for( unsigned int i=0; i<nodos_db.length(); i++ )
 					{
 						if( !_continuar_actualizando )
-						{ return;}
-						QDomNode nCola = nodos_colas.item(j);
-						if( nCola.nodeName() == "cola" )
+						{ return; }
+						QDomNode nodo = nodos_db.item(i);
+						// Busco todos los hijos
+						QDomNodeList nodos_colas = nodo.toElement().elementsByTagName( "cola" );
+						if( nodos_colas.length() > 0 && _continuar_actualizando )
 						{
-							QSqlQuery cola;
-							if( cola.exec( nCola.firstChild().toText().data() ) )
+							for( unsigned int j=0; j < nodos_colas.length(); j++ )
 							{
-								qDebug( QString( "Cola ejecutada correctamente: %1" ).arg( cola.executedQuery() ).toLocal8Bit() );
-							}
-							else
-							{
-								qWarning( QString( "La ejecucion de la actualizacion no fue correcta. Cola: %1" ).arg( cola.executedQuery() ).toLocal8Bit() );
-								qDebug( QString( "Error: %1.\n Cola: %2" ).arg( cola.lastError().text() ).arg( cola.executedQuery() ).toLocal8Bit() );
-							}
-						}
-						else
-						{
-							qDebug( QString("Nodo encontrado: %1").arg(nodo.nodeName() ).toLocal8Bit() );
-						}
-					} // Fin for colas
-				}// Fin if nodos_colas
-			}// Fin for dbs
+								if( !_continuar_actualizando )
+								{ return;}
+								QDomNode nCola = nodos_colas.item(j);
+								if( nCola.nodeName() == "cola" )
+								{
+									QSqlQuery cola;
+									if( cola.exec( nCola.firstChild().toText().data() ) )
+									{
+										qDebug( QString( "Cola ejecutada correctamente: %1" ).arg( cola.executedQuery() ).toLocal8Bit() );
+									}
+									else
+									{
+										qWarning( QString( "La ejecucion de la actualizacion no fue correcta. Cola: %1" ).arg( cola.executedQuery() ).toLocal8Bit() );
+										qDebug( QString( "Error: %1.\n Cola: %2" ).arg( cola.lastError().text() ).arg( cola.executedQuery() ).toLocal8Bit() );
+									}
+								}
+								else
+								{
+									qDebug( QString("Nodo encontrado: %1").arg(nodo.nodeName() ).toLocal8Bit() );
+								}
+							} // Fin for colas
+						}// Fin if nodos_colas
+					}// Fin for dbs
+				}
+				else
+				{
+					qDebug( "No hay actualizaciones para la base de datos" );
+				}
+				//////////////////////// Fin de trabajar con el nodo
+				versiones.remove(lista.first());
+				lista.removeFirst();
+				// Salgo del directorio de la version y quedo en el directorio del plugin
+				ftp->cd("..");
+			}
+			qDebug( "Fin bucle Versiones" );
+			// Termino de actualizar el plugin y sus versiones -> salgo al directorio de la version del programa
+			ftp->cd("..");
+			docElem.removeChild( nodoA );
 		}
 		else
 		{
-			qDebug( "No hay actualizaciones para la base de datos" );
+			// El nodo no es plugin
+			///@TODO ver que hacer aca
+			qDebug( QString( "Tipo de nodo desconocido: %1" ).arg( nodoA.toElement().tagName() ).toLocal8Bit() );
+			docElem.removeChild( nodoA );
 		}
-	}
-	else
-	{
-		TELog->append( QString( "El plugin %1 no necesita actualizarse." ).arg( nombre ) );
-	}
-
-   }
-   TELog->append( "Lista la actualizacion" );
+  	} // fin de si actualizacion tiene nodos
   }
-  ftp->close();
+ ftp->close();
+ TELog->append( "Lista el Analisis" );
+ transferencia( 100, 100 );
+ qDebug( "Fin" );
 }
 
 

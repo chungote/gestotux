@@ -57,9 +57,13 @@ QString AdminCarCorr::nombre() const
  return "admincaravanascorrientes";
 }
 
+#include "formprefcaravanas.h"
+
 QWidgetList AdminCarCorr::formsPreferencias()
 {
- return QWidgetList();
+ QWidgetList lista;
+ lista.append( new FormPrefCaravanas() );
+ return lista;
 }
 
 bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
