@@ -184,7 +184,7 @@ QSettings *presupuestador::pref()
  */
 QString presupuestador::empresa() const
 {
-    /// @todo implement me
+  return QString();
 }
 
 

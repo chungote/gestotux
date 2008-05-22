@@ -33,7 +33,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QTableView" name="TVCategorias" />
+       <widget class="QTableView" name="TVCategorias" >
+        <property name="locale" >
+         <locale country="UnitedStates" language="Spanish" />
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

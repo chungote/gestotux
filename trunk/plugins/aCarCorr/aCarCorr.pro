@@ -79,4 +79,8 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
     QMAKE_EXTRA_TARGETS += /home/ftp/actualizaciones/$TARGET
-}
+}CONFIG -= release
+
+QMAKE_CXXFLAGS_DEBUG += -ggdb \
+  -g3
+

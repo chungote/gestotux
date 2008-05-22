@@ -32,7 +32,7 @@ class QFtp;
 class FormActualizacion : public QWidget, private Ui::FormActualizacionBase
 {
   Q_OBJECT
-
+ 
 public:
   FormActualizacion(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormActualizacion();

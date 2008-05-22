@@ -1,4 +1,4 @@
-/***************************************************************************
+ /***************************************************************************
  *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
@@ -72,6 +72,7 @@ bool EMovimiento::cargarMovimiento( int idDb )
  {
   if( cola.next() )
   {
+	id_db = idDb;
 	DTA = cola.record().value( "dta" ).toString();
 	id_db = cola.record().value( "id_tri" ).toInt();
 	setCategoria( cola.record().value( "id_categoria" ).toInt() );
@@ -716,4 +717,13 @@ int EMovimiento::getIDCaravana( QString codigo )
 void EMovimiento::setNumGuia( const QString numeroGuia )
 {
  _numGuia = numeroGuia;
+}
+
+
+/*!
+    \fn EMovimiento::getTri() const
+ */
+int EMovimiento::getTri() const
+{
+  return id_db;
 }

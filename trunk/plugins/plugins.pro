@@ -4,6 +4,6 @@ SUBDIRS += HiComp \
  presupuesto \
  presupuestos \
  aCarCorr \
- aCarCorr/aCarCorrPlug.pro \
+ aCarCorr/plugins \
  productos
-CONFIG += ordered
+CONFIG += ordered 

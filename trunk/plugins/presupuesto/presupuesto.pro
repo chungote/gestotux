@@ -6,7 +6,6 @@ QT = gui \
 	svg \
 	sql \
 	xml
-
 win32 {
     CONFIG += release
     CONFIG -= debug

@@ -23,9 +23,10 @@ MPrefCategorias::MPrefCategorias(QObject *parent)
  : QSqlTableModel(parent)
 {
  setTable( "car_categorias" );
- setHeaderData( 0, Qt::Horizontal,"#id_db" );
+ setHeaderData( 0, Qt::Horizontal, "#id_db" );
  setHeaderData( 1, Qt::Horizontal, "Categoria" );
- select();
+ setHeaderData( 2, Qt::Horizontal, "Especial" );
+ setEditStrategy( QSqlTableModel::OnManualSubmit );
 }
 
 
@@ -36,11 +37,56 @@ MPrefCategorias::~MPrefCategorias()
 
 QVariant MPrefCategorias::data(const QModelIndex& index, int role) const
 {
- return QSqlTableModel::data( index, role );
+ if( !index.isValid() )
+ { return QVariant(); }
+ switch( index.column() )
+ {
+	case 2:
+	{
+		switch( role )
+		{
+			case Qt::DisplayRole:
+			{
+				if( QSqlTableModel::data( index, role ).toBool() )
+				{
+					return "Si";
+				}
+				else
+				{
+					return "No";
+				}
+				break;
+			}
+			case Qt::EditRole:
+			{
+				return QSqlTableModel::data( index, role ).toBool();
+				break;
+			}
+			default:
+			{
+				return QSqlTableModel::data( index, role );
+				break;
+			}
+		}
+		break;
+	}
+	default:
+	{
+		return QSqlTableModel::data( index, role );
+		break;
+	}
+ }
+ return QVariant();
 }
 
-bool MPrefCategorias::setData(const QModelIndex& index, const QVariant& value, int role)
+Qt::ItemFlags MPrefCategorias::flags( const QModelIndex & index ) const
 {
-    return QSqlTableModel::setData(index, value, role);
+ if( index.column() != 2 )
+ {
+	return QSqlTableModel::flags( index ) & !Qt::ItemIsEditable;
+ }
+ else
+ {
+	return QSqlTableModel::flags( index );
+ }
 }
-

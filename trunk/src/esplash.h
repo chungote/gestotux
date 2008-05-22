@@ -22,7 +22,7 @@
 
 #include <QSplashScreen>
 #include <QSvgWidget>
-
+ 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */

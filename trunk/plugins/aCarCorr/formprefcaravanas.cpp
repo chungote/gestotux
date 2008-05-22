@@ -1,4 +1,4 @@
-/***************************************************************************
+ /***************************************************************************
  *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
@@ -22,7 +22,7 @@
 #include "mprefcategorias.h"
 
 FormPrefCaravanas::FormPrefCaravanas(QWidget *parent)
- : FormPrefHijo(parent)
+ : FormPrefHijo(parent), Ui::FormPrefCaravanas()
 {
  setupUi(this);
  
@@ -33,6 +33,7 @@ FormPrefCaravanas::FormPrefCaravanas(QWidget *parent)
  modelo = new MPrefCategorias( this );
  TVCategorias->setModel( modelo );
  TVCategorias->hideColumn( 0 );
+ modelo->select();
 }
 
 
@@ -47,8 +48,10 @@ void FormPrefCaravanas::cargar()
 
 void FormPrefCaravanas::guardar()
 {
+ modelo->submitAll();
 }
 
 void FormPrefCaravanas::aplicar()
 {
+ modelo->submitAll();
 }
