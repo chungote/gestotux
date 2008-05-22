@@ -182,6 +182,12 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 	}
 	CBEstablecimientoDestino->setCurrentIndex( -1 );
 	CBEstablecimientoOrigen->setCurrentIndex( -1 );
+
+	// La cantidad de animales es especifica segun la cateogira
+	LCantidadAnimales->setVisible( false );
+	SBCantidadAnimales->setVisible( false );
+
+	connect( CBCategoria, SIGNAL( currentIndexChanged( int ) ), this, SLOT( habilitarCantidadAnimales( int ) ) );
 }
 
 FormMovimiento::~FormMovimiento()
@@ -626,4 +632,14 @@ bool FormMovimiento::verificar()
 void FormMovimiento::hacerInformeSenasa()
 {
  qWarning( "Ver como hacer el informe para el senasa" );
+}
+
+
+/*!
+    \fn FormMovimiento::habilitarCantidadAnimales( int categoria )
+ */
+void FormMovimiento::habilitarCantidadAnimales( int categoria )
+{
+  // Busco cuales son las categorias que no tienen numero de caravana
+  
 }

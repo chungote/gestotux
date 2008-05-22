@@ -2,5 +2,6 @@
     <qresource prefix="">
 	<file>imagenes/establecimientos.png</file>
 	<file>imagenes/categoria.png</file>
+	<file>imagenes/caravana.png</file>
    </qresource>
 </RCC>

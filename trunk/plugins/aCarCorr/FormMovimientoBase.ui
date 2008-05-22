@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>527</width>
-    <height>642</height>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -352,7 +352,41 @@ Dueño</string>
         </property>
        </widget>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" >
+        <item>
+         <widget class="QLabel" name="LCantidadAnimales" >
+          <property name="text" >
+           <string>Cantidad de Animales para esto movimiento</string>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::NoTextInteraction</set>
+          </property>
+          <property name="buddy" >
+           <cstring>SBCantidadAnimales</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="SBCantidadAnimales" >
+          <property name="autoFillBackground" >
+           <bool>true</bool>
+          </property>
+          <property name="wrapping" >
+           <bool>false</bool>
+          </property>
+          <property name="suffix" >
+           <string> animales</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
+     <zorder>PBCargarArchivo</zorder>
+     <zorder>LCantidadAnimales</zorder>
+     <zorder>SBCantidadAnimales</zorder>
+     <zorder></zorder>
     </widget>
    </item>
   </layout>

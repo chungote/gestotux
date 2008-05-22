@@ -34,4 +34,4 @@
     <qresource prefix="sql">
 	<file>tablas.sql</file>
     </qresource>
-</RCC>
+</RCC> 

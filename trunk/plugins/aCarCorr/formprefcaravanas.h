@@ -17,53 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef FORMPREFCARAVANAS_H
+#define FORMPREFCARAVANAS_H
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
+#include <../../src/formprefhijo.h>
+#include "ui_FormPrefCaravanas.h"
+class MPrefCategorias;
 
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-#include "TipoMovs.h"
-class QAction;
-class MCaravanaDueno;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class FormPrefCaravanas : public FormPrefHijo, public Ui::FormPrefCaravanas
 {
-  Q_OBJECT
-
+Q_OBJECT
 public:
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, int accion = invalido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
-
-
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	MCaravanaDueno *model;
-
-
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
+    FormPrefCaravanas(QWidget *parent = 0);
+    ~FormPrefCaravanas();
 
 public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
-    void habilitarCantidadAnimales( int categoria );
+    void cargar();
+    void guardar();
+    void aplicar();
 
 private:
-	int _accion;
+    MPrefCategorias *modelo;
 };
 
 #endif
-
