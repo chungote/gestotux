@@ -107,10 +107,6 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  ActAgregarStock->setToolTip( "Agregar Caravanas a la existencia" );
  connect( ActAgregarStock, SIGNAL( triggered() ), this, SLOT( agregarStock() ) );
 
- ActDuenos = new QAction( "Dueños", this );
- ActDuenos->setToolTip( "Muestra el listado de personas que estan como dueños" );
- connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( mostrarDuenos() ) );
-
  ActModificarTri = new QAction( "Modificar Tri", this );
  ActModificarTri->setToolTip( "Permite modificar un numero especifico de tri" );
  connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
@@ -119,7 +115,6 @@ bool AdminCarCorr::inicializar(QStackedWidget* formCen, QSettings* pref)
  _acciones.append( ActAgregarCompra );
  _acciones.append( ActAgregarMudanza );
  _acciones.append( ActAgregarStock );
- _acciones.append( ActDuenos );
 
  cargarPluginsInformes();
  return verificarTablas();
@@ -187,7 +182,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
  { 
   menuHer->addAction( ActEstablecimiento );
   menuHer->addAction( ActCategoria );
-  menuHer->addAction( ActDuenos );
+  //menuHer->addAction( ActDuenos );
   menuHer->addSeparator();
   menuHer->addAction( ActAgregarCompra );
   menuHer->addAction( ActAgregarMudanza );
@@ -353,17 +348,6 @@ QList<EInformeInterface *> AdminCarCorr::plugins()
 QString AdminCarCorr::empresa() const
 {
  return "Administracion Corrientes";
-}
-
-
-#include "vduenos.h"
-/*!
-    \fn AdminCarCorr::mostrarDuenos()
- */
-void AdminCarCorr::mostrarDuenos()
-{
- VDuenos *f = new VDuenos( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
 #include "formstock.h"

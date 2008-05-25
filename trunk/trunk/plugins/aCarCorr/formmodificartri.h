@@ -20,7 +20,7 @@
 #ifndef FORMMODIFICARTRI_H
 #define FORMMODIFICARTRI_H
 
-#include <formmovimiento.h>
+#include "formmovimiento.h"
 #include "emovimiento.h"
 
 /**

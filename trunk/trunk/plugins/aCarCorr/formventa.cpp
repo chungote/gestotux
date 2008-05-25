@@ -96,16 +96,24 @@ void FormVenta::guardar()
  // Comprador
  movimiento->setComprador( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt() );
  dialogo->setValue( dialogo->value() + 1 );
- // Lista de caravanas
- dialogo->setLabelText( "Comprobando caravanas..." );
- QStringList lista = model->listaCaravanas();
- dialogo->setRange( 0, lista.size() );
- dialogo->setValue( 0 );
- QString cadena;
- foreach( cadena, lista )
+ if( _especial )
  {
-  movimiento->agregarCaravana( cadena );
- }
+   movimiento->setCantidadAnimales( SBCantidadAnimales->value() );
+ } 
+ else
+ {
+	// Chequear que no existan los numeros de caravanas ya en la tabla
+	// Busco todos los codigos dados de alta en la tabla de caravanas
+	dialogo->setLabelText( "Comprobando caravanas..." );
+	QStringList lista = model->listaCaravanas();
+	dialogo->setRange( 0, lista.size() );
+	dialogo->setValue( 0 );
+	QString cadena;
+	foreach( cadena, lista )
+	{
+	movimiento->agregarCaravana( cadena );
+	}
+ }// fin de si es especial o no
  // Lista la comprobacion de caravanas
  // comienzo a guardar todo
  dialogo->setLabelText( "Guardando datos..." );

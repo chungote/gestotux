@@ -57,7 +57,6 @@ private:
 
 	QAction *ActEstablecimiento;
 	QAction *ActCategoria;
-	QAction *ActDuenos;
 	QAction *ActModificarTri;
 
 	QAction *ActAgregarCompra;

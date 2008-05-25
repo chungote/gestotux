@@ -37,10 +37,13 @@
 #include "mcategoria.h"
 #include "../../src/mclientes.h"
 #include "mcaravanadueno.h"
-#include "mduenos.h"
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+  #include "mduenos.h"
+#endif
 
 FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
-: QWidget( parent, fl ), Ui::FormMovimientoBase()
+: QWidget( parent, fl ), Ui::FormMovimientoBase() ,
+ _especial(false)
 {
 	_accion = accion;
 	setupUi(this);
@@ -187,7 +190,12 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 	LCantidadAnimales->setVisible( false );
 	SBCantidadAnimales->setVisible( false );
 
-	connect( CBCategoria, SIGNAL( currentIndexChanged( int ) ), this, SLOT( habilitarCantidadAnimales( int ) ) );
+	connect( CBCategoria, SIGNAL( currentIndexChanged( QString ) ), this, SLOT( habilitarCantidadAnimales( QString ) ) );
+
+//Tema de dueños opcionales
+#ifndef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+PBDueno->setVisible( false );
+#endif
 }
 
 FormMovimiento::~FormMovimiento()
@@ -504,10 +512,11 @@ void FormMovimiento::cargarDesdeArchivo()
 		d->close();
 		return;
 	}
-	bool ok;
+	d->setLabelText( "Verificando codigos" );
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 	// Busco la lista de dueños
 	MDuenos *duenos = new MDuenos( this );
-	d->setLabelText( "Verificando codigos" );
+	bool ok;
 	QString dueno = QInputDialog::getItem(this, "Elija el dueño",tr("Elija el dueño"), duenos->getLista(), 0, false, &ok );
 	if( ok )
 	{
@@ -529,6 +538,15 @@ void FormMovimiento::cargarDesdeArchivo()
 			d->setValue( d->value() + 1 );
 		}
 	}
+#else
+	d->setRange( 0, caravanas.size() );
+	d->setValue(0);
+	foreach( cad, caravanas )
+	{
+		model->verificarAgregar( cad );
+		d->setValue( d->value() + 1 );
+	}
+#endif
 	LEDTA->setText( dta );
 	d->close();
     }
@@ -615,11 +633,23 @@ bool FormMovimiento::verificar()
 		break;
 	}
  }
- // verifico que exista al menos una caravana
- if( model->listaCaravanas().isEmpty() )
+ // veo si es especial
+ if( _especial )
  {
+  if( SBCantidadAnimales->value() <= 0 )
+  {
+   qWarning( "No hay animales ingresados. Por favor ingrese alguna cantidad" );
+   return false;
+  }
+ }
+ else
+ {
+   // verifico que exista al menos una caravana
+   if( model->listaCaravanas().isEmpty() )
+   {
 	qWarning( "No hay caravanas ingresadas. Por favor ingrese alguna" );
 	return false;
+   }
  }
  // Si llege hasta aca, los datos estan bien
  return true;
@@ -638,8 +668,32 @@ void FormMovimiento::hacerInformeSenasa()
 /*!
     \fn FormMovimiento::habilitarCantidadAnimales( int categoria )
  */
-void FormMovimiento::habilitarCantidadAnimales( int categoria )
+void FormMovimiento::habilitarCantidadAnimales( QString categoria )
 {
   // Busco cuales son las categorias que no tienen numero de caravana
-  
+ qDebug( QString( "Verificando categoria: %1" ).arg( categoria ).toLocal8Bit() );
+ QSqlQuery cola( QString( "SELECT especial FROM car_categorias WHERE nombre = '%1'" ).arg( categoria ) );
+ if( cola.next() )
+ {
+  if( cola.record().value(0).toBool() )
+  {
+	// es una especial
+	GBCaravanas->setVisible( false );
+	LCantidadAnimales->setVisible( true );
+	SBCantidadAnimales->setVisible( true );
+	_especial = true;
+  }
+  else
+  {
+  	// Cambio a una categoria que no tiene cantidad si no caravanas
+	GBCaravanas->setVisible( true );
+	LCantidadAnimales->setVisible( false );
+	SBCantidadAnimales->setVisible( false );
+	_especial = false;
+  }
+ }
+ else
+ {
+  qDebug( QString( "Error en el next: %1\n Cola: %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+ }
 }

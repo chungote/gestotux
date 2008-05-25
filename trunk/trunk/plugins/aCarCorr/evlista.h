@@ -20,7 +20,7 @@
 #ifndef EVLISTA_H
 #define EVLISTA_H
 
-#include <eventana.h>
+#include "eventana.h"
 class QSqlTableModel;
 class QSqlRecord;
 class QAction;

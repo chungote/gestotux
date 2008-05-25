@@ -20,7 +20,7 @@
 #ifndef FORMVENTA_H
 #define FORMVENTA_H
 
-#include <formmovimiento.h>
+#include "formmovimiento.h"
 class QSqlQueryModel;
 class QCompleter;
 

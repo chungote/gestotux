@@ -20,7 +20,7 @@
 #ifndef FORMSTOCK_H
 #define FORMSTOCK_H
 
-#include <formmovimiento.h>
+#include "formmovimiento.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
