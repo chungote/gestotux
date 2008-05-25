@@ -58,6 +58,14 @@ public:
     bool agregarCaravana( QString codigo, bool verificar = true );
     void setNumGuia( const QString numeroGuia );
     int getTri() const;
+    QPair< int, QString> getVendedor() const;
+    QPair< int, QString> getComprador() const;
+    QPair< int, QString> getEstablecimientoOrigen() const;
+    QPair< int, QString> getEstablecimientoDestino() const;
+    QString getNumeroGuia() const;
+    QPair< int, QString > getCategoria() const;
+    void setCantidadAnimales ( int theValue );
+    int getCantidadAnimales() const;
 
 private:
 	QPair<int,QString> destino;
@@ -68,6 +76,7 @@ private:
 	QDate fecha;
 	QString DTA;
 	QString _numGuia;
+	int _cantidad_animales;
 	int id_db;
 	QStringList _caravanas;
 

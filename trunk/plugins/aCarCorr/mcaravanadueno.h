@@ -47,6 +47,7 @@ public:
     bool verificarAgregar( const QStringList &listado, const QString &dueno = "");
     void setDuenosTodos( const QString &dueno );
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const ;
+    bool cargarCaravanasTri( int id_tri );
 private:
 	QHash<int, QPair<QString,QString> > datos;
 };

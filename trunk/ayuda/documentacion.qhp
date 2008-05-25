@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+     <QtHelpProject version="1.0">
+         <namespace>tranfuga.gestotux.0.2</namespace>
+         <virtualFolder>doc</virtualFolder>
+         <customFilter name="Gestotux 0.2">
+             <filterAttribute>gestotux</filterAttribute>
+             <filterAttribute>0.2</filterAttribute>
+         </customFilter>
+         <filterSection>
+             <filterAttribute>gestotux</filterAttribute>
+             <filterAttribute>0.2</filterAttribute>
+             <toc>
+                 <section title="Manual de Gestotux" ref="index.html">
+                 </section>
+             </toc>
+             <keywords>
+                 <keyword name="foo" id="MyApplication::foo" ref="doc.html#foo"/>
+                 <keyword name="bar" ref="doc.html#bar"/>
+                 <keyword id="MyApplication::foobar" ref="doc.html#foobar"/>
+             </keywords>
+             <files>
+                 <file>classic.css</file>
+                 <file>index.html</file>
+                 <file>doc.html</file>
+             </files>
+         </filterSection>
+     </QtHelpProject>

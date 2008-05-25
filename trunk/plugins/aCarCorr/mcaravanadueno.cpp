@@ -26,7 +26,9 @@ MCaravanaDueno::MCaravanaDueno(QObject *parent)
 {
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Codigo de Caravana" );
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
  setHeaderData( 2, Qt::Horizontal, "Dueño" );
+#endif
 }
 
 
@@ -70,6 +72,7 @@ bool MCaravanaDueno::setData( const QModelIndex& index, const QVariant& value, i
 		}
 		break;
 	}
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 	//Dueño
 	case 2:
 	{
@@ -85,6 +88,7 @@ bool MCaravanaDueno::setData( const QModelIndex& index, const QVariant& value, i
 		}
 		break;
 	}
+#endif
  	default:
 	{
 		return false;
@@ -158,6 +162,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 		}
 		break;	
 	}
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 	case 2:
 	{
 		switch( role )
@@ -180,6 +185,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 		}
 		break;	
 	}
+#endif
  	default:
 	{
 		return QVariant();
@@ -190,8 +196,13 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 
 QModelIndex MCaravanaDueno::index( int row, int column, const QModelIndex &index ) const 
 {
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
  if( row < rowCount()  && column < 3 )
  {
+#else
+ if( row < rowCount() )
+ {
+#endif
   return createIndex( row, column, row );
  }
  else
@@ -200,7 +211,13 @@ QModelIndex MCaravanaDueno::index( int row, int column, const QModelIndex &index
 
 
 int MCaravanaDueno::columnCount( const QModelIndex & parent ) const 
-{ return 3; }
+{
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+return 3;
+#else
+return 2;
+#endif
+}
 
 int MCaravanaDueno::rowCount ( const QModelIndex & parent ) const
 {
@@ -234,7 +251,9 @@ bool MCaravanaDueno::verificarAgregar( const QString &codigo, const QString &due
  int anterior = rowCount();
  this->insertRow( -1 );
  this->setData( this->index( anterior, 1 ), codigo );
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
  this->setData( this->index( anterior, 2 ), dueno );
+#endif
  return true;
 }
 
@@ -286,6 +305,7 @@ QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, i
 		}
 		break;
 	}
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 	case 2:
 	{
 		if( role == Qt::DisplayRole )
@@ -298,6 +318,7 @@ QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, i
 		}
 		break;
 	}
+#endif
  	default:
 	{
 		return QAbstractTableModel::headerData( section, orientation, role );
@@ -309,4 +330,60 @@ QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, i
  {
   return QAbstractTableModel::headerData( section, orientation, role );
  }
+}
+
+
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QSqlRecord>
+/*!
+    \fn MCaravanaDueno::cargarCaravanasTri( int id_tri )
+	Metodo que carga cada caravana que corresponde al tri en su propia estructura y le coloca el dueño correspondiente
+ */
+bool MCaravanaDueno::cargarCaravanasTri( int id_tri )
+{
+ // Busco todas las caravanas que tiene ese tri
+ QSqlQuery cola;
+ cola.prepare( QString( "SELECT id_caravana FROM car_carv_tri WHERE id_tri = '%1'" ).arg( id_tri ) );
+ if( cola.exec() )
+ {
+  while( cola.next() )
+  {
+   // por cada caravana busco el codigo y su dueño
+   QSqlQuery cola1;
+   if( cola1.exec( QString( "SELECT codigo FROM car_caravanas WHERE id_caravana = '%1'" ).arg( cola.record().value(0).toInt() ) ) )
+   {
+	if( cola1.next() )
+	{
+		int anterior = rowCount();
+		this->insertRow( -1 );
+ 		this->setData( this->index( anterior, 1 ), cola1.record().value(0).toString() );
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+		if( cola1.exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id IN  ( SELECT id_cliente FROM car_carv_duenos WHERE id_caravana = '%1' )" ).arg( cola.record().value(0).toInt() ) ) )
+		{
+			if( cola1.next() )
+			{
+				this->setData( this->index( anterior, 1 ), cola1.record().value(0).toString() );
+			}
+		}
+#endif
+	}
+	else
+	{
+                qDebug( QString( "Error al ejecutar next de: %1, error: %2" ).arg( cola1.lastQuery() ).arg( cola1.lastError().text() ).toLocal8Bit() );
+	}
+   }
+   else
+   {
+    qDebug( QString( "Error al ejecutar la cola: %1, error: %2" ).arg( cola1.lastQuery() ).arg( cola1.lastError().text() ).toLocal8Bit() );
+    return false;
+   }
+  } // Fin de cada caravana en este tri
+ }
+ else
+ {
+  qDebug( QString( "Error al ejecutar la cola: %1, error: %2" ).arg( cola.lastQuery() ).arg( cola.lastError().text() ).toLocal8Bit() );
+  return false;
+ }
+ return true;
 }

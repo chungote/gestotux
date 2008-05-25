@@ -20,7 +20,7 @@
 #ifndef VCATEGORIAS_H
 #define VCATEGORIAS_H
 
-#include <evlista.h>
+#include "evlista.h"
 #include <QObject>
 
 /**

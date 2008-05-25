@@ -16,7 +16,6 @@ HEADERS += admincarcorr.h \
  mestablecimiento.h \
  vcategorias.h \
  evlista.h \
- eventana.h \
  vestablecimiento.h \
  formagregar.h \
  formmudanza.h \
@@ -29,13 +28,12 @@ HEADERS += admincarcorr.h \
  einformeinterface.h \
  TipoMovs.h \
  einforme.h \
- mduenos.h \
- vduenos.h \
  mcaravanadueno.h \
  formmodificartri.h \
  formprefcaravanas.h \
  ../../src/formprefhijo.h \
- mprefcategorias.h
+ mprefcategorias.h \
+ ../../src/eventana.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -53,8 +51,6 @@ SOURCES += admincarcorr.cpp \
  emovimiento.cpp \
  formstock.cpp \
  einforme.cpp \
- mduenos.cpp \
- vduenos.cpp \
  mcaravanadueno.cpp \
  formmodificartri.cpp \
  formprefcaravanas.cpp \

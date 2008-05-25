@@ -1,4 +1,4 @@
- /***************************************************************************
+/***************************************************************************
  *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
@@ -17,54 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "vduenos.h"
+#include "mduenos.h"
+#include <QAction>
 
-#ifndef FORMMOVIMIENTO_H
-#define FORMMOVIMIENTO_H
-
-#include <QWidget>
-#include "ui_FormMovimientoBase.h"
-#include "TipoMovs.h"
-class QAction;
-class MCaravanaDueno;
-
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+VDuenos::VDuenos(QWidget *parent)
+ : QTableView(parent)
 {
-  Q_OBJECT
+ this->setAttribute( Qt::WA_DeleteOnClose );
+ setModel( new MDuenos( this ) );
 
-public:
-  FormMovimiento(QWidget* parent = 0, Qt::WFlags fl = 0, int accion = invalido );
-  ~FormMovimiento();
-    void setearNumeroTri();
-    virtual void hacerInformeSenasa();
+ QAction *ActCerrar = new QAction( "Cerrar", this );
+ ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+ connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
-
-protected:
-	QAction *ActCerrar;
-	QAction *ActGuardar;
-	MCaravanaDueno *model;
-	bool _especial;
+ addAction( ActCerrar );
+}
 
 
-protected slots:
-    virtual void cerrar();
-    void eliminarCaravana();
-    void agregarCaravana();
-    virtual void guardar() = 0;
+VDuenos::~VDuenos()
+{
+}
 
-public slots:
-    void agregarCategoria();
-    void agregarCliente();
-    void agregarEstablecimientoOrigen();
-    void agregarEstablecimientoDestino();
-
-protected slots:
-    void cargarDesdeArchivo();
-    bool verificar();
-    void habilitarCantidadAnimales( QString categoria );
-
-private:
-	int _accion;
-};
-
-#endif
 

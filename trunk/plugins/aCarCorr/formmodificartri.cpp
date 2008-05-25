@@ -19,7 +19,9 @@
  ***************************************************************************/
 #include "formmodificartri.h"
 #include <QSqlQuery>
-
+#include <QSqlError>
+#include <QSqlRecord>
+#include "mcaravanadueno.h"
 
 FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 : FormMovimiento( parent, 0, accion )
@@ -34,24 +36,31 @@ FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 	case compra:
 	{
 		// Coloco el vendedor
+		CBCliente->setCurrentIndex( CBCliente->findText( movimiento->getVendedor().second ) );
 		// Coloco el establecimiento de destino
+		CBEstablecimientoDestino->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoDestino().second ) );
 		break;
 	}
 	case venta:
 	{
 		// Pongo el comprado
+		CBCliente->setCurrentIndex( CBCliente->findText( movimiento->getComprador().second ) );
 		// Pongo el establecimiento de origen
+		CBEstablecimientoOrigen->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoOrigen().second ) );
 		break;
 	}
 	case mudanza:
 	{
 		// Coloco el establecimiento de destino
+		CBEstablecimientoDestino->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoDestino().second ) );
 		// Pongo el establecimiento de origen
+		CBEstablecimientoOrigen->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoOrigen().second ) );
 		break;
 	}
 	case stock:
 	{
 		// Pongo el establecimiento de destino
+		CBEstablecimientoDestino->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoDestino().second ) );
 		break;
 	}
 	default:
@@ -59,6 +68,26 @@ FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 		break;
 	}
  } // fin switch de tipo de accion
+ LEDTA->setText( movimiento->getDTA() );
+ LEGuia->setText( movimiento->getNumeroGuia() );
+ CBCategoria->setCurrentIndex( CBCategoria->findText( movimiento->getCategoria().second ) );
+ QSqlQuery cola( QString( "SELECT especial FROM car_categorias WHERE nombre = '%1'" ).arg( movimiento->getCategoria().first ) );
+ if( cola.next() )
+ {
+  if( cola.record().value(0).toBool() )
+  {
+	// Tengo que mostrar y cargar el tema de la cantidad de menchos
+	SBCantidadAnimales->setValue( movimiento->getCantidadAnimales() );
+  }
+  else
+  {
+  	// Cargo las caravanas
+	if( !model->cargarCaravanasTri( movimiento->getTri() ) )
+	{
+//		model->clear();
+	}
+  }
+ }
 }
 
 

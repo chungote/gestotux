@@ -20,7 +20,7 @@
 #ifndef VESTABLECIMIENTO_H
 #define VESTABLECIMIENTO_H
 
-#include <evlista.h>
+#include "evlista.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>

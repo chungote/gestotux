@@ -77,6 +77,7 @@ bool EMovimiento::cargarMovimiento( int idDb )
 	id_db = cola.record().value( "id_tri" ).toInt();
 	setCategoria( cola.record().value( "id_categoria" ).toInt() );
 	setFecha( cola.record().value("fecha").toDate() );
+	setCantidadAnimales( cola.record().value("cantidad_caravanas" ).toInt() );
 	// Busco el establecimiento
 	setTipoMov( cola.record().value( "razon" ).toInt() );
 	switch( tipoMov() )
@@ -117,7 +118,7 @@ bool EMovimiento::cargarMovimiento( int idDb )
 			break;
 		}
 	}
-	// Cargo las caravanas que corresponden a este tri
+	// Cargo las caravanas que corresponden a este tri si no son categoria especial
 	return cargarCaravanas();
   }
   else
@@ -434,6 +435,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 			qDebug( "Error al intenar asociar la caravana" );
 			return -3;
 		}
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 		/// Asociar el dueño!
 		estado = aduenarCaravana( id_caravana, 0, fecha, false );
 		if( !estado )
@@ -441,6 +443,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 			qDebug( "Error al asociar el dueño" );
 			return -3;
 		}
+#endif
 	}
 	return id_db;
  }
@@ -613,7 +616,7 @@ bool EMovimiento::cargarCaravanas()
 	while( cola.next() )
 	{
 		// Le pongo false para que no verifique que existe la caravana
-		agregarCaravana( cola.record().value(0).toString(), false );
+		//agregarCaravana( cola.record().value(0).toString(), false );
 	}
 	return true;
  }
@@ -711,19 +714,32 @@ int EMovimiento::getIDCaravana( QString codigo )
 }
 
 
-/*!
-    \fn EMovimiento::setNumGuia( const QString numeroGuia )
- */
 void EMovimiento::setNumGuia( const QString numeroGuia )
-{
- _numGuia = numeroGuia;
-}
+{ _numGuia = numeroGuia; }
 
-
-/*!
-    \fn EMovimiento::getTri() const
- */
 int EMovimiento::getTri() const
-{
-  return id_db;
-}
+{ return id_db; }
+
+QPair< int, QString > EMovimiento::getVendedor() const
+{ return vendedor; }
+
+QPair< int, QString > EMovimiento::getComprador() const
+{ return comprador; }
+
+QPair< int, QString > EMovimiento::getEstablecimientoOrigen() const
+{ return origen; }
+
+QPair< int, QString > EMovimiento::getEstablecimientoDestino() const
+{ return destino; }
+
+QString EMovimiento::getNumeroGuia() const
+{ return _numGuia; }
+
+QPair< int, QString > EMovimiento::getCategoria() const
+{ return categoria; }
+
+int EMovimiento::getCantidadAnimales() const
+{ return _cantidad_animales; }
+
+void EMovimiento::setCantidadAnimales ( int theValue )
+{ _cantidad_animales = theValue; }

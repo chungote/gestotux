@@ -5,5 +5,6 @@ SUBDIRS += HiComp \
  presupuestos \
  aCarCorr \
  aCarCorr/plugins \
- productos
+ productos \
+ OscarSorazi
 CONFIG += ordered 
