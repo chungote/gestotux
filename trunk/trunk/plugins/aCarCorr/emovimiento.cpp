@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "emovimiento.h"
-
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QPair>
@@ -616,7 +615,7 @@ bool EMovimiento::cargarCaravanas()
 	while( cola.next() )
 	{
 		// Le pongo false para que no verifique que existe la caravana
-		//agregarCaravana( cola.record().value(0).toString(), false );
+		agregarCaravana( cola.record().value(0).toString(), false );
 	}
 	return true;
  }

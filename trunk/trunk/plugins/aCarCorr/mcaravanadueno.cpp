@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mcaravanadueno.h"
-
 #include <QStringList>
 
 MCaravanaDueno::MCaravanaDueno(QObject *parent)
@@ -74,6 +73,7 @@ bool MCaravanaDueno::setData( const QModelIndex& index, const QVariant& value, i
 	}
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 	//Dueño
+//#warning "Edicion de columna de dueno"
 	case 2:
 	{
 		if( role == Qt::EditRole )
@@ -163,6 +163,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 		break;	
 	}
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+//#warning "Mostrando columna de dueno"
 	case 2:
 	{
 		switch( role )
@@ -213,8 +214,10 @@ QModelIndex MCaravanaDueno::index( int row, int column, const QModelIndex &index
 int MCaravanaDueno::columnCount( const QModelIndex & parent ) const 
 {
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+//#warning "columnas=3"
 return 3;
 #else
+//#warning "columnas=2"
 return 2;
 #endif
 }
@@ -306,6 +309,7 @@ QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, i
 		break;
 	}
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+#warning "cabecera"
 	case 2:
 	{
 		if( role == Qt::DisplayRole )

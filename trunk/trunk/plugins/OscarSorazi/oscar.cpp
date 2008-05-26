@@ -19,11 +19,11 @@
  ***************************************************************************/
 #include "oscar.h"
 
-#include "einformeinterface.h"
+#include "../aCarCorr/einformeinterface.h"
 #include <QSqlQuery>
 
 // Habilita los dueños
-#define GESTOTUX_CARAVANAS_TIENEN_DUENOS
+
 
 QStackedWidget *Oscar::_formCen = 0;
 QSettings *Oscar::_pref = 0;
@@ -217,7 +217,7 @@ void Oscar::crearMenu(QMenuBar* m)
 
 Q_EXPORT_PLUGIN2( oscarsoraiz , Oscar );
 
-#include "vcategorias.h"
+#include "../aCarCorr/vcategorias.h"
 void Oscar::verCategorias()
 {
  VCategorias *f = new VCategorias( _formCen );
@@ -225,7 +225,7 @@ void Oscar::verCategorias()
 }
 
 
-#include "vestablecimiento.h"
+#include "../aCarCorr/vestablecimiento.h"
 /*!
     \fn Oscar::verEstablecimientos()
  */
@@ -235,7 +235,7 @@ void Oscar::verEstablecimientos()
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
-#include "formagregar.h"
+#include "../aCarCorr/formagregar.h"
 /*!
     \fn Oscar::agregarCompra()
  */
@@ -245,7 +245,7 @@ void Oscar::agregarCompra()
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
-#include "formmudanza.h"
+#include "../aCarCorr/formmudanza.h"
 /*!
     \fn Oscar::hacerMovimiento()
  */
@@ -255,7 +255,7 @@ void Oscar::hacerMovimiento()
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
-#include "formventa.h"
+#include "../aCarCorr/formventa.h"
 /*!
     \fn Oscar::hacerVenta()
  */
@@ -266,7 +266,7 @@ void Oscar::hacerVenta()
 }
 
 
-#include "formmudanza.h"
+#include "../aCarCorr/formmudanza.h"
 /*!
     \fn Oscar::hacerMudanza()
  */
@@ -358,7 +358,7 @@ void Oscar::mostrarDuenos()
  _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
 }
 
-#include "formstock.h"
+#include "../aCarCorr/formstock.h"
 void Oscar::agregarStock()
 {
  FormStock *f = new FormStock( _formCen );
@@ -368,7 +368,7 @@ void Oscar::agregarStock()
 
 #include <QSqlRecord>
 #include <QInputDialog>
-#include "formmodificartri.h"
+#include "../aCarCorr/formmodificartri.h"
 void Oscar::modificarTri()
 {
  // Pregunto que numero de tri quiere modificar
