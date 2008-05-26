@@ -42,3 +42,7 @@ QMAKE_CXXFLAGS_DEBUG += -ggdb \
 -g3 \
 -O0
 
+DISTFILES += estiloinforme.css
+
+RESOURCES += informe.qrc
+

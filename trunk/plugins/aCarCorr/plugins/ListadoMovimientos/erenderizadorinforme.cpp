@@ -121,16 +121,9 @@ void ERenderizadorInforme::hacerInforme()
  */
 void ERenderizadorInforme::hacerCabecera()
 {
+ //qDebug( _doc->defaultStyleSheet().toLocal8Bit() );
  QTextCursor *cursor = new QTextCursor( _doc );
- QTextCharFormat formatoCaracter;
- formatoCaracter.setFontWeight( QFont::Black );
- formatoCaracter.setFontPointSize( 12 );
- cursor->setCharFormat( formatoCaracter );
- QTextBlockFormat formatoBloque;
- formatoBloque.setAlignment( Qt::AlignCenter );
- cursor->setBlockFormat( formatoBloque );
- cursor->insertBlock( formatoBloque, formatoCaracter );
- cursor->insertText( "Administración de Caravanas Corrientes" );
+ cursor->insertHtml( "<h1>Administración de Caravanas Corrientes</h1><br />" );
 }
 
 
@@ -141,13 +134,6 @@ void ERenderizadorInforme::setarCabeceraFiltros()
 {
  QTextCursor *cursor = new QTextCursor( _doc );
  cursor->movePosition( QTextCursor::End );
- QTextCharFormat formatoCaracter = cursor->charFormat();
- formatoCaracter.setFontWeight( QFont::Normal );
- formatoCaracter.setFontPointSize( 10 );
- cursor->setCharFormat( formatoCaracter );
- QTextBlockFormat formatoBloque = cursor->blockFormat();
- formatoBloque.setAlignment( Qt::AlignLeft );
- cursor->setBlockFormat( formatoBloque );
  cursor->insertBlock();
  if( _filtra_estab )
  {
@@ -158,7 +144,7 @@ void ERenderizadorInforme::setarCabeceraFiltros()
   }
   else
   {
-   cursor->insertText( QString( "Establecimiento: %1 \n" ).arg( cola.record().value(0).toString() ), formatoCaracter );
+   cursor->insertHtml( QString( "Establecimiento: %1 \n" ).arg( cola.record().value(0).toString() ).prepend( "<h3>" ).append( "</h3><br />" ) );
   }
  }
  if( _filtra_categoria )
@@ -170,7 +156,7 @@ void ERenderizadorInforme::setarCabeceraFiltros()
   }
   else
   {
-   cursor->insertText( QString( "Categoria: %1 \n" ).arg( cola.record().value(0).toString() ), formatoCaracter );
+   cursor->insertHtml( QString( "Categoria: %1 \n" ).arg( cola.record().value(0).toString() ).prepend( "<h3>" ).append( "</h3><br />" ) );
   }
  }
  if( _filtra_tipo )
@@ -204,15 +190,15 @@ void ERenderizadorInforme::setarCabeceraFiltros()
 	 break;
 	}
   }
-  cursor->insertText( texti , formatoCaracter );
+  cursor->insertHtml( "<h3>" + texti + "</h3><br />" );
  }
  if( _filtra_fecha )
  {
-  cursor->insertText( QString( "\n Fecha: %1" ).arg( _fecha.toString( "dd/MM/yyyy" ) ) );
+  cursor->insertHtml( QString( "\n Fecha: %1" ).arg( _fecha.toString( "dd/MM/yyyy" ) ).prepend( "<h3>" ).append( "</h3><br />" ) );
  }
  if( _filtra_rango_fecha )
  {
-  cursor->insertText( QString( "\n Entre %1 y %2" ).arg( _rango_fechas.first.toString( "dd/MM/yyy" ) ).arg( _rango_fechas.second.toString( "dd/MM/yyy" ) ) );
+  cursor->insertHtml( QString( "\n Entre %1 y %2" ).arg( _rango_fechas.first.toString( "dd/MM/yyy" ) ).arg( _rango_fechas.second.toString( "dd/MM/yyy" ) ).prepend( "<h3>" ).append( "</h3><br />" ) );
  }
 }
 
@@ -229,8 +215,6 @@ void ERenderizadorInforme::generarCabeceraTabla()
  QVector<QTextLength> anchos;
  anchos<<QTextLength( QTextLength::PercentageLength, 20.0 )<<QTextLength( QTextLength::PercentageLength, 20.0 )<<QTextLength( QTextLength::PercentageLength, 20.0 );
  formatoTabla.setColumnWidthConstraints( anchos );
- formatoTabla.setCellPadding( 2.0 );
- formatoTabla.setBorder( 0 );
  tabla->setFormat( formatoTabla );
  
  tabla->cellAt( 0,0 ).firstCursorPosition().insertText( "#TRI" );

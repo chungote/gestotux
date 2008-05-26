@@ -57,11 +57,11 @@ void InformeTri::imprimir()
 
 Q_EXPORT_PLUGIN2(informetri , InformeTri );
 
-
 /*!
     \fn InformeTri::verInforme()
  */
 void InformeTri::verInforme()
 {
+ 
     /// @todo implement me
 }
