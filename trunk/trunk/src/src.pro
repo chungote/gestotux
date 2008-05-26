@@ -1,4 +1,4 @@
- SOURCES += gestotux.cpp \
+SOURCES += gestotux.cpp \
            main.cpp \
  preferencias.cpp \
  eenviobackup.cpp \
@@ -69,4 +69,3 @@ CONFIG -= release
 
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
-

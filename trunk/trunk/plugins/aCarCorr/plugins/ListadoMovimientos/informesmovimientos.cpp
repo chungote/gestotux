@@ -40,6 +40,8 @@ bool InformesMovimientos::inicializar( QStackedWidget *form )
  ActInformeFiltroTotal = new QAction( "Personalizado...", this );
  connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informeCompleto() ) );
 
+ cargarArchivoEstilo();
+
  return true;
 }
 
@@ -72,7 +74,8 @@ void InformesMovimientos::informeCompleto()
 	render->setPropiedades( f );
 	// lo muestro
 	render->hacerInforme();
-	fa->setDocument( render->documento() );
+	fa->document()->setDefaultStyleSheet( _estilo );
+	fa->document()->setHtml( render->documento()->toHtml() );
 	render->cerrarDialogo();
  }
 }
@@ -93,4 +96,22 @@ bool InformesMovimientos::impresionPersonalizada() const
 void InformesMovimientos::imprimir()
 {
     /// @todo implement me
+}
+
+
+/*!
+    \fn InformesMovimientos::cargarArchivoEstilo()
+ */
+void InformesMovimientos::cargarArchivoEstilo()
+{
+ archivoEstilo = new QFile( ":/informes/estiloinforme.css" );
+ if( !archivoEstilo->open( QIODevice::ReadOnly ) )
+ {
+  qDebug( "Error al abrir el archivo de estilo" );
+  return;
+ }
+ _estilo = archivoEstilo->readAll();
+ archivoEstilo->close();
+ delete( archivoEstilo );
+ archivoEstilo = 0;
 }

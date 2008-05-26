@@ -23,6 +23,7 @@
 #include <QObject>
 #include "../../einformeinterface.h"
 #include <QtPlugin>
+#include <QFile>
 class QAction;
 
 /**
@@ -40,11 +41,13 @@ public:
     void informePorFecha();
     bool impresionPersonalizada() const;
     void imprimir();
+    void cargarArchivoEstilo();
 private:
 
 	QAction *ActInformeFiltroTotal;
-
 	static QStackedWidget *_formCen;
+	QFile *archivoEstilo;
+	QString _estilo;
 
 public slots:
     void informeCompleto();

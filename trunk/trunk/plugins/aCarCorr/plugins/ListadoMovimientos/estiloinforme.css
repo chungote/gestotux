@@ -1,0 +1,26 @@
+h1 {
+    color : black;
+    font-size : 20px;
+    font-style : italic;
+    font-weight : bold;
+    text-align : center;
+    text-decoration : underline;
+    text-transform : uppercase;
+  }
+
+
+table {
+    background-color : #e5e5e5;
+    border-color : #111111;
+    border-style : dotted;
+    text-align : center;
+  }
+
+
+td {
+    font-size : 12px;
+    font-style : italic;
+    font-variant : small-caps;
+    font-weight : bold;
+    text-align: center;
+  }

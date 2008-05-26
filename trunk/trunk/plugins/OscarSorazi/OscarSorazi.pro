@@ -8,7 +8,7 @@ QT += sql
 
 TARGET = oscarsoraiz
 
-DESTDIR = /../../bin/plugins
+DESTDIR = ../../bin/plugins
 
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
