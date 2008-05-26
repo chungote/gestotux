@@ -20,8 +20,8 @@
 #ifndef OSCAR_H
 #define OSCAR_H
 
-#include "eplugin.h"
-#include "einfoprogramainterface.h"
+#include "../../src/eplugin.h"
+#include "../../src/einfoprogramainterface.h"
 #include <QtPlugin>
 #include <QObject>
 #include <QPluginLoader>

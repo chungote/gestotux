@@ -3,13 +3,12 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 debug
-CONFIG -= release
 
 QT += sql
 
 TARGET = oscarsoraiz
 
-DESTDIR = /home/Esteban/Programas/gestotux/bin/plugins
+DESTDIR = /../../bin/plugins
 
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
@@ -31,8 +30,8 @@ SOURCES += ../aCarCorr/einforme.cpp \
 ../aCarCorr/vcategorias.cpp \
 ../aCarCorr/vestablecimiento.cpp \
  oscar.cpp \
- ../../src/eventana.cpp \
- ../../src/evlista.cpp \
+ ../aCarCorr/eventana.cpp \
+ ../aCarCorr/evlista.cpp \
  mduenos.cpp \
  vduenos.cpp
 HEADERS += ../aCarCorr/einforme.h \
@@ -56,12 +55,14 @@ HEADERS += ../aCarCorr/einforme.h \
  oscar.h \
  ../../src/einfoprogramainterface.h \
  ../../src/eplugin.h \
- ../../src/eventana.h \
- ../../src/evlista.h \
+ ../aCarCorr/eventana.h \
+ ../aCarCorr/evlista.h \
  mduenos.h \
  vduenos.h
+
 FORMS += ../aCarCorr/FormMovimientoBase.ui \
 ../aCarCorr/FormPrefCaravanas.ui
+
 win32 {
     CONFIG += release
     CONFIG -= debug
@@ -71,6 +72,6 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
-INCLUDEPATH += ../aCarCorr \
-  ../../src
+
+DEFINES += GESTOTUX_CARAVANAS_TIENEN_DUENOS
 

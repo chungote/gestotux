@@ -20,6 +20,10 @@
 #ifndef EMOVIMIENTO_H
 #define EMOVIMIENTO_H
 
+#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+#warning "Utilizando duenos"
+#endif
+
 #include <QObject>
 #include <QPair>
 #include <QString>
