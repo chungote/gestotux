@@ -54,6 +54,10 @@ void ESplash::clearMessage()
 void ESplash::showMessage(const QString& message, int alignment, const QColor& color)
 {}
 
+/*!
+ * \fn ESplash::show()
+ *	Funcion que actua como simulador para parecer una clase de QSplashScreen
+ */
 void ESplash::show()
 { 
  QWidget::setVisible(true);

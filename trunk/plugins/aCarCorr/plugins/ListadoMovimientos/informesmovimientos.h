@@ -27,8 +27,12 @@
 class QAction;
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Plugin de informe completo
+ *
+ * Este plugin realiza el informe completo de movimientos mediante filtros definidos
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class InformesMovimientos : public QObject, public EInformeInterface
 {
  Q_OBJECT
@@ -43,10 +47,21 @@ public:
     void imprimir();
     void cargarArchivoEstilo();
 private:
-
+       /*!
+        * Accion para el menu de informes
+        */
 	QAction *ActInformeFiltroTotal;
+       /*!
+        * Puntero estatico a la ventana principal del programa
+	*/
 	static QStackedWidget *_formCen;
+       /*!
+	* Puntero al archivo de estilo usado
+	*/
 	QFile *archivoEstilo;
+       /*!
+	* Cadena que contiene el estilo aplicado actualmente
+	*/
 	QString _estilo;
 
 public slots:

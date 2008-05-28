@@ -60,6 +60,7 @@ Q_EXPORT_PLUGIN2(movimientos, InformesMovimientos );
 
 /*!
     \fn InformesMovimientos::informeCompleto()
+	Genera el fomulario de filtro y genera el visor de informes y el informe
  */
 void InformesMovimientos::informeCompleto()
 {
@@ -83,6 +84,8 @@ void InformesMovimientos::informeCompleto()
 
 /*!
     \fn InformesMovimientos::impresionPersonalizada()
+	Permite saber si tendra impresion personalizada 
+	@return impresion personalizada ( si o no )
  */
 bool InformesMovimientos::impresionPersonalizada() const
 {
@@ -101,10 +104,20 @@ void InformesMovimientos::imprimir()
 
 /*!
     \fn InformesMovimientos::cargarArchivoEstilo()
+	Carga la hoja CSS de estilo. Primero busca en la carpeta plugins/informes/estilo.css y si no lo encuentra utiliza la hoja de estilo embebida
  */
 void InformesMovimientos::cargarArchivoEstilo()
 {
- archivoEstilo = new QFile( ":/informes/estiloinforme.css" );
+ QString nombre;
+ if( QFile::exists( QApplication::applicationFilePath() + "/plugins/informes/estilo.css" ) )
+ {
+  nombre = QApplication::applicationFilePath() + "/plugins/informes/estilo.css";
+ }
+ else
+ {
+  nombre = ":/informes/estlioinforme.css";
+ }
+ archivoEstilo = new QFile( nombre );
  if( !archivoEstilo->open( QIODevice::ReadOnly ) )
  {
   qDebug( "Error al abrir el archivo de estilo" );
