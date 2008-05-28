@@ -70,6 +70,7 @@ FormActualizacion::~FormActualizacion()
 
 /*!
     \fn FormActualizacion::iniciar()
+	Conecta las señales, inicia la comunicacion ftp y coloca el primer comando
  */
 void FormActualizacion::iniciar()
 {
@@ -95,6 +96,7 @@ void FormActualizacion::iniciar()
 
 /*!
     \fn FormActualizacion::detener()
+	Coloca la variable _continuar_actualizando en falso, limpia las acciones ftp, detiene las acciones actuales y cambia los botones
  */
 void FormActualizacion::detener()
 {
@@ -113,7 +115,7 @@ void FormActualizacion::detener()
  */
 void FormActualizacion::finComando( int comando, bool error )
 {
-  if( error )
+ if( error )
  {
   TELog->append( QString( "Error al ejecutar el comando : %1, \n error: %2" ).arg( comando ).arg( ftp->errorString() ) );
  }
@@ -122,6 +124,8 @@ void FormActualizacion::finComando( int comando, bool error )
 
 /*!
     \fn FormActualizacion::cambioEstado( int estado )
+	Funcion llamad cada vez que la conexion ftp cambia de estado
+	@param estado id de estado para colocar el mensaje
  */
 void FormActualizacion::cambioEstado( int estado )
 {
@@ -170,6 +174,8 @@ void FormActualizacion::cambioEstado( int estado )
 
 /*!
     \fn FormActualizacion::inicio( int )
+	Funcion llamada cada vez que se inicia un comando.
+	@param id numero de comando
  */
 void FormActualizacion::inicio( int id )
 {
@@ -179,6 +185,10 @@ void FormActualizacion::inicio( int id )
 #include <QTemporaryFile>
 /*!
     \fn FormActualizacion::terminado( int comando, bool  error )
+	Funcion llamada cada vez que se finaliza un comando.
+	Esta funcion ademas es la encargada de dirijir los comandos siguientes y de copiar los archivos a su ubicacion.
+	@param comando numero de comando ftp
+	@param error indica si el comando termino con error
  */
 void FormActualizacion::terminado( int comando, bool  error )
 {
@@ -265,6 +275,7 @@ void FormActualizacion::terminado( int comando, bool  error )
 #include <QSqlError>
 /*!
     \fn FormActualizacion::analizarGeneral()
+	Funcion que analiza el archivo xml de actualizaciones para comprobar las descargas
  */
 void FormActualizacion::analizarGeneral()
 {
@@ -486,6 +497,9 @@ void FormActualizacion::analizarGeneral()
 
 /*!
     \fn FormActualizacion::transferencia( qint64 echo, qint64 total )
+	Funcion llamada cada vez que se actualiza la barra de progreso
+	@param echo cantidad de datos transmitida
+	@param total cantidad total de datos a transmitir
  */
 void FormActualizacion::transferencia( qint64 echo, qint64 total )
 {

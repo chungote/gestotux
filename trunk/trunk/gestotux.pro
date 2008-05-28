@@ -1,5 +1,6 @@
 SUBDIRS += src \
- plugins
+ plugins \
+ utiles
 TEMPLATE = subdirs 
 CONFIG += warn_on \
           qt \

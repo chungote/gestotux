@@ -24,8 +24,12 @@
 #include <QSvgWidget>
  
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Ventana de bienvenida a la aplicacion
+ *
+ * Ventana que se muestra cuando se esta iniciando la aplicacion. intenta cargar el archivo splash.sgv del directorio donde se encuentra el ejecutable y si no lo encuentra utiliza el archivo de splash que tiene incluido en el ejecutable
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class ESplash : public QSvgWidget
 {
 public:

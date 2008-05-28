@@ -17,59 +17,50 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef EVISORINFORME_H
+#define EVISORINFORME_H
 
-#ifndef FORMACTUALIZACION_H
-#define FORMACTUALIZACION_H
+#include "../../src/eplugin.h"
+#include <QObject>
+class QMenu;
+class QAction;
+class QPrintPreviewWidget;
+class QAction;
 
-#include <QWidget>
-#include "ui_FormActualizacionBase.h"
+/**
+Clase que permite ver un informe generado.
 
-#include <QHash>
-#include <QPair>
-class QFtp;
-
-
-class FormActualizacion : public QWidget, private Ui::FormActualizacionBase
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class EVisorInforme : public QObject, public EPlugin
 {
-  Q_OBJECT
- 
+Q_OBJECT
+Q_INTERFACES( EPlugin )
 public:
-  FormActualizacion(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FormActualizacion();
-
-protected slots:
-    void iniciar();
-    void detener();
-    void cambioEstado( int estado );
-    void inicio( int id );
-    void terminado( int comando, bool  error );
-    void transferencia( qint64 echo, qint64 total );
-
+    QList<QAction *> accionesBarra() const;
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    bool inicializar(QStackedWidget* formCen, QSettings* pref);
+    bool verificarTablas();
+    double version() const;
+    int tipo() const;
+    void crearMenu(QMenuBar* m);
+    static QStackedWidget *tabs();
+    static QSettings *pref();
+    QPrinter * crearVisor();
 
 private:
-       /*!
-	* Variable utilizada para cortar el analisis del archivo indice si se presiona detener
-	*/
-	bool _continuar_actualizando;
-       /*!
-	* Puntero al servicio ftp
-	*/
-	QFtp *ftp;
-       /*!
-	* Hash de archivos y destinos para la copia de archivos al terminar de descargarse
-	*/
-	QHash<int, QPair<QString,QString> > _arch_dest;
+    static QStackedWidget *_formCen;
+    static QSettings *_pref;
+    QMenu *_menu;
+    QPrintPreviewWidget *formulario;
 
-	QAction *ActDetener;
-	QAction *ActIniciar;
-	QAction *ActCerrar;
-
-public slots:
-    void finComando( int comando, bool error );
-
-private slots:
-    void analizarGeneral();
+	QAction *ActAjustarAVista;
+	QAction *ActAjustarAAncho;
+	QAction *ActImprimir;
+	QAction *ActAgrandarZoom;
+	QAction *ActDisminuirZoom;
+	
 };
 
 #endif
-
