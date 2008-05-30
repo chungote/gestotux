@@ -26,7 +26,7 @@
 #include <QInputDialog>
 
 FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, Qt::Dialog ), Ui::FormListaProductosBase()
+: EVentana( parent ), Ui::FormListaProductosBase()
 {
 	setupUi(this);
 	this->setAttribute( Qt::WA_DeleteOnClose );

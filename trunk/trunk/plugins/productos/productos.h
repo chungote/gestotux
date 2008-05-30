@@ -34,7 +34,7 @@ public:
     QList<QAction *> accionesBarra() const;
     QString nombre() const;
     QWidgetList formsPreferencias();
-    bool inicializar( QStackedWidget *formCen, QSettings *pref );
+    bool inicializar( QSettings *pref );
     bool verificarTablas();
     int tipo() const;
     void crearMenu( QMenuBar *m );
@@ -48,8 +48,12 @@ private:
     static QSettings *_pref;
 
 	QAction *ActProductos;
+
 public slots:
     void verProductos();
+
+signals:
+	void agregarVentana( QWidget * );
 };
 
 #endif

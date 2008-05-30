@@ -13,7 +13,9 @@ HEADERS += hicomp.h \
  formmodificarrecibo.h \
  formprefhijo.h \
  fprefrecibos.h \
- filtroclientes.h
+ filtroclientes.h \
+ ../../src/eventana.h \
+ ../../src/evlista.h
 
 SOURCES += hicomp.cpp \
  visorrecibo.cpp \
@@ -25,7 +27,9 @@ SOURCES += hicomp.cpp \
  formmodificarrecibo.cpp \
  formprefhijo.cpp \
  fprefrecibos.cpp \
- filtroclientes.cpp
+ filtroclientes.cpp \
+ ../../src/eventana.cpp \
+ ../../src/evlista.cpp
 
 DESTDIR = ../../bin/plugins
 INCLUDEPATH += ../../src

@@ -28,7 +28,6 @@
 #include <QMenuBar>
 #include "formagregarpresupuesto.h"
 
-QStackedWidget *prespuesto::_formCen = 0;
 QSettings *prespuesto::_pref = 0;
 
 /*!
@@ -61,9 +60,8 @@ QWidgetList prespuesto::formsPreferencias()
 /*!
     \fn prespuesto::inicializar( QStackedWidget *formCen, QSettings *pref )
  */
-bool prespuesto::inicializar( QStackedWidget *formCen, QSettings *pref )
+bool prespuesto::inicializar( QSettings *pref )
 {
-  _formCen = formCen;
   _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
@@ -147,11 +145,6 @@ bool prespuesto::verificarTablas()
  }
 }
 
-QStackedWidget *prespuesto::tabs()
-{
- return _formCen;
-}
-
 QSettings *prespuesto::pref()
 {
  return _pref;
@@ -165,7 +158,4 @@ Q_EXPORT_PLUGIN2(presupuesto, prespuesto )
     \fn prespuesto::nuevoPresupuesto()
  */
 void prespuesto::nuevoPresupuesto()
-{
- FormAgregarPresupuesto *f = new FormAgregarPresupuesto( tabs() );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormAgregarPresupuesto() ); }

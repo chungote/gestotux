@@ -22,13 +22,17 @@ HEADERS += prespuesto.h \
  presupuesto.h \
  epresupuesto.h \
  mtproductospresupuesto.h \
- formlistaproductos.h
+ formlistaproductos.h \
+ ../../src/eventana.h \
+ ../../src/evlista.h
 SOURCES += prespuesto.cpp \
  formagregarpresupuesto.cpp \
  mpresupuesto.cpp \
  presupuesto.cpp \
  mtproductospresupuesto.cpp \
- formlistaproductos.cpp
+ formlistaproductos.cpp \
+ ../../src/eventana.cpp \
+ ../../src/evlista.cpp
 FORMS += FormPresupuestoBase.ui \
  FormListaProductosBase.ui
 TARGET = presupuesto

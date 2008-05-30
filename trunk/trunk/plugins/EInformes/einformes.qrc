@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="">
-     <file>imagenes/agrandar.png</file>
-	<file>imagenes/achicar.png</file>
-	<file>imagenes/zoom.png</file>
-	<file>imagenes/ajustarancho.png</file>
-	<file>imagenes/ajustar.png</file>
-    </qresource>
-</RCC>

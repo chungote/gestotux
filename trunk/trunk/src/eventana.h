@@ -58,6 +58,8 @@ private:
 public slots:
     void ayuda();
 
+signals:
+	void agregarVentana( QWidget * );
 };
 
 #endif

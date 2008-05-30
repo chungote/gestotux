@@ -39,7 +39,7 @@
 #include <QMainWindow>
 
 VRecibos::VRecibos( QWidget *parent )
- : QWidget( parent )
+ : EVentana( parent )
 {
  setObjectName( "Recibos Emitidos" );
  this->setAttribute( Qt::WA_DeleteOnClose );
@@ -105,7 +105,8 @@ VRecibos::VRecibos( QWidget *parent )
  ActCerrar->setToolTip( "Cierra la ventana actual ( Ctrl + c ) " );
  ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
-
+/*
+ ///@todo Arreglar esto!
  d = new QToolBar( this ); 
  d->setObjectName( "dockFiltroClientes" );
  FiltroClientes *f = new FiltroClientes( this );
@@ -113,6 +114,7 @@ VRecibos::VRecibos( QWidget *parent )
  qobject_cast<QMainWindow *>(HiComp::tabs()->parentWidget())->addToolBar( Qt::BottomToolBarArea ,d );
  connect( f, SIGNAL( seteaFiltrado( bool, int ) ), this, SLOT( setearFiltrado( bool, int ) ) );
  connect( f, SIGNAL( cambioCliente( int ) ), this, SLOT( cambioClienteFiltro( int ) ) );
+*/
 
  addAction( ActVer );
  addAction( ActAgregar );
@@ -129,10 +131,7 @@ VRecibos::~VRecibos()
 
 
 void VRecibos::agregar()
-{
- FormAgregarRecibo *f = new FormAgregarRecibo( HiComp::tabs() );
- HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormAgregarRecibo() ); }
 
 void VRecibos::modificar()
 {
@@ -146,8 +145,8 @@ void VRecibos::modificar()
    return;
  }
  QModelIndex indice;
- FormModificarRecibo *f = new FormModificarRecibo( HiComp::tabs() );
- HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
+ FormModificarRecibo *f = new FormModificarRecibo();
+ emit agregarVentana( f );
  f->cargarDatos( indices[0], modelo );
 }
 
@@ -171,7 +170,7 @@ void VRecibos::ver()
       int id = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
       visorRecibo *v = new visorRecibo( this );
       v->verRecibo( id );
-      HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( v ) ) );
+      emit agregarVentana( v );
    }
  }
 }
@@ -273,8 +272,8 @@ void VRecibos::imprimir()
  */
 void VRecibos::modificar( const QModelIndex& index )
 {
- FormModificarRecibo *f = new FormModificarRecibo( HiComp::tabs() );
- HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( f ) ) );
+ FormModificarRecibo *f = new FormModificarRecibo();
+ emit agregarVentana( f );
  f->cargarDatos( index, modelo );
 }
 

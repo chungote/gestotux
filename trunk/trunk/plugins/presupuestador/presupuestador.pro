@@ -16,13 +16,17 @@ SOURCES += presupuestador.cpp \
  formnuevopresupuesto.cpp \
  formpresupuestosanteriores.cpp \
  mpresupuestos.cpp \
- formmodificarpresupuesto.cpp
+ formmodificarpresupuesto.cpp \
+ ../../src/eventana.cpp \
+ ../../src/evlista.cpp
 HEADERS += visorresumen.h \
  formnuevopresupuesto.h \
  formpresupuestosanteriores.h \
  mpresupuestos.h \
  formmodificarpresupuesto.h \
- presupuestador.h
+ presupuestador.h \
+ ../../src/eventana.h \
+ ../../src/evlista.h
 
 RESOURCES = prespuestador.qrc
 FORMS += FormNuevoPresupuestoBase.ui \

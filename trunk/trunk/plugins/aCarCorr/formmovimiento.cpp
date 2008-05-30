@@ -41,7 +41,7 @@
 #endif
 
 FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
-: QWidget( parent, fl ), Ui::FormMovimientoBase() ,
+: EVentana( parent ), Ui::FormMovimientoBase() ,
  _especial(false)
 {
 	_accion = accion;

@@ -21,13 +21,13 @@
 #ifndef FORMMOVIMIENTO_H
 #define FORMMOVIMIENTO_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 #include "ui_FormMovimientoBase.h"
 #include "TipoMovs.h"
 class QAction;
 class MCaravanaDueno;
 
-class FormMovimiento : public QWidget, public Ui::FormMovimientoBase
+class FormMovimiento : public EVentana, public Ui::FormMovimientoBase
 {
   Q_OBJECT
 

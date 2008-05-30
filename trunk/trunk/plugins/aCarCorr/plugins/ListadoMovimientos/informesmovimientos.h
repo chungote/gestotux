@@ -39,22 +39,16 @@ class InformesMovimientos : public QObject, public EInformeInterface
  Q_INTERFACES(EInformeInterface)
 public:
     QString nombre() const;
-    bool inicializar( QStackedWidget *form );
+    bool inicializar();
     double version() const;
     void crearMenu(QMenu* m);
     void informePorFecha();
-    bool impresionPersonalizada() const;
-    void imprimir();
     void cargarArchivoEstilo();
 private:
        /*!
         * Accion para el menu de informes
         */
 	QAction *ActInformeFiltroTotal;
-       /*!
-        * Puntero estatico a la ventana principal del programa
-	*/
-	static QStackedWidget *_formCen;
        /*!
 	* Puntero al archivo de estilo usado
 	*/
@@ -65,7 +59,12 @@ private:
 	QString _estilo;
 
 public slots:
-    void informeCompleto();
+	void informeCompleto();
+	void slotPedidoImpresion( QPrinter *p );
+
+signals:
+	void agregarVentana( QWidget *v );
+	void senalCrearVisor();
 };
 
 #endif

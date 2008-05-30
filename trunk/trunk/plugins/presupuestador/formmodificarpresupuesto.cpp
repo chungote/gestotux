@@ -26,7 +26,7 @@
 #include <QSqlError>
 
 FormModificarPresupuesto::FormModificarPresupuesto(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FormNuevoPresupuestoBase()
+: EVentana( parent ), Ui::FormNuevoPresupuestoBase()
 {
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);

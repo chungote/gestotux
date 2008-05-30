@@ -27,6 +27,7 @@
 #include <QPrinter>
 #include <QSqlRecord>
 #include <QMessageBox>
+#include "../../src/preferencias.h"
 
 FPrefRecibos::FPrefRecibos(QWidget *parent)
  : FormPrefHijo( parent ),Ui_FPrefRecibosBase()
@@ -49,7 +50,7 @@ void FPrefRecibos::aplicar()
 
 void FPrefRecibos::guardar()
 {
-  QSettings *p = HiComp::pref();
+  QSettings *p = preferencias::getInstancia();
   p->setValue( "preferencias/recibos/tam", CBTam->currentIndex() );
   p->setValue( "preferencias/recibos/orientacion", CBOrientacion->currentIndex() );
   p->setValue( "preferencias/recibos/margen", dSBMargen->value() );
@@ -76,7 +77,7 @@ void FPrefRecibos::cargar()
     PBSetear->setEnabled( false );
   }
 
-  QSettings *p = HiComp::pref();
+  QSettings *p = preferencias::getInstancia();
   // Tamaño de las hojas
   CBTam->addItem( "A4", QPrinter::A4 );
   CBTam->setCurrentIndex( p->value( "preferencias/recibos/tam", QPrinter::A4 ).toInt() );

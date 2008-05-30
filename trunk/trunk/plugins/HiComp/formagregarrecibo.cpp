@@ -36,7 +36,7 @@
 #include <QStackedWidget>
 
 FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
- : QWidget(parent), Ui_FormAgregarReciboBase()
+ : EVentana(parent), Ui_FormAgregarReciboBase()
 {
  setupUi( this );
  setObjectName( "Nuevo Recibo" );
@@ -253,7 +253,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
   {
 	visorRecibo *v = new visorRecibo( this );
 	v->verRecibo( cola.record().value( "seq" ).toInt() );
-	HiComp::tabs()->setCurrentWidget( HiComp::tabs()->widget( HiComp::tabs()->addWidget( v ) ) );
+	emit agregarVentana( v );
 	if( imprimir )
 	{
 		v->imprimir();

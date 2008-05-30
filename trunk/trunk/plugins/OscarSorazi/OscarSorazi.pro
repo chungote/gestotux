@@ -30,10 +30,10 @@ SOURCES += ../aCarCorr/einforme.cpp \
 ../aCarCorr/vcategorias.cpp \
 ../aCarCorr/vestablecimiento.cpp \
  oscar.cpp \
- ../aCarCorr/eventana.cpp \
  ../aCarCorr/evlista.cpp \
  mduenos.cpp \
- vduenos.cpp
+ vduenos.cpp \
+ ../../src/eventana.cpp
 HEADERS += ../aCarCorr/einforme.h \
 ../aCarCorr/einformeinterface.h \
 ../aCarCorr/emovimiento.h \
@@ -55,10 +55,10 @@ HEADERS += ../aCarCorr/einforme.h \
  oscar.h \
  ../../src/einfoprogramainterface.h \
  ../../src/eplugin.h \
- ../aCarCorr/eventana.h \
  ../aCarCorr/evlista.h \
  mduenos.h \
- vduenos.h
+ vduenos.h \
+ ../../src/eventana.h
 
 FORMS += ../aCarCorr/FormMovimientoBase.ui \
 ../aCarCorr/FormPrefCaravanas.ui
@@ -74,4 +74,6 @@ linux-g++ {
 }
 
 DEFINES += GESTOTUX_CARAVANAS_TIENEN_DUENOS
+
+RESOURCES += ../aCarCorr/aCarCorr.qrc
 

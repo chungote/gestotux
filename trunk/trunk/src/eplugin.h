@@ -47,14 +47,15 @@ public:
     };
     virtual ~EPlugin() {}
     virtual QList<QAction *> accionesBarra() const = 0;
-    virtual bool inicializar( QStackedWidget *formCen, QSettings *pref ) = 0;
+    virtual bool inicializar( QSettings *pref ) = 0;
     virtual QWidgetList formsPreferencias() = 0;
     virtual QString nombre() const = 0;
     virtual int tipo() const = 0;
     virtual void crearMenu( QMenuBar *m ) = 0;
     virtual bool verificarTablas() = 0;
     virtual double version() const = 0;
-
+    // Señal que debe implementarse	
+    virtual void agregarVentana( QWidget *v ) = 0; 
 };
 
 Q_DECLARE_INTERFACE( EPlugin,

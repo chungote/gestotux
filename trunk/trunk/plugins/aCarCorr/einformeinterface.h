@@ -21,8 +21,8 @@
 #define EINFORMEINTERFACE_H
 
 #include <QtPlugin>
-class QMenu;
-class QStackedWidget;
+#include <QPrinter>
+#include <QMenu>
 /**
 Interfaz para hacer un informe
 
@@ -32,13 +32,11 @@ class EInformeInterface
 {
 public:
     virtual ~EInformeInterface() {}
-    virtual void crearMenu( QMenu *m ) = 0;
-    virtual double version() const = 0;
+    virtual bool inicializar() = 0;
     virtual QString nombre() const = 0;
-    virtual bool inicializar( QStackedWidget *form ) = 0;
-    virtual bool impresionPersonalizada() const = 0;
-    virtual void imprimir() = 0;
-
+    virtual double version() const = 0;
+    virtual void crearMenu( QMenu *menu ) = 0;
+    virtual void agregarVentana( QWidget *v ) = 0;
 };
 
 Q_DECLARE_INTERFACE(EInformeInterface,

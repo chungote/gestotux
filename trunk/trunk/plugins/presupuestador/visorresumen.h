@@ -54,6 +54,9 @@ private:
 protected slots:
     void imprimir();
     void aPdf();
+
+signals:
+	void agregarVentana( QWidget * );
 };
 
 #endif

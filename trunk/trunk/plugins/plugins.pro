@@ -6,6 +6,5 @@ SUBDIRS += HiComp \
  aCarCorr \
  aCarCorr/plugins \
  productos \
- OscarSorazi \
- EInformes
+ OscarSorazi
 CONFIG += ordered 

@@ -25,7 +25,7 @@
 #include "formlistaproductos.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FormPresupuestoBase()
+: EVentana( parent ), Ui::FormPresupuestoBase()
 {
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);

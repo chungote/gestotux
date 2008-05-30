@@ -20,13 +20,13 @@
 #ifndef FORMAGREGARRECIBO_H
 #define FORMAGREGARRECIBO_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 #include "ui_FormAgregarReciboBase.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class FormAgregarRecibo : public QWidget, public Ui_FormAgregarReciboBase
+class FormAgregarRecibo : public EVentana, public Ui_FormAgregarReciboBase
 {
 Q_OBJECT
 public:

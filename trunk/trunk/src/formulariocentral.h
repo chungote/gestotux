@@ -40,6 +40,8 @@ protected slots:
     void cambioWidget( int id );
     void cerrarActivo();
 
+public slots:
+    void agregarForm( QWidget *ventana );
 };
 
 #endif

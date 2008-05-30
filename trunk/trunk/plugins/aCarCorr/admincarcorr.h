@@ -31,7 +31,7 @@ Plugin principal
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class AdminCarCorr : public QObject, EPlugin, EInfoProgramaInterface
+class AdminCarCorr : public QObject, public EPlugin, EInfoProgramaInterface
 {
  Q_OBJECT
  Q_INTERFACES(EPlugin EInfoProgramaInterface)
@@ -43,16 +43,16 @@ public:
     QList< QAction * > accionesBarra() const;
     QString nombre() const;
     QWidgetList formsPreferencias();
-    bool inicializar(QStackedWidget* formCen, QSettings* pref);
+    bool inicializar( QSettings* pref);
     bool verificarTablas();
     double version() const;
     int tipo() const;
     void crearMenu(QMenuBar* m);
     QList<EInformeInterface *> plugins();
+    bool conectarVisorInforme() const { return true; }
 
 private:
     QList<QAction *> _acciones;
-    static QStackedWidget *_formCen;
     static QSettings *_pref;
 
 	QAction *ActEstablecimiento;
@@ -82,6 +82,10 @@ private:
     QString empresa() const;
     QString companeros();
     void modificarTri();
+
+signals:
+	void agregarVentana( QWidget *v );
+	void crearVisor();
 
 };
 
