@@ -46,17 +46,15 @@ public:
     QList<QAction *> accionesBarra() const;
     QString nombre() const;
     QWidgetList formsPreferencias();
-    bool inicializar( QStackedWidget *formCen, QSettings *pref );
+    bool inicializar( QSettings *pref );
     int tipo() const;
     void crearMenu( QMenuBar *m );
     double version() const;
     bool verificarTablas();
-    static QStackedWidget *tabs();
     static QSettings *pref();
 
 private:
     QList<QAction *> _acciones;
-    static QStackedWidget *_formCen;
     static QSettings *_pref;
 
 	QAction *ActNuevoPresu;
@@ -64,6 +62,9 @@ private:
 
 protected slots:
     void nuevoPresupuesto();
+
+signals:
+	void agregarVentana( QWidget * );
 
 };
 

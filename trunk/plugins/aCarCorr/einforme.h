@@ -41,6 +41,9 @@ private:
 
 protected slots:
     void imprimir();
+
+signals:
+	void agregarVentana( QWidget * );
 };
 
 #endif

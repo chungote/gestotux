@@ -58,3 +58,13 @@ void FormularioCentral::cerrarActivo()
  removeWidget( this->widget( currentIndex() ) );
  cambioWidget( currentIndex() );
 }
+
+
+/*!
+    \fn FormularioCentral::agregarForm( QWidget *ventana )
+ */
+void FormularioCentral::agregarForm( QWidget *ventana )
+{
+ connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );
+ this->setCurrentIndex( this->addWidget( ventana ) );
+}

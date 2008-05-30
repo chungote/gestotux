@@ -20,7 +20,6 @@
 #include "productos.h"
 #include "vproductos.h"
 
-QStackedWidget *productos::_formCen = 0;
 QSettings *productos::_pref = 0;
 
 Q_EXPORT_PLUGIN2( productos, productos );
@@ -56,9 +55,8 @@ QWidgetList productos::formsPreferencias()
 /*!
     \fn productos::inicializar( QStackedWidget *formCen, QSettings *pref )
  */
-bool productos::inicializar( QStackedWidget *formCen, QSettings *pref )
+bool productos::inicializar( QSettings *pref )
 {
- _formCen = formCen;
  _pref = pref;
  _acciones.clear();
 
@@ -117,12 +115,6 @@ double productos::version() const
  return 0.1;
 }
 
-
-QStackedWidget *productos::tabs()
-{
- return _formCen;
-}
-
 QSettings *productos::pref()
 {
  return _pref;
@@ -133,7 +125,4 @@ QSettings *productos::pref()
     \fn productos::verProductos()
  */
 void productos::verProductos()
-{
- VProductos *f = new VProductos( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new VProductos( ) ); }

@@ -21,10 +21,10 @@
 #ifndef FORMMODIFICARPRESUPUESTO_H
 #define FORMMODIFICARPRESUPUESTO_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
 
-class FormModificarPresupuesto : public QWidget, private Ui::FormNuevoPresupuestoBase
+class FormModificarPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase
 {
   Q_OBJECT
 

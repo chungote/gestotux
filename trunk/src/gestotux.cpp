@@ -200,10 +200,7 @@ void gestotux::acerca()
     \fn gestotux::verClientes()
  */
 void gestotux::verClientes()
-{
-  VCliente *f = new VCliente( this );
-  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
-}
+{ formCen()->agregarForm( new VCliente( formCen() ) ); }
 
 
 void gestotux::createToolBar()
@@ -253,17 +250,11 @@ void gestotux::crearReloj()
 
 
 void gestotux::verPreferencias()
-{
-  FormPreferencias *p = new FormPreferencias( this );
-  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( p ) ) );
-}
+{ formCen()->agregarForm( new FormPreferencias( this ) ); }
 
 
 void gestotux::verBackup()
-{
-  Ebackup *f = new Ebackup( this );
-  formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
-}
+{ formCen()->agregarForm( new Ebackup( this ) ); }
 
 
 void gestotux::bandeja_sistema()
@@ -354,13 +345,13 @@ bool gestotux::cargarPlugins()
          {
 		QObject *obj = loader.instance();
 		EPlugin *plug = qobject_cast<EPlugin *>( obj );
-		if( plug->inicializar( formCen(), preferencias::getInstancia() ) )
+		if( plug->inicializar( preferencias::getInstancia() ) )
 		{
+			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), formCen(), SLOT( agregarForm( QWidget * ) ) );
 			_plugins->insert( plug->nombre(), plug );
 			if( plug->tipo() == EPlugin::info )
 			{
 				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
-				preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
 			}
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
@@ -374,7 +365,7 @@ bool gestotux::cargarPlugins()
 		qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
 	 }
      }
-	return true;
+ return true;
 }
 
 EInfoProgramaInterface *gestotux::pluginInfo()
@@ -403,16 +394,11 @@ QList<EPlugin *> gestotux::plugins()
     \fn gestotux::verActualizacion()
  */
 void gestotux::verActualizacion()
-{
- FormActualizacion *f = new FormActualizacion( formCen() );
- formCen()->setCurrentWidget( formCen()->widget( formCen()->addWidget( f ) ) );
-}
+{ formCen()->agregarForm( new FormActualizacion( formCen() ) ); }
 
 
 /*!
     \fn gestotux::pluginsHash()
  */
 QHash<QString, EPlugin *> *gestotux::pluginsHash()
-{
-    return _plugins;
-}
+{ return _plugins; }

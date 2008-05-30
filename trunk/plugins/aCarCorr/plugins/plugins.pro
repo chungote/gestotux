@@ -1,4 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = ListadoMovimientos \
- InformeCategorizado \
- InformeTri
+SUBDIRS = ListadoMovimientos

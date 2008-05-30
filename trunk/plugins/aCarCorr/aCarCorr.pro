@@ -15,7 +15,6 @@ HEADERS += admincarcorr.h \
  mcategoria.h \
  mestablecimiento.h \
  vcategorias.h \
- evlista.h \
  vestablecimiento.h \
  formagregar.h \
  formmudanza.h \
@@ -33,14 +32,13 @@ HEADERS += admincarcorr.h \
  formprefcaravanas.h \
  ../../src/formprefhijo.h \
  mprefcategorias.h \
- ../../src/eventana.h
+ ../../src/eventana.h \
+ evlista.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
  mestablecimiento.cpp \
  vcategorias.cpp \
- evlista.cpp \
- eventana.cpp \
  vestablecimiento.cpp \
  formagregar.cpp \
  formmudanza.cpp \
@@ -55,7 +53,9 @@ SOURCES += admincarcorr.cpp \
  formmodificartri.cpp \
  formprefcaravanas.cpp \
  ../../src/formprefhijo.cpp \
- mprefcategorias.cpp
+ mprefcategorias.cpp \
+ ../../src/eventana.cpp \
+ evlista.cpp
 
 TARGET = admincaravanascorrientes
 

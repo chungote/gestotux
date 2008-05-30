@@ -22,10 +22,6 @@
 #include "../aCarCorr/einformeinterface.h"
 #include <QSqlQuery>
 
-// Habilita los dueños
-
-
-QStackedWidget *Oscar::_formCen = 0;
 QSettings *Oscar::_pref = 0;
 QHash<QString, EInformeInterface *> *Oscar::_plugins = 0;
 
@@ -75,9 +71,8 @@ QWidgetList Oscar::formsPreferencias()
  return QWidgetList();
 }
 
-bool Oscar::inicializar(QStackedWidget* formCen, QSettings* pref)
+bool Oscar::inicializar( QSettings* pref)
 {
-  _formCen = formCen;
  _pref = pref;
  _acciones.clear();
 
@@ -203,11 +198,11 @@ void Oscar::crearMenu(QMenuBar* m)
   menuHer->addAction( ActAgregarVenta );
   menuHer->addAction( ActAgregarStock );
  }
- // Creo el menu de informes
- QMenu *menuInformes = m->addMenu( "Informes" );
- menuInformes->setObjectName( "menuInformes" );
  if( !plugins().isEmpty() )
  {
+	// Creo el menu de informes
+	QMenu *menuInformes = m->addMenu( "Informes" );
+	menuInformes->setObjectName( "menuInformes" );
 	foreach( EInformeInterface *p, plugins() )
 	{
 		p->crearMenu( menuInformes );
@@ -219,10 +214,7 @@ Q_EXPORT_PLUGIN2( oscarsoraiz , Oscar );
 
 #include "../aCarCorr/vcategorias.h"
 void Oscar::verCategorias()
-{
- VCategorias *f = new VCategorias( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new VCategorias() ); }
 
 
 #include "../aCarCorr/vestablecimiento.h"
@@ -230,40 +222,28 @@ void Oscar::verCategorias()
     \fn Oscar::verEstablecimientos()
  */
 void Oscar::verEstablecimientos()
-{
-  VEstablecimiento *f = new VEstablecimiento( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new VEstablecimiento() ); }
 
 #include "../aCarCorr/formagregar.h"
 /*!
     \fn Oscar::agregarCompra()
  */
 void Oscar::agregarCompra()
-{
-  FormAgregar *f = new FormAgregar( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormAgregar() ); }
 
 #include "../aCarCorr/formmudanza.h"
 /*!
     \fn Oscar::hacerMovimiento()
  */
 void Oscar::hacerMovimiento()
-{
- FormMudanza *f = new FormMudanza( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormMudanza() ); }
 
 #include "../aCarCorr/formventa.h"
 /*!
     \fn Oscar::hacerVenta()
  */
 void Oscar::hacerVenta()
-{
- FormVenta *f = new FormVenta( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormVenta() ); }
 
 
 #include "../aCarCorr/formmudanza.h"
@@ -271,16 +251,13 @@ void Oscar::hacerVenta()
     \fn Oscar::hacerMudanza()
  */
 void Oscar::hacerMudanza()
-{
- FormMudanza *f = new FormMudanza( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormMudanza() ); }
 
 
 #include <QDir>
 void Oscar::cargarPluginsInformes()
 {
- loader = new QPluginLoader( this );
+loader = new QPluginLoader( this );
  // Busco los plugins de presupuestos
  QDir pluginsDir = QDir(qApp->applicationDirPath());
 
@@ -295,30 +272,33 @@ void Oscar::cargarPluginsInformes()
      }
  #endif
      pluginsDir.cd("plugins");
+     if( !pluginsDir.exists( "informes" ) ) {  return; }
      pluginsDir.cd("informes");
+     if( !pluginsDir.exists() ) { return; }
 
 	_plugins = new QHash<QString, EInformeInterface *>();
-#ifdef Q_WS_WIN32
 	QStringList filtro;
+#ifdef Q_WS_WIN32
 	filtro.append( "*.dll" );
-     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
-     {
 #endif
 #ifdef Q_WS_X11
-     foreach( QString fileName, pluginsDir.entryList( QDir::Files ) )
-     {
+	filtro.append( "*so" );
 #endif
+	if( pluginsDir.entryList( filtro, QDir::Files ).isEmpty() ) { return; }
+     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
+     {
+
 	loader->setFileName( pluginsDir.absoluteFilePath( fileName ) );
         if( loader->load() )
         {
-		EInformeInterface *plug = qobject_cast<EInformeInterface *>( loader->instance() );
+		QObject *obj = loader->instance();
+		EInformeInterface *plug = qobject_cast<EInformeInterface *>( obj );
 		// Genero ahora el visor de informe
-		if( plug->inicializar( _formCen ) )
+		if( plug->inicializar() )
 		{
+			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), this, SIGNAL( agregarVentana( QWidget * ) ) );
 			_plugins->insert( plug->nombre(), plug );
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
-			// Registro en las preferencias el plugin
-			///@todo Registrar el plugin en las preferencias
 		}
 		else
 		{
@@ -353,17 +333,11 @@ QList<EInformeInterface *> Oscar::plugins()
 
 #include "vduenos.h"
 void Oscar::mostrarDuenos()
-{
- VDuenos *f = new VDuenos( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new VDuenos() ); }
 
 #include "../aCarCorr/formstock.h"
 void Oscar::agregarStock()
-{
- FormStock *f = new FormStock( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{emit agregarVentana( new FormStock( ) ); }
 
 
 #include <QSqlRecord>
@@ -385,8 +359,7 @@ void Oscar::modificarTri()
   // Cargo el formulario con el tri que corresponda
   if( cola.exec( QString( "SELECT razon FROM car_tri WHERE id_tri = '%1'" ).arg( id_tri ) ) )
   {
-   FormModificarTri *f = new FormModificarTri( _formCen, cola.record().value(0).toInt(), id_tri.toInt() );
-   _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
+   emit agregarVentana( new FormModificarTri( 0, cola.record().value(0).toInt(), id_tri.toInt() ) );
    return;
   }
  }

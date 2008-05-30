@@ -21,11 +21,11 @@
 #ifndef FORMPRESUPUESTOSANTERIORES_H
 #define FORMPRESUPUESTOSANTERIORES_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 #include "ui_FormPresupuestosAnterioresBase.h"
 class MPresupuestos;
 
-class FormPresupuestosAnteriores : public QWidget, private Ui::FormPresupuestosAnterioresBase
+class FormPresupuestosAnteriores : public EVentana, private Ui::FormPresupuestosAnterioresBase
 {
   Q_OBJECT
 

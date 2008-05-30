@@ -29,7 +29,7 @@
 #include <QMessageBox>
 
 FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FormNuevoPresupuestoBase()
+: EVentana( parent), Ui::FormNuevoPresupuestoBase()
 {
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
@@ -90,7 +90,7 @@ void FormNuevoPresupuesto::agregar()
   int id = cola.record().value(0).toInt();
   visorResumen *v = new visorResumen( this );
   v->set_registro( id );
-  presupuestador::tabs()->setCurrentWidget( presupuestador::tabs()->widget( presupuestador::tabs()->addWidget( v ) ) );
+  emit agregarVentana( v );
   this->close();
  }
  else

@@ -21,7 +21,7 @@
 #ifndef FORMAGREGARPRESUPUESTO_H
 #define FORMAGREGARPRESUPUESTO_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 #include "ui_FormPresupuestoBase.h"
 
 class QSqlQueryModel;
@@ -29,7 +29,7 @@ class FormListaProductos;
 class Presupuesto;
 class QTextCursor;
 
-class FormAgregarPresupuesto : public QWidget, private Ui::FormPresupuestoBase
+class FormAgregarPresupuesto : public EVentana, private Ui::FormPresupuestoBase
 {
   Q_OBJECT
 

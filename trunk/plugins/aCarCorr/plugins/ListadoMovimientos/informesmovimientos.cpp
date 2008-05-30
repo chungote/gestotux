@@ -26,16 +26,13 @@
 #include "erenderizadorinforme.h"
 #include "einforme.h"
 
-QStackedWidget *InformesMovimientos::_formCen = 0;
-
 QString InformesMovimientos::nombre() const
 {
  return "informesMovimientos";
 }
 
-bool InformesMovimientos::inicializar( QStackedWidget *form )
+bool InformesMovimientos::inicializar()
 {
- _formCen = form;
 
  ActInformeFiltroTotal = new QAction( "Personalizado...", this );
  connect( ActInformeFiltroTotal, SIGNAL( triggered() ), this, SLOT( informeCompleto() ) );
@@ -64,12 +61,12 @@ Q_EXPORT_PLUGIN2(movimientos, InformesMovimientos );
  */
 void InformesMovimientos::informeCompleto()
 {
- FormFiltro *f = new FormFiltro( _formCen );
+ FormFiltro *f = new FormFiltro();
  if( f->exec() == QDialog::Accepted )
  {
 	// Genero un nuevo informe
-	EInforme *fa = new EInforme( _formCen );
-	_formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( fa ) ) );
+	EInforme *fa = new EInforme();
+	emit agregarVentana( fa );
 	// Genero los contenidos del informe
 	ERenderizadorInforme *render = new ERenderizadorInforme( this );
 	render->setPropiedades( f );
@@ -79,26 +76,6 @@ void InformesMovimientos::informeCompleto()
 	fa->document()->setHtml( render->documento()->toHtml() );
 	render->cerrarDialogo();
  }
-}
-
-
-/*!
-    \fn InformesMovimientos::impresionPersonalizada()
-	Permite saber si tendra impresion personalizada 
-	@return impresion personalizada ( si o no )
- */
-bool InformesMovimientos::impresionPersonalizada() const
-{
-    /// @todo implement me
-}
-
-
-/*!
-    \fn InformesMovimientos::imprimir()
- */
-void InformesMovimientos::imprimir()
-{
-    /// @todo implement me
 }
 
 

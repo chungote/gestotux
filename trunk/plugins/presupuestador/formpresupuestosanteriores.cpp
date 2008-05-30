@@ -27,7 +27,7 @@
 #include <QModelIndex>
 
 FormPresupuestosAnteriores::FormPresupuestosAnteriores(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FormPresupuestosAnterioresBase()
+: EVentana( parent ), Ui::FormPresupuestosAnterioresBase()
 {
 	setupUi(this);
 	this->setAttribute( Qt::WA_DeleteOnClose );
@@ -125,7 +125,7 @@ void FormPresupuestosAnteriores::mostrar()
 		///@todo Ver esto!
 		visorResumen *v = new visorResumen( this );
 		v->set_registro( modelo->data( modelo->index( indice.row(), 0 ), Qt::DisplayRole ).toInt() );
-		presupuestador::tabs()->setCurrentWidget( presupuestador::tabs()->widget( presupuestador::tabs()->addWidget( v ) ) );
+		emit agregarVentana( v );
 		this->close();
 	}
  }

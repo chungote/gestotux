@@ -44,16 +44,16 @@ public:
     QList< QAction * > accionesBarra() const;
     QString nombre() const;
     QWidgetList formsPreferencias();
-    bool inicializar(QStackedWidget* formCen, QSettings* pref);
+    bool inicializar( QSettings* pref);
     bool verificarTablas();
     double version() const;
     int tipo() const;
     void crearMenu(QMenuBar* m);
     QList<EInformeInterface *> plugins();
+    bool conectarVisorInforme() const { return true; }
 
 private:
     QList<QAction *> _acciones;
-    static QStackedWidget *_formCen;
     static QSettings *_pref;
     static QHash<QString, EInformeInterface *> *_plugins;
     QPluginLoader *loader;
@@ -81,6 +81,8 @@ private:
     void cargarPluginsInformes();
     void modificarTri();
 
+signals:
+	void agregarVentana( QWidget *v );
 };
 
 #endif

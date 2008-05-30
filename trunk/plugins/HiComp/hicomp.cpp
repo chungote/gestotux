@@ -33,7 +33,6 @@
 #include <QSqlRecord>
 #include <QSqlError>
 
-QStackedWidget *HiComp::_formCen = 0;
 QSettings *HiComp::_pref = 0;
 
 QString HiComp::nombrePrograma()  const
@@ -57,9 +56,8 @@ QList<QAction *> HiComp::accionesBarra() const
 }
 
 
-bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref  )
+bool HiComp::inicializar( QSettings *pref  )
 {
- _formCen = formCen;
  _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
@@ -80,16 +78,8 @@ bool HiComp::inicializar( QStackedWidget *formCen, QSettings *pref  )
 
 
 void HiComp::verRecibosAnteriores()
-{
- VRecibos *f = new VRecibos( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new VRecibos() ); }
 
-
-QStackedWidget *HiComp::tabs()
-{
- return _formCen;
-}
 
 QSettings *HiComp::pref()
 {
@@ -123,10 +113,7 @@ QWidgetList HiComp::formsPreferencias()
     \fn HiComp::nuevoRecibo()
  */
 void HiComp::nuevoRecibo()
-{
- FormAgregarRecibo *f = new FormAgregarRecibo( _formCen );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormAgregarRecibo() ); }
 
 
 /*!

@@ -21,11 +21,11 @@
 #ifndef FORMLISTAPRODUCTOS_H
 #define FORMLISTAPRODUCTOS_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 #include "ui_FormListaProductosBase.h"
 #include "mtproductospresupuesto.h"
 
-class FormListaProductos : public QWidget, private Ui::FormListaProductosBase
+class FormListaProductos : public EVentana, private Ui::FormListaProductosBase
 {
   Q_OBJECT
 

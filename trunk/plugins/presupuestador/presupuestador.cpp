@@ -24,7 +24,6 @@
 
 #include <QMenuBar>
 
-QStackedWidget *presupuestador::_formCen = 0;
 QSettings *presupuestador::_pref = 0;
 
 QString presupuestador::nombrePrograma()  const
@@ -47,9 +46,8 @@ QList<QAction *> presupuestador::accionesBarra() const
  return _acciones;
 }
 
-bool presupuestador::inicializar( QStackedWidget *formCen, QSettings *pref )
+bool presupuestador::inicializar( QSettings *pref )
 {
- _formCen = formCen;
  _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
@@ -116,20 +114,14 @@ int presupuestador::tipo() const
     \fn presupuestador::verAnteriores()
  */
 void presupuestador::verAnteriores()
-{
- FormPresupuestosAnteriores *f = new FormPresupuestosAnteriores( tabs() );
-_formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormPresupuestosAnteriores() ); }
 
 
 /*!
     \fn presupuestador::nuevoPresupuesto()
  */
 void presupuestador::nuevoPresupuesto()
-{
- FormNuevoPresupuesto *f = new FormNuevoPresupuesto( tabs() );
- _formCen->setCurrentWidget( _formCen->widget( _formCen->addWidget( f ) ) );
-}
+{ emit agregarVentana( new FormNuevoPresupuesto() ); }
 
 
 /*!
@@ -166,11 +158,6 @@ bool presupuestador::verificarTablas()
 double presupuestador::version() const
 {
   return 0.1;
-}
-
-QStackedWidget *presupuestador::tabs()
-{
- return _formCen;
 }
 
 QSettings *presupuestador::pref()

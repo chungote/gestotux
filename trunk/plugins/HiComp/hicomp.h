@@ -40,8 +40,7 @@ public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
     QList<QAction *> accionesBarra() const;
-    bool inicializar( QStackedWidget *formCen, QSettings *pref );
-    static QStackedWidget *tabs();
+    bool inicializar( QSettings *pref );
     static QSettings *pref();
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
@@ -56,7 +55,6 @@ public:
 
 private:
     QList<QAction *> _acciones;
-    static QStackedWidget *_formCen;
     static QSettings *_pref;
 
      QAction *ActNuevoRecibo;
@@ -64,8 +62,10 @@ private:
 
 public slots:
     void verRecibosAnteriores();
-protected slots:
     void nuevoRecibo();
+
+signals:
+	void agregarVentana( QWidget *v );
 };
 
 #endif

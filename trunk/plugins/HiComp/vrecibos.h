@@ -20,7 +20,7 @@
 #ifndef VRECIBOS_H
 #define VRECIBOS_H
 
-#include <QWidget>
+#include "../../src/eventana.h"
 
 class QAction;
 class QSqlTableModel;
@@ -30,7 +30,7 @@ class QToolBar;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class VRecibos : public QWidget
+class VRecibos : public EVentana
 {
 Q_OBJECT
 public:
@@ -60,6 +60,9 @@ public slots:
     void close();
     void cambioClienteFiltro( int id_cliente );
     void setearFiltrado( bool activo, int id_cliente );
+
+signals:
+	void agregarVentana( QWidget *v );
 };
 
 #endif
