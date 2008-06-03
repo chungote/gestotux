@@ -330,3 +330,13 @@ void ERenderizadorInforme::cerrarDialogo()
 {
  d->close();
 }
+
+#include <QPrinter>
+
+/*!
+    \fn ERenderizadorInforme::imprimir( QPrinter * )
+ */
+void ERenderizadorInforme::imprimir( QPrinter *impresora )
+{
+ _doc->print( impresora );
+}

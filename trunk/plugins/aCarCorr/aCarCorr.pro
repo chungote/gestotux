@@ -26,13 +26,10 @@ HEADERS += admincarcorr.h \
  formstock.h \
  einformeinterface.h \
  TipoMovs.h \
- einforme.h \
  mcaravanadueno.h \
  formmodificartri.h \
  formprefcaravanas.h \
- ../../src/formprefhijo.h \
  mprefcategorias.h \
- ../../src/eventana.h \
  evlista.h
 
 SOURCES += admincarcorr.cpp \
@@ -48,13 +45,10 @@ SOURCES += admincarcorr.cpp \
  mcaravanas.cpp \
  emovimiento.cpp \
  formstock.cpp \
- einforme.cpp \
  mcaravanadueno.cpp \
  formmodificartri.cpp \
  formprefcaravanas.cpp \
- ../../src/formprefhijo.cpp \
  mprefcategorias.cpp \
- ../../src/eventana.cpp \
  evlista.cpp
 
 TARGET = admincaravanascorrientes
@@ -75,7 +69,8 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
     QMAKE_EXTRA_TARGETS += /home/ftp/actualizaciones/$TARGET
-}CONFIG -= release
+}
+CONFIG -= release
 
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3

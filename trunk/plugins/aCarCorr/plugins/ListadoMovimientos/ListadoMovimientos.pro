@@ -46,3 +46,12 @@ DISTFILES += estiloinforme.css
 
 RESOURCES += informe.qrc
 
+CONFIG -= release
+
+
+
+
+LIBS += ../../../../bin/libutiles.a
+
+TARGETDEPS += ../../../../bin/libutiles.a
+

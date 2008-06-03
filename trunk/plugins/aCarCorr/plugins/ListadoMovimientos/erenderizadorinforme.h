@@ -28,6 +28,7 @@ class QProgressDialog;
 #include <QSqlQuery>
 #include <QDate>
 #include <QPair>
+class QPrinter;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
@@ -57,6 +58,9 @@ private:
 	QSqlQuery cola;
 	QTextTable *tabla;
 	QDate _fecha;
+
+public slots:
+    void imprimir( QPrinter *impresora );
 };
 
 #endif
