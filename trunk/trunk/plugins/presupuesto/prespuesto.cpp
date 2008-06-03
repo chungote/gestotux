@@ -73,7 +73,7 @@ bool prespuesto::inicializar( QSettings *pref )
  ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
- connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
+ //connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
  _acciones.append( ActNuevoPresu );
  

@@ -1,6 +1,7 @@
 TEMPLATE = lib
 CONFIG += plugin
-CONFIG += debug
+CONFIG += debug \
+ staticlib
 QT = gui \
 	core \
 	svg \
@@ -22,21 +23,24 @@ HEADERS += prespuesto.h \
  presupuesto.h \
  epresupuesto.h \
  mtproductospresupuesto.h \
- formlistaproductos.h \
- ../../src/eventana.h \
- ../../src/evlista.h
+ formlistaproductos.h
 SOURCES += prespuesto.cpp \
  formagregarpresupuesto.cpp \
  mpresupuesto.cpp \
  presupuesto.cpp \
  mtproductospresupuesto.cpp \
- formlistaproductos.cpp \
- ../../src/eventana.cpp \
- ../../src/evlista.cpp
+ formlistaproductos.cpp
 FORMS += FormPresupuestoBase.ui \
  FormListaProductosBase.ui
 TARGET = presupuesto
 DESTDIR = ../../bin/plugins
-INCLUDEPATH += ../../src
 RESOURCES += presupuesto.qrc
+
+CONFIG -= release
+
+INCLUDEPATH += ../../utiles
+
+LIBS += ../../bin/libutiles.a
+
+TARGETDEPS += ../../bin/libutiles.a
 

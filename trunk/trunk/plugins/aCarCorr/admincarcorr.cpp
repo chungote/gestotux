@@ -107,7 +107,7 @@ bool AdminCarCorr::inicializar( QSettings* pref)
 
  ActModificarTri = new QAction( "Modificar Tri", this );
  ActModificarTri->setToolTip( "Permite modificar un numero especifico de tri" );
- connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
+ //connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
 
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );

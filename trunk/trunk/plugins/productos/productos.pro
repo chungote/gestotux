@@ -10,7 +10,6 @@ TARGET = productos
 
 DESTDIR = ../../bin/plugins
 
-INCLUDEPATH += ../../src
 
 win32 {
     CONFIG += release
@@ -25,13 +24,17 @@ SOURCES += mcategorias.cpp \
 mproductos.cpp \
 vcategorias.cpp \
 vproductos.cpp \
- productos.cpp \
- ../../src/eventana.cpp \
- ../../src/evlista.cpp
+ productos.cpp
 HEADERS += mcategorias.h \
 mproductos.h \
 vcategorias.h \
 vproductos.h \
- productos.h \
- ../../src/evlista.h \
- ../../src/eventana.h
+ productos.h
+CONFIG -= release
+
+INCLUDEPATH += ../../utiles
+
+LIBS += ../../bin/libutiles.a
+
+TARGETDEPS += ../../bin/libutiles.a
+

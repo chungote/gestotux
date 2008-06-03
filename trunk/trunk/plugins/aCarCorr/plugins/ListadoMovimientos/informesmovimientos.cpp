@@ -26,6 +26,8 @@
 #include "erenderizadorinforme.h"
 #include "einforme.h"
 
+#include "../../../../utiles/evisorinformes.h"
+
 QString InformesMovimientos::nombre() const
 {
  return "informesMovimientos";
@@ -65,16 +67,17 @@ void InformesMovimientos::informeCompleto()
  if( f->exec() == QDialog::Accepted )
  {
 	// Genero un nuevo informe
-	EInforme *fa = new EInforme();
-	emit agregarVentana( fa );
+	EVisorInformes *fa = new EVisorInformes();
+	//EInforme *fa = new EInforme();
 	// Genero los contenidos del informe
 	ERenderizadorInforme *render = new ERenderizadorInforme( this );
 	render->setPropiedades( f );
 	// lo muestro
 	render->hacerInforme();
-	fa->document()->setDefaultStyleSheet( _estilo );
-	fa->document()->setHtml( render->documento()->toHtml() );
+	render->documento()->setDefaultStyleSheet( _estilo );
+	connect( fa, SIGNAL( paintRequested ( QPrinter * ) ), render, SLOT( imprimir( QPrinter * ) ) );
 	render->cerrarDialogo();
+	emit agregarVentana( fa );
  }
 }
 

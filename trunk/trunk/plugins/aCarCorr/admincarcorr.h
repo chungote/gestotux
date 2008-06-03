@@ -74,7 +74,6 @@ protected slots:
     void hacerMovimiento();
     void hacerVenta();
     void hacerMudanza();
-    void mostrarDuenos();
     void agregarStock();
 
 private:

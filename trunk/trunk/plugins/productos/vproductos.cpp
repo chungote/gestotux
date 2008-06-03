@@ -93,10 +93,7 @@ void VProductos::closeEvent( QCloseEvent * event )
 	Slot llamado para ver la lista de categorias
  */
 void VProductos::verCategorias()
-{
- VCategorias *f = new VCategorias( productos::tabs() );
- productos::tabs()->setCurrentWidget( productos::tabs()->widget( productos::tabs()->addWidget( f ) ) );
-}
+{ emit agregarVentana( new VCategorias() ); }
 
 
 /*!

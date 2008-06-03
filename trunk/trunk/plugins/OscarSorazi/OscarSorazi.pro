@@ -13,8 +13,7 @@ DESTDIR = ../../bin/plugins
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
-SOURCES += ../aCarCorr/einforme.cpp \
-../aCarCorr/emovimiento.cpp \
+SOURCES += ../aCarCorr/emovimiento.cpp \
 ../aCarCorr/formagregar.cpp \
 ../aCarCorr/formmodificartri.cpp \
 ../aCarCorr/formmovimiento.cpp \
@@ -32,10 +31,8 @@ SOURCES += ../aCarCorr/einforme.cpp \
  oscar.cpp \
  ../aCarCorr/evlista.cpp \
  mduenos.cpp \
- vduenos.cpp \
- ../../src/eventana.cpp
-HEADERS += ../aCarCorr/einforme.h \
-../aCarCorr/einformeinterface.h \
+ vduenos.cpp
+HEADERS += ../aCarCorr/einformeinterface.h \
 ../aCarCorr/emovimiento.h \
 ../aCarCorr/formagregar.h \
 ../aCarCorr/formmodificartri.h \
@@ -57,8 +54,7 @@ HEADERS += ../aCarCorr/einforme.h \
  ../../src/eplugin.h \
  ../aCarCorr/evlista.h \
  mduenos.h \
- vduenos.h \
- ../../src/eventana.h
+ vduenos.h
 
 FORMS += ../aCarCorr/FormMovimientoBase.ui \
 ../aCarCorr/FormPrefCaravanas.ui
