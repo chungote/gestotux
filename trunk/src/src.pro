@@ -3,12 +3,9 @@ SOURCES += gestotux.cpp \
  preferencias.cpp \
  eenviobackup.cpp \
  ebackup.cpp \
- eventana.cpp \
  reloj.cpp \
- evlista.cpp \
  formacercade.cpp \
  formpreferencias.cpp \
- formprefhijo.cpp \
  formulariocentral.cpp \
  fprefgeneral.cpp \
  mclientes.cpp \
@@ -19,12 +16,9 @@ HEADERS += gestotux.h \
  preferencias.h \
  ebackup.h \
  eenviobackup.h \
- eventana.h \
  reloj.h \
- evlista.h \
  formacercade.h \
  formpreferencias.h \
- formprefhijo.h \
  formulariocentral.h \
  fprefgeneral.h \
  mclientes.h \
@@ -51,7 +45,6 @@ FPrefGeneral.ui \
 RESOURCES = gestotux.qrc
 TARGET = gestotux
 DESTDIR = ../bin
-INCLUDEPATH += ../plugins
 
 DISTFILES += qt_es.qm
 
@@ -69,3 +62,13 @@ CONFIG -= release
 
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
+
+
+
+LIBS += ../bin/libutiles.a
+
+TARGETDEPS += ../bin/libutiles.a
+
+INCLUDEPATH += ../utiles \
+  ../plugins
+
