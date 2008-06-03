@@ -1,6 +1,7 @@
 TEMPLATE = lib
 CONFIG += plugin \
-		debug
+		debug \
+ staticlib
 TARGET = hicomp
 
 HEADERS += hicomp.h \
@@ -11,11 +12,8 @@ HEADERS += hicomp.h \
  drecibo.h \
  formagregarrecibo.h \
  formmodificarrecibo.h \
- formprefhijo.h \
  fprefrecibos.h \
- filtroclientes.h \
- ../../src/eventana.h \
- ../../src/evlista.h
+ filtroclientes.h
 
 SOURCES += hicomp.cpp \
  visorrecibo.cpp \
@@ -25,14 +23,10 @@ SOURCES += hicomp.cpp \
  drecibo.cpp \
  formagregarrecibo.cpp \
  formmodificarrecibo.cpp \
- formprefhijo.cpp \
  fprefrecibos.cpp \
- filtroclientes.cpp \
- ../../src/eventana.cpp \
- ../../src/evlista.cpp
+ filtroclientes.cpp
 
 DESTDIR = ../../bin/plugins
-INCLUDEPATH += ../../src
 
 RESOURCES += hicomp.qrc
 
@@ -57,4 +51,11 @@ linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
-}
+}CONFIG -= release
+
+INCLUDEPATH += ../../utiles
+
+LIBS += ../../bin/libutiles.a
+
+TARGETDEPS += ../../bin/libutiles.a
+
