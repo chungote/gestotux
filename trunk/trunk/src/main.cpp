@@ -36,28 +36,28 @@
 #include "eenviobackup.h"
 #include "esplash.h"
 
-FILE *deb;
+FILE *debug;
 
  void myMessageOutput(QtMsgType type, const char *msg)
  {
      switch (type) {
      case QtDebugMsg:
-         fprintf(deb, "Debug: %s\n", msg);
-	 fflush(deb);
+         fprintf(debug, "Debug: %s\n", msg);
+	 fflush(debug);
          break;
      case QtWarningMsg:
 	QMessageBox::warning( 0, "Warning de aplicacion", msg );
-	fprintf(deb, "warning: %s\n", msg);
-	 fflush(deb);
+	fprintf(debug, "warning: %s\n", msg);
+	 fflush(debug);
         break;
      case QtCriticalMsg:
 	QMessageBox::critical( 0, "Error Critico", msg );
-	fprintf(deb, "critico: %s\n", msg);
-	 fflush(deb);
+	fprintf(debug, "critico: %s\n", msg);
+	 fflush(debug);
         break;
      case QtFatalMsg:
-         fprintf( deb, "Fatal: %s\n", msg);
-	 fflush(deb);
+         fprintf( debug, "Fatal: %s\n", msg);
+	 fflush(debug);
          QMessageBox::critical( 0, "¡¡¡¡¡¡FATAL!!!!!!", msg );
          abort();
      }
@@ -67,13 +67,17 @@ FILE *deb;
 int main(int argc, char *argv[])
 {
       Q_INIT_RESOURCE(gestotux);
-	deb = fopen( "debug.txt", "w" );
-	fseek( deb, 0, 0 );
+	debug = fopen( "debug.txt", "w" );
+	fseek( debug, 0, 0 );
 	qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash
 	ESplash *splash = new ESplash();
       //QSplashScreen *splash = new QSplashScreen( app );
+	foreach( QString path, QCoreApplication::libraryPaths () )
+	{
+		qDebug( QString( "librerias: %1" ).arg( path ).toLocal8Bit() );
+	}
       splash->show();
 //       splash->showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual
