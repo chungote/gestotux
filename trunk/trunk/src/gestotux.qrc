@@ -30,6 +30,17 @@
 	<file>imagenes/buscar.png</file>
 	<file>imagenes/splash.svg</file>
 	<file>imagenes/actualizar.png</file>
+	<file>imagenes/achicar.png</file>
+	<file>imagenes/agrandar.png</file>
+	<file>imagenes/ajustar.png</file>
+	<file>imagenes/ajustarancho.png</file>
+	<file>imagenes/zoom.png</file>
+	<file>imagenes/primera.png</file>
+	<file>imagenes/anterior.png</file>
+	<file>imagenes/siguiente.png</file>
+	<file>imagenes/ultima.png</file>
+	<file>imagenes/ajustarancho.png</file>
+	<file>imagenes/ajustarpagina.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>tablas.sql</file>

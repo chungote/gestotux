@@ -26,6 +26,7 @@
 #include "TipoMovs.h"
 class QAction;
 class MCaravanaDueno;
+class EActCerrar;
 
 class FormMovimiento : public EVentana, public Ui::FormMovimientoBase
 {
@@ -39,7 +40,7 @@ public:
 
 
 protected:
-	QAction *ActCerrar;
+	EActCerrar *ActCerrar;
 	QAction *ActGuardar;
 	MCaravanaDueno *model;
 	bool _especial;

@@ -32,9 +32,11 @@ vproductos.h \
  productos.h
 CONFIG -= release
 
-INCLUDEPATH += ../../utiles
 
 LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
+
+INCLUDEPATH += ../../src \
+  ../../utiles
 

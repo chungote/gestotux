@@ -32,9 +32,48 @@ EVisorInformes::EVisorInformes(QWidget *parent)
  addAction(ActCerrar);
 
  EActImprimir *ActImprimir = new EActImprimir( this );
- //connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+ connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( print() ) );
  addAction(ActImprimir);
- 
+
+ QAction *ActPrimera = new QAction( this );
+ ActPrimera->setIcon( QIcon( ":/imagenes/primera.png" ) );
+ connect( ActPrimera, SIGNAL( triggered() ), this, SLOT( primerPagina() ) );
+ addAction( ActPrimera );
+
+ QAction *ActAnterior = new QAction( "", this );
+ ActAnterior->setIcon( QIcon( ":/imagenes/anterior.png" ) );
+ connect( ActAnterior, SIGNAL( triggered() ), this, SLOT( anterior() ) );
+ addAction( ActAnterior );
+
+ QAction *ActSiguiente = new QAction( this );
+ ActSiguiente->setIcon( QIcon( ":/imagenes/siguiente.png" ) );
+ connect( ActSiguiente, SIGNAL( triggered() ), this, SLOT( siguiente() ) );
+ addAction( ActSiguiente );
+
+ QAction *ActUltima = new QAction( this );
+ ActUltima->setIcon( QIcon( ":/imagenes/ultima.png" ) );
+ connect( ActUltima, SIGNAL( triggered() ), this, SLOT( ultimaPagina() ) );
+ addAction( ActUltima );
+
+ QAction *ActAgrandar = new QAction( this );
+ ActAgrandar->setIcon( QIcon( ":/imagenes/agrandar.png" ) );
+ connect( ActAgrandar, SIGNAL( triggered() ), this, SLOT( zoomIn() ) );
+ addAction( ActAgrandar );
+
+ QAction *ActAchicar = new QAction( this );
+ ActAchicar->setIcon( QIcon( ":/imagenes/achicar.png" ) );
+ connect( ActAchicar, SIGNAL( triggered() ), this, SLOT( zoomOut() ) );
+ addAction( ActAchicar );
+
+ QAction *ActAjustarAncho = new QAction( this );
+ ActAjustarAncho->setIcon( QIcon( ":/imagenes/ajustarahcno.png" ) );
+ connect( ActAjustarAncho, SIGNAL(triggered()), this, SLOT( fitToWidth() ) );
+ addAction( ActAjustarAncho );
+
+ QAction *ActAjustarHoja = new QAction( this );
+ ActAjustarHoja->setIcon( QIcon(":/imagenes/ajustarpagina.png") );
+ connect( ActAjustarHoja, SIGNAL( triggered() ), this, SLOT( fitInView() ) );
+ addAction( ActAjustarHoja );
 }
 
 
@@ -43,3 +82,39 @@ EVisorInformes::~EVisorInformes()
 }
 
 
+
+
+/*!
+    \fn EVisorInformes::primerPagina()
+ */
+void EVisorInformes::primerPagina()
+{
+ this->setCurrentPage( 0 );
+}
+
+
+/*!
+    \fn EVisorInformes::anterior()
+ */
+void EVisorInformes::anterior()
+{
+ this->setCurrentPage( this->currentPage() - 1 );
+}
+
+
+/*!
+    \fn EVisorInformes::ultimaPagina()
+ */
+void EVisorInformes::ultimaPagina()
+{
+ this->setCurrentPage( this->numPages() );
+}
+
+
+/*!
+    \fn EVisorInformes::siguiente()
+ */
+void EVisorInformes::siguiente()
+{
+ this->setCurrentPage( this->currentPage() + 1 );
+}
