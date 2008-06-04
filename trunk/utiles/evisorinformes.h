@@ -33,6 +33,11 @@ public:
     ~EVisorInformes();
 signals:
 	void agregarVentana( QWidget * );
+protected slots:
+    void primerPagina();
+    void anterior();
+    void ultimaPagina();
+    void siguiente();
 };
 
 #endif

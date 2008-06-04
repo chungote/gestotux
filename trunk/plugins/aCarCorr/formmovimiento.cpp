@@ -36,6 +36,7 @@
 #include "mcategoria.h"
 #include "../../src/mclientes.h"
 #include "mcaravanadueno.h"
+#include "eactcerrar.h"
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
   #include "mduenos.h"
 #endif
@@ -48,10 +49,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 	setupUi(this);
 	setAttribute( Qt::WA_DeleteOnClose );
 
-	ActCerrar = new QAction( "Cerrar", this );
-	ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	ActCerrar->setText( "Cerrar" );
-	ActCerrar->setStatusTip( "Cierra la ventana actual" );
+	ActCerrar = new EActCerrar(this);
 	connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( cerrar() ) );
 
 	ActGuardar = new QAction( "Guardar", this );
@@ -143,7 +141,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 			CBEstablecimientoOrigen->setModel( new MEstablecimiento( CBEstablecimientoOrigen ) );
 			CBEstablecimientoOrigen->setModelColumn( 1 );
 			qobject_cast<QSqlTableModel *>(CBEstablecimientoOrigen->model())->select();
-			
+
 			CBEstablecimientoDestino->setModel( new MEstablecimiento( CBEstablecimientoDestino ) );
 			CBEstablecimientoDestino->setModelColumn( 1 );
 			qobject_cast<QSqlTableModel *>(CBEstablecimientoDestino->model())->select();
@@ -234,7 +232,7 @@ void FormMovimiento::eliminarCaravana()
   QMessageBox::information( this, "Error", "No ha elegido ningun item para eliminar. Por favor seleccione uno o varios y presione el boton eliminar" );
   return;
  }
- 
+
  if( QMessageBox::question( this, "¿Esta seguro?", "¿Esta seguro que desea eliminar este/os numero/s de caravanas?", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
  {
   QModelIndex index;
@@ -480,7 +478,7 @@ void FormMovimiento::cargarDesdeArchivo()
 			{
 				if(!temp[0].isEmpty())
 				{
-	
+
 					caravanas.append( temp[0] );
 					d->setValue(d->value() + 1);
 					qDebug( QString( "Agregado: %1, dta: %2 " ).arg( temp[0] ).arg( temp[1] ).toLocal8Bit() );
@@ -618,7 +616,7 @@ bool FormMovimiento::verificar()
 		break;
 	}
 	case stock:
-	{	
+	{
 		// Destino
 		if( CBEstablecimientoDestino->currentIndex() == -1 )
 		{

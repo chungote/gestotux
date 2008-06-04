@@ -41,7 +41,6 @@ FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
 FPrefGeneral.ui \
  FormActualizacionBase.ui
-RESOURCES = gestotux.qrc
 TARGET = gestotux
 DESTDIR = ../bin
 
@@ -62,11 +61,11 @@ CONFIG -= release
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
-
-
 LIBS += ../bin/libutiles.a
 
 TARGETDEPS += ../bin/libutiles.a
 
 INCLUDEPATH += ../utiles
+
+RESOURCES += gestotux.qrc
 
