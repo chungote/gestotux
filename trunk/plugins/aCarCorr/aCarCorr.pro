@@ -75,3 +75,9 @@ CONFIG -= release
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
+INCLUDEPATH += ../../utiles
+
+LIBS += ../../bin/libutiles.a
+
+TARGETDEPS += ../../bin/libutiles.a
+

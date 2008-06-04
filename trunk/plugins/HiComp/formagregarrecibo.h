@@ -20,7 +20,7 @@
 #ifndef FORMAGREGARRECIBO_H
 #define FORMAGREGARRECIBO_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormAgregarReciboBase.h"
 
 /**

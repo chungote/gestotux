@@ -26,7 +26,6 @@
 #include <QDir>
 #include <QPluginLoader>
 #include <QHash>
-#include "formulariocentral.h"
 
 class QAction;
 class QMenu;
@@ -35,6 +34,7 @@ class barraLateral;
 class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
+class FormularioCentral;
 
 class gestotux:public QMainWindow
 {

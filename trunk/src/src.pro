@@ -1,6 +1,5 @@
 SOURCES += gestotux.cpp \
            main.cpp \
- preferencias.cpp \
  eenviobackup.cpp \
  ebackup.cpp \
  reloj.cpp \
@@ -13,7 +12,6 @@ SOURCES += gestotux.cpp \
  formactualizacion.cpp \
  esplash.cpp
 HEADERS += gestotux.h \
- preferencias.h \
  ebackup.h \
  eenviobackup.h \
  reloj.h \
@@ -32,7 +30,8 @@ CONFIG += warn_on \
 	  thread \
           qt \
  exceptions \
- debug
+ debug \
+ precompile_header
 QT += sql \
 svg \
 xml \
@@ -69,6 +68,5 @@ LIBS += ../bin/libutiles.a
 
 TARGETDEPS += ../bin/libutiles.a
 
-INCLUDEPATH += ../utiles \
-  ../plugins
+INCLUDEPATH += ../utiles
 

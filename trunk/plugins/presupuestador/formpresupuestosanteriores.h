@@ -21,7 +21,7 @@
 #ifndef FORMPRESUPUESTOSANTERIORES_H
 #define FORMPRESUPUESTOSANTERIORES_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormPresupuestosAnterioresBase.h"
 class MPresupuestos;
 

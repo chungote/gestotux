@@ -21,7 +21,7 @@
 #ifndef FORMMODIFICARPRESUPUESTO_H
 #define FORMMODIFICARPRESUPUESTO_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
 
 class FormModificarPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase

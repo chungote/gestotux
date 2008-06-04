@@ -64,7 +64,6 @@ public slots:
 
 signals:
 	void agregarVentana( QWidget *v );
-	void senalCrearVisor();
 };
 
 #endif

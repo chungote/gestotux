@@ -19,19 +19,11 @@
  ***************************************************************************/
 #include "formulariocentral.h"
 
-#include <QApplication>
-#include <QDir>
-#include <QFileInfo>
-#include <QPrinter>
-#include <QFileDialog>
 #include "gestotux.h"
 #include <QToolBar>
-#include <QPushButton>
-#include <QPrintDialog>
-#include "preferencias.h"
 
 FormularioCentral::FormularioCentral( QWidget *parent )
- : QStackedWidget( parent )
+: QStackedWidget( parent )
 {
  connect( this, SIGNAL( currentChanged( int ) ), this, SLOT( cambioWidget( int ) ) );
 }

@@ -68,13 +68,12 @@ void InformesMovimientos::informeCompleto()
  {
 	// Genero un nuevo informe
 	EVisorInformes *fa = new EVisorInformes();
-	//EInforme *fa = new EInforme();
 	// Genero los contenidos del informe
 	ERenderizadorInforme *render = new ERenderizadorInforme( this );
 	render->setPropiedades( f );
 	// lo muestro
-	render->hacerInforme();
 	render->documento()->setDefaultStyleSheet( _estilo );
+	render->hacerInforme();
 	connect( fa, SIGNAL( paintRequested ( QPrinter * ) ), render, SLOT( imprimir( QPrinter * ) ) );
 	render->cerrarDialogo();
 	emit agregarVentana( fa );

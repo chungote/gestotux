@@ -28,8 +28,8 @@ class QMenuBar;
 #include <QtPlugin>
 #include <QList>
 #include <QAction>
-#include "einfoprogramainterface.h"
-#include "eplugin.h"
+#include "../../src/einfoprogramainterface.h"
+#include "../../src/eplugin.h"
 
 class HiComp : public QObject, EInfoProgramaInterface, EPlugin
 {

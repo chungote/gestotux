@@ -37,6 +37,7 @@ public:
     ~EVentana();
     void setNombreVentana( QString texto );
     QString get_nombre_ventana();
+    void closeEvent( QCloseEvent *e );
 
 protected:
    /**

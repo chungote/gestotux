@@ -92,3 +92,12 @@ void EVentana::ayuda()
 {
     /// @todo implementar slot de ayuda
 }
+
+
+/*!
+    \fn EVentana::closeEvent( QCloseEvent *e )
+ */
+void EVentana::closeEvent( QCloseEvent *e )
+{
+ QWidget::closeEvent( e );
+}

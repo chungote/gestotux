@@ -21,7 +21,7 @@
 #ifndef FORMLISTAPRODUCTOS_H
 #define FORMLISTAPRODUCTOS_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormListaProductosBase.h"
 #include "mtproductospresupuesto.h"
 

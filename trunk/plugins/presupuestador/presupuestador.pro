@@ -1,5 +1,6 @@
 TEMPLATE = lib
-CONFIG += plugin
+CONFIG += plugin \
+ staticlib
 TARGET = presupuestador
 
 DESTDIR = ../../bin/plugins
@@ -34,9 +35,11 @@ linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
-}INCLUDEPATH += ../../utiles
-
+}
 LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
+
+INCLUDEPATH += ../../src \
+  ../../utiles
 

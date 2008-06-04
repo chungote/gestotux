@@ -21,7 +21,7 @@
 #ifndef FORMNUEVOPRESUPUESTO_H
 #define FORMNUEVOPRESUPUESTO_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
 
 class FormNuevoPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase

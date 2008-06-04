@@ -21,7 +21,7 @@
 #ifndef FORMAGREGARPRESUPUESTO_H
 #define FORMAGREGARPRESUPUESTO_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormPresupuestoBase.h"
 
 class QSqlQueryModel;
