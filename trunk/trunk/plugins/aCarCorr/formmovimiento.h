@@ -21,7 +21,7 @@
 #ifndef FORMMOVIMIENTO_H
 #define FORMMOVIMIENTO_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 #include "ui_FormMovimientoBase.h"
 #include "TipoMovs.h"
 class QAction;

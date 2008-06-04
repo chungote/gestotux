@@ -32,7 +32,7 @@ public:
     EVisorInformes(QWidget *parent = 0);
     ~EVisorInformes();
 signals:
-	void agregarVentana( QPrinter * );
+	void agregarVentana( QWidget * );
 };
 
 #endif

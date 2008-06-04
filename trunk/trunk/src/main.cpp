@@ -74,10 +74,6 @@ int main(int argc, char *argv[])
       // Muestro el splash
 	ESplash *splash = new ESplash();
       //QSplashScreen *splash = new QSplashScreen( app );
-	foreach( QString path, QCoreApplication::libraryPaths () )
-	{
-		qDebug( QString( "librerias: %1" ).arg( path ).toLocal8Bit() );
-	}
       splash->show();
 //       splash->showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual

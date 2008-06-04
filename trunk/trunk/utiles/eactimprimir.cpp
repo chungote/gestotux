@@ -25,7 +25,7 @@ QAction(parent)
  this->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
  this->setShortcut( QKeySequence( "Ctrl+i" ) );
  this->setText( "Imprimir" );
- this->setStatusTip( "Imprime el contenido del formualrio actual" );
+ this->setStatusTip( "Imprime el contenido del formulario actual" );
 }
 
 

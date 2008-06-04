@@ -76,7 +76,7 @@ bool AdminCarCorr::inicializar( QSettings* pref)
  ActCategoria->setToolTip( "Muestra las categorias ( Ctrl + u )" );
  ActCategoria->setShortcut( QKeySequence( "Ctrl+u" ) );
  connect( ActCategoria, SIGNAL( triggered() ), this, SLOT( verCategorias() ) );
- 
+
  ActEstablecimiento = new QAction( "Ver Establecimientos", this );
  ActEstablecimiento->setIcon( QIcon( ":/imagenes/establecimientos.png" ) );
  ActEstablecimiento->setStatusTip( "Muestra el listado de establecimientos" );
@@ -177,7 +177,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
   qDebug( "Error en las baras de menu" );
  }
  else
- { 
+ {
   menuHer->addAction( ActEstablecimiento );
   menuHer->addAction( ActCategoria );
   //menuHer->addAction( ActDuenos );
@@ -303,7 +303,6 @@ void AdminCarCorr::cargarPluginsInformes()
 		if( plug->inicializar() )
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), this, SIGNAL( agregarVentana( QWidget * ) ) );
-			connect( obj, SIGNAL( senalCrearVisor() ), this, SIGNAL( crearVisor() ) );
 			_plugins->insert( plug->nombre(), plug );
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}

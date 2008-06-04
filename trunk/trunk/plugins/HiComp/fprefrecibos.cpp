@@ -27,7 +27,7 @@
 #include <QPrinter>
 #include <QSqlRecord>
 #include <QMessageBox>
-#include "../../src/preferencias.h"
+#include "../../utiles/preferencias.h"
 
 FPrefRecibos::FPrefRecibos(QWidget *parent)
  : FormPrefHijo( parent ),Ui_FPrefRecibosBase()

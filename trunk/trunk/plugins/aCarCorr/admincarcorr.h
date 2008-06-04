@@ -84,7 +84,6 @@ private:
 
 signals:
 	void agregarVentana( QWidget *v );
-	void crearVisor();
 
 };
 

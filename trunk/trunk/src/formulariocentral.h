@@ -21,19 +21,17 @@
 #define FORMULARIOCENTRAL_H
 
 #include <QStackedWidget>
-
-class visorRecibo;
-
 /**
-Formulario Central
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Formulario Central
+ *
+ * Formulario que muestra las ventanas internas del programa
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class FormularioCentral : public QStackedWidget
 {
 Q_OBJECT
 public:
-    FormularioCentral(  QWidget *parent = 0 );
+    FormularioCentral( QWidget *parent = 0 );
     ~FormularioCentral();
 
 protected slots:

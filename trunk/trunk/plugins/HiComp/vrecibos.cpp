@@ -283,7 +283,7 @@ void VRecibos::modificar( const QModelIndex& index )
  */
 void VRecibos::close()
 {
-  d->close();
+  //d->close();
   QWidget::close();
 }
 

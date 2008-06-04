@@ -20,7 +20,7 @@
 #ifndef VRECIBOS_H
 #define VRECIBOS_H
 
-#include "../../src/eventana.h"
+#include "eventana.h"
 
 class QAction;
 class QSqlTableModel;

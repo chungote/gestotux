@@ -20,7 +20,7 @@
 #ifndef FORMPREFCARAVANAS_H
 #define FORMPREFCARAVANAS_H
 
-#include <../../src/formprefhijo.h>
+#include "formprefhijo.h"
 #include "ui_FormPrefCaravanas.h"
 class MPrefCategorias;
 

@@ -73,3 +73,11 @@ DEFINES += GESTOTUX_CARAVANAS_TIENEN_DUENOS
 
 RESOURCES += ../aCarCorr/aCarCorr.qrc
 
+CONFIG -= release
+
+INCLUDEPATH += ../../utiles
+
+LIBS += ../../bin/libutiles.a
+
+TARGETDEPS += ../../bin/libutiles.a
+
