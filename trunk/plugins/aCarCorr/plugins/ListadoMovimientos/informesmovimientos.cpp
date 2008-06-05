@@ -24,9 +24,8 @@
 #include "formfiltro.h"
 #include <QStackedWidget>
 #include "erenderizadorinforme.h"
-#include "einforme.h"
 
-#include "../../../../utiles/evisorinformes.h"
+#include "evisorinformes.h"
 
 QString InformesMovimientos::nombre() const
 {
@@ -70,13 +69,14 @@ void InformesMovimientos::informeCompleto()
 	EVisorInformes *fa = new EVisorInformes();
 	// Genero los contenidos del informe
 	ERenderizadorInforme *render = new ERenderizadorInforme( this );
-	render->setPropiedades( f );
+	render->setPropiedades( f, cargarArchivoEstilo() );
 	// lo muestro
-	render->documento()->setDefaultStyleSheet( _estilo );
-	render->hacerInforme();
-	connect( fa, SIGNAL( paintRequested ( QPrinter * ) ), render, SLOT( imprimir( QPrinter * ) ) );
-	render->cerrarDialogo();
-	emit agregarVentana( fa );
+	if( render->hacerInforme() )
+	{
+		connect( fa, SIGNAL( paintRequested ( QPrinter * ) ), render, SLOT( imprimir( QPrinter * ) ) );
+		render->cerrarDialogo();
+		emit agregarVentana( fa );
+	}
  }
 }
 
@@ -85,25 +85,27 @@ void InformesMovimientos::informeCompleto()
     \fn InformesMovimientos::cargarArchivoEstilo()
 	Carga la hoja CSS de estilo. Primero busca en la carpeta plugins/informes/estilo.css y si no lo encuentra utiliza la hoja de estilo embebida
  */
-void InformesMovimientos::cargarArchivoEstilo()
+QString InformesMovimientos::cargarArchivoEstilo()
 {
- QString nombre;
- if( QFile::exists( QApplication::applicationFilePath() + "/plugins/informes/estilo.css" ) )
+ QString nombre, _estilo;
+ if( QFile::exists( QApplication::applicationDirPath() + "/plugins/informes/estilo.css" ) )
  {
-  nombre = QApplication::applicationFilePath() + "/plugins/informes/estilo.css";
+  nombre = QApplication::applicationDirPath() + "/plugins/informes/estilo.css";
  }
  else
  {
-  nombre = ":/informes/estlioinforme.css";
+  qDebug( QString( "archivo %1 no encontrado" ).arg( QApplication::applicationDirPath() + "/plugins/informes/estilo.css" ).toLocal8Bit() );
+  nombre = ":/informes/estiloinforme.css";
  }
  archivoEstilo = new QFile( nombre );
  if( !archivoEstilo->open( QIODevice::ReadOnly ) )
  {
-  qDebug( "Error al abrir el archivo de estilo" );
-  return;
+  qDebug( QString( "Error al abrir el archivo de estilo: %1" ).arg( nombre ).toLocal8Bit() );
+  return "";
  }
  _estilo = archivoEstilo->readAll();
  archivoEstilo->close();
  delete( archivoEstilo );
  archivoEstilo = 0;
+ return _estilo;
 }

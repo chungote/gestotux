@@ -95,6 +95,7 @@ Ebackup::~Ebackup()
 void Ebackup::iniciar()
 {
  emit cambiarDetener( true );
+ _continuar = true;
  QSqlQuery cola( "DELETE FROM ventas WHERE id IN ( SELECT id FROM ventas WHERE id NOT IN ( SELECT id_venta FROM ventas_productos ) )" );
  if( !ChBBaseDatos->isChecked() && !ChBConfirugacion->isChecked() )
  {

@@ -43,7 +43,7 @@ public:
     double version() const;
     void crearMenu(QMenu* m);
     void informePorFecha();
-    void cargarArchivoEstilo();
+    QString cargarArchivoEstilo();
 private:
        /*!
         * Accion para el menu de informes
@@ -53,10 +53,6 @@ private:
 	* Puntero al archivo de estilo usado
 	*/
 	QFile *archivoEstilo;
-       /*!
-	* Cadena que contiene el estilo aplicado actualmente
-	*/
-	QString _estilo;
 
 public slots:
 	void informeCompleto();

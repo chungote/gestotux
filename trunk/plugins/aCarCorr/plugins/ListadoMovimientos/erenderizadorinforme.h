@@ -29,6 +29,7 @@ class QProgressDialog;
 #include <QDate>
 #include <QPair>
 class QPrinter;
+class QTextCursor;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
@@ -38,16 +39,16 @@ class ERenderizadorInforme : public QObject
 public:
     ERenderizadorInforme( QObject *padre = 0);
     ~ERenderizadorInforme();
-    void setDocumento( QTextDocument *doc );
-    void setPropiedades( FormFiltro *f );
-    void hacerInforme();
-    void hacerCabecera();
+    void setPropiedades( FormFiltro *f, QString estilo );
+    bool hacerInforme();
+    void hacerCabecera( QString tri = 0 );
     void setarCabeceraFiltros();
     void generarCola();
     void generarCabeceraTabla();
     void colocarContenido();
-    QTextDocument * documento() const;
     void cerrarDialogo();
+    QStringList buscarTris();
+    void generarCola( QString tri = 0 );
 
 private:
     QTextDocument *_doc;
@@ -58,7 +59,9 @@ private:
 	QSqlQuery cola;
 	QTextTable *tabla;
 	QDate _fecha;
+	QString _estilo;
 
+	QTextCursor *cursor;
 public slots:
     void imprimir( QPrinter *impresora );
 };

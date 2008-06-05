@@ -24,14 +24,12 @@ DESTDIR = ../../../../bin/plugins/informes
 HEADERS += informesmovimientos.h \
  formfiltro.h \
  erenderizadorinforme.h \
- einforme.h \
  ../../mcategoria.h \
  ../../mestablecimiento.h
 
 SOURCES += informesmovimientos.cpp \
  formfiltro.cpp \
  erenderizadorinforme.cpp \
- einforme.cpp \
  ../../mcategoria.cpp \
  ../../mestablecimiento.cpp
 
@@ -54,4 +52,6 @@ CONFIG -= release
 LIBS += ../../../../bin/libutiles.a
 
 TARGETDEPS += ../../../../bin/libutiles.a
+
+INCLUDEPATH += ../../../../utiles
 
