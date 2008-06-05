@@ -32,46 +32,55 @@ EVisorInformes::EVisorInformes(QWidget *parent)
  addAction(ActCerrar);
 
  EActImprimir *ActImprimir = new EActImprimir( this );
+ ActImprimir->setStatusTip( "Imprime el reporte actual" );
  connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( print() ) );
  addAction(ActImprimir);
 
  QAction *ActPrimera = new QAction( this );
  ActPrimera->setIcon( QIcon( ":/imagenes/primera.png" ) );
+ ActPrimera->setStatusTip( "Salta a la primer pagina" );
  connect( ActPrimera, SIGNAL( triggered() ), this, SLOT( primerPagina() ) );
  addAction( ActPrimera );
 
  QAction *ActAnterior = new QAction( "", this );
  ActAnterior->setIcon( QIcon( ":/imagenes/anterior.png" ) );
+ ActAnterior->setStatusTip( "Salta a la pagina anterior" );
  connect( ActAnterior, SIGNAL( triggered() ), this, SLOT( anterior() ) );
  addAction( ActAnterior );
 
  QAction *ActSiguiente = new QAction( this );
  ActSiguiente->setIcon( QIcon( ":/imagenes/siguiente.png" ) );
+ ActSiguiente->setStatusTip( "Salta a la pagina siguiente" );
  connect( ActSiguiente, SIGNAL( triggered() ), this, SLOT( siguiente() ) );
  addAction( ActSiguiente );
 
  QAction *ActUltima = new QAction( this );
  ActUltima->setIcon( QIcon( ":/imagenes/ultima.png" ) );
+ ActUltima->setStatusTip( "Salta a la ultima hoja" );
  connect( ActUltima, SIGNAL( triggered() ), this, SLOT( ultimaPagina() ) );
  addAction( ActUltima );
 
  QAction *ActAgrandar = new QAction( this );
  ActAgrandar->setIcon( QIcon( ":/imagenes/agrandar.png" ) );
+ ActAgrandar->setStatusTip( "Aumenta el zoom" );
  connect( ActAgrandar, SIGNAL( triggered() ), this, SLOT( zoomIn() ) );
  addAction( ActAgrandar );
 
  QAction *ActAchicar = new QAction( this );
  ActAchicar->setIcon( QIcon( ":/imagenes/achicar.png" ) );
+ ActAchicar->setStatusTip( "Disminuye el zoom" );
  connect( ActAchicar, SIGNAL( triggered() ), this, SLOT( zoomOut() ) );
  addAction( ActAchicar );
 
  QAction *ActAjustarAncho = new QAction( this );
- ActAjustarAncho->setIcon( QIcon( ":/imagenes/ajustarahcno.png" ) );
+ ActAjustarAncho->setIcon( QIcon( ":/imagenes/ajustarancho.png" ) );
+ ActAjustarAncho->setStatusTip( "Ajusta el zoom para que se vea todo el ancho de la hoja" );
  connect( ActAjustarAncho, SIGNAL(triggered()), this, SLOT( fitToWidth() ) );
  addAction( ActAjustarAncho );
 
  QAction *ActAjustarHoja = new QAction( this );
  ActAjustarHoja->setIcon( QIcon(":/imagenes/ajustarpagina.png") );
+ ActAjustarHoja->setStatusTip( "Ajusta el zomm para que la hoja entre en la ventana" );
  connect( ActAjustarHoja, SIGNAL( triggered() ), this, SLOT( fitInView() ) );
  addAction( ActAjustarHoja );
 }
@@ -89,7 +98,7 @@ EVisorInformes::~EVisorInformes()
  */
 void EVisorInformes::primerPagina()
 {
- this->setCurrentPage( 0 );
+ this->setCurrentPage( 1 );
 }
 
 

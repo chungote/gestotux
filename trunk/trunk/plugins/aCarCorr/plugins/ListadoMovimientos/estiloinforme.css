@@ -1,26 +1,35 @@
+
+
 h1 {
-    color : black;
     font-size : 20px;
     font-style : italic;
     font-weight : bold;
     text-align : center;
     text-decoration : underline;
-    text-transform : uppercase;
   }
 
 
 table {
-    background-color : #e5e5e5;
-    border-color : #111111;
-    border-style : dotted;
+    border: none;
+  }
+
+
+p {
+    font-size : 12px;
+    font-weight : bold;
     text-align : center;
   }
 
 
-td {
-    font-size : 12px;
-    font-style : italic;
-    font-variant : small-caps;
-    font-weight : bold;
-    text-align: center;
+h3 {
+    font : small-caption;
   }
+
+
+thead {
+    background-color : #c7c7c7;
+    border-color : #000000;
+    border-style : dotted;
+    border-width : 1px;
+  }
+
