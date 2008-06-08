@@ -57,11 +57,13 @@ QString AdminCarCorr::nombre() const
 }
 
 #include "formprefcaravanas.h"
+#include "formprefinformes.h"
 
 QWidgetList AdminCarCorr::formsPreferencias()
 {
  QWidgetList lista;
  lista.append( new FormPrefCaravanas() );
+ lista.append( new FormPrefInformes() );
  return lista;
 }
 

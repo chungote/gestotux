@@ -22,11 +22,12 @@
 
 #include "ui_FPrefRecibos.h"
 #include "formprefhijo.h"
+#include "eventana.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class FPrefRecibos : public FormPrefHijo, Ui_FPrefRecibosBase
+class FPrefRecibos : public EVentana, public FormPrefHijo, public Ui_FPrefRecibosBase
 {
 Q_OBJECT
 public:

@@ -23,6 +23,7 @@
 
 #include "formprefhijo.h"
 #include "ui_FPrefGeneral.h"
+#include "eventana.h"
 
 /*!
  *	\brief Clase que maneja las preferencias de estilo e inicializacion
@@ -32,10 +33,9 @@
  *	@author Esteban Zeller <tranfuga_25s@hotmail.com>
  */
 
-class FPrefGeneral : public FormPrefHijo, private Ui::FPrefGeneralBase
+class FPrefGeneral : public EVentana, public FormPrefHijo, private Ui::FPrefGeneralBase
 {
   Q_OBJECT
-
 public:
   FPrefGeneral( QWidget* parent = 0 );
   ~FPrefGeneral();

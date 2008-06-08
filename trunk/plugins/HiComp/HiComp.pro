@@ -1,7 +1,6 @@
 TEMPLATE = lib
 CONFIG += plugin \
-		debug \
- staticlib
+ dll
 TARGET = hicomp
 
 HEADERS += hicomp.h \
@@ -51,7 +50,7 @@ linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
-}CONFIG -= release
+}
 
 INCLUDEPATH += ../../utiles
 

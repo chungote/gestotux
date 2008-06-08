@@ -27,10 +27,10 @@
 #include <QPrinter>
 #include <QSqlRecord>
 #include <QMessageBox>
-#include "../../utiles/preferencias.h"
+#include "preferencias.h"
 
 FPrefRecibos::FPrefRecibos(QWidget *parent)
- : FormPrefHijo( parent ),Ui_FPrefRecibosBase()
+ : EVentana( parent ), Ui_FPrefRecibosBase()
 {
  setupUi(this);
  setWindowTitle( "Recibos" );
@@ -51,8 +51,6 @@ void FPrefRecibos::aplicar()
 void FPrefRecibos::guardar()
 {
   QSettings *p = preferencias::getInstancia();
-  p->setValue( "preferencias/recibos/tam", CBTam->currentIndex() );
-  p->setValue( "preferencias/recibos/orientacion", CBOrientacion->currentIndex() );
   p->setValue( "preferencias/recibos/margen", dSBMargen->value() );
   p->setValue( "preferencias/recibos/tienetexto", GBPagoMes->isChecked() );
   p->setValue( "preferencias/recibos/textopagomes", LETextoPagoMes->text() );
@@ -78,15 +76,6 @@ void FPrefRecibos::cargar()
   }
 
   QSettings *p = preferencias::getInstancia();
-  // Tamaño de las hojas
-  CBTam->addItem( "A4", QPrinter::A4 );
-  CBTam->setCurrentIndex( p->value( "preferencias/recibos/tam", QPrinter::A4 ).toInt() );
-
-  // Orientacion
-  CBOrientacion->addItem( "Vertical", QPrinter::Portrait );
-  CBOrientacion->addItem( "Horizontal", QPrinter::Landscape );
-  CBOrientacion->setCurrentIndex( p->value( "preferencias/recibos/orientacion", QPrinter::Landscape ).toInt() );
-
   // Margen
   dSBMargen->setValue( p->value( "preferencias/recibos/margen", 15 ).toDouble() );
   dSBMargen->setMinimum( 0 );

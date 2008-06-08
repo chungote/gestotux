@@ -69,3 +69,5 @@ INCLUDEPATH += ../utiles
 
 RESOURCES += gestotux.qrc
 
+TRANSLATIONS += gestotux.ts
+

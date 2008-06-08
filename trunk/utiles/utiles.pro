@@ -12,8 +12,7 @@ eactimprimir.cpp \
  eventana.cpp \
  evlista.cpp \
  preferencias.cpp \
- evisorinformes.cpp \
- formprefhijo.cpp
+ evisorinformes.cpp
 
 QT += sql
 

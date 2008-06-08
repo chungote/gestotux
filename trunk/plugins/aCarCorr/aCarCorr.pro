@@ -30,7 +30,9 @@ HEADERS += admincarcorr.h \
  formmodificartri.h \
  formprefcaravanas.h \
  mprefcategorias.h \
- evlista.h
+ evlista.h \
+ formprefinformes.h \
+ einformeimpresora.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -49,7 +51,9 @@ SOURCES += admincarcorr.cpp \
  formmodificartri.cpp \
  formprefcaravanas.cpp \
  mprefcategorias.cpp \
- evlista.cpp
+ evlista.cpp \
+ formprefinformes.cpp \
+ einformeimpresora.cpp
 
 TARGET = admincaravanascorrientes
 
@@ -58,7 +62,8 @@ DESTDIR = ../../bin/plugins
 RESOURCES += aCarCorr.qrc
 
 FORMS += FormMovimientoBase.ui \
- FormPrefCaravanas.ui
+ FormPrefCaravanas.ui \
+ qpagesetupwidget.ui
 
 win32 {
     CONFIG += release

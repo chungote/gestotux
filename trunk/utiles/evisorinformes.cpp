@@ -83,6 +83,11 @@ EVisorInformes::EVisorInformes(QWidget *parent)
  ActAjustarHoja->setStatusTip( "Ajusta el zomm para que la hoja entre en la ventana" );
  connect( ActAjustarHoja, SIGNAL( triggered() ), this, SLOT( fitInView() ) );
  addAction( ActAjustarHoja );
+
+ QAction *ActAjustarOpuestas = new QAction( this );
+ ActAjustarOpuestas->setIcon( QIcon( ":/imagenes/ajustaropuestas.png" ) );
+ connect( ActAjustarOpuestas, SIGNAL( triggered() ), this, SLOT( setFacingPagesViewMode() ) );
+ addAction( ActAjustarOpuestas );
 }
 
 

@@ -102,57 +102,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_3" >
-     <property name="title" >
-      <string>Tipo de Hoja</string>
-     </property>
-     <layout class="QVBoxLayout" >
-      <item>
-       <layout class="QHBoxLayout" >
-        <item>
-         <widget class="QLabel" name="label_5" >
-          <property name="text" >
-           <string>Tamaño de Hoja:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="CBTam" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" >
-        <item>
-         <widget class="QLabel" name="label_6" >
-          <property name="text" >
-           <string>Orientacion:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="CBOrientacion" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="GBPagoMes" >
      <property name="title" >
       <string>Pago de Mes</string>

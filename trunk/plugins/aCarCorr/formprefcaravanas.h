@@ -22,12 +22,16 @@
 
 #include "formprefhijo.h"
 #include "ui_FormPrefCaravanas.h"
+#include "eventana.h"
 class MPrefCategorias;
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class FormPrefCaravanas : public FormPrefHijo, public Ui::FormPrefCaravanas
+ * \brief Formulario de configuracion de categorias especificas
+ *
+ * Formulario que permite definir las categorias especificas de caravanas que no tienen numero de caravanas
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
+class FormPrefCaravanas : public EVentana, public FormPrefHijo, public Ui::FormPrefCaravanas
 {
 Q_OBJECT
 public:
