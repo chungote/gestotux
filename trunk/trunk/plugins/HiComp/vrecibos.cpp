@@ -107,7 +107,7 @@ VRecibos::VRecibos( QWidget *parent )
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 /*
  ///@todo Arreglar esto!
- d = new QToolBar( this ); 
+ d = new QToolBar( this );
  d->setObjectName( "dockFiltroClientes" );
  FiltroClientes *f = new FiltroClientes( this );
  d->addWidget( f );

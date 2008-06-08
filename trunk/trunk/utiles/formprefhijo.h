@@ -19,18 +19,16 @@
  ***************************************************************************/
 #ifndef FORMPREFHIJO_H
 #define FORMPREFHIJO_H
-
-#include <QWidget>
-
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class FormPrefHijo : public QWidget
+ * \brief Interfaz para los forms de configuracion
+ *
+ * Interfaz que contiene los metodos necesrios y basicos para que un formulario pueda ser usado en el
+ * cuadro de configuraciones
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
+class FormPrefHijo
 {
-Q_OBJECT
 public:
-    FormPrefHijo(QWidget *parent = 0);
-    ~FormPrefHijo();
     virtual void aplicar() = 0;
     virtual void cargar() = 0;
     virtual void guardar() = 0;

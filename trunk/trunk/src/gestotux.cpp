@@ -59,7 +59,7 @@ gestotux::gestotux()
 }
 
 void gestotux::inicializar()
-{ 
+{
  cargarPlugins();
 
  setCentralWidget( formCen() );
@@ -72,7 +72,7 @@ void gestotux::inicializar()
  bandeja_sistema();
 
 preferencias *p = preferencias::getInstancia();
-//p->inicio();
+p->inicio();
 p->beginGroup( "ventanaPrincipal" );
 this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
 p->endGroup();
@@ -328,7 +328,7 @@ bool gestotux::cargarPlugins()
      }
  #endif
      pluginsDir.cd("plugins");
-	
+
 	_plugins = new QHash<QString, EPlugin *>();
         QStringList filtro;
 #ifdef Q_WS_WIN32

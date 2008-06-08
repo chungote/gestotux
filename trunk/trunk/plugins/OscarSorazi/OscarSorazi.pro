@@ -31,7 +31,8 @@ SOURCES += ../aCarCorr/emovimiento.cpp \
  oscar.cpp \
  ../aCarCorr/evlista.cpp \
  mduenos.cpp \
- vduenos.cpp
+ vduenos.cpp \
+ formprefinformes.cpp
 HEADERS += ../aCarCorr/einformeinterface.h \
 ../aCarCorr/emovimiento.h \
 ../aCarCorr/formagregar.h \
@@ -54,7 +55,8 @@ HEADERS += ../aCarCorr/einformeinterface.h \
  ../../src/eplugin.h \
  ../aCarCorr/evlista.h \
  mduenos.h \
- vduenos.h
+ vduenos.h \
+ formprefinformes.h
 
 FORMS += ../aCarCorr/FormMovimientoBase.ui \
 ../aCarCorr/FormPrefCaravanas.ui

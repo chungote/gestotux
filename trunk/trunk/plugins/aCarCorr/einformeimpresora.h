@@ -1,4 +1,4 @@
- /***************************************************************************
+/***************************************************************************
  *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
@@ -17,40 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "formprefcaravanas.h"
+#ifndef EINFORMEIMPRESORA_H
+#define EINFORMEIMPRESORA_H
 
-#include "mprefcategorias.h"
+#include <QPrinter>
 
-FormPrefCaravanas::FormPrefCaravanas(QWidget *parent)
- : EVentana(parent), Ui::FormPrefCaravanas()
+/**
+\brief Clase de impresora de informes
+
+Clase que permite que se pueda usar el formulario de configuracion de impresora para informes cada vez.
+Como mecesita una impresora en el constructor, en este constructor se inicializa una impresora con las
+caracteristicas de las preferencias para el formulario. Tambien se usara en la impresion y el formulario
+de previsualizacion.
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class EInformeImpresora : public QPrinter
 {
- setupUi(this);
+public:
+    EInformeImpresora();
 
- this->setWindowTitle( "Caravanas" );
- this->setWindowIcon( QIcon( ":/imagenes/caravana.png" ) );
-}
+    ~EInformeImpresora();
+    void guardar();
 
+};
 
-FormPrefCaravanas::~FormPrefCaravanas()
-{
-}
-
-void FormPrefCaravanas::cargar()
-{
-  // Inicializo el modelo
- modelo = new MPrefCategorias( this );
- TVCategorias->setModel( modelo );
- TVCategorias->hideColumn( 0 );
- modelo->select();
-}
-
-
-void FormPrefCaravanas::guardar()
-{
- modelo->submitAll();
-}
-
-void FormPrefCaravanas::aplicar()
-{
- modelo->submitAll();
-}
+#endif

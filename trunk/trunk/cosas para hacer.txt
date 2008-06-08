@@ -1,11 +1,14 @@
 - Al poner agregar, que quede autoeditando el que se agrego
-- Hacer que se tomen en serio el tamaño de hoja de las preferencias
-- Obtener la lista de tamaños de hojas para cuando estes en wondows
 - Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
 - Añadir posibilidad de restaurar backup
 - Añadir la verificacion de las tablas para cada plugin
 - Agregar el ex sistema de ayuda
-- Verificar el sistema de copia de seguridad, porque no funca despues de usar las acciones de agregar
+
+Administracion Caravanas Corrientes:
+============== ========= ===========
+
+- Verificar que cuando se cambia una categoria a no especial, no existan movimientos especiales en esa categoria
+
 
 ====================================================================================================
 A Largo plazo:

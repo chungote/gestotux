@@ -21,7 +21,6 @@
 
 preferencias *preferencias::instance = 0;
 
-
 /*!
   \fn preferencias::getInstancia()
   Devuleve un puntero al objeto que mantiene las preferencias de la aplicación

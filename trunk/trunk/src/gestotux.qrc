@@ -41,6 +41,7 @@
 	<file>imagenes/ultima.png</file>
 	<file>imagenes/ajustarancho.png</file>
 	<file>imagenes/ajustarpagina.png</file>
+	<file>imagenes/ajustaropuestas.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>tablas.sql</file>

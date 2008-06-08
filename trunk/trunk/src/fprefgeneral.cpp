@@ -28,7 +28,7 @@
 #include "fprefgeneral.h"
 
 FPrefGeneral::FPrefGeneral( QWidget* parent )
-: FormPrefHijo( parent ), Ui::FPrefGeneralBase()
+: EVentana( parent ), Ui::FPrefGeneralBase()
 {
 	setupUi(this);
  	this->setAttribute( Qt::WA_DeleteOnClose );

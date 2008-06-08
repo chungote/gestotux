@@ -1,7 +1,6 @@
 TEMPLATE = lib
-CONFIG += plugin
-CONFIG += debug \
- staticlib
+CONFIG += plugin \
+ dll
 QT = gui \
 	core \
 	svg \
@@ -35,10 +34,6 @@ FORMS += FormPresupuestoBase.ui \
 TARGET = presupuesto
 DESTDIR = ../../bin/plugins
 RESOURCES += presupuesto.qrc
-
-CONFIG -= release
-
-
 LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
