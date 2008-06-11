@@ -17,63 +17,25 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "formprefinformes.h"
-#include "einformeimpresora.h"
-#include "preferencias.h"
-#include <QIcon>
+#ifndef EDCATEGORIAESPECIAL_H
+#define EDCATEGORIAESPECIAL_H
 
-FormPrefInformes::FormPrefInformes(QWidget *parent)
- : QPageSetupDialog( new EInformeImpresora(), parent )
-{
- this->setWindowTitle( "Informes" );
- this->setWindowIcon( QIcon( ":/imagenes/impresora.png" ) );
-}
+#include <QSqlRelationalDelegate>
 
-
-FormPrefInformes::~FormPrefInformes()
-{
-}
-
-
-void FormPrefInformes::cargar()
-{
- // El fomulario ya esta cargado
-}
-
-void FormPrefInformes::aplicar()
-{
- // no hago nada
-}
-
-void FormPrefInformes::guardar()
-{
- qWarning( "Echo" );
- static_cast<EInformeImpresora *>(this->printer())->guardar();
-}
-
-
-/*!
-    \fn FormPrefInformes::accept()
+/**
+ * \brief Delegate de categorias especiales
+ *
+ * Delegate que permite activar una categoria como especial pero no volverla a normal... :P
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-void FormPrefInformes::accept()
+class EDCategoriaEspecial : public QSqlRelationalDelegate
 {
- guardar();
-}
+Q_OBJECT
+public:
+    EDCategoriaEspecial(QWidget *parent = 0);
 
+    ~EDCategoriaEspecial();
 
-/*!
-    \fn FormPrefInformes::done( int r )
- */
-void FormPrefInformes::done( int r )
-{
- qWarning( "Echo" );
-}
+};
 
-
-/*!
-    \fn FormPrefInformes::reject()
- */
-void FormPrefInformes::reject()
-{
- // no hago nada para que no se cierre el dialogo
-}
+#endif

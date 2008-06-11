@@ -60,11 +60,12 @@ void FPrefRecibos::guardar()
 void FPrefRecibos::cargar()
 {
   // Busco el ultimo numero de recibo
-  QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
-  if( cola.next() )
+  QSqlQuery *cola = new QSqlQuery();
+  cola->exec( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
+  if( cola->next() )
   {
-   LNumeroActual->setText( cola.record().value( "seq" ).toString() );
-   sBNuevoNumero->setMinimum( cola.record().value( "seq" ).toInt() );
+   LNumeroActual->setText( cola->record().value( "seq" ).toString() );
+   sBNuevoNumero->setMinimum( cola->record().value( "seq" ).toInt() );
    connect( PBSetear, SIGNAL( clicked() ), this, SLOT( setear() ) );
   }
   else
@@ -74,6 +75,7 @@ void FPrefRecibos::cargar()
     sBNuevoNumero->setEnabled( false );
     PBSetear->setEnabled( false );
   }
+  delete cola;
 
   QSettings *p = preferencias::getInstancia();
   // Margen

@@ -36,7 +36,6 @@ class EInformeImpresora : public QPrinter
 {
 public:
     EInformeImpresora();
-
     ~EInformeImpresora();
     void guardar();
 

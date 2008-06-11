@@ -25,13 +25,15 @@ HEADERS += informesmovimientos.h \
  formfiltro.h \
  erenderizadorinforme.h \
  ../../mcategoria.h \
- ../../mestablecimiento.h
+ ../../mestablecimiento.h \
+ ../../einformeimpresora.h
 
 SOURCES += informesmovimientos.cpp \
  formfiltro.cpp \
  erenderizadorinforme.cpp \
  ../../mcategoria.cpp \
- ../../mestablecimiento.cpp
+ ../../mestablecimiento.cpp \
+ ../../einformeimpresora.cpp
 
 
 FORMS += FormFiltrosBase.ui
@@ -53,5 +55,7 @@ LIBS += ../../../../bin/libutiles.a
 
 TARGETDEPS += ../../../../bin/libutiles.a
 
-INCLUDEPATH += ../../../../utiles
+
+INCLUDEPATH += ../.. \
+  ../../../../utiles
 

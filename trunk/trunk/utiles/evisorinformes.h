@@ -21,6 +21,7 @@
 #define EVISORINFORMES_H
 
 #include <QPrintPreviewWidget>
+#include <QPrinterInfo>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -29,7 +30,7 @@ class EVisorInformes : public QPrintPreviewWidget
 {
 Q_OBJECT
 public:
-    EVisorInformes(QWidget *parent = 0);
+    EVisorInformes(QPrinter *impre = new QPrinter( QPrinterInfo::defaultPrinter() ), QWidget *parent = 0);
     ~EVisorInformes();
 signals:
 	void agregarVentana( QWidget * );
@@ -38,6 +39,10 @@ protected slots:
     void anterior();
     void ultimaPagina();
     void siguiente();
+    void imprimir();
+    void aPdf();
+private:
+	QPrinter *impresora;
 };
 
 #endif

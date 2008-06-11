@@ -20,6 +20,7 @@
 #include "formprefcaravanas.h"
 
 #include "mprefcategorias.h"
+#include "edcategoriaespecial.h"
 
 FormPrefCaravanas::FormPrefCaravanas(QWidget *parent)
  : EVentana(parent), Ui::FormPrefCaravanas()
@@ -41,6 +42,7 @@ void FormPrefCaravanas::cargar()
  modelo = new MPrefCategorias( this );
  TVCategorias->setModel( modelo );
  TVCategorias->hideColumn( 0 );
+ TVCategorias->setItemDelegate( new EDCategoriaEspecial( TVCategorias ) );
  modelo->select();
 }
 

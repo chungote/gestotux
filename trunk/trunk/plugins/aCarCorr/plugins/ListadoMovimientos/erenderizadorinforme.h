@@ -39,28 +39,22 @@ class ERenderizadorInforme : public QObject
 public:
     ERenderizadorInforme( QObject *padre = 0);
     ~ERenderizadorInforme();
-    void setPropiedades( FormFiltro *f, QString estilo );
+    void setPropiedades( FormFiltro *f, QString estilo, QString cabecera );
     bool hacerInforme();
     void hacerCabecera( QString tri = 0 );
-    void setarCabeceraFiltros();
-    void generarCola();
-    void generarCabeceraTabla();
-    void colocarContenido();
+    void colocarContenido( QString tri = 0 );
     void cerrarDialogo();
     QStringList buscarTris();
-    void generarCola( QString tri = 0 );
 
 private:
-    QTextDocument *_doc;
-    QProgressDialog *d;
+	QTextDocument *_doc;
+	QProgressDialog *d;
 	bool _filtra_tipo,_filtra_estab,_filtra_categoria,_filtra_fecha,_filtra_rango_fecha;
 	int _id_cat,_id_estab,_id_tipo;
 	QPair<QDate,QDate> _rango_fechas;
-	QSqlQuery cola;
 	QTextTable *tabla;
 	QDate _fecha;
-	QString _estilo;
-
+	QString _estilo,_cabecera;
 	QTextCursor *cursor;
 public slots:
     void imprimir( QPrinter *impresora );

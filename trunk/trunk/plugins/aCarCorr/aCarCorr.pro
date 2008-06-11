@@ -31,8 +31,8 @@ HEADERS += admincarcorr.h \
  formprefcaravanas.h \
  mprefcategorias.h \
  evlista.h \
- formprefinformes.h \
- einformeimpresora.h
+ einformeimpresora.h \
+ edcategoriaespecial.h
 
 SOURCES += admincarcorr.cpp \
  mcategoria.cpp \
@@ -52,8 +52,8 @@ SOURCES += admincarcorr.cpp \
  formprefcaravanas.cpp \
  mprefcategorias.cpp \
  evlista.cpp \
- formprefinformes.cpp \
- einformeimpresora.cpp
+ einformeimpresora.cpp \
+ edcategoriaespecial.cpp
 
 TARGET = admincaravanascorrientes
 

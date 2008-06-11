@@ -54,6 +54,7 @@ public:
 private:
     QList<QAction *> _acciones;
     static QSettings *_pref;
+    QWidgetList _listaFormPref;
 
 	QAction *ActEstablecimiento;
 	QAction *ActCategoria;

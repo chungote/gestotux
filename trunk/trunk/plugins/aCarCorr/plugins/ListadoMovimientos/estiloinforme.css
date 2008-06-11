@@ -1,35 +1,23 @@
-
-
 h1 {
     font-size : 20px;
-    font-style : italic;
     font-weight : bold;
-    text-align : center;
     text-decoration : underline;
   }
 
 
 table {
-    border: none;
+    border-style: none;
+    page-break-after: always;
   }
 
 
 p {
-    font-size : 12px;
-    font-weight : bold;
-    text-align : center;
+    font-size: small;
   }
-
-
-h3 {
-    font : small-caption;
-  }
-
 
 thead {
-    background-color : #c7c7c7;
-    border-color : #000000;
-    border-style : dotted;
-    border-width : 1px;
+    background: #c7c7c7;
+    font-style: italic;
+    align: center;
   }
 

@@ -19,73 +19,83 @@
  ***************************************************************************/
 #include "einformeimpresora.h"
 #include "preferencias.h"
+#include <QPrinterInfo>
 
 EInformeImpresora::EInformeImpresora()
- : QPrinter()
+ : QPrinter( QPrinterInfo::defaultPrinter())
 {
  preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "aCarCorr" );
+ p->beginGroup( "informes" );
  // Orientacion
- if( p->value( "aCarCorr/informes/orientacion", QPrinter::Landscape ).toInt() == QPrinter::Landscape )
- {
-  this->setOrientation( QPrinter::Landscape );
- }
+ if( p->value( "orientacion", QPrinter::Portrait ).toInt() == QPrinter::Landscape )
+ { this->setOrientation( QPrinter::Landscape ); }
  else
- {
-  this->setOrientation( QPrinter::Portrait );
- }
+ { this->setOrientation( QPrinter::Portrait ); }
  // Tamaño
- switch( p->value( "aCarCorr/informes/tam", QPrinter::A4 ).toInt() )
+ switch( p->value( "tam", -1 ).toInt() )
  {
 	case QPrinter::A1:
-	{this->setPageSize( QPrinter::A1 );break;}
+	{this->setPaperSize( QPrinter::A1 );break;}
 	case QPrinter::A2:
-	{this->setPageSize( QPrinter::A2 );break;}
+	{this->setPaperSize( QPrinter::A2 );break;}
 	case QPrinter::A3:
-	{this->setPageSize( QPrinter::A3 );break;}
+	{this->setPaperSize( QPrinter::A3 );break;}
 	case QPrinter::A4:
-	{this->setPageSize( QPrinter::A4 );break;}
+	{this->setPaperSize( QPrinter::A4 );break;}
 	case QPrinter::A5:
-	{this->setPageSize( QPrinter::A5 );break;}
+	{this->setPaperSize( QPrinter::A5 );break;}
 	case QPrinter::A6:
-	{this->setPageSize( QPrinter::A6 );break;}
+	{this->setPaperSize( QPrinter::A6 );break;}
 	case QPrinter::A7:
-	{this->setPageSize( QPrinter::A7 );break;}
+	{this->setPaperSize( QPrinter::A7 );break;}
 	case QPrinter::A8:
-	{this->setPageSize( QPrinter::A8 );break;}
+	{this->setPaperSize( QPrinter::A8 );break;}
 	case QPrinter::A9:
-	{this->setPageSize( QPrinter::A9 );break;}
+	{this->setPaperSize( QPrinter::A9 );break;}
+	case QPrinter::B0:
+	{this->setPaperSize( QPrinter::B0 );break;}
+	case QPrinter::B1:
+	{this->setPaperSize( QPrinter::B1 );break;}
+	case QPrinter::B2:
+	{this->setPaperSize( QPrinter::B2 );break;}
+	case QPrinter::B3:
+	{this->setPaperSize( QPrinter::B3 );break;}
+	case QPrinter::B4:
+	{this->setPaperSize( QPrinter::B4 );break;}
+	case QPrinter::B5:
+	{this->setPaperSize( QPrinter::B5 );break;}
+	case QPrinter::B6:
+	{this->setPaperSize( QPrinter::B6 );break;}
+	case QPrinter::B7:
+	{this->setPaperSize( QPrinter::B7 );break;}
+	case QPrinter::B8:
+	{this->setPaperSize( QPrinter::B8 );break;}
+	case QPrinter::B9:
+	{this->setPaperSize( QPrinter::B9 );break;}
+	case QPrinter::B10:
+	{this->setPaperSize( QPrinter::B10 );break;}
+	case QPrinter::C5E:
+	{this->setPaperSize( QPrinter::C5E );break;}
+	case QPrinter::Comm10E:
+	{this->setPaperSize( QPrinter::Comm10E );break;}
 	///@todo Terminar de poner los tamaños de hoja que faltan
 	default:
 	{
-		this->setPageSize( QPrinter::A4 );
+		this->setPaperSize( QPrinter::A4 );
+		//qWarning( "Usando hoja x default" );
 		break;
 	}
  }
  // Margenes
  qreal arriba,abajo,derecha,izquierda;
- int unidad;
- arriba    = p->value( "aCarCorr/informes/margenarriba"   , 150.0 ).toDouble();
- abajo     = p->value( "aCarCorr/informes/margenabajo"    , 150.0 ).toDouble();
- derecha   = p->value( "aCarCorr/informes/margenderecha"  , 150.0 ).toDouble();
- izquierda = p->value( "aCarCorr/informes/margenizquierda", 150.0 ).toDouble();
- unidad    = p->value( "aCarCorr/informes/unidad", QPrinter::Millimeter ).toInt();
- switch( unidad )
- {
-  case QPrinter::Millimeter:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Millimeter ); }
-  case QPrinter::DevicePixel:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::DevicePixel ); }
-  case QPrinter::Cicero:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Cicero ); }
-  case QPrinter::Didot:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Didot ); }
-  case QPrinter::Point:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Point ); }
-  case QPrinter::Inch:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Inch ); }
-  case QPrinter::Pica:
-  { this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Pica ); }
- }
+ arriba    = p->value( "margenarriba"   , 15.0 ).toDouble();
+ abajo     = p->value( "margenabajo"    , 15.0 ).toDouble();
+ derecha   = p->value( "margenderecha"  , 15.0 ).toDouble();
+ izquierda = p->value( "margenizquierda", 15.0 ).toDouble();
+ this->setPageMargins( izquierda, arriba, derecha, abajo, QPrinter::Millimeter );
+ p->endGroup();
+ p->endGroup();
 }
 
 
@@ -101,26 +111,85 @@ EInformeImpresora::~EInformeImpresora()
  */
 void EInformeImpresora::guardar()
 {
- qWarning( "Guardar" );
  preferencias *p = preferencias::getInstancia();
  // Cargar las preferencias a la impresora que las guarda el dialogo mismo
+ p->beginGroup( "aCarCorr" );
+ p->beginGroup( "informes" );
  // Orientacion
  if( this->orientation() == QPrinter::Portrait )
  {
-  p->setValue( "aCarCorr/informes/orientacion", QPrinter::Portrait );
+  p->setValue( "orientacion", QPrinter::Portrait );
  }
  else
  {
-  p->setValue( "aCarCorr/informes/orientacion", QPrinter::Landscape );
+  p->setValue( "orientacion", QPrinter::Landscape );
  }
  // Tamaño
- p->setValue( "aCarCorr/informes/tam", this->pageSize() );
+ p->setValue( "tam", paperSize() );
+ qWarning( QString( "tam: %1" ).arg( paperSize() ).toLocal8Bit() );
+ switch( this->pageSize() )
+ {
+	case QPrinter::A1:
+	{p->setValue( "tam", QPrinter::A1 );break;}
+	case QPrinter::A2:
+	{p->setValue( "tam", QPrinter::A2 );break;}
+	case QPrinter::A3:
+	{p->setValue( "tam", QPrinter::A3 );break;}
+	case QPrinter::A4:
+	{p->setValue( "tam", QPrinter::A4 );break;}
+	case QPrinter::A5:
+	{p->setValue( "tam", QPrinter::A5 );break;}
+	case QPrinter::A6:
+	{p->setValue( "tam", QPrinter::A6 );break;}
+	case QPrinter::A7:
+	{p->setValue( "tam", QPrinter::A7 );break;}
+	case QPrinter::A8:
+	{p->setValue( "tam", QPrinter::A8 );break;}
+	case QPrinter::A9:
+	{p->setValue( "tam", QPrinter::A9 );break;}
+	case QPrinter::B0:
+	{p->setValue( "tam", QPrinter::B0 );break;}
+	case QPrinter::B1:
+	{p->setValue( "tam", QPrinter::B1 );break;}
+	case QPrinter::B2:
+	{p->setValue( "tam", QPrinter::B2 );break;}
+	case QPrinter::B3:
+	{p->setValue( "tam", QPrinter::B3 );break;}
+	case QPrinter::B4:
+	{p->setValue( "tam", QPrinter::B4 );break;}
+	case QPrinter::B5:
+	{p->setValue( "tam", QPrinter::B5 );break;}
+	case QPrinter::B6:
+	{p->setValue( "tam", QPrinter::B6 );break;}
+	case QPrinter::B7:
+	{p->setValue( "tam", QPrinter::B7 );break;}
+	case QPrinter::B8:
+	{p->setValue( "tam", QPrinter::B8 );break;}
+	case QPrinter::B9:
+	{p->setValue( "tam", QPrinter::B9 );break;}
+	case QPrinter::B10:
+	{p->setValue( "tam", QPrinter::B10 );break;}
+	case QPrinter::C5E:
+	{p->setValue( "tam", QPrinter::C5E );break;}
+	case QPrinter::Comm10E:
+	{p->setValue( "tam", QPrinter::Comm10E );break;}
+	///@todo Terminar de poner los tamaños de hoja que faltan
+	default:
+	{
+		p->setValue( "tam", QPrinter::A4 );
+		qWarning( "guardando con el tamaño x default" );
+		break;
+	}
+ }
  qreal arriba, abajo, izquierda, derecha;
- Unit unidad;
- this->getPageMargins( &izquierda, &arriba, &derecha, &abajo, unidad );
- p->setValue( "aCarCorr/informes/margenarriba"   , arriba    );
- p->setValue( "aCarCorr/informes/margenabajo"    , abajo     );
- p->setValue( "aCarCorr/informes/margenderecha"  , derecha   );
- p->setValue( "aCarCorr/informes/margenizquierda", izquierda );
- p->setValue( "aCarCorr/informes/unidad", unidad );
+ this->getPageMargins( &izquierda, &arriba, &derecha, &abajo, QPrinter::Millimeter );
+ p->beginGroup( "margen" );
+ p->setValue( "arriba"   , arriba    );
+ p->setValue( "abajo"    , abajo     );
+ p->setValue( "derecha"  , derecha   );
+ p->setValue( "izquierda", izquierda );
+ p->endGroup();
+ qWarning( "Guardardado" );
+ p->endGroup();
+ p->endGroup();
 }

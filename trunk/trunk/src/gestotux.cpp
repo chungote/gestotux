@@ -72,7 +72,7 @@ void gestotux::inicializar()
  bandeja_sistema();
 
 preferencias *p = preferencias::getInstancia();
-p->inicio();
+//p->inicio();
 p->beginGroup( "ventanaPrincipal" );
 this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
 p->endGroup();

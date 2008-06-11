@@ -21,11 +21,11 @@
 #include "eactcerrar.h"
 #include "eactimprimir.h"
 
-EVisorInformes::EVisorInformes(QWidget *parent)
- : QPrintPreviewWidget(parent)
+EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
+ : QPrintPreviewWidget( impre, parent)
 {
  setAttribute( Qt::WA_DeleteOnClose );
-
+ this->impresora = impre;
  // Inicializo el formualrio y creo las acciones
  EActCerrar *ActCerrar = new EActCerrar( this );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
@@ -33,8 +33,15 @@ EVisorInformes::EVisorInformes(QWidget *parent)
 
  EActImprimir *ActImprimir = new EActImprimir( this );
  ActImprimir->setStatusTip( "Imprime el reporte actual" );
- connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( print() ) );
+ connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
  addAction(ActImprimir);
+
+ QAction *ActAPdf = new QAction( this );
+ ActAPdf->setText( "Guardar a PDF" );
+ ActAPdf->setIcon( QIcon( ":/imagenes/acroread.png" ) );
+ ActAPdf->setStatusTip( "Guarda el informe en un archivo pdf en el disco" );
+ connect( ActAPdf, SIGNAL( triggered() ), this, SLOT( aPdf() ) );
+ addAction(ActAPdf);
 
  QAction *ActPrimera = new QAction( this );
  ActPrimera->setIcon( QIcon( ":/imagenes/primera.png" ) );
@@ -131,4 +138,34 @@ void EVisorInformes::ultimaPagina()
 void EVisorInformes::siguiente()
 {
  this->setCurrentPage( this->currentPage() + 1 );
+}
+
+#include <QPrintDialog>
+/*!
+    \fn EVisorInformes::imprimir()
+ */
+void EVisorInformes::imprimir()
+{
+ QPrintDialog *dialogo = new QPrintDialog( impresora );
+ if( dialogo->exec() == QDialog::Accepted )
+ {
+	emit paintRequested( dialogo->printer() );
+  	print();
+ }
+}
+
+#include <QFileDialog>
+#include <QDir>
+/*!
+    \fn EVisorInformes::aPdf()
+ */
+void EVisorInformes::aPdf()
+{
+ this->impresora->setOutputFormat( QPrinter::PdfFormat );
+ QString nombreArchivo = QFileDialog::getSaveFileName( this, "Guardar como pdf", QDir::homePath(), "Archivos PDF (*.pdf)" );
+ if( !nombreArchivo.isEmpty() )
+ {
+  this->impresora->setOutputFileName( nombreArchivo );
+  emit paintRequested( this->impresora );
+ }
 }
