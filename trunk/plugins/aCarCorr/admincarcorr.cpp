@@ -57,20 +57,22 @@ QString AdminCarCorr::nombre() const
 }
 
 #include "formprefcaravanas.h"
-#include "formprefinformes.h"
 
 QWidgetList AdminCarCorr::formsPreferencias()
 {
- QWidgetList lista;
- lista.append( new FormPrefCaravanas() );
- lista.append( new FormPrefInformes() );
- return lista;
+ if( _listaFormPref.isEmpty() )
+ {
+  _listaFormPref.append( new FormPrefCaravanas() );
+  //_listaFormPref.append( new FormPrefInformes() );
+ }
+ return _listaFormPref;
 }
 
 bool AdminCarCorr::inicializar( QSettings* pref)
 {
  _pref = pref;
  _acciones.clear();
+ _listaFormPref.clear();
 
  ActCategoria = new QAction( "Ver Categorias", this );
  ActCategoria->setIcon( QIcon( ":/imagenes/categoria.png" ) );

@@ -34,6 +34,7 @@ VCategorias::VCategorias( QWidget *parent )
  modelo = new MCategoria(this);
  vista->setModel( modelo );
  vista->hideColumn( 0 );
+ vista->hideColumn( 2 );
  modelo->select();
 
  addAction( ActAgregar );
@@ -74,6 +75,21 @@ void VCategorias::eliminar()
 		lista2.append( vista->model()->data( vista->model()->index( indice.row(), 0 ), Qt::EditRole ).toString() );
 	}
     QSqlQuery cola;
+    // Verifico si no es especial
+    if( cola.exec( QString( "SELECT especial FROM car_categorias WHERE id_categoria IN ( %1 )" ).arg( lista2.join( "," ) ) ) )
+    {
+	if( !cola.record().value(0).toBool() )
+	{
+		QMessageBox::warning( this, "No se puede eliminar", "No se puede eliminar la categoria seleccionada, es una categoria especial" );
+		return;
+	}
+    }
+    else
+    {
+	qWarning( QString( "Error al buscar si una categoria es especial\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+	return;
+    }
+    // Verifico si tiene caravanas
     if( cola.exec( QString( "SELECT COUNT(id_tri) FROM car_tri WHERE id_categoria IN ( %1 )" ).arg( lista2.join( "," ) ) ) )
     {
 	if( cola.record().value(0).toInt() > 0 )

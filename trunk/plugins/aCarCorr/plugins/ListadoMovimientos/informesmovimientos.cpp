@@ -22,8 +22,8 @@
 #include <QAction>
 #include <QMenu>
 #include "formfiltro.h"
-#include <QStackedWidget>
 #include "erenderizadorinforme.h"
+#include "einformeimpresora.h"
 
 #include "evisorinformes.h"
 
@@ -66,18 +66,20 @@ void InformesMovimientos::informeCompleto()
  if( f->exec() == QDialog::Accepted )
  {
 	// Genero un nuevo informe
-	EVisorInformes *fa = new EVisorInformes();
+	EVisorInformes *fa = new EVisorInformes( new EInformeImpresora() );
 	// Genero los contenidos del informe
 	ERenderizadorInforme *render = new ERenderizadorInforme( this );
-	render->setPropiedades( f, cargarArchivoEstilo() );
+	render->setPropiedades( f, cargarArchivoEstilo(), cargarCabecera() );
 	// lo muestro
 	if( render->hacerInforme() )
 	{
 		connect( fa, SIGNAL( paintRequested ( QPrinter * ) ), render, SLOT( imprimir( QPrinter * ) ) );
-		render->cerrarDialogo();
 		emit agregarVentana( fa );
+		render->cerrarDialogo();
 	}
+
  }
+ delete f;
 }
 
 
@@ -108,4 +110,29 @@ QString InformesMovimientos::cargarArchivoEstilo()
  delete( archivoEstilo );
  archivoEstilo = 0;
  return _estilo;
+}
+
+
+/*!
+    \fn InformesMovimientos::cargarCabecera()
+ */
+QString  InformesMovimientos::cargarCabecera()
+{
+ QString _cabecera;
+ if( QFile::exists( QApplication::applicationDirPath() + "/plugins/informes/cabecera.html" ) )
+ {
+  archivoEstilo = new QFile( QApplication::applicationDirPath() + "/plugins/informes/cabecera.html" );
+  if( !archivoEstilo->open( QIODevice::ReadOnly ) )
+  {
+    qDebug( QString( "Error al abrir el archivo de estilo: %1" ).arg( archivoEstilo->fileName() ).toLocal8Bit() );
+    return "";
+  }
+  _cabecera = archivoEstilo->readAll();
+  archivoEstilo->close();
+  delete( archivoEstilo );
+  archivoEstilo = 0;
+  return _cabecera;
+ }
+ else
+ { return ""; }
 }

@@ -33,20 +33,19 @@ ERenderizadorInforme::ERenderizadorInforme( QObject *padre )
 : QObject( padre )
 {
  _doc = new QTextDocument( this );
- cursor = new QTextCursor( _doc );
 }
 
 
 ERenderizadorInforme::~ERenderizadorInforme()
-{
-}
+{}
 
 /*!
     \fn ERenderizadorInforme::setPropiedades( FormFiltro *f )
  */
-void ERenderizadorInforme::setPropiedades( FormFiltro *f, QString estilo )
+void ERenderizadorInforme::setPropiedades( FormFiltro *f, QString estilo, QString cabecera )
 {
  _estilo = estilo;
+ _cabecera = cabecera;
  _filtra_tipo = _filtra_categoria = _filtra_fecha = _filtra_rango_fecha = _filtra_estab = false;
  if( f->tieneTipo() )
  {
@@ -80,7 +79,7 @@ void ERenderizadorInforme::setPropiedades( FormFiltro *f, QString estilo )
  */
 bool ERenderizadorInforme::hacerInforme()
 {
- d = new QProgressDialog( 0 );
+ d = new QProgressDialog();
  d->setLabelText( "Buscando coincidencias..." );
  d->setMinimumDuration( 0 );
  QStringList tris = buscarTris();
@@ -96,15 +95,7 @@ bool ERenderizadorInforme::hacerInforme()
   // Genero la cabecera para ese tri
   d->setLabelText( "Generando cabecera" );
   hacerCabecera( tri );
-  d->setLabelText( "Buscando datos..." );
-  generarCola( tri );
-  if( cola.size() == 0 )
-  {
-   QTextCursor * cursor = new QTextCursor( _doc );
-   cursor->insertText( "\n\nNo existen resultados" );
-  }
-  generarCabeceraTabla();
-  colocarContenido();
+  colocarContenido( tri );
  }
  d->setLabelText( "Mostrando Informe.." );
  return true;
@@ -116,11 +107,14 @@ bool ERenderizadorInforme::hacerInforme()
  */
 void ERenderizadorInforme::hacerCabecera( QString tri )
 {
+ QTextCursor *cursor = new QTextCursor( _doc );
  cursor->movePosition( QTextCursor::End );
- cursor->insertHtml( "<h1>Administración de Caravanas Corrientes</h1><br />" );
+ // cargar la cabecera
+ cursor->insertHtml( _cabecera );
  // Busco los datos del tri
- QSqlQuery cola( QString("SELECT * FROM car_tri WHERE id_tri = '%1'" ).arg( tri ) );
- if( cola.next() )
+ QSqlQuery *cola = new QSqlQuery();
+ cola->exec( QString("SELECT * FROM car_tri WHERE id_tri = '%1'" ).arg( tri ) );
+ if( cola->next() )
  {
 	/*
 	nombre de la empresa arriba en grande centrado
@@ -136,244 +130,125 @@ void ERenderizadorInforme::hacerCabecera( QString tri )
 	Nro de dta
 	Nro de Guia
 	*/
-	cursor->insertText( QString( "#TRI: %1.\n" ).arg( cola.record().value( "id_tri" ).toString() ) );
-	cursor->insertText( QString( "Fecha: %1.\n" ).arg( cola.record().value( "fecha" ).toDate().toString() ) );
-	QSqlQuery colaAuxiliar;
-	colaAuxiliar.exec(  QString("SELECT nombre FROM car_categorias WHERE id_categoria = '%1'").arg( cola.record().value( "id_categoria" ).toString() ) );
-	if(colaAuxiliar.next())
+	// Numero de Tri
+	cursor->insertText( QString( "#TRI: %1.\n" ).arg( cola->record().value( "id_tri" ).toString() ) );
+	// Fecha
+	cursor->insertText( QString( "Fecha: %1.\n" ).arg( cola->record().value( "fecha" ).toDate().toString( "dd/MM/yyyy" ) ) );
+	// Categoria
+	QSqlQuery *colaAuxiliar = new QSqlQuery();
+	colaAuxiliar->exec(  QString("SELECT nombre FROM car_categorias WHERE id_categoria = '%1'").arg( cola->record().value( "id_categoria" ).toString() ) );
+	if(colaAuxiliar->next())
 	{
- 		cursor->insertText( QString( "Categoria: %1\n" ).arg( colaAuxiliar.record().value(0).toString() ) );
-	} else { qDebug( QString( "Error al ejecutar la cola de nombre de categoria: %1" ).arg( colaAuxiliar.lastError().text() ).toLocal8Bit() ); }
+ 		cursor->insertText( QString( "Categoria: %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
+	} else { qDebug( QString( "Error al ejecutar la cola de nombre de categoria: %1" ).arg( colaAuxiliar->lastError().text() ).toLocal8Bit() ); }
+	// Cantidad de Caravanas
+	colaAuxiliar->exec( QString( "SELECT COUNT(id_caravana) FROM car_carv_tri WHERE id_tri ='%1'" ).arg( tri ) );
+	if(colaAuxiliar->next())
+	{
+		cursor->insertText( QString( "Cantidad de Caravanas: %1\n" ).arg( cola->record().value(0).toInt() ) );
+	} else { qDebug( QString( "Error al ejecutar la cola de cantidad de caravanas: %1" ).arg( colaAuxiliar->lastError().text() ).toLocal8Bit() ); }
 	QString texti;
-	switch( cola.record().value( "razon" ).toInt() )
+	switch( cola->record().value( "razon" ).toInt() )
 	{
 		case venta:
 		{
 			texti = "Venta de Caravanas";
-			colaAuxiliar.exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola.record().value( "id_estab_origen" ).toInt() ) );
-			if( colaAuxiliar.next() )
+			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_origen" ).toInt() ) );
+			if( colaAuxiliar->next() )
 			{
-				cursor->insertText( QString( "Establecimiento de origen:  %1\n" ).arg( colaAuxiliar.record().value(0).toString() ) );
+				cursor->insertText( QString( "Establecimiento de origen:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
+			break;
 		}
 		case compra:
 		{
 			texti = "Ingreso de Caravanas por Compra";
-			colaAuxiliar.exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola.record().value( "id_estab_destino" ).toInt() ) );
-			if( colaAuxiliar.next() )
+			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_destino" ).toInt() ) );
+			if( colaAuxiliar->next() )
 			{
-				cursor->insertText( QString( "Establecimiento de destino:  %1\n" ).arg( colaAuxiliar.record().value(0).toString() ) );
+				cursor->insertText( QString( "Establecimiento de destino:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
+			break;
 		}
 		case mudanza:
 		{
 			texti = "Movimiento de Caravanas entre Establecimientos";
-			colaAuxiliar.exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola.record().value( "id_estab_origen" ).toInt() ) );
-			if( colaAuxiliar.next() )
+			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_origen" ).toInt() ) );
+			if( colaAuxiliar->next() )
 			{
-				cursor->insertText( QString( "Establecimiento de origen:  %1\n" ).arg( colaAuxiliar.record().value(0).toString() ) );
+				cursor->insertText( QString( "Establecimiento de origen:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
-			colaAuxiliar.exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola.record().value( "id_estab_destino" ).toInt() ) );
-			if( colaAuxiliar.next() )
+			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_destino" ).toInt() ) );
+			if( colaAuxiliar->next() )
 			{
-				cursor->insertText( QString( "Establecimiento de destino:  %1\n" ).arg( colaAuxiliar.record().value(0).toString() ) );
+				cursor->insertText( QString( "Establecimiento de destino:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
+			break;
 		}
 	}
+	delete colaAuxiliar;
 	cursor->insertText( texti + "\n" );
-	cursor->insertText( QString( "#DTA: %1\n" ).arg( cola.record().value( "dta" ).toString() ) );
-	if( !cola.record().value("guia").toString().isEmpty() )
-	{ cursor->insertText( QString( "#Guia: %1\n" ).arg( cola.record().value( "guia" ).toString() ) ); }
+	cursor->insertText( QString( "#DTA: %1\n" ).arg( cola->record().value( "dta" ).toString() ) );
+	if( !cola->record().value("guia").toString().isEmpty() )
+	{ cursor->insertText( QString( "#Guia: %1\n" ).arg( cola->record().value( "guia" ).toString() ) ); }
  }
  else
  {
   qDebug( "Error al seleccionar el tipo de movimiento" );
-  qDebug( cola.lastError().text().toLocal8Bit() );
-  return;
+  qDebug( cola->lastError().text().toLocal8Bit() );
  }
+ delete cursor;
+ delete cola;
  // listo
 }
 
-
-/*!
-    \fn ERenderizadorInforme::setarCabeceraFiltros()
- */
-void ERenderizadorInforme::setarCabeceraFiltros()
+void ERenderizadorInforme::colocarContenido( QString tri )
 {
- cursor->movePosition( QTextCursor::End );
- if( _filtra_estab )
+ if( tri == 0 )
  {
-  QSqlQuery cola( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( _id_estab ) );
-  if( !cola.next() )
-  {
-   qWarning( "Error al buscar el nombre del establecimiento" );
-  }
-  else
-  {
-   cursor->insertHtml( QString( "Establecimiento: %1" ).arg( cola.record().value(0).toString() ).prepend( "<h3>" ).append( "</h3><br />" ) );
-  }
- }
- if( _filtra_categoria )
- {
-  QSqlQuery cola( QString("SELECT nombre FROM car_categorias WHERE id_categoria = '%1'").arg( _id_cat ) );
-  if( !cola.next() )
-  {
-   qWarning( "Error al buscar el nombre de la categoria" );
-  }
-  else
-  {
-   cursor->insertHtml( QString( "Categoria: %1" ).arg( cola.record().value(0).toString() ).prepend( "<h3>" ).append( "</h3><br />" ) );
-  }
- }
- if( _filtra_tipo )
- {
-  QString texti;
-  switch( _id_tipo )
-  {
-	case stock:
-	{
-	 texti = "Ingreso de Caravanas por Stock";
-	 break;
-	}
-	case compra:
-	{
-	 texti = "Ingreso de Caravanas por Compra";
-	 break;
-	}
-	case venta:
-	{
-	 texti = "Venta de Caravanas";
-	 break;
-	}
-	case mudanza:
-	{
-	 texti = "Movimiento de Caravanas entre Establecimientos";
-	 break;
-	}
-	default:
-	{
-	 texti = "Desconocido";
-	 break;
-	}
-  }
-  cursor->insertHtml( "<h3>" + texti + "</h3><br />" );
- }
- if( _filtra_fecha )
- {
-  cursor->insertHtml( QString( "Fecha: %1" ).arg( _fecha.toString( "dd/MM/yyyy" ) ).prepend( "<h3>" ).append( "</h3><br />" ) );
- }
- if( _filtra_rango_fecha )
- {
-  cursor->insertHtml( QString( "Entre %1 y %2" ).arg( _rango_fechas.first.toString( "dd/MM/yyy" ) ).arg( _rango_fechas.second.toString( "dd/MM/yyy" ) ).prepend( "<h3>" ).append( "</h3><br />" ) );
- }
-}
-
-
-void ERenderizadorInforme::generarCabeceraTabla()
-{
- // Genero la tabla
- cursor->movePosition( QTextCursor::End );
- tabla = cursor->insertTable( 1, 2 );
- tabla->format().setHeaderRowCount(1);
- tabla->cellAt( 0,0 ).firstCursorPosition().insertHtml( "#Num" );
- tabla->cellAt( 0,1 ).firstCursorPosition().insertHtml( "#Caravana" );
-}
-
-
-void ERenderizadorInforme::colocarContenido()
-{
- if( !cola.isActive() )
- {
-  qCritical( "La cola esta inactiva" );
+  qDebug( "Error, tri == 0" );
   return;
  }
- d->setLabelText( "Generando informe" );
- d->setRange( 0, cola.size() );
- while( cola.next() )
+ QTextCursor *cursor = new QTextCursor( _doc );
+ d->setLabelText( "Buscando los datos.." );
+ QSqlQuery *cola = new QSqlQuery();
+ cola->exec( QString( "SELECT codigo FROM car_caravana WHERE id_caravana IN ( SELECT id_caravana FROM car_carv_tri WHERE id_tri = '%1' )" ).arg( tri ) );
+ if( cola->size() == 0 )
  {
-  int pos = tabla->rows();
-  tabla->insertRows( pos, 1 );
-  tabla->cellAt( pos, 0 ).firstCursorPosition().insertHtml( QString( "%L1" ).arg( pos ) );
-  tabla->cellAt( pos, 1 ).firstCursorPosition().insertHtml( cola.record().value(0).toString() );
-  d->setValue( d->value() + 1 );
- }
-}
-
-
-/*!
-    \fn ERenderizadorInforme::generarCola()
- */
-void ERenderizadorInforme::generarCola()
-{
- QString where;bool filtra_algo = false;
- if( _filtra_categoria )
- {
-  if( !where.isEmpty() )
-  {
-    where += " AND ";
-  }
-  where += QString("t.id_categoria = '%1'").arg( _id_cat );
-  filtra_algo = true;
- }
- if( _filtra_tipo )
- {
-  if( !where.isEmpty() )
-  {
-    where += " AND ";
-  }
-  where += QString("t.razon = '%1'").arg( _id_tipo );
-  filtra_algo = true;
- }
- if( _filtra_estab )
- {
-  if( !where.isEmpty() )
-  {
-    where += " AND ";
-  }
-  where += QString( " t.id_tri IN ( SELECT id_tri FROM car_tri WHERE ( id_estab_origen = '%1' OR id_estab_destino = '%1' ) )" ).arg( _id_estab );
-  filtra_algo = true;
- }
- if( _filtra_fecha )
- {
-  if( !where.isEmpty() )
-  {
-   where += " AND ";
-  }
-  where += QString( " t.fecha = '%1' " ).arg( _fecha.toString(Qt::ISODate) );
-  filtra_algo = true;
- }
- if( _filtra_rango_fecha )
- {
-  if( !where.isEmpty() )
-  {
-   where += " AND ";
-  }
-  where += QString( " t.fecha BETWEEN( '%1', '%2' )  " ).arg( _rango_fechas.first.toString(Qt::ISODate) ).arg( _rango_fechas.second.toString(Qt::ISODate) );
-  filtra_algo = true;
- }
- if( filtra_algo )
- {
-  where.prepend( "WHERE " );
- }
- if( cola.exec( QString( "SELECT c.codigo FROM car_tri as t, car_caravana as c %1" ).arg( where ) ) )
- {
-  qDebug( cola.lastQuery().toLocal8Bit() );
-  return;
+   cursor->movePosition( QTextCursor::End );
+   cursor->insertText( "\n\nNo existen resultados" );
  }
  else
  {
-  	qWarning( QString( "Error al hacer el exec de la cola de datos\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-	return;
- }
-
+	d->setLabelText( "Generando informe" );
+	d->setRange( 0, cola->size() );
+	// Genero la tabla
+	cursor->movePosition( QTextCursor::End );
+	tabla = cursor->insertTable( 1, 2 );
+	QTextTableFormat formatoTabla = tabla->format();
+	formatoTabla.setHeaderRowCount(1);
+	tabla->setFormat( formatoTabla );
+	tabla->cellAt( 0,0 ).firstCursorPosition().insertHtml( "#Num" );
+	tabla->cellAt( 0,1 ).firstCursorPosition().insertHtml( "#Caravana" );
+	while( cola->next() )
+	{
+		int pos = tabla->rows();
+		tabla->insertRows( pos, 1 );
+		tabla->cellAt( pos, 0 ).firstCursorPosition().insertHtml( QString( "%L1" ).arg( pos ) );
+		tabla->cellAt( pos, 1 ).firstCursorPosition().insertHtml( cola->record().value(0).toString() );
+		d->setValue( d->value() + 1 );
+	}
+ } // fin else cola != 0
+ delete cola;
+ delete cursor;
 }
 
 /*!
@@ -391,10 +266,10 @@ void ERenderizadorInforme::cerrarDialogo()
  */
 void ERenderizadorInforme::imprimir( QPrinter *impresora )
 {
- QTextDocument d;
- d.setDefaultStyleSheet( _estilo );
- d.setHtml( _doc->toHtml() );
- d.print( impresora );
+ QTextDocument _d;
+ _d.setDefaultStyleSheet( _estilo );
+ _d.setHtml( _doc->toHtml() );
+ _d.print( impresora );
 }
 
 
@@ -413,7 +288,7 @@ QStringList ERenderizadorInforme::buscarTris()
   {
     where += " AND ";
   }
-  where += QString("t.id_categoria = '%1'").arg( _id_cat );
+  where += QString("id_categoria = '%1'").arg( _id_cat );
   filtra_algo = true;
  }
  if( _filtra_tipo )
@@ -422,7 +297,7 @@ QStringList ERenderizadorInforme::buscarTris()
   {
     where += " AND ";
   }
-  where += QString("t.razon = '%1'").arg( _id_tipo );
+  where += QString("razon = '%1'").arg( _id_tipo );
   filtra_algo = true;
  }
  if( _filtra_estab )
@@ -431,7 +306,7 @@ QStringList ERenderizadorInforme::buscarTris()
   {
     where += " AND ";
   }
-  where += QString( " t.id_tri IN ( SELECT id_tri FROM car_tri WHERE ( id_estab_origen = '%1' OR id_estab_destino = '%1' ) )" ).arg( _id_estab );
+  where += QString( " id_tri IN ( SELECT id_tri FROM car_tri WHERE ( id_estab_origen = '%1' OR id_estab_destino = '%1' ) )" ).arg( _id_estab );
   filtra_algo = true;
  }
  if( _filtra_fecha )
@@ -440,7 +315,7 @@ QStringList ERenderizadorInforme::buscarTris()
   {
    where += " AND ";
   }
-  where += QString( " t.fecha = '%1' " ).arg( _fecha.toString(Qt::ISODate) );
+  where += QString( " fecha = '%1' " ).arg( _fecha.toString(Qt::ISODate) );
   filtra_algo = true;
  }
  if( _filtra_rango_fecha )
@@ -449,34 +324,27 @@ QStringList ERenderizadorInforme::buscarTris()
   {
    where += " AND ";
   }
-  where += QString( " t.fecha BETWEEN( '%1', '%2' )  " ).arg( _rango_fechas.first.toString(Qt::ISODate) ).arg( _rango_fechas.second.toString(Qt::ISODate) );
+  where += QString( " fecha BETWEEN( '%1', '%2' )  " ).arg( _rango_fechas.first.toString(Qt::ISODate) ).arg( _rango_fechas.second.toString(Qt::ISODate) );
   filtra_algo = true;
  }
  if( filtra_algo )
  {
   where.prepend( "WHERE " );
  }
- if( cola.exec( QString( "SELECT id_tri FROM car_tri %1" ).arg( where ) ) )
+ QSqlQuery *cola = new QSqlQuery();
+ if( cola->exec( QString( "SELECT id_tri FROM car_tri %1" ).arg( where ) ) )
  {
-  qDebug( cola.lastQuery().toLocal8Bit() );
-  while( cola.next() )
+  qDebug( cola->lastQuery().toLocal8Bit() );
+  while( cola->next() )
   {
-	lista.append( cola.record().value(0).toString() );
+	lista.append( cola->record().value(0).toString() );
   }
-  return lista;
  }
  else
  {
-  	qWarning( QString( "Error al hacer el exec de la cola de obtener tris\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-	return QStringList();
+  	qWarning( QString( "Error al hacer el exec de la cola de obtener tris\n Error: %1\n %2" ).arg( cola->lastError().text() ).arg( cola->lastQuery() ).toLocal8Bit() );
  }
+ delete cola;
+ return lista;
 }
 
-
-/*!
-    \fn ERenderizadorInforme::generarCola( QString tri )
- */
-void ERenderizadorInforme::generarCola( QString tri )
-{
- cola.exec( QString( "SELECT codigo FROM car_caravana WHERE id_caravana IN ( SELECT id_caravana FROM car_carv_tri WHERE id_tri='%1' )" ).arg( tri ) );
-}

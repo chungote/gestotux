@@ -44,6 +44,7 @@ public:
     void crearMenu(QMenu* m);
     void informePorFecha();
     QString cargarArchivoEstilo();
+    QString  cargarCabecera();
 private:
        /*!
         * Accion para el menu de informes
