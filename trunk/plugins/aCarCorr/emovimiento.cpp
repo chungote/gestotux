@@ -31,6 +31,7 @@ EMovimiento::EMovimiento(QObject *parent)
 {
  tipo_mov = invalido;
  id_db = -1;
+ _cantidad_animales = 0;
 }
 
 
@@ -150,7 +151,7 @@ QStringList EMovimiento::caravanas()
 	{
 		return QStringList();
 	}
-	
+
 }
 
 
@@ -365,7 +366,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 	dialogo->setRange( 0, (_caravanas.size() * 2) + 1 );
 	dialogo->setValue( 0 );
  	QSqlQuery cola;
-	QString scola = QString( " car_tri( dta, guia, fecha, razon, id_categoria, id_estab_destino, id_estab_origen, id_comprador, id_vendedor ) VALUES ( '%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9' )" ).arg( DTA ).arg( _numGuia ).arg( fecha.toString(Qt::ISODate) ).arg( tipoMov() ).arg( categoria.first ).arg( destino.first ).arg( origen.first ).arg( comprador.first ).arg( vendedor.first );
+	QString scola = QString( " car_tri( dta, guia, fecha, razon, id_categoria, id_estab_destino, id_estab_origen, id_comprador, id_vendedor, cantidad_caravanas ) VALUES ( '%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10' )" ).arg( DTA ).arg( _numGuia ).arg( fecha.toString(Qt::ISODate) ).arg( tipoMov() ).arg( categoria.first ).arg( destino.first ).arg( origen.first ).arg( comprador.first ).arg( vendedor.first ).arg( _cantidad_animales );
    	if( id_db  == -1 )
  	{
   		// Agrego un nuevo registro
@@ -396,7 +397,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 					qWarning( "Error al obtener el id insertado" );
 					return -4;
 				}
-				
+
 			}
 			else
 			{
@@ -410,40 +411,43 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 		qWarning( QString( "Error al insertar o actualizar el registro de tri\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
 		return -2;
 	}
-	// Guardo las caravanas
-	QString codigo;
-	foreach( codigo, _caravanas )
+	if( _cantidad_animales == 0 ) // Si no es de categoria especial...
 	{
-		if( !estado )
+		// Guardo las caravanas
+		QString codigo;
+		foreach( codigo, _caravanas )
 		{
-			qDebug( "Error en el fro" );
-			return -2;
+			if( !estado )
+			{
+				qDebug( "Error en el fro" );
+				return -2;
+			}
+			estado = guardarCaravana( codigo );
+			dialogo->setValue( dialogo->value() + 1 );
+			if( !estado )
+			{
+				qDebug( "Error al intenar guardar la caravana" );
+				return -3;
+			}
+			int id_caravana = getIDCaravana( codigo );
+			estado = asociarCaravana( id_caravana );
+			dialogo->setValue( dialogo->value() + 1 );
+			if( !estado )
+			{
+				qDebug( "Error al intenar asociar la caravana" );
+				return -3;
+			}
+		#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+			/// Asociar el dueño!
+			estado = aduenarCaravana( id_caravana, 0, fecha, false );
+			if( !estado )
+			{
+				qDebug( "Error al asociar el dueño" );
+				return -3;
+			}
+		#endif
 		}
-		estado = guardarCaravana( codigo );
-		dialogo->setValue( dialogo->value() + 1 );
-		if( !estado )
-		{
-			qDebug( "Error al intenar guardar la caravana" );
-			return -3;
-		}
-		int id_caravana = getIDCaravana( codigo );
-		estado = asociarCaravana( id_caravana );
-		dialogo->setValue( dialogo->value() + 1 );
-		if( !estado )
-		{
-			qDebug( "Error al intenar asociar la caravana" );
-			return -3;
-		}
-#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
-		/// Asociar el dueño!
-		estado = aduenarCaravana( id_caravana, 0, fecha, false );
-		if( !estado )
-		{
-			qDebug( "Error al asociar el dueño" );
-			return -3;
-		}
-#endif
-	}
+	}// Fin cantidad de animales == 0
 	return id_db;
  }
  else
@@ -649,7 +653,7 @@ bool EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha,
 	{
 		qDebug( "Escrito fin de duenño anterior correcto." );
 		// Escribo el dueño nuevo
-	}	
+	}
 	else
 	{
 		qWarning( QString( "Error al actualizar dueño de caravana.escritura del anterior.\n Error: %1\n cola: %2" ).arg( colas.lastError().text() ).arg( colas.lastQuery() ).toLocal8Bit() );

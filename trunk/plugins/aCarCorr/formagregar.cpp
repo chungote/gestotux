@@ -83,7 +83,7 @@ void FormAgregar::guardar()
  if( _especial )
  {
    movimiento->setCantidadAnimales( SBCantidadAnimales->value() );
- } 
+ }
  else
  {
 	// Chequear que no existan los numeros de caravanas ya en la tabla
@@ -95,7 +95,7 @@ void FormAgregar::guardar()
 	QString cadena;
 	foreach( cadena, lista )
 	{
-	movimiento->agregarCaravana( cadena );
+		movimiento->agregarCaravana( cadena );
 	}
  }// fin de si es especial o no
  // Lista la comprobacion de caravanas

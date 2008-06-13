@@ -82,6 +82,7 @@ bool ERenderizadorInforme::hacerInforme()
  d = new QProgressDialog();
  d->setLabelText( "Buscando coincidencias..." );
  d->setMinimumDuration( 0 );
+ d->show();
  QStringList tris = buscarTris();
  if( tris.isEmpty() )
  {
@@ -91,11 +92,20 @@ bool ERenderizadorInforme::hacerInforme()
  }
  foreach( QString tri, tris )
  {
-	qDebug( QString( "haciendo tri: %1" ).arg( tri ).toLocal8Bit() );
   // Genero la cabecera para ese tri
   d->setLabelText( "Generando cabecera" );
-  hacerCabecera( tri );
-  colocarContenido( tri );
+  if( hacerCabecera( tri ) == true )
+  {
+	// El metodo de vuelve true si existen caravanas para hacer lista
+   	colocarContenido( tri );
+  }
+  else
+  {
+ 	// insertar el salto de hoja
+	QTextCursor cursor(_doc);
+	cursor.movePosition( QTextCursor::End );
+	cursor.insertHtml( "<table><th><td></td></th></table>" );
+  }
  }
  d->setLabelText( "Mostrando Informe.." );
  return true;
@@ -105,8 +115,9 @@ bool ERenderizadorInforme::hacerInforme()
 /*!
     \fn ERenderizadorInforme::hacerCabecera()
  */
-void ERenderizadorInforme::hacerCabecera( QString tri )
+bool ERenderizadorInforme::hacerCabecera( QString tri )
 {
+ bool devolucion = false;
  QTextCursor *cursor = new QTextCursor( _doc );
  cursor->movePosition( QTextCursor::End );
  // cargar la cabecera
@@ -136,17 +147,30 @@ void ERenderizadorInforme::hacerCabecera( QString tri )
 	cursor->insertText( QString( "Fecha: %1.\n" ).arg( cola->record().value( "fecha" ).toDate().toString( "dd/MM/yyyy" ) ) );
 	// Categoria
 	QSqlQuery *colaAuxiliar = new QSqlQuery();
-	colaAuxiliar->exec(  QString("SELECT nombre FROM car_categorias WHERE id_categoria = '%1'").arg( cola->record().value( "id_categoria" ).toString() ) );
+	bool especial = false;
+	colaAuxiliar->exec(  QString("SELECT nombre, especial FROM car_categorias WHERE id_categoria = '%1'").arg( cola->record().value( "id_categoria" ).toString() ) );
 	if(colaAuxiliar->next())
 	{
  		cursor->insertText( QString( "Categoria: %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
+		especial = colaAuxiliar->record().value(1).toBool();
 	} else { qDebug( QString( "Error al ejecutar la cola de nombre de categoria: %1" ).arg( colaAuxiliar->lastError().text() ).toLocal8Bit() ); }
 	// Cantidad de Caravanas
-	colaAuxiliar->exec( QString( "SELECT COUNT(id_caravana) FROM car_carv_tri WHERE id_tri ='%1'" ).arg( tri ) );
-	if(colaAuxiliar->next())
+	// Si el tri es de categoria especial la cantidad va a ser mayor que cero, si es normal, va a ser cero
+	if( especial == true )
 	{
-		cursor->insertText( QString( "Cantidad de Caravanas: %1\n" ).arg( cola->record().value(0).toInt() ) );
-	} else { qDebug( QString( "Error al ejecutar la cola de cantidad de caravanas: %1" ).arg( colaAuxiliar->lastError().text() ).toLocal8Bit() ); }
+		// No genero la lista de caravanas
+		cursor->insertText( QString( "Cantidad de Animales: %L1 \n" ).arg( cola->record().value( "cantidad_caravanas" ).toInt() ) );
+		devolucion = false;
+	}
+	else
+	{
+		colaAuxiliar->exec( QString( "SELECT COUNT(id_caravana) FROM car_carv_tri WHERE id_tri ='%1'" ).arg( tri ) );
+		if(colaAuxiliar->next())
+		{
+			cursor->insertText( QString( "Cantidad de Caravanas: %L1 \n" ).arg( colaAuxiliar->record().value(0).toInt() ) );
+		} else { qDebug( QString( "Error al ejecutar la cola de cantidad de caravanas: %1" ).arg( colaAuxiliar->lastError().text() ).toLocal8Bit() ); }
+		devolucion = true;
+	}
 	QString texti;
 	switch( cola->record().value( "razon" ).toInt() )
 	{
@@ -180,7 +204,7 @@ void ERenderizadorInforme::hacerCabecera( QString tri )
 			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_origen" ).toInt() ) );
 			if( colaAuxiliar->next() )
 			{
-				cursor->insertText( QString( "Establecimiento de origen:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
+				cursor->insertText( QString( "Establecimiento de origen:  %1 \n" ).arg( colaAuxiliar->record().value(0).toString() ) );
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
@@ -193,20 +217,35 @@ void ERenderizadorInforme::hacerCabecera( QString tri )
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
 			break;
 		}
+		case stock:
+		{
+			texti = "Ingreso por stock";
+			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_destino" ).toInt() ) );
+			if( colaAuxiliar->next() )
+			{
+				cursor->insertText( QString( "Establecimiento de destino:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
+			}
+			else
+			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
+			break;
+		}
 	}
 	delete colaAuxiliar;
-	cursor->insertText( texti + "\n" );
-	cursor->insertText( QString( "#DTA: %1\n" ).arg( cola->record().value( "dta" ).toString() ) );
+	cursor->insertText( texti + " \n" );
+	cursor->insertText( QString( "#DTA: %1 \n" ).arg( cola->record().value( "dta" ).toString() ) );
 	if( !cola->record().value("guia").toString().isEmpty() )
-	{ cursor->insertText( QString( "#Guia: %1\n" ).arg( cola->record().value( "guia" ).toString() ) ); }
+	{ cursor->insertText( QString( "#Guia: %1 \n" ).arg( cola->record().value( "guia" ).toString() ) ); }
+
  }
  else
  {
   qDebug( "Error al seleccionar el tipo de movimiento" );
   qDebug( cola->lastError().text().toLocal8Bit() );
+  devolucion = false;
  }
  delete cursor;
  delete cola;
+ return devolucion;
  // listo
 }
 
