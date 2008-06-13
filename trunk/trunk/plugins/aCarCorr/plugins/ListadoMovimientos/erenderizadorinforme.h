@@ -41,7 +41,7 @@ public:
     ~ERenderizadorInforme();
     void setPropiedades( FormFiltro *f, QString estilo, QString cabecera );
     bool hacerInforme();
-    void hacerCabecera( QString tri = 0 );
+    bool hacerCabecera( QString tri = 0 );
     void colocarContenido( QString tri = 0 );
     void cerrarDialogo();
     QStringList buscarTris();

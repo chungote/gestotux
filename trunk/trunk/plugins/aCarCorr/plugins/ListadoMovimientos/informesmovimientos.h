@@ -57,7 +57,6 @@ private:
 
 public slots:
 	void informeCompleto();
-	void slotPedidoImpresion( QPrinter *p );
 
 signals:
 	void agregarVentana( QWidget *v );

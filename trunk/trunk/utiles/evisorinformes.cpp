@@ -91,10 +91,27 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  connect( ActAjustarHoja, SIGNAL( triggered() ), this, SLOT( fitInView() ) );
  addAction( ActAjustarHoja );
 
- QAction *ActAjustarOpuestas = new QAction( this );
- ActAjustarOpuestas->setIcon( QIcon( ":/imagenes/ajustaropuestas.png" ) );
- connect( ActAjustarOpuestas, SIGNAL( triggered() ), this, SLOT( setFacingPagesViewMode() ) );
- addAction( ActAjustarOpuestas );
+ QActionGroup *ActDisposicion = new QActionGroup( this );
+
+ QAction *ActOpuestas = new QAction( this );
+ ActOpuestas->setCheckable( true );
+ ActOpuestas->setIcon( QIcon( ":/imagenes/ajustaropuestas.png" ) );
+ connect( ActOpuestas, SIGNAL( triggered() ), this, SLOT( setFacingPagesViewMode() ) );
+ ActDisposicion->addAction( ActOpuestas );
+
+ QAction *ActTodas = new QAction( this );
+ ActTodas->setCheckable( true );
+ ActTodas->setIcon( QIcon( ":/imagenes/todas.png" ) );
+ connect( ActTodas, SIGNAL( triggered() ), this, SLOT( setAllPagesViewMode() ) );
+ ActDisposicion->addAction( ActTodas );
+
+ QAction *ActSola = new QAction( this );
+ ActSola->setCheckable( true );
+ ActSola->setIcon( QIcon( ":/imagenes/sola.png" ) );
+ connect( ActSola, SIGNAL( triggered() ), this, SLOT( setSinglePageViewMode() ) );
+ ActDisposicion->addAction( ActSola );
+
+ addActions( ActDisposicion->actions() );
 }
 
 
@@ -146,7 +163,7 @@ void EVisorInformes::siguiente()
  */
 void EVisorInformes::imprimir()
 {
- QPrintDialog *dialogo = new QPrintDialog( impresora );
+ QPrintDialog *dialogo = new QPrintDialog( impresora, this );
  if( dialogo->exec() == QDialog::Accepted )
  {
 	emit paintRequested( dialogo->printer() );
