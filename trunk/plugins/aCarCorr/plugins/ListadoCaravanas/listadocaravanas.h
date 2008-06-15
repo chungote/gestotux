@@ -17,48 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef INFORMESMOVIMIENTOS_H
-#define INFORMESMOVIMIENTOS_H
+#ifndef LISTADOCARAVANAS_H
+#define LISTADOCARAVANAS_H
 
-#include <QObject>
-#include "../../einformeinterface.h"
-#include <QtPlugin>
-#include <QFile>
-class QAction;
+#include <eplugin.h>
+#include <einformeinterface.h>
 
 /**
- * \brief Plugin de informe completo
- *
- * Este plugin realiza el informe completo de movimientos mediante filtros definidos
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class InformesMovimientos : public QObject, public EInformeInterface
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class ListadoCaravanas : public QObject, public EInformeInterface
 {
- Q_OBJECT
- Q_INTERFACES(EInformeInterface)
+Q_OBJECT
+Q_INTERFACES( EInformeInterface )
 public:
     QString nombre() const;
-    bool inicializar();
     double version() const;
-    void crearMenu(QMenu* m);
-    QString cargarArchivoEstilo();
-    QString  cargarCabecera();
-private:
-       /*!
-        * Accion para el menu de informes
-        */
-	QAction *ActInformeFiltroTotal;
-       /*!
-	* Puntero al archivo de estilo usado
-	*/
-	QFile *archivoEstilo;
-
-public slots:
-	void informeCompleto();
+    void crearMenu( QMenu *menu );
+    bool inicializar();
 
 signals:
-	void agregarVentana( QWidget *v );
+    void agregarVentana( QWidget *ventana );
+
+private:
+	QAction *ActInformeCaravanas;
 };
 
 #endif
