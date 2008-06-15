@@ -17,48 +17,45 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef INFORMESMOVIMIENTOS_H
-#define INFORMESMOVIMIENTOS_H
+#include "listadocaravanas.h"
 
-#include <QObject>
-#include "../../einformeinterface.h"
-#include <QtPlugin>
-#include <QFile>
-class QAction;
+Q_EXPORT_PLUGIN2( listadocaravanas, ListadoCaravanas );
 
-/**
- * \brief Plugin de informe completo
- *
- * Este plugin realiza el informe completo de movimientos mediante filtros definidos
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+/*!
+    \fn ListadoCaravanas::inicializar()
  */
-class InformesMovimientos : public QObject, public EInformeInterface
+bool ListadoCaravanas::inicializar()
 {
- Q_OBJECT
- Q_INTERFACES(EInformeInterface)
-public:
-    QString nombre() const;
-    bool inicializar();
-    double version() const;
-    void crearMenu(QMenu* m);
-    QString cargarArchivoEstilo();
-    QString  cargarCabecera();
-private:
-       /*!
-        * Accion para el menu de informes
-        */
-	QAction *ActInformeFiltroTotal;
-       /*!
-	* Puntero al archivo de estilo usado
-	*/
-	QFile *archivoEstilo;
+ ActInformeCaravanas = new QAction( this );
+ ActInformeCaravanas->setText( "Caravanas x establecimiento" );
+ connect( ActInformeCaravanas, SIGNAL( triggered() ), this, SLOT( informeCaravanas() ) );
+ return true;
+}
 
-public slots:
-	void informeCompleto();
 
-signals:
-	void agregarVentana( QWidget *v );
-};
+/*!
+    \fn ListadoCaravanas::nombre() const
+ */
+QString ListadoCaravanas::nombre() const
+{
+ return "listadocaravanas";
+}
 
-#endif
+
+/*!
+    \fn ListadoCaravanas::version() const
+ */
+double ListadoCaravanas::version() const
+{
+ return 0.1;
+}
+
+
+/*!
+    \fn ListadoCaravanas::crearMenu( QMenu *menu )
+ */
+void ListadoCaravanas::crearMenu( QMenu *menu )
+{
+  menu->addAction( ActInformeCaravanas );
+}
+

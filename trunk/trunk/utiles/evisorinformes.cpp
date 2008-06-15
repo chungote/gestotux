@@ -27,6 +27,8 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  setAttribute( Qt::WA_DeleteOnClose );
  this->impresora = impre;
  // Inicializo el formualrio y creo las acciones
+ QAction *ActSeparador = new QAction( this );
+ ActSeparador->setSeparator( true );
  EActCerrar *ActCerrar = new EActCerrar( this );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
  addAction(ActCerrar);
@@ -42,6 +44,7 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  ActAPdf->setStatusTip( "Guarda el informe en un archivo pdf en el disco" );
  connect( ActAPdf, SIGNAL( triggered() ), this, SLOT( aPdf() ) );
  addAction(ActAPdf);
+ addAction(ActSeparador);
 
  QAction *ActPrimera = new QAction( this );
  ActPrimera->setIcon( QIcon( ":/imagenes/primera.png" ) );
@@ -66,6 +69,9 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  ActUltima->setStatusTip( "Salta a la ultima hoja" );
  connect( ActUltima, SIGNAL( triggered() ), this, SLOT( ultimaPagina() ) );
  addAction( ActUltima );
+ QAction *ActSeparador1 = new QAction( this );
+ ActSeparador1->setSeparator( true );
+ addAction( ActSeparador1 );
 
  QAction *ActAgrandar = new QAction( this );
  ActAgrandar->setIcon( QIcon( ":/imagenes/agrandar.png" ) );
@@ -79,6 +85,10 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  connect( ActAchicar, SIGNAL( triggered() ), this, SLOT( zoomOut() ) );
  addAction( ActAchicar );
 
+ QAction *ActSeparador2 = new QAction( this );
+ ActSeparador2->setSeparator( true );
+ addAction( ActSeparador2 );
+
  QAction *ActAjustarAncho = new QAction( this );
  ActAjustarAncho->setIcon( QIcon( ":/imagenes/ajustarancho.png" ) );
  ActAjustarAncho->setStatusTip( "Ajusta el zoom para que se vea todo el ancho de la hoja" );
@@ -90,6 +100,9 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  ActAjustarHoja->setStatusTip( "Ajusta el zomm para que la hoja entre en la ventana" );
  connect( ActAjustarHoja, SIGNAL( triggered() ), this, SLOT( fitInView() ) );
  addAction( ActAjustarHoja );
+ QAction *ActSeparador3 = new QAction( this );
+ ActSeparador3->setSeparator( true );
+ addAction( ActSeparador3 );
 
  QActionGroup *ActDisposicion = new QActionGroup( this );
 
@@ -182,6 +195,7 @@ void EVisorInformes::aPdf()
  QString nombreArchivo = QFileDialog::getSaveFileName( this, "Guardar como pdf", QDir::homePath(), "Archivos PDF (*.pdf)" );
  if( !nombreArchivo.isEmpty() )
  {
+  // ver que tenga la extension
   this->impresora->setOutputFileName( nombreArchivo );
   emit paintRequested( this->impresora );
  }

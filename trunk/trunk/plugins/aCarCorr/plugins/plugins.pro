@@ -1,2 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS = ListadoMovimientos
+SUBDIRS = ListadoMovimientos \
+ ListadoCaravanas

@@ -141,10 +141,10 @@ bool ERenderizadorInforme::hacerCabecera( QString tri )
 	Nro de dta
 	Nro de Guia
 	*/
-	// Numero de Tri
-	cursor->insertText( QString( "#TRI: %1.\n" ).arg( cola->record().value( "id_tri" ).toString() ) );
 	// Fecha
 	cursor->insertText( QString( "Fecha: %1.\n" ).arg( cola->record().value( "fecha" ).toDate().toString( "dd/MM/yyyy" ) ) );
+	// Numero de Tri
+	cursor->insertText( QString( "#TRI: %1.\n" ).arg( cola->record().value( "id_tri" ).toString() ) );
 	// Categoria
 	QSqlQuery *colaAuxiliar = new QSqlQuery();
 	bool especial = false;
@@ -177,6 +177,7 @@ bool ERenderizadorInforme::hacerCabecera( QString tri )
 		case venta:
 		{
 			texti = "Venta de Caravanas";
+			// Establecimiento de origen
 			colaAuxiliar->exec( QString("SELECT nombre FROM car_establecimientos WHERE id_establecimiento = '%1'").arg( cola->record().value( "id_estab_origen" ).toInt() ) );
 			if( colaAuxiliar->next() )
 			{
@@ -184,6 +185,14 @@ bool ERenderizadorInforme::hacerCabecera( QString tri )
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
+			// Comprador
+			colaAuxiliar->exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_comprador" ).toInt() ) );
+			if( colaAuxiliar->next() )
+			{
+				cursor->insertText( QString( "Comprador:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
+			}
+			else
+			{ qDebug( "Error al ejecutar la cola de nombre de cliente" ); }
 			break;
 		}
 		case compra:
@@ -193,6 +202,14 @@ bool ERenderizadorInforme::hacerCabecera( QString tri )
 			if( colaAuxiliar->next() )
 			{
 				cursor->insertText( QString( "Establecimiento de destino:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
+			}
+			else
+			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
+			// Vendedor
+			colaAuxiliar->exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_vendedor" ).toInt() ) );
+			if( colaAuxiliar->next() )
+			{
+				cursor->insertText( QString( "Vendedor:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
 			}
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
