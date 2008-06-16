@@ -109,18 +109,21 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  QAction *ActOpuestas = new QAction( this );
  ActOpuestas->setCheckable( true );
  ActOpuestas->setIcon( QIcon( ":/imagenes/ajustaropuestas.png" ) );
+ ActOpuestas->setStatusTip( "Permite ver las paginas opuestas enfrentadas" );
  connect( ActOpuestas, SIGNAL( triggered() ), this, SLOT( setFacingPagesViewMode() ) );
  ActDisposicion->addAction( ActOpuestas );
 
  QAction *ActTodas = new QAction( this );
  ActTodas->setCheckable( true );
  ActTodas->setIcon( QIcon( ":/imagenes/todas.png" ) );
+ ActTodas->setStatusTip( "Permite ver todas las hojas a imprimir" );
  connect( ActTodas, SIGNAL( triggered() ), this, SLOT( setAllPagesViewMode() ) );
  ActDisposicion->addAction( ActTodas );
 
  QAction *ActSola = new QAction( this );
  ActSola->setCheckable( true );
  ActSola->setIcon( QIcon( ":/imagenes/sola.png" ) );
+ ActSola->setStatusTip( "Muestra solo una hoja en la vista" );
  connect( ActSola, SIGNAL( triggered() ), this, SLOT( setSinglePageViewMode() ) );
  ActDisposicion->addAction( ActSola );
 
@@ -176,12 +179,21 @@ void EVisorInformes::siguiente()
  */
 void EVisorInformes::imprimir()
 {
- QPrintDialog *dialogo = new QPrintDialog( impresora, this );
- if( dialogo->exec() == QDialog::Accepted )
+ if( impresora->outputFormat() != QPrinter::NativeFormat )
  {
-	emit paintRequested( dialogo->printer() );
-  	print();
+  // no sabe usar esos tipos de dialogo, imprimo directamente
+  qWarning( "No se puede usar el dialogo de configuracion, se imprimira directamente a la impresora predeterminada" );
+  print();
  }
+ else
+ {
+  QPrintDialog *dialogo = new QPrintDialog( impresora, this );
+  if( dialogo->exec() == QDialog::Accepted )
+  {
+    emit paintRequested( dialogo->printer() );
+  }
+ }
+ return;
 }
 
 #include <QFileDialog>
