@@ -30,6 +30,7 @@ class MEstablecimiento : public QSqlTableModel
 public:
     MEstablecimiento( QObject *parent = 0 );
     ~MEstablecimiento();
+    QStringList listaNombres();
 };
 
 #endif

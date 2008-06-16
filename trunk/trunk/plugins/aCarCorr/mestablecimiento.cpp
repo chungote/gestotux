@@ -33,4 +33,18 @@ MEstablecimiento::~MEstablecimiento()
 {
 }
 
+#include <QStringList>
 
+
+/*!
+    \fn MEstablecimiento::listaNombres()
+ */
+QStringList MEstablecimiento::listaNombres()
+{
+ QStringList listaT;
+ for( int i=0; i<=this->rowCount(); i++ )
+ {
+  listaT.append( this->data( this->index( i, 2 ), Qt::DisplayRole ).toString() );
+ }
+ return listaT;
+}

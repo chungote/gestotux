@@ -33,8 +33,11 @@ class QProgressDialog;
 #include "TipoMovs.h"
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Encapsulacion de un movimiento
+ *
+ * Clase que carga, administra y guarda los movimientos y todas sus relaciones
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EMovimiento : public QObject
 {
 Q_OBJECT
@@ -98,7 +101,7 @@ private:
     int getIDCaravana( QString codigo );
 
     int tipo_mov;
-    
+
 };
 
 #endif

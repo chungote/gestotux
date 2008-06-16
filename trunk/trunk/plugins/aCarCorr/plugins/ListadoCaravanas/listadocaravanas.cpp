@@ -19,10 +19,16 @@
  ***************************************************************************/
 #include "listadocaravanas.h"
 
+#include "irenderizador.h"
+#include "evisorinformes.h"
+#include "einformeimpresora.h"
+
 Q_EXPORT_PLUGIN2( listadocaravanas, ListadoCaravanas );
 
 /*!
     \fn ListadoCaravanas::inicializar()
+	Inicializa las acciones del plugin
+	@return inicializacion correcta o incorrecta
  */
 bool ListadoCaravanas::inicializar()
 {
@@ -35,6 +41,8 @@ bool ListadoCaravanas::inicializar()
 
 /*!
     \fn ListadoCaravanas::nombre() const
+	Devuelve el nombre interno que se utiliza para referenciar al plugin
+	@return Nombre interno del plugin
  */
 QString ListadoCaravanas::nombre() const
 {
@@ -44,6 +52,8 @@ QString ListadoCaravanas::nombre() const
 
 /*!
     \fn ListadoCaravanas::version() const
+	Devuelve el numero de version del plugin
+	@return version del plugin
  */
 double ListadoCaravanas::version() const
 {
@@ -53,9 +63,35 @@ double ListadoCaravanas::version() const
 
 /*!
     \fn ListadoCaravanas::crearMenu( QMenu *menu )
+	Metodo para agregar las acciones del resumen implementado al menu
+	@param menu Puntero al menu
  */
 void ListadoCaravanas::crearMenu( QMenu *menu )
 {
   menu->addAction( ActInformeCaravanas );
 }
 
+
+#include "mestablecimiento.h"
+#include <QInputDialog>
+/*!
+    \fn ListadoCaravanas::informeCaravanas()
+	Slot que realiza el informe de las caravanas que se encuentran actualmente en un establecimiento
+ */
+void ListadoCaravanas::informeCaravanas()
+{
+ // Pongo el dialogo de todos los establecimientos
+ /*bool ok;
+ MEstablecimiento *modelo = new MEstablecimiento( this );
+ QString item = QInputDialog::getItem( 0, "Elija el Establecimiento", "Establecimiento:", modelo->listaNombres(), 0, false, &ok, 0 );
+ delete modelo;
+ if( ok && !item.isEmpty() )
+ {*/
+  EVisorInformes *visor = new EVisorInformes( new EInformeImpresora() );
+  // Lo heredo del visor para que se destruya cuando se cierre el informe
+  IRenderizador *render = new IRenderizador( visor );
+  //render->setEstablecimiento( item );
+  connect( visor, SIGNAL(paintRequested( QPrinter* )), render, SLOT(imprimir(QPrinter*)));
+  agregarVentana( visor );
+ //}
+}

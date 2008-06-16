@@ -17,8 +17,8 @@
   <kdevvalgrind>
    <executable path="" params="" />
    <valgrind path="/usr/bin/valgrind" params=" --tool=memcheck --leak-check=yes" />
-   <calltree path="" params="" />
-   <kcachegrind path="" />
+   <calltree path="/usr/bin/valgrind" params="--tool=callgrind" />
+   <kcachegrind path="/usr/bin/kcachegrind" />
   </kdevvalgrind>
  </pluginList>
 </KDevPrjSession>

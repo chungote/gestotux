@@ -19,9 +19,15 @@ TARGET = listadocaravanas
 
 DESTDIR = /home/Esteban/Programas/gestotux/bin/plugins/informes
 
-HEADERS += listadocaravanas.h
+HEADERS += listadocaravanas.h \
+ ../../mestablecimiento.h \
+ irenderizador.h \
+ ../../einformeimpresora.h
 
-SOURCES += listadocaravanas.cpp
+SOURCES += listadocaravanas.cpp \
+ ../../mestablecimiento.cpp \
+ irenderizador.cpp \
+ ../../einformeimpresora.cpp
 
 INCLUDEPATH += ../.. \
   ../../../../src \

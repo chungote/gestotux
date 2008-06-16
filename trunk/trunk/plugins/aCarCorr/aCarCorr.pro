@@ -62,8 +62,7 @@ DESTDIR = ../../bin/plugins
 RESOURCES += aCarCorr.qrc
 
 FORMS += FormMovimientoBase.ui \
- FormPrefCaravanas.ui \
- qpagesetupwidget.ui
+ FormPrefCaravanas.ui
 
 win32 {
     CONFIG += release
