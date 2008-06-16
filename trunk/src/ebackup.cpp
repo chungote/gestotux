@@ -86,7 +86,10 @@ Ebackup::Ebackup( QWidget* parent )
 
 
 Ebackup::~Ebackup()
-{}
+{
+ delete comprimidos;
+ delete datos;
+}
 
 /*!
  *   \fn Ebackup::iniciar()
@@ -441,6 +444,7 @@ bool Ebackup::guardar_a_archivo( QString *nombre )
  if( !destino->open( QIODevice::ReadWrite ) )
  {
 	qDebug( "Error al abrir el archivo en modo lectura escritura" );
+	delete destino;
 	return false;
  }
 
@@ -451,12 +455,14 @@ bool Ebackup::guardar_a_archivo( QString *nombre )
   qDebug( QString( "Bytes escritos: %1, Bytes de buffer: %2" ).arg(escritos).arg(comprimidos->size()).toLocal8Bit() );
   destino->flush();
   destino->close();
+  delete destino;
   return false;
  }
  else
  {
   destino->flush();
   destino->close();
+  delete destino;
   return true;
  }
 }

@@ -22,6 +22,7 @@
 
 #include <QThread>
 class QFtp;
+class QFile;
 
 /**
 	\brief Clase de envio de backup al servidor
@@ -49,6 +50,7 @@ private:
     * Clase que realiza las comunicacion ftp con el servidor
     */
     QFtp *ftp;
+    QFile *archivo;
 };
 
 #endif
