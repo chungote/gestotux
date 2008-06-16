@@ -23,8 +23,12 @@
 #include <QAction>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Clase contenedora de la accion imprimir
+ *
+ * Clase que contiene encapsulada la estructura de la accion imprimir y setea automaticamente el icono, texto y ayuda
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EActImprimir : public QAction
 {
 Q_OBJECT
