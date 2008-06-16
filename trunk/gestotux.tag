@@ -31,28 +31,41 @@
     <class kind="class">AdminCarCorr</class>
   </compound>
   <compound kind="file">
-    <name>einforme.cpp</name>
+    <name>edcategoriaespecial.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
-    <filename>einforme_8cpp</filename>
-    <includes id="einforme_8h" name="einforme.h" local="yes" imported="no">einforme.h</includes>
+    <filename>edcategoriaespecial_8cpp</filename>
+    <includes id="edcategoriaespecial_8h" name="edcategoriaespecial.h" local="yes" imported="no">edcategoriaespecial.h</includes>
   </compound>
   <compound kind="file">
-    <name>einforme.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoMovimientos/</path>
-    <filename>plugins_2ListadoMovimientos_2einforme_8cpp</filename>
-    <includes id="plugins_2ListadoMovimientos_2einforme_8h" name="einforme.h" local="yes" imported="no">einforme.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>einforme.h</name>
+    <name>edcategoriaespecial.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
-    <filename>einforme_8h</filename>
-    <class kind="class">EInforme</class>
+    <filename>edcategoriaespecial_8h</filename>
+    <class kind="class">EDCategoriaEspecial</class>
   </compound>
   <compound kind="file">
-    <name>einforme.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoMovimientos/</path>
-    <filename>plugins_2ListadoMovimientos_2einforme_8h</filename>
-    <class kind="class">EInforme</class>
+    <name>einformeimpresora.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
+    <filename>plugins_2aCarCorr_2einformeimpresora_8cpp</filename>
+    <includes id="plugins_2aCarCorr_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>einformeimpresora.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>templates_2testo_2src_2einformeimpresora_8cpp</filename>
+    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>einformeimpresora.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
+    <filename>plugins_2aCarCorr_2einformeimpresora_8h</filename>
+    <class kind="class">EInformeImpresora</class>
+  </compound>
+  <compound kind="file">
+    <name>einformeimpresora.h</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>templates_2testo_2src_2einformeimpresora_8h</filename>
+    <class kind="class">EInformeImpresora</class>
   </compound>
   <compound kind="file">
     <name>einformeinterface.h</name>
@@ -88,15 +101,9 @@
   </compound>
   <compound kind="file">
     <name>eventana.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>plugins_2productos_2eventana_8cpp</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>eventana.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2eventana_8cpp</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>utiles_2eventana_8cpp</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
   </compound>
   <compound kind="file">
     <name>eventana.h</name>
@@ -106,8 +113,8 @@
   </compound>
   <compound kind="file">
     <name>eventana.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2eventana_8h</filename>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>utiles_2eventana_8h</filename>
     <class kind="class">EVentana</class>
   </compound>
   <compound kind="file">
@@ -118,16 +125,9 @@
   </compound>
   <compound kind="file">
     <name>evlista.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>plugins_2productos_2evlista_8cpp</filename>
-    <includes id="plugins_2productos_2evlista_8h" name="evlista.h" local="yes" imported="no">evlista.h</includes>
-    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>evlista.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2evlista_8cpp</filename>
-    <includes id="src_2evlista_8h" name="evlista.h" local="yes" imported="no">evlista.h</includes>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>utiles_2evlista_8cpp</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="yes" imported="no">evlista.h</includes>
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
   </compound>
   <compound kind="file">
@@ -139,16 +139,9 @@
   </compound>
   <compound kind="file">
     <name>evlista.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>plugins_2productos_2evlista_8h</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="no" imported="no">eventana.h</includes>
-    <class kind="class">EVLista</class>
-  </compound>
-  <compound kind="file">
-    <name>evlista.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2evlista_8h</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="no" imported="no">eventana.h</includes>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>utiles_2evlista_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">EVLista</class>
   </compound>
   <compound kind="file">
@@ -191,11 +184,13 @@
     <includes id="mcategoria_8h" name="mcategoria.h" local="yes" imported="no">mcategoria.h</includes>
     <includes id="mclientes_8h" name="mclientes.h" local="yes" imported="no">../../src/mclientes.h</includes>
     <includes id="mcaravanadueno_8h" name="mcaravanadueno.h" local="yes" imported="no">mcaravanadueno.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
   </compound>
   <compound kind="file">
     <name>formmovimiento.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>formmovimiento_8h</filename>
+    <includes id="plugins_2aCarCorr_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <includes id="TipoMovs_8h" name="TipoMovs.h" local="yes" imported="no">TipoMovs.h</includes>
     <class kind="class">FormMovimiento</class>
   </compound>
@@ -221,11 +216,14 @@
     <filename>formprefcaravanas_8cpp</filename>
     <includes id="formprefcaravanas_8h" name="formprefcaravanas.h" local="yes" imported="no">formprefcaravanas.h</includes>
     <includes id="mprefcategorias_8h" name="mprefcategorias.h" local="yes" imported="no">mprefcategorias.h</includes>
+    <includes id="edcategoriaespecial_8h" name="edcategoriaespecial.h" local="yes" imported="no">edcategoriaespecial.h</includes>
   </compound>
   <compound kind="file">
     <name>formprefcaravanas.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>formprefcaravanas_8h</filename>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="plugins_2aCarCorr_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormPrefCaravanas</class>
   </compound>
   <compound kind="file">
@@ -356,37 +354,26 @@
     <class kind="class">MTri</class>
   </compound>
   <compound kind="file">
-    <name>informescategorizados.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/InformeCategorizado/</path>
-    <filename>informescategorizados_8cpp</filename>
-    <includes id="informescategorizados_8h" name="informescategorizados.h" local="yes" imported="no">informescategorizados.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>informescategorizados.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/InformeCategorizado/</path>
-    <filename>informescategorizados_8h</filename>
-    <includes id="einformeinterface_8h" name="einformeinterface.h" local="no" imported="no">einformeinterface.h</includes>
-    <class kind="class">InformesCategorizados</class>
-  </compound>
-  <compound kind="file">
-    <name>informetri.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/InformeTri/</path>
-    <filename>informetri_8cpp</filename>
-    <includes id="informetri_8h" name="informetri.h" local="yes" imported="no">informetri.h</includes>
+    <name>listadocaravanas.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
+    <filename>listadocaravanas_8cpp</filename>
+    <includes id="listadocaravanas_8h" name="listadocaravanas.h" local="yes" imported="no">listadocaravanas.h</includes>
+    <includes id="mestablecimiento_8h" name="mestablecimiento.h" local="yes" imported="no">mestablecimiento.h</includes>
     <member kind="function">
       <type></type>
       <name>Q_EXPORT_PLUGIN2</name>
-      <anchorfile>informetri_8cpp.html</anchorfile>
-      <anchor>5679f67c7af72abcca75d91720db424f</anchor>
-      <arglist>(informetri, InformeTri)</arglist>
+      <anchorfile>listadocaravanas_8cpp.html</anchorfile>
+      <anchor>aa06399f0a8533c92f7abde8c16f5f32</anchor>
+      <arglist>(listadocaravanas, ListadoCaravanas)</arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>informetri.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/InformeTri/</path>
-    <filename>informetri_8h</filename>
-    <includes id="einformeinterface_8h" name="einformeinterface.h" local="yes" imported="no">../../einformeinterface.h</includes>
-    <class kind="class">InformeTri</class>
+    <name>listadocaravanas.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
+    <filename>listadocaravanas_8h</filename>
+    <includes id="eplugin_8h" name="eplugin.h" local="no" imported="no">eplugin.h</includes>
+    <includes id="einformeinterface_8h" name="einformeinterface.h" local="no" imported="no">einformeinterface.h</includes>
+    <class kind="class">ListadoCaravanas</class>
   </compound>
   <compound kind="file">
     <name>erenderizadorinforme.cpp</name>
@@ -424,7 +411,8 @@
     <includes id="informesmovimientos_8h" name="informesmovimientos.h" local="yes" imported="no">informesmovimientos.h</includes>
     <includes id="formfiltro_8h" name="formfiltro.h" local="yes" imported="no">formfiltro.h</includes>
     <includes id="erenderizadorinforme_8h" name="erenderizadorinforme.h" local="yes" imported="no">erenderizadorinforme.h</includes>
-    <includes id="plugins_2ListadoMovimientos_2einforme_8h" name="einforme.h" local="yes" imported="no">einforme.h</includes>
+    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+    <includes id="evisorinformes_8h" name="evisorinformes.h" local="yes" imported="no">evisorinformes.h</includes>
     <member kind="function">
       <type></type>
       <name>Q_EXPORT_PLUGIN2</name>
@@ -439,26 +427,6 @@
     <filename>informesmovimientos_8h</filename>
     <includes id="einformeinterface_8h" name="einformeinterface.h" local="yes" imported="no">../../einformeinterface.h</includes>
     <class kind="class">InformesMovimientos</class>
-  </compound>
-  <compound kind="file">
-    <name>senasa.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/senasa/</path>
-    <filename>senasa_8cpp</filename>
-    <includes id="senasa_8h" name="senasa.h" local="yes" imported="no">senasa.h</includes>
-    <member kind="function">
-      <type></type>
-      <name>Q_EXPORT_PLUGIN2</name>
-      <anchorfile>senasa_8cpp.html</anchorfile>
-      <anchor>9c2045b869d2c808f5130512eeabcbbd</anchor>
-      <arglist>(senasa, Senasa)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>senasa.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/senasa/</path>
-    <filename>senasa_8h</filename>
-    <includes id="einformeinterface_8h" name="einformeinterface.h" local="no" imported="no">einformeinterface.h</includes>
-    <class kind="class">Senasa</class>
   </compound>
   <compound kind="file">
     <name>TipoMovs.h</name>
@@ -526,7 +494,7 @@
     <name>vcategorias.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>productos_2vcategorias_8h</filename>
-    <includes id="src_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VCategorias</class>
   </compound>
   <compound kind="file">
@@ -613,6 +581,7 @@
     <name>formagregarrecibo.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>formagregarrecibo_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormAgregarRecibo</class>
   </compound>
   <compound kind="file">
@@ -629,41 +598,19 @@
     <class kind="class">FormModificarRecibo</class>
   </compound>
   <compound kind="file">
-    <name>formprefhijo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>plugins_2HiComp_2formprefhijo_8cpp</filename>
-    <includes id="plugins_2HiComp_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>formprefhijo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2formprefhijo_8cpp</filename>
-    <includes id="src_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>formprefhijo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>plugins_2HiComp_2formprefhijo_8h</filename>
-    <class kind="class">FormPrefHijo</class>
-  </compound>
-  <compound kind="file">
-    <name>formprefhijo.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2formprefhijo_8h</filename>
-    <class kind="class">FormPrefHijo</class>
-  </compound>
-  <compound kind="file">
     <name>fprefrecibos.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>fprefrecibos_8cpp</filename>
     <includes id="fprefrecibos_8h" name="fprefrecibos.h" local="yes" imported="no">fprefrecibos.h</includes>
     <includes id="hicomp_8h" name="hicomp.h" local="yes" imported="no">hicomp.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
   </compound>
   <compound kind="file">
     <name>fprefrecibos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>fprefrecibos_8h</filename>
-    <includes id="plugins_2HiComp_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FPrefRecibos</class>
   </compound>
   <compound kind="file">
@@ -679,8 +626,8 @@
     <name>hicomp.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>hicomp_8h</filename>
-    <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
-    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+    <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">../../src/einfoprogramainterface.h</includes>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">../../src/eplugin.h</includes>
     <class kind="class">HiComp</class>
   </compound>
   <compound kind="file">
@@ -739,6 +686,7 @@
     <name>vrecibos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>vrecibos_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">VRecibos</class>
   </compound>
   <compound kind="file">
@@ -781,6 +729,7 @@
     <name>formmodificarpresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formmodificarpresupuesto_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormModificarPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -795,6 +744,7 @@
     <name>formnuevopresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formnuevopresupuesto_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormNuevoPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -811,6 +761,7 @@
     <name>formpresupuestosanteriores.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formpresupuestosanteriores_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormPresupuestosAnteriores</class>
   </compound>
   <compound kind="file">
@@ -873,6 +824,7 @@
     <name>formagregarpresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>formagregarpresupuesto_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormAgregarPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -885,6 +837,7 @@
     <name>formlistaproductos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>formlistaproductos_8h</filename>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <includes id="mtproductospresupuesto_8h" name="mtproductospresupuesto.h" local="yes" imported="no">mtproductospresupuesto.h</includes>
     <class kind="class">FormListaProductos</class>
   </compound>
@@ -1033,7 +986,7 @@
     <name>vproductos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>vproductos_8h</filename>
-    <includes id="src_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VProductos</class>
   </compound>
   <compound kind="file">
@@ -1048,7 +1001,7 @@
     <name>ebackup.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>ebackup_8h</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">Ebackup</class>
   </compound>
   <compound kind="file">
@@ -1065,18 +1018,6 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>eenviobackup_8h</filename>
     <class kind="class">EEnvioBackup</class>
-  </compound>
-  <compound kind="file">
-    <name>einfoprograma.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>einfoprograma_8cpp</filename>
-    <includes id="einfoprograma_8h" name="einfoprograma.h" local="yes" imported="no">einfoprograma.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>einfoprograma.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>einfoprograma_8h</filename>
-    <class kind="class">EInfoPrograma</class>
   </compound>
   <compound kind="file">
     <name>einfoprogramainterface.h</name>
@@ -1128,7 +1069,7 @@
     <name>formacercade.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>formacercade_8h</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormAcercaDe</class>
   </compound>
   <compound kind="file">
@@ -1153,7 +1094,7 @@
     <includes id="formpreferencias_8h" name="formpreferencias.h" local="yes" imported="no">formpreferencias.h</includes>
     <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
-    <includes id="src_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
     <includes id="fprefgeneral_8h" name="fprefgeneral.h" local="yes" imported="no">fprefgeneral.h</includes>
     <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
     <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
@@ -1162,7 +1103,7 @@
     <name>formpreferencias.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>formpreferencias_8h</filename>
-    <includes id="src_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormPreferencias</class>
   </compound>
   <compound kind="file">
@@ -1171,7 +1112,6 @@
     <filename>formulariocentral_8cpp</filename>
     <includes id="formulariocentral_8h" name="formulariocentral.h" local="yes" imported="no">formulariocentral.h</includes>
     <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
-    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
   </compound>
   <compound kind="file">
     <name>formulariocentral.h</name>
@@ -1190,7 +1130,8 @@
     <name>fprefgeneral.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>fprefgeneral_8h</filename>
-    <includes id="src_2formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FPrefGeneral</class>
   </compound>
   <compound kind="file">
@@ -1220,7 +1161,6 @@
     <name>gestotux.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>gestotux_8h</filename>
-    <includes id="formulariocentral_8h" name="formulariocentral.h" local="yes" imported="no">formulariocentral.h</includes>
     <class kind="class">gestotux</class>
   </compound>
   <compound kind="file">
@@ -1247,51 +1187,22 @@
     </member>
     <member kind="variable">
       <type>FILE *</type>
-      <name>deb</name>
+      <name>debug</name>
       <anchorfile>src_2main_8cpp.html</anchorfile>
-      <anchor>c5ee7a69aa5d473f40380392e5e3ba1b</anchor>
+      <anchor>7f0158669de514eb00dcf8d3a7408285</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>main.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/ncreportrunner/</path>
-    <filename>templates_2ncreport-qt4-0_87_830-2_2ncreport-qt4-0_87_830_2src_2ncreportrunner_2main_8cpp</filename>
-    <includes id="ncreporttestform_8h" name="ncreporttestform.h" local="yes" imported="no">ncreporttestform.h</includes>
-    <includes id="ncreport_8h" name="ncreport.h" local="yes" imported="no">../libncreport/ncreport.h</includes>
-    <includes id="globals_8h" name="globals.h" local="yes" imported="no">../libncreport/globals.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>MODE_DEMO_NUMBER</name>
-      <anchorfile>templates_2ncreport-qt4-0_87_830-2_2ncreport-qt4-0_87_830_2src_2ncreportrunner_2main_8cpp.html</anchorfile>
-      <anchor>015d8b8719de592a8a104d3e4071f646</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MODE_MAIN</name>
-      <anchorfile>templates_2ncreport-qt4-0_87_830-2_2ncreport-qt4-0_87_830_2src_2ncreportrunner_2main_8cpp.html</anchorfile>
-      <anchor>97e656eefd70498442c9a73316a15d81</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MODE_PREVIEW</name>
-      <anchorfile>templates_2ncreport-qt4-0_87_830-2_2ncreport-qt4-0_87_830_2src_2ncreportrunner_2main_8cpp.html</anchorfile>
-      <anchor>e6258f7a71bf68a4b01cfcebfd4f7efb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SHOW_ARGUMENTS</name>
-      <anchorfile>templates_2ncreport-qt4-0_87_830-2_2ncreport-qt4-0_87_830_2src_2ncreportrunner_2main_8cpp.html</anchorfile>
-      <anchor>2ace72f67247cfa4226fdb844b9de80b</anchor>
-      <arglist></arglist>
-    </member>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>templates_2testo_2src_2main_8cpp</filename>
+    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+    <includes id="testo_8h" name="testo.h" local="yes" imported="no">testo.h</includes>
     <member kind="function">
       <type>int</type>
       <name>main</name>
-      <anchorfile>templates_2ncreport-qt4-0_87_830-2_2ncreport-qt4-0_87_830_2src_2ncreportrunner_2main_8cpp.html</anchorfile>
+      <anchorfile>templates_2testo_2src_2main_8cpp.html</anchorfile>
       <anchor>0ddf1224851353fc92bfbff6f499fa97</anchor>
       <arglist>(int argc, char *argv[])</arglist>
     </member>
@@ -1307,306 +1218,6 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>mclientes_8h</filename>
     <class kind="class">MClientes</class>
-  </compound>
-  <compound kind="file">
-    <name>preferencias.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>preferencias_8cpp</filename>
-    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>preferencias.h</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>preferencias_8h</filename>
-    <class kind="class">preferencias</class>
-  </compound>
-  <compound kind="file">
-    <name>qmake_image_collection.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>qmake__image__collection_8cpp</filename>
-    <class kind="struct">EmbedImage</class>
-    <class kind="class">MimeSourceFactory_gestotux</class>
-    <class kind="class">StaticInitImages_gestotux</class>
-    <member kind="function">
-      <type>void</type>
-      <name>qCleanupImages_gestotux</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>4668f1c9790c2255de440344b8aad1b3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>qInitImages_gestotux</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>375fa6d74ceb87f977014a7b50e9e3ff</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static QImage</type>
-      <name>uic_findImage</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>e70334bdea8b429ad013232ac9175390</anchor>
-      <arglist>(const QString &amp;name)</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static struct EmbedImage</type>
-      <name>embed_image_vec</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>ccb47ade7ff530b8054312c4da0158c5</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static Q3MimeSourceFactory *</type>
-      <name>factory</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>39acf6d887c1c22c8443d8d65d8dd5d5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_0_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>44fc31196f862e04ab2d62d17bf298b2</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_10_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>b52d0abcd73878a6444100eda1232a98</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_11_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>8eec75aa15a258b267d62fcea4189cdf</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_12_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>f4de63ce047561bacc213fbf80bb422c</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_13_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>7f3b9857b324ddf63e19e312f26b716f</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_14_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>2d45c78af9acf04a66e0af2740f49dd5</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_15_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>8bb2f1154e59c647ee86aaa4c284286c</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_16_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>2e819ce691f19ea727d376519e48e00f</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_17_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>36ec9f77e3ba3d8f1df11318f846e2a2</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_18_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>8cd3c9d05d2fcd804d826c8d3a93c38f</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_19_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>d421667afee74eee87a5289c89335a3b</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_1_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>24a4bd1c591202bbad2a25db9a837e86</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_20_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>14e26ba234aa7ff991b31496b626693a</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_21_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>78856cd4ef03e9d15ef278a000566ab1</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_22_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>324958ac447951cc031086157adfe61f</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_23_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>58feb996d1b02bba56846ee35eb96bdf</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_24_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>0be7f401b9a4c86c08958fe79079ce4d</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_25_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>987cb064219be606dc75e71b2ecd75b7</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_26_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>cfb973211f5fa19f09e9bfcc4b0cd14f</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_27_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>e265769235f2960a5249c1f5a21654c8</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_28_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>d6203032c0745db6c505603e5aaf27d8</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_29_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>17fadad1f6dd94b93384d77d7562f135</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_2_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>aaf6594802578bebc89efe6f1fc67400</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_30_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>6d5af4abe1ff4177bbe8a68848cecc72</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_31_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>c6b5063c9024d62a60264bc8e49bfed2</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_32_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>b3498ece7d8f9fb573226f73f2eb433b</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_33_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>5c34023d8fbd38ee055a72049a87fb29</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_3_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>f6987ecd46836516183590427cf6ca13</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_4_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>b547424e5e5f5589097c15f8edca345a</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_5_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>f34d360bad3a0f8000f63f3e1c373fac</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_6_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>569540016ad0c26b7410bfa0a1b5c825</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_7_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>c44ec5d018ef419c0ccbc82ee5282026</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_8_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>e36bcf0745299d69f6dda4907251452a</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const unsigned char</type>
-      <name>image_9_data</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>a748c5d164090680766a52706e67a2c5</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static StaticInitImages_gestotux</type>
-      <name>staticImages</name>
-      <anchorfile>qmake__image__collection_8cpp.html</anchorfile>
-      <anchor>a34749026ba2b4ae7e65b63050762af4</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>reloj.cpp</name>
@@ -1632,630 +1243,173 @@
     <name>vcliente.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>vcliente_8h</filename>
-    <includes id="src_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VCliente</class>
   </compound>
   <compound kind="file">
-    <name>globals.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>globals_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_APPCONFFILE</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>2677ef181633a0da4e3587a33e3f7a43</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_COPYRIGHT</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>2b7ad3d1289a1d0259b119a0cb7d2358</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_IMAGEPATH</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>9eb03d386d0ebb9a3b42e1ffdd301616</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_LONGNAME</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>02c0405fd065d68d43fb8767d61752a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_NAME</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>d7e34fd04d724cd2fccb50a64cb324e9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_SQLCONFFILE</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>ac48a0f11069965cc4c7b3cc86bb83d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_VERSION</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>f4663a2b279bf0127a16fc688e3735a4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCAPP_WIDGETPOSFILE</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>bd61f60300b87467e1765ea5feeab67a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_REPORT_TABLE</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>e87facc89972df5c4e64b161c35f61b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_SYSTEM_DATABASE</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>94728a2996e3b59a986822e38da79895</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>nciconfactory.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>nciconfactory_8cpp</filename>
-    <includes id="nciconfactory_8h" name="nciconfactory.h" local="yes" imported="no">nciconfactory.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>nciconfactory.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>nciconfactory_8h</filename>
-    <includes id="nciconfactorybase_8h" name="nciconfactorybase.h" local="yes" imported="no">nciconfactorybase.h</includes>
-    <class kind="class">NCIconFactory</class>
-  </compound>
-  <compound kind="file">
-    <name>nciconfactorybase.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>nciconfactorybase_8cpp</filename>
-    <includes id="nciconfactorybase_8h" name="nciconfactorybase.h" local="yes" imported="no">nciconfactorybase.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>nciconfactorybase.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>nciconfactorybase_8h</filename>
-    <class kind="class">NCIconFactoryBase</class>
-  </compound>
-  <compound kind="file">
-    <name>ncpreview.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncpreview_8cpp</filename>
-    <includes id="ncpreview_8h" name="ncpreview.h" local="yes" imported="no">ncpreview.h</includes>
-    <includes id="ncreport_8h" name="ncreport.h" local="yes" imported="no">ncreport.h</includes>
-    <includes id="nciconfactorybase_8h" name="nciconfactorybase.h" local="yes" imported="no">nciconfactorybase.h</includes>
-    <includes id="nciconfactory_8h" name="nciconfactory.h" local="yes" imported="no">nciconfactory.h</includes>
-    <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>TRIMFACTOR</name>
-      <anchorfile>ncpreview_8cpp.html</anchorfile>
-      <anchor>acaa0c42133ba263598c51ed4f4a07e5</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>ncpreview.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncpreview_8h</filename>
-    <class kind="class">NCPictureList</class>
-    <class kind="class">NCPreview</class>
-    <class kind="class">NCPreviewPage</class>
-    <class kind="class">NCPreviewScrollArea</class>
-  </compound>
-  <compound kind="file">
-    <name>ncreport.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncreport_8cpp</filename>
-    <includes id="ncreport_8h" name="ncreport.h" local="yes" imported="no">ncreport.h</includes>
-    <includes id="ncpreview_8h" name="ncpreview.h" local="yes" imported="no">ncpreview.h</includes>
-    <includes id="reportparser_8h" name="reportparser.h" local="yes" imported="no">reportparser.h</includes>
-    <includes id="ncutils_8h" name="ncutils.h" local="yes" imported="no">ncutils.h</includes>
-    <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_CONFIGFILE</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>7cd5c9bdb63662d78260782515352232</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_DOT_DELIMITER</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>5db1f3c50173210e4a9ac5af1adc2ebc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_GPARAM_BEGINS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>7ce6a583a00b95a22d7558bf2a0dbccc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_GPARAM_ENDS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>2fc52486198a55d85c6fad9f1c003321</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_LOGFILE</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>1c4a448453c5dd03134c3fab9caa2b29</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_PARAM_BEGINS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>6f18db0d0e7d29d4bdba7673b09a5990</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_PARAM_ENDS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>983503cfe5cba440ae6f792887e8f694</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_SYSVAR_BEGINS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>25adcaa5e517a6517ce645b7926d2cab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCREPORT_VARIABLE_BEGINS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>15f9ba63913e11c22161041b0477ba5d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SCREENFACTOR</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>ce097da01001d804fad995b1c3a17329</anchor>
-      <arglist></arglist>
-    </member>
+    <name>editcopy.xpm</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>editcopy_8xpm</filename>
     <member kind="variable" static="yes">
-      <type>static const char *</type>
-      <name>TOKENS</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>db97d509aff3dffdd14a32fd955242c8</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static const int</type>
-      <name>TOKENSIZES</name>
-      <anchorfile>ncreport_8cpp.html</anchorfile>
-      <anchor>11d17f9e37fa141260ec4d4110cd73b0</anchor>
+      <type>static char *</type>
+      <name>editcopy</name>
+      <anchorfile>editcopy_8xpm.html</anchorfile>
+      <anchor>471211cb286a77cc53f043408037d009</anchor>
       <arglist>[]</arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>ncreport.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncreport_8h</filename>
-    <includes id="ncsqlquery_8h" name="ncsqlquery.h" local="yes" imported="no">ncsqlquery.h</includes>
-    <class kind="class">NCReport</class>
-    <class kind="class">NCReportLookup</class>
-    <class kind="class">report_ContainerObject</class>
-    <class kind="class">report_DataDef</class>
-    <class kind="class">report_Detail</class>
-    <class kind="class">report_ElementObject</class>
-    <class kind="class">report_Ellipse</class>
-    <class kind="class">report_Field</class>
-    <class kind="class">report_GeometricObject</class>
-    <class kind="class">report_Group</class>
-    <class kind="class">report_groupFooter</class>
-    <class kind="class">report_groupHeader</class>
-    <class kind="class">report_Groups</class>
-    <class kind="class">report_Label</class>
-    <class kind="class">report_Line</class>
-    <class kind="class">report_pageFooter</class>
-    <class kind="class">report_pageHeader</class>
-    <class kind="class">report_Parameter</class>
-    <class kind="class">report_Pixmap</class>
-    <class kind="class">report_Queries</class>
-    <class kind="class">report_Query</class>
-    <class kind="class">report_Rectangle</class>
-    <class kind="class">report_Variable</class>
-    <member kind="define">
-      <type>#define</type>
-      <name>CLASS_NCREPORT_DECLSPEC</name>
-      <anchorfile>ncreport_8h.html</anchorfile>
-      <anchor>f81f706675f40a0decc6cf4847035ab5</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>ncsqlquery.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncsqlquery_8cpp</filename>
-    <includes id="ncsqlquery_8h" name="ncsqlquery.h" local="yes" imported="no">ncsqlquery.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCSQL_DEFAULTCODEC</name>
-      <anchorfile>ncsqlquery_8cpp.html</anchorfile>
-      <anchor>cb10ea9f5229517271fbda5cf27f0ba9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>NCSQL_ERRORLOGFILE</name>
-      <anchorfile>ncsqlquery_8cpp.html</anchorfile>
-      <anchor>75a65d0d544cfbd3aeb72c2b6476c5c9</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>ncsqlquery.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncsqlquery_8h</filename>
-    <class kind="class">NCSqlQuery</class>
-  </compound>
-  <compound kind="file">
-    <name>ncutils.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncutils_8cpp</filename>
-    <includes id="ncutils_8h" name="ncutils.h" local="yes" imported="no">ncutils.h</includes>
-    <member kind="function">
-      <type>bool</type>
-      <name>_loadConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>b5793c2838baae55943a4c1c6a571415</anchor>
-      <arglist>(const QString &amp;filename, QStringList &amp;sl, const QString &amp;group, const QString &amp;option, int &amp;groupLineNo, int &amp;optLineNo)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>_saveConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>6e4d7b05583ce056c3b2751c0bc51b02</anchor>
-      <arglist>(const QString &amp;filename, const QStringList &amp;sl)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>abs</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>1f6a98f67b0644468cb041c3658db021</anchor>
-      <arglist>(const double d)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>concatStringWith</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>f042775d9164d88c99394e4c315eed6e</anchor>
-      <arglist>(QString &amp;s, const QString &amp;s1, const QString &amp;delim)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>dateToString</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>bb2fbb9c95343eb89bd7d3bae8137bc6</anchor>
-      <arglist>(const QDate &amp;dt)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>DecodeStringX</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>065f642511a9e0a58a4d5ca563b24e15</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringHTML</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>36f65869c9254386a2a9d3b8ae854339</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringSQL</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>a0f5c13db70f4ea6ac35b8a1a7cec5c6</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringX</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>01f274917dd45115e9d068b3b2ab4fe9</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>findInEncTable</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>03fd2b597e71fabad7118876d9a8a3da</anchor>
-      <arglist>(const QChar ch)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>formatNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>275f6012f720df5b19213327bee0cf7f</anchor>
-      <arglist>(const QString &amp;numberString, bool sep, const char separator, const char decpoint)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>formatNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>9ba98c97cdbd1d85a2abfa6d67c633e6</anchor>
-      <arglist>(const double number, const char *frm, bool sep, const char separator, const char decpoint)</arglist>
-    </member>
-    <member kind="function">
-      <type>QPoint</type>
-      <name>popupPosition</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>3eae1b20bf2f42f1841c42f7aed41726</anchor>
-      <arglist>(QWidget *hostwidget, QWidget *popupwidget)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>readConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>91115d9248653456b8a2eebec79951d4</anchor>
-      <arglist>(const QString &amp;filename, const QString &amp;group, const QString &amp;option)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>round</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>4b21e49d2c1e883a296072fed14a9e66</anchor>
-      <arglist>(const double value, const short int digits)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>sayNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>a5725e5d2cec6154180ce569126e1dce</anchor>
-      <arglist>(double numb)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>sayNumber_part</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>b277354b037c5a8d76b761d36dccfdf4</anchor>
-      <arglist>(const QString &amp;part)</arglist>
-    </member>
-    <member kind="function">
-      <type>QDate</type>
-      <name>stringToDate</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>e88c37ad3c9d166a040df9a85934e88e</anchor>
-      <arglist>(const QString &amp;dts)</arglist>
-    </member>
-    <member kind="function">
-      <type>QColor</type>
-      <name>webColor</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>7a57fd85c3ea660fd7247a6894d4bed6</anchor>
-      <arglist>(const QString &amp;colorstring)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>writeConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>2a16021b5354393415299a0c9bfd9fc6</anchor>
-      <arglist>(const QString &amp;filename, const QString &amp;group, const QString &amp;option, const QString &amp;value)</arglist>
-    </member>
+    <name>editcut.xpm</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>editcut_8xpm</filename>
     <member kind="variable" static="yes">
-      <type>static const char *</type>
-      <name>enctable</name>
-      <anchorfile>ncutils_8cpp.html</anchorfile>
-      <anchor>bdcd3ff0691a77acc677813bffcf7a49</anchor>
+      <type>static char *</type>
+      <name>editcut</name>
+      <anchorfile>editcut_8xpm.html</anchorfile>
+      <anchor>5c6dbb1908552e3c6ce9edc3ad0b1185</anchor>
       <arglist>[]</arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>ncutils.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>ncutils_8h</filename>
-    <namespace>NCUtils</namespace>
-    <member kind="function">
-      <type>bool</type>
-      <name>_loadConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>b5793c2838baae55943a4c1c6a571415</anchor>
-      <arglist>(const QString &amp;filename, QStringList &amp;sl, const QString &amp;group, const QString &amp;option, int &amp;groupLineNo, int &amp;optLineNo)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>_saveConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>6e4d7b05583ce056c3b2751c0bc51b02</anchor>
-      <arglist>(const QString &amp;filename, const QStringList &amp;sl)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>abs</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>1f6a98f67b0644468cb041c3658db021</anchor>
-      <arglist>(const double d)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>concatStringWith</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>f042775d9164d88c99394e4c315eed6e</anchor>
-      <arglist>(QString &amp;s, const QString &amp;s1, const QString &amp;delim)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>dateToString</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>bb2fbb9c95343eb89bd7d3bae8137bc6</anchor>
-      <arglist>(const QDate &amp;dt)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>DecodeStringX</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>065f642511a9e0a58a4d5ca563b24e15</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringHTML</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>36f65869c9254386a2a9d3b8ae854339</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringSQL</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>a0f5c13db70f4ea6ac35b8a1a7cec5c6</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringX</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>01f274917dd45115e9d068b3b2ab4fe9</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>findInEncTable</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>03fd2b597e71fabad7118876d9a8a3da</anchor>
-      <arglist>(const QChar ch)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>formatNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>275f6012f720df5b19213327bee0cf7f</anchor>
-      <arglist>(const QString &amp;numberString, bool sep, const char separator, const char decpoint)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>formatNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>9ba98c97cdbd1d85a2abfa6d67c633e6</anchor>
-      <arglist>(const double number, const char *frm, bool sep, const char separator, const char decpoint)</arglist>
-    </member>
-    <member kind="function">
-      <type>QPoint</type>
-      <name>popupPosition</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>3eae1b20bf2f42f1841c42f7aed41726</anchor>
-      <arglist>(QWidget *hostwidget, QWidget *popupwidget)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>readConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>91115d9248653456b8a2eebec79951d4</anchor>
-      <arglist>(const QString &amp;filename, const QString &amp;group, const QString &amp;option)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>round</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>4b21e49d2c1e883a296072fed14a9e66</anchor>
-      <arglist>(const double value, const short int digits)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>sayNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>a5725e5d2cec6154180ce569126e1dce</anchor>
-      <arglist>(double numb)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>sayNumber_part</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>b277354b037c5a8d76b761d36dccfdf4</anchor>
-      <arglist>(const QString &amp;part)</arglist>
-    </member>
-    <member kind="function">
-      <type>QDate</type>
-      <name>stringToDate</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>e88c37ad3c9d166a040df9a85934e88e</anchor>
-      <arglist>(const QString &amp;dts)</arglist>
-    </member>
-    <member kind="function">
-      <type>QColor</type>
-      <name>webColor</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>7a57fd85c3ea660fd7247a6894d4bed6</anchor>
-      <arglist>(const QString &amp;colorstring)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>writeConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>2a16021b5354393415299a0c9bfd9fc6</anchor>
-      <arglist>(const QString &amp;filename, const QString &amp;group, const QString &amp;option, const QString &amp;value)</arglist>
+    <name>editpaste.xpm</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>editpaste_8xpm</filename>
+    <member kind="variable" static="yes">
+      <type>static char *</type>
+      <name>editpaste</name>
+      <anchorfile>editpaste_8xpm.html</anchorfile>
+      <anchor>5bcfa6e8879a52d13089d8f26955d1df</anchor>
+      <arglist>[]</arglist>
     </member>
   </compound>
   <compound kind="file">
-    <name>reportparser.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>reportparser_8cpp</filename>
-    <includes id="reportparser_8h" name="reportparser.h" local="yes" imported="no">reportparser.h</includes>
-    <includes id="ncutils_8h" name="ncutils.h" local="yes" imported="no">ncutils.h</includes>
+    <name>filenew.xpm</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>filenew_8xpm</filename>
+    <member kind="variable" static="yes">
+      <type>static char *</type>
+      <name>filenew</name>
+      <anchorfile>filenew_8xpm.html</anchorfile>
+      <anchor>12be11f9078c2358841f610019b44f62</anchor>
+      <arglist>[]</arglist>
+    </member>
   </compound>
   <compound kind="file">
-    <name>reportparser.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>reportparser_8h</filename>
-    <includes id="ncreport_8h" name="ncreport.h" local="yes" imported="no">ncreport.h</includes>
-    <class kind="class">ReportParser</class>
-    <class kind="class">ReportParserErrorHandler</class>
+    <name>fileopen.xpm</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>fileopen_8xpm</filename>
+    <member kind="variable" static="yes">
+      <type>static char *</type>
+      <name>fileopen</name>
+      <anchorfile>fileopen_8xpm.html</anchorfile>
+      <anchor>260076d78280bdab25890dd5febe8ba3</anchor>
+      <arglist>[]</arglist>
+    </member>
   </compound>
   <compound kind="file">
-    <name>ncreporttestform.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/ncreportrunner/</path>
-    <filename>ncreporttestform_8cpp</filename>
-    <includes id="ncreporttestform_8h" name="ncreporttestform.h" local="yes" imported="no">ncreporttestform.h</includes>
-    <includes id="globals_8h" name="globals.h" local="yes" imported="no">../libncreport/globals.h</includes>
+    <name>filesave.xpm</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>filesave_8xpm</filename>
+    <member kind="variable" static="yes">
+      <type>static char *</type>
+      <name>filesave</name>
+      <anchorfile>filesave_8xpm.html</anchorfile>
+      <anchor>4c51cfe135473cf998f1ed91ef2bd5da</anchor>
+      <arglist>[]</arglist>
+    </member>
   </compound>
   <compound kind="file">
-    <name>ncreporttestform.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/ncreportrunner/</path>
-    <filename>ncreporttestform_8h</filename>
-    <includes id="ncreport_8h" name="ncreport.h" local="yes" imported="no">../libncreport/ncreport.h</includes>
-    <class kind="class">MyLookup</class>
-    <class kind="class">NCReportTestForm</class>
+    <name>testo.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>testo_8cpp</filename>
+    <includes id="testo_8h" name="testo.h" local="yes" imported="no">testo.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>testo.h</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>testo_8h</filename>
+    <class kind="class">testo</class>
+  </compound>
+  <compound kind="file">
+    <name>eactcerrar.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eactcerrar_8cpp</filename>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>eactcerrar.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eactcerrar_8h</filename>
+    <class kind="class">EActCerrar</class>
+  </compound>
+  <compound kind="file">
+    <name>eactimprimir.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eactimprimir_8cpp</filename>
+    <includes id="eactimprimir_8h" name="eactimprimir.h" local="yes" imported="no">eactimprimir.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>eactimprimir.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eactimprimir_8h</filename>
+    <class kind="class">EActImprimir</class>
+  </compound>
+  <compound kind="file">
+    <name>evisorinformes.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>evisorinformes_8cpp</filename>
+    <includes id="evisorinformes_8h" name="evisorinformes.h" local="yes" imported="no">evisorinformes.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+    <includes id="eactimprimir_8h" name="eactimprimir.h" local="yes" imported="no">eactimprimir.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>evisorinformes.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>evisorinformes_8h</filename>
+    <class kind="class">EVisorInformes</class>
+  </compound>
+  <compound kind="file">
+    <name>formprefhijo.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>formprefhijo_8h</filename>
+    <class kind="class">FormPrefHijo</class>
+  </compound>
+  <compound kind="file">
+    <name>preferencias.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>preferencias_8cpp</filename>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>preferencias.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>preferencias_8h</filename>
+    <class kind="class">preferencias</class>
   </compound>
   <compound kind="class">
     <name>AdminCarCorr</name>
     <filename>classAdminCarCorr.html</filename>
-    <base protection="private">EPlugin</base>
+    <base>EPlugin</base>
     <base protection="private">EInfoProgramaInterface</base>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>5ba8d59a3842974abd6b5202552293a7</anchor>
+      <arglist>(QWidget *v)</arglist>
+    </member>
     <member kind="function">
       <type>QList&lt; QAction * &gt;</type>
       <name>accionesBarra</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>b1130c32b108ee39c2f706c8f784d4ce</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>conectarVisorInforme</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>60679c79e95d52950e17939211c3149a</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2297,8 +1451,8 @@
       <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
-      <anchor>42ab556aee9c5d456ec37adb74c4ada1</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+      <anchor>7b8eda7fd345b212f84bf3de1b9c610a</anchor>
+      <arglist>(QSettings *pref)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -2379,13 +1533,6 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
-      <name>mostrarDuenos</name>
-      <anchorfile>classAdminCarCorr.html</anchorfile>
-      <anchor>8436affeabed6b7d973e64642e4ee9e8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
       <name>verCategorias</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>8273ddb658dc2f88a5397a41bbaa1cca</anchor>
@@ -2431,6 +1578,13 @@
       <name>_acciones</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>1820a917d1ffcfe3fc01532d15492bc8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>_listaFormPref</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>6e76b8ae9445e7d7e7801b6e943ae35e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -2487,13 +1641,6 @@
       <name>loader</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>0dde00374472e4f419dba8806c0e2e98</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classAdminCarCorr.html</anchorfile>
-      <anchor>860d4e380641abdb90ceacf29d1daf0b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
@@ -2576,6 +1723,42 @@
       <anchorfile>classDRecibo.html</anchorfile>
       <anchor>621ac2718ac9358eeee9aec655e655c5</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EActCerrar</name>
+    <filename>classEActCerrar.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>EActCerrar</name>
+      <anchorfile>classEActCerrar.html</anchorfile>
+      <anchor>2dd3d9bb3c05642a4580c0cbda1bccca</anchor>
+      <arglist>(QObject *parent)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EActCerrar</name>
+      <anchorfile>classEActCerrar.html</anchorfile>
+      <anchor>442db08fd32f5946fcb21ff0e723b58c</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EActImprimir</name>
+    <filename>classEActImprimir.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>EActImprimir</name>
+      <anchorfile>classEActImprimir.html</anchorfile>
+      <anchor>76379476e62143a2fe0d8d7f47a86b58</anchor>
+      <arglist>(QObject *parent)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EActImprimir</name>
+      <anchorfile>classEActImprimir.html</anchorfile>
+      <anchor>ac76c6dd4dcf66f66fc2af28bd6226f0</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2703,6 +1886,24 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>EDCategoriaEspecial</name>
+    <filename>classEDCategoriaEspecial.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>EDCategoriaEspecial</name>
+      <anchorfile>classEDCategoriaEspecial.html</anchorfile>
+      <anchor>f0cb6745402228337b80ece2a5efe14b</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EDCategoriaEspecial</name>
+      <anchorfile>classEDCategoriaEspecial.html</anchorfile>
+      <anchor>3a19cba687060f4ffed84b7c10d0bb24</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>EEnvioBackup</name>
     <filename>classEEnvioBackup.html</filename>
     <member kind="function">
@@ -2734,29 +1935,18 @@
       <arglist>(int id, bool error)</arglist>
     </member>
     <member kind="variable" protection="private">
+      <type>QFile *</type>
+      <name>archivo</name>
+      <anchorfile>classEEnvioBackup.html</anchorfile>
+      <anchor>26ebc3328f5dc58e9a0d1cd95f829321</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>QFtp *</type>
       <name>ftp</name>
       <anchorfile>classEEnvioBackup.html</anchorfile>
       <anchor>7e2b47b9c83d2e9bdaebe862d713a5b0</anchor>
       <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>EInfoPrograma</name>
-    <filename>classEInfoPrograma.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>EInfoPrograma</name>
-      <anchorfile>classEInfoPrograma.html</anchorfile>
-      <anchor>a7ef951b60ae0262c69f46236d4a2292</anchor>
-      <arglist>(QObject *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~EInfoPrograma</name>
-      <anchorfile>classEInfoPrograma.html</anchorfile>
-      <anchor>efec479bf94252498dd4510000123be9</anchor>
-      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2820,91 +2010,49 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>EInforme</name>
-    <filename>classEInforme.html</filename>
-    <member kind="function">
-      <type>QMenu *</type>
-      <name>createStandardContextMenu</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>7b4a48b5aa5cc5ea8b0ae74f330b2775</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QMenu *</type>
-      <name>createStandardContextMenu</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>47b575f38541ddd53d8bc75df6035933</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>EInforme</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>43491de4459469db84ee2ad128e399bd</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>EInforme</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>43491de4459469db84ee2ad128e399bd</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~EInforme</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>971c1f829ad3459a564fbc8ae7bc3e6d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~EInforme</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>971c1f829ad3459a564fbc8ae7bc3e6d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
+    <name>EInformeImpresora</name>
+    <filename>classEInformeImpresora.html</filename>
+    <member kind="slot">
       <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>bd5047df1927b1691f8acce121caca18</anchor>
+      <name>guardar</name>
+      <anchorfile>classEInformeImpresora.html</anchorfile>
+      <anchor>d74a7f7f2c9e7db64cf57141334b346f</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot" protection="protected">
+    <member kind="function">
+      <type></type>
+      <name>EInformeImpresora</name>
+      <anchorfile>classEInformeImpresora.html</anchorfile>
+      <anchor>75d372eb55a639352241ad60abab8459</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EInformeImpresora</name>
+      <anchorfile>classEInformeImpresora.html</anchorfile>
+      <anchor>75d372eb55a639352241ad60abab8459</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>bd5047df1927b1691f8acce121caca18</anchor>
+      <name>guardar</name>
+      <anchorfile>classEInformeImpresora.html</anchorfile>
+      <anchor>d74a7f7f2c9e7db64cf57141334b346f</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActCerrar</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>c4c3490e94bc5c236b42cad5fabd36b8</anchor>
-      <arglist></arglist>
+    <member kind="function">
+      <type></type>
+      <name>~EInformeImpresora</name>
+      <anchorfile>classEInformeImpresora.html</anchorfile>
+      <anchor>cc86d98cfd94aedb79bb8d9d8cf85c26</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActCerrar</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>c4c3490e94bc5c236b42cad5fabd36b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActImprimir</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>17852539748fb81648377993123494e7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActImprimir</name>
-      <anchorfile>classEInforme.html</anchorfile>
-      <anchor>17852539748fb81648377993123494e7</anchor>
-      <arglist></arglist>
+    <member kind="function">
+      <type></type>
+      <name>~EInformeImpresora</name>
+      <anchorfile>classEInformeImpresora.html</anchorfile>
+      <anchor>cc86d98cfd94aedb79bb8d9d8cf85c26</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2912,31 +2060,24 @@
     <filename>classEInformeInterface.html</filename>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>crearMenu</name>
+      <name>agregarVentana</name>
       <anchorfile>classEInformeInterface.html</anchorfile>
-      <anchor>213a9feed4d6d170ed5143dadbf42339</anchor>
-      <arglist>(QMenu *m)=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual bool</type>
-      <name>impresionPersonalizada</name>
-      <anchorfile>classEInformeInterface.html</anchorfile>
-      <anchor>340f7455c90b1fbc96a56a66d4d1386b</anchor>
-      <arglist>() const =0</arglist>
+      <anchor>0baba59e1bc81c61dd2e9fbc829f80e4</anchor>
+      <arglist>(QWidget *v)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
-      <name>imprimir</name>
+      <name>crearMenu</name>
       <anchorfile>classEInformeInterface.html</anchorfile>
-      <anchor>2e76152405288e78905a36b119b2e67c</anchor>
-      <arglist>()=0</arglist>
+      <anchor>930e3e32874d39e1e14c37d7e4883281</anchor>
+      <arglist>(QMenu *menu)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual bool</type>
       <name>inicializar</name>
       <anchorfile>classEInformeInterface.html</anchorfile>
-      <anchor>777041d3d17955cd5022b37d9db47a88</anchor>
-      <arglist>(QStackedWidget *form)=0</arglist>
+      <anchor>359abb335ffafb5c6a3727aca948cce8</anchor>
+      <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual QString</type>
@@ -2958,73 +2099,6 @@
       <anchorfile>classEInformeInterface.html</anchorfile>
       <anchor>536271c3f0b8fbe8e7ca78f594b3dae0</anchor>
       <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>EmbedImage</name>
-    <filename>structEmbedImage.html</filename>
-    <member kind="variable">
-      <type>bool</type>
-      <name>alpha</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>2ad6443456099ec2e027a78003e15654</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const QRgb *</type>
-      <name>colorTable</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>39a48b70045f5c1a637202060a147319</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>ulong</type>
-      <name>compressed</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>61f1d3e7ebc258a66cc1c627552c0d2f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const unsigned char *</type>
-      <name>data</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>cc079858870813c58b16660f5fed7166</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>depth</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>8a1d5e5e69ed91b0ae9463faba86b6b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>height</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>b994d384748f7786fbaea23b5f6d3dc7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const char *</type>
-      <name>name</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>b90974075614a374c0fee52d19282876</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>numColors</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>ebbcf5421f079038e5351fdf9563e4f6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>width</name>
-      <anchorfile>structEmbedImage.html</anchorfile>
-      <anchor>957499c1f669cf8a1705b838876f278a</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3424,6 +2498,13 @@
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>8f6852a78110c7d2ed4a1906e0a1ec2d</anchor>
+      <arglist>(QWidget *v)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
       <name>crearMenu</name>
       <anchorfile>classEPlugin.html</anchorfile>
       <anchor>83552b92124922ba3a5030d1e95075d7</anchor>
@@ -3440,8 +2521,8 @@
       <type>virtual bool</type>
       <name>inicializar</name>
       <anchorfile>classEPlugin.html</anchorfile>
-      <anchor>020fc272e2a807305633655436065188</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)=0</arglist>
+      <anchor>bb0d7045d08f9ba80fe7748087c7bba9</anchor>
+      <arglist>(QSettings *pref)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual QString</type>
@@ -3591,6 +2672,20 @@
   <compound kind="class">
     <name>ERenderizadorInforme</name>
     <filename>classERenderizadorInforme.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classERenderizadorInforme.html</anchorfile>
+      <anchor>9a529cf95aae9fc131bca15963c968e5</anchor>
+      <arglist>(QPrinter *impresora)</arglist>
+    </member>
+    <member kind="function">
+      <type>QStringList</type>
+      <name>buscarTris</name>
+      <anchorfile>classERenderizadorInforme.html</anchorfile>
+      <anchor>09e8b94f0b39b328c7c595694c8bbbcd</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>cerrarDialogo</name>
@@ -3602,15 +2697,8 @@
       <type>void</type>
       <name>colocarContenido</name>
       <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>f9c0ce38def964f134989e1c3a98f7c1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QTextDocument *</type>
-      <name>documento</name>
-      <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>7f4e94c293eb8d329ce914ef68771653</anchor>
-      <arglist>() const </arglist>
+      <anchor>8740bf2ed11eb5d58eb7d2e7345d085d</anchor>
+      <arglist>(QString tri=0)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -3620,53 +2708,25 @@
       <arglist>(QObject *padre=0)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>generarCabeceraTabla</name>
-      <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>88407f9aae739849c1dd3ee2409c38e9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>generarCola</name>
-      <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>7c4b45a9f958ac2a49b029f542455967</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
+      <type>bool</type>
       <name>hacerCabecera</name>
       <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>d4ca2fd7aa5f3e318a0b42034be19036</anchor>
-      <arglist>()</arglist>
+      <anchor>c29bda9d24a143d5e2ac2cd6c122abd7</anchor>
+      <arglist>(QString tri=0)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>bool</type>
       <name>hacerInforme</name>
       <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>e81756dd05685def8ddf9989c5872670</anchor>
+      <anchor>cd148dc7a27b870c47ab2a0cf64951be</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setarCabeceraFiltros</name>
-      <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>1de39ee07f72c8c14a8f9adb8d6fad2a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDocumento</name>
-      <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>6b00ef7e4b762533cc7f853bf98ccd6e</anchor>
-      <arglist>(QTextDocument *doc)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setPropiedades</name>
       <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>33445da6511a8e58668b900607517481</anchor>
-      <arglist>(FormFiltro *f)</arglist>
+      <anchor>988b430058679cf63020d7a34dd15b5e</anchor>
+      <arglist>(FormFiltro *f, QString estilo, QString cabecera)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -3676,10 +2736,24 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>_cabecera</name>
+      <anchorfile>classERenderizadorInforme.html</anchorfile>
+      <anchor>daf2eefebe9726477ef34777b7b2bd17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>QTextDocument *</type>
       <name>_doc</name>
       <anchorfile>classERenderizadorInforme.html</anchorfile>
       <anchor>88564da3c4d8b78667c6697aa98b8593</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>_estilo</name>
+      <anchorfile>classERenderizadorInforme.html</anchorfile>
+      <anchor>09ea5e1735a0562e03f20f48eef9dec3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -3753,10 +2827,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>QSqlQuery</type>
-      <name>cola</name>
+      <type>QTextCursor *</type>
+      <name>cursor</name>
       <anchorfile>classERenderizadorInforme.html</anchorfile>
-      <anchor>3f7db0fa50c56ddce0afbc926ac45303</anchor>
+      <anchor>f46195c27d508b5b2d8cdc89dc0d1a58</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -3843,6 +2917,20 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>c37415add4b63bbd3df607bd096c8426</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classEVentana.html</anchorfile>
+      <anchor>37ab6ec8c3fd3129a00850816ac8a3f4</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classEVentana.html</anchorfile>
+      <anchor>5e5f4238cfeadf7d2edf4d1ec36ba597</anchor>
+      <arglist>(QCloseEvent *e)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -3951,11 +3039,84 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>EVisorInformes</name>
+    <filename>classEVisorInformes.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>66d8a37ed52ebf000a001f95e7c8cd04</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EVisorInformes</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>420e9a72b666ff5b4cbd4d185f5f90fb</anchor>
+      <arglist>(QPrinter *impre=new QPrinter(QPrinterInfo::defaultPrinter()), QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EVisorInformes</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>e22d889050dcfe091d24a1e2ceb2f9ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>anterior</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>25a93647015943c0292169527c8dd067</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>aPdf</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>d94b6a686cb9a3c83f78a17ad506b8e5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>8a20a738d60c40b1343731aa7afa1663</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>primerPagina</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>ddeb5233a245634f19c172a95358278b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>siguiente</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>05ff6e237b874fbc30a051148cf6fc61</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>ultimaPagina</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>ce7af788fd999f4c3ad92ec7f93f7197</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPrinter *</type>
+      <name>impresora</name>
+      <anchorfile>classEVisorInformes.html</anchorfile>
+      <anchor>1f83732a04bc653c8ba4e046b78ff895</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>EVLista</name>
     <filename>classEVLista.html</filename>
     <base>EVentana</base>
     <base>EVentana</base>
-    <base>EVentana</base>
     <member kind="function">
       <type>void</type>
       <name>closeEvent</name>
@@ -3969,20 +3130,6 @@
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>c3dff0f1614fb5fe728478eff054c719</anchor>
       <arglist>(QCloseEvent *c)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>closeEvent</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>c3dff0f1614fb5fe728478eff054c719</anchor>
-      <arglist>(QCloseEvent *c)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>EVLista</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>222d52380c755478331a80e72dd4a336</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -4012,13 +3159,6 @@
       <anchor>09e8cb68a8cb0e2ba22ff5cb66988114</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>~EVLista</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>09e8cb68a8cb0e2ba22ff5cb66988114</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="variable">
       <type>QAction *</type>
       <name>ActAgregar</name>
@@ -4031,20 +3171,6 @@
       <name>ActAgregar</name>
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>7ee9c43db4bd6d0f336eb5f368b09faf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QAction *</type>
-      <name>ActAgregar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>7ee9c43db4bd6d0f336eb5f368b09faf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QAction *</type>
-      <name>ActBuscar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>831a3dceb083167a766770f3152495a7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4077,13 +3203,6 @@
     </member>
     <member kind="variable">
       <type>QAction *</type>
-      <name>ActCerrar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>75253b15c9ebf7b9b35f032fbe58d74e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QAction *</type>
       <name>ActEliminar</name>
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>809406a6eded4c0b9a72ae3bce33decb</anchor>
@@ -4094,20 +3213,6 @@
       <name>ActEliminar</name>
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>809406a6eded4c0b9a72ae3bce33decb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QAction *</type>
-      <name>ActEliminar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>809406a6eded4c0b9a72ae3bce33decb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QAction *</type>
-      <name>ActImprimir</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>0871f47ade45a0698f184d6f22677238</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4139,13 +3244,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>QAction *</type>
-      <name>ActModificar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>d279917337546a416088e6958398b145</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>QTableView *</type>
       <name>vista</name>
       <anchorfile>classEVLista.html</anchorfile>
@@ -4158,20 +3256,6 @@
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>fe3df10a1bff0632a7b79e81754bf7f8</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTableView *</type>
-      <name>vista</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>fe3df10a1bff0632a7b79e81754bf7f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>agregar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>b63b17abda6481dc78448a12668f7f23</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -4201,20 +3285,6 @@
       <anchor>b6f2e8e2c02a89961b183097b8785dcb</anchor>
       <arglist>(int row, QSqlRecord &amp;record)=0</arglist>
     </member>
-    <member kind="slot" protection="protected" virtualness="pure">
-      <type>virtual void</type>
-      <name>antes_de_insertar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>b6f2e8e2c02a89961b183097b8785dcb</anchor>
-      <arglist>(int row, QSqlRecord &amp;record)=0</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>buscar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>f8b9b54ae74399dae14c752b819fe605</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="slot" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>buscar</name>
@@ -4227,13 +3297,6 @@
       <name>buscar</name>
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>b62a1688ad08a59faf93dff2a53f9e94</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>cerrar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>7544d80388dc5a6e5e2ee8131d87ede2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected" virtualness="virtual">
@@ -4261,21 +3324,7 @@
       <type>virtual void</type>
       <name>eliminar</name>
       <anchorfile>classEVLista.html</anchorfile>
-      <anchor>bd40703a8e944c68b6c643fe872d0aa5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>eliminar</name>
-      <anchorfile>classEVLista.html</anchorfile>
       <anchor>3c0768fc13ee8f868a7e24242029ae2f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>imprimir</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>8e40881508794515a0c59ec081c72881</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected" virtualness="virtual">
@@ -4303,22 +3352,8 @@
       <type>virtual void</type>
       <name>modificar</name>
       <anchorfile>classEVLista.html</anchorfile>
-      <anchor>97106fd8090e3b6accb0bd2860c62916</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>modificar</name>
-      <anchorfile>classEVLista.html</anchorfile>
       <anchor>b108c259f82cc0e92f0202125b739158</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QSqlTableModel *</type>
-      <name>modelo</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>e9455d425525fd2ddc05445f773ba26b</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>QSqlTableModel *</type>
@@ -4552,6 +3587,7 @@
   <compound kind="class">
     <name>FormAgregarPresupuesto</name>
     <filename>classFormAgregarPresupuesto.html</filename>
+    <base>EVentana</base>
     <member kind="function">
       <type></type>
       <name>FormAgregarPresupuesto</name>
@@ -4626,6 +3662,7 @@
   <compound kind="class">
     <name>FormAgregarRecibo</name>
     <filename>classFormAgregarRecibo.html</filename>
+    <base>EVentana</base>
     <member kind="function">
       <type></type>
       <name>FormAgregarRecibo</name>
@@ -4809,6 +3846,7 @@
   <compound kind="class">
     <name>FormListaProductos</name>
     <filename>classFormListaProductos.html</filename>
+    <base>EVentana</base>
     <member kind="signal">
       <type>void</type>
       <name>agregarTabla</name>
@@ -4876,6 +3914,7 @@
   <compound kind="class">
     <name>FormModificarPresupuesto</name>
     <filename>classFormModificarPresupuesto.html</filename>
+    <base>EVentana</base>
     <member kind="function">
       <type></type>
       <name>FormModificarPresupuesto</name>
@@ -5064,6 +4103,7 @@
   <compound kind="class">
     <name>FormMovimiento</name>
     <filename>classFormMovimiento.html</filename>
+    <base>EVentana</base>
     <member kind="slot">
       <type>void</type>
       <name>agregarCategoria</name>
@@ -5177,10 +4217,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>QAction *</type>
+      <type>EActCerrar *</type>
       <name>ActCerrar</name>
       <anchorfile>classFormMovimiento.html</anchorfile>
-      <anchor>b9d45f4a84de2d51ac26133100313e33</anchor>
+      <anchor>07666ce606cc11da4c76e983a1d04e98</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -5241,6 +4281,7 @@
   <compound kind="class">
     <name>FormNuevoPresupuesto</name>
     <filename>classFormNuevoPresupuesto.html</filename>
+    <base>EVentana</base>
     <member kind="function">
       <type></type>
       <name>FormNuevoPresupuesto</name>
@@ -5266,6 +4307,7 @@
   <compound kind="class">
     <name>FormPrefCaravanas</name>
     <filename>classFormPrefCaravanas.html</filename>
+    <base>EVentana</base>
     <base>FormPrefHijo</base>
     <member kind="slot">
       <type>void</type>
@@ -5416,27 +4458,6 @@
   <compound kind="class">
     <name>FormPrefHijo</name>
     <filename>classFormPrefHijo.html</filename>
-    <member kind="slot" virtualness="pure">
-      <type>virtual void</type>
-      <name>aplicar</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>635ad3169d1f679ca406cbf702416dad</anchor>
-      <arglist>()=0</arglist>
-    </member>
-    <member kind="slot" virtualness="pure">
-      <type>virtual void</type>
-      <name>cargar</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>559b4ee32e995ed8f63a10b560f31593</anchor>
-      <arglist>()=0</arglist>
-    </member>
-    <member kind="slot" virtualness="pure">
-      <type>virtual void</type>
-      <name>guardar</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>bff213f50abb890b19ba61934503813e</anchor>
-      <arglist>()=0</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>aplicar</name>
@@ -5451,45 +4472,18 @@
       <anchor>559b4ee32e995ed8f63a10b560f31593</anchor>
       <arglist>()=0</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>FormPrefHijo</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>b909fe9e7749c3c11fbac3e4f88d0a72</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FormPrefHijo</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>b909fe9e7749c3c11fbac3e4f88d0a72</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>guardar</name>
       <anchorfile>classFormPrefHijo.html</anchorfile>
       <anchor>bff213f50abb890b19ba61934503813e</anchor>
       <arglist>()=0</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormPrefHijo</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>3fc69a1dcb8381bbeb2882899e29fe85</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormPrefHijo</name>
-      <anchorfile>classFormPrefHijo.html</anchorfile>
-      <anchor>3fc69a1dcb8381bbeb2882899e29fe85</anchor>
-      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>FormPresupuestosAnteriores</name>
     <filename>classFormPresupuestosAnteriores.html</filename>
+    <base>EVentana</base>
     <member kind="function">
       <type></type>
       <name>FormPresupuestosAnteriores</name>
@@ -5569,6 +4563,13 @@
   <compound kind="class">
     <name>FormularioCentral</name>
     <filename>classFormularioCentral.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarForm</name>
+      <anchorfile>classFormularioCentral.html</anchorfile>
+      <anchor>70df6e9f3ce247343397e160d1d12a6b</anchor>
+      <arglist>(QWidget *ventana)</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>FormularioCentral</name>
@@ -5655,6 +4656,7 @@
   <compound kind="class">
     <name>FPrefGeneral</name>
     <filename>classFPrefGeneral.html</filename>
+    <base>EVentana</base>
     <base>FormPrefHijo</base>
     <member kind="slot">
       <type>void</type>
@@ -5709,6 +4711,7 @@
   <compound kind="class">
     <name>FPrefRecibos</name>
     <filename>classFPrefRecibos.html</filename>
+    <base>EVentana</base>
     <base>FormPrefHijo</base>
     <member kind="slot">
       <type>void</type>
@@ -6086,10 +5089,24 @@
     <base protection="private">EPlugin</base>
     <member kind="slot">
       <type>void</type>
+      <name>nuevoRecibo</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>1022d5a26976fdef4842a4dac6faefe6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
       <name>verRecibosAnteriores</name>
       <anchorfile>classHiComp.html</anchorfile>
       <anchor>978b401155da12b79d4396816dece950</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>2f43b081056f6d638f8043967eaf3eb8</anchor>
+      <arglist>(QWidget *v)</arglist>
     </member>
     <member kind="function">
       <type>QList&lt; QAction * &gt;</type>
@@ -6151,8 +5168,8 @@
       <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classHiComp.html</anchorfile>
-      <anchor>f466271e8fb8caa95b347ded486efdda</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+      <anchor>c56974d668d259a891ee6a2715f84c50</anchor>
+      <arglist>(QSettings *pref)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -6196,20 +5213,6 @@
       <anchor>752ba9803b52e63899de490e173a911a</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>tabs</name>
-      <anchorfile>classHiComp.html</anchorfile>
-      <anchor>79169172ad993b08332ba30c63c1cf1b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>nuevoRecibo</name>
-      <anchorfile>classHiComp.html</anchorfile>
-      <anchor>1022d5a26976fdef4842a4dac6faefe6</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="variable" protection="private">
       <type>QList&lt; QAction * &gt;</type>
       <name>_acciones</name>
@@ -6229,13 +5232,6 @@
       <name>ActRecibos</name>
       <anchorfile>classHiComp.html</anchorfile>
       <anchor>88f1927bfa22e2d7f95710a31173f453</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classHiComp.html</anchorfile>
-      <anchor>991baa2c70267ea0d13d48de39653561</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
@@ -6287,60 +5283,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>InformesCategorizados</name>
-    <filename>classInformesCategorizados.html</filename>
-    <base>EInformeInterface</base>
-    <member kind="function">
-      <type>void</type>
-      <name>crearMenu</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>252cd8ace97e422dc571bf30647dc790</anchor>
-      <arglist>(QMenu *m)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>impresionPersonalizada</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>0bd59a93a3d2df324eb7ce6aacd6a9c2</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>74b4cfb5a88a6445a017bc7e35a98a5b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>inicializar</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>1dc7b59201b7818771fccad03d7c9127</anchor>
-      <arglist>(QStackedWidget *form)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>nombre</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>4ca475a284442e56aa60de7e5d9b2dc4</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>version</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>7428cefc0cb889d9ea69b69f1170aaa3</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classInformesCategorizados.html</anchorfile>
-      <anchor>79b6e6c95d56e079046cc674c4aa68f3</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>InformesMovimientos</name>
     <filename>classInformesMovimientos.html</filename>
     <base>EInformeInterface</base>
@@ -6351,11 +5293,25 @@
       <anchor>885c0e3af479733129f696324607f0e1</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
+    <member kind="signal">
       <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classInformesMovimientos.html</anchorfile>
+      <anchor>f4a668aa6767461fa55a72da29db7e61</anchor>
+      <arglist>(QWidget *v)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
       <name>cargarArchivoEstilo</name>
       <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>b340c5706411dc84e460575c0cd0d84c</anchor>
+      <anchor>5aafdd476059fcdeeb687aa3eee06341</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>cargarCabecera</name>
+      <anchorfile>classInformesMovimientos.html</anchorfile>
+      <anchor>a2aaf8bfa38d5ea04c9ac996a3e20e33</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -6367,31 +5323,10 @@
     </member>
     <member kind="function">
       <type>bool</type>
-      <name>impresionPersonalizada</name>
-      <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>7bd7db2003c95ed4901e3b897f3af2ef</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>8f2b922415d232942bff6a8e42839a84</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>informePorFecha</name>
-      <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>30a07211247afa9e00a9f9191bf467bb</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>5afe7f0a1598b7e02d6ee7ee2bff6ef0</anchor>
-      <arglist>(QStackedWidget *form)</arglist>
+      <anchor>57d74e55c43acbd4c46221a27561df91</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -6408,13 +5343,6 @@
       <arglist>() const </arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>_estilo</name>
-      <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>9824e1bcdde527fad4b42d464bf85189</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActInformeFiltroTotal</name>
       <anchorfile>classInformesMovimientos.html</anchorfile>
@@ -6428,72 +5356,58 @@
       <anchor>20bb4276b73c634660a4619ca230727a</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classInformesMovimientos.html</anchorfile>
-      <anchor>2368d16b412e228b3510e23e4825b819</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="class">
-    <name>InformeTri</name>
-    <filename>classInformeTri.html</filename>
+    <name>ListadoCaravanas</name>
+    <filename>classListadoCaravanas.html</filename>
     <base>EInformeInterface</base>
     <member kind="slot">
       <type>void</type>
-      <name>verInforme</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>cc5825c429d261e11d6f972f664977ec</anchor>
+      <name>informeCaravanas</name>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>113c78e501eae0918d615b4f23e6a89a</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>683a1cfb8b02e5996b62195f142c123f</anchor>
+      <arglist>(QWidget *ventana)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>crearMenu</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>99e89396debaacaf05470eb17dbc6509</anchor>
-      <arglist>(QMenu *m)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>impresionPersonalizada</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>e8e009a2f9c6e5d09cc125e8b883f662</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>cf6f67d7989715859cb310f684ebd91a</anchor>
-      <arglist>()</arglist>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>b606dff9eb01e43dbb78c2f6558cd4d5</anchor>
+      <arglist>(QMenu *menu)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>inicializar</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>f65695b30f9bc5f038ddae380bbb50f9</anchor>
-      <arglist>(QStackedWidget *form)</arglist>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>fd9cbba13c213a4df4c5d816512f5c45</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
       <name>nombre</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>3abb3e1cc76e9bcf2dcc3a220cdcebd8</anchor>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>2d0e7588bf6cbd9f1326d63aa5be8eff</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>version</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>c7b79e30ce00580c7e9aa5932fd4112b</anchor>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>ce018447d7acf17c5285a12e22d8f6c5</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
-      <name>ActInforme</name>
-      <anchorfile>classInformeTri.html</anchorfile>
-      <anchor>5c76d837d4b172a775555b00442c0e39</anchor>
+      <name>ActInformeCaravanas</name>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>d2f176f85a0a4b246121d69a0e52d04e</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -6770,6 +5684,13 @@
     <name>MEstablecimiento</name>
     <filename>classMEstablecimiento.html</filename>
     <member kind="function">
+      <type>QStringList</type>
+      <name>listaNombres</name>
+      <anchorfile>classMEstablecimiento.html</anchorfile>
+      <anchor>cef1ca44bc86cdfc07beafc3c7a5a229</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>MEstablecimiento</name>
       <anchorfile>classMEstablecimiento.html</anchorfile>
@@ -6781,31 +5702,6 @@
       <name>~MEstablecimiento</name>
       <anchorfile>classMEstablecimiento.html</anchorfile>
       <anchor>d62924cc5e26d090ebeb0f76c918dfe8</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MimeSourceFactory_gestotux</name>
-    <filename>classMimeSourceFactory__gestotux.html</filename>
-    <member kind="function">
-      <type>const QMimeSource *</type>
-      <name>data</name>
-      <anchorfile>classMimeSourceFactory__gestotux.html</anchorfile>
-      <anchor>23810f6c3ee515aacc41480ebe8346d2</anchor>
-      <arglist>(const QString &amp;abs_name) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MimeSourceFactory_gestotux</name>
-      <anchorfile>classMimeSourceFactory__gestotux.html</anchorfile>
-      <anchor>0d73931e9887263ac7cb339203a50f77</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~MimeSourceFactory_gestotux</name>
-      <anchorfile>classMimeSourceFactory__gestotux.html</anchorfile>
-      <anchor>ff78754023412fb914423bf4cb5df8a4</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -7090,2875 +5986,17 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>MyLookup</name>
-    <filename>classMyLookup.html</filename>
-    <base>NCReportLookup</base>
-    <member kind="function">
-      <type>QString</type>
-      <name>lookupResult</name>
-      <anchorfile>classMyLookup.html</anchorfile>
-      <anchor>e9f183c76c19db696171076f4cbc4808</anchor>
-      <arglist>(const QVariant &amp;value, const QSqlRecord &amp;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCIconFactory</name>
-    <filename>classNCIconFactory.html</filename>
-    <base>NCIconFactoryBase</base>
-    <member kind="function" virtualness="virtual">
-      <type>virtual QIcon</type>
-      <name>findIcon</name>
-      <anchorfile>classNCIconFactory.html</anchorfile>
-      <anchor>7fb5ca925c4c39425124a54184066b57</anchor>
-      <arglist>(QString iconName) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCIconFactory</name>
-      <anchorfile>classNCIconFactory.html</anchorfile>
-      <anchor>7825d2bb244b82928787f798e37463e1</anchor>
-      <arglist>(QObject *parent=0)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCIconFactoryBase</name>
-    <filename>classNCIconFactoryBase.html</filename>
-    <member kind="function" virtualness="pure">
-      <type>virtual QIcon</type>
-      <name>findIcon</name>
-      <anchorfile>classNCIconFactoryBase.html</anchorfile>
-      <anchor>6bb9468891a65f85bcd7c4ce7109ef56</anchor>
-      <arglist>(QString iconName) const =0</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCIconFactoryBase</name>
-      <anchorfile>classNCIconFactoryBase.html</anchorfile>
-      <anchor>df747180ed2a87e058ab2c83eb48d094</anchor>
-      <arglist>(QObject *parent=0)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCPictureList</name>
-    <filename>classNCPictureList.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>append</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>45b9329c43e64d0efdd2c3b925e2cde3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>count</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>dfc4c1d5c91add0fec5c48d5fa7f7c5a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QPicture *</type>
-      <name>current</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>2abbc97cc4334b3ffe72e44a185cf7ee</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QList&lt; QPicture * &gt; &amp;</type>
-      <name>list</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>1663f144f2f98d8625fcb41f10672cf8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCPictureList</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>8abe7ab12dd9bbd77a2c7791acda69f4</anchor>
-      <arglist>(QWidget *parent=0, const char *name=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~NCPictureList</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>e0a5c7f095ddbef3812b911452a3becc</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QList&lt; QPicture * &gt;</type>
-      <name>pList</name>
-      <anchorfile>classNCPictureList.html</anchorfile>
-      <anchor>77014ee108cbd60ae0eda1a533a216a6</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCPreview</name>
-    <filename>classNCPreview.html</filename>
-    <member kind="slot">
-      <type>void</type>
-      <name>readSettings</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>c79e0b4bb89a363aaaccfd1109527c97</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotFirst</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>92dd47875ff8029e0b2bfacc5ff111ba</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotGoTo</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>e818dc8b906e53cf8c599d1fc7ece894</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotLast</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>5b9f3f830abdfdaae3c68313bd11c0ca</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotNext</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>50b2949eadf8bc0d5a096907f110d24f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotPrev</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>d2f5f639bd24ae4b5a261000c888b9f3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotPrint</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>a60dc97cd1bea6ef3c2962cbd266f740</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>slotZoom</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>8c87cf54533cd2504902e78b3354a7cb</anchor>
-      <arglist>(const QString &amp;s)</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>writeSettings</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>cbcdc8b805885a8dd90fe7c19f760a7a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>zoomMinus</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>11f5770c38be2a608b6e753e45678b49</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>zoomPlus</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>8cbffaa9efc6747c244273d31f474c76</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCPreview</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>31689488055bc79e9f602227ef3d195b</anchor>
-      <arglist>(int height, int width, QList&lt; QPicture * &gt; &amp;piclist, QWidget *parent=0, const char *name=0, Qt::WFlags f=0, NCIconFactoryBase *factory=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDeleteReportOnClose</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>fe254247a23bd89b891bb16f5d87bece</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setIconFactory</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>31e464e36012871612739294a5462323</anchor>
-      <arglist>(NCIconFactoryBase *)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setReport</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>50be2d399175038877502f918a6f75e7</anchor>
-      <arglist>(NCReport *)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~NCPreview</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>668cc395134006b36ed62b08955eeba9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>closeEvent</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>c9ce6d789a298f22a1de4de35ea378fa</anchor>
-      <arglist>(QCloseEvent *)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>showEvent</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>bf74671badae5cf37a1e59fe8bd60057</anchor>
-      <arglist>(QShowEvent *)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionExit</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>9a2e322179ac7f826e2418cc4f8c6655</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionFrst</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>2d3afcac41e2f75fb8dfc9bc4dad09bd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionGo</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>b4480183142d49918cb96bb91a4df634</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionLast</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>29cf80236958bf9c54a6ac6043c2a7b2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionNext</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>318768c00280bd06deb200d185175d40</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionPrev</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>f6f7ff01fb4fece659962d79db903ac3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionPrint</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>ae7a2acab67b4944371622e73e7a51f1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionZM</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>69ceae9e150eafcb92d4a6c01b5fe267</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QAction *</type>
-      <name>actionZP</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>5fb2834ea4de8de6bc07fa885f6001cd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QMenu *</type>
-      <name>mnFile</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>c27c6372dd1f1c767160de31cb6863b6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QMenu *</type>
-      <name>mnNav</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>c144f9cb2e29492298c440c09423afb3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QToolBar *</type>
-      <name>toolbar</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>474037fa1d4b27b52cb48011fcfce544</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>drawTest</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>41aa5867e917f01c21acd377bd84ade6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>initTools</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>308c098afe879691e61f80a8c5e0373a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>refreshPage</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>62197334d5a4f011d580d04fc8391885</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>zoom</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>bd0e69d95ee03fd9a6c3a4c1777524b7</anchor>
-      <arglist>(int z)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>basePageHeight</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>42b5ab5715512244adcdbaa4e0a7607f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>basePageWidth</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>c4ba24c178d9357ed3d4c21175ad85e0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QComboBox *</type>
-      <name>cbZoom</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>b4fc1cce18cea0dbc205314717b00a5f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCPreviewPage *</type>
-      <name>currentPage</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>4ffd01432a8f3e04c5e4927d10404a4f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>deleteReportOnClose</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>3965061d6dde456d7bd7954c56aba315</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>formInitDone</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>791e3c024e765760ccae369e34b755c4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCIconFactoryBase *</type>
-      <name>iconFactory</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>3297504edc1ff23fd85c3a4f6b099a0d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>mImagesPath</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>3d3de707f5b9bbf61f5cd5804f304a5a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>pageCount</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>820fb41d9acb90485d330767428dd3f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QList&lt; NCPreviewPage * &gt;</type>
-      <name>pageList</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>d3f6765fafe75a5dc6c418c4199d8ec1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>pageNo</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>6ab51b445c6a06557ad1ebac60a5152b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QList&lt; QPicture * &gt;</type>
-      <name>picList</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>2cd3441b0a86f19a81820a3137e93337</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCWidgetPosHandler *</type>
-      <name>posHandler</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>19b24f1b9a6ee6f06a6668a9c38b13c6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>pvMargin</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>0eefb01e1114efdfd93ade083eac45b4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPointer&lt; NCReport &gt;</type>
-      <name>report</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>d03a8466439a6e5876040c358480921d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCPreviewScrollArea *</type>
-      <name>sa</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>e36706740e2f395a4511b04ed1325b57</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>zoomLevel</name>
-      <anchorfile>classNCPreview.html</anchorfile>
-      <anchor>72ad8b5af9d78c6aeeafb39f1b6e8ff2</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCPreviewPage</name>
-    <filename>classNCPreviewPage.html</filename>
-    <member kind="slot">
-      <type>void</type>
-      <name>updatePage</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>9c1cce77f575084a607deab2f56a3b5a</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>currentZoomLevel</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>d86db4b0c510f326bf90503869cce85b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCPreviewPage</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>bcc8d34743956fc2a1bd1562e2c82e68</anchor>
-      <arglist>(QWidget *parent=0, const char *name=0, Qt::WFlags f=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setAntialiased</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>b22136d225366d251fdc80decf531dfd</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setContainer</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>d8cda8ddd18ca70a6a3027865ad1bc54</anchor>
-      <arglist>(QWidget *)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setContainerMargin</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>d196aaf1b879629fe7525f08200aa3a3</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPageSize</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>a236cb8761ac21961b10d596b1b39db2</anchor>
-      <arglist>(int width, int height)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPicture</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>f3dd7fddee94addada5ff6cb8f7266ca</anchor>
-      <arglist>(QPicture *picture)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>zoom</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>31bc6be5feb9502511fcdab2286adeef</anchor>
-      <arglist>(int z)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~NCPreviewPage</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>b7852b8451526c5b051dc53a221add04</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>int</type>
-      <name>mmToPixel</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>b4912e047ebfdcb5b2cde0bfd26aa64f</anchor>
-      <arglist>(const double &amp;mm)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>paintEvent</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>564389fbf103d24a8f46ac6e3b371ce4</anchor>
-      <arglist>(QPaintEvent *)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>paintPage</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>f84f156c19b83a595351054a7d40d668</anchor>
-      <arglist>(QPainter &amp;painter)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>paintTest</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>c6022b68b3a994d85d336e8975ad97c0</anchor>
-      <arglist>(QPainter &amp;painter)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>testPaint</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>52968d9a69651d94699c4d03a9890c80</anchor>
-      <arglist>(QPainter &amp;painter)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>drawContents</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>fa7baa1041fe6a8ee6f0cf69abdcfe1e</anchor>
-      <arglist>(QPainter *p)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>mmToPixel</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>398c038eea88941da414fad2da44e0b5</anchor>
-      <arglist>(double mm, QPaintDevice *pd)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>realSize</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>efa812b7f1438f569f8a47d87422e57f</anchor>
-      <arglist>(int size)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>antialiased</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>9c1bd77afebbcf1c0273d032371e135a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>baseHeight</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>fc941590a542bba53061ccf2fa47def2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>baseWidth</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>f603b939840d29a147f57fbccf951eb4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>cMargin</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>c3a794628424293c17377cf448038d7e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QWidget *</type>
-      <name>containerWidget</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>386d354639681df512cbda8c0e6dff90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>dpi</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>67b90093a61861abf220baba727eb917</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPicture *</type>
-      <name>picture</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>745751da000d658163d06348469d0e9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>zoomLevel</name>
-      <anchorfile>classNCPreviewPage.html</anchorfile>
-      <anchor>aea842c90c4b096a60b7579f7c028b60</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCPreviewScrollArea</name>
-    <filename>classNCPreviewScrollArea.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>NCPreviewScrollArea</name>
-      <anchorfile>classNCPreviewScrollArea.html</anchorfile>
-      <anchor>188c03de8e9dba59a6a6f19169a5ae19</anchor>
-      <arglist>(NCPreview *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~NCPreviewScrollArea</name>
-      <anchorfile>classNCPreviewScrollArea.html</anchorfile>
-      <anchor>b1d7c38317842383e6924782ead549c1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>keyPressEvent</name>
-      <anchorfile>classNCPreviewScrollArea.html</anchorfile>
-      <anchor>b023baa358d20c57c641bf5258ead876</anchor>
-      <arglist>(QKeyEvent *e)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>resizeEvent</name>
-      <anchorfile>classNCPreviewScrollArea.html</anchorfile>
-      <anchor>462451a0a7523cf1cbcf36876889f03b</anchor>
-      <arglist>(QResizeEvent *event)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>NCPreview *</type>
-      <name>pvForm</name>
-      <anchorfile>classNCPreviewScrollArea.html</anchorfile>
-      <anchor>64b2e927faf0313c634456d12d0cd51e</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCReport</name>
-    <filename>classNCReport.html</filename>
-    <member kind="enumeration">
-      <name>DataSource</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e2468f31b3f2e087e9de3e4ac546e17b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Database</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e2468f31b3f2e087e9de3e4ac546e17bb00374ef74e9afd30532ccfa18b3ca87</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Text</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e2468f31b3f2e087e9de3e4ac546e17b469095641a9e05d324c37f264c9a9749</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <name>Orientation</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>05987997997d4e9e2431909cd5990324</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Portrait</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>05987997997d4e9e2431909cd5990324ba77b2cf62774dbdaf98e0fbe787dbe1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Landscape</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>05987997997d4e9e2431909cd5990324faf16f9787cb83a38567b3399bf7a5d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <name>Output</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe3846bd7d92c112ec7139e965354bd5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Printer</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe3846bd7d92c112ec7139e965354bd5ab8875b5734a6a3f82dd49bb1f06c947</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Preview</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe3846bd7d92c112ec7139e965354bd5fd1528ad5f60030f5220b8951784df01</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Pdf</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe3846bd7d92c112ec7139e965354bd55b46538a0e424afb08f8cc14aedc5064</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>XML</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe3846bd7d92c112ec7139e965354bd58b6e6194d6e6b17f42adb70bebf1972e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>TXT</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe3846bd7d92c112ec7139e965354bd5ecbc9b3dbe4dab8195cf8ca62de76d90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <name>parsemode</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ef3f56f6537dc3b7f0afe5854a926c08</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>fromFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ef3f56f6537dc3b7f0afe5854a926c08d566c0662a7c2a111f39c138a9aaa5bd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>fromDatabase</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ef3f56f6537dc3b7f0afe5854a926c080d8852b1b019226a29a64cc918bc6dc3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>fromString</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ef3f56f6537dc3b7f0afe5854a926c081b090004f7f4b6e805d2edc39121bad9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="slot">
-      <type>bool</type>
-      <name>runReport</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5c6f585ae27cfbd01fdae7d52388ec49</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>runReportToPDF</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>7ad450a007dab93a84f86bd58df0ee0f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>runReportToPreview</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1125e0b97c9c4477d3c47b84b87bb861</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>runReportToPrinter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ea1ec9ff06b2564da7af87029a34bf85</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>runReportToPrinterFromPreview</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f11fa5da50f5aab302f5e0d845bcb62e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>onProcess</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>38f045772d24210ace96cede0bc67c63</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>pageDone</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>12d16541f65c87baddeac8b127b923ab</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>processTotal</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>debf7c6396e8bdf9a6c97534f4ab8788</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>queryIsRunning</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>7323e3198c85498d7bed5fda61a5f99b</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>addParameter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>bec9294e036608089dafe2fab610d374</anchor>
-      <arglist>(const QString &amp;, const QString &amp;, const char *=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>addQuery</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e06da660538c7ea4a010da5b6a4a378c</anchor>
-      <arglist>(const QString &amp;, const QString &amp;, bool=false)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>ErrorMsg</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e10969205c376caedecd0ba111b83d05</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCReport</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f238776e37b1243e7cb62e4a3c542c74</anchor>
-      <arglist>(const QString &amp;fileName=QString::null, QObject *parent=0, const char *name=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>NCPreview *</type>
-      <name>previewWidget</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>168d13e10be8a9d53d1c9fb40fe3cb4c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>registerLookupClass</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>d9bddc88e0e0dae6993032e118dd05f0</anchor>
-      <arglist>(NCReportLookup *)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setCopies</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>9340d5a7508229865dd5b47a531eed53</anchor>
-      <arglist>(int num)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDatabase</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>8e79ad58d7d7ed3228c68b0ba3357131</anchor>
-      <arglist>(QSqlDatabase *)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setDeleteReportAfterPreview</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2cf1f6d16534845dc8ea2f36c755a51c</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setFileEncoding</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c4489eed4212f6bd9a060ddc9a6cb2ca</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setForceCopies</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c3d3c305ad9299dfa13e97f1e0f11eb9</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setIconFactory</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c3de28933ae37374716096564ecf2423</anchor>
-      <arglist>(NCIconFactoryBase *iconFactory)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setOrientation</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f187fbc110f64388f78f8745a31be54a</anchor>
-      <arglist>(NCReport::Orientation)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setOutput</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>3a960df0ef77be4499da722dfa8f5fda</anchor>
-      <arglist>(NCReport::Output)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setOutputFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a20a8705465eefbd1d9627e8e6299330</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPageSize</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1cce1dc39df3085d0e10d2936a494ccc</anchor>
-      <arglist>(const QString &amp;ps)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setParseMode</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c0f588ffcd294d173ebfaf2cc224c226</anchor>
-      <arglist>(parsemode)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPreviewAsMain</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e5d202ac3b171b0ddeaaa464189bcaf9</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setPreviewIsMaximized</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>6e527a17755300b5680175df01b97505</anchor>
-      <arglist>(bool set)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setReportDef</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5ee89d0df5ee26456678288674be082f</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setReportFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e489c5cf59a96c87b33aac85974e303a</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setReportID</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>0f233f130a61260b68baa7975563f776</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setReportID</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5ff384f1cf03f1331eba992429988204</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setReportQuery</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>45f2412f9936d16995957058184464e7</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setShowPrintDialog</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>9044eda795e190fe871fb55074a5a75f</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setTrimmers</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1c438cf9a78aca028f35007bd2c32b61</anchor>
-      <arglist>(int tfont_print, int tfont_prevw, int tline_print, int tline_prevw)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>wasError</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>0deaca9dc4a7ee2d2835411736803bdf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QDomDocument</type>
-      <name>xmlOutput</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2cb0258e8c833cc9245f78b1db1f9ccb</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~NCReport</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fd6b6f633805e5e1968163024da1a470</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>bool</type>
-      <name>closeTextSource</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>83f4f647de8d332c0eef3c8a9b213d08</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>bool</type>
-      <name>openTextSource</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>d2fe57a9e2d095fc96a8a0f13d3674d3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_drawEllipse</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1410c234e15655b989ae8f0f6710f91a</anchor>
-      <arglist>(report_Ellipse *obj)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_drawLabel</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f114c6a33dbc37d9dfe583d81a08b0d6</anchor>
-      <arglist>(report_Label *obj, bool isField=false)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_drawLine</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fcdc8f912460707c13f487147136f74d</anchor>
-      <arglist>(report_Line *obj)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_drawPixmap</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>915458410944ed200133b75161559dc9</anchor>
-      <arglist>(report_Pixmap *obj)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_drawRectangle</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>33d593bf5bf178940b320aecdd4e41ed</anchor>
-      <arglist>(report_Rectangle *obj)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_drawRichText</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>19cc8ab085731547b7d5b86ccd3ee92e</anchor>
-      <arglist>(report_Label *obj, bool isField)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_evalFieldExp</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>dba87b3a92820ce8ad950ce655cbea79</anchor>
-      <arglist>(report_Field *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_evalFunction</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1f2d53f3915daddcc2ac2520729c44db</anchor>
-      <arglist>(report_Field *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_evalGroupExp</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>db6cfa385580ca224e085fedf3fe8b09</anchor>
-      <arglist>(report_Group *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>_evalOperand</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>cee9588fc57e11f754b3ba7d018363ab</anchor>
-      <arglist>(const QString &amp;, QString &amp;, double &amp;, char &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_evalParameters</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c1796202a70f58709183a3edbaca2554</anchor>
-      <arglist>(QString &amp;, const char=&apos;P&apos;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_evalVariableExp</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>eb2bd7ff2c58a7856a7c51366ab33456</anchor>
-      <arglist>(report_Variable *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_resetAllVariable</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>70cdccb3622ffa30d964f9d87973bc0f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_resetVariables</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>451d11d10234e2599b1810686dfc9d7c</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>_roundToInt</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>9d6c617ec751a5b1db4de07353df6347</anchor>
-      <arglist>(const double &amp;d)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_setFieldNumDisplayValue</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>341e71fb37e17546872839304ae1411e</anchor>
-      <arglist>(report_Field *, double=0)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_setPenAndStyle</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1486bc72e33a5ef7811bf8aeec24cb54</anchor>
-      <arglist>(report_GeometricObject *obj)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_updateFieldValues</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>4ee597f8979f6b71bf53ef9bc2c06762</anchor>
-      <arglist>(bool=false, report_Field::refreshTypes=report_Field::always)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_updateGroupExp</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a6c8af82dcf97428465d73487e20c9a3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_updateSystemFieldValues</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2c2d285e5fa0e10e6a71e9db7491400b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>_updateVariableExp</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f917656e0ee0df24c8e6a54c1f545e61</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>_x</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>3549d76cce02c0d337ab29b4ce7db7e0</anchor>
-      <arglist>(const int &amp;val)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>_y</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>3f66dd6dd2cc2807bbedded72a363262</anchor>
-      <arglist>(const int &amp;val)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>copyQueryListToDataDef</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f49ef2849ace7bd6bbfc2f61b2e3260d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>drawDetail</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>4920683b770ffe4b03d524b5d4f34ffc</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>drawDetailWithGroup</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>149abccb0600acc59f219b2a4faea727</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>drawGroupFooter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>aaa4eb5a3b443a3cbefe681f1ca8f6fb</anchor>
-      <arglist>(report_Group *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>drawGroupHeader</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ca4be8af25024b3b0a9be24343653764</anchor>
-      <arglist>(report_Group *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>drawObject</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>0a876f51fa0ab3cb622dd0fc1e0c6ecc</anchor>
-      <arglist>(report_ElementObject *obj, bool checkPrintDone=false)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>drawOverPageObjects</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ac5399272255bba05a874d6692629224</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>drawPageFooter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>936918bf2e95ff0ed9d7eb07aa1f2bb7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>drawPageHeader</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5a4958e9ff591d343cf5edfe343d71c3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>drawReport</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>0fc9ec2866fa5a0b992cea6ea62e2ad3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QString</type>
-      <name>embed</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>877a00f7d99a7b00ef0dc55b4a9e49d8</anchor>
-      <arglist>(const QString &amp;es, const QString &amp;valuelist)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>execQueries</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>98d75ba4434b138c6fee6bffead6c1c9</anchor>
-      <arglist>(QListIterator&lt; report_Query * &gt; &amp;, const char=&apos;P&apos;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>expressionParser</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>009dc5281903fae6e63ce749c0191b65</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>fixRichTextBreakPos</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c24cbdc58b8be4a65aecaa70800858e9</anchor>
-      <arglist>(QTextDocument *rt, int ypos)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QString</type>
-      <name>getParameterValue</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f388d673d959cb02e26103da0fa4b151</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QString</type>
-      <name>getSqlColumnStringValue</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a319990c1cc97a4f6815f9c7d3f9d230</anchor>
-      <arglist>(const QString &amp;, DataSource ds)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QVariant</type>
-      <name>getSqlColumnValue</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>92c22bbedd4cc80c812d0e1f1c1f5416</anchor>
-      <arglist>(const QString &amp;, DataSource ds)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>handleGroupFooter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c2682908e424879ca269bbac0919c22a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>handleGroupHeader</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e3079b92e540e4dd21ed80c0cf61d940</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>initNewPage</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a54095ed2297157ff032c525b76ba0b8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>loadConfig</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e4ce72d95d615d17f9fca9325ebc1e12</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>loadResourceFromFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>6771ea55b0d414448d9c16088e7ac64b</anchor>
-      <arglist>(QString &amp;txt, const QString &amp;filename)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>nextRecord</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>d1c8a227f3c609601ddba5abdae432ed</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>openXMLFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>27edb1f3d1fa6a37ccb97119b71d6d88</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>parseXMLResource</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>02d268639e5ce9f3c7d4c44a9396f72e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>prevRecord</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>94eeb1b6ca9701f728faa0eab8f86bd0</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>printerSetup</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fdd869793853b3b783f4ed2aa3896114</anchor>
-      <arglist>(QPrinter *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>reportLog</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>9bf41879ff827add699909b06f416a73</anchor>
-      <arglist>(const QString &amp;log)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>reportProcess</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f55a53b6439bcf33fc72f9678aa43593</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>resetObjContainers</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>3b631ce01d7fffcc1b949ba174ec0a32</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>runQueryToFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b69b88468707bd421aff83efb84942b0</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QString</type>
-      <name>systemVariable</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>dddc2ef5eb08d85d78bd10e288bc275c</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>textFromResource</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>31803ab80ddf09d29110e6a4d65721e6</anchor>
-      <arglist>(QString &amp;, report_Label *obj, bool isField)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>toMillimeterX</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>68a5b86f0bc97ae77e8ab025a87ea6a9</anchor>
-      <arglist>(int pixel)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>toMillimeterY</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>be89adb4a721034b2d03c1b75604c6f5</anchor>
-      <arglist>(int pixel)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>toPixelX</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>901fa925ad04a3afbeaba9e670374a8e</anchor>
-      <arglist>(const double &amp;mm)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>int</type>
-      <name>toPixelY</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fe049371c9bb5748f99aa752d5987f88</anchor>
-      <arglist>(const double &amp;mm)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QPointF</type>
-      <name>toPoint</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>481592c5a2896ce10ed7e582ed233f86</anchor>
-      <arglist>(qreal mm_x, qreal mm_y)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QSizeF</type>
-      <name>toSize</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f6004d9152e5dd13d92813eb7af4e9bd</anchor>
-      <arglist>(qreal mm_w, qreal mm_h)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>translate_position</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a9bd45dc6824424ee2c0145c17d1b0ef</anchor>
-      <arglist>(int x, int y, bool relative=true)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>_currentforcecopy</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2b249d4fce986b097a98d38a68eb5aa8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>_globalPosX</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f7ff8e86df60d5404009d964b2d4513c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>_globalPosY</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f9fdc99a5c80d3d565576cf2217f04dc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>_init</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ae17900bfe64956ef237ee1b80c9a388</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>_numcopies</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>aec1bd5283001598bc4e06bafb7d15f0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>_numforcecopies</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5961e2f261eef241b57afc231b883624</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>_pageHeight</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e2ac656eb7d7d4efa7a0185532e10869</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>_pageno</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>dad57391be06547765e8fac8d1fec48a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>_pageWidth</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>9418fc6149a3909efc7ee3cdd4c0b5d3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>_xml</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>39fa61b3e9dc692f8a7555f7949f63df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>alwaysShowPrintDialog</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>6a2f990198c9c3176ab19afdb1a7c9c1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QColor</type>
-      <name>backcolor</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>0ccdab17b3fe46c4d758cf00060a0a0e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>bottomMargin</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c34a07e477554a09b3ed9e433e0eff36</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>columncount</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c5338894cdb2f5ff789d83ba1735e02e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>columnCount</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>21af7dcee213eb6a3c788399a2ebc88d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>columnSpacing</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>56e9070c99d856089345c069effd34a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>columnWidth</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>184d2663597588196262792a38b2e21d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QDomElement</type>
-      <name>currentElement</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>eef96ec140604c2c2947a008beb04a6f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_ContainerObject *</type>
-      <name>currentSection</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f32fc847cf40ef1572d47d6989d4e71d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>currentTextRow</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>4c0a2c312925b2e81c9915dfcec43843</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QSqlDatabase *</type>
-      <name>database</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b7f0399033693fdaec00da4cc45cf174</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_DataDef *</type>
-      <name>dataDef</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>278e7c3e9b14d7785484c41b8cfc5e62</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QHash&lt; QString, NCSqlQuery * &gt;</type>
-      <name>DataSession</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ac040bbf55f5ecc3e20fca53cf8f93b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>DataSource</type>
-      <name>dataSource</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2bdcaa17ab16076c7098bb27206898b8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>defaultFontName</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e11a4a8649c70f458931ac53e00ef074</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>defaultFontSize</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>da8b14324a66890e6c2aef0fe4820c06</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>deleteReportAfterPreview</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>713eb92620f21326b45985bcd3724411</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>dpiFactor</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2a04365c5ba9c82eac9c7d25d32481d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>dpiX</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>02c18be27942cc9aa4f61e7496dffe46</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>dpiY</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fd7fea9fdc4e59fd371a9465968fc23c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>dynamicSectionIncrement</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f10ebcb2a055ba5bbf8cc204609b0b33</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>encoding</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>814be6c5110f1627c161ef1848eebcab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>errorMsg</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>3a18e7e8a5b6c174b12f2f6694554e85</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagBeginGroup</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>81c46045116bef5862df788435a1e6bd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagBeginReport</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>06d5aaad88946a5b18285392a116bf50</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagEndGroup</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>64a5cb1c90f1990e024fb027a9f47a6c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagEndReport</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fb4f4c62268257b1221b2591d3dcd510</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagError</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>9563ce02cb921ef9adfefb346fcd81a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagFirstRecord</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>d70325f456bcd8a603b5cda04ec3f54d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagGroupChanged</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>7cf768cae0d0578e146e35824ba22d11</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagNewPage</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>400da2c39ee9f296566eba9681eb6bdc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagNPFDetail</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e83cf7c73a2e079ef357275b97ab0ec7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagNPFGroupFooter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e0b7208af5728b4d259a9f3e057f64b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>flagNPFGroupHeader</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>22d4b9c7a4db12e294df179cfa666129</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCIconFactoryBase *</type>
-      <name>iconFactory</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b02a94c0ae480d62d69e74204e036a3b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>isforcecopies</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e39c2b1e98e10a7b405c2ab5a22a7322</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>lastTextRow</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>4635b6a6bbb7d3ff8bdbde11eb0de062</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>leftMargin</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c18c15e09f48f340f78a3de792bb1b14</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>logging</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>8069f879dad91abb137b733e56492aa7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QHash&lt; QString, NCReportLookup * &gt;</type>
-      <name>lookupClasses</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>34af8e20900cc34d3b460dcfa76f4694</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>masterAlias</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b8e306bb09478548ccebc43142a1e701</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>name</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>61349f8374bd645eed1ab1d4bc5f88a2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>nextTextRow</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c8a527c14b7eb51e1330136d383ae7b7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QDomDocument</type>
-      <name>outputDomDocument</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ed2b5436d398cab79951fcca9df40677</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>outputFileName</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e63cafeb801b509241686f19ebe4cd20</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QList&lt; report_Label * &gt;</type>
-      <name>overPageObjects</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b028aae94c6f2d07a69d074f7eaf6b05</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPainter *</type>
-      <name>pa</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>97b88a5bc2a8adc3d0d3dcdf49e8a4e2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>pageFooterY</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>2f7283ce3386d2dabec573fa5cc1f5e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>pageHeight</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>ea96d5170666b0a316f615f396b1459f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>pageHeight_screen</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a3bf906eeac1242513ed5cee5075bb7c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>Orientation</type>
-      <name>pageOrientation</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>172edf110d47a53fbcb40844f4fd83db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>pageSize</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>eff942bf8377539b0ce1c46f32243744</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>pageWidth</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f9b020a81143ee87a9435be91cec4436</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>pageWidth_screen</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5bd2aa21bbb85d0260dbcd24edacce9b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>paintBegin</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fcb95cc6b4c241f6b72258cc16e04c48</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QHash&lt; QString, report_Parameter * &gt;</type>
-      <name>Parameters</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>552c67248aab562a5f9a3ae1177e765d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QList&lt; QPicture * &gt;</type>
-      <name>piclist</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>146144e207b0435fe85de49a78adc3ea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>parsemode</type>
-      <name>pmode</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b5140bbdf097032a2444620ac4026b6a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_Queries *</type>
-      <name>pQueries</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>b86c04821280beb6bf61781fd3653970</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPrinter *</type>
-      <name>pr</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>624f156b3f0cb6cf049b5893bb269161</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCPreview *</type>
-      <name>previewForm</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>5b7af54c51b0620f9d524d70201747e3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>previewismainform</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>7df785263684b154f7ebbeb639286b45</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>previewismaximized</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>d16052308ead32819a9e5d9686f6e33b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>prevRecordPending</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>19f6bcc32684a1c4ffd248a7d9e10473</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPrinter::PrinterMode</type>
-      <name>printerMode</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>4945a6e56664dbf094eace59a0b5c9fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPrinter::PageSize</type>
-      <name>printerPageSize</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>d0c324519475294192bbaa498e0c3eb9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QWidget *</type>
-      <name>printerSetupParent</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>694affb149777787e537ab9c50887901</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>queryByParameter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>934129766956771a2501019006ac84b2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>queryListChanged</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>6ee1030a8682593ec622ae1fb1374783</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>reccount</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>69a618452f9ce9cee8308b8390bc32b6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>recno</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>7db678b72a9e1f5370586b120dbce425</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>reportFileName</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>fca7fa2fdd07038f26f8bd95e4974c2d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>reportFileParsed</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>8e2b114f0e7c175978fa81bd14d850e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>reportID</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>aa86f17aea6551d697eee6599df46545</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>Output</type>
-      <name>reportOutput</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>a5fc6b752ad703f41aa38b8ef4c1328a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>reportQuery</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e5d2ac44df63bb85caa4288dfcca1084</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>reportStringID</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>3878927dcbd53223d8375d5516dde900</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QFile</type>
-      <name>resourceFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>1b382eb1bc98d56c87358fa263a9f40f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QTextStream</type>
-      <name>resourceStream</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>78d874d71ea7661a0058dc0511d2a6e4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>resourceTextFile</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f194a852a9cf65114953d1040133ac3b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>rightMargin</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>057afa78db98dd26088bbe8ac3f6c1bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>showPrintDialog</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>c561dc770106b56bd0d59dfced0900d8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>sqlDatabase</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e20d21bb3ad5edcc4d15d320e99815ac</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>sqlHostname</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>721c97db0e5eaa16d4db28c48b080031</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>sqlPassword</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>bd4265876faf49be93330887d518ebea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>sqlUser</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>e525d70c54e43af6605a4fd6beade296</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>startY</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>7c351471aed0e0bf6a7b398e9fec650d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>char</type>
-      <name>textDataDelimiter</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>242dbddf937f85367927fd014cc83524</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>topMargin</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>cc10da2ee5c36b334226bd5b61361818</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>trimFont_prn</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>26a60e784bc9668f0ac6c0e671d514bc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>trimFont_pvw</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>00c45a70bbedb3bb1bcb09e77ce42124</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>trimLine_prn</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>acdc0e0c478abb96be775ac2809582ef</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>trimLine_pvw</name>
-      <anchorfile>classNCReport.html</anchorfile>
-      <anchor>f92e0e58d7a22bada46ed3d0bc8c62e1</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCReportLookup</name>
-    <filename>classNCReportLookup.html</filename>
-    <member kind="function" virtualness="pure">
-      <type>virtual QString</type>
-      <name>lookupResult</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>097cbd2a6fac9b222e28b9d8de7db378</anchor>
-      <arglist>(const QVariant &amp;value, const QSqlRecord &amp;)=0</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>name</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>def4ec7ef8991b82936943561cf93ec0</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCReportLookup</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>2aaa465e1fb4e5676d3bbca224eb6ce4</anchor>
-      <arglist>(const QString &amp;name)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCReportLookup</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>2b6032ddb9ae78672bcf6a7052453828</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setName</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>73284e9297144f3150a3b33af4ef3d12</anchor>
-      <arglist>(const QString &amp;name)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~NCReportLookup</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>8057d770e8589ee1a8a44e407195ca70</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>funcName</name>
-      <anchorfile>classNCReportLookup.html</anchorfile>
-      <anchor>3bd315f25196b1bf1517d0fe23477a4e</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCReportTestForm</name>
-    <filename>classNCReportTestForm.html</filename>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual void</type>
-      <name>loadDefaults</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>c59e30bcb92a280458dde27bde8bcc1d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual void</type>
-      <name>pageLoaded</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>6904e9b329cd330ebfe71f04061c1e19</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual void</type>
-      <name>run</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>3ed00e0a3237ba95f1678a1309730676</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual void</type>
-      <name>saveDefaults</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>c5daf4200bf98d5a4954043e79a0c53f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual void</type>
-      <name>selectFile</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>d9c38354674303f5d2dfc6ad14af03f8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCReportTestForm</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>74f4332b0c865a1c88e9339418a3e8fc</anchor>
-      <arglist>(QWidget *parent=0, Qt::WindowFlags fl=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~NCReportTestForm</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>a14a4cb5b93fa20b5f9ebc8a845f138f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>bgConn</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>291b3b40896bde48bf376c8342b67e79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>bgFile</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>14b9d1f06a40ab4ddc91bdf803fc42c2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>bgOut</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>08462620c2f3e148b27b57df2937107b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QGroupBox *</type>
-      <name>bgPar</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>7c4a8075ca369eaa3f0cbb3c6c35b48c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>btnAdd</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>99e0c617ead2cb54ff7c81e0c1640072</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>btnCancel</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>839f4e129a17ca7943d6aac00bd29e74</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>btnRemove</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>1fab066fd734c3d2149bee2136753f6b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>btnRun</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>53e4b7234935e144747d7638852cf9d4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPushButton *</type>
-      <name>btnSelFile</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>1d3e821ac8dc1962a463f0429ce5b4bf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QComboBox *</type>
-      <name>comboDriver</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>54f597ec1e6438ff059b81202555a402</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QButtonGroup *</type>
-      <name>groupOrient</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>e5a7deddbb8a625dda25c99848b4531e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QButtonGroup *</type>
-      <name>groupOut</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>9466ad7a9b2fa30a117a0f19500974df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblDatabase</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>42cbc1587af2d21f17a0619f529f1f14</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblDriver</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>8721cebeed06ab55cd8e838f1a00d506</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblHost</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>ac9043acc71ce380588b068caa0e5cf2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblParname</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>71cfb5ba391fe656585e56678fe1f478</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblParVal</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>8e5e69dc5dc38c0c72b6ad1aeb5cb2d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblPassw</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>c569fed5fe0efa796dab8334d6413efa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLabel *</type>
-      <name>lblUser</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>579ba3947baf4b0b9d7b4181ea47ea15</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>leDB</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>bf35b407741b4960ce8141250431fe29</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>leFile</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>35a3768283166d3bb90d730f70ff2cde</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>leHost</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>71b41636ca691e56dfa4d70433d188b3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>leParname</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>e0227a4ace14e36f6504466012054705</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>leParvalue</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>17dfeb61674b8794c2099939922e2aa2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>lePassw</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>c2260744662865e0296426c8adf0ea21</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QLineEdit *</type>
-      <name>leUser</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>10984222747dc5d977ec16f4efb2da5d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTableWidget *</type>
-      <name>listPar</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>a2f5489211af8a09dff4025b79493bb0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>radioPdf</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>4a257b6646188f993ad25e9e8e4ae2d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>radioPreview</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>73273a067810a960bc5d12152d9d5391</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>radioPrint</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>e511a865976dfbe91a14cb2bac9539b1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>radioTxt</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>84b0420f8f18e6556ad46472bf54d803</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QRadioButton *</type>
-      <name>radioXml</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>8c384ebcb9496275de8dd2f9a6f885b3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>addParam</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>105e76a15f7b0f7955452c295fb7bf64</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>languageChange</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>fb643c9f6a7d8c994e58be83a3c39401</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>removeParam</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>e6838eb5c5be64c05365d027ab57fba0</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>addParam</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>32fa217504ba9678007de7cdd4a9e8fd</anchor>
-      <arglist>(const QString &amp;name, const QString &amp;value)</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
-      <name>closeEvent</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>d68f6fa21eff36975641c67b22aa7d95</anchor>
-      <arglist>(QCloseEvent *)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QGridLayout *</type>
-      <name>bgConnLayout</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>16377e99e694504573711383acbc1bb7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QHBoxLayout *</type>
-      <name>bgFileLayout</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>cc77849e37156e1966aef431f61807a8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>bgOrientLayout</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>ef4292e379131fd3a22887b6cbe80b1a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>bgOutLayout</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>0ca0fa22a1e77dcfb1879ce2e36e2399</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>bgParLayout</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>e27b337186b20345d9d996a357cf5ac1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>layBig</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>7e25f21670bc90c35cc13150fca5cd56</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>layBtn</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>7467c57499598f3b7647ae015ea25ddd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QHBoxLayout *</type>
-      <name>layConn</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>e410a7f76c7e4d33ac22ca895e2cdbb0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>layParBtn</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>ce148b8b646802b4ffc8dea538319fc4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QHBoxLayout *</type>
-      <name>layParEdit</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>0de9b32d75815841db5094c5dd75b981</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QHBoxLayout *</type>
-      <name>layParList</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>356ddced0ef29ddadb7290675f91f603</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QVBoxLayout *</type>
-      <name>layRadios</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>cd5f3c58b242a35552e60d46497281b6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QProgressDialog *</type>
-      <name>pdia</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>a285d0b430408b60d38ea32c4deaeda5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QSpacerItem *</type>
-      <name>spcBtn</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>b9bb419b72a8dbb51617020255471f02</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QSpacerItem *</type>
-      <name>spcParBtn</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>ed2857d7e836b4df6030cfd1b7528e1c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QHBoxLayout *</type>
-      <name>testformLayout</name>
-      <anchorfile>classNCReportTestForm.html</anchorfile>
-      <anchor>f5bbcbb8cb1629284cb1b7073d99a13e</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>NCSqlQuery</name>
-    <filename>classNCSqlQuery.html</filename>
-    <member kind="function">
-      <type>bool</type>
-      <name>beginTransaction</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>de2a7bfde5e38724f59bd89eda347103</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>commitTransaction</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>bf260aecdf6a4457b8ca1e9d15019086</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QSqlDatabase</type>
-      <name>defaultDatabase</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>8e6c453aed433284f7dabd6a36fd5df4</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>exec</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>490d39b47a3d9fd2ae409dffe079f14f</anchor>
-      <arglist>(const QString &amp;qs=QString::null)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>fieldName</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>c0f25bb681d13b8d3d2104f49c63a635</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>getError</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>656b3f6c9d896cc94d397a89b73b5812</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>getErrorMsg</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>473b34e57636f22f63daa7be2c25cb8e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>getFieldCount</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>8436eba6d4036207450bc5e7b7cdd0e3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>getLastInsertedPK</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>f533c777d6659d975e9f1375999b194f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>getRowCount</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>444be142bb2fad1cfcb916a762b82fd1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCSqlQuery</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>dd623dfdd76663742e1ab9aaeab95aec</anchor>
-      <arglist>(const QString &amp;query, QSqlDatabase db)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCSqlQuery</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>d44eb1a22d95c729afebc7343527ad61</anchor>
-      <arglist>(QSqlDatabase db)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>NCSqlQuery</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>5a958c0a0254617b1dbaa858f1e1f29c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>query</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>2deec5e3181764e756031e4103f2dd59</anchor>
-      <arglist>(const QString &amp;qs)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>rollbackTransaction</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>ef4ebf65987e27bc27b4d2a5eb3e9438</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>stringValue</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>9ee0988b7f5a094bcf335c2b659274e0</anchor>
-      <arglist>(int columnno)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>stringValue</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>17ed5e7ddba232389a86f185d10f025d</anchor>
-      <arglist>(const QString &amp;columnname)</arglist>
-    </member>
-    <member kind="function">
-      <type>QVariant</type>
-      <name>value</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>f8f4a0ec8ac3292e7f9a7ebd02af86d6</anchor>
-      <arglist>(int i)</arglist>
-    </member>
-    <member kind="function">
-      <type>QVariant</type>
-      <name>value</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>dc773583c0e1a795361e103dabe3a2ec</anchor>
-      <arglist>(const QString &amp;columnname)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~NCSqlQuery</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>f1f30494c89a00c16f4edf840fd22b7e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>logSqlError</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>d5b069c8d7151fd8e5f43f18e78f4ddc</anchor>
-      <arglist>(const QString &amp;qs, const QString &amp;error)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>saveColumns</name>
-      <anchorfile>classNCSqlQuery.html</anchorfile>
-      <anchor>38ceca127d4c88a24a122ccd79ca6bae</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>Oscar</name>
     <filename>classOscar.html</filename>
     <base>EPlugin</base>
     <base>EInfoProgramaInterface</base>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classOscar.html</anchorfile>
+      <anchor>509c1563319ff34b9ea8ebec5cdb1067</anchor>
+      <arglist>(QWidget *v)</arglist>
+    </member>
     <member kind="function">
       <type>QList&lt; QAction * &gt;</type>
       <name>accionesBarra</name>
@@ -9972,6 +6010,13 @@
       <anchorfile>classOscar.html</anchorfile>
       <anchor>e51a62d132740f64850eaca4f6a27479</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>conectarVisorInforme</name>
+      <anchorfile>classOscar.html</anchorfile>
+      <anchor>25e1310bc586bb565bbddaa93e9d31cd</anchor>
+      <arglist>() const </arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -10019,8 +6064,8 @@
       <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classOscar.html</anchorfile>
-      <anchor>5065fe2d22f7891f052f35474ccf9bda</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+      <anchor>1a73fe94f513c6ec38c3ee2eb0f88e8a</anchor>
+      <arglist>(QSettings *pref)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -10205,13 +6250,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classOscar.html</anchorfile>
-      <anchor>dd3e406e038b7f79ab6a059ae23d9294</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
       <type>static QHash&lt; QString, EInformeInterface * &gt; *</type>
       <name>_plugins</name>
       <anchorfile>classOscar.html</anchorfile>
@@ -10269,6 +6307,13 @@
     <name>prespuesto</name>
     <filename>classprespuesto.html</filename>
     <base protection="private">EPlugin</base>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>0bbbb8ae43be5da3bf8cd60deb42c309</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
     <member kind="function">
       <type>QList&lt; QAction * &gt;</type>
       <name>accionesBarra</name>
@@ -10294,8 +6339,8 @@
       <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classprespuesto.html</anchorfile>
-      <anchor>bffdb9f7351bc0a5cff9df3d8abf6a37</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+      <anchor>e2e1c585bb5fa64afc9549f8be22a52e</anchor>
+      <arglist>(QSettings *pref)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -10332,13 +6377,6 @@
       <anchor>77618b9eb3a60443efdd73295d922013</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>tabs</name>
-      <anchorfile>classprespuesto.html</anchorfile>
-      <anchor>ad45c4a8b4a233196f642d3e4ece1ba9</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="slot" protection="protected">
       <type>void</type>
       <name>nuevoPresupuesto</name>
@@ -10368,13 +6406,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classprespuesto.html</anchorfile>
-      <anchor>1ea8df53e5a4537712d40ba16baa53e9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
       <type>static QSettings *</type>
       <name>_pref</name>
       <anchorfile>classprespuesto.html</anchorfile>
@@ -10387,6 +6418,13 @@
     <filename>classpresupuestador.html</filename>
     <base protection="private">EInfoProgramaInterface</base>
     <base protection="private">EPlugin</base>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classpresupuestador.html</anchorfile>
+      <anchor>0d3cd91262ea149afb189fc1bb17569d</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
     <member kind="function">
       <type>QList&lt; QAction * &gt;</type>
       <name>accionesBarra</name>
@@ -10447,8 +6485,8 @@
       <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classpresupuestador.html</anchorfile>
-      <anchor>341917507a05f0f8d02efff16c46df32</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+      <anchor>4e77497679f683b26968c22c0726b063</anchor>
+      <arglist>(QSettings *pref)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -10492,13 +6530,6 @@
       <anchor>eb29a48f79b6afec2cca733bea6a7d93</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>tabs</name>
-      <anchorfile>classpresupuestador.html</anchorfile>
-      <anchor>7f762563b6996eb2bf6610825b656f0a</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="slot" protection="protected">
       <type>void</type>
       <name>nuevoPresupuesto</name>
@@ -10532,13 +6563,6 @@
       <name>ActPresuAnteriores</name>
       <anchorfile>classpresupuestador.html</anchorfile>
       <anchor>c7ed96744f914f47867fcc5df77f102f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static QStackedWidget *</type>
-      <name>_formCen</name>
-      <anchorfile>classpresupuestador.html</anchorfile>
-      <anchor>e97055b980d5338aefe54a82ac5f5079</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
@@ -10877,6 +6901,13 @@
       <anchor>4fe5a532a56d8abad46906b32170b5ee</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classproductos.html</anchorfile>
+      <anchor>a6f011fd3757658d383bfb19f4f48925</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
     <member kind="function">
       <type>QList&lt; QAction * &gt;</type>
       <name>accionesBarra</name>
@@ -10902,8 +6933,8 @@
       <type>bool</type>
       <name>inicializar</name>
       <anchorfile>classproductos.html</anchorfile>
-      <anchor>aa8157f7e9a8f12ba38df35e4fe9a535</anchor>
-      <arglist>(QStackedWidget *formCen, QSettings *pref)</arglist>
+      <anchor>169d3a3e7a81d709512633d150e05d85</anchor>
+      <arglist>(QSettings *pref)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -10944,7 +6975,7 @@
       <type>static QStackedWidget *</type>
       <name>tabs</name>
       <anchorfile>classproductos.html</anchorfile>
-      <anchor>5e5f47dc8052422a17a02b82096d1780</anchor>
+      <anchor>7fbca747fb6bd2d63f5da0d4d7bb0f90</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
@@ -10965,7 +6996,7 @@
       <type>static QStackedWidget *</type>
       <name>_formCen</name>
       <anchorfile>classproductos.html</anchorfile>
-      <anchor>3cf566d94367e5fb09b7de823cf1f827</anchor>
+      <anchor>f82b17a25d9f5f273de8a9565114be91</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
@@ -11146,1669 +7177,266 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>report_ContainerObject</name>
-    <filename>classreport__ContainerObject.html</filename>
+    <name>testo</name>
+    <filename>classtesto.html</filename>
     <member kind="function">
       <type></type>
-      <name>report_ContainerObject</name>
-      <anchorfile>classreport__ContainerObject.html</anchorfile>
-      <anchor>a6de3c0cf51cb5a0597afe19e0efa966</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;container&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_ContainerObject</name>
-      <anchorfile>classreport__ContainerObject.html</anchorfile>
-      <anchor>2d928c19f27230a4cf3c817b0af1052d</anchor>
+      <name>testo</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>84398a2ad4d61c0e3b5a0f658078c5e5</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>drawTryAgain</name>
-      <anchorfile>classreport__ContainerObject.html</anchorfile>
-      <anchor>aa537a6901e0a797e113945e1343ec10</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>height</name>
-      <anchorfile>classreport__ContainerObject.html</anchorfile>
-      <anchor>b9f2fee4a68bfd98cf087b966e7d9c02</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QList&lt; report_ElementObject * &gt;</type>
-      <name>objects</name>
-      <anchorfile>classreport__ContainerObject.html</anchorfile>
-      <anchor>9426e7c3ad9017c922d68a980a69f259</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_DataDef</name>
-    <filename>classreport__DataDef.html</filename>
     <member kind="function">
       <type></type>
-      <name>report_DataDef</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>ccc634ab45c5d7bdf8837f4bfde40851</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;definition&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_DataDef</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>17415e4b3ab4011fcaa4ecb8219d432c</anchor>
+      <name>~testo</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>c01ad62ff3cc0501b90d604474159940</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="variable">
-      <type>report_Detail *</type>
-      <name>Detail</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>357f62457bba4e3d1074c3f8e0145ab8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QList&lt; report_Field * &gt;</type>
-      <name>Flds</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>c3ebc929c73f17056e9618333a1aa019</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>report_Groups *</type>
-      <name>Groups</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>cc30b82ff8d59ad1346d798ba176a61c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>report_pageFooter *</type>
-      <name>pageFooter</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>f47b676ed3a019f7999c356b04f1a4bf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>report_pageHeader *</type>
-      <name>pageHeader</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>8133812604e027a9574131f7765b9cae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>report_Queries *</type>
-      <name>Queries</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>28587fdcbeb4b9891ee6a142197d4d02</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QHash&lt; QString, report_Variable * &gt;</type>
-      <name>Variables</name>
-      <anchorfile>classreport__DataDef.html</anchorfile>
-      <anchor>f4586f5ad003bb2e08e84765e4245d38</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Detail</name>
-    <filename>classreport__Detail.html</filename>
-    <base>report_ContainerObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Detail</name>
-      <anchorfile>classreport__Detail.html</anchorfile>
-      <anchor>ee4611a6e0526035849d763c77c69c50</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;detail&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Detail</name>
-      <anchorfile>classreport__Detail.html</anchorfile>
-      <anchor>3c33bf8250671d71c806c289194f45a1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>expandable</name>
-      <anchorfile>classreport__Detail.html</anchorfile>
-      <anchor>a58f59f7dde95ecbf904fa51cc5b0390</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_ElementObject</name>
-    <filename>classreport__ElementObject.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>report_ElementObject</name>
-      <anchorfile>classreport__ElementObject.html</anchorfile>
-      <anchor>aa4b6ed2d3640473b944f49df569e508</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;element&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_ElementObject</name>
-      <anchorfile>classreport__ElementObject.html</anchorfile>
-      <anchor>f0ed35b975d404f9fe9a707471d62742</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>etype</name>
-      <anchorfile>classreport__ElementObject.html</anchorfile>
-      <anchor>e5813b2ce64c275a1c0d9d9b5145552c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>name</name>
-      <anchorfile>classreport__ElementObject.html</anchorfile>
-      <anchor>b2474a0b9a820c723496692772d2ab2a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>printDone</name>
-      <anchorfile>classreport__ElementObject.html</anchorfile>
-      <anchor>2b5c6447bccc28fd09ce4f352e9d50f9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>printWhen</name>
-      <anchorfile>classreport__ElementObject.html</anchorfile>
-      <anchor>dc7c130c9ad07ab9587cce9ad95fde62</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Ellipse</name>
-    <filename>classreport__Ellipse.html</filename>
-    <base>report_GeometricObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Ellipse</name>
-      <anchorfile>classreport__Ellipse.html</anchorfile>
-      <anchor>a21d26eee34cae75ce48af53bc18bb0e</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;ellipse&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Ellipse</name>
-      <anchorfile>classreport__Ellipse.html</anchorfile>
-      <anchor>3a45757d008c3ff6075c38f7c910b8e2</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Field</name>
-    <filename>classreport__Field.html</filename>
-    <base>report_Label</base>
-    <member kind="enumeration">
-      <name>baseTypes</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>59cd09da42fdb5887c13e5a38ce1f55c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Text</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>59cd09da42fdb5887c13e5a38ce1f55c40c9ed6a529530b07bceef6377574e93</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Numeric</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>59cd09da42fdb5887c13e5a38ce1f55cbc84a9d40dd620e86781c4ca915de7a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>Date</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>59cd09da42fdb5887c13e5a38ce1f55cb72fcc8b2fa3a99733576c6bb1acd28c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <name>fieldTypes</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>variable</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0b0d67ced525368ef24371411f75e482e6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>sysvar</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0beca21abe4a14a5a01419dff728b53109</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>sqlcolumn</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0bec32d330dc321fdef60dafcf5e9ff56d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>parameter</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0bcdfa54b3d0963e9c36c332388e45d3a8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>lookup</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0b39823de6b6d6dad93337c3625aec3f9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>textsection</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0b05a127447f462cb96a67bcf4e5506c7d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>invalid</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>6a21f0bf5c021b473c65f071f43def0be166cc2dbf2b579478ffac38bac0d073</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <name>refreshTypes</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>84ef54de1b8d1873e8abeca3c8b0dd90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>atDetail</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>84ef54de1b8d1873e8abeca3c8b0dd90e6e74cd29e86c212c4c532158404d906</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>atGroupFooter</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>84ef54de1b8d1873e8abeca3c8b0dd90b51300ed4b3d49b1c64045d767cfef0a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>always</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>84ef54de1b8d1873e8abeca3c8b0dd90346c4c1a5a2ee0a4acd12d354e1b26ea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>report_Field</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>0bbdb6d5e50e10dcf83b64694159791c</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;field&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Field</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>5f26e4a515fcfdd5aa0ac642ce8cfbb6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>callFunction</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>cdfdb7bc2abacf51ed188c4591442985</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>dateFormat</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>2bb8fb97abf4b48a63eacc6c4e660807</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>embedString</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>c0ca2fd94ecb2e177128f694610b148c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>fieldTypes</type>
-      <name>fieldType</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>46a724e0f1d07583dede2c7df9510cf1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>lookupClass</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>108c4bf90469c2e2b0abeafab140447b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>numBlankIfZero</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>37cd37a0c051b77b5fafc23f43cc22f6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>numDecimals</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>ccc816926d359082ee88a9489bf7386d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>char</type>
-      <name>numDigitPoint</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>d281f507314b1b32c31ca0e0d011ed27</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>numFormat</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>4aa9e19aee2db4313c06e215a982c045</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>numSeparation</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>452cc6219e07569e03fce600e90b6a94</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>char</type>
-      <name>numSeparator</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>9d43b16db93d5342f8d7c0e30a870f74</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>numValue</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>28ffad20821140d7b5b76538a2153325</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>refreshTypes</type>
-      <name>refreshType</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>df6ff36c90f4a4b2ae6570bff51aa32d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>stringValue</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>7eb36aebf087158af00a2bb2e6aeb735</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>toLower</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>d1c7387139fdbc011c65559aee5a8df9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>toUpper</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>3a252d8641fc2903aaa98010ca251d97</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>baseTypes</type>
-      <name>type</name>
-      <anchorfile>classreport__Field.html</anchorfile>
-      <anchor>e902ddef4df6504fea54ddd5038613fc</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_GeometricObject</name>
-    <filename>classreport__GeometricObject.html</filename>
-    <base>report_ElementObject</base>
-    <member kind="enumeration">
-      <name>fillStyles</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>886e4445643d6dd4d47101ec174fec7c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>transparent</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>886e4445643d6dd4d47101ec174fec7caab1dff596fcca8b4d115832d456636b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>filled</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>886e4445643d6dd4d47101ec174fec7cd5752de900feff7a35efde34fd2438f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>report_GeometricObject</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>6bee007aa9570db557932c1262a59572</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;geometric&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_GeometricObject</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>4681eb2fe14fc993321b6ff9bab48083</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QColor</type>
-      <name>fillColor</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>743518ec89d1ffa05788fac2e36fb57f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>fillStyles</type>
-      <name>fillStyle</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>a3b71745fb8c83740623fba468a79ade</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>height</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>8cffc47d1bccaa958e20ee1737590567</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QColor</type>
-      <name>lineColor</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>2823b9336bd8f26e25c43de2a993caec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Qt::PenStyle</type>
-      <name>lineStyle</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>cf13aeab72433b149148e66c4dc5efba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>lineWidth</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>d8362fcdf3ef026ef77ed58d3aad170f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>posX</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>d68aa4d562e2bc4b1abd080976c3b642</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>posY</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>0ea2d23c2bfd781c1a14d1a2cb0ce35d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>width</name>
-      <anchorfile>classreport__GeometricObject.html</anchorfile>
-      <anchor>0bb4dbf588ea3179153ec3cd7c222d61</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Group</name>
-    <filename>classreport__Group.html</filename>
-    <member kind="enumeration">
-      <name>groupState</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>f0abbfe010a1baffd56d9c6fa5099734</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>closed</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>f0abbfe010a1baffd56d9c6fa50997349244380b65746041124965d171d990ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>onProcess</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>f0abbfe010a1baffd56d9c6fa5099734e95db317dd146e2bda2812d106fefc3c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>report_Group</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>65d5889f1174762b3702e1118c66b1eb</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;group&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Group</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>5e574a44f609ddf6f34f3d105808efb6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>currentValue</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>00663ff24e70598bba0af053ab3fd4fc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>groupChanged</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>63ee3534c660294759e83b58c71283fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>groupExpression</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>c83eea31678653d02e7508f16b872170</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>report_groupFooter *</type>
-      <name>groupFooter</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>99ef755c331177910ed683453e32076c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>report_groupHeader *</type>
-      <name>groupHeader</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>4a189e7cfa9c5a6d1d7dc63d806e2650</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>lastValue</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>ec9d15d5b9a31982d065e09063b0851d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>name</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>593059bab889aad8df92bc2aea9b64cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>needDrawGroupFooter</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>641a95d99b82b9c95a41882f8106437e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>needDrawGroupHeader</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>fec19770bda0dc7315b6564b324129f0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>reprintHeader</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>0b1cbb2e91f99c25ffc397c137249c9e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>resetPageno</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>7f8fd30fdfae6a859889dbeb63026ff2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>resetVariables</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>f29bf17aa8ca8be2562b2e10adf3af8f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>startOnNewPage</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>4b6e695bc54987a686da9b180495279d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>startOnNewPageWL</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>9cdb10ba832bc2c77bc110896ac1e94c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>groupState</type>
-      <name>state</name>
-      <anchorfile>classreport__Group.html</anchorfile>
-      <anchor>084c341826075d8f4ae41ff222910901</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_groupFooter</name>
-    <filename>classreport__groupFooter.html</filename>
-    <base>report_ContainerObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_groupFooter</name>
-      <anchorfile>classreport__groupFooter.html</anchorfile>
-      <anchor>dd83468d2afa2b3e12216860ed82ebf1</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;groupfooter&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_groupFooter</name>
-      <anchorfile>classreport__groupFooter.html</anchorfile>
-      <anchor>f5d09b1289ea570a28d85a3db41a0c99</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>report_Queries *</type>
-      <name>Queries</name>
-      <anchorfile>classreport__groupFooter.html</anchorfile>
-      <anchor>63c6b06ae002e6356e97e610be1eb669</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_groupHeader</name>
-    <filename>classreport__groupHeader.html</filename>
-    <base>report_ContainerObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_groupHeader</name>
-      <anchorfile>classreport__groupHeader.html</anchorfile>
-      <anchor>64e20c216749054b64c670508b820a67</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;groupheader&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_groupHeader</name>
-      <anchorfile>classreport__groupHeader.html</anchorfile>
-      <anchor>39afb507fc3c9664928928f5a99a124b</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Groups</name>
-    <filename>classreport__Groups.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>report_Groups</name>
-      <anchorfile>classreport__Groups.html</anchorfile>
-      <anchor>3c4d8c8da0c3d974b3c815ffb599ff42</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;groups&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Groups</name>
-      <anchorfile>classreport__Groups.html</anchorfile>
-      <anchor>0dd1c743df50fa447e34e0a165d225ae</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>groupCount</name>
-      <anchorfile>classreport__Groups.html</anchorfile>
-      <anchor>bebed0cb4e332612a3d071d6ab6ec53f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QList&lt; report_Group * &gt;</type>
-      <name>groups</name>
-      <anchorfile>classreport__Groups.html</anchorfile>
-      <anchor>b6e9f83463d49a7d3b89c122d06e60af</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Label</name>
-    <filename>classreport__Label.html</filename>
-    <base>report_ElementObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Label</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>1b391681e81044495c6ae61a6adeaee3</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;label&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Label</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>092fb4f05bb950e1821d466b5ae9a87d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>alignmentH</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>68bf909b3339d36a832a066096400356</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>alignmentV</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>03b9123821c17c3d9b2ef596829a7647</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QColor</type>
-      <name>backcolor</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>feb0f8dce4e689ee798998ca841d1147</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>displayValue</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>a40df0033aaccde7e270f6b76b58e746</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>dynamicHeight</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>575137dad45267f2ca1d0576c13e8d52</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>fontItalic</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>f903e3d5ad8313961aeb760f42b8fcaf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>fontName</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>75f8129fa6138150cc2aff408a8e6153</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>fontSize</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>a4676c56b17a834a495b79c550b94660</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>fontStrikeOut</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>006ce0722f441229472f5e27652872a2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>fontUnderline</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>c22e8bc8996188a9de8d9c5b14a31f44</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>fontWeight</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>f3a69bb8b62fe73740a8f1b920df71a3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QColor</type>
-      <name>forecolor</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>4b9c4ae06633615b68cf2dd76f702313</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>height</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>41bcf661f5f1c9d11693b6b0a8a71a4d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>isRichText</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>e4d7da202e7aaa8875361d9da6368867</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>loadFromFile</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>7d610dd2a8be420530db12e37fb8510f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>posX</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>57858c60cdc4a0f77e9315dc267bd8be</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>posY</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>0bd8bf3cdf141a82f46caea95e117d01</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>printedSnip</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>18ae5985835badccf25e068a2f33b30e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QTextDocument *</type>
-      <name>richText</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>daa5dbd2ce304b828ee35ac03bb138d8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>rotation</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>8b83ecb9580906ef62a304add05a25eb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>text</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>92b33838c95e8d40d2982677c535a940</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>width</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>419462c85616770fd43fa2838aed25c4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>wordbreak</name>
-      <anchorfile>classreport__Label.html</anchorfile>
-      <anchor>fe3c362db051c198af303fef28210bee</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Line</name>
-    <filename>classreport__Line.html</filename>
-    <base>report_GeometricObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Line</name>
-      <anchorfile>classreport__Line.html</anchorfile>
-      <anchor>13277ff46a6d6bfc9ffd79523d52f578</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;field&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Line</name>
-      <anchorfile>classreport__Line.html</anchorfile>
-      <anchor>7d1a627062a49444f30a36cfbdb24b5d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>fromX</name>
-      <anchorfile>classreport__Line.html</anchorfile>
-      <anchor>f567bc0e426efff79854ff4eaa343170</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>fromY</name>
-      <anchorfile>classreport__Line.html</anchorfile>
-      <anchor>01e0eececb80eef7dea221a1f7d23802</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>toX</name>
-      <anchorfile>classreport__Line.html</anchorfile>
-      <anchor>a8e72713d1145814e7eff6f923bc4682</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>toY</name>
-      <anchorfile>classreport__Line.html</anchorfile>
-      <anchor>71a8c69dfb7eac6d85287597c1ad8633</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_pageFooter</name>
-    <filename>classreport__pageFooter.html</filename>
-    <base>report_ContainerObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_pageFooter</name>
-      <anchorfile>classreport__pageFooter.html</anchorfile>
-      <anchor>778a2be715bbff6d345193f8c39865f3</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;pagefooter&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_pageFooter</name>
-      <anchorfile>classreport__pageFooter.html</anchorfile>
-      <anchor>5dc1ffc57b95e064307db002f238802a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>resetVariables</name>
-      <anchorfile>classreport__pageFooter.html</anchorfile>
-      <anchor>adb606949132cb488d4ccc5e41555a68</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_pageHeader</name>
-    <filename>classreport__pageHeader.html</filename>
-    <base>report_ContainerObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_pageHeader</name>
-      <anchorfile>classreport__pageHeader.html</anchorfile>
-      <anchor>57cedd09797ac613728149f8e01e8906</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;pageheader&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_pageHeader</name>
-      <anchorfile>classreport__pageHeader.html</anchorfile>
-      <anchor>fc9ca19083e43072af43487a12e1a809</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Parameter</name>
-    <filename>classreport__Parameter.html</filename>
-    <base>report_Field</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Parameter</name>
-      <anchorfile>classreport__Parameter.html</anchorfile>
-      <anchor>accf6a6ae28b2b66a539ab7e86d1dfe9</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;parameter&quot;)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Pixmap</name>
-    <filename>classreport__Pixmap.html</filename>
-    <base>report_GeometricObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Pixmap</name>
-      <anchorfile>classreport__Pixmap.html</anchorfile>
-      <anchor>8b8491cdb815d194fc373c3aef4d69b6</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;pixmap&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Pixmap</name>
-      <anchorfile>classreport__Pixmap.html</anchorfile>
-      <anchor>30202620667c6037add79cd3cfc3bd35</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>resource</name>
-      <anchorfile>classreport__Pixmap.html</anchorfile>
-      <anchor>8e2ea2dd3ed6709c965563017ab75849</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Queries</name>
-    <filename>classreport__Queries.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>report_Queries</name>
-      <anchorfile>classreport__Queries.html</anchorfile>
-      <anchor>2a5ea54e8a50818cd0da0bf1fe121899</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;queries&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Queries</name>
-      <anchorfile>classreport__Queries.html</anchorfile>
-      <anchor>f02c09a16dd60fdd279ac603f25cd42a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QList&lt; report_Query * &gt;</type>
-      <name>queries</name>
-      <anchorfile>classreport__Queries.html</anchorfile>
-      <anchor>053991a9fb0d7f39f951446dc33ba963</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>queryCount</name>
-      <anchorfile>classreport__Queries.html</anchorfile>
-      <anchor>0ab49246dd1117088b72cf6f0377d9aa</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Query</name>
-    <filename>classreport__Query.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>report_Query</name>
-      <anchorfile>classreport__Query.html</anchorfile>
-      <anchor>97738c5835de786ca1ffd32b31747d6b</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;query&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Query</name>
-      <anchorfile>classreport__Query.html</anchorfile>
-      <anchor>60ac76518e3941be91cc02f31f13f60d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>alias</name>
-      <anchorfile>classreport__Query.html</anchorfile>
-      <anchor>13417349403f8b6e62e25cd03e2543ba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>master</name>
-      <anchorfile>classreport__Query.html</anchorfile>
-      <anchor>1656a1fc767748ec6bd5cae0f64357f7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>queryString</name>
-      <anchorfile>classreport__Query.html</anchorfile>
-      <anchor>c27cc619dad67a57ca6163afb7f29b99</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Rectangle</name>
-    <filename>classreport__Rectangle.html</filename>
-    <base>report_GeometricObject</base>
-    <member kind="function">
-      <type></type>
-      <name>report_Rectangle</name>
-      <anchorfile>classreport__Rectangle.html</anchorfile>
-      <anchor>48e363f67a7a1e8b650d38d33ebdd575</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;rectangle&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Rectangle</name>
-      <anchorfile>classreport__Rectangle.html</anchorfile>
-      <anchor>4b345f54236f24dcff558b2cb1eb991f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>roundValue</name>
-      <anchorfile>classreport__Rectangle.html</anchorfile>
-      <anchor>5cbe86f1b6e290ab24b66001ae7bc8b6</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>report_Variable</name>
-    <filename>classreport__Variable.html</filename>
-    <base>report_Field</base>
-    <member kind="enumeration">
-      <name>funcTypes</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4589f6b549136a325cb6cfd1b1bce8a7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>nothing</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4589f6b549136a325cb6cfd1b1bce8a70ca9c8be5dbcc535d1f59b37b91e3a86</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>count</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4589f6b549136a325cb6cfd1b1bce8a790eae8d58f1ff2560f8c801313747271</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>sum</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4589f6b549136a325cb6cfd1b1bce8a7f4cf5770c652134bc49e9d2fee0f3a3f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>average</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4589f6b549136a325cb6cfd1b1bce8a769051d7fcd6e394c0968e758c0264afa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <name>resetTypes</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4805c739301f1faf33740fe1b5fec36a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>eofreport</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4805c739301f1faf33740fe1b5fec36a7a298e1d0b676e1e14d77aa98fd92bdd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>eofpage</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4805c739301f1faf33740fe1b5fec36a5b18f397e78f79f84e621c929b761c7f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>group</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>4805c739301f1faf33740fe1b5fec36ad74cf9c360a15adc57d491d706f4b0e5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>report_Variable</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>e0847a610472363d2af74282d7f9d0b9</anchor>
-      <arglist>(QObject *parent=0, const char *nm=&quot;variable&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~report_Variable</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>501caa366157234a06787b262ab1bbf1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>funcTypes</type>
-      <name>funcType</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>357346736eff2b3a2a19e2f1d53bfc33</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>initValue</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>fbc67a28894a97279b07f207a8166109</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>resetTypes</type>
-      <name>resetAt</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>a21a87d66c3d4d737489c15aff00e281</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>resetGroupName</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>eaaf43ab1cf458ce8d978a2d41869616</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QString</type>
-      <name>varExp</name>
-      <anchorfile>classreport__Variable.html</anchorfile>
-      <anchor>d6d79b17f48e9aaf195404925078ca6d</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ReportParser</name>
-    <filename>classReportParser.html</filename>
-    <member kind="function">
+    <member kind="function" protection="protected">
       <type>void</type>
-      <name>appendElementObjectList</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>863a268eb5fb0eaa6adf53a8f629f898</anchor>
-      <arglist>(report_ElementObject *eo)</arglist>
+      <name>closeEvent</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>86011e3114d10c68af8ccb7fed38cbc0</anchor>
+      <arglist>(QCloseEvent *event)</arglist>
     </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>characters</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>531d416d163d17746e44d452da9c6c5c</anchor>
-      <arglist>(const QString &amp;ch)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>endElement</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>ed0b516e0b94da49df1451c488765282</anchor>
-      <arglist>(const QString &amp;namespaceURI, const QString &amp;localName, const QString &amp;qName)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>error</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>946851198bccebdf81bb478ee4893191</anchor>
-      <arglist>(const QXmlParseException &amp;exception)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>errorProtocol</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>444571b429b9ab08fe1a572fc1944849</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>errorString</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a88db6d8a8f78c984e6e38362c1dbdba</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>fatalError</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>804200ee89211202732e44414b5d3831</anchor>
-      <arglist>(const QXmlParseException &amp;exception)</arglist>
-    </member>
-    <member kind="function">
-      <type>QStringList</type>
-      <name>quotes</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>4b632878e921082ce3226dd9b17ae92c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>ReportParser</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>204bd64b05f9e6900ea7853437328903</anchor>
-      <arglist>(NCReport *rep)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>startDocument</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>4c2544a2234b980053e98510a4baab8c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>startElement</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>d24c4a0a11f274f04ecacfdf2a0c8e55</anchor>
-      <arglist>(const QString &amp;namespaceURI, const QString &amp;localName, const QString &amp;qName, const QXmlAttributes &amp;atts)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~ReportParser</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>69b35096cd02b8cc9b66474873bdb27c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="enumeration">
-      <name>State</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateInit</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782ea36edf44b077d9aa84ccd9e0dffd9cc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateDocument</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782e5dd01020bcb6c9b6d7cfcf903f6227a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StatePageHeader</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237829032608825c7b0118329521034f08e15</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StatePageFooter</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782b935662ed208ff0cd09f7837d8918f1a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateGroups</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782595f060672e5a1c90c266b4cfd88d65c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateGroup</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237824efb1df1bc89141f18cfb729325eab78</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateGroupHeader</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782905a316178e02e6e999e09f533420657</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateGroupFooter</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782d3c2a98aae2c916b098a7174bef11201</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateQueries</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237821790f32f091b2ae58ce942432e16d0d5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateQuery</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782bf90479694aba6270bd892d9a8e3b923</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateGroupFooterQueries</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782af1551290dc5efdf5c232621d17cc130</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateGroupFooterQuery</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237829a10063ffe6ef8f58a88be0f5a68f82e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateDetail</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782058b60cd5aff87db7e326aea11026507</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateElement</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237820f2e8e48446a53b2298387efc4cb3bc9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateVariables</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237827141740f2c59403a68601ecbfed006e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateVariable</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782f372d45fcd956bce1d8489bffe446de1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateQuote</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c82378277caad1ec5182cbb7c4777d1ba1df61d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateLine</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237826194f01aedc67d36dbdf2f17b7f3800d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateHeading</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c823782ba290661b4ae20b9d2a7ba0e413bcb9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumvalue">
-      <name>StateP</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a8510c63041d1968d25103d51c8237821bcf44c1696530f6e5d1c0ba26f10de5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>author</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>bf48c6b224a2ddc90ce4bf9322a95bda</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_Field *</type>
-      <name>curField</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a1eefde7b4a32f0d033d415c1dfadb5a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_Label *</type>
-      <name>curLabel</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>e2d843d91328f8a19eba0c56058758fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_Query *</type>
-      <name>curQuery</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>5c3dc4006ec972890356110b1f72a44c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>curText</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>508448d690c275246dcf7d934a172572</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>report_Variable *</type>
-      <name>curVariable</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>ec935e52556c2281a65c3e74702740db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>errorProt</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>ad91d2467e56334bbcd7996e597aa572</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>State</type>
-      <name>prevstate</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>d59571c12470b195f7ddbaaa51f9acf5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>QNum</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>f47dac52adb9464daa9b6767728458d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QStringList</type>
-      <name>quoteList</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>eada94cb04d6268022cf3dcee88356cd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>reference</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>a394a8315a2b8e7217decfb9f504710c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>NCReport *</type>
-      <name>Report</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>56dc82bf9818739ed0ee4470aa4f77c6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>State</type>
-      <name>state</name>
-      <anchorfile>classReportParser.html</anchorfile>
-      <anchor>e09fa82db8b17b80bffbf2e85fe7ada4</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>ReportParserErrorHandler</name>
-    <filename>classReportParserErrorHandler.html</filename>
-    <member kind="function">
-      <type>bool</type>
-      <name>error</name>
-      <anchorfile>classReportParserErrorHandler.html</anchorfile>
-      <anchor>353810d56a789d95e76e06c9e2c06c1e</anchor>
-      <arglist>(const QXmlParseException &amp;exception)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>errorString</name>
-      <anchorfile>classReportParserErrorHandler.html</anchorfile>
-      <anchor>8f268f4ab4abdfb23faf161bdd058de4</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>fatalError</name>
-      <anchorfile>classReportParserErrorHandler.html</anchorfile>
-      <anchor>2a4c1844dd2eef7bb20163c13c65f3e6</anchor>
-      <arglist>(const QXmlParseException &amp;exception)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>warning</name>
-      <anchorfile>classReportParserErrorHandler.html</anchorfile>
-      <anchor>e5ee03b457f6c8fb348e72bf6c68e4ba</anchor>
-      <arglist>(const QXmlParseException &amp;exception)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~ReportParserErrorHandler</name>
-      <anchorfile>classReportParserErrorHandler.html</anchorfile>
-      <anchor>7cc2800e80a0a6524b91aeb98f846ea6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>errorProt</name>
-      <anchorfile>classReportParserErrorHandler.html</anchorfile>
-      <anchor>91952418451236775eb3fce5c31ea7a8</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>Senasa</name>
-    <filename>classSenasa.html</filename>
-    <base protection="private">EInformeInterface</base>
-    <member kind="function">
+    <member kind="slot" protection="private">
       <type>void</type>
-      <name>crearMenu</name>
-      <anchorfile>classSenasa.html</anchorfile>
-      <anchor>5be24ad6919879dcbabc5fb6dc68893f</anchor>
-      <arglist>(QMenu *m)</arglist>
+      <name>about</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>d77febc868643666e7def81208c92ed7</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="function">
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>documentWasModified</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>468ab98e9e26ac34781d0c43cf479534</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>newFile</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>492e9a98ecb1ef856f16451c6fec8992</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>open</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>00c33179de872d3c053a7e3f2d43ffaa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
       <type>bool</type>
-      <name>inicializar</name>
-      <anchorfile>classSenasa.html</anchorfile>
-      <anchor>02bcfafb2482cd8e2dbb46ccf5be5911</anchor>
+      <name>save</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>23e627014308dd87b03c8f26a2f96fe9</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
+    <member kind="slot" protection="private">
+      <type>bool</type>
+      <name>saveAs</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>4b3998a12665f225c04d9f2ea19c5445</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createActions</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>72bc19e231e95b98d37740462228177b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createMenus</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>d8241128b8bc2b4061f3cbb2273b7adf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createStatusBar</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>c59b836ef36835dd1965b975c5b21296</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createToolBars</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>20efad45c845f63c8c35c8f2f4ba9a27</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>loadFile</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>a29ced0a838b32e59c92c4ff8c810370</anchor>
+      <arglist>(const QString &amp;fileName)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>maybeSave</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>a535d7ac05466665d5719b28c6332143</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>readSettings</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>05a843f04aa1e9b9519ab59f8e4fe39b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>saveFile</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>555846858f7d6c502310035d074005fe</anchor>
+      <arglist>(const QString &amp;fileName)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setCurrentFile</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>7800a865fab7a761c169ea109075c57c</anchor>
+      <arglist>(const QString &amp;fileName)</arglist>
+    </member>
+    <member kind="function" protection="private">
       <type>QString</type>
-      <name>nombre</name>
-      <anchorfile>classSenasa.html</anchorfile>
-      <anchor>5509551b35f66b7e374271a07531bd8d</anchor>
-      <arglist>() const </arglist>
+      <name>strippedName</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>ab61f6a6b9ac32a294ac73d2236ab92e</anchor>
+      <arglist>(const QString &amp;fullFileName)</arglist>
     </member>
-    <member kind="function">
-      <type>double</type>
-      <name>version</name>
-      <anchorfile>classSenasa.html</anchorfile>
-      <anchor>19ae15d8f32cd36c33817cb16089e541</anchor>
-      <arglist>() const </arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>StaticInitImages_gestotux</name>
-    <filename>classStaticInitImages__gestotux.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>StaticInitImages_gestotux</name>
-      <anchorfile>classStaticInitImages__gestotux.html</anchorfile>
-      <anchor>5e32a82a4ed61c9c7546c70bccf3f29b</anchor>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>writeSettings</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>a39192ac7706065db6a2acf9e64725cb</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>~StaticInitImages_gestotux</name>
-      <anchorfile>classStaticInitImages__gestotux.html</anchorfile>
-      <anchor>c1da30daec027bc0d1b82c0015db8553</anchor>
-      <arglist>()</arglist>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>aboutAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>35a3821ab52f8a2e45f2182eb1be1ad3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>aboutQtAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>d7e0ffa8ad908d87033cf7694ccd12af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>copyAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>6f320dcd903eeea6efec6503f8883bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>curFile</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>745ac47fd5aab07bc36178bdfb9d4341</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>cutAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>2b4ea67c914677d50cec8bc311eb3fde</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>editMenu</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>c9a79133e25572c4c9996d1b1a78de6c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QToolBar *</type>
+      <name>editToolBar</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>2f74bb8c0ce1bc2535f62b68065d1e1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>exitAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>9e7cfda982861403acd0a36c8b7a9c50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>fileMenu</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>d6f24e9147027d51c73c38e74b791611</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QToolBar *</type>
+      <name>fileToolBar</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>f7e533fe9e3e88d94c908554f56cc23c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>helpMenu</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>ba6e66ce5f457955184ece6e1363c655</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>newAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>d7807257ce0bcda090bc4ee56d50f858</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>openAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>14110aed111cc139e63833383481b539</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>pasteAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>f2ce34b7debb4cff97eb4bbc94fb6f2e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>saveAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>a2be439e976db6641a23e6df7715a7e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>saveAsAct</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>83b096b0bd2736328bf6ad6e282090c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextEdit *</type>
+      <name>textEdit</name>
+      <anchorfile>classtesto.html</anchorfile>
+      <anchor>f8b9ee689001c10516058ed654e59eff</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -13069,6 +7697,13 @@
   <compound kind="class">
     <name>visorResumen</name>
     <filename>classvisorResumen.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classvisorResumen.html</anchorfile>
+      <anchor>fe61768a93879e6cfb4a1f151c753211</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>cerrate</name>
@@ -13246,6 +7881,7 @@
   <compound kind="class">
     <name>VRecibos</name>
     <filename>classVRecibos.html</filename>
+    <base>EVentana</base>
     <member kind="slot">
       <type>void</type>
       <name>cambioClienteFiltro</name>
@@ -13266,6 +7902,13 @@
       <anchorfile>classVRecibos.html</anchorfile>
       <anchor>506d842a1071375c675882c01ee30e62</anchor>
       <arglist>(bool activo, int id_cliente)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classVRecibos.html</anchorfile>
+      <anchor>419d282533805db0360b6f2cfe0ae276</anchor>
+      <arglist>(QWidget *v)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -13387,150 +8030,6 @@
       <arglist></arglist>
     </member>
   </compound>
-  <compound kind="namespace">
-    <name>NCUtils</name>
-    <filename>namespaceNCUtils.html</filename>
-    <member kind="function">
-      <type>bool</type>
-      <name>_loadConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>b5793c2838baae55943a4c1c6a571415</anchor>
-      <arglist>(const QString &amp;filename, QStringList &amp;sl, const QString &amp;group, const QString &amp;option, int &amp;groupLineNo, int &amp;optLineNo)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>_saveConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>6e4d7b05583ce056c3b2751c0bc51b02</anchor>
-      <arglist>(const QString &amp;filename, const QStringList &amp;sl)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>abs</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>1f6a98f67b0644468cb041c3658db021</anchor>
-      <arglist>(const double d)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>concatStringWith</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>f042775d9164d88c99394e4c315eed6e</anchor>
-      <arglist>(QString &amp;s, const QString &amp;s1, const QString &amp;delim)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>dateToString</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>bb2fbb9c95343eb89bd7d3bae8137bc6</anchor>
-      <arglist>(const QDate &amp;dt)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>DecodeStringX</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>065f642511a9e0a58a4d5ca563b24e15</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringHTML</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>36f65869c9254386a2a9d3b8ae854339</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringSQL</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>a0f5c13db70f4ea6ac35b8a1a7cec5c6</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>EncodeStringX</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>01f274917dd45115e9d068b3b2ab4fe9</anchor>
-      <arglist>(QString &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>const char *</type>
-      <name>findInEncTable</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>03fd2b597e71fabad7118876d9a8a3da</anchor>
-      <arglist>(const QChar ch)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>formatNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>275f6012f720df5b19213327bee0cf7f</anchor>
-      <arglist>(const QString &amp;numberString, bool sep, const char separator, const char decpoint)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>formatNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>9ba98c97cdbd1d85a2abfa6d67c633e6</anchor>
-      <arglist>(const double number, const char *frm, bool sep, const char separator, const char decpoint)</arglist>
-    </member>
-    <member kind="function">
-      <type>QPoint</type>
-      <name>popupPosition</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>3eae1b20bf2f42f1841c42f7aed41726</anchor>
-      <arglist>(QWidget *hostwidget, QWidget *popupwidget)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>readConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>91115d9248653456b8a2eebec79951d4</anchor>
-      <arglist>(const QString &amp;filename, const QString &amp;group, const QString &amp;option)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>round</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>4b21e49d2c1e883a296072fed14a9e66</anchor>
-      <arglist>(const double value, const short int digits)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>sayNumber</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>a5725e5d2cec6154180ce569126e1dce</anchor>
-      <arglist>(double numb)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>sayNumber_part</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>b277354b037c5a8d76b761d36dccfdf4</anchor>
-      <arglist>(const QString &amp;part)</arglist>
-    </member>
-    <member kind="function">
-      <type>QDate</type>
-      <name>stringToDate</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>e88c37ad3c9d166a040df9a85934e88e</anchor>
-      <arglist>(const QString &amp;dts)</arglist>
-    </member>
-    <member kind="function">
-      <type>QColor</type>
-      <name>webColor</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>7a57fd85c3ea660fd7247a6894d4bed6</anchor>
-      <arglist>(const QString &amp;colorstring)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>writeConfig</name>
-      <anchorfile>namespaceNCUtils.html</anchorfile>
-      <anchor>2a16021b5354393415299a0c9bfd9fc6</anchor>
-      <arglist>(const QString &amp;filename, const QString &amp;group, const QString &amp;option, const QString &amp;value)</arglist>
-    </member>
-  </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/aCarCorr/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
@@ -13538,8 +8037,10 @@
     <dir>Programas/gestotux/plugins/aCarCorr/plugins/</dir>
     <file>admincarcorr.cpp</file>
     <file>admincarcorr.h</file>
-    <file>einforme.cpp</file>
-    <file>einforme.h</file>
+    <file>edcategoriaespecial.cpp</file>
+    <file>edcategoriaespecial.h</file>
+    <file>einformeimpresora.cpp</file>
+    <file>einformeimpresora.h</file>
     <file>einformeinterface.h</file>
     <file>emovimiento.cpp</file>
     <file>emovimiento.h</file>
@@ -13597,6 +8098,7 @@
     <dir>Programas/gestotux/plugins/</dir>
     <dir>Programas/gestotux/src/</dir>
     <dir>Programas/gestotux/templates/</dir>
+    <dir>Programas/gestotux/utiles/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/presupuestos/hicomp/</name>
@@ -13617,8 +8119,6 @@
     <file>formagregarrecibo.h</file>
     <file>formmodificarrecibo.cpp</file>
     <file>formmodificarrecibo.h</file>
-    <file>formprefhijo.cpp</file>
-    <file>formprefhijo.h</file>
     <file>fprefrecibos.cpp</file>
     <file>fprefrecibos.h</file>
     <file>hicomp.cpp</file>
@@ -13633,71 +8133,22 @@
     <file>vrecibos.h</file>
   </compound>
   <compound kind="dir">
-    <name>Programas/gestotux/plugins/aCarCorr/plugins/InformeCategorizado/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/InformeCategorizado/</path>
-    <filename>dir_67845a891f6f70414e9a57a33260f8db.html</filename>
-    <file>informescategorizados.cpp</file>
-    <file>informescategorizados.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/plugins/aCarCorr/plugins/InformeTri/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/InformeTri/</path>
-    <filename>dir_f50cbb23646a723cbffce0208438eaf3.html</filename>
-    <file>informetri.cpp</file>
-    <file>informetri.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</path>
-    <filename>dir_24144c3b9a6dd83c54764577fc384031.html</filename>
-    <file>globals.h</file>
-    <file>nciconfactory.cpp</file>
-    <file>nciconfactory.h</file>
-    <file>nciconfactorybase.cpp</file>
-    <file>nciconfactorybase.h</file>
-    <file>ncpreview.cpp</file>
-    <file>ncpreview.h</file>
-    <file>ncreport.cpp</file>
-    <file>ncreport.h</file>
-    <file>ncsqlquery.cpp</file>
-    <file>ncsqlquery.h</file>
-    <file>ncutils.cpp</file>
-    <file>ncutils.h</file>
-    <file>reportparser.cpp</file>
-    <file>reportparser.h</file>
+    <name>Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
+    <filename>dir_7a673239d28bdb23c586c11fbfb90b5e.html</filename>
+    <file>listadocaravanas.cpp</file>
+    <file>listadocaravanas.h</file>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/aCarCorr/plugins/ListadoMovimientos/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoMovimientos/</path>
     <filename>dir_331b23f5398dc97e6a5b0e1682255809.html</filename>
-    <file>einforme.cpp</file>
-    <file>einforme.h</file>
     <file>erenderizadorinforme.cpp</file>
     <file>erenderizadorinforme.h</file>
     <file>formfiltro.cpp</file>
     <file>formfiltro.h</file>
     <file>informesmovimientos.cpp</file>
     <file>informesmovimientos.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/</path>
-    <filename>dir_3bc18ad3ed6ed9928d43713c4455eeb4.html</filename>
-    <dir>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/</dir>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/</path>
-    <filename>dir_5296b4bd28dd233796c5a49e267f2922.html</filename>
-    <dir>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/</dir>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/ncreportrunner/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/ncreportrunner/</path>
-    <filename>dir_38b5873ab6ada1669360e73b84009dfb.html</filename>
-    <file>main.cpp</file>
-    <file>ncreporttestform.cpp</file>
-    <file>ncreporttestform.h</file>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/OscarSorazi/</name>
@@ -13714,10 +8165,8 @@
     <name>Programas/gestotux/plugins/aCarCorr/plugins/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/</path>
     <filename>dir_c7ad3b19fc52213b778d16b64cd09e4a.html</filename>
-    <dir>Programas/gestotux/plugins/aCarCorr/plugins/InformeCategorizado/</dir>
-    <dir>Programas/gestotux/plugins/aCarCorr/plugins/InformeTri/</dir>
+    <dir>Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</dir>
     <dir>Programas/gestotux/plugins/aCarCorr/plugins/ListadoMovimientos/</dir>
-    <dir>Programas/gestotux/plugins/aCarCorr/plugins/senasa/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/</name>
@@ -13777,9 +8226,6 @@
     <name>Programas/gestotux/plugins/productos/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>dir_8324bc479bfd66538cca5b59b3129b11.html</filename>
-    <file>eventana.cpp</file>
-    <file>evlista.cpp</file>
-    <file>evlista.h</file>
     <file>mcategorias.cpp</file>
     <file>mcategorias.h</file>
     <file>mproductos.cpp</file>
@@ -13798,20 +8244,6 @@
     <dir>Programas/gestotux/</dir>
   </compound>
   <compound kind="dir">
-    <name>Programas/gestotux/plugins/aCarCorr/plugins/senasa/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/senasa/</path>
-    <filename>dir_a4b4c6340f3a519198026275af0adfc2.html</filename>
-    <file>senasa.cpp</file>
-    <file>senasa.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/</path>
-    <filename>dir_e67de86019fa439bb454c3658a0c2fe8.html</filename>
-    <dir>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/</dir>
-    <dir>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/ncreportrunner/</dir>
-  </compound>
-  <compound kind="dir">
     <name>Programas/gestotux/src/</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>dir_a6a96f4101e30ef9cb693fc53f8c1212.html</filename>
@@ -13819,24 +8251,16 @@
     <file>ebackup.h</file>
     <file>eenviobackup.cpp</file>
     <file>eenviobackup.h</file>
-    <file>einfoprograma.cpp</file>
-    <file>einfoprograma.h</file>
     <file>einfoprogramainterface.h</file>
     <file>eplugin.h</file>
     <file>esplash.cpp</file>
     <file>esplash.h</file>
-    <file>eventana.cpp</file>
-    <file>eventana.h</file>
-    <file>evlista.cpp</file>
-    <file>evlista.h</file>
     <file>formacercade.cpp</file>
     <file>formacercade.h</file>
     <file>formactualizacion.cpp</file>
     <file>formactualizacion.h</file>
     <file>formpreferencias.cpp</file>
     <file>formpreferencias.h</file>
-    <file>formprefhijo.cpp</file>
-    <file>formprefhijo.h</file>
     <file>formulariocentral.cpp</file>
     <file>formulariocentral.h</file>
     <file>fprefgeneral.cpp</file>
@@ -13846,18 +8270,55 @@
     <file>main.cpp</file>
     <file>mclientes.cpp</file>
     <file>mclientes.h</file>
-    <file>preferencias.cpp</file>
-    <file>preferencias.h</file>
-    <file>qmake_image_collection.cpp</file>
     <file>reloj.cpp</file>
     <file>reloj.h</file>
     <file>vcliente.cpp</file>
     <file>vcliente.h</file>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/templates/testo/src/</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
+    <filename>dir_ce99053c5f14ccccaca5e934f4499f80.html</filename>
+    <file>editcopy.xpm</file>
+    <file>editcut.xpm</file>
+    <file>editpaste.xpm</file>
+    <file>einformeimpresora.cpp</file>
+    <file>einformeimpresora.h</file>
+    <file>filenew.xpm</file>
+    <file>fileopen.xpm</file>
+    <file>filesave.xpm</file>
+    <file>main.cpp</file>
+    <file>testo.cpp</file>
+    <file>testo.h</file>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/templates/</name>
     <path>/home/Esteban/Programas/gestotux/templates/</path>
     <filename>dir_287714ba489d9ee9e591124286039350.html</filename>
-    <dir>Programas/gestotux/templates/ncreport-qt4-0.7.30-2/</dir>
+    <dir>Programas/gestotux/templates/testo/</dir>
+  </compound>
+  <compound kind="dir">
+    <name>Programas/gestotux/templates/testo/</name>
+    <path>/home/Esteban/Programas/gestotux/templates/testo/</path>
+    <filename>dir_99574fc1e5bc89968002af5bc256636d.html</filename>
+    <dir>Programas/gestotux/templates/testo/src/</dir>
+  </compound>
+  <compound kind="dir">
+    <name>Programas/gestotux/utiles/</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>dir_96dd5dfec6529fa71a74b9d6ee5ac519.html</filename>
+    <file>eactcerrar.cpp</file>
+    <file>eactcerrar.h</file>
+    <file>eactimprimir.cpp</file>
+    <file>eactimprimir.h</file>
+    <file>eventana.cpp</file>
+    <file>eventana.h</file>
+    <file>evisorinformes.cpp</file>
+    <file>evisorinformes.h</file>
+    <file>evlista.cpp</file>
+    <file>evlista.h</file>
+    <file>formprefhijo.h</file>
+    <file>preferencias.cpp</file>
+    <file>preferencias.h</file>
   </compound>
 </tagfile>

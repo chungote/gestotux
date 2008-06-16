@@ -13,6 +13,7 @@ Administracion Caravanas Corrientes:
 ====================================================================================================
 A Largo plazo:
 
+Agregar chequeador de actualizaciones en la barra de estado mediante un hilo
 Sistema de control de movimientos financieros como fondo cargandose en plugins correspondientes.
 Aumentar las capacidades de las base de datos, haciendola disponible para otros sistemas, como mysql, o postgres
 Agregar sistema para hacer facturas con  formularios preimpresos

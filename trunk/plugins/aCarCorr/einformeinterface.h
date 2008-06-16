@@ -24,10 +24,11 @@
 #include <QPrinter>
 #include <QMenu>
 /**
-Interfaz para hacer un informe
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Interfaz para informes de caravanas
+ *
+ *  Interfaz para hacer un informe
+ *  @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EInformeInterface
 {
 public:

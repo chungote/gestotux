@@ -24,8 +24,11 @@
 #include <einformeinterface.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Plugin de informe de caravanas x establecimiento
+ *
+ *	Clase base del plugin que muestra la lista de caravanas que se encuentran en un establecimiento en cierta fecha
+ * 	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class ListadoCaravanas : public QObject, public EInformeInterface
 {
 Q_OBJECT
@@ -40,7 +43,12 @@ signals:
     void agregarVentana( QWidget *ventana );
 
 private:
+       /*!
+        * Accion para el menu
+        */
 	QAction *ActInformeCaravanas;
+public slots:
+    void informeCaravanas();
 };
 
 #endif

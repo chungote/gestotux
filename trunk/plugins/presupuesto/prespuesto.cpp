@@ -51,7 +51,7 @@ QString prespuesto::nombre() const
 /*!
     \fn prespuesto::formsPreferencias()
  */
-QWidgetList prespuesto::formsPreferencias() 
+QWidgetList prespuesto::formsPreferencias()
 {
   return QWidgetList();
 }
@@ -69,14 +69,14 @@ bool prespuesto::inicializar( QSettings *pref )
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
- 
+
  ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  //connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
- _acciones.append( ActNuevoPresu );
- 
+ //_acciones.append( ActNuevoPresu );
+
  return verificarTablas();
 }
 
@@ -101,7 +101,7 @@ void prespuesto::crearMenu( QMenuBar *m )
   qDebug( "Error en las baras de menu" );
  }
  else
- { 
+ {
   QMenu *menuRecibos = menuHer->addMenu( "Presupuestos2" );
   menuRecibos->addAction( ActNuevoPresu );
   menuRecibos->addAction( ActPresuAnteriores );
