@@ -72,9 +72,9 @@ int main(int argc, char *argv[])
 	qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash
-	ESplash *splash = new ESplash();
+	ESplash splash;
       //QSplashScreen *splash = new QSplashScreen( app );
-      splash->show();
+      splash.show();
 //       splash->showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual
       app.setDesktopSettingsAware( true );
@@ -175,6 +175,7 @@ int main(int argc, char *argv[])
 			qFatal( "Error! El archivo de db tiene menos o es igual a 0 bytes " );
 		}
 	}
+	delete base;
        DB = QSqlDatabase::addDatabase("QSQLITE");
        DB.setDatabaseName( "gestotux.database" );
        if( !DB.open() )
@@ -208,14 +209,13 @@ int main(int argc, char *argv[])
 // 	splash->showMessage( "Listo." );
 	if ( !p->value( "splash", false ).toBool() )
 	{
-// 		splash->hide();
-		delete splash;
+ 		splash.hide();
 		qDebug( "Ventana de splash cerrar" );
 	}
         p->endGroup();
 	p->endGroup();
 	// Inicio el hilo de envio del backup
-	EEnvioBackup *envios = new EEnvioBackup();
-	envios->start( QThread::IdlePriority );
+	EEnvioBackup envios( &app );
+	envios.start( QThread::IdlePriority );
       return app.exec();
 }

@@ -39,7 +39,7 @@ EEnvioBackup::~EEnvioBackup()
 /*!
 	\fn void EEnvioBackup::run()
 	Este metodo es el que se ejecuta al realiza el inicio del hilo correspondiente.
-	Verifica que el backup no haya sido enviado y si no lo hizo, lo envia. 
+	Verifica que el backup no haya sido enviado y si no lo hizo, lo envia.
 	Utiliza el ultimo archivo de backup que se creo en la pc actual.
 */
 void EEnvioBackup::run()
@@ -52,14 +52,15 @@ void EEnvioBackup::run()
   return;
  }
  setTerminationEnabled();
- QFile *archivo = new QFile( p->value( "backup/archivo", QDate::currentDate().toString() ).toString() );
+ archivo = new QFile( p->value( "backup/archivo", QDate::currentDate().toString() ).toString() );
  if( !archivo->open( QIODevice::ReadOnly ) )
  {
   qDebug( QString( "Error al abrir el archivo de backup: %1" ).arg( p->value( "backup/archivo" ).toString() ).toLocal8Bit() );
+  delete archivo;
   exit(0);
   return;
  }
- ftp = new QFtp( this );
+ ftp = new QFtp();
  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
  ftp->connectToHost( p->value( "ftp/host", "tranfuga.no-ip.org" ).toString(), p->value( "ftp/puerto", 21 ).toInt() );
  ftp->login();
@@ -80,6 +81,8 @@ void EEnvioBackup::finComando( int id, bool error )
  if( error )
  {
   qDebug( QString( "Error: %1").arg( ftp->errorString() ).toLocal8Bit() );
+  delete ftp;
+  delete archivo;
   exit(0);
   return;
  }
@@ -89,6 +92,8 @@ void EEnvioBackup::finComando( int id, bool error )
   preferencias *p = preferencias::getInstancia();
   p->setValue( "backup/enviado", true );
   p->sync();
+  delete archivo;
+  delete ftp;
   exit(0);
  }
 }
