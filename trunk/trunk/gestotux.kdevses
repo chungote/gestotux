@@ -15,7 +15,7 @@
    <subversion base="" />
   </kdevsubversion>
   <kdevvalgrind>
-   <executable path="" params="" />
+   <executable path="/home/Esteban/Programas/gestotux/bin/gestotux" params="" />
    <valgrind path="/usr/bin/valgrind" params=" --tool=memcheck --leak-check=yes" />
    <calltree path="/usr/bin/valgrind" params="--tool=callgrind" />
    <kcachegrind path="/usr/bin/kcachegrind" />

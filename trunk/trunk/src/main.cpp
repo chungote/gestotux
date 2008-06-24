@@ -153,6 +153,7 @@ int main(int argc, char *argv[])
 			else
 			{
 				qFatal( QString( "Error fatal al ejecutar la cola: %1" ).arg( line ).toLocal8Bit() );
+				delete base;
 				abort();
 			}
 		}
@@ -160,11 +161,13 @@ int main(int argc, char *argv[])
 		origen.close();
 		QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );
 		DB.close();
+		delete base;
 		exit(0);
 	 }
 	 else
 	 {
 		qFatal( "No se encuentra el archivo embebido original" );
+		delete base;
 	 }
 	}
 	else

@@ -42,6 +42,9 @@ protected slots:
     void cancelar();
     void ponerTabla();
     void guardar( bool cerrar );
+    void guardarImprimir();
+    void guardar();
+    void imprimir();
 
 private:
    /*!

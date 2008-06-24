@@ -48,6 +48,7 @@ preferencias::~preferencias()
    instance = 0;
  }
  sync();
+ delete instance;
 }
 
 /*!

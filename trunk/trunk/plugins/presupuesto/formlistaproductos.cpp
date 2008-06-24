@@ -54,6 +54,7 @@ FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 
 FormListaProductos::~FormListaProductos()
 {
+ delete modelo;
 }
 
 

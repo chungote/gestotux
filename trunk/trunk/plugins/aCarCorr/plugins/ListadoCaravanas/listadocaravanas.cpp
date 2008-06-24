@@ -81,17 +81,19 @@ void ListadoCaravanas::crearMenu( QMenu *menu )
 void ListadoCaravanas::informeCaravanas()
 {
  // Pongo el dialogo de todos los establecimientos
- /*bool ok;
- MEstablecimiento *modelo = new MEstablecimiento( this );
+ bool ok;
+ MEstablecimiento *modelo = new MEstablecimiento();
+ modelo->select();
  QString item = QInputDialog::getItem( 0, "Elija el Establecimiento", "Establecimiento:", modelo->listaNombres(), 0, false, &ok, 0 );
  delete modelo;
  if( ok && !item.isEmpty() )
- {*/
+ {
   EVisorInformes *visor = new EVisorInformes( new EInformeImpresora() );
   // Lo heredo del visor para que se destruya cuando se cierre el informe
   IRenderizador *render = new IRenderizador( visor );
-  //render->setEstablecimiento( item );
+  render->setEstablecimiento( item );
+  render->hacerInforme();
   connect( visor, SIGNAL(paintRequested( QPrinter* )), render, SLOT(imprimir(QPrinter*)));
   agregarVentana( visor );
- //}
+ }
 }

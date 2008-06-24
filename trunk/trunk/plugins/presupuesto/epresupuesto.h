@@ -39,6 +39,7 @@ public:
     virtual ~EPresupuesto() {}
     virtual QString nombre() const = 0;
     virtual double version() const = 0;
+    virtual void inicializar() = 0;
     virtual void setCliente( const QString nombre ) = 0;
     virtual void setFecha( const QDate fecha ) = 0;
     virtual void setTituloPersonalizado( const QString titulo ) = 0;
@@ -51,6 +52,7 @@ public:
     virtual QDate fecha() = 0;
     virtual void generarTabla( QSqlTableModel *mod, const QString tituloTabla, const bool cabceras ) = 0;
     virtual void regenerar( const QTextDocument *doCont ) = 0;
+    virtual void limpieza() = 0;
 };
 
 Q_DECLARE_INTERFACE(EPresupuesto,

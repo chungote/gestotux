@@ -182,7 +182,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/HiComp</activedir>
+      <activedir>plugins/aCarCorr/plugins/ListadoCaravanas</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>

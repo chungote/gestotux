@@ -50,23 +50,29 @@ Presupuesto::Presupuesto(QObject *parent)
      }
  #endif
      pluginsDir.cd("plugins");
-     pluginsDir.cd("presupuesto");
-#ifdef Q_WS_WIN32
+     pluginsDir.cd("presupuestos");
 	QStringList filtro;
-	filtro.append( "*.dll" );
-#endif
 	// Obtengo el nombre del plugin de infoprog actual para cargar el del mismo nombre
-	int pos =  pluginsDir.entryList( QDir::Files ).indexOf( prespuesto::pref()->value( "pluginInfo", "default" ).toString() );
+#ifdef Q_WS_WIN32
+	filtro.append( "*.dll" );
+	int pos =  pluginsDir.entryList( filtro, QDir::Files  ).indexOf( prespuesto::pref()->value( "pluginInfo", "default" ).toString().append( ".dll" ) );
+#endif
+#ifdef Q_WS_X11
+	filtro.append( "*.so" );
+	int pos =  pluginsDir.entryList( filtro, QDir::Files ).indexOf( prespuesto::pref()->value( "pluginInfo", "default" ).toString().prepend( "lib" ).append( ".so" ) );
+#endif
 	if( pos == -1 )
 	{
-		QMessageBox::critical( 0, "Error", "No existe ningun plugin de presupuestos definidos! Verifique la instalación!" );
+		qCritical( "Error: No existe ningun plugin de presupuestos definidos! Verifique la instalación!" );
+		qDebug( pluginsDir.entryList( filtro, QDir::Files ).join( ", " ).toLocal8Bit() );
 		return;
         }
 	loader->setFileName(  pluginsDir.absoluteFilePath( pluginsDir.entryList( QDir::Files ).at( pos ) )  );
         if( loader->load() )
         {
 		_plugin = qobject_cast<EPresupuesto *>(loader->instance());
-		
+		_plugin->inicializar();
+		qWarning( _plugin->nombre().toLocal8Bit() );
 	}
 	else
 	{
@@ -74,6 +80,10 @@ Presupuesto::Presupuesto(QObject *parent)
 		qWarning( QString( "Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
 	}
 	// Fin de la carga del plugin
+	if( _plugin != 0 )
+	{
+		_plugin->regenerar( new QTextDocument() );
+	}
 }
 
 
@@ -92,7 +102,7 @@ bool Presupuesto::registro( int id )
  {
 	_registro = cola.record();
 	return true;
- } 
+ }
  else
  {
   qDebug( "Error al buscar el registro de presupuesto" );
@@ -154,10 +164,17 @@ void Presupuesto::generarDoc( const QTextDocument *docCont )
 {
   if( !esValido() )
   { return; }
+
+ _plugin->regenerar( docCont );
 }
 
 void Presupuesto::generarTablaProductos( QSqlTableModel *modelo, const QString tituloTabla, const bool cabeceras )
 { _plugin->generarTabla( modelo, tituloTabla, cabeceras ); }
 
 QTextDocument * Presupuesto::previsualizacion()
-{ return _plugin->getDocumento(); }
+{
+ if( _plugin != 0 )
+ { return _plugin->getDocumento(); }
+ else
+ { return new QTextDocument(); }
+}
