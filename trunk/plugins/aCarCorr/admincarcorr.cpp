@@ -111,7 +111,7 @@ bool AdminCarCorr::inicializar( QSettings* pref)
 
  ActModificarTri = new QAction( "Modificar Tri", this );
  ActModificarTri->setToolTip( "Permite modificar un numero especifico de tri" );
- //connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
+ connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
 
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
@@ -190,6 +190,8 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
   menuHer->addAction( ActAgregarMudanza );
   menuHer->addAction( ActAgregarVenta );
   menuHer->addAction( ActAgregarStock );
+  menuHer->addSeparator();
+  menuHer->addAction( ActModificarTri );
  }
  // Creo el menu de informes
  if( !plugins().isEmpty() )
@@ -383,9 +385,19 @@ void AdminCarCorr::modificarTri()
   // Cargo el formulario con el tri que corresponda
   if( cola.exec( QString( "SELECT razon FROM car_tri WHERE id_tri = '%1'" ).arg( id_tri ) ) )
   {
-   emit agregarVentana( new FormModificarTri( 0, cola.record().value(0).toInt(), id_tri.toInt() )  );
-   return;
+   if( cola.next() )
+   {
+     emit agregarVentana( new FormModificarTri( 0, cola.record().value("razon").toInt(), id_tri.toInt() )  );
+     return;
+   }
+   else
+   {
+     qWarning( "Error al buscar el tipo de movimiento" );
+     return;
+   }
   }
+  else
+  {  qWarning( "Error al ejecutar la cola de buscqueda de tipo de movimiento" ); }
  }
  else
  {

@@ -160,7 +160,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 				break;
 			}
 		}
-		break;	
+		break;
 	}
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 //#warning "Mostrando columna de dueno"
@@ -184,7 +184,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
 				break;
 			}
 		}
-		break;	
+		break;
 	}
 #endif
  	default:
@@ -195,7 +195,7 @@ QVariant MCaravanaDueno::data( const QModelIndex& index, int role ) const
  }
 }
 
-QModelIndex MCaravanaDueno::index( int row, int column, const QModelIndex &index ) const 
+QModelIndex MCaravanaDueno::index( int row, int column, const QModelIndex &index ) const
 {
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
  if( row < rowCount()  && column < 3 )
@@ -211,7 +211,7 @@ QModelIndex MCaravanaDueno::index( int row, int column, const QModelIndex &index
 }
 
 
-int MCaravanaDueno::columnCount( const QModelIndex & parent ) const 
+int MCaravanaDueno::columnCount( const QModelIndex & parent ) const
 {
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 //#warning "columnas=3"
@@ -288,9 +288,9 @@ void MCaravanaDueno::setDuenosTodos( const QString &dueno )
 
 
 /*!
-    \fn MCaravanaDueno:::headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const 
+    \fn MCaravanaDueno:::headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const
  */
-QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, int role ) const 
+QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, int role ) const
 {
  if( orientation == Qt::Horizontal )
  {
@@ -355,7 +355,7 @@ bool MCaravanaDueno::cargarCaravanasTri( int id_tri )
   {
    // por cada caravana busco el codigo y su dueño
    QSqlQuery cola1;
-   if( cola1.exec( QString( "SELECT codigo FROM car_caravanas WHERE id_caravana = '%1'" ).arg( cola.record().value(0).toInt() ) ) )
+   if( cola1.exec( QString( "SELECT codigo FROM car_caravana WHERE id_caravana = '%1'" ).arg( cola.record().value(0).toInt() ) ) )
    {
 	if( cola1.next() )
 	{
@@ -363,12 +363,21 @@ bool MCaravanaDueno::cargarCaravanasTri( int id_tri )
 		this->insertRow( -1 );
  		this->setData( this->index( anterior, 1 ), cola1.record().value(0).toString() );
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
-		if( cola1.exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id IN  ( SELECT id_cliente FROM car_carv_duenos WHERE id_caravana = '%1' )" ).arg( cola.record().value(0).toInt() ) ) )
+		QSqlQuery cola2;
+		if( cola2.exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id IN  ( SELECT id_cliente FROM car_carv_duenos WHERE id_caravana = '%1' )" ).arg( cola.record().value(0).toInt() ) ) )
 		{
-			if( cola1.next() )
+			if( cola2.next() )
 			{
-				this->setData( this->index( anterior, 1 ), cola1.record().value(0).toString() );
+				this->setData( this->index( anterior, 1 ), cola2.record().value(0).toString() );
 			}
+			else
+			{
+				qWarning( "Error al ejecutar next de la cola de nombre cliente en MCaravanaDueno" );
+			}
+		}
+		else
+		{
+			qWarning( "Error al ejecutar la cola de nombre de dueño en MCaravanaDueno" );
 		}
 #endif
 	}

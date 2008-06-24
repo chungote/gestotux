@@ -1,6 +1,7 @@
 TEMPLATE = lib
 CONFIG += plugin \
- dll
+ dll \
+ debug
 QT = gui \
 	core \
 	svg \
@@ -40,4 +41,6 @@ TARGETDEPS += ../../bin/libutiles.a
 
 INCLUDEPATH += ../../src \
   ../../utiles
+
+CONFIG -= release
 

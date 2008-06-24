@@ -27,7 +27,11 @@ FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 : FormMovimiento( parent, 0, accion )
 {
  movimiento = new EMovimiento( this );
- movimiento->cargarMovimiento( id_tri );
+ if( !movimiento->cargarMovimiento( id_tri ) )
+ {
+  qWarning( "Error al cargar el tri" );
+  return;
+ }
  // Cargo los datos en su correspondiente lugar
  dEFecha->setDate( movimiento->getFecha() );
  LETRI->setText( QString( "%1" ).arg( movimiento->getTri() ) );
@@ -38,7 +42,7 @@ FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 		// Coloco el vendedor
 		CBCliente->setCurrentIndex( CBCliente->findText( movimiento->getVendedor().second ) );
 		// Coloco el establecimiento de destino
-		CBEstablecimientoDestino->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoDestino().second ) );
+		CBEstablecimientoDestino->setCurrentIndex( CBEstablecimientoDestino->findText( movimiento->getEstablecimientoDestino().second ) );
 		break;
 	}
 	case venta:
@@ -46,32 +50,33 @@ FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 		// Pongo el comprado
 		CBCliente->setCurrentIndex( CBCliente->findText( movimiento->getComprador().second ) );
 		// Pongo el establecimiento de origen
-		CBEstablecimientoOrigen->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoOrigen().second ) );
+		CBEstablecimientoOrigen->setCurrentIndex( CBEstablecimientoOrigen->findText( movimiento->getEstablecimientoOrigen().second ) );
 		break;
 	}
 	case mudanza:
 	{
 		// Coloco el establecimiento de destino
-		CBEstablecimientoDestino->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoDestino().second ) );
+		CBEstablecimientoDestino->setCurrentIndex( CBEstablecimientoDestino->findText( movimiento->getEstablecimientoDestino().second ) );
 		// Pongo el establecimiento de origen
-		CBEstablecimientoOrigen->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoOrigen().second ) );
+		CBEstablecimientoOrigen->setCurrentIndex( CBEstablecimientoOrigen->findText( movimiento->getEstablecimientoOrigen().second ) );
 		break;
 	}
 	case stock:
 	{
 		// Pongo el establecimiento de destino
-		CBEstablecimientoDestino->setCurrentIndex( CBCliente->findText( movimiento->getEstablecimientoDestino().second ) );
+		CBEstablecimientoDestino->setCurrentIndex( CBEstablecimientoDestino->findText( movimiento->getEstablecimientoDestino().second ) );
 		break;
 	}
 	default:
 	{
+		qWarning( QString( "Movimiento predefinido, original: %1" ).arg( accion ).toLocal8Bit() );
 		break;
 	}
  } // fin switch de tipo de accion
  LEDTA->setText( movimiento->getDTA() );
  LEGuia->setText( movimiento->getNumeroGuia() );
  CBCategoria->setCurrentIndex( CBCategoria->findText( movimiento->getCategoria().second ) );
- QSqlQuery cola( QString( "SELECT especial FROM car_categorias WHERE nombre = '%1'" ).arg( movimiento->getCategoria().first ) );
+ QSqlQuery cola( QString( "SELECT especial FROM car_categorias WHERE id_categoria = '%1'" ).arg( movimiento->getCategoria().first ) );
  if( cola.next() )
  {
   if( cola.record().value(0).toBool() )
@@ -84,9 +89,13 @@ FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
   	// Cargo las caravanas
 	if( !model->cargarCaravanasTri( movimiento->getTri() ) )
 	{
-//		model->clear();
+		qWarning( "Error al cargar las caravanas" );
 	}
   }
+ }
+ else
+ {
+   qWarning( QString( "Error al ejecutar cola especial de categoria\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
  }
 }
 
@@ -101,5 +110,6 @@ FormModificarTri::~FormModificarTri()
  */
 void FormModificarTri::guardar()
 {
-    /// @todo implement me
+ qWarning( "Todavia no funco" );
+ return;
 }

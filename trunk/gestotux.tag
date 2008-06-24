@@ -354,10 +354,25 @@
     <class kind="class">MTri</class>
   </compound>
   <compound kind="file">
+    <name>irenderizador.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
+    <filename>irenderizador_8cpp</filename>
+    <includes id="irenderizador_8h" name="irenderizador.h" local="yes" imported="no">irenderizador.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>irenderizador.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
+    <filename>irenderizador_8h</filename>
+    <class kind="class">IRenderizador</class>
+  </compound>
+  <compound kind="file">
     <name>listadocaravanas.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
     <filename>listadocaravanas_8cpp</filename>
     <includes id="listadocaravanas_8h" name="listadocaravanas.h" local="yes" imported="no">listadocaravanas.h</includes>
+    <includes id="irenderizador_8h" name="irenderizador.h" local="yes" imported="no">irenderizador.h</includes>
+    <includes id="evisorinformes_8h" name="evisorinformes.h" local="yes" imported="no">evisorinformes.h</includes>
+    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
     <includes id="mestablecimiento_8h" name="mestablecimiento.h" local="yes" imported="no">mestablecimiento.h</includes>
     <member kind="function">
       <type></type>
@@ -866,6 +881,39 @@
     <class kind="class">MTProductosPresupuesto</class>
   </compound>
   <compound kind="file">
+    <name>presupuestodefault.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/default/</path>
+    <filename>presupuestodefault_8cpp</filename>
+    <includes id="presupuestodefault_8h" name="presupuestodefault.h" local="yes" imported="no">presupuestodefault.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Q_EXPORT_PLUGIN2</name>
+      <anchorfile>presupuestodefault_8cpp.html</anchorfile>
+      <anchor>2157d97d31d4e4983a13deaffb5aaf98</anchor>
+      <arglist>(default, PresupuestoDefault)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>presupuestodefault.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/default/</path>
+    <filename>presupuestodefault_8h</filename>
+    <includes id="epresupuesto_8h" name="epresupuesto.h" local="yes" imported="no">epresupuesto.h</includes>
+    <class kind="class">PresupuestoDefault</class>
+  </compound>
+  <compound kind="file">
+    <name>hicomppresupuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/hicomp/</path>
+    <filename>hicomppresupuesto_8cpp</filename>
+    <includes id="hicomppresupuesto_8h" name="hicomppresupuesto.h" local="yes" imported="no">hicomppresupuesto.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>hicomppresupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/hicomp/</path>
+    <filename>hicomppresupuesto_8h</filename>
+    <includes id="epresupuesto_8h" name="epresupuesto.h" local="no" imported="no">epresupuesto.h</includes>
+    <class kind="class">HiCompPresupuesto</class>
+  </compound>
+  <compound kind="file">
     <name>prespuesto.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>prespuesto_8cpp</filename>
@@ -893,39 +941,6 @@
     <filename>presupuesto_8h</filename>
     <includes id="epresupuesto_8h" name="epresupuesto.h" local="no" imported="no">epresupuesto.h</includes>
     <class kind="class">Presupuesto</class>
-  </compound>
-  <compound kind="file">
-    <name>presupuestodefault.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/default/</path>
-    <filename>presupuestodefault_8cpp</filename>
-    <includes id="presupuestodefault_8h" name="presupuestodefault.h" local="yes" imported="no">presupuestodefault.h</includes>
-    <member kind="function">
-      <type></type>
-      <name>Q_EXPORT_PLUGIN2</name>
-      <anchorfile>presupuestodefault_8cpp.html</anchorfile>
-      <anchor>2157d97d31d4e4983a13deaffb5aaf98</anchor>
-      <arglist>(default, PresupuestoDefault)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>presupuestodefault.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/default/</path>
-    <filename>presupuestodefault_8h</filename>
-    <includes id="epresupuesto_8h" name="epresupuesto.h" local="yes" imported="no">epresupuesto.h</includes>
-    <class kind="class">PresupuestoDefault</class>
-  </compound>
-  <compound kind="file">
-    <name>hicomppresupuesto.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/hicomp/</path>
-    <filename>hicomppresupuesto_8cpp</filename>
-    <includes id="hicomppresupuesto_8h" name="hicomppresupuesto.h" local="yes" imported="no">hicomppresupuesto.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>hicomppresupuesto.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/hicomp/</path>
-    <filename>hicomppresupuesto_8h</filename>
-    <includes id="epresupuesto_8h" name="epresupuesto.h" local="no" imported="no">epresupuesto.h</includes>
-    <class kind="class">HiCompPresupuesto</class>
   </compound>
   <compound kind="file">
     <name>mcategorias.cpp</name>
@@ -1533,6 +1548,13 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
+      <name>modificarTri</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>5e42c1411eda8dd7fb1e969d520830c9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
       <name>verCategorias</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>8273ddb658dc2f88a5397a41bbaa1cca</anchor>
@@ -1565,13 +1587,6 @@
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>893a39e8716662313089d7bda5b7f0cd</anchor>
       <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>modificarTri</name>
-      <anchorfile>classAdminCarCorr.html</anchorfile>
-      <anchor>5e42c1411eda8dd7fb1e969d520830c9</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QList&lt; QAction * &gt;</type>
@@ -2589,6 +2604,20 @@
       <name>getDocumento</name>
       <anchorfile>classEPresupuesto.html</anchorfile>
       <anchor>ca154f6445f985a3e5f4e7d51257732a</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>inicializar</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>1b296a5e799d136c4ca113af422cc585</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>limpieza</name>
+      <anchorfile>classEPresupuesto.html</anchorfile>
+      <anchor>b8bc5689f5b18b3fb273157acd4e594d</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
@@ -3613,8 +3642,29 @@
       <type>void</type>
       <name>guardar</name>
       <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>ba98bfef922a98fd6ccaf3ddb20a18f9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
       <anchor>f23349f0c0e592f78fc6c8a5c04117f2</anchor>
       <arglist>(bool cerrar)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>guardarImprimir</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>b53a39918dcbb6915bbf1a7d742d4bca</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
+      <anchor>2c4356927e54bb2fb83bcc24f611c841</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
@@ -5248,6 +5298,34 @@
     <base protection="private">EPresupuesto</base>
     <member kind="function">
       <type>QString</type>
+      <name>cliente</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>b71fdade61ad01d9f38cc98e42f71b33</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QDate</type>
+      <name>fecha</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>4ae4cdc463cc300b8e547ec7bc5d8636</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>generarTabla</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>e8f1c0a226c6aa8ec1e817334a8378f6</anchor>
+      <arglist>(QSqlTableModel *tabla, QString cadena, bool cabecera)</arglist>
+    </member>
+    <member kind="function">
+      <type>QTextDocument *</type>
+      <name>getDocumento</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>13c8335e2c04e83c5527d5bec1bfe725</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
       <name>nombre</name>
       <anchorfile>classHiCompPresupuesto.html</anchorfile>
       <anchor>4a7e2aa82f7a01caa6a4545bfa0e3fd4</anchor>
@@ -5269,10 +5347,66 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>regenerar</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>89cc94a5a28733311fc1974344d2e43d</anchor>
+      <arglist>(const QTextDocument *doc)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCliente</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>cad500cfbb46cde6808879df7fc6cabd</anchor>
+      <arglist>(QString nombre)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setFecha</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>a3dead082654844f41f371c4f0d4a459</anchor>
+      <arglist>(QDate fecha)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>setRegistro</name>
       <anchorfile>classHiCompPresupuesto.html</anchorfile>
       <anchor>81c4fd0d35a01c33b0501a2bd8d0436a</anchor>
       <arglist>(QSqlRecord *rec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTituloPersonalizado</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>72d3ea5a23bfc6a9095e0af9ab01a6a5</anchor>
+      <arglist>(QString titulo)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTotal</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>ec21af7a2a6c247a0399861de41a9677</anchor>
+      <arglist>(double total)</arglist>
+    </member>
+    <member kind="function">
+      <type>QTextTable *</type>
+      <name>tablaProductos</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>db440dbdb0aee83bca58171085ae2a68</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>titulo</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>787908f2d133b2bf0a98bf146c12a339</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>total</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>3c3bc727cbcdea4f1f4b059fc584992b</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>double</type>
@@ -5354,6 +5488,108 @@
       <name>archivoEstilo</name>
       <anchorfile>classInformesMovimientos.html</anchorfile>
       <anchor>20bb4276b73c634660a4619ca230727a</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IRenderizador</name>
+    <filename>classIRenderizador.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>97fe0e500ff7560d614054ef4859d390</anchor>
+      <arglist>(QPrinter *impresora)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>hacerInforme</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>fda8889aacc90b1e2920a9ff04ad1537</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IRenderizador</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>251c6d922fa27143d548c60792d25a29</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEstablecimiento</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>34141a6b57d6d9d94b65e8cd3679f097</anchor>
+      <arglist>(int idDB)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEstablecimiento</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>fbf8826aad10943dde195e56237326cc</anchor>
+      <arglist>(QString nombre)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~IRenderizador</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>5b0263f852576b98a3682313309e3673</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>_cabecera</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>aca14dfcbe39cf156e4750451ca3370c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextDocument *</type>
+      <name>_doc</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>edfe4ca91c017dbb5f6f1d2849fe20d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>_estilo</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>9b66a3983607ed63c160505033e56534</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>_fecha</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>7392649e8ab9419d96098ed915f589ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>_idEstablecimiento</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>3cee0fd40d49278bd9a8c0af13ae1d5e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextCursor *</type>
+      <name>cursor</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>b76be2f250631b41f2f823d58a998265</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QProgressDialog *</type>
+      <name>d</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>a3c83f9068954c7774c82d11934e5923</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextTable *</type>
+      <name>tabla</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>005dc23d92dba9758cd11ea65e89a986</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -6764,6 +7000,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>inicializar</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>24473e82c6b3fa2882bc4b47fe6caa0b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>limpieza</name>
+      <anchorfile>classPresupuestoDefault.html</anchorfile>
+      <anchor>fe07b8f33c66b5483ddfa0728e771d8c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>QString</type>
       <name>nombre</name>
       <anchorfile>classPresupuestoDefault.html</anchorfile>
@@ -8085,9 +8335,9 @@
     <file>vestablecimiento.h</file>
   </compound>
   <compound kind="dir">
-    <name>Programas/gestotux/plugins/presupuestos/default/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/default/</path>
-    <filename>dir_ceb97763036d132eab4213eab5fbb111.html</filename>
+    <name>Programas/gestotux/plugins/presupuesto/plugins/default/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/default/</path>
+    <filename>dir_e77852e7846388d05d86f526eb7403e9.html</filename>
     <file>presupuestodefault.cpp</file>
     <file>presupuestodefault.h</file>
   </compound>
@@ -8101,9 +8351,9 @@
     <dir>Programas/gestotux/utiles/</dir>
   </compound>
   <compound kind="dir">
-    <name>Programas/gestotux/plugins/presupuestos/hicomp/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/hicomp/</path>
-    <filename>dir_3370b10ee50b1fc665f7bbf44156e4f6.html</filename>
+    <name>Programas/gestotux/plugins/presupuesto/plugins/hicomp/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/hicomp/</path>
+    <filename>dir_ed9e413e8430572fc458902b60f4c3fc.html</filename>
     <file>hicomppresupuesto.cpp</file>
     <file>hicomppresupuesto.h</file>
   </compound>
@@ -8136,6 +8386,8 @@
     <name>Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/ListadoCaravanas/</path>
     <filename>dir_7a673239d28bdb23c586c11fbfb90b5e.html</filename>
+    <file>irenderizador.cpp</file>
+    <file>irenderizador.h</file>
     <file>listadocaravanas.cpp</file>
     <file>listadocaravanas.h</file>
   </compound>
@@ -8162,6 +8414,13 @@
     <file>vduenos.h</file>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/plugins/presupuesto/plugins/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/</path>
+    <filename>dir_942b8eefa034f346080edd470fa37383.html</filename>
+    <dir>Programas/gestotux/plugins/presupuesto/plugins/default/</dir>
+    <dir>Programas/gestotux/plugins/presupuesto/plugins/hicomp/</dir>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/plugins/aCarCorr/plugins/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/plugins/</path>
     <filename>dir_c7ad3b19fc52213b778d16b64cd09e4a.html</filename>
@@ -8177,7 +8436,6 @@
     <dir>Programas/gestotux/plugins/OscarSorazi/</dir>
     <dir>Programas/gestotux/plugins/presupuestador/</dir>
     <dir>Programas/gestotux/plugins/presupuesto/</dir>
-    <dir>Programas/gestotux/plugins/presupuestos/</dir>
     <dir>Programas/gestotux/plugins/productos/</dir>
   </compound>
   <compound kind="dir">
@@ -8201,6 +8459,7 @@
     <name>Programas/gestotux/plugins/presupuesto/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>dir_1da355a7e1088ea8185f3059b3d0f9a3.html</filename>
+    <dir>Programas/gestotux/plugins/presupuesto/plugins/</dir>
     <file>epresupuesto.h</file>
     <file>formagregarpresupuesto.cpp</file>
     <file>formagregarpresupuesto.h</file>
@@ -8214,13 +8473,6 @@
     <file>prespuesto.h</file>
     <file>presupuesto.cpp</file>
     <file>presupuesto.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/plugins/presupuestos/</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/presupuestos/</path>
-    <filename>dir_8c1caafd1b6e337f72e8a511da891945.html</filename>
-    <dir>Programas/gestotux/plugins/presupuestos/default/</dir>
-    <dir>Programas/gestotux/plugins/presupuestos/hicomp/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/productos/</name>

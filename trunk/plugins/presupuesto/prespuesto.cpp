@@ -75,7 +75,7 @@ bool prespuesto::inicializar( QSettings *pref )
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  //connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
- //_acciones.append( ActNuevoPresu );
+ _acciones.append( ActNuevoPresu );
 
  return verificarTablas();
 }

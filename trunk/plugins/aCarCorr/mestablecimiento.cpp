@@ -42,9 +42,9 @@ MEstablecimiento::~MEstablecimiento()
 QStringList MEstablecimiento::listaNombres()
 {
  QStringList listaT;
- for( int i=0; i<=this->rowCount(); i++ )
+ for( int i=0; i<this->rowCount(); i++ )
  {
-  listaT.append( this->data( this->index( i, 2 ), Qt::DisplayRole ).toString() );
+  listaT.append( this->data( this->index( i, 1 ), Qt::DisplayRole ).toString() );
  }
  return listaT;
 }

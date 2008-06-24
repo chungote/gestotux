@@ -76,12 +76,12 @@ protected slots:
     void hacerVenta();
     void hacerMudanza();
     void agregarStock();
+    void modificarTri();
 
 private:
     void cargarPluginsInformes();
     QString empresa() const;
     QString companeros();
-    void modificarTri();
 
 signals:
 	void agregarVentana( QWidget *v );

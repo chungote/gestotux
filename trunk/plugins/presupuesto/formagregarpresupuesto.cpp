@@ -27,11 +27,13 @@
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent ), Ui::FormPresupuestoBase()
 {
+	// Inicializo el presupeusto!
+	pre = new Presupuesto( this );
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
 	this->setObjectName( "FormAgregarPresupuesto" );
 	LTitulo->setText( "Agregar Presupuesto" );
-	
+
 	connect( RBCliente, SIGNAL( toggled( bool ) ), CBCliente , SLOT( setEnabled( bool ) ) );
 	connect( RBOtro   , SIGNAL( toggled( bool ) ), LEOtro    , SLOT( setEnabled( bool ) ) );
 	connect( CkBTitulo, SIGNAL( toggled( bool ) ), LETitulo  , SLOT( setEnabled( bool ) ) );
@@ -74,7 +76,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	// Seteo la lista de clientes
 	modeloClientes = new QSqlQueryModel( this );
 	modeloClientes->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
-	
+
 	CBCliente->setModel( modeloClientes );
 	CBCliente->setModelColumn( 1 );
 	CBCliente->setCurrentIndex( -1 );
@@ -85,15 +87,11 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	// Inicializo el formulario ahora para poder usar la modificacion
 	formLista = new FormListaProductos( this );
 	connect( formLista, SIGNAL( agregarTabla() ), this, SLOT( ponerTabla() ) );
-
-	// Muestro la previsualizacion
-	TBPrevisualizacion->setDocument( pre->previsualizacion() );
-	TBContenido->setFocus();
-	TWPestanas->setCurrentIndex( 0 );
 }
 
 FormAgregarPresupuesto::~FormAgregarPresupuesto()
 {
+ delete pre;
 }
 
 
@@ -179,4 +177,32 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  {
   this->close();
  }
+}
+
+
+/*!
+    \fn FormAgregarPresupuesto::imprimir()
+ */
+void FormAgregarPresupuesto::imprimir()
+{
+ qWarning( "No implementado todavia" );
+}
+
+
+/*!
+    \fn FormAgregarPresupuesto::guardarImprimir()
+ */
+void FormAgregarPresupuesto::guardarImprimir()
+{
+ guardar( false );
+ imprimir();
+}
+
+
+/*!
+    \fn FormAgregarPresupuesto::guardar()
+ */
+void FormAgregarPresupuesto::guardar()
+{
+ guardar( true );
 }

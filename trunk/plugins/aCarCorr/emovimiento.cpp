@@ -67,9 +67,15 @@ void EMovimiento::setTipoMov( const int& theValue )
  */
 bool EMovimiento::cargarMovimiento( int idDb )
 {
+ if( idDb <= 0 )
+ {
+  qWarning( "Error al indicar el identificador de TRI" );
+  return false;
+ }
  QSqlQuery cola;
  if( cola.exec( QString( "SELECT * FROM car_tri WHERE id_tri = '%1'" ).arg( idDb ) ) )
  {
+  qDebug( cola.lastQuery().toLocal8Bit() );
   if( cola.next() )
   {
 	id_db = idDb;
@@ -200,6 +206,7 @@ void EMovimiento::cargarNombreCategoria( const int idDB )
 	if( cola2.next() )
 	{
 		categoria.second = cola2.record().value(0).toString();
+		categoria.first = idDB;
 	}
  }
  else
@@ -222,6 +229,7 @@ void EMovimiento::cargarNombreComprador( const int idDB )
 	if( cola2.next() )
 	{
 		comprador.second = cola2.record().value(0).toString();
+		comprador.first = idDB;
 	}
  }
  else
@@ -233,6 +241,8 @@ void EMovimiento::cargarNombreComprador( const int idDB )
 
 /*!
     \fn EMovimiento::setComprador( int id )
+	Funcion idem anterior, coloca el id y busca los datos
+        @param id Identificadode clave primaria del comprado
  */
 void EMovimiento::setComprador( const int id )
 {
@@ -264,6 +274,7 @@ void EMovimiento::cargarNombreVendedor( const int idDB )
 	if( cola2.next() )
 	{
 		vendedor.second = cola2.record().value(0).toString();
+		vendedor.first = idDB;
 	}
  }
  else
@@ -294,6 +305,7 @@ void EMovimiento::cargarNombreEstablecimientoDestino( const int idDB )
  	if( cola2.next() )
 	{
 		destino.second = cola2.record().value(0).toString();
+		destino.first = idDB;
 	}
  }
  else
@@ -323,6 +335,7 @@ void EMovimiento::cargarNombreEstablecimientoOrigen( const int idDB )
  	if( cola2.next() )
 	{
 		origen.second = cola2.record().value(0).toString();
+		origen.first = idDB;
 	}
  }
  else
