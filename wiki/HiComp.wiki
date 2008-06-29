@@ -1,0 +1,5 @@
+#Plugin de renderiacion de recibos svg para cobranza de internet
+
+= Introduccion =
+
+Plugin desarrollado para renderizar recibos en formato svg guardandolos en una base de datos que utiliza los clientes del programa y permite la facturación de la cobranza mensual de un sistema de venta de internet inalambrica.
