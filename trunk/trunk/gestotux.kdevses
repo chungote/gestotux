@@ -1,7 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="0" />
+ <DocsAndViews NumberOfDocuments="1" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/aCarCorr/formmodificartri.cpp" >
+   <View0 Encoding="" line="113" Type="Source" />
+  </Doc0>
+ </DocsAndViews>
  <pluginList>
   <kdevdebugger>
    <breakpointList/>
@@ -15,7 +19,7 @@
    <subversion base="" />
   </kdevsubversion>
   <kdevvalgrind>
-   <executable path="/home/Esteban/Programas/gestotux/bin/gestotux" params="" />
+   <executable path="" params="" />
    <valgrind path="/usr/bin/valgrind" params=" --tool=memcheck --leak-check=yes" />
    <calltree path="/usr/bin/valgrind" params="--tool=callgrind" />
    <kcachegrind path="/usr/bin/kcachegrind" />
