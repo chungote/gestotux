@@ -45,26 +45,14 @@
   <compound kind="file">
     <name>einformeimpresora.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
-    <filename>plugins_2aCarCorr_2einformeimpresora_8cpp</filename>
-    <includes id="plugins_2aCarCorr_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+    <filename>einformeimpresora_8cpp</filename>
+    <includes id="einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>einformeimpresora.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>templates_2testo_2src_2einformeimpresora_8cpp</filename>
-    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
   </compound>
   <compound kind="file">
     <name>einformeimpresora.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
-    <filename>plugins_2aCarCorr_2einformeimpresora_8h</filename>
-    <class kind="class">EInformeImpresora</class>
-  </compound>
-  <compound kind="file">
-    <name>einformeimpresora.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>templates_2testo_2src_2einformeimpresora_8h</filename>
+    <filename>einformeimpresora_8h</filename>
     <class kind="class">EInformeImpresora</class>
   </compound>
   <compound kind="file">
@@ -372,7 +360,7 @@
     <includes id="listadocaravanas_8h" name="listadocaravanas.h" local="yes" imported="no">listadocaravanas.h</includes>
     <includes id="irenderizador_8h" name="irenderizador.h" local="yes" imported="no">irenderizador.h</includes>
     <includes id="evisorinformes_8h" name="evisorinformes.h" local="yes" imported="no">evisorinformes.h</includes>
-    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+    <includes id="einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
     <includes id="mestablecimiento_8h" name="mestablecimiento.h" local="yes" imported="no">mestablecimiento.h</includes>
     <member kind="function">
       <type></type>
@@ -426,7 +414,7 @@
     <includes id="informesmovimientos_8h" name="informesmovimientos.h" local="yes" imported="no">informesmovimientos.h</includes>
     <includes id="formfiltro_8h" name="formfiltro.h" local="yes" imported="no">formfiltro.h</includes>
     <includes id="erenderizadorinforme_8h" name="erenderizadorinforme.h" local="yes" imported="no">erenderizadorinforme.h</includes>
-    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
+    <includes id="einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
     <includes id="evisorinformes_8h" name="evisorinformes.h" local="yes" imported="no">evisorinformes.h</includes>
     <member kind="function">
       <type></type>
@@ -1181,7 +1169,7 @@
   <compound kind="file">
     <name>main.cpp</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2main_8cpp</filename>
+    <filename>main_8cpp</filename>
     <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
     <includes id="eenviobackup_8h" name="eenviobackup.h" local="yes" imported="no">eenviobackup.h</includes>
@@ -1189,37 +1177,23 @@
     <member kind="function">
       <type>int</type>
       <name>main</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchorfile>main_8cpp.html</anchorfile>
       <anchor>0ddf1224851353fc92bfbff6f499fa97</anchor>
       <arglist>(int argc, char *argv[])</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>myMessageOutput</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchorfile>main_8cpp.html</anchorfile>
       <anchor>ebadb8b787d33ef1f3033d8c64d9acbd</anchor>
       <arglist>(QtMsgType type, const char *msg)</arglist>
     </member>
     <member kind="variable">
       <type>FILE *</type>
       <name>debug</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchorfile>main_8cpp.html</anchorfile>
       <anchor>7f0158669de514eb00dcf8d3a7408285</anchor>
       <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>main.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>templates_2testo_2src_2main_8cpp</filename>
-    <includes id="templates_2testo_2src_2einformeimpresora_8h" name="einformeimpresora.h" local="yes" imported="no">einformeimpresora.h</includes>
-    <includes id="testo_8h" name="testo.h" local="yes" imported="no">testo.h</includes>
-    <member kind="function">
-      <type>int</type>
-      <name>main</name>
-      <anchorfile>templates_2testo_2src_2main_8cpp.html</anchorfile>
-      <anchor>0ddf1224851353fc92bfbff6f499fa97</anchor>
-      <arglist>(int argc, char *argv[])</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -1260,90 +1234,6 @@
     <filename>vcliente_8h</filename>
     <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VCliente</class>
-  </compound>
-  <compound kind="file">
-    <name>editcopy.xpm</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>editcopy_8xpm</filename>
-    <member kind="variable" static="yes">
-      <type>static char *</type>
-      <name>editcopy</name>
-      <anchorfile>editcopy_8xpm.html</anchorfile>
-      <anchor>471211cb286a77cc53f043408037d009</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>editcut.xpm</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>editcut_8xpm</filename>
-    <member kind="variable" static="yes">
-      <type>static char *</type>
-      <name>editcut</name>
-      <anchorfile>editcut_8xpm.html</anchorfile>
-      <anchor>5c6dbb1908552e3c6ce9edc3ad0b1185</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>editpaste.xpm</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>editpaste_8xpm</filename>
-    <member kind="variable" static="yes">
-      <type>static char *</type>
-      <name>editpaste</name>
-      <anchorfile>editpaste_8xpm.html</anchorfile>
-      <anchor>5bcfa6e8879a52d13089d8f26955d1df</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>filenew.xpm</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>filenew_8xpm</filename>
-    <member kind="variable" static="yes">
-      <type>static char *</type>
-      <name>filenew</name>
-      <anchorfile>filenew_8xpm.html</anchorfile>
-      <anchor>12be11f9078c2358841f610019b44f62</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>fileopen.xpm</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>fileopen_8xpm</filename>
-    <member kind="variable" static="yes">
-      <type>static char *</type>
-      <name>fileopen</name>
-      <anchorfile>fileopen_8xpm.html</anchorfile>
-      <anchor>260076d78280bdab25890dd5febe8ba3</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>filesave.xpm</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>filesave_8xpm</filename>
-    <member kind="variable" static="yes">
-      <type>static char *</type>
-      <name>filesave</name>
-      <anchorfile>filesave_8xpm.html</anchorfile>
-      <anchor>4c51cfe135473cf998f1ed91ef2bd5da</anchor>
-      <arglist>[]</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>testo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>testo_8cpp</filename>
-    <includes id="testo_8h" name="testo.h" local="yes" imported="no">testo.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>testo.h</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>testo_8h</filename>
-    <class kind="class">testo</class>
   </compound>
   <compound kind="file">
     <name>eactcerrar.cpp</name>
@@ -2027,20 +1917,6 @@
   <compound kind="class">
     <name>EInformeImpresora</name>
     <filename>classEInformeImpresora.html</filename>
-    <member kind="slot">
-      <type>void</type>
-      <name>guardar</name>
-      <anchorfile>classEInformeImpresora.html</anchorfile>
-      <anchor>d74a7f7f2c9e7db64cf57141334b346f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>EInformeImpresora</name>
-      <anchorfile>classEInformeImpresora.html</anchorfile>
-      <anchor>75d372eb55a639352241ad60abab8459</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>EInformeImpresora</name>
@@ -2053,13 +1929,6 @@
       <name>guardar</name>
       <anchorfile>classEInformeImpresora.html</anchorfile>
       <anchor>d74a7f7f2c9e7db64cf57141334b346f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~EInformeImpresora</name>
-      <anchorfile>classEInformeImpresora.html</anchorfile>
-      <anchor>cc86d98cfd94aedb79bb8d9d8cf85c26</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -2240,10 +2109,24 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>setCaravanas</name>
+      <anchorfile>classEMovimiento.html</anchorfile>
+      <anchor>1c76cae75d59ffa4f48c6b15fd34b83f</anchor>
+      <arglist>(QStringList caravanas)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>setCategoria</name>
       <anchorfile>classEMovimiento.html</anchorfile>
       <anchor>3792f44ed9cb24eaee42c0642ef32a00</anchor>
       <arglist>(int id)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setComprador</name>
+      <anchorfile>classEMovimiento.html</anchorfile>
+      <anchor>c18f47af172b666ab34ba4609441f368</anchor>
+      <arglist>(QString nombre)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2256,8 +2139,8 @@
       <type>bool</type>
       <name>setDTA</name>
       <anchorfile>classEMovimiento.html</anchorfile>
-      <anchor>0a884c136c493487fd145a0b6067ea35</anchor>
-      <arglist>(const QString &amp;theValue)</arglist>
+      <anchor>ee60db8d30389a9e9cee60a2a030a37d</anchor>
+      <arglist>(const QString &amp;theValue, bool nuevo=true)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2331,6 +2214,13 @@
     </member>
     <member kind="function" protection="private">
       <type>bool</type>
+      <name>borrarCaravana</name>
+      <anchorfile>classEMovimiento.html</anchorfile>
+      <anchor>60ea8f95b0ab0f20c534216eae4369bd</anchor>
+      <arglist>(QString codigo, bool disasociar=true)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
       <name>cargarCaravanas</name>
       <anchorfile>classEMovimiento.html</anchorfile>
       <anchor>89cd60600bfd1ce586e1a3adb5bfb190</anchor>
@@ -2372,6 +2262,13 @@
       <arglist>(const int idDB)</arglist>
     </member>
     <member kind="function" protection="private">
+      <type>bool</type>
+      <name>deshacerCambiosDb</name>
+      <anchorfile>classEMovimiento.html</anchorfile>
+      <anchor>6257ed484eff0a5512064dd427ef55d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
       <type>int</type>
       <name>getIDCaravana</name>
       <anchorfile>classEMovimiento.html</anchorfile>
@@ -2386,11 +2283,18 @@
       <arglist>(QString codigo)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>void</type>
-      <name>setCaravanas</name>
+      <type>bool</type>
+      <name>hacerCommit</name>
       <anchorfile>classEMovimiento.html</anchorfile>
-      <anchor>1c76cae75d59ffa4f48c6b15fd34b83f</anchor>
-      <arglist>(QStringList caravanas)</arglist>
+      <anchor>9a541cb79f9ab04be3ad5f2fece93f50</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>iniciarTransaccion</name>
+      <anchorfile>classEMovimiento.html</anchorfile>
+      <anchor>59403ac7268d10387e12bb9506b266fe</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>int</type>
@@ -5502,6 +5406,13 @@
       <arglist>(QPrinter *impresora)</arglist>
     </member>
     <member kind="function">
+      <type>QString</type>
+      <name>cargarEstilo</name>
+      <anchorfile>classIRenderizador.html</anchorfile>
+      <anchor>bf9523f70afbe7a5c9912be6160e9fad</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>hacerInforme</name>
       <anchorfile>classIRenderizador.html</anchorfile>
@@ -5536,12 +5447,12 @@
       <anchor>5b0263f852576b98a3682313309e3673</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="private">
       <type>QString</type>
-      <name>_cabecera</name>
+      <name>cargarCabecera</name>
       <anchorfile>classIRenderizador.html</anchorfile>
-      <anchor>aca14dfcbe39cf156e4750451ca3370c</anchor>
-      <arglist></arglist>
+      <anchor>ee4cfcbd8be838ba954392d286a73e95</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QTextDocument *</type>
@@ -7427,269 +7338,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>testo</name>
-    <filename>classtesto.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>testo</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>84398a2ad4d61c0e3b5a0f658078c5e5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~testo</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>c01ad62ff3cc0501b90d604474159940</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>closeEvent</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>86011e3114d10c68af8ccb7fed38cbc0</anchor>
-      <arglist>(QCloseEvent *event)</arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>void</type>
-      <name>about</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>d77febc868643666e7def81208c92ed7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>void</type>
-      <name>documentWasModified</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>468ab98e9e26ac34781d0c43cf479534</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>void</type>
-      <name>newFile</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>492e9a98ecb1ef856f16451c6fec8992</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>void</type>
-      <name>open</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>00c33179de872d3c053a7e3f2d43ffaa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>bool</type>
-      <name>save</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>23e627014308dd87b03c8f26a2f96fe9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>bool</type>
-      <name>saveAs</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>4b3998a12665f225c04d9f2ea19c5445</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>createActions</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>72bc19e231e95b98d37740462228177b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>createMenus</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>d8241128b8bc2b4061f3cbb2273b7adf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>createStatusBar</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>c59b836ef36835dd1965b975c5b21296</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>createToolBars</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>20efad45c845f63c8c35c8f2f4ba9a27</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>loadFile</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>a29ced0a838b32e59c92c4ff8c810370</anchor>
-      <arglist>(const QString &amp;fileName)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>maybeSave</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>a535d7ac05466665d5719b28c6332143</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>readSettings</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>05a843f04aa1e9b9519ab59f8e4fe39b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>saveFile</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>555846858f7d6c502310035d074005fe</anchor>
-      <arglist>(const QString &amp;fileName)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setCurrentFile</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>7800a865fab7a761c169ea109075c57c</anchor>
-      <arglist>(const QString &amp;fileName)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QString</type>
-      <name>strippedName</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>ab61f6a6b9ac32a294ac73d2236ab92e</anchor>
-      <arglist>(const QString &amp;fullFileName)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>writeSettings</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>a39192ac7706065db6a2acf9e64725cb</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>aboutAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>35a3821ab52f8a2e45f2182eb1be1ad3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>aboutQtAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>d7e0ffa8ad908d87033cf7694ccd12af</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>copyAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>6f320dcd903eeea6efec6503f8883bcd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>curFile</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>745ac47fd5aab07bc36178bdfb9d4341</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>cutAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>2b4ea67c914677d50cec8bc311eb3fde</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>editMenu</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>c9a79133e25572c4c9996d1b1a78de6c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QToolBar *</type>
-      <name>editToolBar</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>2f74bb8c0ce1bc2535f62b68065d1e1f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>exitAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>9e7cfda982861403acd0a36c8b7a9c50</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>fileMenu</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>d6f24e9147027d51c73c38e74b791611</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QToolBar *</type>
-      <name>fileToolBar</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>f7e533fe9e3e88d94c908554f56cc23c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>helpMenu</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>ba6e66ce5f457955184ece6e1363c655</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>newAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>d7807257ce0bcda090bc4ee56d50f858</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>openAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>14110aed111cc139e63833383481b539</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>pasteAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>f2ce34b7debb4cff97eb4bbc94fb6f2e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>saveAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>a2be439e976db6641a23e6df7715a7e4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>saveAsAct</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>83b096b0bd2736328bf6ad6e282090c8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QTextEdit *</type>
-      <name>textEdit</name>
-      <anchorfile>classtesto.html</anchorfile>
-      <anchor>f8b9ee689001c10516058ed654e59eff</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>VCategorias</name>
     <filename>classVCategorias.html</filename>
     <base>EVLista</base>
@@ -8347,7 +7995,6 @@
     <filename>dir_b1a546a748a62f1bda915a377e9774c0.html</filename>
     <dir>Programas/gestotux/plugins/</dir>
     <dir>Programas/gestotux/src/</dir>
-    <dir>Programas/gestotux/templates/</dir>
     <dir>Programas/gestotux/utiles/</dir>
   </compound>
   <compound kind="dir">
@@ -8526,34 +8173,6 @@
     <file>reloj.h</file>
     <file>vcliente.cpp</file>
     <file>vcliente.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/testo/src/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/src/</path>
-    <filename>dir_ce99053c5f14ccccaca5e934f4499f80.html</filename>
-    <file>editcopy.xpm</file>
-    <file>editcut.xpm</file>
-    <file>editpaste.xpm</file>
-    <file>einformeimpresora.cpp</file>
-    <file>einformeimpresora.h</file>
-    <file>filenew.xpm</file>
-    <file>fileopen.xpm</file>
-    <file>filesave.xpm</file>
-    <file>main.cpp</file>
-    <file>testo.cpp</file>
-    <file>testo.h</file>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/</path>
-    <filename>dir_287714ba489d9ee9e591124286039350.html</filename>
-    <dir>Programas/gestotux/templates/testo/</dir>
-  </compound>
-  <compound kind="dir">
-    <name>Programas/gestotux/templates/testo/</name>
-    <path>/home/Esteban/Programas/gestotux/templates/testo/</path>
-    <filename>dir_99574fc1e5bc89968002af5bc256636d.html</filename>
-    <dir>Programas/gestotux/templates/testo/src/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/utiles/</name>

@@ -36,13 +36,10 @@ EMovimiento::EMovimiento(QObject *parent)
 
 
 EMovimiento::~EMovimiento()
-{
-}
+{}
 
 int EMovimiento::tipoMov() const
-{
-	return tipo_mov;
-}
+{ return tipo_mov; }
 
 
 void EMovimiento::setTipoMov( const int& theValue )
@@ -167,28 +164,45 @@ QString EMovimiento::getDTA() const
 }
 
 
-bool EMovimiento::setDTA ( const QString& theValue )
+bool EMovimiento::setDTA ( const QString& theValue, bool nuevo )
 {
-	// Verifico que no exista antes
-	QSqlQuery cola;
-	if( cola.exec(QString( "SELECT id_tri FROM car_tri WHERE dta = '%1'" ).arg( theValue ) ) )
+	if( nuevo )
 	{
-		if( cola.next() )
+		// Verifico que no exista antes
+		QSqlQuery cola;
+		if( cola.exec(QString( "SELECT id_tri FROM car_tri WHERE dta = '%1'" ).arg( theValue ) ) )
 		{
-			qWarning( "El #DTA que esta intentando utilizar para este TRI ya existe" );
-			return false;
+			if( cola.next() )
+			{
+				qWarning( "El #DTA que esta intentando utilizar para este TRI ya existe" );
+				return false;
+			}
+			else
+			{
+				qDebug( "Seteando DTA" );
+				DTA = theValue;
+				return true;
+			}
 		}
 		else
 		{
-			qDebug( "Seteando DTA" );
-			DTA = theValue;
-			return true;
+			qWarning( QString( "Error al buscar si existe anteriormente un dta\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+			return false;
 		}
 	}
 	else
 	{
-		qWarning( QString( "Error al buscar si existe anteriormente un dta\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
-		return false;
+		// El Dta ya tiene que existir
+		if( theValue != DTA )
+		{
+			// tengo que verificar que no exista ya el nuevo
+			return setDTA( theValue, true );
+		}
+		else
+		{
+			// Es el valor igual al que estaba antes... No hago nada
+			return true;
+		}
 	}
 }
 
@@ -246,6 +260,10 @@ void EMovimiento::cargarNombreComprador( const int idDB )
  */
 void EMovimiento::setComprador( const int id )
 {
+ if( id <= 0 )
+ {
+  return;
+ }
  comprador.first = id;
  cargarNombreComprador( id );
 }
@@ -286,6 +304,8 @@ void EMovimiento::cargarNombreVendedor( const int idDB )
 
 /*!
     \fn EMovimiento::setVendedor( int idDB )
+	Setea en los datos del objeto el ID de cliente que se usara como vendedor.
+	@param idDB Identificador de cliente
  */
 void EMovimiento::setVendedor( const int idDB )
 {
@@ -296,6 +316,8 @@ void EMovimiento::setVendedor( const int idDB )
 
 /*!
     \fn EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
+	Coloca en las variables del objeto el nombre del establecimiento de destino.
+	@param idDB Identificador del establecimiento de destino.
  */
 void EMovimiento::cargarNombreEstablecimientoDestino( const int idDB )
 {
@@ -317,6 +339,8 @@ void EMovimiento::cargarNombreEstablecimientoDestino( const int idDB )
 
 /*!
     \fn EMovimiento::setEstablecimientoDestino( int idDB )
+	Setea las variables internas de establecimiento de destino y carga el nombre
+	@param idDB Identificador del Establecimiento de destino
  */
 void EMovimiento::setEstablecimientoDestino( const int idDB )
 {
@@ -326,6 +350,8 @@ void EMovimiento::setEstablecimientoDestino( const int idDB )
 
 /*!
     \fn EMovimiento::cargarNombreEstablecimientoDestino( int idDB )
+	Carga el nombre del establecimiento de destino en las variables del objeto.
+	@param idDB Identificador del establecimiento
  */
 void EMovimiento::cargarNombreEstablecimientoOrigen( const int idDB )
 {
@@ -347,6 +373,8 @@ void EMovimiento::cargarNombreEstablecimientoOrigen( const int idDB )
 
 /*!
     \fn EMovimiento::setEstablecimientoDestino( int idDB )
+	Setea los datos internos del establecimiento de destino. Id y nombre son cargados.
+	@param idDB Identificador de base de datos del establecimiento
  */
 void EMovimiento::setEstablecimientoOrigen( const int idDB )
 {
@@ -356,25 +384,27 @@ void EMovimiento::setEstablecimientoOrigen( const int idDB )
 
 
 QDate EMovimiento::getFecha() const
-{
-	return fecha;
-}
-
+{ return fecha; }
 
 void EMovimiento::setFecha ( const QDate& theValue )
-{
-	fecha = theValue;
-}
-
+{ fecha = theValue; }
 
 /*!
     \fn EMovimiento::guardar()
+	Guarda los datos que existan en la variables de la clase a la base de datos y actualiza las caravanas y sus dueños.
+	@param dialogo Dialogo para indicar el avance de la operacion
  */
 int EMovimiento::guardar( QProgressDialog *dialogo )
 {
  if( tipoMov() > invalido )
  {
+	// inicio la transaccion
+	if( !iniciarTransaccion() )
+	{
+		return -1;
+	}
 	bool estado = true;
+	bool nuevo  = false;
 	// Calculo la cantidad para el dialogo
 	dialogo->setRange( 0, (_caravanas.size() * 2) + 1 );
 	dialogo->setValue( 0 );
@@ -384,6 +414,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
  	{
   		// Agrego un nuevo registro
 		scola.prepend( "INSERT INTO" );
+		nuevo = true;
  	}
  	else
  	{
@@ -408,6 +439,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 				else
 				{
 					qWarning( "Error al obtener el id insertado" );
+					deshacerCambiosDb();
 					return -4;
 				}
 
@@ -415,53 +447,152 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 			else
 			{
 				qWarning( QString( "Error al obtener el numero de tri al hacer insercion\n Error: %1\n %2" ).arg( cola1.lastError().text() ).arg( cola1.lastQuery() ).toLocal8Bit() );
+				deshacerCambiosDb();
 				return -1;
 			}
 		}
+		// Si el id no es -1, es el valor que estuvimos usando
 	}
 	else
 	{
 		qWarning( QString( "Error al insertar o actualizar el registro de tri\n Error: %1\n %2" ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+		deshacerCambiosDb();
 		return -2;
 	}
 	if( _cantidad_animales == 0 ) // Si no es de categoria especial...
 	{
-		// Guardo las caravanas
-		QString codigo;
-		foreach( codigo, _caravanas )
+		// Si es registro nuevo agrego simplemente las caravanas
+		if( nuevo == true )
 		{
-			if( !estado )
+			// Guardo las caravanas
+			QString codigo;
+			foreach( codigo, _caravanas )
 			{
-				qDebug( "Error en el fro" );
-				return -2;
+				if( !estado )
+				{
+					qDebug( "Error en el fro" );
+					deshacerCambiosDb();
+					return -2;
+				}
+				estado = guardarCaravana( codigo );
+				dialogo->setValue( dialogo->value() + 1 );
+				if( !estado )
+				{
+					qDebug( "Error al intenar guardar la caravana" );
+					deshacerCambiosDb();
+					return -3;
+				}
+				int id_caravana = getIDCaravana( codigo );
+				estado = asociarCaravana( id_caravana );
+				dialogo->setValue( dialogo->value() + 1 );
+				if( !estado )
+				{
+					qDebug( "Error al intenar asociar la caravana" );
+					deshacerCambiosDb();
+					return -3;
+				}
+			#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+				/// Asociar el dueño!
+				estado = aduenarCaravana( id_caravana, 0, fecha, false );
+				if( !estado )
+				{
+					qDebug( "Error al asociar el dueño" );
+					deshacerCambiosDb();
+					return -3;
+				}
+			#endif
 			}
-			estado = guardarCaravana( codigo );
-			dialogo->setValue( dialogo->value() + 1 );
-			if( !estado )
+		}
+		else
+		{
+			// Registro actualizado, actualizar las caravanas
+			// busco los actuales porque _caravanas tiene los actualizados
+			QSqlQuery *xcola = new QSqlQuery();
+			if( xcola->exec( QString( "SELECT id, codigo FROM car_caravana WHERE id_tri = '%1'" ).arg( id_db ) ) )
 			{
-				qDebug( "Error al intenar guardar la caravana" );
-				return -3;
+				QStringList _caravanas2;
+				while( xcola->next() )
+				{
+					_caravanas2.append( xcola->record().value(1).toString() );
+				}
+				QStringList comp1;
+				comp1 = _caravanas2;
+				// Comparacion 1 a uno para ver si estan
+				QString caravana;
+				foreach( caravana, _caravanas )
+				{
+					if( _caravanas2.contains( caravana ) )
+					{
+						_caravanas.removeOne( caravana );
+						// la elimino de las 2 listas asi quedan solo las ocurrencias unicas en cada una
+						comp1.removeOne( caravana );
+					}
+				}
+				if( _caravanas.size() > 0 )
+				{
+					// existen elementos en caravanas que no estan en _caravanas porque cambiaron o porque son nuevas
+					QString agregar;
+					foreach( agregar, _caravanas )
+					{
+						estado = guardarCaravana( agregar );
+						dialogo->setValue( dialogo->value() + 1 );
+						if( !estado )
+						{
+							qDebug( "Error al intenar guardar la caravana" );
+							deshacerCambiosDb();
+							return -3;
+						}
+						int id_caravana = getIDCaravana( agregar );
+						estado = asociarCaravana( id_caravana );
+						dialogo->setValue( dialogo->value() + 1 );
+						if( !estado )
+						{
+							qDebug( "Error al intenar asociar la caravana" );
+							deshacerCambiosDb();
+							return -3;
+						}
+					#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
+						/// Asociar el dueño!
+						estado = aduenarCaravana( id_caravana, 0, fecha, false );
+						if( !estado )
+						{
+							qDebug( "Error al asociar el dueño" );
+							deshacerCambiosDb();
+							return -3;
+						}
+					#endif
+					}//fin bucle lista nueva
+				}
+				if( comp1.size() > 0 )
+				{
+					// existen caravanas que fueron eliminadas
+					QString eliminame;
+					foreach( eliminame, comp1 )
+					{
+						estado = borrarCaravana( eliminame, /*Disaciociar*/ true );
+						if( !estado )
+						{
+							qDebug( "Error al intentar eliminar una caravana de la lista" );
+							deshacerCambiosDb();
+							return -12;
+						}
+
+					}
+					comp1.clear();
+				}
 			}
-			int id_caravana = getIDCaravana( codigo );
-			estado = asociarCaravana( id_caravana );
-			dialogo->setValue( dialogo->value() + 1 );
-			if( !estado )
+			else
 			{
-				qDebug( "Error al intenar asociar la caravana" );
-				return -3;
+				qWarning( "Error al buscar las caravanas para actualizar los datos" );
+				deshacerCambiosDb();
 			}
-		#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
-			/// Asociar el dueño!
-			estado = aduenarCaravana( id_caravana, 0, fecha, false );
-			if( !estado )
-			{
-				qDebug( "Error al asociar el dueño" );
-				return -3;
-			}
-		#endif
 		}
 	}// Fin cantidad de animales == 0
-	return id_db;
+	//@ todo fue ok hasta ahora
+	if( hacerCommit() )
+	{  return id_db; }
+	else
+	{ return -16; }
  }
  else
  {
@@ -474,20 +605,48 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 
 /*!
     \fn EMovimiento::setCaravanas( QStringList caravanas )
+	Actualiza la lista de caravanas asociadas a este tri.
+	Si se eliminaron o cambiaron codigos de caravanas, se actualizaran o cambiaran en la db tambien.
+	@param caravanas Lista de las caravanas de este tri.
  */
 void EMovimiento::setCaravanas( QStringList caravanas )
 {
- if( tipoMov() == compra || tipoMov() == stock )
+ if( _caravanas == caravanas )
  {
-  ///@todo Agrego un control de las existentes aca?
-  _caravanas = caravanas;
+  qWarning( "Las listas de caravanas son iguales" );
+  return;
  }
-    /// @todo implement me
+ else
+ {
+  // Comparacion 1 a uno para ver si estan
+  QString caravana;
+  foreach( caravana, caravanas )
+  {
+   if( _caravanas.contains( caravana ) )
+   {
+    caravanas.removeOne( caravana );
+   }
+  }
+  if( caravanas.size() > 0 )
+  {
+   // existen elementos en caravanas que no estan en _caravanas porque cambiaron o porque son nuevas
+   foreach( caravana, caravanas )
+   {
+    agregarCaravana( caravana, true );
+   }
+  }
+  return;
+ }
 }
 
 
 /*!
     \fn EMovimiento::agregarCaravana( QString codigo, bool verificar )
+	Agregega caravanas a la lista interna de caravanas.
+	Si verificar es verdadero, se mirara que el codigo no exista ya como caravana.
+	@param codigo Codigo de la caravana
+	@param verificar Si es verdadero comprueba que no exista y retorna falso si existe, si es falso, la agrega automaticamente.
+
  */
 bool EMovimiento::agregarCaravana( QString codigo, bool verificar )
 {
@@ -528,6 +687,8 @@ bool EMovimiento::agregarCaravana( QString codigo, bool verificar )
 
 /*!
     \fn EMovimiento::eliminarCaravana( QString codigo )
+	Elimina de la lista temporal interna la caravana
+	@param codigo Codigo de la caravana
  */
 void EMovimiento::eliminarCaravana( QString codigo )
 {
@@ -541,6 +702,9 @@ void EMovimiento::eliminarCaravana( QString codigo )
 
 /*!
     \fn EMovimiento::guardarCaravana( QString codigo )
+	Coloca en la base de dato el codigo de caravana.
+	@param codigo Codigo de la caravana
+	@return Verdadero si fue exitosa la insercion, falso en caso contrario.
  */
 bool EMovimiento::guardarCaravana( QString codigo )
 {
@@ -646,6 +810,11 @@ bool EMovimiento::cargarCaravanas()
 
 /*!
     \fn EMovimiento::aduenarCaravana( int id_caravana, id_cliente, QDate fecha )
+	Funcion que asocia una caravana con un dueño en una fecha especifica
+	@param id_caravana Id de registro de la caravana
+	@param id_cliente Id del registro del cliente
+	@param fecha Fecha de la asociacion
+	@return verdadero si la operacion se llevo a cabo o falso si no
  */
 bool EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha, bool cambiar_dueno )
 {
@@ -666,6 +835,7 @@ bool EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha,
 	{
 		qDebug( "Escrito fin de duenño anterior correcto." );
 		// Escribo el dueño nuevo
+		return aduenarCaravana( id_caravana, id_cliente, fecha, false );
 	}
 	else
 	{
@@ -706,6 +876,9 @@ bool EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha,
 
 /*!
     \fn EMovimiento::getIDCaravana( QString codigo )
+	Conversor de codigo a id de base de datos
+	@param codigo codigo de la caravana
+	@return id de el registro con ese codigo
  */
 int EMovimiento::getIDCaravana( QString codigo )
 {
@@ -759,3 +932,131 @@ int EMovimiento::getCantidadAnimales() const
 
 void EMovimiento::setCantidadAnimales ( int theValue )
 { _cantidad_animales = theValue; }
+
+
+/*!
+    \fn EMovimiento::iniciarTransaccion()
+	Inicia una transaccion directamente en la base de datos ya que no estamos trabajando con un modelo.
+	De producirse un error, guarda los detalles en la salida de debug del programa
+	@return Verdadero o falso segun salio la operacion
+ */
+bool EMovimiento::iniciarTransaccion()
+{
+ if( QSqlDatabase::database().transaction() )
+ {
+  return true;
+ }
+ else
+ {
+  qWarning( "No se pudo iniciar el guardado de los datos en la base de datos. Consulte la salida del programa para mas detalles del error" );
+  qDebug( QString( "Error de transaccion: %1" ).arg( QSqlDatabase::database().lastError().text() ).toLocal8Bit() );
+  return false;
+ }
+}
+
+
+/*!
+    \fn EMovimiento::hacerCommit()
+	Inicia el commit de la transaccion en la base de datos ya que no estamos trabajando con un modelo.
+	De producirse un error, guarda los detalles en la salida de debug del programa
+	@return verdadero o false segurn corresponda a la operacion
+ */
+bool EMovimiento::hacerCommit()
+{
+ if( QSqlDatabase::database().commit() )
+ {
+  return true;
+ }
+ else
+ {
+  qWarning( "No se pudo guardar los datos en la base de datos. Consulte la salida del programa para mas detalles del error" );
+  qDebug( QString( "Error de commit: %1" ).arg( QSqlDatabase::database().lastError().text() ).toLocal8Bit() );
+  return false;
+ }
+}
+
+
+/*!
+    \fn EMovimiento::deshacerCambiosDb()
+ */
+bool EMovimiento::deshacerCambiosDb()
+{
+ if( QSqlDatabase::database().rollback() )
+ {
+   return true;
+   qDebug( "Echo un rollback de la base de datos" );
+ }
+ else
+ {
+  qWarning( "No se pudo deshacer el guardado de los datos en la base de datos. Consulte la salida del programa para mas detalles del error" );
+  qDebug( QString( "Error de commit: %1" ).arg( QSqlDatabase::database().lastError().text() ).toLocal8Bit() );
+  return false;
+ }
+}
+
+
+/*!
+    \fn EMovimiento::borrarCaravana( QString codigo, bool disasociar = true )
+	Elimina efectivamente una caravana de la base de datos y elimina todas las asocaciaciones que hay en la db
+	@param codigo Codigo de la caravana
+	@param disasociar Elimina las relaciones en las que se haya la caravana respecto al tri
+ */
+bool EMovimiento::borrarCaravana( QString codigo, bool disasociar )
+{
+ bool estado = false;
+ ///@todo controlar esto!
+ int id_caravana = getIDCaravana( codigo );
+ QSqlQuery *bcola = new QSqlQuery();
+ if( bcola->exec( QString( "DELETE FROM car_carv_tri WHERE id_caravana = '%1' AND id_tri = '%1'" ).arg( id_caravana ).arg( id_db ) ) )
+ {
+  if( bcola->exec( QString( "DELETE FORM car_caravana WHERE id_caravana = '%1'" ).arg( id_caravana ) ) )
+  {
+	estado = true;
+  }
+  else
+  {
+	qDebug( " Error al eliminar la caravana de su tabbla " );
+	estado = false;
+  }
+ }
+ else
+ {
+  qDebug( "Error al hacer eliminacion de las relaciones de la caravana" );
+  estado = false;
+ }
+ delete bcola;
+ return estado;
+}
+
+
+/*!
+    \fn EMovimiento::eliminarTRI( const int idDB )
+	Elimina el tri que se indica, eliminado las relaciones con las caravanas, pero no elimina ninguna caravana.
+	@param idDB Identificador de TRI
+ */
+bool EMovimiento::eliminarTRI( const int idDB )
+{
+ bool estado = true;
+ QSqlQuery *cola = new QSqlQuery();
+ if( !iniciarTransaccion() )
+ { delete cola; return false; }
+ // Elimino todas las relaciones caravana-tri donde este involucrado este tri
+ if( !cola->exec( QString( "DELETE FROM car_carv_tri WHERE id_tri = '%1'" ).arg( idDB ) ) )
+ {
+  estado = false;
+  qDebug( "Error al eliminar relaciones de un tri" );
+  deshacerCambiosDb();
+ }
+ if( !cola->exec( QString( "DELETE FROM car_carv_tri WHERE id_tri = '%1'" ).arg( idDB ) ) )
+ {
+  estado = false;
+  qDebug( "Error al eliminar el tri" );
+  deshacerCambiosDb();
+ }
+ if( !hacerCommit() )
+ {
+  estado = false;
+ }
+ delete cola;
+ return estado;
+}
