@@ -63,7 +63,6 @@ FILE *debug;
      }
  }
 
-     /// @todo implement me
 int main(int argc, char *argv[])
 {
       Q_INIT_RESOURCE(gestotux);
@@ -72,10 +71,9 @@ int main(int argc, char *argv[])
 	qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash
-	ESplash splash;
-      //QSplashScreen *splash = new QSplashScreen( app );
+      ESplash splash;
       splash.show();
-//       splash->showMessage( "Cargando propiedades locales" );
+      splash.showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual
       app.setDesktopSettingsAware( true );
       preferencias *p = preferencias::getInstancia();
@@ -94,7 +92,7 @@ int main(int argc, char *argv[])
       QLocale locale( QLocale::Spanish, QLocale::Argentina );
       QLocale::setDefault( locale );
 
-//       splash->showMessage( "Cargando Traduccion" );
+      splash.showMessage( "Cargando Traduccion" );
       // Cargo las traducciones
       QTranslator tran;
       QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
@@ -108,7 +106,7 @@ int main(int argc, char *argv[])
 	qDebug( "Fallo al cargar la traduccion" );
       }
       delete directorio;
-// 	splash->showMessage( "Cargando Base de datos" );
+      splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
       QSqlDatabase DB;
       if( DB.isDriverAvailable( "QSQLITE" ) == false )
@@ -157,7 +155,7 @@ int main(int argc, char *argv[])
 				abort();
 			}
 		}
-		// sillegamos hasta aca, todo bien
+		// si llegamos hasta aca, todo bien
 		origen.close();
 		QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );
 		DB.close();
@@ -197,10 +195,10 @@ int main(int argc, char *argv[])
 		qDebug( "Base de datos abierta" );
        }
        // Fin de arranque de la base de datos
-// 	splash->showMessage( "Base de datos Abierta correctamente" );
+	splash.showMessage( "Base de datos Abierta correctamente" );
 	gestotux * mw = new gestotux();
 	mw->inicializar();
-// 	splash->showMessage( "Cargando Ventana Principal" );
+ 	splash.showMessage( "Cargando Ventana Principal" );
 	mw->show();
 	if( p->value( "maximizado", true ).toBool() )
 	{
@@ -209,7 +207,7 @@ int main(int argc, char *argv[])
 	}
 	// Salir del programa cuando se cierren todas las ventanas
 	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
-// 	splash->showMessage( "Listo." );
+ 	splash.showMessage( "Listo." );
 	if ( !p->value( "splash", false ).toBool() )
 	{
  		splash.hide();

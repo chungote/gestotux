@@ -22,7 +22,7 @@
 
 #include <QSplashScreen>
 #include <QSvgWidget>
- 
+
 /**
  * \brief Ventana de bienvenida a la aplicacion
  *
@@ -38,7 +38,7 @@ public:
     void repaint();
     void setPixmap(const QPixmap& pixmap);
     void clearMessage();
-    void showMessage(const QString& message, int alignment, const QColor& color);
+    void showMessage(const QString& message, int alignment = Qt::AlignCenter, const QColor& color = Qt::black);
     void show();
 
 };

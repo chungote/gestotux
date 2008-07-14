@@ -54,7 +54,7 @@ public:
     int tipoMov() const;
 
     void setTipoMov( const int& theValue );
-    bool setDTA( const QString& theValue );
+    bool setDTA( const QString& theValue,  bool nuevo = true);
     void setComprador( int id );
     void setVendedor( int idDB );
     void setEstablecimientoDestino( int idDB );
@@ -73,18 +73,54 @@ public:
     QPair< int, QString > getCategoria() const;
     void setCantidadAnimales ( int theValue );
     int getCantidadAnimales() const;
+    bool setComprador( QString nombre );
+    void setCaravanas( QStringList caravanas );
+    bool eliminarTRI( const int idDB );
 
 private:
+   /*!
+    * Datos del establecimiento de destino
+    */
 	QPair<int,QString> destino;
+   /*!
+    * Datos del establecimiento de origen
+    */
 	QPair<int,QString> origen;
+   /*!
+    * Datos del vendedor
+    */
 	QPair<int,QString> vendedor;
+   /*!
+    * Datos del comprador
+    */
 	QPair<int,QString> comprador;
+   /*!
+    * Datos de la categoria
+    */
 	QPair<int,QString> categoria;
+   /*!
+    * Fecha en que se realizo el TRI
+    */
 	QDate fecha;
+   /*!
+    * NUmero de DTA correspondiente al TRI cargado
+    */
 	QString DTA;
+   /*!
+    * Numero de Guia correspondiente al TRI cargado
+    */
 	QString _numGuia;
+   /*!
+    * Cantidad de animales para un movimiento de categoria especial
+    */
 	int _cantidad_animales;
+   /*!
+    * Indentificador de indice en la base de datos
+    */
 	int id_db;
+   /*!
+    * Lista de caravanas cargas o actualizadas para guardar
+    */
 	QStringList _caravanas;
 
 private:
@@ -93,13 +129,19 @@ private:
     void cargarNombreVendedor( const int idDB );
     void cargarNombreEstablecimientoDestino( const int idDB );
     void cargarNombreEstablecimientoOrigen( const int idDB );
-    void setCaravanas( QStringList caravanas );
     bool guardarCaravana( QString codigo );
     bool cargarCaravanas();
     bool asociarCaravana( int id_caravana );
     bool aduenarCaravana( int id_caravana, int id_cliente, QDate fecha, bool cambiar_dueno = true );
     int getIDCaravana( QString codigo );
+    bool borrarCaravana( QString codigo, bool disasociar = true );
+    bool deshacerCambiosDb();
+    bool iniciarTransaccion();
+    bool hacerCommit();
 
+   /*!
+    * Indicador de tipo de movimiento que representa el objeto
+    */
     int tipo_mov;
 
 };

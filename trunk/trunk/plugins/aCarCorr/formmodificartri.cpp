@@ -110,6 +110,54 @@ FormModificarTri::~FormModificarTri()
  */
 void FormModificarTri::guardar()
 {
- qWarning( "Todavia no funco" );
+ // Datos generales a todos los movimientos
+ movimiento->setFecha( dEFecha->date() );
+ movimiento->setDTA( LEDTA->text(), false  );
+ movimiento->setNumGuia( LEGuia->text() );
+ movimiento->setCategoria( CBCategoria->model()->data( CBCategoria->model()->index( CBCategoria->currentIndex(), 0 ) ).toInt() );
+ // Datos especificos por movimiento
+ switch( movimiento->tipoMov() )
+ {
+	case venta:
+	{
+		movimiento->setComprador( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+		movimiento->setEstablecimientoOrigen( CBEstablecimientoOrigen->model()->data( CBEstablecimientoOrigen->model()->index( CBEstablecimientoOrigen->currentIndex(), 0 ) ).toInt() );
+		break;
+	}
+	case compra:
+	{
+		movimiento->setVendedor( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+		movimiento->setEstablecimientoDestino( CBEstablecimientoDestino->model()->data( CBEstablecimientoDestino->model()->index( CBEstablecimientoDestino->currentIndex(), 0 ) ).toInt() );
+		break;
+	}
+	case mudanza:
+	{
+		movimiento->setEstablecimientoDestino( CBEstablecimientoDestino->model()->data( CBEstablecimientoDestino->model()->index( CBEstablecimientoDestino->currentIndex(), 0 ) ).toInt() );
+		movimiento->setEstablecimientoOrigen( CBEstablecimientoOrigen->model()->data( CBEstablecimientoOrigen->model()->index( CBEstablecimientoOrigen->currentIndex(), 0 ) ).toInt() );
+		break;
+	}
+	case stock:
+	{
+		movimiento->setEstablecimientoDestino( CBEstablecimientoDestino->model()->data( CBEstablecimientoDestino->model()->index( CBEstablecimientoDestino->currentIndex(), 0 ) ).toInt() );
+		break;
+	}
+	default:
+	{
+		qWarning( "Todavia no funco" );
+		break;
+	}
+ }
+ // Segun el tipo de categoria va a estar oculto el coso de cantidad de caravanas o no
+ if( SBCantidadAnimales->isVisible() )
+ {
+  // Verifico la cantidad de animales
+  movimiento->setCantidadAnimales( SBCantidadAnimales->value() );
+ }
+ else
+ {
+  // Verificar la cantidad y codigos de caravanas
+  movimiento->setCaravanas( model->listaCaravanas() );
+ }
+ movimiento->guardar( 0 );
  return;
 }
