@@ -40,8 +40,6 @@ Q_OBJECT
 public:
     Ebackup(QWidget* parent);
     ~Ebackup();
-    bool generar_config();
-    void ejecutar_colas( QList<QByteArray> colas );
     void generarBackup();
     void restaurarBackup();
 
@@ -75,9 +73,11 @@ private:
         */
 	QAction *ActDetener;
 
-    bool generar_db( bool estructura );
+    bool generar_db( bool estructura, bool multidb );
+    bool generar_config();
     bool guardar_a_archivo( QString *nombre );
     bool comprimir();
+    bool ejecutarColas( QStringList colas );
 
 
 public slots:

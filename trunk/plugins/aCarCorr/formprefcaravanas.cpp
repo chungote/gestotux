@@ -26,7 +26,7 @@ FormPrefCaravanas::FormPrefCaravanas(QWidget *parent)
  : EVentana(parent), Ui::FormPrefCaravanas()
 {
  setupUi(this);
-
+ this->setAttribute( Qt::WA_DeleteOnClose );
  this->setWindowTitle( "Caravanas" );
  this->setWindowIcon( QIcon( ":/imagenes/caravana.png" ) );
 }

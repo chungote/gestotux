@@ -1,6 +1,7 @@
 TEMPLATE = lib
 CONFIG += plugin \
- dll
+ dll \
+ debug
 TARGET = hicomp
 
 HEADERS += hicomp.h \
@@ -57,4 +58,6 @@ INCLUDEPATH += ../../utiles
 LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
+
+CONFIG -= release
 

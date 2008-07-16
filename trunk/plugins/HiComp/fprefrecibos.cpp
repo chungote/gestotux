@@ -33,6 +33,7 @@ FPrefRecibos::FPrefRecibos(QWidget *parent)
  : EVentana( parent ), Ui_FPrefRecibosBase()
 {
  setupUi(this);
+ this->setAttribute( Qt::WA_DeleteOnClose );
  setWindowTitle( "Recibos" );
  setWindowIcon( QIcon( ":/imagenes/recibo.png" ) );
 }
@@ -61,19 +62,39 @@ void FPrefRecibos::cargar()
 {
   // Busco el ultimo numero de recibo
   QSqlQuery *cola = new QSqlQuery();
-  cola->exec( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
-  if( cola->next() )
+  if( QSqlDatabase::database().driverName() == "QSQLITE" )
   {
-   LNumeroActual->setText( cola->record().value( "seq" ).toString() );
-   sBNuevoNumero->setMinimum( cola->record().value( "seq" ).toInt() );
-   connect( PBSetear, SIGNAL( clicked() ), this, SLOT( setear() ) );
+	cola->exec( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
+	if( cola->next() )
+	{
+		LNumeroActual->setText( cola->record().value( "seq" ).toString() );
+		sBNuevoNumero->setMinimum( cola->record().value( "seq" ).toInt() );
+		connect( PBSetear, SIGNAL( clicked() ), this, SLOT( setear() ) );
+	}
+	else
+	{
+		qWarning( "Error al obtener el numero actual de recibo" );
+		LNumeroActual->setText( "Errrrrrrrr" );
+		sBNuevoNumero->setEnabled( false );
+		PBSetear->setEnabled( false );
+	}
   }
-  else
+  else if( QSqlDatabase::database().driverName() == "QMYSQL" )
   {
-    qWarning( "Error al obtener el numero actual de recibo" );
-    LNumeroActual->setText( "Errrrrrrrr" );
-    sBNuevoNumero->setEnabled( false );
-    PBSetear->setEnabled( false );
+	cola->exec( "SELECT seq_in_index FROM INFORMATION_SCHEMA.STATISTICS WHERE table_name = 'recibos'" );
+	if( cola->next() )
+	{
+		LNumeroActual->setText( cola->record().value(0).toString() );
+		sBNuevoNumero->setMinimum( cola->record().value(0).toInt() );
+		connect( PBSetear, SIGNAL( clicked() ), this, SLOT( setear() ) );
+	}
+	else
+	{
+		qWarning( "Error al obtener el numero actual de recibo" );
+		LNumeroActual->setText( "Errrrrrrrr" );
+		sBNuevoNumero->setEnabled( false );
+		PBSetear->setEnabled( false );
+	}
   }
   delete cola;
 
@@ -95,30 +116,60 @@ void FPrefRecibos::setear()
 {
  if( sBNuevoNumero->value() > LNumeroActual->text().toInt() )
  {
-  QSqlQuery cola( QString( "UPDATE sqlite_sequence SET seq = '%1' WHERE name = 'recibos'" ).arg( sBNuevoNumero->value() ) );
-  if( cola.isActive() )
+  if( QSqlDatabase::database().driverName() == "QSQLITE" )
   {
-   QMessageBox::information( this, "Hecho", "El numero de recibo ha sido actualizado" );
-    QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
-    if( cola.next() )
-    {
-      LNumeroActual->setText( cola.record().value( "seq" ).toString() );
-      sBNuevoNumero->setMinimum( cola.record().value( "seq" ).toInt() );
-    }
-    else
-    {
-      qWarning( "Error al obtener el numero actual de recibo" );
-      LNumeroActual->setText( "Errrrrrrrr" );
-      sBNuevoNumero->setEnabled( false );
-      PBSetear->setEnabled( false );
-    }
-   return;
-  }
-  else
-  {
-   QMessageBox::warning( this, "Error", "Hubo un error al intentar actualizar el numero de recibo. No se modifico." );
-   return;
-  }
+	QSqlQuery cola( QString( "UPDATE sqlite_sequence SET seq = '%1' WHERE name = 'recibos'" ).arg( sBNuevoNumero->value() ) );
+	if( cola.isActive() )
+	{
+		QMessageBox::information( this, "Hecho", "El numero de recibo ha sido actualizado" );
+		QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
+		if( cola.next() )
+		{
+			LNumeroActual->setText( cola.record().value( "seq" ).toString() );
+			sBNuevoNumero->setMinimum( cola.record().value( "seq" ).toInt() );
+		}
+		else
+		{
+			qWarning( "Error al obtener el numero actual de recibo" );
+			LNumeroActual->setText( "Errrrrrrrr" );
+			sBNuevoNumero->setEnabled( false );
+			PBSetear->setEnabled( false );
+		}
+		return;
+	}
+	else
+	{
+		QMessageBox::warning( this, "Error", "Hubo un error al intentar actualizar el numero de recibo. No se modifico." );
+		return;
+	}
+   }
+   else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+   {
+	QSqlQuery cola( QString( "alter table recibos auto_increment=%1" ).arg( sBNuevoNumero->value() ) );
+	if( cola.isActive() )
+	{
+		QMessageBox::information( this, "Hecho", "El numero de recibo ha sido actualizado" );
+		QSqlQuery cola( "SELECT seq_in_index FROM INFORMATION_SCHEMA.STATISTICS WHERE table_name = 'recibos'" );
+		if( cola.next() )
+		{
+			LNumeroActual->setText( cola.record().value( 0).toString() );
+			sBNuevoNumero->setMinimum( cola.record().value(0).toInt() );
+		}
+		else
+		{
+			qWarning( "Error al obtener el numero actual de recibo" );
+			LNumeroActual->setText( "Errrrrrrrr" );
+			sBNuevoNumero->setEnabled( false );
+			PBSetear->setEnabled( false );
+		}
+		return;
+	}
+	else
+	{
+		QMessageBox::warning( this, "Error", "Hubo un error al intentar actualizar el numero de recibo. No se modifico." );
+		return;
+	}
+   }
  }
  else
  {
