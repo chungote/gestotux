@@ -126,7 +126,7 @@ QString HiComp::nombre() const
 
 
 /*!
-    \fn HiComp::tipo() 
+    \fn HiComp::tipo()
  */
 int HiComp::tipo() const
 {
@@ -145,35 +145,24 @@ void HiComp::crearMenu( QMenuBar *m )
   qDebug( "Error en las baras de menu" );
  }
  else
- { 
+ {
   QMenu *menuRecibos = menuHer->addMenu( "Recibos" );
   menuRecibos->addAction( ActRecibos );
   menuRecibos->addAction( ActNuevoRecibo );
  }
-} 
+}
 
 bool HiComp::verificarTablas()
 {
- QSqlQuery cola( "SELECT COUNT(name) FROM sqlite_master WHERE type = 'table' AND name IN ( 'recibos', 'producto' , 'clientes', 'categoria' )" );
- if( cola.next() )
- {
-	if( cola.record().value(0).toInt() < 4 )
-	{
-		qWarning( "Error al buscar las tablas del plugin hi comp" );
-		return false;
-	}
-	else
-	{
-		qDebug( "Tablas de " + nombre().toLocal8Bit() + " correctas" );
-		return true;
-	}
- }
- else
- {
-	qWarning( "Error al ejecutar la cola de control de tabla de presupuestos" );
-	qWarning(QString( "Detalle: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-	return false;
- }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
+ {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
+ {qWarning( "Error al buscar las tablas del plugin hi comp - producto " ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "clientes" ) )
+ {qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
+ {qWarning( "Error al buscar las tablas del plugin hi comp - categoria" ); return false; }
+ return true;
 }
 
 

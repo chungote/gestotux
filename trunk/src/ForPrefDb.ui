@@ -1,0 +1,152 @@
+<ui version="4.0" >
+ <class>FormPrefDbBase</class>
+ <widget class="QWidget" name="FormPrefDbBase" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>372</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3" >
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Base de Datos a Usar</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <widget class="QRadioButton" name="RBInterna" >
+        <property name="text" >
+         <string>Interna ( predefinindo )</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="RBExterna" >
+        <property name="text" >
+         <string>Externa</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="GBExterna" >
+     <property name="title" >
+      <string>Base de datos Externa</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2" >
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3" >
+        <item>
+         <widget class="QLabel" name="label" >
+          <property name="text" >
+           <string>Host:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>LEHost</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEHost" />
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" >
+        <item>
+         <widget class="QLabel" name="label_2" >
+          <property name="text" >
+           <string>Usuario:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>LEUsuario</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEUsuario" />
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" >
+        <item>
+         <widget class="QLabel" name="label_3" >
+          <property name="text" >
+           <string>Nombre:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>LEBaseDatos</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEBaseDatos" />
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4" >
+     <property name="font" >
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text" >
+      <string>Todos los cambios que se realicen tendran efecto una vez que reinice el programa. Recuerde que si cambia de base de datos no se transferiran los datos entre ellas, pero no los perdera cambiando de interna a externa.</string>
+     </property>
+     <property name="scaledContents" >
+      <bool>true</bool>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+     <property name="margin" >
+      <number>6</number>
+     </property>
+     <property name="indent" >
+      <number>4</number>
+     </property>
+     <property name="textInteractionFlags" >
+      <set>Qt::NoTextInteraction</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>RBExterna</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>GBExterna</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>64</x>
+     <y>107</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>25</x>
+     <y>159</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

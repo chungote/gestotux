@@ -47,7 +47,6 @@ FormAgregar::~FormAgregar()
  */
 void FormAgregar::guardar()
 {
- QSqlQuery c( "BEGIN TRANSACTION" );
  QProgressDialog *dialogo = new QProgressDialog( this );
  dialogo->setLabelText( "Guardando datos del TRI" );
  dialogo->setMinimum( 0 );
@@ -106,19 +105,11 @@ void FormAgregar::guardar()
  {
 	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
 	dialogo->close();
-	c.exec( "ROLLBACK TRANSACTION" );
 	return;
  }
  else
  {
-  if( c.exec( "COMMIT" ) )
-  {
    QMessageBox::information( this, "Correcto", "La informacion se ha guardado correctamente");
-  }
-  else
-  {
-   qWarning( QString( "Error al hacer el commit\n Error: %1" ).arg( c.lastError().text() ).toLocal8Bit() );
-  }
  }
  dialogo->close();
  this->close();

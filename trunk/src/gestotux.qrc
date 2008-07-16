@@ -22,6 +22,8 @@
         <file>imagenes/otras.png</file>
         <file>imagenes/general.png</file>
         <file>imagenes/backup.png</file>
+	<file>imagenes/backup1.png</file>
+	<file>imagenes/backup2.png</file>
         <file>imagenes/add_user.png</file>
         <file>imagenes/delete_user.png</file>
         <file>imagenes/search_user.png</file>
@@ -44,8 +46,10 @@
 	<file>imagenes/ajustaropuestas.png</file>
 	<file>imagenes/todas.png</file>
 	<file>imagenes/sola.png</file>
+	<file>imagenes/dbconfig.png</file>
     </qresource>
     <qresource prefix="sql">
-	<file>tablas.sql</file>
+	<file>tablas.QSQLITE.sql</file>
+	<file>tablas.QMYSQL.sql</file>
     </qresource>
 </RCC>

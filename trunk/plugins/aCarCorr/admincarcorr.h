@@ -64,6 +64,7 @@ private:
 	QAction *ActAgregarVenta;
 	QAction *ActAgregarMudanza;
 	QAction *ActAgregarStock;
+    	QAction *ActEliminarTri;
 
 	static QHash<QString, EInformeInterface *> *_plugins;
 	QPluginLoader *loader;
@@ -86,6 +87,8 @@ private:
 signals:
 	void agregarVentana( QWidget *v );
 
+public slots:
+    void eliminarTri();
 };
 
 #endif

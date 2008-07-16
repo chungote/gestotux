@@ -24,13 +24,34 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <layout class="QVBoxLayout" >
+    <widget class="QTabWidget" name="Pestanas" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>499</width>
+        <height>396</height>
+       </rect>
+      </property>
+      <attribute name="title" >
+       <string>Generar copia de seguridad</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout" >
        <item>
         <widget class="QCheckBox" name="ChBBaseDatos" >
          <property name="text" >
           <string>Base de Datos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="CkBEstructura" >
+         <property name="text" >
+          <string>Incluir estructura de las tablas</string>
          </property>
         </widget>
        </item>
@@ -42,8 +63,44 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
       </layout>
-     </item>
-    </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>499</width>
+        <height>396</height>
+       </rect>
+      </property>
+      <attribute name="title" >
+       <string>Restaurar copia de seguridad</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout" >
+         <item>
+          <widget class="QLabel" name="label" >
+           <property name="text" >
+            <string>Archivo de Backup:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="LEArchivo" />
+         </item>
+         <item>
+          <widget class="QToolButton" name="tBBuscar" >
+           <property name="text" >
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="LDebug" >
@@ -65,5 +122,22 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>ChBBaseDatos</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CkBEstructura</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>107</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>122</x>
+     <y>114</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

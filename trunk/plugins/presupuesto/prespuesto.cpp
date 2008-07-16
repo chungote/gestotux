@@ -123,26 +123,11 @@ double prespuesto::version() const
  */
 bool prespuesto::verificarTablas()
 {
- QSqlQuery cola( "SELECT COUNT(name) FROM sqlite_master WHERE type = 'table' AND name IN ( 'presupuestos', 'producto' )" );
- if( cola.next() )
- {
-	if( cola.record().value(0).toInt() < 1 )
-	{
-		qWarning( "Error al buscar las tablas de presupuestos y productos" );
-		return false;
-	}
-	else
-	{
-		qDebug( "Tablas de presupuesto correctas" );
-		return true;
-	}
- }
- else
- {
-	qWarning( "Error al ejecutar la cola de control de tabla de presupuestos" );
-	qWarning(QString( "Detalle: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-	return false;
- }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "presupuestos" ) )
+ { qWarning( "Error al buscar la tabla presupuestos" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
+ { qWarning( "Error al buscar la tabla cproducto" ); return false; }
+ return true;
 }
 
 QSettings *prespuesto::pref()
