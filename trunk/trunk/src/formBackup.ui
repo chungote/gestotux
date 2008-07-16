@@ -56,6 +56,13 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="CkBMultiFormato" >
+         <property name="text" >
+          <string>Multi formato de base de datos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="ChBConfirugacion" >
          <property name="text" >
           <string>Configuración del programa</string>
@@ -130,12 +137,28 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>107</x>
-     <y>105</y>
+     <x>118</x>
+     <y>146</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>122</x>
-     <y>114</y>
+     <x>133</x>
+     <y>207</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ChBBaseDatos</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CkBMultiFormato</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>62</x>
+     <y>136</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>71</x>
+     <y>302</y>
     </hint>
    </hints>
   </connection>

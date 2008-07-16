@@ -23,7 +23,8 @@
 FormPrefDb::FormPrefDb(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent ), Ui::FormPrefDbBase()
 {
-	setupUi(this);
+ this->setAttribute( Qt::WA_DeleteOnClose );
+ setupUi(this);
 }
 
 FormPrefDb::~FormPrefDb()

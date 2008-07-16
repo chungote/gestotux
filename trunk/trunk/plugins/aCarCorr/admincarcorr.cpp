@@ -60,10 +60,8 @@ QString AdminCarCorr::nombre() const
 
 QWidgetList AdminCarCorr::formsPreferencias()
 {
- if( _listaFormPref.isEmpty() )
- {
-  _listaFormPref.append( new FormPrefCaravanas() );
- }
+ QWidgetList _listaFormPref;
+ _listaFormPref.append( new FormPrefCaravanas() );
  return _listaFormPref;
 }
 
@@ -71,7 +69,6 @@ bool AdminCarCorr::inicializar( QSettings* pref)
 {
  _pref = pref;
  _acciones.clear();
- _listaFormPref.clear();
 
  ActCategoria = new QAction( "Ver Categorias", this );
  ActCategoria->setIcon( QIcon( ":/imagenes/categoria.png" ) );

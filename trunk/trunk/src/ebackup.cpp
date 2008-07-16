@@ -111,7 +111,7 @@ void Ebackup::iniciar()
  }
  else if( Pestanas->currentIndex() == 1 )
  {
-  qWarning( "todavia no implementado" );
+  restaurarBackup();
   return;
  }
  else
@@ -253,7 +253,7 @@ bool Ebackup::generar_config()
 	@param datos Hacer backup de los datos de la db
 	@return Verdadero si no existieron errores, falso en caso contrario
  */
-bool Ebackup::generar_db( bool estructura )
+bool Ebackup::generar_db( bool estructura, bool multidb )
 {
  datos->append( "|->basedatossql->\n" );
  // veo que tipo de db es la que se esta usando
@@ -392,13 +392,12 @@ bool Ebackup::comprimir()
 bool Ebackup::guardar_a_archivo( QString *nombre )
 {
  destino = new QFile( *nombre );
- if( !destino->open( QIODevice::ReadWrite ) )
+ if( !destino->open( QIODevice::ReadWrite | QIODevice::Truncate ) )
  {
 	qDebug( "Error al abrir el archivo en modo lectura escritura" );
 	delete destino;
 	return false;
  }
- ///@ver porque no realiza la sobreescritura completa
  qint64 escritos = destino->write( *comprimidos );
  if( escritos != comprimidos->size() )
  {
@@ -446,7 +445,7 @@ void Ebackup::generarBackup()
  if( ChBBaseDatos->isChecked() )
  {
   LDebug->setText( "Generando backup de Base de datos" );
-  if( !generar_db( CkBEstructura->isChecked() ) )
+  if( !generar_db( CkBEstructura->isChecked(), CkBMultiFormato->isChecked() ) )
   {
    qDebug( "Error al intentar generar la copia de seg de la db" );
    emit cambiarDetener( false );
@@ -545,7 +544,9 @@ void Ebackup::restaurarBackup()
   // desde ahora hasta el fin de la etiqueta, es sql puro
   // busco la etiqueta de fin
   int posfinal = contenido.indexOf( "<-basedatossql<-|" );
-
+  QStringRef cadenas( &contenido, 0, posfinal );
+  ejecutarColas( cadenas.string()->split( ";" ) );
+  contenido.remove( 0, posfinal + QString( "<-basedatosql<-|").size() );
  }
 }
 
@@ -565,4 +566,28 @@ void Ebackup::abrirArchivoBackup()
 						  &selectedFilter,
 						  options );
  LEArchivo->setText( fileName );
+}
+
+
+/*!
+    \fn Ebackup::ejecutarColas( QStringList colas )
+ */
+bool Ebackup::ejecutarColas( QStringList colas )
+{
+ bool estado = true;
+ QSqlQuery *cola = new QSqlQuery();
+ while( colas.size() > 0  && estado == true )
+ {
+  if( cola->exec( colas.at( 0 ) ) )
+  {
+    colas.removeFirst();
+  }
+  else
+  {
+	qWarning( qPrintable( cola->lastError().text() ) );
+	estado = false;
+  }
+ }
+ delete cola;
+ return estado;
 }

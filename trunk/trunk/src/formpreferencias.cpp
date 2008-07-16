@@ -38,7 +38,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
  : EVentana(parent)
 {
     setObjectName( "Preferencias" );
-     this->setAttribute( Qt::WA_DeleteOnClose );
+    this->setAttribute( Qt::WA_DeleteOnClose );
     contentsWidget = new QListWidget;
     contentsWidget->setViewMode(QListView::IconMode);
     contentsWidget->setIconSize(QSize(96, 84));
