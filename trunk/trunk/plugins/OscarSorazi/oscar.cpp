@@ -82,7 +82,7 @@ bool Oscar::inicializar( QSettings* pref)
  ActCategoria->setToolTip( "Muestra las categorias ( Ctrl + u )" );
  ActCategoria->setShortcut( QKeySequence( "Ctrl+u" ) );
  connect( ActCategoria, SIGNAL( triggered() ), this, SLOT( verCategorias() ) );
- 
+
  ActEstablecimiento = new QAction( "Ver Establecimientos", this );
  ActEstablecimiento->setIcon( QIcon( ":/imagenes/establecimientos.png" ) );
  ActEstablecimiento->setStatusTip( "Muestra el listado de establecimientos" );
@@ -131,42 +131,18 @@ bool Oscar::inicializar( QSettings* pref)
 
 bool Oscar::verificarTablas()
 {
- QSqlQuery cola;
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_categorias' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_categorias" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_establecimientos' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_establecimientos" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_caravana' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_caravana" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_caravana' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_caravana" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_tri' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_tri" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_carv_tri' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_carv_tri" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_carv_duenos' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_carv_tri" );
-  return false;
- }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_categorias" ) )
+ { qWarning( "Error al buscar la tabla car_categorias" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_establecimientos" ) )
+ { qWarning( "Error al buscar la tabla car_establecimientos" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_caravana" ) )
+ { qWarning( "Error al buscar la tabla car_caravana" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_tri" ) )
+ { qWarning( "Error al buscar la tabla car_tri" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_carv_tri" ) )
+ { qWarning( "Error al buscar la tabla car_carv_tri" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_carv_duenos" ) )
+ { qWarning( "Error al buscar la tabla car_carv_duenos" ); return false; }
  return true;
 }
 
@@ -188,7 +164,7 @@ void Oscar::crearMenu(QMenuBar* m)
   qDebug( "Error en las baras de menu" );
  }
  else
- { 
+ {
   menuHer->addAction( ActEstablecimiento );
   menuHer->addAction( ActCategoria );
   menuHer->addAction( ActDuenos );

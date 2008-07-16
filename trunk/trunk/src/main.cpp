@@ -35,6 +35,7 @@
 #include "preferencias.h"
 #include "eenviobackup.h"
 #include "esplash.h"
+#include "emysql.h"
 
 FILE *debug;
 
@@ -109,18 +110,11 @@ int main(int argc, char *argv[])
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
       QSqlDatabase DB;
-      if( DB.isDriverAvailable( "QSQLITE" ) == false )
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////
+      if( DB.isDriverAvailable( "QSQLITE" ) == true && p->value( "noForzarMysql", true ).toBool() && p->value( "dbInterna", true ).toBool() )
       {
- 	// No se puede usar sqlite para el programa
-	qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
-	QStringList drivers = DB.drivers();
-	qDebug( "Lista de Drivers Soportados:" );
-	for (int i = 0; i < drivers.size(); ++i)
-	{
-		qDebug( drivers.at(i).toLocal8Bit() );
-	}
-	abort();
-       }
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )
        {
@@ -134,39 +128,6 @@ int main(int argc, char *argv[])
 			qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
 			abort();
        		}
-         // El archivo de base de datos no existe
-         QFile origen( ":/sql/tablas.sql" );
- 	 if( origen.open( QIODevice::ReadOnly ) )
-	 {
-		QMessageBox::information( 0, "Falta la DB", "La base de datos no se encuentra, se crearan las tablas desde cero. Pero no existiran datos en ellas. Si posee un backup por favor restaurelo." );
-		QSqlQuery cola;
-		QTextStream in(&origen);
-		while ( !in.atEnd() )
-		{
-			 QString line = in.readLine();
-			if( cola.exec( line ) )
-			{
-				qDebug( QString( "Ejecutado: %1" ).arg( line ).toLocal8Bit() );
-			}
-			else
-			{
-				qFatal( QString( "Error fatal al ejecutar la cola: %1" ).arg( line ).toLocal8Bit() );
-				delete base;
-				abort();
-			}
-		}
-		// si llegamos hasta aca, todo bien
-		origen.close();
-		QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );
-		DB.close();
-		delete base;
-		exit(0);
-	 }
-	 else
-	 {
-		qFatal( "No se encuentra el archivo embebido original" );
-		delete base;
-	 }
 	}
 	else
 	{
@@ -177,18 +138,81 @@ int main(int argc, char *argv[])
 		}
 	}
 	delete base;
-       DB = QSqlDatabase::addDatabase("QSQLITE");
-       DB.setDatabaseName( "gestotux.database" );
-       if( !DB.open() )
+        DB = QSqlDatabase::addDatabase("QSQLITE");
+        DB.setDatabaseName("gestotux.database");
+       	if( !DB.open() )
+        {
+     		qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+		abort();
+        }
+        /// FIN SQLITE
+       }
+       // si existe el driver y esta autorizado usar db externa o se quiere usar si o si la db mysql
+       else if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
        {
-	qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+	 qWarning( "Usando mysql" );
+	 EMysql dialogo;
+	dialogo.setDb( &DB );
+	 if( dialogo.exec() )
+	 {
+		qDebug( "Base de datos abierta correctamente" );
+         }
+	 else
+         {
+		qWarning( "No se puede continuar sin la base de datos. Se saldra del programa" );
+		exit(0);
+         }
+       }
+       else
+       {
+	// No se puede usar sqlite para el programa
+	qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
+	QStringList drivers = DB.drivers();
+	qDebug( "Lista de Drivers Soportados:" );
+	for (int i = 0; i < drivers.size(); ++i)
+	{
+		qDebug( drivers.at(i).toLocal8Bit() );
+	}
 	abort();
        }
-       // Chequeo si existen las tablas
-       QStringList tablas = DB.tables();
+       ////////////////////////////////////////////////////////////////////////////////////////////////////
+       // Inicia codigo general
+       ////////////////////////////////////////////////////////////////////////////////////////////////////
+       // Chequeo si existen las tablas, llegado este punto la base de datos debe estar abierta
+       QStringList tablas = DB.tables( QSql::Tables );
        if( tablas.isEmpty() )
        {
 		qDebug( "No existen tablas en la base de datos. Se copiaran..." );
+		// El archivo de base de datos no existe
+		QFile origen( ":/sql/tablas."+DB.driverName()+".sql" );
+		if( origen.open( QIODevice::ReadOnly ) )
+		{
+			QMessageBox::information( 0, "Falta la DB", "La base de datos no se encuentra, se crearan las tablas desde cero. Pero no existiran datos en ellas. Si posee un backup por favor restaurelo." );
+			QSqlQuery cola;
+			QTextStream in(&origen);
+			while ( !in.atEnd() )
+			{
+				QString line = in.readLine();
+				if( cola.exec( line ) )
+				{
+					qDebug( QString( "Ejecutado: %1" ).arg( line ).toLocal8Bit() );
+				}
+				else
+				{
+					qFatal( QString( "Error fatal al ejecutar la cola: %1" ).arg( line ).toLocal8Bit() );
+					abort();
+				}
+			}
+			// si llegamos hasta aca, todo bien
+			origen.close();
+			QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );
+		}
+		else
+		{
+			qFatal( "No se encuentra el archivo embebido original" );
+			qFatal( DB.driverName().toLocal8Bit() );
+			abort();
+		}
        }
        else
        {

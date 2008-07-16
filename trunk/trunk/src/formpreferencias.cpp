@@ -30,6 +30,7 @@
 #include "preferencias.h"
 #include "formprefhijo.h"
 #include "fprefgeneral.h"
+#include "formprefdb.h"
 #include "gestotux.h"
 #include "einfoprogramainterface.h"
 
@@ -52,6 +53,11 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     configButton->setText( "Estilo" );
     configButton->setTextAlignment( Qt::AlignHCenter );
     configButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+    QListWidgetItem *db = new QListWidgetItem( contentsWidget );
+    db->setIcon( QIcon( ":/imagenes/dbconfig.png" ) );
+    db->setText( "Base de datos" );
+    db->setTextAlignment( Qt::AlignHCenter );
+    db->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
      ////////////////////////////////////////////////////////////////////
      /// Agregar aqui los widgets de configuracion
      FPrefGeneral *formGeneral = new FPrefGeneral( this );
@@ -59,6 +65,11 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      connect( this, SIGNAL( cargar() ), formGeneral, SLOT( cargar() ) );
      connect( this, SIGNAL( guardar() ), formGeneral, SLOT( guardar() ) );
      pagesWidget->addWidget( formGeneral );
+     FormPrefDb *formDb = new FormPrefDb( this );
+     connect( this, SIGNAL( aplicar() ), formDb, SLOT( aplicar() ) );
+     connect( this, SIGNAL( cargar() ), formDb, SLOT( cargar() ) );
+     connect( this, SIGNAL( guardar() ), formDb, SLOT( guardar() ) );
+     pagesWidget->addWidget( formDb );
      ///@todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
      foreach( plugin, gestotux::plugins() )

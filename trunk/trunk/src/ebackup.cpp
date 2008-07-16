@@ -45,6 +45,8 @@
 #include <QSqlField>
 #include <QDate>
 #include <QProgressDialog>
+#include <QTabWidget>
+#include <QSqlDriver>
 #include "eenviobackup.h"
 
 Ebackup::Ebackup( QWidget* parent )
@@ -82,6 +84,11 @@ Ebackup::Ebackup( QWidget* parent )
  addAction( ActCerrar );
 
  ChBBaseDatos->setCheckState( Qt::Checked );
+
+ connect( tBBuscar, SIGNAL( clicked() ), this, SLOT( abrirArchivoBackup() ) );
+
+ Pestanas->setTabIcon( 0, QIcon( ":/imagenes/backup1.png" ) );
+ Pestanas->setTabIcon( 1, QIcon( ":/imagenes/backup2.png" ) );
 }
 
 
@@ -97,75 +104,20 @@ Ebackup::~Ebackup()
  */
 void Ebackup::iniciar()
 {
- emit cambiarDetener( true );
- _continuar = true;
- QSqlQuery cola( "DELETE FROM ventas WHERE id IN ( SELECT id FROM ventas WHERE id NOT IN ( SELECT id_venta FROM ventas_productos ) )" );
- if( !ChBBaseDatos->isChecked() && !ChBConfirugacion->isChecked() )
+ // Ver en que pestaña esta
+ if( Pestanas->currentIndex() == 0 )
  {
-  QMessageBox::information( this, "Seleccione opciones" , "Por favor, seleccione una opcion para iniciar la copia de seguridad" );
-  emit cambiarDetener( false );
+  generarBackup();
+ }
+ else if( Pestanas->currentIndex() == 1 )
+ {
+  qWarning( "todavia no implementado" );
   return;
- }
- LDebug->setText( "Iniciando" );
- if( ChBBaseDatos->isChecked() )
- {
-  LDebug->setText( "Generando backup de Base de datos" );
-  if( !generar_db( true ) )
-  {
-   qDebug( "Error al intentar generar la copia de seg de la db" );
-   emit cambiarDetener( false );
-   return;
-  }
- }
- if( ChBConfirugacion->isChecked() )
- {
-  LDebug->setText( "Generando backup de Configuracion del programa" );
-  if( !generar_config() )
-  {
-   qDebug( "Error al generar el backup de la config" );
-   emit cambiarDetener( false );
-   return;
-  }
  }
  else
  {
-  PBProgreso->setValue( PBProgreso->maximum() );
+  qWarning( "Pestaña desconocida" );
  }
- LDebug->setText( "Guardando..." );
- QString nombre = QDate::currentDate().toString( "yyyyMMdd" );
- QFileDialog::Options options;
- options |= QFileDialog::DontUseNativeDialog;
- QString selectedFilter;
- QString fileName = QFileDialog::getSaveFileName( this,
-						  "Seleccione el lugar a donde guardar el archivo",
-						  QDir::home().path()+QDir::separator()+nombre,
-						  "Archivos de Backup ( *.bkp );; Todos los archivos (*.*)",
-						  &selectedFilter,
-						  options );
- if( !fileName.isEmpty() )
- {
-  if( !fileName.contains( ".bkp" ) )
-  {
-   fileName.append( ".bkp" );
-  }
-  if( !guardar_a_archivo( &fileName ) )
-  {
-   //qDebug( "Error al intentar guardar el archivo" );
-   QMessageBox::critical( this, "Error", "Hubo un error al intentar guardar el archivo de backup" );
-   emit cambiarDetener( false );
-   return;
-  }
-  else
-  {
-   QMessageBox::information( this, "Informacion", "El archivo de backup se ha guardado correctamente" );
-   preferencias *p = preferencias::getInstancia();
-   p->setValue( "backup/archivo", fileName );
-   p->setValue( "backup/enviado", false );
-   p->sync();
-   close();
-  }
- }
- emit cambiarDetener( false );
 }
 
 
@@ -303,112 +255,111 @@ bool Ebackup::generar_config()
  */
 bool Ebackup::generar_db( bool estructura )
 {
- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
- // calculos para progreso
- QSqlQuery tam( "SELECT COUNT(name) FROM sqlite_master WHERE type='table'" );
- if( !tam.exec() )
- {
-  qDebug( "Error al ejecutar la cola tam" );
-  return false;
- }
- if( !tam.next() )
- {
-  qDebug( "error en el next tam" );
-  return false;
- }
- int cant_tablas = tam.record().value( 0 ).toInt();
-	if( !_continuar )
-	{ qDebug( "Detenido x el usuario" );return false; }
- PBProgreso->setRange( 0, cant_tablas + 3 );
- // Intento nuevo
  datos->append( "|->basedatossql->\n" );
- datos->append( "BEGIN TRANSACTION;\n" );
- QSqlQuery cola( "SELECT name, sql FROM sqlite_master WHERE type='table'" );
- while( cola.next() )
+ // veo que tipo de db es la que se esta usando
+ if(  QSqlDatabase::database().driverName() == "QSQLITE" )
  {
-  	if( !_continuar )
-	{ qDebug( "Detenido x el usuario" );return false; }
-  if( estructura )
-  {
-   datos->append( cola.record().value( "sql" ).toString() + "\n" );
-  }
-  // Calculo de la cantidad de campos
-  tam.prepare( QString( "SELECT COUNT(*) FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
-  if( !tam.exec() )
-  {
-   qDebug( "Error de calculo de registros" );
-   qDebug( tam.executedQuery().toLocal8Bit() );
-  }
-  QString inicio( "INSERT INTO %1 VALUES ( " );
-  QSqlQuery cola1( QString( "SELECT * FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
-  while( cola1.next() )
-  {
-   	if( !_continuar )
-	{ qDebug( "Detenido x el usuario" );return false; }
-   inicio = "INSERT INTO ";
-   QSqlRecord reg = cola1.record();
-   inicio.append( cola.record().value( "name" ).toString() );
-   inicio.append(  " VALUES ( " );
-   for( int i = 0; i< reg.count(); i++ )
-   {
-    switch( reg.field( i ).type() )
-    {
-	case QVariant::String:
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// calculos para progreso
+	QSqlQuery tam( "SELECT COUNT(name) FROM sqlite_master WHERE type='table'" );
+	if( !tam.exec() )
 	{
-		inicio.append( "'" );
-		inicio.append( reg.value( i ).toString() );
-		inicio.append( "'" );
-		break;
+	qDebug( "Error al ejecutar la cola tam" );
+	return false;
 	}
-	case QVariant::Double:
-	case QVariant::Int:
+	if( !tam.next() )
 	{
-	        inicio.append( "'" );
-		inicio.append( reg.value( i ).toString() );
-		inicio.append( "'" );
-		break;
+	qDebug( "error en el next tam" );
+	return false;
 	}
-	case QVariant::Date:
+	int cant_tablas = tam.record().value( 0 ).toInt();
+		if( !_continuar )
+		{ qDebug( "Detenido x el usuario" );return false; }
+	PBProgreso->setRange( 0, cant_tablas + 3 );
+	// Intento nuevo
+	datos->append( "formato=QSQLITE;" );
+	datos->append( "BEGIN TRANSACTION;\n" );
+	QSqlQuery cola( "SELECT name, sql FROM sqlite_master WHERE type='table'" );
+	while( cola.next() )
 	{
-		inicio.append( "'" );
-		inicio.append( reg.value( i ).toDate().toString( "yyyy-MM-dd") );
-		inicio.append( "'" );
-		break;
+			if( !_continuar )
+			{ qDebug( "Detenido x el usuario" );return false; }
+		if( estructura )
+		{
+			datos->append( cola.record().value( "sql" ).toString() + "\n" );
+		}
+		// Calculo de la cantidad de campos
+		tam.prepare( QString( "SELECT COUNT(*) FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
+		if( !tam.exec() )
+		{
+			qDebug( "Error de calculo de registros" );
+			qDebug( tam.executedQuery().toLocal8Bit() );
+		}
+		QString inicio( "INSERT INTO %1 VALUES ( " );
+		QSqlQuery cola1( QString( "SELECT * FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
+		while( cola1.next() )
+		{
+				if( !_continuar )
+				{ qDebug( "Detenido x el usuario" );return false; }
+			inicio = "INSERT INTO ";
+			QSqlRecord reg = cola1.record();
+			inicio.append( cola.record().value( "name" ).toString() );
+			inicio.append(  " VALUES ( " );
+			for( int i = 0; i< reg.count(); i++ )
+			{
+				switch( reg.field( i ).type() )
+				{
+					case QVariant::String:
+					case QVariant::Date:
+					case QVariant::Double:
+					case QVariant::Int:
+					{
+						inicio.append( QSqlDatabase::database().driver()->formatValue( reg.field( i ) ) );
+						break;
+					}
+					case QVariant::ByteArray:
+					{
+						inicio.append( "'" );
+						inicio.append( QRegExp::escape( QString( reg.value( i ).toString() ) ).replace( QRegExp( "'" ), "\\'" ).replace( QRegExp( "\"" ), "\\\"" ) );
+						inicio.append( "'" );
+						break;
+					}
+					case QVariant::UserType:
+					{
+						qDebug( "Tipo predefinido" );
+						inicio.append( "'desconocido'" );
+						break;
+					}
+					default:
+					{
+						inicio.append( "'" );
+						qDebug( QString( "Tipo de campo: %1, campo: %2" ).arg( reg.field( i ).type() ).arg( i ).toLocal8Bit() );
+						inicio.append( QRegExp::escape( reg.value( i ).toString() ) );
+						qWarning( QRegExp::escape( reg.value(i).toString() ).toLocal8Bit() );
+						inicio.append( "'" );
+						break;
+					}
+				}
+				if( i < reg.count() -1 )
+				{
+					inicio.append( ", " );
+				}
+			}
+			inicio.append( ");\n" );
+			datos->append( inicio );
+			inicio.clear();
+		}
+		PBProgreso->setValue( PBProgreso->value() + 1 );
 	}
-	case QVariant::ByteArray:
-	{
-	       inicio.append( "'" );
-	       inicio.append( QString( reg.value( i ).toByteArray() ) );
-	       inicio.append( "'" );
-	       break;
-	}
-	case QVariant::UserType:
-	{
-	       qDebug( "Tipo predefinido" );
-	       inicio.append( "''" );
-	       break;
-	}
-	default:
-	{
-		inicio.append( "'" );
-		qDebug( QString( "Tipo de campo: %1, campo: %2" ).arg( reg.field( i ).type() ).arg( i ).toLocal8Bit() );
-		inicio.append( reg.value( i ).toString() );
-		inicio.append( "'" );
-		break;
-	}
-    }
-    if( i < reg.count() -1 )
-    {
-     inicio.append( ", " );
-    }
-   }
-   inicio.append( ");\n" );
-   datos->append( inicio );
-   inicio.clear();
-  }
-  PBProgreso->setValue( PBProgreso->value() + 1 );
+	datos->append( "COMMIT;\n" );
+ } // Fin tipo sqlite
+ else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+ {
+  datos->append( "formato=QMYSQL;" );
+  datos->append( "BEGIN;" );
+  datos->append( "COMMIT;" );
+  qWarning( "Todavia no se implmeento este tipo de backup" );
  }
- datos->append( "COMMIT;\n" );
  datos->append( "<-basedatossql<-|" );
  LDebug->setText( LDebug->text() + "... Comprimiendo.... " );
  comprimir();
@@ -447,7 +398,7 @@ bool Ebackup::guardar_a_archivo( QString *nombre )
 	delete destino;
 	return false;
  }
-
+ ///@ver porque no realiza la sobreescritura completa
  qint64 escritos = destino->write( *comprimidos );
  if( escritos != comprimidos->size() )
  {
@@ -474,4 +425,144 @@ bool Ebackup::guardar_a_archivo( QString *nombre )
 void Ebackup::detener()
 {
   _continuar = false;
+}
+
+
+/*!
+    \fn Ebackup::generarBackup()
+ */
+void Ebackup::generarBackup()
+{
+  emit cambiarDetener( true );
+ _continuar = true;
+ QSqlQuery cola( "DELETE FROM ventas WHERE id IN ( SELECT id FROM ventas WHERE id NOT IN ( SELECT id_venta FROM ventas_productos ) )" );
+ if( !ChBBaseDatos->isChecked() && !ChBConfirugacion->isChecked() )
+ {
+  QMessageBox::information( this, "Seleccione opciones" , "Por favor, seleccione una opcion para iniciar la copia de seguridad" );
+  emit cambiarDetener( false );
+  return;
+ }
+ LDebug->setText( "Iniciando" );
+ if( ChBBaseDatos->isChecked() )
+ {
+  LDebug->setText( "Generando backup de Base de datos" );
+  if( !generar_db( CkBEstructura->isChecked() ) )
+  {
+   qDebug( "Error al intentar generar la copia de seg de la db" );
+   emit cambiarDetener( false );
+   return;
+  }
+ }
+ if( ChBConfirugacion->isChecked() )
+ {
+  LDebug->setText( "Generando backup de Configuracion del programa" );
+  if( !generar_config() )
+  {
+   qDebug( "Error al generar el backup de la config" );
+   emit cambiarDetener( false );
+   return;
+  }
+ }
+ else
+ {
+  PBProgreso->setValue( PBProgreso->maximum() );
+ }
+ LDebug->setText( "Guardando..." );
+ QString nombre = QDate::currentDate().toString( "yyyyMMdd" );
+ QFileDialog::Options options;
+ options |= QFileDialog::DontUseNativeDialog;
+ QString selectedFilter;
+ QString fileName = QFileDialog::getSaveFileName( this,
+						  "Seleccione el lugar a donde guardar el archivo",
+						  QDir::home().path()+QDir::separator()+nombre,
+						  "Archivos de Backup ( *.bkp );; Todos los archivos (*.*)",
+						  &selectedFilter,
+						  options );
+ if( !fileName.isEmpty() )
+ {
+  if( !fileName.contains( ".bkp" ) )
+  {
+   fileName.append( ".bkp" );
+  }
+  if( !guardar_a_archivo( &fileName ) )
+  {
+   //qDebug( "Error al intentar guardar el archivo" );
+   QMessageBox::critical( this, "Error", "Hubo un error al intentar guardar el archivo de backup" );
+   emit cambiarDetener( false );
+   return;
+  }
+  else
+  {
+   QMessageBox::information( this, "Informacion", "El archivo de backup se ha guardado correctamente" );
+   preferencias *p = preferencias::getInstancia();
+   p->setValue( "backup/archivo", fileName );
+   p->setValue( "backup/enviado", false );
+   p->sync();
+   close();
+  }
+ }
+ emit cambiarDetener( false );
+}
+
+
+/*!
+    \fn Ebackup::restaurarBackup()
+ */
+void Ebackup::restaurarBackup()
+{
+ emit cambiarDetener( true );
+ _continuar = true;
+ // Intento abrir el archivo de backup
+ QFile archivo( LEArchivo->text() );
+ if( !archivo.open( QIODevice::ReadOnly ) )
+ {
+	qWarning( "No se puede arbir el archivo de backup para restaruarlo. Verifique que la ruta sea correcta y que no este en uso" );
+	emit cambiarDetener( false );
+	return;
+ }
+
+ QString contenido = archivo.readAll();
+ if( contenido.isEmpty() )
+ {
+  qWarning( "Error al leer el archivo. teoricamente esta vacio." );
+  emit cambiarDetener( false );
+  return;
+ }
+ // empiezo a analizar el contenido
+ // tengo que encontrar la cabecera sino es invalido
+ if( contenido.startsWith( "|->basedatossql->", Qt::CaseSensitive ) )
+ {
+  // Encontrado datos sql, elimino la cabecera
+  contenido.remove( 0, QString( "|->basedatossql->" ).size() );
+  // ahora tiene que estar el formato
+  if( contenido.section( "=", 1, 1 ) != QSqlDatabase::database().driverName() )
+  {
+   qWarning( "Este backup no es para este tipo de base de datos" );
+   return;
+  }
+  // saco esa subcadena
+  contenido.remove( 0, contenido.indexOf( ";", 0 ) );
+  // desde ahora hasta el fin de la etiqueta, es sql puro
+  // busco la etiqueta de fin
+  int posfinal = contenido.indexOf( "<-basedatossql<-|" );
+
+ }
+}
+
+
+/*!
+    \fn Ebackup::abrirArchivoBackup()
+ */
+void Ebackup::abrirArchivoBackup()
+{
+ QFileDialog::Options options;
+ options |= QFileDialog::DontUseNativeDialog;
+ QString selectedFilter;
+ QString fileName = QFileDialog::getOpenFileName( this,
+						  "Seleccione el archivo de backup",
+						  QDir::home().path()+QDir::separator(),
+						  "Archivos de Backup ( *.bkp )",
+						  &selectedFilter,
+						  options );
+ LEArchivo->setText( fileName );
 }

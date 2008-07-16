@@ -221,6 +221,10 @@
       <subclass uifile="plugins/aCarCorr/FormMovimientoBase.ui" sourcefile="formmovimiento.h" />
       <subclass uifile="plugins/aCarCorr/plugins/ListadoMovimientos/FormFiltrosBase.ui" sourcefile="formfiltro.cpp" />
       <subclass uifile="plugins/aCarCorr/plugins/ListadoMovimientos/FormFiltrosBase.ui" sourcefile="formfiltro.h" />
+      <subclass uifile="src/EMysql.ui" sourcefile="emysql.cpp" />
+      <subclass uifile="src/EMysql.ui" sourcefile="emysql.h" />
+      <subclass uifile="src/ForPrefDb.ui" sourcefile="formprefdb.cpp" />
+      <subclass uifile="src/ForPrefDb.ui" sourcefile="formprefdb.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

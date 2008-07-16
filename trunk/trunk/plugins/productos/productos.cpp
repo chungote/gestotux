@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "productos.h"
 #include "vproductos.h"
+#include <QSqlDatabase>
 
 QSettings *productos::_pref = 0;
 
@@ -77,6 +78,8 @@ bool productos::inicializar( QSettings *pref )
  */
 bool productos::verificarTablas()
 {
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
+ { qWarning( "Error al buscar la tabla producto" ); return false; }
  return true;
 }
 
@@ -101,7 +104,7 @@ void productos::crearMenu( QMenuBar *m )
   qDebug( "Error en las baras de menu" );
  }
  else
- { 
+ {
   menuHer->addAction( ActProductos );
  }
 }

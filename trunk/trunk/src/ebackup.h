@@ -42,6 +42,8 @@ public:
     ~Ebackup();
     bool generar_config();
     void ejecutar_colas( QList<QByteArray> colas );
+    void generarBackup();
+    void restaurarBackup();
 
 private:
        /*!
@@ -85,6 +87,8 @@ public slots:
 signals:
     void cambiarDetener( bool estado );
 
+protected slots:
+    void abrirArchivoBackup();
 };
 
 #endif

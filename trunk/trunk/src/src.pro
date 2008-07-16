@@ -10,7 +10,9 @@ SOURCES += gestotux.cpp \
  mclientes.cpp \
  vcliente.cpp \
  formactualizacion.cpp \
- esplash.cpp
+ esplash.cpp \
+ emysql.cpp \
+ formprefdb.cpp
 HEADERS += gestotux.h \
  ebackup.h \
  eenviobackup.h \
@@ -24,7 +26,9 @@ HEADERS += gestotux.h \
  einfoprogramainterface.h \
  eplugin.h \
  formactualizacion.h \
- esplash.h
+ esplash.h \
+ emysql.h \
+ formprefdb.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -40,7 +44,9 @@ network
 FORMS += FormAcercaDeBase.ui \
 formBackup.ui \
 FPrefGeneral.ui \
- FormActualizacionBase.ui
+ FormActualizacionBase.ui \
+ EMysql.ui \
+ ForPrefDb.ui
 TARGET = gestotux
 DESTDIR = ../bin
 

@@ -63,7 +63,6 @@ void FormVenta::guardar()
  {
   return;
  }
- QSqlQuery c( "BEGIN TRANSACTION" );
  QProgressDialog *dialogo = new QProgressDialog( this );
  dialogo->setLabelText( "Guardando datos del TRI" );
  dialogo->setMinimum( 0 );
@@ -99,7 +98,7 @@ void FormVenta::guardar()
  if( _especial )
  {
    movimiento->setCantidadAnimales( SBCantidadAnimales->value() );
- } 
+ }
  else
  {
 	// Chequear que no existan los numeros de caravanas ya en la tabla
@@ -111,7 +110,7 @@ void FormVenta::guardar()
 	QString cadena;
 	foreach( cadena, lista )
 	{
-	movimiento->agregarCaravana( cadena );
+		movimiento->agregarCaravana( cadena );
 	}
  }// fin de si es especial o no
  // Lista la comprobacion de caravanas
@@ -122,19 +121,11 @@ void FormVenta::guardar()
  {
 	QMessageBox::critical( this, "Error al guardar los datos", "No se ha podido guardar los datos de esta compra" );
 	dialogo->close();
-	c.exec( "ROLLBACK TRANSACTION" );
 	return;
  }
  else
  {
-  if( c.exec( "COMMIT" ) )
-  {
-   QMessageBox::information( this, "Correcto", "La informacion se ha guardado correctamente");
-  }
-  else
-  {
-   qWarning( QString( "Error al hacer el commit\n Error: %1" ).arg( c.lastError().text() ).toLocal8Bit() );
-  }
+  QMessageBox::information( this, "Correcto", "La informacion se ha guardado correctamente");
  }
  dialogo->close();
  this->close();

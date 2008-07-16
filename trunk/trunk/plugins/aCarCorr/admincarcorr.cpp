@@ -63,7 +63,6 @@ QWidgetList AdminCarCorr::formsPreferencias()
  if( _listaFormPref.isEmpty() )
  {
   _listaFormPref.append( new FormPrefCaravanas() );
-  //_listaFormPref.append( new FormPrefInformes() );
  }
  return _listaFormPref;
 }
@@ -113,6 +112,10 @@ bool AdminCarCorr::inicializar( QSettings* pref)
  ActModificarTri->setToolTip( "Permite modificar un numero especifico de tri" );
  connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
 
+ ActEliminarTri = new QAction( "Eliminar Tri", this );
+ ActEliminarTri->setToolTip( "Elimina un tri especifico" );
+ connect( ActEliminarTri, SIGNAL( triggered() ), this, SLOT( eliminarTri() ) );
+
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
  _acciones.append( ActAgregarMudanza );
@@ -124,42 +127,20 @@ bool AdminCarCorr::inicializar( QSettings* pref)
 
 bool AdminCarCorr::verificarTablas()
 {
- QSqlQuery cola;
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_categorias' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_categorias" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_establecimientos' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_establecimientos" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_caravana' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_caravana" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_caravana' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_caravana" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_tri' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_tri" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_carv_tri' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_carv_tri" );
-  return false;
- }
- if( !cola.exec( "SELECT count(name) FROM sqlite_master WHERE name = 'car_carv_duenos' AND type = 'table'" ) )
- {
-  qWarning( "Error al buscar la tabla car_carv_tri" );
-  return false;
- }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_categorias" ) )
+ { qWarning( "Error al buscar la tabla car_categorias" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_establecimientos" ) )
+ { qWarning( "Error al buscar la tabla car_establecimientos" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_caravana" ) )
+ { qWarning( "Error al buscar la tabla car_caravana" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_caravana" ) )
+ { qWarning( "Error al buscar la tabla car_caravana" );	return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_tri" ) )
+ { qWarning( "Error al buscar la tabla car_tri" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_carv_tri" ) )
+ { qWarning( "Error al buscar la tabla car_carv_tri" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "car_carv_duenos" ) )
+ { qWarning( "Error al buscar la tabla car_carv_duenos" ); return false; }
  return true;
 }
 
@@ -192,6 +173,7 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
   menuHer->addAction( ActAgregarStock );
   menuHer->addSeparator();
   menuHer->addAction( ActModificarTri );
+  menuHer->addAction( ActEliminarTri );
  }
  // Creo el menu de informes
  if( !plugins().isEmpty() )
@@ -266,6 +248,7 @@ void AdminCarCorr::hacerMudanza()
 
 /*!
     \fn AdminCarCorr::cargarPluginsInformes()
+	Carga los plugins de informes que se encuentren activos y se verifiquen
  */
 void AdminCarCorr::cargarPluginsInformes()
 {
@@ -328,6 +311,8 @@ void AdminCarCorr::cargarPluginsInformes()
 
 /*!
     \fn AdminCarCorr::plugins()
+	Devuelve una lista de punteros a todos los plugins que tiene cargados
+	@return QList de EInformeInterface * de todos los plugins
  */
 QList<EInformeInterface *> AdminCarCorr::plugins()
 {
@@ -345,6 +330,8 @@ QList<EInformeInterface *> AdminCarCorr::plugins()
 
 /*!
     \fn AdminCarCorr::empresa()
+	Devuleve el nombre de la empresa para el dialogo de Acerca de
+	@return Nombre de la empresa
  */
 QString AdminCarCorr::empresa() const
 {
@@ -369,6 +356,11 @@ QString AdminCarCorr::companeros()
 #include <QSqlRecord>
 #include <QInputDialog>
 #include "formmodificartri.h"
+/*!
+   \fn AdminCarCorr::modificarTri()
+	Slot para modificar un tri.
+        Muestra una ventana para elegir el numero de tri, y muestra luego el formulario de modificacion
+*/
 void AdminCarCorr::modificarTri()
 {
  // Pregunto que numero de tri quiere modificar
@@ -397,10 +389,20 @@ void AdminCarCorr::modificarTri()
    }
   }
   else
-  {  qWarning( "Error al ejecutar la cola de buscqueda de tipo de movimiento" ); }
+  {  qWarning( "Error al ejecutar la cola de busqueda de tipo de movimiento" ); }
  }
  else
  {
   return;
  }
+}
+
+
+/*!
+    \fn AdminCarCorr::eliminarTri()
+	Slot de eliminacion de tri, muestra la ventana para elegir cual eliminar.
+ */
+void AdminCarCorr::eliminarTri()
+{
+  qWarning( "Todavia no estoy implementado" );
 }
