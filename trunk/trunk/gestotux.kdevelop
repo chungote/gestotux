@@ -182,7 +182,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins</activedir>
+      <activedir>src</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -225,6 +225,8 @@
       <subclass uifile="src/EMysql.ui" sourcefile="emysql.h" />
       <subclass uifile="src/ForPrefDb.ui" sourcefile="formprefdb.cpp" />
       <subclass uifile="src/ForPrefDb.ui" sourcefile="formprefdb.h" />
+      <subclass uifile="utiles/EAyudaBase.ui" sourcefile="eayuda.cpp" />
+      <subclass uifile="utiles/EAyudaBase.ui" sourcefile="eayuda.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

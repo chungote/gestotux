@@ -17,49 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "esplash.h"
-#include <QFile>
-#include <QDir>
-#include <QApplication>
 
-ESplash::ESplash(QWidget *parent)
- : QSvgWidget( parent )
+#ifndef EAYUDA_H
+#define EAYUDA_H
+
+#include <QWidget>
+#include <QtHelp>
+#include "ui_EAyudaBase.h"
+
+class EAyuda : public QWidget, private Ui::EAyudaBase
 {
- this->setWindowFlags( Qt::SplashScreen );
- setAttribute( Qt::WA_DeleteOnClose );
- if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.svg" ) )
- {
-  this->load( QString( QApplication::applicationDirPath() + QDir::separator() + "splash.svg") );
- }
- else
- {
-  this->load( QString(":/imagenes/splash.svg") );
- }
-}
+  Q_OBJECT
 
+public:
+    bool hayAyuda( QString nombreObjeto );
+    void mostrarAyuda( QString nombreObjecto );
+    void mostrarIndice();
+    static EAyuda * instancia();
 
-ESplash::~ESplash()
-{
-}
+private:
+  EAyuda(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  ~EAyuda();
+  QHelpEngineCore *engine;
+  static EAyuda *yo;
 
+};
 
-void ESplash::repaint()
-{ }
+#endif
 
-void ESplash::setPixmap(const QPixmap& pixmap)
-{ return; }
-
-void ESplash::clearMessage()
-{}
-
-void ESplash::showMessage(const QString& message, int alignment, const QColor& color)
-{}
-
-/*!
- * \fn ESplash::show()
- *	Funcion que actua como simulador para parecer una clase de QSplashScreen
- */
-void ESplash::show()
-{
- QWidget::setVisible(true);
-}

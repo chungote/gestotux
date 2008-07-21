@@ -17,8 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-
 #include <QtGui>
 #include "gestotux.h"
 #include <QTextEdit>
@@ -44,7 +42,7 @@
 #include "einfoprogramainterface.h"
 #include "formactualizacion.h"
 
-#define VERSION_PROGRAMA 0.2
+#define VERSION_PROGRAMA 0.4
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
@@ -74,7 +72,7 @@ void gestotux::inicializar()
 preferencias *p = preferencias::getInstancia();
 //p->inicio();
 p->beginGroup( "ventanaPrincipal" );
-this->restoreState( p->value( "estado", "" ).toByteArray(), 0 );
+this->restoreState( p->value( "estado", "" ).toByteArray() );
 p->endGroup();
 
  setWindowIcon( pluginInfo()->iconoPrograma() );
@@ -164,14 +162,11 @@ void gestotux::salir()
 {
  preferencias *p = preferencias::getInstancia();
  p->sync();
- //p->inicio();
  p->beginGroup( "ventanaPrincipal" );
- p->setValue( "estado", saveState( 0 ) );
+ p->setValue( "estado", saveState() );
  p->endGroup();
 
- QSqlDatabase DB = QSqlDatabase::database();
- DB.close();
- DB.removeDatabase( "gestotux.database" );
+ QSqlDatabase::database().close();
  close();
 }
 
@@ -402,3 +397,22 @@ void gestotux::verActualizacion()
  */
 QHash<QString, EPlugin *> *gestotux::pluginsHash()
 { return _plugins; }
+
+
+#include "eayuda.h"
+/*!
+    \fn gestotux::keyPressEvent( QKeyEvent *event )
+ */
+void gestotux::keyPressEvent( QKeyEvent *event )
+{
+ if (  event->key() ==  Qt::Key_F1 )
+ {
+   // si el pedido llego hasta aca, no hay ninguna ventana abierta.. muestro el indice
+   EAyuda *ayuda = EAyuda::instancia();
+   ayuda->mostrarIndice();
+ }
+ else
+ {
+	QWidget::keyPressEvent( event );
+ }
+}

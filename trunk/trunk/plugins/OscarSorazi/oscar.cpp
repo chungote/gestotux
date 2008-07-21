@@ -117,7 +117,11 @@ bool Oscar::inicializar( QSettings* pref)
 
  ActModificarTri = new QAction( "Modificar Tri", this );
  ActModificarTri->setToolTip( "Permite modificar un numero especifico de tri" );
- //connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
+ connect( ActModificarTri, SIGNAL( triggered() ), this, SLOT( modificarTri() ) );
+
+ ActEliminarTri = new QAction( "Modificar Tri", this );
+ ActEliminarTri->setToolTip( "Elimina un tri de la lista" );
+ connect( ActEliminarTri, SIGNAL( triggered() ), this, SLOT( eliminarTri() ) );
 
  _acciones.append( ActAgregarVenta );
  _acciones.append( ActAgregarCompra );
@@ -173,6 +177,8 @@ void Oscar::crearMenu(QMenuBar* m)
   menuHer->addAction( ActAgregarMudanza );
   menuHer->addAction( ActAgregarVenta );
   menuHer->addAction( ActAgregarStock );
+  menuHer->addSeparator();
+  menuHer->addAction( ActEliminarTri );
  }
  if( !plugins().isEmpty() )
  {
@@ -321,7 +327,7 @@ void Oscar::agregarStock()
 #include "../aCarCorr/formmodificartri.h"
 void Oscar::modificarTri()
 {
- // Pregunto que numero de tri quiere modificar
+// Pregunto que numero de tri quiere modificar
  bool ok;
  QStringList lista;
  QSqlQuery cola( "SELECT id_tri FROM car_tri" );
@@ -335,12 +341,54 @@ void Oscar::modificarTri()
   // Cargo el formulario con el tri que corresponda
   if( cola.exec( QString( "SELECT razon FROM car_tri WHERE id_tri = '%1'" ).arg( id_tri ) ) )
   {
-   emit agregarVentana( new FormModificarTri( 0, cola.record().value(0).toInt(), id_tri.toInt() ) );
-   return;
+   if( cola.next() )
+   {
+     emit agregarVentana( new FormModificarTri( 0, cola.record().value("razon").toInt(), id_tri.toInt() )  );
+     return;
+   }
+   else
+   {
+     qWarning( "Error al buscar el tipo de movimiento" );
+     return;
+   }
   }
+  else
+  {  qWarning( "Error al ejecutar la cola de busqueda de tipo de movimiento" ); }
  }
  else
  {
   return;
+ }
+}
+
+
+#include <QMessageBox>
+
+/*!
+    \fn Oscar::eliminarTri()
+ */
+void Oscar::eliminarTri()
+{
+  // Pregunto que numero de tri quiere modificar
+ bool ok;
+ QStringList lista;
+ QSqlQuery cola( "SELECT id_tri FROM car_tri" );
+ while( cola.next() )
+ {
+  lista.append( cola.record().value(0).toString() );
+ }
+ QString id_tri = QInputDialog::getItem( 0, tr("Elija el tri"), tr("# Tri :"), lista, 0, false, &ok );
+ if( !id_tri.isNull() && ok )
+ {
+	EMovimiento *movimiento = new EMovimiento();
+	if( movimiento->eliminarTRI( id_tri.toInt() ) )
+	{
+		QMessageBox::information( 0, "TRI eliminado", "El tri seleccionado ha sido eliminado" );
+	}
+	else
+	{
+		qWarning( "No se pudo eliminar el tri." );
+	}
+	delete movimiento;
  }
 }

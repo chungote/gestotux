@@ -66,6 +66,7 @@ private:
     QAction *ActAgregarVenta;
     QAction *ActAgregarMudanza;
     QAction *ActAgregarStock;
+    QAction *ActEliminarTri;
 
 protected slots:
     void verCategorias();
@@ -76,10 +77,11 @@ protected slots:
     void hacerMudanza();
     void mostrarDuenos();
     void agregarStock();
+    void eliminarTri();
+    void modificarTri();
 
 private:
     void cargarPluginsInformes();
-    void modificarTri();
 
 signals:
 	void agregarVentana( QWidget *v );

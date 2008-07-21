@@ -40,3 +40,6 @@ TARGETDEPS += ../../bin/libutiles.a
 INCLUDEPATH += ../../src \
   ../../utiles
 
+QMAKE_CXXFLAGS_DEBUG += -ggdb \
+  -g3
+

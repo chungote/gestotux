@@ -35,7 +35,8 @@ CONFIG += warn_on \
           qt \
  exceptions \
  debug \
- precompile_header
+ precompile_header \
+ help
 QT += sql \
 svg \
 xml \
@@ -50,7 +51,8 @@ FPrefGeneral.ui \
 TARGET = gestotux
 DESTDIR = ../bin
 
-DISTFILES += qt_es.qm
+DISTFILES += qt_es.qm \
+ ../ayuda/salir.html
 
 win32 {
     CONFIG += release
@@ -71,9 +73,11 @@ LIBS += ../bin/libutiles.a
 
 TARGETDEPS += ../bin/libutiles.a
 
-INCLUDEPATH += ../utiles
 
 RESOURCES += gestotux.qrc
 
 TRANSLATIONS += gestotux.ts
+
+INCLUDEPATH += ../utiles \
+  ../utiles/ui
 

@@ -1,7 +1,7 @@
 SUBDIRS += utiles \
  src \
  plugins
-TEMPLATE = subdirs 
+TEMPLATE = subdirs
 CONFIG += warn_on \
           qt \
           thread  \

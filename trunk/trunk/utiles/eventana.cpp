@@ -34,7 +34,7 @@ EVentana::~EVentana()
 {
 }
 
-
+#include "eayuda.h"
 /*!
     \fn EVentana::keyPressEvent( QKeyEvent *event )
     Implementacion de autobusqueda del archivo de ayuda al presionar la tecla F1 en la ventana.
@@ -44,17 +44,26 @@ void EVentana::keyPressEvent( QKeyEvent *event )
 {
  if (  event->key() ==  Qt::Key_F1 )
  {
-  if( nombre_archivo_ayuda != "" )
-  {
-   event->accept();
-/*   Ayudante a( this );
-   a.mostrar();
-   a.setear_archivo( nombre_archivo_ayuda );*/
-  }
-  else
-  {
-   event->ignore();
-  }
+   EAyuda *ayuda = EAyuda::instancia();
+   QString buscar;
+   if( this->focusWidget()->objectName().isEmpty() )
+   {
+     // No hay objeto seleccionado, busco el nombre del form
+     buscar = this->objectName();
+   }
+   else
+   {
+     buscar = this->objectName() + "::" +this->focusWidget()->objectName();
+   }
+   if( ayuda->hayAyuda( buscar ) )
+   {
+	ayuda->mostrarAyuda( buscar );
+	event->accept();
+   }
+   else
+   {
+    event->ignore();
+   }
  }
  else
  {
@@ -81,16 +90,6 @@ void EVentana::setNombreVentana( QString texto )
 QString EVentana::get_nombre_ventana()
 {
   return(nombre_ventana);
-}
-
-/*!
-    \fn EVentana::ayuda()
- 	A Implementar en futuro
-	Abre la ayuda para poder el html señalado por nombre_archivo_ayuda;
- */
-void EVentana::ayuda()
-{
-    /// @todo implementar slot de ayuda
 }
 
 

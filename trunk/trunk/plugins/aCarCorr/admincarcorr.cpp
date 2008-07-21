@@ -162,7 +162,6 @@ void AdminCarCorr::crearMenu( QMenuBar* m )
  {
   menuHer->addAction( ActEstablecimiento );
   menuHer->addAction( ActCategoria );
-  //menuHer->addAction( ActDuenos );
   menuHer->addSeparator();
   menuHer->addAction( ActAgregarCompra );
   menuHer->addAction( ActAgregarMudanza );
@@ -394,12 +393,33 @@ void AdminCarCorr::modificarTri()
  }
 }
 
-
+#include <QMessageBox>
 /*!
     \fn AdminCarCorr::eliminarTri()
 	Slot de eliminacion de tri, muestra la ventana para elegir cual eliminar.
  */
 void AdminCarCorr::eliminarTri()
 {
-  qWarning( "Todavia no estoy implementado" );
+ // Pregunto que numero de tri quiere modificar
+ bool ok;
+ QStringList lista;
+ QSqlQuery cola( "SELECT id_tri FROM car_tri" );
+ while( cola.next() )
+ {
+  lista.append( cola.record().value(0).toString() );
+ }
+ QString id_tri = QInputDialog::getItem( 0, tr("Elija el tri"), tr("# Tri :"), lista, 0, false, &ok );
+ if( !id_tri.isNull() && ok )
+ {
+	EMovimiento *movimiento = new EMovimiento();
+	if( movimiento->eliminarTRI( id_tri.toInt() ) )
+	{
+		QMessageBox::information( 0, "TRI eliminado", "El tri seleccionado ha sido eliminado" );
+	}
+	else
+	{
+		qWarning( "No se pudo eliminar el tri." );
+	}
+	delete movimiento;
+ }
 }

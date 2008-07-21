@@ -32,6 +32,7 @@
 VProductos::VProductos(QWidget *parent)
  : EVLista(parent)
 {
+
  modelo = new MProductos( this );
 
  vista->setModel( modelo );
