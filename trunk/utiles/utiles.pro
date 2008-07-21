@@ -6,13 +6,15 @@ eactimprimir.h \
  evlista.h \
  preferencias.h \
  evisorinformes.h \
- formprefhijo.h
+ formprefhijo.h \
+ eayuda.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
  evlista.cpp \
  preferencias.cpp \
- evisorinformes.cpp
+ evisorinformes.cpp \
+ eayuda.cpp
 
 QT += sql
 
@@ -27,8 +29,12 @@ linux-g++ {
 }
 
 CONFIG += debug \
- staticlib
+ staticlib \
+ help
+
 CONFIG -= release
 
-DESTDIR = ../bin 
+DESTDIR = ../bin
+
+FORMS += EAyudaBase.ui
 

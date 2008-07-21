@@ -41,10 +41,6 @@ public:
 
 protected:
    /**
-    * Nombre del archivo html de ayuda para abrir
-    */
-    QString nombre_archivo_ayuda;
-   /**
     * Nombre interno de la ventana para guardar sus preferencias
     */
     QString nombre_ventana;
@@ -55,9 +51,6 @@ protected:
 
 private:
     void keyPressEvent( QKeyEvent *event );
-
-public slots:
-    void ayuda();
 
 signals:
 	void agregarVentana( QWidget * );

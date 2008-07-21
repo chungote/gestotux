@@ -586,6 +586,7 @@ int EMovimiento::guardar( QProgressDialog *dialogo )
 				qWarning( "Error al buscar las caravanas para actualizar los datos" );
 				deshacerCambiosDb();
 			}
+			delete xcola;
 		}
 	}// Fin cantidad de animales == 0
 	//@ todo fue ok hasta ahora
@@ -1047,7 +1048,7 @@ bool EMovimiento::eliminarTRI( const int idDB )
   qDebug( "Error al eliminar relaciones de un tri" );
   deshacerCambiosDb();
  }
- if( !cola->exec( QString( "DELETE FROM car_carv_tri WHERE id_tri = '%1'" ).arg( idDB ) ) )
+ if( !cola->exec( QString( "DELETE FROM car_tri WHERE id_tri = '%1'" ).arg( idDB ) ) )
  {
   estado = false;
   qDebug( "Error al eliminar el tri" );

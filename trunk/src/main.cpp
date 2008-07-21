@@ -37,6 +37,8 @@
 #include "esplash.h"
 #include "emysql.h"
 
+#define NOMBRE_CONEXION "gestotux"
+
 FILE *debug;
 
  void myMessageOutput(QtMsgType type, const char *msg)
@@ -152,7 +154,7 @@ int main(int argc, char *argv[])
        {
 	 qWarning( "Usando mysql" );
 	 EMysql dialogo;
-	dialogo.setDb( &DB );
+	 dialogo.setDb( &DB );
 	 if( dialogo.exec() )
 	 {
 		qDebug( "Base de datos abierta correctamente" );

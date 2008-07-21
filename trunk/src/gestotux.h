@@ -103,6 +103,8 @@ private:
     bool cargarPlugins();
     QDir pluginsDir;
     QPluginLoader loader;
+protected:
+    void keyPressEvent( QKeyEvent *event );
 };
 
 #endif

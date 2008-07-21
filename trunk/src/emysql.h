@@ -41,6 +41,8 @@ protected slots:
 private:
 	QSqlDatabase *_db;
 
+private slots:
+    void avanzarBarra();
 };
 
 #endif

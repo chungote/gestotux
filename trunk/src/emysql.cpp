@@ -20,6 +20,8 @@
 #include "emysql.h"
 #include <QSqlDatabase>
 #include <QSqlError>
+#include <QProgressBar>
+#include <QTimer>
 #include "preferencias.h"
 
 EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
@@ -31,6 +33,8 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
 	LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
 	adjustSize();
+        PBBarra->setValue( 0 );
+        PBBarra->setFormat( "" );
 }
 
 EMysql::~EMysql()
@@ -45,6 +49,12 @@ void EMysql::reject()
 void EMysql::accept()
 {
   // intento conectar
+  PBBarra->setValue(0);
+  PBBarra->setFormat( "Intentando conectar..." );
+  QTimer temporizador( this );
+  temporizador.setInterval( 100 );
+  connect( &temporizador, SIGNAL(timeout()), this, SLOT(avanzarBarra()));
+  temporizador.start();
   *_db = QSqlDatabase::addDatabase( "QMYSQL" );
   _db->setHostName( LEHost->text() );
   _db->setDatabaseName( LEBaseDatos->text() );
@@ -52,6 +62,8 @@ void EMysql::accept()
   _db->setPassword( LEContra->text() );
   if( _db->open() )
   {
+   temporizador.stop();
+   PBBarra->setFormat( "Conectado" );
    preferencias *p = preferencias::getInstancia();
    p->setValue( "mysql/base", LEBaseDatos->text() );
    p->setValue( "mysql/usuario", LEUsuario->text() );
@@ -62,6 +74,7 @@ void EMysql::accept()
   {
    qWarning( "Ultimo error: " + _db->lastError().text().toLocal8Bit() );
    _db->removeDatabase( _db->connectionName() );
+   // Pregunto si quiere cambiar a las db interna??
   }
 }
 
@@ -73,4 +86,13 @@ void EMysql::accept()
 void EMysql::setDb( QSqlDatabase *db )
 {
  _db = db;
+}
+
+
+/*!
+    \fn EMysql::avanzarBarra()
+ */
+void EMysql::avanzarBarra()
+{
+ PBBarra->setValue( PBBarra->value()+1 );
 }
