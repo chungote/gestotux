@@ -27,7 +27,7 @@
 #include <QModelIndex>
 
 FormPresupuestosAnteriores::FormPresupuestosAnteriores(QWidget* parent, Qt::WFlags fl)
-: EVentana( parent ), Ui::FormPresupuestosAnterioresBase()
+: EVentana( parent, fl ), Ui::FormPresupuestosAnterioresBase()
 {
 	setupUi(this);
 	this->setAttribute( Qt::WA_DeleteOnClose );

@@ -21,7 +21,7 @@
 #include "preferencias.h"
 
 FormPrefDb::FormPrefDb(QWidget* parent, Qt::WFlags fl)
-: EVentana( parent ), Ui::FormPrefDbBase()
+: EVentana( parent, fl ), Ui::FormPrefDbBase()
 {
  this->setAttribute( Qt::WA_DeleteOnClose );
  setupUi(this);

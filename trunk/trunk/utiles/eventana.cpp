@@ -23,8 +23,8 @@
 #include <QMdiSubWindow>
 #include <QIcon>
 
-EVentana::EVentana( QWidget *padre )
- : QWidget()
+EVentana::EVentana( QWidget *padre, Qt::WFlags fl  )
+ : QWidget( padre, fl )
 {
  this->padre = padre;
  setAttribute( Qt::WA_DeleteOnClose );
@@ -49,11 +49,18 @@ void EVentana::keyPressEvent( QKeyEvent *event )
    if( this->focusWidget()->objectName().isEmpty() )
    {
      // No hay objeto seleccionado, busco el nombre del form
-     buscar = this->objectName();
+	if( !this->objectName().isEmpty() )
+	{
+		buscar = this->objectName();
+	}
+	else
+	{
+		buscar = "noencontrado";
+	}
    }
    else
    {
-     buscar = this->objectName() + "::" +this->focusWidget()->objectName();
+     buscar = this->focusWidget()->parentWidget()->objectName() + "::" +this->focusWidget()->objectName();
    }
    if( ayuda->hayAyuda( buscar ) )
    {

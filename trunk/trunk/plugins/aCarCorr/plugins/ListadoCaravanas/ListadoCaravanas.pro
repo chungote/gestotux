@@ -3,7 +3,8 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 debug \
-exceptions
+exceptions \
+help
 CONFIG -= release
 
 QT += sql

@@ -2,9 +2,10 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug
-
-QT += sql
+debug \
+help
+QT += sql \
+ svg
 
 TARGET = productos
 

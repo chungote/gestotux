@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,7 +26,7 @@
 #include <QInputDialog>
 
 FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
-: EVentana( parent ), Ui::FormListaProductosBase()
+: EVentana( parent, fl ), Ui::FormListaProductosBase()
 {
 	setupUi(this);
 	this->setAttribute( Qt::WA_DeleteOnClose );
@@ -50,6 +50,7 @@ FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 
 	adjustSize();
 	groupBox->setVisible( PBMas->isChecked() );
+	verificarProductos();
 }
 
 FormListaProductos::~FormListaProductos()
@@ -112,4 +113,23 @@ QString FormListaProductos::tituloTabla() const
 bool FormListaProductos::cabeceraColumnas() const
 {
  return CkBCabeceras->checkState();
+}
+
+
+/*!
+    \fn FormListaProductos::verificarProductos()
+ */
+void FormListaProductos::verificarProductos()
+{
+ QSqlQuery cola( "SELECT COUNT(id) FROM producto" );
+ if( cola.next() )
+ {
+	if( cola.record().value(0).toInt() <= 0 )
+	{
+		PBAgregar->setEnabled( false );
+		PBEliminar->setEnabled( false );
+		PBMas->setEnabled( false );
+		PBAceptar->setEnabled( false );
+	}
+ }
 }

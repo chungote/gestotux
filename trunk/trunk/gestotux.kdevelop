@@ -182,7 +182,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>src</activedir>
+      <activedir></activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -203,6 +203,7 @@
       <enableFilenamesOnly>false</enableFilenamesOnly>
       <showVariablesInTree>true</showVariablesInTree>
       <showParseErrors>true</showParseErrors>
+      <projectfile>/home/Esteban/Programas/gestotux/gestotux.pro</projectfile>
     </qmake>
     <subclassing>
       <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.cpp" />

@@ -1,7 +1,8 @@
 TEMPLATE = lib
 CONFIG += plugin \
  dll \
- debug
+ debug \
+ help
 QT = gui \
 	core \
 	svg \

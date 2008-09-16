@@ -34,7 +34,7 @@ QT = gui \
 	core \
 	svg \
 	sql \
-	xml
+	xml 
 
 FORMS += FormAgregarReciboBase.ui \
  FPrefRecibos.ui	 \
@@ -60,4 +60,6 @@ LIBS += ../../bin/libutiles.a
 TARGETDEPS += ../../bin/libutiles.a
 
 CONFIG -= release
+
+CONFIG += help
 

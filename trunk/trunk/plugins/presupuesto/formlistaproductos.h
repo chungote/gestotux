@@ -45,6 +45,8 @@ protected slots:
 
 signals:
     void agregarTabla();
+private:
+    void verificarProductos();
 };
 
 #endif
