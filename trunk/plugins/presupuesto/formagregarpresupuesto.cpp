@@ -25,7 +25,7 @@
 #include "formlistaproductos.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
-: EVentana( parent ), Ui::FormPresupuestoBase()
+: EVentana( parent, fl ), Ui::FormPresupuestoBase()
 {
 	// Inicializo el presupeusto!
 	pre = new Presupuesto( this );

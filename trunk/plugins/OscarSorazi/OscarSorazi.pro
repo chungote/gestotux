@@ -2,9 +2,11 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug
+debug \
+help
 
-QT += sql
+QT += sql \
+ svg
 
 TARGET = oscarsoraiz
 

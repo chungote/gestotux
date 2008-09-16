@@ -1,10 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="1" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eayuda.cpp" >
-   <View0 Encoding="" line="23" Type="Source" />
+ <DocsAndViews NumberOfDocuments="3" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eventana.cpp" >
+   <View0 Encoding="" Type="Source" />
   </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eventana.h" >
+   <View0 Encoding="" line="30" Type="Source" />
+  </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/ayuda/documentacion.qhp" >
+   <View0 Encoding="" line="10" Type="Source" />
+  </Doc2>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

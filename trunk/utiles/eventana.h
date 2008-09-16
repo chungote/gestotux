@@ -33,7 +33,7 @@ class EVentana : public QWidget
 {
 Q_OBJECT
 public:
-    EVentana( QWidget *padre );
+    EVentana( QWidget *padre, Qt::WFlags fl = 0 );
     ~EVentana();
     void setNombreVentana( QString texto );
     QString get_nombre_ventana();

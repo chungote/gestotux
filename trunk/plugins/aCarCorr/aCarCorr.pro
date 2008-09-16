@@ -6,10 +6,11 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 exceptions \
- windows \
- debug
+ debug \
+ help
 
-QT += sql
+QT += sql \
+ svg
 
 HEADERS += admincarcorr.h \
  mcategoria.h \

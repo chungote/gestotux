@@ -28,8 +28,8 @@
 #include <QAction>
 #include <QGridLayout>
 
-EVLista::EVLista( QWidget *parent )
-: EVentana( parent )
+EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
+: EVentana( parent, fl )
 {
  QGridLayout *layout = new QGridLayout( this );
  vista = new QTableView(this);

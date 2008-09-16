@@ -29,12 +29,13 @@
 #include <QDomElement>
 #include <QTextEdit>
 #include <QDomNodeList>
- 
+
 FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FormActualizacionBase()
+: EVentana( parent, fl ), Ui::FormActualizacionBase()
 {
-	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
+	this->setAttribute( Qt::WA_DeleteOnClose );
+	this->setObjectName( "actualizacion" );
 
 	ActCerrar = new QAction( "Cerrar", this );
 	ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
@@ -57,7 +58,7 @@ FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 	ActDetener->setEnabled( false );
 	connect( ActDetener, SIGNAL( triggered()), this, SLOT( detener() ) );
 
-	
+
 	addAction( ActIniciar );
 	addAction( ActDetener );
 	addAction( ActCerrar );
@@ -343,7 +344,7 @@ void FormActualizacion::analizarGeneral()
 		if( nodoA.toElement().tagName() == "plugin" )
 		{
 			// Tengo instalado el plugin??
-			qDebug( QString( "Encontrado plugin %1" ).arg( nodoA.toElement().attribute( "nombre" ) ).toLocal8Bit() );	
+			qDebug( QString( "Encontrado plugin %1" ).arg( nodoA.toElement().attribute( "nombre" ) ).toLocal8Bit() );
 			QString nombre = nodoA.toElement().attribute( "nombre" );
 			if( gestotux::pluginsHash()->find( nombre ) == gestotux::pluginsHash()->end() )
 			{
@@ -363,7 +364,7 @@ void FormActualizacion::analizarGeneral()
 				{
 					//veo que numero de version es
 					double version  = nodoVersion.toElement().attribute( "numero" ).toDouble();
-					qDebug( QString( "Encontrada version %1" ).arg( version ).toLocal8Bit() );	
+					qDebug( QString( "Encontrada version %1" ).arg( version ).toLocal8Bit() );
 					if( version >= gestotux::pluginsHash()->value( nombre )->version() )
 					{
 						// Lo ingreso a la lista de actualizaciones de forma ordenanda

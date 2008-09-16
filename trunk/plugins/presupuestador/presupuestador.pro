@@ -1,6 +1,7 @@
 TEMPLATE = lib
 CONFIG += plugin \
- dll
+ dll \
+help
 TARGET = presupuestador
 
 DESTDIR = ../../bin/plugins

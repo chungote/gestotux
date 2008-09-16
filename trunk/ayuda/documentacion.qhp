@@ -9,20 +9,25 @@
                  <section title="Manual de Gestotux" ref="index.html">
 			<!-- <section title="Iniciando el programa" ref=""/>
 			<section title="Usando las bases de datos" ref="dbs.html"/>
-			<section title="Actualizar el programa" ref="actualizar.html"/>
 			<section title="Generar y restaurar backups del sistema" ref="backup.html"/>
 			<section title="Utilizar preferencias" ref="preferencias.html" />-->
+			<section title="Actualizar el programa" ref="actualizar.html"/>
 			<section title="Salir del programa" ref="salir.html"/>
                  </section>
              </toc>
              <keywords>
-                 <keyword name="index" id="index" ref="index.html"/>
-		<keyword name="salir" id="salir" ref="salir.html"/>
+		<keyword name="index" id="index" ref="index.html" />
+		<keyword name="salir" id="salir" ref="salir.html" />
+		<keyword name="actualizar" id="actualizar" ref="actualizar.html" />
              </keywords>
              <files>
                 <file>index.html</file>
 		<file>estilo.css</file>
 		<file>imagenes/salir.png</file>
+		<file>imagenes/actualizar.png</file>
+		<file>imagenes/next.png</file>
+		<file>salir.html</file>
+		<file>actualizar.html</file>
              </files>
          </filterSection>
      </QtHelpProject>

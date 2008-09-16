@@ -35,3 +35,6 @@
 29/02/08
 - Agregado sistema de plugins para presupuestos
 - Agregada verificacion de carga con el plugin de informacion cargado
+
+13/08/08
+- Agregada restriccion de deshabilitar botones de presupuesto si no existen productos

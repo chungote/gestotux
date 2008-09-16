@@ -29,7 +29,7 @@
 #include <QMessageBox>
 
 FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
-: EVentana( parent), Ui::FormNuevoPresupuestoBase()
+: EVentana( parent, fl ), Ui::FormNuevoPresupuestoBase()
 {
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);

@@ -8,3 +8,5 @@ CONFIG += warn_on \
  ordered
 DESTDIR = .
 
+$DIR = $$DIRNAME(QMAKE_QMAKE)
+system( $$join( $DIR, , , '/qhelpgenerator' ) ayuda/documentacion.qhp -o bin/docs.qhc )
