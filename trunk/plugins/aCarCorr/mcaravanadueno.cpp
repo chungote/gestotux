@@ -243,7 +243,11 @@ QStringList MCaravanaDueno::listaCaravanas()
 
 
 /*!
-    \fn MCaravanaDueno::verificarAgregar( QString codigo )
+    \fn MCaravanaDueno::verificarAgregar( const QString &codigo, const QString &dueno )
+	Verifica si existe el codigo de caravana y el dueño y si no existe lo agrega a la lista
+	@param codigo Codigo de la caravana
+	@param dueno Dueño de la caravana
+	@return verdadero si fue exitoso
  */
 bool MCaravanaDueno::verificarAgregar( const QString &codigo, const QString &dueno )
 {
@@ -262,7 +266,11 @@ bool MCaravanaDueno::verificarAgregar( const QString &codigo, const QString &due
 
 
 /*!
-    \fn MCaravanaDueno::verificarAgregar( QStringList &listado )
+    \fn MCaravanaDueno::verificarAgregar( const QStringList &listado, const QString &dueno )
+	Verifica si existe la lista de caravanas con el dueño especificado
+	@param listado Lista de strings con los codigos de caravanas
+	@param dueno Dueño de las caravanas
+	@return verdadero si se agregaron todas, falso si se agregaron solo algunas
  */
 bool MCaravanaDueno::verificarAgregar( const QStringList &listado, const QString &dueno )
 {
@@ -271,6 +279,7 @@ bool MCaravanaDueno::verificarAgregar( const QStringList &listado, const QString
  {
   if( !verificarAgregar( temp, dueno ) )
   {
+	///@todo verificar esto que puede retornar antes de tiempo
     return false;
   }
  }
@@ -279,7 +288,7 @@ bool MCaravanaDueno::verificarAgregar( const QStringList &listado, const QString
 
 
 /*!
-    \fn MCaravanaDueno::setDuenosTodos( const QString dueno )
+    \fn MCaravanaDueno::setDuenosTodos( const QString &dueno )
  */
 void MCaravanaDueno::setDuenosTodos( const QString &dueno )
 {
@@ -289,6 +298,11 @@ void MCaravanaDueno::setDuenosTodos( const QString &dueno )
 
 /*!
     \fn MCaravanaDueno:::headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const
+	Devuelve las cabeceras de las columnas usadas por el modelo
+	@param section numero de sección
+	@param orientation orientación de la seccion
+	@param role Rol que se desea usar
+	@return QVariant con el dato
  */
 QVariant MCaravanaDueno::headerData( int section, Qt::Orientation orientation, int role ) const
 {

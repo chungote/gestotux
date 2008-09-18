@@ -40,7 +40,11 @@ ERenderizadorInforme::~ERenderizadorInforme()
 {}
 
 /*!
-    \fn ERenderizadorInforme::setPropiedades( FormFiltro *f )
+    \fn ERenderizadorInforme::setPropiedades( FormFiltro *f, QString estilo, QString cabecera )
+	Setea las propiedades de el infome segun lo elegido en el dialogo.
+	@param f Formulario de filtro
+	@param estilo Hoja de estilo correspondiente
+	@param cabecera Datos html de la cabecera
  */
 void ERenderizadorInforme::setPropiedades( FormFiltro *f, QString estilo, QString cabecera )
 {
@@ -113,7 +117,10 @@ bool ERenderizadorInforme::hacerInforme()
 
 
 /*!
-    \fn ERenderizadorInforme::hacerCabecera()
+    \fn ERenderizadorInforme::hacerCabecera( QString tri )
+	Reliza la cabecera de una pagina para el tri especificado
+	@param tri Codigo del tri
+	@return Verdadero si se pudo hacer, falso si no se encontro el tri
  */
 bool ERenderizadorInforme::hacerCabecera( QString tri )
 {

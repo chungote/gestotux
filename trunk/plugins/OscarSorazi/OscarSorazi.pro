@@ -3,10 +3,10 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 debug \
-help
+help \
+ exceptions
 
-QT += sql \
- svg
+QT += sql
 
 TARGET = oscarsoraiz
 

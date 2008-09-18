@@ -73,7 +73,7 @@ private:
         */
 	QAction *ActDetener;
 
-    bool generar_db( bool estructura, bool multidb );
+    bool generar_db( bool estructura );
     bool generar_config();
     bool guardar_a_archivo( QString *nombre );
     bool comprimir();

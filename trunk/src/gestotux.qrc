@@ -47,6 +47,7 @@
 	<file>imagenes/todas.png</file>
 	<file>imagenes/sola.png</file>
 	<file>imagenes/dbconfig.png</file>
+	<file>imagenes/aviso.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>tablas.QSQLITE.sql</file>

@@ -47,6 +47,7 @@
 #include <QProgressDialog>
 #include <QTabWidget>
 #include <QSqlDriver>
+#include <QTextStream>
 #include "eenviobackup.h"
 
 Ebackup::Ebackup( QWidget* parent )
@@ -247,119 +248,57 @@ bool Ebackup::generar_config()
 
 
 /*!
-    \fn Ebackup::generar_db( bool estructura, bool datos )
+    \fn Ebackup::generar_db( bool estructura )
 	Funcion que hace la obtencion de los datos de la base de datos y los prepara para la compresion.
 	@param estructura Hacer backup de la estructura de la db
-	@param datos Hacer backup de los datos de la db
+	@param multidb Genera backup con multiples consultas para cada tipo de base de datos soportada
 	@return Verdadero si no existieron errores, falso en caso contrario
  */
-bool Ebackup::generar_db( bool estructura, bool multidb )
+bool Ebackup::generar_db( bool estructura )
 {
+ QSqlDriver *db = QSqlDatabase::database().driver();
  datos->append( "|->basedatossql->\n" );
  // veo que tipo de db es la que se esta usando
- if(  QSqlDatabase::database().driverName() == "QSQLITE" )
+ datos->append( QString("formato=%1;\n").arg( QSqlDatabase::database().driverName() ) );
+ ////////////////////////////////////////////////////////////////////////
+ QStringList tablas = QSqlDatabase::database().tables();
+ int total = 0;
+ QString tabla; QSqlQuery cola;
+ foreach( tabla, tablas )
  {
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// calculos para progreso
-	QSqlQuery tam( "SELECT COUNT(name) FROM sqlite_master WHERE type='table'" );
-	if( !tam.exec() )
+	//Calculo para la barra
+	cola.exec( QString("SELECT COUNT(*) FROM %1" ).arg( tabla ) );
+	if( cola.next() )
 	{
-	qDebug( "Error al ejecutar la cola tam" );
-	return false;
+		total += cola.record().value(0).toInt();
 	}
-	if( !tam.next() )
+ }
+ total += tablas.size();
+ PBProgreso->setRange( 0, total );
+ if( estructura )
+ {
+  QFile origen( ":/sql/tablas."+QSqlDatabase::database().driverName()+".sql" );
+  if( origen.open( QIODevice::ReadOnly ) )
+  {
+	datos->append( QTextStream( &origen ).readAll() );
+  }
+ }
+ foreach( tabla, tablas )
+ {
+  PBProgreso->setValue( PBProgreso->value() + 1 );
+	// Genero la cola de creacion de la tabla si es necesario
+	/*if( estructura )
 	{
-	qDebug( "error en el next tam" );
-	return false;
-	}
-	int cant_tablas = tam.record().value( 0 ).toInt();
-		if( !_continuar )
-		{ qDebug( "Detenido x el usuario" );return false; }
-	PBProgreso->setRange( 0, cant_tablas + 3 );
-	// Intento nuevo
-	datos->append( "formato=QSQLITE;" );
-	datos->append( "BEGIN TRANSACTION;\n" );
-	QSqlQuery cola( "SELECT name, sql FROM sqlite_master WHERE type='table'" );
+	}*/
+	cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
 	while( cola.next() )
 	{
-			if( !_continuar )
-			{ qDebug( "Detenido x el usuario" );return false; }
-		if( estructura )
-		{
-			datos->append( cola.record().value( "sql" ).toString() + "\n" );
-		}
-		// Calculo de la cantidad de campos
-		tam.prepare( QString( "SELECT COUNT(*) FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
-		if( !tam.exec() )
-		{
-			qDebug( "Error de calculo de registros" );
-			qDebug( tam.executedQuery().toLocal8Bit() );
-		}
-		QString inicio( "INSERT INTO %1 VALUES ( " );
-		QSqlQuery cola1( QString( "SELECT * FROM %1" ).arg( cola.record().value( "name" ).toString() ) );
-		while( cola1.next() )
-		{
-				if( !_continuar )
-				{ qDebug( "Detenido x el usuario" );return false; }
-			inicio = "INSERT INTO ";
-			QSqlRecord reg = cola1.record();
-			inicio.append( cola.record().value( "name" ).toString() );
-			inicio.append(  " VALUES ( " );
-			for( int i = 0; i< reg.count(); i++ )
-			{
-				switch( reg.field( i ).type() )
-				{
-					case QVariant::String:
-					case QVariant::Date:
-					case QVariant::Double:
-					case QVariant::Int:
-					{
-						inicio.append( QSqlDatabase::database().driver()->formatValue( reg.field( i ) ) );
-						break;
-					}
-					case QVariant::ByteArray:
-					{
-						inicio.append( "'" );
-						inicio.append( QRegExp::escape( QString( reg.value( i ).toString() ) ).replace( QRegExp( "'" ), "\\'" ).replace( QRegExp( "\"" ), "\\\"" ) );
-						inicio.append( "'" );
-						break;
-					}
-					case QVariant::UserType:
-					{
-						qDebug( "Tipo predefinido" );
-						inicio.append( "'desconocido'" );
-						break;
-					}
-					default:
-					{
-						inicio.append( "'" );
-						qDebug( QString( "Tipo de campo: %1, campo: %2" ).arg( reg.field( i ).type() ).arg( i ).toLocal8Bit() );
-						inicio.append( QRegExp::escape( reg.value( i ).toString() ) );
-						qWarning( QRegExp::escape( reg.value(i).toString() ).toLocal8Bit() );
-						inicio.append( "'" );
-						break;
-					}
-				}
-				if( i < reg.count() -1 )
-				{
-					inicio.append( ", " );
-				}
-			}
-			inicio.append( ");\n" );
-			datos->append( inicio );
-			inicio.clear();
-		}
+		datos->append( db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
+		datos->append( ";\n" );
 		PBProgreso->setValue( PBProgreso->value() + 1 );
 	}
-	datos->append( "COMMIT;\n" );
- } // Fin tipo sqlite
- else if( QSqlDatabase::database().driverName() == "QMYSQL" )
- {
-  datos->append( "formato=QMYSQL;" );
-  datos->append( "BEGIN;" );
-  datos->append( "COMMIT;" );
-  qWarning( "Todavia no se implmeento este tipo de backup" );
- }
+  }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
  datos->append( "<-basedatossql<-|" );
  LDebug->setText( LDebug->text() + "... Comprimiendo.... " );
  comprimir();
@@ -380,6 +319,7 @@ bool Ebackup::generar_db( bool estructura, bool multidb )
 bool Ebackup::comprimir()
 {
  comprimidos->append( *datos );
+ return true;
 }
 
 
@@ -445,7 +385,7 @@ void Ebackup::generarBackup()
  if( ChBBaseDatos->isChecked() )
  {
   LDebug->setText( "Generando backup de Base de datos" );
-  if( !generar_db( CkBEstructura->isChecked(), CkBMultiFormato->isChecked() ) )
+  if( !generar_db( CkBEstructura->isChecked() ) )
   {
    qDebug( "Error al intentar generar la copia de seg de la db" );
    emit cambiarDetener( false );
@@ -496,6 +436,7 @@ void Ebackup::generarBackup()
    preferencias *p = preferencias::getInstancia();
    p->setValue( "backup/archivo", fileName );
    p->setValue( "backup/enviado", false );
+   p->setValue( "backup/fecha", QDate::currentDate() );
    p->sync();
    close();
   }
@@ -532,15 +473,16 @@ void Ebackup::restaurarBackup()
  if( contenido.startsWith( "|->basedatossql->", Qt::CaseSensitive ) )
  {
   // Encontrado datos sql, elimino la cabecera
-  contenido.remove( 0, QString( "|->basedatossql->" ).size() );
+  contenido.remove( 0, QString( "|->basedatossql->formato= " ).size() );
   // ahora tiene que estar el formato
-  if( contenido.section( "=", 1, 1 ) != QSqlDatabase::database().driverName() )
+  QString formato = contenido.section( ";", 0, 0 );
+  if( formato != QSqlDatabase::database().driverName() )
   {
-   qWarning( "Este backup no es para este tipo de base de datos" );
+   qWarning( QString( "Este backup no es para este tipo de base de datos. Formato: " + formato ).toLocal8Bit() );
    return;
   }
   // saco esa subcadena
-  contenido.remove( 0, contenido.indexOf( ";", 0 ) );
+  contenido.remove( 0, formato.size() + 1 );
   // desde ahora hasta el fin de la etiqueta, es sql puro
   // busco la etiqueta de fin
   int posfinal = contenido.indexOf( "<-basedatossql<-|" );
@@ -548,6 +490,7 @@ void Ebackup::restaurarBackup()
   ejecutarColas( cadenas.string()->split( ";" ) );
   contenido.remove( 0, posfinal + QString( "<-basedatosql<-|").size() );
  }
+ // el archivo puede ser solo la configuracion del programa
 }
 
 
@@ -584,10 +527,18 @@ bool Ebackup::ejecutarColas( QStringList colas )
   }
   else
   {
-	qWarning( qPrintable( cola->lastError().text() ) );
+	qWarning( qPrintable( cola->lastError().text() + ". Cola: " + cola->lastQuery() ) );
 	estado = false;
   }
  }
  delete cola;
+ if( estado == false )
+ {
+  QSqlDatabase::database().rollback();
+ }
+ else
+ {
+  QSqlDatabase::database().commit();
+ }
  return estado;
 }

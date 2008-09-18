@@ -211,7 +211,7 @@ Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 
 
 /*!
-    \fn MTProductosPresupuesto::columnCount( QModelIndex &parent )
+    \fn MTProductosPresupuesto::columnCount( QModelIndex &parent ) const
  */
 int MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
 {
@@ -226,7 +226,7 @@ int MTProductosPresupuesto::rowCount( const QModelIndex &parent ) const
 }
 
 /*!
-    \fn MTProductosPresupuesto::guardar( const int id_presupuesto )
+    \fn MTProductosPresupuesto::guardar( const int id_presupuesto ) const
  */
 bool MTProductosPresupuesto::guardar( const int id_presupuesto ) const
 {
@@ -284,7 +284,7 @@ bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &v
 
 
 /*!
-    \fn MTProductosPresupuesto::buscarPrecioProducto( const int fila )
+    \fn MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
  */
 QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
 {
@@ -316,9 +316,9 @@ QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
 
 
 /*!
-    \fn MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const 
+    \fn MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const
  */
-QModelIndex MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const 
+QModelIndex MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const
 {
  if( row >= QSqlRelationalTableModel::rowCount() )
  {

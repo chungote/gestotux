@@ -29,14 +29,6 @@ p, li { white-space: pre-wrap; }
       <number>0</number>
      </property>
      <widget class="QWidget" name="tab" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>499</width>
-        <height>396</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Generar copia de seguridad</string>
       </attribute>
@@ -56,13 +48,6 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="CkBMultiFormato" >
-         <property name="text" >
-          <string>Multi formato de base de datos</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QCheckBox" name="ChBConfirugacion" >
          <property name="text" >
           <string>Configuración del programa</string>
@@ -72,14 +57,6 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>499</width>
-        <height>396</height>
-       </rect>
-      </property>
       <attribute name="title" >
        <string>Restaurar copia de seguridad</string>
       </attribute>
@@ -143,22 +120,6 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel" >
      <x>133</x>
      <y>207</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ChBBaseDatos</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CkBMultiFormato</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>62</x>
-     <y>136</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>71</x>
-     <y>302</y>
     </hint>
    </hints>
   </connection>

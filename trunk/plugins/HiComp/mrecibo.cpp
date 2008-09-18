@@ -92,14 +92,10 @@ QVariant MRecibo::data(const QModelIndex& idx, int role) const
       break;
      }
      case 6:
-     { // Contado
-      return QSqlRelationalTableModel::data( idx, role ).toString();
-      break;
-     }
      case 7:
      {
-      // Cuenta Corriente
-      return QSqlRelationalTableModel::data( idx, role ).toBool();
+      // Cuenta Corriente y contado
+      return QSqlRelationalTableModel::data( idx, role ).toInt();
       break;
      }
      default:
@@ -143,7 +139,7 @@ QVariant MRecibo::data(const QModelIndex& idx, int role) const
       case 6:
       case 7:
       {
-       return QSqlRelationalTableModel::data( idx, role ).toBool();
+       return QSqlRelationalTableModel::data( idx, role ).toInt();
        break;
       }
       default:
@@ -189,29 +185,40 @@ bool MRecibo::setData(const QModelIndex& index, const QVariant& value, int role 
   }
   case 6:
   {
-   if( QSqlRelationalTableModel::setData( index, value.toBool() ) &&
-   QSqlRelationalTableModel::setData( this->index( index.row(), 7 ), !value.toBool() ) )
+   if( value.toInt() == 1 )
    {
-    return true;
+     if( QSqlRelationalTableModel::setData( index, 1 ) &&
+     QSqlRelationalTableModel::setData( this->index( index.row(), 7 ), 0 ) )
+     {
+       return true;
+     }
+     else
+     {
+       return false;
+     }
    }
    else
    {
-    return false;
+     return QSqlRelationalTableModel::setData( index, 0 );
    }
   }
   case 7:
   {
-   if( value.toBool() )
+   if( value.toInt() == 1 )
    {
-   if( QSqlRelationalTableModel::setData( index, value.toBool() ) &&
-   QSqlRelationalTableModel::setData( this->index( index.row(), 6 ), !value.toBool() ) )
-   {
-    return true;
+    if( QSqlRelationalTableModel::setData( index, 1 ) &&
+    QSqlRelationalTableModel::setData( this->index( index.row(), 6 ), 0 ) )
+    {
+      return true;
+    }
+    else
+    {
+     return false;
+    }
    }
    else
    {
-    return false;
-   }
+    return QSqlRelationalTableModel::setData( index, 0 );
    }
   }
   default:

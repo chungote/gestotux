@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -47,7 +47,7 @@ QVariant MPrefCategorias::data(const QModelIndex& index, int role) const
 		{
 			case Qt::DisplayRole:
 			{
-				if( QSqlTableModel::data( index, role ).toBool() )
+				if( QSqlTableModel::data( index, role ).toInt() == 1 )
 				{
 					return "Si";
 				}
@@ -59,7 +59,14 @@ QVariant MPrefCategorias::data(const QModelIndex& index, int role) const
 			}
 			case Qt::EditRole:
 			{
-				return QSqlTableModel::data( index, role ).toBool();
+				if( QSqlTableModel::data( index, role ).toInt() == 1 )
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 				break;
 			}
 			default:
@@ -88,5 +95,39 @@ Qt::ItemFlags MPrefCategorias::flags( const QModelIndex & index ) const
  else
  {
 	return QSqlTableModel::flags( index );
+ }
+}
+
+
+/*!
+    \fn MPrefCategorias::setData( const QModelIndex& index, const QVariant& value, int role )
+ */
+bool MPrefCategorias::setData( const QModelIndex& index, const QVariant& value, int role )
+{
+ if( !index.isValid() )
+ {
+  return false;
+ }
+ if( index.column() == 2 )
+ {
+  if( role == Qt::EditRole )
+  {
+   if( value.toBool() )
+   {
+    return QSqlTableModel::setData( index, 1, role );
+   }
+   else
+   {
+    return QSqlTableModel::setData( index, 0, role );
+   }
+  }
+  else
+  {
+   return false;
+  }
+ }
+ else
+ {
+  return false;
  }
 }

@@ -325,7 +325,7 @@ QList<EInformeInterface *> AdminCarCorr::plugins()
 
 
 /*!
-    \fn AdminCarCorr::empresa()
+    \fn AdminCarCorr::empresa() const
 	Devuleve el nombre de la empresa para el dialogo de Acerca de
 	@return Nombre de la empresa
  */

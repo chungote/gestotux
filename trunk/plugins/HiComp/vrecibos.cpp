@@ -289,7 +289,10 @@ void VRecibos::close()
 
 
 /*!
-    \fn VRecibos::setearFiltrado( bool activo )
+    \fn VRecibos::setearFiltrado( bool activo, int id_cliente )
+	Setea el filtro para filtrar x cliente
+	@param activo si esta activado el filtrado o no
+	@param id_cliente Id de db de cliente para setear el filtro
  */
 void VRecibos::setearFiltrado( bool activo, int id_cliente )
 {
