@@ -58,7 +58,7 @@ QWidgetList prespuesto::formsPreferencias()
 
 
 /*!
-    \fn prespuesto::inicializar( QStackedWidget *formCen, QSettings *pref )
+    \fn prespuesto::inicializar( QSettings *pref )
  */
 bool prespuesto::inicializar( QSettings *pref )
 {

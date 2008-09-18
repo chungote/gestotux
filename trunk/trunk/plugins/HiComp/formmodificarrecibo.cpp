@@ -103,7 +103,10 @@ FormModificarRecibo::~FormModificarRecibo()
 
 
 /*!
-    \fn FormModificarRecibo::cargarDatos( QModelIndex idDB )
+    \fn FormModificarRecibo::cargarDatos( QModelIndex idDB, QSqlTableModel *modelo )
+	Carga los datos de un id especifico del modelo especificado
+	@param idDB Indice que se desea usar
+	@param modelo
  */
 void FormModificarRecibo::cargarDatos( QModelIndex idDB, QSqlTableModel *modelo )
 {
@@ -156,6 +159,8 @@ void FormModificarRecibo::cargarDatos( QModelIndex idDB, QSqlTableModel *modelo 
 
 /*!
     \fn FormAgregarRecibo::nombre()
+	Devuelve el nombre a quien se le esta haciendo el recibo
+	@return Nombre del cliente
  */
 QString FormModificarRecibo::nombre()
 {
@@ -176,6 +181,11 @@ void FormModificarRecibo::cambioEstadoPagoMes( int estado )
  }
 }
 
+/*!
+ *  \fn FormModificarRecibo::cambioEstadoRecargos( int estado )
+	Funcion llamada cada vez que se cambia el checkbox de recargos x pago fuera de termino
+	@param estado Estado del checkbox
+ */
 void FormModificarRecibo::cambioEstadoRecargos( int estado )
 {
  if( estado == Qt::Checked )
@@ -203,6 +213,7 @@ void FormModificarRecibo::cambioEstadoRecargos( int estado )
 
 /*!
     \fn FormAgregarRecibo::recalcular()
+	Function que recalcula el precio final
  */
 void FormModificarRecibo::recalcular()
 {
@@ -212,6 +223,7 @@ void FormModificarRecibo::recalcular()
 
 /*!
     \fn FormAgregarRecibo::cambioImporte( double )
+	Slot que se ejecuta cada vez que cambia el importe
  */
 void FormModificarRecibo::cambioImporte( double )
 {
@@ -221,6 +233,7 @@ void FormModificarRecibo::cambioImporte( double )
 
 /*!
     \fn FormAgregarRecibo::guardar()
+	Guarda los datos del recibo
  */
 void FormModificarRecibo::guardar()
 {

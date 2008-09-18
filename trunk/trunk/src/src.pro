@@ -12,7 +12,8 @@ SOURCES += gestotux.cpp \
  formactualizacion.cpp \
  esplash.cpp \
  emysql.cpp \
- formprefdb.cpp
+ formprefdb.cpp \
+ everificabackup.cpp
 HEADERS += gestotux.h \
  ebackup.h \
  eenviobackup.h \
@@ -28,7 +29,8 @@ HEADERS += gestotux.h \
  formactualizacion.h \
  esplash.h \
  emysql.h \
- formprefdb.h
+ formprefdb.h \
+ everificabackup.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \

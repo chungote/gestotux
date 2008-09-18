@@ -205,6 +205,7 @@ int main(int argc, char *argv[])
 					abort();
 				}
 			}
+			QSqlDatabase::database().commit();
 			// si llegamos hasta aca, todo bien
 			origen.close();
 			QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );

@@ -33,6 +33,9 @@ public:
 
     ~VDuenos();
 
+signals:
+	void agregarVentana( QWidget * );
+
 };
 
 #endif

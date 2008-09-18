@@ -82,30 +82,6 @@
     <class kind="class">EMovimiento</class>
   </compound>
   <compound kind="file">
-    <name>eventana.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
-    <filename>plugins_2aCarCorr_2eventana_8cpp</filename>
-    <includes id="plugins_2aCarCorr_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>eventana.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/utiles/</path>
-    <filename>utiles_2eventana_8cpp</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>eventana.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
-    <filename>plugins_2aCarCorr_2eventana_8h</filename>
-    <class kind="class">EVentana</class>
-  </compound>
-  <compound kind="file">
-    <name>eventana.h</name>
-    <path>/home/Esteban/Programas/gestotux/utiles/</path>
-    <filename>utiles_2eventana_8h</filename>
-    <class kind="class">EVentana</class>
-  </compound>
-  <compound kind="file">
     <name>evlista.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>plugins_2aCarCorr_2evlista_8cpp</filename>
@@ -122,14 +98,14 @@
     <name>evlista.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>plugins_2aCarCorr_2evlista_8h</filename>
-    <includes id="plugins_2aCarCorr_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">EVLista</class>
   </compound>
   <compound kind="file">
     <name>evlista.h</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>utiles_2evlista_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">EVLista</class>
   </compound>
   <compound kind="file">
@@ -178,7 +154,7 @@
     <name>formmovimiento.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>formmovimiento_8h</filename>
-    <includes id="plugins_2aCarCorr_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <includes id="TipoMovs_8h" name="TipoMovs.h" local="yes" imported="no">TipoMovs.h</includes>
     <class kind="class">FormMovimiento</class>
   </compound>
@@ -211,7 +187,7 @@
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>formprefcaravanas_8h</filename>
     <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
-    <includes id="plugins_2aCarCorr_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormPrefCaravanas</class>
   </compound>
   <compound kind="file">
@@ -584,7 +560,7 @@
     <name>formagregarrecibo.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>formagregarrecibo_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormAgregarRecibo</class>
   </compound>
   <compound kind="file">
@@ -613,7 +589,7 @@
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>fprefrecibos_8h</filename>
     <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FPrefRecibos</class>
   </compound>
   <compound kind="file">
@@ -689,7 +665,7 @@
     <name>vrecibos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>vrecibos_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">VRecibos</class>
   </compound>
   <compound kind="file">
@@ -732,7 +708,7 @@
     <name>formmodificarpresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formmodificarpresupuesto_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormModificarPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -747,7 +723,7 @@
     <name>formnuevopresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formnuevopresupuesto_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormNuevoPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -764,7 +740,7 @@
     <name>formpresupuestosanteriores.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuestador/</path>
     <filename>formpresupuestosanteriores_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormPresupuestosAnteriores</class>
   </compound>
   <compound kind="file">
@@ -827,7 +803,7 @@
     <name>formagregarpresupuesto.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>formagregarpresupuesto_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormAgregarPresupuesto</class>
   </compound>
   <compound kind="file">
@@ -840,7 +816,7 @@
     <name>formlistaproductos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>formlistaproductos_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <includes id="mtproductospresupuesto_8h" name="mtproductospresupuesto.h" local="yes" imported="no">mtproductospresupuesto.h</includes>
     <class kind="class">FormListaProductos</class>
   </compound>
@@ -1004,7 +980,7 @@
     <name>ebackup.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>ebackup_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">Ebackup</class>
   </compound>
   <compound kind="file">
@@ -1034,6 +1010,19 @@
       <anchor>4e918b851f86d703c1b99112fcd4ced6</anchor>
       <arglist>(EInfoProgramaInterface,&quot;tranfuga.EInfoPrograma/1.0&quot;)</arglist>
     </member>
+  </compound>
+  <compound kind="file">
+    <name>emysql.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>emysql_8cpp</filename>
+    <includes id="emysql_8h" name="emysql.h" local="yes" imported="no">emysql.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>emysql.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>emysql_8h</filename>
+    <class kind="class">EMysql</class>
   </compound>
   <compound kind="file">
     <name>eplugin.h</name>
@@ -1072,7 +1061,7 @@
     <name>formacercade.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>formacercade_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormAcercaDe</class>
   </compound>
   <compound kind="file">
@@ -1088,7 +1077,23 @@
     <name>formactualizacion.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>formactualizacion_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormActualizacion</class>
+  </compound>
+  <compound kind="file">
+    <name>formprefdb.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>formprefdb_8cpp</filename>
+    <includes id="formprefdb_8h" name="formprefdb.h" local="yes" imported="no">formprefdb.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formprefdb.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>formprefdb_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <class kind="class">FormPrefDb</class>
   </compound>
   <compound kind="file">
     <name>formpreferencias.cpp</name>
@@ -1099,6 +1104,7 @@
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
     <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
     <includes id="fprefgeneral_8h" name="fprefgeneral.h" local="yes" imported="no">fprefgeneral.h</includes>
+    <includes id="formprefdb_8h" name="formprefdb.h" local="yes" imported="no">formprefdb.h</includes>
     <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
     <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
   </compound>
@@ -1106,7 +1112,7 @@
     <name>formpreferencias.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>formpreferencias_8h</filename>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FormPreferencias</class>
   </compound>
   <compound kind="file">
@@ -1134,7 +1140,7 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>fprefgeneral_8h</filename>
     <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
-    <includes id="utiles_2eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
     <class kind="class">FPrefGeneral</class>
   </compound>
   <compound kind="file">
@@ -1152,6 +1158,7 @@
     <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
     <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
     <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
+    <includes id="eayuda_8h" name="eayuda.h" local="yes" imported="no">eayuda.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>VERSION_PROGRAMA</name>
@@ -1174,6 +1181,14 @@
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
     <includes id="eenviobackup_8h" name="eenviobackup.h" local="yes" imported="no">eenviobackup.h</includes>
     <includes id="esplash_8h" name="esplash.h" local="yes" imported="no">esplash.h</includes>
+    <includes id="emysql_8h" name="emysql.h" local="yes" imported="no">emysql.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>NOMBRE_CONEXION</name>
+      <anchorfile>main_8cpp.html</anchorfile>
+      <anchor>b2b208d537697bd8890a4ac690f801e1</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>main</name>
@@ -1260,6 +1275,31 @@
     <class kind="class">EActImprimir</class>
   </compound>
   <compound kind="file">
+    <name>eayuda.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eayuda_8cpp</filename>
+    <includes id="eayuda_8h" name="eayuda.h" local="yes" imported="no">eayuda.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>eayuda.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eayuda_8h</filename>
+    <class kind="class">EAyuda</class>
+  </compound>
+  <compound kind="file">
+    <name>eventana.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eventana_8cpp</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <includes id="eayuda_8h" name="eayuda.h" local="yes" imported="no">eayuda.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>eventana.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eventana_8h</filename>
+    <class kind="class">EVentana</class>
+  </compound>
+  <compound kind="file">
     <name>evisorinformes.cpp</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>evisorinformes_8cpp</filename>
@@ -1296,6 +1336,13 @@
     <filename>classAdminCarCorr.html</filename>
     <base>EPlugin</base>
     <base protection="private">EInfoProgramaInterface</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>eliminarTri</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>8703f309b600327173e069c0f8abd257</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="signal">
       <type>void</type>
       <name>agregarVentana</name>
@@ -1486,13 +1533,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>QWidgetList</type>
-      <name>_listaFormPref</name>
-      <anchorfile>classAdminCarCorr.html</anchorfile>
-      <anchor>6e76b8ae9445e7d7e7801b6e943ae35e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActAgregarCompra</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
@@ -1525,6 +1565,13 @@
       <name>ActCategoria</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>5e31d33d65a1177c017358e84138f299</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActEliminarTri</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>e2be427cf673d0fa0727208770ea6f90</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -1667,6 +1714,66 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>EAyuda</name>
+    <filename>classEAyuda.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>hayAyuda</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>35c8941837cf7ecf5dc40d2d5a678cad</anchor>
+      <arglist>(QString nombreObjeto)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mostrarAyuda</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>bf43fe20751095b3566fffe384808e19</anchor>
+      <arglist>(QString nombreObjecto)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mostrarIndice</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>9b3df1efbb8642efa2b5a5ec4f581256</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static EAyuda *</type>
+      <name>instancia</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>bfa8947eba38ffce637412280b9980c7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>EAyuda</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>cd04d3dbabcc08f03b0eec83682e4f5b</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>~EAyuda</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>76290b9a89539c6f3d830aaaf9c688cc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHelpEngineCore *</type>
+      <name>engine</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>d5712ebaa967db311d569f20876f8b13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static EAyuda *</type>
+      <name>yo</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>762f96ce4d02ddc3184bc5d8eb8f0a20</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>Ebackup</name>
     <filename>classEbackup.html</filename>
     <base>EVentana</base>
@@ -1700,16 +1807,16 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>ejecutar_colas</name>
+      <name>generarBackup</name>
       <anchorfile>classEbackup.html</anchorfile>
-      <anchor>43b56c68beb005d1d98a3ddbd2ae112b</anchor>
-      <arglist>(QList&lt; QByteArray &gt; colas)</arglist>
+      <anchor>4ccd191ae74905fcbef94f5da4c13e2d</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>generar_config</name>
+      <type>void</type>
+      <name>restaurarBackup</name>
       <anchorfile>classEbackup.html</anchorfile>
-      <anchor>114be84146a49373fa0c96b969960be7</anchor>
+      <anchor>37c6cdd3bae0c0947288f907bcf050a0</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -1717,6 +1824,13 @@
       <name>~Ebackup</name>
       <anchorfile>classEbackup.html</anchorfile>
       <anchor>b792de0c98f976cdb6aaa1a0accfb0a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>abrirArchivoBackup</name>
+      <anchorfile>classEbackup.html</anchorfile>
+      <anchor>1983591fcd55d18ec5f3ccbe3a08a04e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -1728,10 +1842,24 @@
     </member>
     <member kind="function" protection="private">
       <type>bool</type>
+      <name>ejecutarColas</name>
+      <anchorfile>classEbackup.html</anchorfile>
+      <anchor>b9c9a4a43f00af2a2495c0c0d7f7c942</anchor>
+      <arglist>(QStringList colas)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>generar_config</name>
+      <anchorfile>classEbackup.html</anchorfile>
+      <anchor>114be84146a49373fa0c96b969960be7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
       <name>generar_db</name>
       <anchorfile>classEbackup.html</anchorfile>
-      <anchor>0a39e3a6193843063bab13b4f5c2e83e</anchor>
-      <arglist>(bool estructura)</arglist>
+      <anchor>20cc743e4f36848994fec2d519b1f082</anchor>
+      <arglist>(bool estructura, bool multidb)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>bool</type>
@@ -2015,6 +2143,13 @@
       <anchorfile>classEMovimiento.html</anchorfile>
       <anchor>703079956124f2f4df64a546d72ee9ce</anchor>
       <arglist>(QString codigo)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>eliminarTRI</name>
+      <anchorfile>classEMovimiento.html</anchorfile>
+      <anchor>741b8073e4869f8dac793077218d08c1</anchor>
+      <arglist>(const int idDB)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -2378,6 +2513,59 @@
       <name>vendedor</name>
       <anchorfile>classEMovimiento.html</anchorfile>
       <anchor>31715e440bdc59cb58f2853a2f4b2fb5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EMysql</name>
+    <filename>classEMysql.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>EMysql</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>6bf1137da2b4c16c291d6f89edaf8ebe</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDb</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>305282bf78ca8bb19c3a6acaf1faaed8</anchor>
+      <arglist>(QSqlDatabase *db)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EMysql</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>da0933a9117c1f5090acd31350413e7e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>accept</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>e12137368ad2d9402a129c49bc865bfb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>reject</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>14470b0321113b8dff5c45197bc085fe</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>avanzarBarra</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>80170dc0f787a847a361cef18520db53</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSqlDatabase *</type>
+      <name>_db</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>36b59b167e53aafbb706e79cbb06fd1b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2823,8 +3011,8 @@
       <type>void</type>
       <name>showMessage</name>
       <anchorfile>classESplash.html</anchorfile>
-      <anchor>9c666749c6b3aff043a6d0809b23667b</anchor>
-      <arglist>(const QString &amp;message, int alignment, const QColor &amp;color)</arglist>
+      <anchor>f3d1627c5808fad8b5454160ff98e6af</anchor>
+      <arglist>(const QString &amp;message, int alignment=Qt::AlignCenter, const QColor &amp;color=Qt::black)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -2837,20 +3025,6 @@
   <compound kind="class">
     <name>EVentana</name>
     <filename>classEVentana.html</filename>
-    <member kind="slot">
-      <type>void</type>
-      <name>ayuda</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>c37415add4b63bbd3df607bd096c8426</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ayuda</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>c37415add4b63bbd3df607bd096c8426</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="signal">
       <type>void</type>
       <name>agregarVentana</name>
@@ -2866,32 +3040,11 @@
       <arglist>(QCloseEvent *e)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>closeEvent</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>bd13dd5f4f63ecf242dbd1a9d3637083</anchor>
-      <arglist>(QCloseEvent *event)</arglist>
-    </member>
-    <member kind="function">
       <type></type>
       <name>EVentana</name>
       <anchorfile>classEVentana.html</anchorfile>
-      <anchor>b383d6d4b2e4765916499759eac02f75</anchor>
-      <arglist>(QWidget *padre)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>EVentana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>b383d6d4b2e4765916499759eac02f75</anchor>
-      <arglist>(QWidget *padre)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>get_nombre_ventana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>b80a75afbbd16a08e7874add1ef02581</anchor>
-      <arglist>()</arglist>
+      <anchor>149bd5b9a63f3019d5730e092cc01076</anchor>
+      <arglist>(QWidget *padre, Qt::WFlags fl=0)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -2908,32 +3061,11 @@
       <arglist>(QString texto)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>setNombreVentana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>1a34c10804cb12bf8350611dbf82b43d</anchor>
-      <arglist>(QString texto)</arglist>
-    </member>
-    <member kind="function">
       <type></type>
       <name>~EVentana</name>
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>16d80277f48b1a6baaaaa8f8586af261</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~EVentana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>16d80277f48b1a6baaaaa8f8586af261</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QString</type>
-      <name>nombre_archivo_ayuda</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>cc040cfab6787a6646439dc7af9b4b43</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>QString</type>
@@ -2948,20 +3080,6 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>f85d5a05aa128f2a798b21e4f6843bed</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QWidget *</type>
-      <name>padre</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>f85d5a05aa128f2a798b21e4f6843bed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>keyPressEvent</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>aa58f57a7f9c7eab3c9b32f193e74994</anchor>
-      <arglist>(QKeyEvent *event)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
@@ -3068,15 +3186,15 @@
       <type></type>
       <name>EVLista</name>
       <anchorfile>classEVLista.html</anchorfile>
-      <anchor>222d52380c755478331a80e72dd4a336</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
+      <anchor>6037f87fe5707c139d2a3767d6b94f60</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>EVLista</name>
       <anchorfile>classEVLista.html</anchorfile>
-      <anchor>56d32de9f33256e0162e3791843a7f34</anchor>
-      <arglist>(QWidget *parent=0, QObject *child=0)</arglist>
+      <anchor>7fb0e897faee1baec2e9298118198906</anchor>
+      <arglist>(QWidget *parent=0, QObject *child=0, Qt::WFlags fl=0)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -3371,6 +3489,7 @@
   <compound kind="class">
     <name>FormActualizacion</name>
     <filename>classFormActualizacion.html</filename>
+    <base>EVentana</base>
     <member kind="slot">
       <type>void</type>
       <name>finComando</name>
@@ -3857,6 +3976,13 @@
       <anchor>69e2753f886dbdb3202f68761dd00d5d</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>verificarProductos</name>
+      <anchorfile>classFormListaProductos.html</anchorfile>
+      <anchor>b5724054396b306c1cb9a292e8e39f87</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>MTProductosPresupuesto *</type>
       <name>modelo</name>
@@ -4304,6 +4430,47 @@
       <anchorfile>classFormPrefCaravanas.html</anchorfile>
       <anchor>695ae4613fe0e082f93e2c9f77d14683</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormPrefDb</name>
+    <filename>classFormPrefDb.html</filename>
+    <base>EVentana</base>
+    <base>FormPrefHijo</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>aplicar</name>
+      <anchorfile>classFormPrefDb.html</anchorfile>
+      <anchor>c774409bde4157933e66cf2e5df6bd2b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>cargar</name>
+      <anchorfile>classFormPrefDb.html</anchorfile>
+      <anchor>6c0a1a05e717326cb8c4ec83d2b91159</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormPrefDb.html</anchorfile>
+      <anchor>36aad5f414e8144dcb14b6b99a061b61</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FormPrefDb</name>
+      <anchorfile>classFormPrefDb.html</anchorfile>
+      <anchor>f7291ec2623556fccbfbbee77610bb7b</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormPrefDb</name>
+      <anchorfile>classFormPrefDb.html</anchorfile>
+      <anchor>9c7ee623097b6ae9afc7fa447821b390</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4839,6 +5006,13 @@
       <anchor>5fd274cb1320587959f4f8561e2998b9</anchor>
       <arglist>(QCloseEvent *event)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>785dfb1167bfb3084d888e0a9430ed77</anchor>
+      <arglist>(QKeyEvent *event)</arglist>
+    </member>
     <member kind="slot" protection="private">
       <type>void</type>
       <name>ocultar_mostrar</name>
@@ -5218,8 +5392,8 @@
       <type>void</type>
       <name>generarTabla</name>
       <anchorfile>classHiCompPresupuesto.html</anchorfile>
-      <anchor>e8f1c0a226c6aa8ec1e817334a8378f6</anchor>
-      <arglist>(QSqlTableModel *tabla, QString cadena, bool cabecera)</arglist>
+      <anchor>37232b9018fa762d6bc6f69e8f8ee170</anchor>
+      <arglist>(QSqlTableModel *modelo, QString titulo, bool cabecera)</arglist>
     </member>
     <member kind="function">
       <type>QTextDocument *</type>
@@ -5229,25 +5403,25 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>inicializar</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>c0508829c1258c713d3716b4584c9b54</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>limpieza</name>
+      <anchorfile>classHiCompPresupuesto.html</anchorfile>
+      <anchor>b224a02564a8076dbcf2f2b46abe4698</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>QString</type>
       <name>nombre</name>
       <anchorfile>classHiCompPresupuesto.html</anchorfile>
       <anchor>4a7e2aa82f7a01caa6a4545bfa0e3fd4</anchor>
       <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>obtenerContenido</name>
-      <anchorfile>classHiCompPresupuesto.html</anchorfile>
-      <anchor>0b2e3bcf7706ecb99772abd73c72a8cb</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>obtenerHtml</name>
-      <anchorfile>classHiCompPresupuesto.html</anchorfile>
-      <anchor>4b1d120617f1dd4503185665985db61a</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5269,13 +5443,6 @@
       <anchorfile>classHiCompPresupuesto.html</anchorfile>
       <anchor>a3dead082654844f41f371c4f0d4a459</anchor>
       <arglist>(QDate fecha)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setRegistro</name>
-      <anchorfile>classHiCompPresupuesto.html</anchorfile>
-      <anchor>81c4fd0d35a01c33b0501a2bd8d0436a</anchor>
-      <arglist>(QSqlRecord *rec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -6272,6 +6439,13 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
+      <name>eliminarTri</name>
+      <anchorfile>classOscar.html</anchorfile>
+      <anchor>3ea53b6d22f54e533a75cae597bfced3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
       <name>hacerMovimiento</name>
       <anchorfile>classOscar.html</anchorfile>
       <anchor>053aaa8bf5b513a43a5633245e361d2f</anchor>
@@ -6289,6 +6463,13 @@
       <name>hacerVenta</name>
       <anchorfile>classOscar.html</anchorfile>
       <anchor>7494a4e03b31eb20ac8e1cb189d190ab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>modificarTri</name>
+      <anchorfile>classOscar.html</anchorfile>
+      <anchor>6cec3e07fdae83669112d9df4f3f0907</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected">
@@ -6317,13 +6498,6 @@
       <name>cargarPluginsInformes</name>
       <anchorfile>classOscar.html</anchorfile>
       <anchor>947eb101eeb4e16919e297687b3bbe84</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>modificarTri</name>
-      <anchorfile>classOscar.html</anchorfile>
-      <anchor>6cec3e07fdae83669112d9df4f3f0907</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
@@ -6373,6 +6547,13 @@
       <name>ActDuenos</name>
       <anchorfile>classOscar.html</anchorfile>
       <anchor>4b0ea530e87df80bc70d323db33c258b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActEliminarTri</name>
+      <anchorfile>classOscar.html</anchorfile>
+      <anchor>3de83d900e71b68bf96b54dd9c3035b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -7449,6 +7630,13 @@
   <compound kind="class">
     <name>VDuenos</name>
     <filename>classVDuenos.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>a32e850d9846b1ee0d4961b99817a4d9</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>VDuenos</name>
@@ -7942,8 +8130,6 @@
     <file>einformeinterface.h</file>
     <file>emovimiento.cpp</file>
     <file>emovimiento.h</file>
-    <file>eventana.cpp</file>
-    <file>eventana.h</file>
     <file>evlista.cpp</file>
     <file>evlista.h</file>
     <file>formagregar.cpp</file>
@@ -8151,6 +8337,8 @@
     <file>eenviobackup.cpp</file>
     <file>eenviobackup.h</file>
     <file>einfoprogramainterface.h</file>
+    <file>emysql.cpp</file>
+    <file>emysql.h</file>
     <file>eplugin.h</file>
     <file>esplash.cpp</file>
     <file>esplash.h</file>
@@ -8158,6 +8346,8 @@
     <file>formacercade.h</file>
     <file>formactualizacion.cpp</file>
     <file>formactualizacion.h</file>
+    <file>formprefdb.cpp</file>
+    <file>formprefdb.h</file>
     <file>formpreferencias.cpp</file>
     <file>formpreferencias.h</file>
     <file>formulariocentral.cpp</file>
@@ -8182,6 +8372,8 @@
     <file>eactcerrar.h</file>
     <file>eactimprimir.cpp</file>
     <file>eactimprimir.h</file>
+    <file>eayuda.cpp</file>
+    <file>eayuda.h</file>
     <file>eventana.cpp</file>
     <file>eventana.h</file>
     <file>evisorinformes.cpp</file>

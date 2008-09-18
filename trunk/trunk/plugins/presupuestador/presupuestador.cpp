@@ -39,7 +39,7 @@ QIcon presupuestador::iconoPrograma() const
 }
 
 /*!
-    \fn presupuestador::accionesBarra()
+    \fn presupuestador::accionesBarra() const
  */
 QList<QAction *> presupuestador::accionesBarra() const
 {
@@ -55,14 +55,14 @@ bool presupuestador::inicializar( QSettings *pref )
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
- 
+
  ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
  _acciones.append( ActNuevoPresu );
- 
+
  return verificarTablas();
 
 }
@@ -92,7 +92,7 @@ QWidgetList presupuestador::formsPreferencias()
 
 
 /*!
-    \fn presupuestador::nombre()
+    \fn presupuestador::nombre() const
  */
 QString presupuestador::nombre() const
 {
@@ -101,7 +101,7 @@ QString presupuestador::nombre() const
 
 
 /*!
-    \fn presupuestador::tipo()
+    \fn presupuestador::tipo() const
  */
 int presupuestador::tipo() const
 {
@@ -125,7 +125,7 @@ void presupuestador::nuevoPresupuesto()
 
 
 /*!
-    \fn presupuestador::crearmenu( QMenu *m )
+    \fn presupuestador::crearmenu( QMenuBar *m )
  */
 void presupuestador::crearMenu( QMenuBar *m )
 {
@@ -135,7 +135,7 @@ void presupuestador::crearMenu( QMenuBar *m )
   qDebug( "Error en las baras de menu" );
  }
  else
- { 
+ {
   QMenu *menuRecibos = menuHer->addMenu( "Presupuestos" );
   menuRecibos->addAction( ActNuevoPresu );
   menuRecibos->addAction( ActPresuAnteriores );
@@ -153,7 +153,7 @@ bool presupuestador::verificarTablas()
 
 
 /*!
-    \fn presupuestador::version()
+    \fn presupuestador::version() const
  */
 double presupuestador::version() const
 {

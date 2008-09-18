@@ -178,6 +178,8 @@ void FormAgregarRecibo::cambioImporte( double )
 
 /*!
     \fn FormAgregarRecibo::guardar( bool imprimir )
+	Guada los datos e imprime si es necesario
+	@param imprimir Llama al metodo de impresion cuando termina
  */
 void FormAgregarRecibo::guardar( bool imprimir )
 {
@@ -223,9 +225,9 @@ void FormAgregarRecibo::guardar( bool imprimir )
 		{
 			return;
 		}
-	
+
 	}
- } 
+ }
  MRecibo *modelo = new MRecibo( this );
  QSqlRecord rec = modelo->record();
  rec.remove( 0 );

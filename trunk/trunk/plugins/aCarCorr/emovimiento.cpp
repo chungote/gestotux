@@ -390,7 +390,7 @@ void EMovimiento::setFecha ( const QDate& theValue )
 { fecha = theValue; }
 
 /*!
-    \fn EMovimiento::guardar()
+    \fn EMovimiento::guardar( QProgressDialog *dialogo )
 	Guarda los datos que existan en la variables de la clase a la base de datos y actualiza las caravanas y sus dueños.
 	@param dialogo Dialogo para indicar el avance de la operacion
  */
@@ -767,7 +767,10 @@ bool EMovimiento::guardarCaravana( QString codigo )
 
 
 /*!
-    \fn EMovimiento::asociarCaravana( QString codigo )
+    \fn EMovimiento::asociarCaravana( int id_caravana )
+	Genera la asociación en la base de datos para una caravana con el tri de este movimiento.
+	@param id_caravana Numero de caravana ( id de registro )
+	@return Verdadero si fue exitosa la asociación
  */
 bool EMovimiento::asociarCaravana( int id_caravana )
 {
@@ -810,11 +813,12 @@ bool EMovimiento::cargarCaravanas()
 
 
 /*!
-    \fn EMovimiento::aduenarCaravana( int id_caravana, id_cliente, QDate fecha )
+    \fn EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha, bool cambiar_dueno )
 	Funcion que asocia una caravana con un dueño en una fecha especifica
 	@param id_caravana Id de registro de la caravana
 	@param id_cliente Id del registro del cliente
 	@param fecha Fecha de la asociacion
+	@param cambiar_dueno Permite el cambio de dueño modificando el registro
 	@return verdadero si la operacion se llevo a cabo o falso si no
  */
 bool EMovimiento::aduenarCaravana( int id_caravana, int id_cliente, QDate fecha, bool cambiar_dueno )

@@ -144,9 +144,13 @@ void gestotux::createMenus()
  menuAyuda->addAction( acercade );
 }
 
+#include "everificabackup.h"
 void gestotux::createStatusBar()
 {
       statusBar()->showMessage( "Listo" );
+	EVerificaBackup *e = new EVerificaBackup( statusBar() );
+	connect( e, SIGNAL( abrirBackups() ), this, SLOT( verBackup() ) );
+	statusBar()->addPermanentWidget( e );
 }
 
 gestotux::~gestotux()
@@ -161,11 +165,10 @@ gestotux::~gestotux()
 void gestotux::salir()
 {
  preferencias *p = preferencias::getInstancia();
- p->sync();
  p->beginGroup( "ventanaPrincipal" );
  p->setValue( "estado", saveState() );
  p->endGroup();
-
+ p->sync();
  QSqlDatabase::database().close();
  close();
 }

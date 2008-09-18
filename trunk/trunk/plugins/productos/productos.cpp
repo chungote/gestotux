@@ -27,7 +27,7 @@ Q_EXPORT_PLUGIN2( productos, productos );
 
 
 /*!
-    \fn productos::accionesBarra()
+    \fn productos::accionesBarra() const
  */
 QList<QAction *> productos::accionesBarra() const
 {
@@ -54,7 +54,7 @@ QWidgetList productos::formsPreferencias()
 
 
 /*!
-    \fn productos::inicializar( QStackedWidget *formCen, QSettings *pref )
+    \fn productos::inicializar( QSettings *pref )
  */
 bool productos::inicializar( QSettings *pref )
 {
@@ -85,7 +85,7 @@ bool productos::verificarTablas()
 
 
 /*!
-    \fn productos::tipo()
+    \fn productos::tipo() const
  */
 int productos::tipo() const
 {

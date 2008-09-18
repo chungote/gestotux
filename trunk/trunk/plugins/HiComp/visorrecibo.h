@@ -48,6 +48,9 @@ public slots:
 
 protected slots:
     void aPdf();
+
+signals:
+	void agregarVentana( QWidget * );
 };
 
 #endif

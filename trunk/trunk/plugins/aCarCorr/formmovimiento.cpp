@@ -663,7 +663,9 @@ void FormMovimiento::hacerInformeSenasa()
 
 
 /*!
-    \fn FormMovimiento::habilitarCantidadAnimales( int categoria )
+    \fn FormMovimiento::habilitarCantidadAnimales( QString categoria )
+	Habilita o no la cantidad de animales verificando que la categoria sea una categoria especial
+	@param categoria Nombre de la categoria
  */
 void FormMovimiento::habilitarCantidadAnimales( QString categoria )
 {

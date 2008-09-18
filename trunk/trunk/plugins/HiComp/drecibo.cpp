@@ -97,7 +97,7 @@ void DRecibo::setEditorData( QWidget * editor, const QModelIndex & index ) const
   case 7:
   {
    QCheckBox *box = qobject_cast<QCheckBox *>(editor);
-   if( index.data( Qt::DisplayRole ).toBool() )
+   if( index.data( Qt::DisplayRole ).toInt() == 1 )
    {
     box->setCheckState( Qt::Checked );
    }
@@ -142,11 +142,11 @@ void DRecibo::setModelData ( QWidget * editor, QAbstractItemModel * model, const
    QCheckBox *box = qobject_cast<QCheckBox *>(editor);
    if( box->checkState() == Qt::Checked )
    {
-    model->setData( index, true );
+    model->setData( index, 1 );
    }
    else
    {
-    model->setData( index, false );
+    model->setData( index, 0 );
    }
    break;
   }

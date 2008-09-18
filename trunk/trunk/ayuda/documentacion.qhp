@@ -9,8 +9,8 @@
                  <section title="Manual de Gestotux" ref="index.html">
 			<!-- <section title="Iniciando el programa" ref=""/>
 			<section title="Usando las bases de datos" ref="dbs.html"/>
-			<section title="Generar y restaurar backups del sistema" ref="backup.html"/>
 			<section title="Utilizar preferencias" ref="preferencias.html" />-->
+			<section title="Generar y restaurar backups del sistema" ref="backups.html"/>
 			<section title="Actualizar el programa" ref="actualizar.html"/>
 			<section title="Salir del programa" ref="salir.html"/>
                  </section>
@@ -19,6 +19,7 @@
 		<keyword name="index" id="index" ref="index.html" />
 		<keyword name="salir" id="salir" ref="salir.html" />
 		<keyword name="actualizar" id="actualizar" ref="actualizar.html" />
+		<keyword name="backup" id="backup" ref="backups.html" />
              </keywords>
              <files>
                 <file>index.html</file>
@@ -28,6 +29,10 @@
 		<file>imagenes/next.png</file>
 		<file>salir.html</file>
 		<file>actualizar.html</file>
+		<file>backups.html</file>
+		<file>imagenes/backup.png</file>
+		<file>imagenes/backup1.png</file>
+		<file>imagenes/backup2.png</file>
              </files>
          </filterSection>
      </QtHelpProject>

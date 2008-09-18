@@ -48,7 +48,9 @@ QIcon HiComp::iconoPrograma() const
 }
 
 /*!
-    \fn HiComp::accionesBarra()
+    \fn HiComp::accionesBarra() const
+	Retorna las acciones que tiene la barra lateral para este plugin
+	@return Lista de acciones
  */
 QList<QAction *> HiComp::accionesBarra() const
 {
@@ -117,7 +119,7 @@ void HiComp::nuevoRecibo()
 
 
 /*!
-    \fn HiComp::nombre()
+    \fn HiComp::nombre() const
  */
 QString HiComp::nombre() const
 {
@@ -126,7 +128,7 @@ QString HiComp::nombre() const
 
 
 /*!
-    \fn HiComp::tipo()
+    \fn HiComp::tipo() const
  */
 int HiComp::tipo() const
 {
@@ -167,7 +169,7 @@ bool HiComp::verificarTablas()
 
 
 /*!
-    \fn HiComp::version()
+    \fn HiComp::version() const
  */
 double HiComp::version() const
 {

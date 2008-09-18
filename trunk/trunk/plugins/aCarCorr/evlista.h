@@ -37,7 +37,7 @@ class EVLista : public EVentana
 {
 	Q_OBJECT
 public:
-    EVLista(QWidget *parent = 0, QObject *child = 0 );
+    EVLista(QWidget *parent = 0, QObject *child = 0, Qt::WFlags fl = 0 );
     ~EVLista();
     void closeEvent( QCloseEvent * c);
 

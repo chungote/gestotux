@@ -81,7 +81,7 @@ void EMysql::accept()
 
 
 /*!
-    \fn EMysql::setDb( QSqlDatabase db )
+    \fn EMysql::setDb( QSqlDatabase *db )
  */
 void EMysql::setDb( QSqlDatabase *db )
 {
