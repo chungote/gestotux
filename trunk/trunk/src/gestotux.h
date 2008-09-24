@@ -52,6 +52,7 @@ public:
       static QList<EPlugin *> plugins();
       static QHash<QString, EPlugin *> *pluginsHash();
 
+
 protected:
       void closeEvent(QCloseEvent *event);
 
@@ -67,6 +68,7 @@ private:
       void createToolBar();
       void crearReloj();
       void bandeja_sistema();
+      bool hacerTablas( QString nombrePlug );
 
       barraLateral *barra;
       barraAbajo *barraA;
@@ -87,6 +89,7 @@ private:
       QAction *ActBackup;
       QAction *ActProductos;
       QAction *ActActualizar;
+      QAction *ActExplorador;
 
       QSystemTrayIcon * iconoBandeja;
 
@@ -97,6 +100,7 @@ public slots:
 
 private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
+    void verExplorador();
 
 private:
     static QHash<QString, EPlugin *> *_plugins;

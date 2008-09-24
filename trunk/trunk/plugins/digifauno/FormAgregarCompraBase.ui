@@ -1,0 +1,152 @@
+<ui version="4.0" >
+ <class>FormAgregarCompraBase</class>
+ <widget class="QWidget" name="FormAgregarCompraBase" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>504</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600;">Agregar Nueva Compra&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLabel" name="label_2" >
+       <property name="text" >
+        <string>Proveedor:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>CBProveedor</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="CBProveedor" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="insertPolicy" >
+        <enum>QComboBox::NoInsert</enum>
+       </property>
+       <property name="duplicatesEnabled" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLabel" name="label_3" >
+       <property name="text" >
+        <string>Costo:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>dSBCosto</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="dSBCosto" >
+       <property name="alignment" >
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="prefix" >
+        <string>$ </string>
+       </property>
+       <property name="maximum" >
+        <double>99999.990000000005239</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLabel" name="label_4" >
+       <property name="text" >
+        <string>Fecha:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>CWFecha</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCalendarWidget" name="CWFecha" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Maximum" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PBAceptar" >
+       <property name="text" >
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PBCancelar" >
+       <property name="text" >
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

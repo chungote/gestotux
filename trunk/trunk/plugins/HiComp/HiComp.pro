@@ -41,7 +41,8 @@ FORMS += FormAgregarReciboBase.ui \
  FiltroClientesBase.ui
 
 DISTFILES += recibo.svg \
- ../../CambiosHechos.txt
+ ../../CambiosHechos.txt \
+ hicomp.SQLITE.sql
 
 win32 {
     CONFIG += release

@@ -20,14 +20,14 @@
 #ifndef MPRESUPUESTO_H
 #define MPRESUPUESTO_H
 
-#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 /**
 Modelo de la tabla de recibos
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class MPresupuesto : public QSqlTableModel
+class MPresupuesto : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:

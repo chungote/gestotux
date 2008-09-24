@@ -30,7 +30,7 @@
 
 /**
  *  \brief Interface de plugin en general
- * 
+ *
  *  Clase que sirve como interfaz de un plugin general
  *  Tambien posee los metodos para integrarse a la ventana principal y asociar los punteros necesarios.
  *
@@ -43,7 +43,8 @@ public:
     {
       db = 0,
       comun = 1,
-      info = 2
+      info = 2,
+      barra = 3
     };
     virtual ~EPlugin() {}
     virtual QList<QAction *> accionesBarra() const = 0;
@@ -54,8 +55,8 @@ public:
     virtual void crearMenu( QMenuBar *m ) = 0;
     virtual bool verificarTablas() = 0;
     virtual double version() const = 0;
-    // Señal que debe implementarse	
-    virtual void agregarVentana( QWidget *v ) = 0; 
+    // Señal que debe implementarse
+    virtual void agregarVentana( QWidget *v ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EPlugin,

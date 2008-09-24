@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="" >
+	<file>imagenes/duenos.png</file>
+	<file>imagenes/resumenes.png</file>
+	<file>imagenes/pelu.gif</file>
+    	<file>imagenes/compras.jpg</file>
+	<file>imagenes/proveedores.jpg</file>
+	<file>imagenes/mascotas.gif</file>
+	<file>imagenes/productos.jpg</file>
+	<file>imagenes/categorias.jpg</file>
+	<file>imagenes/ventas.jpg</file>
+	<file>imagenes/general.png</file>
+	<file>imagenes/restaurar.png</file>
+	<file>imagenes/diario.png</file>
+	<file>imagenes/mensual.png</file>
+	<file>imagenes/icono.png</file>
+	<file>imagenes/gasto.jpg</file>
+	<file>imagenes/semanal.png</file>
+	<file>imagenes/otras.png</file>
+    </qresource>
+    <qresource prefix="sql">
+	<file>digifauno.QSQLITE.sql</file>
+    </qresource>
+</RCC>

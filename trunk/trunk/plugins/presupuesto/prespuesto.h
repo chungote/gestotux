@@ -32,7 +32,7 @@ class QMenuBar;
 
 /**
  *  \brief Clase del plugin de presupuestos
- *   
+ *
  *  Plugin para hacer presupuestos
  *
  *	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -62,6 +62,7 @@ private:
 
 protected slots:
     void nuevoPresupuesto();
+    void verAnteriores();
 
 signals:
 	void agregarVentana( QWidget * );

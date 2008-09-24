@@ -6,5 +6,6 @@ SUBDIRS += HiComp \
  aCarCorr \
  aCarCorr/plugins \
  productos \
- OscarSorazi
+ OscarSorazi \
+ digifauno
 CONFIG += ordered

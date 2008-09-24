@@ -5,4 +5,7 @@
 	<file>imagenes/productos.png</file>
 	<file>imagenes/guardarimprimir.png</file>
     </qresource>
+    <qresource prefix="sql">
+	<file>presupuesto.QSQLITE.sql</file>
+    </qresource>
 </RCC>

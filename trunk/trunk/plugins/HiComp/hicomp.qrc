@@ -5,4 +5,7 @@
 	<file>recibo.svg</file>
 	<file>imagenes/recibo.png</file>
    </qresource>
+   <qresource>
+	<file>hicomp.QSQLITE.sql</file>
+   </qresource>
 </RCC>

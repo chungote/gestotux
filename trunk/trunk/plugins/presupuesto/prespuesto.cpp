@@ -70,12 +70,13 @@ bool prespuesto::inicializar( QSettings *pref )
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
 
- ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
+ ActPresuAnteriores = new QAction( "Presupuestos Anteriores2", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
- //connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
+ connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
  _acciones.append( ActNuevoPresu );
+ _acciones.append( ActPresuAnteriores );
 
  return verificarTablas();
 }
@@ -95,7 +96,7 @@ int prespuesto::tipo() const
  */
 void prespuesto::crearMenu( QMenuBar *m )
 {
- /*QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
+ QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer == 0 )
  {
   qDebug( "Error en las baras de menu" );
@@ -105,7 +106,7 @@ void prespuesto::crearMenu( QMenuBar *m )
   QMenu *menuRecibos = menuHer->addMenu( "Presupuestos2" );
   menuRecibos->addAction( ActNuevoPresu );
   menuRecibos->addAction( ActPresuAnteriores );
- }*/
+ }
 }
 
 
@@ -144,3 +145,11 @@ Q_EXPORT_PLUGIN2(presupuesto, prespuesto )
  */
 void prespuesto::nuevoPresupuesto()
 { emit agregarVentana( new FormAgregarPresupuesto() ); }
+
+
+#include "vpresupuesto.h"
+/*!
+    \fn prespuesto::verAnteriores()
+ */
+void prespuesto::verAnteriores()
+{ emit agregarVentana( new VPresupuesto() ); }

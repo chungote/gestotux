@@ -44,3 +44,7 @@ INCLUDEPATH += ../../src \
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
+RESOURCES += embebido.qrc
+
+DISTFILES += productos.SQLITE.sql
+

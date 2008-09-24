@@ -29,7 +29,6 @@ FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormListaProductosBase()
 {
 	setupUi(this);
-	this->setAttribute( Qt::WA_DeleteOnClose );
 	this->setWindowTitle( "Listado de Productos" );
 
 	modelo = new MTProductosPresupuesto( this );
@@ -51,6 +50,7 @@ FormListaProductos::FormListaProductos(QWidget* parent, Qt::WFlags fl)
 	adjustSize();
 	groupBox->setVisible( PBMas->isChecked() );
 	verificarProductos();
+	this->hide();
 }
 
 FormListaProductos::~FormListaProductos()

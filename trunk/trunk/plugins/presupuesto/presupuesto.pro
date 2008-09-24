@@ -24,13 +24,15 @@ HEADERS += prespuesto.h \
  presupuesto.h \
  epresupuesto.h \
  mtproductospresupuesto.h \
- formlistaproductos.h
+ formlistaproductos.h \
+ vpresupuesto.h
 SOURCES += prespuesto.cpp \
  formagregarpresupuesto.cpp \
  mpresupuesto.cpp \
  presupuesto.cpp \
  mtproductospresupuesto.cpp \
- formlistaproductos.cpp
+ formlistaproductos.cpp \
+ vpresupuesto.cpp
 FORMS += FormPresupuestoBase.ui \
  FormListaProductosBase.ui
 TARGET = presupuesto
@@ -44,4 +46,6 @@ INCLUDEPATH += ../../src \
   ../../utiles
 
 CONFIG -= release
+
+DISTFILES += presupuesto.SQLITE.sql
 

@@ -184,38 +184,9 @@ int main(int argc, char *argv[])
        QStringList tablas = DB.tables( QSql::Tables );
        if( tablas.isEmpty() )
        {
-		qDebug( "No existen tablas en la base de datos. Se copiaran..." );
-		// El archivo de base de datos no existe
-		QFile origen( ":/sql/tablas."+DB.driverName()+".sql" );
-		if( origen.open( QIODevice::ReadOnly ) )
-		{
-			QMessageBox::information( 0, "Falta la DB", "La base de datos no se encuentra, se crearan las tablas desde cero. Pero no existiran datos en ellas. Si posee un backup por favor restaurelo." );
-			QSqlQuery cola;
-			QTextStream in(&origen);
-			while ( !in.atEnd() )
-			{
-				QString line = in.readLine();
-				if( cola.exec( line ) )
-				{
-					qDebug( QString( "Ejecutado: %1" ).arg( line ).toLocal8Bit() );
-				}
-				else
-				{
-					qFatal( QString( "Error fatal al ejecutar la cola: %1" ).arg( line ).toLocal8Bit() );
-					abort();
-				}
-			}
-			QSqlDatabase::database().commit();
-			// si llegamos hasta aca, todo bien
-			origen.close();
-			QMessageBox::warning( 0, "Listo", "La base de datos ha sido creada. Por favor, inice nuevamente el programa. Gracias" );
-		}
-		else
-		{
-			qFatal( "No se encuentra el archivo embebido original" );
-			qFatal( DB.driverName().toLocal8Bit() );
-			abort();
-		}
+		// Es la primera vez que se arranca el programa
+		qDebug( "No existen tablas en la base de datos." );
+		// Cada plugin debe inicializar sus propias tablas
        }
        else
        {
