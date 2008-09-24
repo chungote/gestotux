@@ -51,28 +51,29 @@ Presupuesto::Presupuesto(QObject *parent)
  #endif
      pluginsDir.cd("plugins");
      pluginsDir.cd("presupuestos");
-	QStringList filtro;
+     QStringList filtro;
 	// Obtengo el nombre del plugin de infoprog actual para cargar el del mismo nombre
 #ifdef Q_WS_WIN32
 	filtro.append( "*.dll" );
-	int pos =  pluginsDir.entryList( filtro, QDir::Files  ).indexOf( prespuesto::pref()->value( "pluginInfo", "default" ).toString().append( ".dll" ) );
+	int pos =  pluginsDir.entryList( filtro, QDir::Files  ).indexOf( prespuesto::pref()->value( "Preferencias/general/pluginInfo", "default" ).toString().append( ".dll" ) );
+	int pos_def = pluginsDir.entryList( filtro, QDir::Files  ).indexOf( QString( "default" ).append( ".dll" ) );
 #endif
 #ifdef Q_WS_X11
 	filtro.append( "*.so" );
-	int pos =  pluginsDir.entryList( filtro, QDir::Files ).indexOf( prespuesto::pref()->value( "pluginInfo", "default" ).toString().prepend( "lib" ).append( ".so" ) );
+	int pos =  pluginsDir.entryList( filtro, QDir::Files ).indexOf( prespuesto::pref()->value( "Preferencias/general/pluginInfo", "default" ).toString().prepend( "lib" ).append( ".so" ) );
+	int pos_def = pluginsDir.entryList( filtro, QDir::Files  ).indexOf( QString( "default" ).prepend( "lib" ).append( ".so" ) );
 #endif
 	if( pos == -1 )
 	{
 		qCritical( "Error: No existe ningun plugin de presupuestos definidos! Verifique la instalación!" );
 		qDebug( pluginsDir.entryList( filtro, QDir::Files ).join( ", " ).toLocal8Bit() );
-		return;
+		pos = pos_def;
         }
 	loader->setFileName(  pluginsDir.absoluteFilePath( pluginsDir.entryList( QDir::Files ).at( pos ) )  );
         if( loader->load() )
         {
 		_plugin = qobject_cast<EPresupuesto *>(loader->instance());
 		_plugin->inicializar();
-		qWarning( _plugin->nombre().toLocal8Bit() );
 	}
 	else
 	{

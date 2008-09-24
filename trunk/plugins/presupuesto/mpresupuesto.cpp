@@ -20,15 +20,17 @@
 #include "mpresupuesto.h"
 
 MPresupuesto::MPresupuesto(QObject *parent)
- : QSqlTableModel(parent)
+ : QSqlRelationalTableModel(parent)
 {
  setTable( "presupuestos" );
  // Descripciondes de las cabeceras
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Destinatario" );
- setHeaderData( 2, Qt::Horizontal, "Fecha" );
- setHeaderData( 3, Qt::Horizontal, "Total" );
- setHeaderData( 4, Qt::Horizontal, "Contenido" );
+ setHeaderData( 1, Qt::Horizontal, "Cliente" );
+ setRelation( 1, QSqlRelation( "clientes", "id", "nombre" ) );
+ setHeaderData( 2, Qt::Horizontal, "Destinatario" );
+ setHeaderData( 3, Qt::Horizontal, "Fecha" );
+ setHeaderData( 4, Qt::Horizontal, "Total" );
+ setHeaderData( 5, Qt::Horizontal, "Contenido" );
 }
 
 
@@ -39,11 +41,30 @@ MPresupuesto::~MPresupuesto()
 
 QVariant MPresupuesto::data(const QModelIndex& idx, int role) const
 {
-    return QSqlTableModel::data(idx, role);
+ switch( idx.column() )
+ {
+ 	case 1:
+	{
+		if( QSqlTableModel::data(idx, role).toInt() != -1 )
+		{
+			return "-";
+		}
+		else
+		{
+			return QSqlRelationalTableModel::data(idx,role);
+		}
+		break;
+	}
+	default:
+	{
+		return QSqlRelationalTableModel::data( idx, role );
+		break;
+	}
+ }
 }
 
 bool MPresupuesto::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    return QSqlTableModel::setData(index, value, role);
+    return QSqlRelationalTableModel::setData(index, value, role);
 }
 

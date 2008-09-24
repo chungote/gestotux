@@ -4,4 +4,7 @@
 	<file>imagenes/categoria.png</file>
 	<file>imagenes/caravana.png</file>
    </qresource>
-</RCC> 
+   <qresource prefix="sql">
+	<file>admincaravanascorrientes.QSQLITE.sql</file>
+   </qresource>
+</RCC>

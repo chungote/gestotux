@@ -115,6 +115,9 @@ void gestotux::createActions()
  	ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
  	ActActualizar->setStatusTip( "Actualiza la aplicacion " );
  	connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
+
+	ActExplorador = new QAction( "Explorador de Archivos", this );
+	connect( ActExplorador, SIGNAL( triggered() ), this, SLOT( verExplorador() ) );
 }
 
 void gestotux::createMenus()
@@ -122,6 +125,7 @@ void gestotux::createMenus()
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
  fileMenu->addAction( ActActualizar );
+ fileMenu->addAction( ActExplorador );
  fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 
@@ -188,7 +192,7 @@ FormularioCentral *gestotux::formCen()
  */
 void gestotux::acerca()
 {
- FormAcercaDe *f = new FormAcercaDe( this );
+ FormAcercaDe *f = new FormAcercaDe( 0 );
  f->adjustSize();
  f->show();
 }
@@ -292,7 +296,7 @@ void gestotux::bandeja_sistema()
 
 void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 {
-  switch( razon )
+ switch( razon )
  {
   case QSystemTrayIcon::Trigger:
   case QSystemTrayIcon::MiddleClick:
@@ -306,7 +310,10 @@ void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
    {
     this->show();
    }
+   break;
   }
+  default:
+  { break; }
  }
 }
 
@@ -337,20 +344,36 @@ bool gestotux::cargarPlugins()
 #endif
      foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
      {
-
 	loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
          if( loader.load() )
          {
 		QObject *obj = loader.instance();
 		EPlugin *plug = qobject_cast<EPlugin *>( obj );
+		// veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
+		if( plug->tipo() == EPlugin::info )
+		{
+			_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
+			preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
+		}
 		if( plug->inicializar( preferencias::getInstancia() ) )
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), formCen(), SLOT( agregarForm( QWidget * ) ) );
-			_plugins->insert( plug->nombre(), plug );
-			if( plug->tipo() == EPlugin::info )
+			//Verifico sus tablas
+			if( plug->verificarTablas() != true )
 			{
-				_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
+				// estan cargados los archivo resource cuando cargo el plugin?
+				if( hacerTablas( plug->nombre() ) )
+				{
+					// todo ok
+					qDebug( "Tablas creadas correctamente" );
+				}
+				else
+				{
+					// No se pudieron cargar las tablas
+					continue;
+				}
 			}
+			_plugins->insert( plug->nombre(), plug );
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
 		else
@@ -410,7 +433,7 @@ void gestotux::keyPressEvent( QKeyEvent *event )
 {
  if (  event->key() ==  Qt::Key_F1 )
  {
-   // si el pedido llego hasta aca, no hay ninguna ventana abierta.. muestro el indice
+   // si el pedido llego hasta aca, no hay ninguna ventana abierta???? muestro el indice
    EAyuda *ayuda = EAyuda::instancia();
    ayuda->mostrarIndice();
  }
@@ -418,4 +441,57 @@ void gestotux::keyPressEvent( QKeyEvent *event )
  {
 	QWidget::keyPressEvent( event );
  }
+}
+
+
+/*!
+    \fn gestotux::hacerTablas( QString nombrePlug )
+ */
+bool gestotux::hacerTablas( QString nombrePlug )
+{
+ if( QFile::exists( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) )
+ {
+	QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" );
+	if( archivo.open( QIODevice::ReadOnly | QIODevice::Text ) )
+	{
+		QStringList cadenas = QString( archivo.readAll() ).split( ";" );
+		QString cadena; QSqlQuery cola;
+		foreach( cadena, cadenas )
+		{
+			if( !cola.exec( cadena ) )
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	else
+	{
+		qWarning(qPrintable( "Error al abrir el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+		return false;
+	}
+ }
+ else
+ {
+  qWarning( qPrintable( "No se pudo generar las tablas del plugin " + nombrePlug + ". No se encontro el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+  return false;
+ }
+}
+
+#include <QDirModel>
+#include <QTreeView>
+#include "eactcerrar.h"
+
+/*!
+    \fn gestotux::verExplorador()
+ */
+void gestotux::verExplorador()
+{
+  QDirModel *model = new QDirModel;
+  QTreeView *tree = new QTreeView();
+  tree->setModel(model);
+  tree->setRootIndex(model->index(":/sql"));
+  EActCerrar *actcerrar = new EActCerrar( tree );
+  tree->addAction( actcerrar );
+  formCen()->agregarForm( tree );
 }

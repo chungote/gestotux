@@ -55,7 +55,7 @@ Ebackup::Ebackup( QWidget* parent )
 {
  setupUi(this);
  this->setAttribute( Qt::WA_DeleteOnClose );
- setObjectName( "Copia de Seguridad" );
+ setObjectName( "backup" );
  PBProgreso->setValue( 0 );
  LDebug->setText( "Presione Iniciar para comenzar" );
  // inicializo el deposito de datos

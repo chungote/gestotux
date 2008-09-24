@@ -86,3 +86,5 @@ LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
 
+DISTFILES += admincaravanascorrientes.SQLITE.sql
+

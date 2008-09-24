@@ -85,13 +85,17 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	dEFecha->setDate( QDate::currentDate() );
 
 	// Inicializo el formulario ahora para poder usar la modificacion
-	formLista = new FormListaProductos( this );
+	formLista = new FormListaProductos();
 	connect( formLista, SIGNAL( agregarTabla() ), this, SLOT( ponerTabla() ) );
 }
 
 FormAgregarPresupuesto::~FormAgregarPresupuesto()
 {
  delete pre;
+ if( formLista != 0 )
+ {
+  delete formLista;
+ }
 }
 
 
@@ -143,7 +147,7 @@ void FormAgregarPresupuesto::ponerTabla()
 void FormAgregarPresupuesto::guardar( bool cerrar )
 {
  // Verifico que esten todos los datos
- if( !RBCliente->isChecked() || !RBOtro->isChecked() )
+ if( !RBCliente->isChecked() && !RBOtro->isChecked() )
  {
   QMessageBox::information( this, "Faltan Datos", "Por favor, elija un cliente o destinatario" );
   return;
@@ -164,14 +168,21 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  // le pongo los valores a el registro
  reg.setValue( "titulo", LETitulo->text() );
  reg.setValue( "total", dSBTotal->value() );
+ reg.setValue( "contenido", TBContenido->document()->toHtml() );
  if( RBOtro->isChecked() )
  {
   reg.setValue( "destinatario", LEOtro->text() );
+  reg.setValue( "id_cliente", -1 );
  }
  else
  {
-  //Busco el id del cliente
-  //reg.setValue( "id_cliente", id_cliente );
+  reg.setValue( "id_cliente", CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt() );
+  reg.setValue( "destinatario", "" );
+ }
+ ///@todo colocar los datos de los productos asociados
+ if( mod->insertRecord( -1, reg ) )
+ {
+  QMessageBox::information( this, "Correcto", "Datos Guardados correctamente" );
  }
  if( cerrar )
  {
