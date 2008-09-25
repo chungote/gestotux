@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS presupuestos_productos ( id INTEGER PRIMARY KEY AUTOINCREMENT, id_presupuesto INTEGER NOT NULL, id_producto INTEGER NOT NULL, cantidad NUMERIC );
+CREATE TABLE IF NOT EXISTS presupuestos ( id INTEGER PRIMARY KEY AUTOINCREMENT,id_cliente INTEGER NULL, destinatario TEXT NULL, fecha TEXT NOT NULL, total NUMERIC, contenido BLOB );
