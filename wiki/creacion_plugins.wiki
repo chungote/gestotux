@@ -1,3 +1,4 @@
+#labels Phase-Implementation,Phase-Design,Phase-Support
 #Como generar y compilar nuevos plugins en el programa
 
 = Introduccion =
@@ -64,3 +65,17 @@ Devuelve la version del programa. Utilizada cuando se verifican las actualizacio
 
 {{{ virtual void agregarVentana( QWidget *v ) = 0; }}}
 Esta es una señal a la cual se debe llamar cada vez que se quiera agregar una nueva ventana.
+
+== Agregando tablas de base de datos ===
+
+Para cada plugin, existe un metodo que le permite conocer si estan las tablas creadas pra usar. Este metodo de verificar tablas, de retornar falso, intentara crearlas a travez del archivo embebido que se encuentra en el directorio {{:/sql}}, y el cual debe tener la siguiente forma:
+
+{{<nombrePlugin>.<DriverSQL>.sql}}
+
+ * el *nombrePlugin* debe ser el mismo que el retornado por el metodo {{QString nombre() const }}
+
+ * El *DriverSQL* debe ser el mismo que esta puesto en la lista de documentacion de qt.
+
+De no encontrar el archivo, o no encontrar el archivo para el driver correspondiente, no se cargará el plugin.
+
+Para ver como embeber archivos en el plugin, visita la pagina embeber_archivos.
