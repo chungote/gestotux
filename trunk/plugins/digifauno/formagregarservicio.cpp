@@ -30,8 +30,7 @@ FormAgregarServicio::FormAgregarServicio( QWidget* parent )
 {
 	setupUi(this);
 	setObjectName( "FormAgregarServicio" );
-	nombre_ventana = "formAgregarServicio";
-	setNombreVentana( "Agregar Nuevo Servicio de Peluqueria" );
+	setWindowTitle( "Agregar Nuevo Servicio de Peluqueria" );
 
 	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
 	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );

@@ -26,8 +26,8 @@
 VMascota::VMascota( QWidget *parent )
  : EVLista( parent )
 {
- nombre_ventana = "listaMascotas";
- setNombreVentana( "Listado de Mascotas y Dueños" );
+ setObjectName("listaMascotas");
+ setWindowTitle( "Listado de Mascotas y DueÃ±os" );
  modelo = new MMascota( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 );

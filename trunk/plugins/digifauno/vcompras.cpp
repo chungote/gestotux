@@ -27,8 +27,8 @@
 VCompras::VCompras(QWidget *parent)
  : EVLista( parent )
 {
- nombre_ventana = "lista_compras";
- setNombreVentana( "Lista de compras realizadas" );
+ setObjectName( "lista_compras" );
+ setWindowTitle( "Lista de compras realizadas" );
  modelo = new MCompra( this, true );
  vista->setModel( modelo );
  modelo->select();

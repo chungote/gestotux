@@ -34,8 +34,8 @@ FormAcercaDe::FormAcercaDe(QWidget* parent)
         label_3->setText( gestotux::pluginInfo()->nombrePrograma() + " es un programa desarrollado especificamente para " + gestotux::pluginInfo()->empresa() + ".\nRealizado bajo licencia GPL, completamente desarrollado con Software Libre.\nBasado en las librerias Qt.\n\nProgramador y Analista:\nEsteban Zeller <tranfuga_25s@hotmail.com>\n \n" + gestotux::pluginInfo()->companeros() );
         PBCerrar->setText( "Cerrar" );
 
-        nombre_ventana = "formacercaede";
-        setNombreVentana( "Acerca de... " );
+        setObjectName( "formacercaede" );
+        setWindowTitle( "Acerca de... " );
 }
 
 FormAcercaDe::~FormAcercaDe()

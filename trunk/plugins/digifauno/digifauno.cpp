@@ -33,7 +33,6 @@
 #include "formagregarservicio.h"
 #include "vmascota.h"
 #include "eresumen.h"
-#include "visorresumenes.h"
 #include "formacercade.h"
 #include "formagregargasto.h"
 #include "vgastos.h"
@@ -199,8 +198,8 @@ bool DigiFauno::inicializar( QSettings *pref )
  ////////////////////////////////
  // Muestra los miembros
  ////////////////////////////////
- ActDuenos = new QAction( "Dueños", this );
- ActDuenos->setStatusTip( "Muestra todos los dueños" );
+ ActDuenos = new QAction( "Dueï¿½os", this );
+ ActDuenos->setStatusTip( "Muestra todos los dueï¿½os" );
  ActDuenos->setIcon( QIcon( ":/imagenes/duenos.png" ) );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( duenos() ) );
  ////////////////////////////////
@@ -234,7 +233,7 @@ bool DigiFauno::inicializar( QSettings *pref )
  // Muestra la lista de mascotas
  /////////////////////////////////////
  ActMascotas = new QAction( "Ver Mascotas", this );
- ActMascotas->setStatusTip( "Ver todas las mascotas y sus dueños" );
+ ActMascotas->setStatusTip( "Ver todas las mascotas y sus dueï¿½os" );
  ActMascotas->setIcon( QIcon( ":/imagenes/mascotas.gif" ) );
  connect( ActMascotas, SIGNAL( triggered() ), this, SLOT( mascotas() ) );
  /////////////////////////////////////

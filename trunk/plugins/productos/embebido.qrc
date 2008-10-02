@@ -1,5 +1,6 @@
 <RCC>
    <qresource prefix="sql">
 	<file>productos.QSQLITE.sql</file>
+	<file>productos.QMYSQL.sql</file>
    </qresource>
 </RCC>

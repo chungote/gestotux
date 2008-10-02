@@ -28,9 +28,8 @@ FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
 : EVentana( parent ), Ui::FormListadoPeluqueriaBase()
 {
 	setupUi(this);
-	nombre_ventana = "lista_servicios";
-	setNombreVentana( "Listado de servicios brindados" );
-	setObjectName( "FormListaGastos" );
+	setObjectName( "lista_servicios" );
+	setWindowTitle( "Listado de servicios brindados" );
 
 	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
 	PBCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );

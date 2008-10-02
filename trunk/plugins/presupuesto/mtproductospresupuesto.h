@@ -36,7 +36,7 @@ public:
     Qt::ItemFlags flags( const QModelIndex & index ) const;
     int columnCount( const QModelIndex &parent = QModelIndex() ) const;
     int rowCount( const QModelIndex &parent = QModelIndex() ) const;
-    bool guardar( const int id_presupuesto ) const;
+    bool guardar( const int id_presupuesto );
     bool setData( const QModelIndex &item, const QVariant &data, int role = Qt::EditRole );
     QVariant buscarPrecioProducto( const int fila ) const;
     QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const ;

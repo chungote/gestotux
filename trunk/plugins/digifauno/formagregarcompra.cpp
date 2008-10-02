@@ -28,8 +28,8 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarCompraBase()
 {
 	setupUi(this);
-	nombre_ventana = "agregar_compra";
-	setNombreVentana( "Agregar nueva compra" );
+	setObjectName( "agregar_compra" );
+	setWindowTitle( "Agregar nueva compra" );
 
 	PBCancelar->setText( "Cer&rar" );
 	PBCancelar->setShortcut( QKeySequence( "Alt+c" ) );

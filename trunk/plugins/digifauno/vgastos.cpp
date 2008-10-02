@@ -29,8 +29,8 @@
 VGastos::VGastos( QWidget* parent )
 : EVLista( parent, false )
 {
- nombre_ventana = "vistaGastos";
- setNombreVentana(  "Visor de Gastos" );
+ setObjectName("vistaGastos");
+ setWindowTitle(  "Visor de Gastos" );
 
  ActAgregar->disconnect();
  DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);

@@ -56,6 +56,7 @@ Ebackup::Ebackup( QWidget* parent )
  setupUi(this);
  this->setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "backup" );
+ setWindowTitle( "Copia de Seguridad" );
  PBProgreso->setValue( 0 );
  LDebug->setText( "Presione Iniciar para comenzar" );
  // inicializo el deposito de datos
@@ -68,12 +69,12 @@ Ebackup::Ebackup( QWidget* parent )
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActIniciar = new QAction( "Iniciar", this );
- ActIniciar->setStatusTip( "Inincia la generación de los backups" );
+ ActIniciar->setStatusTip( "Inincia la generaciÃ³n de los backups" );
  ActIniciar->setIcon( QIcon( ":/imagenes/next.png" ) );
  connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( iniciar() ) );
 
  ActDetener = new QAction( "Detener", this );
- ActDetener->setStatusTip( "Detiene la ejecución actual del backup" );
+ ActDetener->setStatusTip( "Detiene la ejecuciÃ³n actual del backup" );
  ActDetener->setIcon( QIcon( ":/imagenes/stop.png" ) );
  connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( detener() ) );
  connect( this, SIGNAL( cambiarDetener( bool ) ), ActDetener, SLOT( setEnabled( bool ) ) );
@@ -90,6 +91,8 @@ Ebackup::Ebackup( QWidget* parent )
 
  Pestanas->setTabIcon( 0, QIcon( ":/imagenes/backup1.png" ) );
  Pestanas->setTabIcon( 1, QIcon( ":/imagenes/backup2.png" ) );
+ Pestanas->widget( 0 )->setObjectName( "crearBackup" );
+ Pestanas->widget( 1 )->setObjectName( "restaurarBackup" );
 }
 
 
@@ -105,7 +108,7 @@ Ebackup::~Ebackup()
  */
 void Ebackup::iniciar()
 {
- // Ver en que pestaña esta
+ // Ver en que pestaï¿½a esta
  if( Pestanas->currentIndex() == 0 )
  {
   generarBackup();
@@ -117,7 +120,7 @@ void Ebackup::iniciar()
  }
  else
  {
-  qWarning( "Pestaña desconocida" );
+  qWarning( "PestaÃ±a desconocida" );
  }
 }
 

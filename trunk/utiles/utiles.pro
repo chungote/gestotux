@@ -30,7 +30,8 @@ linux-g++ {
 
 CONFIG += debug \
  staticlib \
- help
+ help \
+ exceptions
 
 CONFIG -= release
 

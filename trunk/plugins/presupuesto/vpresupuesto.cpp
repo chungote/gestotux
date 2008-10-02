@@ -25,6 +25,9 @@
 VPresupuesto::VPresupuesto(QWidget *parent)
  : EVLista(parent)
 {
+ setObjectName( "visorPresupuestos" );
+ setWindowTitle( "Presupuestos Anteriores" );
+ setWindowIcon( QIcon( ":/imagenes/anteriores.png" ) );
  modelo = new MPresupuesto( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
