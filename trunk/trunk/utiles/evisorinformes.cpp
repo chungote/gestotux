@@ -25,6 +25,8 @@ EVisorInformes::EVisorInformes( QPrinter *impre, QWidget *parent)
  : QPrintPreviewWidget( impre, parent)
 {
  setAttribute( Qt::WA_DeleteOnClose );
+ setObjectName( "visorInforme" );
+ setWindowTitle( "Visor de Informe" );
  this->impresora = impre;
  // Inicializo el formualrio y creo las acciones
  QAction *ActSeparador = new QAction( this );

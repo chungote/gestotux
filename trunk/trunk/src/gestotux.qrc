@@ -49,6 +49,7 @@
 	<file>imagenes/dbconfig.png</file>
 	<file>imagenes/aviso.png</file>
 	<file>imagenes/edit_user.png</file>
+	<file>imagenes/ayuda.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>tablas.QSQLITE.sql</file>

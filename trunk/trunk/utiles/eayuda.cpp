@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eayuda.h"
+#include <QHelpEngineCore>
 
 EAyuda *EAyuda::yo = 0;
 
@@ -25,7 +26,7 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::EAyudaBase()
 {
 	setupUi(this);
-	engine = new QHelpEngineCore( "docs.qhc" );
+	engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "docs.qch", parent );
 	if( !engine->setupData() )
 	{
 		qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
@@ -33,6 +34,7 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
 	this->setVisible(false);
 	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( hide() ) );
+	this->setWindowTitle( "Ayuda" );
 }
 
 EAyuda::~EAyuda()
@@ -55,7 +57,7 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
  }
  else
  {
-	qWarning( "Documentación no encontrada" );
+	qWarning( qPrintable( "DocumentaciÃ³n no encontrada: " + nombreObjeto + ": " + QString::number( engine->linksForIdentifier( nombreObjeto ).count() ) ) );
 	return false;
  }
 }
@@ -68,7 +70,7 @@ void EAyuda::mostrarAyuda( QString nombreObjecto )
 {
  // Estamos seguros que hay datos para este objeto
  QByteArray helpData = engine->fileData(engine->linksForIdentifier( nombreObjecto ).constBegin().value());
- // Muestro la documentación al usuario
+ // Muestro la documentaciÃ³n al usuario
  if ( !helpData.isEmpty() )
  {
    textBrowser->setHtml( helpData );
@@ -76,7 +78,7 @@ void EAyuda::mostrarAyuda( QString nombreObjecto )
  }
  else
  {
-   qWarning( "No se encontro documentación para este link" );
+   qWarning( "No se encontro documentaciÃ³n para este link" );
  }
  this->setVisible( true );
 }

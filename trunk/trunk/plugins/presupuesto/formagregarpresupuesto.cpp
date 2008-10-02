@@ -21,6 +21,7 @@
 
 #include <QSqlQueryModel>
 #include <QDate>
+#include <QSqlError>
 #include "presupuesto.h"
 #include "formlistaproductos.h"
 
@@ -32,7 +33,8 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
 	this->setObjectName( "FormAgregarPresupuesto" );
-	LTitulo->setText( "Agregar Presupuesto" );
+	this->setWindowTitle( "Agregar Presupuesto" );
+	this->setWindowIcon( QIcon( ":/imagenes/nuevo.png" ) );
 
 	connect( RBCliente, SIGNAL( toggled( bool ) ), CBCliente , SLOT( setEnabled( bool ) ) );
 	connect( RBOtro   , SIGNAL( toggled( bool ) ), LEOtro    , SLOT( setEnabled( bool ) ) );
@@ -91,7 +93,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
 FormAgregarPresupuesto::~FormAgregarPresupuesto()
 {
- delete pre;
  if( formLista != 0 )
  {
   delete formLista;
@@ -140,6 +141,9 @@ void FormAgregarPresupuesto::ponerTabla()
 
 #include <QMessageBox>
 #include <QSqlRecord>
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlQuery>
 #include "mpresupuesto.h"
 /*!
     \fn FormAgregarPresupuesto::guardar( bool cerrar )
@@ -162,13 +166,15 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
 	QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un total presupuestado" );
 	return;
  }
- MPresupuesto *mod = new MPresupuesto( this );
- mod->setEditStrategy( QSqlTableModel::OnManualSubmit );
+ // Inicio la transacción
+ QSqlDatabase::database().transaction();
+ MPresupuesto *mod = new MPresupuesto( this, false );
  QSqlRecord reg = mod->record();
  // le pongo los valores a el registro
  reg.setValue( "titulo", LETitulo->text() );
  reg.setValue( "total", dSBTotal->value() );
  reg.setValue( "contenido", TBContenido->document()->toHtml() );
+ reg.setValue( "fecha", dEFecha->date() );
  if( RBOtro->isChecked() )
  {
   reg.setValue( "destinatario", LEOtro->text() );
@@ -179,10 +185,42 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
   reg.setValue( "id_cliente", CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt() );
   reg.setValue( "destinatario", "" );
  }
- ///@todo colocar los datos de los productos asociados
  if( mod->insertRecord( -1, reg ) )
  {
+  int id_presupuesto = -1;
+  if( !QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) )
+  {}
+  else
+  {
+	QVariant var = mod->query().lastInsertId();
+	if( !var.isValid() )
+	{
+		qWarning( "Error al obtener el ultimo id" );
+	}
+	else
+	{
+		id_presupuesto = var.toInt();
+	}
+  }
+  qWarning( qPrintable( QString::number( id_presupuesto ) ) );
+  if( formLista->getModelo()->rowCount() > 0 )
+  {
+   // obtengo el id insertado y guardo los registros
+   if( formLista->getModelo()->guardar( id_presupuesto ) )
+   {
+	qWarning( "No se pudo guardar los datos de los productos" );
+	QSqlDatabase::database().rollback();
+	return;
+   }
+  }
+  QSqlDatabase::database().commit();
   QMessageBox::information( this, "Correcto", "Datos Guardados correctamente" );
+  return;
+ }
+ else
+ {
+  qWarning( qPrintable( "No se pudo guardar el registro: " + mod->lastError().text() ) );
+  QSqlDatabase::database().rollback();
  }
  if( cerrar )
  {

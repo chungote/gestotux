@@ -33,17 +33,11 @@ class EVentana : public QWidget
 {
 Q_OBJECT
 public:
-    EVentana( QWidget *padre, Qt::WFlags fl = 0 );
+    EVentana( QWidget *padre = 0, Qt::WFlags fl = 0 );
     ~EVentana();
-    void setNombreVentana( QString texto );
-    QString get_nombre_ventana();
     void closeEvent( QCloseEvent *e );
 
 protected:
-   /**
-    * Nombre interno de la ventana para guardar sus preferencias
-    */
-    QString nombre_ventana;
    /**
     * Puntero al widget padre
     */

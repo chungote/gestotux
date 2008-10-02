@@ -20,14 +20,15 @@
 #ifndef FORMULARIOCENTRAL_H
 #define FORMULARIOCENTRAL_H
 
-#include <QStackedWidget>
+#include <QTabWidget>
+class QPushButton;
 /**
  * \brief Formulario Central
  *
  * Formulario que muestra las ventanas internas del programa
  *	@author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-class FormularioCentral : public QStackedWidget
+class FormularioCentral : public QTabWidget
 {
 Q_OBJECT
 public:
@@ -40,6 +41,9 @@ protected slots:
 
 public slots:
     void agregarForm( QWidget *ventana );
+
+private:
+	QPushButton *PBCerrar;
 };
 
 #endif

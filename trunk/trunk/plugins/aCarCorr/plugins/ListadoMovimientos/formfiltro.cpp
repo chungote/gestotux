@@ -28,6 +28,8 @@ FormFiltro::FormFiltro(QWidget* parent, Qt::WFlags fl)
 : QDialog( parent ), Ui::FormFiltrosBase()
 {
 	setupUi(this);
+	this->setWindowTitle( "Elija los datos" );
+	this->setObjectName( "FormFiltroInforme" );
 
 	PBCancelar->setIcon( QIcon( ":/imagenes/stop.png" ) );
 	PBAceptar->setIcon( QIcon( ":/imagenes/ver.png" ) );

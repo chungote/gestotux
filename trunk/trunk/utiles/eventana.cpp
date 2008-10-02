@@ -60,7 +60,14 @@ void EVentana::keyPressEvent( QKeyEvent *event )
    }
    else
    {
-     buscar = this->focusWidget()->parentWidget()->objectName() + "::" +this->focusWidget()->objectName();
+ 	if( this->focusWidget()->parentWidget()->objectName().isEmpty() )
+	{
+		buscar = this->focusWidget()->objectName();
+	}
+	else
+	{
+		buscar = this->focusWidget()->parentWidget()->objectName() + "::" + this->focusWidget()->objectName();
+	}
    }
    if( ayuda->hayAyuda( buscar ) )
    {
@@ -76,27 +83,6 @@ void EVentana::keyPressEvent( QKeyEvent *event )
  {
 	QWidget::keyPressEvent( event );
  }
-}
-
-
-/*!
-    \fn EVentana::setNombreVentana( QString texto )
-    Setea el nombre de la ventana, carga las ultmas dimesiones de configuracion y pone el titulo de ventana deseado.
-	@param texto Texto que se desea colocar a la ventana en su titulo
- */
-void EVentana::setNombreVentana( QString texto )
-{
- this->setWindowTitle( texto );
-}
-
-
-/*!
-    \fn EVentana::get_nombre_ventana()
-     @return Devulve el nombre de la ventana, para agregar generalmente en el menu de ventanas
- */
-QString EVentana::get_nombre_ventana()
-{
-  return(nombre_ventana);
 }
 
 

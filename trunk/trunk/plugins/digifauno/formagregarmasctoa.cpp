@@ -30,8 +30,8 @@ FormAgregarMascota::FormAgregarMascota( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarMascotaBase()
 {
 	setupUi(this);
-	nombre_ventana = "agregarMascota";
-	setNombreVentana( "Agregar Nueva Mascota" );
+	setObjectName("agregarMascota");
+	setWindowTitle( "Agregar Nueva Mascota" );
 	modeloDueno = new MDueno( TVDueno );
 	TVDueno->setModel( modeloDueno );
 	modeloDueno->select();
@@ -51,7 +51,7 @@ FormAgregarMascota::FormAgregarMascota( QWidget* parent )
 	PBCancelar->setShortcut( QKeySequence( "Crtl+r" ) );
 	PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
 	PBAgregar->setShortcut( QKeySequence( "Crtl+a" ) );
-	// Conecto las señales
+	// Conecto las seï¿½ales
 	connect( PBAgregar,  SIGNAL( clicked() ), this, SLOT( agregarDueno() ) );
 	connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( cancelar() ) );
 	connect( PBGuardar,  SIGNAL( clicked() ), this, SLOT( guardar()  ) );
@@ -88,7 +88,7 @@ void FormAgregarMascota::guardar()
  }
  if( TVDueno->selectionModel()->selectedRows() == QModelIndexList() )
  {
-  QMessageBox::warning( this, "Seleccione un dueño", "Por favor, Seleccione uno de los dueños existentes o utilice el boton agregar dueño para agregar uno nuevo." );
+  QMessageBox::warning( this, "Seleccione un dueï¿½o", "Por favor, Seleccione uno de los dueï¿½os existentes o utilice el boton agregar dueï¿½o para agregar uno nuevo." );
   return;
  }
  MMascota *modelo = new MMascota( this );
@@ -131,13 +131,13 @@ void FormAgregarMascota::cancelar()
 
 /*!
     \fn FormAgregarMascota::agregarDueno()
-	Agrega un nuevo dueño a la vista
+	Agrega un nuevo dueï¿½o a la vista
  */
 void FormAgregarMascota::agregarDueno()
 {
  if( !modeloDueno->insertRecord( -1, modeloDueno->record() ) )
  {
-//   qDebug( "Error al insertar registro en los dueños" );
+//   qDebug( "Error al insertar registro en los dueï¿½os" );
   return;
  }
  else

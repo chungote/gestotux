@@ -21,11 +21,17 @@
 
 #include "gestotux.h"
 #include <QToolBar>
+#include <QPushButton>
 
 FormularioCentral::FormularioCentral( QWidget *parent )
-: QStackedWidget( parent )
+: QTabWidget( parent )
 {
  connect( this, SIGNAL( currentChanged( int ) ), this, SLOT( cambioWidget( int ) ) );
+ PBCerrar = new QPushButton( this );
+ PBCerrar->setFlat( true );
+ PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+ this->setCornerWidget( PBCerrar );
+ connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( cerrarActivo() ) );
 }
 
 
@@ -36,10 +42,9 @@ FormularioCentral::~FormularioCentral()
 
 void FormularioCentral::cambioWidget( int id )
 {
-//  qDebug( QString( "id nuevo: %1" ).arg( id ).toLocal8Bit() );
+ gestotux::barraAcciones()->clear();
  if( id > -1 )
  {
-  gestotux::barraAcciones()->clear();
   gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
  }
 }
@@ -47,7 +52,7 @@ void FormularioCentral::cambioWidget( int id )
 
 void FormularioCentral::cerrarActivo()
 {
- removeWidget( this->widget( currentIndex() ) );
+ removeTab( currentIndex() );
  cambioWidget( currentIndex() );
 }
 
@@ -58,5 +63,6 @@ void FormularioCentral::cerrarActivo()
 void FormularioCentral::agregarForm( QWidget *ventana )
 {
  connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );
- this->setCurrentIndex( this->addWidget( ventana ) );
+ this->setCurrentIndex( this->addTab( ventana, ventana->windowIcon(), ventana->windowTitle() ) );
+ this->currentWidget()->setFocus( Qt::ActiveWindowFocusReason );
 }

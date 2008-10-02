@@ -23,7 +23,6 @@ SOURCES += digifauno.cpp \
  mrazas.cpp \
  dventacompra.cpp \
  dmiembros.cpp \
- formacercade.cpp \
  mgasto.cpp \
  formagregargasto.cpp \
  dcategoria.cpp \
@@ -63,7 +62,6 @@ HEADERS += digifauno.h \
  mrazas.h \
  dventacompra.h \
  dmiembros.h \
- formacercade.h \
  mgasto.h \
  formagregargasto.h \
  dcategoria.h \

@@ -213,20 +213,20 @@ FormAgregarVenta::~FormAgregarVenta()
 
 /*!
     \fn FormAgregarVenta::closeEvent ( QCloseEvent * event )
-    Antes de cerrase a si misma guarda las preferencias de las ventanas en la configuracion para que queden del mismo tamaño al abrirse nuevamente
+    Antes de cerrase a si misma guarda las preferencias de las ventanas en la configuracion para que queden del mismo tamaï¿½o al abrirse nuevamente
 	@param event Evento a procesar
  */
 void FormAgregarVenta::closeEvent( QCloseEvent * event )
 {
- if ( !nombre_ventana.isEmpty() )
+ if ( !objectName().isEmpty() )
  {
 	preferencias *p = preferencias::getInstancia();
 	p->beginGroup( "Ventanas" );
-	p->beginGroup( nombre_ventana );
+	p->beginGroup( objectName() );
 	p->setValue( "dimensiones", splitter->saveState() );
 	p->endGroup();
 	p->endGroup();
-// 	qDebug( "Guardo tamaño de splitter" );
+// 	qDebug( "Guardo tamaï¿½o de splitter" );
  }
  EVentana::closeEvent( event );
 }

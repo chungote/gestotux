@@ -25,7 +25,7 @@
 #include <QSqlRecord>
 
 MTProductosPresupuesto::MTProductosPresupuesto( QObject * parent )
- : QSqlRelationalTableModel( parent)
+ : QSqlRelationalTableModel( parent )
 {
  setTable( "presupuestos_productos" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
@@ -50,7 +50,6 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
 {
  if( item.row() >= QSqlRelationalTableModel::rowCount() )
  {
-	//qDebug( "Formando fila final" );
   switch( item.column() )
   {
 	case 2:
@@ -83,18 +82,14 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
 	case 5:
 	{
 		if( role != Qt::DisplayRole )
-		{
-			return QVariant();
-		}
+		{ return QVariant(); }
 		// Calculo el precio total
 		double total = 0;
 		for( int i = 0; i< QSqlRelationalTableModel::rowCount(); i++ )
 		{
 			double temp = data( index( i, 5 ), Qt::EditRole ).toDouble();
 			if( temp > 0 )
-			{
-				total += temp;
-			}
+			{ total += temp; }
 		}
 		return QString( "$ %L1" ).arg( total );
 		break;
@@ -118,7 +113,6 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
 			// retorno el id, si no hay uno puesto, retorno -1
 			if( QSqlTableModel::data( item, Qt::DisplayRole ).toInt() > 0 )
 			{
-				//qDebug( QString("El modelo retorna: %1").arg( QSqlTableModel::data( item, Qt::DisplayRole ).toString() ).toLocal8Bit() );
 				return QSqlTableModel::data( item, Qt::EditRole ).toInt();
 			}
 			else
@@ -161,18 +155,19 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
    // Sub Total
    case 5:
    {
-	if( role == Qt::DisplayRole )
+	if( role == Qt::DisplayRole || role == Qt::EditRole )
 	{
 		double cant = QSqlTableModel::data( index( item.row(), 3 ), Qt::EditRole ).toDouble();
 		double precio = buscarPrecioProducto( item.row() ).toDouble();
 		if( cant <= 0 && precio <= 0 )
 		{
-// 			qDebug( QString( "Precio: %1, cant: %2").arg( precio ).arg( cant ).toLocal8Bit() );
-			return QVariant();
+			if( role == Qt::EditRole ) { return 0.0; }
+			else { return QVariant(); }
 		}
 		else
 		{
-			return QString( "$ %L1" ).arg( cant*precio );
+			if( role == Qt::EditRole ) { return cant*precio; }
+			else { return QString( "$ %L1" ).arg( cant*precio ); }
 		}
 	}
 	else
@@ -226,11 +221,22 @@ int MTProductosPresupuesto::rowCount( const QModelIndex &parent ) const
 }
 
 /*!
-    \fn MTProductosPresupuesto::guardar( const int id_presupuesto ) const
+    \fn MTProductosPresupuesto::guardar( const int id_presupuesto )
  */
-bool MTProductosPresupuesto::guardar( const int id_presupuesto ) const
+bool MTProductosPresupuesto::guardar( const int id_presupuesto )
 {
- return false;
+ int filas = QSqlRelationalTableModel::rowCount();
+ for( int f=0; f<filas; f++ )
+ {
+   if( isDirty( index( f, 3 ) ) )
+   {
+    setData( index( f, 1 ), id_presupuesto, Qt::EditRole );
+   }
+ }
+ if( submitAll() )
+ { return true; }
+ else
+ { return false; }
 }
 
 bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &value, int role )
@@ -247,8 +253,8 @@ bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &v
 			QVariant estado2 = buscarPrecioProducto( item.row() );
 			if( estado && estado2.isValid() )
 			{
-				emit dataChanged( index( item.row(), 5 ), index( item.row(), 5 ) );
-				emit dataChanged( index( QSqlRelationalTableModel::rowCount() + 1, 5 ), index( QSqlRelationalTableModel::rowCount() + 1, 5 ) );
+				emit dataChanged( index( item.row(), 4 ), index( item.row(), 5 ) ); // subtotal
+				emit dataChanged( index( QSqlRelationalTableModel::rowCount() + 1, 5 ), index( QSqlRelationalTableModel::rowCount() + 1, 5 ) ); // total
 				return true;
 			}
 			else
@@ -289,15 +295,12 @@ bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &v
 QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
 {
  // Busco el id del producto
- //qDebug( "Busco el precio del producto" );
  int id = data( index( fila, 2 ), Qt::UserRole ).toInt();
- //qDebug( QString( "Id_producto = %1" ).arg( id ).toLocal8Bit() );
  if( id != -1 )
  {
  	QSqlQuery cola( QString("SELECT precio_venta FROM producto WHERE id = '%1'").arg( id ) );
 	if( cola.next() )
 	{
-		//qDebug( "Precio conseguido" );
 		return cola.record().value(0).toDouble();
 	}
 	else
@@ -309,7 +312,6 @@ QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
  }
  else
  {
-	//qDebug( "id retorno valor negativo" );
  	return QVariant();
  }
 }

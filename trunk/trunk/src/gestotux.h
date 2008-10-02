@@ -60,6 +60,7 @@ protected slots:
     void salir();
     void acerca();
     void verActualizacion();
+    void ayuda();
 
 private:
       void createActions();
@@ -89,7 +90,7 @@ private:
       QAction *ActBackup;
       QAction *ActProductos;
       QAction *ActActualizar;
-      QAction *ActExplorador;
+      QAction *ActAyuda;
 
       QSystemTrayIcon * iconoBandeja;
 

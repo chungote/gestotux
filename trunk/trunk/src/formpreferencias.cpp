@@ -61,7 +61,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      connect( this, SIGNAL( guardar() ), formGeneral, SLOT( guardar() ) );
      pagesWidget->addWidget( formGeneral );
      preferencias *p = preferencias::getInstancia();
-     if( p->value( "Preferencias/General/mostrardb", false ).toBool() )
+     if( p->value( "Preferencias/General/mostrardb", true ).toBool() )
      {
         QListWidgetItem *db = new QListWidgetItem( contentsWidget );
         db->setIcon( QIcon( ":/imagenes/dbconfig.png" ) );
@@ -99,7 +99,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 		}
 	}
      }
-    // seteo el tamaño de los iconos
+    // seteo el tamaï¿½o de los iconos
     contentsWidget->setIconSize( QSize( 32, 32 ) );
     contentsWidget->setUniformItemSizes( true );
 
@@ -129,8 +129,8 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     addAction( ActAplicar );
     addAction( ActCerrar );
 
-    nombre_ventana  = "Configuracion";
-    setNombreVentana( "Configuracion de " + gestotux::pluginInfo()->nombrePrograma() );
+    setObjectName( "Configuracion" );
+    setWindowTitle( "Configuracion de " + gestotux::pluginInfo()->nombrePrograma() );
 
     contentsWidget->setCurrentRow(0);
 

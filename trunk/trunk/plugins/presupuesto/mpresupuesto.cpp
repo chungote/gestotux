@@ -19,18 +19,21 @@
  ***************************************************************************/
 #include "mpresupuesto.h"
 
-MPresupuesto::MPresupuesto(QObject *parent)
+MPresupuesto::MPresupuesto(QObject *parent, bool relacion )
  : QSqlRelationalTableModel(parent)
 {
  setTable( "presupuestos" );
  // Descripciondes de las cabeceras
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Cliente" );
- setRelation( 1, QSqlRelation( "clientes", "id", "nombre" ) );
  setHeaderData( 2, Qt::Horizontal, "Destinatario" );
  setHeaderData( 3, Qt::Horizontal, "Fecha" );
  setHeaderData( 4, Qt::Horizontal, "Total" );
  setHeaderData( 5, Qt::Horizontal, "Contenido" );
+ if( relacion )
+ {
+  setRelation( 1, QSqlRelation( "clientes", "id", "nombre" ) );
+ }
 }
 
 

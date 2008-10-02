@@ -46,5 +46,6 @@ QMAKE_CXXFLAGS_DEBUG += -ggdb \
 
 RESOURCES += embebido.qrc
 
-DISTFILES += productos.SQLITE.sql
+DISTFILES += productos.SQLITE.sql \
+ productos.QMYSQL.sql
 

@@ -48,7 +48,7 @@ protected slots:
 
 private:
    /*!
-    * Modelo utilizado por el combo box de clientes para hacer su selección
+    * Modelo utilizado por el combo box de clientes para hacer su selecciÃ³n
     */
     QSqlQueryModel *modeloClientes;
    /*!

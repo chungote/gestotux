@@ -40,8 +40,8 @@
 EResumen::EResumen( QWidget *parent, tipo que )
 : EVentana( parent )
 {
- nombre_ventana = "selectorResumen";
- setNombreVentana( "Seleccione el Resumen" );
+ setObjectName( "selectorResumen" );
+ setWindowTitle( "Seleccione el Resumen" );
  setAttribute( Qt::WA_DeleteOnClose );
  generar = que;
  QVBoxLayout *layoutPrincipal = new QVBoxLayout( this );
@@ -93,7 +93,7 @@ EResumen::EResumen( QWidget *parent, tipo que )
   {
    QHBoxLayout *layout = new QHBoxLayout( this );
    QLabel *etiqueta = new QLabel( this );
-   etiqueta->setText( QString( "Año:" ) );
+   etiqueta->setText( QString( "Aï¿½o:" ) );
    seleccion = new QSpinBox( this );
    seleccion->setRange( 0, QDate::currentDate().year() );
    seleccion->setSingleStep( 1 );
@@ -164,7 +164,7 @@ void EResumen::generarResumen()
   }
   case mensual:
   {
-   resumen->setTitulo( QString( "Resumen para el mes de %1 del año %2" ).arg( CBMes->currentText() ).arg( QDate::currentDate().year() ) );
+   resumen->setTitulo( QString( "Resumen para el mes de %1 del aï¿½o %2" ).arg( CBMes->currentText() ).arg( QDate::currentDate().year() ) );
    resumen->setDescripcion( QString( "Resumen detallado de entradas,salidas y gastos para el mes de %1 de %2" ).arg( CBMes->currentText() ).arg( QDate::currentDate().year() ) );
    primero.setDate( QDate::currentDate().year(), CBMes->currentIndex(), 1 );
    ultimo.setDate( QDate::currentDate().year(),  CBMes->currentIndex(), primero.daysInMonth() );
@@ -173,8 +173,8 @@ void EResumen::generarResumen()
   }
   case anual:
   {
-   resumen->setTitulo( QString( "Resumen del año %1" ).arg( seleccion->value() ) );
-   resumen->setDescripcion( QString( "Resumen detallado de entradas,salidas y gastos para el año %1" ).arg( seleccion->value() ) );
+   resumen->setTitulo( QString( "Resumen del aï¿½o %1" ).arg( seleccion->value() ) );
+   resumen->setDescripcion( QString( "Resumen detallado de entradas,salidas y gastos para el aï¿½o %1" ).arg( seleccion->value() ) );
    primero.setDate( seleccion->value(), 1, 1 );
    ultimo.setDate( seleccion->value(), 12, 31 );
    resumen->renderizar( primero, ultimo );

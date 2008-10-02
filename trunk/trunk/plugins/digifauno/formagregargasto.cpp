@@ -32,8 +32,8 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarGastoBase()
 {
 	setupUi( this );
-	nombre_ventana = "AgregarGasto";
-	setNombreVentana( "Agregar nuevo gasto" );
+	setObjectName( "AgregarGasto" );
+	setWindowTitle( "Agregar nuevo gasto" );
 
         PBGuardar->setText( "&Guardar" );
 	PBGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );

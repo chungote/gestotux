@@ -32,8 +32,9 @@
 VCategorias::VCategorias( QWidget *parent )
  : EVLista( parent )
 {
- nombre_ventana = "ListaCategorias";
- setNombreVentana( "Categorias" );
+ setObjectName( "ListaCategorias" );
+ setWindowTitle( "Categorias" );
+ setWindowIcon( QIcon( ":/imagenes/categorias.png" ) );
  modelo = new MCategorias( this );
  vista->setModel( modelo );
  modelo->select();
@@ -67,7 +68,7 @@ void VCategorias::antes_de_insertar( int row, QSqlRecord & record )
 
 /*!
     \fn VCategorias::eliminar()
-	Metodo reimplementado para ver que cuando se intente eliminar una categoria, vea si existen productos 
+	Metodo reimplementado para ver que cuando se intente eliminar una categoria, vea si existen productos
 	en ella y evite eliminarlos para no dejarlos huerfanos
  */
 void VCategorias::eliminar()
@@ -130,5 +131,5 @@ void VCategorias::eliminar()
   qDebug( QString( "Detalle: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
   return;
  }
- 
+
 }

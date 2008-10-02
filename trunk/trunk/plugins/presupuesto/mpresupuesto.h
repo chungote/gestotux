@@ -31,7 +31,7 @@ class MPresupuesto : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MPresupuesto(QObject *parent = 0);
+    MPresupuesto(QObject *parent = 0, bool relacion = true );
 
     ~MPresupuesto();
 

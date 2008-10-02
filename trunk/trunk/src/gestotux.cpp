@@ -92,6 +92,11 @@ void gestotux::createActions()
       exitAct->setIcon( QIcon( ":/imagenes/exit.png" ) );
       connect(exitAct, SIGNAL( triggered() ), this, SLOT( close() ) );
 
+      ActAyuda = new QAction( "Ayuda", this );
+      ActAyuda->setStatusTip( "Muestra la ayuda del programa " );
+      ActAyuda->setIcon( QIcon( ":/imagenes/ayuda.png" ) );
+      connect( ActAyuda, SIGNAL( triggered() ), this, SLOT( ayuda() ) );
+
       acercade = new QAction( "Acerca de...", this );
       acercade->setStatusTip( "Muestra informacion del programa" );
       connect( acercade, SIGNAL( triggered() ), this, SLOT( acerca() ) );
@@ -115,9 +120,6 @@ void gestotux::createActions()
  	ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
  	ActActualizar->setStatusTip( "Actualiza la aplicacion " );
  	connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
-
-	ActExplorador = new QAction( "Explorador de Archivos", this );
-	connect( ActExplorador, SIGNAL( triggered() ), this, SLOT( verExplorador() ) );
 }
 
 void gestotux::createMenus()
@@ -125,7 +127,6 @@ void gestotux::createMenus()
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
  fileMenu->addAction( ActActualizar );
- fileMenu->addAction( ActExplorador );
  fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 
@@ -145,6 +146,7 @@ void gestotux::createMenus()
 
  menuAyuda = menuBar()->addMenu( "A&yuda" );
  menuAyuda->setObjectName( "menuAyuda" );
+ menuAyuda->addAction( ActAyuda );
  menuAyuda->addAction( acercade );
 }
 
@@ -494,4 +496,14 @@ void gestotux::verExplorador()
   EActCerrar *actcerrar = new EActCerrar( tree );
   tree->addAction( actcerrar );
   formCen()->agregarForm( tree );
+}
+
+
+/*!
+    \fn gestotux::ayuda()
+ */
+void gestotux::ayuda()
+{
+ EAyuda *a = EAyuda::instancia();
+ a->mostrarIndice();
 }

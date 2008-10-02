@@ -25,8 +25,8 @@
 VProveedor::VProveedor( QWidget *parent )
  : EVLista( parent, false )
 {
- nombre_ventana = "ListaProveedores";
- setNombreVentana( "Proveedores" );
+ setObjectName( "ListaProveedores" );
+ setWindowTitle( "Proveedores" );
  modelo = new MProveedor( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 ); // oculta el ID
