@@ -30,7 +30,8 @@ HEADERS += gestotux.h \
  esplash.h \
  emysql.h \
  formprefdb.h \
- everificabackup.h
+ everificabackup.h \
+ version.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \

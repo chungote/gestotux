@@ -20,5 +20,6 @@
     </qresource>
     <qresource prefix="sql">
 	<file>digifauno.QSQLITE.sql</file>
+	<file>digifauno.QMYSQL.sql</file>
     </qresource>
 </RCC>

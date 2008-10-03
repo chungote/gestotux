@@ -41,8 +41,7 @@
 #include "eplugin.h"
 #include "einfoprogramainterface.h"
 #include "formactualizacion.h"
-
-#define VERSION_PROGRAMA 0.4
+#include "version.h"
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;

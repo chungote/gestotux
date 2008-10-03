@@ -35,6 +35,8 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	adjustSize();
         PBBarra->setValue( 0 );
         PBBarra->setFormat( "" );
+	this->setWindowTitle( "Conexion MySQL");
+	LEContra->setEchoMode( QLineEdit::Password );
 }
 
 EMysql::~EMysql()
