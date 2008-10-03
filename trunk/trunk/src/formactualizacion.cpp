@@ -23,6 +23,7 @@
 #include "formactualizacion.h"
 #include "gestotux.h"
 #include "preferencias.h"
+#include "version.h"
 #include "eplugin.h"
 #include <QDomDocument>
 #include <QDomNode>
@@ -62,6 +63,8 @@ FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 	addAction( ActIniciar );
 	addAction( ActDetener );
 	addAction( ActCerrar );
+
+	this->setWindowTitle( "Actualizar el programa" );
 }
 
 FormActualizacion::~FormActualizacion()
@@ -302,7 +305,7 @@ void FormActualizacion::analizarGeneral()
   {
 	qDebug( "Encontrado nodo de actualizacion" );
   }
-  if( docElem.attribute( "version", 0 ).toDouble() > 0.2 )
+  if( docElem.attribute( "version", 0 ).toDouble() > VERSION_PROGRAMA )
   {
 	if( CkBGenerales->isChecked() )
 	{
