@@ -46,9 +46,19 @@ QString AdminCarCorr::nombrePrograma() const
  return "Caravanas - Administracion Corrientes";
 }
 
-QList< QAction * > AdminCarCorr::accionesBarra() const
+QList<QActionGroup *> AdminCarCorr::accionesBarra()
 {
- return _acciones;
+ QList<QActionGroup*> lista;
+ QActionGroup *GTris = new QActionGroup( this );
+ GTris->setObjectName( "gtris" );
+ GTris->setProperty( "icono", "" );
+ GTris->setProperty( "titulo", "Manejo de TRIs" );
+ GTris->addAction( ActAgregarCompra );
+ GTris->addAction( ActAgregarMudanza );
+ GTris->addAction( ActAgregarStock );
+ GTris->addAction( ActAgregarVenta );
+ lista.append( GTris );
+ return lista;
 }
 
 QString AdminCarCorr::nombre() const
@@ -119,7 +129,7 @@ bool AdminCarCorr::inicializar( QSettings* pref)
  _acciones.append( ActAgregarStock );
 
  cargarPluginsInformes();
- return verificarTablas();
+ return true;
 }
 
 bool AdminCarCorr::verificarTablas()
@@ -422,4 +432,13 @@ void AdminCarCorr::eliminarTri()
 	}
 	delete movimiento;
  }
+}
+
+
+/*!
+    \fn AdminCarCorr::crearToolBar( QToolBar *t )
+ */
+void AdminCarCorr::crearToolBar( QToolBar *t )
+{
+ t->addActions( _acciones );
 }

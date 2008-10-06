@@ -22,11 +22,12 @@
 
 #include <QtPlugin>
 #include <QString>
-#include <QAction>
+#include <QActionGroup>
 #include <QList>
 #include <QStackedWidget>
 #include <QSettings>
 #include <QMenuBar>
+#include <QToolBar>
 
 /**
  *  \brief Interface de plugin en general
@@ -43,11 +44,10 @@ public:
     {
       db = 0,
       comun = 1,
-      info = 2,
-      barra = 3
+      info = 2
     };
     virtual ~EPlugin() {}
-    virtual QList<QAction *> accionesBarra() const = 0;
+    virtual QList<QActionGroup *> accionesBarra() = 0;
     virtual bool inicializar( QSettings *pref ) = 0;
     virtual QWidgetList formsPreferencias() = 0;
     virtual QString nombre() const = 0;
@@ -55,11 +55,12 @@ public:
     virtual void crearMenu( QMenuBar *m ) = 0;
     virtual bool verificarTablas() = 0;
     virtual double version() const = 0;
+    virtual void crearToolBar( QToolBar *t ) = 0;
     // Señal que debe implementarse
     virtual void agregarVentana( QWidget *v ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EPlugin,
-                     "tranfuga.EPlugin/1.0" );
+                     "tranfuga.EPlugin/1.1" );
 
 #endif

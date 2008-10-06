@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
+ *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,21 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "eactcerrar.h"
+#include "barralateral.h"
+#include "botoneslaterales.h"
 
-EActCerrar::EActCerrar(QObject* parent):
-QAction(parent)
+
+BarraLateral::BarraLateral(const QString &title, QWidget *parent )
+ : QDockWidget( title, parent )
 {
- this->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- this->setShortcut( QKeySequence( "Ctrl+c" ) );
- this->setText( "Cerrar" );
- this->setStatusTip( "Cierra el formulario actual" );
- connect( this, SIGNAL( triggered() ), parent, SLOT( close() ) );
+	setObjectName( QString::fromUtf8( "BarraLateral" ) );
+	setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
+	setFeatures( QDockWidget::DockWidgetMovable & !QDockWidget::DockWidgetClosable );
+	ls = new BotonesLaterales( this );
+	setWidget( ls );
 }
 
 
-EActCerrar::~EActCerrar()
+BarraLateral::~BarraLateral()
 {
 }
-
 

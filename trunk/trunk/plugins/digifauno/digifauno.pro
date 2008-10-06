@@ -1,7 +1,5 @@
 SOURCES += digifauno.cpp \
            mdueno.cpp \
- barralateral.cpp \
- botoneslaterales.cpp \
  vduenos.cpp \
  mmascota.cpp \
  mcategorias.cpp \
@@ -39,8 +37,6 @@ SOURCES += digifauno.cpp \
  vcompras.cpp
 HEADERS += digifauno.h \
  mdueno.h \
- barralateral.h \
- botoneslaterales.h \
  vduenos.h \
  mmascota.h \
  mcategorias.h \

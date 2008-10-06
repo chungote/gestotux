@@ -33,9 +33,9 @@ QSettings *prespuesto::_pref = 0;
 /*!
     \fn prespuesto::accionesBarra() const
  */
-QList<QAction *> prespuesto::accionesBarra() const
+QList<QActionGroup *> prespuesto::accionesBarra()
 {
-  return _acciones;
+  return QList<QActionGroup*>();
 }
 
 
@@ -78,7 +78,7 @@ bool prespuesto::inicializar( QSettings *pref )
  _acciones.append( ActNuevoPresu );
  _acciones.append( ActPresuAnteriores );
 
- return verificarTablas();
+ return true;
 }
 
 
@@ -153,3 +153,12 @@ void prespuesto::nuevoPresupuesto()
  */
 void prespuesto::verAnteriores()
 { emit agregarVentana( new VPresupuesto() ); }
+
+
+/*!
+    \fn prespuesto::crearToolBar( QToolBar *t )
+ */
+void prespuesto::crearToolBar( QToolBar *t )
+{
+ t->addActions( _acciones );
+}

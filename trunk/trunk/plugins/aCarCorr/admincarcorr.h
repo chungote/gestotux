@@ -40,7 +40,7 @@ public:
     QString directorioActualizaciones() const;
     QString directorioBackup() const;
     QString nombrePrograma() const;
-    QList< QAction * > accionesBarra() const;
+    QList<QActionGroup *> accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
     bool inicializar( QSettings* pref);
@@ -50,6 +50,7 @@ public:
     void crearMenu(QMenuBar* m);
     QList<EInformeInterface *> plugins();
     bool conectarVisorInforme() const { return true; }
+    void crearToolBar( QToolBar *t );
 
 private:
     QList<QAction *> _acciones;

@@ -14,28 +14,6 @@
   </property>
   <layout class="QVBoxLayout" >
    <item>
-    <widget class="QLabel" name="LTitulo" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text" >
-      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600;">Agregar Nueva Mascota&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="indent" >
-      <number>2</number>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="GBMascota" >
      <property name="title" >
       <string>Mascota</string>
@@ -155,7 +133,7 @@ p, li { white-space: pre-wrap; }
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>40</width>
             <height>20</height>
@@ -167,56 +145,6 @@ p, li { white-space: pre-wrap; }
       </item>
      </layout>
     </widget>
-   </item>
-   <item>
-    <widget class="Line" name="line" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="PBGuardar" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text" >
-        <string>Guardar</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="PBCancelar" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text" >
-        <string>Cancelar</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

@@ -52,9 +52,9 @@ QIcon HiComp::iconoPrograma() const
 	Retorna las acciones que tiene la barra lateral para este plugin
 	@return Lista de acciones
  */
-QList<QAction *> HiComp::accionesBarra() const
+QList<QActionGroup *> HiComp::accionesBarra()
 {
- return _acciones;
+ return QList<QActionGroup*>();
 }
 
 
@@ -192,4 +192,13 @@ QString HiComp::empresa() const
 QString HiComp::companeros()
 {
  return QString();
+}
+
+
+/*!
+    \fn HiComp::crearToolBar( QToolBar *t )
+ */
+void HiComp::crearToolBar( QToolBar *t )
+{
+ t->addActions( _acciones );
 }

@@ -78,6 +78,7 @@ private:
 
       QMenu *fileMenu;
       QMenu *menuHer;
+      QMenu *menuVer;
       QMenu *menuAyuda;
 
       QAction *ActClientes;
@@ -101,11 +102,11 @@ public slots:
 
 private slots:
     void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
-    void verExplorador();
 
 private:
     static QHash<QString, EPlugin *> *_plugins;
     bool cargarPlugins();
+    void crearBarraLateral();
     QDir pluginsDir;
     QPluginLoader loader;
 protected:

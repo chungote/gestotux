@@ -31,7 +31,7 @@ class productos : public QObject, public EPlugin
  Q_OBJECT
  Q_INTERFACES(EPlugin)
 public:
-    QList<QAction *> accionesBarra() const;
+    QList<QActionGroup *> accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
     bool inicializar( QSettings *pref );
@@ -41,6 +41,7 @@ public:
     double version() const;
     static QStackedWidget *tabs();
     static QSettings *pref();
+    void crearToolBar( QToolBar *t );
 
 private:
     QList<QAction *> _acciones;

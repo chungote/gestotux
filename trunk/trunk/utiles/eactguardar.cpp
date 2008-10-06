@@ -17,20 +17,19 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "eactcerrar.h"
+#include "eactguardar.h"
 
-EActCerrar::EActCerrar(QObject* parent):
-QAction(parent)
+EActGuardar::EActGuardar(QObject *parent)
+ : QAction(parent)
 {
- this->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- this->setShortcut( QKeySequence( "Ctrl+c" ) );
- this->setText( "Cerrar" );
- this->setStatusTip( "Cierra el formulario actual" );
- connect( this, SIGNAL( triggered() ), parent, SLOT( close() ) );
+ this->setIcon( QIcon( ":/imagenes/guardar.png" ) );
+ this->setShortcut( QKeySequence( "Ctrl + g" ) );
+ this->setText( "Guardar" );
+ connect( this, SIGNAL( triggered() ), parent, SLOT( guardar() ) );
 }
 
 
-EActCerrar::~EActCerrar()
+EActGuardar::~EActGuardar()
 {
 }
 

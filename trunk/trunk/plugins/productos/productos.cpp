@@ -29,9 +29,9 @@ Q_EXPORT_PLUGIN2( productos, productos );
 /*!
     \fn productos::accionesBarra() const
  */
-QList<QAction *> productos::accionesBarra() const
+QList<QActionGroup *> productos::accionesBarra()
 {
- return _acciones;
+ return QList<QActionGroup*>();
 }
 
 
@@ -129,3 +129,12 @@ QSettings *productos::pref()
  */
 void productos::verProductos()
 { emit agregarVentana( new VProductos( ) ); }
+
+
+/*!
+    \fn productos::crearToolBar( QToolBar *t )
+ */
+void productos::crearToolBar( QToolBar *t )
+{
+    /// @todo implement me
+}

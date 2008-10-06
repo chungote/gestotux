@@ -39,7 +39,7 @@ class HiComp : public QObject, EInfoProgramaInterface, EPlugin
 public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
-    QList<QAction *> accionesBarra() const;
+    QList<QActionGroup *> accionesBarra();
     bool inicializar( QSettings *pref );
     static QSettings *pref();
     QString directorioBackup() const;
@@ -52,6 +52,7 @@ public:
     double version() const;
     QString empresa() const;
     QString companeros();
+    void crearToolBar( QToolBar *t );
 
 private:
     QList<QAction *> _acciones;
