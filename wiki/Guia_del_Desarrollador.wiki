@@ -1,0 +1,23 @@
+#labels Phase-Implementation
+= Guia de Desarrollo =
+
+¿Como esta compuesto el programa?
+
+Estas son las 3 partes principales del programa:
+
+== Programa principal ==
+
+Es el que le da el esqueleto a todo el programa general, mostrando la ventana principal y encargandose de  las barras de tareas, barra de herramientas, actualizaciones, backups y el manejo de las ventanas.
+Es importante saber, que por cada cambio que se realize en el codigo del programa principal, se debe hacer una recompilacion de los plugins.
+
+La ventana principal carga inicialmente y verifica los plugins, generando a travez de los metodos de barra de herramientas y de barra lateral, las acciones que se utilizaran en el programa automaticamente.
+Tambien realiza un control sobre la periodiocidad de los backups y muestra un mensaje si esta vencido el plazo.
+
+== Libreria comun ==
+
+La libreria comun, contiene entre otras cosas, acciones que se vuelven repetitivas de implementar en cada formulario, como la accion de cerrar, y el esqueleto con imagen de la accion de agregar, ver, modificar, eliminar y buscar. De esta forma solo se debe invocar el constructor de cada clase y conectar el slot correspondiente a la accion requerida. Las clases de acciones tienen el siguiente formato: {{{ *EActCerrar* }}}, y al invocar automaticamente el constructor, se añade la imagen y el texto.
+Tambien contiene la estructura del visor de resumenes, que permite mantener de manera clara un resumen viendolo desde una perspectiva de "vista previa de impresion" y genera las acciones para imprimir, cambiar zoom y demas automaticamente. Solo se debe crear una ventana de *EVisorResumen* y quedará lista para su uso conectando la señal necesaria. Para mas informacion vea la pagina visor_de_resumenes.
+
+== Plugins ==
+
+Los plugins son la parte mas importante del programa, y son los que realizaran la parte _pesada_ del programa. Vea la pagina creacion_plugins para mas informacion.
