@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
+ *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,48 +17,4 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef BOTONESLATERALES_H
-#define BOTONESLATERALES_H
-
-#include <QToolBox>
-class QVBoxLayout;
-class QPushButton;
-class DigiFauno;
-
-/**
-	\brief Clase que mantiene pestañas y botones laterales
-
- * Clase que muestra los botones y pestañas deslizables de la barra lateral y gestiona todas las acciones
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class BotonesLaterales : public QToolBox
-{
-   Q_OBJECT
-public:
-    BotonesLaterales(QWidget* parent, Qt::WindowFlags f = 0 );
-    ~BotonesLaterales();
-    QWidget *Ppeluqueria;
-    QWidget *Pventas;
-    QWidget *verticalLayout;
-    QVBoxLayout *vboxLayout;
-    QPushButton *PBAgregarVenta;
-    QWidget *Pcompras;
-    QWidget *Presumenes;
-    QPushButton *PBAgregarMascota;
-    QPushButton *PBAgregarServicio;
-    QPushButton *PBAgregarCompra;
-    QPushButton *PBVerProveedores;
-    QPushButton *PBVerProductos;
-    QPushButton *PBResumenDiario;
-    QPushButton *PBResumenMensual;
-    QPushButton *PBResumenAnual;
-    QPushButton *PBProductos;
-    QPushButton *PBDuenos;
-    QPushButton *PBMascotas;
-    QPushButton *PBCategorias;
-    QPushButton *PBGastos;
-    QPushButton *PBResumenSemanal;
-    DigiFauno *digifauno;
-};
-
-#endif
+#define VERSION_PROGRAMA 0.4

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
+ *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,21 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "eactcerrar.h"
+#ifndef BOTONESLATERALES_H
+#define BOTONESLATERALES_H
 
-EActCerrar::EActCerrar(QObject* parent):
-QAction(parent)
+#include <QToolBox>
+class QVBoxLayout;
+class QPushButton;
+class DigiFauno;
+
+/**
+	\brief Clase que mantiene pestañas y botones laterales
+
+ * Clase que muestra los botones y pestañas deslizables de la barra lateral y gestiona todas las acciones
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class BotonesLaterales : public QToolBox
 {
- this->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- this->setShortcut( QKeySequence( "Ctrl+c" ) );
- this->setText( "Cerrar" );
- this->setStatusTip( "Cierra el formulario actual" );
- connect( this, SIGNAL( triggered() ), parent, SLOT( close() ) );
-}
+   Q_OBJECT
+public:
+    BotonesLaterales(QWidget* parent, Qt::WindowFlags f = 0 );
+    ~BotonesLaterales();
+};
 
-
-EActCerrar::~EActCerrar()
-{
-}
-
-
+#endif

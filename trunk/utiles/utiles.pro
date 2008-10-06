@@ -7,14 +7,16 @@ eactimprimir.h \
  preferencias.h \
  evisorinformes.h \
  formprefhijo.h \
- eayuda.h
+ eayuda.h \
+ eactguardar.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
  evlista.cpp \
  preferencias.cpp \
  evisorinformes.cpp \
- eayuda.cpp
+ eayuda.cpp \
+ eactguardar.cpp
 
 QT += sql
 

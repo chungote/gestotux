@@ -17,21 +17,58 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "barralateral.h"
 #include "botoneslaterales.h"
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QIcon>
+#include "eplugin.h"
+#include "gestotux.h"
 
 
-BarraLateral::BarraLateral(const QString &title, QWidget *parent )
- : QDockWidget( title, parent )
+BotonesLaterales::BotonesLaterales(QWidget* parent, Qt::WindowFlags f )
+: QToolBox( parent, f )
 {
-	setAllowedAreas( Qt::LeftDockWidgetArea );
-	setFeatures( QDockWidget::NoDockWidgetFeatures );
-	ls = new BotonesLaterales( this );
-	setWidget( ls );
+    setObjectName( QString::fromUtf8( "TBacciones" ) );
+
+    // El padre debe ser gestotux
+    QList<EPlugin*> plugins = qobject_cast<gestotux*>(parent)->plugins();
+    EPlugin *plug;
+    foreach( plug, plugins )
+    {
+	if( !plug->accionesBarra().isEmpty() )
+	{
+		QActionGroup *pest;
+		foreach( pest, plug->accionesBarra() )
+		{
+			if( !pest->actions().isEmpty() )
+			{
+				// Creo una de las cosefiacas
+				QWidget *w = new QWidget( this );
+				QVBoxLayout *layout = new QVBoxLayout( w );
+				w->setObjectName( pest->objectName() );
+				this->addItem( w, QIcon( pest->property( "icono" ).toString()), pest->property("titulo").toString() );
+
+				// Agrego las acciones
+				QAction *act;
+				foreach( act, pest->actions() )
+				{
+					QPushButton *b = new QPushButton();
+					b->setText( act->text() );
+					b->setIcon( act->icon() );
+					b->setFlat( true );
+					connect( b, SIGNAL( clicked() ), act, SIGNAL( triggered() ) );
+					layout->addWidget( b );
+				}
+				QSpacerItem *espaciador = new QSpacerItem( 10, 10, QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding );
+				layout->addItem( espaciador );
+			}
+		}
+	}
+    }
+    //this->setMinimumWidth( 200 );
 }
 
 
-BarraLateral::~BarraLateral()
+BotonesLaterales::~BotonesLaterales()
 {
 }
-

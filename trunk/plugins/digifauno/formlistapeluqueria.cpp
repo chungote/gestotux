@@ -22,6 +22,7 @@
 #include <QPushButton>
 #include <QKeySequence>
 #include "digifauno.h"
+#include "eactcerrar.h"
 #include <QMessageBox>
 
 FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
@@ -31,16 +32,19 @@ FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
 	setObjectName( "lista_servicios" );
 	setWindowTitle( "Listado de servicios brindados" );
 
-	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	PBCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
-	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
+	this->addAction( new EActCerrar( this ) );
+	QAction *ActAgregar = new QAction( "Agregar", this );
+	ActAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+	ActAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
+	DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);
+	connect( ActAgregar, SIGNAL( triggered() ), digifauno, SLOT( agregarServicioPeluqueria() ) );
+	this->addAction( ActAgregar );
 
-	PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
-	PBAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
-
-	PBBorrar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
-	PBBorrar->setShortcut( QKeySequence( "Ctrl+b" ) );
-	connect( PBBorrar, SIGNAL( clicked() ), this, SLOT( borrar() ) );
+	QAction *ActBorrar = new QAction( "Borrar", this );
+	ActBorrar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+	ActBorrar->setShortcut( QKeySequence( "Ctrl+b" ) );
+	connect( ActBorrar, SIGNAL( triggered() ), this, SLOT( borrar() ) );
+	this->addAction( ActBorrar );
 
 	modelo = new MPeluqueria( TVPeluqueria, true );
 	modelo->setEditStrategy( QSqlTableModel::OnRowChange );
@@ -65,8 +69,6 @@ FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
 	connect( CBMascota , SIGNAL( currentIndexChanged( int )    ), this, SLOT( cambioIndice( int )          ) );
 	connect( DEFecha   , SIGNAL( dateChanged ( const QDate & ) ), this, SLOT( cambioFecha( const QDate & ) ) );
 
-	DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);
-	connect( PBAgregar, SIGNAL( clicked() ), digifauno, SLOT( agregarServicioPeluqueria() ) );
 	///@todo Agregar calculo de fecha maxima y minima desde la tabla para limitar el filtrado
 }
 

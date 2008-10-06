@@ -25,6 +25,8 @@
 #include <QSqlRecord>
 #include <QCompleter>
 #include "mrazas.h"
+#include "eactcerrar.h"
+#include "eactguardar.h"
 
 FormAgregarMascota::FormAgregarMascota( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarMascotaBase()
@@ -45,16 +47,12 @@ FormAgregarMascota::FormAgregarMascota( QWidget* parent )
 	CBGenero->insertItem( 2, " " );
 	CBGenero->setCurrentIndex( 2 );
 	// Cosas ademas
-	PBGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
-	PBGuardar->setShortcut( QKeySequence( "Crtl+g" ) );
-	PBCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	PBCancelar->setShortcut( QKeySequence( "Crtl+r" ) );
+	this->addAction( new EActCerrar( this ) );
+	this->addAction( new EActGuardar( this ) );
 	PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
 	PBAgregar->setShortcut( QKeySequence( "Crtl+a" ) );
 	// Conecto las seï¿½ales
 	connect( PBAgregar,  SIGNAL( clicked() ), this, SLOT( agregarDueno() ) );
-	connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( cancelar() ) );
-	connect( PBGuardar,  SIGNAL( clicked() ), this, SLOT( guardar()  ) );
 	// Pongo a editar el nombre
 	LENombre->setCursorPosition( 0 );
 	// Autocompletado
@@ -88,7 +86,7 @@ void FormAgregarMascota::guardar()
  }
  if( TVDueno->selectionModel()->selectedRows() == QModelIndexList() )
  {
-  QMessageBox::warning( this, "Seleccione un dueï¿½o", "Por favor, Seleccione uno de los dueï¿½os existentes o utilice el boton agregar dueï¿½o para agregar uno nuevo." );
+  QMessageBox::warning( this, "Seleccione un dueño", "Por favor, Seleccione uno de los dueños existentes o utilice el boton agregar dueño para agregar uno nuevo." );
   return;
  }
  MMascota *modelo = new MMascota( this );
@@ -131,13 +129,13 @@ void FormAgregarMascota::cancelar()
 
 /*!
     \fn FormAgregarMascota::agregarDueno()
-	Agrega un nuevo dueï¿½o a la vista
+	Agrega un nuevo dueño a la vista
  */
 void FormAgregarMascota::agregarDueno()
 {
  if( !modeloDueno->insertRecord( -1, modeloDueno->record() ) )
  {
-//   qDebug( "Error al insertar registro en los dueï¿½os" );
+//   qDebug( "Error al insertar registro en los dueños" );
   return;
  }
  else

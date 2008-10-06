@@ -42,7 +42,7 @@ public:
     QString nombre() const;
     double version() const;
     bool verificarTablas();
-    QList<QAction *> accionesBarra() const;
+    QList<QActionGroup *> accionesBarra();
     QString directorioActualizaciones() const;
     QString directorioBackup() const;
     QString nombrePrograma() const;
@@ -52,6 +52,7 @@ public:
     QString empresa() const;
     QString companeros();
     int tipo() const;
+    void crearToolBar( QToolBar *t );
 
 signals:
     void agregarVentana( QWidget *ventana );
@@ -67,18 +68,30 @@ private:
     QAction *ActCategorias;
     QAction *ActProveedores;
     QAction *ActProductos;
-    QAction *ActAgregarMascota;
     QAction *ActMascotas;
     QAction *ActGastos;
     QAction *ActPeluqueria;
     QAction *ActVentas;
+    QAction *ActNuevoServicio;
+    QAction *ActAgregarVentas;
+    QAction *ActAgregarCompra;
+    QAction *ActAgregarMascota;
+    QAction *ActAgregarGasto;
+    QAction *ActResumenDiario;
+    QAction *ActResumenMensual;
+    QAction *ActResumenAnual;
+
+   QActionGroup *peluqueria;
+   QActionGroup *ventas;
+   QActionGroup *compras;
+   QActionGroup *resumen;
 
 private:
     QList<QAction *> _acciones;
     static QSettings *_pref;
 
 public slots:
-    void agregar_venta();
+    void agregarVenta();
     void proveedores();
     void productos();
     void categorias();
@@ -90,7 +103,7 @@ public slots:
     void agregarCompra();
     void resumenMensual();
     void resumenAnual();
-    void agregar_gasto();
+    void agregarGasto();
     void ver_gastos();
     void resumen_semanal();
     void ver_peluqueria();

@@ -62,11 +62,12 @@ void gestotux::inicializar()
  setCentralWidget( formCen() );
 
  createActions();
- createMenus();
  createToolBar();
  createStatusBar();
  crearReloj();
+ crearBarraLateral();
  bandeja_sistema();
+ createMenus();
 
 preferencias *p = preferencias::getInstancia();
 //p->inicio();
@@ -143,6 +144,17 @@ void gestotux::createMenus()
  menuHer->addAction( ActBackup );
  menuHer->addAction( ActPreferencias );
 
+ menuVer = menuBar()->addMenu( "&Ver");
+ if( !this->findChildren<QDockWidget*>().isEmpty() )
+ {
+  QList<QDockWidget*> lista = this->findChildren<QDockWidget*>();
+  QDockWidget *dock;
+  foreach( dock, lista )
+  {
+   menuVer->addAction( dock->toggleViewAction() ); ///@todo Revisar actualizacion de este menu
+  }
+ }
+
  menuAyuda = menuBar()->addMenu( "A&yuda" );
  menuAyuda->setObjectName( "menuAyuda" );
  menuAyuda->addAction( ActAyuda );
@@ -211,10 +223,10 @@ void gestotux::createToolBar()
  tb = new QToolBar( "Barra de Herramientas", this );
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
- tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
+ //tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
  foreach( EPlugin *plug , plugins() )
  {
-  tb->addActions( plug->accionesBarra() );
+  plug->crearToolBar( tb );
  }
  tb->addAction( ActClientes );
 
@@ -246,7 +258,7 @@ void gestotux::crearReloj()
  QDockWidget *dw = new QDockWidget( "Reloj" , this );
  dw->setObjectName( "reloj" );
  dw->setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
- addDockWidget( Qt::RightDockWidgetArea, dw );
+ addDockWidget( Qt::LeftDockWidgetArea, dw );
  Reloj *r = new Reloj( dw );
  dw->setWidget( r );
 }
@@ -479,25 +491,6 @@ bool gestotux::hacerTablas( QString nombrePlug )
  }
 }
 
-#include <QDirModel>
-#include <QTreeView>
-#include "eactcerrar.h"
-
-/*!
-    \fn gestotux::verExplorador()
- */
-void gestotux::verExplorador()
-{
-  QDirModel *model = new QDirModel;
-  QTreeView *tree = new QTreeView();
-  tree->setModel(model);
-  tree->setRootIndex(model->index(":/sql"));
-  EActCerrar *actcerrar = new EActCerrar( tree );
-  tree->addAction( actcerrar );
-  formCen()->agregarForm( tree );
-}
-
-
 /*!
     \fn gestotux::ayuda()
  */
@@ -505,4 +498,14 @@ void gestotux::ayuda()
 {
  EAyuda *a = EAyuda::instancia();
  a->mostrarIndice();
+}
+
+#include "barralateral.h"
+/*!
+    \fn gestotux::crearBarraLateral()
+ */
+void gestotux::crearBarraLateral()
+{
+ BarraLateral *r = new BarraLateral( "Barra Lateral", this );
+ addDockWidget( Qt::LeftDockWidgetArea, r );
 }

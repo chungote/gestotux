@@ -27,6 +27,8 @@
 #include <QSqlError>
 
 #include "mgasto.h"
+#include "eactguardar.h"
+#include "eactcerrar.h"
 
 FormAgregarGasto::FormAgregarGasto( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarGastoBase()
@@ -35,15 +37,8 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
 	setObjectName( "AgregarGasto" );
 	setWindowTitle( "Agregar nuevo gasto" );
 
-        PBGuardar->setText( "&Guardar" );
-	PBGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
-	PBGuardar->setShortcut( QKeySequence( "Crtl+g" ) );
-	PBCerrar->setText( "Cer&rar" );
-	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	PBCerrar->setShortcut( QKeySequence( "Crtl+r" ) );
-
-	connect( PBCerrar , SIGNAL( clicked() ), this, SLOT( close()   ) );
- 	connect( PBGuardar, SIGNAL( clicked() ), this, SLOT( guardar() ) );
+	this->addAction( new EActGuardar( this ) );
+	this->addAction( new EActCerrar( this ) );
 
 	QSqlQueryModel *modeloCombo = new QSqlQueryModel( this );
 	modeloCombo->setQuery( "SELECT id, nombre FROM categoria WHERE tipo = '2'" );

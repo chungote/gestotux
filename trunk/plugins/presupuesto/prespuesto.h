@@ -43,7 +43,7 @@ Q_OBJECT
 Q_INTERFACES(EPlugin)
 
 public:
-    QList<QAction *> accionesBarra() const;
+    QList<QActionGroup *> accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
     bool inicializar( QSettings *pref );
@@ -52,6 +52,7 @@ public:
     double version() const;
     bool verificarTablas();
     static QSettings *pref();
+    void crearToolBar( QToolBar *t );
 
 private:
     QList<QAction *> _acciones;

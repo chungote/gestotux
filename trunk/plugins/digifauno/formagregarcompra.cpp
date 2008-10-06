@@ -20,6 +20,8 @@
 #include "formagregarcompra.h"
 
 #include "mproveedor.h"
+#include "eactcerrar.h"
+#include "eactguardar.h"
 #include "mcompra.h"
 #include <QMessageBox>
 #include <QDate>
@@ -31,15 +33,8 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 	setObjectName( "agregar_compra" );
 	setWindowTitle( "Agregar nueva compra" );
 
-	PBCancelar->setText( "Cer&rar" );
-	PBCancelar->setShortcut( QKeySequence( "Alt+c" ) );
-	PBCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-        connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close() ) );
-
-        PBAceptar->setText( "&Guardar" );
-        PBAceptar->setShortcut( QKeySequence( "Alt+g" ) );
-        PBAceptar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
-        connect( PBAceptar, SIGNAL( clicked() ), this, SLOT( guardar() ) );
+	this->addAction( new EActCerrar( this ) );
+	this->addAction( new EActGuardar( this ) );
 
         modeloProveedor = new MProveedor( CBProveedor );
         CBProveedor->setModel( modeloProveedor );
