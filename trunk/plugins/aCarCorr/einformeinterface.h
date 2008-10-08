@@ -38,9 +38,10 @@ public:
     virtual double version() const = 0;
     virtual void crearMenu( QMenu *menu ) = 0;
     virtual void agregarVentana( QWidget *v ) = 0;
+    virtual QList<QAction *> accionesBarra() = 0;
 };
 
 Q_DECLARE_INTERFACE(EInformeInterface,
-                    "tranfuga.EInformeInterface/1.0" );
+                    "tranfuga.EInformeInterface/1.1" );
 
 #endif

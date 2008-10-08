@@ -25,6 +25,14 @@
 #include <QtHelp>
 #include "ui_EAyudaBase.h"
 
+/*!
+ * \brief Clase que mantiene la ayuda del programa
+ *
+ * Clase que hace de nexo entre el formulario que pide la ayuda y la ayuda que se encuentra disponible.
+ * Busca en el archivo de documentacion comprimido (QtHelp4) el contenido de la ayuda y lo muestra en un
+ * form de ayuda.
+ * @author Esteban Zeller <tranfuga25s@gmail.com>
+ */
 class EAyuda : public QWidget, private Ui::EAyudaBase
 {
   Q_OBJECT

@@ -1,16 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="3" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/gestotux.cpp" >
-   <View0 Encoding="" line="260" Type="Source" />
+ <DocsAndViews NumberOfDocuments="2" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/html/index.html" >
+   <View0 Type="Documentation" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/barralateral.cpp" >
-   <View0 Encoding="" line="23" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/gestotux.h" >
+   <View0 Encoding="" line="41" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/botoneslaterales.cpp" >
-   <View0 Encoding="" line="67" Type="Source" />
-  </Doc2>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

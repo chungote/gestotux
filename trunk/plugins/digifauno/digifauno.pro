@@ -32,7 +32,6 @@ SOURCES += digifauno.cpp \
  formlistapeluqueria.cpp \
  dgastos.cpp \
  edsbprecio.cpp \
- evmensaje.cpp \
  formagregarcompra.cpp \
  vcompras.cpp
 HEADERS += digifauno.h \
@@ -69,7 +68,6 @@ HEADERS += digifauno.h \
  formlistapeluqueria.h \
  dgastos.h \
  edsbprecio.h \
- evmensaje.h \
  formagregarcompra.h \
  vcompras.h
 

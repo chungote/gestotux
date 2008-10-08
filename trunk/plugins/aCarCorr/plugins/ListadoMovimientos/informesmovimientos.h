@@ -43,7 +43,8 @@ public:
     double version() const;
     void crearMenu(QMenu* m);
     QString cargarArchivoEstilo();
-    QString  cargarCabecera();
+    QString cargarCabecera();
+    QList<QAction *>  accionesBarra();
 private:
        /*!
         * Accion para el menu de informes

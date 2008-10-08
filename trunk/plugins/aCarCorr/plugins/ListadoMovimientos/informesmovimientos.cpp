@@ -48,7 +48,7 @@ double InformesMovimientos::version() const
  return 0.1;
 }
 
-void InformesMovimientos::crearMenu(QMenu* m)
+void InformesMovimientos::crearMenu( QMenu* m )
 {
  m->addAction( ActInformeFiltroTotal );
 }
@@ -135,4 +135,15 @@ QString  InformesMovimientos::cargarCabecera()
  }
  else
  { return ""; }
+}
+
+
+/*!
+    \fn InformesMovimientos::accionesBarra()
+ */
+QList<QAction *>  InformesMovimientos::accionesBarra()
+{
+ QList<QAction *> lista;
+ lista.append( ActInformeFiltroTotal );
+ return lista;
 }

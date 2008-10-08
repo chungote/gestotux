@@ -195,26 +195,26 @@ int main(int argc, char *argv[])
        // Fin de arranque de la base de datos
 	splash.showMessage( "Base de datos Abierta correctamente" );
 	gestotux * mw = new gestotux();
-	mw->inicializar();
  	splash.showMessage( "Cargando Ventana Principal" );
 	mw->show();
-	if( p->value( "maximizado", true ).toBool() )
-	{
-		qDebug( "Ventana maximizada" );
-		mw->showMaximized();
-	}
 	// Salir del programa cuando se cierren todas las ventanas
 	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
  	splash.showMessage( "Listo." );
 	if ( !p->value( "splash", false ).toBool() )
 	{
  		splash.hide();
-		qDebug( "Ventana de splash cerrar" );
+		//qDebug( "Ventana de splash cerrar" );
 	}
         p->endGroup();
 	p->endGroup();
 	// Inicio el hilo de envio del backup
 	EEnvioBackup envios( &app );
 	envios.start( QThread::IdlePriority );
+	mw->inicializar();
+	if( p->value( "maximizado", true ).toBool() )
+	{
+		//qDebug( "Ventana maximizada" );
+		mw->showMaximized();
+	}
       return app.exec();
 }

@@ -35,8 +35,13 @@ class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
 class FormularioCentral;
-
-class gestotux:public QMainWindow
+/**
+ * \brief Ventana principal del programa
+ *
+ * Clase que se encarga de generar la ventana principal del programa, cargar los plugins, crear entonrno grafico, menus, barras de estado, verificador de backups y demas.
+ * @author Esteban Zeller <tranfuga25s@gmail.com>
+ */
+class gestotux : public QMainWindow
 {
       Q_OBJECT
 public:
