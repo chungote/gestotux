@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/plugins/HiComp/hicomp.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_2241d903d8b552fecd54d40d9c6f6ba2.html">plugins</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_1451eb9720553d8ad984619be31bc0df.html">HiComp</a>
+  </div>
+</div>
+</div>
+<h1>hicomp.h</h1><a href="hicomp_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="comment">/***************************************************************************</span>
+<a name="l00003"></a>00003 <span class="comment"> *   Copyright (C) 2007 by Esteban Zeller   *</span>
+<a name="l00004"></a>00004 <span class="comment"> *   juiraze@yahoo.com.ar   *</span>
+<a name="l00005"></a>00005 <span class="comment"> *                                                                         *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00009"></a>00009 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00010"></a>00010 <span class="comment"> *                                                                         *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00014"></a>00014 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00015"></a>00015 <span class="comment"> *                                                                         *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00019"></a>00019 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00020"></a>00020 <span class="comment"> ***************************************************************************/</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#ifndef HICOMP_H</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#define HICOMP_H</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span>
+<a name="l00024"></a>00024 <span class="keyword">class </span>QString;
+<a name="l00025"></a>00025 <span class="keyword">class </span>QStackedWidget;
+<a name="l00026"></a>00026 <span class="keyword">class </span>QMenuBar;
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QtPlugin&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QList&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QAction&gt;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include "../../src/einfoprogramainterface.h"</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include "../../src/eplugin.h"</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a><a class="code" href="classHiComp.html">00034</a> <span class="keyword">class </span><a class="code" href="classHiComp.html">HiComp</a> : <span class="keyword">public</span> QObject, <a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a>, <a class="code" href="classEPlugin.html" title="Interface de plugin en general.">EPlugin</a>
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036  Q_OBJECT
+<a name="l00037"></a>00037  Q_INTERFACES(<a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a> <a class="code" href="classEPlugin.html" title="Interface de plugin en general.">EPlugin</a>)
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="keyword">public</span>:
+<a name="l00040"></a>00040     QString <a class="code" href="classHiComp.html#64374e7cb1f0ae13efaca0d3d212b527">nombrePrograma</a>() <span class="keyword">const</span>;
+<a name="l00041"></a>00041     QIcon <a class="code" href="classHiComp.html#6d70ec351ba6af638ea0f6505730675e">iconoPrograma</a>()  <span class="keyword">const</span>;
+<a name="l00042"></a>00042     QList&lt;QActionGroup *&gt; <a class="code" href="classHiComp.html#3b60d75b42c1f5c5c6525fa5a4460344">accionesBarra</a>();
+<a name="l00043"></a>00043     <span class="keywordtype">bool</span> <a class="code" href="classHiComp.html#c56974d668d259a891ee6a2715f84c50">inicializar</a>( QSettings *<a class="code" href="classHiComp.html#752ba9803b52e63899de490e173a911a">pref</a> );
+<a name="l00044"></a>00044     <span class="keyword">static</span> QSettings *<a class="code" href="classHiComp.html#752ba9803b52e63899de490e173a911a">pref</a>();
+<a name="l00045"></a>00045     QString <a class="code" href="classHiComp.html#432599982560d95b0fdf5c001c4801af">directorioBackup</a>() <span class="keyword">const</span>;
+<a name="l00046"></a>00046     QString <a class="code" href="classHiComp.html#ac5c13e7e5ea777718d9106e3038f6b1">directorioActualizaciones</a>() <span class="keyword">const</span>;
+<a name="l00047"></a>00047     QWidgetList <a class="code" href="classHiComp.html#5e752a030f2c1bac4eff5a3b3904d568">formsPreferencias</a>();
+<a name="l00048"></a>00048     QString <a class="code" href="classHiComp.html#e73055c806b55be96ea4ca8ca6f8280d">nombre</a>() <span class="keyword">const</span>;
+<a name="l00049"></a>00049     <span class="keywordtype">int</span> <a class="code" href="classHiComp.html#cce4a5d28b4177f2ddd202728609547d">tipo</a>() <span class="keyword">const</span>;
+<a name="l00050"></a>00050     <span class="keywordtype">void</span> <a class="code" href="classHiComp.html#fbeef3f81f4417e63f0ab8c0ef224914">crearMenu</a>( QMenuBar *m );
+<a name="l00051"></a>00051     <span class="keywordtype">bool</span> <a class="code" href="classHiComp.html#8de51a93bf97697e3fc9159b3a25f88c">verificarTablas</a>();
+<a name="l00052"></a>00052     <span class="keywordtype">double</span> <a class="code" href="classHiComp.html#950183f02aec78748a60bbaadd7de0e7">version</a>() <span class="keyword">const</span>;
+<a name="l00053"></a>00053     QString <a class="code" href="classHiComp.html#169f269480484a3ad38145749959a8dd">empresa</a>() <span class="keyword">const</span>;
+<a name="l00054"></a>00054     QString <a class="code" href="classHiComp.html#aad8aa46d35a27e5ee7746802b1f92f9">companeros</a>();
+<a name="l00055"></a>00055     <span class="keywordtype">void</span> <a class="code" href="classHiComp.html#bbd840174e4b306096cceb9155c27fb0">crearToolBar</a>( QToolBar *t );
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">private</span>:
+<a name="l00058"></a><a class="code" href="classHiComp.html#f0202feca7052003df6e74646c2c482b">00058</a>     QList&lt;QAction *&gt; <a class="code" href="classHiComp.html#f0202feca7052003df6e74646c2c482b">_acciones</a>;
+<a name="l00059"></a><a class="code" href="classHiComp.html#648ca44b71ab61296dbd5aedfa6d219b">00059</a>     <span class="keyword">static</span> QSettings *<a class="code" href="classHiComp.html#648ca44b71ab61296dbd5aedfa6d219b">_pref</a>;
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="classHiComp.html#d6b7d4be8568c2f6dfe5bff4c1f4cec3">00061</a>      QAction *<a class="code" href="classHiComp.html#d6b7d4be8568c2f6dfe5bff4c1f4cec3">ActNuevoRecibo</a>;
+<a name="l00062"></a><a class="code" href="classHiComp.html#88f1927bfa22e2d7f95710a31173f453">00062</a>      QAction *<a class="code" href="classHiComp.html#88f1927bfa22e2d7f95710a31173f453">ActRecibos</a>;
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="keyword">public</span> slots:
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="classHiComp.html#978b401155da12b79d4396816dece950">verRecibosAnteriores</a>();
+<a name="l00066"></a>00066     <span class="keywordtype">void</span> <a class="code" href="classHiComp.html#1022d5a26976fdef4842a4dac6faefe6">nuevoRecibo</a>();
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 signals:
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="classHiComp.html#2f43b081056f6d638f8043967eaf3eb8">agregarVentana</a>( QWidget *v );
+<a name="l00070"></a>00070 };
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:51:00 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

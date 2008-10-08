@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/plugins/productos/mcategorias.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_2241d903d8b552fecd54d40d9c6f6ba2.html">plugins</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_8324bc479bfd66538cca5b59b3129b11.html">productos</a>
+  </div>
+</div>
+</div>
+<h1>mcategorias.cpp</h1><a href="mcategorias_8cpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2006 by Esteban Zeller &amp; Daniel Sequeira                *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   juiraze@yahoo.com.ar  - daniels@hotmail.com                           *</span>
+<a name="l00004"></a>00004 <span class="comment"> *                                                                         *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00009"></a>00009 <span class="comment"> *                                                                         *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00014"></a>00014 <span class="comment"> *                                                                         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00019"></a>00019 <span class="comment"> ***************************************************************************/</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include "<a class="code" href="mcategorias_8h.html">mcategorias.h</a>"</span>
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QSqlIndex&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QSqlDatabase&gt;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a><a class="code" href="classMCategorias.html#24e9e075f9421f286d737beef138582c">00025</a> <a class="code" href="classMCategorias.html#24e9e075f9421f286d737beef138582c">MCategorias::MCategorias</a>(QObject *parent)
+<a name="l00026"></a>00026  : QSqlTableModel(parent)
+<a name="l00027"></a>00027 {
+<a name="l00028"></a>00028  setTable( <span class="stringliteral">"categoria"</span> );
+<a name="l00029"></a>00029  setHeaderData( 0, Qt::Horizontal, <span class="stringliteral">"#ID"</span> );
+<a name="l00030"></a>00030  setHeaderData( 1, Qt::Horizontal, <span class="stringliteral">"Nombre"</span> );
+<a name="l00031"></a>00031  setHeaderData( 2, Qt::Horizontal, <span class="stringliteral">"Descripcion"</span> );
+<a name="l00032"></a>00032  setSort( 1, Qt::AscendingOrder );
+<a name="l00033"></a>00033  setEditStrategy( QSqlTableModel::OnRowChange );
+<a name="l00034"></a>00034  select();
+<a name="l00035"></a>00035 }
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 
+<a name="l00038"></a><a class="code" href="classMCategorias.html#c6d6a9fbf70d608bea4f6586fa068a8a">00038</a> <a class="code" href="classMCategorias.html#c6d6a9fbf70d608bea4f6586fa068a8a">MCategorias::~MCategorias</a>()
+<a name="l00039"></a>00039 {
+<a name="l00040"></a>00040 }
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Sep 17 09:32:41 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

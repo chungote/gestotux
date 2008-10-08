@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/src/gestotux.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_a6a96f4101e30ef9cb693fc53f8c1212.html">src</a>
+  </div>
+</div>
+</div>
+<h1>gestotux.h</h1><a href="gestotux_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2007 by Esteban Zeller   *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   juiraze@yahoo.com.ar   *</span>
+<a name="l00004"></a>00004 <span class="comment"> *                                                                         *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00009"></a>00009 <span class="comment"> *                                                                         *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00014"></a>00014 <span class="comment"> *                                                                         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00019"></a>00019 <span class="comment"> ***************************************************************************/</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#ifndef GESTOTUX_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#define GESTOTUX_H</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QMainWindow&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QCloseEvent&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QSystemTrayIcon&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QDir&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QPluginLoader&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QHash&gt;</span>
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 <span class="keyword">class </span>QAction;
+<a name="l00031"></a>00031 <span class="keyword">class </span>QMenu;
+<a name="l00032"></a>00032 <span class="keyword">class </span>barraAbajo;
+<a name="l00033"></a>00033 <span class="keyword">class </span>barraLateral;
+<a name="l00034"></a>00034 <span class="keyword">class </span>QToolBar;
+<a name="l00035"></a>00035 <span class="keyword">class </span><a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a>;
+<a name="l00036"></a>00036 <span class="keyword">class </span><a class="code" href="classEPlugin.html" title="Interface de plugin en general.">EPlugin</a>;
+<a name="l00037"></a>00037 <span class="keyword">class </span><a class="code" href="classFormularioCentral.html" title="Formulario Central.">FormularioCentral</a>;
+<a name="l00044"></a><a class="code" href="classgestotux.html">00044</a> <span class="keyword">class </span><a class="code" href="classgestotux.html" title="Ventana principal del programa.">gestotux</a> : <span class="keyword">public</span> QMainWindow
+<a name="l00045"></a>00045 {
+<a name="l00046"></a>00046       Q_OBJECT
+<a name="l00047"></a>00047 <span class="keyword">public</span>:
+<a name="l00048"></a>00048       <a class="code" href="classgestotux.html#83d89670628c98663ed98b75c59557ea">gestotux</a>();
+<a name="l00049"></a>00049       <a class="code" href="classgestotux.html#a27c507a84c7a284125246ed1c980a97">~gestotux</a>();
+<a name="l00050"></a>00050       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#541eaa9e4ea124c06bc4b4e6dcb552ff">inicializar</a>();
+<a name="l00051"></a><a class="code" href="classgestotux.html#55cff51284505dd4bc38befc076fc1db">00051</a>       <span class="keyword">static</span> <a class="code" href="classFormularioCentral.html" title="Formulario Central.">FormularioCentral</a> *<a class="code" href="classgestotux.html#55cff51284505dd4bc38befc076fc1db">formCentral</a>;
+<a name="l00052"></a><a class="code" href="classgestotux.html#216d59eed17a1e2eca5d874b9380749b">00052</a>       <span class="keyword">static</span> <a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a> *<a class="code" href="classgestotux.html#216d59eed17a1e2eca5d874b9380749b">_pluginInfo</a>;
+<a name="l00053"></a>00053       <span class="keyword">static</span> <a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a> *<a class="code" href="classgestotux.html#f1f98a1d6fedaace35fe123622d94fc8">pluginInfo</a>();
+<a name="l00054"></a>00054       <span class="keyword">static</span> <a class="code" href="classFormularioCentral.html" title="Formulario Central.">FormularioCentral</a> *<a class="code" href="classgestotux.html#4c898c86a161aed55b6bed5a5d2ef648">formCen</a>();
+<a name="l00055"></a>00055       <span class="keyword">static</span> QToolBar *<a class="code" href="classgestotux.html#df45b86cf821cff794d885b9d347e1bf">barraAcciones</a>();
+<a name="l00056"></a><a class="code" href="classgestotux.html#5db55f401c9279481bd38d8b1907bdd5">00056</a>       <span class="keyword">static</span> QToolBar *<a class="code" href="classgestotux.html#5db55f401c9279481bd38d8b1907bdd5">_barraAcciones</a>;
+<a name="l00057"></a>00057       <span class="keyword">static</span> QList&lt;EPlugin *&gt; <a class="code" href="classgestotux.html#a1a4eb97cce79771449a65c5cef21f00">plugins</a>();
+<a name="l00058"></a>00058       <span class="keyword">static</span> QHash&lt;QString, EPlugin *&gt; *<a class="code" href="classgestotux.html#aea1dd88faca78e60bac69bf489921e1">pluginsHash</a>();
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="keyword">protected</span>:
+<a name="l00062"></a>00062       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#5fd274cb1320587959f4f8561e2998b9">closeEvent</a>(QCloseEvent *event);
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="keyword">protected</span> slots:
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#c1f6d71336d02b9e3e4b3f1416b9d3af">salir</a>();
+<a name="l00066"></a>00066     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#da204b21b574824b0cf9e8d2dc9c860b">acerca</a>();
+<a name="l00067"></a>00067     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#22c359adc1b67d5bcbe0faa540dc7b09">verActualizacion</a>();
+<a name="l00068"></a>00068     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#2cb3763332245a0dbe30bab3269c89a8">ayuda</a>();
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keyword">private</span>:
+<a name="l00071"></a>00071       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#12480168684aad90d4ad34580e365d0b">createActions</a>();
+<a name="l00072"></a>00072       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#45b3e1454d967f97672715facee101da">createMenus</a>();
+<a name="l00073"></a>00073       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#64fca01ddef0b34b98503fa9aa1b5bc4">createStatusBar</a>();
+<a name="l00074"></a>00074       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#530b21922de6fbb10224be663c388562">createToolBar</a>();
+<a name="l00075"></a>00075       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#fe0adee497aed0f1c6667635b54ef71f">crearReloj</a>();
+<a name="l00076"></a>00076       <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#cf15c2878206493f76f70b0c2a07e5d4">bandeja_sistema</a>();
+<a name="l00077"></a>00077       <span class="keywordtype">bool</span> <a class="code" href="classgestotux.html#694ffdc2c9d26c89ab7d618b507b9c94">hacerTablas</a>( QString nombrePlug );
+<a name="l00078"></a>00078 
+<a name="l00079"></a><a class="code" href="classgestotux.html#947442f4a206b7ffab94649dd7302446">00079</a>       barraLateral *<a class="code" href="classgestotux.html#947442f4a206b7ffab94649dd7302446">barra</a>;
+<a name="l00080"></a><a class="code" href="classgestotux.html#b41c80bc2ac6961c96507480930215d6">00080</a>       barraAbajo *<a class="code" href="classgestotux.html#b41c80bc2ac6961c96507480930215d6">barraA</a>;
+<a name="l00081"></a>00081 
+<a name="l00082"></a><a class="code" href="classgestotux.html#d1a03359fa739e615ec9e13275835b6b">00082</a>       QToolBar *<a class="code" href="classgestotux.html#d1a03359fa739e615ec9e13275835b6b">tb</a>;
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="classgestotux.html#64a04a431ede0e4c86c1c4c9fd91f8a1">00084</a>       QMenu *<a class="code" href="classgestotux.html#64a04a431ede0e4c86c1c4c9fd91f8a1">fileMenu</a>;
+<a name="l00085"></a><a class="code" href="classgestotux.html#b016f003cd85783b144463cda6ae7311">00085</a>       QMenu *<a class="code" href="classgestotux.html#b016f003cd85783b144463cda6ae7311">menuHer</a>;
+<a name="l00086"></a><a class="code" href="classgestotux.html#1268f241da1b4a90a094f51d693b3571">00086</a>       QMenu *<a class="code" href="classgestotux.html#1268f241da1b4a90a094f51d693b3571">menuVer</a>;
+<a name="l00087"></a><a class="code" href="classgestotux.html#8fd5ac0e730da4be954b3bca40e78c1d">00087</a>       QMenu *<a class="code" href="classgestotux.html#8fd5ac0e730da4be954b3bca40e78c1d">menuAyuda</a>;
+<a name="l00088"></a>00088 
+<a name="l00089"></a><a class="code" href="classgestotux.html#c6029edf9917d735ac12c2401a7eca90">00089</a>       QAction *<a class="code" href="classgestotux.html#c6029edf9917d735ac12c2401a7eca90">ActClientes</a>;
+<a name="l00090"></a><a class="code" href="classgestotux.html#b25cf4f33b70cb146c83e8283d128877">00090</a>       QAction *<a class="code" href="classgestotux.html#b25cf4f33b70cb146c83e8283d128877">exitAct</a>;
+<a name="l00091"></a><a class="code" href="classgestotux.html#bf1119a9fecc758a87826139cada926c">00091</a>       QAction *<a class="code" href="classgestotux.html#bf1119a9fecc758a87826139cada926c">acercade</a>;
+<a name="l00092"></a><a class="code" href="classgestotux.html#3a98699a3d1869f3546442e58b6755e7">00092</a>       QAction *<a class="code" href="classgestotux.html#3a98699a3d1869f3546442e58b6755e7">ActCerrar</a>;
+<a name="l00093"></a><a class="code" href="classgestotux.html#9fa870c4fa863979ea6c37fd2cdcf1d9">00093</a>       QAction *<a class="code" href="classgestotux.html#9fa870c4fa863979ea6c37fd2cdcf1d9">ActPdf</a>;
+<a name="l00094"></a><a class="code" href="classgestotux.html#70d7d66cb119205763e28d7893cf5b22">00094</a>       QAction *<a class="code" href="classgestotux.html#70d7d66cb119205763e28d7893cf5b22">ActImprimir</a>;
+<a name="l00095"></a><a class="code" href="classgestotux.html#015bc4573de3d5673ff732eec314cdd9">00095</a>       QAction *<a class="code" href="classgestotux.html#015bc4573de3d5673ff732eec314cdd9">ActPreferencias</a>;
+<a name="l00096"></a><a class="code" href="classgestotux.html#400caf96a84ce8307eca67236ce61f28">00096</a>       QAction *<a class="code" href="classgestotux.html#400caf96a84ce8307eca67236ce61f28">ActBackup</a>;
+<a name="l00097"></a><a class="code" href="classgestotux.html#6048174bb400b9c0505a2922222890fb">00097</a>       QAction *<a class="code" href="classgestotux.html#6048174bb400b9c0505a2922222890fb">ActProductos</a>;
+<a name="l00098"></a><a class="code" href="classgestotux.html#c38491bc1d7cbfcaf9e213bd59505072">00098</a>       QAction *<a class="code" href="classgestotux.html#c38491bc1d7cbfcaf9e213bd59505072">ActActualizar</a>;
+<a name="l00099"></a><a class="code" href="classgestotux.html#631660f238f69eba31208790a369682e">00099</a>       QAction *<a class="code" href="classgestotux.html#631660f238f69eba31208790a369682e">ActAyuda</a>;
+<a name="l00100"></a>00100 
+<a name="l00101"></a><a class="code" href="classgestotux.html#205c7f7356e37ee454972fcaeb02d2cd">00101</a>       QSystemTrayIcon * <a class="code" href="classgestotux.html#205c7f7356e37ee454972fcaeb02d2cd">iconoBandeja</a>;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="keyword">public</span> slots:
+<a name="l00104"></a>00104     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#09777d865607b1d81f7a8ea8b8b8c466">verClientes</a>();
+<a name="l00105"></a>00105     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#2347afded298ae545eec08d443b34cb9">verPreferencias</a>();
+<a name="l00106"></a>00106     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#bf3246e2445aff76cd2c84174e13ec07">verBackup</a>();
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 <span class="keyword">private</span> slots:
+<a name="l00109"></a>00109     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#f38ddb61b76d221bc6b0348daf1b8edd">ocultar_mostrar</a>( QSystemTrayIcon::ActivationReason razon );
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keyword">private</span>:
+<a name="l00112"></a><a class="code" href="classgestotux.html#a5ab2bdd16f7e4a12352932e0bb94309">00112</a>     <span class="keyword">static</span> QHash&lt;QString, EPlugin *&gt; *<a class="code" href="classgestotux.html#a5ab2bdd16f7e4a12352932e0bb94309">_plugins</a>;
+<a name="l00113"></a>00113     <span class="keywordtype">bool</span> <a class="code" href="classgestotux.html#c40c8e99d0c2491e15e3ee9c2a7d040d">cargarPlugins</a>();
+<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#a5933e36a14947cf038281073470f76a">crearBarraLateral</a>();
+<a name="l00115"></a><a class="code" href="classgestotux.html#012a2b5c362f2ad549a4fbbc04bee2f6">00115</a>     QDir <a class="code" href="classgestotux.html#012a2b5c362f2ad549a4fbbc04bee2f6">pluginsDir</a>;
+<a name="l00116"></a><a class="code" href="classgestotux.html#6029ecc6f28100af31d3377bacb8d224">00116</a>     QPluginLoader <a class="code" href="classgestotux.html#6029ecc6f28100af31d3377bacb8d224">loader</a>;
+<a name="l00117"></a>00117 <span class="keyword">protected</span>:
+<a name="l00118"></a>00118     <span class="keywordtype">void</span> <a class="code" href="classgestotux.html#785dfb1167bfb3084d888e0a9430ed77">keyPressEvent</a>( QKeyEvent *event );
+<a name="l00119"></a>00119 };
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:51:03 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

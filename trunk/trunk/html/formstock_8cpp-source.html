@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/plugins/aCarCorr/formstock.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_2241d903d8b552fecd54d40d9c6f6ba2.html">plugins</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d9ed25d689eb6020be9e33367ebc52fa.html">aCarCorr</a>
+  </div>
+</div>
+</div>
+<h1>formstock.cpp</h1><a href="formstock_8cpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001  <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2007 by Esteban Zeller   *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   juiraze@yahoo.com.ar   *</span>
+<a name="l00004"></a>00004 <span class="comment"> *                                                                         *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00009"></a>00009 <span class="comment"> *                                                                         *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00014"></a>00014 <span class="comment"> *                                                                         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00019"></a>00019 <span class="comment"> ***************************************************************************/</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include "<a class="code" href="formstock_8h.html">formstock.h</a>"</span>
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QLabel&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QSqlQuery&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QProgressDialog&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include "<a class="code" href="emovimiento_8h.html">emovimiento.h</a>"</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include "<a class="code" href="mcaravanadueno_8h.html">mcaravanadueno.h</a>"</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QSqlError&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include "<a class="code" href="TipoMovs_8h.html">TipoMovs.h</a>"</span>
+<a name="l00030"></a>00030 
+<a name="l00031"></a><a class="code" href="classFormStock.html#88f5f68a3376dea00b80925373acdc7f">00031</a> <a class="code" href="classFormStock.html#88f5f68a3376dea00b80925373acdc7f">FormStock::FormStock</a>( QWidget *parent, Qt::WFlags f )
+<a name="l00032"></a>00032  : <a class="code" href="classFormMovimiento.html">FormMovimiento</a>( parent, f, <a class="code" href="TipoMovs_8h.html#b529a56c498db212c16b61dfa3d019f1e3e9b8c46546c6cdcb6b4978d618630d">stock</a> )
+<a name="l00033"></a>00033 {
+<a name="l00034"></a>00034   LTitulo-&gt;setText( <span class="stringliteral">"Agregar nuevas caravanas desde Stock"</span> );
+<a name="l00035"></a>00035 }
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 
+<a name="l00038"></a><a class="code" href="classFormStock.html#1e602c8f990aaa86391ad62d8886d30e">00038</a> <a class="code" href="classFormStock.html#1e602c8f990aaa86391ad62d8886d30e">FormStock::~FormStock</a>()
+<a name="l00039"></a>00039 {
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 
+<a name="l00043"></a><a class="code" href="classFormStock.html#be94abdb17fff84acc14a46d1713d9c5">00043</a> <span class="keywordtype">void</span> <a class="code" href="classFormStock.html#be94abdb17fff84acc14a46d1713d9c5">FormStock::cerrar</a>()
+<a name="l00044"></a>00044 {
+<a name="l00045"></a>00045  this-&gt;close();
+<a name="l00046"></a>00046 }
+<a name="l00047"></a>00047 
+<a name="l00048"></a><a class="code" href="classFormStock.html#7e44141c60de74ba717ddeb547b289a0">00048</a> <span class="keywordtype">void</span> <a class="code" href="classFormStock.html#7e44141c60de74ba717ddeb547b289a0">FormStock::guardar</a>()
+<a name="l00049"></a>00049 {
+<a name="l00050"></a>00050  <span class="keywordflow">if</span>( !<a class="code" href="classFormMovimiento.html#4ec44bda832d3ef2a9e3c856b680d9ce">verificar</a>() )
+<a name="l00051"></a>00051  {
+<a name="l00052"></a>00052   <span class="keywordflow">return</span>;
+<a name="l00053"></a>00053  }
+<a name="l00054"></a>00054  QProgressDialog *dialogo = <span class="keyword">new</span> QProgressDialog( <span class="keyword">this</span> );
+<a name="l00055"></a>00055  dialogo-&gt;setLabelText( <span class="stringliteral">"Guardando datos del TRI"</span> );
+<a name="l00056"></a>00056  dialogo-&gt;setMinimum( 0 );
+<a name="l00057"></a>00057  dialogo-&gt;setMaximum( 7 );
+<a name="l00058"></a>00058  dialogo-&gt;setValue( 0 );
+<a name="l00059"></a>00059  dialogo-&gt;show();
+<a name="l00060"></a>00060  <a class="code" href="classEMovimiento.html" title="Encapsulacion de un movimiento.">EMovimiento</a> *movimiento = <span class="keyword">new</span> <a class="code" href="classEMovimiento.html" title="Encapsulacion de un movimiento.">EMovimiento</a>( <span class="keyword">this</span> );
+<a name="l00061"></a>00061  <span class="comment">// Tipo de Movimiento</span>
+<a name="l00062"></a>00062  movimiento-&gt;<a class="code" href="classEMovimiento.html#0b01dbde3b99e00e99b01dda28c4b604">setTipoMov</a>( <a class="code" href="TipoMovs_8h.html#b529a56c498db212c16b61dfa3d019f1e3e9b8c46546c6cdcb6b4978d618630d">stock</a> );
+<a name="l00063"></a>00063  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00064"></a>00064  <span class="comment">// DTA</span>
+<a name="l00065"></a>00065  <span class="keywordflow">if</span>( !movimiento-&gt;<a class="code" href="classEMovimiento.html#ee60db8d30389a9e9cee60a2a030a37d">setDTA</a>( LEDTA-&gt;text() ) )
+<a name="l00066"></a>00066  {
+<a name="l00067"></a>00067         dialogo-&gt;close();
+<a name="l00068"></a>00068         <span class="keywordflow">return</span>;
+<a name="l00069"></a>00069  }
+<a name="l00070"></a>00070  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00071"></a>00071  movimiento-&gt;<a class="code" href="classEMovimiento.html#a23860ab201f38554402de98d262ceb5">setNumGuia</a>( LEGuia-&gt;text() );
+<a name="l00072"></a>00072  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00073"></a>00073  <span class="comment">// Fecha</span>
+<a name="l00074"></a>00074  movimiento-&gt;<a class="code" href="classEMovimiento.html#71b21d191f1bdcc7e66bd7024898aa00">setFecha</a>( dEFecha-&gt;date() );
+<a name="l00075"></a>00075  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00076"></a>00076  <span class="comment">// Categoria</span>
+<a name="l00077"></a>00077  movimiento-&gt;<a class="code" href="classEMovimiento.html#3792f44ed9cb24eaee42c0642ef32a00">setCategoria</a>( CBCategoria-&gt;model()-&gt;data( CBCategoria-&gt;model()-&gt;index( CBCategoria-&gt;currentIndex(), 0 ), Qt::EditRole ).toInt() );
+<a name="l00078"></a>00078  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00079"></a>00079  <span class="comment">// Establecimiento  de destino</span>
+<a name="l00080"></a>00080  movimiento-&gt;<a class="code" href="classEMovimiento.html#73e577bad3a3fde5e9526a9420e3c24a">setEstablecimientoDestino</a>( CBEstablecimientoDestino-&gt;model()-&gt;data( CBEstablecimientoDestino-&gt;model()-&gt;index( CBEstablecimientoDestino-&gt;currentIndex(), 0 ), Qt::EditRole ).toInt() );
+<a name="l00081"></a>00081  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00082"></a>00082  <span class="comment">// Vendedor</span>
+<a name="l00083"></a>00083  movimiento-&gt;<a class="code" href="classEMovimiento.html#78ac0c644c00428c2cd24f72d8d6b304">setVendedor</a>( CBCliente-&gt;model()-&gt;data( CBCliente-&gt;model()-&gt;index( CBCliente-&gt;currentIndex(), 0 ), Qt::EditRole ).toInt() );
+<a name="l00084"></a>00084  dialogo-&gt;setValue( dialogo-&gt;value() + 1 );
+<a name="l00085"></a>00085  <span class="keywordflow">if</span>( <a class="code" href="classFormMovimiento.html#b6db79f77a3bdb097ab6a88571108313">_especial</a> )
+<a name="l00086"></a>00086  {
+<a name="l00087"></a>00087    movimiento-&gt;<a class="code" href="classEMovimiento.html#cfe4d828dc54644f112c8248d5c2dd15">setCantidadAnimales</a>( SBCantidadAnimales-&gt;value() );
+<a name="l00088"></a>00088  }
+<a name="l00089"></a>00089  <span class="keywordflow">else</span>
+<a name="l00090"></a>00090  {
+<a name="l00091"></a>00091         <span class="comment">// Chequear que no existan los numeros de caravanas ya en la tabla</span>
+<a name="l00092"></a>00092         <span class="comment">// Busco todos los codigos dados de alta en la tabla de caravanas</span>
+<a name="l00093"></a>00093         dialogo-&gt;setLabelText( <span class="stringliteral">"Comprobando caravanas..."</span> );
+<a name="l00094"></a>00094         QStringList lista = <a class="code" href="classFormMovimiento.html#2ce5105e29d2dd46c843ad901efe03e2">model</a>-&gt;<a class="code" href="classMCaravanaDueno.html#2727fc04748ebb662f8dcfc066e6bf74">listaCaravanas</a>();
+<a name="l00095"></a>00095         dialogo-&gt;setRange( 0, lista.size() );
+<a name="l00096"></a>00096         dialogo-&gt;setValue( 0 );
+<a name="l00097"></a>00097         QString cadena;
+<a name="l00098"></a>00098         <span class="keywordflow">foreach</span>( cadena, lista )
+<a name="l00099"></a>00099         {
+<a name="l00100"></a>00100         movimiento-&gt;<a class="code" href="classEMovimiento.html#05010cd7d76f182b1029c7ddc5c6b20a">agregarCaravana</a>( cadena );
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102  }<span class="comment">// fin de si es especial o no</span>
+<a name="l00103"></a>00103  <span class="comment">// Lista la comprobacion de caravanas</span>
+<a name="l00104"></a>00104  <span class="comment">// comienzo a guardar todo</span>
+<a name="l00105"></a>00105  dialogo-&gt;setLabelText( <span class="stringliteral">"Guardando datos..."</span> );
+<a name="l00106"></a>00106  <span class="keywordtype">int</span> <span class="keywordtype">id</span> = movimiento-&gt;<a class="code" href="classEMovimiento.html#333a8906d63515a4f48c7fe9dd54251b">guardar</a>( dialogo );
+<a name="l00107"></a>00107  <span class="keywordflow">if</span>( <span class="keywordtype">id</span> &lt; 0 )
+<a name="l00108"></a>00108  {
+<a name="l00109"></a>00109         QMessageBox::critical( <span class="keyword">this</span>, <span class="stringliteral">"Error al guardar los datos"</span>, <span class="stringliteral">"No se ha podido guardar los datos de esta compra"</span> );
+<a name="l00110"></a>00110         dialogo-&gt;close();
+<a name="l00111"></a>00111         <span class="keywordflow">return</span>;
+<a name="l00112"></a>00112  }
+<a name="l00113"></a>00113  <span class="keywordflow">else</span>
+<a name="l00114"></a>00114  {
+<a name="l00115"></a>00115    QMessageBox::information( <span class="keyword">this</span>, <span class="stringliteral">"Correcto"</span>, <span class="stringliteral">"La informacion se ha guardado correctamente"</span>);
+<a name="l00116"></a>00116  }
+<a name="l00117"></a>00117  dialogo-&gt;close();
+<a name="l00118"></a>00118  this-&gt;close();
+<a name="l00119"></a>00119 }
+<a name="l00120"></a>00120 
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:50:56 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

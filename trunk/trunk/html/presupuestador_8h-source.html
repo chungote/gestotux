@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/plugins/presupuestador/presupuestador.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_2241d903d8b552fecd54d40d9c6f6ba2.html">plugins</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_36fd3c264d272506dee214eadc0d7752.html">presupuestador</a>
+  </div>
+</div>
+</div>
+<h1>presupuestador.h</h1><a href="presupuestador_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2007 by Esteban Zeller   *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   juiraze@yahoo.com.ar   *</span>
+<a name="l00004"></a>00004 <span class="comment"> *                                                                         *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00009"></a>00009 <span class="comment"> *                                                                         *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00014"></a>00014 <span class="comment"> *                                                                         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00019"></a>00019 <span class="comment"> ***************************************************************************/</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#ifndef PRESUPUESTADOR_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#define PRESUPUESTADOR_H</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include "<a class="code" href="einfoprogramainterface_8h.html">einfoprogramainterface.h</a>"</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include "<a class="code" href="eplugin_8h.html">eplugin.h</a>"</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 
+<a name="l00028"></a><a class="code" href="classpresupuestador.html">00028</a> <span class="keyword">class </span><a class="code" href="classpresupuestador.html">presupuestador</a> : <span class="keyword">public</span> QObject, <a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a>, <a class="code" href="classEPlugin.html" title="Interface de plugin en general.">EPlugin</a>
+<a name="l00029"></a>00029 {
+<a name="l00030"></a>00030  Q_OBJECT
+<a name="l00031"></a>00031  Q_INTERFACES(<a class="code" href="classEInfoProgramaInterface.html" title="Interfaz de informacion del programa.">EInfoProgramaInterface</a> <a class="code" href="classEPlugin.html" title="Interface de plugin en general.">EPlugin</a>)
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="keyword">public</span>:
+<a name="l00034"></a>00034     QString <a class="code" href="classpresupuestador.html#eb9d266cabd68f16a320aa76d851d0d6">nombrePrograma</a>() <span class="keyword">const</span>;
+<a name="l00035"></a>00035     QIcon <a class="code" href="classpresupuestador.html#0f389c431e6cda25d14e36460fa1d540">iconoPrograma</a>()  <span class="keyword">const</span>;
+<a name="l00036"></a>00036     QList&lt;QAction *&gt; <a class="code" href="classpresupuestador.html#d92e49e1a35d3a2f0d0fbc511c58b0c2">accionesBarra</a>() <span class="keyword">const</span>;
+<a name="l00037"></a>00037     <span class="keywordtype">bool</span> <a class="code" href="classpresupuestador.html#4e77497679f683b26968c22c0726b063">inicializar</a>( QSettings *<a class="code" href="classpresupuestador.html#eb29a48f79b6afec2cca733bea6a7d93">pref</a> );
+<a name="l00038"></a>00038     <span class="keyword">static</span> QSettings *<a class="code" href="classpresupuestador.html#eb29a48f79b6afec2cca733bea6a7d93">pref</a>();
+<a name="l00039"></a>00039     QString <a class="code" href="classpresupuestador.html#85a69abbc3e37c4916f1043022dbe188">directorioBackup</a>() <span class="keyword">const</span>;
+<a name="l00040"></a>00040     QString <a class="code" href="classpresupuestador.html#d96e07f425935429a20c8b651651f2a0">directorioActualizaciones</a>() <span class="keyword">const</span>;
+<a name="l00041"></a>00041     QWidgetList <a class="code" href="classpresupuestador.html#30b2c402c3dfc1e82368f87e591f16c7">formsPreferencias</a>();
+<a name="l00042"></a>00042     QString <a class="code" href="classpresupuestador.html#49bf185eececa310f6d81bec0cb7af44">nombre</a>() <span class="keyword">const</span>;
+<a name="l00043"></a>00043     <span class="keywordtype">int</span> <a class="code" href="classpresupuestador.html#3fd2f937d8128e51f179d31b8f25d4a8">tipo</a>() <span class="keyword">const</span>;
+<a name="l00044"></a>00044     <span class="keywordtype">void</span> <a class="code" href="classpresupuestador.html#b763db2da3e57a51e5b67646889ac6df">crearMenu</a>( QMenuBar *m );
+<a name="l00045"></a>00045     <span class="keywordtype">bool</span> <a class="code" href="classpresupuestador.html#87e9ad199e334661d81673f14231c906">verificarTablas</a>();
+<a name="l00046"></a>00046     <span class="keywordtype">double</span> <a class="code" href="classpresupuestador.html#d19d9b1f73fa74482a59bd6196ba3bd7">version</a>() <span class="keyword">const</span>;
+<a name="l00047"></a>00047     QString <a class="code" href="classpresupuestador.html#1a8c52d2d764edc328c2c10f3e595692">empresa</a>() <span class="keyword">const</span>;
+<a name="l00048"></a>00048     QString <a class="code" href="classpresupuestador.html#d65bf708890aae31b6fc7c857bb4707f">companeros</a>();
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="keyword">private</span>:
+<a name="l00051"></a><a class="code" href="classpresupuestador.html#f382bfebf202a0ae97c88f387f65bd8f">00051</a>     QList&lt;QAction *&gt; <a class="code" href="classpresupuestador.html#f382bfebf202a0ae97c88f387f65bd8f">_acciones</a>;
+<a name="l00052"></a><a class="code" href="classpresupuestador.html#cb0e2662e439a9f6edd9637f0a0a38db">00052</a>     <span class="keyword">static</span> QSettings *<a class="code" href="classpresupuestador.html#cb0e2662e439a9f6edd9637f0a0a38db">_pref</a>;
+<a name="l00053"></a>00053 
+<a name="l00054"></a><a class="code" href="classpresupuestador.html#c7ed96744f914f47867fcc5df77f102f">00054</a>     QAction *<a class="code" href="classpresupuestador.html#c7ed96744f914f47867fcc5df77f102f">ActPresuAnteriores</a>;
+<a name="l00055"></a><a class="code" href="classpresupuestador.html#b6f11bdc14c46beccf768cd009d8a992">00055</a>     QAction *<a class="code" href="classpresupuestador.html#b6f11bdc14c46beccf768cd009d8a992">ActNuevoPresu</a>;
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">protected</span> slots:
+<a name="l00058"></a>00058     <span class="keywordtype">void</span> <a class="code" href="classpresupuestador.html#96b5270e6c809b5d04051a1feeb8dcaf">nuevoPresupuesto</a>();
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="keyword">protected</span> slots:
+<a name="l00061"></a>00061     <span class="keywordtype">void</span> <a class="code" href="classpresupuestador.html#bf4813eca551dff014d8222319e78a90">verAnteriores</a>();
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 signals:
+<a name="l00064"></a>00064         <span class="keywordtype">void</span> <a class="code" href="classpresupuestador.html#0d3cd91262ea149afb189fc1bb17569d">agregarVentana</a>( QWidget * );
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 };
+<a name="l00067"></a>00067 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:51:01 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

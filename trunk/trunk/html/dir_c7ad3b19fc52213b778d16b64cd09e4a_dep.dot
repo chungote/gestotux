@@ -1,0 +1,20 @@
+digraph G {
+  compound=true
+  node [ fontsize=10, fontname="FreeSans"];
+  edge [ labelfontsize=9, labelfontname="FreeSans"];
+  subgraph clusterdir_d9ed25d689eb6020be9e33367ebc52fa {
+    graph [ bgcolor="#ddddee", pencolor="black", label="aCarCorr" fontname="FreeSans", fontsize=10, URL="dir_d9ed25d689eb6020be9e33367ebc52fa.html"]
+  subgraph clusterdir_c7ad3b19fc52213b778d16b64cd09e4a {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_c7ad3b19fc52213b778d16b64cd09e4a.html"];
+    dir_c7ad3b19fc52213b778d16b64cd09e4a [shape=plaintext label="plugins"];
+    dir_7a673239d28bdb23c586c11fbfb90b5e [shape=box label="ListadoCaravanas" color="black" fillcolor="white" style="filled" URL="dir_7a673239d28bdb23c586c11fbfb90b5e.html"];
+    dir_331b23f5398dc97e6a5b0e1682255809 [shape=box label="ListadoMovimientos" color="black" fillcolor="white" style="filled" URL="dir_331b23f5398dc97e6a5b0e1682255809.html"];
+  }
+  }
+  dir_96dd5dfec6529fa71a74b9d6ee5ac519 [shape=box label="utiles" URL="dir_96dd5dfec6529fa71a74b9d6ee5ac519.html"];
+  dir_a6a96f4101e30ef9cb693fc53f8c1212 [shape=box label="src" URL="dir_a6a96f4101e30ef9cb693fc53f8c1212.html"];
+  dir_7a673239d28bdb23c586c11fbfb90b5e->dir_96dd5dfec6529fa71a74b9d6ee5ac519 [headlabel="1", labeldistance=1.5 headhref="dir_000007_000004.html"];
+  dir_7a673239d28bdb23c586c11fbfb90b5e->dir_a6a96f4101e30ef9cb693fc53f8c1212 [headlabel="1", labeldistance=1.5 headhref="dir_000007_000016.html"];
+  dir_331b23f5398dc97e6a5b0e1682255809->dir_96dd5dfec6529fa71a74b9d6ee5ac519 [headlabel="1", labeldistance=1.5 headhref="dir_000008_000004.html"];
+  dir_a6a96f4101e30ef9cb693fc53f8c1212->dir_96dd5dfec6529fa71a74b9d6ee5ac519 [headlabel="20", labeldistance=1.5 headhref="dir_000016_000004.html"];
+}
