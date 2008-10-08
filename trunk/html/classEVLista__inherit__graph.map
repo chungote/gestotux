@@ -1,0 +1,11 @@
+<area shape="rect" href="$classVCategorias.html" title="Lista de Categorias." alt="" coords="267,8,363,35">
+<area shape="rect" href="$classVCliente.html" title="VCliente" alt="" coords="279,59,351,85">
+<area shape="rect" href="$classVCompras.html" title="VCompras" alt="" coords="272,109,357,136">
+<area shape="rect" href="$classVDuenos.html" title="VDuenos" alt="" coords="276,160,353,187">
+<area shape="rect" href="$classVEstablecimiento.html" title="VEstablecimiento" alt="" coords="252,211,377,237">
+<area shape="rect" href="$classVGastos.html" title="VGastos" alt="" coords="277,261,352,288">
+<area shape="rect" href="$classVMascota.html" title="VMascota" alt="" coords="273,312,356,339">
+<area shape="rect" href="$classVPresupuesto.html" title="VPresupuesto" alt="" coords="261,363,368,389">
+<area shape="rect" href="$classVProductos.html" title="Listado de Productos." alt="" coords="269,413,360,440">
+<area shape="rect" href="$classVProveedor.html" title="VProveedor" alt="" coords="268,464,361,491">
+<area shape="rect" href="$classEVentana.html" title="Ventana base de todas las ventanas." alt="" coords="5,211,85,237">

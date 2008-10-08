@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/templates/ncreport-qt4-0.7.30-2/ncreport-qt4-0.7.30/src/libncreport/ncpreview.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&nbsp;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_287714ba489d9ee9e591124286039350.html">templates</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_5296b4bd28dd233796c5a49e267f2922.html">ncreport-qt4-0.7.30-2</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3bc18ad3ed6ed9928d43713c4455eeb4.html">ncreport-qt4-0.7.30</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_e67de86019fa439bb454c3658a0c2fe8.html">src</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_24144c3b9a6dd83c54764577fc384031.html">libncreport</a>
+  </div>
+</div>
+</div>
+<h1>ncpreview.h</h1><a href="ncpreview_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2005 by Norbert Szabo                                   *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   Szolo str. 45. Ersekcsanad 6347                                       *</span>
+<a name="l00004"></a>00004 <span class="comment"> *   Hungary                                                               *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   nszabo@helta.hu                                                       *</span>
+<a name="l00006"></a>00006 <span class="comment"> *                                                                         *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00009"></a>00009 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00011"></a>00011 <span class="comment"> *                                                                         *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00014"></a>00014 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00016"></a>00016 <span class="comment"> *                                                                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00019"></a>00019 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00020"></a>00020 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00021"></a>00021 <span class="comment"> ***************************************************************************/</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#ifndef NCPREVIEW_H</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span><span class="preprocessor">#define NCPREVIEW_H</span>
+<a name="l00024"></a>00024 <span class="preprocessor"></span>
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="comment">//#include &lt;qobject.h&gt;</span>
+<a name="l00027"></a>00027 <span class="comment">//#include &lt;qpointer.h&gt;</span>
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QPointer&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QWidget&gt;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;QList&gt;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &lt;QMainWindow&gt;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &lt;QScrollArea&gt;</span>
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="preprocessor">#include &lt;QBrush&gt;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;QPen&gt;</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">//#include &lt;QPaintEvent&gt;</span>
+<a name="l00039"></a>00039 <span class="comment">//#include &lt;QMoveEvent&gt;</span>
+<a name="l00040"></a>00040 <span class="comment">//#include &lt;QKeyEvent&gt;</span>
+<a name="l00041"></a>00041 <span class="comment">//#include &lt;QShowEvent&gt;</span>
+<a name="l00042"></a>00042 <span class="comment">//#include &lt;QResizeEvent&gt;</span>
+<a name="l00043"></a>00043 <span class="comment">//#include &lt;QPicture&gt;</span>
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="comment">//class QToolButton;</span>
+<a name="l00047"></a>00047 <span class="keyword">class </span>QPainter;
+<a name="l00048"></a>00048 <span class="keyword">class </span>QAction;
+<a name="l00049"></a>00049 <span class="keyword">class </span>QComboBox;
+<a name="l00050"></a>00050 <span class="keyword">class </span>QScrollArea;
+<a name="l00051"></a>00051 <span class="keyword">class </span>QPicture;
+<a name="l00052"></a>00052 <span class="keyword">class </span>NCWidgetPosHandler;
+<a name="l00053"></a>00053 <span class="keyword">class </span><a class="code" href="classNCReport.html">NCReport</a>;
+<a name="l00054"></a>00054 <span class="keyword">class </span><a class="code" href="classNCPreview.html">NCPreview</a>;
+<a name="l00055"></a>00055 <span class="keyword">class </span><a class="code" href="classNCIconFactoryBase.html">NCIconFactoryBase</a>;
+<a name="l00056"></a>00056 <span class="comment">//class QResizeEvent;</span>
+<a name="l00057"></a>00057 
+<a name="l00061"></a><a class="code" href="classNCPreviewPage.html">00061</a> <span class="keyword">class </span><a class="code" href="classNCPreviewPage.html">NCPreviewPage</a> : <span class="keyword">public</span> QWidget
+<a name="l00062"></a>00062 {
+<a name="l00063"></a>00063     Q_OBJECT
+<a name="l00064"></a>00064 <span class="keyword">public</span>:
+<a name="l00065"></a>00065     <a class="code" href="classNCPreviewPage.html#bcc8d34743956fc2a1bd1562e2c82e68">NCPreviewPage</a>( QWidget * parent=0, <span class="keyword">const</span> <span class="keywordtype">char</span> * name=0, Qt::WFlags f=0 );
+<a name="l00066"></a>00066     <a class="code" href="classNCPreviewPage.html#b7852b8451526c5b051dc53a221add04">~NCPreviewPage</a>();
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="comment">//void setZoomLevel(int z);</span>
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#a236cb8761ac21961b10d596b1b39db2">setPageSize</a>(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);
+<a name="l00070"></a>00070         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#f3dd7fddee94addada5ff6cb8f7266ca">setPicture</a>( QPicture *<a class="code" href="classNCPreviewPage.html#745751da000d658163d06348469d0e9d">picture</a>);
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#b22136d225366d251fdc80decf531dfd">setAntialiased</a>( <span class="keywordtype">bool</span> );
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#31bc6be5feb9502511fcdab2286adeef">zoom</a>( <span class="keywordtype">int</span> z );
+<a name="l00073"></a>00073         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#d86db4b0c510f326bf90503869cce85b">currentZoomLevel</a>();
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#d8cda8ddd18ca70a6a3027865ad1bc54">setContainer</a>( QWidget* );
+<a name="l00075"></a>00075         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#d196aaf1b879629fe7525f08200aa3a3">setContainerMargin</a>(<span class="keywordtype">int</span>);
+<a name="l00076"></a>00076 <span class="keyword">public</span> slots:
+<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#9c1cce77f575084a607deab2f56a3b5a">updatePage</a>( <span class="keywordtype">int</span> );
+<a name="l00078"></a>00078     <span class="comment">//void printPage();</span>
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 <span class="keyword">protected</span>:
+<a name="l00081"></a>00081     <span class="comment">//void drawPage( QPainter * );</span>
+<a name="l00082"></a>00082     <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#564389fbf103d24a8f46ac6e3b371ce4">paintEvent</a>( QPaintEvent *  );
+<a name="l00083"></a>00083         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#52968d9a69651d94699c4d03a9890c80">testPaint</a>( QPainter &amp;painter );
+<a name="l00084"></a>00084         
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#f84f156c19b83a595351054a7d40d668">paintPage</a>( QPainter &amp;painter );
+<a name="l00086"></a>00086         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#c6022b68b3a994d85d336e8975ad97c0">paintTest</a>( QPainter &amp;painter );
+<a name="l00087"></a>00087         
+<a name="l00088"></a>00088         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#b4912e047ebfdcb5b2cde0bfd26aa64f">mmToPixel</a>( <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; mm );
+<a name="l00089"></a>00089 <span class="keyword">private</span>:
+<a name="l00090"></a>00090         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewPage.html#fa7baa1041fe6a8ee6f0cf69abdcfe1e">drawContents</a>(QPainter * p);
+<a name="l00091"></a>00091         <span class="comment">//int mmToPixel(double mm, Q3PaintDeviceMetrics* );</span>
+<a name="l00092"></a>00092         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#b4912e047ebfdcb5b2cde0bfd26aa64f">mmToPixel</a>(<span class="keywordtype">double</span> mm, QPaintDevice *pd );
+<a name="l00093"></a>00093         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#efa812b7f1438f569f8a47d87422e57f">realSize</a>(<span class="keywordtype">int</span> size);
+<a name="l00094"></a>00094 
+<a name="l00095"></a><a class="code" href="classNCPreviewPage.html#f603b939840d29a147f57fbccf951eb4">00095</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#f603b939840d29a147f57fbccf951eb4">baseWidth</a>, <a class="code" href="classNCPreviewPage.html#fc941590a542bba53061ccf2fa47def2">baseHeight</a>;
+<a name="l00096"></a><a class="code" href="classNCPreviewPage.html#aea842c90c4b096a60b7579f7c028b60">00096</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#aea842c90c4b096a60b7579f7c028b60">zoomLevel</a>;
+<a name="l00097"></a><a class="code" href="classNCPreviewPage.html#67b90093a61861abf220baba727eb917">00097</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#67b90093a61861abf220baba727eb917">dpi</a>;
+<a name="l00098"></a><a class="code" href="classNCPreviewPage.html#c3a794628424293c17377cf448038d7e">00098</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreviewPage.html#c3a794628424293c17377cf448038d7e">cMargin</a>;
+<a name="l00099"></a><a class="code" href="classNCPreviewPage.html#9c1bd77afebbcf1c0273d032371e135a">00099</a>         <span class="keywordtype">bool</span> <a class="code" href="classNCPreviewPage.html#9c1bd77afebbcf1c0273d032371e135a">antialiased</a>;
+<a name="l00100"></a><a class="code" href="classNCPreviewPage.html#745751da000d658163d06348469d0e9d">00100</a>         QPicture *picture;
+<a name="l00101"></a><a class="code" href="classNCPreviewPage.html#386d354639681df512cbda8c0e6dff90">00101</a>         QWidget *<a class="code" href="classNCPreviewPage.html#386d354639681df512cbda8c0e6dff90">containerWidget</a>;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 };
+<a name="l00104"></a>00104 
+<a name="l00109"></a><a class="code" href="classNCPictureList.html">00109</a> <span class="keyword">class </span><a class="code" href="classNCPictureList.html">NCPictureList</a> : <span class="keyword">public</span> QObject
+<a name="l00110"></a>00110 {
+<a name="l00111"></a>00111 <span class="keyword">public</span>:
+<a name="l00112"></a>00112     <a class="code" href="classNCPictureList.html#8abe7ab12dd9bbd77a2c7791acda69f4">NCPictureList</a>( QWidget *parent=0, <span class="keyword">const</span> <span class="keywordtype">char</span> *name=0 );
+<a name="l00113"></a>00113     <a class="code" href="classNCPictureList.html#e0a5c7f095ddbef3812b911452a3becc">~NCPictureList</a>();
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115     <span class="keywordtype">void</span> <a class="code" href="classNCPictureList.html#45b9329c43e64d0efdd2c3b925e2cde3">append</a>();
+<a name="l00116"></a>00116     QPicture* <a class="code" href="classNCPictureList.html#2abbc97cc4334b3ffe72e44a185cf7ee">current</a>();
+<a name="l00117"></a>00117     <span class="keywordtype">int</span> <a class="code" href="classNCPictureList.html#dfc4c1d5c91add0fec5c48d5fa7f7c5a">count</a>();
+<a name="l00118"></a>00118     QList&lt;QPicture*&gt;&amp; <a class="code" href="classNCPictureList.html#1663f144f2f98d8625fcb41f10672cf8">list</a>();
+<a name="l00119"></a>00119 <span class="keyword">private</span>:
+<a name="l00120"></a><a class="code" href="classNCPictureList.html#77014ee108cbd60ae0eda1a533a216a6">00120</a>         QList&lt;QPicture*&gt; <a class="code" href="classNCPictureList.html#77014ee108cbd60ae0eda1a533a216a6">pList</a>;
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 };
+<a name="l00123"></a>00123 
+<a name="l00124"></a><a class="code" href="classNCPreviewScrollArea.html">00124</a> <span class="keyword">class </span><a class="code" href="classNCPreviewScrollArea.html">NCPreviewScrollArea</a> : <span class="keyword">public</span> QScrollArea
+<a name="l00125"></a>00125 {
+<a name="l00126"></a>00126         Q_OBJECT
+<a name="l00127"></a>00127 <span class="keyword">public</span>:
+<a name="l00128"></a>00128         <a class="code" href="classNCPreviewScrollArea.html#188c03de8e9dba59a6a6f19169a5ae19">NCPreviewScrollArea</a>( <a class="code" href="classNCPreview.html">NCPreview</a>* parent=0 );
+<a name="l00129"></a>00129         <a class="code" href="classNCPreviewScrollArea.html#b1d7c38317842383e6924782ead549c1">~NCPreviewScrollArea</a>();
+<a name="l00130"></a>00130         
+<a name="l00131"></a>00131         <span class="comment">//void setPage( NCPreviewPage* );</span>
+<a name="l00132"></a>00132 <span class="keyword">protected</span>:
+<a name="l00133"></a><a class="code" href="classNCPreviewScrollArea.html#64b2e927faf0313c634456d12d0cd51e">00133</a>         <a class="code" href="classNCPreview.html">NCPreview</a> *<a class="code" href="classNCPreviewScrollArea.html#64b2e927faf0313c634456d12d0cd51e">pvForm</a>;
+<a name="l00134"></a>00134         <span class="comment">//NCPreviewPage *page;</span>
+<a name="l00135"></a>00135         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewScrollArea.html#462451a0a7523cf1cbcf36876889f03b">resizeEvent</a>( QResizeEvent * event );
+<a name="l00136"></a>00136         <span class="keywordtype">void</span> <a class="code" href="classNCPreviewScrollArea.html#b023baa358d20c57c641bf5258ead876">keyPressEvent</a> ( QKeyEvent * e );   
+<a name="l00137"></a>00137 };
+<a name="l00138"></a>00138 
+<a name="l00143"></a><a class="code" href="classNCPreview.html">00143</a> <span class="keyword">class </span><a class="code" href="classNCPreview.html">NCPreview</a> : <span class="keyword">public</span> QMainWindow
+<a name="l00144"></a>00144 {
+<a name="l00145"></a>00145         Q_OBJECT
+<a name="l00146"></a><a class="code" href="classNCPreview.html#111cc34a3dbb5a8e608fa630437da9e0">00146</a>     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classNCReport.html">NCReport</a>;
+<a name="l00147"></a><a class="code" href="classNCPreview.html#ede8d595d420a2b0bea81f420c62ec7a">00147</a>         <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classNCPreviewScrollArea.html">NCPreviewScrollArea</a>;
+<a name="l00148"></a>00148 <span class="keyword">public</span>:
+<a name="l00149"></a>00149         <span class="comment">//NCPreview( int height, int width, QList&lt;QPicture&gt; &amp; picList, QWidget * parent = 0, const char * name = 0, WFlags f = WType_TopLevel );</span>
+<a name="l00150"></a>00150         <span class="comment">//NCPreview( int height, int width, QWidget * parent = 0, const char * name = 0, WFlags f = WType_TopLevel );</span>
+<a name="l00151"></a>00151         <span class="comment">//NCPreview( int height, int width, NCPictureList *piclist, QWidget * parent = 0, const char * name = 0, Qt::WFlags f =0 );</span>
+<a name="l00152"></a>00152         <a class="code" href="classNCPreview.html#31689488055bc79e9f602227ef3d195b">NCPreview</a>( <span class="keywordtype">int</span> height, <span class="keywordtype">int</span> width, QList&lt;QPicture*&gt;&amp; piclist, QWidget * parent = 0, <span class="keyword">const</span> <span class="keywordtype">char</span> * name = 0, Qt::WFlags f =0, <a class="code" href="classNCIconFactoryBase.html">NCIconFactoryBase</a>* <a class="code" href="qmake__image__collection_8cpp.html#39acf6d887c1c22c8443d8d65d8dd5d5">factory</a> = 0);
+<a name="l00153"></a>00153     <a class="code" href="classNCPreview.html#668cc395134006b36ed62b08955eeba9">~NCPreview</a>();
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#50be2d399175038877502f918a6f75e7">setReport</a>( <a class="code" href="classNCReport.html">NCReport</a>* );
+<a name="l00156"></a>00156         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#fe254247a23bd89b891bb16f5d87bece">setDeleteReportOnClose</a>( <span class="keywordtype">bool</span> );
+<a name="l00157"></a>00157         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#31e464e36012871612739294a5462323">setIconFactory</a>( <a class="code" href="classNCIconFactoryBase.html">NCIconFactoryBase</a>* );
+<a name="l00158"></a>00158 <span class="keyword">public</span> slots:
+<a name="l00159"></a>00159         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#8c87cf54533cd2504902e78b3354a7cb">slotZoom</a>( <span class="keyword">const</span> QString &amp; s);
+<a name="l00160"></a>00160         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#8cbffaa9efc6747c244273d31f474c76">zoomPlus</a>();
+<a name="l00161"></a>00161         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#11f5770c38be2a608b6e753e45678b49">zoomMinus</a>();
+<a name="l00162"></a>00162         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#a60dc97cd1bea6ef3c2962cbd266f740">slotPrint</a>();
+<a name="l00163"></a>00163         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#50b2949eadf8bc0d5a096907f110d24f">slotNext</a>();
+<a name="l00164"></a>00164         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#d2f5f639bd24ae4b5a261000c888b9f3">slotPrev</a>();
+<a name="l00165"></a>00165         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#92dd47875ff8029e0b2bfacc5ff111ba">slotFirst</a>();
+<a name="l00166"></a>00166         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#5b9f3f830abdfdaae3c68313bd11c0ca">slotLast</a>();
+<a name="l00167"></a>00167         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#e818dc8b906e53cf8c599d1fc7ece894">slotGoTo</a>();
+<a name="l00168"></a>00168         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#cbcdc8b805885a8dd90fe7c19f760a7a">writeSettings</a>();
+<a name="l00169"></a>00169         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#c79e0b4bb89a363aaaccfd1109527c97">readSettings</a>();
+<a name="l00170"></a>00170         <span class="comment">//void slotParseXML();</span>
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172 <span class="keyword">private</span>:
+<a name="l00173"></a>00173         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#308c098afe879691e61f80a8c5e0373a">initTools</a>();
+<a name="l00174"></a>00174         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#62197334d5a4f011d580d04fc8391885">refreshPage</a>();
+<a name="l00175"></a><a class="code" href="classNCPreview.html#d3f6765fafe75a5dc6c418c4199d8ec1">00175</a>         QList&lt;NCPreviewPage*&gt; <a class="code" href="classNCPreview.html#d3f6765fafe75a5dc6c418c4199d8ec1">pageList</a>;
+<a name="l00176"></a>00176         <span class="comment">//NCPictureList *plist;</span>
+<a name="l00177"></a><a class="code" href="classNCPreview.html#2cd3441b0a86f19a81820a3137e93337">00177</a>         QList&lt;QPicture*&gt; <a class="code" href="classNCPreview.html#2cd3441b0a86f19a81820a3137e93337">picList</a>;
+<a name="l00178"></a><a class="code" href="classNCPreview.html#6ab51b445c6a06557ad1ebac60a5152b">00178</a>     <span class="keywordtype">int</span> <a class="code" href="classNCPreview.html#820fb41d9acb90485d330767428dd3f5">pageCount</a>, <a class="code" href="classNCPreview.html#6ab51b445c6a06557ad1ebac60a5152b">pageNo</a>;
+<a name="l00179"></a><a class="code" href="classNCPreview.html#19b24f1b9a6ee6f06a6668a9c38b13c6">00179</a>         NCWidgetPosHandler *<a class="code" href="classNCPreview.html#19b24f1b9a6ee6f06a6668a9c38b13c6">posHandler</a>;
+<a name="l00180"></a><a class="code" href="classNCPreview.html#791e3c024e765760ccae369e34b755c4">00180</a>         <span class="keywordtype">bool</span> <a class="code" href="classNCPreview.html#791e3c024e765760ccae369e34b755c4">formInitDone</a>;
+<a name="l00181"></a>00181         
+<a name="l00182"></a><a class="code" href="classNCPreview.html#4ffd01432a8f3e04c5e4927d10404a4f">00182</a>         <a class="code" href="classNCPreviewPage.html">NCPreviewPage</a> *<a class="code" href="classNCPreview.html#4ffd01432a8f3e04c5e4927d10404a4f">currentPage</a>;
+<a name="l00183"></a><a class="code" href="classNCPreview.html#72ad8b5af9d78c6aeeafb39f1b6e8ff2">00183</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreview.html#72ad8b5af9d78c6aeeafb39f1b6e8ff2">zoomLevel</a>;
+<a name="l00184"></a><a class="code" href="classNCPreview.html#e36706740e2f395a4511b04ed1325b57">00184</a>         <a class="code" href="classNCPreviewScrollArea.html">NCPreviewScrollArea</a> *<a class="code" href="classNCPreview.html#e36706740e2f395a4511b04ed1325b57">sa</a>;
+<a name="l00185"></a><a class="code" href="classNCPreview.html#b4fc1cce18cea0dbc205314717b00a5f">00185</a>         QComboBox *<a class="code" href="classNCPreview.html#b4fc1cce18cea0dbc205314717b00a5f">cbZoom</a>;
+<a name="l00186"></a><a class="code" href="classNCPreview.html#0eefb01e1114efdfd93ade083eac45b4">00186</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreview.html#0eefb01e1114efdfd93ade083eac45b4">pvMargin</a>;
+<a name="l00187"></a><a class="code" href="classNCPreview.html#c4ba24c178d9357ed3d4c21175ad85e0">00187</a>         <span class="keywordtype">int</span> <a class="code" href="classNCPreview.html#42b5ab5715512244adcdbaa4e0a7607f">basePageHeight</a>, <a class="code" href="classNCPreview.html#c4ba24c178d9357ed3d4c21175ad85e0">basePageWidth</a>;
+<a name="l00188"></a><a class="code" href="classNCPreview.html#d03a8466439a6e5876040c358480921d">00188</a>         QPointer&lt;NCReport&gt; <a class="code" href="classNCPreview.html#d03a8466439a6e5876040c358480921d">report</a>;
+<a name="l00189"></a><a class="code" href="classNCPreview.html#3965061d6dde456d7bd7954c56aba315">00189</a>         <span class="keywordtype">bool</span> <a class="code" href="classNCPreview.html#3965061d6dde456d7bd7954c56aba315">deleteReportOnClose</a>;
+<a name="l00190"></a><a class="code" href="classNCPreview.html#3d3de707f5b9bbf61f5cd5804f304a5a">00190</a>         QString <a class="code" href="classNCPreview.html#3d3de707f5b9bbf61f5cd5804f304a5a">mImagesPath</a>;
+<a name="l00191"></a><a class="code" href="classNCPreview.html#3297504edc1ff23fd85c3a4f6b099a0d">00191</a>         <a class="code" href="classNCIconFactoryBase.html">NCIconFactoryBase</a>* <a class="code" href="classNCPreview.html#3297504edc1ff23fd85c3a4f6b099a0d">iconFactory</a>;
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#bd0e69d95ee03fd9a6c3a4c1777524b7">zoom</a>(<span class="keywordtype">int</span> z);
+<a name="l00194"></a>00194         <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#41aa5867e917f01c21acd377bd84ade6">drawTest</a>();
+<a name="l00195"></a>00195         <span class="comment">//NCReport *report;</span>
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 <span class="keyword">protected</span>:
+<a name="l00198"></a>00198         <span class="comment">//QToolButton *btnPrint;</span>
+<a name="l00199"></a><a class="code" href="classNCPreview.html#474037fa1d4b27b52cb48011fcfce544">00199</a>         QToolBar *<a class="code" href="classNCPreview.html#474037fa1d4b27b52cb48011fcfce544">toolbar</a>;
+<a name="l00200"></a><a class="code" href="classNCPreview.html#c144f9cb2e29492298c440c09423afb3">00200</a>         QMenu *<a class="code" href="classNCPreview.html#c27c6372dd1f1c767160de31cb6863b6">mnFile</a>, *<a class="code" href="classNCPreview.html#c144f9cb2e29492298c440c09423afb3">mnNav</a>;
+<a name="l00201"></a><a class="code" href="classNCPreview.html#ae7a2acab67b4944371622e73e7a51f1">00201</a>         QAction *<a class="code" href="classNCPreview.html#ae7a2acab67b4944371622e73e7a51f1">actionPrint</a>, *<a class="code" href="classNCPreview.html#2d3afcac41e2f75fb8dfc9bc4dad09bd">actionFrst</a>, *<a class="code" href="classNCPreview.html#318768c00280bd06deb200d185175d40">actionNext</a>, *<a class="code" href="classNCPreview.html#f6f7ff01fb4fece659962d79db903ac3">actionPrev</a>, *<a class="code" href="classNCPreview.html#29cf80236958bf9c54a6ac6043c2a7b2">actionLast</a>;
+<a name="l00202"></a><a class="code" href="classNCPreview.html#5fb2834ea4de8de6bc07fa885f6001cd">00202</a>         QAction *<a class="code" href="classNCPreview.html#b4480183142d49918cb96bb91a4df634">actionGo</a>, *<a class="code" href="classNCPreview.html#9a2e322179ac7f826e2418cc4f8c6655">actionExit</a>, *<a class="code" href="classNCPreview.html#5fb2834ea4de8de6bc07fa885f6001cd">actionZP</a>, *<a class="code" href="classNCPreview.html#69ceae9e150eafcb92d4a6c01b5fe267">actionZM</a>;
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204         <span class="comment">//virtual void keyPressEvent ( QKeyEvent * e );</span>
+<a name="l00205"></a>00205         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#bf74671badae5cf37a1e59fe8bd60057">showEvent</a>( QShowEvent * );
+<a name="l00206"></a>00206         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classNCPreview.html#c9ce6d789a298f22a1de4de35ea378fa">closeEvent</a>( QCloseEvent * );
+<a name="l00207"></a>00207         <span class="comment">//virtual void moveEvent( QMoveEvent * );</span>
+<a name="l00208"></a>00208         <span class="comment">//virtual void resizeEvent( QResizeEvent * );</span>
+<a name="l00209"></a>00209 };
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 <span class="preprocessor">#endif // NCPREVIEW_H</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Tue May 27 12:25:55 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

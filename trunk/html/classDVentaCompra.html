@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Referencia de la Clase DVentaCompra</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li class="current"><a href="classes.html"><span>Clases</span></a></li>
+      <li><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Lista&nbsp;alfabética</span></a></li>
+      <li><a href="annotated.html"><span>Lista&nbsp;de&nbsp;clases</span></a></li>
+      <li><a href="hierarchy.html"><span>Jerarquía&nbsp;de&nbsp;la&nbsp;clase</span></a></li>
+      <li><a href="functions.html"><span>Miembros&nbsp;de&nbsp;las&nbsp;clases</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Referencia de la Clase DVentaCompra</h1><!-- doxytag: class="DVentaCompra" -->Clase que ayuda a la edicion de <a class="el" href="classproductos.html">productos</a> en ventas y compras.  
+<a href="#_details">Más...</a>
+<p>
+<code>#include &lt;<a class="el" href="dventacompra_8h-source.html">dventacompra.h</a>&gt;</code>
+<p>
+
+<p>
+<a href="classDVentaCompra-members.html">Lista de todos los miembros.</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Métodos públicos</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QWidget *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#00997b066fdc098de366453f898eec59">createEditor</a> (QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#6f177831eccc31552c229b4965619674">DVentaCompra</a> (QObject *parent=0)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#4ad0ddfd0b2686519bbe46de2a11397c">setEditorData</a> (QWidget *editor, const QModelIndex &amp;index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#5f6bc87fcc0dab7b797f6dff7cb877e0">setModelData</a> (QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QSize&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#e7569f275c01c80ffe6b348268306598">sizeHint</a> (const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#5604bdd20fd41cf15ea9a77a5f4ddc48">updateEditorGeometry</a> (QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDVentaCompra.html#0f93cb95d526f7ed07caccdc701953d9">~DVentaCompra</a> ()</td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Descripción detallada</h2>
+Clase que ayuda a la edicion de <a class="el" href="classproductos.html">productos</a> en ventas y compras. 
+<p>
+Delegate que permite la correcta edicion de los campos que forman la parte de <a class="el" href="classproductos.html">productos</a>, en ventas y compras.<br>
+ En caso de editar cantidades, restringe la entrada a enteros.<br>
+ En caso de editar precios, restringe la entrada a dobles.<br>
+ En caso de editar <a class="el" href="classproductos.html">productos</a>, setea condiciones especiales que permiten una busqueda especial por tipeo de los <a class="el" href="classproductos.html">productos</a>.<br>
+ <dl class="author" compact><dt><b>Autor:</b></dt><dd>Esteban Zeller &lt;<a href="mailto:juiraze@yahoo.com.ar">juiraze@yahoo.com.ar</a>&gt; </dd></dl>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8h-source.html#l00034">34</a> del archivo <a class="el" href="dventacompra_8h-source.html">dventacompra.h</a>.</p>
+<hr><h2>Documentación del constructor y destructor</h2>
+<a class="anchor" name="6f177831eccc31552c229b4965619674"></a><!-- doxytag: member="DVentaCompra::DVentaCompra" ref="6f177831eccc31552c229b4965619674" args="(QObject *parent=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DVentaCompra::DVentaCompra           </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&nbsp;</td>
+          <td class="paramname"> <em>parent</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00028">28</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0f93cb95d526f7ed07caccdc701953d9"></a><!-- doxytag: member="DVentaCompra::~DVentaCompra" ref="0f93cb95d526f7ed07caccdc701953d9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DVentaCompra::~DVentaCompra           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00035">35</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentación de las funciones miembro</h2>
+<a class="anchor" name="00997b066fdc098de366453f898eec59"></a><!-- doxytag: member="DVentaCompra::createEditor" ref="00997b066fdc098de366453f898eec59" args="(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWidget * DVentaCompra::createEditor           </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&nbsp;</td>
+          <td class="paramname"> <em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStyleOptionViewItem &amp;&nbsp;</td>
+          <td class="paramname"> <em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00060">60</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4ad0ddfd0b2686519bbe46de2a11397c"></a><!-- doxytag: member="DVentaCompra::setEditorData" ref="4ad0ddfd0b2686519bbe46de2a11397c" args="(QWidget *editor, const QModelIndex &amp;index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DVentaCompra::setEditorData           </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&nbsp;</td>
+          <td class="paramname"> <em>editor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00093">93</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5f6bc87fcc0dab7b797f6dff7cb877e0"></a><!-- doxytag: member="DVentaCompra::setModelData" ref="5f6bc87fcc0dab7b797f6dff7cb877e0" args="(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DVentaCompra::setModelData           </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&nbsp;</td>
+          <td class="paramname"> <em>editor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QAbstractItemModel *&nbsp;</td>
+          <td class="paramname"> <em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00098">98</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e7569f275c01c80ffe6b348268306598"></a><!-- doxytag: member="DVentaCompra::sizeHint" ref="e7569f275c01c80ffe6b348268306598" args="(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize DVentaCompra::sizeHint           </td>
+          <td>(</td>
+          <td class="paramtype">const QStyleOptionViewItem &amp;&nbsp;</td>
+          <td class="paramname"> <em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Funcion que retorna un acosejamiento del tama�o para cierto campo. <dl compact><dt><b>Parámetros:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>option</em>&nbsp;</td><td>Opcion de estilo </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>Indice de aconsjamiento </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Devuelve:</b></dt><dd>Objeto <b>QSize</b> que tiene el tamano. </dd></dl>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00046">46</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5604bdd20fd41cf15ea9a77a5f4ddc48"></a><!-- doxytag: member="DVentaCompra::updateEditorGeometry" ref="5604bdd20fd41cf15ea9a77a5f4ddc48" args="(QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DVentaCompra::updateEditorGeometry           </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&nbsp;</td>
+          <td class="paramname"> <em>editor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStyleOptionViewItem &amp;&nbsp;</td>
+          <td class="paramname"> <em>option</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Definición en la línea <a class="el" href="dventacompra_8cpp-source.html#l00110">110</a> del archivo <a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentación para esta clase fue generada a partir de los siguientes ficheros:<ul>
+<li>Programas/gestotux/plugins/digifauno/<a class="el" href="dventacompra_8h-source.html">dventacompra.h</a><li>Programas/gestotux/plugins/digifauno/<a class="el" href="dventacompra_8cpp-source.html">dventacompra.cpp</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:51:09 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

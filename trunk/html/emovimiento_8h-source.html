@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/plugins/aCarCorr/emovimiento.h</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_2241d903d8b552fecd54d40d9c6f6ba2.html">plugins</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d9ed25d689eb6020be9e33367ebc52fa.html">aCarCorr</a>
+  </div>
+</div>
+</div>
+<h1>emovimiento.h</h1><a href="emovimiento_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001  <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2007 by Esteban Zeller   *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   juiraze@yahoo.com.ar   *</span>
+<a name="l00004"></a>00004 <span class="comment"> *                                                                         *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00009"></a>00009 <span class="comment"> *                                                                         *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00014"></a>00014 <span class="comment"> *                                                                         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00019"></a>00019 <span class="comment"> ***************************************************************************/</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#ifndef EMOVIMIENTO_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#define EMOVIMIENTO_H</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span>
+<a name="l00023"></a>00023 <span class="preprocessor">#ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS</span>
+<a name="l00024"></a>00024 <span class="preprocessor"></span><span class="preprocessor">#warning "Utilizando duenos"</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00026"></a>00026 <span class="preprocessor"></span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QPair&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QString&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;QStringList&gt;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;QDate&gt;</span>
+<a name="l00032"></a>00032 <span class="keyword">class </span>QProgressDialog;
+<a name="l00033"></a>00033 <span class="preprocessor">#include "<a class="code" href="TipoMovs_8h.html">TipoMovs.h</a>"</span>
+<a name="l00034"></a>00034 
+<a name="l00041"></a><a class="code" href="classEMovimiento.html">00041</a> <span class="keyword">class </span><a class="code" href="classEMovimiento.html" title="Encapsulacion de un movimiento.">EMovimiento</a> : <span class="keyword">public</span> QObject
+<a name="l00042"></a>00042 {
+<a name="l00043"></a>00043 Q_OBJECT
+<a name="l00044"></a>00044 <span class="keyword">public</span>:
+<a name="l00045"></a>00045     <a class="code" href="classEMovimiento.html#0d64af5f40a7b40375dd0edecf100d9f">EMovimiento</a>( QObject *parent = 0 );
+<a name="l00046"></a>00046     <a class="code" href="classEMovimiento.html#a72845602db06bcf826df7959e21fba6">~EMovimiento</a>();
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#d28f792b51442a8099db2d7ef4592929">cargarMovimiento</a>( <span class="keywordtype">int</span> idDb );
+<a name="l00049"></a>00049     <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#333a8906d63515a4f48c7fe9dd54251b">guardar</a>( QProgressDialog *dialogo );
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051     QStringList <a class="code" href="classEMovimiento.html#9b0d3c8f9066a74b5569bebdbd28bc6c">caravanas</a>();
+<a name="l00052"></a>00052     QString <a class="code" href="classEMovimiento.html#df9735bd16d1ee1849d082750c1ebec9">getDTA</a>() <span class="keyword">const</span>;
+<a name="l00053"></a>00053     QDate <a class="code" href="classEMovimiento.html#2efd89862da56045ed4e8c81502b5799">getFecha</a>() <span class="keyword">const</span>;
+<a name="l00054"></a>00054     <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#a0e9603d21aa735b708e7a6166833810">tipoMov</a>() <span class="keyword">const</span>;
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#0b01dbde3b99e00e99b01dda28c4b604">setTipoMov</a>( <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; theValue );
+<a name="l00057"></a>00057     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#ee60db8d30389a9e9cee60a2a030a37d">setDTA</a>( <span class="keyword">const</span> QString&amp; theValue,  <span class="keywordtype">bool</span> nuevo = <span class="keyword">true</span>);
+<a name="l00058"></a>00058     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#fcc27c85c75929d7b8f27cabebfecf39">setComprador</a>( <span class="keywordtype">int</span> <span class="keywordtype">id</span> );
+<a name="l00059"></a>00059     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#78ac0c644c00428c2cd24f72d8d6b304">setVendedor</a>( <span class="keywordtype">int</span> idDB );
+<a name="l00060"></a>00060     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#73e577bad3a3fde5e9526a9420e3c24a">setEstablecimientoDestino</a>( <span class="keywordtype">int</span> idDB );
+<a name="l00061"></a>00061     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#d3907d462f389df21bcc3895c3ecabe7">setEstablecimientoOrigen</a>( <span class="keywordtype">int</span> idDB );
+<a name="l00062"></a>00062     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#3792f44ed9cb24eaee42c0642ef32a00">setCategoria</a>( <span class="keywordtype">int</span> <span class="keywordtype">id</span> );
+<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#71b21d191f1bdcc7e66bd7024898aa00">setFecha</a>( <span class="keyword">const</span> QDate&amp; theValue );
+<a name="l00064"></a>00064     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#703079956124f2f4df64a546d72ee9ce">eliminarCaravana</a>( QString codigo );
+<a name="l00065"></a>00065     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#05010cd7d76f182b1029c7ddc5c6b20a">agregarCaravana</a>( QString codigo, <span class="keywordtype">bool</span> verificar = <span class="keyword">true</span> );
+<a name="l00066"></a>00066     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#a23860ab201f38554402de98d262ceb5">setNumGuia</a>( <span class="keyword">const</span> QString numeroGuia );
+<a name="l00067"></a>00067     <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#1c4a816503c698b51af563965c07c9e2">getTri</a>() <span class="keyword">const</span>;
+<a name="l00068"></a>00068     QPair&lt; int, QString&gt; <a class="code" href="classEMovimiento.html#13696464a9de69dc2a6c51f5f243b95b">getVendedor</a>() <span class="keyword">const</span>;
+<a name="l00069"></a>00069     QPair&lt; int, QString&gt; <a class="code" href="classEMovimiento.html#55655b96416455e4d9a7635940788a2e">getComprador</a>() <span class="keyword">const</span>;
+<a name="l00070"></a>00070     QPair&lt; int, QString&gt; <a class="code" href="classEMovimiento.html#f1e03973a89ba335e754244f6ad0bf4f">getEstablecimientoOrigen</a>() <span class="keyword">const</span>;
+<a name="l00071"></a>00071     QPair&lt; int, QString&gt; <a class="code" href="classEMovimiento.html#8347da1bb03dfd66faf9895f410bd5c3">getEstablecimientoDestino</a>() <span class="keyword">const</span>;
+<a name="l00072"></a>00072     QString <a class="code" href="classEMovimiento.html#135ce706603e62540bb881e3fa74b272">getNumeroGuia</a>() <span class="keyword">const</span>;
+<a name="l00073"></a>00073     QPair&lt; int, QString &gt; <a class="code" href="classEMovimiento.html#865f7557d67cd1c1e585252a5749a78e">getCategoria</a>() <span class="keyword">const</span>;
+<a name="l00074"></a>00074     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#cfe4d828dc54644f112c8248d5c2dd15">setCantidadAnimales</a> ( <span class="keywordtype">int</span> theValue );
+<a name="l00075"></a>00075     <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#411c9302d6ef22ae5cf39f9325aaa3f4">getCantidadAnimales</a>() <span class="keyword">const</span>;
+<a name="l00076"></a>00076     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#fcc27c85c75929d7b8f27cabebfecf39">setComprador</a>( QString nombre );
+<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#1c76cae75d59ffa4f48c6b15fd34b83f">setCaravanas</a>( QStringList caravanas );
+<a name="l00078"></a>00078     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#741b8073e4869f8dac793077218d08c1">eliminarTRI</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> idDB );
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 <span class="keyword">private</span>:
+<a name="l00084"></a><a class="code" href="classEMovimiento.html#2005600bc0d1a8274a44912bd7a2838a">00084</a>         QPair&lt;int,QString&gt; <a class="code" href="classEMovimiento.html#2005600bc0d1a8274a44912bd7a2838a">destino</a>;
+<a name="l00088"></a><a class="code" href="classEMovimiento.html#78d5dfdc1a0eccff371cbd8a8a794e5c">00088</a>         QPair&lt;int,QString&gt; <a class="code" href="classEMovimiento.html#78d5dfdc1a0eccff371cbd8a8a794e5c">origen</a>;
+<a name="l00092"></a><a class="code" href="classEMovimiento.html#31715e440bdc59cb58f2853a2f4b2fb5">00092</a>         QPair&lt;int,QString&gt; <a class="code" href="classEMovimiento.html#31715e440bdc59cb58f2853a2f4b2fb5">vendedor</a>;
+<a name="l00096"></a><a class="code" href="classEMovimiento.html#5ae06cd765c95b7cd601f08a7ce0e7fd">00096</a>         QPair&lt;int,QString&gt; <a class="code" href="classEMovimiento.html#5ae06cd765c95b7cd601f08a7ce0e7fd">comprador</a>;
+<a name="l00100"></a><a class="code" href="classEMovimiento.html#9aa5079d2442b359c57da5a9e43bfd13">00100</a>         QPair&lt;int,QString&gt; <a class="code" href="classEMovimiento.html#9aa5079d2442b359c57da5a9e43bfd13">categoria</a>;
+<a name="l00104"></a><a class="code" href="classEMovimiento.html#8a7d34a3c42df6571c36c277d82bfca1">00104</a>         QDate <a class="code" href="classEMovimiento.html#8a7d34a3c42df6571c36c277d82bfca1">fecha</a>;
+<a name="l00108"></a><a class="code" href="classEMovimiento.html#9498b6b162fb04303a339e52ff24620e">00108</a>         QString <a class="code" href="classEMovimiento.html#9498b6b162fb04303a339e52ff24620e">DTA</a>;
+<a name="l00112"></a><a class="code" href="classEMovimiento.html#2be6f0b32c1083d3ff531108bef74de5">00112</a>         QString <a class="code" href="classEMovimiento.html#2be6f0b32c1083d3ff531108bef74de5">_numGuia</a>;
+<a name="l00116"></a><a class="code" href="classEMovimiento.html#04cfb9fa640a6562039dccfa73ab650f">00116</a>         <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#04cfb9fa640a6562039dccfa73ab650f">_cantidad_animales</a>;
+<a name="l00120"></a><a class="code" href="classEMovimiento.html#2d50de829f38f1ae2b13743a070265bb">00120</a>         <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#2d50de829f38f1ae2b13743a070265bb">id_db</a>;
+<a name="l00124"></a><a class="code" href="classEMovimiento.html#2c874fbb7c0f60846dfa741d2adc0242">00124</a>         QStringList <a class="code" href="classEMovimiento.html#2c874fbb7c0f60846dfa741d2adc0242">_caravanas</a>;
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 <span class="keyword">private</span>:
+<a name="l00127"></a>00127     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#b3409aa6095b8b3d09ba3fce709ca00c">cargarNombreCategoria</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> idDB );
+<a name="l00128"></a>00128     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#f74b8b1b8a12ea44e0ee331fff9f34f6">cargarNombreComprador</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> idDB );
+<a name="l00129"></a>00129     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#48143084155ca122f83f60e18c25a7a7">cargarNombreVendedor</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> idDB );
+<a name="l00130"></a>00130     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#c2977aaee990096f215d21bb1efa5e6f">cargarNombreEstablecimientoDestino</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> idDB );
+<a name="l00131"></a>00131     <span class="keywordtype">void</span> <a class="code" href="classEMovimiento.html#53c33fda4273dc52bd3e037159241e65">cargarNombreEstablecimientoOrigen</a>( <span class="keyword">const</span> <span class="keywordtype">int</span> idDB );
+<a name="l00132"></a>00132     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#e65b3d3954a8d0163dda221986d38590">guardarCaravana</a>( QString codigo );
+<a name="l00133"></a>00133     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#89cd60600bfd1ce586e1a3adb5bfb190">cargarCaravanas</a>();
+<a name="l00134"></a>00134     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#c54120d23faa190dd88e4920cd59e5f5">asociarCaravana</a>( <span class="keywordtype">int</span> id_caravana );
+<a name="l00135"></a>00135     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#a34cebc95185f6b703da62daecbe8122">aduenarCaravana</a>( <span class="keywordtype">int</span> id_caravana, <span class="keywordtype">int</span> id_cliente, QDate <a class="code" href="classEMovimiento.html#8a7d34a3c42df6571c36c277d82bfca1">fecha</a>, <span class="keywordtype">bool</span> cambiar_dueno = <span class="keyword">true</span> );
+<a name="l00136"></a>00136     <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#d3e95c23dca83e76edf31aa508fe06e5">getIDCaravana</a>( QString codigo );
+<a name="l00137"></a>00137     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#60ea8f95b0ab0f20c534216eae4369bd">borrarCaravana</a>( QString codigo, <span class="keywordtype">bool</span> disasociar = <span class="keyword">true</span> );
+<a name="l00138"></a>00138     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#6257ed484eff0a5512064dd427ef55d0">deshacerCambiosDb</a>();
+<a name="l00139"></a>00139     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#59403ac7268d10387e12bb9506b266fe">iniciarTransaccion</a>();
+<a name="l00140"></a>00140     <span class="keywordtype">bool</span> <a class="code" href="classEMovimiento.html#9a541cb79f9ab04be3ad5f2fece93f50">hacerCommit</a>();
+<a name="l00141"></a>00141 
+<a name="l00145"></a><a class="code" href="classEMovimiento.html#31c2749c42f0dc08f0e194095e23b17c">00145</a>     <span class="keywordtype">int</span> <a class="code" href="classEMovimiento.html#31c2749c42f0dc08f0e194095e23b17c">tipo_mov</a>;
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147 };
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:50:56 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,13 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize=10,labelfontname="FreeSans",labelfontsize=10];
+  node [fontname="FreeSans",fontsize=10,shape=record];
+  Node1 [label="NCPreview",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="darkorchid3",fontsize=10,style="dashed",label="currentPage",fontname="FreeSans"];
+  Node2 [label="NCPreviewPage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classNCPreviewPage.html"];
+  Node3 -> Node1 [dir=back,color="darkorchid3",fontsize=10,style="dashed",label="iconFactory",fontname="FreeSans"];
+  Node3 [label="NCIconFactoryBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classNCIconFactoryBase.html"];
+  Node4 -> Node1 [dir=back,color="darkorchid3",fontsize=10,style="dashed",label="sa",fontname="FreeSans"];
+  Node4 [label="NCPreviewScrollArea",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classNCPreviewScrollArea.html"];
+  Node1 -> Node4 [dir=back,color="darkorchid3",fontsize=10,style="dashed",label="pvForm",fontname="FreeSans"];
+}

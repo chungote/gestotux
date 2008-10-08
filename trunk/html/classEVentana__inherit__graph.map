@@ -1,0 +1,41 @@
+<area shape="rect" href="$classEbackup.html" title="Clase de Copias de Seguridad." alt="" coords="195,111,269,137">
+<area shape="rect" href="$classEResumen.html" title="Clase inicial de resumenes." alt="" coords="188,161,276,188">
+<area shape="rect" href="$classEVLista.html" title="Clase base para todas las ventanas de tipo lista." alt="" coords="199,212,265,239">
+<area shape="rect" href="$classFormAcercaDe.html" title="Formulario de &quot;Acerca de&quot;." alt="" coords="176,263,288,289">
+<area shape="rect" href="$classFormActualizacion.html" title="FormActualizacion" alt="" coords="165,313,299,340">
+<area shape="rect" href="$classFormAgregarCompra.html" title="FormAgregarCompra" alt="" coords="157,364,307,391">
+<area shape="rect" href="$classFormAgregarGasto.html" title="FormAgregarGasto" alt="" coords="163,415,301,441">
+<area shape="rect" href="$classFormAgregarMascota.html" title="Formulario para agregar mascotas." alt="" coords="156,465,308,492">
+<area shape="rect" href="$classFormAgregarPresupuesto.html" title="FormAgregarPresupuesto" alt="" coords="144,516,320,543">
+<area shape="rect" href="$classFormAgregarRecibo.html" title="FormAgregarRecibo" alt="" coords="160,567,304,593">
+<area shape="rect" href="$classFormAgregarServicio.html" title="Formulario de agregar servicio." alt="" coords="157,617,307,644">
+<area shape="rect" href="$classFormAgregarVenta.html" title="FormAgregarVenta" alt="" coords="164,668,300,695">
+<area shape="rect" href="$classFormListaCompras.html" title="FormListaCompras" alt="" coords="164,719,300,745">
+<area shape="rect" href="$classFormListaPeluqueria.html" title="FormListaPeluqueria" alt="" coords="160,769,304,796">
+<area shape="rect" href="$classFormListaProductos.html" title="FormListaProductos" alt="" coords="161,820,303,847">
+<area shape="rect" href="$classFormModificarPresupuesto.html" title="FormModificarPresupuesto" alt="" coords="140,871,324,897">
+<area shape="rect" href="$classFormMovimiento.html" title="FormMovimiento" alt="" coords="172,921,292,948">
+<area shape="rect" href="$classFormNuevoPresupuesto.html" title="FormNuevoPresupuesto" alt="" coords="148,972,316,999">
+<area shape="rect" href="$classFormPrefCaravanas.html" title="Formulario de configuracion de categorias especificas." alt="" coords="160,1023,304,1049">
+<area shape="rect" href="$classFormPrefDb.html" title="Formulario de preferencias de base de datos." alt="" coords="185,1073,279,1100">
+<area shape="rect" href="$classFormPreferencias.html" title="FormPreferencias" alt="" coords="168,1124,296,1151">
+<area shape="rect" href="$classFormPrefOpciones.html" title="FormPrefOpciones" alt="" coords="164,1175,300,1201">
+<area shape="rect" href="$classFormPresupuestosAnteriores.html" title="FormPresupuestosAnteriores" alt="" coords="135,1225,329,1252">
+<area shape="rect" href="$classFPrefGeneral.html" title="Clase que maneja las preferencias de estilo e inicializacion." alt="" coords="181,1276,283,1303">
+<area shape="rect" href="$classFPrefRecibos.html" title="FPrefRecibos" alt="" coords="180,1327,284,1353">
+<area shape="rect" href="$classVRecibos.html" title="VRecibos" alt="" coords="192,1377,272,1404">
+<area shape="rect" href="$classVCategorias.html" title="Lista de Categorias." alt="" coords="395,9,491,36">
+<area shape="rect" href="$classVCliente.html" title="VCliente" alt="" coords="407,60,479,87">
+<area shape="rect" href="$classVCompras.html" title="VCompras" alt="" coords="400,111,485,137">
+<area shape="rect" href="$classVDuenos.html" title="VDuenos" alt="" coords="404,161,481,188">
+<area shape="rect" href="$classVEstablecimiento.html" title="VEstablecimiento" alt="" coords="380,212,505,239">
+<area shape="rect" href="$classVGastos.html" title="VGastos" alt="" coords="405,263,480,289">
+<area shape="rect" href="$classVMascota.html" title="VMascota" alt="" coords="401,313,484,340">
+<area shape="rect" href="$classVPresupuesto.html" title="VPresupuesto" alt="" coords="389,364,496,391">
+<area shape="rect" href="$classVProductos.html" title="Listado de Productos." alt="" coords="397,415,488,441">
+<area shape="rect" href="$classVProveedor.html" title="VProveedor" alt="" coords="396,465,489,492">
+<area shape="rect" href="$classFormAgregar.html" title="FormAgregar" alt="" coords="392,820,493,847">
+<area shape="rect" href="$classFormModificarTri.html" title="FormModificarTri" alt="" coords="381,871,504,897">
+<area shape="rect" href="$classFormMudanza.html" title="FormMudanza" alt="" coords="388,921,497,948">
+<area shape="rect" href="$classFormStock.html" title="FormStock" alt="" coords="400,972,485,999">
+<area shape="rect" href="$classFormVenta.html" title="FormVenta" alt="" coords="399,1023,487,1049">

@@ -1,0 +1,6 @@
+<area shape="rect" href="$classFormPrefCaravanas.html" title="Formulario de configuracion de categorias especificas." alt="" coords="157,5,301,32">
+<area shape="rect" href="$classFormPrefDb.html" title="Formulario de preferencias de base de datos." alt="" coords="183,56,276,83">
+<area shape="rect" href="$classFormPrefOpciones.html" title="FormPrefOpciones" alt="" coords="161,107,297,133">
+<area shape="rect" href="$classFPrefGeneral.html" title="Clase que maneja las preferencias de estilo e inicializacion." alt="" coords="179,157,280,184">
+<area shape="rect" href="$classFPrefRecibos.html" title="FPrefRecibos" alt="" coords="177,208,281,235">
+<area shape="rect" href="$classFromPrefResumenes.html" title="FromPrefResumenes" alt="" coords="156,259,303,285">

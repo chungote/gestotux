@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>gestotux: Fichero Fuente Programas/gestotux/utiles/evisorinformes.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generado por Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>Página&nbsp;principal</span></a></li>
+      <li><a href="classes.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li><a href="dirs.html"><span>Directorios</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_3428b703a189aec17ca52f0fb825cd3f.html">Programas</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_b1a546a748a62f1bda915a377e9774c0.html">gestotux</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_96dd5dfec6529fa71a74b9d6ee5ac519.html">utiles</a>
+  </div>
+</div>
+</div>
+<h1>evisorinformes.cpp</h1><a href="evisorinformes_8cpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> *   Copyright (C) 2007 by Esteban Zeller   *</span>
+<a name="l00003"></a>00003 <span class="comment"> *   juiraze@yahoo.com.ar   *</span>
+<a name="l00004"></a>00004 <span class="comment"> *                                                                         *</span>
+<a name="l00005"></a>00005 <span class="comment"> *   This program is free software; you can redistribute it and/or modify  *</span>
+<a name="l00006"></a>00006 <span class="comment"> *   it under the terms of the GNU General Public License as published by  *</span>
+<a name="l00007"></a>00007 <span class="comment"> *   the Free Software Foundation; either version 2 of the License, or     *</span>
+<a name="l00008"></a>00008 <span class="comment"> *   (at your option) any later version.                                   *</span>
+<a name="l00009"></a>00009 <span class="comment"> *                                                                         *</span>
+<a name="l00010"></a>00010 <span class="comment"> *   This program is distributed in the hope that it will be useful,       *</span>
+<a name="l00011"></a>00011 <span class="comment"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *</span>
+<a name="l00012"></a>00012 <span class="comment"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *</span>
+<a name="l00013"></a>00013 <span class="comment"> *   GNU General Public License for more details.                          *</span>
+<a name="l00014"></a>00014 <span class="comment"> *                                                                         *</span>
+<a name="l00015"></a>00015 <span class="comment"> *   You should have received a copy of the GNU General Public License     *</span>
+<a name="l00016"></a>00016 <span class="comment"> *   along with this program; if not, write to the                         *</span>
+<a name="l00017"></a>00017 <span class="comment"> *   Free Software Foundation, Inc.,                                       *</span>
+<a name="l00018"></a>00018 <span class="comment"> *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *</span>
+<a name="l00019"></a>00019 <span class="comment"> ***************************************************************************/</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include "<a class="code" href="evisorinformes_8h.html">evisorinformes.h</a>"</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include "<a class="code" href="eactcerrar_8h.html">eactcerrar.h</a>"</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include "<a class="code" href="eactimprimir_8h.html">eactimprimir.h</a>"</span>
+<a name="l00023"></a>00023 
+<a name="l00024"></a><a class="code" href="classEVisorInformes.html#420e9a72b666ff5b4cbd4d185f5f90fb">00024</a> <a class="code" href="classEVisorInformes.html#420e9a72b666ff5b4cbd4d185f5f90fb">EVisorInformes::EVisorInformes</a>( QPrinter *impre, QWidget *parent)
+<a name="l00025"></a>00025  : QPrintPreviewWidget( impre, parent)
+<a name="l00026"></a>00026 {
+<a name="l00027"></a>00027  setAttribute( Qt::WA_DeleteOnClose );
+<a name="l00028"></a>00028  setObjectName( <span class="stringliteral">"visorInforme"</span> );
+<a name="l00029"></a>00029  setWindowTitle( <span class="stringliteral">"Visor de Informe"</span> );
+<a name="l00030"></a>00030  this-&gt;<a class="code" href="classEVisorInformes.html#1f83732a04bc653c8ba4e046b78ff895">impresora</a> = impre;
+<a name="l00031"></a>00031  <span class="comment">// Inicializo el formualrio y creo las acciones</span>
+<a name="l00032"></a>00032  QAction *ActSeparador = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00033"></a>00033  ActSeparador-&gt;setSeparator( <span class="keyword">true</span> );
+<a name="l00034"></a>00034  <a class="code" href="classEActCerrar.html" title="Clase de accion cerrar encapsulada.">EActCerrar</a> *ActCerrar = <span class="keyword">new</span> <a class="code" href="classEActCerrar.html" title="Clase de accion cerrar encapsulada.">EActCerrar</a>( <span class="keyword">this</span> );
+<a name="l00035"></a>00035  connect( ActCerrar, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( close() ) );
+<a name="l00036"></a>00036  addAction(ActCerrar);
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038  <a class="code" href="classEActImprimir.html" title="Clase contenedora de la accion imprimir.">EActImprimir</a> *ActImprimir = <span class="keyword">new</span> <a class="code" href="classEActImprimir.html" title="Clase contenedora de la accion imprimir.">EActImprimir</a>( <span class="keyword">this</span> );
+<a name="l00039"></a>00039  ActImprimir-&gt;setStatusTip( <span class="stringliteral">"Imprime el reporte actual"</span> );
+<a name="l00040"></a>00040  connect( ActImprimir, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classEVisorInformes.html#8a20a738d60c40b1343731aa7afa1663">imprimir</a>() ) );
+<a name="l00041"></a>00041  addAction(ActImprimir);
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043  QAction *ActAPdf = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00044"></a>00044  ActAPdf-&gt;setText( <span class="stringliteral">"Guardar a PDF"</span> );
+<a name="l00045"></a>00045  ActAPdf-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/acroread.png"</span> ) );
+<a name="l00046"></a>00046  ActAPdf-&gt;setStatusTip( <span class="stringliteral">"Guarda el informe en un archivo pdf en el disco"</span> );
+<a name="l00047"></a>00047  connect( ActAPdf, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classEVisorInformes.html#d94b6a686cb9a3c83f78a17ad506b8e5">aPdf</a>() ) );
+<a name="l00048"></a>00048  addAction(ActAPdf);
+<a name="l00049"></a>00049  addAction(ActSeparador);
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051  QAction *ActPrimera = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00052"></a>00052  ActPrimera-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/primera.png"</span> ) );
+<a name="l00053"></a>00053  ActPrimera-&gt;setStatusTip( <span class="stringliteral">"Salta a la primer pagina"</span> );
+<a name="l00054"></a>00054  connect( ActPrimera, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classEVisorInformes.html#ddeb5233a245634f19c172a95358278b">primerPagina</a>() ) );
+<a name="l00055"></a>00055  addAction( ActPrimera );
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057  QAction *ActAnterior = <span class="keyword">new</span> QAction( <span class="stringliteral">""</span>, <span class="keyword">this</span> );
+<a name="l00058"></a>00058  ActAnterior-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/anterior.png"</span> ) );
+<a name="l00059"></a>00059  ActAnterior-&gt;setStatusTip( <span class="stringliteral">"Salta a la pagina anterior"</span> );
+<a name="l00060"></a>00060  connect( ActAnterior, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classEVisorInformes.html#25a93647015943c0292169527c8dd067">anterior</a>() ) );
+<a name="l00061"></a>00061  addAction( ActAnterior );
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063  QAction *ActSiguiente = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00064"></a>00064  ActSiguiente-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/siguiente.png"</span> ) );
+<a name="l00065"></a>00065  ActSiguiente-&gt;setStatusTip( <span class="stringliteral">"Salta a la pagina siguiente"</span> );
+<a name="l00066"></a>00066  connect( ActSiguiente, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classEVisorInformes.html#05ff6e237b874fbc30a051148cf6fc61">siguiente</a>() ) );
+<a name="l00067"></a>00067  addAction( ActSiguiente );
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069  QAction *ActUltima = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00070"></a>00070  ActUltima-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/ultima.png"</span> ) );
+<a name="l00071"></a>00071  ActUltima-&gt;setStatusTip( <span class="stringliteral">"Salta a la ultima hoja"</span> );
+<a name="l00072"></a>00072  connect( ActUltima, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( <a class="code" href="classEVisorInformes.html#ce7af788fd999f4c3ad92ec7f93f7197">ultimaPagina</a>() ) );
+<a name="l00073"></a>00073  addAction( ActUltima );
+<a name="l00074"></a>00074  QAction *ActSeparador1 = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00075"></a>00075  ActSeparador1-&gt;setSeparator( <span class="keyword">true</span> );
+<a name="l00076"></a>00076  addAction( ActSeparador1 );
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078  QAction *ActAgrandar = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00079"></a>00079  ActAgrandar-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/agrandar.png"</span> ) );
+<a name="l00080"></a>00080  ActAgrandar-&gt;setStatusTip( <span class="stringliteral">"Aumenta el zoom"</span> );
+<a name="l00081"></a>00081  connect( ActAgrandar, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( zoomIn() ) );
+<a name="l00082"></a>00082  addAction( ActAgrandar );
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084  QAction *ActAchicar = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00085"></a>00085  ActAchicar-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/achicar.png"</span> ) );
+<a name="l00086"></a>00086  ActAchicar-&gt;setStatusTip( <span class="stringliteral">"Disminuye el zoom"</span> );
+<a name="l00087"></a>00087  connect( ActAchicar, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( zoomOut() ) );
+<a name="l00088"></a>00088  addAction( ActAchicar );
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090  QAction *ActSeparador2 = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00091"></a>00091  ActSeparador2-&gt;setSeparator( <span class="keyword">true</span> );
+<a name="l00092"></a>00092  addAction( ActSeparador2 );
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094  QAction *ActAjustarAncho = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00095"></a>00095  ActAjustarAncho-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/ajustarancho.png"</span> ) );
+<a name="l00096"></a>00096  ActAjustarAncho-&gt;setStatusTip( <span class="stringliteral">"Ajusta el zoom para que se vea todo el ancho de la hoja"</span> );
+<a name="l00097"></a>00097  connect( ActAjustarAncho, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT( fitToWidth() ) );
+<a name="l00098"></a>00098  addAction( ActAjustarAncho );
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100  QAction *ActAjustarHoja = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00101"></a>00101  ActAjustarHoja-&gt;setIcon( QIcon(<span class="stringliteral">":/imagenes/ajustarpagina.png"</span>) );
+<a name="l00102"></a>00102  ActAjustarHoja-&gt;setStatusTip( <span class="stringliteral">"Ajusta el zomm para que la hoja entre en la ventana"</span> );
+<a name="l00103"></a>00103  connect( ActAjustarHoja, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( fitInView() ) );
+<a name="l00104"></a>00104  addAction( ActAjustarHoja );
+<a name="l00105"></a>00105  QAction *ActSeparador3 = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00106"></a>00106  ActSeparador3-&gt;setSeparator( <span class="keyword">true</span> );
+<a name="l00107"></a>00107  addAction( ActSeparador3 );
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109  QActionGroup *ActDisposicion = <span class="keyword">new</span> QActionGroup( <span class="keyword">this</span> );
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111  QAction *ActOpuestas = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00112"></a>00112  ActOpuestas-&gt;setCheckable( <span class="keyword">true</span> );
+<a name="l00113"></a>00113  ActOpuestas-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/ajustaropuestas.png"</span> ) );
+<a name="l00114"></a>00114  ActOpuestas-&gt;setStatusTip( <span class="stringliteral">"Permite ver las paginas opuestas enfrentadas"</span> );
+<a name="l00115"></a>00115  connect( ActOpuestas, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( setFacingPagesViewMode() ) );
+<a name="l00116"></a>00116  ActDisposicion-&gt;addAction( ActOpuestas );
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118  QAction *ActTodas = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00119"></a>00119  ActTodas-&gt;setCheckable( <span class="keyword">true</span> );
+<a name="l00120"></a>00120  ActTodas-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/todas.png"</span> ) );
+<a name="l00121"></a>00121  ActTodas-&gt;setStatusTip( <span class="stringliteral">"Permite ver todas las hojas a imprimir"</span> );
+<a name="l00122"></a>00122  connect( ActTodas, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( setAllPagesViewMode() ) );
+<a name="l00123"></a>00123  ActDisposicion-&gt;addAction( ActTodas );
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125  QAction *ActSola = <span class="keyword">new</span> QAction( <span class="keyword">this</span> );
+<a name="l00126"></a>00126  ActSola-&gt;setCheckable( <span class="keyword">true</span> );
+<a name="l00127"></a>00127  ActSola-&gt;setIcon( QIcon( <span class="stringliteral">":/imagenes/sola.png"</span> ) );
+<a name="l00128"></a>00128  ActSola-&gt;setStatusTip( <span class="stringliteral">"Muestra solo una hoja en la vista"</span> );
+<a name="l00129"></a>00129  connect( ActSola, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( setSinglePageViewMode() ) );
+<a name="l00130"></a>00130  ActDisposicion-&gt;addAction( ActSola );
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132  addActions( ActDisposicion-&gt;actions() );
+<a name="l00133"></a>00133 }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 
+<a name="l00136"></a><a class="code" href="classEVisorInformes.html#e22d889050dcfe091d24a1e2ceb2f9ee">00136</a> <a class="code" href="classEVisorInformes.html#e22d889050dcfe091d24a1e2ceb2f9ee">EVisorInformes::~EVisorInformes</a>()
+<a name="l00137"></a>00137 {
+<a name="l00138"></a>00138 }
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142 
+<a name="l00146"></a><a class="code" href="classEVisorInformes.html#ddeb5233a245634f19c172a95358278b">00146</a> <span class="keywordtype">void</span> <a class="code" href="classEVisorInformes.html#ddeb5233a245634f19c172a95358278b">EVisorInformes::primerPagina</a>()
+<a name="l00147"></a>00147 {
+<a name="l00148"></a>00148  this-&gt;setCurrentPage( 1 );
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 
+<a name="l00155"></a><a class="code" href="classEVisorInformes.html#25a93647015943c0292169527c8dd067">00155</a> <span class="keywordtype">void</span> <a class="code" href="classEVisorInformes.html#25a93647015943c0292169527c8dd067">EVisorInformes::anterior</a>()
+<a name="l00156"></a>00156 {
+<a name="l00157"></a>00157  this-&gt;setCurrentPage( this-&gt;currentPage() - 1 );
+<a name="l00158"></a>00158 }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 
+<a name="l00164"></a><a class="code" href="classEVisorInformes.html#ce7af788fd999f4c3ad92ec7f93f7197">00164</a> <span class="keywordtype">void</span> <a class="code" href="classEVisorInformes.html#ce7af788fd999f4c3ad92ec7f93f7197">EVisorInformes::ultimaPagina</a>()
+<a name="l00165"></a>00165 {
+<a name="l00166"></a>00166  this-&gt;setCurrentPage( this-&gt;numPages() );
+<a name="l00167"></a>00167 }
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 
+<a name="l00173"></a><a class="code" href="classEVisorInformes.html#05ff6e237b874fbc30a051148cf6fc61">00173</a> <span class="keywordtype">void</span> <a class="code" href="classEVisorInformes.html#05ff6e237b874fbc30a051148cf6fc61">EVisorInformes::siguiente</a>()
+<a name="l00174"></a>00174 {
+<a name="l00175"></a>00175  this-&gt;setCurrentPage( this-&gt;currentPage() + 1 );
+<a name="l00176"></a>00176 }
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 <span class="preprocessor">#include &lt;QPrintDialog&gt;</span>
+<a name="l00182"></a><a class="code" href="classEVisorInformes.html#8a20a738d60c40b1343731aa7afa1663">00182</a> <span class="keywordtype">void</span> <a class="code" href="classEVisorInformes.html#8a20a738d60c40b1343731aa7afa1663">EVisorInformes::imprimir</a>()
+<a name="l00183"></a>00183 {
+<a name="l00184"></a>00184  <span class="keywordflow">if</span>( <a class="code" href="classEVisorInformes.html#1f83732a04bc653c8ba4e046b78ff895">impresora</a>-&gt;outputFormat() != QPrinter::NativeFormat )
+<a name="l00185"></a>00185  {
+<a name="l00186"></a>00186   <span class="comment">// no sabe usar esos tipos de dialogo, imprimo directamente</span>
+<a name="l00187"></a>00187   qWarning( <span class="stringliteral">"No se puede usar el dialogo de configuracion, se imprimira directamente a la impresora predeterminada"</span> );
+<a name="l00188"></a>00188   print();
+<a name="l00189"></a>00189  }
+<a name="l00190"></a>00190  <span class="keywordflow">else</span>
+<a name="l00191"></a>00191  {
+<a name="l00192"></a>00192   QPrintDialog *dialogo = <span class="keyword">new</span> QPrintDialog( <a class="code" href="classEVisorInformes.html#1f83732a04bc653c8ba4e046b78ff895">impresora</a>, <span class="keyword">this</span> );
+<a name="l00193"></a>00193   <span class="keywordflow">if</span>( dialogo-&gt;exec() == QDialog::Accepted )
+<a name="l00194"></a>00194   {
+<a name="l00195"></a>00195     emit paintRequested( dialogo-&gt;printer() );
+<a name="l00196"></a>00196   }
+<a name="l00197"></a>00197  }
+<a name="l00198"></a>00198  <span class="keywordflow">return</span>;
+<a name="l00199"></a>00199 }
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201 <span class="preprocessor">#include &lt;QFileDialog&gt;</span>
+<a name="l00202"></a>00202 <span class="preprocessor">#include &lt;QDir&gt;</span>
+<a name="l00206"></a><a class="code" href="classEVisorInformes.html#d94b6a686cb9a3c83f78a17ad506b8e5">00206</a> <span class="keywordtype">void</span> <a class="code" href="classEVisorInformes.html#d94b6a686cb9a3c83f78a17ad506b8e5">EVisorInformes::aPdf</a>()
+<a name="l00207"></a>00207 {
+<a name="l00208"></a>00208  this-&gt;<a class="code" href="classEVisorInformes.html#1f83732a04bc653c8ba4e046b78ff895">impresora</a>-&gt;setOutputFormat( QPrinter::PdfFormat );
+<a name="l00209"></a>00209  QString nombreArchivo = QFileDialog::getSaveFileName( <span class="keyword">this</span>, <span class="stringliteral">"Guardar como pdf"</span>, QDir::homePath(), <span class="stringliteral">"Archivos PDF (*.pdf)"</span> );
+<a name="l00210"></a>00210  <span class="keywordflow">if</span>( !nombreArchivo.isEmpty() )
+<a name="l00211"></a>00211  {
+<a name="l00212"></a>00212   <span class="comment">// ver que tenga la extension</span>
+<a name="l00213"></a>00213   this-&gt;<a class="code" href="classEVisorInformes.html#1f83732a04bc653c8ba4e046b78ff895">impresora</a>-&gt;setOutputFileName( nombreArchivo );
+<a name="l00214"></a>00214   emit paintRequested( this-&gt;<a class="code" href="classEVisorInformes.html#1f83732a04bc653c8ba4e046b78ff895">impresora</a> );
+<a name="l00215"></a>00215  }
+<a name="l00216"></a>00216 }
+</pre></div></div>
+<hr size="1"><address style="text-align: right;"><small>Generado el Wed Oct 8 11:51:03 2008 para gestotux por&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>
