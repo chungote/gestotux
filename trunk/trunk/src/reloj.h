@@ -23,8 +23,11 @@
 #include <QLCDNumber>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Muestra reloj en el programa
+ *
+ * Clase que muestra un reloj en una barra lateral dentro de la ventana principal
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class Reloj : public QLCDNumber
 {
 Q_OBJECT

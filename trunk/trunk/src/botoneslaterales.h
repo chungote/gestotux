@@ -26,11 +26,10 @@ class QPushButton;
 class DigiFauno;
 
 /**
-	\brief Clase que mantiene pestañas y botones laterales
-
- * Clase que muestra los botones y pestañas deslizables de la barra lateral y gestiona todas las acciones
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Clase que mantiene pestañas y botones laterales
+ * Clase que muestra los botones y pestañas deslizables de la barra lateral y gestiona todas las acciones de los plugins
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class BotonesLaterales : public QToolBox
 {
    Q_OBJECT

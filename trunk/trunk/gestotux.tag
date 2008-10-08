@@ -64,8 +64,8 @@
       <type></type>
       <name>Q_DECLARE_INTERFACE</name>
       <anchorfile>einformeinterface_8h.html</anchorfile>
-      <anchor>9bba307130d365f2ef28ec16799a8275</anchor>
-      <arglist>(EInformeInterface,&quot;tranfuga.EInformeInterface/1.0&quot;)</arglist>
+      <anchor>62857acc2aa01a85f0adf145234492fa</anchor>
+      <arglist>(EInformeInterface,&quot;tranfuga.EInformeInterface/1.1&quot;)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -457,16 +457,31 @@
   </compound>
   <compound kind="file">
     <name>vcategorias.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2vcategorias_8cpp</filename>
+    <includes id="digifauno_2vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
+    <includes id="digifauno_2mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
+    <includes id="dcategoria_8h" name="dcategoria.h" local="yes" imported="no">dcategoria.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vcategorias.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>productos_2vcategorias_8cpp</filename>
     <includes id="productos_2vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
-    <includes id="mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
+    <includes id="productos_2mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
   </compound>
   <compound kind="file">
     <name>vcategorias.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>aCarCorr_2vcategorias_8h</filename>
     <includes id="plugins_2aCarCorr_2evlista_8h" name="evlista.h" local="yes" imported="no">evlista.h</includes>
+    <class kind="class">VCategorias</class>
+  </compound>
+  <compound kind="file">
+    <name>vcategorias.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2vcategorias_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VCategorias</class>
   </compound>
   <compound kind="file">
@@ -485,6 +500,14 @@
   </compound>
   <compound kind="file">
     <name>vduenos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2vduenos_8cpp</filename>
+    <includes id="digifauno_2vduenos_8h" name="vduenos.h" local="yes" imported="no">vduenos.h</includes>
+    <includes id="mdueno_8h" name="mdueno.h" local="yes" imported="no">mdueno.h</includes>
+    <includes id="dmiembros_8h" name="dmiembros.h" local="yes" imported="no">dmiembros.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vduenos.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/OscarSorazi/</path>
     <filename>OscarSorazi_2vduenos_8cpp</filename>
     <includes id="OscarSorazi_2vduenos_8h" name="vduenos.h" local="yes" imported="no">vduenos.h</includes>
@@ -494,6 +517,13 @@
     <name>vduenos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/aCarCorr/</path>
     <filename>aCarCorr_2vduenos_8h</filename>
+    <class kind="class">VDuenos</class>
+  </compound>
+  <compound kind="file">
+    <name>vduenos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2vduenos_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VDuenos</class>
   </compound>
   <compound kind="file">
@@ -515,6 +545,628 @@
     <filename>vestablecimiento_8h</filename>
     <includes id="plugins_2aCarCorr_2evlista_8h" name="evlista.h" local="yes" imported="no">evlista.h</includes>
     <class kind="class">VEstablecimiento</class>
+  </compound>
+  <compound kind="file">
+    <name>dcategoria.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dcategoria_8cpp</filename>
+    <includes id="dcategoria_8h" name="dcategoria.h" local="yes" imported="no">dcategoria.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dcategoria.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dcategoria_8h</filename>
+    <class kind="class">DCategoria</class>
+  </compound>
+  <compound kind="file">
+    <name>dgastos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dgastos_8cpp</filename>
+    <includes id="dgastos_8h" name="dgastos.h" local="yes" imported="no">dgastos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dgastos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dgastos_8h</filename>
+    <class kind="class">DGastos</class>
+  </compound>
+  <compound kind="file">
+    <name>digifauno.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_8cpp</filename>
+    <includes id="digifauno_8h" name="digifauno.h" local="yes" imported="no">digifauno.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="digifauno_2vduenos_8h" name="vduenos.h" local="yes" imported="no">vduenos.h</includes>
+    <includes id="digifauno_2vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
+    <includes id="vproveedor_8h" name="vproveedor.h" local="yes" imported="no">vproveedor.h</includes>
+    <includes id="formagregarventa_8h" name="formagregarventa.h" local="yes" imported="no">formagregarventa.h</includes>
+    <includes id="digifauno_2vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
+    <includes id="formagregarmasctoa_8h" name="formagregarmasctoa.h" local="yes" imported="no">formagregarmasctoa.h</includes>
+    <includes id="formagregarservicio_8h" name="formagregarservicio.h" local="yes" imported="no">formagregarservicio.h</includes>
+    <includes id="vmascota_8h" name="vmascota.h" local="yes" imported="no">vmascota.h</includes>
+    <includes id="eresumen_8h" name="eresumen.h" local="yes" imported="no">eresumen.h</includes>
+    <includes id="formagregargasto_8h" name="formagregargasto.h" local="yes" imported="no">formagregargasto.h</includes>
+    <includes id="vgastos_8h" name="vgastos.h" local="yes" imported="no">vgastos.h</includes>
+    <includes id="formlistapeluqueria_8h" name="formlistapeluqueria.h" local="yes" imported="no">formlistapeluqueria.h</includes>
+    <includes id="formagregarcompra_8h" name="formagregarcompra.h" local="yes" imported="no">formagregarcompra.h</includes>
+    <includes id="vcompras_8h" name="vcompras.h" local="yes" imported="no">vcompras.h</includes>
+    <includes id="formprefopciones_8h" name="formprefopciones.h" local="yes" imported="no">formprefopciones.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Q_EXPORT_PLUGIN2</name>
+      <anchorfile>digifauno_8cpp.html</anchorfile>
+      <anchor>a68300ece4bcfde7018c9be642c4cca8</anchor>
+      <arglist>(digifauno, DigiFauno)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>digifauno.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_8h</filename>
+    <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">../../src/einfoprogramainterface.h</includes>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">../../src/eplugin.h</includes>
+    <class kind="class">DigiFauno</class>
+  </compound>
+  <compound kind="file">
+    <name>dmascota.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dmascota_8cpp</filename>
+    <includes id="dmascota_8h" name="dmascota.h" local="yes" imported="no">dmascota.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dmascota.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dmascota_8h</filename>
+    <class kind="class">DMascota</class>
+  </compound>
+  <compound kind="file">
+    <name>dmiembros.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dmiembros_8cpp</filename>
+    <includes id="dmiembros_8h" name="dmiembros.h" local="yes" imported="no">dmiembros.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dmiembros.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dmiembros_8h</filename>
+    <class kind="class">DMiembros</class>
+  </compound>
+  <compound kind="file">
+    <name>dproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dproductos_8cpp</filename>
+    <includes id="dproductos_8h" name="dproductos.h" local="yes" imported="no">dproductos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dproductos_8h</filename>
+    <class kind="class">DProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>dproveedor.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dproveedor_8cpp</filename>
+    <includes id="dproveedor_8h" name="dproveedor.h" local="yes" imported="no">dproveedor.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dproveedor.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dproveedor_8h</filename>
+    <class kind="class">DProveedor</class>
+  </compound>
+  <compound kind="file">
+    <name>dventacompra.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dventacompra_8cpp</filename>
+    <includes id="dventacompra_8h" name="dventacompra.h" local="yes" imported="no">dventacompra.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dventacompra.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dventacompra_8h</filename>
+    <class kind="class">DVentaCompra</class>
+  </compound>
+  <compound kind="file">
+    <name>edsbprecio.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>edsbprecio_8cpp</filename>
+    <includes id="edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>edsbprecio.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>edsbprecio_8h</filename>
+    <class kind="class">EDSBPrecio</class>
+  </compound>
+  <compound kind="file">
+    <name>eresumen.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>eresumen_8cpp</filename>
+    <includes id="eresumen_8h" name="eresumen.h" local="yes" imported="no">eresumen.h</includes>
+    <includes id="resumengeneral_8h" name="resumengeneral.h" local="yes" imported="no">resumengeneral.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="evisorinformes_8h" name="evisorinformes.h" local="yes" imported="no">evisorinformes.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>eresumen.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>eresumen_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="no" imported="no">eventana.h</includes>
+    <class kind="class">EResumen</class>
+  </compound>
+  <compound kind="file">
+    <name>etrgastos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>etrgastos_8cpp</filename>
+    <includes id="etrgastos_8h" name="etrgastos.h" local="yes" imported="no">etrgastos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>etrgastos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>etrgastos_8h</filename>
+    <class kind="class">ETRGastos</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregarcompra.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarcompra_8cpp</filename>
+    <includes id="formagregarcompra_8h" name="formagregarcompra.h" local="yes" imported="no">formagregarcompra.h</includes>
+    <includes id="mproveedor_8h" name="mproveedor.h" local="yes" imported="no">mproveedor.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+    <includes id="eactguardar_8h" name="eactguardar.h" local="yes" imported="no">eactguardar.h</includes>
+    <includes id="mcompra_8h" name="mcompra.h" local="yes" imported="no">mcompra.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formagregarcompra.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarcompra_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormAgregarCompra</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregargasto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregargasto_8cpp</filename>
+    <includes id="formagregargasto_8h" name="formagregargasto.h" local="yes" imported="no">formagregargasto.h</includes>
+    <includes id="mgasto_8h" name="mgasto.h" local="yes" imported="no">mgasto.h</includes>
+    <includes id="eactguardar_8h" name="eactguardar.h" local="yes" imported="no">eactguardar.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formagregargasto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregargasto_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormAgregarGasto</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregarmasctoa.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarmasctoa_8cpp</filename>
+    <includes id="formagregarmasctoa_8h" name="formagregarmasctoa.h" local="yes" imported="no">formagregarmasctoa.h</includes>
+    <includes id="mdueno_8h" name="mdueno.h" local="yes" imported="no">mdueno.h</includes>
+    <includes id="mmascota_8h" name="mmascota.h" local="yes" imported="no">mmascota.h</includes>
+    <includes id="mrazas_8h" name="mrazas.h" local="yes" imported="no">mrazas.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+    <includes id="eactguardar_8h" name="eactguardar.h" local="yes" imported="no">eactguardar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formagregarmasctoa.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarmasctoa_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormAgregarMascota</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregarservicio.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarservicio_8cpp</filename>
+    <includes id="formagregarservicio_8h" name="formagregarservicio.h" local="yes" imported="no">formagregarservicio.h</includes>
+    <includes id="mmascota_8h" name="mmascota.h" local="yes" imported="no">mmascota.h</includes>
+    <includes id="mpeluqueria_8h" name="mpeluqueria.h" local="yes" imported="no">mpeluqueria.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formagregarservicio.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarservicio_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormAgregarServicio</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregarventa.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarventa_8cpp</filename>
+    <includes id="formagregarventa_8h" name="formagregarventa.h" local="yes" imported="no">formagregarventa.h</includes>
+    <includes id="mdueno_8h" name="mdueno.h" local="yes" imported="no">mdueno.h</includes>
+    <includes id="mventa_8h" name="mventa.h" local="yes" imported="no">mventa.h</includes>
+    <includes id="mventaproducto_8h" name="mventaproducto.h" local="yes" imported="no">mventaproducto.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="digifauno_2mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+    <includes id="dventacompra_8h" name="dventacompra.h" local="yes" imported="no">dventacompra.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formagregarventa.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formagregarventa_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormAgregarVenta</class>
+  </compound>
+  <compound kind="file">
+    <name>formlistacompras.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formlistacompras_8cpp</filename>
+    <includes id="formlistacompras_8h" name="formlistacompras.h" local="yes" imported="no">formlistacompras.h</includes>
+    <includes id="digifauno_8h" name="digifauno.h" local="yes" imported="no">digifauno.h</includes>
+    <includes id="mcompra_8h" name="mcompra.h" local="yes" imported="no">mcompra.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formlistacompras.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formlistacompras_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormListaCompras</class>
+  </compound>
+  <compound kind="file">
+    <name>formlistapeluqueria.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formlistapeluqueria_8cpp</filename>
+    <includes id="mpeluqueria_8h" name="mpeluqueria.h" local="yes" imported="no">mpeluqueria.h</includes>
+    <includes id="formlistapeluqueria_8h" name="formlistapeluqueria.h" local="yes" imported="no">formlistapeluqueria.h</includes>
+    <includes id="digifauno_8h" name="digifauno.h" local="yes" imported="no">digifauno.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formlistapeluqueria.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formlistapeluqueria_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormListaPeluqueria</class>
+  </compound>
+  <compound kind="file">
+    <name>formprefopciones.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formprefopciones_8cpp</filename>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="formprefopciones_8h" name="formprefopciones.h" local="yes" imported="no">formprefopciones.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formprefopciones.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>formprefopciones_8h</filename>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormPrefOpciones</class>
+  </compound>
+  <compound kind="file">
+    <name>fromprefresumenes.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>fromprefresumenes_8cpp</filename>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="fromprefresumenes_8h" name="fromprefresumenes.h" local="yes" imported="no">fromprefresumenes.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>fromprefresumenes.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>fromprefresumenes_8h</filename>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <class kind="class">FromPrefResumenes</class>
+  </compound>
+  <compound kind="file">
+    <name>mcategorias.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2mcategorias_8cpp</filename>
+    <includes id="digifauno_2mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mcategorias.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>productos_2mcategorias_8cpp</filename>
+    <includes id="productos_2mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mcategorias.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2mcategorias_8h</filename>
+    <class kind="class">MCategorias</class>
+  </compound>
+  <compound kind="file">
+    <name>mcategorias.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>productos_2mcategorias_8h</filename>
+    <class kind="class">MCategorias</class>
+  </compound>
+  <compound kind="file">
+    <name>mcompra.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mcompra_8cpp</filename>
+    <includes id="mcompra_8h" name="mcompra.h" local="yes" imported="no">mcompra.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mcompra.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mcompra_8h</filename>
+    <class kind="class">MCompra</class>
+  </compound>
+  <compound kind="file">
+    <name>mcompraproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mcompraproductos_8cpp</filename>
+    <includes id="mcompraproductos_8h" name="mcompraproductos.h" local="yes" imported="no">mcompraproductos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mcompraproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mcompraproductos_8h</filename>
+    <class kind="class">MCompraProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>mdueno.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mdueno_8cpp</filename>
+    <includes id="mdueno_8h" name="mdueno.h" local="yes" imported="no">mdueno.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mdueno.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mdueno_8h</filename>
+    <class kind="class">MDueno</class>
+  </compound>
+  <compound kind="file">
+    <name>mgasto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mgasto_8cpp</filename>
+    <includes id="mgasto_8h" name="mgasto.h" local="yes" imported="no">mgasto.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mgasto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mgasto_8h</filename>
+    <class kind="class">MGasto</class>
+  </compound>
+  <compound kind="file">
+    <name>mmascota.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mmascota_8cpp</filename>
+    <includes id="mmascota_8h" name="mmascota.h" local="yes" imported="no">mmascota.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mmascota.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mmascota_8h</filename>
+    <class kind="class">MMascota</class>
+  </compound>
+  <compound kind="file">
+    <name>mpeluqueria.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mpeluqueria_8cpp</filename>
+    <includes id="mpeluqueria_8h" name="mpeluqueria.h" local="yes" imported="no">mpeluqueria.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mpeluqueria.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mpeluqueria_8h</filename>
+    <class kind="class">MPeluqueria</class>
+  </compound>
+  <compound kind="file">
+    <name>mproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2mproductos_8cpp</filename>
+    <includes id="digifauno_2mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>productos_2mproductos_8cpp</filename>
+    <includes id="productos_2mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2mproductos_8h</filename>
+    <class kind="class">MProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>mproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>productos_2mproductos_8h</filename>
+    <class kind="class">MProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>mproveedor.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mproveedor_8cpp</filename>
+    <includes id="mproveedor_8h" name="mproveedor.h" local="yes" imported="no">mproveedor.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mproveedor.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mproveedor_8h</filename>
+    <class kind="class">MProveedor</class>
+  </compound>
+  <compound kind="file">
+    <name>mrazas.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mrazas_8cpp</filename>
+    <includes id="mrazas_8h" name="mrazas.h" local="yes" imported="no">mrazas.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mrazas.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mrazas_8h</filename>
+    <class kind="class">MRazas</class>
+  </compound>
+  <compound kind="file">
+    <name>mventa.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mventa_8cpp</filename>
+    <includes id="mventa_8h" name="mventa.h" local="yes" imported="no">mventa.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mventa.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mventa_8h</filename>
+    <class kind="class">MVenta</class>
+  </compound>
+  <compound kind="file">
+    <name>mventaproducto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mventaproducto_8cpp</filename>
+    <includes id="mventaproducto_8h" name="mventaproducto.h" local="yes" imported="no">mventaproducto.h</includes>
+    <includes id="digifauno_2mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mventaproducto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>mventaproducto_8h</filename>
+    <class kind="class">MVentaProducto</class>
+  </compound>
+  <compound kind="file">
+    <name>resumenanual.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumenanual_8cpp</filename>
+    <includes id="resumenanual_8h" name="resumenanual.h" local="yes" imported="no">resumenanual.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>resumenanual.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumenanual_8h</filename>
+    <class kind="class">resumenAnual</class>
+  </compound>
+  <compound kind="file">
+    <name>resumendiario.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumendiario_8cpp</filename>
+    <includes id="resumendiario_8h" name="resumendiario.h" local="yes" imported="no">resumendiario.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>resumendiario.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumendiario_8h</filename>
+    <class kind="class">resumenDiario</class>
+  </compound>
+  <compound kind="file">
+    <name>resumengeneral.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumengeneral_8cpp</filename>
+    <includes id="resumengeneral_8h" name="resumengeneral.h" local="yes" imported="no">resumengeneral.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>resumengeneral.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumengeneral_8h</filename>
+    <class kind="class">resumenGeneral</class>
+  </compound>
+  <compound kind="file">
+    <name>resumenmensual.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumenmensual_8cpp</filename>
+    <includes id="resumenmensual_8h" name="resumenmensual.h" local="yes" imported="no">resumenmensual.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>resumenmensual.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>resumenmensual_8h</filename>
+    <class kind="class">resumenMensual</class>
+  </compound>
+  <compound kind="file">
+    <name>vcompras.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vcompras_8cpp</filename>
+    <includes id="vcompras_8h" name="vcompras.h" local="yes" imported="no">vcompras.h</includes>
+    <includes id="mcompra_8h" name="mcompra.h" local="yes" imported="no">mcompra.h</includes>
+    <includes id="digifauno_8h" name="digifauno.h" local="yes" imported="no">digifauno.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vcompras.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vcompras_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VCompras</class>
+  </compound>
+  <compound kind="file">
+    <name>vgastos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vgastos_8cpp</filename>
+    <includes id="vgastos_8h" name="vgastos.h" local="yes" imported="no">vgastos.h</includes>
+    <includes id="mgasto_8h" name="mgasto.h" local="yes" imported="no">mgasto.h</includes>
+    <includes id="digifauno_8h" name="digifauno.h" local="yes" imported="no">digifauno.h</includes>
+    <includes id="dgastos_8h" name="dgastos.h" local="yes" imported="no">dgastos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vgastos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vgastos_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VGastos</class>
+  </compound>
+  <compound kind="file">
+    <name>vmascota.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vmascota_8cpp</filename>
+    <includes id="vmascota_8h" name="vmascota.h" local="yes" imported="no">vmascota.h</includes>
+    <includes id="mmascota_8h" name="mmascota.h" local="yes" imported="no">mmascota.h</includes>
+    <includes id="dmascota_8h" name="dmascota.h" local="yes" imported="no">dmascota.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vmascota.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vmascota_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VMascota</class>
+  </compound>
+  <compound kind="file">
+    <name>vproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2vproductos_8cpp</filename>
+    <includes id="digifauno_2vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
+    <includes id="digifauno_2mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+    <includes id="digifauno_8h" name="digifauno.h" local="yes" imported="no">digifauno.h</includes>
+    <includes id="dproductos_8h" name="dproductos.h" local="yes" imported="no">dproductos.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>productos_2vproductos_8cpp</filename>
+    <includes id="productos_2vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
+    <includes id="productos_2mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+    <includes id="productos_8h" name="productos.h" local="yes" imported="no">productos.h</includes>
+    <includes id="productos_2mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
+    <includes id="productos_2vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>digifauno_2vproductos_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>vproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>productos_2vproductos_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>vproveedor.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vproveedor_8cpp</filename>
+    <includes id="vproveedor_8h" name="vproveedor.h" local="yes" imported="no">vproveedor.h</includes>
+    <includes id="mproveedor_8h" name="mproveedor.h" local="yes" imported="no">mproveedor.h</includes>
+    <includes id="dproveedor_8h" name="dproveedor.h" local="yes" imported="no">dproveedor.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vproveedor.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>vproveedor_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VProveedor</class>
   </compound>
   <compound kind="file">
     <name>drecibo.cpp</name>
@@ -883,6 +1535,7 @@
     <filename>prespuesto_8cpp</filename>
     <includes id="prespuesto_8h" name="prespuesto.h" local="yes" imported="no">prespuesto.h</includes>
     <includes id="formagregarpresupuesto_8h" name="formagregarpresupuesto.h" local="yes" imported="no">formagregarpresupuesto.h</includes>
+    <includes id="vpresupuesto_8h" name="vpresupuesto.h" local="yes" imported="no">vpresupuesto.h</includes>
   </compound>
   <compound kind="file">
     <name>prespuesto.h</name>
@@ -907,35 +1560,26 @@
     <class kind="class">Presupuesto</class>
   </compound>
   <compound kind="file">
-    <name>mcategorias.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>mcategorias_8cpp</filename>
-    <includes id="mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
+    <name>vpresupuesto.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>vpresupuesto_8cpp</filename>
+    <includes id="vpresupuesto_8h" name="vpresupuesto.h" local="yes" imported="no">vpresupuesto.h</includes>
+    <includes id="mpresupuesto_8h" name="mpresupuesto.h" local="yes" imported="no">mpresupuesto.h</includes>
+    <includes id="formagregarpresupuesto_8h" name="formagregarpresupuesto.h" local="yes" imported="no">formagregarpresupuesto.h</includes>
   </compound>
   <compound kind="file">
-    <name>mcategorias.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>mcategorias_8h</filename>
-    <class kind="class">MCategorias</class>
-  </compound>
-  <compound kind="file">
-    <name>mproductos.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>mproductos_8cpp</filename>
-    <includes id="mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>mproductos.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>mproductos_8h</filename>
-    <class kind="class">MProductos</class>
+    <name>vpresupuesto.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>vpresupuesto_8h</filename>
+    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VPresupuesto</class>
   </compound>
   <compound kind="file">
     <name>productos.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>productos_8cpp</filename>
     <includes id="productos_8h" name="productos.h" local="yes" imported="no">productos.h</includes>
-    <includes id="vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
+    <includes id="productos_2vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
     <member kind="function">
       <type></type>
       <name>Q_EXPORT_PLUGIN2</name>
@@ -952,21 +1596,31 @@
     <class kind="class">productos</class>
   </compound>
   <compound kind="file">
-    <name>vproductos.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>vproductos_8cpp</filename>
-    <includes id="vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
-    <includes id="mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
-    <includes id="productos_8h" name="productos.h" local="yes" imported="no">productos.h</includes>
-    <includes id="mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
-    <includes id="productos_2vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
+    <name>barralateral.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>barralateral_8cpp</filename>
+    <includes id="barralateral_8h" name="barralateral.h" local="yes" imported="no">barralateral.h</includes>
+    <includes id="botoneslaterales_8h" name="botoneslaterales.h" local="yes" imported="no">botoneslaterales.h</includes>
   </compound>
   <compound kind="file">
-    <name>vproductos.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>vproductos_8h</filename>
-    <includes id="utiles_2evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
-    <class kind="class">VProductos</class>
+    <name>barralateral.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>barralateral_8h</filename>
+    <class kind="class">BarraLateral</class>
+  </compound>
+  <compound kind="file">
+    <name>botoneslaterales.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>botoneslaterales_8cpp</filename>
+    <includes id="botoneslaterales_8h" name="botoneslaterales.h" local="yes" imported="no">botoneslaterales.h</includes>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+    <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>botoneslaterales.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>botoneslaterales_8h</filename>
+    <class kind="class">BotonesLaterales</class>
   </compound>
   <compound kind="file">
     <name>ebackup.cpp</name>
@@ -1033,8 +1687,8 @@
       <type></type>
       <name>Q_DECLARE_INTERFACE</name>
       <anchorfile>eplugin_8h.html</anchorfile>
-      <anchor>97c6f1c25c036aff004fe9f1e70623ed</anchor>
-      <arglist>(EPlugin,&quot;tranfuga.EPlugin/1.0&quot;)</arglist>
+      <anchor>9e30836d7472bc7fa9d986cc45423cc1</anchor>
+      <arglist>(EPlugin,&quot;tranfuga.EPlugin/1.1&quot;)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -1048,6 +1702,19 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>esplash_8h</filename>
     <class kind="class">ESplash</class>
+  </compound>
+  <compound kind="file">
+    <name>everificabackup.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>everificabackup_8cpp</filename>
+    <includes id="everificabackup_8h" name="everificabackup.h" local="yes" imported="no">everificabackup.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>everificabackup.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>everificabackup_8h</filename>
+    <class kind="class">EVerificaBackup</class>
   </compound>
   <compound kind="file">
     <name>formacercade.cpp</name>
@@ -1071,6 +1738,7 @@
     <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
     <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
     <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="version_8h" name="version.h" local="yes" imported="no">version.h</includes>
     <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
   </compound>
   <compound kind="file">
@@ -1158,14 +1826,10 @@
     <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
     <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
     <includes id="formactualizacion_8h" name="formactualizacion.h" local="yes" imported="no">formactualizacion.h</includes>
+    <includes id="version_8h" name="version.h" local="yes" imported="no">version.h</includes>
+    <includes id="everificabackup_8h" name="everificabackup.h" local="yes" imported="no">everificabackup.h</includes>
     <includes id="eayuda_8h" name="eayuda.h" local="yes" imported="no">eayuda.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>VERSION_PROGRAMA</name>
-      <anchorfile>gestotux_8cpp.html</anchorfile>
-      <anchor>1429fef2e1d9c4fc4a285689d183f5c9</anchor>
-      <arglist></arglist>
-    </member>
+    <includes id="barralateral_8h" name="barralateral.h" local="yes" imported="no">barralateral.h</includes>
   </compound>
   <compound kind="file">
     <name>gestotux.h</name>
@@ -1251,6 +1915,18 @@
     <class kind="class">VCliente</class>
   </compound>
   <compound kind="file">
+    <name>version.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>version_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>VERSION_PROGRAMA</name>
+      <anchorfile>version_8h.html</anchorfile>
+      <anchor>1429fef2e1d9c4fc4a285689d183f5c9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>eactcerrar.cpp</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>eactcerrar_8cpp</filename>
@@ -1261,6 +1937,18 @@
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>eactcerrar_8h</filename>
     <class kind="class">EActCerrar</class>
+  </compound>
+  <compound kind="file">
+    <name>eactguardar.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eactguardar_8cpp</filename>
+    <includes id="eactguardar_8h" name="eactguardar.h" local="yes" imported="no">eactguardar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>eactguardar.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>eactguardar_8h</filename>
+    <class kind="class">EActGuardar</class>
   </compound>
   <compound kind="file">
     <name>eactimprimir.cpp</name>
@@ -1351,11 +2039,11 @@
       <arglist>(QWidget *v)</arglist>
     </member>
     <member kind="function">
-      <type>QList&lt; QAction * &gt;</type>
+      <type>QList&lt; QActionGroup * &gt;</type>
       <name>accionesBarra</name>
       <anchorfile>classAdminCarCorr.html</anchorfile>
-      <anchor>b1130c32b108ee39c2f706c8f784d4ce</anchor>
-      <arglist>() const </arglist>
+      <anchor>9361344753642812da7b3d29be234642</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -1370,6 +2058,13 @@
       <anchorfile>classAdminCarCorr.html</anchorfile>
       <anchor>f16acd4f046636896705bc0e37c255e3</anchor>
       <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classAdminCarCorr.html</anchorfile>
+      <anchor>4a2581fe3fcb949f8efe6c4fdc90a118</anchor>
+      <arglist>(QToolBar *t)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -1611,6 +2306,716 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>BarraLateral</name>
+    <filename>classBarraLateral.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>BarraLateral</name>
+      <anchorfile>classBarraLateral.html</anchorfile>
+      <anchor>7019cde40c0ac0ca565717ec6c390c35</anchor>
+      <arglist>(const QString &amp;title, QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~BarraLateral</name>
+      <anchorfile>classBarraLateral.html</anchorfile>
+      <anchor>5c1c25f33d6c2238d6fadb01d7523961</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>BotonesLaterales *</type>
+      <name>ls</name>
+      <anchorfile>classBarraLateral.html</anchorfile>
+      <anchor>3c507bc4159508f44db7837266f970e5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>BotonesLaterales</name>
+    <filename>classBotonesLaterales.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>BotonesLaterales</name>
+      <anchorfile>classBotonesLaterales.html</anchorfile>
+      <anchor>6968b6be8df6a7186b8060c26f10e090</anchor>
+      <arglist>(QWidget *parent, Qt::WindowFlags f=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~BotonesLaterales</name>
+      <anchorfile>classBotonesLaterales.html</anchorfile>
+      <anchor>fd2e23103bc1d54f96c7b30672b28fba</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DCategoria</name>
+    <filename>classDCategoria.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDCategoria.html</anchorfile>
+      <anchor>79f8e5ca0c1e27682618151b96bb3325</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DCategoria</name>
+      <anchorfile>classDCategoria.html</anchorfile>
+      <anchor>76580e369c0356891d020b958f5dde29</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setEditorData</name>
+      <anchorfile>classDCategoria.html</anchorfile>
+      <anchor>97c8bfe4c467d8858f830330be96c5fb</anchor>
+      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setModelData</name>
+      <anchorfile>classDCategoria.html</anchorfile>
+      <anchor>f7baf7cc8e5c9a74b953c3520d005a09</anchor>
+      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateEditorGeometry</name>
+      <anchorfile>classDCategoria.html</anchorfile>
+      <anchor>412727c87c8b856370848d143db4e530</anchor>
+      <arglist>(QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DCategoria</name>
+      <anchorfile>classDCategoria.html</anchorfile>
+      <anchor>8bae8f06e62e7b291ea50f1462c294cc</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DGastos</name>
+    <filename>classDGastos.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDGastos.html</anchorfile>
+      <anchor>1b82b21bdccea7266e7351221c090762</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DGastos</name>
+      <anchorfile>classDGastos.html</anchorfile>
+      <anchor>ec711a7ec07930d714fa3218bad5480a</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DGastos</name>
+      <anchorfile>classDGastos.html</anchorfile>
+      <anchor>079ba9152d484265a99458c6194177e7</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DigiFauno</name>
+    <filename>classDigiFauno.html</filename>
+    <base>EInfoProgramaInterface</base>
+    <base>EPlugin</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarCompra</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>bf40cb963f585d8b79aec08b6312f527</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarGasto</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>5dead8596b8386118859a235ae97885c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarMascota</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>8028f2d19b407354fa924107a96bd1d9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarServicioPeluqueria</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>342c7ecc464b952b06a38bc93cef3cc1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarVenta</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>6dd475e22bca9449928ee36058c2f4aa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>categorias</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>13fb9f671b0cdabbf502f1b67f05746a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>duenos</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>72a0474b1d5aef2d85d43962ada54ec1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>mascotas</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>1c961fbd1b5163e34752a905caa788f0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>productos</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>29cef2135f1ce14a0485382b1cdc1200</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>proveedores</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9de8ee1457807f42dc5bafc1cb0533d8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>resumen_semanal</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>5e1d504a5faa2baa03452d43030c7b64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>resumenAnual</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>5b19f026eefa27a2a8366f509544e3f3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>resumenDiario</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9726dd37e8be30e57a3080bac25adcb6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>resumenMensual</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>c114d323a58be86cd7273d8ad5ba71ac</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>ver_compras</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>2f9c68e77918328dd2e1e0b309ebe5ef</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>ver_gastos</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>ff923c383fb9b037784339c6157f7587</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>ver_peluqueria</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>5372f5fc8219ac47cd7d92f00cda4f43</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>84314819fd0f9f1a153cbd34a85852b1</anchor>
+      <arglist>(QWidget *ventana)</arglist>
+    </member>
+    <member kind="function">
+      <type>QList&lt; QActionGroup * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9d0a9314665e70c9a29f63c9e57ebb8f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>companeros</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>d22057c776c088521c097c1e7ec96653</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearMenu</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>7468c823ace39d0c0e37773d3e61db68</anchor>
+      <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>5b78f81aff03b25135d3d4a0754efbec</anchor>
+      <arglist>(QToolBar *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>directorioActualizaciones</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>637b8bdd35cc706e6db9f9b14516004d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>directorioBackup</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>4dafde4ea51e4db23ce2a595044f7c77</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>empresa</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>1c762512a74143e30787b33e511825e1</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QWidgetList</type>
+      <name>formsPreferencias</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>8c2b5efb36395660435d0d30f284c2c0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QIcon</type>
+      <name>iconoPrograma</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>81f3ab492b9a3d9fec15e9c2c10b6826</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>inicializar</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>32e6ff63677b64938fa7f39350421b79</anchor>
+      <arglist>(QSettings *pref)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombre</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>1e25301ba3145dec904e724deb56a9b0</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombrePrograma</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>66bbe0df6259a83135d701651e773c16</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>tipo</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>ae29f4b9ebfe1d5b5107a84c905c7aa7</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>796b4c765f2c14591c94ed98851df89d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>c68235fc782feb3e15829606a5172d74</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; QAction * &gt;</type>
+      <name>_acciones</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>ded33ec622530b0b2e3ec8409a9ec832</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAcerca</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9e78400ed93e1c3eaaab0e98f4aaa704</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAgregarCompra</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>2644ed8609d79d423e3b0aafb9040422</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAgregarGasto</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>324e3fcb1c959ec827b38034f6b41fc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAgregarMascota</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>7eeb9e84ec0cb54c09085935029427ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAgregarVentas</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>25f1442efa6e38b99f25e69bb1d29459</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAyuda</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>a7a051fb753526f3fa0e3281909b9444</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActBackup</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>537f8a0a5811b7adb773c8c6fd3ba76b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActCategorias</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9443ade201323647aec8fa912a887990</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActDuenos</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>85335cdf55664973744548ea69e86300</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActGastos</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9aab84492c102c07974822a8bedc476f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActMascotas</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>51f11d3c536af011fe103555c80228b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActNuevoServicio</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>a001762d4112caf6d3900bdcf6a1853b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActPeluqueria</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>f41910c68f4abb3bafe1894e02fe168e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActPreferencias</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>73bca6a433ab9044f45c5c6386e9f76b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActProductos</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>664e499b66a7b09a94e554f5adf8463d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActProveedores</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9a258ae8d29f39254fbdd42568557452</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActResumenAnual</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>02f0ed8a24c26b58a0cf7735edeb48cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActResumenDiario</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>5e287d4474c1eea8da90892fef065aee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActResumenMensual</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>7cd73cac7162e6386d0108d36bd84136</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActSalir</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>b2cf35d83bacddc78b569ba5f3eadcaa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActVentas</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>76582830369aea2e6416bff82a7ac7da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QActionGroup *</type>
+      <name>compras</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>19973f07ff77f6ed31a7c520baf4d5de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QActionGroup *</type>
+      <name>peluqueria</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>9978a92f95bbe74f523f7bfe7aef1d52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QActionGroup *</type>
+      <name>resumen</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>aba43e073db2d759a783efb8ac88d563</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>separatorAct</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>fc0d2d2591a5d462c8e320097b71e1c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QActionGroup *</type>
+      <name>ventas</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>0e2ce4763e9ee2ccbc05c7c7aac6a14a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static QSettings *</type>
+      <name>_pref</name>
+      <anchorfile>classDigiFauno.html</anchorfile>
+      <anchor>df847d2041d25b6763f281e336068c44</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DMascota</name>
+    <filename>classDMascota.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDMascota.html</anchorfile>
+      <anchor>bbdf84b1a206154906591abf5cf34eac</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DMascota</name>
+      <anchorfile>classDMascota.html</anchorfile>
+      <anchor>3de7743e64a39641fbe721b5da702fd9</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEditorData</name>
+      <anchorfile>classDMascota.html</anchorfile>
+      <anchor>9c98f6794bc79b09ebb470f6349cbdd9</anchor>
+      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModelData</name>
+      <anchorfile>classDMascota.html</anchorfile>
+      <anchor>1d83933c32d1d795b3f284177ab9d623</anchor>
+      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateEditorGeometry</name>
+      <anchorfile>classDMascota.html</anchorfile>
+      <anchor>4a071e5cefbc47cc7fec207a7aeaef06</anchor>
+      <arglist>(QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DMascota</name>
+      <anchorfile>classDMascota.html</anchorfile>
+      <anchor>7bbb78f9194b7a02d4aec7c1130d1f84</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DMiembros</name>
+    <filename>classDMiembros.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>c96e2dababfa7e8150888efc01ca26db</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DMiembros</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>8d70ee796c53b2c16901952dfd0f91ed</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEditorData</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>58dadd9e8c665f7edccc8a125086a4ef</anchor>
+      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModelData</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>ecc28975b2a744bacf11bc5482291cc6</anchor>
+      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>fd85c21c7eeb07e30c8fe0d7a1d77c0f</anchor>
+      <arglist>(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateEditorGeometry</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>7b9ade7976dd3e506ee1e7dbdc4c1fc4</anchor>
+      <arglist>(QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DMiembros</name>
+      <anchorfile>classDMiembros.html</anchorfile>
+      <anchor>69128a39dab61f42ad46c6822998f2b6</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DProductos</name>
+    <filename>classDProductos.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDProductos.html</anchorfile>
+      <anchor>747ca4239d11ae5b19cad897c8a73d77</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DProductos</name>
+      <anchorfile>classDProductos.html</anchorfile>
+      <anchor>d7e63a421ceb8be1fc5b5631cef55d02</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DProductos</name>
+      <anchorfile>classDProductos.html</anchorfile>
+      <anchor>13c95ce03a28e50c4629e90e1e696f65</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DProveedor</name>
+    <filename>classDProveedor.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDProveedor.html</anchorfile>
+      <anchor>0a6246d898cfb319ab2cad177c9ed090</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DProveedor</name>
+      <anchorfile>classDProveedor.html</anchorfile>
+      <anchor>b6ce847f9a6a38f511014876b7c66ab3</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEditorData</name>
+      <anchorfile>classDProveedor.html</anchorfile>
+      <anchor>1438d17ec65c256ff62c553aeac58c6a</anchor>
+      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModelData</name>
+      <anchorfile>classDProveedor.html</anchorfile>
+      <anchor>32cb6a1e34bae7a74c8e8b65a526d823</anchor>
+      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DProveedor</name>
+      <anchorfile>classDProveedor.html</anchorfile>
+      <anchor>10ec85671985408dc14b6dff71018584</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>DRecibo</name>
     <filename>classDRecibo.html</filename>
     <member kind="function">
@@ -1678,6 +3083,59 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>DVentaCompra</name>
+    <filename>classDVentaCompra.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>00997b066fdc098de366453f898eec59</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DVentaCompra</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>6f177831eccc31552c229b4965619674</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEditorData</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>4ad0ddfd0b2686519bbe46de2a11397c</anchor>
+      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModelData</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>5f6bc87fcc0dab7b797f6dff7cb877e0</anchor>
+      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>e7569f275c01c80ffe6b348268306598</anchor>
+      <arglist>(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateEditorGeometry</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>5604bdd20fd41cf15ea9a77a5f4ddc48</anchor>
+      <arglist>(QWidget *editor, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DVentaCompra</name>
+      <anchorfile>classDVentaCompra.html</anchorfile>
+      <anchor>0f93cb95d526f7ed07caccdc701953d9</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>EActCerrar</name>
     <filename>classEActCerrar.html</filename>
     <member kind="function">
@@ -1692,6 +3150,24 @@
       <name>~EActCerrar</name>
       <anchorfile>classEActCerrar.html</anchorfile>
       <anchor>442db08fd32f5946fcb21ff0e723b58c</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EActGuardar</name>
+    <filename>classEActGuardar.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>EActGuardar</name>
+      <anchorfile>classEActGuardar.html</anchorfile>
+      <anchor>23baeb0d357f6fbc8730e40c002efa79</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EActGuardar</name>
+      <anchorfile>classEActGuardar.html</anchorfile>
+      <anchor>b93e125076bda2907ed7c7d6beb7e50c</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -1858,8 +3334,8 @@
       <type>bool</type>
       <name>generar_db</name>
       <anchorfile>classEbackup.html</anchorfile>
-      <anchor>20cc743e4f36848994fec2d519b1f082</anchor>
-      <arglist>(bool estructura, bool multidb)</arglist>
+      <anchor>0a39e3a6193843063bab13b4f5c2e83e</anchor>
+      <arglist>(bool estructura)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>bool</type>
@@ -1934,6 +3410,31 @@
       <anchorfile>classEDCategoriaEspecial.html</anchorfile>
       <anchor>3a19cba687060f4ffed84b7c10d0bb24</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EDSBPrecio</name>
+    <filename>classEDSBPrecio.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>EDSBPrecio</name>
+      <anchorfile>classEDSBPrecio.html</anchorfile>
+      <anchor>a9be49f1dd36601449d320acd90aa9f3</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EDSBPrecio</name>
+      <anchorfile>classEDSBPrecio.html</anchorfile>
+      <anchor>ca4f13bc9b1475881c29c8298330a877</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classEDSBPrecio.html</anchorfile>
+      <anchor>76dcfa304bbc169f32724f5e13f17efa</anchor>
+      <arglist>(QKeyEvent *event)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2070,6 +3571,13 @@
   <compound kind="class">
     <name>EInformeInterface</name>
     <filename>classEInformeInterface.html</filename>
+    <member kind="function" virtualness="pure">
+      <type>virtual QList&lt; QAction * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classEInformeInterface.html</anchorfile>
+      <anchor>707a84c9d2ce97c972f04dee28f42d79</anchor>
+      <arglist>()=0</arglist>
+    </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
       <name>agregarVentana</name>
@@ -2597,11 +4105,11 @@
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual QList&lt; QAction * &gt;</type>
+      <type>virtual QList&lt; QActionGroup * &gt;</type>
       <name>accionesBarra</name>
       <anchorfile>classEPlugin.html</anchorfile>
-      <anchor>965bb192f51a3949a768831654f1b8ae</anchor>
-      <arglist>() const =0</arglist>
+      <anchor>2d5847a53fafb099ace4783cc65157f5</anchor>
+      <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -2616,6 +4124,13 @@
       <anchorfile>classEPlugin.html</anchorfile>
       <anchor>83552b92124922ba3a5030d1e95075d7</anchor>
       <arglist>(QMenuBar *m)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>b9ebda678d1534cbf9d9114a4c081cb7</anchor>
+      <arglist>(QToolBar *t)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual QWidgetList</type>
@@ -2970,6 +4485,97 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>EResumen</name>
+    <filename>classEResumen.html</filename>
+    <base>EVentana</base>
+    <member kind="enumeration">
+      <name>tipo</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>e99c3e8a1445efbe5c0fcfb5dd666fba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>diario</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>e99c3e8a1445efbe5c0fcfb5dd666fba48f802ca62e505072b186f1829daf5d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>mensual</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>e99c3e8a1445efbe5c0fcfb5dd666fba65c2565c46b830f1cd1a96ecfcc660cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>anual</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>e99c3e8a1445efbe5c0fcfb5dd666fba64f4125b22fe63537e0d5b718022ec25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>semanal</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>e99c3e8a1445efbe5c0fcfb5dd666fbabc97c0eed0d0ab5616c13775ba3d6ee0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EResumen</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>6a6f24324df86f26988970d074b4f2da</anchor>
+      <arglist>(QWidget *parent=0, tipo que=diario)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EResumen</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>ca36c49e352ac49d76a709695711adb6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>generarResumen</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>1e569d0886753d5d979050301fed0d66</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QComboBox *</type>
+      <name>CBMes</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>cb3f314f7b6b01ec599d351c5e82c03c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QCheckBox *</type>
+      <name>ChBDetallado</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>13c0531a6c1e9ddb12aa4382f471550a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QCalendarWidget *</type>
+      <name>CWfecha</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>6421f2ca6ac77a4674775ae005beb933</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>tipo</type>
+      <name>generar</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>f9f686ebafdf30823afa66afb71c9e5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSpinBox *</type>
+      <name>seleccion</name>
+      <anchorfile>classEResumen.html</anchorfile>
+      <anchor>07d0d534b8029b8f9deaa21e53ff85c4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ESplash</name>
     <filename>classESplash.html</filename>
     <member kind="function">
@@ -3023,6 +4629,31 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ETRGastos</name>
+    <filename>classETRGastos.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ETRGastos</name>
+      <anchorfile>classETRGastos.html</anchorfile>
+      <anchor>fe9c36690aa6e025e9503d284e774e76</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>run</name>
+      <anchorfile>classETRGastos.html</anchorfile>
+      <anchor>e85a6a981344aa2c19fce7559727ce7b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~ETRGastos</name>
+      <anchorfile>classETRGastos.html</anchorfile>
+      <anchor>5b396abdfcb21c83480b9a31b1d6d06b</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>EVentana</name>
     <filename>classEVentana.html</filename>
     <member kind="signal">
@@ -3043,22 +4674,8 @@
       <type></type>
       <name>EVentana</name>
       <anchorfile>classEVentana.html</anchorfile>
-      <anchor>149bd5b9a63f3019d5730e092cc01076</anchor>
-      <arglist>(QWidget *padre, Qt::WFlags fl=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>get_nombre_ventana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>b80a75afbbd16a08e7874add1ef02581</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setNombreVentana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>1a34c10804cb12bf8350611dbf82b43d</anchor>
-      <arglist>(QString texto)</arglist>
+      <anchor>f742d13b34a1d7778d21f15498db3778</anchor>
+      <arglist>(QWidget *padre=0, Qt::WFlags fl=0)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -3066,13 +4683,6 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>16d80277f48b1a6baaaaa8f8586af261</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QString</type>
-      <name>nombre_ventana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>8ec9b6d58e81d739339d35eb49449b65</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>QWidget *</type>
@@ -3087,6 +4697,45 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>aa58f57a7f9c7eab3c9b32f193e74994</anchor>
       <arglist>(QKeyEvent *event)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EVerificaBackup</name>
+    <filename>classEVerificaBackup.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>abrirBackups</name>
+      <anchorfile>classEVerificaBackup.html</anchorfile>
+      <anchor>d38b628d334f2abe97829783a7b439c5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EVerificaBackup</name>
+      <anchorfile>classEVerificaBackup.html</anchorfile>
+      <anchor>97e95e26f6900eed1bc99ea7db600f0d</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~EVerificaBackup</name>
+      <anchorfile>classEVerificaBackup.html</anchorfile>
+      <anchor>71f5cd3b9dd2a52b9dba63c0947f533e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verificar</name>
+      <anchorfile>classEVerificaBackup.html</anchorfile>
+      <anchor>addb5f17262ca6b2d096328551007851</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTimer *</type>
+      <name>tiempo</name>
+      <anchorfile>classEVerificaBackup.html</anchorfile>
+      <anchor>984499aafdf9f5b821d8217627585637</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3637,6 +5286,126 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormAgregarCompra</name>
+    <filename>classFormAgregarCompra.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarCompra</name>
+      <anchorfile>classFormAgregarCompra.html</anchorfile>
+      <anchor>77e187d1f3ea555a8fb510161f33eaea</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarCompra</name>
+      <anchorfile>classFormAgregarCompra.html</anchorfile>
+      <anchor>85d1e6923a9c6e9932a711f818ff24cf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormAgregarCompra.html</anchorfile>
+      <anchor>6aaafec637038e9fd3f32c44d00dda03</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MProveedor *</type>
+      <name>modeloProveedor</name>
+      <anchorfile>classFormAgregarCompra.html</anchorfile>
+      <anchor>51f482f28058cae8325445ef9f1ea5d4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormAgregarGasto</name>
+    <filename>classFormAgregarGasto.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarGasto</name>
+      <anchorfile>classFormAgregarGasto.html</anchorfile>
+      <anchor>054275b1530bb163c595bd28a9395658</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarGasto</name>
+      <anchorfile>classFormAgregarGasto.html</anchorfile>
+      <anchor>79b27ad20e93a8f42d91238408b54877</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormAgregarGasto.html</anchorfile>
+      <anchor>a6cba84be36e7c9541e5f0655c53ebf7</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormAgregarMascota</name>
+    <filename>classFormAgregarMascota.html</filename>
+    <base>EVentana</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregarDueno</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>422bed7a7b91a944a38bed7dd9a51793</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>cancelar</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>c848acbbc9a1d9abec47fad6db7ae7df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarMascota</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>0e2c295bbd22fc90cf7114dfd9680105</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarMascota</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>99da5de3478d0c2faa3718ba501f98dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>272a2f9d5ab94a8612b6e972827103b6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QCompleter *</type>
+      <name>completarazas</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>b68a5b6ca5578f133a26ce79b7c4b5f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MDueno *</type>
+      <name>modeloDueno</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>5c300a2a6aa974eb2fbca39cf9244c82</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MRazas *</type>
+      <name>modeloRazas</name>
+      <anchorfile>classFormAgregarMascota.html</anchorfile>
+      <anchor>87f08f06d7adee10bdea964c6890f1bf</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormAgregarPresupuesto</name>
     <filename>classFormAgregarPresupuesto.html</filename>
     <base>EVentana</base>
@@ -3829,6 +5598,317 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormAgregarServicio</name>
+    <filename>classFormAgregarServicio.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarServicio</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>17e91c826eb07df4a0b18e49f9e21eea</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarServicio</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>51950165ffabab7660bef3c80189313d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>agregar</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>d9d7989b0222ebadde792796f26f1bf6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>borrar</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>1ad0178cf1226b8995a67357cc08f476</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioIndice</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>870ed7b5209490b2cc7ef55240dff185</anchor>
+      <arglist>(int indice)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cerrar</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>be1f1e984241c9f0222df0f2482240c7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QVariant</type>
+      <name>id_mascota</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>1d20fbf666a676e3344f712ae06776cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MPeluqueria *</type>
+      <name>modeloPeluqueria</name>
+      <anchorfile>classFormAgregarServicio.html</anchorfile>
+      <anchor>8b97317e34c31111de6e60ac3ba35c7d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormAgregarVenta</name>
+    <filename>classFormAgregarVenta.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarVenta</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>e7820d4e7bef80e1e618cee2f1cb6905</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarVenta</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>dd3fb2a4f86cd6e4c2b9657e5e8036c4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>agregar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>28b688714095c6d757efa460e67c40a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>borrar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>b4c9f1085507608a11442a918cf65b83</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>buscarPrecio</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>0ecc58f3a08792d4928201b927048ea8</anchor>
+      <arglist>(const QModelIndex &amp;topLeft, const QModelIndex &amp;bottomRight)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cerrar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>4724e293d292d0e1d78b7874493dee45</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>406ded655d47e82f94f9ba1b859e9d0a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MVentaProducto *</type>
+      <name>modeloVentaProducto</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>4be9ae9bdcbfa9a801e1bc8efb2187e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>442164b658528845388e3a02d231b725</anchor>
+      <arglist>(QCloseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QGroupBox *</type>
+      <name>GBProductos</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>13815cfb59554f0fb6104ba4ab57fd44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QGridLayout *</type>
+      <name>gridLayout</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>7552f46055a8ac94b7c5813a6f31fa09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QGridLayout *</type>
+      <name>gridLayout1</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>373f8ee8bfdd15da0bcaecc9b22844ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>f9899dda76b89d266d89bb1f867c2d42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout1</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>47a15c677631b6342ca952bb0d119f09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout2</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>e285f3f68dde2d4ac5735569750910f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout3</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>23d1da6eda619b8df0dbe26d8fb56f59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLabel *</type>
+      <name>label_2</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>8e26b8535490a77d28e774a2e237fb87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLabel *</type>
+      <name>label_3</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>7287aad6da297eb045332868f3bf2d11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLCDNumber *</type>
+      <name>LcdNCantidad</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>d13188a6bf4267cd48bdb6f6c44b7861</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLineEdit *</type>
+      <name>LETotal</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>f174408f3523eb59adb7ec0ab57fc939</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QFrame *</type>
+      <name>line</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>4141d9d3e9ffe1e93fdc9bee71fa25cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLabel *</type>
+      <name>LTitulo</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>e6bba2eaf3ff3f92dd2614d452ed9c5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPushButton *</type>
+      <name>PBAceptar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>6f22f419465df6a3187c5c4a1e4b61ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPushButton *</type>
+      <name>PBAgregar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>fd0150cb18095df559d9f2e5b21c4ed8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPushButton *</type>
+      <name>PBBorrar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>85e5e2f55037f55ff6048808ddd7c4f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPushButton *</type>
+      <name>PBCancelar</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>bafd4417e7ba2f559d1ac598a84f782a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSpacerItem *</type>
+      <name>spacerItem</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>f603df8d85fdbbafdd8cf0ad9a3e4351</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSpacerItem *</type>
+      <name>spacerItem1</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>9a94b32bd12a7b81f458c60225c4386d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSpacerItem *</type>
+      <name>spacerItem2</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>fee62a1dfbb0e48d88a56231c6349ebb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSplitter *</type>
+      <name>splitter</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>1d0941e8f90aee63947af6c4c473cc90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTableView *</type>
+      <name>TVProductos</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>1722d06f68a37611d0791fc090a32d5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>34aaabb50f4796a5692051a90f76ef5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout1</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>fb099bb9dd4ec8956962cdd44edf088b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout2</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>99b736d0b250897dcf3e569fb910c54a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>widget</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>7b2831a153a0d6023a05213a5ac04fea</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormFiltro</name>
     <filename>classFormFiltro.html</filename>
     <member kind="function">
@@ -3913,6 +5993,170 @@
       <name>~FormFiltro</name>
       <anchorfile>classFormFiltro.html</anchorfile>
       <anchor>252c7e567f16a42177e473d4acabfe00</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormListaCompras</name>
+    <filename>classFormListaCompras.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormListaCompras</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>dabf56e1224bce8f98f403b5925c0158</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormListaCompras</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>0182decfe914a1cd3cab02276a6687a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>borrar</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>aa078246f4d285a183b7b4749a7199eb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoFecha</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>858fc35a5f4991e667a621105411a2b1</anchor>
+      <arglist>(int estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoGrupo</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>6dcb9f6b54d423fefcd8bb23810c483f</anchor>
+      <arglist>(bool estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoProducto</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>087dd1b6349c3fb35e1b3c5985861cd2</anchor>
+      <arglist>(int estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoProveedor</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>21c90dffd64c785ec28f7f8cafdf9382</anchor>
+      <arglist>(int estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioFecha</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>5498cc48989829f3c64e51ca177df5cd</anchor>
+      <arglist>(const QDate &amp;fecha)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioIndiceProducto</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>89e28ee3dabc250cae946dbf8f8b357e</anchor>
+      <arglist>(int indice)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioIndiceProveedor</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>0dd9f9e2f8a63a219b0ce3032ea280d6</anchor>
+      <arglist>(int indice)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MCompra *</type>
+      <name>modelo</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>04335ab3f125299fdea19d25122b932d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>crear_filtro</name>
+      <anchorfile>classFormListaCompras.html</anchorfile>
+      <anchor>01d33cae581bd39734302ac458f57221</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormListaPeluqueria</name>
+    <filename>classFormListaPeluqueria.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormListaPeluqueria</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>53432738f0aef61c2f6c0dcbff68a7c0</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormListaPeluqueria</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>1f9fbe8d980ef5d4a1b97c14f9dcf0e0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>borrar</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>379292bfa09274a063ba61205ec5457a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoFecha</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>9b2b1e7bd38910afb7e1a3d7b0b98e22</anchor>
+      <arglist>(int estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoGrupo</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>9d61ee82baa299425714af8ee8218904</anchor>
+      <arglist>(bool estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioEstadoMascota</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>835858b879b8ac80d79e2533544a24ba</anchor>
+      <arglist>(int estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioFecha</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>288b79bb4dfd14fa1f90d0b2240b0129</anchor>
+      <arglist>(const QDate &amp;fecha)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioIndice</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>c7b1cd98d1efb143e5324787f0b01318</anchor>
+      <arglist>(int indice)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>MPeluqueria *</type>
+      <name>modelo</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>6079db39ff670d882cdd2deace1b7e43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>crear_filtro</name>
+      <anchorfile>classFormListaPeluqueria.html</anchorfile>
+      <anchor>e139e8ecc3cc4e41071ea8c409b54038</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -4602,6 +6846,47 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormPrefOpciones</name>
+    <filename>classFormPrefOpciones.html</filename>
+    <base>EVentana</base>
+    <base>FormPrefHijo</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>aplicar</name>
+      <anchorfile>classFormPrefOpciones.html</anchorfile>
+      <anchor>15122c377f72579b2072bd3a733a34d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>cargar</name>
+      <anchorfile>classFormPrefOpciones.html</anchorfile>
+      <anchor>eecd6dd8b8e8f452378b732fbb247969</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormPrefOpciones.html</anchorfile>
+      <anchor>4cd620baf0318b31e49529e3859be04b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FormPrefOpciones</name>
+      <anchorfile>classFormPrefOpciones.html</anchorfile>
+      <anchor>74ad2ab232b684d2d25081d890298122</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormPrefOpciones</name>
+      <anchorfile>classFormPrefOpciones.html</anchorfile>
+      <anchor>4ce4d42060482c6ba0cf3febf8375188</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormPresupuestosAnteriores</name>
     <filename>classFormPresupuestosAnteriores.html</filename>
     <base>EVentana</base>
@@ -4718,6 +7003,13 @@
       <anchorfile>classFormularioCentral.html</anchorfile>
       <anchor>6484a9ecc7d0a95797a745a7abbe0b50</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPushButton *</type>
+      <name>PBCerrar</name>
+      <anchorfile>classFormularioCentral.html</anchorfile>
+      <anchor>4a06f54d1444dca328c5781372d9cd96</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4878,6 +7170,46 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FromPrefResumenes</name>
+    <filename>classFromPrefResumenes.html</filename>
+    <base>FormPrefHijo</base>
+    <member kind="function">
+      <type>void</type>
+      <name>aplicar</name>
+      <anchorfile>classFromPrefResumenes.html</anchorfile>
+      <anchor>490deccf90583ea8d8a2178c833c61a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cargar</name>
+      <anchorfile>classFromPrefResumenes.html</anchorfile>
+      <anchor>3b9a277ca8724fa932080e948f907476</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FromPrefResumenes</name>
+      <anchorfile>classFromPrefResumenes.html</anchorfile>
+      <anchor>3b9de8d76d0cd7237739c88dd3e8d0a7</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFromPrefResumenes.html</anchorfile>
+      <anchor>4c9c7e8c9a9c625da1aace7d5ec2e387</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FromPrefResumenes</name>
+      <anchorfile>classFromPrefResumenes.html</anchorfile>
+      <anchor>c014acc5813e7ff72d33aeaaaf37c285</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>gestotux</name>
     <filename>classgestotux.html</filename>
     <member kind="slot">
@@ -4987,6 +7319,13 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
+      <name>ayuda</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>2cb3763332245a0dbe30bab3269c89a8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
       <name>salir</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>c1f6d71336d02b9e3e4b3f1416b9d3af</anchor>
@@ -5036,6 +7375,13 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
+      <name>crearBarraLateral</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a5933e36a14947cf038281073470f76a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
       <name>crearReloj</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>fe0adee497aed0f1c6667635b54ef71f</anchor>
@@ -5069,6 +7415,13 @@
       <anchor>530b21922de6fbb10224be663c388562</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>hacerTablas</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>694ffdc2c9d26c89ab7d618b507b9c94</anchor>
+      <arglist>(QString nombrePlug)</arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>acercade</name>
@@ -5081,6 +7434,13 @@
       <name>ActActualizar</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>c38491bc1d7cbfcaf9e213bd59505072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAyuda</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>631660f238f69eba31208790a369682e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -5189,6 +7549,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>menuVer</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>1268f241da1b4a90a094f51d693b3571</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>QDir</type>
       <name>pluginsDir</name>
       <anchorfile>classgestotux.html</anchorfile>
@@ -5237,11 +7604,11 @@
       <arglist>(QWidget *v)</arglist>
     </member>
     <member kind="function">
-      <type>QList&lt; QAction * &gt;</type>
+      <type>QList&lt; QActionGroup * &gt;</type>
       <name>accionesBarra</name>
       <anchorfile>classHiComp.html</anchorfile>
-      <anchor>693d96cae4e80be1b5ec7a0e591ac418</anchor>
-      <arglist>() const </arglist>
+      <anchor>3b60d75b42c1f5c5c6525fa5a4460344</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -5256,6 +7623,13 @@
       <anchorfile>classHiComp.html</anchorfile>
       <anchor>fbeef3f81f4417e63f0ab8c0ef224914</anchor>
       <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>bbd840174e4b306096cceb9155c27fb0</anchor>
+      <arglist>(QToolBar *t)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -5506,6 +7880,13 @@
       <arglist>(QWidget *v)</arglist>
     </member>
     <member kind="function">
+      <type>QList&lt; QAction * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classInformesMovimientos.html</anchorfile>
+      <anchor>6f1e86e31144e4a21288fb4424a79f02</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>QString</type>
       <name>cargarArchivoEstilo</name>
       <anchorfile>classInformesMovimientos.html</anchorfile>
@@ -5688,6 +8069,13 @@
       <anchorfile>classListadoCaravanas.html</anchorfile>
       <anchor>683a1cfb8b02e5996b62195f142c123f</anchor>
       <arglist>(QWidget *ventana)</arglist>
+    </member>
+    <member kind="function">
+      <type>QList&lt; QAction * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classListadoCaravanas.html</anchorfile>
+      <anchor>539264b8eef4dda3dfdc3e1aee4506f8</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -5895,11 +8283,32 @@
     <name>MCategorias</name>
     <filename>classMCategorias.html</filename>
     <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMCategorias.html</anchorfile>
+      <anchor>c5aa185d5243280e5278127e40b3fcc5</anchor>
+      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>MCategorias</name>
       <anchorfile>classMCategorias.html</anchorfile>
       <anchor>24e9e075f9421f286d737beef138582c</anchor>
       <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MCategorias</name>
+      <anchorfile>classMCategorias.html</anchorfile>
+      <anchor>24e9e075f9421f286d737beef138582c</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MCategorias</name>
+      <anchorfile>classMCategorias.html</anchorfile>
+      <anchor>c6d6a9fbf70d608bea4f6586fa068a8a</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -5946,6 +8355,214 @@
       <anchorfile>classMClientes.html</anchorfile>
       <anchor>1ef2a2b4fc14f5cc5937b6656af8656e</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MCompra</name>
+    <filename>classMCompra.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>agregarCompra</name>
+      <anchorfile>classMCompra.html</anchorfile>
+      <anchor>72d55b55e10e724958ed8996b9349ad1</anchor>
+      <arglist>(QVariant fecha, QVariant proveedor, QVariant costo)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MCompra</name>
+      <anchorfile>classMCompra.html</anchorfile>
+      <anchor>9de661c9b11e7642fafa6a7fbab76375</anchor>
+      <arglist>(QObject *parent=0, bool relaciones=false)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MCompra</name>
+      <anchorfile>classMCompra.html</anchorfile>
+      <anchor>ca5b737782a1cf2e7e2ff1710df4ef97</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MCompraProductos</name>
+    <filename>classMCompraProductos.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>calcularTotales</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>0279d8302736e3f3932e5ca64e115f75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>columnCount</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>63aff478a13608d1b4cc7fba4911d44b</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>12cdb9b7f048cf1b7308d80d6d2ddb3b</anchor>
+      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type>Qt::ItemFlags</type>
+      <name>flags</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>88d86912fadf8ff5977701f16f9ccbc0</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>get_ultima_row</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>3cc378b9f00070fbba610866edfd2ccb</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QModelIndex</type>
+      <name>index</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>b61cc290073cc8c8e9ee7f054996871f</anchor>
+      <arglist>(int row, int column, const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isDirty</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>86ca294f3ffb5f61e55bb12a33dff308</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MCompraProductos</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>2fb147043132f6a267767f684e008496</anchor>
+      <arglist>(QObject *parent=0, bool calcula=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>primeInsert</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>7ac5a6f867abd8fab63c0dd87b24f3af</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>rowCount</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>00aca024e6f53dce9ad0b1df6b3123e8</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>fa3c958340f37e7f8b8999a10a655b68</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>total</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>4fdc1aa8d1330f4d5165a0e760e9f130</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MCompraProductos</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>d96f0f8b6fb7eac4148b97b85ea4888b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>ultima_row</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>cef7d5f421ad7e6a7c5c548fa276fb88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>recalcularTotal</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>95860796dd833ec3d76b628bb6ee0c92</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>calculaTotales</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>aa371097a92237309ea68b71308f86d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHash&lt; int, double &gt; *</type>
+      <name>subtotales</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>c9662f52b84ec430ff0d7277a1d38a70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>Total</name>
+      <anchorfile>classMCompraProductos.html</anchorfile>
+      <anchor>a4f07dec4d82630525671e17db94f724</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MDueno</name>
+    <filename>classMDueno.html</filename>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>59801157fd0a7fb4ccbf2f4ed0179c25</anchor>
+      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>get_ultima_row</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>40c9ca6d43146a3b9a6d134e89272564</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MDueno</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>b08b1ac020d093bc365da28bd436cb9c</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>b4c12e76b0f51a1c5a9c4a6f4969e810</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MDueno</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>5511267c881134a89d77faa3b80602bb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>primeInsert</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>43f039fd463d72560171e7fab140ad3b</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>ultima_row</name>
+      <anchorfile>classMDueno.html</anchorfile>
+      <anchor>b89c4fa1691556c4fac31e8a7bffcb64</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6020,6 +8637,165 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>MGasto</name>
+    <filename>classMGasto.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>agregarGasto</name>
+      <anchorfile>classMGasto.html</anchorfile>
+      <anchor>6353118936b5116533fa04ff8a6add8a</anchor>
+      <arglist>(QString descripcion, double costo, QDate Fecha, int categoria)</arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMGasto.html</anchorfile>
+      <anchor>6cb798470cae55ddc29ff2a30b4bfe09</anchor>
+      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MGasto</name>
+      <anchorfile>classMGasto.html</anchorfile>
+      <anchor>5d43ada3be5690a75fbdfbf6d1cd642f</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MGasto</name>
+      <anchorfile>classMGasto.html</anchorfile>
+      <anchor>6540b53ab30634ade93eca442ea52028</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MMascota</name>
+    <filename>classMMascota.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>agregarMascota</name>
+      <anchorfile>classMMascota.html</anchorfile>
+      <anchor>0e67bdbc400342546a360820df9a4ccd</anchor>
+      <arglist>(QVariant nombre, QVariant raza, QVariant genero, QModelIndex dueno)</arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMMascota.html</anchorfile>
+      <anchor>bad33956f6f82730edcec579895285b5</anchor>
+      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MMascota</name>
+      <anchorfile>classMMascota.html</anchorfile>
+      <anchor>69576252e651ebffe5ab9f17b6c2c065</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMMascota.html</anchorfile>
+      <anchor>5d289a16c3c7e8d356a9dbf9c57fef16</anchor>
+      <arglist>(const QModelIndex &amp;item, const QVariant &amp;value, int role)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MMascota</name>
+      <anchorfile>classMMascota.html</anchorfile>
+      <anchor>11e44557b08f6d468daf8d389f4310d5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MPeluqueria</name>
+    <filename>classMPeluqueria.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>agregarServicio</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>cff0ddf82c067bab9b67d549520aef06</anchor>
+      <arglist>(QVariant desc, QVariant precio, QVariant fecha, QVariant mascota)</arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>9da18a095c132422bec6815d9049a338</anchor>
+      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type>Qt::ItemFlags</type>
+      <name>flags</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>1c467e1fd2bcead535bb0565292c9d96</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MPeluqueria</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>3f88f81ce47e4102328d874e7c9ed599</anchor>
+      <arglist>(QObject *parent=0, bool relacion=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>rowCount</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>3f662801e2c967c6f0eb2d00a28a3217</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>508424b397cea582c0b5783bd4bdc1ae</anchor>
+      <arglist>(const QModelIndex &amp;item, const QVariant &amp;value, int role)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setLimite</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>5c3c08f1ff82c3ce8127eed7b4e7759b</anchor>
+      <arglist>(int lim)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSolo_lectura</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>52aae38feb5d25b291a0c57bf81e78e3</anchor>
+      <arglist>(bool theValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>solo_lectura</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>a09255f1e908a5b046a9d4a10582beb1</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MPeluqueria</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>707ef7385b97231d76e096713dcfff75</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>_solo_lectura</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>52b249fec73ac7f49b2d83c2a010436e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>limite</name>
+      <anchorfile>classMPeluqueria.html</anchorfile>
+      <anchor>465fd0f96bbaf3c47d74c8fa4b229226</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>MPrefCategorias</name>
     <filename>classMPrefCategorias.html</filename>
     <member kind="function">
@@ -6044,6 +8820,13 @@
       <arglist>(QObject *parent=0)</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMPrefCategorias.html</anchorfile>
+      <anchor>cd650d7ae0a491a9e503779620824c0b</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>~MPrefCategorias</name>
       <anchorfile>classMPrefCategorias.html</anchorfile>
@@ -6065,8 +8848,8 @@
       <type></type>
       <name>MPresupuesto</name>
       <anchorfile>classMPresupuesto.html</anchorfile>
-      <anchor>e2f37e94492bece229de6a817e57c4b7</anchor>
-      <arglist>(QObject *parent=0)</arglist>
+      <anchor>f4abfcbfd0fc8e6a998623ec3436e1ec</anchor>
+      <arglist>(QObject *parent=0, bool relacion=true)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -6126,6 +8909,20 @@
       <arglist>(const QModelIndex &amp;item, int role) const </arglist>
     </member>
     <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMProductos.html</anchorfile>
+      <anchor>a7c24f990424e2b037a702faadea2111</anchor>
+      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MProductos</name>
+      <anchorfile>classMProductos.html</anchorfile>
+      <anchor>7567c03fb05fae7917b6564c9170a6f0</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>MProductos</name>
       <anchorfile>classMProductos.html</anchorfile>
@@ -6140,10 +8937,67 @@
       <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)</arglist>
     </member>
     <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMProductos.html</anchorfile>
+      <anchor>d85b82a78a82c471d8675dd6337bb397</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>~MProductos</name>
       <anchorfile>classMProductos.html</anchorfile>
       <anchor>189f6d1f9e06c23364ca5616a288d76e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MProductos</name>
+      <anchorfile>classMProductos.html</anchorfile>
+      <anchor>189f6d1f9e06c23364ca5616a288d76e</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MProveedor</name>
+    <filename>classMProveedor.html</filename>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMProveedor.html</anchorfile>
+      <anchor>7629bb5ce07a7ee1e8813a15b3131f3a</anchor>
+      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MProveedor</name>
+      <anchorfile>classMProveedor.html</anchorfile>
+      <anchor>7e192734911c06295af463a9c9f62395</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MProveedor</name>
+      <anchorfile>classMProveedor.html</anchorfile>
+      <anchor>fcc84e77094cca003cce380a7ede501f</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MRazas</name>
+    <filename>classMRazas.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MRazas</name>
+      <anchorfile>classMRazas.html</anchorfile>
+      <anchor>509dc510cb9afdaea70f2793fa658517</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MRazas</name>
+      <anchorfile>classMRazas.html</anchorfile>
+      <anchor>4ec42188bf33923d49cfd9c74b9b54eb</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -6221,8 +9075,8 @@
       <type>bool</type>
       <name>guardar</name>
       <anchorfile>classMTProductosPresupuesto.html</anchorfile>
-      <anchor>612f89ca614c260911c961963b71ac22</anchor>
-      <arglist>(const int id_presupuesto) const </arglist>
+      <anchor>e19953a048b96f37e4070fd905222263</anchor>
+      <arglist>(const int id_presupuesto)</arglist>
     </member>
     <member kind="function">
       <type>QModelIndex</type>
@@ -6297,6 +9151,154 @@
       <anchorfile>classMTri.html</anchorfile>
       <anchor>b5e19f2415fc08506e2e7165d2403add</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MVenta</name>
+    <filename>classMVenta.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MVenta</name>
+      <anchorfile>classMVenta.html</anchorfile>
+      <anchor>032de8720cb648de520d69a44cd586c7</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MVenta</name>
+      <anchorfile>classMVenta.html</anchorfile>
+      <anchor>81481f37883c74ac4b054cea1ece11ad</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MVentaProducto</name>
+    <filename>classMVentaProducto.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>calcularTotales</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>7575bff732e9e3c82019f7bfa839d357</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>columnCount</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>217a4cd9cf9a3a5375c8eba6181621ba</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>54faeb2a656d1d544b57a5e199ef0f4d</anchor>
+      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type>Qt::ItemFlags</type>
+      <name>flags</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>8e1d33448aa26147ff0c975907916cc5</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>get_ultima_row</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>2fcf75b34ad1e55259c9087794d4df42</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QModelIndex</type>
+      <name>index</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>5a20fb21465c65f6a3908b1010410c57</anchor>
+      <arglist>(int row, int column, const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isDirty</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>932ce8e427542ab2d6fb1759d17f3c04</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MVentaProducto</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>099453923ad41de33334d6d5512cf3af</anchor>
+      <arglist>(QObject *parent=0, bool calcula=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>rowCount</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>07c6a8e43c9e2f39e2b199f9733c83c8</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>ca1c7608eaae7a5095bab395478f7d4b</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>total</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>702492ed4a6d24c75496afe70ef71456</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MVentaProducto</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>ab1fb943707979a511e4769437c46901</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>ultima_row</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>55f675cafcb2292e49cb18d8a86a6708</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>primeInsert</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>714c793bb46f360b5371f010dbc8dc31</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>recalcularTotal</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>d66291d8eb694be41e8c7f9814419740</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>calculaTotales</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>58cc246180c28a440cdec973ce8c34ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QHash&lt; int, double &gt; *</type>
+      <name>subtotales</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>0fc26b953d0f0a59458780009d9c4190</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>Total</name>
+      <anchorfile>classMVentaProducto.html</anchorfile>
+      <anchor>3b31a28c83c5107632f94bffdfda1cf1</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6643,11 +9645,11 @@
       <arglist>(QWidget *)</arglist>
     </member>
     <member kind="function">
-      <type>QList&lt; QAction * &gt;</type>
+      <type>QList&lt; QActionGroup * &gt;</type>
       <name>accionesBarra</name>
       <anchorfile>classprespuesto.html</anchorfile>
-      <anchor>fd09580e59227e14ca76f0358baa0116</anchor>
-      <arglist>() const </arglist>
+      <anchor>42a8c1a0661adbeb49c03c0c86c5d595</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -6655,6 +9657,13 @@
       <anchorfile>classprespuesto.html</anchorfile>
       <anchor>a40c39ef5b7c9c72691a35b204662960</anchor>
       <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>f783f5d605b4ef63b54693bfbd8a3f05</anchor>
+      <arglist>(QToolBar *t)</arglist>
     </member>
     <member kind="function">
       <type>QWidgetList</type>
@@ -6710,6 +9719,13 @@
       <name>nuevoPresupuesto</name>
       <anchorfile>classprespuesto.html</anchorfile>
       <anchor>a0d7a336cff4e115838c6e6e813b141b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verAnteriores</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>858a4ef5b36048d3bb9d0a68ed84b17f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
@@ -7251,11 +10267,11 @@
       <arglist>(QWidget *)</arglist>
     </member>
     <member kind="function">
-      <type>QList&lt; QAction * &gt;</type>
+      <type>QList&lt; QActionGroup * &gt;</type>
       <name>accionesBarra</name>
       <anchorfile>classproductos.html</anchorfile>
-      <anchor>1f11568bd7af58f848a27fab1abf4754</anchor>
-      <arglist>() const </arglist>
+      <anchor>844c0de18acc15f763f6ffd633116bc1</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -7263,6 +10279,13 @@
       <anchorfile>classproductos.html</anchorfile>
       <anchor>ab581a9674bf7b030d842d30150dd848</anchor>
       <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classproductos.html</anchorfile>
+      <anchor>f72abfa908e6d482429bc2811c52bd80</anchor>
+      <arglist>(QToolBar *t)</arglist>
     </member>
     <member kind="function">
       <type>QWidgetList</type>
@@ -7519,10 +10542,377 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>resumenAnual</name>
+    <filename>classresumenAnual.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>renderizar</name>
+      <anchorfile>classresumenAnual.html</anchorfile>
+      <anchor>7012062d9b773f15dd151334622eb156</anchor>
+      <arglist>(int id_categoria_detallada=2)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>resumenAnual</name>
+      <anchorfile>classresumenAnual.html</anchorfile>
+      <anchor>35aff18ed32c1457c0a656063025a928</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setvisorResumen</name>
+      <anchorfile>classresumenAnual.html</anchorfile>
+      <anchor>84b66acae7ddb23640916fb17f5d337d</anchor>
+      <arglist>(VisorResumenes *theValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>VisorResumenes *</type>
+      <name>visorResumen</name>
+      <anchorfile>classresumenAnual.html</anchorfile>
+      <anchor>0f81dbe02f1b70de5da16155a7ca9675</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~resumenAnual</name>
+      <anchorfile>classresumenAnual.html</anchorfile>
+      <anchor>5e75a59c3923214ceb4fe24e2eff8e9c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VisorResumenes *</type>
+      <name>form</name>
+      <anchorfile>classresumenAnual.html</anchorfile>
+      <anchor>6481a4685dbe4422f8bc845b7c1ce9bb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>resumenDiario</name>
+    <filename>classresumenDiario.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>generar</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>ad5abb429cd890c0623622f516a069af</anchor>
+      <arglist>(bool detallado)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>renderizar</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>b0d47cf8fdb7914c71f49f3f65d0e761</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>resumenDiario</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>6afd1cb76ecb1237588292996b88dff2</anchor>
+      <arglist>(QObject *parent=0, QDate fecha=QDate::currentDate())</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setvisorResumen</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>b2f29c33fcf940c962eef0ab0e973b01</anchor>
+      <arglist>(VisorResumenes *theValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>VisorResumenes *</type>
+      <name>visorResumen</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>7b05014b02caf4c261b74febc2935d9a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~resumenDiario</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>939a5b0a8cf543cf553bb1c7a45cb158</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>Fecha</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>fe7aa65c3dbfb81602071f70d6ff2366</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VisorResumenes *</type>
+      <name>form</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>14b2b858f3a00a898f7b74729cc4bbc9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMap&lt; QString, QVariant &gt;</type>
+      <name>valores</name>
+      <anchorfile>classresumenDiario.html</anchorfile>
+      <anchor>6ca3da8e85aa0c3e69681729564407ce</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>resumenGeneral</name>
+    <filename>classresumenGeneral.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>90ce81f723112abf888411980ce5b915</anchor>
+      <arglist>(QPrinter *impresora)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>compras</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>ff21e6a8eb852536e4c8dcad551cbc70</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>gastos</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>5a4c47fb02175b7d84458dd2a588bd24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>getDescripcion</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>31b3c6f3645b4a34912e4d2da0118c21</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>getTitulo</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>0d7bcc70ee028729ed560cdc039518f3</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>peluqueria</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>15ef4893c18ac8cdbb67ae2e945564c4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>renderizar</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>bdae1dafa63f279771ad89990709747b</anchor>
+      <arglist>(QDate primero=QDate::currentDate(), QDate ultimo=QDate::currentDate())</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>resumenGeneral</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>ab4616f9b84dd30a4a3884dbf95ba94a</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDescripcion</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>faf5daf289c1ebbb3c5b2269d2cf3d09</anchor>
+      <arglist>(const QString &amp;valor)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTitulo</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>fe7a2629d12fca0350c92dbec27ca8ca</anchor>
+      <arglist>(const QString &amp;valor)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ventas</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>9131293d2695229f24a2451e8fcdd04c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~resumenGeneral</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>e9e2e71838e3598392913c8646adcc0f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>parar</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>83d1f0a23b13eeb421256bcdc1400c6f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextCharFormat</type>
+      <name>cabeceraSeccion</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>b04861dd08001133880327d89cac67be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextBlockFormat</type>
+      <name>centrado</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>aa4ceca64df2ae7ddd9a17dd287437bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextBlockFormat</type>
+      <name>derecha</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>bfa6951f6d81b4286d420ff0de128bc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>descripcion</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>5e4a673dd04183a616ef4f60b13f3746</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QProgressDialog *</type>
+      <name>dialogo</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>94297611a08ddbb71a0346b80c71dffa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextDocument *</type>
+      <name>doc</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>6d4694d2e712d35e7e72f610136766b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>noSeguir</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>0fcc4901e4b7d4f26f06bbf9b27a1693</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>primero</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>671afb635eeb16798ab88e60220ef3d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTextTable *</type>
+      <name>tabla</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>ec2f3eb26aa5db83be2813be64beca50</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>titulo</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>4fded1a9ac94c0a02b2fb01c8669c408</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>total</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>0faf81ab64b80eb61c93372ea3ad7e56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>ultimo</name>
+      <anchorfile>classresumenGeneral.html</anchorfile>
+      <anchor>721295e1a6541c3984bc3e2fd2ddb8cc</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>resumenMensual</name>
+    <filename>classresumenMensual.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>generar</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>be3c54c31c16d8ca93fbc8b86c00de67</anchor>
+      <arglist>(bool detallado)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>renderizar</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>d09353497fcc01255080035a9e5b7cd7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>resumenMensual</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>2faedb79375c942f5bc334bed8e24b97</anchor>
+      <arglist>(QObject *parent=0, int mes=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setvisorResumen</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>a1cd1521f673997e596c0957e0269361</anchor>
+      <arglist>(VisorResumenes *theValue)</arglist>
+    </member>
+    <member kind="function">
+      <type>VisorResumenes *</type>
+      <name>visorResumen</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>e8875c222bab4d282ed6aef5f835d518</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~resumenMensual</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>98badf5b6f8d0a003a610b4d53e2067c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VisorResumenes *</type>
+      <name>form</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>a5ffa9ce119821e3b09c5ccf79ecbade</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>mes</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>8f40ecba4757ed2c387e76287e73d7d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMap&lt; QString, QVariant &gt;</type>
+      <name>valores</name>
+      <anchorfile>classresumenMensual.html</anchorfile>
+      <anchor>82a6a9a30b8d58d471211bae0d764fbd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>VCategorias</name>
     <filename>classVCategorias.html</filename>
     <base>EVLista</base>
     <base>EVLista</base>
+    <base>EVLista</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVCategorias.html</anchorfile>
+      <anchor>09121ae5eb150325637dfff828f85677</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
     <member kind="slot">
       <type>void</type>
       <name>antes_de_insertar</name>
@@ -7564,6 +10954,20 @@
       <anchorfile>classVCategorias.html</anchorfile>
       <anchor>086291213effb335c648bc727c14ecb4</anchor>
       <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>VCategorias</name>
+      <anchorfile>classVCategorias.html</anchorfile>
+      <anchor>086291213effb335c648bc727c14ecb4</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VCategorias</name>
+      <anchorfile>classVCategorias.html</anchorfile>
+      <anchor>0ce1c537683c3bfbd4df6b957aac2c0f</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -7628,8 +11032,35 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>VCompras</name>
+    <filename>classVCompras.html</filename>
+    <base>EVLista</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVCompras.html</anchorfile>
+      <anchor>1059d05e879d555e52fc35841e619074</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>VCompras</name>
+      <anchorfile>classVCompras.html</anchorfile>
+      <anchor>32f4e6f4d5ceff55ef8b0e5f6a7fb474</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VCompras</name>
+      <anchorfile>classVCompras.html</anchorfile>
+      <anchor>cf5b47520d5b8b1cb1a8fb53ae213857</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>VDuenos</name>
     <filename>classVDuenos.html</filename>
+    <base>EVLista</base>
     <member kind="signal">
       <type>void</type>
       <name>agregarVentana</name>
@@ -7653,6 +11084,13 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>VDuenos</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>52cdd0d3257a5a9a848df9aea39fbf33</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>~VDuenos</name>
       <anchorfile>classVDuenos.html</anchorfile>
       <anchor>6d737eb35023365ff5914738fb3acf01</anchor>
@@ -7664,6 +11102,76 @@
       <anchorfile>classVDuenos.html</anchorfile>
       <anchor>6d737eb35023365ff5914738fb3acf01</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VDuenos</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>6d737eb35023365ff5914738fb3acf01</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioFiltro</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>5a7830249fe6606d4a2900fe5f72aee3</anchor>
+      <arglist>(bool estado)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioOrden</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>3cb3a1ee278a9470edd13730141d41d0</anchor>
+      <arglist>(const QString &amp;columna)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioOrdenSentido</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>4616da487264e802b85bc4b84f75562f</anchor>
+      <arglist>(int estado)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>a3bed617b97fe4eb46980d2b3f692f90</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>eliminar</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>68f914d1b0a42e8ea07c023590a6fd73</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActFiltrar</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>96c4e21630d748eedfaf7fd75ba9227b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QComboBox *</type>
+      <name>CBOrden</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>b7f4589fdb0bc8c8bd0e387b92cc4d51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QCheckBox *</type>
+      <name>ChBAscendente</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>54747d66103b5f951daab05b1dc9358b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QFrame *</type>
+      <name>forden</name>
+      <anchorfile>classVDuenos.html</anchorfile>
+      <anchor>57e75d60cdadcf74e7735a6ac0ce55c9</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7700,6 +11208,32 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>VGastos</name>
+    <filename>classVGastos.html</filename>
+    <base>EVLista</base>
+    <member kind="function">
+      <type></type>
+      <name>VGastos</name>
+      <anchorfile>classVGastos.html</anchorfile>
+      <anchor>de404975affc06a9c359eeab7f8eab37</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VGastos</name>
+      <anchorfile>classVGastos.html</anchorfile>
+      <anchor>0abf2def2eb21b3d1af7272dbff1c370</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVGastos.html</anchorfile>
+      <anchor>207cac34589e27c6d6618496c5adb720</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>visorRecibo</name>
     <filename>classvisorRecibo.html</filename>
     <member kind="slot">
@@ -7708,6 +11242,13 @@
       <anchorfile>classvisorRecibo.html</anchorfile>
       <anchor>d7b27d910dbf2f408c3171cb6a438d6e</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classvisorRecibo.html</anchorfile>
+      <anchor>ce35a0adba9fcb42c351ab0befa55335</anchor>
+      <arglist>(QWidget *)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -7918,9 +11459,111 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>VMascota</name>
+    <filename>classVMascota.html</filename>
+    <base>EVLista</base>
+    <member kind="function">
+      <type></type>
+      <name>VMascota</name>
+      <anchorfile>classVMascota.html</anchorfile>
+      <anchor>ae5bb8d86330ae79e80337657233a7cf</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VMascota</name>
+      <anchorfile>classVMascota.html</anchorfile>
+      <anchor>aed95d38f9fd53be70d7953e58a5e205</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVMascota.html</anchorfile>
+      <anchor>580e6b5a68faba1ab9bbf553906898d0</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>VPresupuesto</name>
+    <filename>classVPresupuesto.html</filename>
+    <base>EVLista</base>
+    <member kind="function">
+      <type></type>
+      <name>VPresupuesto</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>b757e80b0fe693b6f6b4b817d614e263</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VPresupuesto</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>5ac5dfc4773b6575462f83c01c0d200a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>agregar</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>5dd44fd218d432333c1c321101330647</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>e7060e5fe5abdc7d71ad0a8fe1a25b91</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>buscar</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>2e3aa3af92d328b462ceac1672e5c2fe</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cerrar</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>b646f22a54a6773b39d74ee084829b08</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>eliminar</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>7f208d9d9e46619e5903547b421a0fc2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>imprimir</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>c3ce5b4805d018d91343bd6e188da14f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>modificar</name>
+      <anchorfile>classVPresupuesto.html</anchorfile>
+      <anchor>6609d93a355935f91658c93c3b00e0be</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>VProductos</name>
     <filename>classVProductos.html</filename>
     <base>EVLista</base>
+    <base>EVLista</base>
+    <member kind="function">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classVProductos.html</anchorfile>
+      <anchor>1a8617b3041bc6464ab63056073de544</anchor>
+      <arglist>(QCloseEvent *event)</arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>closeEvent</name>
@@ -7934,6 +11577,20 @@
       <anchorfile>classVProductos.html</anchorfile>
       <anchor>65730b129be6d2f1ae30050951a74814</anchor>
       <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>VProductos</name>
+      <anchorfile>classVProductos.html</anchorfile>
+      <anchor>65730b129be6d2f1ae30050951a74814</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VProductos</name>
+      <anchorfile>classVProductos.html</anchorfile>
+      <anchor>c670945a6839270fc61c8815751e71c8</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -7962,6 +11619,39 @@
       <anchorfile>classVProductos.html</anchorfile>
       <anchor>077c70e21d744af5faa7c3ae6b189b33</anchor>
       <arglist>(int row, QSqlRecord &amp;registro)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVProductos.html</anchorfile>
+      <anchor>077c70e21d744af5faa7c3ae6b189b33</anchor>
+      <arglist>(int row, QSqlRecord &amp;registro)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>VProveedor</name>
+    <filename>classVProveedor.html</filename>
+    <base>EVLista</base>
+    <member kind="function">
+      <type></type>
+      <name>VProveedor</name>
+      <anchorfile>classVProveedor.html</anchorfile>
+      <anchor>aaf43a0a4909b536f9b1c66c9372f312</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VProveedor</name>
+      <anchorfile>classVProveedor.html</anchorfile>
+      <anchor>b4eaf22f684e148d10b02cf5d3f8b288</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>antes_de_insertar</name>
+      <anchorfile>classVProveedor.html</anchorfile>
+      <anchor>ff0de448c3ba64df3244ff3594838a72</anchor>
+      <arglist>(int row, QSqlRecord &amp;record)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -8176,6 +11866,97 @@
     <file>presupuestodefault.h</file>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/plugins/digifauno/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/digifauno/</path>
+    <filename>dir_ee03e8b18dc042613fdcaf99b5436f94.html</filename>
+    <file>dcategoria.cpp</file>
+    <file>dcategoria.h</file>
+    <file>dgastos.cpp</file>
+    <file>dgastos.h</file>
+    <file>digifauno.cpp</file>
+    <file>digifauno.h</file>
+    <file>dmascota.cpp</file>
+    <file>dmascota.h</file>
+    <file>dmiembros.cpp</file>
+    <file>dmiembros.h</file>
+    <file>dproductos.cpp</file>
+    <file>dproductos.h</file>
+    <file>dproveedor.cpp</file>
+    <file>dproveedor.h</file>
+    <file>dventacompra.cpp</file>
+    <file>dventacompra.h</file>
+    <file>edsbprecio.cpp</file>
+    <file>edsbprecio.h</file>
+    <file>eresumen.cpp</file>
+    <file>eresumen.h</file>
+    <file>etrgastos.cpp</file>
+    <file>etrgastos.h</file>
+    <file>formagregarcompra.cpp</file>
+    <file>formagregarcompra.h</file>
+    <file>formagregargasto.cpp</file>
+    <file>formagregargasto.h</file>
+    <file>formagregarmasctoa.cpp</file>
+    <file>formagregarmasctoa.h</file>
+    <file>formagregarservicio.cpp</file>
+    <file>formagregarservicio.h</file>
+    <file>formagregarventa.cpp</file>
+    <file>formagregarventa.h</file>
+    <file>formlistacompras.cpp</file>
+    <file>formlistacompras.h</file>
+    <file>formlistapeluqueria.cpp</file>
+    <file>formlistapeluqueria.h</file>
+    <file>formprefopciones.cpp</file>
+    <file>formprefopciones.h</file>
+    <file>fromprefresumenes.cpp</file>
+    <file>fromprefresumenes.h</file>
+    <file>mcategorias.cpp</file>
+    <file>mcategorias.h</file>
+    <file>mcompra.cpp</file>
+    <file>mcompra.h</file>
+    <file>mcompraproductos.cpp</file>
+    <file>mcompraproductos.h</file>
+    <file>mdueno.cpp</file>
+    <file>mdueno.h</file>
+    <file>mgasto.cpp</file>
+    <file>mgasto.h</file>
+    <file>mmascota.cpp</file>
+    <file>mmascota.h</file>
+    <file>mpeluqueria.cpp</file>
+    <file>mpeluqueria.h</file>
+    <file>mproductos.cpp</file>
+    <file>mproductos.h</file>
+    <file>mproveedor.cpp</file>
+    <file>mproveedor.h</file>
+    <file>mrazas.cpp</file>
+    <file>mrazas.h</file>
+    <file>mventa.cpp</file>
+    <file>mventa.h</file>
+    <file>mventaproducto.cpp</file>
+    <file>mventaproducto.h</file>
+    <file>resumenanual.cpp</file>
+    <file>resumenanual.h</file>
+    <file>resumendiario.cpp</file>
+    <file>resumendiario.h</file>
+    <file>resumengeneral.cpp</file>
+    <file>resumengeneral.h</file>
+    <file>resumenmensual.cpp</file>
+    <file>resumenmensual.h</file>
+    <file>vcategorias.cpp</file>
+    <file>vcategorias.h</file>
+    <file>vcompras.cpp</file>
+    <file>vcompras.h</file>
+    <file>vduenos.cpp</file>
+    <file>vduenos.h</file>
+    <file>vgastos.cpp</file>
+    <file>vgastos.h</file>
+    <file>vmascota.cpp</file>
+    <file>vmascota.h</file>
+    <file>vproductos.cpp</file>
+    <file>vproductos.h</file>
+    <file>vproveedor.cpp</file>
+    <file>vproveedor.h</file>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/</name>
     <path>/home/Esteban/Programas/gestotux/</path>
     <filename>dir_b1a546a748a62f1bda915a377e9774c0.html</filename>
@@ -8265,6 +12046,7 @@
     <path>/home/Esteban/Programas/gestotux/plugins/</path>
     <filename>dir_2241d903d8b552fecd54d40d9c6f6ba2.html</filename>
     <dir>Programas/gestotux/plugins/aCarCorr/</dir>
+    <dir>Programas/gestotux/plugins/digifauno/</dir>
     <dir>Programas/gestotux/plugins/HiComp/</dir>
     <dir>Programas/gestotux/plugins/OscarSorazi/</dir>
     <dir>Programas/gestotux/plugins/presupuestador/</dir>
@@ -8306,6 +12088,8 @@
     <file>prespuesto.h</file>
     <file>presupuesto.cpp</file>
     <file>presupuesto.h</file>
+    <file>vpresupuesto.cpp</file>
+    <file>vpresupuesto.h</file>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/plugins/productos/</name>
@@ -8332,6 +12116,10 @@
     <name>Programas/gestotux/src/</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>dir_a6a96f4101e30ef9cb693fc53f8c1212.html</filename>
+    <file>barralateral.cpp</file>
+    <file>barralateral.h</file>
+    <file>botoneslaterales.cpp</file>
+    <file>botoneslaterales.h</file>
     <file>ebackup.cpp</file>
     <file>ebackup.h</file>
     <file>eenviobackup.cpp</file>
@@ -8342,6 +12130,8 @@
     <file>eplugin.h</file>
     <file>esplash.cpp</file>
     <file>esplash.h</file>
+    <file>everificabackup.cpp</file>
+    <file>everificabackup.h</file>
     <file>formacercade.cpp</file>
     <file>formacercade.h</file>
     <file>formactualizacion.cpp</file>
@@ -8363,6 +12153,7 @@
     <file>reloj.h</file>
     <file>vcliente.cpp</file>
     <file>vcliente.h</file>
+    <file>version.h</file>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/utiles/</name>
@@ -8370,6 +12161,8 @@
     <filename>dir_96dd5dfec6529fa71a74b9d6ee5ac519.html</filename>
     <file>eactcerrar.cpp</file>
     <file>eactcerrar.h</file>
+    <file>eactguardar.cpp</file>
+    <file>eactguardar.h</file>
     <file>eactimprimir.cpp</file>
     <file>eactimprimir.h</file>
     <file>eayuda.cpp</file>

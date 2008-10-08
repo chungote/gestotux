@@ -58,6 +58,25 @@ QList<QActionGroup *> AdminCarCorr::accionesBarra()
  GTris->addAction( ActAgregarStock );
  GTris->addAction( ActAgregarVenta );
  lista.append( GTris );
+ QActionGroup *resumenes = new QActionGroup( this );
+ resumenes->setObjectName( "resumen" );
+ resumenes->setProperty( "titulo", "titulo" );
+ if( !plugins().isEmpty() )
+ {
+ 	foreach( EInformeInterface *p, plugins() )
+	{
+		if( !p->accionesBarra().isEmpty() )
+		{
+			QAction *ac;
+			foreach( ac, p->accionesBarra() )
+			{
+				resumenes->addAction( ac );
+			}
+		}
+
+	}
+ }
+ lista.append( resumenes );
  return lista;
 }
 

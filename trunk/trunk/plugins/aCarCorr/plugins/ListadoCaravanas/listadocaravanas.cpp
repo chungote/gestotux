@@ -97,3 +97,14 @@ void ListadoCaravanas::informeCaravanas()
   agregarVentana( visor );
  }
 }
+
+
+/*!
+    \fn ListadoCaravanas::accionesBarra()
+ */
+QList<QAction *>  ListadoCaravanas::accionesBarra()
+{
+ QList<QAction *> lista;
+ lista.append( ActInformeCaravanas );
+ return lista;
+}

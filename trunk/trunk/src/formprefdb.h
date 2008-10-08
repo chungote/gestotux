@@ -25,6 +25,12 @@
 #include "formprefhijo.h"
 #include "ui_ForPrefDb.h"
 
+/*!
+ * \brief Formulario de preferencias de base de datos
+ *
+ * Clase que realiza el formulario para la configuracion de la db interna o externa segun sea necesario
+ * @author Esteban Zeller <tranfuga25s@gmail.com>
+ */
 class FormPrefDb : public EVentana, public FormPrefHijo, private Ui::FormPrefDbBase
 {
   Q_OBJECT

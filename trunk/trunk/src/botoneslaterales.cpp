@@ -42,30 +42,39 @@ BotonesLaterales::BotonesLaterales(QWidget* parent, Qt::WindowFlags f )
 		{
 			if( !pest->actions().isEmpty() )
 			{
-				// Creo una de las cosefiacas
-				QWidget *w = new QWidget( this );
-				QVBoxLayout *layout = new QVBoxLayout( w );
-				w->setObjectName( pest->objectName() );
-				this->addItem( w, QIcon( pest->property( "icono" ).toString()), pest->property("titulo").toString() );
-
+				QWidget *w;
+				// Existe ya el grupo?
+				if( this->findChild<QWidget*>( pest->objectName() ) != 0 )
+				{
+					//Existe
+					w = this->findChild<QWidget *>( pest->objectName() );
+				}
+				else
+				{
+					// No existe, lo creo
+					w = new QWidget( this );
+					QVBoxLayout *layout = new QVBoxLayout( w );
+					w->setObjectName( pest->objectName() );
+					this->addItem( w, QIcon( pest->property( "icono" ).toString()), pest->property("titulo").toString() );
+					QSpacerItem *espaciador = new QSpacerItem( 10, 10, QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding );
+					layout->addItem( espaciador );
+				}
 				// Agrego las acciones
 				QAction *act;
 				foreach( act, pest->actions() )
 				{
-					QPushButton *b = new QPushButton();
+					QPushButton *b = new QPushButton( this );
 					b->setText( act->text() );
 					b->setIcon( act->icon() );
 					b->setFlat( true );
 					connect( b, SIGNAL( clicked() ), act, SIGNAL( triggered() ) );
-					layout->addWidget( b );
+					qobject_cast<QVBoxLayout *>(w->layout())->insertWidget( w->layout()->count() -1, b );
 				}
-				QSpacerItem *espaciador = new QSpacerItem( 10, 10, QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding );
-				layout->addItem( espaciador );
-			}
-		}
-	}
+			}// fin actiongroup vacio
+		} // fin repeticion x actiongroup
+	} // fin de si esta vacia
     }
-    //this->setMinimumWidth( 200 );
+    this->setMinimumWidth( 180 );
 }
 
 

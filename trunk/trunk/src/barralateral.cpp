@@ -26,7 +26,7 @@ BarraLateral::BarraLateral(const QString &title, QWidget *parent )
 {
 	setObjectName( QString::fromUtf8( "BarraLateral" ) );
 	setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
-	setFeatures( QDockWidget::DockWidgetMovable & !QDockWidget::DockWidgetClosable );
+	setFeatures( DockWidgetMovable | DockWidgetFloatable );
 	ls = new BotonesLaterales( this );
 	setWidget( ls );
 }

@@ -38,6 +38,7 @@ public:
     double version() const;
     void crearMenu( QMenu *menu );
     bool inicializar();
+    QList<QAction *>  accionesBarra();
 
 signals:
     void agregarVentana( QWidget *ventana );
