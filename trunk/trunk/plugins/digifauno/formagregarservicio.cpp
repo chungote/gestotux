@@ -23,6 +23,7 @@
 #include <QMessageBox>
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include "eactcerrar.h"
 #include "preferencias.h"
 
 FormAgregarServicio::FormAgregarServicio( QWidget* parent )
@@ -31,9 +32,9 @@ FormAgregarServicio::FormAgregarServicio( QWidget* parent )
 	setupUi(this);
 	setObjectName( "FormAgregarServicio" );
 	setWindowTitle( "Agregar Nuevo Servicio de Peluqueria" );
+	setWindowIcon( QIcon( ":/imagenes/pelu.gif" ) );
 
-	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
+	this->addAction( new EActCerrar( this ) );
 
 	QSqlQueryModel *modeloMascota = new QSqlQueryModel( CBMascota );
 	modeloMascota->setQuery( "SELECT m.id, m.nombre||' - '||d.apellido||', '||d.nombre FROM mascota m, dueno d WHERE m.id_dueno = d.id ORDER BY 2" );

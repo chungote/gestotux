@@ -30,12 +30,14 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	setupUi(this);
 	preferencias *p = preferencias::getInstancia();
 	LEHost->setText( p->value( "mysql/host" ).toString() );
+	SBPuerto->setValue( p->value( "mysql/puerto", 3306 ).toInt() );
 	LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
 	LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
 	adjustSize();
         PBBarra->setValue( 0 );
         PBBarra->setFormat( "" );
 	this->setWindowTitle( "Conexion MySQL");
+	this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
 	LEContra->setEchoMode( QLineEdit::Password );
 }
 
@@ -54,11 +56,15 @@ void EMysql::accept()
   PBBarra->setValue(0);
   PBBarra->setFormat( "Intentando conectar..." );
   QTimer temporizador( this );
-  temporizador.setInterval( 100 );
+  temporizador.setInterval( 10 );
   connect( &temporizador, SIGNAL(timeout()), this, SLOT(avanzarBarra()));
   temporizador.start();
   *_db = QSqlDatabase::addDatabase( "QMYSQL" );
   _db->setHostName( LEHost->text() );
+  if( CkBPuerto->isChecked() )
+  {
+    _db->setPort( SBPuerto->value() );
+  }
   _db->setDatabaseName( LEBaseDatos->text() );
   _db->setUserName( LEUsuario->text() );
   _db->setPassword( LEContra->text() );
@@ -70,6 +76,7 @@ void EMysql::accept()
    p->setValue( "mysql/base", LEBaseDatos->text() );
    p->setValue( "mysql/usuario", LEUsuario->text() );
    p->setValue( "mysql/host", LEHost->text() );
+   p->setValue( "mysql/puerto", SBPuerto->value() );
    QDialog::accept();
   }
   else

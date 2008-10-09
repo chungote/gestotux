@@ -31,6 +31,7 @@ VGastos::VGastos( QWidget* parent )
 {
  setObjectName("vistaGastos");
  setWindowTitle(  "Visor de Gastos" );
+ setWindowIcon( QIcon(":/imagenes/gasto.jpg" ) );
 
  ActAgregar->disconnect();
  DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);

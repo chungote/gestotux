@@ -34,6 +34,26 @@
         <item>
          <widget class="QLineEdit" name="LEHost" />
         </item>
+        <item>
+         <widget class="QCheckBox" name="CkBPuerto" >
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="SBPuerto" >
+          <property name="frame" >
+           <bool>true</bool>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="maximum" >
+           <number>99999</number>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -166,6 +186,22 @@
     <hint type="destinationlabel" >
      <x>345</x>
      <y>327</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CkBPuerto</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SBPuerto</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>317</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>341</x>
+     <y>48</y>
     </hint>
    </hints>
   </connection>

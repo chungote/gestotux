@@ -27,6 +27,7 @@ VProveedor::VProveedor( QWidget *parent )
 {
  setObjectName( "ListaProveedores" );
  setWindowTitle( "Proveedores" );
+ setWindowIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
  modelo = new MProveedor( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 ); // oculta el ID

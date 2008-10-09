@@ -29,6 +29,7 @@ VCompras::VCompras(QWidget *parent)
 {
  setObjectName( "lista_compras" );
  setWindowTitle( "Lista de compras realizadas" );
+ setWindowIcon( QIcon(":/imagenes/compras.jpg" ) );
  modelo = new MCompra( this, true );
  vista->setModel( modelo );
  modelo->select();
