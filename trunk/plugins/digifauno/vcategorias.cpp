@@ -27,7 +27,7 @@
 VCategorias::VCategorias( QWidget *parent )
  : EVLista( parent )
 {
- setWindowIcon( QIcon( ":/imagenes/categorias.gif" ) );
+ setWindowIcon( QIcon( ":/imagenes/categorias.jpg" ) );
  setWindowTitle( "Listado de categorias" );
  modelo = new MCategorias( this );
  vista->setModel( modelo );

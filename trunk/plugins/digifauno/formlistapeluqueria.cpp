@@ -31,6 +31,7 @@ FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
 	setupUi(this);
 	setObjectName( "lista_servicios" );
 	setWindowTitle( "Listado de servicios brindados" );
+	setWindowIcon( QIcon( ":/imagenes/pelu.gif" ) );
 
 	this->addAction( new EActCerrar( this ) );
 	QAction *ActAgregar = new QAction( "Agregar", this );
