@@ -59,7 +59,9 @@ TARGET = gestotux
 DESTDIR = ../bin
 
 DISTFILES += qt_es.qm \
- ../ayuda/salir.html
+ ../ayuda/salir.html \
+ tablas.QMYSQL.sql \
+ tablas.QSQLITE.sql
 
 win32 {
     CONFIG += release
@@ -88,3 +90,7 @@ TRANSLATIONS += gestotux.ts
 INCLUDEPATH += ../utiles \
   ../utiles/ui
 
+DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
+message( "Actualizando traduccion" )
+message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )

@@ -37,7 +37,14 @@ FormAgregarServicio::FormAgregarServicio( QWidget* parent )
 	this->addAction( new EActCerrar( this ) );
 
 	QSqlQueryModel *modeloMascota = new QSqlQueryModel( CBMascota );
-	modeloMascota->setQuery( "SELECT m.id, m.nombre||' - '||d.apellido||', '||d.nombre FROM mascota m, dueno d WHERE m.id_dueno = d.id ORDER BY 2" );
+	if( QSqlDatabase::database().driverName() == "QSQLITE" )
+	{
+		modeloMascota->setQuery( "SELECT m.id, m.nombre||' - '||d.apellido||', '||d.nombre FROM mascota m, dueno d WHERE m.id_dueno = d.id ORDER BY 2" );
+	}
+	else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+	{
+		modeloMascota->setQuery( "SELECT m.id, CONCAT( CONCAT( CONCAT( CONCAT( m.nombre, \" - \" ), d.apellido ), \", \" ), d.nombre ) FROM mascota m, dueno d WHERE m.id_dueno = d.id ORDER BY 2" );
+	}
 	CBMascota->setModel( modeloMascota );
 	CBMascota->setModelColumn( 1 );
 	CBMascota->setCurrentIndex( -1 );

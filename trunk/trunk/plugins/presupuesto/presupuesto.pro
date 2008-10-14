@@ -47,5 +47,12 @@ INCLUDEPATH += ../../src \
 
 CONFIG -= release
 
-DISTFILES += presupuesto.SQLITE.sql
+DISTFILES += presupuesto.SQLITE.sql \
+ presupuesto.QMYSQL.sql
 
+TRANSLATIONS += presupuesto.ts
+
+DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
+message( "Actualizando traduccion" )
+message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )

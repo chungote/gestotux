@@ -38,3 +38,11 @@
 
 13/08/08
 - Agregada restriccion de deshabilitar botones de presupuesto si no existen productos
+
+13/10/08
+- Arreglado path de archivo ui
+- Agregado archivo mysql de caravanas.
+
+14/10/08
+- Agregada autoactualizacion de traducciones con cada qmake y carga automatica
+- Arreglado problema de cola para creacion de combo de clientes segun driver de db.

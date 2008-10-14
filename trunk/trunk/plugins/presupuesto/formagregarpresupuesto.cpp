@@ -77,7 +77,14 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
 	// Seteo la lista de clientes
 	modeloClientes = new QSqlQueryModel( this );
-	modeloClientes->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
+	if( QSqlDatabase::database().driverName() == "QSQLITE" )
+        {
+         modeloClientes->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
+        }
+	else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+	{
+	 modeloClientes->setQuery( "SELECT id, CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes" );
+	}
 
 	CBCliente->setModel( modeloClientes );
 	CBCliente->setModelColumn( 1 );
@@ -189,7 +196,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  {
   int id_presupuesto = -1;
   if( !QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) )
-  {}
+  { qDebug("Error, no hay last_id" ); QSqlDatabase::database().rollback(); return; }
   else
   {
 	QVariant var = mod->query().lastInsertId();

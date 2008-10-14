@@ -230,6 +230,7 @@ bool MTProductosPresupuesto::guardar( const int id_presupuesto )
  {
    if( isDirty( index( f, 3 ) ) )
    {
+    qDebug( qPrintable( "sucio: " + QString::number( f ) ) );
     setData( index( f, 1 ), id_presupuesto, Qt::EditRole );
    }
  }

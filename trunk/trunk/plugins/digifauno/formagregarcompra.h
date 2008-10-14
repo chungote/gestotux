@@ -22,7 +22,7 @@
 #define FORMAGREGARCOMPRA_H
 
 #include "eventana.h"
-#include "ui/ui_FormAgregarCompraBase.h"
+#include "ui_FormAgregarCompraBase.h"
 class MProveedor;
 
 class FormAgregarCompra : public EVentana, private Ui::FormAgregarCompraBase

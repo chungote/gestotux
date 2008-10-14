@@ -34,7 +34,7 @@ QT = gui \
 	core \
 	svg \
 	sql \
-	xml 
+	xml
 
 FORMS += FormAgregarReciboBase.ui \
  FPrefRecibos.ui	 \
@@ -64,3 +64,9 @@ CONFIG -= release
 
 CONFIG += help
 
+TRANSLATIONS += hicomp.ts
+
+DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
+message( "Actualizando traduccion" )
+message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )

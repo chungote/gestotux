@@ -387,6 +387,7 @@ bool gestotux::cargarPlugins()
 				}
 			}
 			_plugins->insert( plug->nombre(), plug );
+			cargar_traduccion( plug->nombre() );
 			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
 		else
@@ -508,4 +509,20 @@ void gestotux::crearBarraLateral()
 {
  BarraLateral *r = new BarraLateral( "Barra Lateral", this );
  addDockWidget( Qt::LeftDockWidgetArea, r );
+}
+
+
+/*!
+    \fn gestotux::cargar_traduccion( QString nombre_plugin )
+ */
+void gestotux::cargar_traduccion( QString nombre_plugin )
+{
+ QTranslator *traductor = new QTranslator( qApp );
+ if( !traductor->load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + nombre_plugin) )
+ {
+  qDebug( qPrintable( "Error al cargar la traduccion de " + nombre_plugin ) );
+  delete traductor;
+  return;
+ }
+ QCoreApplication::instance()->installTranslator( traductor );
 }

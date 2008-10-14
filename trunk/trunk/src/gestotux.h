@@ -56,6 +56,7 @@ public:
       static QToolBar *_barraAcciones;
       static QList<EPlugin *> plugins();
       static QHash<QString, EPlugin *> *pluginsHash();
+    void cargar_traduccion( QString nombre_plugin );
 
 
 protected:

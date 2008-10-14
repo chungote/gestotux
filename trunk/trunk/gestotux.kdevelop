@@ -182,7 +182,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir></activedir>
+      <activedir>plugins/digifauno</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
