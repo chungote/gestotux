@@ -7,5 +7,6 @@
     </qresource>
     <qresource prefix="sql">
 	<file>presupuesto.QSQLITE.sql</file>
+	<file>presupuesto.QMYSQL.sql</file>
     </qresource>
 </RCC>

@@ -33,6 +33,7 @@
 resumenGeneral::resumenGeneral(QObject *parent)
  : QObject(parent), noSeguir( false )
 {
+ doc = new QTextDocument( this );
 }
 
 resumenGeneral::~resumenGeneral()
