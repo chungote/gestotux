@@ -17,48 +17,21 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
-#include <QComboBox>
+#ifndef EMCLIENTE_H
+#define EMCLIENTE_H
 
-#include "filtroclientes.h"
+#include <QSqlQueryModel>
 
-FiltroClientes::FiltroClientes(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FiltroClientesBase()
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class EMCliente : public QSqlQueryModel
 {
-	setupUi(this);
-	this->setAttribute( Qt::WA_DeleteOnClose );
+Q_OBJECT
+public:
+    EMCliente(QObject *parent = 0);
+    ~EMCliente();
+    void inicializar();
+};
 
-	CBClientes->setModel( new EMCliente( CBClientes ) );
-	CBClientes->setModelColumn( 1 );
-	CBClientes->setEditable( false );
-
-	GBfiltrar->setChecked( false );
-	CBClientes->setCurrentIndex( -1 );
-
-	connect( GBfiltrar, SIGNAL( toggled( bool ) ), this, SLOT( seteaFiltradoSlot( bool ) ) );
-	connect( CBClientes, SIGNAL( currentIndexChanged ( int ) ), this, SLOT( cambioClienteSlot( int ) ) );
-}
-
-FiltroClientes::~FiltroClientes()
-{
-}
-
-
-
-
-/*!
-    \fn FiltroClientes::cambioClienteSlot( int idcombo )
- */
-void FiltroClientes::cambioClienteSlot( int idcombo )
-{
-  emit cambioCliente( CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ).toInt() );
-}
-
-
-/*!
-    \fn FiltroClientes::seteaFiltradoSlot( bool activo )
- */
-void FiltroClientes::seteaFiltradoSlot( bool activo )
-{
- emit seteaFiltrado( activo, CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ).toInt() );
-}
+#endif

@@ -210,7 +210,7 @@ void resumenGeneral::peluqueria()
             return;
           }
 	// Busco la cantidad en precio
-	cola.prepare( QString( "SELECT SUM(precio) FROM peluqueria WHERE fecha BETWEEN '%1' AND '%2'" ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+	cola.prepare( "SELECT SUM(precio) FROM peluqueria WHERE " + hacerWhere() );
 	if( cola.exec() )
 	{
 		if( cola.next() )
@@ -259,9 +259,10 @@ void resumenGeneral::gastos()
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Seccion de Gastos
  QSqlQuery cola;
- cola.prepare( QString( "SELECT COUNT(id) FROM gastos WHERE fecha BETWEEN '%1' AND '%2' " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+ cola.prepare( "SELECT COUNT(id) FROM gastos WHERE " + hacerWhere() );
  if( cola.exec() )
  {
+  qDebug( qPrintable( cola.lastQuery() ) );
   if( !cola.next() )
   {
    qDebug( "error en  next1()" );
@@ -282,9 +283,10 @@ void resumenGeneral::gastos()
         dialogo->setRange( 0, cantidad.toInt()+1 );
         dialogo->setValue( 0 );
 	// Busco la cantidad en precio
-	cola.prepare( QString( "SELECT SUM( costo ) FROM gastos WHERE fecha BETWEEN '%1' AND '%2'" ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+	cola.prepare( "SELECT SUM( costo ) FROM gastos WHERE " + hacerWhere() );
 	if( cola.exec() )
 	{
+qDebug( qPrintable( cola.lastQuery() ) );
 		if( cola.next() )
 		{
 		      if( noSeguir )
@@ -304,7 +306,7 @@ void resumenGeneral::gastos()
                         dialogo->setLabelText( "Gastos - Generando contenidos... " );
                         // Listado de gastos
                         QSqlQuery cola1;
-                        if( cola1.exec( QString( "SELECT descripcion, COUNT( id ), SUM( costo ) FROM gastos WHERE fecha BETWEEN '%1' AND '%2' GROUP BY descripcion" ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) ) )
+                        if( cola1.exec( "SELECT descripcion, COUNT( id ), SUM( costo ) FROM gastos WHERE " + hacerWhere() + " GROUP BY descripcion"  ) )
                         {
                           while( cola1.next() )
                           {
@@ -361,7 +363,7 @@ void resumenGeneral::compras()
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Seccion de Gastos
  QSqlQuery cola;
- cola.prepare( QString( "SELECT COUNT(id) FROM compras WHERE fecha BETWEEN '%1' AND '%2' " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+ cola.prepare( "SELECT COUNT(id) FROM compras WHERE " + hacerWhere() );
  if( cola.exec() )
  {
   if( !cola.next() )
@@ -381,7 +383,7 @@ void resumenGeneral::compras()
 	dialogo->setLabelText( "Compras - Sumando... " );
 	dialogo->setRange( 0, cantidad.toInt()+1 );
 	dialogo->setValue( 0 );
-	cola.prepare( QString( "SELECT SUM( costo ) FROM compras WHERE fecha BETWEEN '%1' AND '%2'" ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+	cola.prepare( "SELECT SUM( costo ) FROM compras WHERE " + hacerWhere() );
 	if( cola.exec() )
 	{
 		if( cola.next() )
@@ -400,7 +402,7 @@ void resumenGeneral::compras()
                         // Listado de gastos
                         dialogo->setLabelText( "Compras - Generando listado... " );
                         QSqlQuery cola1; // si los quiere agrupados: GROUP BY c.id_proveedor;
-                        if( cola1.exec( QString( "SELECT 1, p.nombre, c.costo FROM compras c, proveedor p WHERE c.id_proveedor = p.id AND  fecha BETWEEN '%1' AND '%2' " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) ) )
+                        if( cola1.exec( "SELECT 1, p.nombre, c.costo FROM compras c, proveedor p WHERE c.id_proveedor = p.id AND  " + hacerWhere() ) )
                         {
                           while( cola1.next() )
                           {
@@ -457,7 +459,7 @@ void resumenGeneral::ventas()
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Seccion de Gastos
  QSqlQuery cola;
- cola.prepare( QString( "SELECT COUNT(id) FROM ventas WHERE fecha BETWEEN '%1' AND '%2' " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+ cola.prepare( "SELECT COUNT(id) FROM ventas WHERE " + hacerWhere() );
  if( cola.exec() )
  {
   if( !cola.next() )
@@ -477,7 +479,7 @@ void resumenGeneral::ventas()
         dialogo->setValue( 0 );
         if( noSeguir ) {return;}
 	// Busco la cantidad en precio
-	cola.prepare( QString( "SELECT SUM( precio*cantidad ) FROM ventas_productos WHERE id_venta IN ( SELECT id FROM ventas WHERE fecha BETWEEN '%1' AND '%2' )" ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+	cola.prepare( QString( "SELECT SUM( precio*cantidad ) FROM ventas_productos WHERE id_venta IN ( SELECT id FROM ventas WHERE " + hacerWhere() + " )" ) );
 	if( cola.exec() )
 	{
 		if( cola.next() )
@@ -496,7 +498,7 @@ void resumenGeneral::ventas()
                         // Listado de ventas
                         dialogo->setLabelText( "Ventas - Generando listado... " );
                         QSqlQuery cola1;
-                        if( cola1.exec( QString( "SELECT SUM( vc.cantidad ), p.nombre, SUM( vc.cantidad*vc.precio ) FROM ventas_productos vc, producto p WHERE vc.id_producto = p.id AND vc.id_venta IN ( SELECT id FROM ventas WHERE fecha BETWEEN '%1' AND '%2' ) GROUP BY vc.id_producto; " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) ) )
+                        if( cola1.exec( "SELECT SUM( vc.cantidad ), p.nombre, SUM( vc.cantidad*vc.precio ) FROM ventas_productos vc, producto p WHERE vc.id_producto = p.id AND vc.id_venta IN ( SELECT id FROM ventas WHERE " + hacerWhere() + " ) GROUP BY vc.id_producto; " ) )
                         {
                           while( cola1.next() )
                           {
@@ -560,4 +562,20 @@ void resumenGeneral::parar()
 void resumenGeneral::imprimir( QPrinter* impresora )
 {
  doc->print( impresora );
+}
+
+
+/*!
+    \fn resumenGeneral::hacerWhere()
+ */
+QString resumenGeneral::hacerWhere()
+{
+ if( QSqlDatabase::database().driverName() == "QSQLITE" )
+ {
+  return QString( "fecha BETWEEN '%1' AND '%2' " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) );
+ }
+ else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+ {
+  return QString( "fecha BETWEEN CAST( '%1' AS DATE ) AND CAST( '%2' AS DATE ) " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) );
+ }
 }

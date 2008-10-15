@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "formmodificarrecibo.h"
 
-#include <QSqlQueryModel>
+#include "emcliente.h"
 #include <QMessageBox>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -75,9 +75,7 @@ FormModificarRecibo::FormModificarRecibo( QWidget *parent )
   CBMeses->addItem( locale.monthName( i, QLocale::LongFormat ) );
  }
 
- QSqlQueryModel *mcli = new QSqlQueryModel( this );
- mcli->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
- CBClientes->setModel( mcli );
+ CBClientes->setModel( new EMCliente( CBClientes ) );
  CBClientes->setModelColumn( 1 );
  CBClientes->setCurrentIndex( 0 );
 

@@ -37,6 +37,7 @@
 #include "../../src/mclientes.h"
 #include "mcaravanadueno.h"
 #include "eactcerrar.h"
+#include "emcliente.h"
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
   #include "mduenos.h"
 #endif
@@ -85,9 +86,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 	qobject_cast<QSqlTableModel *>(CBCategoria->model())->select();
 	CBCategoria->setCurrentIndex( -1 );
 
-	QSqlQueryModel *mcli = new QSqlQueryModel( this );
-	mcli->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
-	CBCliente->setModel( mcli );
+	CBCliente->setModel( new EMCliente( CBCliente ) );
 	CBCliente->setModelColumn( 1 );
 	CBCliente->setCurrentIndex( -1 );
 
@@ -321,8 +320,8 @@ void FormMovimiento::agregarCliente()
 	if( cola.exec( QString( "INSERT INTO clientes( nombre, apellido ) VALUES ( '%1', '%2' )" ).arg( nombre ).arg( apellido ) ) )
 	{
 		///@todo Selecciono el id insertado en el combo automaticamente???
-		qobject_cast<QSqlQueryModel *>(CBCliente->model())->clear();
-		qobject_cast<QSqlQueryModel *>(CBCliente->model())->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
+		qobject_cast<EMCliente *>(CBCliente->model())->clear();
+		qobject_cast<EMCliente *>(CBCliente->model())->inicializar();
 		return;
 	}
 	else

@@ -378,7 +378,15 @@ bool MCaravanaDueno::cargarCaravanasTri( int id_tri )
  		this->setData( this->index( anterior, 1 ), cola1.record().value(0).toString() );
 #ifdef GESTOTUX_CARAVANAS_TIENEN_DUENOS
 		QSqlQuery cola2;
-		if( cola2.exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id IN  ( SELECT id_cliente FROM car_carv_duenos WHERE id_caravana = '%1' )" ).arg( cola.record().value(0).toInt() ) ) )
+		if( QSqlDatabase::database().driverName() == "QSQLITE" )
+		{
+			cola2->prepare(QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id IN  ( SELECT id_cliente FROM car_carv_duenos WHERE id_caravana = '%1' )" ).arg( cola.record().value(0).toInt() ) )
+		}
+		else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+		{
+			cola2->prepare( QString( "SELECT CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes WHERE id IN  ( SELECT id_cliente FROM car_carv_duenos WHERE id_caravana = '%1' )" ).arg( cola.record().value(0).toInt() ) )
+		}
+		if( cola2.exec() )
 		{
 			if( cola2.next() )
 			{

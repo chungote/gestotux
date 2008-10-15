@@ -8,7 +8,8 @@ eactimprimir.h \
  evisorinformes.h \
  formprefhijo.h \
  eayuda.h \
- eactguardar.h
+ eactguardar.h \
+ emcliente.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -16,7 +17,8 @@ eactimprimir.cpp \
  preferencias.cpp \
  evisorinformes.cpp \
  eayuda.cpp \
- eactguardar.cpp
+ eactguardar.cpp \
+ emcliente.cpp
 
 QT += sql
 

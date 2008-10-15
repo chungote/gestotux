@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "formagregarpresupuesto.h"
 
-#include <QSqlQueryModel>
+#include "emcliente.h"
 #include <QDate>
 #include <QSqlError>
 #include "presupuesto.h"
@@ -76,17 +76,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	addAction( ActCancelar );
 
 	// Seteo la lista de clientes
-	modeloClientes = new QSqlQueryModel( this );
-	if( QSqlDatabase::database().driverName() == "QSQLITE" )
-        {
-         modeloClientes->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
-        }
-	else if( QSqlDatabase::database().driverName() == "QMYSQL" )
-	{
-	 modeloClientes->setQuery( "SELECT id, CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes" );
-	}
-
-	CBCliente->setModel( modeloClientes );
+	CBCliente->setModel( new EMCliente( CBCliente ) );
 	CBCliente->setModelColumn( 1 );
 	CBCliente->setCurrentIndex( -1 );
 
