@@ -59,7 +59,14 @@ FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
 	GBFiltrado->setChecked( false );
 
 	QSqlQueryModel *modeloMascota = new QSqlQueryModel( CBMascota );
-	modeloMascota->setQuery( "SELECT m.id, m.nombre||' - '||d.apellido||', '||d.nombre FROM mascota m, dueno d WHERE m.id_dueno = d.id" );
+	if( QSqlDatabase::database().driverName() == "QSQLITE" )
+	{
+		modeloMascota->setQuery( "SELECT m.id, m.nombre||' - '||d.apellido||', '||d.nombre FROM mascota m, dueno d WHERE m.id_dueno = d.id" );
+	}
+	else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+	{
+		modeloMascota->setQuery( "SELECT m.id, CONCAT( CONCAT( CONCAT( CONCAT( m.nombre, \" - \" ), d.apellido ), \", \" ), d.nombre ) FROM mascota m, dueno d WHERE m.id_dueno = d.id" );
+	}
 	CBMascota->setModel( modeloMascota );
 	CBMascota->setModelColumn( 1 );
 	CBMascota->setCurrentIndex( -1 );

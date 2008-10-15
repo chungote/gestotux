@@ -18,28 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "emcliente.h"
-#include <QComboBox>
 
-#include "filtroclientes.h"
-
-FiltroClientes::FiltroClientes(QWidget* parent, Qt::WFlags fl)
-: QWidget( parent, fl ), Ui::FiltroClientesBase()
+EMCliente::EMCliente(QObject *parent)
+ : QSqlQueryModel(parent)
 {
-	setupUi(this);
-	this->setAttribute( Qt::WA_DeleteOnClose );
-
-	CBClientes->setModel( new EMCliente( CBClientes ) );
-	CBClientes->setModelColumn( 1 );
-	CBClientes->setEditable( false );
-
-	GBfiltrar->setChecked( false );
-	CBClientes->setCurrentIndex( -1 );
-
-	connect( GBfiltrar, SIGNAL( toggled( bool ) ), this, SLOT( seteaFiltradoSlot( bool ) ) );
-	connect( CBClientes, SIGNAL( currentIndexChanged ( int ) ), this, SLOT( cambioClienteSlot( int ) ) );
+ inicializar();
 }
 
-FiltroClientes::~FiltroClientes()
+
+EMCliente::~EMCliente()
 {
 }
 
@@ -47,18 +34,16 @@ FiltroClientes::~FiltroClientes()
 
 
 /*!
-    \fn FiltroClientes::cambioClienteSlot( int idcombo )
+    \fn EMCliente::inicializar()
  */
-void FiltroClientes::cambioClienteSlot( int idcombo )
+void EMCliente::inicializar()
 {
-  emit cambioCliente( CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ).toInt() );
-}
-
-
-/*!
-    \fn FiltroClientes::seteaFiltradoSlot( bool activo )
- */
-void FiltroClientes::seteaFiltradoSlot( bool activo )
-{
- emit seteaFiltrado( activo, CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ).toInt() );
+  if( QSqlDatabase::database().driverName() == "QSQLITE" )
+ {
+  this->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
+ }
+ else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+ {
+  this->setQuery( "SELECT id, CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes" );
+ }
 }

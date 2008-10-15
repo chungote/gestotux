@@ -47,6 +47,7 @@ public:
     void gastos();
     void compras();
     void ventas();
+    QString hacerWhere();
 
 private:
 	QTextDocument *doc;

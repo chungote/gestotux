@@ -193,7 +193,14 @@ bool ERenderizadorInforme::hacerCabecera( QString tri )
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
 			// Comprador
-			colaAuxiliar->exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_comprador" ).toInt() ) );
+			if( QSqlDatabase::database().driverName() == "QSQLITE" )
+			{
+				colaAuxiliar->exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_comprador" ).toInt() ) );
+			}
+			else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+			{
+				colaAuxiliar->exec( QString( "SELECT CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_comprador" ).toInt() ) );
+			}
 			if( colaAuxiliar->next() )
 			{
 				cursor->insertText( QString( "Comprador:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
@@ -213,7 +220,14 @@ bool ERenderizadorInforme::hacerCabecera( QString tri )
 			else
 			{ qDebug( "Error al ejecutar la cola de nombre de establecimiento" ); }
 			// Vendedor
-			colaAuxiliar->exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_vendedor" ).toInt() ) );
+			if( QSqlDatabase::database().driverName() == "QSQLITE" )
+			{
+				colaAuxiliar->exec( QString( "SELECT apellido || ', ' || nombre FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_vendedor" ).toInt() ) );
+			}
+			else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+			{
+				colaAuxiliar->exec( QString( "SELECT CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes WHERE id = '%1'" ).arg( cola->record().value( "id_vendedor" ).toInt() ) );
+			}
 			if( colaAuxiliar->next() )
 			{
 				cursor->insertText( QString( "Vendedor:  %1\n" ).arg( colaAuxiliar->record().value(0).toString() ) );
