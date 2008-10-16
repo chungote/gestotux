@@ -91,6 +91,16 @@ int main(int argc, char *argv[])
       {
        app.setStyleSheet( app.styleSheet().append( "QProgressBar:horizontal { border: 1px solid gray; border-radius: 6px; background: white; padding: 0px; text-align: center; } QProgressBar::chunk:horizontal { background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 blue, stop: 1 cyan); }" ) );
       }
+      if( p->value( "sobreestilo", false ).toBool() )
+      {
+		QDir dir( QCoreApplication::applicationDirPath() );
+		dir.cd( "estilos" );
+		dir.cd( p->value( "sobreestilonombre", "" ).toString() );
+		QFile file( dir.absoluteFilePath( p->value( "sobreestilonombre", "" ).toString().append( ".qss" ) ) );
+		file.open(QFile::ReadOnly);
+		QString styleSheet = QLatin1String(file.readAll());
+		qApp->setStyleSheet(styleSheet);
+      }
       // Preferencias Idiomaticas
       QLocale locale( QLocale::Spanish, QLocale::Argentina );
       QLocale::setDefault( locale );

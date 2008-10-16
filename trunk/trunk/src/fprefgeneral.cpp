@@ -22,8 +22,7 @@
 #include <QComboBox>
 #include <QApplication>
 #include <QTimer>
-#include <QColor>
-#include <QColorDialog>
+#include <QDir>
 #include "preferencias.h"
 #include "fprefgeneral.h"
 
@@ -39,6 +38,24 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 	tiempo->setInterval( 900 );
 	connect( tiempo, SIGNAL( timeout() ), this, SLOT( avanzarBarra() ) );
 	tiempo->start();
+	CBSobreEstilo->setEnabled( CkBSobreEstilo->isChecked() );
+	// Busco los estilos disponibles
+	QDir dir( QCoreApplication::applicationDirPath() );
+	dir.cd( "estilos" );
+	if( dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot ).isEmpty() )
+	{
+		CkBSobreEstilo->setEnabled(false);
+		CBSobreEstilo->setEnabled(false);
+	}
+	else
+	{
+		// inserto los directorios de estilo
+		CBSobreEstilo->insertItems( -1, dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot ) );
+		// conecto el slot que realiza el cambio
+		connect( CBSobreEstilo, SIGNAL( currentIndexChanged( const QString & ) ), this, SLOT( cambioSobreEstilo( const QString & ) ) );
+		// conecto el slot para deshacer los cambios si se dechequea la casilla
+		connect( CkBSobreEstilo, SIGNAL( toggled( bool ) ), this, SLOT( cambioSobreEstilo( bool ) ) );
+	}
 }
 
 FPrefGeneral::~FPrefGeneral()
@@ -62,6 +79,8 @@ void FPrefGeneral::cargar()
  ChBIconoBandeja->setChecked( p->value( "icono_bandeja", false ).toBool() );
  ChBBarraProgreso->setChecked( p->value( "barra_personalizada", false ).toBool() );
  PBMuestra->setEnabled( p->value( "barra_personalizada", false ).toBool() );
+ CkBSobreEstilo->setChecked( p->value( "sobreestilo", false ).toBool() );
+ CBSobreEstilo->setCurrentIndex( p->value( "sobreestilonombreint", 0 ).toInt() );
  p->endGroup();
  p->endGroup();
 }
@@ -82,6 +101,9 @@ void FPrefGeneral::guardar()
  p->setValue( "splash", ChBSplash->isChecked() );
  p->setValue( "icono_bandeja", ChBIconoBandeja->isChecked() );
  p->setValue( "barra_personalizada", ChBBarraProgreso->isChecked() );
+ p->setValue( "sobreestilo", CkBSobreEstilo->isChecked() );
+ p->setValue( "sobreestilonombre", CBSobreEstilo->currentText() );
+ p->setValue( "sobreestiloint", CBSobreEstilo->currentIndex() );
  p->endGroup();
  p->endGroup();
 }
@@ -137,3 +159,35 @@ void FPrefGeneral::avanzarBarra()
  }
 }
 
+
+
+/*!
+    \fn FPrefGeneral::cambioSobreEstilo( bool estado )
+ */
+void FPrefGeneral::cambioSobreEstilo( bool estado )
+{
+ // el combobox se deshabilita solo asique limpio el estilo que haya
+ if( estado )
+ {
+  cambioSobreEstilo( CBSobreEstilo->currentText() );
+ }
+ else
+ {
+   qApp->setStyleSheet( QString() );
+ }
+}
+
+
+/*!
+    \fn FPrefGeneral::cambioSobreEstilo( const QString &estilo )
+ */
+void FPrefGeneral::cambioSobreEstilo( const QString &estilo )
+{
+	QDir dir( QCoreApplication::applicationDirPath() );
+	dir.cd( "estilos" );
+	dir.cd( estilo );
+	QFile file( dir.absoluteFilePath( QString( estilo ).append( ".qss" ) ) );
+	file.open(QFile::ReadOnly);
+	QString styleSheet = QLatin1String(file.readAll());
+	qApp->setStyleSheet(styleSheet);
+}
