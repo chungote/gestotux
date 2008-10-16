@@ -46,6 +46,8 @@ public slots:
 protected slots:
     void cambioEstadoBarra( int estado );
     void avanzarBarra();
+    void cambioSobreEstilo( bool estado );
+    void cambioSobreEstilo( const QString &estilo );
 
 };
 

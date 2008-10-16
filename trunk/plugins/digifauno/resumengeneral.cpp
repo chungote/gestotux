@@ -286,7 +286,6 @@ void resumenGeneral::gastos()
 	cola.prepare( "SELECT SUM( costo ) FROM gastos WHERE " + hacerWhere() );
 	if( cola.exec() )
 	{
-qDebug( qPrintable( cola.lastQuery() ) );
 		if( cola.next() )
 		{
 		      if( noSeguir )
