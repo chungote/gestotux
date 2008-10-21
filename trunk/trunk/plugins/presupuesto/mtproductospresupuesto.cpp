@@ -36,6 +36,7 @@ MTProductosPresupuesto::MTProductosPresupuesto( QObject * parent )
  setHeaderData( 4, Qt::Horizontal, "Precio Unitario" );
  setHeaderData( 5, Qt::Horizontal, "Sub-Total" );
  setEditStrategy( QSqlTableModel::OnManualSubmit );
+ connect( this, SIGNAL( beforeInsert( QSqlRecord & ) ), this, SLOT( seteaPresupuesto( QSqlRecord & ) ) );
 }
 
 
@@ -225,19 +226,12 @@ int MTProductosPresupuesto::rowCount( const QModelIndex &parent ) const
  */
 bool MTProductosPresupuesto::guardar( const int id_presupuesto )
 {
- int filas = QSqlRelationalTableModel::rowCount();
- for( int f=0; f<filas; f++ )
+ this->setFilter( " id_presupuesto = -1" );
+ this->select();
+ while( this->query().next() )
  {
-   if( isDirty( index( f, 3 ) ) )
-   {
-    qDebug( qPrintable( "sucio: " + QString::number( f ) ) );
-    setData( index( f, 1 ), id_presupuesto, Qt::EditRole );
-   }
+	this->query().record().setValue( "id_presupuesto", id_presupuesto );
  }
- if( submitAll() )
- { return true; }
- else
- { return false; }
 }
 
 bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &value, int role )
@@ -347,4 +341,13 @@ bool MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
  {
   return QSqlRelationalTableModel::removeRow( row, parent );
  }
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::seteaPresupuesto( QSqlRecord &registro )
+ */
+void MTProductosPresupuesto::seteaPresupuesto( QSqlRecord &registro )
+{
+ registro.setValue( "id_presupuesto", -1 );
 }

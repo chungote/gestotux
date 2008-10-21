@@ -25,12 +25,16 @@ SOURCES += mcategorias.cpp \
 mproductos.cpp \
 vcategorias.cpp \
 vproductos.cpp \
- productos.cpp
+ productos.cpp \
+ dproductos.cpp \
+ dcategoria.cpp
 HEADERS += mcategorias.h \
 mproductos.h \
 vcategorias.h \
 vproductos.h \
- productos.h
+ productos.h \
+ dproductos.h \
+ dcategoria.h
 CONFIG -= release
 
 

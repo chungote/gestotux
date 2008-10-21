@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "productos.h"
 #include "vproductos.h"
+#include "vcategorias.h"
 #include <QSqlDatabase>
 
 QSettings *productos::_pref = 0;
@@ -31,7 +32,15 @@ Q_EXPORT_PLUGIN2( productos, productos );
  */
 QList<QActionGroup *> productos::accionesBarra()
 {
- return QList<QActionGroup*>();
+ QList<QActionGroup *> lista;
+ QActionGroup *ventas = new QActionGroup( this );
+ ventas->setObjectName( "ventas" );
+ ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
+ ventas->setProperty( "titulo", "Ventas" );
+ ventas->addAction( ActProductos );
+ ventas->addAction( ActCategorias );
+ lista.append( ventas );
+ return lista;
 }
 
 
@@ -67,9 +76,18 @@ bool productos::inicializar( QSettings *pref )
  ActProductos->setToolTip( "Ver la lista de prodcutos" );
  connect( ActProductos, SIGNAL( triggered() ), this, SLOT( verProductos() ) );
 
- _acciones.append( ActProductos );
+ ////////////////////////////////
+ // Muestra las categorias
+ ////////////////////////////////
+ ActCategorias = new QAction( "Categorias", this );
+ ActCategorias->setStatusTip( "Muestra las categorias de productos que hay" );
+ ActCategorias->setIcon( QIcon( ":/imagenes/categorias.jpg" ) );
+ connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( categorias() ) );
 
- return verificarTablas();
+ _acciones.append( ActProductos );
+ _acciones.append( ActCategorias );
+
+ return true;
 }
 
 
@@ -80,6 +98,8 @@ bool productos::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
  { qWarning( "Error al buscar la tabla producto" ); return false; }
+ else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
+ { qWarning( "Error al buscar la tabla categorias" ); return false; }
  return true;
 }
 
@@ -106,6 +126,7 @@ void productos::crearMenu( QMenuBar *m )
  else
  {
   menuHer->addAction( ActProductos );
+  menuHer->addAction( ActCategorias );
  }
 }
 
@@ -136,5 +157,11 @@ void productos::verProductos()
  */
 void productos::crearToolBar( QToolBar *t )
 {
-    /// @todo implement me
+ return;
 }
+
+/*!
+    \fn DigiFauno::categorias()
+ */
+void productos::categorias()
+{ emit agregarVentana( new VCategorias() ); }

@@ -65,9 +65,7 @@ private:
     QAction *separatorAct;
     QAction *ActBackup;
     QAction *ActDuenos;
-    QAction *ActCategorias;
     QAction *ActProveedores;
-    QAction *ActProductos;
     QAction *ActMascotas;
     QAction *ActGastos;
     QAction *ActPeluqueria;
@@ -93,8 +91,6 @@ private:
 public slots:
     void agregarVenta();
     void proveedores();
-    void productos();
-    void categorias();
     void duenos();
     void agregarMascota();
     void agregarServicioPeluqueria();

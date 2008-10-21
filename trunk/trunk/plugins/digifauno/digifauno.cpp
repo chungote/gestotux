@@ -24,10 +24,8 @@
 #include "digifauno.h"
 #include "preferencias.h"
 #include "vduenos.h"
-#include "vcategorias.h"
 #include "vproveedor.h"
 #include "formagregarventa.h"
-#include "vproductos.h"
 #include "formagregarmasctoa.h"
 #include "formagregarservicio.h"
 #include "vmascota.h"
@@ -48,13 +46,6 @@ void DigiFauno::duenos()
 
 
 /*!
-    \fn DigiFauno::categorias()
- */
-void DigiFauno::categorias()
-{ emit agregarVentana( new VCategorias() ); }
-
-
-/*!
     \fn DigiFauno::agregar_venta()
  */
 void DigiFauno::agregarVenta()
@@ -66,14 +57,6 @@ void DigiFauno::agregarVenta()
  */
 void DigiFauno::proveedores()
 { emit agregarVentana( new VProveedor() ); }
-
-
-/*!
-    \fn DigiFauno::productos()
- */
-void DigiFauno::productos()
-{ emit agregarVentana( new VProductos() ); }
- //v-> setWindowIcon( QIcon( ":/imagenes/productos.jpg" ) );
 
 
 /*!
@@ -200,13 +183,7 @@ bool DigiFauno::inicializar( QSettings *pref )
  ActDuenos->setStatusTip( "Muestra todos los dueños" );
  ActDuenos->setIcon( QIcon( ":/imagenes/duenos.png" ) );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( duenos() ) );
- ////////////////////////////////
- // Muestra las categorias
- ////////////////////////////////
- ActCategorias = new QAction( "Categorias", this );
- ActCategorias->setStatusTip( "Muestra las categorias de productos que hay" );
- ActCategorias->setIcon( QIcon( ":/imagenes/categorias.jpg" ) );
- connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( categorias() ) );
+
  ///////////////////////////////
  // Muestra los proveedores
  //////////////////////////////
@@ -214,13 +191,6 @@ bool DigiFauno::inicializar( QSettings *pref )
  ActProveedores->setStatusTip( "Mustra los distintos proveedores" );
  ActProveedores->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
  connect( ActProveedores, SIGNAL( triggered() ), this, SLOT( proveedores() ) );
- ///////////////////////////////
- // Muestra los productos
- ///////////////////////////////
- ActProductos = new QAction(  "Productos", this );
- ActProductos->setStatusTip( "Muestra los productos" );
- ActProductos->setIcon( QIcon( ":/imagenes/productos.jpg" ) );
- connect( ActProductos, SIGNAL( triggered() ), this, SLOT( productos() ) );
  /////////////////////////////////////////////
  // Muestra el formulario de agregar mascotas
  /////////////////////////////////////////////
@@ -338,7 +308,6 @@ QList<QActionGroup *> DigiFauno::accionesBarra()
  ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
  ventas->setProperty( "titulo", "Ventas" );
  ventas->addAction( ActAgregarVentas );
- ventas->addAction( ActProductos );
  lista.append( ventas );
  /////////////////////////////////////////////////////////////
  // Compras y gastos
@@ -349,8 +318,6 @@ QList<QActionGroup *> DigiFauno::accionesBarra()
  compras->addAction( ActAgregarCompra );
  compras->addAction( ActAgregarGasto );
  compras->addAction( ActProveedores );
- compras->addAction( ActProductos );
- compras->addAction( ActCategorias );
  lista.append( compras );
  //////////////////////////////////////////////////////////////
  // Resumenes
@@ -418,9 +385,7 @@ QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
  else
  {
   menuHerramientas->addAction( ActDuenos );
-  menuHerramientas->addAction( ActCategorias );
   menuHerramientas->addAction( ActProveedores );
-  menuHerramientas->addAction( ActProductos );
   menuHerramientas->addAction( ActMascotas );
   menuHerramientas->addAction( ActGastos );
   menuHerramientas->addAction( ActPeluqueria );

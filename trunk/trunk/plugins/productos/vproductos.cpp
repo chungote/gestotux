@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "vproductos.h"
 #include "mproductos.h"
+#include "dproductos.h"
 #include <QTableView>
 #include <QSqlRecord>
 #include <QHeaderView>
@@ -38,7 +39,7 @@ VProductos::VProductos(QWidget *parent)
 
  vista->setModel( modelo );
  vista->hideColumn( 0 );
- vista->setItemDelegate( new  QSqlRelationalDelegate( vista ) );
+ vista->setItemDelegate( new  DProductos( vista ) );
 
  modelo->select();
 
