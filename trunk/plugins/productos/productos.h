@@ -48,10 +48,12 @@ private:
     static QStackedWidget *_formCen;
     static QSettings *_pref;
 
-	QAction *ActProductos;
+    QAction *ActProductos;
+    QAction *ActCategorias;
 
 public slots:
     void verProductos();
+    void categorias();
 
 signals:
 	void agregarVentana( QWidget * );

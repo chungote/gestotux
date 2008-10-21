@@ -22,8 +22,9 @@
 #include "mventa.h"
 #include "mventaproducto.h"
 #include "preferencias.h"
-#include "mproductos.h"
 #include "dventacompra.h"
+#include "eactcerrar.h"
+#include "eactguardar.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -134,33 +135,6 @@ FormAgregarVenta::FormAgregarVenta(QWidget *parent)
 
 
     vboxLayout->addWidget(GBProductos);
-
-    line = new QFrame(this);
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
-
-    vboxLayout->addWidget(line);
-
-    hboxLayout2 = new QHBoxLayout();
-    hboxLayout2->setSpacing(6);
-    hboxLayout2->setContentsMargins(0, 0, 0, 0);
-
-
-    spacerItem2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-    hboxLayout2->addItem(spacerItem2);
-
-    PBAceptar = new QPushButton(this);
-
-    hboxLayout2->addWidget(PBAceptar);
-
-    PBCancelar = new QPushButton(this);
-
-    hboxLayout2->addWidget(PBCancelar);
-
-
-    vboxLayout->addLayout(hboxLayout2);
-
     // Textos e imagenes
     LTitulo->setText( "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                          "p, li { white-space: pre-wrap; }\n"
@@ -175,8 +149,6 @@ FormAgregarVenta::FormAgregarVenta(QWidget *parent)
  			   "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;\">\n"
 			   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Total:</span></p></body></html>" );
     LETotal->setInputMask(  "$ 99999.99; " );
-    PBAceptar->setText(  "Ace&ptar" );
-    PBCancelar->setText(  "Cancela&r" );
     // Impongo el modelo de venta_producto
     modeloVentaProducto = new MVentaProducto( this, true );
     modeloVentaProducto->setEditStrategy( QSqlTableModel::OnManualSubmit );
@@ -188,22 +160,18 @@ FormAgregarVenta::FormAgregarVenta(QWidget *parent)
     TVProductos->resizeColumnToContents( 5 );
     TVProductos->horizontalHeader()->resizeSection( 2, 300 );
     // Conecto los slots
-    ///@todo Cambiar esto por acciones
-    connect( PBCancelar , SIGNAL( clicked()       ), this, SLOT( cerrar()                   ) );
-    connect( PBAceptar  , SIGNAL( clicked()       ), this, SLOT( guardar()                  ) );
     connect( PBAgregar  , SIGNAL( clicked()       ), this, SLOT( agregar()                  ) );
     connect( PBBorrar   , SIGNAL( clicked()       ), this, SLOT( borrar()                   ) );
     connect( modeloVentaProducto, SIGNAL( dataChanged( const QModelIndex &, const QModelIndex & ) ), this, SLOT( buscarPrecio( const QModelIndex &, const QModelIndex & ) ) );
     // Imagenes
-    PBAceptar->setIcon(  QIcon( ":/imagenes/guardar.png"   ) );
-    PBCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
     PBAgregar->setIcon(  QIcon( ":/imagenes/add.png"       ) );
     PBBorrar->setIcon(   QIcon( ":/imagenes/eliminar.png"  ) );
     // Accesos de teclas
-    PBAceptar->setShortcut( QKeySequence( "Ctrl+p" ) );
-    PBCancelar->setShortcut( QKeySequence( "Ctrl+r" ) );
     PBAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
     PBBorrar->setShortcut( QKeySequence( "Ctrl+b" ) );
+
+    this->addAction( new EActCerrar( this ) );
+    this->addAction( new EActGuardar( this ) );
 }
 
 
@@ -226,7 +194,6 @@ void FormAgregarVenta::closeEvent( QCloseEvent * event )
 	p->setValue( "dimensiones", splitter->saveState() );
 	p->endGroup();
 	p->endGroup();
-// 	qDebug( "Guardo tama�o de splitter" );
  }
  EVentana::closeEvent( event );
 }
@@ -248,7 +215,6 @@ void FormAgregarVenta::agregar()
  }
  else
  {
-//   qDebug( "Registro insertado Correctamente" );
   TVProductos->edit( modeloVentaProducto->index( modeloVentaProducto->get_ultima_row(), 2 ) );
  }
 }
@@ -313,7 +279,7 @@ void FormAgregarVenta::guardar()
  }
  else
  {
-//   qDebug( "Registro de venta agregado correctamente" );
+  qDebug( "Registro de venta agregado correctamente" );
  }
  if( !modeloVenta->submitAll() )
  {

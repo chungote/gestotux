@@ -20,6 +20,7 @@
 #include "vcategorias.h"
 
 #include "mcategorias.h"
+#include "dcategoria.h"
 #include <QTableView>
 #include <QSqlRecord>
 #include <QMessageBox>
@@ -42,6 +43,7 @@ VCategorias::VCategorias( QWidget *parent )
  vista->hideColumn( 0 );
  vista->resizeColumnsToContents();
  vista->setAlternatingRowColors( true );
+ vista->setItemDelegate( new DCategoria( vista ) );
  vista->setSelectionBehavior( QAbstractItemView::SelectRows );
 
  ActEliminar->disconnect( SIGNAL( triggered() ), this, SLOT( eliminar() ) );

@@ -28,6 +28,7 @@ class QVariant;
 */
 class MTProductosPresupuesto : public QSqlRelationalTableModel
 {
+	Q_OBJECT
 public:
     MTProductosPresupuesto( QObject * parent = 0 );
     ~MTProductosPresupuesto();
@@ -41,6 +42,9 @@ public:
     QVariant buscarPrecioProducto( const int fila ) const;
     QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const ;
     bool removeRow ( int row, const QModelIndex & parent = QModelIndex() );
+
+private slots:
+    void seteaPresupuesto( QSqlRecord &registro );
 };
 
 #endif

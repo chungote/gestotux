@@ -1,7 +1,6 @@
 /* Customize any plain widget that is a child of a QMainWindow. */
 QMainWindow > .QWidget {
     background-color: gainsboro;
-    background-image: url(estilos/pagefold/pagefold.png);
     background-position: top right;
     background-repeat: no-repeat
 }
@@ -39,7 +38,6 @@ QMessageBox {
 QWidget {
     selection-color: black;
     selection-background-color: Silver;
-    color: black;
 }
 
 /* Make the entire row selected in item views. */
@@ -73,30 +71,6 @@ QRadioButton {
 QRadioButton::indicator {
     width: 13px;
     height: 13px;
-}
-
-QRadioButton::indicator::unchecked {
-    image: url(estilos/pagefold/radiobutton_unchecked.png);
-}
-
-QRadioButton::indicator:unchecked:hover {
-    image: url(estilos/pagefold/radiobutton_unchecked_hover.png);
-}
-
-QRadioButton::indicator:unchecked:pressed {
-    image: url(estilos/pagefold/radiobutton_unchecked_pressed.png);
-}
-
-QRadioButton::indicator::checked {
-    image: url(estilos/pagefold/radiobutton_checked.png);
-}
-
-QRadioButton::indicator:checked:hover {
-    image: url(estilos/pagefold/radiobutton_checked_hover.png);
-}
-
-QRadioButton::indicator:checked:pressed {
-    image: url(estilos/pagefold/radiobutton_checked_pressed.png);
 }
 
 /* Customize arrows. */
@@ -220,30 +194,6 @@ QCheckBox::indicator {
     height: 13px;
 }
 
-QCheckBox::indicator:unchecked {
-    image: url(estilos/pagefold/checkbox_unchecked.png);
-}
-
-QCheckBox::indicator:unchecked:hover {
-    image: url(estilos/pagefold/checkbox_unchecked_hover.png);
-}
-
-QCheckBox::indicator:unchecked:pressed {
-    image: url(estilos/pagefold/checkbox_unchecked_pressed.png);
-}
-
-QCheckBox::indicator:checked {
-    image: url(estilos/pagefold/checkbox_checked.png);
-}
-
-QCheckBox::indicator:checked:hover {
-    image: url(estilos/pagefold/checkbox_checked_hover.png);
-}
-
-QCheckBox::indicator:checked:pressed {
-    image: url(estilos/pagefold/checkbox_checked_pressed.png);
-}
-
 /* Customize the size grip. */
 QSizeGrip {
     image: url(estilos/pagefold/sizegrip.png);
@@ -301,3 +251,47 @@ QSpinBox::down-button:hover {
 QSpinBox::down-button:pressed {
     border-image: url(estilos/pagefold/spindown_pressed.png) 1;
 }
+
+QListView {
+     show-decoration-selected: 1; /* make the selection span the entire width of the view */
+ }
+
+ QListView::item:alternate {
+     background: #EEEEEE;
+ }
+
+ QListView::item:selected {
+     border: 1px solid #6a6ea9;
+ }
+
+ QListView::item:selected:!active {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #ABAFE5, stop: 1 #8588B2);
+ }
+
+ QListView::item:selected:active {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #6a6ea9, stop: 1 #888dd9);
+ }
+
+ QListView::item:hover {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #FAFBFE, stop: 1 #DCDEF1);
+ }
+
+QHeaderView {
+	background-color: gainsboro;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	font: bold;
+}
+
+QHeaderView::section {
+     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                       stop:0 #616161, stop: 0.5 #505050,
+                                       stop: 0.6 #434343, stop:1 #656565);
+     color: white;
+     padding-left: 4px;
+     border: 1px solid #6c6c6c;
+ }

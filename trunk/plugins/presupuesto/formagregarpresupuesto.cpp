@@ -199,11 +199,10 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
 		id_presupuesto = var.toInt();
 	}
   }
-  qWarning( qPrintable( QString::number( id_presupuesto ) ) );
   if( formLista->getModelo()->rowCount() > 0 )
   {
    // obtengo el id insertado y guardo los registros
-   if( formLista->getModelo()->guardar( id_presupuesto ) )
+   if( !formLista->getModelo()->guardar( id_presupuesto ) )
    {
 	qWarning( "No se pudo guardar los datos de los productos" );
 	QSqlDatabase::database().rollback();

@@ -80,7 +80,8 @@ void FPrefGeneral::cargar()
  ChBBarraProgreso->setChecked( p->value( "barra_personalizada", false ).toBool() );
  PBMuestra->setEnabled( p->value( "barra_personalizada", false ).toBool() );
  CkBSobreEstilo->setChecked( p->value( "sobreestilo", false ).toBool() );
- CBSobreEstilo->setCurrentIndex( p->value( "sobreestilonombreint", 0 ).toInt() );
+ CBSobreEstilo->setCurrentIndex( p->value( "sobreestiloint", -1 ).toInt() );
+ CkBReloj->setChecked( p->value( "reloj", true ).toBool() );
  p->endGroup();
  p->endGroup();
 }
@@ -104,6 +105,7 @@ void FPrefGeneral::guardar()
  p->setValue( "sobreestilo", CkBSobreEstilo->isChecked() );
  p->setValue( "sobreestilonombre", CBSobreEstilo->currentText() );
  p->setValue( "sobreestiloint", CBSobreEstilo->currentIndex() );
+ p->setValue( "reloj", CkBReloj->isChecked() );
  p->endGroup();
  p->endGroup();
 }

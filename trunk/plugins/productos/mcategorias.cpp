@@ -29,6 +29,7 @@ MCategorias::MCategorias(QObject *parent)
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Nombre" );
  setHeaderData( 2, Qt::Horizontal, "Descripcion" );
+ setHeaderData( 3, Qt::Horizontal, "Tipo" ); // 1 = salida, 0 = entradas
  setSort( 1, Qt::AscendingOrder );
  setEditStrategy( QSqlTableModel::OnRowChange );
  select();
@@ -37,4 +38,63 @@ MCategorias::MCategorias(QObject *parent)
 
 MCategorias::~MCategorias()
 {
+}
+
+
+
+
+/*!
+    \fn MCategorias::data( const QModelIndex& item, int role ) const
+ */
+QVariant MCategorias::data( const QModelIndex& item, int role ) const
+{
+if( !item.isValid() )
+ {
+  return QVariant();
+ }
+ else
+ {
+  switch(role)
+  {
+	case Qt::DisplayRole:
+	{
+		switch( item.column() )
+		{
+			case 3:
+			{
+				switch( QSqlTableModel::data( item, role ).toInt() )
+				{
+					case 1:
+					{
+						return "Compras";
+						break;
+					}
+					case 2:
+					{
+						return "Gastos";
+						break;
+					}
+					default:
+					{
+						return "Ventas";
+						break;
+					}
+				}
+				break;
+			}
+			default:
+			{
+				return QSqlTableModel::data( item, role );
+				break;
+			}
+		}
+		break;
+	}
+	default:
+	{
+		return QSqlTableModel::data( item, role );
+		break;
+	}
+  }
+ }
 }

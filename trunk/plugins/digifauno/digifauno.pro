@@ -2,15 +2,11 @@ SOURCES += digifauno.cpp \
            mdueno.cpp \
  vduenos.cpp \
  mmascota.cpp \
- mcategorias.cpp \
- vcategorias.cpp \
  mproveedor.cpp \
  formagregarventa.cpp \
  vproveedor.cpp \
  mventa.cpp \
  mventaproducto.cpp \
- mproductos.cpp \
- vproductos.cpp \
  formagregarmasctoa.cpp \
  formagregarservicio.cpp \
  mpeluqueria.cpp \
@@ -23,7 +19,6 @@ SOURCES += digifauno.cpp \
  dmiembros.cpp \
  mgasto.cpp \
  formagregargasto.cpp \
- dcategoria.cpp \
  dproductos.cpp \
  vgastos.cpp \
  resumengeneral.cpp \
@@ -38,15 +33,11 @@ HEADERS += digifauno.h \
  mdueno.h \
  vduenos.h \
  mmascota.h \
- mcategorias.h \
- vcategorias.h \
  mproveedor.h \
  formagregarventa.h \
  vproveedor.h \
  mventa.h \
  mventaproducto.h \
- mproductos.h \
- vproductos.h \
  formagregarmasctoa.h \
  formagregarservicio.h \
  mpeluqueria.h \
@@ -59,7 +50,6 @@ HEADERS += digifauno.h \
  dmiembros.h \
  mgasto.h \
  formagregargasto.h \
- dcategoria.h \
  dproductos.h \
  vgastos.h \
  resumengeneral.h \

@@ -249,18 +249,31 @@ QToolBar* gestotux::barraAcciones()
  }
 }
 
+#include <QWebView>
 
 /*!
     \fn gestotux::crearReloj()
  */
 void gestotux::crearReloj()
 {
- QDockWidget *dw = new QDockWidget( "Reloj" , this );
- dw->setObjectName( "reloj" );
- dw->setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
- addDockWidget( Qt::LeftDockWidgetArea, dw );
- Reloj *r = new Reloj( dw );
- dw->setWidget( r );
+ if( preferencias::getInstancia()->value( "Preferencias/General/reloj", true ).toBool() )
+ {
+	 QDockWidget *dw = new QDockWidget( "Reloj" , this );
+	 dw->setObjectName( "reloj" );
+	 dw->setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
+	 addDockWidget( Qt::LeftDockWidgetArea, dw );
+	 Reloj *r = new Reloj( dw );
+	 dw->setWidget( r );
+ }
+
+ QDockWidget *dp = new QDockWidget( "Publicidad", this );
+ dp->setObjectName( "publicidad" );
+ dp->setAllowedAreas( Qt::BottomDockWidgetArea );
+ addDockWidget( Qt::BottomDockWidgetArea, dp );
+ QWebView *vista = new QWebView( dp );
+ vista->load( QUrl( "http://tranfuga.no-ip.org/publicidad.html" ) );
+ vista->show();
+ dp->setWidget( vista );
 }
 
 

@@ -32,7 +32,10 @@ class MCategorias : public QSqlTableModel
 Q_OBJECT
 public:
     MCategorias(QObject *parent = 0);
+
     ~MCategorias();
+    QVariant data( const QModelIndex& item, int role ) const;
+
 };
 
 #endif
