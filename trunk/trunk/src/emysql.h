@@ -34,15 +34,24 @@ public:
   EMysql(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~EMysql();
     void setDb( QSqlDatabase *db );
+enum {
+	Conectado = 1,
+	Cancelado = 2,
+	Interna = 3
+} Estado;
 
 protected slots:
   virtual void reject();
   virtual void accept();
+
 private:
 	QSqlDatabase *_db;
 
 private slots:
     void avanzarBarra();
+    void dbinterna();
+
+
 };
 
 #endif

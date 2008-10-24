@@ -68,7 +68,9 @@ FILE *debug;
 
 int main(int argc, char *argv[])
 {
+      // Inicializa imagenes y archivos internos
       Q_INIT_RESOURCE(gestotux);
+      // Maneja la salida del programa
 	debug = fopen( "debug.txt", "w" );
 	fseek( debug, 0, 0 );
 	qInstallMsgHandler(myMessageOutput);
@@ -82,7 +84,7 @@ int main(int argc, char *argv[])
       preferencias *p = preferencias::getInstancia();
       p->beginGroup( "Preferencias" );
       p->beginGroup( "General" );
-      QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "CleanLooks" ).toString() ) );
+      QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "floatstyle" ).toString() ) );
       app.setEffectEnabled( Qt::UI_AnimateMenu, true );
       app.setEffectEnabled( Qt::UI_AnimateCombo, true );
       app.setEffectEnabled( Qt::UI_FadeTooltip, true );
@@ -94,7 +96,7 @@ int main(int argc, char *argv[])
       if( p->value( "sobreestilo", false ).toBool() )
       {
 		QDir dir( QCoreApplication::applicationDirPath() );
-		dir.cd( "estilos" );
+		dir.cd( "sobreestilos" );
 		dir.cd( p->value( "sobreestilonombre", "" ).toString() );
 		QFile file( dir.absoluteFilePath( p->value( "sobreestilonombre", "" ).toString().append( ".qss" ) ) );
 		file.open(QFile::ReadOnly);
@@ -121,11 +123,37 @@ int main(int argc, char *argv[])
       delete directorio;
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
-      QSqlDatabase DB;
+      QSqlDatabase DB; bool fallosql = false;
+      if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
+      {
+	 qWarning( "Usando mysql" );
+	 EMysql dialogo;
+	 dialogo.setDb( &DB );
+	 int ret = dialogo.exec();
+	 switch( ret )
+	 {
+		case EMysql::Conectado:
+		{
+			qDebug( "Base de datos abierta correctamente" );
+			break;
+		}
+		case EMysql::Cancelado:
+		{
+			qWarning( "No se puede continuar sin la base de datos. Se saldra del programa" );
+			exit(0);
+			break;
+        	}
+		case EMysql::Interna:
+		{
+			fallosql = true;
+			break;
+		}
+	}
+      }
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if( DB.isDriverAvailable( "QSQLITE" ) == true && p->value( "noForzarMysql", true ).toBool() && p->value( "dbInterna", true ).toBool() )
+      if( DB.isDriverAvailable( "QSQLITE" ) == true && p->value( "noForzarMysql", true ).toBool() && ( p->value( "dbInterna", true ).toBool() || fallosql == true ) )
       {
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )
@@ -160,22 +188,7 @@ int main(int argc, char *argv[])
         /// FIN SQLITE
        }
        // si existe el driver y esta autorizado usar db externa o se quiere usar si o si la db mysql
-       else if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
-       {
-	 qWarning( "Usando mysql" );
-	 EMysql dialogo;
-	 dialogo.setDb( &DB );
-	 if( dialogo.exec() )
-	 {
-		qDebug( "Base de datos abierta correctamente" );
-         }
-	 else
-         {
-		qWarning( "No se puede continuar sin la base de datos. Se saldra del programa" );
-		exit(0);
-         }
-       }
-       else
+       else if( fallosql == true )
        {
 	// No se puede usar sqlite para el programa
 	qDebug( "No se puede encontrar el plug-in para la Base de Datos" );

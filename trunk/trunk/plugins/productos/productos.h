@@ -42,6 +42,7 @@ public:
     static QStackedWidget *tabs();
     static QSettings *pref();
     void crearToolBar( QToolBar *t );
+    bool publicidad() { return true; }
 
 private:
     QList<QAction *> _acciones;

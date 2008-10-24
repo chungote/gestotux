@@ -39,6 +39,7 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	this->setWindowTitle( "Conexion MySQL");
 	this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
 	LEContra->setEchoMode( QLineEdit::Password );
+	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
 }
 
 EMysql::~EMysql()
@@ -47,7 +48,7 @@ EMysql::~EMysql()
 
 void EMysql::reject()
 {
-  QDialog::reject();
+  this->done( Cancelado );
 }
 
 void EMysql::accept()
@@ -77,7 +78,7 @@ void EMysql::accept()
    p->setValue( "mysql/usuario", LEUsuario->text() );
    p->setValue( "mysql/host", LEHost->text() );
    p->setValue( "mysql/puerto", SBPuerto->value() );
-   QDialog::accept();
+   this->done( Conectado );
   }
   else
   {
@@ -104,4 +105,13 @@ void EMysql::setDb( QSqlDatabase *db )
 void EMysql::avanzarBarra()
 {
  PBBarra->setValue( PBBarra->value()+1 );
+}
+
+
+/*!
+    \fn EMysql::dbinterna()
+ */
+void EMysql::dbinterna()
+{
+ this->done( Interna );
 }

@@ -41,7 +41,7 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 	CBSobreEstilo->setEnabled( CkBSobreEstilo->isChecked() );
 	// Busco los estilos disponibles
 	QDir dir( QCoreApplication::applicationDirPath() );
-	dir.cd( "estilos" );
+	dir.cd( "sobreestilos" );
 	if( dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot ).isEmpty() )
 	{
 		CkBSobreEstilo->setEnabled(false);
@@ -186,7 +186,7 @@ void FPrefGeneral::cambioSobreEstilo( bool estado )
 void FPrefGeneral::cambioSobreEstilo( const QString &estilo )
 {
 	QDir dir( QCoreApplication::applicationDirPath() );
-	dir.cd( "estilos" );
+	dir.cd( "sobreestilos" );
 	dir.cd( estilo );
 	QFile file( dir.absoluteFilePath( QString( estilo ).append( ".qss" ) ) );
 	file.open(QFile::ReadOnly);

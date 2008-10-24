@@ -40,9 +40,10 @@ public:
     virtual double version() const = 0;
     virtual QString empresa() const = 0;
     virtual QString companeros() = 0;
+    virtual bool publicidad() = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.0" );
+                     "tranfuga.EInfoPrograma/1.1" );
 
 #endif

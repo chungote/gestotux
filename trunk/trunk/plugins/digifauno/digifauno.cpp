@@ -64,8 +64,6 @@ void DigiFauno::proveedores()
  */
 void DigiFauno::agregarMascota()
 { emit agregarVentana( new FormAgregarMascota() ); }
-  //f->setWindowIcon( QIcon( ":/imagenes/mascotas.gif" ) );
-  //f->showMaximized();
 
 
 /*!
@@ -73,7 +71,6 @@ void DigiFauno::agregarMascota()
  */
 void DigiFauno::agregarServicioPeluqueria()
 {  emit agregarVentana( new FormAgregarServicio() ); }
- // g->setWindowIcon( QIcon( ":/imagenes/pelu.gif" ) );
 
 
 /*!
@@ -95,7 +92,6 @@ void DigiFauno::resumenDiario()
  */
 void DigiFauno::agregarCompra()
 { emit agregarVentana( new FormAgregarCompra() ); }
- //j->setWindowIcon( QIcon( ":/imagenes/add.png" ) );
 
 
 /*!
@@ -103,7 +99,6 @@ void DigiFauno::agregarCompra()
  */
 void DigiFauno::resumenMensual()
 { emit agregarVentana( new EResumen( 0, EResumen::mensual ) );  }
- //k->setWindowIcon( QIcon( ":/imagenes/resumenes.png" ) );
 
 
 /*!
@@ -111,7 +106,6 @@ void DigiFauno::resumenMensual()
  */
 void DigiFauno::resumenAnual()
 { emit agregarVentana( new EResumen( 0, EResumen::anual ) ); }
-//k->setWindowIcon( QIcon( ":/imagenes/resumenes.png" ) );
 
 /*!
     \fn DigiFauno::agregar_gasto()
@@ -132,14 +126,12 @@ void DigiFauno::ver_gastos()
  */
 void DigiFauno::resumen_semanal()
 { emit agregarVentana( new EResumen( 0, EResumen::semanal ) ); }
-   //k->setWindowIcon( QIcon( ":/imagenes/resumenes.png" ) );
 
 /*!
     \fn DigiFauno::ver_peluqueria()
  */
 void DigiFauno::ver_peluqueria()
 { emit agregarVentana( new FormListaPeluqueria() ); }
- //l->setWindowIcon( QIcon( ":/imagenes/pelu.gif" ) );
 
 
 /*!
@@ -153,18 +145,14 @@ void DigiFauno::ver_compras()
     \fn DigiFauno::nombre() const
  */
 QString DigiFauno::nombre() const
-{
- return "digifauno";
-}
+{ return "digifauno"; }
 
 
 /*!
     \fn DigiFauno::version() const
  */
 double DigiFauno::version() const
-{
-  return 0.4;
-}
+{ return 0.4; }
 
 
 /*!
@@ -253,6 +241,10 @@ bool DigiFauno::inicializar( QSettings *pref )
  ActResumenAnual = new QAction( "Resumen Anual", this );
  connect( ActResumenAnual, SIGNAL( triggered() ), this, SLOT( resumenAnual() ) );
 
+ ActResumenEntreFechas = new QAction( "ResumenEntre fechas ", this );
+ ActResumenEntreFechas->setStatusTip( "Realiza un resumen entre fechas" );
+ connect( ActResumenEntreFechas, SIGNAL( triggered() ), this, SLOT( resumenEntreFechas() ) );
+
  return true;
 }
 
@@ -328,6 +320,7 @@ QList<QActionGroup *> DigiFauno::accionesBarra()
  resumen->addAction( ActResumenDiario );
  resumen->addAction( ActResumenMensual );
  resumen->addAction( ActResumenAnual );
+ resumen->addAction( ActResumenEntreFechas );
  lista.append( resumen );
 
  return lista;
@@ -338,31 +331,30 @@ QList<QActionGroup *> DigiFauno::accionesBarra()
     \fn DigiFauno::directorioActualizaciones() const
  */
 QString DigiFauno::directorioActualizaciones() const
-{
- return "digifauno";
-}
+{ return "digifauno"; }
 
 
 /*!
     \fn DigiFauno::directorioBackup() const
+
  */
 QString DigiFauno::directorioBackup() const
-{
- return "digifauno";
-}
+{ return "digifauno"; }
 
 
 /*!
     \fn DigiFauno::nombrePrograma() const
+	Devuelve el nombre del programa
+	@return Nombre del programa
  */
 QString DigiFauno::nombrePrograma() const
-{
-  return "Digifauno  -  " + QString::number( version() );
-}
+{  return "Digifauno  -  " + QString::number( version() ); }
 
 #include "formprefopciones.h"
 /*!
     \fn DigiFauno::formsPreferencias()
+	Devuleve la lista de formularios de configuración para el programa
+	@return QWidgetList con los formularios
  */
 QWidgetList DigiFauno::formsPreferencias()
 {
@@ -374,6 +366,8 @@ QWidgetList DigiFauno::formsPreferencias()
 
 /*!
     \fn DigiFauno::crearMenu( QMenuBar* m )
+	Agrega las acciones al menu del programa
+	@param m Barra del menu principal
  */
 void DigiFauno::crearMenu( QMenuBar* m )
 {
@@ -396,38 +390,38 @@ QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
 
 /*!
     \fn DigiFauno::iconoPrograma() const
+	Devuelve el icono del programa
+	@return Icono del programa
  */
 QIcon DigiFauno::iconoPrograma() const
-{
-  return QIcon( ":/imagenes/icono.png" );
-}
+{ return QIcon( ":/imagenes/icono.png" ); }
 
 
 /*!
     \fn DigiFauno::empresa() const
+	Devuelve el nombre de la empresa qu a  la que fue realizado el programa
+	@return Nombre de la empresa
  */
 QString DigiFauno::empresa() const
-{
- return "Veterinaria \"El Fauno\"";
-}
+{ return "Veterinaria \"El Fauno\""; }
 
 
 /*!
     \fn DigiFauno::companeros()
+	Devuelve el socio que trabajo conmigo
+	@return Nombre del socio
  */
 QString DigiFauno::companeros()
-{
- return "Daniel Sequeira";
-}
+{ return "Daniel Sequeira"; }
 
 
 /*!
     \fn DigiFauno::tipo() const
+	Devuelve el tipo de plugin que es EPlugin::info
+ 	@return EPlugin::info
  */
 int DigiFauno::tipo() const
-{
- return EPlugin::info;
-}
+{ return EPlugin::info; }
 
 Q_EXPORT_PLUGIN2( digifauno, DigiFauno );
 
@@ -436,6 +430,13 @@ Q_EXPORT_PLUGIN2( digifauno, DigiFauno );
     \fn DigiFauno::crearToolBar()
  */
 void DigiFauno::crearToolBar( QToolBar *t )
-{
- t->addActions( _acciones );
-}
+{  t->addActions( _acciones ); }
+
+
+/*!
+    \fn DigiFauno::resumenEntreFechas()
+        Muestra el formulario de crear resumenes entre fechas
+ */
+void DigiFauno::resumenEntreFechas()
+{ emit agregarVentana( new EResumen( 0, EResumen::entrefechas ) ); }
+

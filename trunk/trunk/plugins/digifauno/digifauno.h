@@ -53,6 +53,7 @@ public:
     QString companeros();
     int tipo() const;
     void crearToolBar( QToolBar *t );
+    bool publicidad() { return true; }
 
 signals:
     void agregarVentana( QWidget *ventana );
@@ -78,6 +79,7 @@ private:
     QAction *ActResumenDiario;
     QAction *ActResumenMensual;
     QAction *ActResumenAnual;
+    QAction *ActResumenEntreFechas;
 
    QActionGroup *peluqueria;
    QActionGroup *ventas;
@@ -104,6 +106,7 @@ public slots:
     void resumen_semanal();
     void ver_peluqueria();
     void ver_compras();
+    void resumenEntreFechas();
 
 
 };

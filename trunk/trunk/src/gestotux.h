@@ -98,6 +98,7 @@ private:
       QAction *ActProductos;
       QAction *ActActualizar;
       QAction *ActAyuda;
+      QAction *ActRestaurar;
 
       QSystemTrayIcon * iconoBandeja;
 
@@ -107,7 +108,7 @@ public slots:
     void verBackup();
 
 private slots:
-    void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon );
+    void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon = QSystemTrayIcon::Trigger );
 
 private:
     static QHash<QString, EPlugin *> *_plugins;

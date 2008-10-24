@@ -189,7 +189,7 @@ void resumenGeneral::renderizar( QDate primero, QDate ultimo )
 void resumenGeneral::peluqueria()
 {
  QSqlQuery cola;
- cola.prepare( QString( "SELECT COUNT(id) FROM peluqueria WHERE fecha BETWEEN  '%1' AND '%2' " ).arg( primero.toString( "yyyy-MM-dd" ) ).arg( ultimo.toString( "yyyy-MM-dd" ) ) );
+ cola.prepare( "SELECT COUNT(id) FROM peluqueria WHERE " + hacerWhere() );
  if( cola.exec() )
  {
   if( !cola.next() )
@@ -535,6 +535,10 @@ void resumenGeneral::ventas()
          qDebug( cola.lastError().text().toLocal8Bit() );
          qDebug( cola.lastQuery().toLocal8Bit() );
 	}
+   }
+   else
+   {
+    qDebug( "No existen ventas" );
    }
   }
  }

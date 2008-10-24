@@ -1,6 +1,11 @@
 - Al poner agregar, que quede autoeditando el que se agrego
 - Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
 
+Digifauno:
+==========
+
+- Poner un delegate que busque nombre y apellido del dueño en la lista de mascotas
+
 Administracion Caravanas Corrientes:
 ============== ========= ===========
 

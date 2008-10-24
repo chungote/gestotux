@@ -25,6 +25,7 @@ class QCalendarWidget;
 class QCheckBox;
 class QComboBox;
 class QSpinBox;
+class QDateEdit;
 
 /**
  *	\brief Clase inicial de resumenes
@@ -42,7 +43,8 @@ public:
      diario = 0x00,
      mensual = 0x01,
      anual = 0x02,
-     semanal = 0x03
+     semanal = 0x03,
+     entrefechas = 0x04
     };
 
     EResumen( QWidget *parent = 0, tipo que = diario );
@@ -56,7 +58,8 @@ private:
     QCalendarWidget *CWfecha;
     QCheckBox *ChBDetallado;
     QComboBox *CBMes;
-    QSpinBox *seleccion;
+    QSpinBox *seleccion, *SBAno;
+    QDateEdit *DEInicio, *DEFin;
 };
 
 #endif

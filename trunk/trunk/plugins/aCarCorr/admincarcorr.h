@@ -51,6 +51,7 @@ public:
     QList<EInformeInterface *> plugins();
     bool conectarVisorInforme() const { return true; }
     void crearToolBar( QToolBar *t );
+    bool publicidad() { return true; }
 
 private:
     QList<QAction *> _acciones;

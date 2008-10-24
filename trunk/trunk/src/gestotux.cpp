@@ -120,6 +120,9 @@ void gestotux::createActions()
  	ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
  	ActActualizar->setStatusTip( "Actualiza la aplicacion " );
  	connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
+
+	ActRestaurar = new QAction( "Restaurar", this );
+ 	connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
 }
 
 void gestotux::createMenus()
@@ -265,15 +268,19 @@ void gestotux::crearReloj()
 	 Reloj *r = new Reloj( dw );
 	 dw->setWidget( r );
  }
-
- QDockWidget *dp = new QDockWidget( "Publicidad", this );
- dp->setObjectName( "publicidad" );
- dp->setAllowedAreas( Qt::BottomDockWidgetArea );
- addDockWidget( Qt::BottomDockWidgetArea, dp );
- QWebView *vista = new QWebView( dp );
- vista->load( QUrl( "http://tranfuga.no-ip.org/publicidad.html" ) );
- vista->show();
- dp->setWidget( vista );
+ if( pluginInfo()->publicidad() )
+ {
+	 QDockWidget *dp = new QDockWidget( "Publicidad", this );
+	 dp->setObjectName( "publicidad" );
+	 dp->setAllowedAreas( Qt::BottomDockWidgetArea );
+	 dp->setFeatures( QDockWidget::NoDockWidgetFeatures );
+	 addDockWidget( Qt::BottomDockWidgetArea, dp );
+	 QWebView *vista = new QWebView( dp );
+	 vista->load( QUrl( "http://tranfuga.no-ip.org/publicidad.html" ) );
+	 dp->setFixedHeight( 140 );
+	 vista->show();
+	 dp->setWidget( vista );
+ }
 }
 
 
@@ -300,10 +307,19 @@ void gestotux::bandeja_sistema()
    {
     iconoBandeja = new QSystemTrayIcon( this );
     QMenu *menu = new QMenu( this );
+    menu->addAction( ActPreferencias );
+    menu->addAction( ActBackup );
+    menu->addAction( ActActualizar );
+    menu->addSeparator();
+    menu->addAction( ActAyuda );
+    menu->addAction( acercade );
+    menu->addSeparator();
+    menu->addAction( ActRestaurar );
     menu->addAction( exitAct );
     iconoBandeja->setIcon( pluginInfo()->iconoPrograma() );
-    iconoBandeja->setToolTip( "Gestotux" );
+    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.4" );
     iconoBandeja->show();
+    iconoBandeja->setContextMenu( menu );
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );
    }
    else
