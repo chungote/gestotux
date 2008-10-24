@@ -1,4 +1,5 @@
-#Plugin de renderiacion de recibos svg para cobranza de internet
+#labels Featured,Phase-Requirements
+ #Plugin de renderiacion de recibos svg para cobranza de internet
 
 = Introduccion =
 
