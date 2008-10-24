@@ -138,6 +138,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout" >
      <item>
+      <widget class="QPushButton" name="PBInterna" >
+       <property name="text" >
+        <string>Cambiar a interna</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="PBConectar" >
        <property name="text" >
         <string>Conectar...</string>

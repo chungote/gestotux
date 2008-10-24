@@ -1,6 +1,7 @@
 SUBDIRS += utiles \
  src \
- plugins
+ plugins \
+ utiles/estilo/estilo.pro
 TEMPLATE = subdirs
 CONFIG += warn_on \
           qt \

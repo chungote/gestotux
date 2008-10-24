@@ -36,6 +36,7 @@
 #include <QDate>
 #include <algorithm>
 #include <QLabel>
+#include <QDateEdit>
 #include <QAction>
 #include "eactcerrar.h"
 
@@ -69,26 +70,55 @@ EResumen::EResumen( QWidget *parent, tipo que )
   }
   case mensual:
   {
-   QGroupBox *g = new QGroupBox( this );
-   g->setTitle( "Elija el mes para el resumen" );
-   g->setAlignment( Qt::AlignCenter );
-   g->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
-   QVBoxLayout *v = new QVBoxLayout( g );
-   QHBoxLayout *h1 = new QHBoxLayout( g );
-   QLabel *etiqueta = new QLabel( g );
-   etiqueta->setTextFormat( Qt::RichText );
-   etiqueta->setText( "Mes:" );
-   h1->addWidget( etiqueta );
-   CBMes = new QComboBox( g );
-   QLocale locale;
-   for( int i = 0; i<12; i++ )
-   {
-    CBMes->insertItem( i, locale.monthName( i ) );
-   }
-   CBMes->setCurrentIndex( QDate::currentDate().month() );
-   h1->addWidget( CBMes );
-   v->addLayout( h1 );
-   layoutPrincipal->addWidget( g );
+    QGroupBox *groupBox = new QGroupBox( this );
+    groupBox->setObjectName(QString::fromUtf8("groupBox"));
+    groupBox->setTitle( "Elija el mes para el resumen" );
+    groupBox->setAlignment( Qt::AlignCenter );
+    groupBox->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
+
+    QVBoxLayout *v = new QVBoxLayout(groupBox);
+    v->setObjectName( "vLayout" );
+    QHBoxLayout *h1 = new QHBoxLayout();
+    h1->setObjectName("hLayout1");
+
+    QLabel *Lmes = new QLabel(groupBox);
+    Lmes->setObjectName(QString::fromUtf8("labelMes"));
+    Lmes->setText( tr( "Mes:" ) );
+    h1->addWidget(Lmes);
+
+    CBMes = new QComboBox(groupBox);
+    CBMes->setObjectName(QString::fromUtf8("CBMes"));
+    // Inserto los meses
+    QLocale locale;
+    for( int i = 1; i<=12; i++ )
+    {
+     CBMes->insertItem( i, locale.monthName( i ) );
+    }
+    CBMes->setCurrentIndex( QDate::currentDate().month() );
+    h1->addWidget(CBMes);
+
+
+    v->addLayout(h1);
+
+    QHBoxLayout *horizontalLayout_2 = new QHBoxLayout();
+    horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+
+    QLabel *Lano = new QLabel(groupBox);
+    Lano->setObjectName(QString::fromUtf8("lano"));
+    Lano->setText( tr( "Año:" ) );
+    horizontalLayout_2->addWidget(Lano);
+
+    SBAno = new QSpinBox(groupBox);
+    SBAno->setObjectName(QString::fromUtf8("SBAno"));
+    SBAno->setMaximum( QDate::currentDate().year() );
+    SBAno->setSingleStep( 1 );
+    SBAno->setValue( QDate::currentDate().year() );
+
+    horizontalLayout_2->addWidget(SBAno);
+
+    v->addLayout(horizontalLayout_2);
+
+   layoutPrincipal->addWidget( groupBox );
    break;
   }
   case anual:
@@ -119,6 +149,42 @@ EResumen::EResumen( QWidget *parent, tipo que )
    g->adjustSize();
    layoutPrincipal->addWidget( g );
    break;
+  }
+  case entrefechas:
+  {
+    QHBoxLayout *horizontalLayout = new QHBoxLayout();
+    horizontalLayout->setObjectName( "horizontalLayout" );
+    horizontalLayout->setContentsMargins(0, 0, 0, 0);
+    QLabel *LInicio = new QLabel(this);
+    LInicio->setObjectName( "LInicio" );
+    LInicio->setText( "Fecha de inicio:" );
+
+    horizontalLayout->addWidget(LInicio);
+
+    DEInicio = new QDateEdit(this);
+    DEInicio->setObjectName( "DEInicio" );
+    DEInicio->setCalendarPopup(true);
+
+    horizontalLayout->addWidget(DEInicio);
+
+    QHBoxLayout *horizontalLayout_2 = new QHBoxLayout();
+    horizontalLayout_2->setObjectName( "horizontalLayout_2" );
+    horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+    QLabel *LFin = new QLabel(this);
+    LFin->setObjectName( "LFin" );
+    LFin->setText( "Fecha de Fin:" );
+
+    horizontalLayout_2->addWidget(LFin);
+
+    DEFin = new QDateEdit(this);
+    DEFin->setObjectName( "DEFin" );
+    DEFin->setCalendarPopup(true);
+    DEFin->setMaximumDate( QDate::currentDate() );
+
+    horizontalLayout_2->addWidget(DEFin);
+
+    layoutPrincipal->addItem( horizontalLayout );
+    layoutPrincipal->addItem( horizontalLayout_2 );
   }
  }
  QAction *ActGenerar = new QAction( "Generar Reporte", this );
@@ -162,8 +228,8 @@ void EResumen::generarResumen()
   {
    resumen->setTitulo( QString( "Resumen para el mes de %1 del año %2" ).arg( CBMes->currentText() ).arg( QDate::currentDate().year() ) );
    resumen->setDescripcion( QString( "Resumen detallado de entradas,salidas y gastos para el mes de %1 de %2" ).arg( CBMes->currentText() ).arg( QDate::currentDate().year() ) );
-   primero.setDate( QDate::currentDate().year(), CBMes->currentIndex(), 1 );
-   ultimo.setDate( QDate::currentDate().year(),  CBMes->currentIndex(), primero.daysInMonth() );
+   primero.setDate( SBAno->value(), CBMes->currentIndex(), 1 );
+   ultimo.setDate( SBAno->value(),  CBMes->currentIndex(), primero.daysInMonth() );
    resumen->renderizar( primero, ultimo );
    break;
   }
@@ -183,10 +249,14 @@ void EResumen::generarResumen()
    resumen->setTitulo( "Resumen Semanal" );
    resumen->setDescripcion( QString( "Resumen detallado de entradas, salidas y gastos desde %1 al %2" ).arg( primero.toString() ).arg( ultimo.toString() ) );
    resumen->renderizar( primero, ultimo );
+   break;
   }
-  default:
+  case entrefechas:
   {
-   //qDebug( "No se especifico que tipo de resumen hacer" );
+   resumen->setTitulo( "Resumen entre fechas" );
+   resumen->setDescripcion( QString( "Resumen entre %1  y %2" ).arg( DEInicio->date().toString() ).arg( DEFin->date().toString() ) );
+   resumen->renderizar( DEInicio->date(), DEFin->date() );
+   break;
   }
  }
  EVisorInformes *visor = new EVisorInformes( new QPrinter(), this );

@@ -53,6 +53,7 @@ public:
     QString empresa() const;
     QString companeros();
     void crearToolBar( QToolBar *t );
+    bool publicidad() { return false; }
 
 private:
     QList<QAction *> _acciones;
