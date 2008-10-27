@@ -23,7 +23,6 @@
 #include <QDir>
 #include <QHash>
 
-QSettings *AdminCarCorr::_pref = 0;
 QHash<QString, EInformeInterface *> *AdminCarCorr::_plugins = 0;
 
 QIcon AdminCarCorr::iconoPrograma() const
@@ -94,9 +93,8 @@ QWidgetList AdminCarCorr::formsPreferencias()
  return _listaFormPref;
 }
 
-bool AdminCarCorr::inicializar( QSettings* pref)
+bool AdminCarCorr::inicializar()
 {
- _pref = pref;
  _acciones.clear();
 
  ActCategoria = new QAction( "Ver Categorias", this );

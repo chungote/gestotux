@@ -1,7 +1,9 @@
 TEMPLATE = lib
 CONFIG += plugin \
  dll \
- debug
+ debug \
+ help
+
 TARGET = hicomp
 
 HEADERS += hicomp.h \
@@ -45,9 +47,11 @@ DISTFILES += recibo.svg \
  hicomp.SQLITE.sql
 
 win32 {
-    CONFIG += release
-    CONFIG -= debug
+    MOC_DIR = win/moc
+    UI_DIR = win/ui
+    OBJECTS_DIR = win/objeto
 }
+
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc

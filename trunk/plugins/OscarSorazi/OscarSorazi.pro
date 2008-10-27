@@ -64,9 +64,11 @@ FORMS += ../aCarCorr/FormMovimientoBase.ui \
 ../aCarCorr/FormPrefCaravanas.ui
 
 win32 {
-    CONFIG += release
-    CONFIG -= debug
+    MOC_DIR = win/moc
+    UI_DIR = win/ui
+    OBJECTS_DIR = win/objeto
 }
+
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc

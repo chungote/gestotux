@@ -38,6 +38,7 @@
 VDuenos::VDuenos( QWidget *parent )
  : EVLista( parent )
 {
+ setObjectName( "duenos" );
  setWindowIcon( QIcon( ":/imagenes/duenos.png" ) );
  setWindowTitle( "Listado de Dueños" );
  modelo = new MDueno( this );

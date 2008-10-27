@@ -33,8 +33,6 @@
 #include <QSqlRecord>
 #include <QSqlError>
 
-QSettings *HiComp::_pref = 0;
-
 QString HiComp::nombrePrograma()  const
 {
  return "HiComp Computacion - 0.1";
@@ -58,9 +56,8 @@ QList<QActionGroup *> HiComp::accionesBarra()
 }
 
 
-bool HiComp::inicializar( QSettings *pref  )
+bool HiComp::inicializar()
 {
- _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
  ActRecibos = new QAction( "Ver Recibos", this );
@@ -82,11 +79,6 @@ bool HiComp::inicializar( QSettings *pref  )
 void HiComp::verRecibosAnteriores()
 { emit agregarVentana( new VRecibos() ); }
 
-
-QSettings *HiComp::pref()
-{
- return _pref;
-}
 
 QString HiComp::directorioBackup() const
 {

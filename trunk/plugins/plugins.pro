@@ -5,7 +5,7 @@ SUBDIRS += HiComp \
  aCarCorr \
  aCarCorr/plugins \
  productos \
- digifauno
+ digifauno \
+ ventas \
+ default
 CONFIG += ordered
-
-## presupuestador \  OscarSorazi \

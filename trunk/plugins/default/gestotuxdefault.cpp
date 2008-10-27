@@ -17,44 +17,54 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PRODUCTOS_H
-#define PRODUCTOS_H
+#include "gestotuxdefault.h"
 
-#include <QObject>
-#include <eplugin.h>
+bool GestotuxDefault::publicidad()
+{ return true; }
 
-/**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class productos : public QObject, public EPlugin
-{
- Q_OBJECT
- Q_INTERFACES(EPlugin)
-public:
-    QList<QActionGroup *> accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    bool inicializar();
-    bool verificarTablas();
-    int tipo() const;
-    void crearMenu( QMenuBar *m );
-    double version() const;
-    static QStackedWidget *tabs();
-    void crearToolBar( QToolBar *t );
-    bool publicidad() { return true; }
+double GestotuxDefault::version() const
+{ return 1; }
 
-private:
-    QList<QAction *> _acciones;
+QIcon GestotuxDefault::iconoPrograma() const
+{ return QIcon(); }
 
-    QAction *ActProductos;
-    QAction *ActCategorias;
+QString GestotuxDefault::companeros()
+{ return ""; }
 
-public slots:
-    void verProductos();
-    void categorias();
+QString GestotuxDefault::directorioActualizaciones() const
+{ return ""; }
 
-signals:
-	void agregarVentana( QWidget * );
-};
+QString GestotuxDefault::directorioBackup() const
+{ return ""; }
 
-#endif
+QString GestotuxDefault::empresa() const
+{ return "<generico>"; }
+
+QString GestotuxDefault::nombrePrograma() const
+{ return "Gestotux"; }
+
+bool GestotuxDefault::inicializar()
+{ return true; }
+
+bool GestotuxDefault::verificarTablas()
+{ return true; }
+
+int GestotuxDefault::tipo() const
+{ return EPlugin::info; }
+
+QList< QActionGroup * > GestotuxDefault::accionesBarra()
+{ return QList<QActionGroup *>(); }
+
+QString GestotuxDefault::nombre() const
+{ return "zinfo"; }
+
+QWidgetList GestotuxDefault::formsPreferencias()
+{ return QWidgetList();}
+
+void GestotuxDefault::crearMenu(QMenuBar* m)
+{}
+
+void GestotuxDefault::crearToolBar(QToolBar* t)
+{}
+
+Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );

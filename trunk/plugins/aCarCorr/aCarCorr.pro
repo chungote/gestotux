@@ -68,12 +68,14 @@ FORMS += FormMovimientoBase.ui \
 win32 {
     CONFIG += release
     CONFIG -= debug
+    MOC_DIR = win/moc
+    UI_DIR = win/ui
+    OBJECTS_DIR = win/objeto
 }
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
-    QMAKE_EXTRA_TARGETS += /home/ftp/actualizaciones/$TARGET
 }
 CONFIG -= release
 

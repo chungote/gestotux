@@ -48,7 +48,7 @@ public:
     };
     virtual ~EPlugin() {}
     virtual QList<QActionGroup *> accionesBarra() = 0;
-    virtual bool inicializar( QSettings *pref ) = 0;
+    virtual bool inicializar() = 0;
     virtual QWidgetList formsPreferencias() = 0;
     virtual QString nombre() const = 0;
     virtual int tipo() const = 0;

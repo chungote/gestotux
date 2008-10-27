@@ -3,10 +3,7 @@ SOURCES += digifauno.cpp \
  vduenos.cpp \
  mmascota.cpp \
  mproveedor.cpp \
- formagregarventa.cpp \
  vproveedor.cpp \
- mventa.cpp \
- mventaproducto.cpp \
  formagregarmasctoa.cpp \
  formagregarservicio.cpp \
  mpeluqueria.cpp \
@@ -15,7 +12,6 @@ SOURCES += digifauno.cpp \
  eresumen.cpp \
  mcompra.cpp \
  mrazas.cpp \
- dventacompra.cpp \
  dmiembros.cpp \
  mgasto.cpp \
  formagregargasto.cpp \
@@ -34,10 +30,7 @@ HEADERS += digifauno.h \
  vduenos.h \
  mmascota.h \
  mproveedor.h \
- formagregarventa.h \
  vproveedor.h \
- mventa.h \
- mventaproducto.h \
  formagregarmasctoa.h \
  formagregarservicio.h \
  mpeluqueria.h \
@@ -46,7 +39,6 @@ HEADERS += digifauno.h \
  eresumen.h \
  mcompra.h \
  mrazas.h \
- dventacompra.h \
  dmiembros.h \
  mgasto.h \
  formagregargasto.h \
@@ -139,9 +131,11 @@ FORMS += FormAgregarMascota.ui \
  FormAgregarCompraBase.ui
 
 TARGET = digifauno
-OBJECTS_DIR = objeto
-UI_DIR = ui
-MOC_DIR = moc
+linux-g++ {
+    OBJECTS_DIR = objeto
+    UI_DIR = ui
+    MOC_DIR = moc
+}
 
 
 win32 {
@@ -149,7 +143,8 @@ win32 {
     MOC_DIR = win/moc
     UI_DIR = win/ui
     OBJECTS_DIR = win/objeto
-}TEMPLATE = lib
+}
+TEMPLATE = lib
 
 CONFIG -= release
 

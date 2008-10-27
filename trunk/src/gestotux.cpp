@@ -397,7 +397,7 @@ bool gestotux::cargarPlugins()
 			_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
 			preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
 		}
-		if( plug->inicializar( preferencias::getInstancia() ) )
+		if( plug->inicializar() )
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), formCen(), SLOT( agregarForm( QWidget * ) ) );
 			//Verifico sus tablas

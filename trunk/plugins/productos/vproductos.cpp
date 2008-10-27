@@ -33,6 +33,7 @@
 VProductos::VProductos(QWidget *parent)
  : EVLista(parent)
 {
+ this->setObjectName( "listaproductos" );
  this->setWindowTitle( "Lista de Productos");
  this->setWindowIcon( QIcon( ":/imagenes/productos.png" ) );
  modelo = new MProductos( this );

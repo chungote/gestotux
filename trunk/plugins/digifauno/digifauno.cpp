@@ -25,7 +25,6 @@
 #include "preferencias.h"
 #include "vduenos.h"
 #include "vproveedor.h"
-#include "formagregarventa.h"
 #include "formagregarmasctoa.h"
 #include "formagregarservicio.h"
 #include "vmascota.h"
@@ -36,21 +35,11 @@
 #include "formagregarcompra.h"
 #include "vcompras.h"
 
-QSettings *DigiFauno::_pref = 0;
-
 /*!
     \fn DigiFauno::duenos()
  */
 void DigiFauno::duenos()
 { emit agregarVentana( new VDuenos() ); }
-
-
-/*!
-    \fn DigiFauno::agregar_venta()
- */
-void DigiFauno::agregarVenta()
-{ emit agregarVentana( new FormAgregarVenta() ); }
-
 
 /*!
     \fn DigiFauno::proveedores()
@@ -156,12 +145,11 @@ double DigiFauno::version() const
 
 
 /*!
-    \fn DigiFauno::inicializar( QSettings *pref )
+    \fn DigiFauno::inicializar()
  */
-bool DigiFauno::inicializar( QSettings *pref )
+bool DigiFauno::inicializar()
 {
  Q_INIT_RESOURCE(embebido);
- _pref = pref;
  _acciones.clear();
  // Acciones estandar
  ////////////////////////////////
@@ -217,10 +205,6 @@ bool DigiFauno::inicializar( QSettings *pref )
  ActNuevoServicio = new QAction( "Agregar Nueva Servicio", this );
  ActNuevoServicio->setIcon( QIcon( ":/imagenes/pelu.gif" ) );
  connect( ActNuevoServicio, SIGNAL( triggered() ), this, SLOT( agregarServicioPeluqueria() ) );
-
- ActAgregarVentas = new QAction( "Agregar venta", this );
- ActAgregarVentas->setIcon( QIcon( ":/imagenes/add.png" ) );
- connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
 
  ActAgregarCompra = new QAction( "Agregar Nueva Compra", this );
  ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
@@ -293,14 +277,6 @@ QList<QActionGroup *> DigiFauno::accionesBarra()
  peluqueria->addAction( ActMascotas );
  peluqueria->addAction( ActDuenos );
  lista.append( peluqueria );
- /////////////////////////////////////////////////////////////
- // Ventas
- ventas = new QActionGroup( this );
- ventas->setObjectName( "ventas" );
- ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
- ventas->setProperty( "titulo", "Ventas" );
- ventas->addAction( ActAgregarVentas );
- lista.append( ventas );
  /////////////////////////////////////////////////////////////
  // Compras y gastos
  compras = new QActionGroup( this );

@@ -38,7 +38,7 @@ class DigiFauno : public QObject, public EInfoProgramaInterface, public EPlugin
       Q_OBJECT
       Q_INTERFACES( EPlugin EInfoProgramaInterface )
 public:
-    bool inicializar( QSettings *pref );
+    bool inicializar();
     QString nombre() const;
     double version() const;
     bool verificarTablas();
@@ -72,7 +72,6 @@ private:
     QAction *ActPeluqueria;
     QAction *ActVentas;
     QAction *ActNuevoServicio;
-    QAction *ActAgregarVentas;
     QAction *ActAgregarCompra;
     QAction *ActAgregarMascota;
     QAction *ActAgregarGasto;
@@ -88,10 +87,8 @@ private:
 
 private:
     QList<QAction *> _acciones;
-    static QSettings *_pref;
 
 public slots:
-    void agregarVenta();
     void proveedores();
     void duenos();
     void agregarMascota();
