@@ -44,6 +44,7 @@ public slots:
 
 private:
 	QPushButton *PBCerrar;
+    bool existeVentana( QString nombre );
 };
 
 #endif

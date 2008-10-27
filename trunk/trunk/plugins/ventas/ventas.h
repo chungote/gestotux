@@ -17,19 +17,19 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PRODUCTOS_H
-#define PRODUCTOS_H
+#ifndef VENTAS_H
+#define VENTAS_H
 
 #include <QObject>
-#include <eplugin.h>
+#include <../../src/eplugin.h>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class productos : public QObject, public EPlugin
+class Ventas : public QObject, public EPlugin
 {
- Q_OBJECT
- Q_INTERFACES(EPlugin)
+Q_OBJECT
+Q_INTERFACES( EPlugin )
 public:
     QList<QActionGroup *> accionesBarra();
     QString nombre() const;
@@ -45,13 +45,13 @@ public:
 
 private:
     QList<QAction *> _acciones;
+    QAction *ActAgregarVentas;
+/*
 
-    QAction *ActProductos;
     QAction *ActCategorias;
-
-public slots:
-    void verProductos();
-    void categorias();
+*/
+private slots:
+       void agregarVenta();
 
 signals:
 	void agregarVentana( QWidget * );

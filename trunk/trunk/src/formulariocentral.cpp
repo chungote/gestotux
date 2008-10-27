@@ -62,7 +62,29 @@ void FormularioCentral::cerrarActivo()
  */
 void FormularioCentral::agregarForm( QWidget *ventana )
 {
- connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );
- this->setCurrentIndex( this->addTab( ventana, ventana->windowIcon(), ventana->windowTitle() ) );
- this->currentWidget()->setFocus( Qt::ActiveWindowFocusReason );
+ if( !existeVentana( ventana->objectName() ) )
+ {
+  connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );
+  this->setCurrentIndex( this->addTab( ventana, ventana->windowIcon(), ventana->windowTitle() ) );
+  this->currentWidget()->setFocus( Qt::ActiveWindowFocusReason );
+ }
+ else
+ {
+   // Busco el form que tiene la ventana y lo pongo como actual
+   //qWarning( qPrintable( "Ya existe la ventana " + ventana->objectName() ) );
+   this->setCurrentWidget( this->findChild<QWidget *>( ventana->objectName() ) );
+   ventana->deleteLater();
+ }
+}
+
+
+/*!
+    \fn FormularioCentral::existeVentana( QString nombre )
+ */
+bool FormularioCentral::existeVentana( QString nombre )
+{
+ if( this->findChild<QWidget *>( nombre ) == 0 )
+ { return false; }
+ else
+ { return true; }
 }

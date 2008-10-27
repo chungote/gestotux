@@ -17,44 +17,40 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PRODUCTOS_H
-#define PRODUCTOS_H
+#ifndef GESTOTUXDEFAULT_H
+#define GESTOTUXDEFAULT_H
 
 #include <QObject>
 #include <eplugin.h>
+#include <einfoprogramainterface.h>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class productos : public QObject, public EPlugin
+class GestotuxDefault : public QObject, public EPlugin, public EInfoProgramaInterface
 {
- Q_OBJECT
- Q_INTERFACES(EPlugin)
+Q_OBJECT
+Q_INTERFACES( EPlugin EInfoProgramaInterface )
 public:
-    QList<QActionGroup *> accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
+    bool publicidad();
+    double version() const;
+    QIcon iconoPrograma() const;
+    QString companeros();
+    QString directorioActualizaciones() const;
+    QString directorioBackup() const;
+    QString empresa() const;
+    QString nombrePrograma() const;
     bool inicializar();
     bool verificarTablas();
     int tipo() const;
-    void crearMenu( QMenuBar *m );
-    double version() const;
-    static QStackedWidget *tabs();
-    void crearToolBar( QToolBar *t );
-    bool publicidad() { return true; }
-
-private:
-    QList<QAction *> _acciones;
-
-    QAction *ActProductos;
-    QAction *ActCategorias;
-
-public slots:
-    void verProductos();
-    void categorias();
+    QList< QActionGroup * > accionesBarra();
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    void crearMenu(QMenuBar* m);
+    void crearToolBar(QToolBar* t);
 
 signals:
-	void agregarVentana( QWidget * );
+    void agregarVentana(QWidget* v);
 };
 
 #endif

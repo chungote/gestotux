@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "formagregarventa.h"
-#include "mdueno.h"
+#include "../digifauno/mdueno.h"
 #include "mventa.h"
 #include "mventaproducto.h"
 #include "preferencias.h"
@@ -52,6 +52,7 @@
 FormAgregarVenta::FormAgregarVenta(QWidget *parent)
  : EVentana( parent )
 {
+    setObjectName( "agregarVenta" );
     setWindowIcon( QIcon( ":/imagenes/add.png" ) );
     setWindowTitle( "Agregar Venta" );
     vboxLayout = new QVBoxLayout(this);

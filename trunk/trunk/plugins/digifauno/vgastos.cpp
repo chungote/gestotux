@@ -33,9 +33,9 @@ VGastos::VGastos( QWidget* parent )
  setWindowTitle(  "Visor de Gastos" );
  setWindowIcon( QIcon(":/imagenes/gasto.jpg" ) );
 
+ // Redirijo la opcion de agregar al plugin
  ActAgregar->disconnect();
- DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);
- connect( ActAgregar, SIGNAL( clicked() ), digifauno, SLOT( agregar_gasto() ) );
+ connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregarGasto() ) );
 
 
  modelo = new MGasto( this );
@@ -68,4 +68,11 @@ void VGastos::antes_de_insertar(int row, QSqlRecord& record)
 {
  return;
 }
+
+#include "formagregargasto.h"
+/*!
+    \fn VGastos::agregarGasto()
+ */
+void VGastos::agregarGasto()
+{ emit agregarVentana( new FormAgregarGasto() ); }
 

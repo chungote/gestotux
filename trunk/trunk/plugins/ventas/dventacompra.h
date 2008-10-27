@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
+ *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,44 +17,32 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PRODUCTOS_H
-#define PRODUCTOS_H
+#ifndef DVENTACOMPRA_H
+#define DVENTACOMPRA_H
 
-#include <QObject>
-#include <eplugin.h>
+#include <QSqlRelationalDelegate>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class productos : public QObject, public EPlugin
+ *	\brief Clase que ayuda a la edicion de productos en ventas y compras
+ *
+ * Delegate que permite la correcta edicion de los campos que forman la parte de productos, en ventas y compras.\n
+ * En caso de editar cantidades, restringe la entrada a enteros.\n
+ * En caso de editar precios, restringe la entrada a dobles.\n
+ * En caso de editar productos, setea condiciones especiales que permiten una busqueda especial por tipeo de los productos.\n
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
+class DVentaCompra : public QSqlRelationalDelegate
 {
- Q_OBJECT
- Q_INTERFACES(EPlugin)
+Q_OBJECT
 public:
-    QList<QActionGroup *> accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    bool inicializar();
-    bool verificarTablas();
-    int tipo() const;
-    void crearMenu( QMenuBar *m );
-    double version() const;
-    static QStackedWidget *tabs();
-    void crearToolBar( QToolBar *t );
-    bool publicidad() { return true; }
+    DVentaCompra(QObject *parent = 0);
+    ~DVentaCompra();
+    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void setEditorData(QWidget* editor, const QModelIndex& index) const;
+    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
+    void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
-private:
-    QList<QAction *> _acciones;
-
-    QAction *ActProductos;
-    QAction *ActCategorias;
-
-public slots:
-    void verProductos();
-    void categorias();
-
-signals:
-	void agregarVentana( QWidget * );
 };
 
 #endif

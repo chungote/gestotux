@@ -22,8 +22,6 @@
 #include "vcategorias.h"
 #include <QSqlDatabase>
 
-QSettings *productos::_pref = 0;
-
 Q_EXPORT_PLUGIN2( productos, productos );
 
 
@@ -63,11 +61,10 @@ QWidgetList productos::formsPreferencias()
 
 
 /*!
-    \fn productos::inicializar( QSettings *pref )
+    \fn productos::inicializar()
  */
-bool productos::inicializar( QSettings *pref )
+bool productos::inicializar()
 {
- _pref = pref;
  _acciones.clear();
 
  ActProductos = new QAction( "Ver Productos", this );
@@ -138,12 +135,6 @@ double productos::version() const
 {
  return 0.1;
 }
-
-QSettings *productos::pref()
-{
- return _pref;
-}
-
 
 /*!
     \fn productos::verProductos()

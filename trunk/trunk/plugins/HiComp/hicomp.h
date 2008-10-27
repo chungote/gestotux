@@ -40,7 +40,7 @@ public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
     QList<QActionGroup *> accionesBarra();
-    bool inicializar( QSettings *pref );
+    bool inicializar();
     static QSettings *pref();
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
@@ -57,7 +57,6 @@ public:
 
 private:
     QList<QAction *> _acciones;
-    static QSettings *_pref;
 
      QAction *ActNuevoRecibo;
      QAction *ActRecibos;

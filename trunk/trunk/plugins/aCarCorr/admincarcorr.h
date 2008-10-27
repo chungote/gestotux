@@ -43,7 +43,7 @@ public:
     QList<QActionGroup *> accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
-    bool inicializar( QSettings* pref);
+    bool inicializar();
     bool verificarTablas();
     double version() const;
     int tipo() const;
@@ -55,7 +55,6 @@ public:
 
 private:
     QList<QAction *> _acciones;
-    static QSettings *_pref;
 
 	QAction *ActEstablecimiento;
 	QAction *ActCategoria;
