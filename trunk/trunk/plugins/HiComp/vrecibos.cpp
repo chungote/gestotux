@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "vrecibos.h"
 #include "mrecibo.h"
-#include "hicomp.h"
+#include "preferencias.h"
 #include "formmodificarrecibo.h"
 #include "formagregarrecibo.h"
 #include "drecibo.h"
@@ -225,7 +225,7 @@ void VRecibos::imprimir()
   printer.setOutputFormat(QPrinter::NativeFormat);
  #endif
  ///@todo Poner las propiedades de las hojas desde las preferencias
- if( HiComp::pref()->value( "preferencias/recibos/orientacion", QPrinter::Landscape ).toInt() == QPrinter::Landscape )
+ if( preferencias::getInstancia()->value( "preferencias/recibos/orientacion", QPrinter::Landscape ).toInt() == QPrinter::Landscape )
  {
    printer.setOrientation( QPrinter::Landscape );
  }

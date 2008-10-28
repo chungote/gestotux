@@ -22,7 +22,7 @@
 
 #include <QObject>
 #include <eplugin.h>
-#include <einfoprogramainterface.h>
+#include "../../src/einfoprogramainterface.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>

@@ -307,14 +307,7 @@ void FormActualizacion::analizarGeneral()
   }
   if( docElem.attribute( "version", 0 ).toDouble() > VERSION_PROGRAMA )
   {
-	if( CkBGenerales->isChecked() )
-	{
-		TELog->append( "Existe una nueva version del programa. Por favor actualicela manualmente" );
-	}
-	else
-	{
-		TELog->append( "No existen actualizaciones para esta version de Gestotux. Por Favor actualize el programa a una veriosn superior" );
-	}
+	TELog->append( "No existen actualizaciones para esta version de Gestotux. Por Favor actualize el programa a una veriosn superior" );
 	ftp->clearPendingCommands();
 	ftp->close();
 	_continuar_actualizando = false;
@@ -322,10 +315,7 @@ void FormActualizacion::analizarGeneral()
   }
   else
   {
-	if( CkBGenerales->isChecked() )
-	{
-		  TELog->append( "No se necesita actualizar el programa general." );
-	}
+	TELog->append( "No se necesita actualizar el programa general." );
 	//Ingreso al directorio de la version del programa
 	ftp->cd( QString::number( docElem.attribute( "version", 0 ).toDouble() ) );
 	qDebug( QString( "entrando en: %1" ).arg( docElem.attribute( "version", 0 ).toDouble() ).toLocal8Bit() );

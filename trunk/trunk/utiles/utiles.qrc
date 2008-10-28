@@ -1,0 +1,14 @@
+<RCC>
+  <qresource>
+    <file>imagenes/textjustify.png</file>
+    <file>imagenes/textright.png</file>
+    <file>imagenes/textsubscript.png</file>
+    <file>imagenes/textitalic.png</file>
+    <file>imagenes/textunder.png</file>
+    <file>imagenes/textcenter.png</file>
+    <file>imagenes/textbold.png</file>
+    <file>imagenes/textleft.png</file>
+    <file>imagenes/textsuperscript.png</file>
+    <file>imagenes/insertimage.png</file>
+  </qresource>
+</RCC>

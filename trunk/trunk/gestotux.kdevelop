@@ -95,9 +95,7 @@
       <synchronize>true</synchronize>
       <orientation>Vertical</orientation>
     </splitheadersource>
-    <references>
-      <pcs>Qt4</pcs>
-    </references>
+    <references/>
   </kdevcppsupport>
   <kdevdoctreeview>
     <ignoretocs>
@@ -182,7 +180,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/default</activedir>
+      <activedir>utiles</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>

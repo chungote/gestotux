@@ -33,7 +33,7 @@
 #include <QTextStream>
 #include <math.h>
 #include <QSettings>
-#include "hicomp.h"
+#include "preferencias.h"
 
 Recibo::Recibo(QObject *parent)
  : QObject(parent)
@@ -193,7 +193,7 @@ void Recibo::imprimir( QPainter *impresora )
  }
  double defasaje = nodo.attribute( "x" ).toDouble() + nodo.attribute( "width" ).toDouble();
  defasaje *= 30;
- defasaje += HiComp::pref()->value( "preferencias/recibos/margen", 40 ).toDouble() * 30;
+ defasaje += preferencias::getInstancia()->value( "preferencias/recibos/margen", 40 ).toDouble() * 30;
  impresora->translate( QPointF( defasaje, 0 ) );
  rend.render( impresora );
 }

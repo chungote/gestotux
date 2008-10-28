@@ -86,6 +86,10 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	// Inicializo el formulario ahora para poder usar la modificacion
 	formLista = new FormListaProductos();
 	connect( formLista, SIGNAL( agregarTabla() ), this, SLOT( ponerTabla() ) );
+
+	// Inicializo el editor
+	editor = new EEditor( GBContenido );
+	GBContenido->layout()->addWidget( editor );
 }
 
 FormAgregarPresupuesto::~FormAgregarPresupuesto()
@@ -170,7 +174,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  // le pongo los valores a el registro
  reg.setValue( "titulo", LETitulo->text() );
  reg.setValue( "total", dSBTotal->value() );
- reg.setValue( "contenido", TBContenido->document()->toHtml() );
+ reg.setValue( "contenido", editor->contenido() );
  reg.setValue( "fecha", dEFecha->date() );
  if( RBOtro->isChecked() )
  {

@@ -41,7 +41,6 @@ public:
     QIcon iconoPrograma()  const;
     QList<QActionGroup *> accionesBarra();
     bool inicializar();
-    static QSettings *pref();
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
     QWidgetList formsPreferencias();

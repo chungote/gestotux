@@ -46,17 +46,15 @@ public:
     QList<QActionGroup *> accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
-    bool inicializar( QSettings *pref );
+    bool inicializar();
     int tipo() const;
     void crearMenu( QMenuBar *m );
     double version() const;
     bool verificarTablas();
-    static QSettings *pref();
     void crearToolBar( QToolBar *t );
 
 private:
     QList<QAction *> _acciones;
-    static QSettings *_pref;
 
 	QAction *ActNuevoPresu;
 	QAction *ActPresuAnteriores;

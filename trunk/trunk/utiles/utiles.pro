@@ -9,7 +9,8 @@ eactimprimir.h \
  formprefhijo.h \
  eayuda.h \
  eactguardar.h \
- emcliente.h
+ emcliente.h \
+ eeditor.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -18,7 +19,8 @@ eactimprimir.cpp \
  evisorinformes.cpp \
  eayuda.cpp \
  eactguardar.cpp \
- emcliente.cpp
+ emcliente.cpp \
+ eeditor.cpp
 
 QT += sql
 
@@ -37,6 +39,8 @@ CONFIG += debug \
  help \
  exceptions
 
+RESOURCES += utiles.qrc
+
 CONFIG -= release
 
 DESTDIR = ../bin
@@ -49,3 +53,5 @@ DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 message( "Actualizando traduccion" )
 message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+
+
