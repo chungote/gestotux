@@ -20,7 +20,7 @@
 #include "formagregarrecibo.h"
 #include "mrecibo.h"
 #include "visorrecibo.h"
-#include "hicomp.h"
+#include "preferencias.h"
 
 #include <QLocale>
 #include <QLineEdit>
@@ -202,10 +202,9 @@ void FormAgregarRecibo::guardar( bool imprimir )
  if( cBPagoMes->isChecked() )
  {
 	// Quiere ponerle texto? - lo busco en las preferencias
-	QSettings *p = HiComp::pref();
-	if( p->value( "preferencias/recibos/tienetexto", false ).toBool() )
+	if( preferencias::getInstancia()->value( "preferencias/recibos/tienetexto", false ).toBool() )
 	{
-		TETexto->append( p->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
+		TETexto->append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
 	}
 	else
 	// Las preferencias no dicen nada, asi que pregunto
@@ -217,7 +216,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
 						QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
 		if( reply == QMessageBox::Yes )
 		{
-			TETexto->append( p->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
+			TETexto->append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
 		}
 		else if( reply == QMessageBox::Cancel )
 		{

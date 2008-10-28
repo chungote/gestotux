@@ -23,6 +23,7 @@
 
 #include "eventana.h"
 #include "ui_FormPresupuestoBase.h"
+#include "eeditor.h"
 
 class QSqlQueryModel;
 class FormListaProductos;
@@ -64,6 +65,10 @@ private:
    * Posicion donde se encuentra la lista de productos
    */
    QTextTable *_tabla;
+  /*!
+   * Editor del contenido
+   */
+   EEditor *editor;
 };
 
 #endif

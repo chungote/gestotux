@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "presupuesto.h"
-
+#include "preferencias.h"
 
 #include <QDir>
 #include <QApplication>
@@ -55,12 +55,12 @@ Presupuesto::Presupuesto(QObject *parent)
 	// Obtengo el nombre del plugin de infoprog actual para cargar el del mismo nombre
 #ifdef Q_WS_WIN32
 	filtro.append( "*.dll" );
-	int pos =  pluginsDir.entryList( filtro, QDir::Files  ).indexOf( prespuesto::pref()->value( "Preferencias/general/pluginInfo", "default" ).toString().append( ".dll" ) );
+	int pos =  pluginsDir.entryList( filtro, QDir::Files  ).indexOf( preferencias::getInstancia()->value( "Preferencias/general/pluginInfo", "default" ).toString().append( ".dll" ) );
 	int pos_def = pluginsDir.entryList( filtro, QDir::Files  ).indexOf( QString( "default" ).append( ".dll" ) );
 #endif
 #ifdef Q_WS_X11
 	filtro.append( "*.so" );
-	int pos =  pluginsDir.entryList( filtro, QDir::Files ).indexOf( prespuesto::pref()->value( "Preferencias/general/pluginInfo", "default" ).toString().prepend( "lib" ).append( ".so" ) );
+	int pos =  pluginsDir.entryList( filtro, QDir::Files ).indexOf( preferencias::getInstancia()->value( "Preferencias/general/pluginInfo", "default" ).toString().prepend( "lib" ).append( ".so" ) );
 	int pos_def = pluginsDir.entryList( filtro, QDir::Files  ).indexOf( QString( "default" ).prepend( "lib" ).append( ".so" ) );
 #endif
 	if( pos == -1 )

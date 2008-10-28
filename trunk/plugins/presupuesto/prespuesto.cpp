@@ -28,8 +28,6 @@
 #include <QMenuBar>
 #include "formagregarpresupuesto.h"
 
-QSettings *prespuesto::_pref = 0;
-
 /*!
     \fn prespuesto::accionesBarra() const
  */
@@ -58,11 +56,10 @@ QWidgetList prespuesto::formsPreferencias()
 
 
 /*!
-    \fn prespuesto::inicializar( QSettings *pref )
+    \fn prespuesto::inicializar()
  */
-bool prespuesto::inicializar( QSettings *pref )
+bool prespuesto::inicializar()
 {
-  _pref = pref;
  _acciones.clear();
  // Genero las acciones y la lista
  ActNuevoPresu = new QAction( "Nuevo Prespuesto2", this );
@@ -129,11 +126,6 @@ bool prespuesto::verificarTablas()
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
  { qWarning( "Error al buscar la tabla cproducto" ); return false; }
  return true;
-}
-
-QSettings *prespuesto::pref()
-{
- return _pref;
 }
 
 
