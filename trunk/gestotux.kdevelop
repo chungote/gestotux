@@ -180,7 +180,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>utiles</activedir>
+      <activedir>plugins/HiComp</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>

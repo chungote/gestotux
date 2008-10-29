@@ -23,6 +23,7 @@
 #include <ui_FormAgregarReciboBase.h>
 #include <QWidget>
 
+class EEditor;
 class QSqlTableModel;
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -52,6 +53,7 @@ private:
     QAction *ActCerrar;
     QModelIndex indice;
     QSqlTableModel *modelo;
+    EEditor *TETexto;
 };
 
 #endif

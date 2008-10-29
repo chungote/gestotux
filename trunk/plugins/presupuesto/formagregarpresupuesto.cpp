@@ -22,6 +22,7 @@
 #include "emcliente.h"
 #include <QDate>
 #include <QSqlError>
+#include "eeditor.h"
 #include "presupuesto.h"
 #include "formlistaproductos.h"
 
