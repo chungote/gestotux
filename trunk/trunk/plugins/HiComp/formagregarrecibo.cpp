@@ -26,6 +26,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include "emcliente.h"
+#include "eeditor.h"
 #include <QSqlRecord>
 #include <QMessageBox>
 #include <QSqlQuery>
@@ -92,6 +93,9 @@ FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
  addAction( ActCancelar );
  addAction( ActGuardar );
  addAction( ActGuardarImprimir );
+
+ TETexto = new EEditor( groupBox_2 );
+ groupBox_2->layout()->addWidget( TETexto );
 }
 
 
@@ -186,7 +190,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
   QMessageBox::warning( this, "Error", "Por favor, seleccione una forma de pago" );
   return;
  }
- if( TETexto->toPlainText().isEmpty() )
+ if( TETexto->contenido().isEmpty() )
  {
   if( !cBPagoMes->isChecked() )
   {
@@ -204,7 +208,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
 	// Quiere ponerle texto? - lo busco en las preferencias
 	if( preferencias::getInstancia()->value( "preferencias/recibos/tienetexto", false ).toBool() )
 	{
-		TETexto->append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
+		TETexto->setText( TETexto->contenido().append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) ) );
 	}
 	else
 	// Las preferencias no dicen nada, asi que pregunto
@@ -216,7 +220,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
 						QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
 		if( reply == QMessageBox::Yes )
 		{
-			TETexto->append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) );
+			TETexto->setText( TETexto->contenido().append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) ) );
 		}
 		else if( reply == QMessageBox::Cancel )
 		{
@@ -237,7 +241,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
  {
   rec.setValue( "num_mes", -1 );
  }
- rec.setValue( "texto", TETexto->toPlainText() );
+ rec.setValue( "texto", TETexto->contenido() );
  rec.setValue( "precio", LETotal->text() );
  rec.setValue( "fecha_pago", dEFechaPago->date() );
  rec.setValue( "cuenta_corriente", RBCuentaCorriente->isChecked() );

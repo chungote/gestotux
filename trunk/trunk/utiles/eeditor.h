@@ -57,6 +57,8 @@ public:
     ~RichTextEditor();
     void setDefaultFont(const QFont &font);
     QToolBar *createToolBar( QWidget *parent = 0);
+    void focusInEvent( QFocusEvent *event );
+    void focusOutEvent( QFocusEvent *event );
 
 public slots:
     void setFontBold(bool b);
@@ -66,6 +68,7 @@ public slots:
 
 signals:
     void stateChanged();
+    void mostrarToolBar( bool estado );
 
 };
 

@@ -28,6 +28,7 @@
 #include <QRadioButton>
 #include <QTextEdit>
 #include <QLineEdit>
+#include "eeditor.h"
 #include "mrecibo.h"
 #include <QSqlQuery>
 #include <QSqlTableModel>
@@ -90,6 +91,9 @@ FormModificarRecibo::FormModificarRecibo( QWidget *parent )
  connect( cBPagoMes,  SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoPagoMes( int ) ) );
  connect( cBRecargos, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoRecargos( int ) ) );
  connect( dSBImporte, SIGNAL( valueChanged( double ) ), this, SLOT( cambioImporte( double ) ) );
+
+ TETexto = new EEditor( groupBox_2 );
+ groupBox_2->layout()->addWidget( TETexto );
 }
 
 
@@ -240,7 +244,7 @@ void FormModificarRecibo::guardar()
   QMessageBox::warning( this, "Error", "Por favor, seleccione una forma de pago" );
   return;
  }
- if( TETexto->toPlainText().isEmpty() )
+ if( TETexto->contenido().isEmpty() )
  {
   QMessageBox::warning( this, "Error", "Por favor, ingrese un detalle" );
   return;
@@ -258,7 +262,7 @@ void FormModificarRecibo::guardar()
  {
   rec.setValue( "num_mes", CBMeses->currentIndex() );
  }
- rec.setValue( "texto", TETexto->toPlainText() );
+ rec.setValue( "texto", TETexto->contenido() );
  rec.setValue( "precio", LETotal->text() );
  rec.setValue( "fecha_pago", dEFechaPago->date() );
  rec.setValue( "cuenta_corriente", RBCuentaCorriente->isChecked() );

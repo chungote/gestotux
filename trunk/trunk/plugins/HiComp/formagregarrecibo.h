@@ -22,6 +22,7 @@
 
 #include "eventana.h"
 #include "ui_FormAgregarReciboBase.h"
+class EEditor;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -41,6 +42,8 @@ private:
     QAction* ActCancelar;
     QAction* ActGuardar;
     QAction* ActGuardarImprimir;
+
+    EEditor *TETexto;
 
 protected slots:
     void cambioImporte( double );

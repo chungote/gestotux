@@ -1,16 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="3" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eeditor.h" >
-   <View0 Encoding="" line="146" Type="Source" />
+ <DocsAndViews NumberOfDocuments="2" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eeditor.cpp" >
+   <View0 Encoding="" line="440" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eeditor.cpp" >
-   <View0 Encoding="" line="266" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eeditor.h" >
+   <View0 Encoding="" line="70" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/utiles.qrc" >
-   <View0 Encoding="" line="14" Type="Source" />
-  </Doc2>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

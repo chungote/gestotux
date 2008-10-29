@@ -409,6 +409,9 @@ EEditor::EEditor( QWidget *parent)  :
     QVBoxLayout *l = new QVBoxLayout( this );
     l->addWidget(tool_bar);
     l->addWidget(m_editor);
+
+    connect( m_editor, SIGNAL( mostrarToolBar( bool ) ), tool_bar, SLOT( setVisible( bool ) ) );
+    tool_bar->setVisible( false );
 }
 
 void EEditor::setDefaultFont(const QFont &font)
@@ -425,3 +428,24 @@ void EEditor::setText(const QString &text)
 QString EEditor::contenido(Qt::TextFormat format) const
 { return m_editor->text(format);  }
 
+
+
+/*!
+    \fn RichTextEditor::focusInEvent( QFocusEvent *event )
+ */
+void RichTextEditor::focusInEvent( QFocusEvent *event )
+{
+ emit mostrarToolBar( true );
+ QTextEdit::focusInEvent( event );
+}
+
+
+/*!
+    \fn RichTextEditor::focusOutEvent( QFocusEvent *event )
+ */
+void RichTextEditor::focusOutEvent( QFocusEvent *event )
+{
+ emit mostrarToolBar( false );
+ QTextEdit::focusOutEvent( event );
+
+}
