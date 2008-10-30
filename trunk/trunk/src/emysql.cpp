@@ -40,6 +40,8 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
 	LEContra->setEchoMode( QLineEdit::Password );
 	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
+	connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
+	PBConectar->setDefault( true );
 }
 
 EMysql::~EMysql()
@@ -78,13 +80,14 @@ void EMysql::accept()
    p->setValue( "mysql/usuario", LEUsuario->text() );
    p->setValue( "mysql/host", LEHost->text() );
    p->setValue( "mysql/puerto", SBPuerto->value() );
+   qDebug( "Conectado con mysql" );
    this->done( Conectado );
   }
   else
   {
-   qWarning( "Ultimo error: " + _db->lastError().text().toLocal8Bit() );
+   qDebug( "Error de conección" );
+   qWarning( qPrintable( "Ultimo error: " + _db->lastError().text() ) );
    _db->removeDatabase( _db->connectionName() );
-   // Pregunto si quiere cambiar a las db interna??
   }
 }
 

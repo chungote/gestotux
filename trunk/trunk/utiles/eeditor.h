@@ -44,11 +44,6 @@
 #include <QPushButton>
 #include <QDialogButtonBox>
 
-/**
-Editor con capacidades html... :) - Sacado del QtDesigner
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
 class RichTextEditor : public QTextEdit
 {
 Q_OBJECT
@@ -139,7 +134,12 @@ private:
     QPointer<RichTextEditor> m_editor;
 };
 
-
+/**
+ * \brief Editor tipo html
+ *
+ * Editor con capacidades html, del mismo codigo del designer
+ *      @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EEditor : public QWidget
 {
     Q_OBJECT
@@ -151,7 +151,13 @@ public:
 
 private:
     enum State { Clean, RichTextChanged };
+   /*!
+    * Editor interno
+    */
     RichTextEditor *m_editor;
+   /*!
+    * Estado del texto
+    */
     State m_state;
 };
 

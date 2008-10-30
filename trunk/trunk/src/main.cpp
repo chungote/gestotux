@@ -135,6 +135,7 @@ int main(int argc, char *argv[])
 		case EMysql::Conectado:
 		{
 			qDebug( "Base de datos abierta correctamente" );
+			fallosql = false;
 			break;
 		}
 		case EMysql::Cancelado:
@@ -146,6 +147,12 @@ int main(int argc, char *argv[])
 		case EMysql::Interna:
 		{
 			fallosql = true;
+			break;
+		}
+		default:
+		{
+			qWarning( qPrintable( "Retorno desconocido: " + QString::number( ret ) ) );
+			abort();
 			break;
 		}
 	}
@@ -223,13 +230,6 @@ int main(int argc, char *argv[])
 	// Salir del programa cuando se cierren todas las ventanas
 	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
  	splash.showMessage( "Listo." );
-	if ( !p->value( "splash", false ).toBool() )
-	{
- 		splash.hide();
-		//qDebug( "Ventana de splash cerrar" );
-	}
-        p->endGroup();
-	p->endGroup();
 	// Inicio el hilo de envio del backup
 	EEnvioBackup envios( &app );
 	envios.start( QThread::IdlePriority );
@@ -239,5 +239,12 @@ int main(int argc, char *argv[])
 		//qDebug( "Ventana maximizada" );
 		mw->showMaximized();
 	}
+	if ( !p->value( "splash", false ).toBool() )
+	{
+ 		splash.hide();
+		//qDebug( "Ventana de splash cerrar" );
+	}
+        p->endGroup();
+	p->endGroup();
       return app.exec();
 }
