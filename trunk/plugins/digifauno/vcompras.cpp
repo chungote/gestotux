@@ -35,10 +35,6 @@ VCompras::VCompras(QWidget *parent)
  modelo->select();
  vista->hideColumn( 0 );
  vista->resizeColumnsToContents();
-
- ActAgregar->disconnect( SIGNAL( triggered() ), this, SLOT( agregar() ) );
- DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);
- connect( ActAgregar, SIGNAL( triggered() ), digifauno, SLOT( agregarCompra() ) );
  addAction( ActAgregar );
  addAction( ActModificar );
  addAction( ActEliminar );
@@ -55,3 +51,11 @@ void VCompras::antes_de_insertar(int row, QSqlRecord& record)
 {
 }
 
+
+#include "formagregarcompra.h"
+
+/*!
+    \fn VCompras::agregar()
+ */
+void VCompras::agregar()
+{ emit agregarVentana( new FormAgregarCompra() ); }

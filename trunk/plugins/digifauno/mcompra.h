@@ -32,6 +32,7 @@ public:
     MCompra(QObject *parent = 0, bool relaciones = false );
     ~MCompra();
     bool agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo );
+    QVariant data(const QModelIndex &index, int role ) const;
 
 };
 

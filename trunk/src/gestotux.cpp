@@ -218,7 +218,7 @@ void gestotux::acerca()
     \fn gestotux::verClientes()
  */
 void gestotux::verClientes()
-{ formCen()->agregarForm( new VCliente( formCen() ) ); }
+{ formCen()->agregarForm( new VCliente( this ) ); }
 
 
 void gestotux::createToolBar()

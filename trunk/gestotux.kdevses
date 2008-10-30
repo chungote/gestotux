@@ -1,17 +1,27 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="2" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eeditor.cpp" >
-   <View0 Encoding="" line="440" Type="Source" />
+ <DocsAndViews NumberOfDocuments="1" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/main.cpp" >
+   <View0 Encoding="" line="148" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/eeditor.h" >
-   <View0 Encoding="" line="70" Type="Source" />
-  </Doc1>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
-   <breakpointList/>
+   <breakpointList>
+    <breakpoint0 location="/home/Esteban/Programas/gestotux/src/emysql.cpp:88" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint0>
+    <breakpoint1 location="/home/Esteban/Programas/gestotux/src/emysql.cpp:74" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint1>
+    <breakpoint2 location="/home/Esteban/Programas/gestotux/src/emysql.cpp:76" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint2>
+    <breakpoint3 location="/home/Esteban/Programas/gestotux/src/emysql.cpp:84" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint3>
+   </breakpointList>
    <showInternalCommands value="0" />
   </kdevdebugger>
   <kdevastyle>

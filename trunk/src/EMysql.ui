@@ -152,7 +152,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2" >
+      <widget class="QPushButton" name="PBCancelar" >
        <property name="text" >
         <string>Cancelar</string>
        </property>
@@ -165,23 +165,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>PBConectar</sender>
-   <signal>clicked()</signal>
-   <receiver>EMysqlBase</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>138</x>
-     <y>271</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>179</x>
-     <y>326</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
+   <sender>PBCancelar</sender>
    <signal>clicked()</signal>
    <receiver>EMysqlBase</receiver>
    <slot>reject()</slot>

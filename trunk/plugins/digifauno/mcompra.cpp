@@ -33,7 +33,7 @@ MCompra::MCompra(QObject *parent, bool relaciones )
  setHeaderData( 3, Qt::Horizontal, "Costo" );
  if( relaciones )
  {
- setRelation( 1, QSqlRelation( "proveedor", "id", "nombre" ) );
+   setRelation( 1, QSqlRelation( "proveedor", "id", "nombre" ) );
  }
 }
 
@@ -41,9 +41,6 @@ MCompra::MCompra(QObject *parent, bool relaciones )
 MCompra::~MCompra()
 {
 }
-
-
-
 
 /*!
     \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo )
@@ -64,5 +61,80 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo 
  else
  {
   return true;
+ }
+}
+
+
+/*!
+    \fn MCompra::data(const QModelIndex &index, int role ) const
+ */
+QVariant MCompra::data(const QModelIndex &index, int role ) const
+{
+ switch( role )
+ {
+	case Qt::TextAlignmentRole:
+	{
+		if( index.column() == 2 )
+		{
+			return int( Qt::AlignHCenter | Qt::AlignVCenter );
+		}
+		else if( index.column() == 3 )
+		{
+			return int( Qt::AlignRight | Qt::AlignVCenter );
+		}
+		else
+		{
+			return QSqlRelationalTableModel::data( index, role );
+		}
+		break;
+	}
+	case Qt::DisplayRole:
+	{
+		switch( index.column() )
+		{
+			case 3:
+			{
+				return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( index, role ).toDouble(), 8, 'f', 2 );
+				break;
+			}
+			default:
+			{
+				return QSqlRelationalTableModel::data( index, role );
+				break;
+			}
+		}
+		break;
+	}
+	case Qt::EditRole:
+	{
+		switch( index.column() )
+		{
+			case 3:
+			{
+				return QSqlRelationalTableModel::data( index, role ).toDouble();
+				break;
+			}
+			case 2:
+			{
+				return QSqlRelationalTableModel::data( index, role ).toDate();
+				break;
+			}
+			default:
+			{
+				return QSqlRelationalTableModel::data( index, role );
+			}
+		}
+	}
+	case Qt::ToolTipRole:
+	case Qt::StatusTipRole:
+	{
+		return QVariant( "Haga doble click o seleccione y F2 para editar" );
+		break;
+	}
+	default:
+	{
+		return QSqlRelationalTableModel::data( index, role );
+		break;
+	}
  }
 }

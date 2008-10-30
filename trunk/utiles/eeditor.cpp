@@ -414,17 +414,29 @@ EEditor::EEditor( QWidget *parent)  :
     tool_bar->setVisible( false );
 }
 
+/*!
+    \fn EEditor:.setDefaultFont( const QFont &font )
+	Setea la fuente predefinida
+	@param font Fuente a utilizar
+ */
 void EEditor::setDefaultFont(const QFont &font)
-{
-    m_editor->setDefaultFont(font);
-}
+{  m_editor->setDefaultFont(font); }
 
+/*!
+    \fn EEditor::setText( const QString &text )
+	Coloca el texto pasado como parametro en el editor
+	@param text Texto a editar
+ */
 void EEditor::setText(const QString &text)
-{
-    m_editor->setText(text);
-    m_state = Clean;
-}
+{ m_editor->setText(text); m_state = Clean; }
 
+
+/*!
+    \fn EEditor::contenido( Qt::TextFormat format ) const
+	Devuelve el contenido del editor en el formato elegido
+	@param format Formato de devolución ( Qt::TextFormat )
+	@return Texto del editor
+ */
 QString EEditor::contenido(Qt::TextFormat format) const
 { return m_editor->text(format);  }
 
