@@ -23,8 +23,12 @@
 #include <QAction>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Clase de acción guardar encapsulada
+ *
+ * Clase que prefabrica la acción guardar
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EActGuardar : public QAction
 {
 Q_OBJECT

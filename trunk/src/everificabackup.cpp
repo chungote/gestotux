@@ -29,7 +29,7 @@ EVerificaBackup::EVerificaBackup(QWidget *parent)
 {
  this->setToolTip( "Verificación de Backups" );
  tiempo = new QTimer(this);
- tiempo->setInterval( 100000 );
+ tiempo->setInterval( 10000 );
  connect( tiempo, SIGNAL( timeout() ), this, SLOT( verificar() ) );
  tiempo->start();
  this->setFlat(true);
@@ -44,23 +44,48 @@ EVerificaBackup::~EVerificaBackup()
 
 /*!
     \fn EVerificaBackup::verificar()
+	Funcion llamada cada cierto tiempo que permite verificar si el backup no cumple con la frecuencia pedida.
  */
 void EVerificaBackup::verificar()
 {
  preferencias *p = preferencias::getInstancia();
+ int cant_dias = 0;
+ switch( p->value( "Preferencias/General/frecuenciaBackup", 1 ).toInt() )
+ {
+	// 1 dia
+	case 1:
+	{ cant_dias = 1; break; }
+	// 2 dias
+	case 2:
+	{ cant_dias = 2; break; }
+	// 1 semana
+	case 3:
+	{ cant_dias = 7; break; }
+	// 2 semanas
+	case 4:
+	{ cant_dias = 7*2; break; }
+	// 1 mes
+	case 5:
+	{ cant_dias = 30; break; }
+	// 2 meses
+	case 6:
+	{ cant_dias = 60; break; }
+	default:
+	{ cant_dias = 15; break; }
+ }
  p->beginGroup( "backup" );
  QDate fecha = p->value( "fecha", QDate( 1900, 1, 1 ) ).toDate();
  qDebug( qPrintable( "Fecha=" +  fecha.toString("dd/MM/yyyy" ) ) );
  p->endGroup();
  int dif = fecha.daysTo( QDate::currentDate() );
- if( dif > 15 )
+ if( dif > cant_dias )
  {
   show();
   QIcon icono( ":/imagenes/aviso.png" );
   this->setIcon( icono );
   this->setIconSize( QSize( 16, 16 ) );
   connect( this, SIGNAL( clicked() ), this, SIGNAL( abrirBackups()) );
-  this->setToolTip( "El ultimo backup fue echo hace mas de 15 dias.\n Haga click aqui para generar un backup" );
+  this->setToolTip( "El ultimo backup fue echo hace mas de " + QString::number( cant_dias ) + " dias.\n Haga click aqui para generar un backup" );
  }
  else
  {

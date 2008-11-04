@@ -24,13 +24,10 @@
 #include "digifauno.h"
 #include "preferencias.h"
 #include "vduenos.h"
-#include "vproveedor.h"
 #include "formagregarmasctoa.h"
 #include "formagregarservicio.h"
 #include "vmascota.h"
 #include "eresumen.h"
-#include "formagregargasto.h"
-#include "vgastos.h"
 #include "formlistapeluqueria.h"
 #include "formagregarcompra.h"
 #include "vcompras.h"
@@ -40,13 +37,6 @@
  */
 void DigiFauno::duenos()
 { emit agregarVentana( new VDuenos() ); }
-
-/*!
-    \fn DigiFauno::proveedores()
- */
-void DigiFauno::proveedores()
-{ emit agregarVentana( new VProveedor() ); }
-
 
 /*!
     \fn DigiFauno::agregarMascota()
@@ -77,13 +67,6 @@ void DigiFauno::resumenDiario()
 
 
 /*!
-    \fn DigiFauno::agregarCompra()
- */
-void DigiFauno::agregarCompra()
-{ emit agregarVentana( new FormAgregarCompra() ); }
-
-
-/*!
     \fn DigiFauno::resumenMensual()
  */
 void DigiFauno::resumenMensual()
@@ -95,19 +78,6 @@ void DigiFauno::resumenMensual()
  */
 void DigiFauno::resumenAnual()
 { emit agregarVentana( new EResumen( 0, EResumen::anual ) ); }
-
-/*!
-    \fn DigiFauno::agregar_gasto()
- */
-void DigiFauno::agregarGasto()
-{ emit agregarVentana( new FormAgregarGasto() ); }
-
-
-/*!
-    \fn DigiFauno::ver_gastos()
- */
-void DigiFauno::ver_gastos()
-{ emit agregarVentana( new VGastos() ); }
 
 
 /*!
@@ -121,14 +91,6 @@ void DigiFauno::resumen_semanal()
  */
 void DigiFauno::ver_peluqueria()
 { emit agregarVentana( new FormListaPeluqueria() ); }
-
-
-/*!
-    \fn DigiFauno::ver_compras()
- */
-void DigiFauno::ver_compras()
-{ emit agregarVentana( new VCompras() ); }
-
 
 /*!
     \fn DigiFauno::nombre() const
@@ -159,14 +121,6 @@ bool DigiFauno::inicializar()
  ActDuenos->setStatusTip( "Muestra todos los dueños" );
  ActDuenos->setIcon( QIcon( ":/imagenes/duenos.png" ) );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( duenos() ) );
-
- ///////////////////////////////
- // Muestra los proveedores
- //////////////////////////////
- ActProveedores = new QAction( "Proveedores", this );
- ActProveedores->setStatusTip( "Mustra los distintos proveedores" );
- ActProveedores->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
- connect( ActProveedores, SIGNAL( triggered() ), this, SLOT( proveedores() ) );
  /////////////////////////////////////////////
  // Muestra el formulario de agregar mascotas
  /////////////////////////////////////////////
@@ -181,38 +135,16 @@ bool DigiFauno::inicializar()
  ActMascotas->setIcon( QIcon( ":/imagenes/mascotas.gif" ) );
  connect( ActMascotas, SIGNAL( triggered() ), this, SLOT( mascotas() ) );
  /////////////////////////////////////
- // Muestra los gastos
- /////////////////////////////////////
- ActGastos = new QAction( "Gastos", this );
- ActGastos->setStatusTip( "Ver la lista de gastos" );
- ActGastos->setIcon( QIcon( ":/imagenes/gasto.jpg" ) );
- connect( ActGastos, SIGNAL( triggered() ), this, SLOT( ver_gastos() ) );
- /////////////////////////////////////
  // Muestra los servicios de peluqueria
  /////////////////////////////////////
  ActPeluqueria = new QAction( "Servicios", this );
  ActPeluqueria->setIcon( QIcon( ":/imagenes/pelu.gif" ) );
  ActPeluqueria->setStatusTip( "Muestra todos los servicios prestados" );
  connect( ActPeluqueria, SIGNAL( triggered() ), this, SLOT( ver_peluqueria() ) );
- ////////////////////////////////////
- // Muestra las compras realizadas
- ////////////////////////////////////
- ActVentas = new QAction( "Compras", this );
-//  ActVentas->setIcon( QIcon( ":/imagenes/nose.png" ) );
- ActVentas->setStatusTip( "Muestra el historial de compras" );
- connect( ActVentas, SIGNAL( triggered() ), this, SLOT( ver_compras() ) );
 
  ActNuevoServicio = new QAction( "Agregar Nueva Servicio", this );
  ActNuevoServicio->setIcon( QIcon( ":/imagenes/pelu.gif" ) );
  connect( ActNuevoServicio, SIGNAL( triggered() ), this, SLOT( agregarServicioPeluqueria() ) );
-
- ActAgregarCompra = new QAction( "Agregar Nueva Compra", this );
- ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
- connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
-
- ActAgregarGasto = new QAction( "Agregar Gasto", this );
- ActAgregarGasto->setIcon( QIcon( ":/imagenes/gasto.jpg" ) );
- connect( ActAgregarGasto, SIGNAL( triggered() ), this, SLOT( agregarGasto() ) );
 
  ActResumenDiario = new QAction( "Resumen Diario", this );
  ActResumenDiario->setIcon( QIcon(":/imagenes/diario.png" ) );
@@ -244,18 +176,6 @@ bool DigiFauno::verificarTablas()
  { qWarning( "Error al buscar la tabla dueno" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "peluqueria" ) )
  { qWarning( "Error al buscar la tabla peluqueria" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "gastos" ) )
- { qWarning( "Error al buscar la tabla gastos" );	return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas" ) )
- { qWarning( "Error al buscar la tabla ventas" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas_productos" ) )
- { qWarning( "Error al buscar la tabla ventas_productos" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "proveedor" ) )
- { qWarning( "Error al buscar la tabla proveedor" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "compras" ) )
- { qWarning( "Error al buscar la tabla compras" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "compras_productos" ) )
- { qWarning( "Error al buscar la tabla compras_productos" ); return false; }
  return true;
 }
 
@@ -277,16 +197,6 @@ QList<QActionGroup *> DigiFauno::accionesBarra()
  peluqueria->addAction( ActMascotas );
  peluqueria->addAction( ActDuenos );
  lista.append( peluqueria );
- /////////////////////////////////////////////////////////////
- // Compras y gastos
- compras = new QActionGroup( this );
- compras->setObjectName( "compras" );
- compras->setProperty( "icono", ":/imagenes/compras.jpg" );
- compras->setProperty( "titulo", "Compras y Gastos" );
- compras->addAction( ActAgregarCompra );
- compras->addAction( ActAgregarGasto );
- compras->addAction( ActProveedores );
- lista.append( compras );
  //////////////////////////////////////////////////////////////
  // Resumenes
  resumen = new QActionGroup( this );
@@ -326,6 +236,7 @@ QString DigiFauno::directorioBackup() const
 QString DigiFauno::nombrePrograma() const
 {  return "Digifauno  -  " + QString::number( version() ); }
 
+
 #include "formprefopciones.h"
 /*!
     \fn DigiFauno::formsPreferencias()
@@ -355,11 +266,8 @@ QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
  else
  {
   menuHerramientas->addAction( ActDuenos );
-  menuHerramientas->addAction( ActProveedores );
   menuHerramientas->addAction( ActMascotas );
-  menuHerramientas->addAction( ActGastos );
   menuHerramientas->addAction( ActPeluqueria );
-  menuHerramientas->addAction( ActVentas );
  }
 }
 

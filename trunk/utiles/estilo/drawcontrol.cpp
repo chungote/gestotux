@@ -1,7 +1,7 @@
 //
 // C++ Implementation: drawcontrol
 //
-// Description: 
+// Description:
 //
 //
 // Author: Matías Costa <mcc3@alu.um.es>, (C) 2006
@@ -25,7 +25,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 			subopt.rect = subElementRect(isRadio ? SE_RadioButtonContents
 				: SE_CheckBoxContents, btn, widget);
 			drawControl(isRadio ? CE_RadioButtonLabel : CE_CheckBoxLabel, &subopt, p, widget);
-		
+
 			if (btn->state & State_HasFocus) {
 				QStyleOptionFocusRect fropt;
 				fropt.QStyleOption::operator=(*btn);
@@ -41,7 +41,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 			p->fillRect( o->rect,  o->palette.window().color().dark() );
 // 		p->fillRect( o->rect, Qt::green );
 		break;
-	case CE_ScrollBarSlider: 
+	case CE_ScrollBarSlider:
 		if (const QStyleOptionSlider *scrollbar = qstyleoption_cast<const QStyleOptionSlider *>(o)) {
 			// Background and border
 			QRect realSlider = o->rect.adjusted( 2, 2, -3, -3 );
@@ -59,7 +59,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 			break;
 		}
 	case CE_ScrollBarSubLine:
-	case CE_ScrollBarAddLine: {		
+	case CE_ScrollBarAddLine: {
 		PrimitiveElement arrow;
 		if (o->state & State_Horizontal) {
 			if (element == CE_ScrollBarAddLine)
@@ -121,13 +121,13 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 					dir = (dir == Qt::LeftToRight) ? Qt::RightToLeft : Qt::LeftToRight;
 				const QRect highlighted = visualRect(dir, rect, left);
 				const QRect background = visualRect(dir, rect, right);
-			
+
 				// Clear the background
 				QRect text = p->boundingRect( rect, Qt::AlignCenter | Qt::TextSingleLine, pb->text );
 				p->setClipRect( text );
 				p->fillRect( highlighted, o->palette.highlight() );
 				p->fillRect( background, o->palette.base() );
-			
+
 				// Set bold font
 				QFont font;
 				font.setBold(true);
@@ -159,13 +159,13 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 				vertical = (pb2->orientation == Qt::Vertical);
 				inverted = pb2->invertedAppearance;
 			}
-		
+
 			p->setPen( o->palette.mid().color() );
 			renderProgressLines( o->rect, p, vertical );
 
 			bool reverse = ((!vertical && (pb->direction == Qt::RightToLeft)) || vertical);
 			if (inverted) reverse = !reverse;
-		
+
 			if (pb->minimum == 0 && pb->maximum == 0) {
                		// TODO draw busy indicator
 			} else if( ( pb->progress <= pb->minimum ) || ( pb->maximum <= pb->minimum ) ) {
@@ -203,7 +203,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 					&& tab->position == QStyleOptionTab::Beginning)
 					|| (rtlHorTabs
 					&& tab->position == QStyleOptionTab::End));
-// 			bool onlyOne = tab->position == QStyleOptionTab::OnlyOneTab;
+			bool onlyOne = tab->position == QStyleOptionTab::OnlyOneTab;
 /*			bool previousSelected =
 				((!rtlHorTabs
 				&& tab->selectedPosition == QStyleOptionTab::PreviousIsSelected)
@@ -219,7 +219,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 // 			bool leftAligned = (!rtlHorTabs && tabBarAlignment == Qt::AlignLeft)
 // 					|| (rtlHorTabs
 // 					&& tabBarAlignment == Qt::AlignRight);
-				// 
+				//
 // 			bool rightAligned = (!rtlHorTabs && tabBarAlignment == Qt::AlignRight)
 // 					|| (rtlHorTabs
 // 					&& tabBarAlignment == Qt::AlignLeft);
@@ -242,8 +242,8 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 			QRect rect( o->rect.adjusted( 0,3, 0,0 ) );
 			bool south = false;
 			switch (tab->shape) {
-				case QTabBar::RoundedNorth: 
-					break; 
+				case QTabBar::RoundedNorth:
+					break;
 				case QTabBar::RoundedSouth: {
 					// vertical mirror transformation
 					QMatrix m( 1, 0, 0, -1, 0, rect.height()-1 );
@@ -278,10 +278,10 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 
 				p->setPen( outlineColor( o ) );
 				p->setBrush( Qt::NoBrush );
-				
+
 				if (selected) {
 					if ( !firstTab ) x1 -= 4;
-					
+
 					if ( tab->position == QStyleOptionTab::Beginning || tab->position == QStyleOptionTab::Middle ) {
 						p->drawLine(x2-4,y1+4,  x2,y1+4);
 					}
@@ -297,9 +297,9 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 					}
 					renderTiled( rrect, p, *pm );
 					p->setViewTransformEnabled( true );
-		
+
 					QPolygon polygon;
-					polygon.putPoints(0, 6, 
+					polygon.putPoints(0, 6,
 							x1+5,y1+1,  x2-4,y1+1,
 							x2-3,y1+2,  x2-3,y2  ,
 							x1+3,y2  ,  x1+3,y1+3 );
@@ -319,7 +319,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 						QColor fill( o->palette.highlight().color() );
 						fill.setAlphaF( 0.5 );
 						p->fillRect( ribbon, fill );
-						
+
 					}
 					if( firstTab ) {
 						// vertical top
@@ -329,7 +329,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 						// corner point
 						p->drawPoint( x1+5, y1+5 );
 					} else if( lastTab ){
-						p->drawLine( x1,y1+4,  x2-1,y1+4 );						
+						p->drawLine( x1,y1+4,  x2-1,y1+4 );
 					} else {
 						p->drawLine( x1,y1+4,  x2,y1+4 );
 					}
@@ -449,7 +449,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 					mbi->text, active && down? QPalette::HighlightedText:QPalette::ButtonText );
 		}
 		break;
-	
+
 	case CE_MenuItem:
 		if (const QStyleOptionMenuItem *menuitem = qstyleoption_cast<const QStyleOptionMenuItem *>(o)) {
 			int x, y, w, h;
@@ -460,10 +460,10 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 			const bool checked = checkable ? menuitem->checked : false;
 			bool selected = menuitem->state & State_Selected;
 
-            
+
 			const int checkcol = qMax( menuitem->maxIconWidth, 10 );
-			const QRect vCheckRect = visualRect( o->direction, menuitem->rect, 
-					QRect( x+1, y +(h -checkcol)/2, 
+			const QRect vCheckRect = visualRect( o->direction, menuitem->rect,
+					QRect( x+1, y +(h -checkcol)/2,
 							checkcol, checkcol ) );
 			const QColor alternateButtonColor = alternateColor( o->palette.button().color() );
 
@@ -482,7 +482,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 				p->fillRect( ribbon, alternateButtonColor );
 			}
 
-		
+
 			if (menuitem->menuItemType == QStyleOptionMenuItem::Separator){
 				int yoff = y-1 + h / 2;
 				p->setPen( alternateButtonColor );
@@ -546,7 +546,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 					text_flags |= Qt::TextHideMnemonic;
 				text_flags |= Qt::AlignLeft;
 				if (t >= 0) {
-					QRect vShortcutRect = visualRect(o->direction, menuitem->rect, 
+					QRect vShortcutRect = visualRect(o->direction, menuitem->rect,
 							QRect(textRect.topRight(), QPoint(menuitem->rect.right(), textRect.bottom())));
 					if (disabled && !selected) {
 						p->setPen(menuitem->palette.light().color());
@@ -585,7 +585,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 
 		}
 		break;
-	
+
 	case CE_HeaderSection:
 		// Differentiate between normal and selected
 		p->save();
@@ -606,7 +606,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 			// now we guess if the header's is of a table
 			// If it is, paint
 			if ( widget && !rightLine ) {
-				if ( widget->parentWidget() ) 
+				if ( widget->parentWidget() )
 					rightLine = qobject_cast<const QTableView*>( widget->parentWidget() ) != 0;
 			}
 
@@ -704,14 +704,14 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 		p->setPen( outlineColor( m_titleBarColor1 ) );
 		p->setBrush( m_titleBarColor1 );
 		p->drawPolygon( dockBaseBorder( dock ) );
-// 		p->setRenderHint( QPainter::Antialiasing, false );		
-		renderTiled( dock, p, m_dockBase ); 
-		
+// 		p->setRenderHint( QPainter::Antialiasing, false );
+		renderTiled( dock, p, m_dockBase );
+
 // 		p->setRenderHint( QPainter::Antialiasing, false );
 // 		p->setBrush( Qt::NoBrush );
 // 		p->setPen( Qt::red );
 // 		p->drawPolygon( dockBasePolygon( dock ) );
-		
+
 		if (const QStyleOptionDockWidget *dockWidget = qstyleoption_cast<const QStyleOptionDockWidget *>(o)) {
 			if ( !dockWidget->title.isNull() ) {
             			// Find text width and title rect
@@ -721,8 +721,8 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 				QRect titleRect = visualRect(dockWidget->direction, dockWidget->rect, dockWidget->rect.adjusted(margin, 0, -margin * 2 - 30, 0));
 				// Chop and insert ellide into title if text is too wide
 				if ( titleRect.width() < textWidth ) title = contractText( title, dockWidget->fontMetrics, titleRect, &textWidth);
-	
-				// Draw the text 
+
+				// Draw the text
 				QFont font = p->font();
 				font.setPointSize( font.pointSize() - 1 );
 				p->setFont(font);
@@ -736,7 +736,7 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
 // 				p->setRenderHint( QPainter::Antialiasing, true );
 				p->drawPolygon( dockTitleBorder( textBound ) );
 // 				p->setRenderHint( QPainter::Antialiasing, false );
-				renderTiled( textBound, p, m_dockTitle ); 
+				renderTiled( textBound, p, m_dockTitle );
 // 				p->setBrush( Qt::NoBrush );
 // 				p->drawPolygon( dockTitlePolygon( textBound ) );
 				p->setPen( o->palette.foreground().color() );

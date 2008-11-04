@@ -28,7 +28,12 @@
 #include <QPair>
 class QFtp;
 
-
+/**
+ * \brief Actualizaciones del programa
+ *
+ * Clase que muestra el formulario de actualizaciones y maneja la descarga de indice y archivos.
+ * @author Esteban Zeller
+ */
 class FormActualizacion : public EVentana, private Ui::FormActualizacionBase
 {
   Q_OBJECT

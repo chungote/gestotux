@@ -1,11 +1,11 @@
 TEMPLATE = subdirs
-SUBDIRS += HiComp \
- presupuesto \
+SUBDIRS +=  presupuesto \
  presupuesto/plugins \
- aCarCorr \
- aCarCorr/plugins \
  productos \
- digifauno \
  ventas \
- default
+ default \
+ gastos \
+  proveedor \
+  digifauno \
+  compras
 CONFIG += ordered

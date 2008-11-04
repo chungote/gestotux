@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "formagregarcompra.h"
 
-#include "mproveedor.h"
+#include "../proveedor/mproveedor.h"
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mcompra.h"

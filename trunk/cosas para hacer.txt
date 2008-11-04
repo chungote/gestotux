@@ -1,5 +1,6 @@
 - Al poner agregar, que quede autoeditando el que se agrego
 - Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
+- Agregar api para agregar barras de tareas desde dentro de los widgets
 
 Digifauno:
 ==========

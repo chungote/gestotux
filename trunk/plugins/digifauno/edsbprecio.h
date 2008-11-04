@@ -23,8 +23,10 @@
 #include <QDoubleSpinBox>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Editor tipo spinbox para precios
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EDSBPrecio : public QDoubleSpinBox
 {
 Q_OBJECT

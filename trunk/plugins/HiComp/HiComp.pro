@@ -43,8 +43,8 @@ FORMS += FormAgregarReciboBase.ui \
  FiltroClientesBase.ui
 
 DISTFILES += recibo.svg \
- ../../CambiosHechos.txt \
- hicomp.SQLITE.sql
+ hicomp.SQLITE.sql \
+ hicomp.rc
 
 win32 {
     MOC_DIR = win/moc

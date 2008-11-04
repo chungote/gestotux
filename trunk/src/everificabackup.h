@@ -23,10 +23,11 @@
 #include <QPushButton>
 
 /**
-Verifica el ultimo envio del backup y lanza una advertencia si es muy viejo
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Verifica la frecuencia de backups
+ *
+ * Verifica el ultimo envio del backup y lanza una advertencia si es muy viejo
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EVerificaBackup : public QPushButton
 {
 Q_OBJECT

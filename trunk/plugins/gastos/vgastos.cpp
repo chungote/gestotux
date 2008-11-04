@@ -20,11 +20,11 @@
 #include "vgastos.h"
 
 #include "mgasto.h"
-#include "digifauno.h"
 #include "dgastos.h"
 #include <QPushButton>
 #include <QTableView>
 #include <QSqlRelationalDelegate>
+#include <QAction>
 
 VGastos::VGastos( QWidget* parent )
 : EVLista( parent, false )

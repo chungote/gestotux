@@ -46,6 +46,7 @@ void FormPrefDb::cargar()
  LEHost->setText( p->value( "mysql/host" ).toString() );
  LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
  LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
+ CBFrecuencia->setCurrentIndex( p->value( "frecuenciaBackup", 1 ).toInt() );
  p->endGroup();
  p->endGroup();
 }
@@ -65,6 +66,7 @@ void FormPrefDb::guardar()
  p->setValue( "mysql/base", LEBaseDatos->text() );
  p->setValue( "mysql/usuario", LEUsuario->text() );
  p->setValue( "mysql/host", LEHost->text() );
+ p->setValue( "frecuenciaBackup", CBFrecuencia->currentIndex() );
  p->endGroup();
  p->endGroup();
 }

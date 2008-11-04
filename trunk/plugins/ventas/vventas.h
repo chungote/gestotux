@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,23 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef VVENTAS_H
+#define VVENTAS_H
 
-#ifndef FORMAGREGARGASTO_H
-#define FORMAGREGARGASTO_H
+#include <evlista.h>
 
-#include "eventana.h"
-#include "ui_FormAgregarGastoBase.h"
-
-class FormAgregarGasto : public EVentana, private Ui::FormAgregarGastoBase
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class VVentas : public EVLista
 {
-  Q_OBJECT
-
+Q_OBJECT
 public:
-  FormAgregarGasto( QWidget* parent = 0 );
-  ~FormAgregarGasto();
+    VVentas(QWidget *parent = 0);
+
+    ~VVentas();
+
 protected slots:
-    void guardar();
+    virtual void agregar();
+    virtual void antes_de_insertar(int row, QSqlRecord& record);
+    virtual void buscar();
+    virtual void eliminar();
+    virtual void imprimir();
+    virtual void modificar();
+
 };
 
 #endif
-

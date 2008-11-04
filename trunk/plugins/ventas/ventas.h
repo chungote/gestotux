@@ -21,7 +21,7 @@
 #define VENTAS_H
 
 #include <QObject>
-#include <../../src/eplugin.h>
+#include <eplugin.h>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -46,6 +46,7 @@ public:
 private:
     QList<QAction *> _acciones;
     QAction *ActAgregarVentas;
+    QAction *ActVentas;
 /*
 
     QAction *ActCategorias;

@@ -78,7 +78,7 @@ WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = YES
 WARN_FORMAT            = "$file:$line: $text"
-WARN_LOGFILE           = /home/Esteban/Programas/gestotux/templates/erroresdocumentacion
+WARN_LOGFILE           = /home/Esteban/Programas/gestotux/bin/erroresdocumentacion
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
@@ -133,8 +133,10 @@ FILE_PATTERNS          = *.c \
                          *.xpm \
                          *.dox
 RECURSIVE              = YES
-EXCLUDE                = /home/Esteban/Programas/gestotux/src/moc
-EXCLUDE_SYMLINKS       = NO
+EXCLUDE                = /home/Esteban/Programas/gestotux/src/moc \
+                         /home/Esteban/Programas/gestotux/plugins/aCarCorr \
+                         /home/Esteban/Programas/gestotux/plugins/OscarSorazi
+EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = svn \
                          moc_*.* \
                          qrc_*.* \

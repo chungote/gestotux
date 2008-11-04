@@ -25,7 +25,10 @@
 #include "ui_EMysql.h"
 #include <QSqlDatabase>
 
-
+/*!
+ * \brief Clase que maneja la conección mysql
+ *
+ */
 class EMysql : public QDialog, private Ui::EMysqlBase
 {
   Q_OBJECT

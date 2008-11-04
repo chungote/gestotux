@@ -23,8 +23,10 @@
 #include <QSqlQueryModel>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo de selección de cliente x nombre y apellido para comboboxs
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EMCliente : public QSqlQueryModel
 {
 Q_OBJECT

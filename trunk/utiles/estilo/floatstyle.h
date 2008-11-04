@@ -21,17 +21,19 @@
 
 #include <QWindowsStyle>
 
-
+/*!
+ * \brief Clase de estilo de ventana personalizado
+ */
 class FloatStyle : public QWindowsStyle
 {
 	Q_OBJECT
 public:
 	FloatStyle();
 	virtual ~FloatStyle();
-	
+
 	QPixmap standardPixmap(StandardPixmap standardPixmap, const QStyleOption *opt, const QWidget *widget) const;
 // 	void drawItemPixmap ( QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap ) const;
-	
+
 	void drawPrimitive(PrimitiveElement elem, const QStyleOption *option, QPainter *painter, const QWidget *widget=0) const;
 	void drawControl( ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget *widget=0 ) const;
 	void drawComplexControl ( ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget = 0 ) const;
@@ -47,7 +49,7 @@ public:
 
 // protected slots:
 // 	QIcon standardIconImplementation(StandardPixmap standardIcon, const QStyleOption *option,const QWidget *widget = 0) const;
-	
+
 private:
 	QColor m_titleBarColor1, m_titleBarColor2;
 	void renderButton( const QStyleOption *option, QPainter *painter ) const;
