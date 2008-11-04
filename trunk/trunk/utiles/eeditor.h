@@ -81,6 +81,11 @@ private slots:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Clase Complementaria
+/*!
+ * \brief Clase de selector de color del editor html
+ *
+ * Clase que maneja el selector de color del editor html embebido
+ */
 class ColorAction : public QAction
 {
     Q_OBJECT
@@ -159,6 +164,10 @@ private:
     * Estado del texto
     */
     State m_state;
+    QToolBar *tool_bar;
+
+private slots:
+    void ocultarBarra( bool estado );
 };
 
 #endif

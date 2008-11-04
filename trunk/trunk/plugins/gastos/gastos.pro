@@ -1,27 +1,28 @@
 TEMPLATE = lib
+
 CONFIG += dll \
 plugin \
 debug \
 help
 
-SOURCES += formagregarventa.cpp \
-mventa.cpp \
-mventaproducto.cpp \
-dventacompra.cpp \
-ventas.cpp \
- vventas.cpp \
- edsbprecio.cpp
+CONFIG -= release
 
-HEADERS += mventa.h \
-formagregarventa.h \
-mventaproducto.h \
-dventacompra.h \
-ventas.h \
- vventas.h \
- edsbprecio.h
+TARGET = gastos
 
-TRANSLATIONS = ventas.ts
 
+SOURCES += dgastos.cpp \
+mgasto.cpp \
+vgastos.cpp \
+gastos.cpp \
+formagregargasto.cpp
+
+HEADERS += dgastos.h \
+mgasto.h \
+vgastos.h \
+gastos.h \
+formagregargasto.h
+
+QT += sql
 
 win32 {
     MOC_DIR = win/moc
@@ -34,26 +35,23 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
-QT += sql
 
-TARGET = ventas
 
 DESTDIR = ../../bin/plugins/
 
+INCLUDEPATH += ../../src \
+  ../../utiles
+
 LIBS += ../../bin/libutiles.a
+
 TARGETDEPS += ../../bin/libutiles.a
 
+TRANSLATIONS += ventas.ts
 # Actualiza la documentacion
 DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 message( "Actualizando traduccion" )
 message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
-
-FORMS += FormAgregarVentaBase.ui
-
-CONFIG -= release
-
-INCLUDEPATH += ../../src \
-  ../../utiles
+FORMS += FormAgregarGastoBase.ui
 

@@ -20,6 +20,9 @@
 
 
 // -- Style Plugin Interface -------------------------
+/*!
+ * \brief Clase contenedora del plugin de estilo personalizado
+ */
 class FloatStylePlugin : public QStylePlugin
 {
 public:
@@ -37,7 +40,7 @@ public:
 
 	QStyle* create( const QString& key )
 	{
-		
+
 		#ifndef DEVEL
 		if ( key == "float" )
 		#else
@@ -50,7 +53,7 @@ public:
 
 Q_EXPORT_PLUGIN2(FloatStyle, FloatStylePlugin )
 
-	
+
 
 FloatStyle::FloatStyle() : QWindowsStyle(),
 m_button( ":/images/button.png", "png" ),
@@ -95,7 +98,7 @@ FloatStyle::~FloatStyle(){
 // 	QIcon ret = QWindowsStyle::standardIconImplementation( standardIcon, option, widget );
 // // 	if ( standardIcon == SP_TitleBarCloseButton ) {
 // // 		qDebug() << "SP_TitleBarCloseButton" << ret.isNull();
-// // 	} else 
+// // 	} else
 // 		qDebug() << "stdIcon" << standardIcon << ret.isNull();
 // 	return ret;
 // }
@@ -104,12 +107,12 @@ FloatStyle::~FloatStyle(){
 // {
 // 	qDebug() << pixmap.height() << pixmap.width();
 // 	painter->drawPixmap(rect.x(), rect.y(), pixmap );
-// 
+//
 // }
 
 QPixmap FloatStyle::standardPixmap(StandardPixmap standardPixmap, const QStyleOption *opt, const QWidget *widget) const
 {
-	
+
 	switch ( standardPixmap ) {
 		case SP_DockWidgetCloseButton: return m_close;
 		case SP_TitleBarMinButton: return m_titleBarMinButton;
@@ -128,7 +131,7 @@ QPixmap FloatStyle::standardPixmap(StandardPixmap standardPixmap, const QStyleOp
 }
 
 
-void FloatStyle::renderButton( const QStyleOption *o, QPainter *p ) const 
+void FloatStyle::renderButton( const QStyleOption *o, QPainter *p ) const
 {
 	const QStyleOptionButton *button = qstyleoption_cast<const QStyleOptionButton *>(o);
 	if ( !button ) return;
@@ -138,7 +141,7 @@ void FloatStyle::renderButton( const QStyleOption *o, QPainter *p ) const
 	p->save();
 	if( !(o->state & State_Enabled) ) p->setBrush( o->palette.background() );
 	else p->setBrush( o->palette.button() );
-	// rect is the full button area (with shadow), reduced if sunken. 
+	// rect is the full button area (with shadow), reduced if sunken.
 	// adjusted is the real button area
 	QRect rect = o->rect, adjusted = o->rect.adjusted( 3,3, -3,-3 );
 	const QPixmap*  buttonPm;//  = buttonNS;
@@ -167,7 +170,7 @@ void FloatStyle::renderButton( const QStyleOption *o, QPainter *p ) const
 		QColor penColor;
 		if ( o->state & State_MouseOver ) penColor = o->palette.highlight().color();
 		else penColor = outlineColor( o->palette.button().color() );
-		
+
 		QPen pen( penColor );
 		pen.setWidth( 0 );
 		p->setPen( pen );
@@ -180,7 +183,7 @@ void FloatStyle::renderButton( const QStyleOption *o, QPainter *p ) const
   	renderTiled( rect, p, *buttonPm );
 	p->restore();
 }
-	
+
 void FloatStyle::renderBox( const QStyleOption *o, QPainter *p, bool frame ) const
 {
  	QRect rect2 = frame? o->rect.adjusted( 0, 2, 0, 0 ) : o->rect ;
@@ -191,7 +194,7 @@ void FloatStyle::renderBox( const QStyleOption *o, QPainter *p, bool frame ) con
 	// frames never are highlighted
 	if( o->state & State_HasFocus && !frame ) pen.setColor( o->palette.highlight().color() );
 	else pen.setColor( outlineColor( o->palette.button().color() ) );
-	
+
 	pen.setWidth( 0 );
 	pen.setJoinStyle( Qt::MiterJoin );
 	p->setPen( pen );
@@ -201,8 +204,8 @@ void FloatStyle::renderBox( const QStyleOption *o, QPainter *p, bool frame ) con
 
 void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QPainter *p, const QWidget *widget ) const
 {
-	
-			       
+
+
 	switch( elem ){
 	case PE_PanelButtonCommand:
 		renderButton( o, p );
@@ -221,7 +224,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		else drawPixmapCentered( o->rect, p, m_arrowD );
 		break;
 	case PE_IndicatorArrowUp:
-	case PE_IndicatorSpinUp: 
+	case PE_IndicatorSpinUp:
 		if( o->state & (State_On | State_Sunken) ) drawPixmapCentered( o->rect.adjusted( 1,2,0,0 ), p, m_arrowUNS );
 		else drawPixmapCentered( o->rect, p, m_arrowU );
 		break;
@@ -229,7 +232,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		p->save();
 		int x1, y1, x2, y2;
 		o->rect.getCoords( &x1, &y1, &x2, &y2 );
-		QPen pen;			
+		QPen pen;
 		pen.setColor( o->palette.color(QPalette::Highlight) );
 		pen.setWidth( 2 );
 		pen.setCapStyle( Qt::FlatCap );
@@ -247,9 +250,9 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		break;
 	}
 	case PE_IndicatorRadioButton: {
-		
+
 		p->drawPixmap( o->rect.topLeft(), m_radio );
-		
+
 		p->save();
 		QRect ir = o->rect;
 		p->setRenderHint( QPainter::Antialiasing, true );
@@ -257,7 +260,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		p->setPen( outlineColor( o ) );
 		p->setBrush( o->palette.base() );
 		p->drawEllipse( ir );
-		
+
 		if (o->state & (State_Sunken | State_On)) {
 			ir.adjust(2, 2, -2, -2);
 			p->setPen( Qt::NoPen );
@@ -265,16 +268,16 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 			p->drawEllipse(ir);
 		}
 		p->restore();
-		break; 
+		break;
 	}
 	case PE_IndicatorViewItemCheck:
 	case PE_IndicatorCheckBox: {
  		p->drawPixmap( o->rect.topLeft(), m_check );
-		
+
 		p->save();
 		int x = o->rect.left(), y = o->rect.top();
 		if ( o->state & State_On ) {
-			QPen pen;			
+			QPen pen;
 			pen.setColor( o->palette.color(QPalette::Highlight) );
 			pen.setWidth( 2 );
 			pen.setCapStyle( Qt::FlatCap );
@@ -318,16 +321,16 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 						x, y+h );
 			}
 			p->drawPolygon( arrow );
-			p->restore();			
+			p->restore();
 		}
-		break; 
+		break;
 	}
-	case PE_IndicatorButtonDropDown:	
+	case PE_IndicatorButtonDropDown:
 	case PE_PanelButtonTool: {
 	// HACK We do not paint QDockWidgetTittle buttons
 		if( widget ) {
  			if ( widget->parentWidget() ) {
-				if ( widget->parentWidget()->parentWidget() ) 
+				if ( widget->parentWidget()->parentWidget() )
 					if ( strcmp( widget->parentWidget()->parentWidget()->metaObject()->className(), "QMenuBar" ) == 0 ) return;
 			}
 			if( strcmp( widget->metaObject()->className(), "QDockWidgetTitleButton" ) == 0 ) {
@@ -335,8 +338,8 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 			}
 		}
 		p->save();
-		
-		const QRect rect = (elem == PE_IndicatorButtonDropDown) ? 
+
+		const QRect rect = (elem == PE_IndicatorButtonDropDown) ?
 				o->rect.adjusted( -1,1, -1,-1 ) : o->rect.adjusted( 1,1, -1,-1 );
 		p->setPen( outlineColor( o ) );
 		// Differentiate between normal and pressed
@@ -351,9 +354,9 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 			linearGrad.setColorAt(1, shadow);
 		}
 		p->setBrush( QBrush( linearGrad ) );
-		p->setRenderHint( QPainter::Antialiasing, true ); 
+		p->setRenderHint( QPainter::Antialiasing, true );
 		p->drawRect( rect );
-		
+
 		p->restore();
 		break;
 	}
@@ -403,7 +406,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 	case PE_FrameWindow:
 		p->save();
 		p->setBrush( Qt::NoBrush );
-		p->setPen( (o->state & State_HasFocus ) ? 
+		p->setPen( (o->state & State_HasFocus ) ?
 				o->palette.highlight().color() : outlineColor( o->palette.button().color() ) );
 		p->drawRect( o->rect.adjusted( 0,0, -1,-1 ) );
 		p->restore();
@@ -420,7 +423,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		} else {
 			QRect rect2 = o->rect.adjusted( 0, 2, 0, 0 );
 			renderTiled( rect2, p, m_tabFrame );
-		
+
 			QPen pen( outlineColor( o ) );
 			pen.setWidth( 0 );
 			pen.setJoinStyle( Qt::MiterJoin );
@@ -445,9 +448,9 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		if (const QStyleOptionFrameV2 *groupBoxO = qstyleoption_cast<const QStyleOptionFrameV2*>(o)) {
 			plain = groupBoxO->features & QStyleOptionFrameV2::Flat;
 		}
-			
+
 		p->save();
-				
+
 		if ( plain ) {
 			QRect headRect( o->rect );
 			headRect.setHeight( o->fontMetrics.height() );
@@ -463,9 +466,9 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 			renderTiled( o->rect, p, m_groupbox );
 			QPolygon border = groupboxBorder( o->rect );
 			p->setPen( alphaMix( outlineColor( o ), o->palette.background().color(), 0.9 ) );
-// 			p->setRenderHint( QPainter::Antialiasing, true ); 
+// 			p->setRenderHint( QPainter::Antialiasing, true );
 			p->drawPolygon( border );
-			
+
 			if ( text ) {
 				QRect headRect( o->rect );
 				headRect.setHeight( o->fontMetrics.height() +4 );
@@ -479,7 +482,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 			}
 		}
 		p->restore();
-			
+
 		break;
 	}
 	case PE_FrameLineEdit:
@@ -496,14 +499,14 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		break;
 	case PE_PanelMenuBar:
 		break;
-	case PE_PanelLineEdit: 
+	case PE_PanelLineEdit:
 		if (const QStyleOptionFrame *frameOption = qstyleoption_cast<const QStyleOptionFrame *>(o)) {
 			// Panel of a line edit inside combo box or spin box is drawn in CC_ComboBox and CC_SpinBox
 			if (widget) {
 				if (qobject_cast<const QComboBox *>(widget->parentWidget())) break;
 				if (qobject_cast<const QAbstractSpinBox *>(widget->parentWidget())) break;
 			}
-			
+
 			p->save();
 			if( frameOption->lineWidth > 0 ) {
 				p->setBrush( o->palette.base() );
@@ -521,8 +524,8 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		renderSplitter( o, p, o->state & State_Horizontal );
 		break;
 	}
-		
-	
+
+
 	default:
 		QWindowsStyle::drawPrimitive( elem, o, p, widget );
 	}
@@ -547,9 +550,9 @@ int FloatStyle::styleHint ( StyleHint hint, const QStyleOption *o, const QWidget
 void FloatStyle::polish(QWidget *widget)
 {
 	QWindowsStyle::polish( widget );
-	if( qobject_cast<QAbstractButton*>(widget) 
-		   || qobject_cast<QSplitterHandle*>(widget) 
-		   || qobject_cast<QTabBar*>(widget) 
+	if( qobject_cast<QAbstractButton*>(widget)
+		   || qobject_cast<QSplitterHandle*>(widget)
+		   || qobject_cast<QTabBar*>(widget)
 	  ) {
 		widget->setAttribute(Qt::WA_Hover);
 		widget->setAutoFillBackground( false );
@@ -567,13 +570,13 @@ QPalette FloatStyle::standardPalette() const
 	QColor hl( 80, 114, 154 );
 	QColor bg( 239, 235, 231 );
 	QColor button( 244, 244, 240 );
-	
+
 	palette.setBrush( QPalette::BrightText, Qt::white );
 	palette.setBrush( QPalette::Base, Qt::white );
 	palette.setBrush( QPalette::Highlight, hl );
 	palette.setBrush( QPalette::Background, bg );
 	palette.setBrush( QPalette::Button, button );
-		
+
 	return palette;
 
 }

@@ -17,42 +17,45 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef GESTOTUXDEFAULT_H
-#define GESTOTUXDEFAULT_H
+#ifndef GASTOS_H
+#define GASTOS_H
 
 #include <QObject>
 #include <eplugin.h>
-#include "../../src/einfoprogramainterface.h"
 
 /**
- * \brief Plugin info predeterminado
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class GestotuxDefault : public QObject, public EPlugin, public EInfoProgramaInterface
+ * \brief Plugin de Gastos
+ *
+ * Clase encargada de administrar los gastos y sus formularios
+ *
+ *  @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
+class Gastos : public QObject, public EPlugin
 {
 Q_OBJECT
-Q_INTERFACES( EPlugin EInfoProgramaInterface )
+Q_INTERFACES( EPlugin )
 public:
-    bool publicidad();
-    double version() const;
-    QIcon iconoPrograma() const;
-    QString companeros();
-    QString directorioActualizaciones() const;
-    QString directorioBackup() const;
-    QString empresa() const;
-    QString nombrePrograma() const;
-    bool inicializar();
-    bool verificarTablas();
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+     bool inicializar();
+     bool verificarTablas();
+     double version() const;
+     int tipo() const;
+     QList< QActionGroup * > accionesBarra();
+     QString nombre() const;
+     QWidgetList formsPreferencias();
+     void crearMenu(QMenuBar* m);
+     void crearToolBar(QToolBar* t);
+
+private:
+    QAction *ActAgregarGasto;
+    QAction *ActGastos;
+
+protected slots:
+    void agregarGasto();
+    void ver_gastos();
 
 signals:
-    void agregarVentana(QWidget* v);
+	void agregarVentana( QWidget *v );
+
 };
 
 #endif

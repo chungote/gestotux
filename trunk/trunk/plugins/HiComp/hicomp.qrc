@@ -4,6 +4,7 @@
 	<file>imagenes/anteriores.png</file>
 	<file>recibo.svg</file>
 	<file>imagenes/recibo.png</file>
+	<file>imagenes/icono_win.ico</file>
    </qresource>
    <qresource>
 	<file>hicomp.QSQLITE.sql</file>

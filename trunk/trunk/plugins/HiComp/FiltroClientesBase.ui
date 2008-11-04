@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>77</height>
+    <width>370</width>
+    <height>42</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -43,10 +43,10 @@
       <string>Filtrar por cliente</string>
      </property>
      <property name="alignment" >
-      <set>Qt::AlignHCenter</set>
+      <set>Qt::AlignCenter</set>
      </property>
      <property name="flat" >
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="checkable" >
       <bool>true</bool>
@@ -55,16 +55,7 @@
       <bool>false</bool>
      </property>
      <layout class="QHBoxLayout" >
-      <property name="leftMargin" >
-       <number>2</number>
-      </property>
-      <property name="topMargin" >
-       <number>2</number>
-      </property>
-      <property name="rightMargin" >
-       <number>2</number>
-      </property>
-      <property name="bottomMargin" >
+      <property name="margin" >
        <number>2</number>
       </property>
       <item>

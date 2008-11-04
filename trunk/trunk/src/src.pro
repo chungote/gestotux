@@ -55,7 +55,14 @@ FPrefGeneral.ui \
  FormActualizacionBase.ui \
  EMysql.ui \
  ForPrefDb.ui
-TARGET = gestotux
+
+TARGET = $$NOMBRE_PROGRAMA
+isEmpty( TARGET ) {
+  TARGET = gestotux
+}
+
+
+
 DESTDIR = ../bin
 
 DISTFILES += qt_es.qm \

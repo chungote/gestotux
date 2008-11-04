@@ -24,8 +24,12 @@
 #include <QPrinterInfo>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Visor de informes en vista de impresion
+ *
+ * Clase que encapsula un visor de informes en vista de impresion y muestra el contenido con su barra de herramientas y complementos
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EVisorInformes : public QPrintPreviewWidget
 {
 Q_OBJECT

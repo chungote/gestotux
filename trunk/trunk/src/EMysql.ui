@@ -116,10 +116,10 @@
       <number>24</number>
      </property>
      <property name="alignment" >
-      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
      <property name="textVisible" >
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>

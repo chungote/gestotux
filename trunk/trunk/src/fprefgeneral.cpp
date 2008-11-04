@@ -32,12 +32,6 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 	setupUi(this);
  	this->setAttribute( Qt::WA_DeleteOnClose );
 	CBEstilo->insertItems( -1, QStyleFactory::keys() );
-	connect( ChBBarraProgreso, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoBarra( int ) ) );
-	PBMuestra->setStyleSheet( "QProgressBar:horizontal { border: 1px solid gray; border-radius: 6px; background: white; padding: 0px; text-align: center; } QProgressBar::chunk:horizontal { background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 blue, stop: 1 cyan); }" );
-	QTimer *tiempo = new QTimer( this );
-	tiempo->setInterval( 900 );
-	connect( tiempo, SIGNAL( timeout() ), this, SLOT( avanzarBarra() ) );
-	tiempo->start();
 	CBSobreEstilo->setEnabled( CkBSobreEstilo->isChecked() );
 	// Busco los estilos disponibles
 	QDir dir( QCoreApplication::applicationDirPath() );
@@ -51,10 +45,6 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 	{
 		// inserto los directorios de estilo
 		CBSobreEstilo->insertItems( -1, dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot ) );
-		// conecto el slot que realiza el cambio
-		connect( CBSobreEstilo, SIGNAL( currentIndexChanged( const QString & ) ), this, SLOT( cambioSobreEstilo( const QString & ) ) );
-		// conecto el slot para deshacer los cambios si se dechequea la casilla
-		connect( CkBSobreEstilo, SIGNAL( toggled( bool ) ), this, SLOT( cambioSobreEstilo( bool ) ) );
 	}
 }
 
@@ -77,13 +67,16 @@ void FPrefGeneral::cargar()
  CBEstilo->setCurrentIndex( p->value( "estilo-int", 5 ).toInt() );
  ChBSplash->setChecked( p->value( "splash", true ).toBool() );
  ChBIconoBandeja->setChecked( p->value( "icono_bandeja", false ).toBool() );
- ChBBarraProgreso->setChecked( p->value( "barra_personalizada", false ).toBool() );
- PBMuestra->setEnabled( p->value( "barra_personalizada", false ).toBool() );
  CkBSobreEstilo->setChecked( p->value( "sobreestilo", false ).toBool() );
  CBSobreEstilo->setCurrentIndex( p->value( "sobreestiloint", -1 ).toInt() );
  CkBReloj->setChecked( p->value( "reloj", true ).toBool() );
  p->endGroup();
  p->endGroup();
+ // conecto el slot que realiza el cambio
+ connect( CBSobreEstilo, SIGNAL( currentIndexChanged( const QString & ) ), this, SLOT( cambioSobreEstilo( const QString & ) ) );
+ // conecto el slot para deshacer los cambios si se dechequea la casilla
+ connect( CkBSobreEstilo, SIGNAL( toggled( bool ) ), this, SLOT( cambioSobreEstilo( bool ) ) );
+
 }
 
 
@@ -101,7 +94,6 @@ void FPrefGeneral::guardar()
  p->setValue( "estilo-int", CBEstilo->currentIndex() );
  p->setValue( "splash", ChBSplash->isChecked() );
  p->setValue( "icono_bandeja", ChBIconoBandeja->isChecked() );
- p->setValue( "barra_personalizada", ChBBarraProgreso->isChecked() );
  p->setValue( "sobreestilo", CkBSobreEstilo->isChecked() );
  p->setValue( "sobreestilonombre", CBSobreEstilo->currentText() );
  p->setValue( "sobreestiloint", CBSobreEstilo->currentIndex() );
@@ -117,50 +109,7 @@ void FPrefGeneral::guardar()
 void FPrefGeneral::aplicar()
 {
   QApplication::setStyle( QStyleFactory::create( CBEstilo->currentText() ) );
-  if( ChBBarraProgreso->isChecked() )
-  {
-   QString estilo = qApp->styleSheet();
-   qApp->setStyleSheet( estilo.append( "QProgressBar:horizontal { border: 1px solid gray; border-radius: 6px; background: white; padding: 0px; text-align: center; text-padding: 4px; text-weight: bold; } QProgressBar::chunk:horizontal { background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5, stop: 0 blue, stop: 1 cyan); }" ) );
-  }
 }
-
-
-/*!
-    \fn FPrefGeneral::cambioEstadoBarra( int estado )
- */
-void FPrefGeneral::cambioEstadoBarra( int estado )
-{
- switch( estado )
- {
-   case Qt::Unchecked:
-  {
-   PBMuestra->setEnabled( false );
-   break;
-  }
-  case Qt::Checked:
-  {
-   PBMuestra->setEnabled( true );
-   break;
-  }
- }
-}
-
-
-/*!
-    \fn FPrefGeneral::avanzarBarra()
- */
-void FPrefGeneral::avanzarBarra()
-{
- if( PBMuestra->value() == 100 )
- {
-  PBMuestra->setValue( 0 );
- }
- else
- {
-  PBMuestra->setValue( PBMuestra->value() + 1 );
- }
-}
-
 
 
 /*!

@@ -2,8 +2,6 @@ SOURCES += digifauno.cpp \
            mdueno.cpp \
  vduenos.cpp \
  mmascota.cpp \
- mproveedor.cpp \
- vproveedor.cpp \
  formagregarmasctoa.cpp \
  formagregarservicio.cpp \
  mpeluqueria.cpp \
@@ -13,24 +11,15 @@ SOURCES += digifauno.cpp \
  mcompra.cpp \
  mrazas.cpp \
  dmiembros.cpp \
- mgasto.cpp \
- formagregargasto.cpp \
- dproductos.cpp \
- vgastos.cpp \
  resumengeneral.cpp \
  formprefopciones.cpp \
- dproveedor.cpp \
  formlistapeluqueria.cpp \
- dgastos.cpp \
- edsbprecio.cpp \
  formagregarcompra.cpp \
- vcompras.cpp
+ vcompras.cpp \
+ ../proveedor/mproveedor.cpp
 HEADERS += digifauno.h \
  mdueno.h \
- vduenos.h \
  mmascota.h \
- mproveedor.h \
- vproveedor.h \
  formagregarmasctoa.h \
  formagregarservicio.h \
  mpeluqueria.h \
@@ -40,18 +29,13 @@ HEADERS += digifauno.h \
  mcompra.h \
  mrazas.h \
  dmiembros.h \
- mgasto.h \
- formagregargasto.h \
- dproductos.h \
- vgastos.h \
  resumengeneral.h \
  formprefopciones.h \
- dproveedor.h \
  formlistapeluqueria.h \
- dgastos.h \
- edsbprecio.h \
  formagregarcompra.h \
- vcompras.h
+ vcompras.h \
+ vduenos.h \
+ ../proveedor/mproveedor.h
 
 
 CONFIG += warn_on \
@@ -59,7 +43,6 @@ CONFIG += warn_on \
           qt \
  exceptions \
  debug \
- assistant \
  dll \
  plugin
 
@@ -125,7 +108,6 @@ DISTFILES += documentacion/digifauno.adp \
 FORMS += FormAgregarMascota.ui \
  FormServPeluqueria.ui \
  FPrefGeneral.ui \
- FormAgregarGastoBase.ui \
  FormPrefOpcionesBase.ui \
  FormListaPeluqueriaBase.ui \
  FormAgregarCompraBase.ui
@@ -150,7 +132,6 @@ CONFIG -= release
 
 DESTDIR = ../../bin/plugins
 
-INCLUDEPATH += ../../utiles
 LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
@@ -161,3 +142,6 @@ DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 message( "Actualizando traduccion" )
 message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+INCLUDEPATH += ../../src \
+  ../../utiles
+

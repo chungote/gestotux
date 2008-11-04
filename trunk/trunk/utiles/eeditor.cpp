@@ -403,14 +403,14 @@ EEditor::EEditor( QWidget *parent)  :
 {
     Q_INIT_RESOURCE(utiles);
     // The toolbar needs to be created after the RichTextEditor
-    QToolBar *tool_bar = m_editor->createToolBar( this );
+    tool_bar = m_editor->createToolBar( this );
     tool_bar->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
 
     QVBoxLayout *l = new QVBoxLayout( this );
     l->addWidget(tool_bar);
     l->addWidget(m_editor);
 
-    connect( m_editor, SIGNAL( mostrarToolBar( bool ) ), tool_bar, SLOT( setVisible( bool ) ) );
+    connect( m_editor, SIGNAL( mostrarToolBar( bool ) ), this, SLOT( ocultarBarra( bool ) ) );
     tool_bar->setVisible( false );
 }
 
@@ -460,4 +460,29 @@ void RichTextEditor::focusOutEvent( QFocusEvent *event )
  emit mostrarToolBar( false );
  QTextEdit::focusOutEvent( event );
 
+}
+
+
+/*!
+    \fn EEditor::ocultarBarra( bool estado )
+ */
+void EEditor::ocultarBarra( bool estado )
+{
+ if( estado == true )
+ {
+  // Muestro la barra
+  tool_bar->setVisible( true );
+ }
+ else
+ {
+  // La oculto si el foco fue hacia un hijo que no es el gb
+  if( this->parentWidget() != 0 )
+  {
+   // Busco si el gb tiene un hijo con el nombre del elemento que tiene foco actual
+   if( this->parentWidget()->findChildren<QWidget*>( QApplication::focusWidget()->objectName() ).isEmpty() )
+   {
+     tool_bar->setVisible( false );
+   }
+  }
+ }
 }

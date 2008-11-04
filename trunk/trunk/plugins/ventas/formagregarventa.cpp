@@ -47,7 +47,7 @@
 #include <QSqlQuery>
 #include <QHeaderView>
 
-//#include "edsbprecio.h"
+#include "edsbprecio.h"
 
 FormAgregarVenta::FormAgregarVenta(QWidget *parent)
  : EVentana( parent )
@@ -62,8 +62,8 @@ FormAgregarVenta::FormAgregarVenta(QWidget *parent)
     LTitulo->setOpenExternalLinks(false);
     LTitulo->setMaximumHeight( 200 );
 
-   /* EDSBPrecio *test = new EDSBPrecio( this );
-    vboxLayout->addWidget( test );*/
+    EDSBPrecio *test = new EDSBPrecio( this );
+    vboxLayout->addWidget( test );
 
     vboxLayout->addWidget(LTitulo);
 

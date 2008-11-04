@@ -23,7 +23,7 @@
 
 #include <QtPlugin>
 #include <QObject>
-#include "../../src/einfoprogramainterface.h"
+#include <einfoprogramainterface.h>
 #include "../../src/eplugin.h"
 
 /*!
@@ -53,28 +53,18 @@ public:
     QString companeros();
     int tipo() const;
     void crearToolBar( QToolBar *t );
-    bool publicidad() { return true; }
+    bool publicidad() { return false; }
 
 signals:
     void agregarVentana( QWidget *ventana );
 
 private:
-    QAction *ActSalir;
-    QAction *ActPreferencias;
-    QAction *ActAcerca;
-    QAction *ActAyuda;
-    QAction *separatorAct;
     QAction *ActBackup;
     QAction *ActDuenos;
-    QAction *ActProveedores;
     QAction *ActMascotas;
-    QAction *ActGastos;
     QAction *ActPeluqueria;
-    QAction *ActVentas;
     QAction *ActNuevoServicio;
-    QAction *ActAgregarCompra;
     QAction *ActAgregarMascota;
-    QAction *ActAgregarGasto;
     QAction *ActResumenDiario;
     QAction *ActResumenMensual;
     QAction *ActResumenAnual;
@@ -89,20 +79,15 @@ private:
     QList<QAction *> _acciones;
 
 public slots:
-    void proveedores();
     void duenos();
     void agregarMascota();
     void agregarServicioPeluqueria();
     void mascotas();
     void resumenDiario();
-    void agregarCompra();
     void resumenMensual();
     void resumenAnual();
-    void agregarGasto();
-    void ver_gastos();
     void resumen_semanal();
     void ver_peluqueria();
-    void ver_compras();
     void resumenEntreFechas();
 
 

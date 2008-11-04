@@ -40,7 +40,7 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
 	this->addAction( new EActGuardar( this ) );
 	this->addAction( new EActCerrar( this ) );
 
-	QSqlQueryModel *modeloCombo = new QSqlQueryModel( this );
+	modeloCombo = new QSqlQueryModel( this );
 	modeloCombo->setQuery( "SELECT id, nombre FROM categoria WHERE tipo = '2'" );
 	CBTipo->setModelColumn( 1 );
 	CBTipo->setModel( modeloCombo );
@@ -49,7 +49,7 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
 
 	CWFecha->setSelectedDate( QDate::currentDate() );
 
-	QSqlQueryModel *modeloEdit = new QSqlQueryModel( this );
+	modeloEdit = new QSqlQueryModel( this );
 	modeloEdit->setQuery( "SELECT DISTINCT descripcion FROM gastos" );
 	CBDescripcion->setModel( modeloEdit );
 	CBDescripcion->setEditable( true );
@@ -93,7 +93,6 @@ void FormAgregarGasto::guardar()
 	if( modelo->submitAll() )
 	{
 		QMessageBox::information( this, "Correcto", "El gasto se han agregado correctamente" );
-		delete modelo;
 		this->close();
 		return;
 	}

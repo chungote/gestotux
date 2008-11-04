@@ -22,6 +22,7 @@
 #include <QSqlError>
 #include <QProgressBar>
 #include <QTimer>
+#include <QMessageBox>
 #include "preferencias.h"
 
 EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
@@ -59,7 +60,7 @@ void EMysql::accept()
   PBBarra->setValue(0);
   PBBarra->setFormat( "Intentando conectar..." );
   QTimer temporizador( this );
-  temporizador.setInterval( 10 );
+  temporizador.setInterval( 70 );
   connect( &temporizador, SIGNAL(timeout()), this, SLOT(avanzarBarra()));
   temporizador.start();
   *_db = QSqlDatabase::addDatabase( "QMYSQL" );
@@ -85,9 +86,21 @@ void EMysql::accept()
   }
   else
   {
-   qDebug( "Error de conección" );
-   qWarning( qPrintable( "Ultimo error: " + _db->lastError().text() ) );
-   _db->removeDatabase( _db->connectionName() );
+   switch( _db->lastError().type() )
+   {
+	case QSqlError::ConnectionError:
+	{
+		QMessageBox::information( this, "Error de conexión", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" );
+ 		_db->removeDatabase( _db->connectionName() );
+		break;
+	}
+	default:
+	{
+		qDebug( "Error de conección" );
+		qWarning( qPrintable( "Ultimo error: -> " + QString::number( _db->lastError().number() ) + "<- - " + _db->lastError().text() ) );
+		 _db->removeDatabase( _db->connectionName() );
+	}
+    }
   }
 }
 

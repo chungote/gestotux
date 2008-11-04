@@ -24,8 +24,12 @@
 #include <QPolygonF>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Delegate para edición de recibos
+ *
+ * Delegate que funciona como selector de las vistas de recibos y permite editar los campos
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class DRecibo : public QSqlRelationalDelegate
 {
 Q_OBJECT

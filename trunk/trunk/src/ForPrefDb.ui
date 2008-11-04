@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>372</height>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -106,7 +106,7 @@
       </font>
      </property>
      <property name="text" >
-      <string>Todos los cambios que se realicen tendran efecto una vez que reinice el programa. Recuerde que si cambia de base de datos no se transferiran los datos entre ellas, pero no los perdera cambiando de interna a externa.</string>
+      <string>Todos los cambios que se realicen tendran efecto una vez que reinice el programa. Recuerde que si cambia de base de datos no se transferiran los datos entre ellas, pero no los perdera.</string>
      </property>
      <property name="scaledContents" >
       <bool>true</bool>
@@ -126,6 +126,70 @@
      <property name="textInteractionFlags" >
       <set>Qt::NoTextInteraction</set>
      </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="GBBackups" >
+     <property name="title" >
+      <string>Backups</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4" >
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4" >
+        <item>
+         <widget class="QLabel" name="label_5" >
+          <property name="text" >
+           <string>Frecuencia de Verificación:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="CBFrecuencia" >
+          <item>
+           <property name="text" >
+            <string>1 día</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>2 días</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>5 días</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>1 semana</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>2 semanas</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>1 mes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>3 meses</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>Nunca</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
