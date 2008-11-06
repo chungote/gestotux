@@ -2,12 +2,13 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug
+debug \
+help
 CONFIG -= release
 
 QT += sql
 
-TARGET = proveedor
+TARGET = compras
 
 DESTDIR = ../../bin/plugins/
 
@@ -17,6 +18,8 @@ INCLUDEPATH += ../../src \
 LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
+
+TRANSLATIONS += compras.ts
 
 win32 {
     MOC_DIR = win/moc
@@ -30,23 +33,25 @@ linux-g++ {
     OBJECTS_DIR = obj
 }
 
-TRANSLATIONS += proveedor.ts
-
 # Actualiza la documentacion
 DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 message( "Actualizando traduccion" )
 message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )SOURCES += mcompra.cpp \
+mcompraproductos.cpp \
+vcompras.cpp \
+formagregarcompra.cpp \
+compras.cpp \
+../proveedor/mproveedor.cpp \
+ dventacompra.cpp
+HEADERS += formagregarcompra.h \
+mcompra.h \
+mcompraproductos.h \
+vcompras.h \
+compras.h \
+../proveedor/mproveedor.h \
+ dventacompra.h
+FORMS += FormAgregarCompraBase.ui
 
-SOURCES += dproveedor.cpp \
-mproveedor.cpp \
-vproveedor.cpp \
- proveedor.cpp
-HEADERS += dproveedor.h \
-mproveedor.h \
-vproveedor.h \
- proveedor.h
-DISTFILES += ../../templates/qrc
-
-RESOURCES += proveedor.qrc
+RESOURCES += compras.qrc
 

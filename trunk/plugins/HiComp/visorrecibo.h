@@ -31,7 +31,7 @@ class visorRecibo : public QSvgWidget
 {
   Q_OBJECT
 public:
-    visorRecibo( QWidget *parent = 0 );
+    visorRecibo( QWidget *parent = 0, const int id = -1 );
     ~visorRecibo();
     QString nombre();
     Recibo * recibo();

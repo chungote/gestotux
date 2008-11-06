@@ -42,12 +42,12 @@ Recibo::Recibo(QObject *parent)
  if( !archivo.open( QIODevice::ReadOnly ) )
  {
   qCritical( "No se puede encontrar el archivo original de recibo" );
-  return;
+  abort();
  }
  if( !domdoc.setContent( &archivo ) )
  {
   qWarning( "Error al pasar el contenido desde el archivo al documento dom" );
-  return;
+  abort();
  }
  archivo.close();
 }
@@ -88,8 +88,7 @@ bool Recibo::cargarRegistro( int idDB )
     this->descripcion = cola.record().value(4).toString();
     this->contado = cola.record().value(7).toBool();
     this->cuenta_corriente = cola.record().value(8).toBool();
-    reajusteXML();
-    return true;
+    return reajusteXML();
  }
  else
  {
@@ -100,13 +99,13 @@ bool Recibo::cargarRegistro( int idDB )
 }
 
 
-void Recibo::reajusteXML()
+bool Recibo::reajusteXML()
 {
  QDomNodeList lista = domdoc.elementsByTagName( "svg:text" );
  if( lista.isEmpty() )
  {
   qWarning( "Error: no existen nodos de texto en el xml!" );
-  return;
+  return false;
  }
 
  for( int i = 0; i< lista.size(); i++ )
@@ -174,6 +173,7 @@ void Recibo::reajusteXML()
  s << domdoc.toByteArray();
  arch.flush();
  arch.close();*/
+ return true;
 }
 
 

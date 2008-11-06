@@ -250,18 +250,14 @@ void FormAgregarRecibo::guardar( bool imprimir )
  if( modelo->insertRecord( -1, rec ) )
  {
   QMessageBox::information( this, "Guardado", "Los datos han sido guardados correctamente" );
-  this->close();
-  QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'recibos'" );
-  if( cola.next() )
+  visorRecibo *v = new visorRecibo();
+  v->verRecibo( modelo->query().lastInsertId().toInt() );
+  emit agregarVentana( v );
+ /* if( imprimir )
   {
-	visorRecibo *v = new visorRecibo( this );
-	v->verRecibo( cola.record().value( "seq" ).toInt() );
-	emit agregarVentana( v );
-	if( imprimir )
-	{
-		v->imprimir();
-	}
-  }
+     v->imprimir();
+  }*/
+  this->hide();
   return;
  }
  else

@@ -24,6 +24,7 @@ Q_EXPORT_PLUGIN2( gastos, Gastos );
 
 bool Gastos::inicializar()
 {
+ Q_INIT_RESOURCE(gastos);
  /////////////////////////////////////
  // Muestra los gastos
  /////////////////////////////////////

@@ -50,7 +50,6 @@ INCLUDEPATH += ../../src \
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
-RESOURCES += embebido.qrc
 
 DISTFILES += productos.SQLITE.sql \
  productos.QMYSQL.sql
@@ -60,4 +59,5 @@ TRANSLATIONS += productos.ts
 DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 message( "Actualizando traduccion" )
 message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
+system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )RESOURCES += productos.qrc
+

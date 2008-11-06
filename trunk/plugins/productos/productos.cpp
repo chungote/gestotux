@@ -65,6 +65,7 @@ QWidgetList productos::formsPreferencias()
  */
 bool productos::inicializar()
 {
+ Q_INIT_RESOURCE(productos);
  _acciones.clear();
 
  ActProductos = new QAction( "Ver Productos", this );

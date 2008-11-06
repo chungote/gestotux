@@ -6,6 +6,7 @@ SUBDIRS +=  presupuesto \
  default \
  gastos \
   proveedor \
-  digifauno \
-  compras
+  #digifauno \
+  compras \
+  autodestruc
 CONFIG += ordered

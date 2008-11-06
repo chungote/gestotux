@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mpresupuesto.h"
+#include <QDate>
+#include <QColor>
 
 MPresupuesto::MPresupuesto(QObject *parent, bool relacion )
  : QSqlRelationalTableModel(parent)
@@ -44,17 +46,113 @@ MPresupuesto::~MPresupuesto()
 
 QVariant MPresupuesto::data(const QModelIndex& idx, int role) const
 {
- switch( idx.column() )
+ switch( role )
  {
- 	case 1:
+ 	case Qt::DisplayRole:
 	{
-		if( QSqlTableModel::data(idx, role).toInt() != -1 )
+		switch( idx.column() )
 		{
-			return "-";
+			case 1:
+			case 2:
+			{
+				return QSqlRelationalTableModel::data( idx, role ).toString();
+				break;
+			}
+			case 3:
+			{
+				return QSqlRelationalTableModel::data( idx, role ).toDate();
+				break;
+			}
+			case 4:
+			{
+				return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( idx, role ).toDouble() );
+				break;
+			}
+			default:
+			{
+				return QSqlRelationalTableModel::data( idx, role );
+				break;
+			}
 		}
-		else
+		break;
+	}
+	case Qt::EditRole:
+	{
+		switch( idx.column() )
 		{
-			return QSqlRelationalTableModel::data(idx,role);
+			case 1:
+			{
+				return QSqlRelationalTableModel::data( idx, role );
+				break;
+			}
+			case 2:
+			{
+				return QSqlRelationalTableModel::data( idx, role ).toString();
+				break;
+			}
+			case 3:
+			{
+				return QSqlRelationalTableModel::data( idx, role ).toDate();
+				break;
+			}
+			case 4:
+			{
+				return QSqlRelationalTableModel::data( idx, role ).toDouble();
+				break;
+			}
+			default:
+			{
+				return QSqlRelationalTableModel::data( idx, role);
+				break;
+			}
+		}
+		break;
+	}
+	case Qt::TextAlignmentRole:
+	{
+		switch( idx.column() )
+		{
+			case 1:
+			case 2:
+			{
+				return int( Qt::AlignLeft | Qt::AlignVCenter );
+				break;
+			}
+			case 3:
+			{
+				return int( Qt::AlignCenter | Qt::AlignVCenter );
+				break;
+			}
+			case 4:
+			{
+				return int( Qt::AlignRight | Qt::AlignVCenter );
+				break;
+			}
+			default:
+			{
+				return QSqlRelationalTableModel::data( idx, role );
+				break;
+			}
+		}
+		break;
+	}
+	case Qt::BackgroundRole:
+	{
+		switch( idx.column() )
+		{
+			case 2:
+			{
+				if( QSqlRelationalTableModel::data( QSqlRelationalTableModel::index( idx.row(), 2 ), Qt::EditRole ).toString().isEmpty() )
+				{ return QColor( Qt::gray ); }
+ 				else
+				{ return QSqlRelationalTableModel::data( idx, role ); }
+				break;
+			}
+			default:
+			{
+				return QSqlRelationalTableModel::data( idx, role );
+				break;
+			}
 		}
 		break;
 	}

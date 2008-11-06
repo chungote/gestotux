@@ -50,7 +50,7 @@ private:
     QDate fecha_pagado;
     int num_mes;
     QDomDocument domdoc;
-    void reajusteXML();
+    bool reajusteXML();
     QString generarNumeroRecibo();
 
 private:

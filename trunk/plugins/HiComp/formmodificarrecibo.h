@@ -54,6 +54,9 @@ private:
     QModelIndex indice;
     QSqlTableModel *modelo;
     EEditor *TETexto;
+
+signals:
+    void agregarVentana( QWidget *w );
 };
 
 #endif

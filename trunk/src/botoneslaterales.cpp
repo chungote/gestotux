@@ -37,17 +37,27 @@ BotonesLaterales::BotonesLaterales(QWidget* parent, Qt::WindowFlags f )
     {
 	if( !plug->accionesBarra().isEmpty() )
 	{
+		qDebug( qPrintable( "accionesbarra: " + plug->nombre() ) );
 		QActionGroup *pest;
 		foreach( pest, plug->accionesBarra() )
 		{
 			if( !pest->actions().isEmpty() )
 			{
 				QWidget *w;
+				qDebug( qPrintable( "grupo: " + pest->objectName() ) );
 				// Existe ya el grupo?
 				if( this->findChild<QWidget*>( pest->objectName() ) != 0 )
 				{
 					//Existe
 					w = this->findChild<QWidget *>( pest->objectName() );
+					if( w->windowIcon().isNull() && pest->property( "icono" ).isValid() )
+					{
+						this->setItemIcon( this->indexOf( w ), QIcon( pest->property( "icono" ).toString() ) );
+					}
+					if( w->windowTitle().isEmpty() && pest->property( "titulo" ).isValid() )
+					{
+						this->setItemText( this->indexOf( w ), pest->property( "titulo" ).toString() );
+					}
 				}
 				else
 				{

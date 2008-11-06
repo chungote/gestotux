@@ -56,7 +56,7 @@ QList< QActionGroup * > GestotuxDefault::accionesBarra()
 { return QList<QActionGroup *>(); }
 
 QString GestotuxDefault::nombre() const
-{ return "zinfo"; }
+{ return "default"; }
 
 QWidgetList GestotuxDefault::formsPreferencias()
 { return QWidgetList();}

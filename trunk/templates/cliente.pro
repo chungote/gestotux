@@ -10,4 +10,7 @@ SUBDIRS = utiles/utiles.pro \
           src/src.pro \
 	  utiles/estilo/estilo.pro
 
-NOMBRE_PROGRAMA = ?????????
+NOMBRE_PROGRAMA = ?????
+ARCHIVO_RC = ????/???.rc
+
+system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )

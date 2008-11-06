@@ -1,12 +1,13 @@
 <RCC>
-    <qresource prefix="">
-         <file>imagenes/icono.png</file>
+    <qresource>
+        <file>imagenes/icono.png</file>
 	<file>imagenes/anteriores.png</file>
 	<file>recibo.svg</file>
 	<file>imagenes/recibo.png</file>
 	<file>imagenes/icono_win.ico</file>
    </qresource>
-   <qresource>
+   <qresource prefix="sql">
 	<file>hicomp.QSQLITE.sql</file>
+	<file>hicomp.QMYSQL.sql</file>
    </qresource>
 </RCC>

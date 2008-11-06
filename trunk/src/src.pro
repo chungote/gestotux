@@ -56,10 +56,10 @@ FPrefGeneral.ui \
  EMysql.ui \
  ForPrefDb.ui
 
-TARGET = $$NOMBRE_PROGRAMA
-isEmpty( TARGET ) {
-  TARGET = gestotux
+!include( cliente.pri ) {
+ TARGET = gestotux
 }
+
 
 
 

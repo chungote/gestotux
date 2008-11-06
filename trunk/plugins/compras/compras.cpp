@@ -17,53 +17,59 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "proveedor.h"
+#include "compras.h"
 
 #include <QSqlDatabase>
 
-bool proveedor::inicializar()
+bool Compras::inicializar()
 {
- Q_INIT_RESOURCE(proveedor);
- ///////////////////////////////
- // Muestra los proveedores
- //////////////////////////////
- ActProveedores = new QAction( "Proveedores", this );
- ActProveedores->setStatusTip( "Mustra los distintos proveedores" );
- ActProveedores->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
- connect( ActProveedores, SIGNAL( triggered() ), this, SLOT( proveedores() ) );
+ Q_INIT_RESOURCE(compras);
+ ActAgregarCompra = new QAction( "Agregar Nueva Compra", this );
+ ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
+ connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
+
+ ActCompras = new QAction( "Compras", this );
+//  ActVentas->setIcon( QIcon( ":/imagenes/nose.png" ) );
+ ActCompras->setStatusTip( "Muestra el historial de compras" );
+ connect( ActCompras, SIGNAL( triggered() ), this, SLOT( ver_compras() ) );
+
  return true;
 }
 
-bool proveedor::verificarTablas()
+bool Compras::verificarTablas()
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "proveedor" ) )
- { qWarning( "Error al buscar la tabla proveedor" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "compras" ) )
+ { qWarning( "Error al buscar la tabla compras" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "compras_productos" ) )
+ { qWarning( "Error al buscar la tabla compras_productos" ); return false; }
  return true;
 }
 
-double proveedor::version() const
+double Compras::version() const
 { return 0.1; }
 
-int proveedor::tipo() const
+int Compras::tipo() const
 { return EPlugin::comun; }
 
-QList< QActionGroup * > proveedor::accionesBarra()
+QList< QActionGroup * > Compras::accionesBarra()
 {
  QList<QActionGroup *> lista;
  QActionGroup *compras = new QActionGroup( this );
  compras->setObjectName( "compras" );
- compras->addAction( ActProveedores );
+ compras->setProperty( "icono", ":/imagenes/compras.jpg" );
+ compras->setProperty( "titulo", "Compras y Gastos" );
+ compras->addAction( ActAgregarCompra );
  lista.append( compras );
  return lista;
 }
 
-QString proveedor::nombre() const
-{ return "proveedor"; }
+QString Compras::nombre() const
+{ return "compras"; }
 
-QWidgetList proveedor::formsPreferencias()
+QWidgetList Compras::formsPreferencias()
 { return QWidgetList(); }
 
-void proveedor::crearMenu(QMenuBar* m)
+void Compras::crearMenu(QMenuBar* m)
 {
  QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHerramientas == 0 )
@@ -72,19 +78,27 @@ void proveedor::crearMenu(QMenuBar* m)
  }
  else
  {
-  menuHerramientas->addAction( ActProveedores );
+  menuHerramientas->addAction( ActCompras );
  }
 }
 
-void proveedor::crearToolBar(QToolBar* t)
+void Compras::crearToolBar(QToolBar* t)
 {}
 
-#include "vproveedor.h"
+Q_EXPORT_PLUGIN2( compras, Compras )
 
+#include "formagregarcompra.h"
 /*!
-    \fn proveedores::proveedores()
+    \fn Compras::agregarCompra()
  */
-void proveedor::proveedores()
-{ emit agregarVentana( new VProveedor() ); }
+void Compras::agregarCompra()
+{ emit agregarVentana( new FormAgregarCompra() ); }
 
-Q_EXPORT_PLUGIN2( proveedor, proveedor )
+
+#include "vcompras.h"
+/*!
+    \fn Compras::ver_compras()
+ */
+void Compras::ver_compras()
+{ emit agregarVentana( new VCompras() ); }
+

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
  *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,25 +17,40 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef DPRODUCTOS_H
-#define DPRODUCTOS_H
+#ifndef COMPRAS_H
+#define COMPRAS_H
 
-#include <QSqlRelationalDelegate>
+#include <QObject>
+#include <eplugin.h>
 
 /**
- * 	\brief Clase que ayuda la edicion de Productos
- *
- * Delegate que permite personalizar la edicion de los campos del formulario de miembros.\n
- * Cuando se editan la categoria del producto deja afuera del combobox las categorias de gastos
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class DProductos : public QSqlRelationalDelegate
+class Compras : public QObject, public EPlugin
 {
 Q_OBJECT
+Q_INTERFACES( EPlugin )
 public:
-    DProductos(QObject *parent = 0);
-    ~DProductos();
-    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    bool inicializar();
+    bool verificarTablas();
+    double version() const;
+    int tipo() const;
+    QList<QActionGroup *> accionesBarra();
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    void crearMenu(QMenuBar* m);
+    void crearToolBar(QToolBar* t);
+
+signals:
+    void agregarVentana(QWidget* v);
+
+private:
+	QAction *ActAgregarCompra;
+	QAction *ActCompras;
+
+public slots:
+    void agregarCompra();
+    void ver_compras();
 
 };
 

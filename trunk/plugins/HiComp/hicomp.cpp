@@ -58,6 +58,7 @@ QList<QActionGroup *> HiComp::accionesBarra()
 
 bool HiComp::inicializar()
 {
+ Q_INIT_RESOURCE(hicomp);
  _acciones.clear();
  // Genero las acciones y la lista
  ActRecibos = new QAction( "Ver Recibos", this );
@@ -72,7 +73,7 @@ bool HiComp::inicializar()
 
  _acciones.append( ActNuevoRecibo );
 
- return verificarTablas();
+ return true;
 }
 
 

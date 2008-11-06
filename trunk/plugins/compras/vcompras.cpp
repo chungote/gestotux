@@ -21,7 +21,6 @@
 
 #include "mcompra.h"
 #include <QTableView>
-#include "digifauno.h"
 #include <QPushButton>
 
 VCompras::VCompras(QWidget *parent)

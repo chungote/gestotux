@@ -41,8 +41,10 @@
 VRecibos::VRecibos( QWidget *parent )
  : EVentana( parent )
 {
- setObjectName( "Recibos Emitidos" );
+ setObjectName( "listarecibos" );
  this->setAttribute( Qt::WA_DeleteOnClose );
+ this->setWindowTitle( "Recibos Emitidos" );
+ this->setWindowIcon( QIcon( ":/imagenes/anteriores.png" ) );
 
  modelo = new MRecibo( this );
 
@@ -51,6 +53,7 @@ VRecibos::VRecibos( QWidget *parent )
  layout->addWidget( vista );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
+ vista->hideColumn( 3 );
  vista->setItemDelegate( new DRecibo( vista ) );
 
  modelo->select();
@@ -168,9 +171,7 @@ void VRecibos::ver()
    if ( indice.isValid() )
    {
       int id = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
-      visorRecibo *v = new visorRecibo( this );
-      v->verRecibo( id );
-      emit agregarVentana( v );
+      emit agregarVentana( new visorRecibo( 0, id ) );
    }
  }
 }

@@ -11,10 +11,14 @@ SUBDIRS = utiles/utiles.pro \
 	plugins/HiComp/HiComp.pro \
 	plugins/productos/productos.pro \
 	plugins/presupuesto/presupuesto.pro \
-	plugins/presupuesto/presupuesto/plugins/hicomp.pro \
+	plugins/presupuesto/plugins/default/default.pro \
+	plugins/presupuesto/plugins/hicomp/hicomp.pro \
 	plugins/ventas/ventas.pro \
-	plugins/gastos/gastos.pro
+	plugins/gastos/gastos.pro \
+	plugins/compras/compras.pro \
+	plugins/proveedor/proveedor.pro
 
-win32 {
- RC_FILE = plugins/HiComp/icono.rc
-}
+NOMBRE_PROGRAMA = hicomp
+ARCHIVO_RC = HiComp/icono.rc
+
+system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
