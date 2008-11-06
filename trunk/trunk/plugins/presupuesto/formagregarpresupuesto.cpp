@@ -138,7 +138,7 @@ void FormAgregarPresupuesto::ponerTabla()
 	return;
  }
  pre->generarTablaProductos( formLista->getModelo(), formLista->tituloTabla(), formLista->cabeceraColumnas() );
- ///@todo, ver bien si quiero hacerlo asi
+ //editor->setText( editor->contenido().append( pre->previsualizacion().toText() ) );
 }
 
 #include <QMessageBox>

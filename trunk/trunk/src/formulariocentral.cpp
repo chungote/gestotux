@@ -62,6 +62,11 @@ void FormularioCentral::cerrarActivo()
  */
 void FormularioCentral::agregarForm( QWidget *ventana )
 {
+ if( ventana->objectName().isEmpty() )
+ {
+  qWarning( "intentando agregar ventana sin nombre, no aparecera" );
+  return;
+ }
  if( !existeVentana( ventana->objectName() ) )
  {
   connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );

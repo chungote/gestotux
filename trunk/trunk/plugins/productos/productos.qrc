@@ -1,4 +1,8 @@
 <RCC>
+   <qresource>
+	<file>imagenes/productos.png</file>
+	<file>imagenes/categorias.jpg</file>
+   </qresource>
    <qresource prefix="sql">
 	<file>productos.QSQLITE.sql</file>
 	<file>productos.QMYSQL.sql</file>

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="">
+	<file>imagenes/gasto.jpg</file>
+    </qresource>
+    <qresource prefix="sql">
+    </qresource>
+</RCC>

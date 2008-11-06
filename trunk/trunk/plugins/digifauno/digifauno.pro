@@ -8,14 +8,11 @@ SOURCES += digifauno.cpp \
  vmascota.cpp \
  dmascota.cpp \
  eresumen.cpp \
- mcompra.cpp \
  mrazas.cpp \
  dmiembros.cpp \
  resumengeneral.cpp \
  formprefopciones.cpp \
  formlistapeluqueria.cpp \
- formagregarcompra.cpp \
- vcompras.cpp \
  ../proveedor/mproveedor.cpp
 HEADERS += digifauno.h \
  mdueno.h \
@@ -26,14 +23,11 @@ HEADERS += digifauno.h \
  vmascota.h \
  dmascota.h \
  eresumen.h \
- mcompra.h \
  mrazas.h \
  dmiembros.h \
  resumengeneral.h \
  formprefopciones.h \
  formlistapeluqueria.h \
- formagregarcompra.h \
- vcompras.h \
  vduenos.h \
  ../proveedor/mproveedor.h
 
@@ -109,8 +103,7 @@ FORMS += FormAgregarMascota.ui \
  FormServPeluqueria.ui \
  FPrefGeneral.ui \
  FormPrefOpcionesBase.ui \
- FormListaPeluqueriaBase.ui \
- FormAgregarCompraBase.ui
+ FormListaPeluqueriaBase.ui
 
 TARGET = digifauno
 linux-g++ {

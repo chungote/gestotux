@@ -5,8 +5,6 @@ CONFIG += warn_on \
           thread  \
  ordered
 
-NOMBRE_PROGRAMA = digifauno
-
 SUBDIRS = utiles \
         src \
 	utiles/estilo/estilo.pro \
@@ -15,3 +13,7 @@ SUBDIRS = utiles \
 	plugins/gastos/gastos.pro \
 	plugins/productos/productos.pro
 
+NOMBRE_PROGRAMA = Digifauno
+ARCHIVO_RC = digifauno/icono.rc
+
+system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )

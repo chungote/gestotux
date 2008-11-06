@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
+ *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,39 +17,50 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "dproductos.h"
+#ifndef AUTODESTRUC_H
+#define AUTODESTRUC_H
 
-#include <QModelIndex>
-#include <QComboBox>
+#include <QObject>
+#include <eplugin.h>
+#include <QtPlugin>
+class QProgressBar;
+class QTimer;
+class QPushButton;
 
-DProductos::DProductos(QObject *parent)
- : QSqlRelationalDelegate(parent)
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class AutoDestruc : public QObject, public EPlugin
 {
-}
+Q_OBJECT
+Q_INTERFACES( EPlugin )
+public:
+    bool inicializar();
+    bool verificarTablas();
+    double version() const;
+    int tipo() const;
+    QList< QActionGroup * > accionesBarra();
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    void crearMenu( QMenuBar* m);
+    void crearToolBar( QToolBar* t);
 
+signals:
+    void agregarVentana( QWidget* v);
 
-DProductos::~DProductos()
-{
-}
+public slots:
+    void destruir();
 
+protected slots:
+    void ejecutarme();
+    void moverBarra();
+    void cancelar();
 
-QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index ) const
-{
- switch( index.column() )
- {
-	case 1:
-	{
-		QComboBox *combo = qobject_cast<QComboBox *>( QSqlRelationalDelegate::createEditor( parent, option, index));
- 		QSqlTableModel *modelo = qobject_cast<QSqlTableModel *>(combo->model());
- 		modelo->setFilter( "tipo <> '2'" );
-		combo->setModel( modelo );
-		return combo;
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalDelegate::createEditor(parent, option, index);
-		break;
-	}
- }
-}
+private:
+    QProgressBar *barra;
+    QTimer *tiempo2;
+    QPushButton *PBCancelar;
+    bool cancelado;
+};
+
+#endif

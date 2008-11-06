@@ -56,7 +56,6 @@ private:
     * Formualrio para mantener la lista productos
     */
     FormListaProductos *formLista;
-
   /*!
    * Puntero al presupuesto actual
    */

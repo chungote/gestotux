@@ -226,12 +226,7 @@ int MTProductosPresupuesto::rowCount( const QModelIndex &parent ) const
  */
 bool MTProductosPresupuesto::guardar( const int id_presupuesto )
 {
- this->setFilter( " id_presupuesto = -1" );
- this->select();
- while( this->query().next() )
- {
-	this->query().record().setValue( "id_presupuesto", id_presupuesto );
- }
+ return this->query().exec( QString( "UPDATE presupuesto_productos SET id_presupuesto = %1 WHERE id_presupuesto = -1" ).arg( id_presupuesto ) );
 }
 
 bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &value, int role )

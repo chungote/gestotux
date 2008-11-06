@@ -25,6 +25,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QAction>
+#include <QActionGroup>
 #include <QMenuBar>
 #include "formagregarpresupuesto.h"
 
@@ -33,7 +34,15 @@
  */
 QList<QActionGroup *> prespuesto::accionesBarra()
 {
-  return QList<QActionGroup*>();
+  QList<QActionGroup *> lista;
+  QActionGroup *presupuestos = new QActionGroup( this );
+  presupuestos->setObjectName( "presupuestos" );
+  presupuestos->setProperty( "titulo", "Presupuestos" );
+  presupuestos->setProperty( "icono",  ":/imagenes/resumenes.png" );
+  presupuestos->addAction( ActNuevoPresu );
+  presupuestos->addAction( ActPresuAnteriores );
+  lista.append( presupuestos );
+  return lista;
 }
 
 
@@ -60,14 +69,15 @@ QWidgetList prespuesto::formsPreferencias()
  */
 bool prespuesto::inicializar()
 {
+ Q_INIT_RESOURCE(presupuesto);
  _acciones.clear();
  // Genero las acciones y la lista
- ActNuevoPresu = new QAction( "Nuevo Prespuesto2", this );
+ ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
 
- ActPresuAnteriores = new QAction( "Presupuestos Anteriores2", this );
+ ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );

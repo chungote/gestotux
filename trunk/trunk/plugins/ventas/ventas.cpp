@@ -64,6 +64,7 @@ QWidgetList Ventas::formsPreferencias()
  */
 bool Ventas::inicializar()
 {
+ Q_INIT_RESOURCE(ventas);
  _acciones.clear();
 
  ActAgregarVentas = new QAction( "Agregar venta", this );

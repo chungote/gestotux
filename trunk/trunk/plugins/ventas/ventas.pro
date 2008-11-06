@@ -57,3 +57,5 @@ CONFIG -= release
 INCLUDEPATH += ../../src \
   ../../utiles
 
+RESOURCES += ventas.qrc
+

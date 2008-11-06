@@ -55,3 +55,5 @@ system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
 FORMS += FormAgregarGastoBase.ui
 
+RESOURCES += gastos.qrc
+

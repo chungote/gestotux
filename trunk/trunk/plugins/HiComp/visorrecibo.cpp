@@ -23,10 +23,12 @@
 #include <QPrintDialog>
 #include <QFileDialog>
 
-visorRecibo::visorRecibo(QWidget *parent)
+visorRecibo::visorRecibo( QWidget *parent, const int id  )
  : QSvgWidget( parent )
 {
- this->setAttribute(  Qt::WA_DeleteOnClose );
+ this->setAttribute( Qt::WA_DeleteOnClose );
+ this->setObjectName( "visorRecibo" );
+ this->setWindowIcon( QIcon( ":/imagenes/resumen.png" ) );
  rec = new Recibo( this );
 
  ActImprimir = new QAction( "Imprimir", this );
@@ -53,8 +55,11 @@ visorRecibo::visorRecibo(QWidget *parent)
  addAction( ActCerrar );
  addAction( ActPdf );
  addAction( ActImprimir );
+ if( id != -1 )
+ {
+  verRecibo( id );
+ }
 }
-
 
 visorRecibo::~visorRecibo()
 {
@@ -90,6 +95,7 @@ void visorRecibo::verRecibo( int idDB )
 {
   rec->cargarRegistro( idDB );
   load( rec->obtenerByteArray() );
+  this->setWindowTitle( nombre() );
 }
 
 
