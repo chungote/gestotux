@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
       preferencias *p = preferencias::getInstancia();
       p->beginGroup( "Preferencias" );
       p->beginGroup( "General" );
-      QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "floatstyle" ).toString() ) );
+      QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "l4ustyle2" ).toString() ) );
       app.setEffectEnabled( Qt::UI_AnimateMenu, true );
       app.setEffectEnabled( Qt::UI_AnimateCombo, true );
       app.setEffectEnabled( Qt::UI_FadeTooltip, true );
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
         /// FIN SQLITE
        }
        // si existe el driver y esta autorizado usar db externa o se quiere usar si o si la db mysql
-       else if( fallosql == true )
+       else if( fallosql == true || !QSqlDatabase::database().isValid() )
        {
 	// No se puede usar sqlite para el programa
 	qDebug( "No se puede encontrar el plug-in para la Base de Datos" );

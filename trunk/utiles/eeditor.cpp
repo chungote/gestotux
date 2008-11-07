@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar    						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -476,7 +476,7 @@ void EEditor::ocultarBarra( bool estado )
  else
  {
   // La oculto si el foco fue hacia un hijo que no es el gb
-  if( this->parentWidget() != 0 )
+  if( this->parentWidget() != 0 && QApplication::focusWidget() != 0 )
   {
    // Busco si el gb tiene un hijo con el nombre del elemento que tiene foco actual
    if( this->parentWidget()->findChildren<QWidget*>( QApplication::focusWidget()->objectName() ).isEmpty() )

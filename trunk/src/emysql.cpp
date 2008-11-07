@@ -43,6 +43,7 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
 	connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
 	PBConectar->setDefault( true );
+	SBPuerto->setEnabled( CkBPuerto->isChecked() );
 }
 
 EMysql::~EMysql()

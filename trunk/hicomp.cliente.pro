@@ -21,4 +21,9 @@ SUBDIRS = utiles/utiles.pro \
 NOMBRE_PROGRAMA = hicomp
 ARCHIVO_RC = HiComp/icono.rc
 
-system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+unix {
+  system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+}
+win32 {
+  system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+}

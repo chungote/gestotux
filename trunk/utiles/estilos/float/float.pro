@@ -12,7 +12,7 @@ CONFIG += plugin \
  debug \
  dll
 RESOURCES = images.qrc
-DESTDIR = ../../bin/styles
+DESTDIR = ../../../bin/styles
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
