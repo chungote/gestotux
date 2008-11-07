@@ -16,4 +16,9 @@ SUBDIRS = utiles \
 NOMBRE_PROGRAMA = Digifauno
 ARCHIVO_RC = digifauno/icono.rc
 
-system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+unix {
+  system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+}
+win32 {
+  system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+}

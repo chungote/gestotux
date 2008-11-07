@@ -11,6 +11,7 @@
 	<file>imagenes/icono.png</file>
 	<file>imagenes/semanal.png</file>
 	<file>imagenes/otras.png</file>
+	<file>imagenes/borrar.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>digifauno.QSQLITE.sql</file>

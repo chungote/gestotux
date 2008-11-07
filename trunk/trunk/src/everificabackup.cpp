@@ -75,7 +75,7 @@ void EVerificaBackup::verificar()
  }
  p->beginGroup( "backup" );
  QDate fecha = p->value( "fecha", QDate( 1900, 1, 1 ) ).toDate();
- qDebug( qPrintable( "Fecha=" +  fecha.toString("dd/MM/yyyy" ) ) );
+ qDebug( qPrintable( "Fecha ultimo backup =" +  fecha.toString("dd/MM/yyyy" ) ) );
  p->endGroup();
  int dif = fecha.daysTo( QDate::currentDate() );
  if( dif > cant_dias )

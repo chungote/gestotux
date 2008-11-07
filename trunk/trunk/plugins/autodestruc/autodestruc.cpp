@@ -72,6 +72,7 @@ void AutoDestruc::destruir()
  QStatusBar *sbarra = qobject_cast<QMainWindow *>( QApplication::allWidgets().first() )->statusBar();
  barra = new QProgressBar();
  PBCancelar = new QPushButton();
+ PBCancelar->setText( "Cancelar" );
  connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( cancelar() ) );
  sbarra->addPermanentWidget( barra );
  sbarra->addPermanentWidget( PBCancelar );

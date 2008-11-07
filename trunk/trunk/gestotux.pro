@@ -1,7 +1,7 @@
 SUBDIRS += utiles \
  src \
  plugins \
- utiles/estilo/estilo.pro
+ utiles/estilos
 TEMPLATE = subdirs
 CONFIG += warn_on \
           qt \
@@ -11,4 +11,11 @@ DESTDIR = .
 
 DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 system( $$join( DIR_EXE, , , '/qcollectiongenerator' ) ayuda/docs.qhcp -o $$DESTDIR/bin/docs.qch )
-system( generar_pri.sh eliminar )
+
+unix {
+  system( generar_pri.sh eliminar )
+}
+win32 {
+  system( generar_pri.bat eliminar )
+}
+
