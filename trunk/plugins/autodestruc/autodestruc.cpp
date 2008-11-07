@@ -64,12 +64,26 @@ Q_EXPORT_PLUGIN2( autodestruc, AutoDestruc );
 #include <QProgressBar>
 #include <QStatusBar>
 #include <QPushButton>
+#include <QWidget>
 /*!
     \fn AutoDestruc::destruir()
  */
 void AutoDestruc::destruir()
 {
- QStatusBar *sbarra = qobject_cast<QMainWindow *>( QApplication::allWidgets().first() )->statusBar();
+ if( QApplication::allWidgets().isEmpty() )
+ { return; }
+ QMainWindow *sventana;
+ QWidget *c;
+ foreach( c, QApplication::allWidgets() )
+ {
+  if( c->inherits( "QMainWindow" ) )
+  {
+   sventana = qobject_cast<QMainWindow *>( c );
+  }
+ }
+ if( sventana == 0 )
+ { return; }
+ QStatusBar *sbarra = sventana->statusBar();
  barra = new QProgressBar();
  PBCancelar = new QPushButton();
  PBCancelar->setText( "Cancelar" );

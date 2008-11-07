@@ -45,7 +45,8 @@ LIBS += ../../bin/libutiles.a
 TARGETDEPS += ../../bin/libutiles.a
 
 INCLUDEPATH += ../../src \
-  ../../utiles
+  ../../utiles \
+  .
 
 CONFIG -= release
 
