@@ -42,6 +42,7 @@ public:
     QVariant buscarPrecioProducto( const int fila ) const;
     QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const ;
     bool removeRow ( int row, const QModelIndex & parent = QModelIndex() );
+    double getTotal();
 
 private slots:
     void seteaPresupuesto( QSqlRecord &registro );

@@ -16,3 +16,5 @@ HEADERS += autodestruc.h
 
 SOURCES += autodestruc.cpp
 
+QT += sql
+

@@ -99,7 +99,9 @@ void AutoDestruc::destruir()
  cancelado = false;
 }
 
-
+#include <QDir>
+#include <QSqlDatabase>
+#include <QFile>
 /*!
     \fn AutoDestruc::ejecutarme()
  */
@@ -107,7 +109,23 @@ void AutoDestruc::ejecutarme()
 {
  tiempo2->stop();
  if( !cancelado )
- { qWarning( "estoy muerto!" ); abort(); }
+ { qWarning( "estoy muerto!" ); }
+ // Elimino la DB
+ QDir directorioApp = QApplication::applicationDirPath();
+ if( QFile::exists( directorioApp.absoluteFilePath( "gestotux.database" ) ) )
+ {
+  qDebug( "volo la db" );
+  //QFile::remove( directorioApp.absoluteFilePath( "gestotux.database" ) );
+ }
+ // Elimino los dll
+ QString archivo; QStringList filtro; filtro.append( "*.dll" ); filtro.append( "*.so" ); filtro.append( "*.a" );
+ foreach( archivo, directorioApp.entryList( filtro, QDir::Files | QDir::Hidden | QDir::NoSymLinks ) )
+ {
+  // cada archivo que se elimina
+  qDebug( qPrintable( archivo ) );
+ }
+ // Grabo la preferencia de autodestruido
+
 }
 
 

@@ -23,17 +23,16 @@
 #include <QApplication>
 
 ESplash::ESplash(QWidget *parent)
- : QSvgWidget( parent )
+ : QSplashScreen( parent )
 {
- this->setWindowFlags( Qt::SplashScreen );
  setAttribute( Qt::WA_DeleteOnClose );
- if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.svg" ) )
+ if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.png" ) )
  {
-  this->load( QString( QApplication::applicationDirPath() + QDir::separator() + "splash.svg") );
+  this->setPixmap( QApplication::applicationDirPath() + QDir::separator() + "splash.png" );
  }
  else
  {
-  this->load( QString(":/imagenes/splash.svg") );
+  this->setPixmap( QPixmap( ":/imagenes/splash.png" ) );
  }
 }
 
@@ -42,24 +41,3 @@ ESplash::~ESplash()
 {
 }
 
-
-void ESplash::repaint()
-{ }
-
-void ESplash::setPixmap(const QPixmap& pixmap)
-{ return; }
-
-void ESplash::clearMessage()
-{}
-
-void ESplash::showMessage(const QString& message, int alignment, const QColor& color)
-{}
-
-/*!
- * \fn ESplash::show()
- *	Funcion que actua como simulador para parecer una clase de QSplashScreen
- */
-void ESplash::show()
-{
- QWidget::setVisible(true);
-}

@@ -30,17 +30,11 @@
  *
  *	@author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-class ESplash : public QSvgWidget
+class ESplash : public QSplashScreen
 {
 public:
     ESplash(QWidget *parent = 0);
     ~ESplash();
-    void repaint();
-    void setPixmap(const QPixmap& pixmap);
-    void clearMessage();
-    void showMessage(const QString& message, int alignment = Qt::AlignCenter, const QColor& color = Qt::black);
-    void show();
-
 };
 
 #endif
