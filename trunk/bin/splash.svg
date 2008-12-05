@@ -21,6 +21,13 @@
    version="1.0">
   <defs
      id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 91.143196 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="290.60031 : 91.143196 : 1"
+       inkscape:persp3d-origin="145.30016 : 60.762131 : 1"
+       id="perspective2400" />
     <linearGradient
        id="linearGradient3165">
       <stop
@@ -109,7 +116,10 @@
       <path
          id="rect4140"
          d="M 423.58588,362.09368 C 290.34647,363.16711 157.10706,364.24054 23.867651,365.31397 C 23.584345,447.81456 23.301039,530.31515 23.017734,612.81574 C 156.25715,611.74231 289.49655,610.66888 422.73597,609.59545 C 423.01927,527.09486 423.30258,444.59427 423.58588,362.09368 z"
-         style="fill:url(#linearGradient2436);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient2438);stroke-width:1.46072876;stroke-miterlimit:4;stroke-opacity:1" />
+         style="fill:url(#linearGradient2436);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient2438);stroke-width:1.46072876;stroke-miterlimit:4;stroke-opacity:1"
+         inkscape:export-filename="/home/Esteban/Programas/gestotux/src/imagenes/splash.png"
+         inkscape:export-xdpi="123.88149"
+         inkscape:export-ydpi="123.88149" />
       <path
          transform="scale(1.0277475,0.9730016)"
          style="font-size:67.41883087px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:GlaserSteD;-inkscape-font-specification:GlaserSteD"

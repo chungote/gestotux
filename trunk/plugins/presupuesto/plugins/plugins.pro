@@ -3,5 +3,5 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 DESTDIR = .
-SUBDIRS += default \
-	hicomp
+SUBDIRS += default
+	#hicomp

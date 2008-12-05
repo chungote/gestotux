@@ -222,6 +222,11 @@ int main(int argc, char *argv[])
 	splash.showMessage( "Base de datos Abierta correctamente" );
 	gestotux * mw = new gestotux();
  	splash.showMessage( "Cargando Ventana Principal" );
+	if ( !p->value( "splash", false ).toBool() )
+	{
+ 		splash.finish( mw );
+		//qDebug( "Ventana de splash cerrar" );
+	}
 	mw->show();
 	// Salir del programa cuando se cierren todas las ventanas
 	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
@@ -234,11 +239,6 @@ int main(int argc, char *argv[])
 	{
 		//qDebug( "Ventana maximizada" );
 		mw->showMaximized();
-	}
-	if ( !p->value( "splash", false ).toBool() )
-	{
- 		splash.hide();
-		//qDebug( "Ventana de splash cerrar" );
 	}
         p->endGroup();
 	p->endGroup();

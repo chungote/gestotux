@@ -8,5 +8,6 @@ SUBDIRS +=  presupuesto \
   proveedor \
   #digifauno \
   compras \
-  autodestruc
+  autodestruc \
+  aCarCorr
 CONFIG += ordered

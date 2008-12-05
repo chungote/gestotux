@@ -221,12 +221,22 @@ int MTProductosPresupuesto::rowCount( const QModelIndex &parent ) const
   return conteo;
 }
 
+#include <QSqlError>
 /*!
     \fn MTProductosPresupuesto::guardar( const int id_presupuesto )
  */
 bool MTProductosPresupuesto::guardar( const int id_presupuesto )
 {
- return this->query().exec( QString( "UPDATE presupuesto_productos SET id_presupuesto = %1 WHERE id_presupuesto = -1" ).arg( id_presupuesto ) );
+ QSqlQuery cola;
+ if( cola.exec( QString( "UPDATE presupuesto_productos SET id_presupuesto = %1 WHERE id_presupuesto = -1" ).arg( id_presupuesto ) ) )
+ {
+  return true;
+ }
+ else
+ {
+  qWarning( qPrintable( "Error db: " + this->query().lastError().text() ) );
+  return false;
+ }
 }
 
 bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &value, int role )
@@ -345,4 +355,20 @@ bool MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
 void MTProductosPresupuesto::seteaPresupuesto( QSqlRecord &registro )
 {
  registro.setValue( "id_presupuesto", -1 );
+}
+
+
+/*!
+    \fn MTProductosPresupuesto::getTotal()
+ */
+double MTProductosPresupuesto::getTotal()
+{
+ double total = 0;
+ for( int i = 0; i< QSqlRelationalTableModel::rowCount(); i++ )
+ {
+	double temp = data( index( i, 5 ), Qt::EditRole ).toDouble();
+	if( temp > 0 )
+ 	{ total += temp; }
+ }
+ return total;
 }

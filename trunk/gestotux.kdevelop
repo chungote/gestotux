@@ -30,8 +30,8 @@
     <projectname>gestotux</projectname>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
-    <defaultencoding/>
+    <description></description>
+    <defaultencoding></defaultencoding>
   </general>
   <kdevfileview>
     <groups>
@@ -83,7 +83,7 @@
       <includePaths>.;</includePaths>
     </codecompletion>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -139,16 +139,16 @@
   </kdevdoctreeview>
   <kdevdebugger>
     <general>
-      <dbgshell/>
+      <dbgshell></dbgshell>
       <breakpoints/>
       <programargs/>
       <gdbpath>/usr/bin/gdb</gdbpath>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <raiseGDBOnStart>false</raiseGDBOnStart>
     </general>
     <display>
@@ -161,9 +161,9 @@
   <kdevtrollproject>
     <run>
       <mainprogram>/home/Esteban/Programas/gestotux/bin/gestotux</mainprogram>
-      <programargs/>
+      <programargs></programargs>
       <directoryradio>executable</directoryradio>
-      <globaldebugarguments/>
+      <globaldebugarguments></globaldebugarguments>
       <globalcwd>/home/Esteban/Programas/gestotux/bin/</globalcwd>
       <useglobalprogram>true</useglobalprogram>
       <terminal>false</terminal>
@@ -182,14 +182,14 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/presupuesto</activedir>
+      <activedir></activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
       <runmultiplejobs>false</runmultiplejobs>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
+      <makebin></makebin>
       <prio>9</prio>
       <envvars>
         <envvar value="es_AR" name="LANG" />
@@ -203,7 +203,7 @@
       <enableFilenamesOnly>false</enableFilenamesOnly>
       <showVariablesInTree>true</showVariablesInTree>
       <showParseErrors>true</showParseErrors>
-      <projectfile>/home/Esteban/Programas/gestotux/gestotux.pro</projectfile>
+      <projectfile>/home/Esteban/Programas/gestotux/digifauno.cliente.pro</projectfile>
     </qmake>
     <subclassing>
       <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.cpp" />

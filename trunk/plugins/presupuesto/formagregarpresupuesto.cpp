@@ -137,8 +137,10 @@ void FormAgregarPresupuesto::ponerTabla()
  	// no existen productos en realidad no hago nada
 	return;
  }
- pre->generarTablaProductos( formLista->getModelo(), formLista->tituloTabla(), formLista->cabeceraColumnas() );
- //editor->setText( editor->contenido().append( pre->previsualizacion().toText() ) );
+
+ //pre->generarTablaProductos( formLista->getModelo(), formLista->tituloTabla(), formLista->cabeceraColumnas() );
+ editor->setText( editor->contenido().append( pre->previsualizacion()->toPlainText() ) );
+ dSBTotal->setValue( formLista->getModelo()->getTotal() );
 }
 
 #include <QMessageBox>
