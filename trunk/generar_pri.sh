@@ -5,9 +5,9 @@
 
 if [ $1 == "eliminar" ]; then
   # elimino el archivo para que se genere el gestotux
-  rm src/cliente.pri
+  rm  -f src/cliente.pri
 else
-  rm src/cliente.pri
+  rm -f src/cliente.pri
   touch src/cliente.pri
 
   echo "TARGET = $1" >> src/cliente.pri
