@@ -80,7 +80,7 @@ protected:
 
 protected slots:
     virtual void cerrar();
-    virtual void agregar();
+    virtual void agregar( bool autoeliminarid = true );
     virtual void eliminar();
     virtual void antes_de_insertar( int row, QSqlRecord & record ) = 0;
     virtual void imprimir();

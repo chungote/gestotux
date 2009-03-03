@@ -56,10 +56,10 @@ FPrefGeneral.ui \
  EMysql.ui \
  ForPrefDb.ui
 
-!include( cliente.pri ) {
- TARGET = gestotux
-}
-
+#!include( cliente.pri ) {
+# TARGET = gestotux
+#}
+TARGET = gestotux
 
 
 
@@ -68,7 +68,8 @@ DESTDIR = ../bin
 DISTFILES += qt_es.qm \
  ../ayuda/salir.html \
  tablas.QMYSQL.sql \
- tablas.QSQLITE.sql
+ tablas.QSQLITE.sql \
+ ../plugins/presupuestador/presupuestador.QMYSQL.sql
 
 win32 {
     CONFIG += release

@@ -23,6 +23,7 @@
 
 #include "eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
+class EEditor;
 
 class FormNuevoPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase
 {
@@ -31,8 +32,12 @@ class FormNuevoPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBa
 public:
   FormNuevoPresupuesto(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormNuevoPresupuesto();
+
 protected slots:
     void agregar();
+
+private:
+	EEditor *editor;
 };
 
 #endif

@@ -6,8 +6,8 @@ SUBDIRS +=  presupuesto \
  default \
  gastos \
   proveedor \
-  #digifauno \
+  digifauno \
   compras \
   autodestruc \
-  aCarCorr
-CONFIG += ordered
+  aCarCorr \
+  presupuestador

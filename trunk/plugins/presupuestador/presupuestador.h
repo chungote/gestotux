@@ -33,9 +33,7 @@ class presupuestador : public QObject, EInfoProgramaInterface, EPlugin
 public:
     QString nombrePrograma() const;
     QIcon iconoPrograma()  const;
-    QList<QAction *> accionesBarra() const;
-    bool inicializar( QSettings *pref );
-    static QSettings *pref();
+    bool inicializar();
     QString directorioBackup() const;
     QString directorioActualizaciones() const;
     QWidgetList formsPreferencias();
@@ -46,19 +44,23 @@ public:
     double version() const;
     QString empresa() const;
     QString companeros();
+    bool publicidad();
+    QList<QActionGroup *> accionesBarra();
+    void crearToolBar( QToolBar *t );
 
 private:
-    QList<QAction *> _acciones;
-    static QSettings *_pref;
 
     QAction *ActPresuAnteriores;
     QAction *ActNuevoPresu;
+
+    QAction *ActAutos;
 
 protected slots:
     void nuevoPresupuesto();
 
 protected slots:
     void verAnteriores();
+    void verAutos();
 
 signals:
 	void agregarVentana( QWidget * );

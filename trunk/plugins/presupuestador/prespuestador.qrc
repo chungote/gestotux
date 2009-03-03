@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="">
         <file>imagenes/logo.png</file>
+	<file>imagenes/auto.png</file>
+    </qresource>
+    <qresource prefix="">
+	<file>presupuestador.QMYSQL.sql</file>
     </qresource>
 </RCC>
 
