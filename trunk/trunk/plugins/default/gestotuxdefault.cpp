@@ -20,7 +20,8 @@
 #include "gestotuxdefault.h"
 
 bool GestotuxDefault::publicidad()
-{ return true; }
+//{ return true; }
+{ return false; }
 
 double GestotuxDefault::version() const
 { return 1; }

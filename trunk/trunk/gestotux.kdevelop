@@ -182,7 +182,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir></activedir>
+      <activedir>plugins/presupuestador</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -203,7 +203,7 @@
       <enableFilenamesOnly>false</enableFilenamesOnly>
       <showVariablesInTree>true</showVariablesInTree>
       <showParseErrors>true</showParseErrors>
-      <projectfile>/home/Esteban/Programas/gestotux/digifauno.cliente.pro</projectfile>
+      <projectfile>/home/Esteban/Programas/gestotux/gestotux.pro</projectfile>
     </qmake>
     <subclassing>
       <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.cpp" />

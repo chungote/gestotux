@@ -259,7 +259,8 @@ QToolBar* gestotux::barraAcciones()
  */
 void gestotux::crearReloj()
 {
- if( preferencias::getInstancia()->value( "Preferencias/General/reloj", true ).toBool() )
+ //preferencias::getInstancia()->inicio();
+ if( preferencias::getInstancia()->value( "Preferencias/General/reloj", false ).toBool() )
  {
 	 QDockWidget *dw = new QDockWidget( "Reloj" , this );
 	 dw->setObjectName( "reloj" );

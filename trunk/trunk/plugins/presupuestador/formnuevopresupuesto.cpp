@@ -20,6 +20,11 @@
 #include "formnuevopresupuesto.h"
 #include "presupuestador.h"
 #include "visorresumen.h"
+#include "eeditor.h"
+#include "mclientes.h"
+#include "mauto.h"
+
+#include <QVBoxLayout>
 
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -44,6 +49,15 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 	ActCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
 	connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
+	// Creo el editor
+	editor = new EEditor( this );
+	QVBoxLayout *v = new QVBoxLayout( GBContenido );
+	v->addWidget( editor );
+
+	// Cargo los Clientes
+	CBCliente->setModel( new MClientes( CBCliente ) );
+	// Cargo los Autos
+	CBAuto->setModel( new MAuto( CBAuto ) );
 	setWindowTitle( "Nuevo Presupuesto" );
 	addAction( ActGuardar );
 	addAction( ActCancelar );
@@ -59,13 +73,13 @@ FormNuevoPresupuesto::~FormNuevoPresupuesto()
  */
 void FormNuevoPresupuesto::agregar()
 {
- if( LEDestinatario->text().isEmpty() )
+ if( CkBTitulo->isChecked() && LETitulo->text().isEmpty() )
  {
- QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un destinatario al cual realizar el presupuesto" );
+ QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un titulo para el presupuesto o desseleccione la opcion de titulo personalizado" );
   return;
  }
  //qDebug( TEContenido->toPlainText().toLocal8Bit() );
- if( TEContenido->toPlainText().isEmpty() )
+ if( editor->contenido( Qt::AutoText ).isEmpty() )
  {
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un detalle de presupuesto" );
   return;
@@ -75,8 +89,10 @@ void FormNuevoPresupuesto::agregar()
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un monto a presupuestar" );
   return;
  }
+ // un cliente y un auto tienen que estar seleccionados
+ //if( CBCliente->
  //Agrego el registro
- QSqlTableModel *modelo = new QSqlTableModel( this );
+ /*QSqlTableModel *modelo = new QSqlTableModel( this );
  modelo->setTable( "presupuestos" );
  QSqlRecord registro = modelo->record();
  registro.setValue( "total", dSBTotal->value() );
@@ -96,5 +112,5 @@ void FormNuevoPresupuesto::agregar()
  else
  {
   qDebug( "Error al ejecutar la cola" );
- }
+ }*/
 }

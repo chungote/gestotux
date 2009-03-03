@@ -57,10 +57,10 @@ void FormModificarPresupuesto::setId( int idDB )
  QSqlQuery cola( QString( "SELECT destinatario, fecha, total, contenido FROM presupuestos WHERE id = %1" ).arg( idDB ) );
  if( cola.next() )
  {
-  LEDestinatario->setText( cola.record().value( "destinatario" ).toString() );
+//  LEDestinatario->setText( cola.record().value( "destinatario" ).toString() );
   dSBTotal->setValue( cola.record().value( "total" ).toDouble() );
   DEFecha->setDate( cola.record().value( "fecha" ).toDate() );
-  TEContenido->document()->setHtml( cola.record().value( "contenido" ).toString() );
+//  TEContenido->document()->setHtml( cola.record().value( "contenido" ).toString() );
   this->idDB = idDB;
  }
 }
@@ -71,7 +71,7 @@ void FormModificarPresupuesto::setId( int idDB )
  */
 void FormModificarPresupuesto::guardar()
 {
-  if( LEDestinatario->text().isEmpty() )
+/*  if( LEDestinatario->text().isEmpty() )
  {
  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un destinatario al cual realizar el presupuesto" );
   return;
@@ -103,5 +103,5 @@ void FormModificarPresupuesto::guardar()
   qCritical( "No se pudo actualizar el registro" );
   qCritical( cola.lastError().text().toLocal8Bit() );
   qCritical( cola.executedQuery().toLocal8Bit() );
- }
+ }*/
 }

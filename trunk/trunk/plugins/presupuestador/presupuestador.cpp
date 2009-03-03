@@ -23,33 +23,21 @@
 #include "formpresupuestosanteriores.h"
 
 #include <QMenuBar>
-
-QSettings *presupuestador::_pref = 0;
+#include <QSqlDatabase>
 
 QString presupuestador::nombrePrograma()  const
 {
  return "Presupuestador - 0.1";
 }
 
-Q_EXPORT_PLUGIN2(presupuestador, presupuestador )
 
 QIcon presupuestador::iconoPrograma() const
 {
  return QIcon( ":/imagenes/icono.png" );
 }
 
-/*!
-    \fn presupuestador::accionesBarra() const
- */
-QList<QAction *> presupuestador::accionesBarra() const
+bool presupuestador::inicializar()
 {
- return _acciones;
-}
-
-bool presupuestador::inicializar( QSettings *pref )
-{
- _pref = pref;
- _acciones.clear();
  // Genero las acciones y la lista
  ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
@@ -61,7 +49,10 @@ bool presupuestador::inicializar( QSettings *pref )
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
- _acciones.append( ActNuevoPresu );
+ ActAutos = new QAction( "Automoviles", this );
+ ActAutos->setIcon( QIcon( ":/imagenes/auto.png" ) );
+ ActAutos->setStatusTip( "Listado de automobiles que se encuentran en el sistema" );
+ connect( ActAutos, SIGNAL( triggered() ), this, SLOT( verAutos() ) );
 
  return verificarTablas();
 
@@ -136,6 +127,7 @@ void presupuestador::crearMenu( QMenuBar *m )
  }
  else
  {
+  menuHer->addAction( ActAutos );
   QMenu *menuRecibos = menuHer->addMenu( "Presupuestos" );
   menuRecibos->addAction( ActNuevoPresu );
   menuRecibos->addAction( ActPresuAnteriores );
@@ -148,6 +140,8 @@ void presupuestador::crearMenu( QMenuBar *m )
  */
 bool presupuestador::verificarTablas()
 {
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "autos" ) )
+ { qWarning( "Error al buscar la tabla de automoviles" ); return false; }
  return true;
 }
 
@@ -158,11 +152,6 @@ bool presupuestador::verificarTablas()
 double presupuestador::version() const
 {
   return 0.1;
-}
-
-QSettings *presupuestador::pref()
-{
- return _pref;
 }
 
 
@@ -181,4 +170,43 @@ QString presupuestador::empresa() const
 QString presupuestador::companeros()
 {
  return QString();
+}
+
+
+Q_EXPORT_PLUGIN2(presupuestador, presupuestador )
+
+
+/*!
+    \fn presupuestador::publicidad()
+ */
+bool presupuestador::publicidad()
+{ return false; }
+
+
+/*!
+    \fn presupuestador::accionesBarra()
+ */
+QList<QActionGroup *> presupuestador::accionesBarra()
+{
+  return QList<QActionGroup *>();
+}
+
+
+/*!
+    \fn presupuestador::crearToolBar( QToolBar *t )
+ */
+void presupuestador::crearToolBar( QToolBar *t )
+{
+    /// @todo implement me
+}
+
+
+#include "vautos.h"
+
+/*!
+    \fn presupuestador::verAutos()
+ */
+void presupuestador::verAutos()
+{
+ emit agregarVentana( new VAutos() );
 }

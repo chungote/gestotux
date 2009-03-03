@@ -32,11 +32,10 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
 : EVentana( parent, fl )
 {
  QGridLayout *layout = new QGridLayout( this );
- vista = new QTableView(this);
+ vista = new QTableView( this );
  vista->setSizePolicy( QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding );
  layout->addWidget( vista );
  this->setLayout( layout );
-
  // Propiedades varias
  vista->setSelectionMode( QAbstractItemView::SingleSelection );
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
@@ -103,10 +102,12 @@ void EVLista::cerrar()
     \fn EVLista::agregar()
 	Agrega un nuevo registro mediante la vista al modelo
  */
-void EVLista::agregar()
+void EVLista::agregar( bool autoeliminarid )
 {
  QSqlRecord registro = modelo->record();
- registro.remove( 0 );
+
+ if( autoeliminarid )
+ { registro.remove( 0 ); }
  if( !modelo->insertRecord( -1, registro ) )
  {
   qDebug( "Error al insertar el registro" );
