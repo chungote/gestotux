@@ -25,23 +25,40 @@
 #include <QDate>
 #include <QSqlError>
 
-FormModificarPresupuesto::FormModificarPresupuesto(QWidget* parent, Qt::WFlags fl)
+#include "eactcerrar.h"
+#include "eactguardar.h"
+#include "mpresupuestos.h"
+#include "emcliente.h"
+#include "emautos.h"
+
+FormModificarPresupuesto::FormModificarPresupuesto( int id_presupuesto, QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormNuevoPresupuestoBase()
 {
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
+	setObjectName( "modificarPresupuesto" );
 	setWindowTitle( "Modificar Presupuesto" );
+	setWindowIcon( QIcon( ":/imagenes/presupuesto.png" ) );
 
-	QAction *ActGuardar= new QAction( "Guardar", this );
-	ActGuardar->setIcon( QIcon( ":/imagenes/add.png" ) );
-	connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
+	addAction( new EActGuardar( this ) );
+	addAction( new EActCerrar( this ) );
 
-	QAction *ActCancelar = new QAction( "Cancelar", this );
-	ActCancelar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( close() ) );
+	editor = new EEditor( this );
+	QVBoxLayout *v = new QVBoxLayout( GBContenido );
+	v->addWidget( editor );
 
-	addAction( ActGuardar );
-	addAction( ActCancelar );
+	// Cargo los Clientes
+	CBCliente->setModel( new EMCliente( CBCliente ) );
+	CBCliente->setModelColumn( 1 );
+	CBCliente->setCurrentIndex( -1 );
+	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), CBCliente->model(), SLOT( filtrarPorCliente( int ) ) );
+	// Cargo los Autos
+
+	CBAuto->setModel( new EMAutos( CBAuto ) );
+	CBAuto->setModelColumn( 1 );
+	CBAuto->setCurrentIndex( -1 );
+
+	setId( id_presupuesto );
 }
 
 FormModificarPresupuesto::~FormModificarPresupuesto()
@@ -54,13 +71,18 @@ FormModificarPresupuesto::~FormModificarPresupuesto()
  */
 void FormModificarPresupuesto::setId( int idDB )
 {
- QSqlQuery cola( QString( "SELECT destinatario, fecha, total, contenido FROM presupuestos WHERE id = %1" ).arg( idDB ) );
+ QSqlQuery cola( QString( "SELECT * FROM presupuesto WHERE id_presupuesto = %1" ).arg( idDB ) );
  if( cola.next() )
  {
-//  LEDestinatario->setText( cola.record().value( "destinatario" ).toString() );
   dSBTotal->setValue( cola.record().value( "total" ).toDouble() );
-  DEFecha->setDate( cola.record().value( "fecha" ).toDate() );
-//  TEContenido->document()->setHtml( cola.record().value( "contenido" ).toString() );
+  DTFecha->setDate( cola.record().value( "fecha" ).toDate() );
+  editor->setHtml( cola.record().value( "contenido" ).toString() );
+//  CBAuto->setCurrentText( cola.record().value( "id_auto" ).toString() );
+  /// @todo Agregar reconociemiento de cliente x auto
+  CkBImprimir->setChecked( cola.record().value( "imprimir" ).toBool() );
+  CkBEmail->setChecked( cola.record().value( "email" ).toBool() );
+  TBMemo->setText( cola.record().value( "memo" ).toString() );
+  SBKilometraje->setValue( cola.record().value( "kilometraje" ).toDouble() );
   this->idDB = idDB;
  }
 }
@@ -71,13 +93,13 @@ void FormModificarPresupuesto::setId( int idDB )
  */
 void FormModificarPresupuesto::guardar()
 {
-/*  if( LEDestinatario->text().isEmpty() )
+ if( CkBTitulo->isChecked() && LETitulo->text().isEmpty() )
  {
- QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un destinatario al cual realizar el presupuesto" );
+ QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un titulo para el presupuesto o desseleccione la opcion de titulo personalizado" );
   return;
  }
  //qDebug( TEContenido->toPlainText().toLocal8Bit() );
- if( TEContenido->toPlainText().isEmpty() )
+ if( editor->contenido( Qt::AutoText ).isEmpty() )
  {
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un detalle de presupuesto" );
   return;
@@ -87,21 +109,66 @@ void FormModificarPresupuesto::guardar()
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un monto a presupuestar" );
   return;
  }
-
- QSqlQuery cola;
- cola.prepare( QString( "UPDATE presupuestos SET destinatario = ?, total = ?, fecha = ?, contenido = ? WHERE id = '%1'" ).arg( idDB ) );
- cola.bindValue( 0, LEDestinatario->text() );
- cola.bindValue( 1, dSBTotal->value() );
- cola.bindValue( 2, DEFecha->date().toString( Qt::ISODate ) );
- cola.bindValue( 3, TEContenido->document()->toHtml() );
- if( cola.exec() )
+ if( SBKilometraje->value() <= 0 )
  {
-  close();
+  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un kilometraaje valido" );
+  return;
+ }
+ // un cliente y un auto tienen que estar seleccionados
+ if( CBCliente->currentText().isEmpty() )
+ {
+  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un cliente valido" );
+  return;
+ }
+ if( CBAuto->currentText().isEmpty() )
+ {
+  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un auto valido" );
+  return;
+ }
+ //Agrego el registro
+ MPresupuestos *presupuesto = new MPresupuestos( this );
+ QSqlRecord registro = presupuesto->record();
+ registro.remove( 0 );
+ registro.setValue( "fecha", DTFecha->date() );
+ registro.setValue( "titulo", LETitulo->text() );
+ registro.setValue( "id_auto", "patente" );
+ registro.setValue( "kilometraje", SBKilometraje->value() );
+ registro.setValue( "contenido", editor->contenido() );
+ registro.setValue( "memo", TBMemo->document()->toHtml() );
+ registro.setValue( "creado", QDate::currentDate() );
+ registro.setValue( "imprimir", CkBImprimir->isChecked() );
+ registro.setValue( "email", CkBEmail->isChecked() );
+ if( presupuesto->insertRecord( -1, registro ) )
+ {
+  // Registro agregado correctamente
+  // obtengo el numero de presupuesto
+  int num_presupuesto = presupuesto->query().lastInsertId().toInt();
+  QMessageBox mensaje;
+  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
+
+  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
+  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
+
+  QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
+  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );
+
+  mensaje.addButton( tr( "No hacer nada" ), QMessageBox::AcceptRole );
+
+  int ret = mensaje.exec();
+  switch( ret )
+  {
+   // Imprimir
+   case QMessageBox::Reset:
+   // Enviar x email
+   case QMessageBox::ApplyRole:
+   default:
+    close();
+    break;
+  }
  }
  else
  {
-  qCritical( "No se pudo actualizar el registro" );
-  qCritical( cola.lastError().text().toLocal8Bit() );
-  qCritical( cola.executedQuery().toLocal8Bit() );
- }*/
+  qWarning( "Error" );
+ }
+
 }

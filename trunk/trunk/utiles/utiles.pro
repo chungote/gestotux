@@ -10,7 +10,8 @@ eactimprimir.h \
  eayuda.h \
  eactguardar.h \
  emcliente.h \
- eeditor.h
+ eeditor.h \
+ eactemail.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -20,7 +21,8 @@ eactimprimir.cpp \
  eayuda.cpp \
  eactguardar.cpp \
  emcliente.cpp \
- eeditor.cpp
+ eeditor.cpp \
+ eactemail.cpp
 
 QT += sql
 

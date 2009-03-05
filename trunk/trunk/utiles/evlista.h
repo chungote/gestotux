@@ -71,6 +71,10 @@ public:
     * Accion generica de cerrar
     */
     QAction *ActCerrar;
+   /*!
+    * Accion generica para enviar por email
+    */
+    QAction *ActEmail;
 
 protected:
   /**
@@ -86,6 +90,7 @@ protected slots:
     virtual void imprimir();
     virtual void buscar();
     virtual void modificar();
+    virtual void email();
 };
 
 #endif

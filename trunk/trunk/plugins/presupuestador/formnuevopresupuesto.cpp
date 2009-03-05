@@ -21,8 +21,8 @@
 #include "presupuestador.h"
 #include "visorresumen.h"
 #include "eeditor.h"
-#include "mclientes.h"
-#include "mauto.h"
+#include "emcliente.h"
+#include "emautos.h"
 
 #include <QVBoxLayout>
 
@@ -38,7 +38,7 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 {
 	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
-	DEFecha->setDate( QDate::currentDate() );
+	DTFecha->setDate( QDate::currentDate() );
 	dSBTotal->setValue( 0 );
 
 	QAction *ActGuardar= new QAction( "Guardar", this );
@@ -55,10 +55,22 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 	v->addWidget( editor );
 
 	// Cargo los Clientes
-	CBCliente->setModel( new MClientes( CBCliente ) );
+	CBCliente->setModel( new EMCliente( CBCliente ) );
+	CBCliente->setModelColumn( 1 );
+	CBCliente->setCurrentIndex( -1 );
+	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), CBCliente->model(), SLOT( filtrarPorCliente( int ) ) );
 	// Cargo los Autos
-	CBAuto->setModel( new MAuto( CBAuto ) );
+
+	CBAuto->setModel( new EMAutos( CBAuto ) );
+	CBAuto->setModelColumn( 1 );
+	CBAuto->setCurrentIndex( -1 );
+
+
+	CkBImprimir->setChecked( true );
+	CkBEmail->setChecked( true );
 	setWindowTitle( "Nuevo Presupuesto" );
+	setObjectName( "NuevoPresupuesto" );
+	setWindowIcon( QIcon( ":/imagenes/presupuesto.png" ) );
 	addAction( ActGuardar );
 	addAction( ActCancelar );
 }
@@ -67,6 +79,9 @@ FormNuevoPresupuesto::~FormNuevoPresupuesto()
 {
 }
 
+#include "mpresupuestos.h"
+#include <QSqlRecord>
+#include <QMessageBox>
 
 /*!
     \fn FormNuevoPresupuesto::agregar()
@@ -89,28 +104,61 @@ void FormNuevoPresupuesto::agregar()
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un monto a presupuestar" );
   return;
  }
- // un cliente y un auto tienen que estar seleccionados
- //if( CBCliente->
- //Agrego el registro
- /*QSqlTableModel *modelo = new QSqlTableModel( this );
- modelo->setTable( "presupuestos" );
- QSqlRecord registro = modelo->record();
- registro.setValue( "total", dSBTotal->value() );
- registro.setValue( "destinatario", LEDestinatario->text() );
- registro.setValue( "fecha", DEFecha->date().toString( Qt::ISODate ) );
- registro.setValue( "contenido", TEContenido->toHtml() );
- modelo->insertRecord( -1, registro );
- QSqlQuery cola( "SELECT seq FROM sqlite_sequence WHERE name = 'presupuestos'" );
- if( cola.next() )
+ if( SBKilometraje->value() <= 0 )
  {
-  int id = cola.record().value(0).toInt();
-  visorResumen *v = new visorResumen( this );
-  v->set_registro( id );
-  emit agregarVentana( v );
-  this->close();
+  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un kilometraaje valido" );
+  return;
  }
- else
+ // un cliente y un auto tienen que estar seleccionados
+ if( CBCliente->currentText().isEmpty() )
  {
-  qDebug( "Error al ejecutar la cola" );
- }*/
+  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un cliente valido" );
+  return;
+ }
+ if( CBAuto->currentText().isEmpty() )
+ {
+  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un auto valido" );
+  return;
+ }
+ //Agrego el registro
+ MPresupuestos *presupuesto = new MPresupuestos( this );
+ QSqlRecord registro = presupuesto->record();
+ registro.remove( 0 );
+ registro.setValue( "fecha", DTFecha->date() );
+ registro.setValue( "titulo", LETitulo->text() );
+ registro.setValue( "id_auto", CBAuto->model()->data( CBAuto->model()->index( CBAuto->currentIndex(), 0 ) ).toString() );
+ registro.setValue( "kilometraje", SBKilometraje->value() );
+ registro.setValue( "contenido", editor->contenido() );
+ registro.setValue( "memo", TBMemo->document()->toHtml() );
+ registro.setValue( "creado", QDate::currentDate() );
+ registro.setValue( "imprimir", CkBImprimir->isChecked() );
+ registro.setValue( "email", CkBEmail->isChecked() );
+ if( presupuesto->insertRecord( -1, registro ) )
+ {
+  // Registro agregado correctamente
+  // obtengo el numero de presupuesto
+  int num_presupuesto = presupuesto->query().lastInsertId().toInt();
+  QMessageBox mensaje;
+  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
+
+  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
+  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
+
+  QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
+  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );
+
+  mensaje.addButton( tr( "No hacer nada" ), QMessageBox::AcceptRole );
+
+  int ret = mensaje.exec();
+  switch( ret )
+  {
+   // Imprimir
+   case QMessageBox::Reset:
+   // Enviar x email
+   case QMessageBox::ApplyRole:
+   default:
+    close();
+    break;
+  }
+ }
 }

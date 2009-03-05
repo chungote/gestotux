@@ -20,7 +20,6 @@
 #include "presupuestador.h"
 #include "formmodificarpresupuesto.h"
 #include "formnuevopresupuesto.h"
-#include "formpresupuestosanteriores.h"
 
 #include <QMenuBar>
 #include <QSqlDatabase>
@@ -100,12 +99,12 @@ int presupuestador::tipo() const
 }
 
 
-
+#include "vpresupuestos.h"
 /*!
     \fn presupuestador::verAnteriores()
  */
 void presupuestador::verAnteriores()
-{ emit agregarVentana( new FormPresupuestosAnteriores() ); }
+{ emit agregarVentana( new VPresupuestos() ); }
 
 
 /*!

@@ -23,13 +23,14 @@
 
 #include "eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
+#include "eeditor.h"
 
 class FormModificarPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase
 {
   Q_OBJECT
 
 public:
-  FormModificarPresupuesto(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  FormModificarPresupuesto( int id_presupuesto, QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormModificarPresupuesto();
     void setId( int idDB );
 protected slots:
@@ -37,6 +38,7 @@ protected slots:
 
 private:
     int idDB;
+    EEditor *editor;
 };
 
 #endif
