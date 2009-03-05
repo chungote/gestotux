@@ -40,7 +40,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="DEFecha" >
+           <widget class="QDateTimeEdit" name="DTFecha" >
+            <property name="currentSection" >
+             <enum>QDateTimeEdit::MinuteSection</enum>
+            </property>
             <property name="calendarPopup" >
              <bool>true</bool>
             </property>
@@ -104,6 +107,39 @@
           </property>
          </widget>
         </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7" >
+          <item>
+           <widget class="QLabel" name="label_3" >
+            <property name="text" >
+             <string>Kilometraje</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="SBKilometraje" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buttonSymbols" >
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+            <property name="suffix" >
+             <string> km</string>
+            </property>
+            <property name="maximum" >
+             <number>99999999</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
        </layout>
       </item>
      </layout>
@@ -133,7 +169,7 @@
         </sizepolicy>
        </property>
        <property name="title" >
-        <string>Memo</string>
+        <string>Observaciones</string>
        </property>
        <property name="checkable" >
         <bool>true</bool>
@@ -152,6 +188,9 @@
             <width>1671</width>
             <height>50</height>
            </size>
+          </property>
+          <property name="readOnly" >
+           <bool>false</bool>
           </property>
          </widget>
         </item>

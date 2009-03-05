@@ -1,13 +1,14 @@
 TEMPLATE = subdirs
-SUBDIRS +=  presupuesto \
- presupuesto/plugins \
- productos \
+SUBDIRS += productos \
+ #presupuesto \
+ #presupuesto/plugins \
  ventas \
  default \
  gastos \
-  proveedor \
-  digifauno \
-  compras \
-  autodestruc \
-  aCarCorr \
-  presupuestador
+ proveedor \
+ #digifauno \
+ compras \
+ autodestruc \
+ #aCarCorr \
+ presupuestador #\
+ #HiComp

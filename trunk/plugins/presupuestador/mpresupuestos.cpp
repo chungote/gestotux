@@ -24,12 +24,17 @@
 MPresupuestos::MPresupuestos(QObject *parent)
  : QSqlTableModel(parent)
 {
- setTable( "presupuestos" );
+ setTable( "presupuesto" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Destinatario" );
- setHeaderData( 2, Qt::Horizontal, "Fecha" );
- setHeaderData( 3, Qt::Horizontal, "Costo" );
- select();
+ setHeaderData( 1, Qt::Horizontal, "Fecha" );
+ setHeaderData( 2, Qt::Horizontal, "Kilometraje" );
+ setHeaderData( 3, Qt::Horizontal, "Automovil" );
+ setHeaderData( 4, Qt::Horizontal, "Titulo" );
+ setHeaderData( 5, Qt::Horizontal, "Contenido" );
+ setHeaderData( 6, Qt::Horizontal, "Creado" );
+ setHeaderData( 7, Qt::Horizontal, "Modificado" );
+ setHeaderData( 8, Qt::Horizontal, "Imprimir" );
+ setHeaderData( 9, Qt::Horizontal, "Envi@r" );
 }
 
 
@@ -42,23 +47,23 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 {
  if( !idx.isValid() )
   {
-   qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
+   qDebug( QString( "Indice invalido presupuesto: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
    return( QVariant() );
   }
-  switch( role )
+ switch( role )
  {
 	case Qt::DisplayRole:
 	{
 		switch( idx.column() )
 		{
-			case 3:
+			case 1:
 			{
-				return QSqlTableModel::data(idx, role).toString().prepend("$ ");
+				return QSqlTableModel::data(idx, role).toDate().toString( Qt::SystemLocaleDate );
 				break;
 			}
 			case 2:
 			{
-			       return QSqlTableModel::data(idx, role).toDate().toString( Qt::SystemLocaleDate );
+			       return QString::number( QSqlTableModel::data(idx, role).toInt() ).append( " Km" );
 			       break;
 			}
 			default:
@@ -73,7 +78,7 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 	{
 		switch ( idx.column() )
 		{
-			case 3:
+			case 2:
 			{
 				return QColor(Qt::blue);
 				break;
@@ -86,43 +91,9 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 		}
 		break;
 	}
-	case Qt::EditRole:
-	{
-		switch( idx.column() )
- 		{
-			case 3:
-			{
-				return QSqlTableModel::data( idx, role ).toDouble();
-				break;
-			}
-			default:
-			{
-				return QSqlTableModel::data( idx, role );
-				break;
-			}
-		}
-		break;
-	}
 	case Qt::TextAlignmentRole:
 	{
-		switch ( idx.column() )
-		{
-			case 3:
-			{
-				return int( Qt::AlignRight | Qt::AlignVCenter );
-				break;
-			}
-			case 2:
-			{
-			   return int( Qt::AlignCenter | Qt::AlignVCenter );
-			   break;
-			}
-			default:
-			{
-				return int( Qt::AlignLeft | Qt::AlignVCenter );
-				break;
-			}
-		}
+		return int( Qt::AlignHCenter | Qt::AlignVCenter );
 		break;
 	}
 	default:
@@ -131,10 +102,5 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 		break;
 	}
  }
-}
-
-Qt::ItemFlags MPresupuestos::flags(const QModelIndex& index) const
-{
-    return QSqlTableModel::flags(index);
 }
 

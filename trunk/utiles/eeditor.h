@@ -153,6 +153,7 @@ public:
     void setDefaultFont(const QFont &font);
     void setText(const QString &text);
     QString contenido(Qt::TextFormat format = Qt::AutoText) const;
+    void setHtml( QString contenido );
 
 private:
     enum State { Clean, RichTextChanged };

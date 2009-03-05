@@ -32,7 +32,6 @@ public:
     MPresupuestos(QObject *parent = 0);
     ~MPresupuestos();
     QVariant data(const QModelIndex& idx, int role) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
 
 };
 

@@ -22,6 +22,7 @@
 #include <QTableView>
 #include <QHeaderView>
 #include "preferencias.h"
+#include "eactemail.h"
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QMessageBox>
@@ -73,6 +74,8 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  ActBuscar->setShortcut( QKeySequence( "Ctrl+b" ) );
  ActBuscar->setToolTip( "Buscar items ( Ctrl + b )" );
  connect( ActBuscar, SIGNAL( triggered() ), this, SLOT( buscar() ) );
+
+ ActEmail = new EActEmail( this );
 
  ActCerrar = new QAction( "Cer&rar", this );
  ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
@@ -186,6 +189,15 @@ void EVLista::imprimir()
     \fn EVLista::modificar()
  */
 void EVLista::modificar()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn EVLista::email()
+ */
+void EVLista::email()
 {
     /// @todo implement me
 }

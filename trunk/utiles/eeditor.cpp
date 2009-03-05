@@ -486,3 +486,10 @@ void EEditor::ocultarBarra( bool estado )
   }
  }
 }
+
+
+/*!
+    \fn EEditor::setHtml( QString contenido )
+ */
+void EEditor::setHtml( QString contenido )
+{ m_editor->setHtml( contenido ); m_state = Clean; }

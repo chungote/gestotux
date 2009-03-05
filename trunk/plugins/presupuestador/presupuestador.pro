@@ -15,7 +15,6 @@ QT = gui \
 SOURCES += presupuestador.cpp \
  visorresumen.cpp \
  formnuevopresupuesto.cpp \
- formpresupuestosanteriores.cpp \
  mpresupuestos.cpp \
  formmodificarpresupuesto.cpp \
  mauto.cpp \
@@ -23,10 +22,11 @@ SOURCES += presupuestador.cpp \
  edpatente.cpp \
  edmarca.cpp \
  edmodelo.cpp \
- edcolor.cpp
+ edcolor.cpp \
+ emautos.cpp \
+ vpresupuestos.cpp
 HEADERS += visorresumen.h \
  formnuevopresupuesto.h \
- formpresupuestosanteriores.h \
  mpresupuestos.h \
  formmodificarpresupuesto.h \
  presupuestador.h \
@@ -35,11 +35,12 @@ HEADERS += visorresumen.h \
  edpatente.h \
  edmarca.h \
  edmodelo.h \
- edcolor.h
+ edcolor.h \
+ emautos.h \
+ vpresupuestos.h
 
 RESOURCES = prespuestador.qrc
-FORMS += FormNuevoPresupuestoBase.ui \
- FormPresupuestosAnterioresBase.ui
+FORMS += FormNuevoPresupuestoBase.ui
 win32 {
     MOC_DIR = win/moc
     UI_DIR = win/ui
