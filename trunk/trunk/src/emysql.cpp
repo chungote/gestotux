@@ -42,6 +42,8 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	LEContra->setEchoMode( QLineEdit::Password );
 	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
 	connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
+	GBAvanzado->setChecked( false );
+	connect( GBAvanzado, SIGNAL( toggled( bool ) ), this, SLOT( ajustarTam( bool ) ) );
 	PBConectar->setDefault( true );
 	SBPuerto->setEnabled( CkBPuerto->isChecked() );
 }
@@ -131,4 +133,22 @@ void EMysql::avanzarBarra()
 void EMysql::dbinterna()
 {
  this->done( Interna );
+}
+
+
+/*!
+    \fn EMysql::ajustarTam( bool estado )
+ */
+void EMysql::ajustarTam( bool estado )
+{
+ if( estado )
+ {
+  // Agrando
+  GBAvanzado->adjustSize();
+ }
+ else
+ {
+  // achico
+  GBAvanzado->resize( GBAvanzado->size().width(), 21 );
+ }
 }

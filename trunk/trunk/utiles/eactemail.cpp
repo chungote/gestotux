@@ -17,31 +17,20 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#include "eactemail.h"
 
-#ifndef FORMPRESUPUESTOSANTERIORES_H
-#define FORMPRESUPUESTOSANTERIORES_H
-
-#include "eventana.h"
-#include "ui_FormPresupuestosAnterioresBase.h"
-class MPresupuestos;
-
-class FormPresupuestosAnteriores : public EVentana, private Ui::FormPresupuestosAnterioresBase
+EActEmail::EActEmail(QWidget *parent)
+ : QAction(parent)
 {
-  Q_OBJECT
+ this->setIcon( QIcon( ":/imagenes/email.png" ) );
+ this->setShortcut( QKeySequence( "Ctrl + e" ) );
+ this->setText( "Em@il" );
+ connect( this, SIGNAL( triggered() ), parent, SLOT( email() ) );
+}
 
-public:
-  FormPresupuestosAnteriores(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FormPresupuestosAnteriores();
 
-protected slots:
-    void eliminar();
-    void mostrar();
-    void modificar();
+EActEmail::~EActEmail()
+{
+}
 
-private:
-    MPresupuestos *modelo;
-
-};
-
-#endif
 

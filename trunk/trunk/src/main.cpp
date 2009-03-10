@@ -116,6 +116,14 @@ int main(int argc, char *argv[])
       {
 	qDebug( "Fallo al cargar la traduccion" );
       }
+      if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
+      {
+        QCoreApplication::instance()->installTranslator(&tran);
+      }
+      else
+      {
+        qDebug( "Fallo al cargar la traduccion del reporte" );
+      }
       delete directorio;
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
