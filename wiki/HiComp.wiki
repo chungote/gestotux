@@ -3,3 +3,7 @@
 
 Plugin desarrollado para renderizar recibos en formato svg guardandolos en una base de datos que utiliza los clientes del programa y permite la facturación de la cobranza mensual de un sistema de venta de internet inalambrica.
 Desarrollado especificamente para HiComp Computación.
+
+= Proximo desarrollo =
+
+Agregar la capacidad de facturar distintos tipos de servicios, enviar resumenes por email y pdf, llevar el resumen de cuenta de cada cliente y emitir los comprobantes de pago.
