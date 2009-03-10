@@ -65,6 +65,7 @@ FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 	addAction( ActCerrar );
 
 	this->setWindowTitle( "Actualizar el programa" );
+	this->setWindowIcon( QIcon( ":/imagenes/actualizar.png" ) );
 }
 
 FormActualizacion::~FormActualizacion()

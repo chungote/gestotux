@@ -90,7 +90,7 @@ protected slots:
     virtual void cerrar();
     virtual void agregar( bool autoeliminarid = true );
     virtual void eliminar();
-    virtual void antes_de_insertar( int row, QSqlRecord & record ) = 0;
+    virtual void antes_de_insertar( int row, QSqlRecord & record );
     virtual void imprimir();
     virtual void buscar();
     virtual void modificar();

@@ -26,17 +26,18 @@
 
 QString presupuestador::nombrePrograma()  const
 {
- return "Presupuestador - 0.1";
+ return "Presupuestador - 0.2";
 }
 
 
 QIcon presupuestador::iconoPrograma() const
 {
- return QIcon( ":/imagenes/icono.png" );
+ return QIcon( ":/imagenes/wrench.gif" );
 }
 
 bool presupuestador::inicializar()
 {
+ Q_INIT_RESOURCE( presupuestador );
  // Genero las acciones y la lista
  ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
@@ -53,7 +54,7 @@ bool presupuestador::inicializar()
  ActAutos->setStatusTip( "Listado de automobiles que se encuentran en el sistema" );
  connect( ActAutos, SIGNAL( triggered() ), this, SLOT( verAutos() ) );
 
- return verificarTablas();
+ return true;
 
 }
 
@@ -141,6 +142,8 @@ bool presupuestador::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "autos" ) )
  { qWarning( "Error al buscar la tabla de automoviles" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "presupuesto" ) )
+ { qWarning( "Error al buscar la tabla de presupuesto" ); return false; }
  return true;
 }
 
@@ -150,7 +153,7 @@ bool presupuestador::verificarTablas()
  */
 double presupuestador::version() const
 {
-  return 0.1;
+  return 0.2;
 }
 
 
@@ -168,7 +171,7 @@ QString presupuestador::empresa() const
  */
 QString presupuestador::companeros()
 {
- return QString();
+ return "Daniel Sequeria";
 }
 
 
@@ -187,7 +190,15 @@ bool presupuestador::publicidad()
  */
 QList<QActionGroup *> presupuestador::accionesBarra()
 {
-  return QList<QActionGroup *>();
+  QList<QActionGroup *> lista;
+  QActionGroup *general = new QActionGroup( this );
+  general->setObjectName( "general" );
+  general->setProperty( "titulo", "Presupuestos" );
+  general->addAction( ActAutos );
+  general->addAction( ActNuevoPresu );
+  general->addAction( ActPresuAnteriores );
+  lista.append( general );
+  return lista;
 }
 
 

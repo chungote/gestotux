@@ -17,70 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "vautos.h"
-#include <QIcon>
-#include "mauto.h"
-#include <QTableView>
-#include <QSqlRelationalDelegate>
-#include "edpatente.h"
-#include "edmarca.h"
-#include "edmodelo.h"
-#include "edcolor.h"
+#ifndef VPRESUPUESTOS_H
+#define VPRESUPUESTOS_H
 
-VAutos::VAutos(QWidget *parent)
- : EVLista(parent)
+#include <evlista.h>
+#include "ncreport.h"
+
+/**
+Listado de presupuestos echos
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class VPresupuestos : public EVLista
 {
- this->setAttribute( Qt::WA_DeleteOnClose );
- setObjectName( "VAutos" );
- setWindowTitle( "Automoviles" );
- setWindowIcon( QIcon( ":/imagenes/auto.png" ) );
+Q_OBJECT
+public:
+    VPresupuestos(QWidget *parent = 0);
+    ~VPresupuestos();
+    void antes_de_insertar( int row, QSqlRecord & record );
 
- modelo = new MAuto( vista );
+protected slots:
+    void modificar();
+    void agregar(  bool autoeliminarid = true  );
+    void imprimir();
+};
 
- vista->setModel( modelo );
- //vista->hideColumn( 6 );
- //vista->hideColumn( 7 );
- vista->setItemDelegateForColumn( 1, new QSqlRelationalDelegate( vista ) );
- //vista->setItemDelegateForColumn( 0, new EDPatente( vista ) );
- vista->setItemDelegateForColumn( 2, new EDMarca( vista ) );
- vista->setItemDelegateForColumn( 3, new EDModelo( vista ) );
- //vista->setItemDelegateForColumn( 5, new EDColor( vista ) );
-
- modelo->select();
-
- addAction( ActAgregar );
- addAction( ActEliminar );
- addAction( ActCerrar );
-}
-
-
-VAutos::~VAutos()
-{}
-
-
-/*!
-    \fn VAutos::agregar()
- */
-void VAutos::agregar()
-{
- EVLista::agregar( false );
-}
-
-
-/*!
-    \fn VAutos::contextMenuEvent ( QContextMenuEvent * e )
- */
-void VAutos::contextMenuEvent ( QContextMenuEvent * e )
-{
- QModelIndex indice = vista->indexAt( e->pos() );
- if( indice.isValid() )
- {
-   //Creo el menu
-   qWarning( "Crear menu" );
-   EVLista::contextMenuEvent( e );
- }
- else
- {
-  e->ignore();
- }
-}
+#endif

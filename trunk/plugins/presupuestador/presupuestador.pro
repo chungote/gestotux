@@ -40,7 +40,7 @@ HEADERS += visorresumen.h \
  emautos.h \
  vpresupuestos.h
 
-RESOURCES = prespuestador.qrc
+RESOURCES = presupuestador.qrc
 FORMS += FormNuevoPresupuestoBase.ui
 win32 {
     MOC_DIR = win/moc

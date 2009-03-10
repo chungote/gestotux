@@ -129,8 +129,8 @@ void gestotux::createMenus()
 {
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
- fileMenu->addAction( ActActualizar );
- fileMenu->addSeparator();
+ //fileMenu->addAction( ActActualizar );
+ //fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );

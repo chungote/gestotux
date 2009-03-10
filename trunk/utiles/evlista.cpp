@@ -41,6 +41,7 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  this->setLayout( layout );
  // Propiedades varias
  vista->setSelectionMode( QAbstractItemView::SingleSelection );
+ vista->setSelectionBehavior( QAbstractItemView::SelectRows );
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
  vista->setTextElideMode( Qt::ElideRight );
 
@@ -162,9 +163,10 @@ void EVLista::eliminar()
  */
 void EVLista::closeEvent( QCloseEvent * c)
 {
- delete vista;
+ /*if( vista != 0 )
+    delete vista;*/
  modelo->submitAll();
- delete modelo;
+// delete modelo;
  EVentana::closeEvent( c );
 }
 
@@ -211,4 +213,28 @@ void EVLista::email()
 void EVLista::aPdf()
 {
     /// @todo implement me
+}
+
+#include <QDate>
+void EVLista::antes_de_insertar( int row, QSqlRecord & record )
+{
+ if( QSqlDatabase::database().driverName() == "QSQLITE" )
+ {
+   /*
+	Se utiliza este truco para que no falle la insercion y se puedan agregar registros sin problemas
+	como sqlite no tiene forma de insertar timestamps en los registros al actualizar hay que hacerlo a mano
+   */
+   if( record.contains( "creado" ) )
+   {  record.setValue( "creado", QDate::currentDate() );  }
+   if( record.contains( "modificado" ) )
+   { record.setValue( "modificado", QDate::currentDate() ); }
+ }
+ else if( QSqlDatabase::database().driverName() == "QMYSQL" )
+ {
+	/*
+	  MySql solo permite tener un registro con timestamp activado, asique ponemos la fecha en el de crear
+	*/
+	if( record.contains( "creado" ) )
+	{ record.setValue( "creado", QDate::currentDate() ); }
+ }
 }
