@@ -91,7 +91,7 @@ De no encontrar el archivo, o no encontrar el archivo para el driver correspondi
 Generalmente no tendra gran cantidad de problemas con este plugin. Solo verifique que el codigo funciona sin problemas mediante una interfaz web.
 Es probable que esta caracteristica se deshabilite para este driver, ya que al tratarse de una base de datos externa, las tablas deben ser generadas cada vez que se crea una base de datos para los clientes.
 
-Para ver como embeber archivos en el plugin, visita la pagina embeber_archivos.
+Para ver como embeber archivos en el plugin, visita la pagina [embeber_archivos].
 
 == Inicializacion ==
 
