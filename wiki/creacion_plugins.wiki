@@ -76,6 +76,45 @@ Para cada plugin, existe un metodo que le permite conocer si estan las tablas cr
 
  * El *DriverSQL* debe ser el mismo que esta puesto en la lista de documentacion de qt.
 
+Ejemplo:
+  * *hicomp.QSQLITE.sql* se ejecutara si el metodo de verificacion de tablas del plugin _hicomp_ retorna falso.
+
+Recuerde que la sintaxis de este archivo es un archivo sql.
+Consideraciones especiales:
+=== SQLite ===
+Esta base de datos al estar embebida en un archivo, es bastante lenta cuando se utilizan campos *blob* y su rango de tipos de datos es limitado.
+Recuerde que debe colocar los valores para el proximo indice dentro de la tabla _sqlite`_`sequence_ sino no se podran insertar los datos nuevos mediante el programa.
+
 De no encontrar el archivo, o no encontrar el archivo para el driver correspondiente, no se cargará el plugin.
 
+=== MySql ===
+Generalmente no tendra gran cantidad de problemas con este plugin. Solo verifique que el codigo funciona sin problemas mediante una interfaz web.
+Es probable que esta caracteristica se deshabilite para este driver, ya que al tratarse de una base de datos externa, las tablas deben ser generadas cada vez que se crea una base de datos para los clientes.
+
 Para ver como embeber archivos en el plugin, visita la pagina embeber_archivos.
+
+== Inicializacion ==
+
+Cuando un plugin es cargado por el programa principal, se ejecutara el metodo _inicializar()_.
+Dentro de este metodo generalmente se realizan todas las inicializaciones de acciones y verificaciones extras a la de la base de datos.
+No intente crear barras de tareas o demas dentro de este metodo.
+
+== Barra lateral ==
+
+Para mostrar acciones de este plugin dentro de la barra lateral del programa, se debe implementar el metodo
+{{{ QList<QActionGroup `*`> accionesBarra() }}}
+
+Para entender como funciona este sistema de barra lateral vea barra_lateral.
+
+== Menus ==
+
+Para generar o agregar cosas dentro de los menus actuales, existe el metodo
+{{{ void crearMenu( QMenuBar `*` ) }}}
+El parametro pasado como puntero es la barra de menu, asique se puede usar como si fuera la funcion _menuBar()_ de cualquier QMainWindow.
+Para un ejemplo de esto vea generar_menu ( proximamente )
+
+== Otros Metodos ==
+
+{{{ QString directorioBackup() }}} Devuelve el directorio donde se hara el backup on-line ( a implmenetar )
+
+{{{ QString directorioActualizaciones() }}} Devuelve el directorio donde se buscaran las actualizaciones especificas. ( a re implementar ).
