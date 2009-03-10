@@ -37,8 +37,8 @@
 FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormNuevoPresupuestoBase()
 {
-	this->setAttribute( Qt::WA_DeleteOnClose );
 	setupUi(this);
+	this->setAttribute( Qt::WA_DeleteOnClose );
 	DTFecha->setDate( QDate::currentDate() );
 	dSBTotal->setValue( 0 );
 
@@ -55,14 +55,16 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 	QVBoxLayout *v = new QVBoxLayout( GBContenido );
 	v->addWidget( editor );
 
+	// Genero el modelo de los autos para no tener problema con el slot
+	EMAutos *modeloautos = new EMAutos( CBAuto );
 	// Cargo los Clientes
 	CBCliente->setModel( new EMCliente( CBCliente ) );
 	CBCliente->setModelColumn( 1 );
 	CBCliente->setCurrentIndex( -1 );
-	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), CBCliente->model(), SLOT( filtrarPorCliente( int ) ) );
+	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), modeloautos, SLOT( filtrarPorCliente( int ) ) );
 	// Cargo los Autos
 
-	CBAuto->setModel( new EMAutos( CBAuto ) );
+	CBAuto->setModel( modeloautos );
 	CBAuto->setModelColumn( 1 );
 	CBAuto->setCurrentIndex( -1 );
 
@@ -94,7 +96,6 @@ void FormNuevoPresupuesto::agregar()
  QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un titulo para el presupuesto o desseleccione la opcion de titulo personalizado" );
   return;
  }
- //qDebug( TEContenido->toPlainText().toLocal8Bit() );
  if( editor->contenido( Qt::AutoText ).isEmpty() )
  {
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un detalle de presupuesto" );
@@ -145,8 +146,8 @@ void FormNuevoPresupuesto::agregar()
   QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
   Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
 
-  QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
-  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );
+  /*QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
+  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );*/
 
   mensaje.addButton( tr( "No hacer nada" ), QMessageBox::AcceptRole );
 
@@ -157,6 +158,7 @@ void FormNuevoPresupuesto::agregar()
    case QMessageBox::Reset:
    {
 	EReporte *reporte = new EReporte( this );
+	reporte->agregarParametro( "num__presupuesto", num_presupuesto );
 	reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
 	reporte->imprimir();
    }

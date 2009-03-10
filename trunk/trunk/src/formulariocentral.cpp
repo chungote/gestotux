@@ -52,6 +52,7 @@ void FormularioCentral::cambioWidget( int id )
 
 void FormularioCentral::cerrarActivo()
 {
+ currentWidget()->close();
  removeTab( currentIndex() );
  cambioWidget( currentIndex() );
 }
@@ -76,7 +77,8 @@ void FormularioCentral::agregarForm( QWidget *ventana )
  else
  {
    // Busco el form que tiene la ventana y lo pongo como actual
-   //qWarning( qPrintable( "Ya existe la ventana " + ventana->objectName() ) );
+   qWarning( "Ya existe la ventana que esta intentando abrir.\n Se mostrar la que existe abierta." );
+   qDebug( qPrintable( "Ventana ya abierta: " + ventana->objectName()  ) );
    this->setCurrentWidget( this->findChild<QWidget *>( ventana->objectName() ) );
    ventana->deleteLater();
  }

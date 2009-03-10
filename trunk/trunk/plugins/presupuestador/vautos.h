@@ -33,7 +33,6 @@ Q_OBJECT
 public:
     VAutos(QWidget *parent = 0);
     ~VAutos();
-    void antes_de_insertar( int row, QSqlRecord & record );
 
 public slots:
     void agregar();

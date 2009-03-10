@@ -17,70 +17,33 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "vautos.h"
-#include <QIcon>
-#include "mauto.h"
-#include <QTableView>
-#include <QSqlRelationalDelegate>
-#include "edpatente.h"
-#include "edmarca.h"
-#include "edmodelo.h"
-#include "edcolor.h"
+#include "emautos.h"
 
-VAutos::VAutos(QWidget *parent)
- : EVLista(parent)
+EMAutos::EMAutos(QObject *parent)
+ : QSqlQueryModel(parent)
 {
- this->setAttribute( Qt::WA_DeleteOnClose );
- setObjectName( "VAutos" );
- setWindowTitle( "Automoviles" );
- setWindowIcon( QIcon( ":/imagenes/auto.png" ) );
-
- modelo = new MAuto( vista );
-
- vista->setModel( modelo );
- //vista->hideColumn( 6 );
- //vista->hideColumn( 7 );
- vista->setItemDelegateForColumn( 1, new QSqlRelationalDelegate( vista ) );
- //vista->setItemDelegateForColumn( 0, new EDPatente( vista ) );
- vista->setItemDelegateForColumn( 2, new EDMarca( vista ) );
- vista->setItemDelegateForColumn( 3, new EDModelo( vista ) );
- //vista->setItemDelegateForColumn( 5, new EDColor( vista ) );
-
- modelo->select();
-
- addAction( ActAgregar );
- addAction( ActEliminar );
- addAction( ActCerrar );
+ filtrarPorCliente( -1 );
 }
 
 
-VAutos::~VAutos()
-{}
-
-
-/*!
-    \fn VAutos::agregar()
- */
-void VAutos::agregar()
+EMAutos::~EMAutos()
 {
- EVLista::agregar( false );
 }
 
 
+
+
 /*!
-    \fn VAutos::contextMenuEvent ( QContextMenuEvent * e )
+    \fn EMAutos::filtrarPorCliente( id Cliente )
  */
-void VAutos::contextMenuEvent ( QContextMenuEvent * e )
+void EMAutos::filtrarPorCliente( int id_cliente )
 {
- QModelIndex indice = vista->indexAt( e->pos() );
- if( indice.isValid() )
+ if( id_cliente != -1 )
  {
-   //Creo el menu
-   qWarning( "Crear menu" );
-   EVLista::contextMenuEvent( e );
+  this->setQuery( QString( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos WHERE id_cliente = %1" ).arg( id_cliente ) );
  }
  else
  {
-  e->ignore();
+  this->setQuery( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos" );
  }
 }
