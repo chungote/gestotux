@@ -1,7 +1,8 @@
 TEMPLATE = lib
 CONFIG += plugin \
  dll \
-help
+help \
+ debug
 TARGET = presupuestador
 
 DESTDIR = ../../bin/plugins
@@ -52,12 +53,34 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
-LIBS += ../../bin/libutiles.a
 
-TARGETDEPS += ../../bin/libutiles.a
 
-INCLUDEPATH += ../../src \
-  ../../utiles
 
 TRANSLATIONS += presupuestador.ts
+
+
+
+
+
+QMAKE_CXXFLAGS_DEBUG += -ggdb \
+  -o0 \
+  -g3
+
+
+
+
+
+CONFIG -= release
+
+INCLUDEPATH += ../../src \
+  ../../reporte \
+  ../../utiles
+
+LIBS += ../../bin/libncreport.a \
+  ../../bin/libemail.a \
+  ../../bin/libutiles.a
+
+TARGETDEPS += ../../bin/libemail.a \
+  ../../bin/libncreport.a \
+  ../../bin/libutiles.a
 

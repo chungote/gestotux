@@ -1,7 +1,7 @@
 TEMPLATE = lib
 
 HEADERS += eactcerrar.h \
-eactimprimir.h \
+ eactimprimir.h \
  eventana.h \
  evlista.h \
  preferencias.h \
@@ -11,7 +11,9 @@ eactimprimir.h \
  eactguardar.h \
  emcliente.h \
  eeditor.h \
- eactemail.h
+ eactemail.h \
+ eregistroplugins.h \
+ eactpdf.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -22,7 +24,9 @@ eactimprimir.cpp \
  eactguardar.cpp \
  emcliente.cpp \
  eeditor.cpp \
- eactemail.cpp
+ eactemail.cpp \
+ eregistroplugins.cpp \
+ eactpdf.cpp
 
 QT += sql
 
@@ -56,4 +60,11 @@ message( "Actualizando traduccion" )
 message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
+
+
+
+
+
+
+INCLUDEPATH += ../src
 

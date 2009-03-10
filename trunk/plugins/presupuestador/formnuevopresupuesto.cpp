@@ -32,6 +32,7 @@
 #include <QSqlError>
 #include <QDate>
 #include <QMessageBox>
+#include "ereporte.h"
 
 FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormNuevoPresupuestoBase()
@@ -154,6 +155,11 @@ void FormNuevoPresupuesto::agregar()
   {
    // Imprimir
    case QMessageBox::Reset:
+   {
+	EReporte *reporte = new EReporte( this );
+	reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
+	reporte->imprimir();
+   }
    // Enviar x email
    case QMessageBox::ApplyRole:
    default:

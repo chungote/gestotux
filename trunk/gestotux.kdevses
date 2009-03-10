@@ -2,11 +2,11 @@
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
  <DocsAndViews NumberOfDocuments="2" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/presupuestador/mpresupuestos.cpp" >
-   <View0 Encoding="" line="95" Type="Source" />
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/evlista.h" >
+   <View0 Encoding="" line="80" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/presupuestador/mpresupuestos.h" >
-   <View0 Encoding="" line="33" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/evlista.cpp" >
+   <View0 Encoding="" line="26" Type="Source" />
   </Doc1>
  </DocsAndViews>
  <pluginList>

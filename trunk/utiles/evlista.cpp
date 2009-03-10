@@ -23,6 +23,8 @@
 #include <QHeaderView>
 #include "preferencias.h"
 #include "eactemail.h"
+#include "eactcerrar.h"
+#include "eactpdf.h"
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QMessageBox>
@@ -77,10 +79,10 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
 
  ActEmail = new EActEmail( this );
 
- ActCerrar = new QAction( "Cer&rar", this );
- ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- ActCerrar->setShortcut( QKeySequence( "Ctrl+r" ) );
- ActCerrar->setToolTip( "Cierra esta ventana ( Ctrl + r )" );
+ ActPdf = new EActPdf( this );
+ connect( ActPdf, SIGNAL( triggered() ), this, SLOT( aPdf() ) );
+
+ ActCerrar = new EActCerrar( this );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( cerrar() ) );
 
 }
@@ -198,6 +200,15 @@ void EVLista::modificar()
     \fn EVLista::email()
  */
 void EVLista::email()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn EVLista::aPdf()
+ */
+void EVLista::aPdf()
 {
     /// @todo implement me
 }

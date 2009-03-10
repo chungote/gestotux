@@ -75,6 +75,10 @@ public:
     * Accion generica para enviar por email
     */
     QAction *ActEmail;
+   /*!
+    * Accion generica para guardar a pdf
+    */
+    QAction *ActPdf;
 
 protected:
   /**
@@ -91,6 +95,7 @@ protected slots:
     virtual void buscar();
     virtual void modificar();
     virtual void email();
+    virtual void aPdf();
 };
 
 #endif

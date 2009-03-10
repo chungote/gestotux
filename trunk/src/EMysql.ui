@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>417</width>
-    <height>328</height>
+    <width>521</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,9 +14,49 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
-    <widget class="QGroupBox" name="groupBox" >
+    <layout class="QHBoxLayout" name="horizontalLayout_3" >
+     <item>
+      <widget class="QLabel" name="label_2" >
+       <property name="text" >
+        <string>Usuario:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>LEUsuario</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="LEUsuario" />
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4" >
+     <item>
+      <widget class="QLabel" name="label_3" >
+       <property name="text" >
+        <string>Contraseña:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>LEContra</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="LEContra" />
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="GBAvanzado" >
      <property name="title" >
-      <string>Conección mysql</string>
+      <string>Avanzado</string>
+     </property>
+     <property name="flat" >
+      <bool>true</bool>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout" >
       <item>
@@ -53,40 +93,6 @@
            <number>99999</number>
           </property>
          </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3" >
-        <item>
-         <widget class="QLabel" name="label_2" >
-          <property name="text" >
-           <string>Usuario:</string>
-          </property>
-          <property name="buddy" >
-           <cstring>LEUsuario</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="LEUsuario" />
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4" >
-        <item>
-         <widget class="QLabel" name="label_3" >
-          <property name="text" >
-           <string>Contraseña:</string>
-          </property>
-          <property name="buddy" >
-           <cstring>LEContra</cstring>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="LEContra" />
         </item>
        </layout>
       </item>
@@ -171,8 +177,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>328</x>
-     <y>271</y>
+     <x>463</x>
+     <y>428</y>
     </hint>
     <hint type="destinationlabel" >
      <x>345</x>
@@ -187,12 +193,108 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>317</x>
-     <y>48</y>
+     <x>419</x>
+     <y>272</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>341</x>
-     <y>48</y>
+     <x>480</x>
+     <y>272</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GBAvanzado</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>91</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>40</x>
+     <y>264</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GBAvanzado</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>LEHost</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>67</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>112</x>
+     <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GBAvanzado</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CkBPuerto</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>126</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>411</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GBAvanzado</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SBPuerto</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>169</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>445</x>
+     <y>269</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GBAvanzado</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_4</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>145</x>
+     <y>237</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>33</x>
+     <y>303</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GBAvanzado</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>LEBaseDatos</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>218</x>
+     <y>242</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>230</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
