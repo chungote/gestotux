@@ -24,20 +24,26 @@
 #include "eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
 #include "eeditor.h"
+#include <QSqlTableModel>
+#include <QModelIndex>
 
 class FormModificarPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase
 {
   Q_OBJECT
 
 public:
-  FormModificarPresupuesto( int id_presupuesto, QWidget* parent = 0, Qt::WFlags fl = 0 );
+  FormModificarPresupuesto( QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormModificarPresupuesto();
     void setId( int idDB );
+    void setModel( QSqlTableModel *modelo );
+
+
 protected slots:
     void guardar();
 
 private:
-    int idDB;
+    int indice;
+    QSqlTableModel *modelo;
     EEditor *editor;
 };
 

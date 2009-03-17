@@ -35,6 +35,7 @@ class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
 class FormularioCentral;
+class EEmail;
 /**
  * \brief Ventana principal del programa
  *
@@ -114,8 +115,11 @@ private:
     static QHash<QString, EPlugin *> *_plugins;
     bool cargarPlugins();
     void crearBarraLateral();
+//    void iniciarServicioMail();
     QDir pluginsDir;
     QPluginLoader loader;
+ //   EEmail *servicioMail;
+
 protected:
     void keyPressEvent( QKeyEvent *event );
 };

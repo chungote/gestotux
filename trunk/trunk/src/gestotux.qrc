@@ -52,6 +52,7 @@
 	<file>imagenes/mysql.png</file>
 	<file>imagenes/splash.png</file>
 	<file>imagenes/email.png</file>
+	<file>imagenes/servidor_email.png</file>
     </qresource>
     <qresource prefix="sql">
 	<file>tablas.QSQLITE.sql</file>

@@ -10,8 +10,8 @@ SUBDIRS = utiles \
 	reporte/libncreport.pro \
 	utiles/estilos \
 	plugins/presupuestador
-NOMBRE_PROGRAMA = hicomp
-ARCHIVO_RC = HiComp/icono.rc
+NOMBRE_PROGRAMA = presupuestador
+ARCHIVO_RC = presupuestador/icono.rc
 
 unix {
   system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )

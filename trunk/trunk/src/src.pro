@@ -15,7 +15,9 @@ SOURCES += gestotux.cpp \
  formprefdb.cpp \
  everificabackup.cpp \
  barralateral.cpp \
- botoneslaterales.cpp
+ botoneslaterales.cpp \
+ formcliente.cpp \
+ formprefemail.cpp
 HEADERS += gestotux.h \
  ebackup.h \
  eenviobackup.h \
@@ -35,7 +37,9 @@ HEADERS += gestotux.h \
  everificabackup.h \
  version.h \
  barralateral.h \
- botoneslaterales.h
+ botoneslaterales.h \
+ formcliente.h \
+ formprefemail.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -54,22 +58,21 @@ formBackup.ui \
 FPrefGeneral.ui \
  FormActualizacionBase.ui \
  EMysql.ui \
- ForPrefDb.ui
+ ForPrefDb.ui \
+ FormClienteBase.ui \
+ FormPrefEmailBase.ui
 
-#!include( cliente.pri ) {
-# TARGET = gestotux
-#}
-TARGET = gestotux
+!include( cliente.pri ) {
+ TARGET = gestotux
+}
+#TARGET = gestotux
 
 
 
 DESTDIR = ../bin
 
 DISTFILES += qt_es.qm \
- ../ayuda/salir.html \
- tablas.QMYSQL.sql \
- tablas.QSQLITE.sql \
- ../plugins/presupuestador/presupuestador.QMYSQL.sql
+ ../ayuda/salir.html
 
 win32 {
     CONFIG += release
@@ -86,17 +89,13 @@ CONFIG -= release
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
-LIBS += ../bin/libutiles.a
 
-TARGETDEPS += ../bin/libutiles.a
 
 
 RESOURCES += gestotux.qrc
 
 TRANSLATIONS += gestotux.ts
 
-INCLUDEPATH += ../utiles \
-  ../utiles/ui
 
 DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 message( "Actualizando traduccion" )
@@ -104,3 +103,16 @@ message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
 QT += webkit
+INCLUDEPATH += ../utiles/email \
+  ../reporte \
+  ../utiles \
+  ../utiles/ui
+
+LIBS += ../bin/libncreport.a \
+  ../bin/libemail.a \
+  ../bin/libutiles.a
+
+TARGETDEPS += ../bin/libemail.a \
+  ../bin/libncreport.a \
+  ../bin/libutiles.a
+

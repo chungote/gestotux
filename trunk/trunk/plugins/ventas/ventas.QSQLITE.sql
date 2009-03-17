@@ -1,0 +1,6 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS ventas ( id INTEGER PRIMARY KEY AUTOINCREMENT, fecha TEXT );
+CREATE TABLE IF NOT EXISTS ventas_productos ( id INTEGER PRIMARY KEY AUTOINCREMENT, id_venta NUMERIC , id_producto NUMERIC , precio NUMERIC , cantidad NUMERIC );
+INSERT OR IGNORE INTO sqlite_sequence VALUES ('ventas_productos', '1');
+INSERT OR IGNORE INTO sqlite_sequence VALUES ( 'ventas', '1' );
+COMMIT;

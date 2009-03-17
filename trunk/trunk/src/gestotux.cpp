@@ -42,6 +42,7 @@
 #include "einfoprogramainterface.h"
 #include "formactualizacion.h"
 #include "version.h"
+#include "eemail.h"
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
@@ -68,6 +69,7 @@ void gestotux::inicializar()
  crearBarraLateral();
  bandeja_sistema();
  createMenus();
+ //iniciarServicioMail();
 
 preferencias *p = preferencias::getInstancia();
 //p->inicio();
@@ -184,6 +186,8 @@ gestotux::~gestotux()
  */
 void gestotux::salir()
 {
+ //Cierro el sistema de email
+// servicioMail->apagarServicio();
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "ventanaPrincipal" );
  p->setValue( "estado", saveState() );
@@ -502,9 +506,16 @@ bool gestotux::hacerTablas( QString nombrePlug )
 		QString cadena; QSqlQuery cola;
 		foreach( cadena, cadenas )
 		{
+			qDebug( qPrintable( cadena ) );
 			if( !cola.exec( cadena ) )
 			{
+				qDebug( qPrintable( cadena ) );
+				qDebug( qPrintable( "Fallo...." + cola.lastError().text() ) );
 				return false;
+			}
+			else
+			{
+				qDebug( "Ok" );
 			}
 		}
 		return true;
@@ -556,3 +567,14 @@ void gestotux::cargar_traduccion( QString nombre_plugin )
  }
  QCoreApplication::instance()->installTranslator( traductor );
 }
+
+
+/*!
+    \fn gestotux::iniciarServicioMail()
+ */
+/*void gestotux::iniciarServicioMail()
+{
+ servicioMail = new EEmail( this );
+ statusBar()->addPermanentWidget( servicioMail->barra() );
+ servicioMail->verificar();
+}*/

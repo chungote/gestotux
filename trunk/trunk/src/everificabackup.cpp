@@ -70,6 +70,10 @@ void EVerificaBackup::verificar()
 	// 2 meses
 	case 6:
 	{ cant_dias = 60; break; }
+	// Nunca
+	case 7:
+	{ return; }
+	// Por si todavia no se eligio ninguna preferencia
 	default:
 	{ cant_dias = 15; break; }
  }

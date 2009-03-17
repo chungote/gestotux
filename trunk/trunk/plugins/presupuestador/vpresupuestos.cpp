@@ -33,8 +33,12 @@ VPresupuestos::VPresupuestos(QWidget *parent)
 
  modelo = new MPresupuestos( this );
  vista->setModel( modelo );
- vista->hideColumn( 4 );
- vista->hideColumn( 5 );
+ vista->hideColumn( 6 );
+ vista->hideColumn( 7 );
+ vista->hideColumn( 8 );
+ vista->hideColumn( 9 );
+ vista->hideColumn( 10 );
+ vista->hideColumn( 11 );
  modelo->select();
 
  addAction( ActAgregar );
@@ -80,8 +84,11 @@ void VPresupuestos::modificar()
                    QMessageBox::Ok );
    return;
  }
+ FormModificarPresupuesto *form = new FormModificarPresupuesto();
+ form->setModel( this->modelo );
+ form->setId( indices.at(0).row() );
  // Consigo el numero de presupuesto que se quiere modificar
-  emit agregarVentana( new FormModificarPresupuesto( modelo->data( modelo->index( indices[0].row(), 0 ), Qt::EditRole ).toInt() ) );
+  emit agregarVentana( form );
 }
 
 
@@ -100,7 +107,7 @@ void VPresupuestos::imprimir()
    return;
  }
  EReporte *reporte = new EReporte( this );
- reporte->setArchivo( "/plugins/presupuestos/informe-presupuestador.xml" );
+ reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
  reporte->agregarParametro( "num_presupuesto", modelo->data( modelo->index( indices[0].row(), 0 ), Qt::EditRole ) );
  reporte->previsualizar();
 }

@@ -33,6 +33,7 @@
 #include "formprefdb.h"
 #include "gestotux.h"
 #include "einfoprogramainterface.h"
+#include "formprefemail.h"
 
 FormPreferencias::FormPreferencias(QWidget *parent)
  : EVentana(parent)
@@ -74,6 +75,19 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 	connect( this, SIGNAL( guardar() ), formDb, SLOT( guardar() ) );
 	pagesWidget->addWidget( formDb );
      }
+     if( p->value( "Preferencias/General/mostraremail", true ).toBool() )
+     {
+        QListWidgetItem *db = new QListWidgetItem( contentsWidget );
+        db->setIcon( QIcon( ":/imagenes/servidor_email.png" ) );
+        db->setText( "Em@il" );
+        db->setTextAlignment( Qt::AlignHCenter );
+        db->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+	FormPrefEmail *formEmail = new FormPrefEmail( this );
+	connect( this, SIGNAL( aplicar() ), formEmail, SLOT( aplicar() ) );
+	connect( this, SIGNAL( cargar() ), formEmail, SLOT( cargar() ) );
+	connect( this, SIGNAL( guardar() ), formEmail, SLOT( guardar() ) );
+	pagesWidget->addWidget( formEmail );
+     }
      ///@todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
      foreach( plugin, gestotux::plugins() )
@@ -100,7 +114,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 	}
      }
     // seteo el tama�o de los iconos
-    contentsWidget->setIconSize( QSize( 32, 32 ) );
+    contentsWidget->setIconSize( QSize( 48, 48 ) );
     contentsWidget->setUniformItemSizes( true );
 
     ActCerrar  = new QAction( "Cerrar", this );

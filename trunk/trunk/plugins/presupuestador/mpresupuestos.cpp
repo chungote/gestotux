@@ -29,12 +29,13 @@ MPresupuestos::MPresupuestos(QObject *parent)
  setHeaderData( 1, Qt::Horizontal, "Fecha" );
  setHeaderData( 2, Qt::Horizontal, "Kilometraje" );
  setHeaderData( 3, Qt::Horizontal, "Automovil" );
- setHeaderData( 4, Qt::Horizontal, "Titulo" );
- setHeaderData( 5, Qt::Horizontal, "Contenido" );
- setHeaderData( 6, Qt::Horizontal, "Creado" );
- setHeaderData( 7, Qt::Horizontal, "Modificado" );
- setHeaderData( 8, Qt::Horizontal, "Imprimir" );
- setHeaderData( 9, Qt::Horizontal, "Envi@r" );
+ setHeaderData( 4, Qt::Horizontal, "Total" );
+ setHeaderData( 5, Qt::Horizontal, "Titulo" );
+ setHeaderData( 6, Qt::Horizontal, "Contenido" );
+ setHeaderData( 7, Qt::Horizontal, "Creado" );
+ setHeaderData( 8, Qt::Horizontal, "Modificado" );
+ setHeaderData( 9, Qt::Horizontal, "Imprimir" );
+ setHeaderData( 10, Qt::Horizontal, "Envi@r" );
 }
 
 

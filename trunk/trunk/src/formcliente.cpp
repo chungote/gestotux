@@ -17,56 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emautos.h"
 
-EMAutos::EMAutos(QObject *parent)
- : QSqlQueryModel(parent)
+
+#include "formcliente.h"
+
+FormCliente::FormCliente ( QWidget* parent, Qt::WFlags fl )
+: EVentana ( parent, fl ), Ui::FormClienteBase()
 {
- filtrarPorCliente( -1 );
+	setupUi ( this );
+	setObjectName( "visorCliente" );
+	setWindowTitle( "Visor de Cliente" );
+	setWindowIcon( QIcon( ":/imagenes/cliente.png" ) );
+
+}
+
+FormCliente::~FormCliente()
+{
 }
 
 
-EMAutos::~EMAutos()
-{
-}
 
-
-
-
-/*!
-    \fn EMAutos::filtrarPorCliente( id Cliente )
- */
-void EMAutos::filtrarPorCliente( int id_cliente )
-{
- if( QSqlDatabase::database().driverName() == "QMYSQL" )
- {
-  if( id_cliente != -1 )
-  {
-   	this->setQuery( QString( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
-	return;
-  }
-  else
-  {
-   	this->setQuery( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos" );
-	return;
-  }
- }
- else if( QSqlDatabase::database().driverName() == "QSQLITE" )
- {
-  if( id_cliente != -1 )
-  {
-   	this->setQuery( QString( "SELECT patente,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
-	return;
-  }
-  else
-  {
-   	this->setQuery( "SELECT patente,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos" );
-	return;
-  }
- }
- else
- {
-	qDebug( "No se encontro el driver de base de datos" );
-	return;
- }
-}

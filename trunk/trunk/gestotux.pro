@@ -1,9 +1,9 @@
 SUBDIRS += utiles \
+ utiles/email \
  reporte/libncreport.pro \
  src/src.pro \
  plugins/plugins.pro \
- utiles/estilos/estilos.pro \
- utiles/email
+ utiles/estilos/estilos.pro
 TEMPLATE = subdirs
 CONFIG += warn_on \
           qt \
