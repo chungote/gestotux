@@ -17,56 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emautos.h"
 
-EMAutos::EMAutos(QObject *parent)
- : QSqlQueryModel(parent)
+#ifndef FORMPREFEMAIL_H
+#define FORMPREFEMAIL_H
+
+#include "eventana.h"
+#include "formprefhijo.h"
+#include "ui_FormPrefEmailBase.h"
+#include "eservidoremail.h"
+#include <QDataWidgetMapper>
+
+class FormPrefEmail : public EVentana, public FormPrefHijo, private Ui::FormPrefEmailBase
 {
- filtrarPorCliente( -1 );
-}
+  Q_OBJECT
+
+public:
+  FormPrefEmail(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  ~FormPrefEmail();
 
 
-EMAutos::~EMAutos()
-{
-}
+public slots:
+    void guardar();
+    void aplicar();
+    void cargar();
 
+private:
+	EServidorEmail *servidores;
+	QDataWidgetMapper *mapeador;
 
+private slots:
+    void agregar();
+    void eliminar();
+};
 
+#endif
 
-/*!
-    \fn EMAutos::filtrarPorCliente( id Cliente )
- */
-void EMAutos::filtrarPorCliente( int id_cliente )
-{
- if( QSqlDatabase::database().driverName() == "QMYSQL" )
- {
-  if( id_cliente != -1 )
-  {
-   	this->setQuery( QString( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
-	return;
-  }
-  else
-  {
-   	this->setQuery( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos" );
-	return;
-  }
- }
- else if( QSqlDatabase::database().driverName() == "QSQLITE" )
- {
-  if( id_cliente != -1 )
-  {
-   	this->setQuery( QString( "SELECT patente,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
-	return;
-  }
-  else
-  {
-   	this->setQuery( "SELECT patente,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos" );
-	return;
-  }
- }
- else
- {
-	qDebug( "No se encontro el driver de base de datos" );
-	return;
- }
-}

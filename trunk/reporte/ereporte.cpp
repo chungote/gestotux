@@ -48,7 +48,7 @@ EReporte::~EReporte()
  */
 bool EReporte::setArchivo( QString nombre )
 {
- if( !QFile::exists( QApplication::applicationDirPath() + nombre ) )
+ if( !QFile::exists( QApplication::applicationDirPath() + QDir::separator() + nombre ) )
  {
 	qDebug( qPrintable( "El archivo " + QApplication::applicationDirPath() + QDir::separator() + nombre + " no existe" ) );
 	return false;

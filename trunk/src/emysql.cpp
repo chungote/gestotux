@@ -30,22 +30,18 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 {
 	setupUi(this);
 	preferencias *p = preferencias::getInstancia();
-	LEHost->setText( p->value( "mysql/host" ).toString() );
-	SBPuerto->setValue( p->value( "mysql/puerto", 3306 ).toInt() );
 	LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
-	LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
+	if( p->contains( "mysql/contra" ) )
+	{
+		LEContra->setText( p->value( "mysql/contra" ).toString() );
+	}
 	adjustSize();
-        PBBarra->setValue( 0 );
-        PBBarra->setFormat( "" );
-	this->setWindowTitle( "Conexion MySQL");
+	this->setWindowTitle( "Conexion a gestotux");
 	this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
 	LEContra->setEchoMode( QLineEdit::Password );
 	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
 	connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
-	GBAvanzado->setChecked( false );
-	connect( GBAvanzado, SIGNAL( toggled( bool ) ), this, SLOT( ajustarTam( bool ) ) );
 	PBConectar->setDefault( true );
-	SBPuerto->setEnabled( CkBPuerto->isChecked() );
 }
 
 EMysql::~EMysql()
@@ -60,30 +56,15 @@ void EMysql::reject()
 void EMysql::accept()
 {
   // intento conectar
-  PBBarra->setValue(0);
-  PBBarra->setFormat( "Intentando conectar..." );
-  QTimer temporizador( this );
-  temporizador.setInterval( 70 );
-  connect( &temporizador, SIGNAL(timeout()), this, SLOT(avanzarBarra()));
-  temporizador.start();
+  preferencias *p = preferencias::getInstancia();
   *_db = QSqlDatabase::addDatabase( "QMYSQL" );
-  _db->setHostName( LEHost->text() );
-  if( CkBPuerto->isChecked() )
-  {
-    _db->setPort( SBPuerto->value() );
-  }
-  _db->setDatabaseName( LEBaseDatos->text() );
+  _db->setHostName( p->value( "mysql/host", "localhost" ).toString() );
+  _db->setPort( p->value( "mysql/puerto", 3306).toInt() );
+  _db->setDatabaseName( p->value( "mysql/base", "gestotux" ).toString() );
   _db->setUserName( LEUsuario->text() );
   _db->setPassword( LEContra->text() );
   if( _db->open() )
   {
-   temporizador.stop();
-   PBBarra->setFormat( "Conectado" );
-   preferencias *p = preferencias::getInstancia();
-   p->setValue( "mysql/base", LEBaseDatos->text() );
-   p->setValue( "mysql/usuario", LEUsuario->text() );
-   p->setValue( "mysql/host", LEHost->text() );
-   p->setValue( "mysql/puerto", SBPuerto->value() );
    qDebug( "Conectado con mysql" );
    this->done( Conectado );
   }
@@ -117,38 +98,10 @@ void EMysql::setDb( QSqlDatabase *db )
  _db = db;
 }
 
-
-/*!
-    \fn EMysql::avanzarBarra()
- */
-void EMysql::avanzarBarra()
-{
- PBBarra->setValue( PBBarra->value()+1 );
-}
-
-
 /*!
     \fn EMysql::dbinterna()
  */
 void EMysql::dbinterna()
 {
  this->done( Interna );
-}
-
-
-/*!
-    \fn EMysql::ajustarTam( bool estado )
- */
-void EMysql::ajustarTam( bool estado )
-{
- if( estado )
- {
-  // Agrando
-  GBAvanzado->adjustSize();
- }
- else
- {
-  // achico
-  GBAvanzado->resize( GBAvanzado->size().width(), 21 );
- }
 }

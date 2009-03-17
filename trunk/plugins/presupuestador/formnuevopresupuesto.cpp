@@ -56,14 +56,14 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 	v->addWidget( editor );
 
 	// Genero el modelo de los autos para no tener problema con el slot
-	EMAutos *modeloautos = new EMAutos( CBAuto );
+	modeloautos = new EMAutos( CBAuto );
 	// Cargo los Clientes
 	CBCliente->setModel( new EMCliente( CBCliente ) );
 	CBCliente->setModelColumn( 1 );
 	CBCliente->setCurrentIndex( -1 );
-	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), modeloautos, SLOT( filtrarPorCliente( int ) ) );
-	// Cargo los Autos
+	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( filtrarPorCliente( int ) ) );
 
+	// Cargo los Autos
 	CBAuto->setModel( modeloautos );
 	CBAuto->setModelColumn( 1 );
 	CBAuto->setCurrentIndex( -1 );
@@ -72,6 +72,7 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 	CkBImprimir->setChecked( true );
 	CkBEmail->setChecked( true );
 	setWindowTitle( "Nuevo Presupuesto" );
+        LETitulo->setEnabled( CkBTitulo->isChecked() );
 	setObjectName( "NuevoPresupuesto" );
 	setWindowIcon( QIcon( ":/imagenes/presupuesto.png" ) );
 	addAction( ActGuardar );
@@ -127,12 +128,18 @@ void FormNuevoPresupuesto::agregar()
  QSqlRecord registro = presupuesto->record();
  registro.remove( 0 );
  registro.setValue( "fecha", DTFecha->date() );
- registro.setValue( "titulo", LETitulo->text() );
+ if( CkBTitulo->isChecked() )
+ { registro.setValue( "titulo", LETitulo->text() ); }
+ else { registro.setValue( "titulo", "Presupuesto" ); }
  registro.setValue( "id_auto", CBAuto->model()->data( CBAuto->model()->index( CBAuto->currentIndex(), 0 ) ).toString() );
  registro.setValue( "kilometraje", SBKilometraje->value() );
- registro.setValue( "contenido", editor->contenido() );
- registro.setValue( "memo", TBMemo->document()->toHtml() );
- registro.setValue( "creado", QDate::currentDate() );
+ registro.setValue( "contenido", editor->contenido( Qt::RichText ) );
+ if( GBMemo->isChecked() )
+ { registro.setValue( "memo", TBMemo->document()->toPlainText() ); }
+ else  { registro.setNull( "memo" ); }
+ registro.setValue( "total", dSBTotal->value() );
+ registro.setValue( "creado", QDateTime::currentDateTime() );
+ registro.setValue( "modificado", QDateTime::currentDateTime() );
  registro.setValue( "imprimir", CkBImprimir->isChecked() );
  registro.setValue( "email", CkBEmail->isChecked() );
  if( presupuesto->insertRecord( -1, registro ) )
@@ -149,18 +156,22 @@ void FormNuevoPresupuesto::agregar()
   /*QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
   Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );*/
 
-  mensaje.addButton( tr( "No hacer nada" ), QMessageBox::AcceptRole );
+  mensaje.addButton( tr( "Solo Guardar" ), QMessageBox::AcceptRole );
 
   int ret = mensaje.exec();
   switch( ret )
   {
    // Imprimir
-   case QMessageBox::Reset:
+   case QMessageBox::ResetRole:
    {
-	EReporte *reporte = new EReporte( this );
-	reporte->agregarParametro( "num__presupuesto", num_presupuesto );
-	reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
-	reporte->imprimir();
+	/*
+ 	EReporte reporte;
+ 	reporte.setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
+ 	reporte.agregarParametro( "num_presupuesto", num_presupuesto );
+ 	reporte.previsualizar();
+	*/
+	qWarning( "No implementado todavia." );
+	break;
    }
    // Enviar x email
    case QMessageBox::ApplyRole:
@@ -169,4 +180,17 @@ void FormNuevoPresupuesto::agregar()
     break;
   }
  }
+ else
+ {
+  qWarning( "No se pudo agregar el presupuesto" );
+ }
+}
+
+
+/*!
+    \fn FormNuevoPresupuesto::filtrarPorCliente( int indice )
+ */
+void FormNuevoPresupuesto::filtrarPorCliente( int indice )
+{
+ modeloautos->filtrarPorCliente( CBCliente->model()->data( CBCliente->model()->index( indice, 0 ), Qt::EditRole ).toInt() );
 }

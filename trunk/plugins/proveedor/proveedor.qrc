@@ -3,5 +3,7 @@
 	<file>imagenes/proveedores.jpg</file>
     </qresource>
     <qresource prefix="sql">
+	<file>proveedor.QMYSQL.sql</file>
+	<file>proveedor.QSQLITE.sql</file>
     </qresource>
 </RCC>

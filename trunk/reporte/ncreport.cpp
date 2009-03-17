@@ -25,10 +25,10 @@
 #include "globals.h"
 
 #include <QApplication>
-#include <QPainter> 
+#include <QPainter>
 #include <QImage>
 #include <QMessageBox>
-#include <QFontMetrics> 
+#include <QFontMetrics>
 #include <QPushButton>
 #include <QTextCodec>
 #include <QDateTime>
@@ -123,7 +123,7 @@ NCReport::NCReport(const QString & fileName, QObject * parent, const char* name 
 	sqlHostname = "localhost";
 	sqlDatabase = "xdatabase";
 	sqlUser = "user";
-	sqlPassword = "password";	
+	sqlPassword = "password";
 	*/
 	//previewWidget = new NCPreview( pic, 0, "prw" );
 
@@ -135,7 +135,7 @@ NCReport::NCReport(const QString & fileName, QObject * parent, const char* name 
 	reccount = 0;
 	columncount =0;
 	recno = 0;
-	
+
 	/*
 	Queries = new report_Queries( this );
 	pageHeader = new report_pageHeader( this );
@@ -144,10 +144,10 @@ NCReport::NCReport(const QString & fileName, QObject * parent, const char* name 
 	Detail = new report_Detail( this );
 	*/
 	dataDef = 0;
-	
+
 	//Variables.setAutoDelete(TRUE);
 	//Flds.setAutoDelete(TRUE);
-	
+
 	//picPages.setAutoDelete(TRUE);
 
 	_pageno = 0;
@@ -171,19 +171,19 @@ NCReport::NCReport(const QString & fileName, QObject * parent, const char* name 
 	_globalPosY =0;
 	currentSection =0;
 	dynamicSectionIncrement = 0;
-	
+
 	if ( fileName.isNull() )
 		pmode = fromDatabase;
 	else
 		pmode = fromFile;
-		
+
 	reportID =-1;
 	database = 0;
 	pQueries = new report_Queries( this );
 	//pQueries->queries.setAutoDelete( true );
 	//DataSession.setAutoDelete( TRUE );
 	//Parameters.setAutoDelete( TRUE );
-	logging = false;	// logging
+	logging = true;	// logging
 	loadConfig();
 
 	setPageSize( pageSize );
@@ -209,7 +209,7 @@ void NCReport::setReportFile( const QString& fn )
 		QFileInfo fi2( reportFileName );
 		if ( fi1.lastModified() != fi2.lastModified() )
 			reportFileParsed = false;
-	
+
 	} else {
 		reportFileParsed = false;
 	}
@@ -243,19 +243,19 @@ void NCReport::setIconFactory( NCIconFactoryBase* factory ) { iconFactory = fact
 void NCReport::addQuery( const QString& _query, const QString& _alias, bool resetList )
 {
 	/*
-	dataDef->Queries->queries.append( _query );	
+	dataDef->Queries->queries.append( _query );
 	dataDef->Queries->queryCount +=1;
 	*/
 	if ( resetList ) {
 		pQueries->queries.clear();
 	}
-	
+
 	report_Query *q = new report_Query( this );
 	q->queryString = _query;
 	q->alias = _alias;
 	pQueries->queries.append( q );
 	pQueries->queryCount +=1;
-		
+
 	queryByParameter = true;
 	queryListChanged = true;
 }
@@ -284,7 +284,7 @@ void NCReport::addParameter( const QString& pvalue, const QString& pname, const 
 
 void NCReport::setOutput( NCReport::Output o ) { reportOutput = o; }
 void NCReport::setOrientation( NCReport::Orientation po ) { pageOrientation = po; }
-		
+
 //************* SLOTS
 void NCReport::runReportToPrinter()
 {
@@ -335,7 +335,7 @@ bool NCReport::runReport()
 
 	} else
 		ok =  false;
-		
+
 	return ok;
 }
 
@@ -367,30 +367,30 @@ bool NCReport::parseXMLResource()
     t.start();                          // start clock
 
 	//QString _xml;
-	
+
 	if ( pmode == fromFile ) { // get XML definition file from file
 		_xml = QString::null;
-		if ( !loadResourceFromFile( _xml, reportFileName ) ) 
+		if ( !loadResourceFromFile( _xml, reportFileName ) )
 			return false;
 	} else if ( pmode == fromDatabase ) {
 		// get XML definition file from SQL database
 		_xml = QString::null;
 		NCSqlQuery *sql = (database ? new NCSqlQuery(*database) : new NCSqlQuery() );	//add to QDict
 		QString _query;
-		if (reportQuery.isNull()) { 
+		if (reportQuery.isNull()) {
 			if ( reportID > 0 )		// get by integer pk
 				_query = QString("select reportdef from " NCREPORT_REPORT_TABLE " where pk=%1").arg( reportID );
-	
+
 			else	// get by form_id
 				_query = QString("select reportdef from "
 								NCREPORT_REPORT_TABLE ", "
 								NCREPORT_SYSTEM_DATABASE ".sys_reportforms where "
 								"sys_reportforms.report_fk=sys_reports.pk and sys_reportforms.form_id='%1'")
 							.arg( reportStringID );
-		} else { 
-			_query = reportQuery;  
+		} else {
+			_query = reportQuery;
 		}
-		
+
 		if ( !sql->exec( _query ) ) {
 			flagError = true;
 			errorMsg = sql->getErrorMsg();
@@ -405,13 +405,13 @@ bool NCReport::parseXMLResource()
 		_xml = sql->stringValue(0);
 		delete sql;
 	}
-		
+
 	if ( _xml.isEmpty() ) {
 		flagError = true;
 		errorMsg = tr("Report definition is empty!");
 		return false;
 	}
-	
+
     QXmlInputSource source;
 
 	source.setData( _xml );
@@ -449,13 +449,13 @@ bool NCReport::loadResourceFromFile( QString& txt, const QString& filename )
 		errorMsg = tr("Cannot open file %1").arg( filename.left(60) );
 		return false;
 	}
-			
+
 	QTextStream ts( &txtFile );
 	if ( !encoding.isNull() )	{ // set encoding
 		QTextCodec *c = QTextCodec::codecForName( encoding.toLatin1() );
 		if ( c ) ts.setCodec( c );
 	}
-	txt = ts.readAll();	
+	txt = ts.readAll();
 	txtFile.close();
 
 	return true;
@@ -491,7 +491,7 @@ void NCReport::copyQueryListToDataDef()
 	dataDef->Queries->queries.setAutoDelete( true );
 	dataDef->Queries->queries.clear();
 	dataDef->Queries->queries.setAutoDelete( false );
-	
+
 //	for ( QStringList::Iterator it = qryList.begin(); it != qryList.end(); ++it ) {
 //
 //		report_Query *curQuery = new report_Query( dataDef );
@@ -502,7 +502,7 @@ void NCReport::copyQueryListToDataDef()
 //		dataDef->Queries->queryCount +=1;
 //
 //	}
-	
+
 	report_Query *q;
 	for ( q= pQueries->queries.first(); q != 0; q = pQueries->queries.next() ) {
 		dataDef->Queries->queries.append( q );
@@ -519,8 +519,8 @@ bool NCReport::printerSetup( QPrinter *pr )
 		pr->setOutputFileName( outputFileName );
 		//pr->setResolution( 600 );
 	}
-	pr->setFullPage( true ); 
-	pr->setOrientation( pageOrientation == Portrait ? QPrinter::Portrait : QPrinter::Landscape );	
+	pr->setFullPage( true );
+	pr->setOrientation( pageOrientation == Portrait ? QPrinter::Portrait : QPrinter::Landscape );
 	pr->setPageSize( printerPageSize );
 	if ( isforcecopies ) {
 		_numforcecopies = _numcopies;
@@ -530,7 +530,7 @@ bool NCReport::printerSetup( QPrinter *pr )
 		_numforcecopies = 1;
 		pr->setNumCopies( _numcopies );
 	}
-		
+
    	//if ( showPrintDialog || alwaysShowPrintDialog ) {
 	if ( reportOutput == Printer && showPrintDialog ) {
     	//if ( !pr->setup() )
@@ -540,7 +540,7 @@ bool NCReport::printerSetup( QPrinter *pr )
 			_numcopies = ( isforcecopies ? _numforcecopies : pr->numCopies() );
 		} else
 			return false;
-			
+
 	} else {
 		//pr->setMinMax(0,0);
 		//pr->setFromTo(0,0);
@@ -563,7 +563,7 @@ void NCReport::reportProcess()
 	QPainter paint;
 	pa = &paint;		// save QPainter pointer
 	pr = 0;
-	
+
 	setPageSize( pageSize );	// size setting
 
 	if ( reportOutput == Printer || reportOutput == Pdf ) {
@@ -585,7 +585,7 @@ void NCReport::reportProcess()
 
 	QTime t;
     t.start();                          // start clock
-	
+
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
 	//NCPictureList *piclist =0;
@@ -649,10 +649,10 @@ void NCReport::reportProcess()
 				delete pr;
 			return;
 		}
-		
-	}	
+
+	}
 	// report begining
-	_init = true;		
+	_init = true;
 	/*****************************
 	(Force) iteration
 	*****************************/
@@ -688,7 +688,7 @@ void NCReport::reportProcess()
 			}
 			initNewPage();
 			drawOverPageObjects();
-			
+
 			handleGroupHeader();
 
 			if ( flagEndReport ) { //2004 04 27
@@ -753,7 +753,7 @@ void NCReport::reportProcess()
 	if (reportOutput == Preview) {
 	    //NCPreview *previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, AppMainWindow()->windowContainer(), "prw", Qt::WDestructiveClose );
 		//previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, 0, "prw", WDestructiveClose );
-		previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, 0, "prw", 0, iconFactory );		
+		previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, 0, "prw", 0, iconFactory );
 		previewForm->setAttribute( Qt::WA_DeleteOnClose );
 		previewForm->setWindowModality( Qt::ApplicationModal );
 		previewForm->setReport( this );
@@ -782,7 +782,7 @@ void NCReport::initNewPage()
 		//picPages.append( new QPicture );	//append new preview page
 		QPicture *pic = new QPicture;
 		piclist.append( pic );	//append new preview page
-		
+
 		if ( paintBegin )
 			pa->end();
 		paintBegin = pa->begin( pic );
@@ -802,7 +802,7 @@ void NCReport::initNewPage()
 	_globalPosX =0;
 	_globalPosY =0;
 	startY =0;	//section coordinate
-	
+
 	// 2004.01.23 switched to metric system
 	dpiX = pa->device()->logicalDpiX();
 	dpiY = pa->device()->logicalDpiY();
@@ -855,7 +855,7 @@ void NCReport::drawOverPageObjects()
 	//////////////////////////////////
 //	if ( overPageObjects.count() > 0 )
 //		initNewPage();
-	
+
 #ifdef RICHTEXT_DEBUG_ON
 	    qDebug( "drawOverPageObjects() ..." );
 #endif
@@ -884,7 +884,7 @@ void NCReport::drawReport()
 bool NCReport::drawPageHeader( )
 {
 	bool ok = true;
-	
+
 	//p->setViewport( leftMargin, topMargin, pageWidth, pageHeader->height );
 	//p->setClipping( true );
 	if ( dataDef->pageHeader->height > _pageHeight ) {	// if true, than something wrong (ex. bad height of page)
@@ -913,7 +913,7 @@ bool NCReport::drawPageHeader( )
 
 		for (int i = 0; i < dataDef->pageHeader->objects.size(); ++i)
 			drawObject( dataDef->pageHeader->objects.at(i) );
-		
+
 		if ( reportOutput == XML )
 			currentElement = prevElement;
 
@@ -942,7 +942,7 @@ bool NCReport::drawPageFooter( )
 
 	if ( dataDef->pageFooter->height>0 && dataDef->pageFooter->height < pageHeight - dataDef->pageHeader->height ) {
 
-		translate_position( toPixelX( leftMargin ), toPixelY( pageFooterY ), FALSE );	//relative, 
+		translate_position( toPixelX( leftMargin ), toPixelY( pageFooterY ), FALSE );	//relative,
 		//Page footer tartalma:
 
 		QDomElement prevElement = currentElement;
@@ -981,7 +981,7 @@ void NCReport::handleGroupHeader( )
 	*/
 	for (int i = 0; i < dataDef->Groups->groups.size(); ++i) {
 		report_Group *group = dataDef->Groups->groups.at(i);
-			
+
 		//if (group->needDrawGroupHeader ) {
 		if ( group->state == report_Group::closed ) {
 			#ifdef REPORT_DEBUG_ON
@@ -1047,7 +1047,7 @@ bool NCReport::drawGroupFooter( report_Group *gr )
 	if ( startY + gFooter->height < pageFooterY ) {
 		//groupHeader tartalma:
 		//gFooter->drawTryAgain = false;
-		
+
 		/**********************************
 			2003.02.07	Run Footer queries !!
 		***********************************/
@@ -1055,7 +1055,7 @@ bool NCReport::drawGroupFooter( report_Group *gr )
 
 		execQueries( qit, 'G' );
 		_updateFieldValues( true, report_Field::atGroupFooter );
-		
+
 		QDomElement prevElement = currentElement;
 		if ( reportOutput == XML )
 		{
@@ -1064,7 +1064,7 @@ bool NCReport::drawGroupFooter( report_Group *gr )
 			currentElement = newElement;
 		}
 
-		for (int i = 0; i < gFooter->objects.size(); ++i) 
+		for (int i = 0; i < gFooter->objects.size(); ++i)
 			drawObject( gFooter->objects.at(i) );
 
 		if ( reportOutput == XML )
@@ -1111,7 +1111,7 @@ bool NCReport::drawGroupHeader( report_Group *gr )
 			currentElement = newElement;
 		}
 
-		for (int i = 0; i < gHeader->objects.size(); ++i) 
+		for (int i = 0; i < gHeader->objects.size(); ++i)
 			drawObject( gHeader->objects.at(i) );
 
 		if ( reportOutput == XML )
@@ -1151,7 +1151,7 @@ bool NCReport::drawDetail( )
 			currentElement = newElement;
 		}
 
-		for (int i = 0; i < dataDef->Detail->objects.size(); ++i) 
+		for (int i = 0; i < dataDef->Detail->objects.size(); ++i)
 			drawObject( dataDef->Detail->objects.at(i), TRUE );
 
 		if ( reportOutput == XML )
@@ -1187,7 +1187,7 @@ void NCReport::drawObject( report_ElementObject *obj, bool checkPrintDone )
 			return;
 	}
 	//pa->save();
-			
+
 	if (obj->etype == "label") {
 		_drawLabel( (report_Label *)obj );
 	}
@@ -1213,17 +1213,17 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 {
 	bool continueFromLastPage = (obj->printedSnip > 0);
 	QString printableText;
-	
+
 	if ( continueFromLastPage ) {
 		printableText = ( isField ? obj->displayValue : obj->text);
 	} else {
 		if ( !isField )
 			_evalParameters( obj->text );
-		
+
 		if ( !textFromResource( printableText, obj, isField ) )
 			return;
 	}
-	
+
 	if ( printableText.isEmpty() )
 		return;
 
@@ -1269,13 +1269,13 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 		reportLog( tr("Draw Field %1 ='%2'").arg( obj->name ).arg( obj->displayValue ) );
 	else
 		reportLog( tr("Draw Label %1 ='%2'").arg( obj->name ).arg( obj->text ) );
-	
+
 	int trim = 0;
 	if ( reportOutput == Printer || reportOutput == Pdf )
 		trim = trimFont_prn;
 	else
 		trim = trimFont_pvw;
-		
+
 	QFont f;
 	if ( obj->fontName.isNull() )
 		f.setFamily( defaultFontName );
@@ -1318,7 +1318,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 		else
 			h = fm.height();	// high resolution
 	}
-	
+
 	if (obj->rotation > 0) {	// rotation, other transformations
 		//pa->save();
 		//pa->rotate( obj->rotation );
@@ -1335,7 +1335,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 	//
 	//----------------------
 	if ( obj->dynamicHeight ) {
-		
+
 		QRectF textView;
 		bool overPage = false;   //object to be continued in the next page
 		int printedHeight =0;
@@ -1348,7 +1348,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 			#ifdef RICHTEXT_DEBUG_ON
 				qDebug("-------------- RichText printing... ---------------" );
 			#endif
-			
+
 			//if ( obj->printedSnip == 0 ) {
 			if ( !obj->richText ) {
 				obj->richText = new QTextDocument;
@@ -1366,7 +1366,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 				obj->richText->setPageSize( QSizeF(w,spaceToEOP) );
 
 			}
-		
+
 			printableSnip = qRound(obj->richText->size().height()) - obj->printedSnip;
 			#ifdef RICHTEXT_DEBUG_ON
 				qDebug("Text: %s...", printableText.left(40).latin1() );
@@ -1388,11 +1388,11 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 					#ifdef RICHTEXT_DEBUG_ON
 						qDebug("No place in page!\ntextView: x:%i y:%i w:%i h:%i - printedHeight=%i", textView.x(), textView.y(), textView.width(), textView.height(), printedHeight );
 					#endif
-					
+
 				} else {
 					// have place in page, higher than section
 					printedHeight = printableSnip;
-					
+
 					// must expand section height by difference of section height and text real height
 					//dynamicSectionIncrement = printedHeight - toPixelY(currentSection->height) + toPixelY( obj->posY );
 					int dynamicSectionIncrement_last = dynamicSectionIncrement;
@@ -1415,7 +1415,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 					qDebug("There is enough place inside the section." );
 				#endif
 			}
-			
+
 			////////////////
 			// DRAW
 			////////////////
@@ -1432,7 +1432,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 			textView.setRect( 0, 0, w, printedHeight );	// object view rectangle
 			textView.translate( 0, obj->printedSnip );
 			if ( continueFromLastPage )
-				y -= obj->printedSnip;			
+				y -= obj->printedSnip;
 			//pa->resetMatrix();
 			pa->translate( x, y );
 			//obj->richText->draw( pa, _globalPosX + toPixelX( obj->posX ), _globalPosY+(continueFromLastPage ? 0 : toPixelY( obj->posY )), textView, cg );
@@ -1457,7 +1457,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 			}
 			//obj->richText->drawContents( pa );
 			pa->translate( -x, -y );
-			
+
 			if ( flagNewPage ) {
 				//object to be continued in the next page
 				obj->printedSnip += printedHeight; // increase printed Snip
@@ -1478,15 +1478,15 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 				}
 
 			}
-			
+
 		} else {
 			// non richtext, but dynamic
 			// SIMPLE TEXT
-			textView = fm.boundingRect( _globalPosX + toPixelX( obj->posX ), _globalPosY + toPixelY( obj->posY ), 
+			textView = fm.boundingRect( _globalPosX + toPixelX( obj->posX ), _globalPosY + toPixelY( obj->posY ),
 										w, h, aflag, printableText );
 		}
-		
-		
+
+
 	} else {
 		if ( obj->isRichText ) {
 			QTextDocument richText;
@@ -1532,12 +1532,12 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 	}
 }
 
-	//pa->drawText( _globalPosX + toPixelX( obj->posX ), _globalPosY + toPixelY( obj->posY ), w, h, 
-	//				obj->wordbreak ? 
-	//				obj->alignmentH | obj->alignmentV | Qt::TextWrapAnywhere //Qt::TextWordWrap 
-	//				: 
+	//pa->drawText( _globalPosX + toPixelX( obj->posX ), _globalPosY + toPixelY( obj->posY ), w, h,
+	//				obj->wordbreak ?
+	//				obj->alignmentH | obj->alignmentV | Qt::TextWrapAnywhere //Qt::TextWordWrap
+	//				:
 	//				obj->alignmentH | obj->alignmentV ,
-	//			//aflag, 
+	//			//aflag,
 	//			( isField ) ? obj->displayValue : obj->text );
 
 void NCReport::_drawRichText( report_Label *, bool )
@@ -1575,7 +1575,7 @@ void NCReport::_drawRectangle( report_Rectangle *obj )
 	QBrush b( linearGrad );
 	pa->setBrush( b );
 */
-		
+
 	if ( obj->roundValue > 0 )
 		pa->drawRoundRect( _globalPosX+toPixelX( obj->posX ), _globalPosY+toPixelY( obj->posY ), toPixelX( obj->width ), toPixelY( obj->height ), obj->roundValue, obj->roundValue );
 	else
@@ -1602,7 +1602,7 @@ void NCReport::_drawPixmap( report_Pixmap *obj )
 
      // teszt
 	if (reportOutput == Preview) {
-		//return;		
+		//return;
 	}
 	//-----------------------------
 	// QT4 ?
@@ -1613,7 +1613,7 @@ void NCReport::_drawPixmap( report_Pixmap *obj )
 			qDebug("Paint pixmap: ...");
 		#endif
 		reportLog( tr("Paint pixmap ...") );
-		
+
 		#ifdef REPORT_DEBUG_ON
 			qDebug("Scale pixmap: ...");
 		#endif
@@ -1621,13 +1621,13 @@ void NCReport::_drawPixmap( report_Pixmap *obj )
 			im = im.scaledToHeight( toPixelY(obj->height) );
 		else if ( obj->width>0 && obj->height==0 )
 			im = im.scaledToWidth( toPixelX(obj->width) );
-	
+
 		#ifdef REPORT_DEBUG_ON
 			qDebug("Draw pixmap: ...");
 		#endif
 		if ( obj->width>0 && obj->height>0 )
 			pa->drawPixmap( _globalPosX+toPixelX( obj->posX ), _globalPosY+toPixelY( obj->posY ), toPixelX(obj->width), toPixelY(obj->height), im );
-		else	
+		else
 			pa->drawPixmap( _globalPosX+toPixelX( obj->posX ), _globalPosY+toPixelY( obj->posY ), im );
 	}
 	//QImage im;
@@ -1662,7 +1662,7 @@ void NCReport::_setPenAndStyle( report_GeometricObject *obj )
 	}
 	if (trim == 0.0) trim =1.0;
 	lWidth *= trim;
-	
+
 	QPen pen( obj->lineColor, lWidth, obj->lineStyle);
 	pa->setPen( pen );
 	if ( obj->fillStyle == report_GeometricObject::transparent)
@@ -1695,11 +1695,11 @@ void NCReport::nextRecord()
 			recno++;
 			flagFirstRecord = false;
 	} else if ( dataSource == Text ) {
-		
+
 		if ( resourceStream.atEnd() )
 			flagEndReport = true;
 		if ( !flagEndReport ) {
-			
+
 			if ( prevRecordPending ) // step to previous occured. we musn't readLine() again
 				currentTextRow = nextTextRow;
 			else {
@@ -1712,7 +1712,7 @@ void NCReport::nextRecord()
 		}
 	}
 	prevRecordPending = false;
-	
+
 }
 
 
@@ -1745,8 +1745,8 @@ void NCReport::prevRecord()
 			flagEndReport = false;
 		}
 	} else if ( dataSource == Text ) {
-		
-		if ( recno <= 0 ) 
+
+		if ( recno <= 0 )
 			flagFirstRecord = true;
 		else {
 			nextTextRow = currentTextRow;
@@ -1780,7 +1780,7 @@ void NCReport::_updateFieldValues( bool aTypeOnly, report_Field::refreshTypes t 
 			//		return;
 			//}
 		}
-        
+
 		_evalFieldExp( field );
 	 }
 
@@ -1800,19 +1800,19 @@ void NCReport::_evalFieldExp( report_Field * fld )
 	#ifdef REPORT_DEBUG_ON
 		qDebug( "_evalFieldExp ... %s type: %i", qPrintable(fld->text), fld->fieldType );
 	#endif
-	
+
 	bool setValueType = FALSE;
 
 	switch ( fld->fieldType ) {
 	case report_Field::sysvar :
 		fld->displayValue = systemVariable( fld->text );
-		break;	
+		break;
 	case report_Field::variable :
 		{
 			#ifdef REPORT_DEBUG_ON
 				qDebug( "Variable %s num.value = %f", qPrintable(fld->name), fld->numValue );
 			#endif
-			
+
 			report_Variable *var = dataDef->Variables[ fld->text ];		//get variable from Variables (QDict)
 
 			if ( var ) {
@@ -1840,8 +1840,8 @@ void NCReport::_evalFieldExp( report_Field * fld )
 	case report_Field::parameter :
 		{
 		fld->displayValue = getParameterValue( fld->text );
-		setValueType = TRUE;	
-		
+		setValueType = TRUE;
+
 		break;
 		}
 	case report_Field::lookup :
@@ -1852,10 +1852,10 @@ void NCReport::_evalFieldExp( report_Field * fld )
 			lc = lookupClasses[fld->lookupClass];
 			if (!lc)
 				break;
-			
+
 			fld->displayValue = lc->lookupResult( getSqlColumnValue( fld->text, dataSource ), DataSession[ masterAlias ]->record() );	// execute lookup class
-			setValueType = TRUE;	
-			
+			setValueType = TRUE;
+
 		}
 		break;
 		}
@@ -1868,7 +1868,7 @@ void NCReport::_evalFieldExp( report_Field * fld )
 		}
 	case report_Field::invalid :
 		break;
-		
+
 	}	// end master switch
 
 	//fld->displayValue = retVal;
@@ -1887,7 +1887,7 @@ void NCReport::_evalFieldExp( report_Field * fld )
 					fld->displayValue = QDateTime::fromString( fld->displayValue, Qt::ISODate ).toString( fld->dateFormat );
 				break;
 		}
-	}	
+	}
 	if ( !fld->callFunction.isNull() )
 		_evalFunction( fld );
 	if ( !fld->embedString.isNull() )
@@ -1926,7 +1926,7 @@ QString NCReport::getParameterValue( const QString & pname )
 		qDebug( "getParameterValue(%s)=%s", qPrintable(pname), qPrintable(rv) );
 	#endif
 	reportLog( tr("getParameterValue(%1)=%2").arg(pname).arg(rv) );
-	return rv;	
+	return rv;
 }
 
 void NCReport::_setFieldNumDisplayValue( report_Field *fld, double dVal )
@@ -1938,26 +1938,26 @@ void NCReport::_setFieldNumDisplayValue( report_Field *fld, double dVal )
 		int fw = 0;
 		char fmt = 'f';
 		int prec = 2;
-		
+
 		if ( fld->numDecimals >=0 )
 			prec =  fld->numDecimals;
 		else {
 			if ( dVal == (int)dVal )
 				prec =0;		// avoid to show 0 decimals
 		}
-		
-		if ( fld->numFormat.isEmpty() ) 
+
+		if ( fld->numFormat.isEmpty() )
 			fld->displayValue = QString::number( dVal, fw, prec );
 		else {
 			// Format rules by QString::arg(...)
 			// FORMAT: %L1;0f2
 			// %L1  : local number format
-			// 0f2 : 0=fieldwidth f=float 2=decimals  
+			// 0f2 : 0=fieldwidth f=float 2=decimals
 			// if decimals is empty this is automatic
 			QString l;
 			QString r;
 			if (fld->numFormat.startsWith('%') ) {
-				
+
 				if ( fld->numFormat.contains(';') ) {
 					l=fld->numFormat.section( ';', 0,0);
 					r=fld->numFormat.section( ';', 1,1);
@@ -1965,10 +1965,10 @@ void NCReport::_setFieldNumDisplayValue( report_Field *fld, double dVal )
 					// Old format code like "%9.2f"
 					fw = fld->numFormat.section('.', 0,0).mid(1).toInt();
 					fmt = fld->numFormat.right(1).at(0).toAscii();
-					prec = fld->numFormat.section('.', 1,1).left(1).toInt();	
+					prec = fld->numFormat.section('.', 1,1).left(1).toInt();
 				}
-				
-			} else 
+
+			} else
 				r = fld->numFormat;
 
 			if ( !r.isEmpty() ) {
@@ -1977,15 +1977,15 @@ void NCReport::_setFieldNumDisplayValue( report_Field *fld, double dVal )
 				prec = ( r.at(2).isNull() ? -1 : r.at(2).digitValue() );
 			}
 
-			if ( l.isEmpty() ) 
+			if ( l.isEmpty() )
 				fld->displayValue = QString::number( dVal, fw, prec );
 			else
 				fld->displayValue = l.arg( dVal, fw, fmt, prec );
-			
-			
+
+
 			//fld->displayValue = formatNumber( dVal, fld->numFormat.toLatin1(), fld->numSeparation, fld->numSeparator, fld->numDigitPoint );
-			//fld->displayValue = QString( "%L1").arg(number,0,'f',2);	
-			//fld->displayValue = QString(fld->numFormat).arg(number,0,'f',2);	
+			//fld->displayValue = QString( "%L1").arg(number,0,'f',2);
+			//fld->displayValue = QString(fld->numFormat).arg(number,0,'f',2);
 		}
 
 	}
@@ -2063,14 +2063,14 @@ QVariant NCReport::getSqlColumnValue( const QString & exp, DataSource ds )
 		}
 		if ( DataSession[ _sessionname ] )	// van -e ilyen session?  !!!!!!!!!!
 			f = DataSession[ _sessionname ]->value( _columnname );
-	
+
 		if ( f.type() == QVariant::String )
 			//return QVariant( tr(f.toString()) );
 			return f;
 	} else if ( ds == Text ) {
 		int pos = exp.toInt();
 		f = QVariant( currentTextRow.section(textDataDelimiter,pos,pos) );
-	}		
+	}
 	return f;
 }
 
@@ -2090,11 +2090,11 @@ QString NCReport::getSqlColumnStringValue( const QString & exp, DataSource ds )
 		}
 		if ( DataSession[ _sessionname ] )	// van -e ilyen session?  !!!!!!!!!!
 			val = DataSession[ _sessionname ]->stringValue( _columnname );
-		
+
 	} else if ( ds == Text ) {
 		int pos = exp.toInt();
 		val = currentTextRow.section(textDataDelimiter,pos,pos);
-	}		
+	}
 	return val;
 }
 
@@ -2248,7 +2248,7 @@ void NCReport::_resetAllVariable()
 			it.value()->stringValue ="";
 		}
 	}
-}                         			
+}
 
 bool NCReport::execQueries( QListIterator<report_Query*>& it, const char qmode )
 {
@@ -2279,7 +2279,7 @@ bool NCReport::execQueries( QListIterator<report_Query*>& it, const char qmode )
 			errorMsg = tr("Master alias already exists. Alias name: %1").arg( obj->alias );
 			return false;
 		}
-        
+
 		DataSession[obj->alias] = ( database ? new NCSqlQuery(*database) : new NCSqlQuery() );	//add to QDict
 		QString _query = obj->queryString;
 		_evalParameters( _query );
@@ -2321,7 +2321,7 @@ bool NCReport::runQueryToFile()
 	}
 	if ( !found )
 		return false;
-    
+
 	QString _query = obj->queryString;
 	_evalParameters( _query );
 
@@ -2341,12 +2341,12 @@ bool NCReport::runQueryToFile()
 		return false;
 	QTextStream t( &f );
 	if ( !encoding.isEmpty() ) // set encoding
-		t.setCodec( QTextCodec::codecForName( encoding.toLatin1() ) );	
-	
+		t.setCodec( QTextCodec::codecForName( encoding.toLatin1() ) );
+
 	int record=0;
 	int fields=0;
 	bool firstrec = true;
-	
+
 	while ( sql.next() ) {
 		emit onProcess( record+1 ); // useful for an indicator
 		if (firstrec) {
@@ -2381,7 +2381,7 @@ bool NCReport::runQueryToFile()
 		record++;
 		qApp->processEvents();
 	}
-	f.close();	
+	f.close();
 	emit onProcess( reccount );
 
 	return true;
@@ -2401,13 +2401,13 @@ void NCReport::_evalParameters( QString & qry, const char emode )
 		_BTOKEN = NCREPORT_GPARAM_BEGINS;
 		_ETOKEN = NCREPORT_GPARAM_ENDS;
 	}
-		
-	
+
+
 	int noo = qry.count( _BTOKEN );
 	if (noo == 0)	// not found
 		return;
 
-	//int searchpos = 0;	
+	//int searchpos = 0;
 	for ( int i=1; i <= noo; i++ ) {
 		int beginpos = qry.indexOf( _BTOKEN, 0 );
 		int endpos = qry.indexOf( _ETOKEN, beginpos+1 );
@@ -2416,7 +2416,7 @@ void NCReport::_evalParameters( QString & qry, const char emode )
 		#ifdef REPORT_DEBUG_ON
 			qDebug("_evalQuery: beginpos=%i endpos=%i brutLength=%i parname=%s", beginpos, endpos, brutLength, qPrintable(parname) );
 		#endif
-		
+
 		parname = parname.mid( 3, brutLength - 4 );
 		#ifdef REPORT_DEBUG_ON
 			qDebug("_evalQuery: parname=%s", qPrintable(parname) );
@@ -2491,7 +2491,7 @@ bool NCReport::expressionParser( const QString & expr )
 	if ( !(_evalOperand( leftOperand, leftValue_string, leftValue_numeric, type_left ) &&
 		 _evalOperand( rightOperand, rightValue_string, rightValue_numeric, type_right ) ) )
 		return false;
-		
+
 	#ifdef REPORT_DEBUG_ON
 		qDebug("Operator: %s", token );
 		qDebug("Left operand: %s", qPrintable(leftOperand) );
@@ -2538,7 +2538,7 @@ bool NCReport::expressionParser( const QString & expr )
 		else
 	   		return ( leftValue_string != rightValue_string );
     }
-	
+
 	return false;
 }
 
@@ -2547,7 +2547,7 @@ bool NCReport::_evalOperand( const QString & operand, QString & sValue, double &
  	// Evaluates operand. if something invalid returns false
 	// sValue, nValue  variable references : we store result to this
 
-	// type = stores the type of the operand 
+	// type = stores the type of the operand
 	QChar fl = operand.at(0);
 
 	bool ok=false;
@@ -2590,11 +2590,11 @@ bool NCReport::_evalOperand( const QString & operand, QString & sValue, double &
 			// sql column
 			QVariant f = getSqlColumnValue( operand, dataSource );
 			//QString _type = QString( f.type );
-			
+
 			switch ( f.type() ) {
-			case QVariant::Int:			
-			case QVariant::UInt:			
-			case QVariant::Double:			
+			case QVariant::Int:
+			case QVariant::UInt:
+			case QVariant::Double:
 			case QVariant::LongLong: {
 				type = 'N';
 				nValue = f.toDouble();
@@ -2751,9 +2751,9 @@ void NCReport::setPageSize(  const QString& ps )
 			w = h;
 			h = _w;
 		}
-			
+
 	}
-		
+
 	if ( w>0 && h>0 ) {
 		//pageWidth_screen= w*4;
 		//pageHeight_screen= h*4;
@@ -2894,7 +2894,7 @@ void NCReport::reportLog( const QString& log )
 		return;
 	QTextStream t( &f );
 	t << log << "\n";
-	f.close();	
+	f.close();
 }
 
 NCPreview * NCReport::previewWidget( )
@@ -2962,7 +2962,7 @@ int NCReport::fixRichTextBreakPos( QTextDocument*, int )
 			break;
 		_ypos--;
 	}
-	
+
 	return _ypos;*/
 }
 
@@ -2983,7 +2983,7 @@ bool NCReport::textFromResource( QString & txt, report_Label * obj, bool isField
 	} else {
 		txt = ( isField ? obj->displayValue : obj->text);
 	}
-			
+
 	return true;
 }
 

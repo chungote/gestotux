@@ -182,7 +182,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/presupuestador</activedir>
+      <activedir>src</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -228,6 +228,10 @@
       <subclass uifile="src/ForPrefDb.ui" sourcefile="formprefdb.h" />
       <subclass uifile="utiles/EAyudaBase.ui" sourcefile="eayuda.cpp" />
       <subclass uifile="utiles/EAyudaBase.ui" sourcefile="eayuda.h" />
+      <subclass uifile="src/FormClienteBase.ui" sourcefile="formcliente.cpp" />
+      <subclass uifile="src/FormClienteBase.ui" sourcefile="formcliente.h" />
+      <subclass uifile="src/src.pro/FormPrefEmailBase.ui" sourcefile="formprefemail.cpp" />
+      <subclass uifile="src/src.pro/FormPrefEmailBase.ui" sourcefile="formprefemail.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

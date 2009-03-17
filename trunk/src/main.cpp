@@ -36,6 +36,7 @@
 #include "eenviobackup.h"
 #include "esplash.h"
 #include "emysql.h"
+#include "eemail.h"
 
 #define NOMBRE_CONEXION "gestotux"
 
@@ -130,7 +131,7 @@ int main(int argc, char *argv[])
       QSqlDatabase DB; bool fallosql = false;
       if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
       {
-	 //qWarning( "Usando mysql" );
+	 qWarning( "Usando mysql" );
 	 EMysql dialogo;
 	 dialogo.setDb( &DB );
 	 int ret = dialogo.exec();
@@ -242,6 +243,8 @@ int main(int argc, char *argv[])
 	// Inicio el hilo de envio del backup
 	EEnvioBackup envios( &app );
 	envios.start( QThread::IdlePriority );
+	/*EEmail email;
+	email.verificar();*/
 	mw->inicializar();
 	if( p->value( "maximizado", true ).toBool() )
 	{

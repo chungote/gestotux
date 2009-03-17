@@ -24,6 +24,7 @@
 #include "eventana.h"
 #include "ui_FormNuevoPresupuestoBase.h"
 class EEditor;
+class EMAutos;
 
 class FormNuevoPresupuesto : public EVentana, private Ui::FormNuevoPresupuestoBase
 {
@@ -38,6 +39,10 @@ protected slots:
 
 private:
 	EEditor *editor;
+	EMAutos *modeloautos;
+
+private slots:
+    void filtrarPorCliente( int indice );
 };
 
 #endif

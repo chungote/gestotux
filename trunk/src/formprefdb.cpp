@@ -44,7 +44,16 @@ void FormPrefDb::cargar()
  RBInterna->setChecked( p->value( "dbInterna", true ).toBool() );
  RBExterna->setChecked( p->value( "dbExterna", false ).toBool() );
  LEHost->setText( p->value( "mysql/host" ).toString() );
+ if( p->contains( "mysql/puerto" ) )
+ {
+  SBPuerto->setValue( p->value( "mysql/puerto", 3306 ).toInt() );
+ }
  LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
+ if( p->contains( "mysql/contra" ) )
+ {
+  CkBPass->setChecked( true );
+  LEPass->setText( p->value( "mysql/contra", "desconocido" ).toString() );
+ }
  LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
  CBFrecuencia->setCurrentIndex( p->value( "frecuenciaBackup", 1 ).toInt() );
  p->endGroup();
@@ -66,7 +75,23 @@ void FormPrefDb::guardar()
  p->setValue( "mysql/base", LEBaseDatos->text() );
  p->setValue( "mysql/usuario", LEUsuario->text() );
  p->setValue( "mysql/host", LEHost->text() );
- p->setValue( "frecuenciaBackup", CBFrecuencia->currentIndex() );
+ if( CkBPuerto->isChecked() )
+ {
+  p->setValue( "mysql/puerto", SBPuerto->value() );
+ }
+ if( CkBPass->isChecked() )
+ {
+  p->setValue( "mysql/contra", LEPass->text() );
+ }
+ if( !RBExterna->isChecked() )
+ {
+  p->setValue( "frecuenciaBackup", CBFrecuencia->currentIndex() );
+ }
+ else
+ {
+  // Si tiene una base de datos externa, el backup se hace en la base de datos
+  p->setValue( "frecuenciaBakup", 7 );
+ }
  p->endGroup();
  p->endGroup();
 }

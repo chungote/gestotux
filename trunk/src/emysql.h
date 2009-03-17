@@ -51,9 +51,7 @@ private:
 	QSqlDatabase *_db;
 
 private slots:
-    void avanzarBarra();
     void dbinterna();
-    void ajustarTam( bool estado );
 
 
 };
