@@ -1,5 +1,4 @@
 SUBDIRS += utiles \
- utiles/email \
  reporte/libncreport.pro \
  src/src.pro \
  plugins/plugins.pro \

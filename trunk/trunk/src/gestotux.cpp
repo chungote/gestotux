@@ -187,7 +187,7 @@ gestotux::~gestotux()
 void gestotux::salir()
 {
  //Cierro el sistema de email
-// servicioMail->apagarServicio();
+ //servicioMail->apagarServicio();
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "ventanaPrincipal" );
  p->setValue( "estado", saveState() );
@@ -572,9 +572,9 @@ void gestotux::cargar_traduccion( QString nombre_plugin )
 /*!
     \fn gestotux::iniciarServicioMail()
  */
-/*void gestotux::iniciarServicioMail()
+void gestotux::iniciarServicioMail()
 {
- servicioMail = new EEmail( this );
+/* servicioMail = EEmail::instancia();
  statusBar()->addPermanentWidget( servicioMail->barra() );
- servicioMail->verificar();
-}*/
+ servicioMail->verificar();*/
+}

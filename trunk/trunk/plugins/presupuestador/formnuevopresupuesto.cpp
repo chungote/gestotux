@@ -125,6 +125,7 @@ void FormNuevoPresupuesto::agregar()
  }
  //Agrego el registro
  MPresupuestos *presupuesto = new MPresupuestos( this );
+ presupuesto->setEditStrategy( QSqlTableModel::OnManualSubmit );
  QSqlRecord registro = presupuesto->record();
  registro.remove( 0 );
  registro.setValue( "fecha", DTFecha->date() );
@@ -145,40 +146,46 @@ void FormNuevoPresupuesto::agregar()
  if( presupuesto->insertRecord( -1, registro ) )
  {
   // Registro agregado correctamente
-  // obtengo el numero de presupuesto
-  int num_presupuesto = presupuesto->query().lastInsertId().toInt();
-  QMessageBox mensaje;
-  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
-
-  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
-  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
-
-  /*QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
-  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );*/
-
-  mensaje.addButton( tr( "Solo Guardar" ), QMessageBox::AcceptRole );
-
-  int ret = mensaje.exec();
-  switch( ret )
+  if( presupuesto->submit() )
   {
-   // Imprimir
-   case QMessageBox::ResetRole:
-   {
-	/*
- 	EReporte reporte;
- 	reporte.setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
- 	reporte.agregarParametro( "num_presupuesto", num_presupuesto );
- 	reporte.previsualizar();
-	*/
-	qWarning( "No implementado todavia." );
-	break;
-   }
-   // Enviar x email
-   case QMessageBox::ApplyRole:
-   default:
-    close();
-    break;
+    // obtengo el numero de presupuesto
+	  int num_presupuesto = presupuesto->query().lastInsertId().toInt();
+	  QMessageBox mensaje;
+	  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
+
+	  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
+	  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
+
+	  /*QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
+	  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );*/
+
+	  mensaje.addButton( tr( "Solo Guardar" ), QMessageBox::AcceptRole );
+
+	  int ret = mensaje.exec();
+	  switch( ret )
+	  {
+	   // Imprimir
+	   case QMessageBox::ResetRole:
+	   {
+		EReporte *reporte = new EReporte( this->parent()->parent() );
+		reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
+		reporte->agregarParametro( "num_presupuesto", num_presupuesto );
+		reporte->previsualizar();
+		break;
+	   }
+	   // Enviar x email
+	   case QMessageBox::ApplyRole:
+	   default:
+	    close();
+	    break;
+	  }
   }
+  else
+  {
+    // Error de submit
+    qWarning( "Error al hacer el submit de los datos" );
+    return;
+   }
  }
  else
  {
