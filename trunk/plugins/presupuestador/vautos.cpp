@@ -38,12 +38,11 @@ VAutos::VAutos(QWidget *parent)
  modelo = new MAuto( vista );
 
  vista->setModel( modelo );
- //vista->hideColumn( 6 );
- //vista->hideColumn( 7 );
- vista->setItemDelegateForColumn( 1, new QSqlRelationalDelegate( vista ) );
- //vista->setItemDelegateForColumn( 0, new EDPatente( vista ) );
- vista->setItemDelegateForColumn( 2, new EDMarca( vista ) );
- vista->setItemDelegateForColumn( 3, new EDModelo( vista ) );
+ vista->hideColumn( 0 );
+ vista->setItemDelegateForColumn( 2, new QSqlRelationalDelegate( vista ) );
+ vista->setItemDelegateForColumn( 1, new EDPatente( vista ) );
+ vista->setItemDelegateForColumn( 3, new EDMarca( vista ) );
+ vista->setItemDelegateForColumn( 4, new EDModelo( vista ) );
  //vista->setItemDelegateForColumn( 5, new EDColor( vista ) );
 
  modelo->select();

@@ -42,12 +42,12 @@ void EMAutos::filtrarPorCliente( int id_cliente )
  {
   if( id_cliente != -1 )
   {
-   	this->setQuery( QString( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
+   	this->setQuery( QString( "SELECT id_auto, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
 	return;
   }
   else
   {
-   	this->setQuery( "SELECT patente, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos" );
+   	this->setQuery( "SELECT id_auto, CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT( patente, ' - ' ) , marca ), ' ' ), modelo ), ' - ' ), color )  FROM autos" );
 	return;
   }
  }
@@ -55,12 +55,12 @@ void EMAutos::filtrarPorCliente( int id_cliente )
  {
   if( id_cliente != -1 )
   {
-   	this->setQuery( QString( "SELECT patente,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
+   	this->setQuery( QString( "SELECT id_auto,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos WHERE id_dueno = %1" ).arg( id_cliente ) );
 	return;
   }
   else
   {
-   	this->setQuery( "SELECT patente,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos" );
+   	this->setQuery( "SELECT id_auto,  patente || ' - ' || marca ||' '|| modelo || ' - ' || color   FROM autos" );
 	return;
   }
  }

@@ -72,15 +72,15 @@ QMAKE_CXXFLAGS_DEBUG += -ggdb \
 
 CONFIG -= release
 
-INCLUDEPATH += ../../src \
-  ../../reporte \
+
+
+TARGETDEPS += ../../bin/libncreport.a \
+  ../../bin/libutiles.a
+
+INCLUDEPATH += ../../reporte \
+  ../../src \
   ../../utiles
 
-LIBS += ../../bin/libncreport.a \
-  ../../bin/libemail.a \
-  ../../bin/libutiles.a
-
-TARGETDEPS += ../../bin/libemail.a \
-  ../../bin/libncreport.a \
-  ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+  ../../bin/libncreport.a
 

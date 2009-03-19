@@ -22,13 +22,14 @@
 #include <QDate>
 
 MPresupuestos::MPresupuestos(QObject *parent)
- : QSqlTableModel(parent)
+ : QSqlRelationalTableModel(parent)
 {
  setTable( "presupuesto" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Fecha" );
  setHeaderData( 2, Qt::Horizontal, "Kilometraje" );
  setHeaderData( 3, Qt::Horizontal, "Automovil" );
+ setRelation( 3, QSqlRelation( "autos", "id_auto", "patente" ) );
  setHeaderData( 4, Qt::Horizontal, "Total" );
  setHeaderData( 5, Qt::Horizontal, "Titulo" );
  setHeaderData( 6, Qt::Horizontal, "Contenido" );
@@ -36,6 +37,7 @@ MPresupuestos::MPresupuestos(QObject *parent)
  setHeaderData( 8, Qt::Horizontal, "Modificado" );
  setHeaderData( 9, Qt::Horizontal, "Imprimir" );
  setHeaderData( 10, Qt::Horizontal, "Envi@r" );
+ _soloLectura = false;
 }
 
 
@@ -59,17 +61,17 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 		{
 			case 1:
 			{
-				return QSqlTableModel::data(idx, role).toDate().toString( Qt::SystemLocaleDate );
+				return QSqlRelationalTableModel::data(idx, role).toDate().toString( Qt::SystemLocaleDate );
 				break;
 			}
 			case 2:
 			{
-			       return QString::number( QSqlTableModel::data(idx, role).toInt() ).append( " Km" );
+			       return QString::number( QSqlRelationalTableModel::data(idx, role).toInt() ).append( " Km" );
 			       break;
 			}
 			default:
 			{
-				return QSqlTableModel::data(idx, role);
+				return QSqlRelationalTableModel::data(idx, role);
 				break;
 			}
 		}
@@ -99,9 +101,34 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 	}
 	default:
 	{
-		return QSqlTableModel::data( idx, role);
+		return QSqlRelationalTableModel::data( idx, role);
 		break;
 	}
  }
 }
 
+
+
+/*!
+    \fn MPresupuestos:: flags ( const QModelIndex & index ) const
+ */
+Qt::ItemFlags MPresupuestos:: flags ( const QModelIndex & index ) const
+{
+ if( _soloLectura )
+ {
+  return QSqlRelationalTableModel::flags( index ) | Qt::ItemIsEditable;
+ }
+ else
+ {
+  return QSqlRelationalTableModel::flags( index );
+ }
+}
+
+
+/*!
+    \fn MPresupuestos::setearParaVista()
+ */
+void MPresupuestos::setearParaVista()
+{
+ _soloLectura = true;
+}

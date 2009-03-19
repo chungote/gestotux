@@ -115,10 +115,10 @@ private:
     static QHash<QString, EPlugin *> *_plugins;
     bool cargarPlugins();
     void crearBarraLateral();
-//    void iniciarServicioMail();
+    void iniciarServicioMail();
     QDir pluginsDir;
     QPluginLoader loader;
- //   EEmail *servicioMail;
+    EEmail *servicioMail;
 
 protected:
     void keyPressEvent( QKeyEvent *event );

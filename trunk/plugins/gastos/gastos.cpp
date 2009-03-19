@@ -47,6 +47,8 @@ bool Gastos::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "gastos" ) )
  { qWarning( "Error al buscar la tabla gastos" );	return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
+ { qWarning( "Error al buscar la tabla categorias" );	return false; }
  return true;
 }
 

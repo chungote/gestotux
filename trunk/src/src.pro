@@ -16,8 +16,7 @@ SOURCES += gestotux.cpp \
  everificabackup.cpp \
  barralateral.cpp \
  botoneslaterales.cpp \
- formcliente.cpp \
- formprefemail.cpp
+ formcliente.cpp
 HEADERS += gestotux.h \
  ebackup.h \
  eenviobackup.h \
@@ -38,8 +37,7 @@ HEADERS += gestotux.h \
  version.h \
  barralateral.h \
  botoneslaterales.h \
- formcliente.h \
- formprefemail.h
+ formcliente.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -59,11 +57,10 @@ FPrefGeneral.ui \
  FormActualizacionBase.ui \
  EMysql.ui \
  ForPrefDb.ui \
- FormClienteBase.ui \
- FormPrefEmailBase.ui
+ FormClienteBase.ui
 
-!include( cliente.pri ) {
- TARGET = gestotux
+!include( cliente.pri ){
+    TARGET = gestotux
 }
 #TARGET = gestotux
 
@@ -103,16 +100,18 @@ message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
 QT += webkit
-INCLUDEPATH += ../utiles/email \
-  ../reporte \
+
+
+TARGETDEPS += ../bin/libncreport.a \
+  ../bin/libutiles.a
+
+TARGET = gestotux
+
+INCLUDEPATH += ../reporte \
   ../utiles \
+  ../utiles/email \
   ../utiles/ui
 
 LIBS += ../bin/libncreport.a \
-  ../bin/libemail.a \
-  ../bin/libutiles.a
-
-TARGETDEPS += ../bin/libemail.a \
-  ../bin/libncreport.a \
   ../bin/libutiles.a
 

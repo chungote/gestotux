@@ -79,7 +79,7 @@ void FormModificarPresupuesto::setId( int row )
   dSBTotal->setValue( registro.value( "total" ).toDouble() );
   DTFecha->setDate( registro.value( "fecha" ).toDate() );
   editor->setHtml( registro.value( "contenido" ).toString() );
-//  CBAuto->setCurrentIndex( CBAuto->model()->index( registro.value( "id_auto" ).toString(), 0 ).toInt() );
+  CBAuto->setCurrentIndex( CBAuto->model()->index( registro.value( "id_auto" ).toInt(), 0 ).row() );
   //Busco el auto
   QSqlQuery cola( QString( "SELECT id FROM clientes, autos WHERE patente = %1 AND autos.id_dueno = clientes.id" ).arg( registro.value( "id_auto" ).toInt() ) );
   if( cola.next() )
@@ -93,6 +93,10 @@ void FormModificarPresupuesto::setId( int row )
   else
   { TBMemo->setText( registro.value( "memo" ).toString() );  GBMemo->setChecked( true ); }
   SBKilometraje->setValue( registro.value( "kilometraje" ).toDouble() );
+  if( !registro.value( "titulo" ).isNull() )
+  { LETitulo->setText( registro.value( "titulo" ).toString() ); CkBTitulo->setChecked( true ); }
+  else
+  { CkBTitulo->setChecked( true ); }
   indice = row;
 }
 

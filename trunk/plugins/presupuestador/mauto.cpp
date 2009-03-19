@@ -23,15 +23,16 @@ MAuto::MAuto(QObject *parent)
  : QSqlRelationalTableModel(parent)
 {
  setTable( "autos" );
- setHeaderData( 0, Qt::Horizontal, tr( "Patente" ) );
- setHeaderData( 1, Qt::Horizontal, tr( "Dueño" ) );
- setRelation( 1, QSqlRelation( "clientes", "id", "nombre" ) );
- setHeaderData( 2, Qt::Horizontal, tr( "Marca" ) );
- setHeaderData( 3, Qt::Horizontal, tr( "Modelo" ) );
- setHeaderData( 4, Qt::Horizontal, tr( "Año" ) );
- setHeaderData( 5, Qt::Horizontal, tr( "Color" ) );
- setHeaderData( 6, Qt::Horizontal, tr( "Modificado" ) );
- setHeaderData( 7, Qt::Horizontal, tr( "Creado" ) );
+ setHeaderData( 1, Qt::Horizontal, tr( "#ID" ) );
+ setHeaderData( 1, Qt::Horizontal, tr( "Patente" ) );
+ setHeaderData( 2, Qt::Horizontal, tr( "Dueño" ) );
+ setRelation( 2, QSqlRelation( "clientes", "id", "nombre" ) );
+ setHeaderData( 3, Qt::Horizontal, tr( "Marca" ) );
+ setHeaderData( 4, Qt::Horizontal, tr( "Modelo" ) );
+ setHeaderData( 5, Qt::Horizontal, tr( "Año" ) );
+ setHeaderData( 6, Qt::Horizontal, tr( "Color" ) );
+ setHeaderData( 7, Qt::Horizontal, tr( "Modificado" ) );
+ setHeaderData( 8, Qt::Horizontal, tr( "Creado" ) );
 }
 
 

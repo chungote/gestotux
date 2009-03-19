@@ -20,18 +20,23 @@
 #ifndef MPRESUPUESTOS_H
 #define MPRESUPUESTOS_H
 
-#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class MPresupuestos : public QSqlTableModel
+class MPresupuestos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
     MPresupuestos(QObject *parent = 0);
     ~MPresupuestos();
     QVariant data(const QModelIndex& idx, int role) const;
+    Qt::ItemFlags  flags ( const QModelIndex & index ) const;
+    void setearParaVista();
+
+private:
+    bool _soloLectura;;
 
 };
 
