@@ -34,6 +34,7 @@ public:
     QVariant data(const QModelIndex& idx, int role) const;
     Qt::ItemFlags  flags ( const QModelIndex & index ) const;
     void setearParaVista();
+    void setearParaModificar();
 
 private:
     bool _soloLectura;;

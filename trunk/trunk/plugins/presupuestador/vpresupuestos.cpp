@@ -33,6 +33,7 @@ VPresupuestos::VPresupuestos(QWidget *parent)
 
  modelo = new MPresupuestos( this );
  vista->setModel( modelo );
+ vista->hideColumn( 0 );
  vista->hideColumn( 6 );
  vista->hideColumn( 7 );
  vista->hideColumn( 8 );
@@ -40,6 +41,7 @@ VPresupuestos::VPresupuestos(QWidget *parent)
  vista->hideColumn( 10 );
  vista->hideColumn( 11 );
  modelo->select();
+ qobject_cast<MPresupuestos *>(modelo)->setearParaVista();
 
  addAction( ActAgregar );
  addAction( ActModificar );
@@ -85,6 +87,7 @@ void VPresupuestos::modificar()
    return;
  }
  FormModificarPresupuesto *form = new FormModificarPresupuesto();
+ //qobject_cast<MPresupuestos *>(modelo)->setearParaModificar();
  form->setModel( this->modelo );
  form->setId( indices.at(0).row() );
  // Consigo el numero de presupuesto que se quiere modificar

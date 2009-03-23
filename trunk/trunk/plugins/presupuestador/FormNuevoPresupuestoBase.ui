@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>FormNuevoPresupuestoBase</class>
- <widget class="QWidget" name="FormNuevoPresupuestoBase" >
-  <property name="geometry" >
+ <widget class="QWidget" name="FormNuevoPresupuestoBase">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,42 +10,48 @@
     <height>512</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3" >
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <widget class="QGroupBox" name="GBDatos" >
-     <property name="title" >
+    <widget class="QGroupBox" name="GBDatos">
+     <property name="title">
       <string>Datos</string>
      </property>
-     <property name="flat" >
+     <property name="flat">
       <bool>false</bool>
      </property>
-     <property name="checkable" >
+     <property name="checkable">
       <bool>false</bool>
      </property>
-     <property name="checked" >
+     <property name="checked">
       <bool>false</bool>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout" >
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2" >
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <layout class="QHBoxLayout" >
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QLabel" name="label_4" >
-            <property name="text" >
+           <widget class="QLabel" name="label_4">
+            <property name="text">
              <string>Fecha:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QDateTimeEdit" name="DTFecha" >
-            <property name="currentSection" >
-             <enum>QDateTimeEdit::MinuteSection</enum>
+           <widget class="QDateTimeEdit" name="DTFecha">
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
-            <property name="calendarPopup" >
+            <property name="currentSection">
+             <enum>QDateTimeEdit::DaySection</enum>
+            </property>
+            <property name="displayFormat">
+             <string>dd/MM/yyyy</string>
+            </property>
+            <property name="calendarPopup">
              <bool>true</bool>
             </property>
            </widget>
@@ -52,34 +59,34 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout" >
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QCheckBox" name="CkBTitulo" >
-            <property name="text" >
+           <widget class="QCheckBox" name="CkBTitulo">
+            <property name="text">
              <string>Titulo</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="LETitulo" />
+           <widget class="QLineEdit" name="LETitulo"/>
           </item>
          </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5" >
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QLabel" name="label_2" >
-          <property name="text" >
+         <widget class="QLabel" name="label_2">
+          <property name="text">
            <string>Cliente:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="CBCliente" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <widget class="QComboBox" name="CBCliente">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -89,18 +96,18 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3" >
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="label" >
-          <property name="text" >
+         <widget class="QLabel" name="label">
+          <property name="text">
            <string>Auto</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="CBAuto" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <widget class="QComboBox" name="CBAuto">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -108,32 +115,35 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7" >
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QLabel" name="label_3" >
-            <property name="text" >
+           <widget class="QLabel" name="label_3">
+            <property name="text">
              <string>Kilometraje</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="SBKilometraje" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+           <widget class="QSpinBox" name="SBKilometraje">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="alignment" >
+            <property name="styleSheet">
+             <string>font: 75 12pt &quot;Sans Serif&quot;;</string>
+            </property>
+            <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <property name="buttonSymbols" >
+            <property name="buttonSymbols">
              <enum>QAbstractSpinBox::PlusMinus</enum>
             </property>
-            <property name="suffix" >
+            <property name="suffix">
              <string> km</string>
             </property>
-            <property name="maximum" >
+            <property name="maximum">
              <number>99999999</number>
             </property>
            </widget>
@@ -146,50 +156,50 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="GBContenido" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
+    <widget class="QGroupBox" name="GBContenido">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="title" >
+     <property name="title">
       <string>Contenido</string>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_6" >
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QGroupBox" name="GBMemo" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
+      <widget class="QGroupBox" name="GBMemo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="title" >
+       <property name="title">
         <string>Observaciones</string>
        </property>
-       <property name="checkable" >
+       <property name="checkable">
         <bool>true</bool>
        </property>
-       <layout class="QGridLayout" name="gridLayout" >
-        <item row="0" column="0" >
-         <widget class="QTextBrowser" name="TBMemo" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QTextBrowser" name="TBMemo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="maximumSize" >
+          <property name="maximumSize">
            <size>
             <width>1671</width>
             <height>50</height>
            </size>
           </property>
-          <property name="readOnly" >
+          <property name="readOnly">
            <bool>false</bool>
           </property>
          </widget>
@@ -198,60 +208,46 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2" >
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4" >
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QLabel" name="label_5" >
-           <property name="text" >
-            <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600;">Total:&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Total:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="dSBTotal" >
-           <property name="autoFillBackground" >
+          <widget class="QDoubleSpinBox" name="dSBTotal">
+           <property name="autoFillBackground">
             <bool>false</bool>
            </property>
-           <property name="styleSheet" >
-            <string notr="true" >background-color: rgb(208, 208, 208);
-font: 14pt "Sans Serif";</string>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(208, 208, 208);
+font: 14pt &quot;Sans Serif&quot;;</string>
            </property>
-           <property name="alignment" >
+           <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
-           <property name="buttonSymbols" >
+           <property name="buttonSymbols">
             <enum>QAbstractSpinBox::PlusMinus</enum>
            </property>
-           <property name="correctionMode" >
+           <property name="correctionMode">
             <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
            </property>
-           <property name="prefix" >
+           <property name="prefix">
             <string>$ </string>
            </property>
-           <property name="maximum" >
+           <property name="maximum">
             <double>99999.990000000005239</double>
            </property>
           </widget>
          </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="CkBImprimir" >
-         <property name="text" >
-          <string>A Imprimir</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="CkBEmail" >
-         <property name="text" >
-          <string>Enviar por email</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </item>
@@ -267,11 +263,11 @@ font: 14pt "Sans Serif";</string>
    <receiver>LETitulo</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>161</x>
      <y>41</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>189</x>
      <y>44</y>
     </hint>
@@ -283,11 +279,11 @@ font: 14pt "Sans Serif";</string>
    <receiver>TBMemo</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>53</x>
      <y>425</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>57</x>
      <y>459</y>
     </hint>

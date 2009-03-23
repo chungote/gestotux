@@ -33,10 +33,7 @@ MPresupuestos::MPresupuestos(QObject *parent)
  setHeaderData( 4, Qt::Horizontal, "Total" );
  setHeaderData( 5, Qt::Horizontal, "Titulo" );
  setHeaderData( 6, Qt::Horizontal, "Contenido" );
- setHeaderData( 7, Qt::Horizontal, "Creado" );
  setHeaderData( 8, Qt::Horizontal, "Modificado" );
- setHeaderData( 9, Qt::Horizontal, "Imprimir" );
- setHeaderData( 10, Qt::Horizontal, "Envi@r" );
  _soloLectura = false;
 }
 
@@ -116,7 +113,7 @@ Qt::ItemFlags MPresupuestos:: flags ( const QModelIndex & index ) const
 {
  if( _soloLectura )
  {
-  return QSqlRelationalTableModel::flags( index ) | Qt::ItemIsEditable;
+  return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
  }
  else
  {
@@ -131,4 +128,13 @@ Qt::ItemFlags MPresupuestos:: flags ( const QModelIndex & index ) const
 void MPresupuestos::setearParaVista()
 {
  _soloLectura = true;
+}
+
+
+/*!
+    \fn MPresupuestos::setearParaModificar()
+ */
+void MPresupuestos::setearParaModificar()
+{
+ _soloLectura = false;
 }

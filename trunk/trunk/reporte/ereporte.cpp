@@ -112,3 +112,12 @@ void EReporte::agregarParametro( QString nombre, QVariant valor )
   }
  }
 }
+
+#include "ncpreview.h"
+/*!
+    \fn EReporte::ventana()
+ */
+QWidget * EReporte::ventana()
+{
+ return qobject_cast<QWidget *>( reporte->previewWidget()->centralWidget() );
+}

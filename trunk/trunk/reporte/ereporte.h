@@ -39,6 +39,7 @@ public:
     void aPdf();
     void previsualizar();
     void agregarParametro( QString nombre, QVariant valor );
+    QWidget * ventana();
 
 private:
 	NCReport *reporte;

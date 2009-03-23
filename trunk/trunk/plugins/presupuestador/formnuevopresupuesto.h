@@ -43,6 +43,9 @@ private:
 
 private slots:
     void filtrarPorCliente( int indice );
+
+signals:
+    void agregarVentana( QWidget * );
 };
 
 #endif
