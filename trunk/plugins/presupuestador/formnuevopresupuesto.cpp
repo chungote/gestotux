@@ -69,8 +69,6 @@ FormNuevoPresupuesto::FormNuevoPresupuesto(QWidget* parent, Qt::WFlags fl)
 	CBAuto->setCurrentIndex( -1 );
 
 
-	CkBImprimir->setChecked( true );
-	CkBEmail->setChecked( true );
 	setWindowTitle( "Nuevo Presupuesto" );
         LETitulo->setEnabled( CkBTitulo->isChecked() );
 	setObjectName( "NuevoPresupuesto" );
@@ -141,12 +139,11 @@ void FormNuevoPresupuesto::agregar()
  registro.setValue( "total", dSBTotal->value() );
  registro.setValue( "creado", QDateTime::currentDateTime() );
  registro.setValue( "modificado", QDateTime::currentDateTime() );
- registro.setValue( "imprimir", CkBImprimir->isChecked() );
- registro.setValue( "email", CkBEmail->isChecked() );
  if( presupuesto->insertRecord( -1, registro ) )
  {
   // Registro agregado correctamente
-  if( presupuesto->submit() )
+  // Obtengo el num de presupuesto antes de hacer "SUBMIT"
+  if( presupuesto->submitAll() )
   {
     // obtengo el numero de presupuesto
 	  int num_presupuesto = presupuesto->query().lastInsertId().toInt();
@@ -161,35 +158,39 @@ void FormNuevoPresupuesto::agregar()
 
 	  mensaje.addButton( tr( "Solo Guardar" ), QMessageBox::AcceptRole );
 
-	  int ret = mensaje.exec();
-	  switch( ret )
+	  mensaje.exec();
+	  if( mensaje.clickedButton() == Bimprimir )
 	  {
-	   // Imprimir
-	   case QMessageBox::ResetRole:
-	   {
-		EReporte *reporte = new EReporte( this->parent()->parent() );
+		// Imprimir
+		EReporte *reporte = new EReporte( this->parent() );
 		reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
 		reporte->agregarParametro( "num_presupuesto", num_presupuesto );
 		reporte->previsualizar();
-		break;
-	   }
-	   // Enviar x email
-	   case QMessageBox::ApplyRole:
-	   default:
-	    close();
-	    break;
+		this->close();
+	  }
+	  /*else if( mensaje.clickedButton() == Bemail )
+	  {
+		 // Enviar x email
+	  }*/
+          else
+	  {
+		close();
 	  }
   }
   else
   {
     // Error de submit
     qWarning( "Error al hacer el submit de los datos" );
+    qWarning( qPrintable( presupuesto->query().lastError().text() ) );
+    qWarning( qPrintable( presupuesto->query().lastQuery() ) );
     return;
    }
  }
  else
  {
-  qWarning( "No se pudo agregar el presupuesto" );
+  qWarning( "No se pudo agregar el presupuesto -  Error de insert" );
+  qWarning( qPrintable( presupuesto->query().lastError().text() ) );
+  qWarning( qPrintable( presupuesto->query().lastQuery() ) );
  }
 }
 

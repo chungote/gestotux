@@ -10,6 +10,6 @@ SUBDIRS += productos \
  compras \
  autodestruc \
  #aCarCorr \
- presupuestador \
+ presupuestador #\
  #HiComp \
- email
+ #email

@@ -30,6 +30,7 @@
 #include "mpresupuestos.h"
 #include "emcliente.h"
 #include "emautos.h"
+#include "ereporte.h"
 
 FormModificarPresupuesto::FormModificarPresupuesto( QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormNuevoPresupuestoBase()
@@ -86,8 +87,6 @@ void FormModificarPresupuesto::setId( int row )
   { CBCliente->setCurrentIndex( cola.record().value(0).toInt() ); }
   else
   { CBCliente->setCurrentIndex( -1 ); qDebug( qPrintable( "Error al conseguir el cliente" + cola.lastError().text() ) ); }
-  CkBImprimir->setChecked( registro.value( "imprimir" ).toBool() );
-  CkBEmail->setChecked( registro.value( "email" ).toBool() );
   if( registro.value( "memo" ).isNull() )
   { GBMemo->setChecked( false ); }
   else
@@ -138,6 +137,7 @@ void FormModificarPresupuesto::guardar()
   return;
  }
  //Agrego el registro
+ modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
  QSqlRecord registro = modelo->record( indice );
  registro.remove( 0 );
  registro.setValue( "fecha", DTFecha->date() );
@@ -147,39 +147,58 @@ void FormModificarPresupuesto::guardar()
  registro.setValue( "contenido", editor->contenido() );
  registro.setValue( "memo", TBMemo->document()->toHtml() );
  registro.setValue( "creado", QDateTime::currentDateTime() );
- registro.setValue( "imprimir", CkBImprimir->isChecked() );
- registro.setValue( "email", CkBEmail->isChecked() );
  if( modelo->setRecord( indice, registro ) )
  {
   // Registro agregado correctamente
-  // obtengo el numero de presupuesto
-  int num_presupuesto = modelo->query().lastInsertId().toInt();
-  QMessageBox mensaje;
-  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
-
-  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
-  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
-
-  /*QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
-  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );*/
-
-  mensaje.addButton( tr( "No hacer nada" ), QMessageBox::AcceptRole );
-
-  int ret = mensaje.exec();
-  switch( ret )
+  if( modelo->submitAll() )
   {
-   // Imprimir
-   case QMessageBox::Reset:
-   // Enviar x email
-   case QMessageBox::ApplyRole:
-   default:
-    close();
-    break;
-  }
+
+	  // obtengo el numero de presupuesto
+	  int num_presupuesto = modelo->query().lastInsertId().toInt();
+	  QMessageBox mensaje;
+	  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
+
+	  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
+	  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
+
+	  /*QPushButton *Bemail = mensaje.addButton( tr( "Enviar por email" ), QMessageBox::ApplyRole );
+	  Bemail->setIcon( QIcon( ":/imagenes/email.png" ) );*/
+
+	  mensaje.addButton( tr( "No hacer nada" ), QMessageBox::AcceptRole );
+
+	  mensaje.exec();
+	  if( mensaje.clickedButton() == Bimprimir )
+	  {
+		// Imprimir
+		EReporte *reporte = new EReporte( this->parent()->parent() );
+		reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
+		reporte->agregarParametro( "num_presupuesto", num_presupuesto );
+		reporte->previsualizar();
+		this->close();
+	  }
+	  /*else if( mensaje.clickedButton() == Bemail )
+	  {
+		 // Enviar x email
+	  }*/
+          else
+	  {
+		close();
+	  }
+   }
+   else
+   {
+  	// Error al hacer el submit con el modelo
+	qWarning( "Error al hacer el submit de los datos" );
+    	qWarning( qPrintable( modelo->query().lastError().text() ) );
+    	qWarning( qPrintable( modelo->query().lastQuery() ) );
+   }
  }
  else
  {
-  qWarning( "Error" );
+   qWarning( "Error al actualizar los datos del registro" );
+   qWarning( qPrintable( modelo->query().lastError().text() ) );
+   qWarning( qPrintable( modelo->query().lastQuery() ) );
+   return;
  }
 
 }
