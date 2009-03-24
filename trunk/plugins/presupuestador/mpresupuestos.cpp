@@ -21,20 +21,22 @@
 #include <QColor>
 #include <QDate>
 
-MPresupuestos::MPresupuestos(QObject *parent)
+MPresupuestos::MPresupuestos(QObject *parent, bool relacion )
  : QSqlRelationalTableModel(parent)
 {
  setTable( "presupuesto" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
+ setHeaderData( 0, Qt::Horizontal, "Num Presupuesto" );
  setHeaderData( 1, Qt::Horizontal, "Fecha" );
  setHeaderData( 2, Qt::Horizontal, "Kilometraje" );
  setHeaderData( 3, Qt::Horizontal, "Automovil" );
- setRelation( 3, QSqlRelation( "autos", "id_auto", "patente" ) );
  setHeaderData( 4, Qt::Horizontal, "Total" );
  setHeaderData( 5, Qt::Horizontal, "Titulo" );
  setHeaderData( 6, Qt::Horizontal, "Contenido" );
- setHeaderData( 8, Qt::Horizontal, "Modificado" );
- _soloLectura = false;
+ setHeaderData( 7, Qt::Horizontal, "Modificado" );
+ if( relacion )
+ {
+  setRelation( 3, QSqlRelation( "autos", "id_auto", "patente" ) );
+ }
 }
 
 
@@ -102,39 +104,4 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 		break;
 	}
  }
-}
-
-
-
-/*!
-    \fn MPresupuestos:: flags ( const QModelIndex & index ) const
- */
-Qt::ItemFlags MPresupuestos:: flags ( const QModelIndex & index ) const
-{
- if( _soloLectura )
- {
-  return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
- }
- else
- {
-  return QSqlRelationalTableModel::flags( index );
- }
-}
-
-
-/*!
-    \fn MPresupuestos::setearParaVista()
- */
-void MPresupuestos::setearParaVista()
-{
- _soloLectura = true;
-}
-
-
-/*!
-    \fn MPresupuestos::setearParaModificar()
- */
-void MPresupuestos::setearParaModificar()
-{
- _soloLectura = false;
 }

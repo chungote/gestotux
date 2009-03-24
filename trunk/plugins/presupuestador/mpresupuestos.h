@@ -29,15 +29,9 @@ class MPresupuestos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MPresupuestos(QObject *parent = 0);
+    MPresupuestos(QObject *parent = 0, bool relacion = true );
     ~MPresupuestos();
     QVariant data(const QModelIndex& idx, int role) const;
-    Qt::ItemFlags  flags ( const QModelIndex & index ) const;
-    void setearParaVista();
-    void setearParaModificar();
-
-private:
-    bool _soloLectura;;
 
 };
 

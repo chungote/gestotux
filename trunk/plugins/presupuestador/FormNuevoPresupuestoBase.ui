@@ -236,14 +236,23 @@ font: 14pt &quot;Sans Serif&quot;;</string>
            <property name="buttonSymbols">
             <enum>QAbstractSpinBox::PlusMinus</enum>
            </property>
+           <property name="specialValueText">
+            <string notr="true"/>
+           </property>
            <property name="correctionMode">
             <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
            </property>
            <property name="prefix">
             <string>$ </string>
            </property>
+           <property name="decimals">
+            <number>1</number>
+           </property>
            <property name="maximum">
-            <double>99999.990000000005239</double>
+            <double>1000000000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>0.000000000000000</double>
            </property>
           </widget>
          </item>
