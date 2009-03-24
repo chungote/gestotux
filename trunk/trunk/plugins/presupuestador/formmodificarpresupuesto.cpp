@@ -58,6 +58,8 @@ FormModificarPresupuesto::FormModificarPresupuesto( QWidget* parent, Qt::WFlags 
 	CBAuto->setModelColumn( 1 );
 	CBAuto->setCurrentIndex( -1 );
 
+	modelo = new MPresupuestos( this, false );
+
 	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), qobject_cast<EMAutos *>(CBAuto->model()), SLOT( filtrarPorCliente( int ) ) );
 }
 
@@ -65,7 +67,7 @@ FormModificarPresupuesto::~FormModificarPresupuesto()
 {
 }
 
-
+#include <QModelIndex>
 /*!
     \fn FormModificarPresupuesto::setId( int idDB )
  */
@@ -73,20 +75,22 @@ void FormModificarPresupuesto::setId( int row )
 {
   if( row < 0 )
   { qWarning( "Indice Invalido" ); }
-  qDebug( qPrintable( "Cargando fila: " + QString::number( row ) ) );
-  QSqlRecord registro = modelo->record( row );
-  if( !registro.isEmpty() <= 0 )
+  //qDebug( qPrintable( "Cargando id: " + QString::number( row ) ) );
+  modelo->setFilter( QString( "id_presupuesto = %1" ).arg( row ) );
+  modelo->select();
+  QSqlRecord registro = modelo->record(0);
+  if( registro.isEmpty() )
   { qWarning( "Sin registros" ); return; }
   dSBTotal->setValue( registro.value( "total" ).toDouble() );
   DTFecha->setDate( registro.value( "fecha" ).toDate() );
   editor->setHtml( registro.value( "contenido" ).toString() );
-  CBAuto->setCurrentIndex( CBAuto->model()->index( registro.value( "id_auto" ).toInt(), 0 ).row() );
+  CBAuto->setCurrentIndex( CBAuto->model()->match( CBAuto->model()->index( 0,0 ), Qt::DisplayRole, registro.value( "id_auto" ) ).at(0).row() );
   //Busco el auto
-  QSqlQuery cola( QString( "SELECT id FROM clientes, autos WHERE patente = %1 AND autos.id_dueno = clientes.id" ).arg( registro.value( "id_auto" ).toInt() ) );
-  if( cola.next() )
-  { CBCliente->setCurrentIndex( cola.record().value(0).toInt() ); }
+  QSqlQuery cola2( QString( "SELECT id FROM clientes, autos WHERE id_auto = %1 AND autos.id_dueno = clientes.id" ).arg( registro.value( "id_auto" ).toInt() ) );
+  if( cola2.next() )
+  { CBCliente->setCurrentIndex( CBCliente->model()->match( CBCliente->model()->index( 0,0 ), Qt::DisplayRole, cola2.record().value(0).toInt() ).at(0).row() ); }
   else
-  { CBCliente->setCurrentIndex( -1 ); qDebug( qPrintable( "Error al conseguir el cliente" + cola.lastError().text() ) ); }
+  { CBCliente->setCurrentIndex( -1 ); qDebug( qPrintable( "Error al conseguir el cliente - " + cola2.lastError().text() + " - " + cola2.lastQuery() ) ); }
   if( registro.value( "memo" ).isNull() )
   { GBMemo->setChecked( false ); }
   else
@@ -99,7 +103,7 @@ void FormModificarPresupuesto::setId( int row )
   indice = row;
 }
 
-
+#include <QSqlField>
 /*!
     \fn FormModificarPresupuesto::guardar()
  */
@@ -136,27 +140,36 @@ void FormModificarPresupuesto::guardar()
   QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un auto valido" );
   return;
  }
- //Agrego el registro
+ //Modifico el registro
  modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
- QSqlRecord registro = modelo->record( indice );
- registro.remove( 0 );
- registro.setValue( "fecha", DTFecha->date() );
- registro.setValue( "titulo", LETitulo->text() );
- registro.setValue( "id_auto", CBAuto->model()->data( CBAuto->model()->index( CBAuto->currentIndex(), 0 ) ).toString()  );
+ qDebug( qPrintable( modelo->filter() ) );
+ if( modelo->filter().isEmpty() )
+ { modelo->setFilter( QString( "id_presupuesto = %1" ).arg( indice ) ); modelo->select(); }
+ QSqlRecord registro = modelo->record( 0 );
+ if( registro.isEmpty() )
+ { qWarning( "Sin registros" ); return; }
+ registro.remove( registro.indexOf( "id_presupuesto" ) );
+ if( registro.contains( "fecha" ) )
+ { registro.setValue( "fecha", DTFecha->date() ); registro.field( "fecha" ).setGenerated( true ); }
+ if( CkBTitulo->isChecked() )
+ { registro.setValue( "titulo", LETitulo->text() ); }
+ else { registro.setValue( "titulo", "Presupuesto" ); }
+ registro.setValue( "id_auto", CBAuto->model()->data( CBAuto->model()->index( CBAuto->currentIndex(), 0 ) ).toInt() );
  registro.setValue( "kilometraje", SBKilometraje->value() );
- registro.setValue( "contenido", editor->contenido() );
- registro.setValue( "memo", TBMemo->document()->toHtml() );
- registro.setValue( "creado", QDateTime::currentDateTime() );
- if( modelo->setRecord( indice, registro ) )
+ registro.setValue( "contenido", editor->contenido( Qt::RichText ) );
+ if( GBMemo->isChecked() )
+ { registro.setValue( "memo", TBMemo->toPlainText() ); }
+ else  { registro.setNull( "memo" ); }
+ registro.setValue( "total", dSBTotal->value() );
+ /*registro.setValue( "creado", QDateTime::currentDateTime() );
+ registro.setValue( "modificado", QDateTime::currentDateTime() );*/
+ if( modelo->setRecord( 0, registro ) )
  {
   // Registro agregado correctamente
   if( modelo->submitAll() )
   {
-
-	  // obtengo el numero de presupuesto
-	  int num_presupuesto = modelo->query().lastInsertId().toInt();
 	  QMessageBox mensaje;
-	  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( num_presupuesto ) );
+	  mensaje.setText( QString( "El presupuesto se guardo correctamente con el numero %1.\n\n ¿Que desea hacer a continuacion?" ).arg( indice ) );
 
 	  QPushButton *Bimprimir = mensaje.addButton( tr( "Imprimir" ), QMessageBox::ResetRole );
 	  Bimprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
@@ -170,9 +183,9 @@ void FormModificarPresupuesto::guardar()
 	  if( mensaje.clickedButton() == Bimprimir )
 	  {
 		// Imprimir
-		EReporte *reporte = new EReporte( this->parent()->parent() );
+		EReporte *reporte = new EReporte( this->parent() );
 		reporte->setArchivo( "plugins/presupuestos/informe-presupuestador.xml" );
-		reporte->agregarParametro( "num_presupuesto", num_presupuesto );
+		reporte->agregarParametro( "num_presupuesto", indice );
 		reporte->previsualizar();
 		this->close();
 	  }
@@ -189,25 +202,17 @@ void FormModificarPresupuesto::guardar()
    {
   	// Error al hacer el submit con el modelo
 	qWarning( "Error al hacer el submit de los datos" );
-    	qWarning( qPrintable( modelo->query().lastError().text() ) );
+    	qWarning( qPrintable( "error type: " + QString::number( modelo->query().lastError().type() ) + " -  " + modelo->query().lastError().text() + " - Error num: " + QString::number( modelo->query().lastError().number() ) ) );
     	qWarning( qPrintable( modelo->query().lastQuery() ) );
    }
  }
  else
  {
    qWarning( "Error al actualizar los datos del registro" );
-   qWarning( qPrintable( modelo->query().lastError().text() ) );
+   qWarning( qPrintable( "error type: " + QString::number( modelo->query().lastError().type() ) + " -  " + modelo->query().lastError().text() + " - Error num: " + QString::number( modelo->query().lastError().number() ) ) );
    qWarning( qPrintable( modelo->query().lastQuery() ) );
+   qWarning( qPrintable( QSqlDatabase::database().lastError().text() ) );
    return;
  }
 
-}
-
-
-/*!
-    \fn FormModificarPresupuesto::setModel( QSqlTableModel *modelo )
- */
-void FormModificarPresupuesto::setModel( QSqlTableModel *modelo )
-{
- this->modelo = modelo;
 }

@@ -130,11 +130,11 @@ void FormNuevoPresupuesto::agregar()
  if( CkBTitulo->isChecked() )
  { registro.setValue( "titulo", LETitulo->text() ); }
  else { registro.setValue( "titulo", "Presupuesto" ); }
- registro.setValue( "id_auto", CBAuto->model()->data( CBAuto->model()->index( CBAuto->currentIndex(), 0 ) ).toString() );
+ registro.setValue( "id_auto", CBAuto->model()->data( CBAuto->model()->index( CBAuto->currentIndex(), 0 ) ).toInt() );
  registro.setValue( "kilometraje", SBKilometraje->value() );
  registro.setValue( "contenido", editor->contenido( Qt::RichText ) );
  if( GBMemo->isChecked() )
- { registro.setValue( "memo", TBMemo->document()->toPlainText() ); }
+ { registro.setValue( "memo", TBMemo->toPlainText() ); }
  else  { registro.setNull( "memo" ); }
  registro.setValue( "total", dSBTotal->value() );
  registro.setValue( "creado", QDateTime::currentDateTime() );
