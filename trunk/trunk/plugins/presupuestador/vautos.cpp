@@ -43,8 +43,6 @@ VAutos::VAutos(QWidget *parent)
  vista->setItemDelegateForColumn( 1, new EDPatente( vista ) );
  vista->setItemDelegateForColumn( 3, new EDMarca( vista ) );
  vista->setItemDelegateForColumn( 4, new EDModelo( vista ) );
- //vista->setItemDelegateForColumn( 5, new EDColor( vista ) );
-
  modelo->select();
 
  addAction( ActAgregar );

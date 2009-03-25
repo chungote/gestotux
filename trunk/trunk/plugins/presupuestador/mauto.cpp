@@ -43,5 +43,11 @@ MAuto::~MAuto()
 
 QVariant MAuto::data(const QModelIndex& item, int role) const
 {
-    return QSqlRelationalTableModel::data(item, role);
+  // Devuelvo el id para esta situacion, el combo del delegate lo necesita
+  /*if( item.column() == 2 )
+  {
+   return QSqlTableModel::data( item, Qt::EditRole ).toInt();
+  }
+  else*/
+  return QSqlRelationalTableModel::data(item, role);
 }

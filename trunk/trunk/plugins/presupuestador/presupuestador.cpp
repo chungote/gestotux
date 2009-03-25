@@ -39,7 +39,7 @@ bool presupuestador::inicializar()
 {
  Q_INIT_RESOURCE( presupuestador );
  // Genero las acciones y la lista
- ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
+ ActNuevoPresu = new QAction( "Nuevo Presupuesto", this );
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
