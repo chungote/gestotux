@@ -50,7 +50,7 @@ FILE *debug;
 	 fflush(debug);
          break;
      case QtWarningMsg:
-	QMessageBox::warning( 0, "Warning de aplicacion", msg );
+	//QMessageBox::warning( 0, "Warning de aplicacion", msg );
 	fprintf(debug, "warning: %s\n", msg);
 	 fflush(debug);
         break;

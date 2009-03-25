@@ -24,10 +24,11 @@ MClientes::MClientes( QObject *parent )
 {
  setTable( "clientes" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Apellido" );
- setHeaderData( 2, Qt::Horizontal, "Nombre" );
- setHeaderData( 3, Qt::Horizontal, "Direccion" );
- setHeaderData( 4, Qt::Horizontal, "Telefono/Celular" );
+ //setHeaderData( 1, Qt::Horizontal, "Apellido" );
+ this->removeColumn( 1 );
+ setHeaderData( 1, Qt::Horizontal, "Nombre" );
+ setHeaderData( 2, Qt::Horizontal, "Direccion" );
+ setHeaderData( 3, Qt::Horizontal, "Telefono/Celular" );
 }
 
 
