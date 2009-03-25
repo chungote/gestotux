@@ -21,7 +21,7 @@
 #include <QColor>
 #include <QDate>
 
-MPresupuestos::MPresupuestos(QObject *parent, bool relacion )
+MPresupuestos::MPresupuestos(QObject *parent, bool relacion, bool soloLectura )
  : QSqlRelationalTableModel(parent)
 {
  setTable( "presupuesto" );
@@ -37,6 +37,7 @@ MPresupuestos::MPresupuestos(QObject *parent, bool relacion )
  {
   setRelation( 3, QSqlRelation( "autos", "id_auto", "patente" ) );
  }
+ _soloLectura = soloLectura;
 }
 
 
@@ -104,4 +105,18 @@ QVariant MPresupuestos::data(const QModelIndex& idx, int role) const
 		break;
 	}
  }
+}
+
+
+/*!
+    \fn MPresupuestos:: flags ( const QModelIndex & index ) const
+ */
+Qt::ItemFlags MPresupuestos:: flags ( const QModelIndex & index ) const
+{
+ if( _soloLectura )
+ {
+  return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
+ }
+ else
+ { return QSqlRelationalTableModel::flags( index ); }
 }

@@ -239,8 +239,9 @@ void gestotux::createToolBar()
 
  _barraAcciones = new QToolBar( "Acciones", this );
  _barraAcciones->setObjectName( "BarraAcciones" );
- this->addToolBar( _barraAcciones );
+ this->addToolBar( Qt::RightToolBarArea, _barraAcciones );
  _barraAcciones->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
+ _barraAcciones->setAllowedAreas( Qt::RightToolBarArea | Qt::TopToolBarArea | Qt::BottomToolBarArea );
 }
 
 

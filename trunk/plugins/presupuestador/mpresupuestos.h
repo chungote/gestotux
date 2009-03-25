@@ -29,10 +29,13 @@ class MPresupuestos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MPresupuestos(QObject *parent = 0, bool relacion = true );
+    MPresupuestos(QObject *parent = 0, bool relacion = true, bool soloLectura = false );
     ~MPresupuestos();
     QVariant data(const QModelIndex& idx, int role) const;
+    Qt::ItemFlags  flags ( const QModelIndex & index ) const;
 
+private:
+    bool _soloLectura;
 };
 
 #endif

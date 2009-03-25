@@ -34,13 +34,14 @@ VPresupuestos::VPresupuestos(QWidget *parent)
  setWindowIcon( QIcon( ":/imagenes/anteriores.png" ) );
  vista->setSelectionBehavior( QAbstractItemView::SelectRows );
 
- modelo = new MPresupuestos( this );
+ modelo = new MPresupuestos( this, true, true );
  vista->setModel( modelo );
  vista->setItemDelegateForColumn( 3, new QSqlRelationalDelegate( vista ) );
  //vista->hideColumn( 0 );
  vista->hideColumn( 6 );
  vista->hideColumn( 7 );
  vista->hideColumn( 8 );
+ vista->setSortingEnabled( true );
  modelo->select();
 
  addAction( ActAgregar );
@@ -88,8 +89,9 @@ void VPresupuestos::modificar()
  }
  FormModificarPresupuesto *form = new FormModificarPresupuesto();
  form->setId( modelo->data( modelo->index( indices.at(0).row(), 0 ), Qt::EditRole ).toInt() );
+ form->setModelo( this->modelo );
  // Consigo el numero de presupuesto que se quiere modificar
-  emit agregarVentana( form );
+ emit agregarVentana( form );
 }
 
 
