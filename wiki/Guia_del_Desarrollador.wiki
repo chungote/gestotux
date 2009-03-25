@@ -20,6 +20,11 @@ Tambien realiza un control sobre la periodiocidad de los backups y muestra un me
 La libreria comun, contiene entre otras cosas, acciones que se vuelven repetitivas de implementar en cada formulario, como la accion de cerrar, y el esqueleto con imagen de la accion de agregar, ver, modificar, eliminar y buscar. De esta forma solo se debe invocar el constructor de cada clase y conectar el slot correspondiente a la accion requerida. Las clases de acciones tienen el siguiente formato: {{{ EActCerrar }}}, y al invocar automaticamente el constructor, se añade la imagen y el texto. Vea la pagina [acciones_predefinidas].
 Tambien contiene la estructura del visor de resumenes, que permite mantener de manera clara un resumen viendolo desde una perspectiva de "vista previa de impresion" y genera las acciones para imprimir, cambiar zoom y demas automaticamente. Solo se debe crear una ventana de *EVisorResumen* y quedará lista para su uso conectando la señal necesaria. Para mas informacion vea la pagina [visor_de_resumenes].
 
+=== Renderizador de Informes ===
+
+El renderizador de informes esta basado en el proyecto ncreport, que compilado como una liberia externa permite cargar archivos xml con la definicion de los reportes y hacer consultas sobre la base de datos que se encuentra activa, dando una visual profesional a todos los reportes. Ademas permite una rapida actualizacion de los reportes, al tratarse de archivos que se encuentran fuera de la aplicacion.
+Para ver como generar y llamar al generador de reportes vea la pagina [generar_reportes].
+
 === Plugins ===
 
 Los plugins son la parte mas importante del programa, y son los que realizaran la parte _pesada_ del programa. Vea la pagina [creacion_plugins] para mas informacion.
