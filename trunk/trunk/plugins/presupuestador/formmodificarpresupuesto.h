@@ -35,6 +35,7 @@ public:
   FormModificarPresupuesto( QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~FormModificarPresupuesto();
     void setId( int idDB );
+    void setModelo( QSqlTableModel *m );
 
 protected slots:
     void guardar();
@@ -42,7 +43,10 @@ protected slots:
 private:
     int indice;
     MPresupuestos *modelo;
+    QSqlTableModel *_m;
     EEditor *editor;
+private slots:
+    void cambioDueno( int id_combo );
 };
 
 #endif

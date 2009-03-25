@@ -59,8 +59,6 @@ FormModificarPresupuesto::FormModificarPresupuesto( QWidget* parent, Qt::WFlags 
 	CBAuto->setCurrentIndex( -1 );
 
 	modelo = new MPresupuestos( this, false );
-
-	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), qobject_cast<EMAutos *>(CBAuto->model()), SLOT( filtrarPorCliente( int ) ) );
 }
 
 FormModificarPresupuesto::~FormModificarPresupuesto()
@@ -84,13 +82,14 @@ void FormModificarPresupuesto::setId( int row )
   dSBTotal->setValue( registro.value( "total" ).toDouble() );
   DTFecha->setDate( registro.value( "fecha" ).toDate() );
   editor->setHtml( registro.value( "contenido" ).toString() );
-  CBAuto->setCurrentIndex( CBAuto->model()->match( CBAuto->model()->index( 0,0 ), Qt::DisplayRole, registro.value( "id_auto" ) ).at(0).row() );
-  //Busco el auto
+  // Se busca el cliente primero para que el filtrado de cliente no moleste la busqueda del auto
   QSqlQuery cola2( QString( "SELECT id FROM clientes, autos WHERE id_auto = %1 AND autos.id_dueno = clientes.id" ).arg( registro.value( "id_auto" ).toInt() ) );
   if( cola2.next() )
   { CBCliente->setCurrentIndex( CBCliente->model()->match( CBCliente->model()->index( 0,0 ), Qt::DisplayRole, cola2.record().value(0).toInt() ).at(0).row() ); }
   else
   { CBCliente->setCurrentIndex( -1 ); qDebug( qPrintable( "Error al conseguir el cliente - " + cola2.lastError().text() + " - " + cola2.lastQuery() ) ); }
+  // Coloco el auto
+  CBAuto->setCurrentIndex( CBAuto->model()->match( CBAuto->model()->index( 0,0 ), Qt::DisplayRole, registro.value( "id_auto" ) ).at(0).row() );
   if( registro.value( "memo" ).isNull() )
   { GBMemo->setChecked( false ); }
   else
@@ -101,6 +100,7 @@ void FormModificarPresupuesto::setId( int row )
   else
   { CkBTitulo->setChecked( true ); }
   indice = row;
+  connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioDueno( int ) ) );
 }
 
 #include <QSqlField>
@@ -195,6 +195,7 @@ void FormModificarPresupuesto::guardar()
 	  }*/
           else
 	  {
+		_m->select();
 		close();
 	  }
    }
@@ -215,4 +216,22 @@ void FormModificarPresupuesto::guardar()
    return;
  }
 
+}
+
+
+/*!
+    \fn FormModificarPresupuesto::setModelo( QSqlTableModel *m )
+ */
+void FormModificarPresupuesto::setModelo( QSqlTableModel *m )
+{  _m = m; }
+
+
+/*!
+    \fn FormModificarPresupuesto::cambioDueno( int id_combo )
+ */
+void FormModificarPresupuesto::cambioDueno( int id_combo )
+{
+ // busco el id de db para hacer el filtrado
+ int id_cliente = CBCliente->model()->data( CBCliente->model()->index( id_combo, 0 ) ).toInt();
+ qobject_cast<EMAutos *>(CBAuto->model())->filtrarPorCliente( id_cliente );
 }
