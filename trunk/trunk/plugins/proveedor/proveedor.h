@@ -50,6 +50,7 @@ signals:
 
 public slots:
     void proveedores();
+    void seCierraGestotux();
 
 private:
     QAction *ActProveedores;

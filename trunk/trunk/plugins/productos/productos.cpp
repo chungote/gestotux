@@ -157,3 +157,12 @@ void productos::crearToolBar( QToolBar *t )
  */
 void productos::categorias()
 { emit agregarVentana( new VCategorias() ); }
+
+
+/*!
+    \fn productos::seCierraGestotux()
+ */
+void productos::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(productos);
+}

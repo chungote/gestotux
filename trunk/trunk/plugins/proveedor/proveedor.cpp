@@ -88,3 +88,13 @@ void proveedor::proveedores()
 { emit agregarVentana( new VProveedor() ); }
 
 Q_EXPORT_PLUGIN2( proveedor, proveedor )
+
+
+/*!
+    \fn proveedor::seCierraGestotux()
+ */
+void proveedor::seCierraGestotux()
+{
+ // Algo que desinicializar
+  Q_CLEANUP_RESOURCE(proveedor);
+}

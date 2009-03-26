@@ -102,3 +102,12 @@ void Compras::agregarCompra()
 void Compras::ver_compras()
 { emit agregarVentana( new VCompras() ); }
 
+
+
+/*!
+    \fn Compras::seCierraGestotux()
+ */
+void Compras::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(compras);
+}

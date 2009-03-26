@@ -149,3 +149,10 @@ void AutoDestruc::cancelar()
 {
  cancelado = true;
 }
+
+
+/*!
+    \fn AutoDestruc::seCierraGestotux()
+ */
+void AutoDestruc::seCierraGestotux()
+{}
