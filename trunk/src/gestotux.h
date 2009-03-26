@@ -35,7 +35,6 @@ class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
 class FormularioCentral;
-class EEmail;
 /**
  * \brief Ventana principal del programa
  *
@@ -57,17 +56,28 @@ public:
       static QToolBar *_barraAcciones;
       static QList<EPlugin *> plugins();
       static QHash<QString, EPlugin *> *pluginsHash();
-    void cargar_traduccion( QString nombre_plugin );
 
 
 protected:
       void closeEvent(QCloseEvent *event);
+      void keyPressEvent( QKeyEvent *event );
+
+public slots:
+      void verClientes();
+      void verPreferencias();
+      void verBackup();
 
 protected slots:
-    void salir();
-    void acerca();
-    void verActualizacion();
-    void ayuda();
+      void salir();
+      void acerca();
+      void verActualizacion();
+      void ayuda();
+
+private slots:
+      void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon = QSystemTrayIcon::Trigger );
+
+signals:
+      void saliendoGestotux();
 
 private:
       void createActions();
@@ -77,6 +87,9 @@ private:
       void crearReloj();
       void bandeja_sistema();
       bool hacerTablas( QString nombrePlug );
+      void cargar_traduccion( QString nombre_plugin );
+      bool cargarPlugins();
+      void crearBarraLateral();
 
       barraLateral *barra;
       barraAbajo *barraA;
@@ -103,25 +116,11 @@ private:
 
       QSystemTrayIcon * iconoBandeja;
 
-public slots:
-    void verClientes();
-    void verPreferencias();
-    void verBackup();
+      static QHash<QString, EPlugin *> *_plugins;
 
-private slots:
-    void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon = QSystemTrayIcon::Trigger );
+      QDir pluginsDir;
+      QPluginLoader loader;
 
-private:
-    static QHash<QString, EPlugin *> *_plugins;
-    bool cargarPlugins();
-    void crearBarraLateral();
-    void iniciarServicioMail();
-    QDir pluginsDir;
-    QPluginLoader loader;
-    EEmail *servicioMail;
-
-protected:
-    void keyPressEvent( QKeyEvent *event );
 };
 
 #endif

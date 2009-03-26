@@ -38,12 +38,5 @@ EMCliente::~EMCliente()
  */
 void EMCliente::inicializar()
 {
-  if( QSqlDatabase::database().driverName() == "QSQLITE" )
- {
-  this->setQuery( "SELECT id, apellido || ', ' || nombre FROM clientes" );
- }
- else if( QSqlDatabase::database().driverName() == "QMYSQL" )
- {
-  this->setQuery( "SELECT id, CONCAT( CONCAT( apellido, \", \" ), nombre ) FROM clientes" );
- }
+ this->setQuery( "SELECT id, nombre FROM clientes" );
 }

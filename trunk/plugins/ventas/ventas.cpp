@@ -137,3 +137,12 @@ void Ventas::crearToolBar( QToolBar *t )
 void Ventas::agregarVenta()
 { emit agregarVentana( new FormAgregarVenta() ); }
 
+
+
+/*!
+    \fn Ventas::seCierraGestotux()
+ */
+void Ventas::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(ventas);
+}

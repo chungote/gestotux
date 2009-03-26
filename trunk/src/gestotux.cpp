@@ -69,7 +69,6 @@ void gestotux::inicializar()
  crearBarraLateral();
  bandeja_sistema();
  createMenus();
- //iniciarServicioMail();
 
 preferencias *p = preferencias::getInstancia();
 //p->inicio();
@@ -170,6 +169,7 @@ void gestotux::createMenus()
 void gestotux::createStatusBar()
 {
       statusBar()->showMessage( "Listo" );
+	// Coloco el boton de verificacion  en la barra de tareas para que aparezca el icono de aviso de backup
 	EVerificaBackup *e = new EVerificaBackup( statusBar() );
 	connect( e, SIGNAL( abrirBackups() ), this, SLOT( verBackup() ) );
 	statusBar()->addPermanentWidget( e );
@@ -186,14 +186,18 @@ gestotux::~gestotux()
  */
 void gestotux::salir()
 {
- //Cierro el sistema de email
- //servicioMail->apagarServicio();
+ // Guardo el estado de la ventana principal
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "ventanaPrincipal" );
  p->setValue( "estado", saveState() );
  p->endGroup();
+ // sincronizo las preferencias para que queden guardadas efectivamente
  p->sync();
+ // Cierro la base de datos
  QSqlDatabase::database().close();
+ // Envio señal de que salgo para los plugins que estan escuchando
+ emit saliendoGestotux();
+ // Cierro el formulario... deberia de ser el ultimo...
  close();
 }
 
@@ -406,6 +410,7 @@ bool gestotux::cargarPlugins()
 		if( plug->inicializar() )
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), formCen(), SLOT( agregarForm( QWidget * ) ) );
+			connect( this, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() )/*, Qt::BlockingQueuedConnection */);
 			//Verifico sus tablas
 			if( plug->verificarTablas() != true )
 			{
@@ -418,6 +423,7 @@ bool gestotux::cargarPlugins()
 				else
 				{
 					// No se pudieron cargar las tablas
+					qWarning( "No se pudo crear la tabla" );
 					continue;
 				}
 			}
@@ -567,15 +573,4 @@ void gestotux::cargar_traduccion( QString nombre_plugin )
   return;
  }
  QCoreApplication::instance()->installTranslator( traductor );
-}
-
-
-/*!
-    \fn gestotux::iniciarServicioMail()
- */
-void gestotux::iniciarServicioMail()
-{
-/* servicioMail = EEmail::instancia();
- statusBar()->addPermanentWidget( servicioMail->barra() );
- servicioMail->verificar();*/
 }

@@ -50,6 +50,7 @@ signals:
 
 public slots:
     void destruir();
+    void seCierraGestotux();
 
 protected slots:
     void ejecutarme();

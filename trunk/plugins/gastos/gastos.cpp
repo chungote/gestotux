@@ -112,3 +112,12 @@ void Gastos::agregarGasto()
 void Gastos::ver_gastos()
 { emit agregarVentana( new VGastos() ); }
 
+
+
+/*!
+    \fn Gastos::seCierraGestotux()
+ */
+void Gastos::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(gastos);
+}

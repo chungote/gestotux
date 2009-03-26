@@ -50,7 +50,9 @@ FILE *debug;
 	 fflush(debug);
          break;
      case QtWarningMsg:
-	//QMessageBox::warning( 0, "Warning de aplicacion", msg );
+#ifdef GESTOTUX_DESARROLLO
+	QMessageBox::warning( 0, "Warning de aplicacion", msg );
+#endif
 	fprintf(debug, "warning: %s\n", msg);
 	 fflush(debug);
         break;

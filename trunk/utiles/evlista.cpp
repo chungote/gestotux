@@ -149,7 +149,10 @@ void EVLista::eliminar()
 	{
 		if( indice.isValid() )
 		{
-			modelo->removeRow( indice.row() );
+			if( modelo->removeRow( indice.row() ) )
+			{ return; }
+			else
+			{ qWarning( qPrintable( "Error al eliminar el registro" + modelo->lastError().text() ) ); }
 		}
 	}
  }

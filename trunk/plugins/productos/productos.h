@@ -52,6 +52,7 @@ private:
 public slots:
     void verProductos();
     void categorias();
+    void seCierraGestotux();
 
 signals:
 	void agregarVentana( QWidget * );

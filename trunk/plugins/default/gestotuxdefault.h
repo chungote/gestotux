@@ -53,6 +53,8 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
+public slots:
+    void seCierraGestotux();
 };
 
 #endif

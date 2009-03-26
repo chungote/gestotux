@@ -66,10 +66,10 @@ VCliente::~VCliente()
 void VCliente::agregar()
 {
  QSqlRecord registro = modelo->record();
+ registro.remove( 0 );
  registro.setValue( 1, "" );
  registro.setValue( 2, "" );
  registro.setValue( 3, "" );
- registro.remove( 0 );
  if( !modelo->insertRecord( -1, registro ) )
  {
   qWarning( "Error al insertar el registro" );
@@ -83,7 +83,7 @@ void VCliente::agregar()
  */
 void VCliente::antes_de_insertar( int row, QSqlRecord & record )
 {
- record.setValue( "nombre", " " );
- record.setValue( "apellido", " " );
- record.setValue( "direccion", " " );
+ record.setValue( 1, " " );
+ record.setValue( 2, " " );
+ record.setValue( 3, " " );
 }

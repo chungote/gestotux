@@ -51,6 +51,7 @@ private:
 public slots:
     void agregarCompra();
     void ver_compras();
+    void seCierraGestotux();
 
 };
 

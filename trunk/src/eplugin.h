@@ -56,6 +56,8 @@ public:
     virtual bool verificarTablas() = 0;
     virtual double version() const = 0;
     virtual void crearToolBar( QToolBar *t ) = 0;
+    // Slot para desinicializar los plugins
+    virtual void seCierraGestotux() = 0;
     // Señal que debe implementarse
     virtual void agregarVentana( QWidget *v ) = 0;
 };
