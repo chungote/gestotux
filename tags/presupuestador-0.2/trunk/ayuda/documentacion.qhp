@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+     <QtHelpProject version="1.0">
+         <namespace>tranfuga.gestotux.0.4</namespace>
+         <virtualFolder>doc</virtualFolder>
+         <filterSection>
+             <toc>
+                 <section title="Manual de Gestotux" ref="index.html">
+			<section title="Generar y restaurar backups del sistema" ref="backups.html"/>
+			<section title="Actualizar el programa" ref="actualizar.html"/>
+			<section title="Salir del programa" ref="salir.html"/>
+                 </section>
+             </toc>
+             <keywords>
+		<keyword name="indice" id="index" ref="index.html"/>
+		<keyword name="salir" id="salir" ref="salir.html"/>
+		<keyword name="actualizar" id="actualizar" ref="actualizar.html"/>
+		<keyword name="backup" id="backup" ref="backups.html"/>
+		<!--<keyword id="crearBackup::ChBBaseDatos" ref="backups.html#base"/>-->
+             </keywords>
+             <files>
+                <file>index.html</file>
+		<file>estilo.css</file>
+		<file>imagenes/salir.png</file>
+		<file>imagenes/actualizar.png</file>
+		<file>imagenes/next.png</file>
+		<file>salir.html</file>
+		<file>actualizar.html</file>
+		<file>backups.html</file>
+		<file>imagenes/backup.png</file>
+		<file>imagenes/backup1.png</file>
+		<file>imagenes/backup2.png</file>
+		<file>imagenes/botonpuntos.png</file>
+             </files>
+         </filterSection>
+     </QtHelpProject>

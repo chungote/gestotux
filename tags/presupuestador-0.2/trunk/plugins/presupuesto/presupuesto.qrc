@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="">
+	<file>imagenes/fileclose.png</file>
+	<file>imagenes/guardar.png</file>
+	<file>imagenes/productos.png</file>
+	<file>imagenes/guardarimprimir.png</file>
+    </qresource>
+    <qresource prefix="sql">
+	<file>presupuesto.QSQLITE.sql</file>
+	<file>presupuesto.QMYSQL.sql</file>
+    </qresource>
+</RCC>

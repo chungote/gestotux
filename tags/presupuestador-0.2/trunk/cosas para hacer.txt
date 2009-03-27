@@ -1,0 +1,22 @@
+- Al poner agregar, que quede autoeditando el que se agrego
+- Si se hicieron modificaciones en el widget de preferencias preguntar al cerrar si se quiere guardar o no.
+- Agregar api para agregar barras de tareas desde dentro de los widgets
+- Empezar a sanear el tema de las fechas en la base de datos
+
+Digifauno:
+==========
+
+- Poner un delegate que busque nombre y apellido del dueño en la lista de mascotas
+
+Administracion Caravanas Corrientes:
+============== ========= ===========
+
+- Verificar que cuando se cambia una categoria a no especial, no existan movimientos especiales en esa categoria
+
+
+====================================================================================================
+A Largo plazo:
+
+Sistema de control de movimientos financieros como fondo cargandose en plugins correspondientes.
+Aumentar las capacidades de las base de datos, haciendola disponible para otros sistemas, postgres
+Agregar sistema para hacer facturas con  formularios preimpresos
