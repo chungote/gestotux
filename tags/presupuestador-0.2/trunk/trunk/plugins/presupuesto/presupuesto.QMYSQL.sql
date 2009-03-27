@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS `presupuestos` ( `id` int(1) NOT NULL auto_increment, `id_cliente` int(1) default NULL, `destinatario` text, `fecha` date NOT NULL, `total` decimal(10,4) NOT NULL,`contenido` mediumblob NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `presupuestos` ( `id` int(1) NOT NULL auto_increment, `id_cliente` int(1) default NULL,  `destinatario` text, `fecha` date NOT NULL, `total` decimal(10,4) NOT NULL, `contenido` mediumblob NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

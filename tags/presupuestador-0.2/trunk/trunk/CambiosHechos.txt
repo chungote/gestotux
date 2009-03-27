@@ -1,0 +1,48 @@
+- Agregado salto de linea forazo por el texto, no solo por el ancho.
+- Eliminado problema de cola sql suelta por no heredar el modelo en el agregar recibo.
+- Cambiado el sistema de ventanas por pestañas a uno de pila.
+- Agregados modelos para productos y categorias
+- Agregados lista de productos al usuario y de categorias.
+- Arreglado el ancho de los totales grandes
+- Agregado el sello al recibo
+- añadida combinaciones de teclas a la lista de recibos ( plugin )
+- Mejorado el delegate de recibos, menos memoria y mejor dibujo al estar seleccionado
+- Añadida funcionalidad de detener en el backup
+- Añadido control de orientacion de la hoja en los recibos, sacados desde las preferencias
+
+19/02/08
+- Agregada las acciones de todos los plugins a las barras
+- Agregado el presupuestador al programa
+
+20/02/08
+- Agregado y mejorado el sistema de menus para plugins
+- Agregada un poco de documentacion a las clases mas importantes
+
+21/02/08
+- Agregado el splash
+- Pasando a la version 0.2
+- Modificado el orden de las acciones en los menus
+
+24/02/08
+- Agregado sistema de filtro de clientes en el visor de recibos
+
+26/02/08
+- Agregada restriccion para que no se puedan eliminar cateogrias que contengan productos
+
+27/02/08
+- Agregado plugin de presupuestos
+
+29/02/08
+- Agregado sistema de plugins para presupuestos
+- Agregada verificacion de carga con el plugin de informacion cargado
+
+13/08/08
+- Agregada restriccion de deshabilitar botones de presupuesto si no existen productos
+
+13/10/08
+- Arreglado path de archivo ui
+- Agregado archivo mysql de caravanas.
+
+14/10/08
+- Agregada autoactualizacion de traducciones con cada qmake y carga automatica
+- Arreglado problema de cola para creacion de combo de clientes segun driver de db.
