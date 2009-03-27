@@ -76,6 +76,7 @@ bool Recibo::cargarRegistro( int idDB )
  {
   qWarning( "Error al ejecutar la cola de obtencion de datos de recibo" );
   qWarning( QString( "id= %1; error=%2" ).arg( idDB ).arg( cola.lastError().text() ).toLocal8Bit() );
+  qWarning( qPrintable( cola.lastQuery() ) );
   return false;
  }
  if( cola.next() )
@@ -230,6 +231,7 @@ void Recibo::hacerText( QDomNode padre, const double ancho, double x, double y )
  double posx = x;
  double posy = y;
  QString descripcion2 = descripcion;
+ qDebug( qPrintable( descripcion2 ) );
  while( contador < descripcion2.count() )
  {
   // Busco si el caracter no es un fin de linea
@@ -238,9 +240,10 @@ void Recibo::hacerText( QDomNode padre, const double ancho, double x, double y )
    //fuerzo el salto de linea
    contador++;
    total = ancho+1;
+   qDebug( "Salto de linea" );
   }
   // sino sumo el ancho de ese caracter
-  if( total < ancho )
+  if( total <= ancho )
   {
     total += anchoCaracter( descripcion2.at( contador ) );
     {
@@ -258,7 +261,8 @@ void Recibo::hacerText( QDomNode padre, const double ancho, double x, double y )
     nodo.toElement().setAttribute( "fill", "black" );
     // Veo hasta donde llege
     QString texto = descripcion2.left( contador );
-    descripcion2.remove( descripcion2.left( contador ) );
+    //descripcion2.remove( descripcion2.left( contador ) );
+    descripcion2.remove( 0, contador );
     nodo.appendChild( domdoc.createTextNode( texto ) );
     padre.appendChild( nodo );
     total = 0;
@@ -289,7 +293,7 @@ double Recibo::anchoCaracter( QString car )
  // Si es mayusculas
  if( car.contains( QRegExp( "[A-Z]", Qt::CaseSensitive, QRegExp::RegExp ) ) )
  {
-  return 4.3;
+  return 2.4;
  }
  // Si es minusculas
  if( car.contains( QRegExp( "[a-z]", Qt::CaseSensitive, QRegExp::RegExp ) ) )
@@ -307,5 +311,5 @@ double Recibo::anchoCaracter( QString car )
   return 1.28;
  }
  // si es espacio
- return 1.58;
+ return 2.3;
 }

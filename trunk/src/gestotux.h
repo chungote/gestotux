@@ -49,13 +49,15 @@ public:
       ~gestotux();
       void inicializar();
       static FormularioCentral *formCentral;
+      static FormularioCentral *formCen();
       static EInfoProgramaInterface *_pluginInfo;
       static EInfoProgramaInterface *pluginInfo();
-      static FormularioCentral *formCen();
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
       static QList<EPlugin *> plugins();
       static QHash<QString, EPlugin *> *pluginsHash();
+      static EPlugin *_pluginEmail;
+      static EPlugin *pluginEmail();
 
 
 protected:

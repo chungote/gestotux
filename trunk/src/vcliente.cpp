@@ -70,6 +70,7 @@ void VCliente::agregar()
  registro.setValue( 1, "" );
  registro.setValue( 2, "" );
  registro.setValue( 3, "" );
+ registro.setValue( 4, "" );
  if( !modelo->insertRecord( -1, registro ) )
  {
   qWarning( "Error al insertar el registro" );

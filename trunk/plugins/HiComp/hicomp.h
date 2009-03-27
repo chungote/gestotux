@@ -63,6 +63,7 @@ private:
 public slots:
     void verRecibosAnteriores();
     void nuevoRecibo();
+    void seCierraGestotux();
 
 signals:
 	void agregarVentana( QWidget *v );

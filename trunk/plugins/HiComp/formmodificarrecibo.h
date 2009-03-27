@@ -53,7 +53,7 @@ private:
     QAction *ActCerrar;
     QModelIndex indice;
     QSqlTableModel *modelo;
-    EEditor *TETexto;
+   // EEditor *TETexto;
 
 signals:
     void agregarVentana( QWidget *w );

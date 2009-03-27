@@ -105,7 +105,6 @@ FORMS += FormAgregarMascota.ui \
  FormPrefOpcionesBase.ui \
  FormListaPeluqueriaBase.ui
 
-TARGET = digifauno
 linux-g++ {
     OBJECTS_DIR = objeto
     UI_DIR = ui
@@ -127,7 +126,6 @@ DESTDIR = ../../bin/plugins
 
 LIBS += ../../bin/libutiles.a
 
-TARGETDEPS += ../../bin/libutiles.a
 
 TRANSLATIONS += digifauno.ts
 
@@ -137,4 +135,13 @@ message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 INCLUDEPATH += ../../src \
   ../../utiles
+
+TARGET = adigifauno
+
+TARGETDEPS += ../../bin/libutiles.a
+OBJECTS_DIR = objeto/
+
+UI_DIR = ui/
+
+MOC_DIR = moc/
 

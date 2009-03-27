@@ -35,12 +35,11 @@ public:
     ~MDueno();
 
     QVariant data(const QModelIndex& idx, int role) const;
-    bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
+    int get_ultima_row() const;
 
-	int get_ultima_row() const;
 protected:
     int ultima_row;
-    void primeInsert ( int row, QSqlRecord & record )  ;
+    void primeInsert ( int row, QSqlRecord & record );
 };
 
 #endif

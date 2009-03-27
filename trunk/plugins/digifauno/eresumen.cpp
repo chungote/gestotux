@@ -212,7 +212,7 @@ EResumen::~EResumen()
 void EResumen::generarResumen()
 {
  QDate primero, ultimo;
- resumenGeneral *resumen = new resumenGeneral( this );
+ resumenGeneral *resumen = new resumenGeneral( this->parent() );
  switch( generar )
  {
   case diario:
@@ -261,6 +261,6 @@ void EResumen::generarResumen()
  }
  EVisorInformes *visor = new EVisorInformes( new QPrinter(), this );
  connect( visor, SIGNAL( paintRequested( QPrinter* ) ), resumen, SLOT( imprimir( QPrinter * ) ) );
- this->agregarVentana( visor );
+ agregarVentana( visor );
  close();
 }

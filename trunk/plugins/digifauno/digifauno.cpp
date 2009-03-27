@@ -29,8 +29,6 @@
 #include "vmascota.h"
 #include "eresumen.h"
 #include "formlistapeluqueria.h"
-#include "formagregarcompra.h"
-#include "vcompras.h"
 
 /*!
     \fn DigiFauno::duenos()
@@ -157,7 +155,7 @@ bool DigiFauno::inicializar()
  ActResumenAnual = new QAction( "Resumen Anual", this );
  connect( ActResumenAnual, SIGNAL( triggered() ), this, SLOT( resumenAnual() ) );
 
- ActResumenEntreFechas = new QAction( "ResumenEntre fechas ", this );
+ ActResumenEntreFechas = new QAction( "Resumen entre fechas ", this );
  ActResumenEntreFechas->setStatusTip( "Realiza un resumen entre fechas" );
  connect( ActResumenEntreFechas, SIGNAL( triggered() ), this, SLOT( resumenEntreFechas() ) );
 
@@ -307,7 +305,7 @@ QString DigiFauno::companeros()
 int DigiFauno::tipo() const
 { return EPlugin::info; }
 
-Q_EXPORT_PLUGIN2( digifauno, DigiFauno );
+Q_EXPORT_PLUGIN2( adigifauno, DigiFauno );
 
 
 /*!
@@ -324,3 +322,10 @@ void DigiFauno::crearToolBar( QToolBar *t )
 void DigiFauno::resumenEntreFechas()
 { emit agregarVentana( new EResumen( 0, EResumen::entrefechas ) ); }
 
+/*!
+    \fn DigiFauno::seCierraGestotux()
+ */
+void DigiFauno::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(embebido);
+}

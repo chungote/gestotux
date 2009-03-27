@@ -43,7 +43,7 @@ private:
     QAction* ActGuardar;
     QAction* ActGuardarImprimir;
 
-    EEditor *TETexto;
+//    EEditor *TETexto;
 
 protected slots:
     void cambioImporte( double );

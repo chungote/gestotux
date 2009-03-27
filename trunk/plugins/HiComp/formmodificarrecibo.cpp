@@ -86,14 +86,19 @@ FormModificarRecibo::FormModificarRecibo( QWidget *parent )
  CBMeses->setEnabled( false );
  lmes->setEnabled( false );
 
- LETotal->setText( dSBImporte->text() );
+ dSBTotal->setValue( dSBImporte->value() );
 
  connect( cBPagoMes,  SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoPagoMes( int ) ) );
- connect( cBRecargos, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoRecargos( int ) ) );
+ //connect( cBRecargos, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoRecargos( int ) ) );
  connect( dSBImporte, SIGNAL( valueChanged( double ) ), this, SLOT( cambioImporte( double ) ) );
 
- TETexto = new EEditor( groupBox_2 );
- groupBox_2->layout()->addWidget( TETexto );
+ /*TETexto = new EEditor( groupBox_2 );
+ groupBox_2->layout()->addWidget( TETexto );*/
+
+ // deshabilito el checkbox de aplicar recargos para que no me autmente la cifra
+ cBRecargos->setEnabled( false );
+
+ this->setWindowIcon( QIcon( ":/imagenes/recibo.png" ) );
 }
 
 
@@ -128,10 +133,10 @@ void FormModificarRecibo::cargarDatos( QModelIndex idDB, QSqlTableModel *modelo 
     RBContado->setChecked( true );
    }
    // mes
-   if( registro.value( "mes" ).toInt() != -1 )
+   if( registro.value( "num_mes" ).toInt() != -1 )
    {
     cBPagoMes->setCheckState( Qt::Checked );
-    CBMeses->setCurrentIndex( registro.value( "mes" ).toInt() );
+    CBMeses->setCurrentIndex( registro.value( "num_mes" ).toInt() );
    }
    else
    {
@@ -140,22 +145,22 @@ void FormModificarRecibo::cargarDatos( QModelIndex idDB, QSqlTableModel *modelo 
    // Recargo
    if( registro.value( "fecha_pago" ).toDate().day() > 13 || registro.value( "fecha_pago" ).toDate().day() <= 17 )
    {
-    double importe = registro.value( "precio" ).toDouble() - ( registro.value( "precio" ).toDouble() * 0.05 );
-    dSBImporte->setValue( importe );
-    recargo = 0.05;
+    // No re calculo el recargo para no aumentar cada vez que se hace una modificacion al recibo
     cBRecargos->setCheckState( Qt::Checked );
-    recalcular();
    }
    if( registro.value( "fecha_pago" ).toDate().day() >= 18 || registro.value( "fecha_pago" ).toDate().day() <= 31 )
    {
-    double importe = registro.value( "precio" ).toDouble() - ( registro.value( "precio" ).toDouble() * 0.07 );
-    dSBImporte->setValue( importe );
-    recargo = 0.07;
+    // No re calculo el recargo para no aumentar cada vez que se hace una modificacion al recibo
     cBRecargos->setCheckState( Qt::Checked );
-    recalcular();
    }
+   dSBTotal->setValue( registro.value( "precio" ).toDouble() );
+   dSBImporte->setValue( registro.value( "precio" ).toDouble() );
    // Cliente
-   CBClientes->setCurrentIndex( CBClientes->model()->data( CBClientes->model()->index( registro.value( "cliente" ).toInt(), 0 ), Qt::EditRole  ).toInt() );
+   /*for( int i = 0; i<registro.count(); i++ )
+   {
+    qDebug( qPrintable( " campo: " + registro.fieldName( i ) + " - " + registro.value( i ).toString() ) );
+   }*/
+   CBClientes->setCurrentIndex( CBClientes->findText( registro.value( "nombre" ).toString(), Qt::MatchEndsWith | Qt::MatchWrap ) );
 }
 
 
@@ -219,7 +224,7 @@ void FormModificarRecibo::cambioEstadoRecargos( int estado )
  */
 void FormModificarRecibo::recalcular()
 {
- LETotal->setText( QString().setNum( dSBImporte->value() + ( dSBImporte->value() * recargo ) ) );
+ dSBTotal->setValue( dSBImporte->value() + ( dSBImporte->value() * recargo ) );
 }
 
 
@@ -244,7 +249,7 @@ void FormModificarRecibo::guardar()
   QMessageBox::warning( this, "Error", "Por favor, seleccione una forma de pago" );
   return;
  }
- if( TETexto->contenido().isEmpty() )
+ if( TETexto->document()->toPlainText().isEmpty() )
  {
   QMessageBox::warning( this, "Error", "Por favor, ingrese un detalle" );
   return;
@@ -257,13 +262,13 @@ void FormModificarRecibo::guardar()
  modelo->setEditStrategy( QSqlTableModel::OnFieldChange );
  QSqlRecord rec = modelo->record( indice.row() );
  rec.remove( 0 );
- rec.setValue( "cliente", CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole  ) );
+ rec.setValue( "cliente", CBClientes->model()->data( CBClientes->model()->index( CBClientes->currentIndex(), 0 ), Qt::EditRole ) );
  if( cBPagoMes->isChecked() )
  {
   rec.setValue( "num_mes", CBMeses->currentIndex() );
  }
- rec.setValue( "texto", TETexto->contenido() );
- rec.setValue( "precio", LETotal->text() );
+ rec.setValue( "texto", TETexto->document()->toPlainText() );
+ rec.setValue( "precio", dSBTotal->value() );
  rec.setValue( "fecha_pago", dEFechaPago->date() );
  rec.setValue( "cuenta_corriente", RBCuentaCorriente->isChecked() );
  rec.setValue( "contado", RBContado->isChecked() );
@@ -289,5 +294,4 @@ void FormModificarRecibo::guardar()
 void FormModificarRecibo::guardarImprimir()
 {
  guardar();
-//  gestotux::formCen()->imprimirActivo();
 }
