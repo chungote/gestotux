@@ -22,7 +22,7 @@
 #include <QLocale>
 #include <QDate>
 
-MRecibo::MRecibo(QObject *parent)
+MRecibo::MRecibo( QObject *parent )
  : QSqlRelationalTableModel(parent)
 {
  setTable( "recibos" );
@@ -73,7 +73,7 @@ QVariant MRecibo::data(const QModelIndex& idx, int role) const
      {
       // mes
       QLocale locale;
-      return locale.monthName( QSqlRelationalTableModel::data( idx, role ).toInt() );
+      return locale.monthName( QSqlRelationalTableModel::data( idx, role ).toInt()+1 );
       break;
      }
      case 3:
@@ -95,7 +95,7 @@ QVariant MRecibo::data(const QModelIndex& idx, int role) const
      case 7:
      {
       // Cuenta Corriente y contado
-      return QSqlRelationalTableModel::data( idx, role ).toInt();
+      return QSqlRelationalTableModel::data( idx, role ).toBool();
       break;
      }
      default:
@@ -139,18 +139,43 @@ QVariant MRecibo::data(const QModelIndex& idx, int role) const
       case 6:
       case 7:
       {
-       return QSqlRelationalTableModel::data( idx, role ).toInt();
+       return QSqlRelationalTableModel::data( idx, role ).toBool();
        break;
       }
       default:
       {
         // Cualquier otro va con string
-        return QSqlRelationalTableModel::data( idx, role ).toString();
+        return QSqlRelationalTableModel::data( idx, role );
         break;
       }
     } // fin switch columna
     break;
-   }
+   }// fin edit role
+   case Qt::TextAlignmentRole:
+   {
+    switch( idx.column() )
+    {
+     //Fecha
+     case 5:
+     //mes
+     case 2:
+     {
+      return int( Qt::AlignVCenter | Qt::AlignHCenter );
+      break;
+     }
+     case 4: // Precio
+     {
+      return int( Qt::AlignRight | Qt::AlignVCenter );
+      break;
+     }
+     default:
+     {
+      return QSqlRelationalTableModel::data( idx,role );
+      break;
+     }
+    }// fin switch col
+    break;
+   }// fin switch rol
    default:
    {
     return QSqlRelationalTableModel::data(idx, role);
@@ -187,8 +212,8 @@ bool MRecibo::setData(const QModelIndex& index, const QVariant& value, int role 
   {
    if( value.toInt() == 1 )
    {
-     if( QSqlRelationalTableModel::setData( index, 1 ) &&
-     QSqlRelationalTableModel::setData( this->index( index.row(), 7 ), 0 ) )
+     if( QSqlRelationalTableModel::setData( index, true ) &&
+     QSqlRelationalTableModel::setData( this->index( index.row(), 7 ), false ) )
      {
        return true;
      }
@@ -199,15 +224,15 @@ bool MRecibo::setData(const QModelIndex& index, const QVariant& value, int role 
    }
    else
    {
-     return QSqlRelationalTableModel::setData( index, 0 );
+     return QSqlRelationalTableModel::setData( index, false );
    }
   }
   case 7:
   {
    if( value.toInt() == 1 )
    {
-    if( QSqlRelationalTableModel::setData( index, 1 ) &&
-    QSqlRelationalTableModel::setData( this->index( index.row(), 6 ), 0 ) )
+    if( QSqlRelationalTableModel::setData( index, true ) &&
+    QSqlRelationalTableModel::setData( this->index( index.row(), 6 ), false ) )
     {
       return true;
     }
@@ -218,7 +243,7 @@ bool MRecibo::setData(const QModelIndex& index, const QVariant& value, int role 
    }
    else
    {
-    return QSqlRelationalTableModel::setData( index, 0 );
+    return QSqlRelationalTableModel::setData( index, true );
    }
   }
   default:

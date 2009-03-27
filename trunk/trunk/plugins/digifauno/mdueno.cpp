@@ -88,18 +88,6 @@ QVariant MDueno::data(const QModelIndex& idx, int role) const
 		}
 		break;
 	}
-	case Qt::EditRole:
-	{
-		return QSqlTableModel::data( idx, role );
-		break;
-	}
-	case Qt::DecorationRole:
-	case Qt::FontRole:
-	case Qt::SizeHintRole:
-	{
-		return QVariant();
-		break;
-	}
 	case Qt::TextAlignmentRole:
 	{
 		switch ( idx.column() )
@@ -128,11 +116,6 @@ QVariant MDueno::data(const QModelIndex& idx, int role) const
 		}
 		break;
 	}
-	case Qt::CheckStateRole:
-	{
-		return QSqlTableModel::data( idx, role );
-		break;
-	}
 	case Qt::ToolTipRole:
 	case Qt::StatusTipRole:
 	{
@@ -145,16 +128,6 @@ QVariant MDueno::data(const QModelIndex& idx, int role) const
 		break;
 	}
  }
-}
-
-
-
-/*!
-    \fn MDueno::setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole)
- */
-bool MDueno::setData( const QModelIndex & index, const QVariant & value, int role )
-{
- return QSqlTableModel::setData( index, value, role );
 }
 
 

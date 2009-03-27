@@ -89,6 +89,7 @@ public slots:
     void resumen_semanal();
     void ver_peluqueria();
     void resumenEntreFechas();
+    void seCierraGestotux();
 
 
 };

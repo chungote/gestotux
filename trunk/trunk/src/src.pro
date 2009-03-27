@@ -105,13 +105,17 @@ QT += webkit
 TARGETDEPS += ../bin/libncreport.a \
   ../bin/libutiles.a
 
-TARGET = gestotux
+#TARGET = gestotux
 
-INCLUDEPATH += ../reporte \
-  ../utiles \
+
+
+DEFINES += GESTOTUX_DESARROLLO
+
+INCLUDEPATH += ../utiles \
+  ../reporte \
   ../utiles/email \
   ../utiles/ui
 
-LIBS += ../bin/libncreport.a \
-  ../bin/libutiles.a
+LIBS += ../bin/libutiles.a \
+  ../bin/libncreport.a
 

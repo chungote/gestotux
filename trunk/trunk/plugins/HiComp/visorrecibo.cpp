@@ -28,7 +28,7 @@ visorRecibo::visorRecibo( QWidget *parent, const int id  )
 {
  this->setAttribute( Qt::WA_DeleteOnClose );
  this->setObjectName( "visorRecibo" );
- this->setWindowIcon( QIcon( ":/imagenes/resumen.png" ) );
+ this->setWindowIcon( QIcon( ":/imagenes/ver.png" ) );
  rec = new Recibo( this );
 
  ActImprimir = new QAction( "Imprimir", this );

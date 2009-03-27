@@ -35,7 +35,7 @@
 
 QString HiComp::nombrePrograma()  const
 {
- return "HiComp Computacion - 0.1";
+ return "HiComp Computacion - 0.2";
 }
 
 Q_EXPORT_PLUGIN2(hicomp, HiComp )
@@ -52,7 +52,15 @@ QIcon HiComp::iconoPrograma() const
  */
 QList<QActionGroup *> HiComp::accionesBarra()
 {
- return QList<QActionGroup*>();
+ QActionGroup *recibos = new QActionGroup( this );
+ recibos->setObjectName( "recibos" );
+ recibos->addAction( ActNuevoRecibo );
+ recibos->addAction( ActRecibos );
+ recibos->setProperty( "icono", ":/imagenes/recibo.png" );
+ recibos->setProperty( "titulo", "Recibos" );
+ QList<QActionGroup*> lista;
+ lista.append( recibos );
+ return lista;
 }
 
 
@@ -142,6 +150,7 @@ void HiComp::crearMenu( QMenuBar *m )
  else
  {
   QMenu *menuRecibos = menuHer->addMenu( "Recibos" );
+  menuRecibos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
   menuRecibos->addAction( ActRecibos );
   menuRecibos->addAction( ActNuevoRecibo );
  }
@@ -151,12 +160,8 @@ bool HiComp::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
  {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
- {qWarning( "Error al buscar las tablas del plugin hi comp - producto " ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "clientes" ) )
  {qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
- {qWarning( "Error al buscar las tablas del plugin hi comp - categoria" ); return false; }
  return true;
 }
 
@@ -166,7 +171,7 @@ bool HiComp::verificarTablas()
  */
 double HiComp::version() const
 {
-  return 0.1;
+  return 0.2;
 }
 
 
@@ -194,4 +199,13 @@ QString HiComp::companeros()
 void HiComp::crearToolBar( QToolBar *t )
 {
  t->addActions( _acciones );
+}
+
+
+/*!
+    \fn HiComp::seCierraGestotux()
+ */
+void HiComp::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(hicomp);
 }

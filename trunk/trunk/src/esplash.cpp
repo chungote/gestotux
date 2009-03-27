@@ -25,7 +25,7 @@
 ESplash::ESplash(QWidget *parent)
  : QSplashScreen( parent )
 {
- setAttribute( Qt::WA_DeleteOnClose );
+ //setAttribute( Qt::WA_DeleteOnClose );
  if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.png" ) )
  {
   this->setPixmap( QApplication::applicationDirPath() + QDir::separator() + "splash.png" );

@@ -63,7 +63,7 @@ FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
  CBMeses->setEnabled( false );
  lmes->setEnabled( false );
 
- LETotal->setText( dSBImporte->text() );
+ dSBTotal->setValue( dSBImporte->value() );
 
  connect( cBPagoMes,  SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoPagoMes( int ) ) );
  connect( cBRecargos, SIGNAL( stateChanged( int ) ), this, SLOT( cambioEstadoRecargos( int ) ) );
@@ -94,8 +94,8 @@ FormAgregarRecibo::FormAgregarRecibo(QWidget *parent)
  addAction( ActGuardar );
  addAction( ActGuardarImprimir );
 
- TETexto = new EEditor( groupBox_2 );
- groupBox_2->layout()->addWidget( TETexto );
+ /*TETexto = new EEditor( groupBox_2 );
+ groupBox_2->layout()->addWidget( TETexto );*/
 }
 
 
@@ -165,7 +165,7 @@ void FormAgregarRecibo::cambioEstadoRecargos( int estado )
  */
 void FormAgregarRecibo::recalcular()
 {
- LETotal->setText( QString().setNum( dSBImporte->value() + ( dSBImporte->value() * recargo ) ) );
+ dSBTotal->setValue( dSBImporte->value() + ( dSBImporte->value() * recargo ) );
 }
 
 
@@ -190,7 +190,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
   QMessageBox::warning( this, "Error", "Por favor, seleccione una forma de pago" );
   return;
  }
- if( TETexto->contenido().isEmpty() )
+ if( TETexto->document()->toPlainText().isEmpty() )
  {
   if( !cBPagoMes->isChecked() )
   {
@@ -208,7 +208,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
 	// Quiere ponerle texto? - lo busco en las preferencias
 	if( preferencias::getInstancia()->value( "preferencias/recibos/tienetexto", false ).toBool() )
 	{
-		TETexto->setText( TETexto->contenido().append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) ) );
+		TETexto->setText( TETexto->document()->toPlainText().append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) ) );
 	}
 	else
 	// Las preferencias no dicen nada, asi que pregunto
@@ -220,7 +220,7 @@ void FormAgregarRecibo::guardar( bool imprimir )
 						QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
 		if( reply == QMessageBox::Yes )
 		{
-			TETexto->setText( TETexto->contenido().append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) ) );
+			TETexto->setText( TETexto->document()->toPlainText().append( preferencias::getInstancia()->value( "preferencias/recibos/textopagomes", "").toString().arg( CBMeses->currentText() ) ) );
 		}
 		else if( reply == QMessageBox::Cancel )
 		{
@@ -241,8 +241,8 @@ void FormAgregarRecibo::guardar( bool imprimir )
  {
   rec.setValue( "num_mes", -1 );
  }
- rec.setValue( "texto", TETexto->contenido() );
- rec.setValue( "precio", LETotal->text() );
+ rec.setValue( "texto", TETexto->document()->toPlainText() );
+ rec.setValue( "precio", dSBTotal->value() );
  rec.setValue( "fecha_pago", dEFechaPago->date() );
  rec.setValue( "cuenta_corriente", RBCuentaCorriente->isChecked() );
  rec.setValue( "contado", RBContado->isChecked() );

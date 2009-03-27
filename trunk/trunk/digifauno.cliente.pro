@@ -7,7 +7,7 @@ CONFIG += warn_on \
 
 SUBDIRS = utiles \
         src \
-	utiles/estilo/estilo.pro \
+	utiles/estilos/estilos.pro \
 	plugins/digifauno/digifauno.pro \
 	plugins/ventas/ventas.pro \
 	plugins/gastos/gastos.pro \

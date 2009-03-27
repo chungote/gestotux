@@ -48,6 +48,7 @@ FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
 EInfoProgramaInterface *gestotux::_pluginInfo = 0;
 QHash<QString, EPlugin *> *gestotux::_plugins = 0;
+EPlugin *gestotux::_pluginEmail = 0;
 
 gestotux::gestotux()
 {
@@ -278,7 +279,7 @@ void gestotux::crearReloj()
 	 Reloj *r = new Reloj( dw );
 	 dw->setWidget( r );
  }
- if( pluginInfo()->publicidad() )
+ /*if( pluginInfo()->publicidad() )
  {
 	 QDockWidget *dp = new QDockWidget( "Publicidad", this );
 	 dp->setObjectName( "publicidad" );
@@ -290,7 +291,7 @@ void gestotux::crearReloj()
 	 dp->setFixedHeight( 140 );
 	 vista->show();
 	 dp->setWidget( vista );
- }
+ }*/
 }
 
 
@@ -406,6 +407,11 @@ bool gestotux::cargarPlugins()
 		{
 			_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
 			preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
+		}
+		else if ( plug->tipo() )
+		{
+			_pluginEmail = plug;
+			preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
 		}
 		if( plug->inicializar() )
 		{
@@ -573,4 +579,9 @@ void gestotux::cargar_traduccion( QString nombre_plugin )
   return;
  }
  QCoreApplication::instance()->installTranslator( traductor );
+}
+
+EPlugin *gestotux::pluginEmail()
+{
+ return _pluginEmail;
 }
