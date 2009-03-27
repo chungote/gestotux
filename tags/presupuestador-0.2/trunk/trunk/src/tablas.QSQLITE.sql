@@ -1,6 +1,0 @@
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS clientes ( id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, direccion TEXT, telefono TEXT );
-INSERT INTO sqlite_sequence VALUES ( 'clientes', '1' );
-COMMIT;
-
-

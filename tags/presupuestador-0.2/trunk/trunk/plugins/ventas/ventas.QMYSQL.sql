@@ -1,2 +1,0 @@
-CREATE TABLE `ventas` ( `id` mediumint(1) NOT NULL auto_increment, `fecha` date NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=869 DEFAULT CHARSET=latin1;
-CREATE TABLE `ventas_productos` ( `id` int(1) NOT NULL auto_increment, `id_venta` int(1) REFERENCES `ventas`(`id`), `id_producto` int(1) REFERENCES `producto`(`id`), `precio` decimal(4,0) NOT NULL, `cantidad` decimal(4,0) NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

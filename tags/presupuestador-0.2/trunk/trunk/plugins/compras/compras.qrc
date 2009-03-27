@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="">
-	<file>imagenes/compras.jpg</file>
-    </qresource>
-    <qresource prefix="sql">
-	<file>compras.QMYSQL.sql</file>
-	<file>compras.QSQLITE.sql</file>
-    </qresource>
-</RCC>

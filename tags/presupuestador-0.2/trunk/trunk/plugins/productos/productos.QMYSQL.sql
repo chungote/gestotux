@@ -1,2 +1,0 @@
-CREATE TABLE IF NOT EXISTS `producto` ( `id` int(1) NOT NULL auto_increment, `id_categoria` int(1) NOT NULL, `nombre` char(1) NOT NULL, `precio_venta` decimal(4,0) NOT NULL, `descripcion` text, `marca` tinytext, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-CREATE TABLE IF NOT EXISTS `categoria` ( `id` int(10) NOT NULL auto_increment, `nombre` varchar(100) NOT NULL, `descripcion` varchar(200) default NULL, `tipo` int(1) NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
