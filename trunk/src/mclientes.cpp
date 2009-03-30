@@ -23,11 +23,46 @@ MClientes::MClientes( QObject *parent )
  : QSqlTableModel( parent )
 {
  setTable( "clientes" );
+/*
+-- Describe CLIENTES
+CREATE TABLE clientes (
+    "id" INTEGER,
+    "razon_social" TEXT NOT NULL,
+    "nombre" TEXT NOT NULL,
+    "segundo" TEXT,
+    "apellido" TEXT,
+    "calle" TEXT,
+    "numero" INTEGER,
+    "piso" INTEGER,
+    "depto" INTEGER,
+    "ciudad" TEXT,
+    "codigo_postal" TEXT,
+    "provincia" TEXT,
+    "pais" TEXT,
+    "tel_fijo" TEXT,
+    "tel_celular" TEXT,
+    "fax" TEXT,
+    "email" TEXT
+, "comprobante_email" INTEGER)
+*/
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Apellido" );
- setHeaderData( 1, Qt::Horizontal, "Nombre" );
- setHeaderData( 2, Qt::Horizontal, "Direccion" );
- setHeaderData( 3, Qt::Horizontal, "Telefono/Celular" );
+ setHeaderData( 1, Qt::Horizontal, "Razon Social" );
+ setHeaderData( 2, Qt::Horizontal, "Nombre" );
+ setHeaderData( 3, Qt::Horizontal, "Segundo Nombre" );
+ setHeaderData( 4, Qt::Horizontal, "Apellido" );
+ setHeaderData( 5, Qt::Horizontal, "Calle" );
+ setHeaderData( 6, Qt::Horizontal, "Numero" );
+ setHeaderData( 7, Qt::Horizontal, "Piso" );
+ setHeaderData( 8, Qt::Horizontal, "Depto" );
+ setHeaderData( 9, Qt::Horizontal, "Ciudad" );
+ setHeaderData( 10, Qt::Horizontal, "Codigo Postal" );
+ setHeaderData( 11, Qt::Horizontal, "Provincia" );
+ setHeaderData( 12, Qt::Horizontal, "Pais" );
+ setHeaderData( 13, Qt::Horizontal, "Telefono" );
+ setHeaderData( 14, Qt::Horizontal, "Celular" );
+ setHeaderData( 15, Qt::Horizontal, "Fax" );
+ setHeaderData( 16, Qt::Horizontal, "Em@il" );
+ setHeaderData( 17, Qt::Horizontal, "EnviarComprobantexEmail" );
 }
 
 

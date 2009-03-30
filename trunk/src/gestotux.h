@@ -35,6 +35,8 @@ class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
 class FormularioCentral;
+class EInterfazEmail;
+
 /**
  * \brief Ventana principal del programa
  *
@@ -56,8 +58,8 @@ public:
       static QToolBar *_barraAcciones;
       static QList<EPlugin *> plugins();
       static QHash<QString, EPlugin *> *pluginsHash();
-      static EPlugin *_pluginEmail;
-      static EPlugin *pluginEmail();
+      static EInterfazEmail *_pluginEmail;
+      static EInterfazEmail *pluginEmail();
 
 
 protected:

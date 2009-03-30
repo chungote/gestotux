@@ -100,7 +100,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="LECalle"/>
         </item>
        </layout>
       </item>
@@ -116,7 +116,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="LENumero"/>
           </item>
          </layout>
         </item>
@@ -130,7 +130,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QLineEdit" name="LEPiso"/>
           </item>
          </layout>
         </item>
@@ -144,7 +144,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QLineEdit" name="LEDepto"/>
           </item>
          </layout>
         </item>
@@ -162,7 +162,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_5"/>
+           <widget class="QLineEdit" name="LECiudad"/>
           </item>
          </layout>
         </item>
@@ -176,7 +176,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_6"/>
+           <widget class="QLineEdit" name="LECodPostal"/>
           </item>
          </layout>
         </item>
@@ -194,7 +194,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_7"/>
+           <widget class="QLineEdit" name="LEProvincia"/>
           </item>
          </layout>
         </item>
@@ -225,7 +225,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_8"/>
+           <widget class="QLineEdit" name="LEPais"/>
           </item>
          </layout>
         </item>
@@ -268,7 +268,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_9"/>
+           <widget class="QLineEdit" name="LETelFijo"/>
           </item>
          </layout>
         </item>
@@ -282,7 +282,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_10"/>
+           <widget class="QLineEdit" name="LETelCel"/>
           </item>
          </layout>
         </item>
@@ -296,7 +296,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_11"/>
+           <widget class="QLineEdit" name="LEFax"/>
           </item>
          </layout>
         </item>
@@ -322,12 +322,12 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_12"/>
+           <widget class="QLineEdit" name="LEEmail"/>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="CkBComprobanteEmail">
           <property name="text">
            <string>Enviar Comprobantes por email</string>
           </property>

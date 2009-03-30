@@ -160,7 +160,7 @@
   </kdevdebugger>
   <kdevtrollproject>
     <run>
-      <mainprogram>/home/Esteban/Programas/gestotux/bin/hicomp</mainprogram>
+      <mainprogram>/home/Esteban/Programas/gestotux/bin/gestotux</mainprogram>
       <programargs/>
       <directoryradio>executable</directoryradio>
       <globaldebugarguments/>
@@ -185,7 +185,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/HiComp/HiComp.pro</activedir>
+      <activedir></activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -206,7 +206,7 @@
       <enableFilenamesOnly>false</enableFilenamesOnly>
       <showVariablesInTree>true</showVariablesInTree>
       <showParseErrors>true</showParseErrors>
-      <projectfile>/home/Esteban/Programas/gestotux/hicomp.cliente.pro</projectfile>
+      <projectfile>/home/Esteban/Programas/gestotux/gestotux.pro</projectfile>
     </qmake>
     <subclassing>
       <subclass uifile="plugins/actualizacion/FormActualizacionBase.ui" sourcefile="formactualizacon.cpp" />

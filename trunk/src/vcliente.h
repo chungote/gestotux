@@ -34,7 +34,7 @@ public:
     void antes_de_insertar( int row, QSqlRecord & record );
 
 protected slots:
-    void agregar();
+    void agregar( bool autoeliminarid = true);
 
 };
 

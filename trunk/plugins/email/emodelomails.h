@@ -17,34 +17,33 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EEMAIL_H
-#define EEMAIL_H
+#ifndef EMODELOMAILS_H
+#define EMODELOMAILS_H
 
-#include <QObject>
-#include "mail.h"
+#include <QSqlTableModel>
+class Mail;
 
 /**
-Clase intermedia que sirve de intermediario entre el plugin de email ( si es cargado ) y los demas plugins
+Modelo que sirve para mantener la cola de mensajes entre inicio y cierre del programa
+
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EEmail : public QObject
+class EModeloMails : public QSqlTableModel
 {
 Q_OBJECT
 public:
-    EEmail( QObject *parent = 0 );
-    ~EEmail();
-    static EEmail * instancia();
-    void enviarEmail( Mail *email );
-    static Mail * email();
-    void testear();
-
-private:
-    static EEmail *_instancia;
+    EModeloMails(QObject *parent = 0);
+    ~EModeloMails();
+    Mail *takeFirst();
+    int size();
+    void agregarMail( Mail *mail );
+    void append( Mail *mail );
 
 signals:
-	void enviar( Mail *email );
-
+    void nuevoMail();
+public slots:
+    void emailEnviado( Mail *mail );
 };
 
 #endif

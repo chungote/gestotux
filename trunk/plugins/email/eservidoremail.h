@@ -17,34 +17,34 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EEMAIL_H
-#define EEMAIL_H
+#ifndef ESERVIDOREMAIL_H
+#define ESERVIDOREMAIL_H
 
-#include <QObject>
-#include "mail.h"
+#include <QSqlTableModel>
 
 /**
-Clase intermedia que sirve de intermediario entre el plugin de email ( si es cargado ) y los demas plugins
+Clase que sirve de modelo para los servidores y al mismo tiempo proporciona la informacion del servidor predeterminado.
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EEmail : public QObject
+class EServidorEmail : public QSqlTableModel
 {
 Q_OBJECT
 public:
-    EEmail( QObject *parent = 0 );
-    ~EEmail();
-    static EEmail * instancia();
-    void enviarEmail( Mail *email );
-    static Mail * email();
-    void testear();
+    EServidorEmail(QObject *parent = 0);
+    ~EServidorEmail();
+    int puerto();
+    QString direccion();
+    QString usuario();
+    QString password();
+    QString de();
 
 private:
-    static EEmail *_instancia;
-
-signals:
-	void enviar( Mail *email );
-
+    bool _buscado_predeterminado;
+    int _puerto;
+    QString _nombre, _direccion, _usuario, _password, _de;
+private:
+    void buscarPredeterminado();
 };
 
 #endif

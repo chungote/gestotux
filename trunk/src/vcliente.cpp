@@ -59,32 +59,16 @@ VCliente::~VCliente()
 {
 }
 
-
+#include "formcliente.h"
 /*!
     \fn VCliente::agregar()
  */
-void VCliente::agregar()
-{
- QSqlRecord registro = modelo->record();
- registro.remove( 0 );
- registro.setValue( 1, "" );
- registro.setValue( 2, "" );
- registro.setValue( 3, "" );
- registro.setValue( 4, "" );
- if( !modelo->insertRecord( -1, registro ) )
- {
-  qWarning( "Error al insertar el registro" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() ).toLocal8Bit() );
- }
-}
+void VCliente::agregar( bool autoeliminarid )
+{ emit agregarVentana( new FormCliente( this, modelo ) ); }
 
 
 /*!
     \fn VCliente::antes_de_insertar( int row, QSqlRecord & record )
  */
 void VCliente::antes_de_insertar( int row, QSqlRecord & record )
-{
- record.setValue( 1, " " );
- record.setValue( 2, " " );
- record.setValue( 3, " " );
-}
+{}
