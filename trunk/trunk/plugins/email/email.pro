@@ -28,16 +28,14 @@ UI_DIR = ui
 MOC_DIR = moc
 
 
-SOURCES += eemail.cpp \
-emodelomails.cpp \
+SOURCES += emodelomails.cpp \
 eservidoremail.cpp \
 mail.cpp \
 mime.cpp \
 smtp.cpp \
 formprefemail.cpp \
  email.cpp
-HEADERS += eemail.h \
-emodelomails.h \
+HEADERS += emodelomails.h \
 eservidoremail.h \
 mail.h \
 mime.h \

@@ -43,12 +43,14 @@
 #include "formactualizacion.h"
 #include "version.h"
 #include "eemail.h"
+#include "einterfazemail.h"
+
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
 EInfoProgramaInterface *gestotux::_pluginInfo = 0;
 QHash<QString, EPlugin *> *gestotux::_plugins = 0;
-EPlugin *gestotux::_pluginEmail = 0;
+EInterfazEmail *gestotux::_pluginEmail = 0;
 
 gestotux::gestotux()
 {
@@ -70,6 +72,9 @@ void gestotux::inicializar()
  crearBarraLateral();
  bandeja_sistema();
  createMenus();
+ ///@todo Eliminar esto!
+ EEmail::instancia()->testear();
+ //this->statusBar()->addPermanentWidget( _pluginEmail->statusBarWidget(), -1 );
 
 preferencias *p = preferencias::getInstancia();
 //p->inicio();
@@ -408,9 +413,9 @@ bool gestotux::cargarPlugins()
 			_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
 			preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
 		}
-		else if ( plug->tipo() )
+		else if ( plug->tipo() == EPlugin::email )
 		{
-			_pluginEmail = plug;
+			_pluginEmail = qobject_cast<EInterfazEmail *>(obj);
 			preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
 		}
 		if( plug->inicializar() )
@@ -581,7 +586,7 @@ void gestotux::cargar_traduccion( QString nombre_plugin )
  QCoreApplication::instance()->installTranslator( traductor );
 }
 
-EPlugin *gestotux::pluginEmail()
+EInterfazEmail *gestotux::pluginEmail()
 {
  return _pluginEmail;
 }

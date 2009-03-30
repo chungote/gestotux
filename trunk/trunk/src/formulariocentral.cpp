@@ -22,6 +22,7 @@
 #include "gestotux.h"
 #include <QToolBar>
 #include <QPushButton>
+#include <QTabBar>
 
 FormularioCentral::FormularioCentral( QWidget *parent )
 : QTabWidget( parent )
@@ -72,6 +73,7 @@ void FormularioCentral::agregarForm( QWidget *ventana )
  {
   connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );
   this->setCurrentIndex( this->addTab( ventana, ventana->windowIcon(), ventana->windowTitle() ) );
+  this->tabBar()->setTabData( currentIndex(), ventana->objectName() );
   this->currentWidget()->setFocus( Qt::ActiveWindowFocusReason );
  }
  else
@@ -90,8 +92,10 @@ void FormularioCentral::agregarForm( QWidget *ventana )
  */
 bool FormularioCentral::existeVentana( QString nombre )
 {
- if( this->findChild<QWidget *>( nombre ) == 0 )
- { return false; }
- else
- { return true; }
+ for( int i=0; i < this->tabBar()->count(); i++ )
+ {
+  if( this->tabBar()->tabData( i ) == nombre )
+  { return true; }
+ }
+ return false;
 }

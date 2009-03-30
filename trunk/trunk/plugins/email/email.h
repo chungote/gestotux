@@ -17,34 +17,46 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EEMAIL_H
-#define EEMAIL_H
+#ifndef EMAIL_H
+#define EMAIL_H
 
 #include <QObject>
-#include "mail.h"
+#include "eplugin.h"
+#include "einterfazemail.h"
+#include "smtp.h"
+class QLabel;
 
 /**
-Clase intermedia que sirve de intermediario entre el plugin de email ( si es cargado ) y los demas plugins
-
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EEmail : public QObject
+class Email : public QObject , public EPlugin, public EInterfazEmail
 {
 Q_OBJECT
+Q_INTERFACES( EPlugin EInterfazEmail )
 public:
-    EEmail( QObject *parent = 0 );
-    ~EEmail();
-    static EEmail * instancia();
-    void enviarEmail( Mail *email );
-    static Mail * email();
-    void testear();
-
-private:
-    static EEmail *_instancia;
+    bool inicializar();
+    bool verificarTablas();
+    double version() const;
+    int tipo() const;
+    QList< QActionGroup * > accionesBarra();
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    void crearMenu(QMenuBar* m);
+    void crearToolBar(QToolBar* t);
+    QWidget * statusBarWidget();
 
 signals:
-	void enviar( Mail *email );
+    void agregarVentana(QWidget* v);
 
+public slots:
+    void seCierraGestotux();
+
+private:
+    QLabel *_etiqueta;
+    Smtp *enviador;
+
+protected slots:
+    void cambioEstado( const QString &texto );
 };
 
 #endif

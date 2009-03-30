@@ -19,6 +19,8 @@
  ***************************************************************************/
 #include "eemail.h"
 
+EEmail *EEmail::_instancia = 0;
+
 EEmail::EEmail(QObject *parent)
  : QObject(parent)
 {
@@ -30,3 +32,48 @@ EEmail::~EEmail()
 }
 
 
+/*!
+    \fn EEmail::email()
+ */
+Mail * EEmail::email()
+{
+ Mail *email = new Mail();
+ email->setEncoding( "ISO-8859-2" );
+ email->setContentTransferEncoding( "quoted-printable" );
+ return email;
+}
+
+
+/*!
+    \fn EEmail::enviarEmail( Mail *email )
+ */
+void EEmail::enviarEmail( Mail *email )
+{
+ emit enviar( email );
+}
+
+
+/*!
+    \fn EEmail::instancia()
+ */
+EEmail* EEmail::instancia()
+{
+ if( _instancia == 0 )
+ {
+  _instancia = new EEmail();
+ }
+ return _instancia;
+}
+
+
+/*!
+    \fn EEmail::testear()
+ */
+void EEmail::testear()
+{
+ Mail *em = this->email();
+ em->setHeader( "estebanz@guiasmayores.org.ar", "estebanz@guiasmayores.org.ar", "", "", "Asunto de prueba" );
+ em->setMessageBody( "Intento de ver si el mensaje puede ser enviado desde el nuevo sistema de email del gestotux" );
+ em->setContentType( "text/plain" );
+ this->enviarEmail( em );
+}

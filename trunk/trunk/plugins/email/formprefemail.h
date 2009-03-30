@@ -17,34 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EEMAIL_H
-#define EEMAIL_H
 
-#include <QObject>
-#include "mail.h"
+#ifndef FORMPREFEMAIL_H
+#define FORMPREFEMAIL_H
 
-/**
-Clase intermedia que sirve de intermediario entre el plugin de email ( si es cargado ) y los demas plugins
+#include "eventana.h"
+#include "formprefhijo.h"
+#include "ui_FormPrefEmailBase.h"
+#include "eservidoremail.h"
+#include <QDataWidgetMapper>
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class EEmail : public QObject
+class FormPrefEmail : public EVentana, public FormPrefHijo, private Ui::FormPrefEmailBase
 {
-Q_OBJECT
+  Q_OBJECT
+
 public:
-    EEmail( QObject *parent = 0 );
-    ~EEmail();
-    static EEmail * instancia();
-    void enviarEmail( Mail *email );
-    static Mail * email();
-    void testear();
+  FormPrefEmail(QWidget* parent = 0, Qt::WFlags fl = 0 );
+  ~FormPrefEmail();
+
+
+public slots:
+    void guardar();
+    void aplicar();
+    void cargar();
 
 private:
-    static EEmail *_instancia;
+	EServidorEmail *servidores;
+	QDataWidgetMapper *mapeador;
 
-signals:
-	void enviar( Mail *email );
-
+private slots:
+    void agregar();
+    void eliminar();
 };
 
 #endif
+

@@ -13,7 +13,10 @@ HEADERS += eactcerrar.h \
  eeditor.h \
  eactemail.h \
  eregistroplugins.h \
- eactpdf.h
+ eactpdf.h \
+ eemail.h \
+ mail.h \
+ mime.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -26,7 +29,10 @@ eactimprimir.cpp \
  eeditor.cpp \
  eactemail.cpp \
  eregistroplugins.cpp \
- eactpdf.cpp
+ eactpdf.cpp \
+ eemail.cpp \
+ mail.cpp \
+ mime.cpp
 
 QT += sql
 

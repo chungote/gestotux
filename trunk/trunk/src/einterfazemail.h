@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,34 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EEMAIL_H
-#define EEMAIL_H
+#ifndef EINTERFAZEMAIL_H_
+#define EINTERFAZEMAIL_H_
 
-#include <QObject>
-#include "mail.h"
-
-/**
-Clase intermedia que sirve de intermediario entre el plugin de email ( si es cargado ) y los demas plugins
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class EEmail : public QObject
+#include <QtPlugin>
+#include <QWidget>
+/*!
+ *  \brief Interfaz de informacion de plugin de email
+ *
+ *   Clase que se utiliza para conocer que metodos va a tener un plugin de email
+ *   @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
+class EInterfazEmail
 {
-Q_OBJECT
 public:
-    EEmail( QObject *parent = 0 );
-    ~EEmail();
-    static EEmail * instancia();
-    void enviarEmail( Mail *email );
-    static Mail * email();
-    void testear();
-
-private:
-    static EEmail *_instancia;
-
-signals:
-	void enviar( Mail *email );
-
+    virtual ~EInterfazEmail() {}
+    virtual QWidget *statusBarWidget() = 0;
 };
+
+Q_DECLARE_INTERFACE( EInterfazEmail,
+                     "tranfuga.EInterfazEmail/1.0" );
+
 
 #endif

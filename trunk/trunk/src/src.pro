@@ -17,6 +17,7 @@ SOURCES += gestotux.cpp \
  barralateral.cpp \
  botoneslaterales.cpp \
  formcliente.cpp
+
 HEADERS += gestotux.h \
  ebackup.h \
  eenviobackup.h \
@@ -37,7 +38,8 @@ HEADERS += gestotux.h \
  version.h \
  barralateral.h \
  botoneslaterales.h \
- formcliente.h
+ formcliente.h \
+ einterfazemail.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
