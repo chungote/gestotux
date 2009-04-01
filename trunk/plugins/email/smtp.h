@@ -84,7 +84,7 @@ class Smtp : public QThread
     Q_OBJECT
 
 public:
-	Smtp(const QString &lsmtpusername, const QString &lsmtppass, const QString &lsmtphost, QObject *parent)
+	Smtp(const QString &lsmtpusername, const QString &lsmtppass, const QString &lsmtphost, QObject *parent, QSqlDatabase nuevadb)
 	: QThread(parent),error(false),newMail(false),readyToSend(false),preserveMails(false), state(Disconnected),read_state(Disconnected),sentMail(false),
 	quitAfterSending(false),mailsSent(0){
 		smtpusername=lsmtpusername;
@@ -92,7 +92,15 @@ public:
 		smtphost=lsmtphost;
 		t=0;
 		smtpsocket=0;
-		queuedMails = new EModeloMails( this );
+		// Clono la conexion a la base de datos
+		if( nuevadb.open() )
+		{
+			queuedMails = new EModeloMails( this, nuevadb );
+		}
+		else
+		{
+			qFatal( "Error al abrir 2º conexión" );
+		}
 		return;
 	};
 	~Smtp();

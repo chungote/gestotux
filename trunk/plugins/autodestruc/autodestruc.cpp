@@ -155,4 +155,7 @@ void AutoDestruc::cancelar()
     \fn AutoDestruc::seCierraGestotux()
  */
 void AutoDestruc::seCierraGestotux()
-{}
+{
+ qDebug( "Cerrado plugin autodestruct" );
+ return;
+}

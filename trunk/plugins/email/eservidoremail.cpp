@@ -20,8 +20,8 @@
 #include "eservidoremail.h"
 #include <QSqlRecord>
 
-EServidorEmail::EServidorEmail(QObject *parent)
- : QSqlTableModel(parent)
+EServidorEmail::EServidorEmail( QObject *parent, QSqlDatabase db )
+ : QSqlTableModel( parent, db )
 {
  	//setEditStrategy( QSqlTableModel::OnManualSubmit );
 	setTable( "servidores_email" );
@@ -91,7 +91,7 @@ void EServidorEmail::buscarPredeterminado()
 {
  if( _buscado_predeterminado )
  { return; }
- QSqlQuery cola( "SELECT * FROM servidores_email WHERE predeterminado = 1 OR predeterminado LIKE 'true' LIMIT 1" );
+ QSqlQuery cola( "SELECT * FROM servidores_email WHERE predeterminado = 1 OR predeterminado LIKE 'true' LIMIT 1", this->database() );
  if( cola.next() )
  {
   this->_nombre = cola.record().value( "nombre" ).toString();

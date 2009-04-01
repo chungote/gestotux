@@ -71,4 +71,7 @@ void GestotuxDefault::crearToolBar(QToolBar* t)
 Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );
 
 void GestotuxDefault::seCierraGestotux()
-{}
+{
+ qDebug( "Cerrado plugin default" );
+ return;
+}

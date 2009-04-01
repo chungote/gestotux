@@ -17,34 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ESERVIDOREMAIL_H
-#define ESERVIDOREMAIL_H
+#ifndef EREGISTROPLUGINS_H
+#define EREGISTROPLUGINS_H
 
-#include <QSqlTableModel>
+#include <QObject>
+#include <QMap>
+#include "eplugin.h"
 
 /**
-Clase que sirve de modelo para los servidores y al mismo tiempo proporciona la informacion del servidor predeterminado.
+Clase que mantiene la lista de plugins y los muestra en un formulario de preferencias
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EServidorEmail : public QSqlTableModel
+class ERegistroPlugins : public QObject
 {
 Q_OBJECT
 public:
-    EServidorEmail( QObject *parent = 0, QSqlDatabase db = QSqlDatabase::database() );
-    ~EServidorEmail();
-    int puerto();
-    QString direccion();
-    QString usuario();
-    QString password();
-    QString de();
+    ERegistroPlugins(QWidget *parent = 0);
+
+    ~ERegistroPlugins();
 
 private:
-    bool _buscado_predeterminado;
-    int _puerto;
-    QString _nombre, _direccion, _usuario, _password, _de;
-private:
-    void buscarPredeterminado();
+	QMap<QString, EPlugin *> plugins;
+
 };
 
 #endif

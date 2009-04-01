@@ -17,34 +17,41 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ESERVIDOREMAIL_H
-#define ESERVIDOREMAIL_H
+#ifndef EMAIL_H
+#define EMAIL_H
 
-#include <QSqlTableModel>
+#include <QObject>
+#include "eplugin.h"
+class QLabel;
 
 /**
-Clase que sirve de modelo para los servidores y al mismo tiempo proporciona la informacion del servidor predeterminado.
-
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class EServidorEmail : public QSqlTableModel
+class Email : public QObject , public EPlugin
 {
 Q_OBJECT
+Q_INTERFACES( EPlugin )
 public:
-    EServidorEmail( QObject *parent = 0, QSqlDatabase db = QSqlDatabase::database() );
-    ~EServidorEmail();
-    int puerto();
-    QString direccion();
-    QString usuario();
-    QString password();
-    QString de();
+    bool inicializar();
+    bool verificarTablas();
+    double version() const;
+    int tipo() const;
+    QList< QActionGroup * > accionesBarra();
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    void crearMenu(QMenuBar* m);
+    void crearToolBar(QToolBar* t);
+
+signals:
+    void agregarVentana(QWidget* v);
+
+public slots:
+    void seCierraGestotux();
 
 private:
-    bool _buscado_predeterminado;
-    int _puerto;
-    QString _nombre, _direccion, _usuario, _password, _de;
-private:
-    void buscarPredeterminado();
+    QLabel *_etiqueta;
+protected slots:
+    void cambioEstado( const QString &texto );
 };
 
 #endif

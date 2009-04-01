@@ -145,4 +145,6 @@ void Ventas::agregarVenta()
 void Ventas::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(ventas);
+ qDebug( "Cerrado plugin ventas" );
+ return;
 }

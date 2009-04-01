@@ -165,4 +165,6 @@ void productos::categorias()
 void productos::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(productos);
+ qDebug( "Cerrado plugin productos" );
+ return;
 }

@@ -22,7 +22,6 @@
 #include "formprefemail.h"
 #include "eservidoremail.h"
 #include "smtp.h"
-#include "eemail.h"
 
 #include <QSqlDatabase>
 #include <QLabel>
@@ -35,14 +34,11 @@ bool Email::inicializar()
  enviador = new Smtp(	datosServer->usuario(),
 			datosServer->password(),
 			datosServer->direccion(),
-			this,
-			QSqlDatabase::cloneDatabase( QSqlDatabase::database(), "correo" ) );
+			this );
  delete datosServer;
  // La cola la mantiene el mismo objecto
  _etiqueta = new QLabel();
- // Conecto las señales para cambiar la etiqueta de estado
  connect( enviador, SIGNAL( status( const QString& ) ), this, SLOT( cambioEstado( const QString& ) ) );
- connect( EEmail::instancia(), SIGNAL( enviar( Mail * ) ), enviador, SLOT( queueMail( Mail * ) ) );
  return true;
 }
 
@@ -62,7 +58,7 @@ double Email::version() const
 
 int Email::tipo() const
 {
- return EPlugin::email;
+ return EPlugin::comun;
 }
 
 QList< QActionGroup * > Email::accionesBarra()
@@ -93,12 +89,7 @@ void Email::crearToolBar(QToolBar* t)
  */
 void Email::seCierraGestotux()
 {
- disconnect( enviador, SIGNAL( status( const QString& ) ), this, SLOT( cambioEstado( const QString& ) ) );
  // matar el hilo de ejecucion....
- enviador->terminarEjecucion();
- enviador->terminate();
- qDebug( "Cerrado plugin email" );
- return;
 }
 
 /*!
@@ -106,20 +97,8 @@ void Email::seCierraGestotux()
  */
 void Email::cambioEstado( const QString &texto )
 {
- if( _etiqueta->isVisible() )
- {
-  _etiqueta->setText( texto );
-  _etiqueta->adjustSize();
- }
+ _etiqueta->setText( texto );
+ _etiqueta->adjustSize();
 }
 
 Q_EXPORT_PLUGIN2( email, Email );
-
-
-/*!
-    \fn Email::statusBarWidget()
- */
-QWidget * Email::statusBarWidget()
-{
- return _etiqueta;
-}

@@ -120,4 +120,6 @@ void Gastos::ver_gastos()
 void Gastos::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(gastos);
+ qDebug( "Cerrado plugin gastos" );
+ return;
 }

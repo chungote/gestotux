@@ -20,11 +20,11 @@
 #include "vcliente.h"
 
 #include "mclientes.h"
+
 #include <QTableView>
 #include <QGridLayout>
 #include <QAction>
 #include <QTableView>
-#include "gestotux.h"
 #include <QHeaderView>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -37,21 +37,35 @@ VCliente::VCliente( QWidget *parent )
  setObjectName( "lista_clientes" );
  this->setAttribute( Qt::WA_DeleteOnClose );
  setWindowTitle( "Listado de Clientes" );
+ setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
 
  modelo = new MClientes( this );
- modelo->setEditStrategy( QSqlTableModel::OnFieldChange );
 
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
  vista->setTextElideMode( Qt::ElideRight );
  vista->setSelectionBehavior( QAbstractItemView::SelectRows );
+ vista->setAlternatingRowColors( true );
  vista->setModel( modelo );
- vista->hideColumn( 0 );
+ vista->hideColumn( modelo->fieldIndex( "id" ) );
+ vista->hideColumn( modelo->fieldIndex( "nombre" ) );
+ vista->hideColumn( modelo->fieldIndex( "segundo" ) );
+ vista->hideColumn( modelo->fieldIndex( "apellido" ) );
+ vista->hideColumn( modelo->fieldIndex( "nombre" ) );
+ vista->hideColumn( modelo->fieldIndex( "piso" ) );
+ vista->hideColumn( modelo->fieldIndex( "depto" ) );
+ vista->hideColumn( modelo->fieldIndex( "provincia" ) );
+ vista->hideColumn( modelo->fieldIndex( "codigo_postal" ) );
+ vista->hideColumn( modelo->fieldIndex( "pais" ) );
+ vista->hideColumn( modelo->fieldIndex( "fax" ) );
+ vista->hideColumn( modelo->fieldIndex( "email" ) );
+ vista->hideColumn( modelo->fieldIndex( "comprobante_email" ) );
  modelo->select();
 
+ ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
+ ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCerrar );
-
 }
 
 

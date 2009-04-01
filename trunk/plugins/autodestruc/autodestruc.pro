@@ -18,3 +18,5 @@ SOURCES += autodestruc.cpp
 
 QT += sql
 
+TRANSLATIONS += autodestruc.ts
+

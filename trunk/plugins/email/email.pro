@@ -4,7 +4,6 @@ CONFIG += dll \
 plugin \
 debug \
 help
-CONFIG -= release
 
 QT += sql \
 network
@@ -15,7 +14,6 @@ DESTDIR = ../../bin/plugins/
 QMAKE_CXXFLAGS_DEBUG += -o0 \
   -g3 \
   -ggdb
-
 
 LIBS += ../../bin/libutiles.a
 
@@ -34,20 +32,24 @@ mail.cpp \
 mime.cpp \
 smtp.cpp \
 formprefemail.cpp \
- email.cpp
+email.cpp
+
 HEADERS += emodelomails.h \
 eservidoremail.h \
 mail.h \
 mime.h \
 smtp.h \
 formprefemail.h \
- email.h
+email.h
+
 FORMS += FormPrefEmailBase.ui
 
 INCLUDEPATH += ../../src \
   ../../utiles
 
-DISTFILES += email.QMYSQL.sql \
-email.QSQLITE.sql
+DISTFILES += 	email.QMYSQL.sql \
+		email.QSQLITE.sql
 RESOURCES += email.qrc
+
+TRANSLATIONS += email.ts
 

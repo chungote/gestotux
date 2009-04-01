@@ -110,4 +110,6 @@ void Compras::ver_compras()
 void Compras::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(compras);
+ qDebug( "Cerrado plugin compras" );
+ return;
 }

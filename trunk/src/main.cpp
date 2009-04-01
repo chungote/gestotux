@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
       QSqlDatabase DB; bool fallosql = false;
       if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
       {
-	 qWarning( "Usando mysql" );
+	 //qWarning( "Usando mysql" );
 	 EMysql dialogo;
 	 dialogo.setDb( &DB );
 	 int ret = dialogo.exec();

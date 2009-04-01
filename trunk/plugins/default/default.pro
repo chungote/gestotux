@@ -12,3 +12,5 @@ TARGET = zinfo
 
 DESTDIR = ../../bin/plugins/
 
+TRANSLATIONS += default.ts
+
