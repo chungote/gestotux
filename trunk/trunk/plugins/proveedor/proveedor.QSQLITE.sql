@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS proveedor ( id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT , direccion BLOB, email TEXT, fax TEXT, telefono_celular TEXT, telefono_linea TEXT, cuit_cuil TEXT );
+INSERT OR IGNORE INTO "sqlite_sequence" VALUES( 'proveedor', '1' );

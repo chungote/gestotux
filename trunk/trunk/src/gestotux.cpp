@@ -72,9 +72,12 @@ void gestotux::inicializar()
  crearBarraLateral();
  bandeja_sistema();
  createMenus();
- ///@todo Eliminar esto!
- EEmail::instancia()->testear();
- //this->statusBar()->addPermanentWidget( _pluginEmail->statusBarWidget(), -1 );
+
+ if( _pluginEmail != 0 )
+ {
+  statusBar()->addPermanentWidget( _pluginEmail->statusBarWidget(), -1 );
+  //EEmail::instancia()->testear();
+ }
 
 preferencias *p = preferencias::getInstancia();
 //p->inicio();
@@ -192,6 +195,8 @@ gestotux::~gestotux()
  */
 void gestotux::salir()
 {
+ // Envio señal de que salgo para los plugins que estan escuchando
+ emit saliendoGestotux();
  // Guardo el estado de la ventana principal
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "ventanaPrincipal" );
@@ -201,8 +206,7 @@ void gestotux::salir()
  p->sync();
  // Cierro la base de datos
  QSqlDatabase::database().close();
- // Envio señal de que salgo para los plugins que estan escuchando
- emit saliendoGestotux();
+ QSqlDatabase::removeDatabase( QSqlDatabase::database().connectionName() );
  // Cierro el formulario... deberia de ser el ultimo...
  close();
 }
@@ -411,17 +415,19 @@ bool gestotux::cargarPlugins()
 		if( plug->tipo() == EPlugin::info )
 		{
 			_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
+			preferencias::getInstancia()->inicio();
 			preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
 		}
 		else if ( plug->tipo() == EPlugin::email )
 		{
 			_pluginEmail = qobject_cast<EInterfazEmail *>(obj);
+			preferencias::getInstancia()->inicio();
 			preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
 		}
 		if( plug->inicializar() )
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), formCen(), SLOT( agregarForm( QWidget * ) ) );
-			connect( this, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() )/*, Qt::BlockingQueuedConnection */);
+			connect( this, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
 			//Verifico sus tablas
 			if( plug->verificarTablas() != true )
 			{

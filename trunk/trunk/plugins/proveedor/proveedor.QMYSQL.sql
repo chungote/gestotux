@@ -1,0 +1,1 @@
+CREATE TABLE `proveedor` ( `id` int(1) NOT NULL auto_increment, `nombre` tinytext NOT NULL, `direccion` blob, `email` tinytext, `fax` tinytext, `telefono_celular` tinytext, `telefono_linea` tinytext, `cuit_cuil` tinytext, PRIMARY KEY  (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;

@@ -73,7 +73,31 @@ MClientes::~MClientes()
 
 QVariant MClientes::data(const QModelIndex& idx, int role) const
 {
-    return QSqlTableModel::data(idx, role);
+ /*switch( role )
+ {
+	case Qt::EditRole:
+	{
+		switch( idx.column() )
+		{
+			case 17:
+			{
+				return QSqlTableModel::data( idx, role ).toBool();
+				break;
+			}
+			default:
+			{
+				*/return QSqlTableModel::data( idx, role );/*
+				break;
+			}
+		}
+		break;
+	}
+	default:
+	{
+		return QSqlTableModel::data(idx, role);
+		break;
+	}
+ }*/
 }
 
 Qt::ItemFlags MClientes::flags(const QModelIndex& index) const

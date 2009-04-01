@@ -28,7 +28,7 @@ FormPrefEmail::FormPrefEmail(QWidget* parent, Qt::WFlags fl)
 	LVServidores->setModel( servidores );
 	LVServidores->setModelColumn( servidores->fieldIndex( "nombre" ) );
 
-	mapeador = new QDataWidgetMapper();
+	mapeador = new QDataWidgetMapper( this );
 	mapeador->setModel( servidores );
 	mapeador->addMapping( LENombre, servidores->fieldIndex( "nombre" ) );
 	mapeador->addMapping( LEDireccion, servidores->fieldIndex( "direccion" ) );
@@ -64,7 +64,10 @@ FormPrefEmail::~FormPrefEmail()
  */
 void FormPrefEmail::guardar()
 {
- mapeador->submit();
+ if( !mapeador->submit() )
+ {
+  qWarning( "Error al hacer submit" );
+ }
 }
 
 
@@ -73,7 +76,10 @@ void FormPrefEmail::guardar()
  */
 void FormPrefEmail::aplicar()
 {
- mapeador->submit();
+ if( !mapeador->submit() )
+ {
+  qWarning( "Error al hacer submit" );
+ }
 }
 
 

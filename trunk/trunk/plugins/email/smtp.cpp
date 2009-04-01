@@ -40,6 +40,8 @@ void Smtp::exitLoop()
 	qDebug()<<"exit loop";
 	mutex.lock();
 	running=false;
+	// Cierro la conexion de la db clonada
+	queuedMails->database().close();
 	// Elimino el objeto de cola que se conecta con la base de datos
 	delete queuedMails;
 	mutex.unlock();
@@ -93,7 +95,15 @@ void Smtp::run()
 			sendMail(m,quitAfterSending);
 		}
 		//qDebug()<<quitAfterSending << sentMail << queuedMails.size();
-		if(quitAfterSending && sentMail && queuedMails->size()<=0) disconnectSmtp();
+		if( quitAfterSending && sentMail && queuedMails->size()<=0 )
+		{
+			disconnectSmtp();
+		}
+		else
+		{
+			// intervalo de verificación de email
+			this->sleep( 2 );
+		}
 	}
 	qDebug()<<"end";
 	quit();
@@ -203,8 +213,12 @@ Smtp::~Smtp()
 /* LINE SENDER  */
 void Smtp::nextLine()
 {
-
 	State current = read_state;
+	if( running == false )
+	{
+		disconnectSmtp();
+		return;
+	}
 	//qDebug() <<"### Go and Send line " << read_state;
 	switch(current) {
 	case Connect:

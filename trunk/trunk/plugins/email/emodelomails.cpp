@@ -26,12 +26,10 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
-EModeloMails::EModeloMails(QObject *parent)
- : QSqlTableModel(parent)
+EModeloMails::EModeloMails(QObject *parent, QSqlDatabase db)
+ : QSqlTableModel(parent, db)
 {
  setTable( "emails" );
- setHeaderData( 1, Qt::Horizontal, "#ID" );
- /// @todo ver que parte de los emails se debe guardar
  this->setEditStrategy( QSqlTableModel::OnManualSubmit );
 }
 
@@ -46,12 +44,12 @@ EModeloMails::~EModeloMails()
  */
 Mail * EModeloMails::takeFirst()
 {
-    /// @todo carga el primer email de la lista y lo elimina de la cola
+ //carga el primer email de la lista y lo elimina de la cola
  this->select();
  QSqlRecord primero = this->record( 0 );
  Mail *mail = EEmail::instancia()->email();
  mail->setIdentificadorUnico( QUuid( primero.value("id_unico" ).toString() ) );
- EServidorEmail servidor;
+ EServidorEmail servidor( this, this->database() );
  mail->setHeader( servidor.de(),
 			primero.value( "para" ).toString(),
 			primero.value( "bcc" ).toString(),
@@ -59,9 +57,13 @@ Mail * EModeloMails::takeFirst()
 			primero.value( "asunto" ).toString()
 		);
  mail->setMessageBody( primero.value( "cuerpo" ).toString() );
- mail->setContentType( primero.value( "content-type" ).toString() );
+ mail->setContentType( primero.value( "content_type" ).toString() );
  this->removeRow( 0 );
- this->submit();
+ if( !this->submitAll() )
+ {
+  qDebug( "Error la poner desencolar un email" );
+  qDebug( qPrintable( this->lastError().text() ) );
+ }
  return mail;
 }
 
@@ -71,9 +73,10 @@ Mail * EModeloMails::takeFirst()
  */
 int EModeloMails::size()
 {
- QSqlQuery cola( "SELECT COUNT( id_email ) FROM emails" );
+ QSqlQuery cola( "SELECT COUNT( id_email ) FROM emails", this->database() );
  if( cola.next() )
  {
+  //qDebug( QString( "cant emails: %1" ).arg( cola.record().value(0).toInt() ).toLocal8Bit() );
   return cola.record().value(0).toInt();
  }
  else
@@ -86,20 +89,11 @@ int EModeloMails::size()
 
 
 /*!
-    \fn EModeloMails::emailEnviado( Mail *mail )
- */
-void EModeloMails::emailEnviado( Mail *mail )
-{
-    /// @todo Eliminar el email que esta para mandar segun el uuid
-}
-
-
-/*!
     \fn EModeloMails::append( Mail *mail )
  */
 void EModeloMails::append( Mail *mail )
 {
- QSqlRecord encolar = record();
+ QSqlRecord encolar = this->record();
  encolar.remove(0);
  encolar.setValue( "id_unico", mail->identificadorUnico().toString() );
  encolar.setValue( "para", mail->to() );
@@ -107,14 +101,23 @@ void EModeloMails::append( Mail *mail )
  encolar.setValue( "cc", mail->cc() );
  encolar.setValue( "asunto", mail->subject() );
  encolar.setValue( "cuerpo", mail->messageBody() );
- encolar.setValue( "content-type", mail->contentType() );
+ encolar.setValue( "content_type", mail->contentType() );
  // Por ahora sin adjuntos
  //encolar.setValue( "
  if( this->insertRecord( -1, encolar ) )
  {
-  emit nuevoMail();
-  qDebug( "Email encolado correctamente" );
-  return;
+  if( !this->submitAll() )
+  {
+    qDebug("error en el submit del email" );
+    qDebug( qPrintable( this->lastError().text() ) );
+    return;
+  }
+  else
+  {
+   emit nuevoMail();
+   qDebug( "Email encolado correctamente" );
+   return;
+  }
  }
  else
  {

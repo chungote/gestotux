@@ -97,4 +97,6 @@ void proveedor::seCierraGestotux()
 {
  // Algo que desinicializar
   Q_CLEANUP_RESOURCE(proveedor);
+  qDebug( "Cerrado plugin proveedor" );
+  return;
 }

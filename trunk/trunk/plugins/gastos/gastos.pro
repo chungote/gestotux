@@ -46,14 +46,9 @@ LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
 
-TRANSLATIONS += ventas.ts
-# Actualiza la documentacion
-DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
-message( "Actualizando traduccion" )
-message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-
 FORMS += FormAgregarGastoBase.ui
 
 RESOURCES += gastos.qrc
+
+TRANSLATIONS += gastos.ts
 

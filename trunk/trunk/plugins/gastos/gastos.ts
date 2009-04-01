@@ -1,32 +1,28 @@
 <!DOCTYPE TS><TS>
 <context>
-    <name>FormAgregarVentaBase</name>
+    <name>FormAgregarGastoBase</name>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cliente</source>
+        <source>Descripcion:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cliente:</source>
+        <source>Tipo:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Costo:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>$ </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fecha:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Numero de Comprombante:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Productos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Forma de pago</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

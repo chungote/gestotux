@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>497</width>
-    <height>461</height>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,11 +15,41 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_23">
+     <item>
+      <widget class="QLabel" name="LNumCliente">
+       <property name="text">
+        <string>Numero de Cliente:</string>
+       </property>
+       <property name="buddy">
+        <cstring>LENumCliente</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="LENumCliente">
+       <property name="styleSheet">
+        <string/>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="LRazonSocial">
        <property name="text">
         <string>Razon Social:</string>
+       </property>
+       <property name="buddy">
+        <cstring>LERazonSocial</cstring>
        </property>
       </widget>
      </item>
@@ -44,6 +74,9 @@
          <property name="text">
           <string>Nombre:</string>
          </property>
+         <property name="buddy">
+          <cstring>LENombre</cstring>
+         </property>
         </widget>
        </item>
        <item>
@@ -57,6 +90,9 @@
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Segundos Nombres:</string>
+         </property>
+         <property name="buddy">
+          <cstring>LESegundoNombre</cstring>
          </property>
         </widget>
        </item>
@@ -73,6 +109,9 @@
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Apellidos:</string>
+       </property>
+       <property name="buddy">
+        <cstring>LEApellido</cstring>
        </property>
       </widget>
      </item>
@@ -97,6 +136,9 @@
           <property name="text">
            <string>Calle:</string>
           </property>
+          <property name="buddy">
+           <cstring>LECalle</cstring>
+          </property>
          </widget>
         </item>
         <item>
@@ -113,6 +155,9 @@
             <property name="text">
              <string>Numero:</string>
             </property>
+            <property name="buddy">
+             <cstring>LENumero</cstring>
+            </property>
            </widget>
           </item>
           <item>
@@ -127,6 +172,9 @@
             <property name="text">
              <string>Piso:</string>
             </property>
+            <property name="buddy">
+             <cstring>LEPiso</cstring>
+            </property>
            </widget>
           </item>
           <item>
@@ -140,6 +188,9 @@
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string>Depto:</string>
+            </property>
+            <property name="buddy">
+             <cstring>LEDepto</cstring>
             </property>
            </widget>
           </item>
@@ -159,6 +210,9 @@
             <property name="text">
              <string>Ciudad:</string>
             </property>
+            <property name="buddy">
+             <cstring>LECiudad</cstring>
+            </property>
            </widget>
           </item>
           <item>
@@ -172,6 +226,9 @@
            <widget class="QLabel" name="label_10">
             <property name="text">
              <string>Codigo Postal:</string>
+            </property>
+            <property name="buddy">
+             <cstring>LECodPostal</cstring>
             </property>
            </widget>
           </item>
@@ -190,6 +247,9 @@
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>Provincia:</string>
+            </property>
+            <property name="buddy">
+             <cstring>LEProvincia</cstring>
             </property>
            </widget>
           </item>
@@ -221,6 +281,9 @@
            <widget class="QLabel" name="label_12">
             <property name="text">
              <string>Pais:</string>
+            </property>
+            <property name="buddy">
+             <cstring>LEPais</cstring>
             </property>
            </widget>
           </item>
@@ -265,6 +328,9 @@
             <property name="text">
              <string>Telefono Fijo:</string>
             </property>
+            <property name="buddy">
+             <cstring>LETelFijo</cstring>
+            </property>
            </widget>
           </item>
           <item>
@@ -277,7 +343,10 @@
           <item>
            <widget class="QLabel" name="label_14">
             <property name="text">
-             <string>Telefono Celular:</string>
+             <string>Celular:</string>
+            </property>
+            <property name="buddy">
+             <cstring>LETelCel</cstring>
             </property>
            </widget>
           </item>
@@ -292,6 +361,9 @@
            <widget class="QLabel" name="label_15">
             <property name="text">
              <string>Fax:</string>
+            </property>
+            <property name="buddy">
+             <cstring>LEFax</cstring>
             </property>
            </widget>
           </item>
@@ -319,6 +391,9 @@
             <property name="text">
              <string>Em@il:</string>
             </property>
+            <property name="buddy">
+             <cstring>LEEmail</cstring>
+            </property>
            </widget>
           </item>
           <item>
@@ -340,6 +415,25 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>LERazonSocial</tabstop>
+  <tabstop>LEApellido</tabstop>
+  <tabstop>LENombre</tabstop>
+  <tabstop>LESegundoNombre</tabstop>
+  <tabstop>LECalle</tabstop>
+  <tabstop>LENumero</tabstop>
+  <tabstop>LEPiso</tabstop>
+  <tabstop>LEDepto</tabstop>
+  <tabstop>LECiudad</tabstop>
+  <tabstop>LECodPostal</tabstop>
+  <tabstop>LEProvincia</tabstop>
+  <tabstop>LEPais</tabstop>
+  <tabstop>LETelFijo</tabstop>
+  <tabstop>LETelCel</tabstop>
+  <tabstop>LEFax</tabstop>
+  <tabstop>LEEmail</tabstop>
+  <tabstop>CkBComprobanteEmail</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

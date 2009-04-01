@@ -17,34 +17,15 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef ESERVIDOREMAIL_H
-#define ESERVIDOREMAIL_H
+#include "eregistroplugins.h"
 
-#include <QSqlTableModel>
-
-/**
-Clase que sirve de modelo para los servidores y al mismo tiempo proporciona la informacion del servidor predeterminado.
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class EServidorEmail : public QSqlTableModel
+ERegistroPlugins::ERegistroPlugins(QWidget *parent)
 {
-Q_OBJECT
-public:
-    EServidorEmail( QObject *parent = 0, QSqlDatabase db = QSqlDatabase::database() );
-    ~EServidorEmail();
-    int puerto();
-    QString direccion();
-    QString usuario();
-    QString password();
-    QString de();
+}
 
-private:
-    bool _buscado_predeterminado;
-    int _puerto;
-    QString _nombre, _direccion, _usuario, _password, _de;
-private:
-    void buscarPredeterminado();
-};
 
-#endif
+ERegistroPlugins::~ERegistroPlugins()
+{
+}
+
+

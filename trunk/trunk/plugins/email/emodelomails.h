@@ -33,7 +33,7 @@ class EModeloMails : public QSqlTableModel
 {
 Q_OBJECT
 public:
-    EModeloMails(QObject *parent = 0);
+    EModeloMails( QObject *parent = 0, QSqlDatabase db = QSqlDatabase::database() );
     ~EModeloMails();
     Mail *takeFirst();
     int size();
@@ -42,8 +42,7 @@ public:
 
 signals:
     void nuevoMail();
-public slots:
-    void emailEnviado( Mail *mail );
+
 };
 
 #endif
