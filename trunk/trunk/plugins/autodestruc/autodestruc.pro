@@ -1,9 +1,7 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-debug
-CONFIG -= release
+plugin
 
 TARGET = autodestruct
 
@@ -15,8 +13,6 @@ INCLUDEPATH += ../../src
 HEADERS += autodestruc.h
 
 SOURCES += autodestruc.cpp
-
-QT += sql
 
 TRANSLATIONS += autodestruc.ts
 

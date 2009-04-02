@@ -1,7 +1,6 @@
 TEMPLATE = lib
 CONFIG += dll \
 plugin \
-debug \
 help
 
 SOURCES += formagregarventa.cpp \
@@ -43,16 +42,7 @@ DESTDIR = ../../bin/plugins/
 LIBS += ../../bin/libutiles.a
 TARGETDEPS += ../../bin/libutiles.a
 
-# Actualiza la documentacion
-DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
-message( "Actualizando traduccion" )
-message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-
-
 FORMS += FormAgregarVentaBase.ui
-
-CONFIG -= release
 
 INCLUDEPATH += ../../src \
   ../../utiles

@@ -6,7 +6,6 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 exceptions \
- debug \
  help
 
 QT += sql \
@@ -66,8 +65,6 @@ FORMS += FormMovimientoBase.ui \
  FormPrefCaravanas.ui
 
 win32 {
-    CONFIG += release
-    CONFIG -= debug
     MOC_DIR = win/moc
     UI_DIR = win/ui
     OBJECTS_DIR = win/objeto
@@ -77,7 +74,6 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
-CONFIG -= release
 
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
@@ -92,8 +88,3 @@ DISTFILES += admincaravanascorrientes.SQLITE.sql \
  admincaravanascorrientes.QMYSQL.sql
 
 TRANSLATIONS += admincaravanascorrientes.ts
-
-DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
-message( "Actualizando traduccion" )
-message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )

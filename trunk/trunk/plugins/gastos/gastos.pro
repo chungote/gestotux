@@ -2,13 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug \
 help
 
-CONFIG -= release
-
 TARGET = gastos
-
 
 SOURCES += dgastos.cpp \
 mgasto.cpp \
@@ -51,4 +47,3 @@ FORMS += FormAgregarGastoBase.ui
 RESOURCES += gastos.qrc
 
 TRANSLATIONS += gastos.ts
-

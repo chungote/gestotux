@@ -3,10 +3,10 @@ SUBDIRS += productos \
  #presupuesto \
  #presupuesto/plugins \
  ventas \
- default \
+ #default \
  gastos \
  proveedor \
- #digifauno \
+ digifauno \
  compras \
  autodestruc \
  #aCarCorr \

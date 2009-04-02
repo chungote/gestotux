@@ -2,11 +2,11 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug \
 help
 
 QT += sql \
 network
+
 TARGET = email
 
 DESTDIR = ../../bin/plugins/
@@ -24,7 +24,6 @@ OBJECTS_DIR = obj
 UI_DIR = ui
 
 MOC_DIR = moc
-
 
 SOURCES += emodelomails.cpp \
 eservidoremail.cpp \
@@ -49,6 +48,7 @@ INCLUDEPATH += ../../src \
 
 DISTFILES += 	email.QMYSQL.sql \
 		email.QSQLITE.sql
+
 RESOURCES += email.qrc
 
 TRANSLATIONS += email.ts

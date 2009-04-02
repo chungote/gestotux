@@ -1,7 +1,6 @@
 TEMPLATE = lib
 CONFIG += plugin \
  dll \
- debug \
  help
 
 TARGET = hicomp
@@ -64,13 +63,4 @@ LIBS += ../../bin/libutiles.a
 
 TARGETDEPS += ../../bin/libutiles.a
 
-CONFIG -= release
-
-CONFIG += help
-
 TRANSLATIONS += hicomp.ts
-
-DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
-message( "Actualizando traduccion" )
-message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
