@@ -36,41 +36,23 @@ eactimprimir.cpp \
 
 QT += sql
 
-win32 {
-    CONFIG += release
-    CONFIG -= debug
-}
 linux-g++ {
     UI_DIR = ui
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
 
-CONFIG += debug \
- staticlib \
+CONFIG += staticlib \
  help \
  exceptions
 
 RESOURCES += utiles.qrc
-
-CONFIG -= release
 
 DESTDIR = ../bin
 
 FORMS += EAyudaBase.ui
 
 TRANSLATIONS += utiles.ts
-
-DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
-message( "Actualizando traduccion" )
-message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-
-
-
-
-
-
 
 INCLUDEPATH += ../src
 

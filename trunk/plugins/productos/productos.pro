@@ -2,15 +2,14 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-debug \
 help
+
 QT += sql \
  svg
 
 TARGET = productos
 
 DESTDIR = ../../bin/plugins
-
 
 win32 {
     MOC_DIR = win/moc
@@ -23,6 +22,7 @@ linux-g++ {
     MOC_DIR = moc
     OBJECTS_DIR = obj
 }
+
 SOURCES += mcategorias.cpp \
 mproductos.cpp \
 vcategorias.cpp \
@@ -37,8 +37,6 @@ vproductos.h \
  productos.h \
  dproductos.h \
  dcategoria.h
-CONFIG -= release
-
 
 LIBS += ../../bin/libutiles.a
 
@@ -50,14 +48,7 @@ INCLUDEPATH += ../../src \
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
 
-
 DISTFILES += productos.SQLITE.sql \
  productos.QMYSQL.sql
 
 TRANSLATIONS += productos.ts
-
-DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
-message( "Actualizando traduccion" )
-message( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
-system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )RESOURCES += productos.qrc
-
