@@ -1,0 +1,15 @@
+= EVLista =
+
+Una clase muy importante para un rapido desarollo de los componentes del programa.
+
+== Principales Caracteristicas ==
+
+Esta clase genera una ventana con un contenedor de tipo tabla al cual se le puede colocar cualquier modelo del tipo _QSqlTableModel_ o heredado de el.
+
+=== Metodos importantes ===
+
+{{{ void EVLista::menuContextual( const QModelIndex &indice, QMenu *menu ) }}}
+Metodo que permite agregar acciones al menu contextual para cierto indice especifico. El menu se genera automaticamente cada vez que el usuario presiona click derecho sobre un item de la lista de elementos que estamos mostrando.
+
+{{{ void EVLista::agregar( bool autoeliminarid ) }}}
+Metodo que agrega limpiamente un elemento a la lista, y si autoeliminar id es verdadero, antes de agregar el registro al final, elimina el primer campo.
