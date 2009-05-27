@@ -42,7 +42,7 @@ private slots:
 
 protected slots:
     void verCategorias();
-    void agregar();
+    void agregar(  bool autoeliminarid = true );
 };
 
 #endif

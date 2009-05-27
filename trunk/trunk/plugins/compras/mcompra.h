@@ -31,8 +31,9 @@ Q_OBJECT
 public:
     MCompra(QObject *parent = 0, bool relaciones = false );
     ~MCompra();
-    bool agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo );
+    bool agregarCompra( QVariant fecha, QVariant proveedor );
     QVariant data(const QModelIndex &index, int role ) const;
+    int ultimoId();
 
 };
 

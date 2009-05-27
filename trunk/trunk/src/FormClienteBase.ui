@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>497</width>
-    <height>582</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -311,7 +311,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_22">
+    <layout class="QHBoxLayout" name="horizontalLayout_24">
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
@@ -407,6 +407,27 @@
            <string>Enviar Comprobantes por email</string>
           </property>
          </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_22">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Lista de Precio</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="CBListaPrecio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>

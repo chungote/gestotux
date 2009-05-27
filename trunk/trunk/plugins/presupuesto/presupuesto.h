@@ -22,12 +22,8 @@
 
 #include <QObject>
 #include <QSqlRecord>
-#include <QPluginLoader>
-#include <epresupuesto.h>
-#include <QTextDocument>
-#include <QTextTable>
-#include <QDate>
 class QPainter;
+class QSqTableModel;
 /**
  * \brief Clase de presupuesto
  *
@@ -43,24 +39,8 @@ public:
 	~Presupuesto();
 	bool registro( int id );
 	void imprimir( QPainter *pintador );
-	bool esValido();
-	void setFecha ( const QDate& theValue );
-	QDate fecha() const;
-	void setTitulo ( const QString& theValue );
-	QString titulo() const;
-	void setTotal ( double theValue );
-	double total() const;
-	void setId_cliente ( int theValue );
-	int id_cliente() const;
-	void setTexto_destinatario ( const QString& theValue );
-	QString texto_destinatario() const;
-	void generarDoc( const QTextDocument *docCont );
-	void generarTablaProductos( QSqlTableModel *modelo, const QString tituloTabla, const bool cabeceras );
-    QTextDocument * previsualizacion();
 
 private:
-	EPresupuesto *_plugin;
-	QPluginLoader *loader;
 	int _id_cliente;
 	QSqlRecord _registro;
 };

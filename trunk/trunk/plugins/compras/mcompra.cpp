@@ -45,13 +45,12 @@ MCompra::~MCompra()
 /*!
     \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo )
  */
-bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo )
+bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
 {
  QSqlRecord regCompra = record();
  regCompra.remove( 0 );
- regCompra.setValue( "fecha"       , fecha.toDate().toString( "yyyy-MM-dd" ) );
+ regCompra.setValue( "fecha"       , fecha );
  regCompra.setValue( "id_proveedor", proveedor );
- regCompra.setValue( "costo"       , costo.toDouble() );
  if( !insertRecord( -1, regCompra ) )
  {
   qDebug( "Error de insercion de registro de compra" );
@@ -137,4 +136,13 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
 		break;
 	}
  }
+}
+
+#include <QSqlQuery>
+/*!
+    \fn MCompra::ultimoId()
+ */
+int MCompra::ultimoId()
+{
+ return this->query().lastInsertId().toInt();
 }

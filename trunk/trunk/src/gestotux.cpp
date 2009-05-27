@@ -44,13 +44,11 @@
 #include "version.h"
 #include "eemail.h"
 #include "einterfazemail.h"
+#include "eregistroplugins.h"
 
 
 FormularioCentral *gestotux::formCentral = 0;
 QToolBar *gestotux::_barraAcciones = 0;
-EInfoProgramaInterface *gestotux::_pluginInfo = 0;
-QHash<QString, EPlugin *> *gestotux::_plugins = 0;
-EInterfazEmail *gestotux::_pluginEmail = 0;
 
 gestotux::gestotux()
 {
@@ -61,8 +59,6 @@ gestotux::gestotux()
 
 void gestotux::inicializar()
 {
- cargarPlugins();
-
  setCentralWidget( formCen() );
 
  createActions();
@@ -73,9 +69,9 @@ void gestotux::inicializar()
  bandeja_sistema();
  createMenus();
 
- if( _pluginEmail != 0 )
+ if( ERegistroPlugins::getInstancia()->pluginEmail() != 0 )
  {
-  statusBar()->addPermanentWidget( _pluginEmail->statusBarWidget(), -1 );
+  statusBar()->addPermanentWidget( ERegistroPlugins::getInstancia()->pluginEmail()->statusBarWidget(), -1 );
   //EEmail::instancia()->testear();
  }
 
@@ -85,8 +81,8 @@ p->beginGroup( "ventanaPrincipal" );
 this->restoreState( p->value( "estado", "" ).toByteArray() );
 p->endGroup();
 
- setWindowIcon( pluginInfo()->iconoPrograma() );
- setWindowTitle( pluginInfo()->nombrePrograma() );
+ setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
+ setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
 }
 
 void gestotux::closeEvent(QCloseEvent *event)
@@ -147,7 +143,7 @@ void gestotux::createMenus()
  menuHer->setObjectName( "menuHerramientas" );
  menuHer->addAction( ActClientes );
 
- foreach( EPlugin *plug , plugins() )
+ foreach( EPlugin *plug , ERegistroPlugins::plugins() )
  {
   //qDebug( QString("Creando menu de %1" ).arg( plug->nombre() ).toLocal8Bit() );
   plug->crearMenu( menuBar() );
@@ -245,7 +241,7 @@ void gestotux::createToolBar()
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
  //tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
- foreach( EPlugin *plug , plugins() )
+ foreach( EPlugin *plug , ERegistroPlugins::plugins() )
  {
   plug->crearToolBar( tb );
  }
@@ -288,7 +284,7 @@ void gestotux::crearReloj()
 	 Reloj *r = new Reloj( dw );
 	 dw->setWidget( r );
  }
- /*if( pluginInfo()->publicidad() )
+ if( ERegistroPlugins::pluginInfo()->publicidad() )
  {
 	 QDockWidget *dp = new QDockWidget( "Publicidad", this );
 	 dp->setObjectName( "publicidad" );
@@ -300,7 +296,7 @@ void gestotux::crearReloj()
 	 dp->setFixedHeight( 140 );
 	 vista->show();
 	 dp->setWidget( vista );
- }*/
+ }
 }
 
 
@@ -336,7 +332,7 @@ void gestotux::bandeja_sistema()
     menu->addSeparator();
     menu->addAction( ActRestaurar );
     menu->addAction( exitAct );
-    iconoBandeja->setIcon( pluginInfo()->iconoPrograma() );
+    iconoBandeja->setIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
     iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.4" );
     iconoBandeja->show();
     iconoBandeja->setContextMenu( menu );
@@ -380,122 +376,11 @@ void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 }
 
 
-bool gestotux::cargarPlugins()
-{
- pluginsDir = QDir(qApp->applicationDirPath());
-
- #if defined(Q_OS_WIN)
-     if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
-         pluginsDir.cdUp();
- #elif defined(Q_OS_MAC)
-     if (pluginsDir.dirName() == "MacOS") {
-         pluginsDir.cdUp();
-         pluginsDir.cdUp();
-         pluginsDir.cdUp();
-     }
- #endif
-     pluginsDir.cd("plugins");
-
-	_plugins = new QHash<QString, EPlugin *>();
-        QStringList filtro;
-#ifdef Q_WS_WIN32
-	filtro.append( "*.dll" );
-#endif
-#ifdef Q_WS_X11
-	filtro.append( "*.so" );
-#endif
-     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
-     {
-	loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
-         if( loader.load() )
-         {
-		QObject *obj = loader.instance();
-		EPlugin *plug = qobject_cast<EPlugin *>( obj );
-		// veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
-		if( plug->tipo() == EPlugin::info )
-		{
-			_pluginInfo = qobject_cast<EInfoProgramaInterface *>(obj);
-			preferencias::getInstancia()->inicio();
-			preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
-		}
-		else if ( plug->tipo() == EPlugin::email )
-		{
-			_pluginEmail = qobject_cast<EInterfazEmail *>(obj);
-			preferencias::getInstancia()->inicio();
-			preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
-		}
-		if( plug->inicializar() )
-		{
-			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), formCen(), SLOT( agregarForm( QWidget * ) ) );
-			connect( this, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
-			//Verifico sus tablas
-			if( plug->verificarTablas() != true )
-			{
-				// estan cargados los archivo resource cuando cargo el plugin?
-				if( hacerTablas( plug->nombre() ) )
-				{
-					// todo ok
-					qDebug( "Tablas creadas correctamente" );
-				}
-				else
-				{
-					// No se pudieron cargar las tablas
-					qWarning( "No se pudo crear la tabla" );
-					continue;
-				}
-			}
-			_plugins->insert( plug->nombre(), plug );
-			cargar_traduccion( plug->nombre() );
-			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
-		}
-		else
-		{
-			qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
-		}
-	 }
-	 else
-	 {
-		qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
-	 }
-     }
- return true;
-}
-
-EInfoProgramaInterface *gestotux::pluginInfo()
-{
- if( _pluginInfo != 0 )
- {
-  return _pluginInfo;
- }
- else
- {
-  qWarning( "Llamando al pluginInfo antes de cargarlo" );
-  abort();
- }
-}
-
-/*!
-    \fn gestotux::plugins()
- */
-QList<EPlugin *> gestotux::plugins()
-{
-  return _plugins->values();
-}
-
-
 /*!
     \fn gestotux::verActualizacion()
  */
 void gestotux::verActualizacion()
 { formCen()->agregarForm( new FormActualizacion( formCen() ) ); }
-
-
-/*!
-    \fn gestotux::pluginsHash()
- */
-QHash<QString, EPlugin *> *gestotux::pluginsHash()
-{ return _plugins; }
-
 
 #include "eayuda.h"
 /*!
@@ -516,46 +401,6 @@ void gestotux::keyPressEvent( QKeyEvent *event )
 }
 
 
-/*!
-    \fn gestotux::hacerTablas( QString nombrePlug )
- */
-bool gestotux::hacerTablas( QString nombrePlug )
-{
- if( QFile::exists( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) )
- {
-	QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" );
-	if( archivo.open( QIODevice::ReadOnly | QIODevice::Text ) )
-	{
-		QStringList cadenas = QString( archivo.readAll() ).split( ";" );
-		QString cadena; QSqlQuery cola;
-		foreach( cadena, cadenas )
-		{
-			qDebug( qPrintable( cadena ) );
-			if( !cola.exec( cadena ) )
-			{
-				qDebug( qPrintable( cadena ) );
-				qDebug( qPrintable( "Fallo...." + cola.lastError().text() ) );
-				return false;
-			}
-			else
-			{
-				qDebug( "Ok" );
-			}
-		}
-		return true;
-	}
-	else
-	{
-		qWarning(qPrintable( "Error al abrir el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
-		return false;
-	}
- }
- else
- {
-  qWarning( qPrintable( "No se pudo generar las tablas del plugin " + nombrePlug + ". No se encontro el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
-  return false;
- }
-}
 
 /*!
     \fn gestotux::ayuda()
@@ -577,22 +422,3 @@ void gestotux::crearBarraLateral()
 }
 
 
-/*!
-    \fn gestotux::cargar_traduccion( QString nombre_plugin )
- */
-void gestotux::cargar_traduccion( QString nombre_plugin )
-{
- QTranslator *traductor = new QTranslator( qApp );
- if( !traductor->load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + nombre_plugin) )
- {
-  qDebug( qPrintable( "Error al cargar la traduccion de " + nombre_plugin ) );
-  delete traductor;
-  return;
- }
- QCoreApplication::instance()->installTranslator( traductor );
-}
-
-EInterfazEmail *gestotux::pluginEmail()
-{
- return _pluginEmail;
-}

@@ -101,6 +101,7 @@ public:
 		{
 			qFatal( "Error al abrir 2º conexión" );
 		}
+		running = false;
 		return;
 	};
 	~Smtp();

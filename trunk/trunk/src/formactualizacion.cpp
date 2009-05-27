@@ -21,7 +21,7 @@
 #include <QFtp>
 #include <QSettings>
 #include "formactualizacion.h"
-#include "gestotux.h"
+#include "eregistroplugins.h"
 #include "preferencias.h"
 #include "version.h"
 #include "eplugin.h"
@@ -30,6 +30,7 @@
 #include <QDomElement>
 #include <QTextEdit>
 #include <QDomNodeList>
+#include <QDir>
 
 FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormActualizacionBase()
@@ -340,7 +341,7 @@ void FormActualizacion::analizarGeneral()
 			// Tengo instalado el plugin??
 			qDebug( QString( "Encontrado plugin %1" ).arg( nodoA.toElement().attribute( "nombre" ) ).toLocal8Bit() );
 			QString nombre = nodoA.toElement().attribute( "nombre" );
-			if( gestotux::pluginsHash()->find( nombre ) == gestotux::pluginsHash()->end() )
+			if( ERegistroPlugins::pluginsHash()->find( nombre ) == ERegistroPlugins::pluginsHash()->end() )
 			{
 				qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara" ).arg( nombre ).toLocal8Bit() );
 				docElem.removeChild( nodoA );
@@ -359,7 +360,7 @@ void FormActualizacion::analizarGeneral()
 					//veo que numero de version es
 					double version  = nodoVersion.toElement().attribute( "numero" ).toDouble();
 					qDebug( QString( "Encontrada version %1" ).arg( version ).toLocal8Bit() );
-					if( version >= gestotux::pluginsHash()->value( nombre )->version() )
+					if( version >= ERegistroPlugins::pluginsHash()->value( nombre )->version() )
 					{
 						// Lo ingreso a la lista de actualizaciones de forma ordenanda
 						qDebug( "Version agregada" );

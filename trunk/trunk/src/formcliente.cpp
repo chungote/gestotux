@@ -69,6 +69,7 @@ FormCliente::FormCliente ( QWidget* parent, QSqlTableModel *modelo,  Qt::WFlags 
 	map->addMapping( LEFax              , modelo->fieldIndex( "fax"               ) );
 	map->addMapping( LEEmail            , modelo->fieldIndex( "email"             ) );
 	map->addMapping( CkBComprobanteEmail, modelo->fieldIndex( "comprobante_email" ) );
+	map->addMapping( CBListaPrecio      , modelo->fieldIndex( "lista_precio_id"   ) );
 
 	map->setOrientation( Qt::Horizontal );
 	map->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );

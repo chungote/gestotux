@@ -164,3 +164,13 @@ void prespuesto::crearToolBar( QToolBar *t )
 {
  t->addActions( _acciones );
 }
+
+
+/*!
+    \fn prespuesto::seCierraGestotux()
+ */
+void prespuesto::seCierraGestotux()
+{
+ Q_CLEANUP_RESOURCE(presupuesto);
+ return;
+}

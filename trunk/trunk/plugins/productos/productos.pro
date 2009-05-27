@@ -52,3 +52,4 @@ DISTFILES += productos.SQLITE.sql \
  productos.QMYSQL.sql
 
 TRANSLATIONS += productos.ts
+RESOURCES += productos.qrc

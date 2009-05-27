@@ -25,6 +25,8 @@ class QSqlTableModel;
 class QSqlRecord;
 class QAction;
 class QTableView;
+class QMenu;
+class QModelIndex;
 
 /**
  * 	\brief Clase base para todas las ventanas de tipo lista
@@ -96,6 +98,8 @@ protected slots:
     virtual void modificar();
     virtual void email();
     virtual void aPdf();
+    virtual void menuContextual( const QModelIndex &indice, QMenu *menu );
+    virtual void hacerMenuContextual( const QModelIndex &indice );
 };
 
 #endif

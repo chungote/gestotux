@@ -31,6 +31,7 @@ Q_OBJECT
 public:
     VMascota(QWidget *parent = 0);
     ~VMascota();
+    void menuContextual( const QModelIndex &indice, QMenu *menu );
 
 protected slots:
     virtual void antes_de_insertar(int row, QSqlRecord& record);

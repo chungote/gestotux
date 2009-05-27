@@ -36,6 +36,8 @@ public:
 
 protected slots:
     void antes_de_insertar( int row, QSqlRecord & record );
+public slots:
+    void eliminar();
 };
 
 #endif

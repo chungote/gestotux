@@ -33,6 +33,7 @@ MProductos::MProductos(QObject *parent)
  setHeaderData( 3, Qt::Horizontal, "Precio de Venta" );
  setHeaderData( 4, Qt::Horizontal, "Descripcion" );
  setHeaderData( 5, Qt::Horizontal, "Marca" );
+ setSort( 0, Qt::AscendingOrder );
 }
 
 
@@ -42,7 +43,7 @@ MProductos::~MProductos()
 
 QVariant MProductos::data(const QModelIndex& item, int role) const
 {
-if( !item.isValid() )
+ if( !item.isValid() )
  {
    qDebug( QString( "Indice invalido Productos: col=%1, row=%2, role=%3").arg( item.column() ).arg( item.row() ).arg( role ).toLocal8Bit() );
    return( QVariant() );
@@ -100,13 +101,6 @@ if( !item.isValid() )
 		}
 		break;
 	}
-	case Qt::DecorationRole:
-	case Qt::FontRole:
-	case Qt::SizeHintRole:
-	{
-		return QVariant();
-		break;
-	}
 	case Qt::TextAlignmentRole:
 	{
 		switch( item.column() )
@@ -132,7 +126,7 @@ if( !item.isValid() )
 	}
 	default:
 	{
-		return QSqlRelationalTableModel::data( item, role);
+		return QSqlRelationalTableModel::data( item, role );
 		break;
 	}
  }

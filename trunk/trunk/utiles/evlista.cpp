@@ -30,6 +30,9 @@
 #include <QMessageBox>
 #include <QAction>
 #include <QGridLayout>
+#include <QModelIndex>
+#include <QMenu>
+#include <QApplication>
 
 EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
 : EVentana( parent, fl )
@@ -85,6 +88,10 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
 
  ActCerrar = new EActCerrar( this );
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( cerrar() ) );
+ ////////////////////////////////
+ // Sistema para el menu contextual
+ /////////////////////////////////////
+ connect( vista, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( hacerMenuContextual( const QModelIndex & ) ) );
 
 }
 
@@ -221,12 +228,10 @@ void EVLista::aPdf()
 #include <QDate>
 void EVLista::antes_de_insertar( int row, QSqlRecord & record )
 {
- if( QSqlDatabase::database().driverName() == "QSQLITE" )
+ /*if( QSqlDatabase::database().driverName() == "QSQLITE" )
  {
-   /*
 	Se utiliza este truco para que no falle la insercion y se puedan agregar registros sin problemas
 	como sqlite no tiene forma de insertar timestamps en los registros al actualizar hay que hacerlo a mano
-   */
    if( record.contains( "creado" ) )
    {  record.setValue( "creado", QDate::currentDate() );  }
    if( record.contains( "modificado" ) )
@@ -234,10 +239,41 @@ void EVLista::antes_de_insertar( int row, QSqlRecord & record )
  }
  else if( QSqlDatabase::database().driverName() == "QMYSQL" )
  {
-	/*
 	  MySql solo permite tener un registro con timestamp activado, asique ponemos la fecha en el de crear
-	*/
 	if( record.contains( "creado" ) )
 	{ record.setValue( "creado", QDate::currentDate() ); }
+ }*/
+}
+
+
+/*!
+    \fn EVLista::menuContextual( const QModelIndex &indice )
+	Rellena el menu contextual con las acciones que se deben utilizar para el item en indice. Debe reimplementarse para cada vista que dese agregar acciones personalizadas.
+ */
+void EVLista::menuContextual( const QModelIndex &indice, QMenu *menu )
+{
+ // este metodo se debe reimplementar para ser util, retorno automaticamente
+ return;
+}
+
+
+/*!
+    \fn EVLista::hacerMenuContextual( const QModelIndex &indice )
+ */
+void EVLista::hacerMenuContextual( const QModelIndex &indice )
+{
+  if( QApplication::mouseButtons() == Qt::RightButton )
+ {
+   // Calculo la posicion en que esta el item
+   QPoint posicion;
+   posicion.setX( vista->columnViewportPosition( indice.column() ) );
+   posicion.setY( vista->rowViewportPosition( indice.row() ) );
+   QMenu *_menuContextual = new QMenu( this );
+   // Pido el menu contextual a la clase que esta manejando la vista acutlamente
+   menuContextual( indice, _menuContextual );
+   // Si no hay nada en el menu, no agrego el separador
+   if( _menuContextual->isEmpty() ) { _menuContextual->addSeparator(); }
+   _menuContextual->addAction( ActCerrar );
+   _menuContextual->popup( this->mapToGlobal( posicion ) );
  }
 }

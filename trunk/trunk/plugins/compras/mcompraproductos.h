@@ -37,25 +37,26 @@ public:
     QModelIndex index( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
     int columnCount( const QModelIndex & parent = QModelIndex() ) const;
     bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
-
-    /*!
-        \fn MCompraProductos::rowCount ( const QModelIndex & parent = QModelIndex() ) const
-     */
-    int rowCount ( const QModelIndex & parent = QModelIndex() ) const  { return QSqlRelationalTableModel::rowCount( parent); }
     Qt::ItemFlags flags ( const QModelIndex & index ) const;
     bool isDirty( const QModelIndex & index ) const;
-    void primeInsert ( int row, QSqlRecord & record )  ;
-
-	int get_ultima_row() const;
+    void primeInsert ( int row, QSqlRecord & record );
+    void insertarRegistro();
+    int rowCount( const QModelIndex &parent = QModelIndex() ) const;
 
 private:
 	bool calculaTotales;
 	QHash<int, double> *subtotales;
 	double Total;
+
 private:
     void recalcularTotal();
+    int get_ultima_row() const;
+
 protected:
     int ultima_row;
+
+protected slots:
+    void eliminarFila( int fila );
 };
 
 #endif

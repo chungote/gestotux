@@ -2,8 +2,8 @@
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
  <DocsAndViews NumberOfDocuments="1" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/plugins.pro" >
-   <View0 Encoding="" line="5" Type="Source" />
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/src/main.cpp" >
+   <View0 Encoding="" line="114" Type="Source" />
   </Doc0>
  </DocsAndViews>
  <pluginList>
@@ -24,9 +24,9 @@
   </kdevsubversion>
   <kdevvalgrind>
    <executable path="" params="" />
-   <valgrind path="" params="" />
-   <calltree path="" params="" />
-   <kcachegrind path="" />
+   <valgrind path="/usr/bin/valgrind" params=" --tool=memcheck --leak-check=yes" />
+   <calltree path="/usr/bin/valgrind" params="--tool=callgrind" />
+   <kcachegrind path="/usr/bin/kcachegrind" />
   </kdevvalgrind>
  </pluginList>
 </KDevPrjSession>

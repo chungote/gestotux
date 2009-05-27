@@ -52,15 +52,8 @@ public:
       void inicializar();
       static FormularioCentral *formCentral;
       static FormularioCentral *formCen();
-      static EInfoProgramaInterface *_pluginInfo;
-      static EInfoProgramaInterface *pluginInfo();
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
-      static QList<EPlugin *> plugins();
-      static QHash<QString, EPlugin *> *pluginsHash();
-      static EInterfazEmail *_pluginEmail;
-      static EInterfazEmail *pluginEmail();
-
 
 protected:
       void closeEvent(QCloseEvent *event);
@@ -90,9 +83,6 @@ private:
       void createToolBar();
       void crearReloj();
       void bandeja_sistema();
-      bool hacerTablas( QString nombrePlug );
-      void cargar_traduccion( QString nombre_plugin );
-      bool cargarPlugins();
       void crearBarraLateral();
 
       barraLateral *barra;
@@ -119,11 +109,6 @@ private:
       QAction *ActRestaurar;
 
       QSystemTrayIcon * iconoBandeja;
-
-      static QHash<QString, EPlugin *> *_plugins;
-
-      QDir pluginsDir;
-      QPluginLoader loader;
 
 };
 
