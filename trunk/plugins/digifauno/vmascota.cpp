@@ -62,3 +62,12 @@ void VMascota::antes_de_insertar( int row, QSqlRecord& record )
    qDebug( QString( "Campo: %1, generado? %2, null? %3, valor? |%4|" ).arg( record.fieldName( i ) ).arg( record.isGenerated( i ) ).arg( record.isNull( i ) ).arg( record.value( i ).toString() ).toLocal8Bit() );
   }*/
 }
+
+
+/*!
+    \fn VMascota::menuContextual( const QModelIndex &indice, QMenu *menu )
+ */
+void VMascota::menuContextual( const QModelIndex &indice, QMenu *menu )
+{
+    /// @todo implement me
+}

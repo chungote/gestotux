@@ -9,7 +9,8 @@ mventaproducto.cpp \
 dventacompra.cpp \
 ventas.cpp \
  vventas.cpp \
- edsbprecio.cpp
+ edsbprecio.cpp \
+ mlistaprecio.cpp
 
 HEADERS += mventa.h \
 formagregarventa.h \
@@ -17,7 +18,8 @@ mventaproducto.h \
 dventacompra.h \
 ventas.h \
  vventas.h \
- edsbprecio.h
+ edsbprecio.h \
+ mlistaprecio.h
 
 TRANSLATIONS = ventas.ts
 

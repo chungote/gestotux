@@ -173,3 +173,12 @@ void VDuenos::cambioFiltro( bool estado )
 {
  forden->setVisible( estado );
 }
+
+
+/*!
+    \fn VDuenos::menuContextual( const QModelIndex &indice, QMenu *menu )
+ */
+void VDuenos::menuContextual( const QModelIndex &indice, QMenu *menu )
+{
+    /// @todo implement me
+}

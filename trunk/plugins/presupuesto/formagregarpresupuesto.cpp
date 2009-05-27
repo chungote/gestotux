@@ -24,7 +24,6 @@
 #include <QSqlError>
 #include "eeditor.h"
 #include "presupuesto.h"
-#include "formlistaproductos.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -53,12 +52,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 	ActCancelar->setShortcut( QKeySequence( "Ctrl+c" ) );
 	connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( cancelar() ) );
 
-	QAction *ActProductos = new QAction( "Lista de productos", this );
-	ActProductos->setIcon( QIcon( ":/imagenes/productos.png" ) );
-	ActProductos->setStatusTip( "Inserta una lista de productos en el presupuesto" );
-	ActProductos->setShortcut( QKeySequence( "Ctrl+p" ) );
-	connect( ActProductos, SIGNAL( triggered() ), this, SLOT( listaProductos() ) );
-
 	QAction *ActGuardarImprimir = new QAction( "Guardar e Imprimir", this );
 	ActGuardarImprimir->setIcon( QIcon( ":/imagenes/guardarimprimir.png" ) );
 	ActGuardarImprimir->setStatusTip( "Guarda los datos y abre el dialogo de imprimir" );
@@ -71,7 +64,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
 	// Agrego las acciones
 	addAction( ActGuardar );
-	addAction( ActProductos );
 	addAction( ActGuardarImprimir );
 	addAction( ActImprimir );
 	addAction( ActCancelar );
@@ -83,34 +75,10 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
 	// Pongo la fecha actual
 	dEFecha->setDate( QDate::currentDate() );
-
-	// Inicializo el formulario ahora para poder usar la modificacion
-	formLista = new FormListaProductos();
-	connect( formLista, SIGNAL( agregarTabla() ), this, SLOT( ponerTabla() ) );
-
-	// Inicializo el editor
-	editor = new EEditor( GBContenido );
-	GBContenido->layout()->addWidget( editor );
 }
 
 FormAgregarPresupuesto::~FormAgregarPresupuesto()
-{
- if( formLista != 0 )
- {
-  delete formLista;
- }
-}
-
-
-/*!
-    \fn FormAgregarPresupuesto::listaProductos()
-	Metodo que agrega o modifica la lista de productos que se van a colocar en el presupuesto
- */
-void FormAgregarPresupuesto::listaProductos()
-{
-  formLista->show();
-}
-
+{}
 
 /*!
     \fn FormAgregarPresupuesto::cancelar()
@@ -118,30 +86,9 @@ void FormAgregarPresupuesto::listaProductos()
  */
 void FormAgregarPresupuesto::cancelar()
 {
-    /// @todo Verificar el cierre de este formulario por asociaciones con otras tablas
-    formLista->getModelo()->revertAll();
     this->close();
 }
 
-#include <QTextTableCell>
-#include <QTextTable>
-
-/*!
-    \fn FormAgregarPresupuesto::ponerTabla()
- */
-void FormAgregarPresupuesto::ponerTabla()
-{
- formLista->hide();
- if( formLista->getModelo()->rowCount() <= 1 )
- {
- 	// no existen productos en realidad no hago nada
-	return;
- }
-
- //pre->generarTablaProductos( formLista->getModelo(), formLista->tituloTabla(), formLista->cabeceraColumnas() );
- editor->setText( editor->contenido().append( pre->previsualizacion()->toPlainText() ) );
- dSBTotal->setValue( formLista->getModelo()->getTotal() );
-}
 
 #include <QMessageBox>
 #include <QSqlRecord>
@@ -165,19 +112,13 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
 	QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese el titulo personalizado" );
 	return;
  }
- if( dSBTotal->value() <= 0 )
- {
-	QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese un total presupuestado" );
-	return;
- }
  // Inicio la transacción
  QSqlDatabase::database().transaction();
  MPresupuesto *mod = new MPresupuesto( this, false );
  QSqlRecord reg = mod->record();
  // le pongo los valores a el registro
  reg.setValue( "titulo", LETitulo->text() );
- reg.setValue( "total", dSBTotal->value() );
- reg.setValue( "contenido", editor->contenido() );
+ //reg.setValue( "contenido", editor->contenido() );
  reg.setValue( "fecha", dEFecha->date() );
  if( RBOtro->isChecked() )
  {
@@ -205,16 +146,6 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
 	{
 		id_presupuesto = var.toInt();
 	}
-  }
-  if( formLista->getModelo()->rowCount() > 0 )
-  {
-   // obtengo el id insertado y guardo los registros
-   if( !formLista->getModelo()->guardar( id_presupuesto ) )
-   {
-	qWarning( "No se pudo guardar los datos de los productos" );
-	QSqlDatabase::database().rollback();
-	return;
-   }
   }
   QSqlDatabase::database().commit();
   QMessageBox::information( this, "Correcto", "Datos Guardados correctamente" );

@@ -22,7 +22,7 @@
 #include <QVBoxLayout>
 #include <QIcon>
 #include "eplugin.h"
-#include "gestotux.h"
+#include "eregistroplugins.h"
 
 
 BotonesLaterales::BotonesLaterales(QWidget* parent, Qt::WindowFlags f )
@@ -31,7 +31,7 @@ BotonesLaterales::BotonesLaterales(QWidget* parent, Qt::WindowFlags f )
     setObjectName( QString::fromUtf8( "TBacciones" ) );
 
     // El padre debe ser gestotux
-    QList<EPlugin*> plugins = qobject_cast<gestotux*>(parent)->plugins();
+    QList<EPlugin*> plugins = ERegistroPlugins::plugins();
     EPlugin *plug;
     foreach( plug, plugins )
     {

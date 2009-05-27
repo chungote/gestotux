@@ -9,12 +9,16 @@
 			<section title="Actualizar el programa" ref="actualizar.html"/>
 			<section title="Salir del programa" ref="salir.html"/>
                  </section>
+		<section title="Manejo de Plugins" ref="plugins.html">
+			<section title="Servicios" ref="servicios.html" />
+		</section>
              </toc>
              <keywords>
 		<keyword name="indice" id="index" ref="index.html"/>
 		<keyword name="salir" id="salir" ref="salir.html"/>
 		<keyword name="actualizar" id="actualizar" ref="actualizar.html"/>
 		<keyword name="backup" id="backup" ref="backups.html"/>
+		<keyword name="servicios" id="servicios" ref="servicios.html"/>
 		<!--<keyword id="crearBackup::ChBBaseDatos" ref="backups.html#base"/>-->
              </keywords>
              <files>
@@ -26,6 +30,8 @@
 		<file>salir.html</file>
 		<file>actualizar.html</file>
 		<file>backups.html</file>
+		<file>compras.html</file>
+		<file>servicios.html</file>
 		<file>imagenes/backup.png</file>
 		<file>imagenes/backup1.png</file>
 		<file>imagenes/backup2.png</file>

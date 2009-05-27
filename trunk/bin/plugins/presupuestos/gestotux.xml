@@ -24,7 +24,7 @@
 <variables>
 </variables>
 <pageHeader height="25.2372">
-    <pixmap posX="1.628" posY="1.628" width="40.705" height="22.795" resource="/home/Esteban/Trabajo/logotr-chico.png"></pixmap>
+    <pixmap posX="1.628" posY="1.628" width="40.705" height="22.795" resource=":/imagenes/logotr-chico.png"></pixmap>
     <label posX="43.962" posY="1.628" width="122.115" height="16.553" fontWeight="bold" fontItalic="true" alignmentH="center" alignmentV="center" wordbreak="true" forecolor="#000000">Sistemas informaticos a medida para PyMES  - Diseño y Mantenimiento de Paginas Web estaticas y dinámicas - Arreglo de Computadoras - Venta de Hardware.</label>
     <label posX="47.218" posY="16.282" width="112.346" height="8.141" fontSize="8" fontItalic="true" alignmentH="center" alignmentV="center" wordbreak="true" forecolor="#000000">Chacabuco 1965 - Santa Fe - Santa Fe - Argentina - email: juiraze@yahoo.com.ar - Celular: (0342) 154293436</label>
 </pageHeader>

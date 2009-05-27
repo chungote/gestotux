@@ -51,7 +51,6 @@ VCategorias::VCategorias( QWidget *parent )
 
  addAction( ActAgregar );
  addAction( ActEliminar );
- addAction( ActCerrar );
 }
 
 

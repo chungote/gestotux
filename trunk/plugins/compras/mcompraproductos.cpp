@@ -24,7 +24,7 @@
 #include <QSize>
 
 MCompraProductos::MCompraProductos( QObject *parent, bool calcula )
- : QSqlRelationalTableModel(parent)
+ : QSqlRelationalTableModel(parent), Total(0.0)
 {
  setTable( "compras_productos" );
  setHeaderData( 0, Qt::Horizontal, tr( "#ID" ) );
@@ -40,6 +40,7 @@ MCompraProductos::MCompraProductos( QObject *parent, bool calcula )
   setHeaderData( 5, Qt::Horizontal, tr( "SubTotal" ) );
   subtotales = new QHash<int, double>();
   setEditStrategy( QSqlTableModel::OnManualSubmit );
+  connect( this, SIGNAL( beforeDelete( int ) ), this, SLOT( eliminarFila( int ) ) );
  }
 }
 
@@ -60,6 +61,51 @@ QVariant MCompraProductos::data(const QModelIndex& idx, int role) const
    qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
    return( QVariant() );
   }
+ if( idx.row() >= QSqlRelationalTableModel::rowCount() )
+ {
+  switch( idx.column() )
+  {
+	case 2:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		return "Cant:";
+		break;
+	}
+	case 3:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		return QString( "%L1" ).arg( QSqlRelationalTableModel::rowCount() );
+		break;
+	}
+	case 4:
+	{
+		if( role != Qt::DisplayRole )
+		{
+			return QVariant();
+		}
+		return "Total:";
+		break;
+	}
+	case 5:
+	{
+		if( role != Qt::DisplayRole )
+		{ return QVariant(); }
+		return QString( "$ %L1" ).arg( Total );
+		break;
+	}
+	default:
+	{
+		return QVariant();
+		break;
+	}
+  }
+ }
   switch( role )
  {
 	case Qt::DisplayRole:
@@ -74,7 +120,7 @@ QVariant MCompraProductos::data(const QModelIndex& idx, int role) const
 			}
 			case 3:
 			{
-				return QSqlRelationalTableModel::data(idx, role).toString().prepend("$");
+				return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(idx, role).toDouble() );
 				break;
 			}
 			case 5:
@@ -84,14 +130,14 @@ QVariant MCompraProductos::data(const QModelIndex& idx, int role) const
 					// Busco si existe
 					if( subtotales->find( idx.row() ) != subtotales->end() )
 					{
-						return QVariant::fromValue( subtotales->value( idx.row() ) ).toString().prepend( "$" );
+						return QString( "$ %L1" ).arg( subtotales->value( idx.row() ) );
 					}
 					else
 					{
 						// Calculo el valor
 						double sub = data( index( idx.row(), 3 ), Qt::EditRole ).toDouble() * data( index( idx.row(), 4 ), Qt::EditRole ).toDouble();
  						subtotales->insert( idx.row(), sub );
-						return QVariant::fromValue( sub ).toString().prepend( "$" );
+						return QString( "$ %L1" ).arg( sub );
 					}
 				}
 				else
@@ -134,6 +180,11 @@ QVariant MCompraProductos::data(const QModelIndex& idx, int role) const
 	{
 		switch( idx.column() )
  		{
+			case 2:
+			{
+				return QSqlTableModel::data( idx, role );
+				break;
+			}
 			case 3:
 			{
 				return QSqlRelationalTableModel::data( idx, role ).toDouble();
@@ -159,13 +210,13 @@ QVariant MCompraProductos::data(const QModelIndex& idx, int role) const
 	         case 3:
 	         {
 	           QSize tam = QSqlRelationalTableModel::data( idx, Qt::SizeHintRole ).toSize();
-	           tam.setWidth( 110 );
+	           tam.setWidth( tam.width() + 110 );
 	           return tam;
 	           break;
 	         }
 	         default:
 	         {
-	          return QVariant();
+	          return QSqlRelationalTableModel::data( idx, role );
 	          break;
 	         }
 	       }
@@ -176,6 +227,7 @@ QVariant MCompraProductos::data(const QModelIndex& idx, int role) const
 		switch ( idx.column() )
 		{
 			case 0:
+			case 4:
 			{
 				return int( Qt::AlignHCenter | Qt::AlignVCenter );
 				break;
@@ -226,6 +278,7 @@ void MCompraProductos::calcularTotales()
 
 /*!
     \fn MCompraProductos::total()
+	Devuelve el total de la lista
  */
 double MCompraProductos::total()
 {
@@ -235,6 +288,7 @@ double MCompraProductos::total()
 
 /*!
     \fn MCompraProductos::index( int row, int column, const QModelIndex & parent = QModelIndex() ) const
+	Genera los indices propios y los ficticios para la lista de subtotales
  */
 QModelIndex MCompraProductos::index( int row, int column, const QModelIndex & parent ) const
 {
@@ -251,6 +305,7 @@ QModelIndex MCompraProductos::index( int row, int column, const QModelIndex & pa
 
 /*!
     \fn MCompraProductos::columnCount( const QModelIndex & parent = QModelIndex() ) const
+	Devuleve la cantidad de columnas del modelo mas una si el modelo esta en modo calcular totales
  */
 int MCompraProductos::columnCount( const QModelIndex & parent ) const
 {
@@ -286,6 +341,7 @@ bool MCompraProductos::setData( const QModelIndex & index, const QVariant & valu
 			{
 				return true;
 			}
+			// Precio
 			case 3:
 			{
 				// Recalculo el valor
@@ -294,9 +350,11 @@ bool MCompraProductos::setData( const QModelIndex & index, const QVariant & valu
 				{
 				  subtotales->insert( index.row(), ( this->data( this->index( index.row(), 4 ), Qt::EditRole ).toDouble() * value.toDouble() ) );
 				  recalcularTotal();
+				  emit dataChanged( this->index( QSqlRelationalTableModel::rowCount() + 1, 5 ), this->index( QSqlRelationalTableModel::rowCount() + 1, 5 ) ); // total
 				}
 				return QSqlRelationalTableModel::setData( index, value, role );
 			}
+			// Cantidad
 			case 4:
 			{
 				// Recalculo el valor
@@ -305,6 +363,7 @@ bool MCompraProductos::setData( const QModelIndex & index, const QVariant & valu
 				{
 				  subtotales->insert( index.row(), ( this->data( this->index( index.row(), 3 ), Qt::EditRole ).toDouble() * value.toDouble() ) );
 				  recalcularTotal();
+				  emit dataChanged( this->index( QSqlRelationalTableModel::rowCount() + 1, 5 ), this->index( QSqlRelationalTableModel::rowCount() + 1, 5 ) ); // total
 				}
 				return QSqlRelationalTableModel::setData( index, value, role );
 			}
@@ -333,14 +392,13 @@ bool MCompraProductos::setData( const QModelIndex & index, const QVariant & valu
     \fn MCompraProductos::flags ( const QModelIndex & index ) const
      Reimplementacion necesaria para determinar que los items de la columna 6 no son editables
  */
-Qt::ItemFlags MCompraProductos::flags ( const QModelIndex & index ) const
+Qt::ItemFlags MCompraProductos::flags ( const QModelIndex &index ) const
 {
- if ( index.column() == 5 && calculaTotales )
- {
-	return Qt::ItemIsSelectable && Qt::ItemIsEnabled && !Qt::ItemIsEditable;
- }
- else
- {
+ if( index.row() == QSqlRelationalTableModel::rowCount() + 1 ) {
+  return !Qt::ItemIsEnabled && !Qt::ItemIsSelectable;
+ } else if( index.column() >= 5 && calculaTotales ) {
+  return Qt::ItemIsEnabled && !Qt::ItemIsEditable && Qt::ItemIsSelectable;
+ } else {
   return QSqlRelationalTableModel::flags( index );
  }
 }
@@ -348,6 +406,7 @@ Qt::ItemFlags MCompraProductos::flags ( const QModelIndex & index ) const
 
 /*!
     \fn MCompraProductos::isDirty( const QModelIndex & index ) const
+	Limita el intento de actualizacion cuando la columna es mayor a 6 y estamos calculando los totales
  */
 bool MCompraProductos::isDirty( const QModelIndex & index ) const
 {
@@ -376,8 +435,6 @@ void MCompraProductos::recalcularTotal()
 }
 
 
-
-
 int MCompraProductos::get_ultima_row() const
 {
 	return ultima_row;
@@ -386,9 +443,41 @@ int MCompraProductos::get_ultima_row() const
 
 /*!
     \fn MCompraProductos::primeInsert ( int row, QSqlRecord & record )
+	Funcion que guarda la posicion de la ultima fila
  */
 void MCompraProductos::primeInsert ( int row, QSqlRecord & record )
 {
  ultima_row = row;
  QSqlRelationalTableModel::primeInsert( row, record );
+}
+
+#include <QSqlRecord>
+/*!
+    \fn MCompraProductos::insertarRegistro()
+	Funcion creada por comodidad para agregar un registro vacio
+ */
+void MCompraProductos::insertarRegistro()
+{
+ this->insertRecord( -1, this->record() );
+}
+
+
+/*!
+    \fn MCompraProductos::rowCount( QModelIndex &parent )
+	Devuleve la cantidad de columnas mas una mas que indica la cantidad y el total hasta ahora
+ */
+int MCompraProductos::rowCount( const QModelIndex &parent ) const
+{
+  int conteo = QSqlRelationalTableModel::rowCount() + 1;
+  return conteo;
+}
+
+
+
+/*!
+    \fn MCompraProductos::eliminarFila( int fila )
+ */
+void MCompraProductos::eliminarFila( int fila )
+{
+ subtotales->remove( fila );
 }

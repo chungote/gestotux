@@ -31,7 +31,7 @@
 #include "formprefhijo.h"
 #include "fprefgeneral.h"
 #include "formprefdb.h"
-#include "gestotux.h"
+#include "eregistroplugins.h"
 #include "einfoprogramainterface.h"
 
 FormPreferencias::FormPreferencias(QWidget *parent)
@@ -76,7 +76,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      }
      ///@todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
-     foreach( plugin, gestotux::plugins() )
+     foreach( plugin, ERegistroPlugins::plugins() )
      {
 	qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
 	if( !plugin->formsPreferencias().isEmpty() )
@@ -130,7 +130,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     addAction( ActCerrar );
 
     setObjectName( "Configuracion" );
-    setWindowTitle( "Configuracion de " + gestotux::pluginInfo()->nombrePrograma() );
+    setWindowTitle( "Configuracion de " + ERegistroPlugins::pluginInfo()->nombrePrograma() );
 
     contentsWidget->setCurrentRow(0);
 

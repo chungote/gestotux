@@ -39,9 +39,7 @@ public:
   ~FormAgregarPresupuesto();
 
 protected slots:
-    void listaProductos();
     void cancelar();
-    void ponerTabla();
     void guardar( bool cerrar );
     void guardarImprimir();
     void guardar();
@@ -52,22 +50,10 @@ private:
     * Modelo utilizado por el combo box de clientes para hacer su selección
     */
     QSqlQueryModel *modeloClientes;
-   /*!
-    * Formualrio para mantener la lista productos
-    */
-    FormListaProductos *formLista;
   /*!
    * Puntero al presupuesto actual
    */
     Presupuesto *pre;
-  /*!
-   * Posicion donde se encuentra la lista de productos
-   */
-   QTextTable *_tabla;
-  /*!
-   * Editor del contenido
-   */
-   EEditor *editor;
 };
 
 #endif

@@ -34,10 +34,6 @@ VProveedor::VProveedor( QWidget *parent )
  vista->setItemDelegate( new DProveedor( vista ) );
  modelo->sort( 2, Qt::AscendingOrder );
  modelo->select();
- while( modelo->canFetchMore() )
- {
-  modelo->fetchMore();
- }
  vista->setSortingEnabled( true );
  addAction( ActAgregar );
  addAction( ActEliminar );
@@ -58,4 +54,13 @@ VProveedor::~VProveedor()
 void VProveedor::antes_de_insertar( int row, QSqlRecord & record )
 {
  return;
+}
+
+
+/*!
+    \fn VProveedor::eliminar()
+ */
+void VProveedor::eliminar()
+{
+ qWarning( "Error, el eliminar un proveedor puede causar perdida de datos" );
 }

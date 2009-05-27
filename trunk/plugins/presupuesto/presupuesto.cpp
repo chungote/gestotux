@@ -26,7 +26,6 @@
 #include <QPainter>
 #include <QSqlQuery>
 #include <QSqlError>
-#include "eplugin.h"
 
 #include "prespuesto.h"
 #include <QMessageBox>
@@ -34,57 +33,6 @@
 Presupuesto::Presupuesto(QObject *parent)
  : QObject(parent)
 {
- _plugin = 0;
- loader = new QPluginLoader( this );
- // Busco los plugins de presupuestos
- QDir pluginsDir = QDir(qApp->applicationDirPath());
-
- #if defined(Q_OS_WIN)
-     if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
-         pluginsDir.cdUp();
- #elif defined(Q_OS_MAC)
-     if (pluginsDir.dirName() == "MacOS") {
-         pluginsDir.cdUp();
-         pluginsDir.cdUp();
-         pluginsDir.cdUp();
-     }
- #endif
-     pluginsDir.cd("plugins");
-     pluginsDir.cd("presupuestos");
-     QStringList filtro;
-	// Obtengo el nombre del plugin de infoprog actual para cargar el del mismo nombre
-#ifdef Q_WS_WIN32
-	filtro.append( "*.dll" );
-	int pos =  pluginsDir.entryList( filtro, QDir::Files  ).indexOf( preferencias::getInstancia()->value( "Preferencias/general/pluginInfo", "default" ).toString().append( ".dll" ) );
-	int pos_def = pluginsDir.entryList( filtro, QDir::Files  ).indexOf( QString( "default" ).append( ".dll" ) );
-#endif
-#ifdef Q_WS_X11
-	filtro.append( "*.so" );
-	int pos =  pluginsDir.entryList( filtro, QDir::Files ).indexOf( preferencias::getInstancia()->value( "Preferencias/general/pluginInfo", "default" ).toString().prepend( "lib" ).append( ".so" ) );
-	int pos_def = pluginsDir.entryList( filtro, QDir::Files  ).indexOf( QString( "default" ).prepend( "lib" ).append( ".so" ) );
-#endif
-	if( pos == -1 )
-	{
-		qCritical( "Error: No existe ningun plugin de presupuestos definidos! Verifique la instalación!" );
-		qDebug( pluginsDir.entryList( filtro, QDir::Files ).join( ", " ).toLocal8Bit() );
-		pos = pos_def;
-        }
-	loader->setFileName(  pluginsDir.absoluteFilePath( pluginsDir.entryList( QDir::Files ).at( pos ) )  );
-        if( loader->load() )
-        {
-		_plugin = qobject_cast<EPresupuesto *>(loader->instance());
-		_plugin->inicializar();
-	}
-	else
-	{
-		qWarning( "Error al cargar el plugin" );
-		qWarning( QString( "Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
-	}
-	// Fin de la carga del plugin
-	if( _plugin != 0 )
-	{
-		_plugin->regenerar( new QTextDocument() );
-	}
 }
 
 
@@ -110,72 +58,4 @@ bool Presupuesto::registro( int id )
   qDebug(  QString( "detalle: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
   return false;
  }
-}
-
-
-/*!
-    \fn Presupuesto::imprimir( QPainter *pintador )
- */
-void Presupuesto::imprimir( QPainter *pintador )
-{
-    /// @todo implement me
-}
-
-
-/*!
-    \fn Presupuesto::esValido()
- */
-bool Presupuesto::esValido()
-{  return !( _plugin == 0 ); }
-
-
-QDate Presupuesto::fecha() const
-{ return _plugin->fecha(); }
-
-
-void Presupuesto::setFecha ( const QDate& theValue )
-{ _plugin->setFecha( theValue ); }
-
-
-QString Presupuesto::titulo() const
-{ return _plugin->titulo(); }
-
-void Presupuesto::setTitulo ( const QString& theValue )
-{  _plugin->setTituloPersonalizado( theValue ); }
-
-double Presupuesto::total() const
-{ return _plugin->total(); }
-
-void Presupuesto::setTotal ( double theValue )
-{ _plugin->setTotal( theValue ); }
-
-int Presupuesto::id_cliente() const
-{return _id_cliente; }
-
-void Presupuesto::setId_cliente ( int theValue )
-{ _id_cliente = theValue;}
-
-QString Presupuesto::texto_destinatario() const
-{ return _plugin->cliente(); }
-
-void Presupuesto::setTexto_destinatario ( const QString& theValue )
-{ _plugin->setCliente( theValue ); }
-
-void Presupuesto::generarDoc( const QTextDocument *docCont )
-{
-  if( !esValido() )
-  { return; }
-
- _plugin->regenerar( docCont );
-}
-
-void Presupuesto::generarTablaProductos( QSqlTableModel *modelo, const QString tituloTabla, const bool cabeceras )
-{ _plugin->generarTabla( modelo, tituloTabla, cabeceras ); }
-
-QTextDocument * Presupuesto::previsualizacion()
-{
- if( _plugin != 0 )
- { return _plugin->getDocumento(); }
- else
- { return new QTextDocument(); }
 }

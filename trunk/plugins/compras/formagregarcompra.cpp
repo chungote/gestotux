@@ -23,7 +23,10 @@
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mcompra.h"
+#include "mcompraproductos.h"
+#include "dventacompra.h"
 #include <QMessageBox>
+#include <QTableView>
 #include <QDate>
 
 FormAgregarCompra::FormAgregarCompra( QWidget* parent )
@@ -41,8 +44,23 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
         CBProveedor->setModelColumn( 1 );
         modeloProveedor->select();
 
-        CWFecha->setMaximumDate( QDate::currentDate() );
-        CWFecha->setSelectedDate( QDate::currentDate() );
+        DEFecha->setMaximumDate( QDate::currentDate() );
+        DEFecha->setDate( QDate::currentDate() );
+
+	PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
+	PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+
+	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
+	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
+
+	mcp = new MCompraProductos( this, true );
+	TVLista->setModel( mcp );
+	TVLista->hideColumn( 0 );
+	TVLista->hideColumn( 1 );
+	TVLista->setAlternatingRowColors( true );
+	TVLista->setItemDelegate( new DVentaCompra( TVLista ) );
+	TVLista->resizeColumnsToContents();
+	TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
 }
 
 FormAgregarCompra::~FormAgregarCompra()
@@ -54,35 +72,113 @@ FormAgregarCompra::~FormAgregarCompra()
  */
 void FormAgregarCompra::guardar()
 {
- if( CBProveedor->currentIndex() != -1 )
+ if( CBProveedor->currentIndex() == -1 )
  {
-  if( dSBCosto->value() > 0 )
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un proveedor para esta compra" );
+  return;
+ }
+ if( !DEFecha->date().isValid() )
+ {
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta compra" );
+  return;
+ }
+ if( mcp->rowCount() <= 1 )
+ {
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos comprados distinta de cero para esta compra" );
+  return;
+ }
+ //Inicio una transacción
+ QSqlDatabase::database().transaction();
+ // veo el id del proveedor
+ int id_proveedor = CBProveedor->model()->data( CBProveedor->model()->index( CBProveedor->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+ // Genero la compra
+ MCompra *compra = new MCompra( this, false );
+ if( compra->agregarCompra( DEFecha->date(), id_proveedor ) == false )
+ { QSqlDatabase::database().rollback(); return; }
+ // Busco el ultimo id de compra
+ int id_compra = compra->ultimoId();
+ // recorro el modelo y veo cual esta para guardar
+ for( int i= 0; i<mcp->rowCount()-1; i++ )
+ {
+  for( int j = 0; j<mcp->columnCount()-1; j++ )
   {
-   MCompra *modelo = new MCompra( this );
-   if( modelo->agregarCompra(  CWFecha->selectedDate(),
-                               CBProveedor->model()->data( CBProveedor->model()->index( CBProveedor->currentIndex(), 0 ), Qt::EditRole ),
-                               dSBCosto->value() ) )
+   if( mcp->isDirty( mcp->index( i, j ) ) )
    {
-    QMessageBox::information( this, "Correcto!", "Los datos de esta compra se guardaron correctamente" );
-    this->close();
-    return;
+    mcp->setData( mcp->index( i, mcp->fieldIndex( "id_compra" ) ), id_compra );
+    break;
    }
-   else
-   {
-    QMessageBox::critical( this, "Error", "Hubo un error al guardar los datos" );
-    return;
-   }
+  }
+ }
+ mcp->submitAll();
+ // listo
+  if( QSqlDatabase::database().commit() )
+  {
+   QMessageBox::information( this, "Correcto" , "La compra se ha registrado correctamente" );
+   this->close();
+   return;
   }
   else
   {
-   QMessageBox::warning( this,  "Faltan Datos", "Por favor, ingrese un costo para esta compra" );
+   QMessageBox::information( this, "Incorrecto" , "La compra no se pudo guardar correctamente" );
    return;
   }
- }
- else
+}
+
+
+/*!
+    \fn FormAgregarCompra::agregarProducto()
+ */
+void FormAgregarCompra::agregarProducto()
+{
+ mcp->insertarRegistro();
+}
+
+#include <QtSql>
+/*!
+    \fn FormAgregarCompra::eliminarProducto()
+ */
+void FormAgregarCompra::eliminarProducto()
+{
+ //Preguntar al usuario si esta seguro
+ QItemSelectionModel *selectionModel = TVLista->selectionModel();
+ QModelIndexList indices = selectionModel->selectedIndexes();
+ if( indices.size() < 1 )
  {
-  qDebug( "Proveedor incorrecto" );
-  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un proveedor para eta compra" );
-  return;
+   QMessageBox::warning( this, "Seleccione un item",
+                   "Por favor, seleccione un item para eliminar",
+                   QMessageBox::Ok );
+   return;
  }
+ // cuento las filas distintas
+ QModelIndex indice;
+ int ultimo = -1;
+ foreach( indice, indices )
+ {
+  if( indice.row() == ultimo )
+  {
+   indices.removeOne( indice );
+  }
+  else
+  {
+   ultimo = indice.row();
+  }
+ }
+ //Hacer dialogo de confirmacion..
+ int ret;
+ ret = QMessageBox::warning( this, "Esta seguro?",
+                   QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
+                   "Si", "No" );
+ if ( ret == 0 )
+ {
+	QModelIndex indice;
+	foreach( indice, indices )
+	{
+		if( indice.isValid() )
+		{
+			if( !mcp->removeRow( indice.row() ) )
+			{ qWarning( qPrintable( "Error al eliminar el registro" + mcp->lastError().text() ) ); }
+		}
+	}
+ }
+ return;
 }

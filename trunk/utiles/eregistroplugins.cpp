@@ -18,9 +18,17 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eregistroplugins.h"
+#include "einterfazemail.h"
+#include "einfoprogramainterface.h"
+
+ERegistroPlugins *ERegistroPlugins::instance = 0;
+EInfoProgramaInterface *ERegistroPlugins::_pluginInfo = 0;
+QHash<QString, EPlugin *> *ERegistroPlugins::_plugins = 0;
+EInterfazEmail *ERegistroPlugins::_pluginEmail = 0;
 
 ERegistroPlugins::ERegistroPlugins(QWidget *parent)
 {
+ _plugins = new QHash<QString, EPlugin *>();
 }
 
 
@@ -28,4 +36,84 @@ ERegistroPlugins::~ERegistroPlugins()
 {
 }
 
+ERegistroPlugins* ERegistroPlugins::getInstancia()
+{
+ if (instance==0)
+ {
+  instance = new ERegistroPlugins();
+ }
+ return instance;
+}
 
+EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
+{
+ if( _pluginInfo != 0 )
+ {
+  return _pluginInfo;
+ }
+ else
+ {
+  qWarning( "Llamando al pluginInfo antes de cargarlo" );
+  abort();
+ }
+}
+
+
+/*!
+    \fn gestotux::plugins()
+ */
+QList<EPlugin *> ERegistroPlugins::plugins()
+{
+  return _plugins->values();
+}
+
+/*!
+    \fn gestotux::pluginsHash()
+ */
+QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
+{ return _plugins; }
+
+
+EInterfazEmail *ERegistroPlugins::pluginEmail()
+{
+ return _pluginEmail;
+}
+
+
+
+/*!
+    \fn ERegistroPlugins::agregarPlugin( EPlugin *obj )
+ */
+void ERegistroPlugins::agregarPlugin( EPlugin *obj )
+{
+ _plugins->insert( obj->nombre(),obj );
+}
+
+
+/*!
+    \fn ERegistroPlugins::plugin( const QString &nombre )
+	Devuelve el objeto referenciante al plugin con ese nombre
+ */
+EPlugin* ERegistroPlugins::plugin( const QString &nombre )
+{
+ return _plugins->value(nombre);
+}
+
+
+/*!
+    \fn ERegistroPlugins::setPluginInfo( EPluginInfo *obj )
+	Setea el objeto de plugin de informacion
+ */
+void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
+{
+ _pluginInfo = obj;
+}
+
+
+/*!
+    \fn ERegistroPlugins::setPluginEmail( EInterfaceEmail *obj )
+ */
+void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
+{
+  _pluginEmail = obj;
+}

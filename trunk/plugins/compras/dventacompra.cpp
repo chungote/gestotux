@@ -51,6 +51,12 @@ QSize DVentaCompra::sizeHint(const QStyleOptionViewItem& option, const QModelInd
 	tam.setWidth( 300 );
 	return tam;
  }
+ else if( index.column() == 3 )
+ {
+	QSize tam = QSqlRelationalDelegate::sizeHint( option, index );
+	tam.setWidth( 100 );
+	return tam;
+ }
  else
  {
    return QSqlRelationalDelegate::sizeHint( option, index );

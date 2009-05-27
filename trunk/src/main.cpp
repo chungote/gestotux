@@ -37,6 +37,12 @@
 #include "esplash.h"
 #include "emysql.h"
 #include "eemail.h"
+#include "eplugin.h"
+#include "einfoprogramainterface.h"
+#include "einterfazemail.h"
+#include <QPluginLoader>
+#include "formulariocentral.h"
+#include "eregistroplugins.h"
 
 #define NOMBRE_CONEXION "gestotux"
 
@@ -68,6 +74,54 @@ FILE *debug;
          abort();
      }
  }
+
+
+/*!
+    \fn hacerTablas( QString nombrePlug )
+ */
+bool hacerTablas( QString nombrePlug )
+{
+ if( QFile::exists( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) )
+ {
+	QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" );
+	if( archivo.open( QIODevice::ReadOnly | QIODevice::Text ) )
+	{
+		QStringList cadenas = QString( archivo.readAll() ).split( ";" );
+		QString cadena; QSqlQuery cola;
+		foreach( cadena, cadenas )
+		{
+			qDebug( qPrintable( cadena ) );
+			if( !cola.exec( cadena ) )
+			{
+				qDebug( qPrintable( cadena ) );
+				qDebug( qPrintable( "Fallo...." + cola.lastError().text() ) );
+				return false;
+			}
+			else
+			{
+				qDebug( "Ok" );
+			}
+		}
+		return true;
+	}
+	else
+	{
+		qWarning(qPrintable( "Error al abrir el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+		return false;
+	}
+ }
+ else
+ {
+  qWarning( qPrintable( "No se pudo generar las tablas del plugin " + nombrePlug + ". No se encontro el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+  return false;
+ }
+}
+
+
+
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -231,8 +285,96 @@ int main(int argc, char *argv[])
        }
        // Fin de arranque de la base de datos
 	splash.showMessage( "Base de datos Abierta correctamente" );
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	// Cargo los plugins aca
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	// Necesito el formulario principal para algunas cosas
+	splash.showMessage( "Cargando Ventana Principal" );
 	gestotux * mw = new gestotux();
- 	splash.showMessage( "Cargando Ventana Principal" );
+	////////////////////////////////////////////////////////
+	splash.showMessage( "Cargando plugins" );
+	QPluginLoader loader;
+	QDir pluginsDir = QDir(qApp->applicationDirPath());
+
+	 #if defined(Q_OS_WIN)
+	     if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+		 pluginsDir.cdUp();
+	 #elif defined(Q_OS_MAC)
+	     if (pluginsDir.dirName() == "MacOS") {
+		 pluginsDir.cdUp();
+		 pluginsDir.cdUp();
+		 pluginsDir.cdUp();
+	     }
+	 #endif
+	     pluginsDir.cd("plugins");
+		QStringList filtro;
+	#ifdef Q_WS_WIN32
+		filtro.append( "*.dll" );
+	#endif
+	#ifdef Q_WS_X11
+		filtro.append( "*.so" );
+	#endif
+	     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
+	     {
+		loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
+		 if( loader.load() )
+		 {
+			QObject *obj = loader.instance();
+			EPlugin *plug = qobject_cast<EPlugin *>( obj );
+			// veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
+			if( plug->tipo() == EPlugin::info )
+			{
+				ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
+				preferencias::getInstancia()->inicio();
+				preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
+			}
+			else if ( plug->tipo() == EPlugin::email )
+			{
+				ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
+				preferencias::getInstancia()->inicio();
+				preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
+			}
+			if( plug->inicializar() )
+			{
+				QObject::connect( obj, SIGNAL( agregarVentana( QWidget * ) ), mw->formCen(), SLOT( agregarForm( QWidget * ) ) );
+				QObject::connect( mw, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
+				//Verifico sus tablas
+				if( plug->verificarTablas() != true )
+				{
+					// estan cargados los archivo resource cuando cargo el plugin?
+					if( hacerTablas( plug->nombre() ) )
+					{
+						// todo ok
+						qDebug( "Tablas creadas correctamente" );
+					}
+					else
+					{
+						// No se pudieron cargar las tablas
+						qWarning( "No se pudo crear la tabla" );
+						continue;
+					}
+				}
+				ERegistroPlugins::getInstancia()->agregarPlugin( plug );
+				splash.showMessage( "Cargando plugin "+ plug->nombre() );
+				//////////////////////////////////////////////////////////////////////////////////////
+				if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )
+				{  qDebug( qPrintable( "Error al cargar la traduccion de " + plug->nombre()  ) ); }
+				else {  QCoreApplication::instance()->installTranslator( &tran ); }
+				qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
+			}
+			else
+			{
+				qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
+			}
+		 }
+		 else
+		 {
+			qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
+		 }
+	     }
+
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////
 	if ( !p->value( "splash", false ).toBool() )
 	{
  		splash.finish( mw );
@@ -245,8 +387,6 @@ int main(int argc, char *argv[])
 	// Inicio el hilo de envio del backup
 	EEnvioBackup envios( &app );
 	envios.start( QThread::IdlePriority );
-	/*EEmail email;
-	email.verificar();*/
 	mw->inicializar();
 	if( p->value( "maximizado", true ).toBool() )
 	{

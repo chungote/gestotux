@@ -28,6 +28,8 @@
 #include "mcategorias.h"
 #include "vcategorias.h"
 #include <QSqlRelationalDelegate>
+#include <QSqlQuery>
+#include <QSqlField>
 
 
 VProductos::VProductos(QWidget *parent)
@@ -43,7 +45,6 @@ VProductos::VProductos(QWidget *parent)
  vista->setItemDelegate( new  DProductos( vista ) );
 
  modelo->select();
-
  vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
  vista->setAlternatingRowColors( true );
@@ -101,9 +102,9 @@ void VProductos::verCategorias()
 
 
 /*!
-    \fn VProductos::agregar()
+    \fn VProductos::agregar( bool autoeliminarid )
  */
-void VProductos::agregar()
+void VProductos::agregar( bool autoeliminarid )
 {
  // Ver si existe alguna categoria primero
  qDebug( "Verificando que existan categorias" );

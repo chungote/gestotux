@@ -20,12 +20,12 @@
 #ifndef MCLIENTES_H
 #define MCLIENTES_H
 
-#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class MClientes : public QSqlTableModel
+class MClientes : public QSqlRelationalTableModel
 {
 public:
     MClientes( QObject *parent = 0);

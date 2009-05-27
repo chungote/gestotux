@@ -52,6 +52,7 @@ protected slots:
     void cambioOrdenSentido( int estado );
     void cambioOrden( const QString &columna );
     void cambioFiltro( bool estado );
+    void menuContextual( const QModelIndex &indice, QMenu *menu );
 };
 
 #endif
