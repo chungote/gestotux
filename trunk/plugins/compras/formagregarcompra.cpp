@@ -23,11 +23,13 @@
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mcompra.h"
-#include "mcompraproductos.h"
-#include "dventacompra.h"
+#include "mproductostotales.h"
+#include "dproductostotales.h"
 #include <QMessageBox>
 #include <QTableView>
 #include <QDate>
+#include <QtSql>
+#include "mcompraproducto.h"
 
 FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarCompraBase()
@@ -53,13 +55,11 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
 	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
-	mcp = new MCompraProductos( this, true );
+	mcp = new MProductosTotales( this );
+	mcp->calcularTotales( true );
 	TVLista->setModel( mcp );
-	TVLista->hideColumn( 0 );
-	TVLista->hideColumn( 1 );
 	TVLista->setAlternatingRowColors( true );
-	TVLista->setItemDelegate( new DVentaCompra( TVLista ) );
-	TVLista->resizeColumnsToContents();
+	TVLista->setItemDelegate( new DProductosTotales( TVLista ) );
 	TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
 }
 
@@ -82,13 +82,17 @@ void FormAgregarCompra::guardar()
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta compra" );
   return;
  }
- if( mcp->rowCount() <= 1 )
+ mcp->calcularTotales( false );
+ if( mcp->rowCount() < 1 )
  {
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos comprados distinta de cero para esta compra" );
+  mcp->calcularTotales( true );
   return;
  }
  //Inicio una transacción
  QSqlDatabase::database().transaction();
+ //seteo el modelo para que no calcule totales y subtotales
+ mcp->calcularTotales( false );
  // veo el id del proveedor
  int id_proveedor = CBProveedor->model()->data( CBProveedor->model()->index( CBProveedor->currentIndex(), 0 ) , Qt::EditRole ).toInt();
  // Genero la compra
@@ -97,19 +101,23 @@ void FormAgregarCompra::guardar()
  { QSqlDatabase::database().rollback(); return; }
  // Busco el ultimo id de compra
  int id_compra = compra->ultimoId();
- // recorro el modelo y veo cual esta para guardar
- for( int i= 0; i<mcp->rowCount()-1; i++ )
+ qDebug( qPrintable( QString( "idCompra: %1" ).arg( id_compra ) ) );
+ // recorro el modelo y guardo los datos
+ MCompraProducto *m = new MCompraProducto( this );
+ m->setIdCompra( id_compra );
+ for( int i= 0; i<mcp->rowCount(); i++ )
  {
-  for( int j = 0; j<mcp->columnCount()-1; j++ )
+  qDebug( "Insertando registro" );
+  QSqlRecord registro = m->record();
+  registro.setValue( "id_producto", mcp->data( mcp->index( i, 0 ), Qt::EditRole ) );
+  registro.setValue( "precio_compra", mcp->data( mcp->index( i, 1 ), Qt::EditRole ) );
+  registro.setValue( "cantidad", mcp->data( mcp->index( i, 2 ), Qt::EditRole ) );
+  if( m->insertRecord( -1, registro ) == false )
   {
-   if( mcp->isDirty( mcp->index( i, j ) ) )
-   {
-    mcp->setData( mcp->index( i, mcp->fieldIndex( "id_compra" ) ), id_compra );
-    break;
-   }
+   qDebug( "Error al insertar Registro" );
   }
  }
- mcp->submitAll();
+ m->submit();
  // listo
   if( QSqlDatabase::database().commit() )
   {
@@ -130,10 +138,10 @@ void FormAgregarCompra::guardar()
  */
 void FormAgregarCompra::agregarProducto()
 {
- mcp->insertarRegistro();
+ mcp->insertRow( -1 );
 }
 
-#include <QtSql>
+
 /*!
     \fn FormAgregarCompra::eliminarProducto()
  */
@@ -176,7 +184,7 @@ void FormAgregarCompra::eliminarProducto()
 		if( indice.isValid() )
 		{
 			if( !mcp->removeRow( indice.row() ) )
-			{ qWarning( qPrintable( "Error al eliminar el registro" + mcp->lastError().text() ) ); }
+			{ /*qWarning( qPrintable( "Error al eliminar el registro" + mcp->lastError().text() ) );*/ }
 		}
 	}
  }

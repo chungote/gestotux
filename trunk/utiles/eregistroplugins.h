@@ -30,6 +30,7 @@ class EInfoProgramaInterface;
 class EInterfazEmail;
 
 /**
+ * \brief Registrador de plugins cargados
 Clase que mantiene la lista de plugins y los muestra en un formulario de preferencias
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>

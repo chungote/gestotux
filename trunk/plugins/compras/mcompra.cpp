@@ -43,7 +43,11 @@ MCompra::~MCompra()
 }
 
 /*!
-    \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor, QVariant costo )
+    \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
+	Función que agrega un registro de compra directamente
+	@param fecha QDate con la fecha de la compra
+	@param proveedor Id del proveedor
+	@return Verdadero o falso si fue exitoso o no
  */
 bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
 {

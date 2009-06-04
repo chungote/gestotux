@@ -82,7 +82,7 @@ void proveedor::crearToolBar(QToolBar* t)
 #include "vproveedor.h"
 
 /*!
-    \fn proveedores::proveedores()
+    \fn proveedor::proveedores()
  */
 void proveedor::proveedores()
 { emit agregarVentana( new VProveedor() ); }

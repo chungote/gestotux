@@ -23,7 +23,7 @@
 #include <QAction>
 
 /**
-Accion predeterminada para enviar email
+ * \brief Accion predeterminada para enviar email
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */

@@ -131,6 +131,7 @@ void productos::crearMenu( QMenuBar *m )
 
 /*!
     \fn productos::version() const
+	Devuelve la version del plugin
  */
 double productos::version() const
 {
@@ -139,6 +140,7 @@ double productos::version() const
 
 /*!
     \fn productos::verProductos()
+	Muestra la lista de productos
  */
 void productos::verProductos()
 { emit agregarVentana( new VProductos( ) ); }
@@ -153,7 +155,8 @@ void productos::crearToolBar( QToolBar *t )
 }
 
 /*!
-    \fn DigiFauno::categorias()
+    \fn productos::categorias()
+	Muestra la ventana de categorias
  */
 void productos::categorias()
 { emit agregarVentana( new VCategorias() ); }

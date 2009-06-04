@@ -72,7 +72,7 @@ void gestotux::inicializar()
  if( ERegistroPlugins::getInstancia()->pluginEmail() != 0 )
  {
   statusBar()->addPermanentWidget( ERegistroPlugins::getInstancia()->pluginEmail()->statusBarWidget(), -1 );
-  //EEmail::instancia()->testear();
+  EEmail::instancia()->testear();
  }
 
 preferencias *p = preferencias::getInstancia();
@@ -135,8 +135,8 @@ void gestotux::createMenus()
 {
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
- //fileMenu->addAction( ActActualizar );
- //fileMenu->addSeparator();
+ fileMenu->addAction( ActActualizar );
+ fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );
@@ -186,7 +186,7 @@ gestotux::~gestotux()
 }
 
 /*!
-    \fn presupuestador::salir()
+    \fn gestotux::salir()
     Guarda la configuracion general y de la ventana y cierra la base de datos
  */
 void gestotux::salir()
@@ -205,6 +205,7 @@ void gestotux::salir()
  QSqlDatabase::removeDatabase( QSqlDatabase::database().connectionName() );
  // Cierro el formulario... deberia de ser el ultimo...
  close();
+ QApplication::quit();
 }
 
 FormularioCentral *gestotux::formCen()
@@ -218,7 +219,7 @@ FormularioCentral *gestotux::formCen()
 
 
 /*!
-    \fn presupuestador::acerca()
+    \fn gestotux::acerca()
  */
 void gestotux::acerca()
 {

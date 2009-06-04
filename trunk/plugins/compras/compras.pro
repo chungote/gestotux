@@ -36,17 +36,15 @@ linux-g++ {
 }
 
 SOURCES += mcompra.cpp \
-mcompraproductos.cpp \
 vcompras.cpp \
 formagregarcompra.cpp \
 compras.cpp \
 ../proveedor/mproveedor.cpp \
- dventacompra.cpp
+ mcompraproducto.cpp
 
 HEADERS += formagregarcompra.h \
 mcompra.h \
-mcompraproductos.h \
 vcompras.h \
 compras.h \
 ../proveedor/mproveedor.h \
- dventacompra.h
+ mcompraproducto.h

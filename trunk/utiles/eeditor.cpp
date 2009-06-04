@@ -415,11 +415,11 @@ EEditor::EEditor( QWidget *parent)  :
 }
 
 /*!
-    \fn EEditor:.setDefaultFont( const QFont &font )
+    \fn EEditor::setDefaultFont( const QFont &font )
 	Setea la fuente predefinida
 	@param font Fuente a utilizar
  */
-void EEditor::setDefaultFont(const QFont &font)
+void EEditor::setDefaultFont(const QFont &font )
 {  m_editor->setDefaultFont(font); }
 
 /*!

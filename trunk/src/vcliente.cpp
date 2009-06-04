@@ -75,7 +75,7 @@ VCliente::~VCliente()
 
 #include "formcliente.h"
 /*!
-    \fn VCliente::agregar()
+    \fn VCliente::agregar( bool autoeliminarid )
  */
 void VCliente::agregar( bool autoeliminarid )
 { emit agregarVentana( new FormCliente( this, modelo ) ); }

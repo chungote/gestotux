@@ -100,7 +100,8 @@ void Gastos::crearToolBar(QToolBar* t)
 
 #include "formagregargasto.h"
 /*!
-    \fn Gastos::agregar_gasto()
+    \fn Gastos::agregarGasto()
+	Abre la ventana para agregar un gasto
  */
 void Gastos::agregarGasto()
 { emit agregarVentana( new FormAgregarGasto() ); }

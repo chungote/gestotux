@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,27 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef DVENTACOMPRA_H
-#define DVENTACOMPRA_H
+#ifndef DPRODUCTOSTOTALES_H
+#define DPRODUCTOSTOTALES_H
 
-#include <QSqlRelationalDelegate>
+#include <QItemDelegate>
 
 /**
- *	\brief Clase que ayuda a la edicion de productos en ventas y compras
- *
- * Delegate que permite la correcta edicion de los campos que forman la parte de productos, en ventas y compras.\n
- * En caso de editar cantidades, restringe la entrada a enteros.\n
- * En caso de editar precios, restringe la entrada a dobles.\n
- * En caso de editar productos, setea condiciones especiales que permiten una busqueda especial por tipeo de los productos.\n
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class DVentaCompra : public QSqlRelationalDelegate
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class DProductosTotales : public QItemDelegate
 {
 Q_OBJECT
 public:
-    DVentaCompra(QObject *parent = 0);
-    ~DVentaCompra();
-    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    DProductosTotales(QWidget *parent = 0);
+
+    ~DProductosTotales();
+
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
