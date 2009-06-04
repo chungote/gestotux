@@ -112,7 +112,7 @@ void EVLista::cerrar()
 
 
 /*!
-    \fn EVLista::agregar()
+    \fn EVLista::agregar( bool autoeliminarid )
 	Agrega un nuevo registro mediante la vista al modelo
  */
 void EVLista::agregar( bool autoeliminarid )
@@ -247,7 +247,7 @@ void EVLista::antes_de_insertar( int row, QSqlRecord & record )
 
 
 /*!
-    \fn EVLista::menuContextual( const QModelIndex &indice )
+    \fn EVLista::menuContextual( const QModelIndex &indice, QMenu *menu )
 	Rellena el menu contextual con las acciones que se deben utilizar para el item en indice. Debe reimplementarse para cada vista que dese agregar acciones personalizadas.
  */
 void EVLista::menuContextual( const QModelIndex &indice, QMenu *menu )

@@ -24,7 +24,8 @@
 #include "eventana.h"
 #include "ui_FormAgregarCompraBase.h"
 class MProveedor;
-class MCompraProductos;
+//class MCompraProductos;
+class MProductosTotales;
 
 class FormAgregarCompra : public EVentana, private Ui::FormAgregarCompraBase
 {
@@ -36,7 +37,8 @@ public:
 
 private:
   MProveedor *modeloProveedor;
-  MCompraProductos *mcp;
+  //MCompraProductos *mcp;
+  MProductosTotales *mcp;
 
 protected slots:
     void guardar();

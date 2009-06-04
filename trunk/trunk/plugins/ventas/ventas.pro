@@ -3,23 +3,19 @@ CONFIG += dll \
 plugin \
 help
 
-SOURCES += formagregarventa.cpp \
-mventa.cpp \
-mventaproducto.cpp \
-dventacompra.cpp \
+SOURCES += mventa.cpp \
 ventas.cpp \
  vventas.cpp \
  edsbprecio.cpp \
- mlistaprecio.cpp
+ mlistaprecio.cpp \
+ formagregarventa.cpp
 
 HEADERS += mventa.h \
-formagregarventa.h \
-mventaproducto.h \
-dventacompra.h \
 ventas.h \
  vventas.h \
  edsbprecio.h \
- mlistaprecio.h
+ mlistaprecio.h \
+ formagregarventa.h
 
 TRANSLATIONS = ventas.ts
 

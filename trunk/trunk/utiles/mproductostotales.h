@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,32 +17,44 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef DVENTACOMPRA_H
-#define DVENTACOMPRA_H
+#ifndef MPRODUCTOSTOTALES_H
+#define MPRODUCTOSTOTALES_H
 
-#include <QSqlRelationalDelegate>
+#include <QAbstractTableModel>
 
 /**
- *	\brief Clase que ayuda a la edicion de productos en ventas y compras
- *
- * Delegate que permite la correcta edicion de los campos que forman la parte de productos, en ventas y compras.\n
- * En caso de editar cantidades, restringe la entrada a enteros.\n
- * En caso de editar precios, restringe la entrada a dobles.\n
- * En caso de editar productos, setea condiciones especiales que permiten una busqueda especial por tipeo de los productos.\n
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class DVentaCompra : public QSqlRelationalDelegate
+Modelo que calcula totales segun modelo de venta y compra
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MProductosTotales : public QAbstractTableModel
 {
 Q_OBJECT
 public:
-    DVentaCompra(QObject *parent = 0);
-    ~DVentaCompra();
-    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void setEditorData(QWidget* editor, const QModelIndex& index) const;
-    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
-    void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    MProductosTotales(QObject *parent = 0);
 
+    ~MProductosTotales();
+
+    bool insertRow(int row, const QModelIndex& parent = QModelIndex() );
+    bool removeRow(int row, const QModelIndex& parent = QModelIndex() );
+    bool setData(const QModelIndex& index, const QVariant& value, int role);
+    int columnCount(const QModelIndex& parent = QModelIndex() ) const;
+    int rowCount(const QModelIndex& parent = QModelIndex() ) const;
+    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QVariant data(const QModelIndex& idx, int role) const;
+    void recalcularTotal();
+    double total();
+    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+    void calcularTotales( bool sino = true );
+
+private:
+	QHash<int, double> *subtotales;
+	QHash<int, double> *cantidades;
+	QHash<int, double> *precio_unitario;
+	QHash<int, int> *productos;
+	QMap<int, QString> *prods;
+	double Total;
+	bool _calcularTotal;
 };
 
 #endif

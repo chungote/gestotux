@@ -24,6 +24,7 @@
 #include "mail.h"
 
 /**
+ * \brief Puente para plugin de email
 Clase intermedia que sirve de intermediario entre el plugin de email ( si es cargado ) y los demas plugins
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>

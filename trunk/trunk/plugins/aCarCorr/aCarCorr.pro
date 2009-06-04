@@ -1,6 +1,3 @@
-
-SUBDIRS += aCarCorrPlug.pro
-
 TEMPLATE = lib
 
 CONFIG += dll \

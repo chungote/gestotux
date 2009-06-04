@@ -29,6 +29,7 @@
 EEnvioBackup::EEnvioBackup(QObject *parent)
  : QThread(parent)
 {
+ this->setTerminationEnabled();
 }
 
 

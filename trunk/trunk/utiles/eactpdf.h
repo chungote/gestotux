@@ -23,7 +23,7 @@
 #include <QAction>
 
 /**
-Accion generica de guardar a pdf
+ * \brief Accion generica de guardar a pdf
 
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
 */

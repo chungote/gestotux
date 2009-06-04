@@ -60,7 +60,7 @@ EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
 
 
 /*!
-    \fn gestotux::plugins()
+    \fn ERegistroPlugins::plugins()
  */
 QList<EPlugin *> ERegistroPlugins::plugins()
 {
@@ -68,7 +68,7 @@ QList<EPlugin *> ERegistroPlugins::plugins()
 }
 
 /*!
-    \fn gestotux::pluginsHash()
+    \fn ERegistroPlugins::pluginsHash()
  */
 QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
 { return _plugins; }
@@ -101,7 +101,7 @@ EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 
 
 /*!
-    \fn ERegistroPlugins::setPluginInfo( EPluginInfo *obj )
+    \fn ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 	Setea el objeto de plugin de informacion
  */
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
@@ -111,7 +111,7 @@ void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 
 
 /*!
-    \fn ERegistroPlugins::setPluginEmail( EInterfaceEmail *obj )
+    \fn ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
  */
 void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
 {

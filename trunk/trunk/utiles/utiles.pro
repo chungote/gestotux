@@ -16,7 +16,9 @@ HEADERS += eactcerrar.h \
  eactpdf.h \
  eemail.h \
  mail.h \
- mime.h
+ mime.h \
+ mproductostotales.h \
+ dproductostotales.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -32,7 +34,9 @@ eactimprimir.cpp \
  eactpdf.cpp \
  eemail.cpp \
  mail.cpp \
- mime.cpp
+ mime.cpp \
+ mproductostotales.cpp \
+ dproductostotales.cpp
 
 QT += sql
 

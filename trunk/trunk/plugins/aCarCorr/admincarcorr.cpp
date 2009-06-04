@@ -459,3 +459,12 @@ void AdminCarCorr::crearToolBar( QToolBar *t )
 {
  t->addActions( _acciones );
 }
+
+
+/*!
+    \fn AdminCarCorr::seCierraGestotux()
+ */
+void AdminCarCorr::seCierraGestotux()
+{
+ qDebug( "Cerrando ACarCorr" );
+}

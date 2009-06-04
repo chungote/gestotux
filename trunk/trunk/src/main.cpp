@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -385,8 +385,9 @@ int main(int argc, char *argv[])
 	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
  	splash.showMessage( "Listo." );
 	// Inicio el hilo de envio del backup
-	EEnvioBackup envios( &app );
+	/*EEnvioBackup envios( &app );
 	envios.start( QThread::IdlePriority );
+	QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );*/
 	mw->inicializar();
 	if( p->value( "maximizado", true ).toBool() )
 	{

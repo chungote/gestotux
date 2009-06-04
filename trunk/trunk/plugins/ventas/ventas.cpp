@@ -24,7 +24,7 @@
 Q_EXPORT_PLUGIN2( ventas, Ventas );
 
 /*!
-    \fn Ventas::accionesBarra() const
+    \fn Ventas::accionesBarra()
  */
 QList<QActionGroup *> Ventas::accionesBarra()
 {
@@ -132,7 +132,7 @@ void Ventas::crearToolBar( QToolBar *t )
 #include "formagregarventa.h"
 
 /*!
-    \fn DigiFauno::agregar_venta()
+    \fn Ventas::agregarVenta()
  */
 void Ventas::agregarVenta()
 { emit agregarVentana( new FormAgregarVenta() ); }
@@ -145,6 +145,6 @@ void Ventas::agregarVenta()
 void Ventas::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(ventas);
- qDebug( "Cerrado plugin ventas" );
+ //qDebug( "Cerrado plugin ventas" );
  return;
 }

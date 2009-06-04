@@ -53,6 +53,7 @@ public:
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
 
+
 private:
     QList<QAction *> _acciones;
 
@@ -89,6 +90,7 @@ signals:
 
 public slots:
     void eliminarTri();
+    void seCierraGestotux();
 };
 
 #endif
