@@ -34,6 +34,7 @@ FormAgregar::FormAgregar(QWidget* parent, Qt::WFlags fl)
 : FormMovimiento( parent, fl, compra )
 {
  // titulo
+ this->setObjectName( "agregarTri" );
  this->setWindowTitle( "Agregar Compra" );
  this->setWindowIcon( QIcon( ":/imagenes/add.png" ) );
  LTitulo->setText( "Agregar nuevas caravanas mediante una compra" );

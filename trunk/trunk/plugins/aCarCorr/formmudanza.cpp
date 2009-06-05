@@ -30,6 +30,7 @@
 FormMudanza::FormMudanza(QWidget* parent, Qt::WFlags fl)
 : FormMovimiento( parent, fl, mudanza )
 {
+ this->setObjectName( "movimientointerno" );
  this->setWindowTitle( "Movimiento interno " );
  LTitulo->setText( "Movimiento de Caravanas Interno" );
  //Agrego el completador

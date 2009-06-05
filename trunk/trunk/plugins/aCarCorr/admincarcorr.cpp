@@ -93,9 +93,33 @@ QWidgetList AdminCarCorr::formsPreferencias()
  return _listaFormPref;
 }
 
+#include <QDate>
+#include "preferencias.h"
+
 bool AdminCarCorr::inicializar()
 {
  _acciones.clear();
+
+ // Verifico el uso
+ if( !preferencias::getInstancia()->contains( "comprado" ) )
+ {
+  preferencias::getInstancia()->setValue( "comprado", true );
+  preferencias::getInstancia()->setValue( "fechas_informes", QDate::currentDate() );
+ }
+ else
+ {
+  QDate fecha = preferencias::getInstancia()->value( "fechas_informes", QDate() ).toDate();
+  if( !fecha.isValid() || fecha.daysTo( QDate::currentDate() ) > 30 )
+  {
+    qWarning( "Error de validación de licencia. Su tiempo de prueba ha expirado" );
+    abort();
+  }
+  else
+  {
+   qWarning( QString( "Le quedan %1 dias para pruebas" ).arg( fecha.daysTo( QDate::currentDate() ) ).toLocal8Bit() );
+  }
+ }
+
 
  ActCategoria = new QAction( "Ver Categorias", this );
  ActCategoria->setIcon( QIcon( ":/imagenes/categoria.png" ) );

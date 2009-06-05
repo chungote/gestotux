@@ -26,6 +26,7 @@
 FormModificarTri::FormModificarTri(QWidget *parent, int accion, int id_tri )
 : FormMovimiento( parent, 0, accion )
 {
+ this->setObjectName( "modificarTri" );
  movimiento = new EMovimiento( this );
  if( !movimiento->cargarMovimiento( id_tri ) )
  {

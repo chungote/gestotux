@@ -27,7 +27,7 @@
 #include <QMessageBox>
 
 VCategorias::VCategorias( QWidget *parent )
- : EVLista( parent, this )
+: EVLista( parent, this )
 {
  setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "car_categorias" );
@@ -40,6 +40,9 @@ VCategorias::VCategorias( QWidget *parent )
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCerrar );
+
+ this->setWindowTitle( "Listado de Categorias" );
+ this->setWindowIcon( QIcon( ":/imagenes/categoria.png" ) );
 }
 
 
@@ -71,9 +74,7 @@ void VCategorias::eliminar()
 	QModelIndex indice;
 	QStringList lista2;
 	foreach( indice, lista )
-	{
-		lista2.append( vista->model()->data( vista->model()->index( indice.row(), 0 ), Qt::EditRole ).toString() );
-	}
+	{ lista2.append( vista->model()->data( vista->model()->index( indice.row(), 0 ), Qt::EditRole ).toString() ); 	}
     QSqlQuery cola;
     // Verifico si no es especial
     if( cola.exec( QString( "SELECT especial FROM car_categorias WHERE id_categoria IN ( %1 )" ).arg( lista2.join( "," ) ) ) )
