@@ -48,6 +48,7 @@ FormMovimiento::FormMovimiento(QWidget* parent, Qt::WFlags fl, int accion )
 {
 	_accion = accion;
 	setupUi(this);
+	this->setObjectName( "movimiento" );
 	setAttribute( Qt::WA_DeleteOnClose );
 
 	ActCerrar = new EActCerrar(this);

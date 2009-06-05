@@ -27,13 +27,17 @@ VEstablecimiento::VEstablecimiento(QWidget *parent)
  : EVLista( parent, this )
 {
  setAttribute( Qt::WA_DeleteOnClose );
+ this->setObjectName( "establecimiento" );
  modelo = new MEstablecimiento( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
  modelo->select();
- 
+
  addAction( ActAgregar );
  addAction( ActCerrar );
+
+ this->setWindowIcon( QIcon( ":/imagenes/establecimiento.png" ) );
+ this->setWindowTitle( "Establecimientos" );
 }
 
 
