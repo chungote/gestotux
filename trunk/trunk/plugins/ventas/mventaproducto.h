@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,25 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EDSBPRECIO_H
-#define EDSBPRECIO_H
+#ifndef MVENTAPRODUCTO_H
+#define MVENTAPRODUCTO_H
 
-#include <QDoubleSpinBox>
+#include <QSqlRelationalTableModel>
 
 /**
- * \brief Editor tipo spinbox para precios
- *
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class EDSBPrecio : public QDoubleSpinBox
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MVentaProducto : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    EDSBPrecio( QWidget *parent = 0 );
-    ~EDSBPrecio();
+    MVentaProducto(QObject *parent = 0, bool relaciones = true );
 
-protected:
-    void keyReleaseEvent ( QKeyEvent * event );
+    ~MVentaProducto();
+
 };
 
 #endif

@@ -21,6 +21,7 @@
 #define VCLIENTE_H
 
 #include <evlista.h>
+class MClientes;
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -35,6 +36,9 @@ public:
 
 protected slots:
     void agregar( bool autoeliminarid = true);
+
+private:
+    MClientes *modelo;
 
 };
 

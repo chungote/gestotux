@@ -376,10 +376,7 @@ int main(int argc, char *argv[])
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	if ( !p->value( "splash", false ).toBool() )
-	{
- 		splash.finish( mw );
-		//qDebug( "Ventana de splash cerrar" );
-	}
+	{ splash.finish( mw ); }
 	mw->show();
 	// Salir del programa cuando se cierren todas las ventanas
 	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
@@ -390,11 +387,6 @@ int main(int argc, char *argv[])
 	QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );*/
 	mw->inicializar();
 	if( p->value( "maximizado", true ).toBool() )
-	{
-		//qDebug( "Ventana maximizada" );
-		mw->showMaximized();
-	}
-        p->endGroup();
-	p->endGroup();
+	{ mw->showMaximized(); }
       return app.exec();
 }

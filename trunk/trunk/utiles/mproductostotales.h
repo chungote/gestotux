@@ -46,6 +46,10 @@ public:
     double total();
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
     void calcularTotales( bool sino = true );
+    bool buscaPrecios();
+    void buscarPrecios( bool activado = true );
+    int listaPrecio();
+    void setearListaPrecio( int id_listaPrecio );
 
 private:
 	QHash<int, double> *subtotales;
@@ -55,6 +59,11 @@ private:
 	QMap<int, QString> *prods;
 	double Total;
 	bool _calcularTotal;
+	bool _buscarPrecio;
+	int _id_listaPrecio;
+	double __recargo;
+private:
+    double buscarPrecioVenta( int id_producto );
 };
 
 #endif

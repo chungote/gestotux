@@ -17,25 +17,54 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MVENTA_H
-#define MVENTA_H
+#include "edsbprecio.h"
 
-#include <QSqlRelationalTableModel>
+#include <QLatin1Char>
+#include <QKeyEvent>
+#include <QCoreApplication>
 
-/**
-Modelo para mantener los datos de ventas del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class MVenta : public QSqlRelationalTableModel
+EDSBPrecio::EDSBPrecio(QWidget *parent)
+ : QDoubleSpinBox( parent )
 {
-Q_OBJECT
-public:
-    MVenta( QObject *parent = 0, bool relaciones = true );
-    ~MVenta();
-    bool agregarVenta( QDate fecha, int id_cliente, int id_lista_precio, int id_forma_pago, QString num_comprobante );
-    int ultimoId();
+ setPrefix( "$ " );
+}
 
-};
 
+EDSBPrecio::~EDSBPrecio()
+{
+}
+
+/*!
+    \fn EDSBPrecio::keyReleaseEvent ( QKeyEvent * event )
+ */
+void EDSBPrecio::keyPressEvent( QKeyEvent * event )
+{
+ qDebug( QString( "Tecla: %1, texto: %2" ).arg( event->nativeScanCode() ).arg( event->text()).toLocal8Bit() );
+ switch( event->nativeScanCode() )
+ {
+#ifdef Q_WS_X11
+     case 91:
+     {
+       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
+       ev->setAccepted( false );
+       QCoreApplication::sendEvent( this, ev );
+       break;
+     }
 #endif
+#ifdef Q_WS_WIN
+     case WIN_KEY:
+     {
+       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
+       ev->setAccepted( false );
+       QCoreApplication::sendEvent( this, ev );
+       break;
+     }
+#endif
+     default:
+     {
+       QDoubleSpinBox::keyPressEvent( event );
+       break;
+     }
+   }
+}
+

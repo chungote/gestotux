@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,60 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "edsbprecio.h"
+#ifndef MLISTAPRECIO_H
+#define MLISTAPRECIO_H
 
-#include <QLatin1Char>
-#include <QKeyEvent>
+#include <QSqlTableModel>
 
-EDSBPrecio::EDSBPrecio(QWidget *parent)
- : QDoubleSpinBox( parent )
+/**
+\brief Modelo de lista de precio
+
+Modelo que mantiene las distintas listas de precio para y permite asociar un cliente con un tipo especifico de la lista de precio.
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MListaPrecio : public QSqlTableModel
 {
- setPrefix( "$ " );
-}
+Q_OBJECT
+public:
+    MListaPrecio(QObject *parent = 0);
 
+    ~MListaPrecio();
 
-EDSBPrecio::~EDSBPrecio()
-{
-}
+    QVariant data(const QModelIndex& idx, int role) const;
 
-/*!
-    \fn EDSBPrecio::keyReleaseEvent ( QKeyEvent * event )
- */
-void EDSBPrecio::keyReleaseEvent( QKeyEvent * event )
-{
- switch( event->key() )
- {
-   qDebug( QString( "Tecla: %1, texto: %2" ).arg( event->key() ).arg( event->text()).toLocal8Bit() );
-     case Qt::Key_0:
-     case Qt::Key_1:
-     case Qt::Key_2:
-     case Qt::Key_3:
-     case Qt::Key_4:
-     case Qt::Key_5:
-     case Qt::Key_6:
-     case Qt::Key_7:
-     case Qt::Key_8:
-     case Qt::Key_9:
-     case Qt::Key_Comma:
-     case Qt::Key_Period:
-     {
-       QString valor_anterior = QDoubleSpinBox::text();
-       if( event->key() == Qt::Key_Comma || event->key() == Qt::Key_Period )
-       {
-        valor_anterior.append( "." );
-       }
-       else
-       {
-        valor_anterior.append( event->text() );
-       }
-       QDoubleSpinBox::valueFromText( valor_anterior );
-       break;
-     }
-     default:
-     {
-       QDoubleSpinBox::keyReleaseEvent( event );
-       break;
-     }
-   }
-}
+};
 
+#endif

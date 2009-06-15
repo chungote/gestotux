@@ -19,12 +19,17 @@
  ***************************************************************************/
 #include "mventa.h"
 
-MVenta::MVenta(QObject *parent)
+#include <QDate>
+#include <QSqlRecord>
+#include <QSqlError>
+#include <QSqlQuery>
+
+MVenta::MVenta(QObject *parent, bool relaciones)
  : QSqlRelationalTableModel(parent)
 {
  setTable( "ventas" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Fecha de Compra" );
+ setHeaderData( 1, Qt::Horizontal, "Fecha de Venta" );
 }
 
 
@@ -33,3 +38,37 @@ MVenta::~MVenta()
 }
 
 
+
+
+/*!
+    \fn MVenta::agregarVenta( QDate fecha, int id_cliente, int id_lista_precio, int id_forma_pago, QString num_comprobante )
+ */
+bool MVenta::agregarVenta( QDate fecha, int id_cliente, int id_lista_precio, int id_forma_pago, QString num_comprobante )
+{
+  QSqlRecord regVenta = record();
+ regVenta.remove( 0 );
+ regVenta.setValue( "fecha"       , fecha );
+ regVenta.setValue( "id_cliente", id_cliente );
+ regVenta.setValue( "id_lista_precio", id_lista_precio );
+ regVenta.setValue( "id_forma_pago", id_forma_pago );
+ regVenta.setValue( "num_comprobante", num_comprobante );
+ if( !insertRecord( -1, regVenta ) )
+ {
+  qDebug( "Error de insercion de registro de venta" );
+  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+  return false;
+ }
+ else
+ {
+  return true;
+ }
+}
+
+
+/*!
+    \fn MVenta::ultimoId()
+ */
+int MVenta::ultimoId()
+{
+  return this->query().lastInsertId().toInt();
+}

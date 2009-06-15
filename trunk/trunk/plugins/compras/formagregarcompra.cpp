@@ -104,11 +104,10 @@ void FormAgregarCompra::guardar()
  qDebug( qPrintable( QString( "idCompra: %1" ).arg( id_compra ) ) );
  // recorro el modelo y guardo los datos
  MCompraProducto *m = new MCompraProducto( this );
- m->setIdCompra( id_compra );
  for( int i= 0; i<mcp->rowCount(); i++ )
  {
-  qDebug( "Insertando registro" );
   QSqlRecord registro = m->record();
+  registro.setValue( "id_compra", id_compra );
   registro.setValue( "id_producto", mcp->data( mcp->index( i, 0 ), Qt::EditRole ) );
   registro.setValue( "precio_compra", mcp->data( mcp->index( i, 1 ), Qt::EditRole ) );
   registro.setValue( "cantidad", mcp->data( mcp->index( i, 2 ), Qt::EditRole ) );
