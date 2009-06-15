@@ -76,12 +76,13 @@ MClientes::~MClientes()
 
 QVariant MClientes::data(const QModelIndex& idx, int role) const
 {
- /*switch( role )
+ switch( role )
  {
 	case Qt::EditRole:
 	{
 		switch( idx.column() )
 		{
+			// Comprobante x email
 			case 17:
 			{
 				return QSqlTableModel::data( idx, role ).toBool();
@@ -89,7 +90,7 @@ QVariant MClientes::data(const QModelIndex& idx, int role) const
 			}
 			default:
 			{
-				*/return QSqlTableModel::data( idx, role );/*
+				return QSqlTableModel::data( idx, role );
 				break;
 			}
 		}
@@ -100,7 +101,7 @@ QVariant MClientes::data(const QModelIndex& idx, int role) const
 		return QSqlTableModel::data(idx, role);
 		break;
 	}
- }*/
+ }
 }
 
 Qt::ItemFlags MClientes::flags(const QModelIndex& index) const

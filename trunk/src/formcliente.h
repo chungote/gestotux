@@ -24,13 +24,13 @@
 #include "eventana.h"
 #include <QSqlTableModel>
 #include "ui_FormClienteBase.h"
-class QDataWidgetMapper;
+class MClientes;
 
 class FormCliente : public EVentana, private Ui::FormClienteBase
 {
   Q_OBJECT
 public:
-	FormCliente ( QWidget* parent = 0, QSqlTableModel *modelo = 0,  Qt::WFlags fl = 0 );
+	FormCliente ( QWidget* parent = 0, MClientes *modelo = 0,  Qt::WFlags fl = 0 );
 	~FormCliente();
     void setearCliente( QModelIndex &indice );
 
@@ -44,7 +44,7 @@ private slots:
 	void rehaceRazonSocial( const QString &texto );
 
 private:
-	QDataWidgetMapper *map;
+	MClientes *modelo;
 };
 
 #endif

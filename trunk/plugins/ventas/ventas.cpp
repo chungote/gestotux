@@ -36,6 +36,7 @@ QList<QActionGroup *> Ventas::accionesBarra()
  ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
  ventas->setProperty( "titulo", "Ventas" );
  ventas->addAction( ActAgregarVentas );
+ ventas->addAction( ActListaPrecio );
  lista.append( ventas );
  return lista;
 }
@@ -70,6 +71,9 @@ bool Ventas::inicializar()
  ActAgregarVentas = new QAction( "Agregar venta", this );
  ActAgregarVentas->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
+
+ ActListaPrecio = new QAction( "Lista de precios", this );
+ connect( ActListaPrecio, SIGNAL( triggered() ), this, SLOT( listaPrecios() ) );
 
  return true;
 }
@@ -112,7 +116,9 @@ void Ventas::crearMenu( QMenuBar *m )
   qDebug( "Error en las baras de menu" );
  }
  else
- {}
+ {
+  menuHer->addAction( ActListaPrecio );
+ }
 }
 
 
@@ -148,3 +154,10 @@ void Ventas::seCierraGestotux()
  //qDebug( "Cerrado plugin ventas" );
  return;
 }
+
+#include "vlistaprecio.h"
+/*!
+    \fn Ventas::listaPrecio()
+ */
+void Ventas::listaPrecios()
+{ emit agregarVentana( new VListaPrecio() ); }

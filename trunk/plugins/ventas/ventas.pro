@@ -6,16 +6,18 @@ help
 SOURCES += mventa.cpp \
 ventas.cpp \
  vventas.cpp \
- edsbprecio.cpp \
  mlistaprecio.cpp \
- formagregarventa.cpp
+ formagregarventa.cpp \
+ mventaproducto.cpp \
+ vlistaprecio.cpp
 
 HEADERS += mventa.h \
 ventas.h \
  vventas.h \
- edsbprecio.h \
  mlistaprecio.h \
- formagregarventa.h
+ formagregarventa.h \
+ mventaproducto.h \
+ vlistaprecio.h
 
 TRANSLATIONS = ventas.ts
 

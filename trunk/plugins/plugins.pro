@@ -1,4 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS += aCarCorr \
-aCarCorr/plugins
-
+SUBDIRS += default \
+compras \
+ventas \
+proveedor \
+gastos

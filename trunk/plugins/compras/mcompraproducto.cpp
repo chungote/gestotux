@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,25 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MVENTA_H
-#define MVENTA_H
+#include "mcompraproducto.h"
+#include <QSqlRecord>
 
-#include <QSqlRelationalTableModel>
-
-/**
-Modelo para mantener los datos de ventas del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class MVenta : public QSqlRelationalTableModel
+MCompraProducto::MCompraProducto(QObject *parent)
+ : QSqlRelationalTableModel(parent)
 {
-Q_OBJECT
-public:
-    MVenta( QObject *parent = 0, bool relaciones = true );
-    ~MVenta();
-    bool agregarVenta( QDate fecha, int id_cliente, int id_lista_precio, int id_forma_pago, QString num_comprobante );
-    int ultimoId();
+ setTable( "compras_productos" );
+}
 
-};
 
-#endif
+MCompraProducto::~MCompraProducto()
+{
+}
+
+#include <QSqlError>
+/*!
+    \fn MCompraProducto::insertRecord ( int row, const QSqlRecord & record )
+ */
+bool MCompraProducto::insertRecord ( int row, const QSqlRecord & record )
+{
+  if( QSqlRelationalTableModel::insertRecord( row, record ) )
+  { return true; }
+  else
+  {
+   qDebug( qPrintable( this->lastError().text() ) );
+   return false;
+  }
+}

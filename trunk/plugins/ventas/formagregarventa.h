@@ -23,6 +23,7 @@
 
 #include "eventana.h"
 #include "ui_FormAgregarVentaBase.h"
+class MProductosTotales;
 
 class FormAgregarVenta : public EVentana, private Ui::FormAgregarVentaBase
 {
@@ -30,6 +31,14 @@ Q_OBJECT
 public:
 	FormAgregarVenta ( QWidget* parent = 0, Qt::WFlags fl = 0 );
 	~FormAgregarVenta();
+protected slots:
+    void agregarProducto();
+    void eliminarProducto();
+    void guardar();
+    void cambioListaPrecio( int id_combo );
+
+private:
+    MProductosTotales *mcp;
 };
 
 #endif

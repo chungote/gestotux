@@ -22,6 +22,13 @@
 #include "dproductostotales.h"
 #include "emcliente.h"
 #include <QTableView>
+#include <QMessageBox>
+#include <QSqlRecord>
+#include "eactcerrar.h"
+#include "eactguardar.h"
+#include "mventa.h"
+#include "mventaproducto.h"
+#include "mlistaprecio.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -44,20 +51,173 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	CBCliente->setModelColumn( 1 );
 
 	// Lista de Precios
-	/*CBListaPrecio->setModel( new MListaPrecio( CBListaPrecio ) );
+	CBListaPrecio->setModel( new MListaPrecio( CBListaPrecio ) );
 	CBListaPrecio->setModelColumn( 1 );
+	qobject_cast<QSqlTableModel *>(CBListaPrecio->model())->select();
+
 
 	// Forma de Pago
-	CBFormaPago->setModel( );
+	GBFormaPago->setVisible( false );
+	/*CBFormaPago->setModel( );
 	CBFormaPago->setModelColumn( );*/
 
+        DEFecha->setMaximumDate( QDate::currentDate() );
+        DEFecha->setDate( QDate::currentDate() );
+
 	// Modelo del tableview
-	TVProductos->setModel( new MProductosTotales( TVProductos ) );
+	mcp = new MProductosTotales( TVProductos );
+	mcp->calcularTotales( true );
+	mcp->buscarPrecios( true );
+	TVProductos->setModel( mcp );
 	TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
 	TVProductos->setAlternatingRowColors( true );
+	TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
 
+	this->addAction( new EActCerrar( this ) );
+	this->addAction( new EActGuardar( this ) );
+
+	connect( CBListaPrecio, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioListaPrecio( int ) ) );
+	cambioListaPrecio( CBListaPrecio->currentIndex() );
 }
 
 FormAgregarVenta::~FormAgregarVenta()
 {
+}
+
+
+/*!
+    \fn FormAgregarVenta::agregarProducto()
+ */
+void FormAgregarVenta::agregarProducto()
+{
+ mcp->insertRow( -1 );
+}
+
+
+/*!
+    \fn FormAgregarVenta::eliminarProducto()
+ */
+void FormAgregarVenta::eliminarProducto()
+{
+ //Preguntar al usuario si esta seguro
+ QItemSelectionModel *selectionModel = TVProductos->selectionModel();
+ QModelIndexList indices = selectionModel->selectedIndexes();
+ if( indices.size() < 1 )
+ {
+   QMessageBox::warning( this, "Seleccione un item",
+                   "Por favor, seleccione un item para eliminar",
+                   QMessageBox::Ok );
+   return;
+ }
+ // cuento las filas distintas
+ QModelIndex indice;
+ int ultimo = -1;
+ foreach( indice, indices )
+ {
+  if( indice.row() == ultimo )
+  {
+   indices.removeOne( indice );
+  }
+  else
+  {
+   ultimo = indice.row();
+  }
+ }
+ //Hacer dialogo de confirmacion..
+ int ret;
+ ret = QMessageBox::warning( this, "Esta seguro?",
+                   QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
+                   "Si", "No" );
+ if ( ret == 0 )
+ {
+	QModelIndex indice;
+	foreach( indice, indices )
+	{
+		if( indice.isValid() )
+		{
+			TVProductos->model()->removeRow( indice.row() );
+		}
+	}
+ }
+ return;
+}
+
+
+/*!
+    \fn FormAgregarVenta::guardar()
+ */
+void FormAgregarVenta::guardar()
+{
+ if( CBCliente->currentIndex() == -1 )
+ {
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un cliente para esta venta" );
+  return;
+ }
+ if( CBListaPrecio->currentIndex() == -1 )
+ {
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una lista de precio para esta venta" );
+  return;
+ }
+ if( !DEFecha->date().isValid() )
+ {
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta venta" );
+  return;
+ }
+ mcp->calcularTotales( false );
+ if( mcp->rowCount() < 1 )
+ {
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos vendidos distinta de cero para esta venta" );
+  mcp->calcularTotales( true );
+  return;
+ }
+ //Inicio una transacción
+ QSqlDatabase::database().transaction();
+ //seteo el modelo para que no calcule totales y subtotales
+ mcp->calcularTotales( false );
+ // veo el id del proveedor
+ int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+ int id_lista_precio = CBListaPrecio->model()->data( CBListaPrecio->model()->index( CBListaPrecio->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+ //int id_forma_pago = CBFormaPago->model()->data( CBFormaPago->model()->index( CBFormaPago->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+  int id_forma_pago = -1;
+ QString num_comprobante = LENumComp->text();
+ // Genero la compra
+ MVenta *compra = new MVenta( this, false );
+ if( compra->agregarVenta( DEFecha->date(), id_cliente, id_lista_precio, id_forma_pago, num_comprobante ) == false )
+ { QSqlDatabase::database().rollback(); return; }
+ // Busco el ultimo id de compra
+ int id_venta = compra->ultimoId();
+ // recorro el modelo y guardo los datos
+ MVentaProducto *m = new MVentaProducto( this );
+ for( int i= 0; i<mcp->rowCount(); i++ )
+ {
+  QSqlRecord registro = m->record();
+  registro.setValue( "id_venta", id_venta );
+  registro.setValue( "id_producto", mcp->data( mcp->index( i, 0 ), Qt::EditRole ) );
+  registro.setValue( "precio_venta", mcp->data( mcp->index( i, 1 ), Qt::EditRole ) );
+  registro.setValue( "cantidad", mcp->data( mcp->index( i, 2 ), Qt::EditRole ) );
+  if( m->insertRecord( -1, registro ) == false ) {
+   qDebug( "Error al insertar Registro" );
+  }
+ }
+ m->submit();
+ // listo
+  if( QSqlDatabase::database().commit() ) {
+   QMessageBox::information( this, "Correcto" , "La venta se ha registrado correctamente" );
+   this->close();
+   return;
+
+  } else {
+   QMessageBox::information( this, "Incorrecto" , "La venta no se pudo guardar correctamente" );
+   return;
+  }
+}
+
+
+/*!
+    \fn FormAgregarVenta::cambioListaPrecio( int id_combo )
+ */
+void FormAgregarVenta::cambioListaPrecio( int id_combo )
+{
+ qDebug( qPrintable( QString( "Cambiado id lista precio: %1" ).arg( id_combo ) ) );
+ mcp->setearListaPrecio( CBListaPrecio->model()->data( CBListaPrecio->model()->index(CBListaPrecio->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
 }

@@ -27,6 +27,7 @@
 #include <QComboBox>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include "edsbprecio.h"
 
 DProductosTotales::DProductosTotales(QWidget *parent)
  : QItemDelegate(parent)
@@ -61,7 +62,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
 	// Precio Unitario
 	case 1:
 	{
-		QDoubleSpinBox *e = new QDoubleSpinBox( parent );
+		EDSBPrecio *e = new EDSBPrecio( parent );
 		e->setPrefix( "$" );
 		e->setSingleStep( 1 );
 		e->setRange( 0.00, 9999.00 );

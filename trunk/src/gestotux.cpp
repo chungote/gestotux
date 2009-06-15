@@ -79,7 +79,7 @@ preferencias *p = preferencias::getInstancia();
 //p->inicio();
 p->beginGroup( "ventanaPrincipal" );
 this->restoreState( p->value( "estado", "" ).toByteArray() );
-p->endGroup();
+//p->endGroup();
 
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
@@ -195,6 +195,7 @@ void gestotux::salir()
  emit saliendoGestotux();
  // Guardo el estado de la ventana principal
  preferencias *p = preferencias::getInstancia();
+ p->endGroup();
  p->beginGroup( "ventanaPrincipal" );
  p->setValue( "estado", saveState() );
  p->endGroup();

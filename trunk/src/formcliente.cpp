@@ -19,62 +19,24 @@
  ***************************************************************************/
 #include "formcliente.h"
 
-#include <QDataWidgetMapper>
+#include <QMessageBox>
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QSqlQuery>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
+#include "mclientes.h"
 
-FormCliente::FormCliente ( QWidget* parent, QSqlTableModel *modelo,  Qt::WFlags fl )
+FormCliente::FormCliente ( QWidget* parent, MClientes *modelo,  Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormClienteBase()
 {
 	setupUi ( this );
 	setObjectName( "visorCliente" );
 	setWindowTitle( "Visor de Cliente" );
 	setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
-
+	this->modelo = modelo;
 	modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
-	QSqlRecord rec = modelo->record();
-	rec.remove(0);
-	rec.setValue( "nombre", "" );
-	rec.setValue( "razon_social", "" );
-	rec.setValue( rec.count(), 1 );
-	if( !modelo->insertRecord( -1, rec ) )
-	{
-		qWarning( "Error al insertar un nuevo registro" );
-		qWarning( qPrintable( qobject_cast<QSqlTableModel *>(map->model())->lastError().text() ) );
-		modelo->revert();
-	}
-
-
-	map = new QDataWidgetMapper( this );
-	map->setModel( modelo );
-	map->addMapping( LENumCliente       , modelo->fieldIndex( "id"                ) );
-	map->addMapping( LERazonSocial      , modelo->fieldIndex( "razon_social"      ) );
-	map->addMapping( LENombre           , modelo->fieldIndex( "nombre"            ) );
-	map->addMapping( LESegundoNombre    , modelo->fieldIndex( "segundo"           ) );
-	map->addMapping( LEApellido         , modelo->fieldIndex( "apellido"          ) );
-	map->addMapping( LECalle            , modelo->fieldIndex( "calle"             ) );
-	map->addMapping( LENumero           , modelo->fieldIndex( "numero"            ) );
-	map->addMapping( LEPiso             , modelo->fieldIndex( "piso"              ) );
-	map->addMapping( LEDepto            , modelo->fieldIndex( "depto"             ) );
-	map->addMapping( LECiudad           , modelo->fieldIndex( "ciudad"            ) );
-	map->addMapping( LECodPostal        , modelo->fieldIndex( "codigo_postal"     ) );
-	map->addMapping( LEProvincia        , modelo->fieldIndex( "provincia"         ) );
-	map->addMapping( LEPais             , modelo->fieldIndex( "pais"              ) );
-	map->addMapping( LETelFijo          , modelo->fieldIndex( "tel_fijo"          ) );
-	map->addMapping( LETelCel           , modelo->fieldIndex( "tel_celular"       ) );
-	map->addMapping( LEFax              , modelo->fieldIndex( "fax"               ) );
-	map->addMapping( LEEmail            , modelo->fieldIndex( "email"             ) );
-	map->addMapping( CkBComprobanteEmail, modelo->fieldIndex( "comprobante_email" ) );
-	map->addMapping( CBListaPrecio      , modelo->fieldIndex( "lista_precio_id"   ) );
-
-	map->setOrientation( Qt::Horizontal );
-	map->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
-	map->toLast();
-
 
 	connect( LENombre       , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
 	connect( LESegundoNombre, SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
@@ -89,10 +51,7 @@ FormCliente::FormCliente ( QWidget* parent, QSqlTableModel *modelo,  Qt::WFlags 
 }
 
 FormCliente::~FormCliente()
-{
- map->revert();
- map->model()->revert();
-}
+{}
 
 
 /*!
@@ -100,17 +59,124 @@ FormCliente::~FormCliente()
  */
 void FormCliente::guardar()
 {
- if( map->submit() ) //Ver si es que no le gustan los null
+ // Chequeo los datos que no pueden ser nulos
+ if( LERazonSocial->text().isNull() )
  {
-  qWarning( "Datos guardados correctamente" );
-  qobject_cast<QSqlTableModel *>(map->model())->submitAll();
-  close();
+  QMessageBox::warning( this, "Faltan Datos", "Por favor ingrese minimamente una razon social para el cliente" );
+  return;
+ }
+ QSqlRecord rc = modelo->record();
+ rc.setValue( "razon_social", LERazonSocial->text() );
+ if( LERazonSocial->text().isEmpty() )
+ { rc.setNull( "razon_social" ); }
+ else
+ { rc.setValue( "razon_social", LERazonSocial->text() ); }
+ ///////////////////////////////////////////////////////////////////////
+ if( LENombre->text().isEmpty() )
+ { rc.setNull( "nombre" ); }
+ else
+ { rc.setValue( "nombre", LENombre->text() ); }
+ ///////////////////////////////////////////////////////////////////////
+ if( LESegundoNombre->text().isEmpty() )
+ { rc.setNull( "segundo" ); }
+ else
+ { rc.setValue( "segundo", LESegundoNombre->text() ); }
+ ///////////////////////////////////////////////////////////////////////
+ if( LEApellido->text().isEmpty() )
+ { rc.setNull( "apellido" ); }
+ else
+ { rc.setValue( "apellido", LEApellido->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LECalle->text().isEmpty() )
+ { rc.setNull( "calle" ); }
+ else
+ { rc.setValue( "calle", LECalle->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LENumero->text().isEmpty() )
+ { rc.setNull( "numero" ); }
+ else
+ { rc.setValue( "numero", LENumero->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEPiso->text().isEmpty() )
+ { rc.setNull( "piso" ); }
+ else
+ { rc.setValue( "piso", LEPiso->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEDepto->text().isEmpty() )
+ { rc.setNull( "depto" ); }
+ else
+ { rc.setValue( "depto", LEDepto->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LECiudad->text().isEmpty() )
+ { rc.setNull( "ciudad" ); }
+ else
+ { rc.setValue( "ciudad", LECiudad->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LECodPostal->text().isEmpty() )
+ { rc.setNull( "codigo_postal" ); }
+ else
+ { rc.setValue( "codigo_postal", LECodPostal->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEProvincia->text().isEmpty() )
+ { rc.setNull( "provincia" ); }
+ else
+ { rc.setValue( "provincia", LEProvincia->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEProvincia->text().isEmpty() )
+ { rc.setNull( "provincia" ); }
+ else
+ { rc.setValue( "provincia", LEProvincia->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEPais->text().isEmpty() )
+ { rc.setNull( "pais" ); }
+ else
+ { rc.setValue( "pais", LEPais->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LETelFijo->text().isEmpty() )
+ { rc.setNull( "tel_fijo" ); }
+ else
+ { rc.setValue( "tel_fijo", LETelFijo->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LETelCel->text().isEmpty() )
+ { rc.setNull( "tel_celular" ); }
+ else
+ { rc.setValue( "tel_celular", LETelCel->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEFax->text().isEmpty() )
+ { rc.setNull( "fax" ); }
+ else
+ { rc.setValue( "fax", LEFax->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ if( LEEmail->text().isEmpty() )
+ { rc.setNull( "email" ); }
+ else
+ { rc.setValue( "email", LEEmail->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ rc.setValue( "comprobante_email", CkBComprobanteEmail->isChecked() );
+ //map->addMapping( CBListaPrecio      , modelo->fieldIndex( "lista_precio_id"   ) );
+ if( modelo->insertRecord( -1, rc ) )
+ {
+  if( modelo->submitAll() )
+  {
+   QMessageBox::information( this, "Correcto", "El cliente se guardo correctamente" );
+   close();
+   return;
+  }
+  else
+  {
+   qWarning( "Error al hacer submit del modelo de datos de cliente" );
+   qWarning( qPrintable( modelo->lastError().text() ) );
+   qWarning( qPrintable( modelo->query().lastQuery() ) );
+
+   return;
+  }
  }
  else
  {
-	qWarning( "Error al hacer submit de datos" );
-	qWarning( qPrintable( qobject_cast<QSqlQueryModel *>(map->model())->lastError().text() ) );
-	qWarning( qPrintable( qobject_cast<QSqlQueryModel *>(map->model())->query().lastQuery() ) );
+   qWarning( "Error al insertar el registro de datos de cliente" );
+   qWarning( qPrintable( modelo->lastError().text() ) );
+   qWarning( qPrintable( modelo->query().lastQuery() ) );
+   return;
  }
 }
 

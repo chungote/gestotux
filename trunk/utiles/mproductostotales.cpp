@@ -29,7 +29,9 @@ MProductosTotales::MProductosTotales(QObject *parent)
 {
  // Inicializo los sistemas
  Total = 0;
+ _id_listaPrecio = -1;
  _calcularTotal = false;
+ _buscarPrecio = false;
  cantidades = new QHash<int, double>();
  precio_unitario = new QHash<int, double>();
  subtotales = new QHash<int, double>();
@@ -95,6 +97,12 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
 			{
 				//qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
 				productos->insert( index.row(), value.toInt()  );
+				if( _buscarPrecio && _id_listaPrecio != -1 )
+				{
+					// Busco el precio de venta este producto
+					this->setData( this->index( index.row(), 1 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
+					//qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
+				}
 				break;
 			}
 			// Precio Unitario
@@ -115,7 +123,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
 				cantidades->insert( index.row(), value.toDouble() );
 				if( _calcularTotal )
 				{
-					subtotales->insert( index.row(), cantidades->value( index.row() ) * value.toDouble() );
+					subtotales->insert( index.row(), precio_unitario->value( index.row() ) * value.toDouble() );
 					recalcularTotal();
 				}
 				emit dataChanged( index , this->index( index.row(), 3) );
@@ -418,6 +426,86 @@ QVariant MProductosTotales::headerData ( int section, Qt::Orientation orientatio
     \fn MProductosTotales::calcularTotales( bool sino  )
  */
 void MProductosTotales::calcularTotales( bool sino  )
+{ _calcularTotal = sino; }
+
+
+/*!
+    \fn MProductosTotales::buscaPrecios()
+ */
+bool MProductosTotales::buscaPrecios()
+{ return _buscarPrecio; }
+
+
+/*!
+    \fn MProductosTotales::buscarPrecios( bool activado )
+ */
+void MProductosTotales::buscarPrecios( bool activado )
+{ _buscarPrecio = activado; /*qDebug( "busqueda de precios activada" );*/ }
+
+
+/*!
+    \fn MProductosTotales::listaPrecio()
+ */
+int MProductosTotales::listaPrecio()
+{ return _id_listaPrecio; }
+
+
+/*!
+    \fn MProductosTotales::setearListaPrecio( int id_listaPrecio )
+ */
+void MProductosTotales::setearListaPrecio( int id_listaPrecio )
 {
-  _calcularTotal = sino;
+  if( id_listaPrecio <= 0 )
+  { qDebug( "id lista precio invalido" ); return; }
+  QSqlQuery cola( QString( "SELECT recargo FROM lista_precio WHERE id_lista_precio = %1" ).arg( id_listaPrecio ) );
+  if( cola.next() )
+  {
+ 	__recargo = cola.record().value( 0 ).toDouble();
+	// Si la lista de precios existe recien se coloca el id
+   	_id_listaPrecio = id_listaPrecio;
+	// Recalcula todos los precios
+	for( int i = 0; i < productos->size(); i++ )
+	{
+		this->setData( this->index( i, 1 ), QVariant::fromValue( buscarPrecioVenta( this->data( this->index( i, 0 ), Qt::EditRole ).toInt() ) ), Qt::EditRole );
+	}
+	//qDebug( "cambiada la lista de precios" );
+  }
+  else
+  {
+   qDebug( "Error al buscar el recargo" );
+   qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+}
+
+
+/*!
+    \fn MProductosTotales::buscarPrecioVenta( int id_producto )
+ */
+double MProductosTotales::buscarPrecioVenta( int id_producto )
+{
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+ {
+  cola.next();
+ // qDebug( qPrintable( cola.lastQuery() ) );
+  double precio = cola.record().value( 0 ).toDouble();
+  if( _id_listaPrecio != -1 )
+  {
+    /*qDebug( "Precio encontrado" );
+    qDebug( qPrintable( QString::number( __recargo ) ) );
+    qDebug( qPrintable( QString::number( precio ) ) );
+    qDebug( qPrintable( QString::number( precio + ( precio * ( __recargo / 100 ) ) ) ) );*/
+    return precio + ( precio * (__recargo/100) );
+  }
+  else
+  {
+   //qDebug( "Precio de costo" );
+   return precio;
+  }
+ }
+ else
+ {
+  qDebug( "No se encontro el precio" );
+  return 0.0;
+ }
 }
