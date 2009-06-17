@@ -39,27 +39,27 @@ VCliente::VCliente( QWidget *parent )
  setWindowTitle( "Listado de Clientes" );
  setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
 
- modelo = new MClientes( this );
-
- vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
- vista->setTextElideMode( Qt::ElideRight );
- vista->setSelectionBehavior( QAbstractItemView::SelectRows );
+ mc = new MClientes( vista );
+ modelo = 0;
+ rmodelo = 0;
+ vista->setModel( mc );
+ vista->hideColumn( mc->fieldIndex( "id" ) );
+ vista->hideColumn( mc->fieldIndex( "nombre" ) );
+ vista->hideColumn( mc->fieldIndex( "segundo" ) );
+ vista->hideColumn( mc->fieldIndex( "apellido" ) );
+ vista->hideColumn( mc->fieldIndex( "nombre" ) );
+ vista->hideColumn( mc->fieldIndex( "piso" ) );
+ vista->hideColumn( mc->fieldIndex( "depto" ) );
+ vista->hideColumn( mc->fieldIndex( "provincia" ) );
+ vista->hideColumn( mc->fieldIndex( "codigo_postal" ) );
+ vista->hideColumn( mc->fieldIndex( "pais" ) );
+ vista->hideColumn( mc->fieldIndex( "fax" ) );
+ vista->hideColumn( mc->fieldIndex( "email" ) );
+ vista->hideColumn( mc->fieldIndex( "comprobante_email" ) );
+ vista->hideColumn( mc->fieldIndex( "lista_precio_id" ) );
  vista->setAlternatingRowColors( true );
- vista->setModel( modelo );
- vista->hideColumn( modelo->fieldIndex( "id" ) );
- vista->hideColumn( modelo->fieldIndex( "nombre" ) );
- vista->hideColumn( modelo->fieldIndex( "segundo" ) );
- vista->hideColumn( modelo->fieldIndex( "apellido" ) );
- vista->hideColumn( modelo->fieldIndex( "nombre" ) );
- vista->hideColumn( modelo->fieldIndex( "piso" ) );
- vista->hideColumn( modelo->fieldIndex( "depto" ) );
- vista->hideColumn( modelo->fieldIndex( "provincia" ) );
- vista->hideColumn( modelo->fieldIndex( "codigo_postal" ) );
- vista->hideColumn( modelo->fieldIndex( "pais" ) );
- vista->hideColumn( modelo->fieldIndex( "fax" ) );
- vista->hideColumn( modelo->fieldIndex( "email" ) );
- vista->hideColumn( modelo->fieldIndex( "comprobante_email" ) );
- modelo->select();
+ mc->select();
+
 
  ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
  ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
@@ -78,11 +78,5 @@ VCliente::~VCliente()
     \fn VCliente::agregar( bool autoeliminarid )
  */
 void VCliente::agregar( bool autoeliminarid )
-{ emit agregarVentana( new FormCliente( this, modelo ) ); }
+{ emit agregarVentana( new FormCliente( this, mc ) ); }
 
-
-/*!
-    \fn VCliente::antes_de_insertar( int row, QSqlRecord & record )
- */
-void VCliente::antes_de_insertar( int row, QSqlRecord & record )
-{}

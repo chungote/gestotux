@@ -105,3 +105,19 @@ void EMysql::dbinterna()
 {
  this->done( Interna );
 }
+
+#include <QShowEvent>
+/*!
+    \fn EMysql::showEvent( QShowEvent * event )
+ */
+void EMysql::showEvent( QShowEvent * event )
+{
+ if( event->spontaneous() )
+ {
+  if( preferencias::getInstancia()->value( "Preferencias/General/mysql/automatico" ).toBool() )
+  {
+   this->accept();
+   event->accept();
+  }
+ }
+}

@@ -28,7 +28,7 @@
 #include "eactguardar.h"
 #include "mclientes.h"
 
-FormCliente::FormCliente ( QWidget* parent, MClientes *modelo,  Qt::WFlags fl )
+FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormClienteBase()
 {
 	setupUi ( this );

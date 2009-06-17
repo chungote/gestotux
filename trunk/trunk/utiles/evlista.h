@@ -21,6 +21,7 @@
 #define EVLISTA_H
 
 #include "eventana.h"
+class QSqlRelationalTableModel;
 class QSqlTableModel;
 class QSqlRecord;
 class QAction;
@@ -86,6 +87,7 @@ protected:
   /**
    * Puntero a modelo generico para la vista
    */
+   QSqlRelationalTableModel *rmodelo;
    QSqlTableModel *modelo;
 
 protected slots:

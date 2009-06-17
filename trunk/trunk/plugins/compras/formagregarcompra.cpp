@@ -115,6 +115,33 @@ void FormAgregarCompra::guardar()
   {
    qDebug( "Error al insertar Registro" );
   }
+  else
+  {
+   // Actualizo el stock
+   int id_producto = mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt();
+   QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) );
+   if( cola.next() )
+   {
+    double cantidad = cola.record().value(0).toDouble();
+    cantidad += mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble();
+    if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) )
+    {
+     qDebug( "Stock actualizado correctamente" );
+    }
+    else
+    {
+     qWarning( "Error al actualizar el stcok" );
+     qDebug( qPrintable( cola.lastError().text() ) );
+     qDebug( qPrintable( cola.lastQuery() ) );
+    }
+   }
+   else
+   {
+    qWarning( "Error al intentar buscar el stock del producto" );
+    qDebug( qPrintable( cola.lastError().text() ) );
+    qDebug( qPrintable( cola.lastQuery() ) );
+   }
+  }
  }
  m->submit();
  // listo
@@ -181,10 +208,7 @@ void FormAgregarCompra::eliminarProducto()
 	foreach( indice, indices )
 	{
 		if( indice.isValid() )
-		{
-			if( !mcp->removeRow( indice.row() ) )
-			{ /*qWarning( qPrintable( "Error al eliminar el registro" + mcp->lastError().text() ) );*/ }
-		}
+		{  mcp->removeRow( indice.row() ); }
 	}
  }
  return;

@@ -23,6 +23,7 @@
 #include "emcliente.h"
 #include <QTableView>
 #include <QMessageBox>
+#include <QSqlQuery>
 #include <QSqlRecord>
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -197,6 +198,28 @@ void FormAgregarVenta::guardar()
   registro.setValue( "cantidad", mcp->data( mcp->index( i, 2 ), Qt::EditRole ) );
   if( m->insertRecord( -1, registro ) == false ) {
    qDebug( "Error al insertar Registro" );
+  }
+  else
+  {
+   // Disminuyo el stock
+   int id_producto = mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt();
+   QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) );
+   if( cola.next() )
+   {
+    double cantidad = cola.record().value( 0 ).toDouble();
+    cantidad -= mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble();
+    if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) ) {
+	qDebug( "Stock Actualizado correctamente" );
+    }
+    else
+    {
+      qWarning( "Error al actualizar el stock" );
+    }
+   }
+   else
+   {
+    qWarning( "Error al bsucar el stock" );
+   }
   }
  }
  m->submit();

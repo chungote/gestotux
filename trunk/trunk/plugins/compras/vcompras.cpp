@@ -29,9 +29,9 @@ VCompras::VCompras(QWidget *parent)
  setObjectName( "lista_compras" );
  setWindowTitle( "Lista de compras realizadas" );
  setWindowIcon( QIcon(":/imagenes/compras.jpg" ) );
- modelo = new MCompra( this, true );
- vista->setModel( modelo );
- modelo->select();
+ rmodelo = new MCompra( this, true );
+ vista->setModel( rmodelo );
+ rmodelo->select();
  vista->hideColumn( 0 );
  vista->resizeColumnsToContents();
  addAction( ActAgregar );

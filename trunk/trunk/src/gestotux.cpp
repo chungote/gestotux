@@ -75,11 +75,11 @@ void gestotux::inicializar()
   EEmail::instancia()->testear();
  }
 
-preferencias *p = preferencias::getInstancia();
+/*preferencias *p = preferencias::getInstancia();
 //p->inicio();
 p->beginGroup( "ventanaPrincipal" );
 this->restoreState( p->value( "estado", "" ).toByteArray() );
-//p->endGroup();
+//p->endGroup();*/
 
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );

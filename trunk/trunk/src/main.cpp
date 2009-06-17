@@ -182,6 +182,7 @@ int main(int argc, char *argv[])
         qDebug( "Fallo al cargar la traduccion del reporte" );
       }
       delete directorio;
+      directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
       QSqlDatabase DB; bool fallosql = false;

@@ -55,6 +55,7 @@ void FormPrefDb::cargar()
   LEPass->setText( p->value( "mysql/contra", "desconocido" ).toString() );
  }
  LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
+ CkBAutomatico->setChecked( p->value( "mysql/automatico", false ).toBool() );
  CBFrecuencia->setCurrentIndex( p->value( "frecuenciaBackup", 1 ).toInt() );
  p->endGroup();
  p->endGroup();
@@ -83,6 +84,7 @@ void FormPrefDb::guardar()
  {
   p->setValue( "mysql/contra", LEPass->text() );
  }
+ p->setValue( "mysql/automatico", CkBAutomatico->isChecked() );
  if( !RBExterna->isChecked() )
  {
   p->setValue( "frecuenciaBackup", CBFrecuencia->currentIndex() );

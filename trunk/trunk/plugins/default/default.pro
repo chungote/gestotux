@@ -1,7 +1,9 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin
+plugin \
+ debug_and_release \
+ build_all
 INCLUDEPATH += ../../src
 
 HEADERS += gestotuxdefault.h

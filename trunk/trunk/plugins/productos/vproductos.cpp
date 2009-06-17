@@ -38,13 +38,15 @@ VProductos::VProductos(QWidget *parent)
  this->setObjectName( "listaproductos" );
  this->setWindowTitle( "Lista de Productos");
  this->setWindowIcon( QIcon( ":/imagenes/productos.png" ) );
- modelo = new MProductos( this );
 
- vista->setModel( modelo );
+ modelo = 0;
+ rmodelo = new MProductos( vista );
+
+ vista->setModel( rmodelo );
  vista->hideColumn( 0 );
  vista->setItemDelegate( new  DProductos( vista ) );
 
- modelo->select();
+ rmodelo->select();
  vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
  vista->setAlternatingRowColors( true );

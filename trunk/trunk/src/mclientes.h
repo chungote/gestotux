@@ -30,9 +30,9 @@ class MClientes : public QSqlRelationalTableModel
 public:
     MClientes( QObject *parent = 0);
     ~MClientes();
-    QVariant data(const QModelIndex& idx, int role) const;
+    /*QVariant data(const QModelIndex& idx, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
-    bool setData(const QModelIndex& index, const QVariant& value, int role);
+    bool setData(const QModelIndex& index, const QVariant& value, int role);*/
 
 };
 

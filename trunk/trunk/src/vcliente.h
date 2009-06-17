@@ -32,13 +32,12 @@ class VCliente : public EVLista
 public:
     VCliente( QWidget *parent = 0 );
     ~VCliente();
-    void antes_de_insertar( int row, QSqlRecord & record );
 
 protected slots:
     void agregar( bool autoeliminarid = true);
 
 private:
-    MClientes *modelo;
+    MClientes *mc;
 
 };
 

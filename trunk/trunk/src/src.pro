@@ -113,8 +113,10 @@ TARGETDEPS += ../bin/libncreport.a \
 
 DEFINES += GESTOTUX_DESARROLLO
 
-INCLUDEPATH += ../utiles \
-  ../reporte \
+
+
+INCLUDEPATH += ../reporte \
+  ../utiles \
   ../utiles/email \
   ../utiles/ui
 
