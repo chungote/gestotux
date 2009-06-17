@@ -59,7 +59,8 @@ QList<QActionGroup *> AdminCarCorr::accionesBarra()
  lista.append( GTris );
  QActionGroup *resumenes = new QActionGroup( this );
  resumenes->setObjectName( "resumen" );
- resumenes->setProperty( "titulo", "titulo" );
+ resumenes->setProperty( "titulo", "Resumenes" );
+ resumenes->setProperty( "icono", ":/imagenes/resumen.png" );
  if( !plugins().isEmpty() )
  {
  	foreach( EInformeInterface *p, plugins() )
@@ -93,13 +94,13 @@ QWidgetList AdminCarCorr::formsPreferencias()
  return _listaFormPref;
 }
 
+#include <QApplication>
 #include <QDate>
 #include "preferencias.h"
 
 bool AdminCarCorr::inicializar()
 {
  _acciones.clear();
-
  // Verifico el uso
  if( !preferencias::getInstancia()->contains( "comprado" ) )
  {
@@ -109,17 +110,16 @@ bool AdminCarCorr::inicializar()
  else
  {
   QDate fecha = preferencias::getInstancia()->value( "fechas_informes", QDate() ).toDate();
-  if( !fecha.isValid() || fecha.daysTo( QDate::currentDate() ) > 30 )
+  if( !fecha.isValid() || fecha.daysTo( QDate::currentDate() ) > 29 )
   {
     qWarning( "Error de validación de licencia. Su tiempo de prueba ha expirado" );
-    abort();
+    return false;
   }
   else
   {
    qWarning( QString( "Le quedan %1 dias para pruebas" ).arg( fecha.daysTo( QDate::currentDate() ) ).toLocal8Bit() );
   }
  }
-
 
  ActCategoria = new QAction( "Ver Categorias", this );
  ActCategoria->setIcon( QIcon( ":/imagenes/categoria.png" ) );

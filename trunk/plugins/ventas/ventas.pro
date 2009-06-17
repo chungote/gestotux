@@ -1,7 +1,8 @@
 TEMPLATE = lib
 CONFIG += dll \
 plugin \
-help
+help \
+ debug
 
 SOURCES += mventa.cpp \
 ventas.cpp \
@@ -42,10 +43,13 @@ DESTDIR = ../../bin/plugins/
 LIBS += ../../bin/libutiles.a
 TARGETDEPS += ../../bin/libutiles.a
 
-FORMS += FormAgregarVentaBase.ui
+FORMS += FormAgregarVentaBase.ui \
+ FormPrefVentaBase.ui
 
 INCLUDEPATH += ../../src \
   ../../utiles
 
 RESOURCES += ventas.qrc
+
+CONFIG -= release
 

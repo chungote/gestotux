@@ -2,10 +2,11 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-help
+help \
+ build_all \
+ debug
 
-QT += sql \
- svg
+QT += sql
 
 TARGET = productos
 
@@ -53,3 +54,6 @@ DISTFILES += productos.SQLITE.sql \
 
 TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc
+
+CONFIG -= release
+

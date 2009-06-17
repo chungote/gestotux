@@ -132,6 +132,13 @@
         </item>
        </layout>
       </item>
+      <item>
+       <widget class="QCheckBox" name="CkBAutomatico">
+        <property name="text">
+         <string>Conectarse automaticamente al iniciar el programa</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

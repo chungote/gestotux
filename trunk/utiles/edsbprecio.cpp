@@ -52,7 +52,7 @@ void EDSBPrecio::keyPressEvent( QKeyEvent * event )
      }
 #endif
 #ifdef Q_WS_WIN
-     case WIN_KEY:
+     case 83:
      {
        QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
        ev->setAccepted( false );

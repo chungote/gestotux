@@ -37,7 +37,7 @@ MProductosTotales::MProductosTotales(QObject *parent)
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
  prods = new QMap<int, QString>();
- QSqlQuery cola( "SELECT nombre, id FROM producto" );
+ QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
  while( cola.next() )
  {
 	prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );

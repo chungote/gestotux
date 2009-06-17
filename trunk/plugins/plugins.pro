@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS += default \
-compras \
+SUBDIRS += compras \
 ventas \
 proveedor \
-gastos
+productos \
+aCarCorr

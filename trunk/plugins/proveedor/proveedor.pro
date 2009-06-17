@@ -2,7 +2,8 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-help
+help \
+ debug
 
 QT += sql
 
@@ -43,4 +44,6 @@ vproveedor.h \
 DISTFILES += ../../templates/qrc
 
 RESOURCES += proveedor.qrc
+
+CONFIG -= release
 

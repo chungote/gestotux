@@ -65,7 +65,7 @@ CREATE TABLE clientes (
  setHeaderData( 16, Qt::Horizontal, "Em@il" );
  setHeaderData( 17, Qt::Horizontal, "EnviarComprobantexEmail" );
  setHeaderData( 18, Qt::Horizontal, "Lista de precio" );
- setRelation( 18, QSqlRelation( "lista_precio", "id_lista", "nombre" ) );
+ setRelation( 18, QSqlRelation( "lista_precio", "id_lista_precio", "nombre" ) );
 }
 
 
@@ -73,7 +73,7 @@ MClientes::~MClientes()
 {
 }
 
-
+/*
 QVariant MClientes::data(const QModelIndex& idx, int role) const
 {
  switch( role )
@@ -85,12 +85,12 @@ QVariant MClientes::data(const QModelIndex& idx, int role) const
 			// Comprobante x email
 			case 17:
 			{
-				return QSqlTableModel::data( idx, role ).toBool();
+				return QSqlRelationalTableModel::data( idx, role ).toBool();
 				break;
 			}
 			default:
 			{
-				return QSqlTableModel::data( idx, role );
+				return QSqlRelationalTableModel::data( idx, role );
 				break;
 			}
 		}
@@ -98,7 +98,7 @@ QVariant MClientes::data(const QModelIndex& idx, int role) const
 	}
 	default:
 	{
-		return QSqlTableModel::data(idx, role);
+		return QSqlRelationalTableModel::data(idx, role);
 		break;
 	}
  }
@@ -106,11 +106,11 @@ QVariant MClientes::data(const QModelIndex& idx, int role) const
 
 Qt::ItemFlags MClientes::flags(const QModelIndex& index) const
 {
-    return QSqlTableModel::flags(index);
+    return QSqlRelationalTableModel::flags(index);
 }
 
 bool MClientes::setData(const QModelIndex& index, const QVariant& value, int role)
 {
-    return QSqlTableModel::setData(index, value, role);
+    return QSqlRelationalTableModel::setData(index, value, role);
 }
-
+*/

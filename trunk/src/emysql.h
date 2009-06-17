@@ -37,6 +37,7 @@ public:
   EMysql(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~EMysql();
     void setDb( QSqlDatabase *db );
+    void showEvent( QShowEvent * event ) ;
 enum {
 	Conectado = 1,
 	Cancelado = 2,

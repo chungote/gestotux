@@ -2,7 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-help
+help \
+ debug_and_release \
+ debug
 
 TARGET = gastos
 
@@ -46,4 +48,5 @@ FORMS += FormAgregarGastoBase.ui
 
 RESOURCES += gastos.qrc
 
-TRANSLATIONS += gastos.ts
+TRANSLATIONS += gastos.tsCONFIG -= release
+

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "evlista.h"
+#include <QSqlRelationalTableModel>
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QHeaderView>
@@ -117,14 +118,15 @@ void EVLista::cerrar()
  */
 void EVLista::agregar( bool autoeliminarid )
 {
- QSqlRecord registro = modelo->record();
+ QSqlTableModel *m = qobject_cast<QSqlTableModel *>(vista->model());
+ QSqlRecord registro = m->record();
 
  if( autoeliminarid )
  { registro.remove( 0 ); }
- if( !modelo->insertRecord( -1, registro ) )
+ if( !m->insertRecord( -1, registro ) )
  {
   qDebug( "Error al insertar el registro" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() ).toLocal8Bit() );
+  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( m->lastError().type() ).arg( m->lastError().number() ).arg( m->lastError().text() ).toLocal8Bit() );
  }
 }
 
@@ -134,6 +136,7 @@ void EVLista::agregar( bool autoeliminarid )
  */
 void EVLista::eliminar()
 {
+ QSqlTableModel *m = qobject_cast<QSqlTableModel *>(vista->model());
  //Preguntar al usuario si esta seguro
  QItemSelectionModel *selectionModel = vista->selectionModel();
  QModelIndexList indices = selectionModel->selectedRows();
@@ -156,10 +159,10 @@ void EVLista::eliminar()
 	{
 		if( indice.isValid() )
 		{
-			if( modelo->removeRow( indice.row() ) )
+			if( m->removeRow( indice.row() ) )
 			{ return; }
 			else
-			{ qWarning( qPrintable( "Error al eliminar el registro" + modelo->lastError().text() ) ); }
+			{ qWarning( qPrintable( "Error al eliminar el registro" + m->lastError().text() ) ); }
 		}
 	}
  }
@@ -175,7 +178,8 @@ void EVLista::closeEvent( QCloseEvent * c)
 {
  /*if( vista != 0 )
     delete vista;*/
- modelo->submitAll();
+ /*if( modelo )
+ { modelo->submitAll(); }*/
 // delete modelo;
  EVentana::closeEvent( c );
 }

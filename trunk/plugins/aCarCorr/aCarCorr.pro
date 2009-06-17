@@ -3,7 +3,9 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 exceptions \
- help
+ help \
+ debug \
+ build_all
 
 QT += sql \
  svg
@@ -84,4 +86,7 @@ TARGETDEPS += ../../bin/libutiles.a
 DISTFILES += admincaravanascorrientes.SQLITE.sql \
  admincaravanascorrientes.QMYSQL.sql
 
-TRANSLATIONS += admincaravanascorrientes.ts
+TRANSLATIONS += admincaravanascorrientes.tsCONFIG -= release
+
+CONFIG -= release
+
