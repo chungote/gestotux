@@ -23,8 +23,11 @@
 #include <QItemDelegate>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Delegate para editar los campos de una tabla mproductostotales
+ *
+ * Delegate que mantiene los campos de una tabla del tipo MProductosTotales y permite su edicion correcta
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class DProductosTotales : public QItemDelegate
 {
 Q_OBJECT

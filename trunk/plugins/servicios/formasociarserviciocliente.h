@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,55 +17,48 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef AUTODESTRUC_H
-#define AUTODESTRUC_H
 
-#include <QObject>
-#include <eplugin.h>
-#include <QtPlugin>
-class QProgressBar;
-class QTimer;
-class QPushButton;
+#ifndef FORMASOCIARSERVICIOCLIENTE_H
+#define FORMASOCIARSERVICIOCLIENTE_H
 
-/**
- * \brief Plugin de autodestruccion
- *
- * Plugin que permite mediante una combinación de teclas, destruir el programa y los datos para que no queden rastros de el
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class AutoDestruc : public QObject, public EPlugin
+#include <QDialog>
+#include "ui_FormAsociarBase.h"
+#include <QDate>
+
+class FormAsociarServicioCliente : public QDialog, private Ui::Dialog
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
-public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m);
-    void crearToolBar( QToolBar* t);
+  Q_OBJECT
 
-signals:
-    void agregarVentana( QWidget* v);
+public:
+enum tipoForm {
+ Todo, // Muestra todos los campos
+ Cliente, // Muestra la lista de clientes para asociar a un servicio
+ Servicio, // Muestra el servicio al que se debe asociar un cliente
+ SoloFecha
+}_tipo;
+
+  FormAsociarServicioCliente(QWidget* parent = 0, tipoForm tipo = Todo, Qt::WFlags fl = 0 );
+  ~FormAsociarServicioCliente();
+    int idCliente();
+    int idServicio();
+    QDate fecha();
+    void setFecha( QDate fecha );
+    void setIdCliente( int id_cliente );
+    void setIdServicio( int id_servicio );
 
 public slots:
-    void destruir();
-    void seCierraGestotux();
+    int exec();
 
 protected slots:
-    void ejecutarme();
-    void moverBarra();
-    void cancelar();
+  virtual void          reject();
+  virtual void          accept();
 
 private:
-    QProgressBar *barra;
-    QTimer *tiempo2;
-    QPushButton *PBCancelar;
-    bool cancelado;
+	int _id_cliente;
+	int _id_servicio;
+	QDate _fecha;
+
 };
 
 #endif
+

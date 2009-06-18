@@ -75,12 +75,6 @@ void gestotux::inicializar()
   EEmail::instancia()->testear();
  }
 
-/*preferencias *p = preferencias::getInstancia();
-//p->inicio();
-p->beginGroup( "ventanaPrincipal" );
-this->restoreState( p->value( "estado", "" ).toByteArray() );
-//p->endGroup();*/
-
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
 }
@@ -195,10 +189,6 @@ void gestotux::salir()
  emit saliendoGestotux();
  // Guardo el estado de la ventana principal
  preferencias *p = preferencias::getInstancia();
- p->endGroup();
- p->beginGroup( "ventanaPrincipal" );
- p->setValue( "estado", saveState() );
- p->endGroup();
  // sincronizo las preferencias para que queden guardadas efectivamente
  p->sync();
  // Cierro la base de datos
@@ -313,7 +303,6 @@ void gestotux::verBackup()
 void gestotux::bandeja_sistema()
 {
  preferencias *p = preferencias::getInstancia();
- //p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
  bool bandeja = p->value( "icono_bandeja", false ).toBool();
