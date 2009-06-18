@@ -19,7 +19,8 @@ HEADERS += eactcerrar.h \
  mime.h \
  mproductostotales.h \
  dproductostotales.h \
- edsbprecio.h
+ edsbprecio.h \
+ dsino.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \
@@ -38,7 +39,8 @@ eactimprimir.cpp \
  mime.cpp \
  mproductostotales.cpp \
  dproductostotales.cpp \
- edsbprecio.cpp
+ edsbprecio.cpp \
+ dsino.cpp
 
 QT += sql
 

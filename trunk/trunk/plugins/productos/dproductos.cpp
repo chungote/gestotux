@@ -21,6 +21,7 @@
 
 #include <QModelIndex>
 #include <QComboBox>
+#include "edsbprecio.h"
 
 DProductos::DProductos(QObject *parent)
  : QSqlRelationalDelegate(parent)
@@ -44,6 +45,13 @@ QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& 
  		modelo->setFilter( "tipo <> '2'" );
 		combo->setModel( modelo );
 		return combo;
+		break;
+	}
+	case 7:
+	{
+		EDSBPrecio *editor = new EDSBPrecio( parent );
+		editor->setPrefix( "" );
+		return editor;
 		break;
 	}
 	default:

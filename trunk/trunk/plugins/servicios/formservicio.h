@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,55 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef AUTODESTRUC_H
-#define AUTODESTRUC_H
 
-#include <QObject>
-#include <eplugin.h>
-#include <QtPlugin>
-class QProgressBar;
-class QTimer;
-class QPushButton;
+#ifndef FORMSERVICIO_H
+#define FORMSERVICIO_H
 
-/**
- * \brief Plugin de autodestruccion
- *
- * Plugin que permite mediante una combinación de teclas, destruir el programa y los datos para que no queden rastros de el
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class AutoDestruc : public QObject, public EPlugin
+#include "eventana.h"
+#include "ui_formServicioBase.h"
+class MRecargos;
+
+class FormServicio : public EVentana, private Ui::FormServicioBase
 {
 Q_OBJECT
-Q_INTERFACES( EPlugin )
+
 public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m);
-    void crearToolBar( QToolBar* t);
-
-signals:
-    void agregarVentana( QWidget* v);
-
-public slots:
-    void destruir();
-    void seCierraGestotux();
+	FormServicio ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+	~FormServicio();
 
 protected slots:
-    void ejecutarme();
-    void moverBarra();
-    void cancelar();
+    void guardar();
+    void  agregarRecargo();
 
 private:
-    QProgressBar *barra;
-    QTimer *tiempo2;
-    QPushButton *PBCancelar;
-    bool cancelado;
+   MRecargos *modRecargos;
 };
 
 #endif
+

@@ -44,7 +44,7 @@ CREATE TABLE clientes (
     "fax" TEXT,
     "email" TEXT,
     "comprobante_email" INTEGER,
-    "lista_precio_id" INTEGER )
+    "id_lista_precio" INTEGER )
 */
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Razon Social" );
@@ -64,8 +64,8 @@ CREATE TABLE clientes (
  setHeaderData( 15, Qt::Horizontal, "Fax" );
  setHeaderData( 16, Qt::Horizontal, "Em@il" );
  setHeaderData( 17, Qt::Horizontal, "EnviarComprobantexEmail" );
- setHeaderData( 18, Qt::Horizontal, "Lista de precio" );
- setRelation( 18, QSqlRelation( "lista_precio", "id_lista_precio", "nombre" ) );
+/* setHeaderData( 18, Qt::Horizontal, "Lista de precio" );
+ setRelation( 18, QSqlRelation( "lista_precio", "id_lista_precio", "nombre" ) );*/
 }
 
 
@@ -73,44 +73,3 @@ MClientes::~MClientes()
 {
 }
 
-/*
-QVariant MClientes::data(const QModelIndex& idx, int role) const
-{
- switch( role )
- {
-	case Qt::EditRole:
-	{
-		switch( idx.column() )
-		{
-			// Comprobante x email
-			case 17:
-			{
-				return QSqlRelationalTableModel::data( idx, role ).toBool();
-				break;
-			}
-			default:
-			{
-				return QSqlRelationalTableModel::data( idx, role );
-				break;
-			}
-		}
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalTableModel::data(idx, role);
-		break;
-	}
- }
-}
-
-Qt::ItemFlags MClientes::flags(const QModelIndex& index) const
-{
-    return QSqlRelationalTableModel::flags(index);
-}
-
-bool MClientes::setData(const QModelIndex& index, const QVariant& value, int role)
-{
-    return QSqlRelationalTableModel::setData(index, value, role);
-}
-*/

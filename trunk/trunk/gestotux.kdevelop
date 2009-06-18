@@ -173,7 +173,7 @@
       <envvars/>
       <runarguments>
         <gestotux/>
-        <src></src>
+        <src/>
       </runarguments>
       <cwd>
         <gestotux>/home/Esteban/Programas/gestotux/bin</gestotux>
@@ -181,11 +181,11 @@
       </cwd>
       <debugarguments>
         <gestotux/>
-        <src></src>
+        <src/>
       </debugarguments>
     </run>
     <general>
-      <activedir>plugins/aCarCorr</activedir>
+      <activedir>utiles</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>

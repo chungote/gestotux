@@ -49,7 +49,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
 	{
 		QComboBox *combo = new QComboBox( parent );
 		// Rellenar los items
-		QSqlQuery cola( "SELECT nombre, id FROM producto" );
+		QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
 		while( cola.next() )
 		{
 			combo->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) );

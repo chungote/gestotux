@@ -92,6 +92,8 @@ bool Ventas::verificarTablas()
  { qWarning( "Error al buscar la tabla ventas" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas_productos" ) )
  { qWarning( "Error al buscar la tabla ventas_productos" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "lista_precio" ) )
+ { qWarning( "Error al buscar la tabla lista_precios" ); return false; }
  return true;
 }
 

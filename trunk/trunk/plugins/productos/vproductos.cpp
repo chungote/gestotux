@@ -30,7 +30,7 @@
 #include <QSqlRelationalDelegate>
 #include <QSqlQuery>
 #include <QSqlField>
-
+#include "dsino.h"
 
 VProductos::VProductos(QWidget *parent)
  : EVLista(parent)
@@ -44,7 +44,8 @@ VProductos::VProductos(QWidget *parent)
 
  vista->setModel( rmodelo );
  vista->hideColumn( 0 );
- vista->setItemDelegate( new  DProductos( vista ) );
+ vista->setItemDelegate( new DProductos( vista ) );
+ vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
 
  rmodelo->select();
  vista->resizeColumnsToContents();
