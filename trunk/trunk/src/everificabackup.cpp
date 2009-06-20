@@ -23,6 +23,7 @@
 #include <QIcon>
 #include <QLabel>
 #include <QTimer>
+#include <QSqlDatabase>
 
 EVerificaBackup::EVerificaBackup(QWidget *parent)
  : QPushButton(parent)
@@ -48,6 +49,8 @@ EVerificaBackup::~EVerificaBackup()
  */
 void EVerificaBackup::verificar()
 {
+ if( QSqlDatabase::database().driverName() != "QSQLITE" )
+ { tiempo->stop(); delete tiempo; return; }
  preferencias *p = preferencias::getInstancia();
  int cant_dias = 0;
  switch( p->value( "Preferencias/General/frecuenciaBackup", 1 ).toInt() )

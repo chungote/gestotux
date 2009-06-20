@@ -24,11 +24,14 @@
 #include <QTimer>
 #include <QMessageBox>
 #include "preferencias.h"
+#include <QDebug>
 
 EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 : QDialog( parent, fl ), Ui::EMysqlBase()
 {
 	setupUi(this);
+	this->setModal( false );
+	id_timer = -1;
 	preferencias *p = preferencias::getInstancia();
 	LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
 	if( p->contains( "mysql/contra" ) )
@@ -42,6 +45,14 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
 	connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
 	PBConectar->setDefault( true );
+	if( p->value( "Preferencias/General/mysql/automatico" ).toBool() && p->contains( "mysql/contra" ) )
+	{
+		id_timer = this->startTimer( 1000 );
+		if( id_timer == 0 )
+		{
+			qDebug( "Error al iniciar el timer" );
+		}
+	}
 }
 
 EMysql::~EMysql()
@@ -106,18 +117,30 @@ void EMysql::dbinterna()
  this->done( Interna );
 }
 
-#include <QShowEvent>
+
 /*!
-    \fn EMysql::showEvent( QShowEvent * event )
+    \fn EMysql::timerEvent ( QTimerEvent * event )
  */
-void EMysql::showEvent( QShowEvent * event )
+void EMysql::timerEvent ( QTimerEvent * event )
 {
- if( event->spontaneous() )
- {
-  if( preferencias::getInstancia()->value( "Preferencias/General/mysql/automatico" ).toBool() )
+  qDebug() << "Timer ID:" << event->timerId();
+  if( id_timer != -1 )
   {
-   this->accept();
-   event->accept();
+   if( event->timerId() == id_timer )
+   {
+    this->killTimer( id_timer );
+    qDebug( "autoconexion" );
+    this->accept();
+   }
+   else
+   {
+	qDebug( "autoconexion pasada por id erroneo" );
+    QDialog::timerEvent( event );
+   }
   }
- }
+  else
+  {
+    qDebug( "autoconexion pasada por no id" );
+   QDialog::timerEvent( event );
+  }
 }

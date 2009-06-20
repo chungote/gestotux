@@ -17,49 +17,52 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "vlistaprecio.h"
-#include "mlistaprecio.h"
-#include "dsino.h"
-#include <QTableView>
+#include "formprefproductos.h"
 
-VListaPrecio::VListaPrecio(QWidget *parent)
- : EVLista(parent)
+#include "preferencias.h"
+
+FormPrefProductos::FormPrefProductos ( QWidget* parent, Qt::WFlags fl )
+: FormPrefHijo(), Ui::FormPrefProductosBase()
 {
- setObjectName( "vlistaprecio" );
- setWindowTitle( "Listas de Precio" );
- //setWindowIconText();
-
- modelo = new MListaPrecio( vista );
- vista->setModel( modelo );
- vista->hideColumn( 0 );
- vista->setSortingEnabled( true );
- vista->setAlternatingRowColors( true );
- vista->setItemDelegateForColumn( modelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
- modelo->select();
-
- addAction( ActAgregar );
- addAction( ActCerrar );
+ setupUi ( this );
+ this->setWindowTitle( "Productos" );
+ this->setWindowIcon( QIcon( ":/imagenes/productos.png" ) );
 }
 
-
-VListaPrecio::~VListaPrecio()
+FormPrefProductos::~FormPrefProductos()
 {
 }
 
 
-void VListaPrecio::agregar(bool autoeliminarid)
+
+
+/*!
+    \fn FormPrefProductos::cargar()
+ */
+void FormPrefProductos::cargar()
 {
-    EVLista::agregar(autoeliminarid);
+ preferencias *p = preferencias::getInstancia();
+ CkBCategorias->setChecked( p->value( "Preferencias/Productos/categorias", false ).toBool() );
+ CkBMarcas->setChecked( p->value( "Preferencias/Productos/marcas", false ).toBool() );
+ CkBDescripcion->setChecked( p->value( "Preferencias/Productos/descripcion", false ).toBool() );
 }
 
-void VListaPrecio::eliminar()
-{
- return;
-   // EVLista::eliminar();
-}
 
-void VListaPrecio::modificar()
-{
-    EVLista::modificar();
-}
+/*!
+    \fn FormPrefProductos::aplicar()
+ */
+void FormPrefProductos::aplicar()
+{ return; }
 
+
+/*!
+    \fn FormPrefProductos::guardar()
+ */
+void FormPrefProductos::guardar()
+{
+
+ preferencias *p = preferencias::getInstancia();
+ p->setValue( "Preferencias/Productos/categorias",CkBCategorias->isChecked() );
+ p->setValue( "Preferencias/Productos/marcas", CkBMarcas->isChecked() );
+ p->setValue( "Preferencias/Productos/descripcion",CkBDescripcion->isChecked() );
+}

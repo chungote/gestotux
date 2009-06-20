@@ -37,7 +37,8 @@ public:
   EMysql(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~EMysql();
     void setDb( QSqlDatabase *db );
-    void showEvent( QShowEvent * event ) ;
+    void timerEvent ( QTimerEvent * event );
+
 enum {
 	Conectado = 1,
 	Cancelado = 2,
@@ -50,6 +51,7 @@ protected slots:
 
 private:
 	QSqlDatabase *_db;
+	int id_timer;
 
 private slots:
     void dbinterna();

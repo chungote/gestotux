@@ -30,14 +30,16 @@ vcategorias.cpp \
 vproductos.cpp \
  productos.cpp \
  dproductos.cpp \
- dcategoria.cpp
+ dcategoria.cpp \
+ formprefproductos.cpp
 HEADERS += mcategorias.h \
 mproductos.h \
 vcategorias.h \
 vproductos.h \
  productos.h \
  dproductos.h \
- dcategoria.h
+ dcategoria.h \
+ formprefproductos.h
 
 LIBS += ../../bin/libutiles.a
 
@@ -56,4 +58,6 @@ TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc
 
 CONFIG -= release
+
+FORMS += FormPrefProductosBase.ui
 

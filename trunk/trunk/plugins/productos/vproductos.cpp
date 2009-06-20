@@ -27,6 +27,7 @@
 #include "productos.h"
 #include "mcategorias.h"
 #include "vcategorias.h"
+#include "preferencias.h"
 #include <QSqlRelationalDelegate>
 #include <QSqlQuery>
 #include <QSqlField>
@@ -44,6 +45,13 @@ VProductos::VProductos(QWidget *parent)
 
  vista->setModel( rmodelo );
  vista->hideColumn( 0 );
+ if( !preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ { vista->hideColumn( rmodelo->fieldIndex( "id_categoria" ) ); }
+ if( !preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
+ { vista->hideColumn( rmodelo->fieldIndex( "descripcion" ) ); }
+ if( !preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
+ { vista->hideColumn( rmodelo->fieldIndex( "marca" ) ); }
+
  vista->setItemDelegate( new DProductos( vista ) );
  vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
 
@@ -53,15 +61,20 @@ VProductos::VProductos(QWidget *parent)
  vista->setAlternatingRowColors( true );
  vista->setSortingEnabled( true );
 
- QAction *ActCategorias = new QAction( "Categorias" , this );
- ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
- ActCategorias->setStatusTip( "Ver y administrar las categorias de productos" );
- ActCategorias->setShortcut( QKeySequence( "Ctrl + c" ) );
- connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( verCategorias() ) );
-
  addAction( ActAgregar );
  addAction( ActEliminar );
- addAction( ActCategorias );
+
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ {
+	 QAction *ActCategorias = new QAction( "Categorias" , this );
+	 ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
+	 ActCategorias->setStatusTip( "Ver y administrar las categorias de productos" );
+	 ActCategorias->setShortcut( QKeySequence( "Ctrl + c" ) );
+	 connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( verCategorias() ) );
+
+	 addAction( ActCategorias );
+ }
+
  addAction( ActCerrar );
 }
 
@@ -110,14 +123,17 @@ void VProductos::verCategorias()
 void VProductos::agregar( bool autoeliminarid )
 {
  // Ver si existe alguna categoria primero
- qDebug( "Verificando que existan categorias" );
- MCategorias *m = new MCategorias();
- if( m->rowCount() <= 0 )
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
-  qWarning( "Por favor, primero ingrese al menos una categoria de productos" );
-  delete m;
-  return;
+	 qDebug( "Verificando que existan categorias" );
+	 MCategorias *m = new MCategorias();
+	 if( m->rowCount() <= 0 )
+	 {
+	  qWarning( "Por favor, primero ingrese al menos una categoria de productos" );
+	  delete m;
+	  return;
+	 }
+	 delete m;
  }
- delete m;
  EVLista::agregar();
 }

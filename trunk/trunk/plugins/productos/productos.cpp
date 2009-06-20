@@ -50,13 +50,15 @@ QString productos::nombre() const
   return "productos";
 }
 
-
+#include "formprefproductos.h"
 /*!
     \fn productos::formsPreferencias()
  */
 QWidgetList productos::formsPreferencias()
 {
- return QWidgetList();
+ QWidgetList lista;
+ lista.append( new FormPrefProductos() );
+ return lista;
 }
 
 

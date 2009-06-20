@@ -17,49 +17,27 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "vlistaprecio.h"
-#include "mlistaprecio.h"
-#include "dsino.h"
-#include <QTableView>
 
-VListaPrecio::VListaPrecio(QWidget *parent)
- : EVLista(parent)
+#ifndef FORMPREFPRODUCTOS_H
+#define FORMPREFPRODUCTOS_H
+
+#include <QWidget>
+#include "formprefhijo.h"
+#include "ui_FormPrefProductosBase.h"
+
+class FormPrefProductos : public QWidget, public FormPrefHijo, private Ui::FormPrefProductosBase
 {
- setObjectName( "vlistaprecio" );
- setWindowTitle( "Listas de Precio" );
- //setWindowIconText();
-
- modelo = new MListaPrecio( vista );
- vista->setModel( modelo );
- vista->hideColumn( 0 );
- vista->setSortingEnabled( true );
- vista->setAlternatingRowColors( true );
- vista->setItemDelegateForColumn( modelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
- modelo->select();
-
- addAction( ActAgregar );
- addAction( ActCerrar );
-}
+Q_OBJECT
+public:
+	FormPrefProductos ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+	~FormPrefProductos();
 
 
-VListaPrecio::~VListaPrecio()
-{
-}
+public slots:
+    void cargar();
+    void aplicar();
+    void guardar();
+};
 
-
-void VListaPrecio::agregar(bool autoeliminarid)
-{
-    EVLista::agregar(autoeliminarid);
-}
-
-void VListaPrecio::eliminar()
-{
- return;
-   // EVLista::eliminar();
-}
-
-void VListaPrecio::modificar()
-{
-    EVLista::modificar();
-}
+#endif
 
