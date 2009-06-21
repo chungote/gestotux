@@ -237,6 +237,8 @@
       <subclass uifile="plugins/servicios/formServicioBase.ui" sourcefile="formservicio.h" />
       <subclass uifile="plugins/ventas/FormAgregarVentaBase.ui" sourcefile="formagregarventa.cpp" />
       <subclass uifile="plugins/ventas/FormAgregarVentaBase.ui" sourcefile="formagregarventa.h" />
+      <subclass uifile="plugins/productos/FormPrefProductosBase.ui" sourcefile="formprefproductos.cpp" />
+      <subclass uifile="plugins/productos/FormPrefProductosBase.ui" sourcefile="formprefproductos.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mproductos.h"
-
+#include "preferencias.h"
 #include <QColor>
 #include <QBrush>
 
@@ -28,7 +28,10 @@ MProductos::MProductos(QObject *parent)
  setTable( "producto" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Categoria" );
- setRelation( 1, QSqlRelation( "categoria", "id", "nombre" ) );
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ {
+  setRelation( 1, QSqlRelation( "categoria", "id", "nombre" ) );
+ }
  setHeaderData( 2, Qt::Horizontal, "Nombre" );
  setHeaderData( 3, Qt::Horizontal, "Precio de Costo" );
  setHeaderData( 4, Qt::Horizontal, "Descripcion" );
