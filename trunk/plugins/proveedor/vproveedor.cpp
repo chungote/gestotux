@@ -63,4 +63,5 @@ void VProveedor::antes_de_insertar( int row, QSqlRecord & record )
 void VProveedor::eliminar()
 {
  qWarning( "Error, el eliminar un proveedor puede causar perdida de datos" );
+ return;
 }

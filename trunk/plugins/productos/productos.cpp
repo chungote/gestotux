@@ -137,7 +137,7 @@ void productos::crearMenu( QMenuBar *m )
  */
 double productos::version() const
 {
- return 0.1;
+ return 0.12;
 }
 
 /*!
