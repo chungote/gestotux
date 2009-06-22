@@ -20,6 +20,7 @@
 #include "productos.h"
 #include "vproductos.h"
 #include "vcategorias.h"
+#include "preferencias.h"
 #include <QSqlDatabase>
 
 Q_EXPORT_PLUGIN2( productos, productos );
@@ -36,7 +37,8 @@ QList<QActionGroup *> productos::accionesBarra()
  ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
  ventas->setProperty( "titulo", "Ventas" );
  ventas->addAction( ActProductos );
- ventas->addAction( ActCategorias );
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ { ventas->addAction( ActCategorias ); }
  lista.append( ventas );
  return lista;
 }

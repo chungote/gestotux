@@ -53,6 +53,8 @@ VProductos::VProductos(QWidget *parent)
  { vista->hideColumn( rmodelo->fieldIndex( "descripcion" ) ); }
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "marca" ) ); }
+ if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
+ { vista->hideColumn( rmodelo->fieldIndex( "stock" ) ); }
 
  vista->setItemDelegate( new DProductos( vista ) );
  vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );

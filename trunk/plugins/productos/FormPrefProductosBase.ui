@@ -41,7 +41,7 @@
    <item>
     <widget class="QGroupBox" name="GBStock">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="title">
       <string>Habilitar Control de Stock</string>
@@ -62,6 +62,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="CkBLimitarVenta">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Limitar venta posible al stock actual del producto</string>
         </property>
@@ -69,6 +72,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="CkBAvisosStock">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Habilitar avisos de stock bajo</string>
         </property>
@@ -78,6 +84,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLabel" name="LStockMin">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>Limite de stock minimo:</string>
           </property>
@@ -87,7 +96,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBLimiteMinimo"/>
+         <widget class="QDoubleSpinBox" name="DSBLimiteMinimo">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

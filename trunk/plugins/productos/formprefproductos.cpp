@@ -45,6 +45,11 @@ void FormPrefProductos::cargar()
  CkBCategorias->setChecked( p->value( "Preferencias/Productos/categorias", false ).toBool() );
  CkBMarcas->setChecked( p->value( "Preferencias/Productos/marcas", false ).toBool() );
  CkBDescripcion->setChecked( p->value( "Preferencias/Productos/descripcion", false ).toBool() );
+ GBStock->setChecked( p->value( "Preferencias/Productos/stock", false ).toBool() );
+ CkBPermitir->setChecked( p->value( "Preferencias/Productos/Stock/permitir", false ).toBool() );
+ CkBLimitarVenta->setChecked( p->value( "Preferencias/Productos/Stock/limitar", false ).toBool() );
+ CkBAvisosStock->setChecked( p->value( "Preferencias/Productos/Stock/avisos", false ).toBool() );
+ DSBLimiteMinimo->setValue( p->value( "Preferencias/Productos/Stock/limiteMinimo", 0.0 ).toDouble() );
 }
 
 
@@ -65,4 +70,9 @@ void FormPrefProductos::guardar()
  p->setValue( "Preferencias/Productos/categorias",CkBCategorias->isChecked() );
  p->setValue( "Preferencias/Productos/marcas", CkBMarcas->isChecked() );
  p->setValue( "Preferencias/Productos/descripcion",CkBDescripcion->isChecked() );
+ p->setValue( "Preferencias/Productos/stock", GBStock->isChecked() );
+ p->setValue( "Preferencias/Productos/Stock/permitir", CkBPermitir->isChecked() );
+ p->setValue( "Preferencias/Productos/Stock/limitar", CkBLimitarVenta->isChecked() );
+ p->setValue( "Preferencias/Productos/Stock/avisos", CkBAvisosStock->isChecked() );
+ p->setValue( "Preferencias/Productos/Stock/limiteMinimo", DSBLimiteMinimo->value() );
 }

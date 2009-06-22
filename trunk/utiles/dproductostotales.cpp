@@ -21,13 +21,13 @@
 #include <QLineEdit>
 #include <QRegExpValidator>
 #include <QMessageBox>
-#include <QDoubleSpinBox>
-#include <QSpinBox>
 #include <QCompleter>
 #include <QComboBox>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include "edsbprecio.h"
+#include "../plugins/productos/mproductos.h"
+#include "preferencias.h"
 
 DProductosTotales::DProductosTotales(QWidget *parent)
  : QItemDelegate(parent)
@@ -54,7 +54,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
 		{
 			combo->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) );
 		}
-		combo->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
+		combo->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
 		combo->setEditable( true );
 		combo->completer()->setCompletionMode( QCompleter::PopupCompletion );
 		return combo;
@@ -72,8 +72,14 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
 	// Cantidad
 	case 2:
 	{
-		QSpinBox *e = new QSpinBox( parent );
-		e->setRange( 0, 99 );
+
+		EDSBPrecio *e = new EDSBPrecio( parent );
+		e->setRange( 0.0, 99999.9 );
+		e->setPrefix("");
+		/*if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar", false ).toBool() )
+		{
+		 e->setMaximum( MProductos::stock( index.model()->data( index.model()->index( index.row(), 0 ), Qt::EditRole ).toInt() ) );
+		}*/
 		return e;
 	}
 	default:
@@ -97,16 +103,11 @@ void DProductosTotales::setEditorData(QWidget* editor, const QModelIndex& index)
 	}
 	// Precio Unitario
 	case 1:
-	{
-		QDoubleSpinBox *e = qobject_cast<QDoubleSpinBox *>( editor );
-		e->setValue( index.data( Qt::EditRole ).toDouble() );
-		break;
-	}
 	// Cantidad
 	case 2:
 	{
-		QSpinBox *e = qobject_cast<QSpinBox*>(editor);
-		e->setValue( index.data( Qt::EditRole ).toInt() );
+		EDSBPrecio *e = qobject_cast<EDSBPrecio *>( editor );
+		e->setValue( index.data( Qt::EditRole ).toDouble() );
 		break;
 	}
 	default:
@@ -132,15 +133,10 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
 	}
 	// Precio Unitario
 	case 1:
-	{
-		QDoubleSpinBox *e = qobject_cast<QDoubleSpinBox *>( editor );
-		model->setData( index, e->value() );
-		break;
-	}
 	// Cantidad
 	case 2:
 	{
-		QSpinBox *e = qobject_cast<QSpinBox*>(editor);
+		EDSBPrecio *e = qobject_cast<EDSBPrecio *>( editor );
 		model->setData( index, e->value() );
 		break;
 	}
