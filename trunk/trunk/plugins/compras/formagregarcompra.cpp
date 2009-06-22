@@ -27,6 +27,7 @@
 #include "dproductostotales.h"
 #include <QMessageBox>
 #include <QTableView>
+#include <QCompleter>
 #include <QDate>
 #include <QtSql>
 #include "mcompraproducto.h"
@@ -55,12 +56,22 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
 	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
+	// Rellenar los items de productos
+	QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
+	while( cola.next() )
+	{  CBProducto->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) ); }
+	CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
+	CBProducto->setEditable( true );
+	CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
+	CBProducto->setCurrentIndex( -1 );
+
 	mcp = new MProductosTotales( this );
 	mcp->calcularTotales( true );
 	TVLista->setModel( mcp );
 	TVLista->setAlternatingRowColors( true );
 	TVLista->setItemDelegate( new DProductosTotales( TVLista ) );
 	TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
+	TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 }
 
 FormAgregarCompra::~FormAgregarCompra()
@@ -165,6 +176,11 @@ void FormAgregarCompra::guardar()
 void FormAgregarCompra::agregarProducto()
 {
  mcp->insertRow( -1 );
+ QModelIndex indice = mcp->index( mcp->rowCount()-2 , 0 );
+ mcp->setData( indice, CBProducto->currentIndex(), Qt::EditRole );
+ indice = mcp->index( mcp->rowCount()-2 , 1 );
+ TVLista->setCurrentIndex( indice );
+ TVLista->edit( indice );
 }
 
 

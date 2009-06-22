@@ -129,7 +129,7 @@ void Ventas::crearMenu( QMenuBar *m )
  */
 double Ventas::version() const
 {
- return 0.1;
+ return 0.11;
 }
 
 void Ventas::crearToolBar( QToolBar *t )

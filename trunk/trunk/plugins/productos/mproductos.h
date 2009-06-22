@@ -32,6 +32,8 @@ public:
     MProductos(QObject *parent = 0);
     ~MProductos();
     QVariant data(const QModelIndex& item, int role) const;
+    static double stock( const int id_producto );
+    static bool modificarStock( const int id_producto, const double cantidad );
 };
 
 #endif

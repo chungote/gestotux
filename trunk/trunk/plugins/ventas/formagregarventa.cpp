@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QCompleter>
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mventa.h"
@@ -56,11 +57,14 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	CBListaPrecio->setModelColumn( 1 );
 	qobject_cast<QSqlTableModel *>(CBListaPrecio->model())->select();
 
-
-	// Forma de Pago
-	GBFormaPago->setVisible( false );
-	/*CBFormaPago->setModel( );
-	CBFormaPago->setModelColumn( );*/
+	// Rellenar los items de productos
+	QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
+	while( cola.next() )
+	{  CBProducto->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) ); }
+	CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
+	CBProducto->setEditable( true );
+	CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
+	CBProducto->setCurrentIndex( -1 );
 
         DEFecha->setMaximumDate( QDate::currentDate() );
         DEFecha->setDate( QDate::currentDate() );
@@ -73,6 +77,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
 	TVProductos->setAlternatingRowColors( true );
 	TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
+	TVProductos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
 	this->addAction( new EActCerrar( this ) );
 	this->addAction( new EActGuardar( this ) );
@@ -92,6 +97,11 @@ FormAgregarVenta::~FormAgregarVenta()
 void FormAgregarVenta::agregarProducto()
 {
  mcp->insertRow( -1 );
+ QModelIndex indice = mcp->index( mcp->rowCount()-2 , 0 );
+ mcp->setData( indice, CBProducto->currentIndex(), Qt::EditRole );
+ indice = mcp->index( mcp->rowCount()-2 , 1 );
+ TVProductos->setCurrentIndex( indice );
+ TVProductos->edit( indice );
 }
 
 

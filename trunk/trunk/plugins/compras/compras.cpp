@@ -46,7 +46,7 @@ bool Compras::verificarTablas()
 }
 
 double Compras::version() const
-{ return 0.1; }
+{ return 0.11; }
 
 int Compras::tipo() const
 { return EPlugin::comun; }

@@ -147,3 +147,23 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
  }
 }
 
+
+
+/*!
+    \fn MProductos::stock( const int id_producto )
+	Devuelve la cantidad de stock que existe de un producto si el control de stock esta habilitado
+ */
+double MProductos::stock( const int id_producto )
+{
+ if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
+ { return 0; }
+}
+
+
+/*!
+    \fn MProductos::modificarStock( const int id_producto, const double cantidad )
+ */
+bool MProductos::modificarStock( const int id_producto, const double cantidad )
+{
+    /// @todo implement me
+}
