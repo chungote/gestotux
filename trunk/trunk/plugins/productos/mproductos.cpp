@@ -147,13 +147,3 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
  }
 }
 
-
-
-/*!
-    \fn MProductos::setData( const QModelIndex & index, const QVariant & value, int role )
- */
-bool MProductos::setData( const QModelIndex & index, const QVariant & value, int role )
-{
- return QSqlRelationalTableModel::setData( index, value, role );
-}
-

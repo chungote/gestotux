@@ -118,7 +118,7 @@ void EVLista::cerrar()
  */
 void EVLista::agregar( bool autoeliminarid )
 {
- QSqlTableModel *m = qobject_cast<QSqlTableModel *>(vista->model());
+ QSqlRelationalTableModel *m = qobject_cast<QSqlRelationalTableModel *>(vista->model());
  QSqlRecord registro = m->record();
 
  if( autoeliminarid )
@@ -136,7 +136,7 @@ void EVLista::agregar( bool autoeliminarid )
  */
 void EVLista::eliminar()
 {
- QSqlTableModel *m = qobject_cast<QSqlTableModel *>(vista->model());
+ QSqlRelationalTableModel *m = qobject_cast<QSqlRelationalTableModel *>(vista->model());
  //Preguntar al usuario si esta seguro
  QItemSelectionModel *selectionModel = vista->selectionModel();
  QModelIndexList indices = selectionModel->selectedRows();

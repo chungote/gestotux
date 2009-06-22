@@ -32,7 +32,6 @@ public:
     MProductos(QObject *parent = 0);
     ~MProductos();
     QVariant data(const QModelIndex& item, int role) const;
-    bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 };
 
 #endif

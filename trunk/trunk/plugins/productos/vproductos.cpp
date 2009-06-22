@@ -32,6 +32,8 @@
 #include <QSqlQuery>
 #include <QSqlField>
 #include "dsino.h"
+#include <QInputDialog>
+#include <QMessageBox>
 
 VProductos::VProductos(QWidget *parent)
  : EVLista(parent)
@@ -95,7 +97,6 @@ void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
 {
  registro.setValue( "descripcion", "" );
  registro.setValue( "marca", "" );
- registro.setValue( "precio", 0 );
 }
 
 
@@ -135,5 +136,60 @@ void VProductos::agregar( bool autoeliminarid )
 	 }
 	 delete m;
  }
- EVLista::agregar();
+ bool ok;
+ QString nombre = QInputDialog::getText(this,tr("Nombre"), tr("Ingrese un nombre para el producto"), QLineEdit::Normal, QString(), &ok);
+ if (!ok || nombre.isEmpty() )
+ { return; }
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ {
+   //vista->hideColumn( rmodelo->fieldIndex( "id_categoria" ) );
+ }
+ QString descripcion = ""; ok = false;
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
+ {
+   descripcion = QInputDialog::getText( this, "Descripcion:", "Ingrese una descripcion", QLineEdit::Normal, "", &ok );
+   if( !ok ) { return; }
+ }
+ QString marca = ""; ok = false;
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
+ {
+   marca = QInputDialog::getText( this, "Marca:", "Ingrese una marca", QLineEdit::Normal, marca, &ok );
+   if( !ok ) { return; }
+ }
+ ok = false;
+ double stock = QInputDialog::getDouble( this, "Stock:", "Ingrese el stock inicial", 0.0, 0.0, 1000000.0, 3, &ok );
+ if( !ok ) { return; }
+ ok = false;
+ double precio_costo = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de costo", 0.0, 0.0, 1000000.0, 3, &ok );
+ if( !ok ) { return; }
+ // Agrego el producto
+ QSqlRecord rec = rmodelo->record();
+ rec.setValue( "nombre", nombre );
+ if( descripcion == "" )
+ { rec.setNull( "descripcion" ); }
+ else
+ { rec.setValue( "descripcion", descripcion ); }
+ if( marca == "" )
+ { rec.setNull( "marca" ); }
+ else
+ { rec.setValue( "marca", marca ); }
+ rec.setValue( "stock", stock );
+ rec.setValue( "precio_costo", precio_costo );
+ rec.setValue( "habilitado", true );
+ rec.remove( rmodelo->fieldIndex( "id_categoria" ) );
+ rec.remove( rmodelo->fieldIndex( "id" ) );
+ /*for( int i = 0; i < rec.count(); i++ )
+ {
+  qDebug( qPrintable( QString( "campo: %1 - %2" ).arg( i ).arg( rec.fieldName(i) ) ) );
+ }*/
+ if( rmodelo->insertRecord( -1, rec ) )
+ {
+  QMessageBox::information( this, "Correcto", "Producto Agregado correctamente" );
+  return;
+ }
+ else
+ {
+  qWarning( "Error al intentar insertar el producto." );
+
+ }
 }

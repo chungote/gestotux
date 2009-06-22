@@ -47,6 +47,12 @@ QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& 
 		return combo;
 		break;
 	}
+	case 3:
+	{
+		EDSBPrecio *editor = new EDSBPrecio( parent );
+		return editor;
+		break;
+	}
 	case 7:
 	{
 		EDSBPrecio *editor = new EDSBPrecio( parent );

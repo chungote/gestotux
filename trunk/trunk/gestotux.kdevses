@@ -1,19 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="4" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/productos/mproductos.h" >
-   <View0 Encoding="" line="16" Type="Source" />
+ <DocsAndViews NumberOfDocuments="2" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/productos/productos.h" >
+   <View0 Encoding="" line="44" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/productos/mproductos.cpp" >
-   <View0 Encoding="" line="20" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/productos/productos.cpp" >
+   <View0 Encoding="" line="28" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/plugins/productos/vproductos.cpp" >
-   <View0 Encoding="" line="125" Type="Source" />
-  </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/ftp/actualizaciones/actualizacion.xml" >
-   <View0 Encoding="" line="11" Type="Source" />
-  </Doc3>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>
@@ -21,9 +15,6 @@
     <breakpoint0 location="/home/Esteban/Programas/gestotux/plugins/HiComp/visorrecibo.cpp:60" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
      <tracedExpressions/>
     </breakpoint0>
-    <breakpoint1 location="/home/Esteban/Programas/gestotux/utiles/preferencias.cpp:59" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
-     <tracedExpressions/>
-    </breakpoint1>
    </breakpointList>
    <showInternalCommands value="0" />
   </kdevdebugger>
