@@ -183,7 +183,7 @@ bool MPeluqueria::agregarServicio( QVariant desc, QVariant precio, QVariant fech
 }
 
 /*!
-    \fn MVentaProducto::flags ( const QModelIndex & index ) const
+    \fn MPeluqueria::flags ( const QModelIndex & index ) const
      Reimplementacion necesaria para determinar que los items de la columna 6 no son editables
  */
 Qt::ItemFlags MPeluqueria::flags ( const QModelIndex & index ) const

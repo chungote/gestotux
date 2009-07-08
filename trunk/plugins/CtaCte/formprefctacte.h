@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#ifndef FORMPREFCTACTE_H
+#define FORMPREFCTACTE_H
+
+#include <QWidget>
+#include "formprefhijo.h"
+#include "ui_FormPrefCtaCteBase.h"
+
+class FormPrefCtaCte : public QWidget, private Ui::FormPrefCtaCteBase, public FormPrefHijo
 {
- inicializar();
-}
+Q_OBJECT
+public:
+	FormPrefCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+	~FormPrefCtaCte();
 
+public slots:
+    void guardar();
+    void aplicar();
+    void cargar();
+};
 
-EMCliente::~EMCliente()
-{
-}
+#endif
 
-
-
-
-/*!
-    \fn EMCliente::inicializar()
- */
-void EMCliente::inicializar()
-{
- this->setQuery( "SELECT id, razon_social FROM clientes" );
-}

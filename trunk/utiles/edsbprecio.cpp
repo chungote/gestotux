@@ -35,7 +35,7 @@ EDSBPrecio::~EDSBPrecio()
 }
 
 /*!
-    \fn EDSBPrecio::keyReleaseEvent ( QKeyEvent * event )
+    \fn EDSBPrecio::keyPressEvent ( QKeyEvent * event )
  */
 void EDSBPrecio::keyPressEvent( QKeyEvent * event )
 {

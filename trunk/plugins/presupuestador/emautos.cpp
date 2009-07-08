@@ -34,7 +34,7 @@ EMAutos::~EMAutos()
 
 
 /*!
-    \fn EMAutos::filtrarPorCliente( id Cliente )
+    \fn EMAutos::filtrarPorCliente( int id_cliente )
  */
 void EMAutos::filtrarPorCliente( int id_cliente )
 {

@@ -4,4 +4,7 @@ ventas \
 proveedor \
 productos \
 default \
-aCarCorr
+aCarCorr \
+aCarCorr/plugins \
+ informes \
+ CtaCte

@@ -159,7 +159,8 @@ void Ventas::seCierraGestotux()
 
 #include "vlistaprecio.h"
 /*!
-    \fn Ventas::listaPrecio()
+    \fn Ventas::listaPrecios()
+	Muestra la ventana de listado de listas de precio
  */
 void Ventas::listaPrecios()
 { emit agregarVentana( new VListaPrecio() ); }

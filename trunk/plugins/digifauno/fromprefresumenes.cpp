@@ -84,7 +84,7 @@ void FromPrefResumenes::guardar()
 
 
 /*!
-    \fn FFromPrefResumenes::aplicar()
+    \fn FromPrefResumenes::aplicar()
  */
 void FromPrefResumenes::aplicar()
 {

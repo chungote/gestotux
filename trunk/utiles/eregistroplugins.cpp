@@ -117,3 +117,12 @@ void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
 {
   _pluginEmail = obj;
 }
+
+
+/*!
+    \fn ERegistroPlugins::existePlugin( const QString &nombre )
+ */
+bool ERegistroPlugins::existePlugin( const QString &nombre )
+{
+ return _plugins->contains( nombre );
+}

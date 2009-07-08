@@ -46,7 +46,7 @@ QIcon HiComp::iconoPrograma() const
 }
 
 /*!
-    \fn HiComp::accionesBarra() const
+    \fn HiComp::accionesBarra()
 	Retorna las acciones que tiene la barra lateral para este plugin
 	@return Lista de acciones
  */

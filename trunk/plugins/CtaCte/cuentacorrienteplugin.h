@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,41 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
+#ifndef CUENTACORRIENTEPLUGIN_H
+#define CUENTACORRIENTEPLUGIN_H
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#include <QObject>
+#include "eplugin.h"
+#include <QtPlugin>
+
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class CuentaCorrientePlugin : public QObject, public EPlugin
 {
- inicializar();
-}
+Q_OBJECT
+Q_INTERFACES( EPlugin )
+public:
+    bool inicializar();
+    bool verificarTablas();
+    double version() const;
+    int tipo() const;
+    QList< QActionGroup * > accionesBarra();
+    QString nombre() const;
+    QWidgetList formsPreferencias();
+    void crearMenu(QMenuBar* m);
+    void crearToolBar(QToolBar* t);
 
+signals:
+    void agregarVentana(QWidget* v);
 
-EMCliente::~EMCliente()
-{
-}
+public slots:
+    void seCierraGestotux();
+    void verCuentasCorrientes();
 
+private:
+    QAction *ActCuentasCorrientes;
 
+};
 
-
-/*!
-    \fn EMCliente::inicializar()
- */
-void EMCliente::inicializar()
-{
- this->setQuery( "SELECT id, razon_social FROM clientes" );
-}
+#endif

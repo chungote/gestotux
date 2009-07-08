@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS `ctacte` ( `id_op_ctacte` bigint(6) NOT NULL auto_increment, `id_cliente` bigint(1) REFERENCES clientes(id),   `fecha` datetime NOT NULL,  `nro_comprobante` tinytext NOT NULL,  `descripcion` tinytext,  `debe` decimal(6,4) default NULL,  `haber` decimal(6,4) default NULL,  PRIMARY KEY  (`id_op_ctacte`)) ENGINE=InnoDB;

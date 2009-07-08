@@ -475,6 +475,46 @@ void FormActualizacion::analizarGeneral()
 			ftp->cd("..");
 			docElem.removeChild( nodoA );
 		}
+		else if( nodoA.toElement().tagName() == "libreria" )
+		{
+			ftp->cd( "librerias" );
+			// Veo el numero de secuencia
+			int num_seq  = preferencias::getInstancia()->value( "Preferencias/General/"+nodoA.toElement().attribute("nombre" ) + "/numseq", 0 ).toInt();
+			int num_nuevo = nodoA.toElement().attribute( "numerosecuencia" ).toInt();
+			if( num_seq <= num_nuevo )
+			{
+				ftp->cd( QString::number( num_nuevo ) );
+				#ifdef Q_WS_WIN32
+				QString nombre_os = "windows";
+				#endif
+				#ifdef Q_WS_X11
+				QString nombre_os = "linux";
+				#endif
+				QDomNode nodo_os = nodoA.toElement().elementsByTagName( nombre_os ).item(0);
+				qDebug( QString( "Nodo OS: %1" ).arg( nodo_os.nodeName() ).toLocal8Bit() );
+				QDomNodeList nodos_archivos = nodo_os.toElement().elementsByTagName( "archivo" );
+				unsigned int posNodo = 0;
+				qDebug( QString( "Encontrado %1 nodos").arg( nodos_archivos.length() ).toLocal8Bit() );
+				while( posNodo < nodos_archivos.length() && _continuar_actualizando )
+				{
+					QDomNode nodo_archivo = nodos_archivos.item(posNodo);
+					QPair<QString,QString> tmp;
+					tmp.first = nodo_archivo.toElement().attribute( "nombre" );
+					tmp.second = nodo_archivo.toElement().attribute( "directorio_destino" );
+					qDebug( QString( "Encontrado archivo %1, dir %2" ).arg( tmp.first ).arg( tmp.second ).toLocal8Bit() );
+					TELog->append( QString( "Descargando archivo %1..." ).arg( tmp.first ) );
+					int pos = ftp->get( tmp.first );
+					_arch_dest.insert( pos, tmp );
+					posNodo++;
+				}
+			}
+			else
+			{
+				// La libreria no necesita actualizacion
+			}
+			ftp->cd("..");
+			//Fin de actualizar la libreria -> regreso a la carpeta de version del programa
+		}
 		else
 		{
 			// El nodo no es plugin

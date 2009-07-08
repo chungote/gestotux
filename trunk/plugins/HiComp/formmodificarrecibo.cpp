@@ -239,7 +239,7 @@ void FormModificarRecibo::cambioImporte( double )
 
 
 /*!
-    \fn FormAgregarRecibo::guardar()
+    \fn FormModificarRecibo::guardar()
 	Guarda los datos del recibo
  */
 void FormModificarRecibo::guardar()

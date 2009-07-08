@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#ifndef FORMRESUMENCTACTE_H
+#define FORMRESUMENCTACTE_H
+
+#include "eventana.h"
+#include "ui_FormResumenCtaCteBase.h"
+class MItemCuentaCorriente;
+
+class FormResumenCtaCte : public EVentana, private Ui::FormResumenCtaCteBase
 {
- inicializar();
-}
+Q_OBJECT
 
+public:
+	FormResumenCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+	~FormResumenCtaCte();
+	void setNumeroCuenta( const int &numero_cuenta );
 
-EMCliente::~EMCliente()
-{
-}
+protected slots:
+    void cambioCtaCte( int numero_cuenta );
+    void imprimir();
 
+protected:
+    MItemCuentaCorriente *modeloItem;
 
+};
 
+#endif
 
-/*!
-    \fn EMCliente::inicializar()
- */
-void EMCliente::inicializar()
-{
- this->setQuery( "SELECT id, razon_social FROM clientes" );
-}

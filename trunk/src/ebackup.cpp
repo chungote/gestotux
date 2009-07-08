@@ -254,7 +254,6 @@ bool Ebackup::generar_config()
     \fn Ebackup::generar_db( bool estructura )
 	Funcion que hace la obtencion de los datos de la base de datos y los prepara para la compresion.
 	@param estructura Hacer backup de la estructura de la db
-	@param multidb Genera backup con multiples consultas para cada tipo de base de datos soportada
 	@return Verdadero si no existieron errores, falso en caso contrario
  */
 bool Ebackup::generar_db( bool estructura )

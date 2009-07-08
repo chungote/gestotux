@@ -38,6 +38,8 @@ preferencias* preferencias::getInstancia()
 preferencias::preferencias()
  : QSettings( "Tranfuga", "GestoTux" )
 {
+ // Seteo el numero de la libreria
+ this->setValue( "Preferencias/Generales/utiles/numseq", 1 );
 }
 
 

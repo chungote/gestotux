@@ -30,7 +30,9 @@
 #include "formagregarpresupuesto.h"
 
 /*!
-    \fn prespuesto::accionesBarra() const
+    \fn prespuesto::accionesBarra()
+	Devuelve la lista de acciones que deben ir en cada una de las barras laterales en sus repectivos grupos
+	@return QList<QActionGroup *> Lista
  */
 QList<QActionGroup *> prespuesto::accionesBarra()
 {

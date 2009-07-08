@@ -20,7 +20,9 @@
 #include "vcliente.h"
 
 #include "mclientes.h"
+#include "eregistroplugins.h"
 
+#include <QApplication>
 #include <QTableView>
 #include <QGridLayout>
 #include <QAction>
@@ -43,7 +45,7 @@ VCliente::VCliente( QWidget *parent )
  modelo = 0;
  rmodelo = 0;
  vista->setModel( mc );
-/* vista->hideColumn( mc->fieldIndex( "id" ) );
+ vista->hideColumn( mc->fieldIndex( "id" ) );
  vista->hideColumn( mc->fieldIndex( "nombre" ) );
  vista->hideColumn( mc->fieldIndex( "segundo" ) );
  vista->hideColumn( mc->fieldIndex( "apellido" ) );
@@ -56,7 +58,7 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "fax" ) );
  vista->hideColumn( mc->fieldIndex( "email" ) );
  vista->hideColumn( mc->fieldIndex( "comprobante_email" ) );
- vista->hideColumn( mc->fieldIndex( "id_lista_precio" ) );*/
+ vista->hideColumn( mc->fieldIndex( "id_lista_precio" ) );
  vista->setAlternatingRowColors( true );
  mc->select();
 

@@ -44,7 +44,7 @@ DRecibo::~DRecibo()
 const int PaintingScaleFactor = 20;
 
 /*!
-    \fn DRecibo::QWidget * createEditor ( QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index ) const
+    \fn DRecibo::createEditor ( QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index ) const
  */
 QWidget * DRecibo::createEditor( QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index ) const
 {
@@ -87,7 +87,7 @@ QWidget * DRecibo::createEditor( QWidget * parent, const QStyleOptionViewItem & 
 
 
 /*!
-    \fn DRecibo::void setEditorData ( QWidget * editor, const QModelIndex & index ) const
+    \fn DRecibo::setEditorData ( QWidget * editor, const QModelIndex & index ) const
  */
 void DRecibo::setEditorData( QWidget * editor, const QModelIndex & index ) const
 {
@@ -130,7 +130,7 @@ void DRecibo::setEditorData( QWidget * editor, const QModelIndex & index ) const
 
 
 /*!
-    \fn DRecibo::void setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const
+    \fn DRecibo::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const
  */
 void DRecibo::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const
 {
