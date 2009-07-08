@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
+#ifndef MCUENTACORRIENTE_H
+#define MCUENTACORRIENTE_H
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#include <QSqlRelationalTableModel>
+
+/**
+Clase de modelo para las cuentas correintes
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MCuentaCorriente : public QSqlRelationalTableModel
 {
- inicializar();
-}
+Q_OBJECT
+public:
+    MCuentaCorriente(QObject *parent = 0);
 
+    ~MCuentaCorriente();
 
-EMCliente::~EMCliente()
-{
-}
+    QVariant data(const QModelIndex& item, int role) const;
 
+};
 
-
-
-/*!
-    \fn EMCliente::inicializar()
- */
-void EMCliente::inicializar()
-{
- this->setQuery( "SELECT id, razon_social FROM clientes" );
-}
+#endif

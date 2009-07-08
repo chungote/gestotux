@@ -27,7 +27,7 @@ Q_EXPORT_PLUGIN2( productos, productos );
 
 
 /*!
-    \fn productos::accionesBarra() const
+    \fn productos::accionesBarra()
  */
 QList<QActionGroup *> productos::accionesBarra()
 {

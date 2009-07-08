@@ -1,6 +1,341 @@
 <?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
+    <name>appointment.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>appointment_8cpp</filename>
+    <includes id="appointment_8h" name="appointment.h" local="yes" imported="no">appointment.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>appointment.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>appointment_8h</filename>
+    <class kind="class">Appointment</class>
+  </compound>
+  <compound kind="file">
+    <name>appointmentdetailsform.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>appointmentdetailsform_8cpp</filename>
+    <includes id="appointmentdetailsform_8h" name="appointmentdetailsform.h" local="yes" imported="no">appointmentdetailsform.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>appointmentdetailsform.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>appointmentdetailsform_8h</filename>
+    <includes id="appointment_8h" name="appointment.h" local="yes" imported="no">appointment.h</includes>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+    <class kind="class">AppointmentDetailsForm</class>
+  </compound>
+  <compound kind="file">
+    <name>appointmentitem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>appointmentitem_8cpp</filename>
+    <includes id="appointmentdetailsform_8h" name="appointmentdetailsform.h" local="yes" imported="no">appointmentdetailsform.h</includes>
+    <includes id="appointmentitem_8h" name="appointmentitem.h" local="yes" imported="no">appointmentitem.h</includes>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+    <includes id="weekitem_8h" name="weekitem.h" local="yes" imported="no">weekitem.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>appointmentitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>appointmentitem_8h</filename>
+    <includes id="appointment_8h" name="appointment.h" local="yes" imported="no">appointment.h</includes>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <includes id="dayitem_8h" name="dayitem.h" local="yes" imported="no">dayitem.h</includes>
+    <class kind="class">AppointmentItem</class>
+  </compound>
+  <compound kind="file">
+    <name>calendar.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendar_8cpp</filename>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>calendar.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendar_8h</filename>
+    <includes id="appointment_8h" name="appointment.h" local="yes" imported="no">appointment.h</includes>
+    <class kind="class">Calendar</class>
+  </compound>
+  <compound kind="file">
+    <name>calendardetailsform.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendardetailsform_8h</filename>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+    <class kind="class">CalendarDetailsForm</class>
+  </compound>
+  <compound kind="file">
+    <name>calendaritem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendaritem_8cpp</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>calendaritem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendaritem_8h</filename>
+    <class kind="class">CalendarItem</class>
+  </compound>
+  <compound kind="file">
+    <name>calendartablemodel.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendartablemodel_8cpp</filename>
+    <includes id="calendartablemodel_8h" name="calendartablemodel.h" local="yes" imported="no">calendartablemodel.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>calendartablemodel.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>calendartablemodel_8h</filename>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+    <class kind="class">CalendarTableModel</class>
+  </compound>
+  <compound kind="file">
+    <name>clockbar.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>clockbar_8cpp</filename>
+    <includes id="clockbar_8h" name="clockbar.h" local="yes" imported="no">clockbar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>clockbar.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>clockbar_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <includes id="quickcalendarstyle_8h" name="quickcalendarstyle.h" local="yes" imported="no">quickcalendarstyle.h</includes>
+    <class kind="class">ClockBar</class>
+  </compound>
+  <compound kind="file">
+    <name>daycontentitem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>daycontentitem_8cpp</filename>
+    <includes id="daycontentitem_8h" name="daycontentitem.h" local="yes" imported="no">daycontentitem.h</includes>
+    <includes id="appointmentitem_8h" name="appointmentitem.h" local="yes" imported="no">appointmentitem.h</includes>
+    <includes id="appointmentdetailsform_8h" name="appointmentdetailsform.h" local="yes" imported="no">appointmentdetailsform.h</includes>
+    <includes id="weekitem_8h" name="weekitem.h" local="yes" imported="no">weekitem.h</includes>
+    <includes id="dayitem_8h" name="dayitem.h" local="yes" imported="no">dayitem.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>daycontentitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>daycontentitem_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <class kind="class">DayContentItem</class>
+  </compound>
+  <compound kind="file">
+    <name>dayitem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>dayitem_8cpp</filename>
+    <includes id="dayitem_8h" name="dayitem.h" local="yes" imported="no">dayitem.h</includes>
+    <includes id="weekitem_8h" name="weekitem.h" local="yes" imported="no">weekitem.h</includes>
+    <includes id="daycontentitem_8h" name="daycontentitem.h" local="yes" imported="no">daycontentitem.h</includes>
+    <includes id="appointmentitem_8h" name="appointmentitem.h" local="yes" imported="no">appointmentitem.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+    <includes id="quickcalendarstyle_8h" name="quickcalendarstyle.h" local="yes" imported="no">quickcalendarstyle.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dayitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>dayitem_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <includes id="daycontentitem_8h" name="daycontentitem.h" local="yes" imported="no">daycontentitem.h</includes>
+    <includes id="appointment_8h" name="appointment.h" local="yes" imported="no">appointment.h</includes>
+    <class kind="class">DayItem</class>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>micelaseos_2QuickCalendarView_2src_2main_8cpp</filename>
+    <includes id="quickcalendarwindow_8h" name="quickcalendarwindow.h" local="yes" imported="no">quickcalendarwindow.h</includes>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>micelaseos_2QuickCalendarView_2src_2main_8cpp.html</anchorfile>
+      <anchor>0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>src_2main_8cpp</filename>
+    <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="eenviobackup_8h" name="eenviobackup.h" local="yes" imported="no">eenviobackup.h</includes>
+    <includes id="esplash_8h" name="esplash.h" local="yes" imported="no">esplash.h</includes>
+    <includes id="emysql_8h" name="emysql.h" local="yes" imported="no">emysql.h</includes>
+    <includes id="eemail_8h" name="eemail.h" local="yes" imported="no">eemail.h</includes>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+    <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
+    <includes id="einterfazemail_8h" name="einterfazemail.h" local="yes" imported="no">einterfazemail.h</includes>
+    <includes id="formulariocentral_8h" name="formulariocentral.h" local="yes" imported="no">formulariocentral.h</includes>
+    <includes id="eregistroplugins_8h" name="eregistroplugins.h" local="yes" imported="no">eregistroplugins.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>NOMBRE_CONEXION</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>b2b208d537697bd8890a4ac690f801e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hacerTablas</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>f40668b6a0614b1d76eb472cf2c9ecea</anchor>
+      <arglist>(QString nombrePlug)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>myMessageOutput</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>ebadb8b787d33ef1f3033d8c64d9acbd</anchor>
+      <arglist>(QtMsgType type, const char *msg)</arglist>
+    </member>
+    <member kind="variable">
+      <type>FILE *</type>
+      <name>debug</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>7f0158669de514eb00dcf8d3a7408285</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>quickcalendarstyle.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>quickcalendarstyle_8cpp</filename>
+    <includes id="quickcalendarstyle_8h" name="quickcalendarstyle.h" local="yes" imported="no">quickcalendarstyle.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>quickcalendarstyle.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>quickcalendarstyle_8h</filename>
+    <class kind="class">QuickCalendarStyle</class>
+  </compound>
+  <compound kind="file">
+    <name>quickcalendarview.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>quickcalendarview_8cpp</filename>
+    <includes id="appointmentdetailsform_8h" name="appointmentdetailsform.h" local="yes" imported="no">appointmentdetailsform.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+    <includes id="dayitem_8h" name="dayitem.h" local="yes" imported="no">dayitem.h</includes>
+    <includes id="weekdayheaderitem_8h" name="weekdayheaderitem.h" local="yes" imported="no">weekdayheaderitem.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>quickcalendarview.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>quickcalendarview_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <includes id="quickcalendarstyle_8h" name="quickcalendarstyle.h" local="yes" imported="no">quickcalendarstyle.h</includes>
+    <includes id="weekitem_8h" name="weekitem.h" local="yes" imported="no">weekitem.h</includes>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+    <includes id="appointment_8h" name="appointment.h" local="yes" imported="no">appointment.h</includes>
+    <class kind="class">QuickCalendarView</class>
+  </compound>
+  <compound kind="file">
+    <name>quickcalendarwindow.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>quickcalendarwindow_8cpp</filename>
+    <includes id="quickcalendarwindow_8h" name="quickcalendarwindow.h" local="yes" imported="no">quickcalendarwindow.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>quickcalendarwindow.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>quickcalendarwindow_8h</filename>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+    <includes id="selectorwidget_8h" name="selectorwidget.h" local="yes" imported="no">selectorwidget.h</includes>
+    <includes id="calendar_8h" name="calendar.h" local="yes" imported="no">calendar.h</includes>
+    <includes id="calendartablemodel_8h" name="calendartablemodel.h" local="yes" imported="no">calendartablemodel.h</includes>
+    <class kind="class">QuickCalendarWindow</class>
+  </compound>
+  <compound kind="file">
+    <name>scrollareaitem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>scrollareaitem_8cpp</filename>
+    <includes id="scrollareaitem_8h" name="scrollareaitem.h" local="yes" imported="no">scrollareaitem.h</includes>
+    <includes id="dayitem_8h" name="dayitem.h" local="yes" imported="no">dayitem.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>scrollareaitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>scrollareaitem_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <includes id="scrollbar_8h" name="scrollbar.h" local="yes" imported="no">scrollbar.h</includes>
+    <class kind="class">ScrollAreaItem</class>
+  </compound>
+  <compound kind="file">
+    <name>scrollbar.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>scrollbar_8cpp</filename>
+    <includes id="scrollbar_8h" name="scrollbar.h" local="yes" imported="no">scrollbar.h</includes>
+    <includes id="scrollareaitem_8h" name="scrollareaitem.h" local="yes" imported="no">scrollareaitem.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>scrollbar.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>scrollbar_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <class kind="class">ScrollBar</class>
+  </compound>
+  <compound kind="file">
+    <name>selectorwidget.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>selectorwidget_8cpp</filename>
+    <includes id="selectorwidget_8h" name="selectorwidget.h" local="yes" imported="no">selectorwidget.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>selectorwidget.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>selectorwidget_8h</filename>
+    <class kind="class">SelectorWidget</class>
+  </compound>
+  <compound kind="file">
+    <name>weekdayheaderitem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>weekdayheaderitem_8cpp</filename>
+    <includes id="weekdayheaderitem_8h" name="weekdayheaderitem.h" local="yes" imported="no">weekdayheaderitem.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>weekdayheaderitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>weekdayheaderitem_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <class kind="class">WeekDayHeaderItem</class>
+  </compound>
+  <compound kind="file">
+    <name>weekheaderitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>weekheaderitem_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <class kind="class">WeekHeaderItem</class>
+  </compound>
+  <compound kind="file">
+    <name>weekitem.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>weekitem_8cpp</filename>
+    <includes id="weekitem_8h" name="weekitem.h" local="yes" imported="no">weekitem.h</includes>
+    <includes id="dayitem_8h" name="dayitem.h" local="yes" imported="no">dayitem.h</includes>
+    <includes id="quickcalendarstyle_8h" name="quickcalendarstyle.h" local="yes" imported="no">quickcalendarstyle.h</includes>
+    <includes id="quickcalendarview_8h" name="quickcalendarview.h" local="yes" imported="no">quickcalendarview.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>weekitem.h</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>weekitem_8h</filename>
+    <includes id="calendaritem_8h" name="calendaritem.h" local="yes" imported="no">calendaritem.h</includes>
+    <includes id="scrollareaitem_8h" name="scrollareaitem.h" local="yes" imported="no">scrollareaitem.h</includes>
+    <includes id="clockbar_8h" name="clockbar.h" local="yes" imported="no">clockbar.h</includes>
+    <class kind="class">WeekItem</class>
+  </compound>
+  <compound kind="file">
     <name>autodestruc.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/autodestruc/</path>
     <filename>autodestruc_8cpp</filename>
@@ -93,6 +428,109 @@
     <filename>vcompras_8h</filename>
     <includes id="evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
     <class kind="class">VCompras</class>
+  </compound>
+  <compound kind="file">
+    <name>cuentacorrienteplugin.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>cuentacorrienteplugin_8cpp</filename>
+    <includes id="cuentacorrienteplugin_8h" name="cuentacorrienteplugin.h" local="yes" imported="no">cuentacorrienteplugin.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="formprefctacte_8h" name="formprefctacte.h" local="yes" imported="no">formprefctacte.h</includes>
+    <includes id="vcuentacorriente_8h" name="vcuentacorriente.h" local="yes" imported="no">vcuentacorriente.h</includes>
+    <member kind="function">
+      <type></type>
+      <name>Q_EXPORT_PLUGIN2</name>
+      <anchorfile>cuentacorrienteplugin_8cpp.html</anchorfile>
+      <anchor>0d8af95c43275b9de46d760235579c10</anchor>
+      <arglist>(ctacte, CuentaCorrientePlugin)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>cuentacorrienteplugin.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>cuentacorrienteplugin_8h</filename>
+    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
+    <class kind="class">CuentaCorrientePlugin</class>
+  </compound>
+  <compound kind="file">
+    <name>formnuevactacte.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>formnuevactacte_8cpp</filename>
+    <includes id="formnuevactacte_8h" name="formnuevactacte.h" local="yes" imported="no">formnuevactacte.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formnuevactacte.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>formnuevactacte_8h</filename>
+    <class kind="class">FormNuevaCtaCte</class>
+  </compound>
+  <compound kind="file">
+    <name>formprefctacte.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>formprefctacte_8cpp</filename>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="formprefctacte_8h" name="formprefctacte.h" local="yes" imported="no">formprefctacte.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formprefctacte.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>formprefctacte_8h</filename>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <class kind="class">FormPrefCtaCte</class>
+  </compound>
+  <compound kind="file">
+    <name>formresumenctacte.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>formresumenctacte_8cpp</filename>
+    <includes id="formresumenctacte_8h" name="formresumenctacte.h" local="yes" imported="no">formresumenctacte.h</includes>
+    <includes id="eactcerrar_8h" name="eactcerrar.h" local="yes" imported="no">eactcerrar.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formresumenctacte.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>formresumenctacte_8h</filename>
+    <includes id="eventana_8h" name="eventana.h" local="yes" imported="no">eventana.h</includes>
+    <class kind="class">FormResumenCtaCte</class>
+  </compound>
+  <compound kind="file">
+    <name>mcuentacorriente.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>mcuentacorriente_8cpp</filename>
+    <includes id="mcuentacorriente_8h" name="mcuentacorriente.h" local="yes" imported="no">mcuentacorriente.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mcuentacorriente.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>mcuentacorriente_8h</filename>
+    <class kind="class">MCuentaCorriente</class>
+  </compound>
+  <compound kind="file">
+    <name>mitemcuentacorriente.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>mitemcuentacorriente_8cpp</filename>
+    <includes id="mitemcuentacorriente_8h" name="mitemcuentacorriente.h" local="yes" imported="no">mitemcuentacorriente.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>mitemcuentacorriente.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>mitemcuentacorriente_8h</filename>
+    <class kind="class">MItemCuentaCorriente</class>
+  </compound>
+  <compound kind="file">
+    <name>vcuentacorriente.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>vcuentacorriente_8cpp</filename>
+    <includes id="vcuentacorriente_8h" name="vcuentacorriente.h" local="yes" imported="no">vcuentacorriente.h</includes>
+    <includes id="mcuentacorriente_8h" name="mcuentacorriente.h" local="yes" imported="no">mcuentacorriente.h</includes>
+    <includes id="formnuevactacte_8h" name="formnuevactacte.h" local="yes" imported="no">formnuevactacte.h</includes>
+    <includes id="formresumenctacte_8h" name="formresumenctacte.h" local="yes" imported="no">formresumenctacte.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>vcuentacorriente.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>vcuentacorriente_8h</filename>
+    <includes id="evlista_8h" name="evlista.h" local="no" imported="no">evlista.h</includes>
+    <class kind="class">VCuentaCorriente</class>
   </compound>
   <compound kind="file">
     <name>gestotuxdefault.cpp</name>
@@ -1254,12 +1692,27 @@
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>dproductos_8cpp</filename>
     <includes id="dproductos_8h" name="dproductos.h" local="yes" imported="no">dproductos.h</includes>
+    <includes id="edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
   </compound>
   <compound kind="file">
     <name>dproductos.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>dproductos_8h</filename>
     <class kind="class">DProductos</class>
+  </compound>
+  <compound kind="file">
+    <name>formprefproductos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>formprefproductos_8cpp</filename>
+    <includes id="formprefproductos_8h" name="formprefproductos.h" local="yes" imported="no">formprefproductos.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>formprefproductos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
+    <filename>formprefproductos_8h</filename>
+    <includes id="formprefhijo_8h" name="formprefhijo.h" local="yes" imported="no">formprefhijo.h</includes>
+    <class kind="class">FormPrefProductos</class>
   </compound>
   <compound kind="file">
     <name>mcategorias.cpp</name>
@@ -1278,6 +1731,7 @@
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>mproductos_8cpp</filename>
     <includes id="mproductos_8h" name="mproductos.h" local="yes" imported="no">mproductos.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
   </compound>
   <compound kind="file">
     <name>mproductos.h</name>
@@ -1292,6 +1746,8 @@
     <includes id="productos_8h" name="productos.h" local="yes" imported="no">productos.h</includes>
     <includes id="vproductos_8h" name="vproductos.h" local="yes" imported="no">vproductos.h</includes>
     <includes id="vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="formprefproductos_8h" name="formprefproductos.h" local="yes" imported="no">formprefproductos.h</includes>
     <member kind="function">
       <type></type>
       <name>Q_EXPORT_PLUGIN2</name>
@@ -1332,6 +1788,8 @@
     <includes id="productos_8h" name="productos.h" local="yes" imported="no">productos.h</includes>
     <includes id="mcategorias_8h" name="mcategorias.h" local="yes" imported="no">mcategorias.h</includes>
     <includes id="vcategorias_8h" name="vcategorias.h" local="yes" imported="no">vcategorias.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
+    <includes id="dsino_8h" name="dsino.h" local="yes" imported="no">dsino.h</includes>
   </compound>
   <compound kind="file">
     <name>vproductos.h</name>
@@ -1523,30 +1981,6 @@
     <class kind="class">VServicios</class>
   </compound>
   <compound kind="file">
-    <name>edsbprecio.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/ventas/</path>
-    <filename>plugins_2ventas_2edsbprecio_8cpp</filename>
-    <includes id="plugins_2ventas_2edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>edsbprecio.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/utiles/</path>
-    <filename>utiles_2edsbprecio_8cpp</filename>
-    <includes id="utiles_2edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>edsbprecio.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/ventas/</path>
-    <filename>plugins_2ventas_2edsbprecio_8h</filename>
-    <class kind="class">EDSBPrecio</class>
-  </compound>
-  <compound kind="file">
-    <name>edsbprecio.h</name>
-    <path>/home/Esteban/Programas/gestotux/utiles/</path>
-    <filename>utiles_2edsbprecio_8h</filename>
-    <class kind="class">EDSBPrecio</class>
-  </compound>
-  <compound kind="file">
     <name>formagregarventa.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/ventas/</path>
     <filename>formagregarventa_8cpp</filename>
@@ -1631,6 +2065,7 @@
     <filename>vlistaprecio_8cpp</filename>
     <includes id="vlistaprecio_8h" name="vlistaprecio.h" local="yes" imported="no">vlistaprecio.h</includes>
     <includes id="mlistaprecio_8h" name="mlistaprecio.h" local="yes" imported="no">mlistaprecio.h</includes>
+    <includes id="dsino_8h" name="dsino.h" local="yes" imported="no">dsino.h</includes>
   </compound>
   <compound kind="file">
     <name>vlistaprecio.h</name>
@@ -2398,57 +2833,6 @@
     <class kind="class">gestotux</class>
   </compound>
   <compound kind="file">
-    <name>main.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>main_8cpp</filename>
-    <includes id="gestotux_8h" name="gestotux.h" local="yes" imported="no">gestotux.h</includes>
-    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
-    <includes id="eenviobackup_8h" name="eenviobackup.h" local="yes" imported="no">eenviobackup.h</includes>
-    <includes id="esplash_8h" name="esplash.h" local="yes" imported="no">esplash.h</includes>
-    <includes id="emysql_8h" name="emysql.h" local="yes" imported="no">emysql.h</includes>
-    <includes id="eemail_8h" name="eemail.h" local="yes" imported="no">eemail.h</includes>
-    <includes id="eplugin_8h" name="eplugin.h" local="yes" imported="no">eplugin.h</includes>
-    <includes id="einfoprogramainterface_8h" name="einfoprogramainterface.h" local="yes" imported="no">einfoprogramainterface.h</includes>
-    <includes id="einterfazemail_8h" name="einterfazemail.h" local="yes" imported="no">einterfazemail.h</includes>
-    <includes id="formulariocentral_8h" name="formulariocentral.h" local="yes" imported="no">formulariocentral.h</includes>
-    <includes id="eregistroplugins_8h" name="eregistroplugins.h" local="yes" imported="no">eregistroplugins.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>NOMBRE_CONEXION</name>
-      <anchorfile>main_8cpp.html</anchorfile>
-      <anchor>b2b208d537697bd8890a4ac690f801e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>hacerTablas</name>
-      <anchorfile>main_8cpp.html</anchorfile>
-      <anchor>f40668b6a0614b1d76eb472cf2c9ecea</anchor>
-      <arglist>(QString nombrePlug)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>main</name>
-      <anchorfile>main_8cpp.html</anchorfile>
-      <anchor>0ddf1224851353fc92bfbff6f499fa97</anchor>
-      <arglist>(int argc, char *argv[])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>myMessageOutput</name>
-      <anchorfile>main_8cpp.html</anchorfile>
-      <anchor>ebadb8b787d33ef1f3033d8c64d9acbd</anchor>
-      <arglist>(QtMsgType type, const char *msg)</arglist>
-    </member>
-    <member kind="variable">
-      <type>FILE *</type>
-      <name>debug</name>
-      <anchorfile>main_8cpp.html</anchorfile>
-      <anchor>7f0158669de514eb00dcf8d3a7408285</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
     <name>mclientes.cpp</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>mclientes_8cpp</filename>
@@ -2478,6 +2862,7 @@
     <filename>vcliente_8cpp</filename>
     <includes id="vcliente_8h" name="vcliente.h" local="yes" imported="no">vcliente.h</includes>
     <includes id="mclientes_8h" name="mclientes.h" local="yes" imported="no">mclientes.h</includes>
+    <includes id="eregistroplugins_8h" name="eregistroplugins.h" local="yes" imported="no">eregistroplugins.h</includes>
     <includes id="formcliente_8h" name="formcliente.h" local="yes" imported="no">formcliente.h</includes>
   </compound>
   <compound kind="file">
@@ -2504,13 +2889,27 @@
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>dproductostotales_8cpp</filename>
     <includes id="dproductostotales_8h" name="dproductostotales.h" local="yes" imported="no">dproductostotales.h</includes>
-    <includes id="utiles_2edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
+    <includes id="edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
+    <includes id="mproductos_8h" name="mproductos.h" local="yes" imported="no">../plugins/productos/mproductos.h</includes>
+    <includes id="preferencias_8h" name="preferencias.h" local="yes" imported="no">preferencias.h</includes>
   </compound>
   <compound kind="file">
     <name>dproductostotales.h</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>dproductostotales_8h</filename>
     <class kind="class">DProductosTotales</class>
+  </compound>
+  <compound kind="file">
+    <name>dsino.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>dsino_8cpp</filename>
+    <includes id="dsino_8h" name="dsino.h" local="yes" imported="no">dsino.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>dsino.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>dsino_8h</filename>
+    <class kind="class">DSiNo</class>
   </compound>
   <compound kind="file">
     <name>eactcerrar.cpp</name>
@@ -2583,6 +2982,18 @@
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>eayuda_8h</filename>
     <class kind="class">EAyuda</class>
+  </compound>
+  <compound kind="file">
+    <name>edsbprecio.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>edsbprecio_8cpp</filename>
+    <includes id="edsbprecio_8h" name="edsbprecio.h" local="yes" imported="no">edsbprecio.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>edsbprecio.h</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>edsbprecio_8h</filename>
+    <class kind="class">EDSBPrecio</class>
   </compound>
   <compound kind="file">
     <name>eeditor.cpp</name>
@@ -3059,6 +3470,460 @@
     <class kind="class">preferencias</class>
   </compound>
   <compound kind="class">
+    <name>Appointment</name>
+    <filename>classAppointment.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Appointment</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>6f5ebbe07e02feaab6600c0f6297e694</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Calendar *</type>
+      <name>calendar</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>e671d8dadee959818d68ead8ab976544</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>calendarKey</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>341fde8f7d0a8752e1492d1e7375a201</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>description</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>4bc381176bd2110e542a74cfcf6a830c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QDate</type>
+      <name>endDate</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>fcab60b2c81d3e6705332876f5d232a4</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QDateTime</type>
+      <name>endDateTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>545e5836ecec26f7fa4cea1faa0fc392</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>endQuater</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>3ed05fa12adc9d675115655e3d5e5424</anchor>
+      <arglist>(const QDate &amp;date) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QTime</type>
+      <name>endTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>e50bae9537961c86825109ccf5be7a65</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>key</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>72108f1f8a16f75dea50ad51029209b2</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>83ea26ca91dcb196a7f14ab4fa048cc3</anchor>
+      <arglist>(const Appointment &amp;other) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>0c67ffc91e96ff0396710b082f347f37</anchor>
+      <arglist>(const Appointment &amp;other) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>55f64f5566fba96f3e8eb196bd8e99eb</anchor>
+      <arglist>(const Appointment &amp;other) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>place</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>1871107c17fea6903f12dd6b6b38b8cf</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCalendar</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>63a70d90c7a0710beb627c5600c9f248</anchor>
+      <arglist>(Calendar *calendar)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCalendarKey</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>2e5afcd90cd2219301ee74e81dfaa303</anchor>
+      <arglist>(int calendarKey)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDateTimes</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>dfdfcd20404cfb4e6d132e360a40df29</anchor>
+      <arglist>(const QDateTime &amp;startDateTime, const QDateTime &amp;endDateTime)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDescription</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>d4812790fd75601f0cd75e3addb9dda8</anchor>
+      <arglist>(const QString &amp;description)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEndDateTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>e997c663b65674875b5671a2ca33f6a3</anchor>
+      <arglist>(const QDateTime &amp;endDateTime)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setKey</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>0b4ed2dc9151d1e9642baf105a083c0f</anchor>
+      <arglist>(int key)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPlace</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>9447af9af252db05440b88c65d4a131d</anchor>
+      <arglist>(const QString &amp;place)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setStartDateTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>8311563b00a700a70629afc3492a2fe6</anchor>
+      <arglist>(const QDateTime &amp;startDateTime)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSubject</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>586933c796dc5cf44d327e444ce38320</anchor>
+      <arglist>(const QString &amp;subject)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTimes</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>de793f2b4a160ecc2bdcfdc12e155f9a</anchor>
+      <arglist>(const QTime &amp;startTime, const QTime &amp;endTime)</arglist>
+    </member>
+    <member kind="function">
+      <type>QDate</type>
+      <name>startDate</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>4fb80cb8115abd05254053f95be17548</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QDateTime</type>
+      <name>startDateTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>e6f3b3f42e6f79ef33ea4e7c6cf27467</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>startQuater</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>ecd537836f7915ddecb0d1bfc96845d8</anchor>
+      <arglist>(const QDate &amp;date) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QTime</type>
+      <name>startTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>9039d040d98034b0e0ca196a810c2318</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>subject</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>34cfe2c997dd3cd628747bd233d23300</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~Appointment</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>3fb7487548e10abc6e581a550f1d800d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>before</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>3be5a758eae655c192333efc3de21979</anchor>
+      <arglist>(Appointment *app1, Appointment *app2)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myCalendarKey</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>80e872af6216b415f1f6c5fa1cbdddc3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>myDescription</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>4bcfeb490b89102123120a4a957aae9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDateTime</type>
+      <name>myEndDateTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>66f7d36edc2793fef4328a4f6c14ffd6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myKey</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>fe1b1458208714980b9541ee6e4a2428</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>myPlace</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>07dd90e8a5e547d0931c99e9a3e0402b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDateTime</type>
+      <name>myStartDateTime</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>a5239ccb786df60f8137504ee318b49b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>mySubject</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>db259ca0388b17b95367f45fef29472c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Calendar *</type>
+      <name>ptrCalendar</name>
+      <anchorfile>classAppointment.html</anchorfile>
+      <anchor>3bf7e2111a3238dc6b8f119f00078efb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>AppointmentDetailsForm</name>
+    <filename>classAppointmentDetailsForm.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>onClose</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>56582975fe15db161861504dc7a7c45a</anchor>
+      <arglist>(Appointment *appointment)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AppointmentDetailsForm</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>ac120c3355fc8d6659b8afdc75bd5f0a</anchor>
+      <arglist>(Appointment *appointment, QList&lt; Calendar * &gt; *calendars, QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>closeEvent</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>ba19676a22666f36ed71b31753c1f94d</anchor>
+      <arglist>(QCloseEvent *event)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>endDateTimeChanged</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>1a3ddc36007524ff678adf4811c41e49</anchor>
+      <arglist>(const QDateTime &amp;datetime)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onDeleteAppointment</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>1a920c6a4b5ef367ab946f6d2836e2b2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onDiscardChanges</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>1bf1ef93d681db4506ecc5dff7d1ff51</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onSaveChanges</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>66d85235e33117e2a4ae516c52f857f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>startDateTimeChanged</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>c12e21229b50d0355511d45a8850933f</anchor>
+      <arglist>(const QDateTime &amp;datetime)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Appointment *</type>
+      <name>ptrAppointment</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>9a259cc7dea923dc1d121978c1588e49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Calendar * &gt; *</type>
+      <name>ptrCalendars</name>
+      <anchorfile>classAppointmentDetailsForm.html</anchorfile>
+      <anchor>5203fdcdbc01c5b9f06d887ef81e8e38</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>AppointmentItem</name>
+    <filename>classAppointmentItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function">
+      <type></type>
+      <name>AppointmentItem</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>2d0dcf38301e13f16bfe1f8dcb863bd0</anchor>
+      <arglist>(Appointment *appointment, DayItem *dayItem, QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>column</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>aad5d5afe31446b7d78c8fb6fd8869ad</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>columnSpan</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>b66de4688580076a8acc5e3d5dad0b8e</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>39bba39782beb55302699ca4f3577ac0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>2569457234ed007302c7de0fb6ef1cf4</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setColumn</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>2897c98c3fd00b43aa78cd0dac78d66d</anchor>
+      <arglist>(int column)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setColumnSpan</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>256ece55e01da3dbc7db38d99e56e4ff</anchor>
+      <arglist>(int columnSpan)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>4a7964d96faf57bb20990cc6dbee31d8</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QColor</type>
+      <name>myColor</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>edc39868737d95feb969dc29d85ee25c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myColumn</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>4b6a69532cf666bbc454b49e0cc46258</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myColumnSpan</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>c5f62248e7684114f25f8d05fd010824</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QFont</type>
+      <name>myFont</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>15f6368a3135e2667792709dd447ca59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>mySubject</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>4fc8d9c814cacb3235fa42f1ec006f97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Appointment *</type>
+      <name>ptrAppointment</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>fc4afb56e91b38581768e8690e4b3178</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>DayItem *</type>
+      <name>ptrDayItem</name>
+      <anchorfile>classAppointmentItem.html</anchorfile>
+      <anchor>d38261b7287bab79fc5b24301a634750</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>AutoDestruc</name>
     <filename>classAutoDestruc.html</filename>
     <base>EPlugin</base>
@@ -3240,6 +4105,517 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>Calendar</name>
+    <filename>classCalendar.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Calendar</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>068a972d0c1543f11152b92ee6c430c5</anchor>
+      <arglist>(int key)</arglist>
+    </member>
+    <member kind="function">
+      <type>QColor</type>
+      <name>color</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>4fb70981a89ce36b0c46cfb86277b78b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>description</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>2f00f44ed6d85b1397b1e432d9e9e5ee</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QList&lt; Appointment * &gt;</type>
+      <name>getAppointments</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>9ba7d5769f88605184486ed58315b9fd</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>insertAppointment</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>f04332e9925e907f0a39eee3b3ffb908</anchor>
+      <arglist>(Appointment *appointment)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isSelected</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>d0cffb56c23a85e501e2e61bce054bec</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>key</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>7d3f25eeeaf707827b90b838a23f2d02</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>582227cbf65737e21e81098cf60cfef8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>3c0d9488d661f1863afb6a29e1a658b3</anchor>
+      <arglist>(const Calendar &amp;other) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>9b8aafe180cde54d9ed37e7404892d1a</anchor>
+      <arglist>(const Calendar &amp;other) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>removeAppointment</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>983b6a796bfb80a88e3e87f8c6d30522</anchor>
+      <arglist>(Appointment *appointment)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setColor</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>83bf1dc9051caddc363dc887bb4c4810</anchor>
+      <arglist>(const QColor &amp;color)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDescription</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>7c3700b9610896936e3ce89e5e0b4d5c</anchor>
+      <arglist>(const QString &amp;description)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setKey</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>c81e599bea046d8b0ced1111eed31edb</anchor>
+      <arglist>(int key)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>f5640e1793cbe60f11cfacac1e625960</anchor>
+      <arglist>(const QString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSelected</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>10f421624ac0ba8e1a9f6a3729be6180</anchor>
+      <arglist>(bool selected)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>updateAppointment</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>8537b89a078569b3c4d84a21c9664ae2</anchor>
+      <arglist>(const Appointment &amp;appointment)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~Calendar</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>23aa939f694874a8f98ec54326d80741</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Appointment * &gt;</type>
+      <name>myAppointments</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>3863e7f995eae844f870b4a0dee4e4db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QColor</type>
+      <name>myColor</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>fbdb2402ec5cb1a40465b9955104a1f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myCounter</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>79dfaaae686874981a9110b0ded3c3f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>myDescription</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>702123d96701e199bb2e54b68266d5ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myKey</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>46b883374a09aaaf5d719c0613c2d6e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>myName</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>0f60f00f0147b37278eb82b51449451c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>mySelected</name>
+      <anchorfile>classCalendar.html</anchorfile>
+      <anchor>a10e232fa2377c174637352e67c2b26e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>CalendarDetailsForm</name>
+    <filename>classCalendarDetailsForm.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>setCalendar</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>00f100937166d4da85e5f6492d9ea9e9</anchor>
+      <arglist>(const Calendar &amp;calendar)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>calendarDeleted</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>303ce09f47df5e2687a4aee74f0ba66c</anchor>
+      <arglist>(const Calendar &amp;calendar)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>changesDiscarded</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>e9d0c029db04ffe2ff6854297bb4d559</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>changesSaved</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>dac37aa06f00767a32e11a5924272c45</anchor>
+      <arglist>(const Calendar &amp;calendar)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CalendarDetailsForm</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>6b469dce6431da71e6220bf1d926e5fd</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>discardChanges</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>32ae3d957d3dcfcca7a8deb0c29976b9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isModified</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>6c92e531cae4667a55d4a28e5ca75243</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>saveChanges</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>9d02724e4ac34a58bc5ef63970470ad9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>validate</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>a019ed82863a400259dafde0f7e3012a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onDeleteCalendar</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>5dbdf23cd6ffecd81e55bf45b0369798</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onDiscardChanges</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>74bf8a6649be35a169c0f376cd895c9d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onMoveLeft</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>e760d02cbc0c699f64b9a326ef2ccc35</anchor>
+      <arglist>(const QModelIndexList &amp;indexes)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onMoveRight</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>bfb82ff2d75afcdc10d89c1e6ae83afe</anchor>
+      <arglist>(const QModelIndexList &amp;indexes)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onSaveChanges</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>3275932d4183e7ac95a44f399087428b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>disable</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>06f44f15869976880334a122c4ba284f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Calendar</type>
+      <name>myCalendar</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>2a58bd315a0b68296628081663050d90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Permission &gt;</type>
+      <name>myDatabase</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>3997d990bc3115ad95b59c5b98448e92</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VariantTableModel&lt; Permission &gt;</type>
+      <name>myDatabaseModel</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>cec09aecd11d168b555f5026d8ab33b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QStringList</type>
+      <name>myErrors</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>5e47deb47133bbcb8d2858ec6d6dad30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTableView</type>
+      <name>myLeftView</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>3d75631ef5bc8d7c0da31c59ca1d42ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTableView</type>
+      <name>myRightView</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>ed96cef2900b0e9163c10fc9412f6033</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Permission &gt;</type>
+      <name>mySelected</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>fada4e7003a3c9ac1b507267ea4375aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VariantTableModel&lt; Permission &gt;</type>
+      <name>mySelectedModel</name>
+      <anchorfile>classCalendarDetailsForm.html</anchorfile>
+      <anchor>eba1c6eaf94b2109c707d52027f5eccd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>CalendarItem</name>
+    <filename>classCalendarItem.html</filename>
+    <member kind="function">
+      <type>QRectF</type>
+      <name>boundingRect</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>acbebce775f133e10da8f05719ee39ae</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CalendarItem</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>1f974512954ef0a90653357b26713336</anchor>
+      <arglist>(QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>dataChanged</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>20ec1618f2077fb2bdff685ec2851dac</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>82458baf00955ae904cd2053e0c4deb4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onResize</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>e1b349020b0dcf7fdb1acd380e9b7fc1</anchor>
+      <arglist>(const QSizeF &amp;size, const QSizeF &amp;oldSize)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paint</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>fb3d575b273f831268e6a5329326fc6c</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSize</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>ba27da389cb37517b88fa7776102a2f5</anchor>
+      <arglist>(qreal width, qreal height)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSize</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>851c491b5c145b9a572786a523cc6c68</anchor>
+      <arglist>(const QSize &amp;size)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPainterPath</type>
+      <name>shape</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>323bbbc510ab7b474266e44073b059be</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QRectF</type>
+      <name>myBoundingRect</name>
+      <anchorfile>classCalendarItem.html</anchorfile>
+      <anchor>9ecf6b98a84390c539fb79ba1fba9054</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>CalendarTableModel</name>
+    <filename>classCalendarTableModel.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>CalendarTableModel</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>6c278aaf20a4c56bf578f89fa21d1063</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>columnCount</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>af61abd1b36d14d21c33303a42d106fb</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>392c2a5baa564267e8a0f2de971a4fdf</anchor>
+      <arglist>(const QModelIndex &amp;index, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type>Qt::ItemFlags</type>
+      <name>flags</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>a3e0dd614609b1ca9fc180e6c6fd928b</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>headerData</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>087a939564975e64756b377120595d14</anchor>
+      <arglist>(int section, Qt::Orientation orientation, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>rowCount</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>2bedbebd5b9cfbc88a4fdb96c524b7fc</anchor>
+      <arglist>(const QModelIndex &amp;parent=QModelIndex()) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCalendars</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>c2e3b094b01e99685c6c479ef19ba2f1</anchor>
+      <arglist>(QList&lt; Calendar * &gt; *calendars)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>setData</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>0dc01d0a33f2416291285ca53c6bb649</anchor>
+      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~CalendarTableModel</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>5aaa5dde16575ebe6bf05befdfa620fb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Calendar * &gt; *</type>
+      <name>ptrCalendars</name>
+      <anchorfile>classCalendarTableModel.html</anchorfile>
+      <anchor>93925e951eb1fa4a7e1e83aea073390e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ClockBar</name>
+    <filename>classClockBar.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function">
+      <type></type>
+      <name>ClockBar</name>
+      <anchorfile>classClockBar.html</anchorfile>
+      <anchor>a9130eee87509f5b807c54700ec2f6eb</anchor>
+      <arglist>(QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classClockBar.html</anchorfile>
+      <anchor>db2d8bcd8b3a72a777ce773edcfd5b65</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ColorAction</name>
     <filename>classColorAction.html</filename>
     <member kind="signal">
@@ -3392,6 +4768,357 @@
       <name>ActCompras</name>
       <anchorfile>classCompras.html</anchorfile>
       <anchor>d6b6be802c905411fa6c20ae22d481f4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>CuentaCorrientePlugin</name>
+    <filename>classCuentaCorrientePlugin.html</filename>
+    <base>EPlugin</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>seCierraGestotux</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>8026ec25a59372287120ee15686fff5f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>verCuentasCorrientes</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>f34ecf2a8a6a1eb49cb7b527d8fade81</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>2f452d3da28b34258f7d7fc4d44caf19</anchor>
+      <arglist>(QWidget *v)</arglist>
+    </member>
+    <member kind="function">
+      <type>QList&lt; QActionGroup * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>2a0929d9abf42b0f9b4a6832440c75cd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearMenu</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>d997184c34f1108e99cd4b2037cd9edc</anchor>
+      <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>bb9f1b410b2025e130bdce4816ae0d0e</anchor>
+      <arglist>(QToolBar *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>QWidgetList</type>
+      <name>formsPreferencias</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>618048dde2af1a36761fecf36136c20b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>inicializar</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>06a59355eb591869c3bf38250a274550</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombre</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>1f2e0a2d48aebf4bd92d1e7230395d0b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>tipo</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>bf775806b4d463831882e63193f6a175</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>02a594b11a197a664486b8d233213cc3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>5cda135cdbaea205d99bbed1cbedee9a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActCuentasCorrientes</name>
+      <anchorfile>classCuentaCorrientePlugin.html</anchorfile>
+      <anchor>ff6658e566b410ae38e2ed82d5fd2c64</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DayContentItem</name>
+    <filename>classDayContentItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>dataChanged</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>afe93fac096f28c1cc42484e4a543799</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DayContentItem</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>980f68859193fcf03d2b953350c164b4</anchor>
+      <arglist>(DayItem *dayItem, QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>e4f5a401dd460d49bdf3060e3049fd5e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>1684e7d2b297f88a7a97c1cdaa13677f</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>fd10fe365cacfa60f7295db04bbdaf79</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>5add35af8851869b23b9814569057cac</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>70f420386cc040b6176eb15e1eb61a5b</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>25914ddce8e7a0612ca3a8bde6153b48</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>dragEnd</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>927d53e2ac8114e30e4dbc985998233f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>dragSelection</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>a256dbda4fb44c58d5da0020f3e583e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>dragStart</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>f8a325ac19d5ed53cc323dd07902d4d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myColumns</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>9e20e7fad8d97c1b0393df9b89763ea5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>DayItem *</type>
+      <name>ptrDayItem</name>
+      <anchorfile>classDayContentItem.html</anchorfile>
+      <anchor>a6c2e8a76e1ac47d287e5703855bc721</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DayItem</name>
+    <filename>classDayItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>dataChanged</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>28deaa69bbdbffe32feabb973b71388f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DayItem</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>ba4719e3825eca9b02a140c4fe92b360</anchor>
+      <arglist>(QuickCalendarView *calendar, const QDate &amp;date, QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isOutOfRange</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>db3bd0d157ca4d302ba206b4602b4884</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>b119e1d18b2dde02a876d189ad89b7a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>df597b671f1c785d5882964557655b32</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDate</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>de8c1821797d427893a49d05ddbccf6e</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setOutOfRange</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>34c2a2e1aa996af6dff94f5b566bf42f</anchor>
+      <arglist>(bool outOfRange)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>f695ee6958c1994729ff353655498296</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>bde3041401a10065483d70aa90cbda51</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>1b58ee5b5856c49920b95b9894a98a55</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>amIOutOfRange</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>132fa817a9dc5da81c76fe181d87702e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myAlign</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>160fe26e34f8faa97ab2b6817f8fffa5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Appointment * &gt;</type>
+      <name>myAppointments</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>1ef8cd31293c01fd7c7ef0edd9aee9e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QBrush</type>
+      <name>myBrush</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>786808a5df9a7653d1357d350fd78898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>myCaption</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>f5663a3db7d00898d02956d6b2a93d6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPixmap</type>
+      <name>myClockIcon</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>ef7dc468dd9e261eac8d4483bd5cd9e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myDate</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>bbed907e1100b7e9740b8a8d4d026c1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QFont</type>
+      <name>myFont</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>19d0b426850813c87dec2f23bcc1b932</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLinearGradient</type>
+      <name>myGradient</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>6ec983dd90bfe4a3d87ff821bcb0c73b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPen</type>
+      <name>myPen</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>63f4e51ebf63d78a929f9dd04f98c157</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QuickCalendarView *</type>
+      <name>ptrCalendarView</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>43c7624f86af46611372708c0f60a7ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>DayContentItem *</type>
+      <name>ptrContentItem</name>
+      <anchorfile>classDayItem.html</anchorfile>
+      <anchor>35dcf8d6b11ea1f4969493bfa21095bf</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -4050,6 +5777,45 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>DSiNo</name>
+    <filename>classDSiNo.html</filename>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>createEditor</name>
+      <anchorfile>classDSiNo.html</anchorfile>
+      <anchor>0679da8aadcc7eaa5767bc6346e0c9cf</anchor>
+      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>DSiNo</name>
+      <anchorfile>classDSiNo.html</anchorfile>
+      <anchor>2b5bc2ef9ccd4cf6dbe47b23950d6b79</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEditorData</name>
+      <anchorfile>classDSiNo.html</anchorfile>
+      <anchor>c711cada9b6c938685e675d334568dc0</anchor>
+      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModelData</name>
+      <anchorfile>classDSiNo.html</anchorfile>
+      <anchor>1b4fc8d13600b78e9feefec29e67b2bc</anchor>
+      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DSiNo</name>
+      <anchorfile>classDSiNo.html</anchorfile>
+      <anchor>ee7e24ef72e3bd68a29331c46b892fd9</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>EActCerrar</name>
     <filename>classEActCerrar.html</filename>
     <member kind="function">
@@ -4523,20 +6289,6 @@
     </member>
     <member kind="function">
       <type></type>
-      <name>EDSBPrecio</name>
-      <anchorfile>classEDSBPrecio.html</anchorfile>
-      <anchor>a9be49f1dd36601449d320acd90aa9f3</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~EDSBPrecio</name>
-      <anchorfile>classEDSBPrecio.html</anchorfile>
-      <anchor>ca4f13bc9b1475881c29c8298330a877</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
       <name>~EDSBPrecio</name>
       <anchorfile>classEDSBPrecio.html</anchorfile>
       <anchor>ca4f13bc9b1475881c29c8298330a877</anchor>
@@ -4547,13 +6299,6 @@
       <name>keyPressEvent</name>
       <anchorfile>classEDSBPrecio.html</anchorfile>
       <anchor>4ced889c88c1a78cec7c38517b99e313</anchor>
-      <arglist>(QKeyEvent *event)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>keyReleaseEvent</name>
-      <anchorfile>classEDSBPrecio.html</anchorfile>
-      <anchor>a2ffb7ecfdaea0786039754c38670848</anchor>
       <arglist>(QKeyEvent *event)</arglist>
     </member>
     <member kind="variable" protection="private">
@@ -5176,10 +6921,10 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>showEvent</name>
+      <name>timerEvent</name>
       <anchorfile>classEMysql.html</anchorfile>
-      <anchor>89b6fc56931736ecac5bc346d353d9cd</anchor>
-      <arglist>(QShowEvent *event)</arglist>
+      <anchor>2eabe680a51a5dbb5cdddc4e00cbaf64</anchor>
+      <arglist>(QTimerEvent *event)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -5221,6 +6966,13 @@
       <name>_db</name>
       <anchorfile>classEMysql.html</anchorfile>
       <anchor>36b59b167e53aafbb706e79cbb06fd1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>id_timer</name>
+      <anchorfile>classEMysql.html</anchorfile>
+      <anchor>0590cf78dd44d1545ea780e479ae1056</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -5358,6 +7110,13 @@
       <anchorfile>classERegistroPlugins.html</anchorfile>
       <anchor>6724b1d611b2161b420f087c5c12c67a</anchor>
       <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>existePlugin</name>
+      <anchorfile>classERegistroPlugins.html</anchorfile>
+      <anchor>5a5772285328d58f5427dc70b90c7f97</anchor>
+      <arglist>(const QString &amp;nombre)</arglist>
     </member>
     <member kind="function">
       <type>EPlugin *</type>
@@ -7639,6 +9398,45 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormNuevaCtaCte</name>
+    <filename>classFormNuevaCtaCte.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FormNuevaCtaCte</name>
+      <anchorfile>classFormNuevaCtaCte.html</anchorfile>
+      <anchor>d7c7d819145503b1aef94467fb40beed</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModelo</name>
+      <anchorfile>classFormNuevaCtaCte.html</anchorfile>
+      <anchor>4582b14a2664723ad5b9db3b8586dbee</anchor>
+      <arglist>(QSqlRelationalTableModel *m)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormNuevaCtaCte</name>
+      <anchorfile>classFormNuevaCtaCte.html</anchorfile>
+      <anchor>5a1938f1afb5cca45e3e484a86c133e2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>accept</name>
+      <anchorfile>classFormNuevaCtaCte.html</anchorfile>
+      <anchor>4a7fb92ad6a706fad23075ac85cdb7ad</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSqlRelationalTableModel *</type>
+      <name>modelo</name>
+      <anchorfile>classFormNuevaCtaCte.html</anchorfile>
+      <anchor>af86497ae4add8b64b4a21a3a4a417f6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormNuevoPresupuesto</name>
     <filename>classFormNuevoPresupuesto.html</filename>
     <base>EVentana</base>
@@ -7690,6 +9488,46 @@
       <anchorfile>classFormNuevoPresupuesto.html</anchorfile>
       <anchor>7b4a89cee7c2a76a90267a16957fc191</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormPrefCtaCte</name>
+    <filename>classFormPrefCtaCte.html</filename>
+    <base>FormPrefHijo</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>aplicar</name>
+      <anchorfile>classFormPrefCtaCte.html</anchorfile>
+      <anchor>4f39d6af3002e7dcd52a615bdb488228</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>cargar</name>
+      <anchorfile>classFormPrefCtaCte.html</anchorfile>
+      <anchor>c350df908c1035a3d786920012e6db20</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormPrefCtaCte.html</anchorfile>
+      <anchor>6a1f3e6396aea3833af7bab07692457a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FormPrefCtaCte</name>
+      <anchorfile>classFormPrefCtaCte.html</anchorfile>
+      <anchor>68ec0b33c48d84b02823b0b3fc84311d</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormPrefCtaCte</name>
+      <anchorfile>classFormPrefCtaCte.html</anchorfile>
+      <anchor>d263b4d01af754cd1facd4abfec38c24</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7968,6 +9806,72 @@
       <name>~FormPrefOpciones</name>
       <anchorfile>classFormPrefOpciones.html</anchorfile>
       <anchor>4ce4d42060482c6ba0cf3febf8375188</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormPrefProductos</name>
+    <filename>classFormPrefProductos.html</filename>
+    <base>FormPrefHijo</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>aplicar</name>
+      <anchorfile>classFormPrefProductos.html</anchorfile>
+      <anchor>bd6f7e10e41c339270f9b479f4eb319f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>cargar</name>
+      <anchorfile>classFormPrefProductos.html</anchorfile>
+      <anchor>67d2d643458df9fcaae9e2be6210371c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>guardar</name>
+      <anchorfile>classFormPrefProductos.html</anchorfile>
+      <anchor>07bd2d677b9142870a39dc5248600738</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FormPrefProductos</name>
+      <anchorfile>classFormPrefProductos.html</anchorfile>
+      <anchor>7fb88742ba374454afabf13f988504e0</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormPrefProductos</name>
+      <anchorfile>classFormPrefProductos.html</anchorfile>
+      <anchor>e5bceea3423b7cd1516c25376aaac74d</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormResumenCtaCte</name>
+    <filename>classFormResumenCtaCte.html</filename>
+    <base>EVentana</base>
+    <member kind="function">
+      <type></type>
+      <name>FormResumenCtaCte</name>
+      <anchorfile>classFormResumenCtaCte.html</anchorfile>
+      <anchor>5395646797e7584eff56b32b1ee5f5f6</anchor>
+      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setNumeroCuenta</name>
+      <anchorfile>classFormResumenCtaCte.html</anchorfile>
+      <anchor>7b98551c2d59d8efda96d3f369d00852</anchor>
+      <arglist>(const QString &amp;numero_cuenta)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormResumenCtaCte</name>
+      <anchorfile>classFormResumenCtaCte.html</anchorfile>
+      <anchor>464ce9946818cd1c5d7aa2e661d60dfb</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -10588,6 +12492,31 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>MCuentaCorriente</name>
+    <filename>classMCuentaCorriente.html</filename>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>b1498f00878d9c48d2e2fd148cf025c2</anchor>
+      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MCuentaCorriente</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>360da060707eb76c829148d46cefc3dd</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MCuentaCorriente</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>e437b599a449a9d280b6e59beb33949f</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>MDueno</name>
     <filename>classMDueno.html</filename>
     <member kind="function">
@@ -10709,6 +12638,61 @@
       <anchorfile>classMime.html</anchorfile>
       <anchor>bbc384cbfd0630bbcafb2b33bedd0882</anchor>
       <arglist>(QString s)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MItemCuentaCorriente</name>
+    <filename>classMItemCuentaCorriente.html</filename>
+    <member kind="enumeration">
+      <name>TipoOperacionCtaCte</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>d55baf1a91a44e41d796e31e46f5f30c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Recibo</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>d55baf1a91a44e41d796e31e46f5f30cbcc011f0b5bb1d2923bd55287438d9c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Factura</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>d55baf1a91a44e41d796e31e46f5f30ce2243c9c874263adace3fccf158e0b70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>NotaCredito</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>d55baf1a91a44e41d796e31e46f5f30ce9c0c473e352c829a60f58ad96d1a8d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>NotaDebito</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>d55baf1a91a44e41d796e31e46f5f30c15b32147211d029e153d7c41425c2840</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MItemCuentaCorriente</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>5dbadd638000a4756bbcb7a492058137</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MItemCuentaCorriente</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>92eff25941032ee18a8900b38414111d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>agregarOperacion</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>56eed6b93f99393986d42dc69f6ac65c</anchor>
+      <arglist>(const QString &amp;numero_cuenta, const QString &amp;num_comb, const int &amp;num_ref, const QDate &amp;fecha, const QString &amp;descripcion, const double &amp;aplicar)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -10952,18 +12936,25 @@
       <arglist>(QObject *parent=0)</arglist>
     </member>
     <member kind="function">
-      <type>bool</type>
-      <name>setData</name>
-      <anchorfile>classMProductos.html</anchorfile>
-      <anchor>d85b82a78a82c471d8675dd6337bb397</anchor>
-      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)</arglist>
-    </member>
-    <member kind="function">
       <type></type>
       <name>~MProductos</name>
       <anchorfile>classMProductos.html</anchorfile>
       <anchor>189f6d1f9e06c23364ca5616a288d76e</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>modificarStock</name>
+      <anchorfile>classMProductos.html</anchorfile>
+      <anchor>514695a511072287df8296f6d950083a</anchor>
+      <arglist>(const int id_producto, const double cantidad)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>stock</name>
+      <anchorfile>classMProductos.html</anchorfile>
+      <anchor>82b0f6aff24016be4fac1815bb8836cf</anchor>
+      <arglist>(const int id_producto)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14722,6 +16713,582 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>QuickCalendarStyle</name>
+    <filename>classQuickCalendarStyle.html</filename>
+    <member kind="function">
+      <type>int</type>
+      <name>collapsedWeekHeight</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>971e8d87d941c9c28ccdc24785cc6a1a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>QuickCalendarStyle</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>6deee814d1014b9d9a82fe36f331e409</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>appointmentSubjectFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>b85be8d33f29dd495b79c27c9eafc668</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>clockBarFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>cab34552970aace13c9c49d9fc55455f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>collapsedDayNumberFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>82518f29dcb952e1fca5edd027e817a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLinearGradient</type>
+      <name>comingDayGradient</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>6a51b9710532054d3e4a2402b70f65b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPen</type>
+      <name>comingDayPen</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>c1f35241b8658ae05c078875ade5aa41</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLinearGradient</type>
+      <name>comingWeekendGradient</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>cc13022ede1d5cd166fb0ab2af69b461</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>dayNameFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>b605185cc96c3a49ad97a682b239fda7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>dayNumberFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>881d2102b593264bdc64b42359582799</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>expandedDayNumberFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>70c2e968563bf57054078ecb4fd01043</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>expandedWeekHeaderHeight</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>065fa110b55335921beb685e864e410f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLinearGradient</type>
+      <name>pastDayGradient</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>18f6bc8d5344e4be8f3918144b70c4e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPen</type>
+      <name>pastDayPen</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>b0629f8c017136b753566304f3f33498</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLinearGradient</type>
+      <name>pastWeekendGradient</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>fbe4702f7d680565dae8f97ce6f2b2d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>quarterHeight</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>a56e214df772f0540aec2e9d6520b281</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLinearGradient</type>
+      <name>todayGradient</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>5297f38e5f88c4e16149f577524260cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPen</type>
+      <name>todayPen</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>687ac9da471d48e195ab3313dfa4fb26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLinearGradient</type>
+      <name>weekendGradient</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>bac61c72f9248fd27fdcad6808a0d894</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>weekLeftMargin</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>4eb51034169a861d48a8a690e0f082b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QFont</type>
+      <name>weekNumberFont</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>1f3efa54426e7afdb7c3ac7790c7d067</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>weekRightMargin</name>
+      <anchorfile>classQuickCalendarStyle.html</anchorfile>
+      <anchor>97f779496150f38a057e3623b9239d22</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>QuickCalendarView</name>
+    <filename>classQuickCalendarView.html</filename>
+    <member kind="enumeration">
+      <name>DisplayMode</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>9513d5da9102d9fe12daf21b179f4d71</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>DisplayFullWeeks</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>9513d5da9102d9fe12daf21b179f4d7156452b9c4bd0238c955549594ff2ce63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>DisplayOnlyRange</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>9513d5da9102d9fe12daf21b179f4d71877389d9cf10e9609c442cbd949320ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>collapseAll</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>2301987525b196196f15d9c34f82713e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>dataChanged</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>a1546fa0671f25e9319a48007fba69d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>expandDate</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>dacc1e5692de8309b9bd13c5bcdc12d1</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>expandDayOfWeek</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>4f14179ec26e227ce36dabc124da4062</anchor>
+      <arglist>(int dayOfWeek)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>expandWeek</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>cba3b6ede3109caf4b155501676e8e7e</anchor>
+      <arglist>(WeekItem *week)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>expandWeek</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>2f628204dba411ec6a5f868972f39fd2</anchor>
+      <arglist>(int weekNumber)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>dcb0b0d525f433207c23ba6a50864368</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>setCalendars</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>5745fd7a265dba57eecf164c92029cc1</anchor>
+      <arglist>(QList&lt; Calendar * &gt; *calendars)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>setDisplayMode</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>a69bf14be9d5973bb6dce83d17e9e87a</anchor>
+      <arglist>(DisplayMode mode)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>setMonth</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>1d5f346b8139678eb2495a98e1996247</anchor>
+      <arglist>(int year, int month)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>setRange</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>74e7a4b8dfebe8ee092f75ada13cea4e</anchor>
+      <arglist>(const QDate &amp;start, const QDate &amp;end)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>showAppointmentForm</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>f4386df664ac4f9074f6930a036c1c20</anchor>
+      <arglist>(Appointment *appointment)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>dateExpanded</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>6e14c1ae7fb9223e8a53c7d1deb3d604</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="function">
+      <type>QList&lt; Calendar * &gt; *</type>
+      <name>calendars</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>63ce00ad46792bcef5cf546b0ceb1876</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>dayWidth</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>22e2548afeae7610a3da5a3dfb1dcaf5</anchor>
+      <arglist>(int dayOfWeek) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>displayMode</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>bc4989a156e75d79448d9bca04c88496</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>expandedDayOfWeek</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>b27a594eaafb5aaedd15009acd4a57ff</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WeekItem *</type>
+      <name>expandedWeekItem</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>2ff153849c9cf319ecc958005da40add</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>expandedWeekNumber</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>7a146dc1675ed7fb6fc10523e8611a5d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>QuickCalendarView</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>84a7e63f6338ce933172b43f19d7cd41</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>QuickCalendarStyle *</type>
+      <name>style</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>68beab4bfd60d3d289211abccf6e4fa2</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>weekCount</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>95cc1a32e6a0b967e2a60e59264d54cf</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~QuickCalendarView</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>226d3550b18fa0b0f36d7bcf0ab7c41e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>resizeEvent</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>37f97fea1f504fd7e3d13538664d95c1</anchor>
+      <arglist>(QResizeEvent *event)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onFormClosed</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>5e7bf9429a905968b39d0187ca9d5592</anchor>
+      <arglist>(Appointment *appointment)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myDayWidths</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>e85bafa62a5f891c4f732c97ca4d727a</anchor>
+      <arglist>[21]</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myDisplayMode</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>cf42a1b1ca119e6e0d966e296cf8ec48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myEndDate</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>3c281f07b11d75cd61becf90dcb3b084</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myExpandedDate</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>5c75eea93ba0eeec6395892ec7b45764</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myExpandedDayOfWeek</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>ae88d1bdd5fdd65a2d18794ebf69c9a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WeekItem *</type>
+      <name>myExpandedWeekItem</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>26dd889bc23893fe7813d86a01442bc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myRangeEnd</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>9a65eb25429ca00ccc42f9359bdbc180</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myRangeStart</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>553a0aa931ae907f17873b390428f78b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myStartDate</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>d5ec176b4803a3f4a876e426dfce8c28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myWeekCount</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>f2ee8b235f659c33a321d2b7c4d861ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myWeekMode</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>081b3b9a8f83f3c6779241562ee2e96e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; WeekItem * &gt;</type>
+      <name>myWeeks</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>a0da2788ca9229f676cc4dc9e70eefb9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Calendar * &gt; *</type>
+      <name>ptrCalendars</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>e3d46efd71767cec6a85dc35bfa24ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem *</type>
+      <name>ptrContentPane</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>60bbca50a61fabe9317153377578496c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem *</type>
+      <name>ptrHeader</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>df14d1ddcdf71239bad9398cb5a0ef4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QuickCalendarStyle *</type>
+      <name>ptrStyle</name>
+      <anchorfile>classQuickCalendarView.html</anchorfile>
+      <anchor>60851f479294ffd65f91d338fe4abc2e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>QuickCalendarWindow</name>
+    <filename>classQuickCalendarWindow.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>QuickCalendarWindow</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>5b99757d77a68c36a6a06bdea7931d33</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>startUp</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>7e62b2a8dbab9886a0a05086821c4fec</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>ddada02d6da5b4568157b35a6ec27b75</anchor>
+      <arglist>(QCloseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>createDockWidgets</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>e6a2270290b9a5c22e8aae0911944ce9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>dataChanged</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>f2c19de387e24cd2cb87c0c6e5ca13f5</anchor>
+      <arglist>(const QModelIndex &amp;topLeft, const QModelIndex &amp;bottomRight)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>modeChanged</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>29f63ac479e4ea4c454b485ed447156b</anchor>
+      <arglist>(int mode)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onExit</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>a16da0abf3b94b05c23a1e8f109b0340</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>generateData</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>84b084d3a4990e068fb06400b9281f2f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; Calendar * &gt;</type>
+      <name>myCalendars</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>f4a1f923310b28e8039c2eca9cc56cfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; QColor &gt;</type>
+      <name>myColors</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>e8f49c42d7b8607b31fb853f92710c75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; QIcon &gt;</type>
+      <name>myIcons</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>27266a4dcefbc9af5cc3661ad15f8294</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarTableModel *</type>
+      <name>ptrCalendarModel</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>408060d8f8901555ff9dfa424a3291c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QuickCalendarView *</type>
+      <name>ptrCalendarView</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>4a2ca6436178b1f11f6b5b2bcb0ebd4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>SelectorWidget *</type>
+      <name>ptrSelectorWidget</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>c79d1b88aa008c4c4cf1f4616221b20d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTableView *</type>
+      <name>ptrTableView</name>
+      <anchorfile>classQuickCalendarWindow.html</anchorfile>
+      <anchor>49d747fd619675fc1c484a4271a8d684</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>Recibo</name>
     <filename>classRecibo.html</filename>
     <member kind="function">
@@ -17118,6 +19685,482 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ScrollAreaItem</name>
+    <filename>classScrollAreaItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function">
+      <type>void</type>
+      <name>ensureVisibility</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>9c16795894111c7947a5a625121558fb</anchor>
+      <arglist>(qreal x, qreal y)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>1352969bcbdafa77357d3007d9ce08ca</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onResize</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>8fe091e3d4e5399ac644d26389d8530f</anchor>
+      <arglist>(const QSizeF &amp;size, const QSizeF &amp;oldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>c7a5a76f9b2a14cc4807614aac910088</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScrollAreaItem</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>124adc9abd6f17c9fe07371c01e677e1</anchor>
+      <arglist>(QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>qreal</type>
+      <name>scrollBarWidth</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>bd11e36e2fb810eabd72dbc5691b87d0</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>scrollTo</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>ae4cf5eb56d5023bafc58da9802133a1</anchor>
+      <arglist>(qreal value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setItem</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>a88add2736974057f6f1afdaca445c13</anchor>
+      <arglist>(CalendarItem *item)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>wheelEvent</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>9af716009d15936fa0e5c80fdb4d246c</anchor>
+      <arglist>(QGraphicsSceneWheelEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem</type>
+      <name>myContent</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>b1971066db2d7a407c22922a9efd27c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ScrollBar</type>
+      <name>myVertical</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>b5e8ea4e15015c7a3f14bc70e1c1e9ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem *</type>
+      <name>ptrItem</name>
+      <anchorfile>classScrollAreaItem.html</anchorfile>
+      <anchor>ca35b54885b77476bde7c1bf43cd02c1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ScrollBar</name>
+    <filename>classScrollBar.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function">
+      <type>void</type>
+      <name>ensureVisibility</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>b2bebc58dfdc75d24c77d421e94c7fbb</anchor>
+      <arglist>(qreal y)</arglist>
+    </member>
+    <member kind="function">
+      <type>qreal</type>
+      <name>getValue</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>071d72a545e22940173893fe2b0e939a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>1737a6dac5ecf50c5f3ed6013be59f82</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onResize</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>399e84f4d5efe00f1082637454f4c410</anchor>
+      <arglist>(const QSizeF &amp;size, const QSizeF &amp;oldSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>3c0c68772ad6a02b3dc180ff71220090</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ScrollBar</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>858978a3d527a9e305470b88da64b6cc</anchor>
+      <arglist>(ScrollAreaItem *scrollArea=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>scrollBy</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>c4d88176aba797bed02aa11807f06233</anchor>
+      <arglist>(qreal srollBy)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>scrollTo</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>27aa3f5bca8ed1205508c11fc88c215d</anchor>
+      <arglist>(qreal value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMaximum</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>81ca6cc22049c513b4715b0df1dad7ad</anchor>
+      <arglist>(qreal max)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMinimum</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>58832f1229360dfff0424c059480897e</anchor>
+      <arglist>(qreal min)</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>orientation</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>04ed04de409a0aaa745b1252b8f71219</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>453061ad6e3d0f881118475f7e80c5d6</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>5e7cd71a53dc5925fabddd05844bade6</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>fb00a25edbc6a6bac5c0b5ef7a0df785</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>myFactor</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>082dc8c833777f40f255ca218fe6561d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>myMax</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>44979aa86cdefe02381cb71f155c493f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>myMin</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>1a04682b3bed8043e7fe12eec386339c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>myValue</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>18b24d693dd0a6253fa12a4667900172</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>pressedControl</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>5571145156a6ddf43a1b9ace7d095633</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ScrollAreaItem *</type>
+      <name>ptrArea</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>8a3fb4dd693706061e38e867f3d9c1f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>sliderHeight</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>f9a60fb7f5d41cd2252edef11c050757</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>sliderMax</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>6451d37990e97b7fbe1bce2d34b973b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>qreal</type>
+      <name>sliderPos</name>
+      <anchorfile>classScrollBar.html</anchorfile>
+      <anchor>00661777e78c211f73b49f7efd9d97e7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SelectorWidget</name>
+    <filename>classSelectorWidget.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>showDayBased</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>9862c72ce9cfdf2c9622fd5b872f96d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>showMonthBased</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>fff07331d56f1daf2fe701716e89b2c1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>showRangeBased</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>26596d9c05e187b3af1bfb33046165c1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>showWeekBased</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>39b53f57abb8896e9ac5eaa5b80e1ebd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>modeChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>6594ca5196593d02f829e83865fa8662</anchor>
+      <arglist>(int mode)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>monthChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>94d3a38b7e72d10ec2709b0a01b1b971</anchor>
+      <arglist>(int year, int month)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>rangeChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>e762b5a179cfcce0a47e0192b9ab04e4</anchor>
+      <arglist>(const QDate &amp;start, const QDate &amp;end)</arglist>
+    </member>
+    <member kind="function">
+      <type>QDate</type>
+      <name>date</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>779bce2ac42dbead28e716d25b2b4f21</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>maximumHeight</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>db7e2af70722bec7f5be6a66a79df07f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QSize</type>
+      <name>maximumSize</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>4b530da7568395fa9ba3088d1c3f6735</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>9e2f5c7c7676763586046d1e521fcd23</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SelectorWidget</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>123172a2e70a26c6380e8483517ee703</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDate</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>4b8db362ee03a89264b7d67152da43da</anchor>
+      <arglist>(QDate date)</arglist>
+    </member>
+    <member kind="function">
+      <type>QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>b3185dc3ae4ecd662d21fb7a5d22df49</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>dateChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>f9a4bf783e2daf2df2445371f2819fc8</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>next</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>a6e1aef7eb8cbef1cd85d991a44173d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onMonthChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>6ae9565c08afefa2bd3ec6369bbc7981</anchor>
+      <arglist>(int month)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>onYearChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>12bf0ec26f670cd41ff34a8706ee425d</anchor>
+      <arglist>(int year)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>previous</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>9e12065c701532f78a1f8f73f2b051ae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>valueChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>8ac7abe9e443fcd4e7f27744aa1af6d7</anchor>
+      <arglist>(int i)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>weekStateChanged</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>618ce4f56b677c3542e68ab949e1f6aa</anchor>
+      <arglist>(int state)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSpinBox *</type>
+      <name>daySpin</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>a60de468f1f79b99eb4c12a0b464374f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDateEdit *</type>
+      <name>end</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>92fb302431aa1160f8cc4f01cd6759b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QComboBox *</type>
+      <name>monthCombo</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>7be93534d079040b3b9c872a930e37b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QCheckBox *</type>
+      <name>multiWeek</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>656c9d901e74280fce6f6b1d751e36f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myDate</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>a30d974227c4bdb40e85370f98f00787</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QStackedLayout *</type>
+      <name>stackedLayout</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>7246535fc66438d4780e18318f52659b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDateEdit *</type>
+      <name>start</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>1ef084168e37da4624735758272c211e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>state</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>a4c54df5074f4f7cd8955c5c077f2415</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QSpinBox *</type>
+      <name>weekSpin</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>06871a404877f3bc4c72f890d36f9b49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QComboBox *</type>
+      <name>yearCombo</name>
+      <anchorfile>classSelectorWidget.html</anchorfile>
+      <anchor>18499508dc50ffa2611a620e0dcbb6a0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>Servicios</name>
     <filename>classServicios.html</filename>
     <base>EPlugin</base>
@@ -17746,6 +20789,60 @@
       <anchorfile>classVCompras.html</anchorfile>
       <anchor>8ac5076f718306457f9b6ec3e28b1544</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>VCuentaCorriente</name>
+    <filename>classVCuentaCorriente.html</filename>
+    <base>EVLista</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>agregar</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>64b2f3ff916273fc02c169bfeb4459c4</anchor>
+      <arglist>(bool autoeliminarid)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>VCuentaCorriente</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>f0e1a209048d28e1da6def28d289a950</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~VCuentaCorriente</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>184440a8462a38fb1d1c43c856223b90</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>darBaja</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>7cefe897ba5c4b5e0e2a2abd369c49b3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>modificarLimite</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>eedbc59f842ad4a41afe6081f091f4a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verResumen</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>f4b45ceba394922c220c8ccb581e0a30</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>menuContextual</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>a290b728a938ba35c22df7e8047f694a</anchor>
+      <arglist>(const QModelIndex &amp;indice, QMenu *menu)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -18831,6 +21928,301 @@
       <arglist>()</arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>WeekDayHeaderItem</name>
+    <filename>classWeekDayHeaderItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>d50a38e32346ee896ef97c2225c4579a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paint</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>8ff232c38c6a484349c436b4fdf87227</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WeekDayHeaderItem</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>f20e4dfeca6d230e2c458a28c030a1ce</anchor>
+      <arglist>(QuickCalendarView *calendarView, int dayOfWeek, QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>d9262e6037fa17f94aedda681ccf9c26</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>aa4f7128607af8688cd91926bab6d729</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>53e8c77d095362ce3605d4014aa93122</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myAlign</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>132a3ae126666b12e4d1232ade837794</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>myDayOfWeek</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>6261ecb4983a1c1a689b5dbe009e41b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>myDayTitle</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>5cbeb0855ae1355b4c295f5cecf77e45</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QFont</type>
+      <name>myFont</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>7e9d1c49354969a6765d3f13d2a7e9d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLinearGradient</type>
+      <name>myGradient</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>38b7b2da31cfa21471fb543e7cd60e2e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPen</type>
+      <name>myPen</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>d6156b9764263cfcc3c3d5d4e424052f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QuickCalendarView *</type>
+      <name>ptrCalendarView</name>
+      <anchorfile>classWeekDayHeaderItem.html</anchorfile>
+      <anchor>a8cfb841cf3c9fa800f0fe4d96a6c61e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>WeekHeaderItem</name>
+    <filename>classWeekHeaderItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>dataChanged</name>
+      <anchorfile>classWeekHeaderItem.html</anchorfile>
+      <anchor>e7ae93ea1e84459eb89a3667513409cd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classWeekHeaderItem.html</anchorfile>
+      <anchor>ac71e16f26d3f6773b4692dbda5d5885</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classWeekHeaderItem.html</anchorfile>
+      <anchor>c33144ed7b1575a33e812d0ff2ede8e2</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WeekHeaderItem</name>
+      <anchorfile>classWeekHeaderItem.html</anchorfile>
+      <anchor>b9952e43309cf1873d14de52bcf44de2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WeekHeaderItem</name>
+      <anchorfile>classWeekHeaderItem.html</anchorfile>
+      <anchor>d8fd3a5a4711a4297c4e568d31297187</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; DayHeaderItem * &gt;</type>
+      <name>dayHeaders</name>
+      <anchorfile>classWeekHeaderItem.html</anchorfile>
+      <anchor>5a65d3f688ee3fec8505eb4975c2e2da</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>WeekItem</name>
+    <filename>classWeekItem.html</filename>
+    <base>CalendarItem</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>dataChanged</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>fa8427ca90ede2bca91f661b16b8b4cf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>dayOfWeek</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>5b48033d18dcc020a441c970f5ce42d6</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hasDate</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>e0e106ef7ad891be8ba6c5e406b0cb80</anchor>
+      <arglist>(const QDate &amp;date)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>layoutChanged</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>9e7e0a8c0402c6e8113e20a19ea34186</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paint</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>69caf5d85210642e6498fbb6bbdfa53b</anchor>
+      <arglist>(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WeekItem</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>6c22157d37e86f0b071a9ae976ebaa82</anchor>
+      <arglist>(QuickCalendarView *calendarView, const QDate &amp;date, const QDate &amp;end, QGraphicsItem *parent=0, QGraphicsScene *scene=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WeekItem</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>5ff8b61685ffe7d014493f17f92d60f8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>d49639715106ace6fac3c919e1b2cac9</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>980a3cfbbd4d39ddeb7c0f54d8a258fc</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>8c42bf4316e94ce0506ceab37cf23d94</anchor>
+      <arglist>(QGraphicsSceneMouseEvent *event)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ClockBar *</type>
+      <name>clockBar</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>ddc430e75c8f4d9d734c5632e6dff32f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem *</type>
+      <name>dayContentContainer</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>aafd6cd2325af02d99f5355a28b8cb41</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem *</type>
+      <name>dayHeaderContainer</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>6dde82abc4ae1aa4f68a39d231ff5aa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myDate</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>a7fa39a551b97b70be571c16af7f4b72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QList&lt; DayItem * &gt;</type>
+      <name>myDays</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>88ce0f8225a47bfa4fb7e8a2443b8a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QFont</type>
+      <name>myFont</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>2bbccd95898de38cf8f32f18736b9aee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myRangeEnd</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>795970f4ff57dd5137dada6b42dc964f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QDate</type>
+      <name>myRangeStart</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>80c2ad0bba51e833c2aef85788d9226a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QuickCalendarView *</type>
+      <name>ptrCalendarView</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>e2b64a2707c68f761d06bb95a8f00b1f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ScrollAreaItem *</type>
+      <name>ptrScrollArea</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>1deac98b1a207ff705ccc60a1caad086</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CalendarItem *</type>
+      <name>ptrScrollPane</name>
+      <anchorfile>classWeekItem.html</anchorfile>
+      <anchor>007f88d8db5720dd00cae20e85dc1992</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="namespace">
     <name>NCUtils</name>
     <filename>namespaceNCUtils.html</filename>
@@ -18998,6 +22390,25 @@
     <file>vcompras.h</file>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/plugins/CtaCte/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/CtaCte/</path>
+    <filename>dir_f077e5cabac38ebf10e1cedf2c2cb7d4.html</filename>
+    <file>cuentacorrienteplugin.cpp</file>
+    <file>cuentacorrienteplugin.h</file>
+    <file>formnuevactacte.cpp</file>
+    <file>formnuevactacte.h</file>
+    <file>formprefctacte.cpp</file>
+    <file>formprefctacte.h</file>
+    <file>formresumenctacte.cpp</file>
+    <file>formresumenctacte.h</file>
+    <file>mcuentacorriente.cpp</file>
+    <file>mcuentacorriente.h</file>
+    <file>mitemcuentacorriente.cpp</file>
+    <file>mitemcuentacorriente.h</file>
+    <file>vcuentacorriente.cpp</file>
+    <file>vcuentacorriente.h</file>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/plugins/presupuesto/plugins/default/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/default/</path>
     <filename>dir_e77852e7846388d05d86f526eb7403e9.html</filename>
@@ -19113,6 +22524,7 @@
     <name>Programas/gestotux/</name>
     <path>/home/Esteban/Programas/gestotux/</path>
     <filename>dir_b1a546a748a62f1bda915a377e9774c0.html</filename>
+    <dir>Programas/gestotux/micelaseos/</dir>
     <dir>Programas/gestotux/plugins/</dir>
     <dir>Programas/gestotux/reporte/</dir>
     <dir>Programas/gestotux/src/</dir>
@@ -19160,6 +22572,12 @@
     <file>misc.h</file>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/micelaseos/</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/</path>
+    <filename>dir_4ada0c40a3a3baf45840463b5b69773b.html</filename>
+    <dir>Programas/gestotux/micelaseos/QuickCalendarView/</dir>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/plugins/presupuesto/plugins/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/plugins/</path>
     <filename>dir_942b8eefa034f346080edd470fa37383.html</filename>
@@ -19172,6 +22590,7 @@
     <filename>dir_2241d903d8b552fecd54d40d9c6f6ba2.html</filename>
     <dir>Programas/gestotux/plugins/autodestruc/</dir>
     <dir>Programas/gestotux/plugins/compras/</dir>
+    <dir>Programas/gestotux/plugins/CtaCte/</dir>
     <dir>Programas/gestotux/plugins/default/</dir>
     <dir>Programas/gestotux/plugins/digifauno/</dir>
     <dir>Programas/gestotux/plugins/email/</dir>
@@ -19241,6 +22660,8 @@
     <file>dcategoria.h</file>
     <file>dproductos.cpp</file>
     <file>dproductos.h</file>
+    <file>formprefproductos.cpp</file>
+    <file>formprefproductos.h</file>
     <file>mcategorias.cpp</file>
     <file>mcategorias.h</file>
     <file>mproductos.cpp</file>
@@ -19270,6 +22691,12 @@
     <file>proveedor.h</file>
     <file>vproveedor.cpp</file>
     <file>vproveedor.h</file>
+  </compound>
+  <compound kind="dir">
+    <name>Programas/gestotux/micelaseos/QuickCalendarView/</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/</path>
+    <filename>dir_dd3fde6b1607a3fccf9ac70c8fb23841.html</filename>
+    <dir>Programas/gestotux/micelaseos/QuickCalendarView/src/</dir>
   </compound>
   <compound kind="dir">
     <name>Programas/gestotux/reporte/</name>
@@ -19363,12 +22790,56 @@
     <file>version.h</file>
   </compound>
   <compound kind="dir">
+    <name>Programas/gestotux/micelaseos/QuickCalendarView/src/</name>
+    <path>/home/Esteban/Programas/gestotux/micelaseos/QuickCalendarView/src/</path>
+    <filename>dir_c8211cdcd2b4b75120f7cb0f8054be23.html</filename>
+    <file>appointment.cpp</file>
+    <file>appointment.h</file>
+    <file>appointmentdetailsform.cpp</file>
+    <file>appointmentdetailsform.h</file>
+    <file>appointmentitem.cpp</file>
+    <file>appointmentitem.h</file>
+    <file>calendar.cpp</file>
+    <file>calendar.h</file>
+    <file>calendardetailsform.h</file>
+    <file>calendaritem.cpp</file>
+    <file>calendaritem.h</file>
+    <file>calendartablemodel.cpp</file>
+    <file>calendartablemodel.h</file>
+    <file>clockbar.cpp</file>
+    <file>clockbar.h</file>
+    <file>daycontentitem.cpp</file>
+    <file>daycontentitem.h</file>
+    <file>dayitem.cpp</file>
+    <file>dayitem.h</file>
+    <file>main.cpp</file>
+    <file>quickcalendarstyle.cpp</file>
+    <file>quickcalendarstyle.h</file>
+    <file>quickcalendarview.cpp</file>
+    <file>quickcalendarview.h</file>
+    <file>quickcalendarwindow.cpp</file>
+    <file>quickcalendarwindow.h</file>
+    <file>scrollareaitem.cpp</file>
+    <file>scrollareaitem.h</file>
+    <file>scrollbar.cpp</file>
+    <file>scrollbar.h</file>
+    <file>selectorwidget.cpp</file>
+    <file>selectorwidget.h</file>
+    <file>weekdayheaderitem.cpp</file>
+    <file>weekdayheaderitem.h</file>
+    <file>weekheaderitem.h</file>
+    <file>weekitem.cpp</file>
+    <file>weekitem.h</file>
+  </compound>
+  <compound kind="dir">
     <name>Programas/gestotux/utiles/</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>dir_96dd5dfec6529fa71a74b9d6ee5ac519.html</filename>
     <dir>Programas/gestotux/utiles/estilos/</dir>
     <file>dproductostotales.cpp</file>
     <file>dproductostotales.h</file>
+    <file>dsino.cpp</file>
+    <file>dsino.h</file>
     <file>eactcerrar.cpp</file>
     <file>eactcerrar.h</file>
     <file>eactemail.cpp</file>
@@ -19413,8 +22884,6 @@
     <name>Programas/gestotux/plugins/ventas/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/ventas/</path>
     <filename>dir_be5f0e2fda2955ea080145fa8f956767.html</filename>
-    <file>edsbprecio.cpp</file>
-    <file>edsbprecio.h</file>
     <file>formagregarventa.cpp</file>
     <file>formagregarventa.h</file>
     <file>mlistaprecio.cpp</file>

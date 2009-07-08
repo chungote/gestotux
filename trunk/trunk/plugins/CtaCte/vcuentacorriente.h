@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
+#ifndef VCUENTACORRIENTE_H
+#define VCUENTACORRIENTE_H
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#include <evlista.h>
+
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class VCuentaCorriente : public EVLista
 {
- inicializar();
-}
+Q_OBJECT
+public:
+    VCuentaCorriente(QWidget *parent = 0);
+    ~VCuentaCorriente();
 
+public slots:
+    void agregar( bool autoeliminarid );
+protected:
+    void menuContextual( const QModelIndex &indice, QMenu *menu );
+protected slots:
+    void modificarLimite();
+    void darBaja();
+    void verResumen();
+};
 
-EMCliente::~EMCliente()
-{
-}
-
-
-
-
-/*!
-    \fn EMCliente::inicializar()
- */
-void EMCliente::inicializar()
-{
- this->setQuery( "SELECT id, razon_social FROM clientes" );
-}
+#endif

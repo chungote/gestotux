@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,43 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
+#include "preferencias.h"
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#include "formprefctacte.h"
+
+FormPrefCtaCte::FormPrefCtaCte ( QWidget* parent, Qt::WFlags fl )
+: QWidget ( parent, fl ), Ui::FormPrefCtaCteBase()
 {
- inicializar();
+	setupUi ( this );
+	this->setWindowTitle( "Cuenta Corriente" );
 }
 
-
-EMCliente::~EMCliente()
+FormPrefCtaCte::~FormPrefCtaCte()
 {
 }
 
-
+/*!
+    \fn FormPrefCtaCte::guardar()
+ */
+void FormPrefCtaCte::guardar()
+{
+ preferencias::getInstancia()->setValue( "Preferencias/CtaCte/habilitada", GBHabilitar->isChecked() );
+}
 
 
 /*!
-    \fn EMCliente::inicializar()
+    \fn FormPrefCtaCte::aplicar()
  */
-void EMCliente::inicializar()
+void FormPrefCtaCte::aplicar()
 {
- this->setQuery( "SELECT id, razon_social FROM clientes" );
+    /// @todo implement me
+}
+
+
+/*!
+    \fn FormPrefCtaCte::cargar()
+ */
+void FormPrefCtaCte::cargar()
+{
+ GBHabilitar->setChecked( preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada", false ).toBool() );
 }

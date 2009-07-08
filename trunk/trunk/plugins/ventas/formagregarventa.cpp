@@ -51,6 +51,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	// Inicio los modelos
 	CBCliente->setModel( new EMCliente( CBCliente ) );
 	CBCliente->setModelColumn( 1 );
+	CBCliente->setEditable( true );
 
 	// Lista de Precios
 	CBListaPrecio->setModel( new MListaPrecio( CBListaPrecio ) );
@@ -83,6 +84,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	this->addAction( new EActGuardar( this ) );
 
 	connect( CBListaPrecio, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioListaPrecio( int ) ) );
+	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 	cambioListaPrecio( CBListaPrecio->currentIndex() );
 }
 
@@ -145,9 +147,7 @@ void FormAgregarVenta::eliminarProducto()
 	foreach( indice, indices )
 	{
 		if( indice.isValid() )
-		{
-			TVProductos->model()->removeRow( indice.row() );
-		}
+		{ TVProductos->model()->removeRow( indice.row() ); }
 	}
  }
  return;

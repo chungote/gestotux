@@ -239,6 +239,10 @@
       <subclass uifile="plugins/ventas/FormAgregarVentaBase.ui" sourcefile="formagregarventa.h" />
       <subclass uifile="plugins/productos/FormPrefProductosBase.ui" sourcefile="formprefproductos.cpp" />
       <subclass uifile="plugins/productos/FormPrefProductosBase.ui" sourcefile="formprefproductos.h" />
+      <subclass uifile="plugins/CtaCte/FormPrefCtaCteBase.ui" sourcefile="formprefctacte.cpp" />
+      <subclass uifile="plugins/CtaCte/FormPrefCtaCteBase.ui" sourcefile="formprefctacte.h" />
+      <subclass uifile="plugins/CtaCte/FormResumenCtaCteBase.ui" sourcefile="formresumenctacte.cpp" />
+      <subclass uifile="plugins/CtaCte/FormResumenCtaCteBase.ui" sourcefile="formresumenctacte.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

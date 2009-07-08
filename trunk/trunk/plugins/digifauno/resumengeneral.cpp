@@ -40,7 +40,7 @@ resumenGeneral::~resumenGeneral()
 {}
 
 /*!
-    \fn resumenGeneral::renderizar( int id_categoria_detallada, QDate primero, QDate ultimo )
+    \fn resumenGeneral::renderizar( QDate primero, QDate ultimo )
 	Genera la salida visible del resumen
  */
 void resumenGeneral::renderizar( QDate primero, QDate ultimo )

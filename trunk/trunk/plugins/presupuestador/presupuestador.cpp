@@ -116,7 +116,9 @@ void presupuestador::nuevoPresupuesto()
 
 
 /*!
-    \fn presupuestador::crearmenu( QMenuBar *m )
+    \fn presupuestador::crearMenu( QMenuBar *m )
+	Coloca las acciones en el menu correspondiente
+	@param m Menu del programa
  */
 void presupuestador::crearMenu( QMenuBar *m )
 {

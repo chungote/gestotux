@@ -64,9 +64,6 @@ FPrefGeneral.ui \
 !include( cliente.pri ){
     TARGET = gestotux
 }
-#TARGET = gestotux
-
-
 
 DESTDIR = ../bin
 
@@ -83,13 +80,8 @@ linux-g++ {
     OBJECTS_DIR = obj
 }
 
-CONFIG -= release
-
 QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3
-
-
-
 
 RESOURCES += gestotux.qrc
 
@@ -103,17 +95,10 @@ system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
 QT += webkit
 
-
 TARGETDEPS += ../bin/libncreport.a \
   ../bin/libutiles.a
 
-#TARGET = gestotux
-
-
-
 DEFINES += GESTOTUX_DESARROLLO
-
-
 
 INCLUDEPATH += ../reporte \
   ../utiles \
@@ -122,4 +107,3 @@ INCLUDEPATH += ../reporte \
 
 LIBS += ../bin/libutiles.a \
   ../bin/libncreport.a
-

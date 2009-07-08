@@ -309,7 +309,7 @@ Q_EXPORT_PLUGIN2( adigifauno, DigiFauno );
 
 
 /*!
-    \fn DigiFauno::crearToolBar()
+    \fn DigiFauno::crearToolBar( QToolBar *t )
  */
 void DigiFauno::crearToolBar( QToolBar *t )
 {  t->addActions( _acciones ); }

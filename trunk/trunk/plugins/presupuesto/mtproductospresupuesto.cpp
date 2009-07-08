@@ -187,7 +187,7 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
 
 
 /*!
-    \fn MTProductosPresupuesto::QAbstractItemModel::flags ( const QModelIndex & index ) const
+    \fn MTProductosPresupuesto::flags ( const QModelIndex & index ) const
  */
 Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 {
@@ -207,7 +207,7 @@ Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 
 
 /*!
-    \fn MTProductosPresupuesto::columnCount( QModelIndex &parent ) const
+    \fn MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
  */
 int MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
 {

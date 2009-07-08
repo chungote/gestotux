@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "emcliente.h"
+#ifndef MITEMCUENTACORRIENTE_H
+#define MITEMCUENTACORRIENTE_H
 
-EMCliente::EMCliente(QObject *parent)
- : QSqlQueryModel(parent)
+#include <QSqlRelationalTableModel>
+
+/**
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MItemCuentaCorriente : public QSqlRelationalTableModel
 {
- inicializar();
-}
+Q_OBJECT
+public:
+    MItemCuentaCorriente(QObject *parent = 0);
+    ~MItemCuentaCorriente();
+    static bool agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const QDate &fecha, const QString &descripcion, const double &aplicar );;
 
 
-EMCliente::~EMCliente()
-{
-}
+enum TipoOperacionCtaCte {
+  Recibo = 0,
+  Factura = 1,
+  NotaCredito = 2,
+  NotaDebito = 3
+};
+};
 
-
-
-
-/*!
-    \fn EMCliente::inicializar()
- */
-void EMCliente::inicializar()
-{
- this->setQuery( "SELECT id, razon_social FROM clientes" );
-}
+#endif
