@@ -75,6 +75,8 @@ bool Ventas::inicializar()
  ActListaPrecio = new QAction( "Lista de precios", this );
  connect( ActListaPrecio, SIGNAL( triggered() ), this, SLOT( listaPrecios() ) );
 
+ /*ActCategorias = new QAction( "Categorias", this );
+ */
  return true;
 }
 
@@ -112,15 +114,11 @@ int Ventas::tipo() const
  */
 void Ventas::crearMenu( QMenuBar *m )
 {
- QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHer == 0 )
- {
-  qDebug( "Error en las baras de menu" );
- }
- else
- {
-  menuHer->addAction( ActListaPrecio );
- }
+ QMenu *mVentas = m->addMenu( "Ventas" );
+ mVentas->addAction( ActAgregarVentas );
+ mVentas->addSeparator();
+ mVentas->addAction( ActListaPrecio );
+ //mVentas->addAction( ActCategorias );
 }
 
 

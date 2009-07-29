@@ -57,9 +57,10 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
 	// Rellenar los items de productos
-	QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
-	while( cola.next() )
-	{  CBProducto->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) ); }
+	QSqlQueryModel *cola = new QSqlQueryModel( this );
+	cola->setQuery( "SELECT id, nombre FROM producto WHERE habilitado = 1" );
+	CBProducto->setModel( cola );
+	CBProducto->setModelColumn( 1 );
 	CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
 	CBProducto->setEditable( true );
 	CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
@@ -177,7 +178,7 @@ void FormAgregarCompra::agregarProducto()
 {
  mcp->insertRow( -1 );
  QModelIndex indice = mcp->index( mcp->rowCount()-2 , 0 );
- mcp->setData( indice, CBProducto->currentIndex(), Qt::EditRole );
+ mcp->setData( indice, CBProducto->model()->data( CBProducto->model()->index( CBProducto->currentIndex(), 0 ) , Qt::EditRole ).toInt(), Qt::EditRole );
  indice = mcp->index( mcp->rowCount()-2 , 1 );
  TVLista->setCurrentIndex( indice );
  TVLista->edit( indice );

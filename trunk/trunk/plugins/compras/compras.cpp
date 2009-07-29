@@ -71,15 +71,10 @@ QWidgetList Compras::formsPreferencias()
 
 void Compras::crearMenu(QMenuBar* m)
 {
- QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHerramientas == 0 )
- {
-  qDebug( "Error en las baras de menu" );
- }
- else
- {
-  menuHerramientas->addAction( ActCompras );
- }
+ QMenu *mCompras = m->addMenu( "Compras" );
+ mCompras->addAction( ActAgregarCompra );
+ mCompras->addSeparator();
+ mCompras->addAction( ActCompras );
 }
 
 void Compras::crearToolBar(QToolBar* t)
