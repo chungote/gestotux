@@ -36,6 +36,7 @@ protected slots:
     void eliminarProducto();
     void guardar();
     void cambioListaPrecio( int id_combo );
+    void cambioCliente( int id_combo );
 
 private:
     MProductosTotales *mcp;

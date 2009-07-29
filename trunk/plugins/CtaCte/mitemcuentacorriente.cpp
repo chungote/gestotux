@@ -35,6 +35,7 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent)
  setHeaderData( 5, Qt::Horizontal, "Debe" );
  setHeaderData( 6, Qt::Horizontal, "Haber" );
  setHeaderData( 7, Qt::Horizontal, "Numero cuenta Corriente" );
+ setHeaderData( 8, Qt::Horizontal, "Numero de Comprobante" );
 }
 
 

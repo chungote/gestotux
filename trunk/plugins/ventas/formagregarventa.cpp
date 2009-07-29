@@ -59,9 +59,10 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	qobject_cast<QSqlTableModel *>(CBListaPrecio->model())->select();
 
 	// Rellenar los items de productos
-	QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
-	while( cola.next() )
-	{  CBProducto->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) ); }
+	QSqlQueryModel *cola = new QSqlQueryModel( this );
+	cola->setQuery( "SELECT id, nombre FROM producto WHERE habilitado = 1" );
+	CBProducto->setModel( cola );
+	CBProducto->setModelColumn( 1 );
 	CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
 	CBProducto->setEditable( true );
 	CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
@@ -85,7 +86,12 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
 	connect( CBListaPrecio, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioListaPrecio( int ) ) );
 	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
+
 	cambioListaPrecio( CBListaPrecio->currentIndex() );
+
+	GBFormaPago->setVisible( false );
+	DSBCant->setPrefix( "" );
+	DSBCant->setValue( 1.0 );
 }
 
 FormAgregarVenta::~FormAgregarVenta()
@@ -98,12 +104,27 @@ FormAgregarVenta::~FormAgregarVenta()
  */
 void FormAgregarVenta::agregarProducto()
 {
+ // Verificación previa
+ if( DSBCant->value() == 0 )
+ { QMessageBox::information( this, "Eror de dato", "La cantidad a agregar debe ser mayor que cero" ); return; }
+ // Inserto la fila
  mcp->insertRow( -1 );
- QModelIndex indice = mcp->index( mcp->rowCount()-2 , 0 );
- mcp->setData( indice, CBProducto->currentIndex(), Qt::EditRole );
- indice = mcp->index( mcp->rowCount()-2 , 1 );
- TVProductos->setCurrentIndex( indice );
- TVProductos->edit( indice );
+ // Pongo el producto
+ QModelIndex indice = mcp->index( mcp->rowCount()-2, 0 );
+ int id_producto = CBProducto->model()->data( CBProducto->model()->index( CBProducto->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+ mcp->setData( indice, id_producto, Qt::EditRole );
+ // Pongo la cantidad
+ indice = mcp->index( mcp->rowCount()-2, 2 );
+ mcp->setData( indice, DSBCant->value(), Qt::EditRole );
+ // Edito el item que agrege
+ //indice = mcp->index( mcp->rowCount()-2 , 1 );
+ //TVProductos->setCurrentIndex( indice );
+ //TVProductos->edit( indice );
+ // Reseteo los ingresos de producto
+ DSBCant->setValue( 1.0 );
+ CBProducto->setCurrentIndex( -1 );
+ // Seteo el foco
+ DSBCant->setFocus();
 }
 
 
@@ -228,7 +249,7 @@ void FormAgregarVenta::guardar()
    }
    else
    {
-    qWarning( "Error al bsucar el stock" );
+    qWarning( "Error al buscar el stock" );
    }
   }
  }
@@ -253,4 +274,13 @@ void FormAgregarVenta::cambioListaPrecio( int id_combo )
 {
  qDebug( qPrintable( QString( "Cambiado id lista precio: %1" ).arg( id_combo ) ) );
  mcp->setearListaPrecio( CBListaPrecio->model()->data( CBListaPrecio->model()->index(CBListaPrecio->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
+}
+
+
+/*!
+    \fn FormAgregarVenta::cambioCliente( int id_combo )
+ */
+void FormAgregarVenta::cambioCliente( int id_combo )
+{
+    /// @todo implement me
 }

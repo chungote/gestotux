@@ -67,8 +67,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 	TVItems->hideColumn( 0 );
 	TVItems->hideColumn( 2 );
 	TVItems->hideColumn( 7 );
-
-
+	TVItems->resizeColumnsToContents();
 
 }
 
@@ -85,20 +84,25 @@ FormResumenCtaCte::~FormResumenCtaCte()
 void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
 {
  // Seteo el numero de cuenta
- CBClienteCtaCte->setCurrentIndex( numero_cuenta );
+ ///@todo CBClienteCtaCte->setCurrentIndex( numero_cuenta );
+ //CBClienteCtaCte->setCurrentText( CBClienteCtaCte->model()->findItems( numero_cuenta ).first().data().toString() );
  //Busco los datos
  QSqlQuery cola( QString( "SELECT fecha_alta, saldo, limite FROM ctacte WHERE numero_cuenta = '%1'" ).arg( numero_cuenta ) );
  if( cola.next() )
  {
-   LFechaAlta->setText( cola.record().value(0).toDate().toString() );
+   LFechaAlta->setText( cola.record().value(0).toDate().toString( "dd/MM/YYYY" ) );
    LSaldoActual->setText( QString( "$ %L1" ).arg( cola.record().value(1).toDouble() ) );
    LLimiteCredito->setText( QString( "$ %L1" ).arg( cola.record().value(2).toDouble() ) );
-   modeloItem->setFilter( QString( "numero_cuenta = %1" ).arg( numero_cuenta ) );
+   modeloItem->setFilter( QString( "id_ctacte = '%1'" ).arg( numero_cuenta ) );
    modeloItem->select();
  }
  else
  {
+  LFechaAlta->setText( "" );
+  LSaldoActual->setText( "" );
+  LLimiteCredito->setText( "" );
   qWarning( "Error al obtener los datos de la cuenta corriente" );
+  qDebug( qPrintable( "Numero cuenta: " + QString::number( numero_cuenta ) ) );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.executedQuery() ) );
  }
@@ -112,7 +116,7 @@ void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
  */
 void FormResumenCtaCte::cambioCtaCte( int numero_cuenta )
 {
- setNumeroCuenta( CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::EditRole ).toInt() );
+ setNumeroCuenta( CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toInt() );
 }
 
 

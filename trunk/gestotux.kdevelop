@@ -185,7 +185,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir></activedir>
+      <activedir>plugins/compras</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
