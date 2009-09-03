@@ -77,6 +77,9 @@ void gestotux::inicializar()
 
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
+
+ if( preferencias::getInstancia()->value( "Preferencias/General/maximizado" ).toBool() )
+ { this->showMinimized(); }
 }
 
 void gestotux::closeEvent(QCloseEvent *event)
@@ -154,7 +157,7 @@ void gestotux::createMenus()
   QDockWidget *dock;
   foreach( dock, lista )
   {
-   menuVer->addAction( dock->toggleViewAction() ); ///@todo Revisar actualizacion de este menu
+   menuVer->addAction( dock->toggleViewAction() ); ///\todo Revisar actualizacion de este menu
   }
  }
 

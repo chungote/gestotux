@@ -210,18 +210,18 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Forma de Pago:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="CBFormaPago"/>
-        </item>
-       </layout>
+       <widget class="QRadioButton" name="RBCtaCte">
+        <property name="text">
+         <string>Cuenta Corriente</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="RBContado">
+        <property name="text">
+         <string>Contado</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

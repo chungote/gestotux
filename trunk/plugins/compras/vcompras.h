@@ -23,8 +23,10 @@
 #include <evlista.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Visor de las compras realizadas
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VCompras : public EVLista
 {
   Q_OBJECT

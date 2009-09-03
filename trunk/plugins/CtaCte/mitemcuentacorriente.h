@@ -28,18 +28,20 @@
 class MItemCuentaCorriente : public QSqlRelationalTableModel
 {
 Q_OBJECT
+
 public:
+	enum TipoOperacionCtaCte {
+	  Recibo = 0,
+	  Factura = 1,
+	  NotaCredito = 2,
+	  NotaDebito = 3
+	 };
+
     MItemCuentaCorriente(QObject *parent = 0);
     ~MItemCuentaCorriente();
-    static bool agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const QDate &fecha, const QString &descripcion, const double &aplicar );;
+    static bool agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
+    QVariant data(const QModelIndex& item, int role) const;
 
-
-enum TipoOperacionCtaCte {
-  Recibo = 0,
-  Factura = 1,
-  NotaCredito = 2,
-  NotaDebito = 3
-};
 };
 
 #endif

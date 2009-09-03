@@ -20,6 +20,7 @@
 #include "mcuentacorriente.h"
 
 #include <QColor>
+#include <QSqlError>
 
 MCuentaCorriente::MCuentaCorriente(QObject *parent)
  : QSqlRelationalTableModel(parent)
@@ -120,3 +121,108 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
  }
 }
 
+
+#include "definiciones.h"
+#include <QSqlQuery>
+#include <QSqlRecord>
+
+/*!
+    \fn MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
+	Funcion que obtiene el numero de cuenta corriente para el id de cliente seleccionado.
+	@param id_cliente Identificador de cliente
+	@return "Invalido" si el @param id_cliente no es correcto. "Error" si no se pudo conseguir, o finalmente el valor buscado.
+ */
+QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
+{
+ if( id_cliente <= 0 )
+ {
+	qDebug( "Error, el numero de cliente es invalido" );
+	return E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO;
+ }
+ QSqlQuery cola( QString( "SELECT numero_cuenta FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) );
+ if( cola.next() )
+ { return cola.record().value(0).toString(); }
+ else
+ {
+	qDebug( "Error al buscar el numero de cuenta para el cliente solicitado" );
+	return E_CTACTE_BUSCAR_NUMEROCUENTA;
+ }
+}
+
+
+/*!
+    \fn MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplicar )
+	Verifica el saldo para un cliente especifico dado el saldo actual y el aplicar para ver si se excede o no.
+	@param numero_cuenta Numero de cuenta corriente
+	@param aplicar Cantidad de saldo a aplicar
+	@return Entero segun defines CTACTE_LIMITE_xxxxxxx o el numero de error.
+
+ */
+int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplicar )
+{
+ // Busco el saldo del cliente
+ QSqlQuery cola( QString( "SELECT saldo, limite FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) );
+ if( cola.next() )
+ {
+  if( cola.record().value(0).toDouble() + aplicar > cola.record().value(1).toDouble() )
+  {
+	qDebug( "Limite de la cuenta corriente solicitada excedido" );
+	return CTACTE_LIMITE_EXCEDIDO;
+  }
+  else if( cola.record().value(0).toDouble() + aplicar == cola.record().value(1).toDouble() )
+  {
+	qDebug( "Limite de la cuenta corriente solicitada alcanzado" );
+	return CTACTE_LIMITE_ENLIMITE;
+  }
+  else
+  {
+	qDebug( "limite de la cuenta corriente solicitada correcto" );
+	return CTACTE_LIMITE_CORRECTO;
+  }
+ }
+ else
+ {
+  // Error al buscar
+  qWarning( "Error al buscar el limite d ela cuenta corriente solicitada" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.executedQuery() ) );
+  return E_CTACTE_BUSCAR_LIMITE;
+ }
+}
+
+
+/*!
+    \fn MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const double aplicar )
+	Actualiza el saldo en el campo de la cuenta corriente
+	@param numero_cuenta Numero de cuenta
+	@param aplicar diferencia a aplicar ( si es positiva -> contra el cliente / si es negativa -> a favor del cliente )
+	@return Realizado o no.
+ */
+bool MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const double aplicar )
+{
+ QSqlQuery cola( QString( "SELECT saldo FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) );
+ if( cola.next() )
+ {
+	double anterior = cola.record().value(0).toDouble();
+	anterior += aplicar;
+	if(  cola.exec( QString( "UPDATE ctacte SET saldo = %1 WHERE numero_cuenta = %2" ).arg( anterior ).arg( numero_cuenta ) ) )
+	{
+		qDebug( "Saldo actualizado correctamente" );
+		return true;
+	}
+	else
+	{
+		qWarning( "Error al buscar el saldo de la cuenta corriente solicitada al intentar actualizar el saldo" );
+		qDebug( qPrintable( cola.lastError().text() ) );
+		qDebug( qPrintable( cola.executedQuery() ) );
+		return false;
+	}
+ }
+ else
+ {
+  qWarning( "Error al intentar actualizar el saldo de la cuenta corriente solicitada" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.executedQuery() ) );
+  return false;
+ }
+}

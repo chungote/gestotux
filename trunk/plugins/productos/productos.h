@@ -24,8 +24,10 @@
 #include <eplugin.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Plugin de Productos
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class productos : public QObject, public EPlugin
 {
  Q_OBJECT

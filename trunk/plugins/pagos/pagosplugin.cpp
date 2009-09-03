@@ -17,45 +17,77 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CUENTACORRIENTEPLUGIN_H
-#define CUENTACORRIENTEPLUGIN_H
+#include <QAction>
+#include "pagosplugin.h"
 
-#include <QObject>
-#include "eplugin.h"
-#include <QtPlugin>
 
-/**
- * \brief Plugin de cuentas corriente
- *
- * Plugin que tiene el control de las cuentas corrientes en el programa
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class CuentaCorrientePlugin : public QObject, public EPlugin
+bool PagosPlugin::inicializar()
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
-public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+ ActPagos = new QAction( "Pagos", this );
+ ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
+ connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
 
-signals:
-    void agregarVentana(QWidget* v);
+ return true;
+}
 
-public slots:
-    void seCierraGestotux();
-    void verCuentasCorrientes();
+bool PagosPlugin::verificarTablas()
+{
+/* if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "lista_precio" ) )
+ { qWarning( "Error al buscar la tabla lista_precios" ); return false; }*/
+ return true;
+}
 
-private:
-    QAction *ActCuentasCorrientes;
+double PagosPlugin::version() const
+{
+ return 0.1;
+}
 
-};
+int PagosPlugin::tipo() const
+{
+ return EPlugin::comun;
+}
 
-#endif
+QList< QActionGroup * > PagosPlugin::accionesBarra()
+{
+ return QList<QActionGroup*>();
+}
+
+QString PagosPlugin::nombre() const
+{
+ return "pagos";
+}
+
+QWidgetList PagosPlugin::formsPreferencias()
+{
+ return QWidgetList();
+}
+
+void PagosPlugin::crearMenu( QMenuBar* m )
+{
+ QMenu *mVentas = m->findChild<QMenu *>( "menuVentas" );
+ if( mVentas == 0 )
+ {
+  mVentas = m->addMenu( "Ventas" );
+  mVentas->setObjectName( "menuVentas" );
+ }
+ mVentas->addAction( ActPagos );
+}
+
+void PagosPlugin::crearToolBar(QToolBar* t)
+{
+}
+
+void PagosPlugin::seCierraGestotux()
+{
+}
+
+Q_EXPORT_PLUGIN2( pagos, PagosPlugin );
+
+
+/*!
+    \fn PagosPlugin::verPagos()
+ */
+void PagosPlugin::verPagos()
+{
+    /// @todo implement me
+}

@@ -118,11 +118,11 @@ bool hacerTablas( QString nombrePlug )
 }
 
 
-
-
-
-
-
+/**
+ * \mainpage Documentacion interna de Gestotux
+ *
+ * Esta es la documentacion interna de gestotux respecto a su estructura de codigo. Si desea conocer mas datos hacerca de el modo de funcionamiento del programa por favor dirijase a http://gestotux.googlecode.com/ para acceder al wiki de el programa.
+ */
 int main(int argc, char *argv[])
 {
       // Inicializa imagenes y archivos internos

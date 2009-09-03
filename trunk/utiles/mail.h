@@ -58,6 +58,10 @@ class Mail;
  __declspec(dllexport)
 #endif
 
+/*!
+ * \brief Datos privados del email
+ *
+ */
 class MailPrivate {
 public:
 	MailPrivate(Mail *_owner, Mail *_parent) :
@@ -130,7 +134,11 @@ public:
 };
 
 /****************************************************************************/
-
+/*!
+ * \brief Objeto que es un email
+ *
+ * objeto que mantiene los datos de cada email que se mantiene el sistema.
+ */
 class Mail : public QObject
 {
     Q_OBJECT

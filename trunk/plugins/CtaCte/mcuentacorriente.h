@@ -36,6 +36,9 @@ public:
     ~MCuentaCorriente();
 
     QVariant data(const QModelIndex& item, int role) const;
+    static QString obtenerNumeroCuentaCorriente( const int id_cliente );
+    static int verificarSaldo( const QString numero_cuenta, double aplicar );
+    static bool actualizarSaldo( const QString numero_cuenta, const double aplicar );
 
 };
 

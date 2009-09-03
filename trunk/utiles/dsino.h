@@ -23,8 +23,12 @@
 #include <QItemDelegate>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Delegate para elegir como "Si" y "No"
+ *
+ * Delegate para edicion de campos booleanos con combobox que te deja elegir entre Si y No.
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class DSiNo : public QItemDelegate
 {
 Q_OBJECT

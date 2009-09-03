@@ -17,21 +17,21 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CUENTACORRIENTEPLUGIN_H
-#define CUENTACORRIENTEPLUGIN_H
+#ifndef PAGOSPLUGIN_H
+#define PAGOSPLUGIN_H
 
 #include <QObject>
-#include "eplugin.h"
+#include <eplugin.h>
 #include <QtPlugin>
 
 /**
- * \brief Plugin de cuentas corriente
- *
- * Plugin que tiene el control de las cuentas corrientes en el programa
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class CuentaCorrientePlugin : public QObject, public EPlugin
+\brief Plugin de Pagos
+
+Plugin para realizar pagos y/o imprirmir recibos
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class PagosPlugin : public QObject, public EPlugin
 {
 Q_OBJECT
 Q_INTERFACES( EPlugin )
@@ -48,14 +48,12 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
-
 public slots:
     void seCierraGestotux();
-    void verCuentasCorrientes();
+    void verPagos();
 
 private:
-    QAction *ActCuentasCorrientes;
-
+	QAction *ActPagos;
 };
 
 #endif

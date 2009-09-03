@@ -78,6 +78,7 @@ private:
     bool guardar_a_archivo( QString *nombre );
     bool comprimir();
     bool ejecutarColas( QStringList colas );
+    void regenerarPreferencias( const QString *pref );
 
 
 public slots:

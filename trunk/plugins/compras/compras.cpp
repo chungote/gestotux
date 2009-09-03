@@ -72,6 +72,7 @@ QWidgetList Compras::formsPreferencias()
 void Compras::crearMenu(QMenuBar* m)
 {
  QMenu *mCompras = m->addMenu( "Compras" );
+ mCompras->setObjectName( "menuCompras" );
  mCompras->addAction( ActAgregarCompra );
  mCompras->addSeparator();
  mCompras->addAction( ActCompras );

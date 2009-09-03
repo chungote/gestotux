@@ -48,5 +48,5 @@ FORMS += FormAgregarGastoBase.ui
 
 RESOURCES += gastos.qrc
 
-TRANSLATIONS += gastos.tsCONFIG -= release
+TRANSLATIONS += gastos.ts
 

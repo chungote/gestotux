@@ -52,7 +52,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
 		QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
 		while( cola.next() )
 		{
-			combo->insertItem( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString(), cola.record().value( "id" ) );
+			combo->addItem( cola.record().value("nombre").toString(), cola.record().value( "id" ) );
 		}
 		combo->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
 		combo->setEditable( true );
@@ -98,7 +98,7 @@ void DProductosTotales::setEditorData(QWidget* editor, const QModelIndex& index)
 	case 0:
 	{
 		QComboBox *combo = qobject_cast<QComboBox *>(editor);
-		combo->setCurrentIndex( index.data( Qt::EditRole ).toInt() );
+		combo->setCurrentIndex( combo->findData(  index.model()->data(index, Qt::EditRole).toInt() ) );
 		break;
 	}
 	// Precio Unitario

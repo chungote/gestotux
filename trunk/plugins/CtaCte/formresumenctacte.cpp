@@ -67,7 +67,13 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 	TVItems->hideColumn( 0 );
 	TVItems->hideColumn( 2 );
 	TVItems->hideColumn( 7 );
-	TVItems->resizeColumnsToContents();
+	TVItems->setSelectionMode( QAbstractItemView::SingleSelection );
+	TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
+	TVItems->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+	TVItems->setTextElideMode( Qt::ElideRight );
+	/// Menu contextual para cada operacion de la cuenta corriente
+	connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( hacerMenuContextual( const QModelIndex & ) ) );
+
 
 }
 
@@ -77,7 +83,7 @@ FormResumenCtaCte::~FormResumenCtaCte()
 
 
 /*!
-    \fn FormResumenCtaCte::setNumeroCuenta( const QString &numero_cuenta )
+    \fn FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
 	Setea todas las condiciones del formulario para mostrar los datos de la cuenta corriente seleccionada por el parametro
 	@param numero_cuenta Numero de cuenta al que se desea ver el resumen
  */
@@ -90,7 +96,7 @@ void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
  QSqlQuery cola( QString( "SELECT fecha_alta, saldo, limite FROM ctacte WHERE numero_cuenta = '%1'" ).arg( numero_cuenta ) );
  if( cola.next() )
  {
-   LFechaAlta->setText( cola.record().value(0).toDate().toString( "dd/MM/YYYY" ) );
+   LFechaAlta->setText( cola.record().value(0).toDate().toString( Qt::DefaultLocaleShortDate ) );
    LSaldoActual->setText( QString( "$ %L1" ).arg( cola.record().value(1).toDouble() ) );
    LLimiteCredito->setText( QString( "$ %L1" ).arg( cola.record().value(2).toDouble() ) );
    modeloItem->setFilter( QString( "id_ctacte = '%1'" ).arg( numero_cuenta ) );
@@ -124,6 +130,24 @@ void FormResumenCtaCte::cambioCtaCte( int numero_cuenta )
     \fn FormResumenCtaCte::imprimir()
  */
 void FormResumenCtaCte::imprimir()
-{ return;
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn FormResumenCtaCte::pdf()
+ */
+void FormResumenCtaCte::pdf()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn FormResumenCtaCte::email()
+ */
+void FormResumenCtaCte::email()
+{
     /// @todo implement me
 }

@@ -26,11 +26,17 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QCompleter>
+#include "definiciones.h"
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mventa.h"
 #include "mventaproducto.h"
+#include "eregistroplugins.h"
 #include "mlistaprecio.h"
+#include "../CtaCte/mcuentacorriente.h"
+#include "../CtaCte/mitemcuentacorriente.h"
+#include "../productos/mproductos.h"
+#include "preferencias.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -38,7 +44,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 	setupUi( this );
 	this->setObjectName( "formagregarcompra" );
 	this->setWindowTitle( "Agregar Venta" );
-	this->setWindowIcon( QIcon(":/imagenes/venta.png" ) );
+	this->setWindowIcon( QIcon(":/imagenes/add.png" ) );
 
 	PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
 	PBAgregarProducto->setText( "Agregar Producto" );
@@ -89,9 +95,17 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
 	cambioListaPrecio( CBListaPrecio->currentIndex() );
 
-	GBFormaPago->setVisible( false );
-	DSBCant->setPrefix( "" );
 	DSBCant->setValue( 1.0 );
+	DSBCant->setPrefix( "" );
+
+	// Verifico si la venta a cta corriente esta habilitada
+	if( !preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada" ).toBool() )
+	{
+		GBFormaPago->setVisible( false );
+		RBContado->setChecked( true );
+	}
+
+
 }
 
 FormAgregarVenta::~FormAgregarVenta()
@@ -195,6 +209,7 @@ void FormAgregarVenta::guardar()
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta venta" );
   return;
  }
+ /// @todo Verificar que este elegido uno de los tipos de pago
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {
@@ -202,6 +217,7 @@ void FormAgregarVenta::guardar()
   mcp->calcularTotales( true );
   return;
  }
+ double total_calculado = mcp->total();
  //Inicio una transacción
  QSqlDatabase::database().transaction();
  //seteo el modelo para que no calcule totales y subtotales
@@ -209,8 +225,15 @@ void FormAgregarVenta::guardar()
  // veo el id del proveedor
  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
  int id_lista_precio = CBListaPrecio->model()->data( CBListaPrecio->model()->index( CBListaPrecio->currentIndex(), 0 ) , Qt::EditRole ).toInt();
- //int id_forma_pago = CBFormaPago->model()->data( CBFormaPago->model()->index( CBFormaPago->currentIndex(), 0 ) , Qt::EditRole ).toInt();
-  int id_forma_pago = -1;
+ int id_forma_pago = -1;
+ if( RBCtaCte->isChecked() )
+ {
+   id_forma_pago = VENTA_CTACTE;
+ }
+ else if( RBContado->isChecked() )
+ {
+   id_forma_pago = VENTA_CONTADO;
+ }
  QString num_comprobante = LENumComp->text();
  // Genero la compra
  MVenta *compra = new MVenta( this, false );
@@ -233,12 +256,13 @@ void FormAgregarVenta::guardar()
   else
   {
    // Disminuyo el stock
-   int id_producto = mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt();
+   MProductos::modificarStock( mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() , mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
+   /*int id_producto = mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt();
    QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) );
    if( cola.next() )
    {
     double cantidad = cola.record().value( 0 ).toDouble();
-    cantidad -= mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble();
+    cantidad -= ;
     if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) ) {
 	qDebug( "Stock Actualizado correctamente" );
     }
@@ -250,10 +274,50 @@ void FormAgregarVenta::guardar()
    else
    {
     qWarning( "Error al buscar el stock" );
-   }
+   }*/
   }
  }
  m->submit();
+ // Si la venta es a cuenta corriente actualizo la cuenta corriente
+ if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == VENTA_CTACTE )
+ {
+  // Si se ingresa aqui el cliente tiene cuenta corriente
+  // Busco el numero de cuenta
+  QString num_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+  switch( MCuentaCorriente::verificarSaldo( num_ctacte, total_calculado ) )
+  {
+	case CTACTE_LIMITE_EXCEDIDO:
+	{
+		QMessageBox::information( this, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
+		QSqlDatabase::database().rollback();
+		return;
+		break;
+	}
+	case CTACTE_LIMITE_ENLIMITE:
+	{
+		QMessageBox::information( this, "Limite de Saldo Alcanzado", "El limite de saldo para este cliente ha sido alcanzado." );
+		break;
+	}
+	case E_CTACTE_BUSCAR_LIMITE:
+	{
+		QSqlDatabase::database().rollback();
+		return;
+		break;
+	}
+	default:
+	{ break; }
+  }
+  if( !MItemCuentaCorriente::agregarOperacion(    num_ctacte,
+						 num_comprobante,
+						 id_venta,
+						 MItemCuentaCorriente::Factura,
+						 DEFecha->date(),
+						 "Venta a CtaCte",
+						 total_calculado ) )
+  { QSqlDatabase::database().rollback(); qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); }
+ }
+ // Actualizar la cuenta general del programa
+ ///\todo Actualizar la cuenta general del programa
  // listo
   if( QSqlDatabase::database().commit() ) {
    QMessageBox::information( this, "Correcto" , "La venta se ha registrado correctamente" );
@@ -269,6 +333,8 @@ void FormAgregarVenta::guardar()
 
 /*!
     \fn FormAgregarVenta::cambioListaPrecio( int id_combo )
+	Slot llamado cada vez que se cambia la lista de precio
+	@param id_combo Indice dentro del combobox que indica la lista de precio utilizada
  */
 void FormAgregarVenta::cambioListaPrecio( int id_combo )
 {
@@ -279,8 +345,22 @@ void FormAgregarVenta::cambioListaPrecio( int id_combo )
 
 /*!
     \fn FormAgregarVenta::cambioCliente( int id_combo )
+	Slot llamado cada vez que cambia el cliente.
+	@param id_combo Indice en la lista de combobox que indica el cliente
  */
 void FormAgregarVenta::cambioCliente( int id_combo )
 {
-    /// @todo implement me
+ if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
+ {
+  QString num_cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
+  if( num_cuenta.toInt() > 0 )
+  {
+   RBCtaCte->setEnabled( true );
+  }
+  else
+  {
+   RBContado->setChecked( true );
+   RBCtaCte->setEnabled( false );
+  }
+ }
 }

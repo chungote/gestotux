@@ -148,8 +148,6 @@ private:
 	bool readyToSend;
 	bool preserveMails;
 	Mail *currentMail;
-	/// @todo Cambiar Esto!
-	//QList<Mail *> queuedMails;
 	EModeloMails *queuedMails;
 	QString smtpusername;
 	QString smtppass;

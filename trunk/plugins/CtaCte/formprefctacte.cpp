@@ -46,7 +46,7 @@ void FormPrefCtaCte::guardar()
  */
 void FormPrefCtaCte::aplicar()
 {
-    /// @todo implement me
+    /// \todo implement me
 }
 
 

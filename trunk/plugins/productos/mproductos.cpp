@@ -148,7 +148,9 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
 }
 
 
-
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
 /*!
     \fn MProductos::stock( const int id_producto )
 	Devuelve la cantidad de stock que existe de un producto si el control de stock esta habilitado
@@ -156,7 +158,19 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
 double MProductos::stock( const int id_producto )
 {
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
- { return 0; }
+ { return 10000000; }
+ QSqlQuery cola( QString( "SELECT stock FROM productos WHERE id_producto = %1" ).arg( id_producto ) );
+ if( !cola.next() )
+ {
+  return cola.record().value(0).toDouble();
+ }
+ else
+ {
+  qWarning( "Error al intentar obtener el stock del producto" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.executedQuery() ) );
+  return 0;
+ }
 }
 
 
@@ -165,5 +179,29 @@ double MProductos::stock( const int id_producto )
  */
 bool MProductos::modificarStock( const int id_producto, const double cantidad )
 {
-    /// @todo implement me
+ QSqlQuery cola( QString( "SELECT stock FROM productos WHERE id_producto = %2" ).arg( id_producto ) );
+ if( cola.next() )
+ {
+	double anterior = cola.record().value(0).toDouble();
+	anterior += cantidad;
+	if(  cola.exec( QString( "UPDATE productos SET stock = %1 WHERE id_producto = %2" ).arg( anterior ).arg( id_producto ) ) )
+	{
+		qDebug( "Stock actualizado correctamente" );
+		return true;
+	}
+	else
+	{
+		qWarning( "Error al actualizar el stock del producto" );
+		qDebug( qPrintable( cola.lastError().text() ) );
+		qDebug( qPrintable( cola.executedQuery() ) );
+		return false;
+	}
+ }
+ else
+ {
+  qWarning( "Error al intentar actualizar el stock del cuproducto solicitado" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.executedQuery() ) );
+  return false;
+ }
 }
