@@ -34,8 +34,12 @@ public:
 
 public slots:
     void agregar( bool autoeliminarid );
+
 protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
+
+    QAction *ActResumen;
+
 protected slots:
     void modificarLimite();
     void darBaja();

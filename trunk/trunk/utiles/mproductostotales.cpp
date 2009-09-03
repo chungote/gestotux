@@ -19,6 +19,10 @@
  ***************************************************************************/
 #include "mproductostotales.h"
 
+#include "../plugins/productos/mproductos.h"
+
+#include "preferencias.h"
+
 #include <QColor>
 #include <QSize>
 #include <QSqlQuery>
@@ -120,6 +124,16 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
 			// Cantidad
 			case 2:
 			{
+				// Veo si tengo que verificar el maximo posible
+				if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
+				{
+					// Busco si el stock actual menos la cantidad es <= 0
+					if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
+					{
+						qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+						return false;
+					}
+				}
 				cantidades->insert( index.row(), value.toDouble() );
 				if( _calcularTotal )
 				{
@@ -208,11 +222,16 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 	}
 	case 1:
 	{
-		if( role != Qt::DisplayRole )
+		if( role == Qt::DisplayRole )
 		{
-			return QVariant();
+			return QString( "%L1" ).arg( this->productos->size() );
 		}
-		return QString( "%L1" ).arg( this->productos->size() );
+		else if( role == Qt::TextAlignmentRole )
+		{
+			return Qt::AlignHCenter;
+		}
+		else
+		{ return QVariant(); }
 		break;
 	}
 	case 2:
@@ -226,9 +245,16 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 	}
 	case 3:
 	{
-		if( role != Qt::DisplayRole )
+		if( role == Qt::DisplayRole )
+		{
+ 			return QString( "$ %L1" ).arg( Total );
+		}
+		else if( role == Qt::TextAlignmentRole )
+		{
+			return int( Qt::AlignRight | Qt::AlignVCenter );
+		}
+		else
 		{ return QVariant(); }
-		return QString( "$ %L1" ).arg( Total );
 		break;
 	}
 	default:
@@ -345,7 +371,6 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 				break;
 			}
 			case 0:
-			case 3:
 			{
 				return int( Qt::AlignLeft | Qt::AlignVCenter );
 				break;

@@ -37,10 +37,13 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  modelo = 0;
  rmodelo->select();
 
+ ActResumen = new QAction( "Ver Resumen de Cuenta", this );
+ connect( ActResumen, SIGNAL( triggered() ), this, SLOT( verResumen() ) );
+
  ActAgregar->setText( "Agregar Nueva CtaCte" );
 
  addAction( ActAgregar );
- //addAction( ActEliminar );
+ addAction( ActResumen );
  addAction( ActCerrar );
 }
 
@@ -80,8 +83,6 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
  	menu->addAction( ActModificarLimite );
  }
 
- QAction *ActResumen = new QAction( "Ver Resumen de Cuenta", this );
- connect( ActResumen, SIGNAL( triggered() ), this, SLOT( verResumen() ) );
  menu->addAction( ActResumen );
 
 }
@@ -133,6 +134,8 @@ void VCuentaCorriente::darBaja()
  */
 void VCuentaCorriente::verResumen()
 {
+ if( vista->selectionModel()->selectedRows().isEmpty() )
+ { qWarning( "Elija una cuenta corriente para ver su resumen" ); return; } ///@todo Cambiar por un cuadro de dialogo
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
  //Obtengo el numero de cuenta
  int numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toInt();

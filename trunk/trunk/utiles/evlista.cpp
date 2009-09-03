@@ -190,7 +190,7 @@ void EVLista::closeEvent( QCloseEvent * c)
  */
 void EVLista::buscar()
 {
-    /// @todo implement me
+    /// \todo implement me
 }
 
 
@@ -199,7 +199,7 @@ void EVLista::buscar()
  */
 void EVLista::imprimir()
 {
-    /// @todo implement me
+    /// \todo implement me
 }
 
 
@@ -208,7 +208,7 @@ void EVLista::imprimir()
  */
 void EVLista::modificar()
 {
-    /// @todo implement me
+    /// \todo implement me
 }
 
 
@@ -217,7 +217,7 @@ void EVLista::modificar()
  */
 void EVLista::email()
 {
-    /// @todo implement me
+    /// \todo implement me
 }
 
 
@@ -226,7 +226,7 @@ void EVLista::email()
  */
 void EVLista::aPdf()
 {
-    /// @todo implement me
+    /// \todo implement me
 }
 
 #include <QDate>

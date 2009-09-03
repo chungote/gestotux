@@ -186,7 +186,7 @@ void FormCliente::guardar()
  */
 void FormCliente::setearCliente( QModelIndex &indice )
 {
-    /// @todo implement me
+    //! \todo implement me
 }
 
 

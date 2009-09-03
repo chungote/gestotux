@@ -225,7 +225,7 @@ bool Mail::isText()
 }
 
 /**
-* helper function returning length of the longest line ended by \r\n
+* helper function returning length of the longest line ended by \\r\\n
 */
 uint Mail::longestLine(const QString cstr)
 {

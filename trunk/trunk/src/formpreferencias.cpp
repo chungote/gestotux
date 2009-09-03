@@ -74,7 +74,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
 	connect( this, SIGNAL( guardar() ), formDb, SLOT( guardar() ) );
 	pagesWidget->addWidget( formDb );
      }
-     ///@todo ATENCION! CAMBIAR ESTO
+     /// \todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
      foreach( plugin, ERegistroPlugins::plugins() )
      {

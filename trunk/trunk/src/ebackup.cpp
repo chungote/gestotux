@@ -492,7 +492,19 @@ void Ebackup::restaurarBackup()
   ejecutarColas( cadenas.string()->split( ";" ) );
   contenido.remove( 0, posfinal + QString( "<-basedatosql<-|").size() );
  }
- // el archivo puede ser solo la configuracion del programa
+ // Verifico si contiene el backup de las preferencias
+ if( contenido.startsWith( "|->preferencias->", Qt::CaseSensitive ) )
+ {
+  // Elimino la cabecera de las preferencias
+  contenido.remove( 0, QString( "|->preferencias->" ).size() );
+  // Busco el fin de las preferencias
+  int posfinal = contenido.indexOf( "<-preferencias<-|" );
+  QStringRef pref( &contenido, 0, posfinal );
+  regenerarPreferencias( pref.string() );
+  contenido.remove( 0, posfinal + QString( "<-preferencias<-|").size() );
+ }
+ // fin de la recuperación
+ return;
 }
 
 
@@ -543,4 +555,13 @@ bool Ebackup::ejecutarColas( QStringList colas )
   QSqlDatabase::database().commit();
  }
  return estado;
+}
+
+
+/*!
+    \fn Ebackup::regenerarPreferencias( const QString *pref )
+ */
+void Ebackup::regenerarPreferencias( const QString *pref )
+{
+    /// \todo implement me
 }

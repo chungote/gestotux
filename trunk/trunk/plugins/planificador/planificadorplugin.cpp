@@ -17,45 +17,53 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CUENTACORRIENTEPLUGIN_H
-#define CUENTACORRIENTEPLUGIN_H
+#include "planificadorplugin.h"
 
-#include <QObject>
-#include "eplugin.h"
-#include <QtPlugin>
-
-/**
- * \brief Plugin de cuentas corriente
- *
- * Plugin que tiene el control de las cuentas corrientes en el programa
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class CuentaCorrientePlugin : public QObject, public EPlugin
+bool PlanificadorPlugin::inicializar()
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
-public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+ return true;
+}
 
-signals:
-    void agregarVentana(QWidget* v);
+bool PlanificadorPlugin::verificarTablas()
+{
+ return true;
+}
 
-public slots:
-    void seCierraGestotux();
-    void verCuentasCorrientes();
+double PlanificadorPlugin::version() const
+{
+ return 0.01;
+}
 
-private:
-    QAction *ActCuentasCorrientes;
+int PlanificadorPlugin::tipo() const
+{
+ return EPlugin::comun;
+}
 
-};
+QList< QActionGroup * > PlanificadorPlugin::accionesBarra()
+{
+ return QList<QActionGroup*>();
+}
 
-#endif
+QString PlanificadorPlugin::nombre() const
+{
+ return "planificador";
+}
+
+QWidgetList PlanificadorPlugin::formsPreferencias()
+{
+ return QWidgetList();
+}
+
+void PlanificadorPlugin::crearMenu(QMenuBar* m)
+{
+}
+
+void PlanificadorPlugin::crearToolBar(QToolBar* t)
+{
+}
+
+void PlanificadorPlugin::seCierraGestotux()
+{
+}
+
+Q_EXPORT_PLUGIN2( planificador, PlanificadorPlugin );

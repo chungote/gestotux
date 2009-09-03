@@ -63,7 +63,7 @@
       <item>
        <widget class="QCheckBox" name="CkBLimitarVenta">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>Limitar venta posible al stock actual del producto</string>

@@ -327,7 +327,7 @@ void FormActualizacion::analizarGeneral()
 	if( nodo_archivos.hasChildNodes() )
 	{
 		qDebug( "Encontrada etiqueta de archivos generales" );
-		///@todo Esto todavia no defini como lo voy a hacer
+		///\todo Esto todavia no defini como lo voy a hacer
 	}*/
 	qDebug( QString( "Encontrada version :%1" ).arg( docElem.attribute( "version", 0 ) ).toLocal8Bit() );
 	// Busco los plugins
@@ -518,7 +518,7 @@ void FormActualizacion::analizarGeneral()
 		else
 		{
 			// El nodo no es plugin
-			///@TODO ver que hacer aca
+			/// \todo ver que hacer aca
 			qDebug( QString( "Tipo de nodo desconocido: %1" ).arg( nodoA.toElement().tagName() ).toLocal8Bit() );
 			docElem.removeChild( nodoA );
 		}

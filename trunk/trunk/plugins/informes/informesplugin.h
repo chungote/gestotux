@@ -17,21 +17,20 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CUENTACORRIENTEPLUGIN_H
-#define CUENTACORRIENTEPLUGIN_H
+#ifndef INFORMESPLUGIN_H
+#define INFORMESPLUGIN_H
 
-#include <QObject>
 #include "eplugin.h"
-#include <QtPlugin>
+class QPluginLoader;
 
 /**
- * \brief Plugin de cuentas corriente
- *
- * Plugin que tiene el control de las cuentas corrientes en el programa
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class CuentaCorrientePlugin : public QObject, public EPlugin
+\brief Plugin que carga los informes
+
+Plugin que carga la lista de informes y muestra y administra los menus
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class InformesPlugin : public QObject, public EPlugin
 {
 Q_OBJECT
 Q_INTERFACES( EPlugin )
@@ -51,11 +50,12 @@ signals:
 
 public slots:
     void seCierraGestotux();
-    void verCuentasCorrientes();
 
 private:
-    QAction *ActCuentasCorrientes;
+	QPluginLoader *loader;
 
+private:
+    bool cargarPluginsInformes();
 };
 
 #endif

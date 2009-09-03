@@ -17,45 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CUENTACORRIENTEPLUGIN_H
-#define CUENTACORRIENTEPLUGIN_H
 
-#include <QObject>
-#include "eplugin.h"
-#include <QtPlugin>
+/**************
+ *   Ventas   *
+ **************/
+#define VENTA_CTACTE 1
+#define VENTA_CONTADO 2
 
-/**
- * \brief Plugin de cuentas corriente
- *
- * Plugin que tiene el control de las cuentas corrientes en el programa
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class CuentaCorrientePlugin : public QObject, public EPlugin
-{
-Q_OBJECT
-Q_INTERFACES( EPlugin )
-public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+/************************
+ *   Cuenta Corriente   *
+ ************************/
+#define CTACTE_LIMITE_EXCEDIDO 3
+#define CTACTE_LIMITE_ENLIMITE 4
+#define CTACTE_LIMITE_CORRECTO 5
 
-signals:
-    void agregarVentana(QWidget* v);
-
-public slots:
-    void seCierraGestotux();
-    void verCuentasCorrientes();
-
-private:
-    QAction *ActCuentasCorrientes;
-
-};
-
-#endif
+/*****************
+ *   ERRORES     *
+ *****************/
+#define E_CTACTE_BUSCAR_LIMITE 6
+#define E_CTACTE_BUSCAR_NUMEROCUENTA "-2"
+#define E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO "-3"

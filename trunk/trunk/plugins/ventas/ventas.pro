@@ -10,7 +10,9 @@ ventas.cpp \
  mlistaprecio.cpp \
  formagregarventa.cpp \
  mventaproducto.cpp \
- vlistaprecio.cpp
+ vlistaprecio.cpp \
+ ../CtaCte/mcuentacorriente.cpp \
+ ../CtaCte/mitemcuentacorriente.cpp
 
 HEADERS += mventa.h \
 ventas.h \
@@ -18,7 +20,9 @@ ventas.h \
  mlistaprecio.h \
  formagregarventa.h \
  mventaproducto.h \
- vlistaprecio.h
+ vlistaprecio.h \
+ ../CtaCte/mcuentacorriente.h \
+ ../CtaCte/mitemcuentacorriente.h
 
 TRANSLATIONS = ventas.ts
 
@@ -50,6 +54,3 @@ INCLUDEPATH += ../../src \
   ../../utiles
 
 RESOURCES += ventas.qrc
-
-CONFIG -= release
-

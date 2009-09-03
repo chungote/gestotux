@@ -20,7 +20,8 @@ HEADERS += eactcerrar.h \
  mproductostotales.h \
  dproductostotales.h \
  edsbprecio.h \
- dsino.h
+ dsino.h \
+ definiciones.h
 SOURCES += eactcerrar.cpp \
 eactimprimir.cpp \
  eventana.cpp \

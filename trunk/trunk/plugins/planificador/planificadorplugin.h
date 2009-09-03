@@ -17,21 +17,20 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef CUENTACORRIENTEPLUGIN_H
-#define CUENTACORRIENTEPLUGIN_H
+#ifndef PLANIFICADORPLUGIN_H
+#define PLANIFICADORPLUGIN_H
 
-#include <QObject>
 #include "eplugin.h"
-#include <QtPlugin>
+#include <QObject>
 
 /**
- * \brief Plugin de cuentas corriente
- *
- * Plugin que tiene el control de las cuentas corrientes en el programa
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class CuentaCorrientePlugin : public QObject, public EPlugin
+\brief Planificador
+
+Clase del planificador del programa
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class PlanificadorPlugin : public QObject, public EPlugin
 {
 Q_OBJECT
 Q_INTERFACES( EPlugin )
@@ -43,18 +42,14 @@ public:
     QList< QActionGroup * > accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+    void crearMenu( QMenuBar* m );
+    void crearToolBar( QToolBar* t );
 
 signals:
-    void agregarVentana(QWidget* v);
+    void agregarVentana( QWidget* v );
 
 public slots:
     void seCierraGestotux();
-    void verCuentasCorrientes();
-
-private:
-    QAction *ActCuentasCorrientes;
 
 };
 
