@@ -17,78 +17,26 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <QAction>
-#include <QSqlDatabase>
-#include "pagosplugin.h"
 
+#ifndef FORMAGREGARRECIBO_H
+#define FORMAGREGARRECIBO_H
 
-bool PagosPlugin::inicializar()
+#include "eventana.h"
+#include "ui_FormReciboBase.h"
+
+class FormAgregarRecibo : public EVentana, private Ui::FormReciboBase
 {
- ActPagos = new QAction( "Pagos", this );
- ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
- connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
+Q_OBJECT
 
- return true;
-}
+public:
+	FormAgregarRecibo ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+	~FormAgregarRecibo();
 
-bool PagosPlugin::verificarTablas()
-{
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
- { qWarning( "Error al buscar la tabla recibos" ); return false; }
- return true;
-}
+protected slots:
+    void cambioPagado( double valor );
+    void cambioCliente( int id_combo );
+    void recalcularTotal();
+};
 
-double PagosPlugin::version() const
-{
- return 0.1;
-}
+#endif
 
-int PagosPlugin::tipo() const
-{
- return EPlugin::comun;
-}
-
-QList< QActionGroup * > PagosPlugin::accionesBarra()
-{
- return QList<QActionGroup*>();
-}
-
-QString PagosPlugin::nombre() const
-{
- return "pagos";
-}
-
-QWidgetList PagosPlugin::formsPreferencias()
-{
- return QWidgetList();
-}
-
-void PagosPlugin::crearMenu( QMenuBar* m )
-{
- QMenu *mVentas = m->findChild<QMenu *>( "menuVentas" );
- if( mVentas == 0 )
- {
-  mVentas = m->addMenu( "Ventas" );
-  mVentas->setObjectName( "menuVentas" );
- }
- mVentas->addAction( ActPagos );
-}
-
-void PagosPlugin::crearToolBar(QToolBar* t)
-{
-}
-
-void PagosPlugin::seCierraGestotux()
-{
-}
-
-Q_EXPORT_PLUGIN2( pagos, PagosPlugin );
-
-
-/*!
-    \fn PagosPlugin::verPagos()
- */
-void PagosPlugin::verPagos()
-{
-    /// @todo implement me
-}

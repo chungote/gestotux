@@ -173,18 +173,24 @@
       <runarguments>
         <gestotux/>
         <src/>
+        <ncreportdesigner/>
+        <disenador/>
       </runarguments>
       <cwd>
         <gestotux>/home/Esteban/Programas/gestotux/bin</gestotux>
         <src>/home/Esteban/Programas/gestotux/..</src>
+        <ncreportdesigner>/home/Esteban/Programas/gestotux/bin</ncreportdesigner>
+        <disenador>/home/Esteban/Programas/gestotux</disenador>
       </cwd>
       <debugarguments>
         <gestotux/>
         <src/>
+        <ncreportdesigner/>
+        <disenador/>
       </debugarguments>
     </run>
     <general>
-      <activedir></activedir>
+      <activedir>utiles/diseñador/diseñador.pro</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
@@ -242,6 +248,8 @@
       <subclass uifile="plugins/CtaCte/FormPrefCtaCteBase.ui" sourcefile="formprefctacte.h" />
       <subclass uifile="plugins/CtaCte/FormResumenCtaCteBase.ui" sourcefile="formresumenctacte.cpp" />
       <subclass uifile="plugins/CtaCte/FormResumenCtaCteBase.ui" sourcefile="formresumenctacte.h" />
+      <subclass uifile="plugins/pagos/FormReciboBase.ui" sourcefile="formagregarrecibo.cpp" />
+      <subclass uifile="plugins/pagos/FormReciboBase.ui" sourcefile="formagregarrecibo.h" />
     </subclassing>
   </kdevtrollproject>
   <workspace>

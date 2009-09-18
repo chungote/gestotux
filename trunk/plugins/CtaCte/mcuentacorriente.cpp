@@ -226,3 +226,23 @@ bool MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const doubl
   return false;
  }
 }
+
+
+/*!
+    \fn MCuentaCorriente::saldo( const QString numero_cuenta )
+ */
+double MCuentaCorriente::saldo( const QString numero_cuenta )
+{
+  QSqlQuery cola( QString( "SELECT saldo FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) );
+ if( cola.next() )
+ {
+  return cola.record().value(0).toDouble();
+ }
+ else
+ {
+  qWarning( "Error al intentar buscar el saldo de la cuenta corriente solicitada" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.executedQuery() ) );
+  return E_CTACTE_BUSCAR_SALDO;
+ }
+}

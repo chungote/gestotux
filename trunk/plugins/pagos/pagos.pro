@@ -30,8 +30,16 @@ MOC_DIR = moc
 RCC_DIR = rcc
 
 HEADERS += pagosplugin.h \
- mpagos.h
+ mpagos.h \
+ formagregarrecibo.h \
+ ../CtaCte/mcuentacorriente.h \
+ ../CtaCte/mitemcuentacorriente.h
 
 SOURCES += pagosplugin.cpp \
- mpagos.cpp
+ mpagos.cpp \
+ formagregarrecibo.cpp \
+ ../CtaCte/mcuentacorriente.cpp \
+ ../CtaCte/mitemcuentacorriente.cpp
+
+FORMS += FormReciboBase.ui
 
