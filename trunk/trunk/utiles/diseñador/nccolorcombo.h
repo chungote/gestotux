@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   				   *
- *   juiraze@yahoo.com.ar   						   *
+ *   Copyright (C) 2006 by Norbert Szabo                                   *
+ *   nszabo@helta.hu                                                       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,24 +17,47 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef NCCOLORCOMBO_H
+#define NCCOLORCOMBO_H
 
-/**************
- *   Ventas   *
- **************/
-#define VENTA_CTACTE 1
-#define VENTA_CONTADO 2
+#include <qcombobox.h>
+#include <qcolor.h>
 
-/************************
- *   Cuenta Corriente   *
- ************************/
-#define CTACTE_LIMITE_EXCEDIDO 3
-#define CTACTE_LIMITE_ENLIMITE 4
-#define CTACTE_LIMITE_CORRECTO 5
+class NCColorCombo : public QComboBox
+{
+    Q_OBJECT
+public:
+	NCColorCombo( QWidget *parent, const char *name = 0 );
+	~NCColorCombo();
+	
+	void setColor( const QColor &col );
+	QColor color() const;
+	void setWebColor( const QString & colorstring );
+	QString webColor() const;
 
-/*****************
- *   ERRORES     *
- *****************/
-#define E_CTACTE_BUSCAR_LIMITE 6
-#define E_CTACTE_BUSCAR_NUMEROCUENTA "-2"
-#define E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO "-3"
-#define E_CTACTE_BUSCAR_SALDO -1.0
+	
+	
+	void showEmptyList();
+signals:
+	void activated( const QColor &col );
+	void highlighted( const QColor &col );
+
+protected:
+    virtual void resizeEvent( QResizeEvent *re );
+
+private slots:
+    void slotActivated( int index );
+    void slotHighlighted( int index );
+
+private:
+    void addColors();
+    QColor customColor;
+    QColor internalcolor;
+
+private:
+	//class NCColorComboPrivate;
+	//NCColorComboPrivate *d;
+	bool _showEmptyList;
+};
+
+#endif

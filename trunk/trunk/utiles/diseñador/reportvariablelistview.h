@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   				   *
- *   juiraze@yahoo.com.ar   						   *
+ *   Copyright (C) 2006 by Norbert Szabo                                   *
+ *   nszabo@helta.hu                                                       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,24 +17,33 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+#ifndef REPORTVARIABLELISTVIEW_H
+#define REPORTVARIABLELISTVIEW_H
 
-/**************
- *   Ventas   *
- **************/
-#define VENTA_CTACTE 1
-#define VENTA_CONTADO 2
+#include <qlistview.h>
+#include <qmap.h>
 
-/************************
- *   Cuenta Corriente   *
- ************************/
-#define CTACTE_LIMITE_EXCEDIDO 3
-#define CTACTE_LIMITE_ENLIMITE 4
-#define CTACTE_LIMITE_CORRECTO 5
+class ReportVariable;
 
-/*****************
- *   ERRORES     *
- *****************/
-#define E_CTACTE_BUSCAR_LIMITE 6
-#define E_CTACTE_BUSCAR_NUMEROCUENTA "-2"
-#define E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO "-3"
-#define E_CTACTE_BUSCAR_SALDO -1.0
+class ReportVariableListView : public QListView
+{
+public:
+    ReportVariableListView( QWidget *parent, const char* name );
+    ~ReportVariableListView();
+	
+	void addVariable( const ReportVariable&, bool setCurrent );
+	void setCheckable( bool );
+	void load( QMap<QString,ReportVariable>& source );
+	void updateChecked( const QString& varlist );
+	void updateCurrentItem( const ReportVariable& ); 
+	void reset();
+	QString selectedVarList();
+	QString currentVarName();
+	
+private:
+	bool checkable;
+	void updateItem( QListViewItem*, const ReportVariable& ); 
+	
+};
+
+#endif

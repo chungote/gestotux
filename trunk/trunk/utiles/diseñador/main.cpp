@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   				   *
- *   juiraze@yahoo.com.ar   						   *
+ *   Copyright (C) 2006 by Szabó Norbert   *
+ *   nszabo@helta.hu   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,23 +18,16 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-/**************
- *   Ventas   *
- **************/
-#define VENTA_CTACTE 1
-#define VENTA_CONTADO 2
+#include "ncreportdesignerwindow.h"
+#include "qapplication.h"
 
-/************************
- *   Cuenta Corriente   *
- ************************/
-#define CTACTE_LIMITE_EXCEDIDO 3
-#define CTACTE_LIMITE_ENLIMITE 4
-#define CTACTE_LIMITE_CORRECTO 5
+int main(int argc, char *argv[])
+{
+	QApplication app(argc, argv);
+	NCReportDesignerWindow *mw = new NCReportDesignerWindow();
+	mw->show();
+	
+	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
 
-/*****************
- *   ERRORES     *
- *****************/
-#define E_CTACTE_BUSCAR_LIMITE 6
-#define E_CTACTE_BUSCAR_NUMEROCUENTA "-2"
-#define E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO "-3"
-#define E_CTACTE_BUSCAR_SALDO -1.0
+	return app.exec();
+}

@@ -17,78 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include <QAction>
-#include <QSqlDatabase>
-#include "pagosplugin.h"
+#ifndef MPAGOS_H
+#define MPAGOS_H
 
+#include <QSqlRelationalTableModel>
 
-bool PagosPlugin::inicializar()
+/**
+\brief Modelo de los pagos
+
+Modelo que administra los pagos realizados en el programa.
+
+	@author Esteban Zeller <juiraze@yahoo.com.ar>
+*/
+class MPagos : public QSqlRelationalTableModel
 {
- ActPagos = new QAction( "Pagos", this );
- ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
- connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
+Q_OBJECT
+public:
+    MPagos(QObject *parent = 0, bool relaciones = false );
 
- return true;
-}
+    ~MPagos();
 
-bool PagosPlugin::verificarTablas()
-{
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
- { qWarning( "Error al buscar la tabla recibos" ); return false; }
- return true;
-}
+    bool setData(const QModelIndex& item, const QVariant& value, int role);
+    QVariant data(const QModelIndex& item, int role) const;
 
-double PagosPlugin::version() const
-{
- return 0.1;
-}
+};
 
-int PagosPlugin::tipo() const
-{
- return EPlugin::comun;
-}
-
-QList< QActionGroup * > PagosPlugin::accionesBarra()
-{
- return QList<QActionGroup*>();
-}
-
-QString PagosPlugin::nombre() const
-{
- return "pagos";
-}
-
-QWidgetList PagosPlugin::formsPreferencias()
-{
- return QWidgetList();
-}
-
-void PagosPlugin::crearMenu( QMenuBar* m )
-{
- QMenu *mVentas = m->findChild<QMenu *>( "menuVentas" );
- if( mVentas == 0 )
- {
-  mVentas = m->addMenu( "Ventas" );
-  mVentas->setObjectName( "menuVentas" );
- }
- mVentas->addAction( ActPagos );
-}
-
-void PagosPlugin::crearToolBar(QToolBar* t)
-{
-}
-
-void PagosPlugin::seCierraGestotux()
-{
-}
-
-Q_EXPORT_PLUGIN2( pagos, PagosPlugin );
-
-
-/*!
-    \fn PagosPlugin::verPagos()
- */
-void PagosPlugin::verPagos()
-{
-    /// @todo implement me
-}
+#endif
