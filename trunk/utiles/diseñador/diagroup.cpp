@@ -21,12 +21,15 @@
 #include "ncreportdesignerdocument.h"
 #include "reportvariablelistview.h"
 
-// #include <qvariant.h>
-// #include <qpushbutton.h>
-// #include <qlistbox.h>
-// #include <qbuttongroup.h>
-// #include <qlabel.h>
-// #include <qlineedit.h>
+#include <QVariant>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMessageBox>
+#include <QHBoxLayout>
+#include <QButtonGroup>
+#include <QListView>
+
 // #include <qheader.h>
 // #include <qlistview.h>
 // #include <qlayout.h>
@@ -34,93 +37,95 @@
 // #include <qwhatsthis.h>
 // #include <qimage.h>
 // #include <qpixmap.h>
-// #include <qmessagebox.h>
+
 
 diaGroup::diaGroup( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-	: QDialog( parent, modal, fl )
+	: QDialog( parent, fl )
 {
     if ( !name )
 	setObjectName( "diaGroup" );
     else
         setObjectName( name );
 
+    this->setModal( modal );
+
 	currItem = 0;
 
-    diaGroupLayout = new QVBoxLayout( this, 6, 6, "diaGroupLayout");
+    diaGroupLayout = new QVBoxLayout( this);
 
-    layGroup = new QHBoxLayout( 0, 0, 6, "layGroup");
+    layGroup = new QHBoxLayout();
 
-    listGroups = new QListBox( this, "listGroups" );
+    listGroups = new QListView( this );
     listGroups->setMaximumSize( QSize( 150, 32767 ) );
     layGroup->addWidget( listGroups );
 
-    layGB = new QVBoxLayout( 0, 0, 6, "layGB");
+    layGB = new QVBoxLayout();
 
-    btnNew = new QPushButton( this, "btnNew" );
+    btnNew = new QPushButton( this);
 	btnNew->setAutoDefault( FALSE );
     layGB->addWidget( btnNew );
 
-    btnRemove = new QPushButton( this, "btnRemove" );
+    btnRemove = new QPushButton( this );
 	btnRemove->setAutoDefault( FALSE );
 	layGB->addWidget( btnRemove );
     spGB = new QSpacerItem( 20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layGB->addItem( spGB );
 
-    btnUp = new QPushButton( this, "btnUp" );
+    btnUp = new QPushButton( this );
 	btnUp->setAutoDefault( FALSE );
 	layGB->addWidget( btnUp );
 
-    btnDown = new QPushButton( this, "btnDown" );
+    btnDown = new QPushButton( this );
 	btnDown->setAutoDefault( FALSE );
 	layGB->addWidget( btnDown );
     layGroup->addLayout( layGB );
 
-    bgGroup = new QButtonGroup( this, "bgGroup" );
+    bgGroup = new QButtonGroup( this );
     bgGroup->setColumnLayout(0, Qt::Vertical );
     bgGroup->layout()->setSpacing( 6 );
     bgGroup->layout()->setMargin( 6 );
     bgGroupLayout = new QVBoxLayout( bgGroup->layout() );
     bgGroupLayout->setAlignment( Qt::AlignTop );
 
-    layNames = new QGridLayout( 0, 1, 1, 0, 6, "layNames");
+    layNames = new QGridLayout();
 
-    lblName = new QLabel( bgGroup, "lblName" );
+    lblName = new QLabel( bgGroup );
 
     layNames->addWidget( lblName, 0, 0 );
 
-    lblExp = new QLabel( bgGroup, "lblExp" );
+    lblExp = new QLabel( bgGroup );
 
     layNames->addWidget( lblExp, 1, 0 );
 
-    leExpr = new QLineEdit( bgGroup, "leExpr" );
+    leExpr = new QLineEdit( bgGroup );
 
     layNames->addWidget( leExpr, 1, 1 );
 
-    leName = new QLineEdit( bgGroup, "leName" );
+    leName = new QLineEdit( bgGroup );
 
     layNames->addWidget( leName, 0, 1 );
     bgGroupLayout->addLayout( layNames );
 
-    lblVars = new QLabel( bgGroup, "lblVars" );
+    lblVars = new QLabel( bgGroup );
     bgGroupLayout->addWidget( lblVars );
 
-	listVars = new ReportVariableListView( bgGroup, "listVars" );
+	listVars = new ReportVariableListView( bgGroup );
 	listVars->setCheckable( TRUE );
     bgGroupLayout->addWidget( listVars );
     layGroup->addWidget( bgGroup );
     diaGroupLayout->addLayout( layGroup );
 
-    layBtn = new QHBoxLayout( 0, 0, 6, "layBtn");
+    layBtn = new QHBoxLayout();
     spButt = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layBtn->addItem( spButt );
 
-    btnApply = new QPushButton( this, "btnApply" );
+    btnApply = new QPushButton( this );
     layBtn->addWidget( btnApply );
 
-    btnOK = new QPushButton( this, "btnOK" );
+    btnOK = new QPushButton( this );
     layBtn->addWidget( btnOK );
 
-    btnCancel = new QPushButton( this, "btnCancel" );
+    btnCancel = new QPushButton( this );
     layBtn->addWidget( btnCancel );
     diaGroupLayout->addLayout( layBtn );
     languageChange();
@@ -171,9 +176,9 @@ diaGroup::~diaGroup()
  */
 void diaGroup::languageChange()
 {
-    setCaption( tr( "Group settings" ) );
-    listGroups->clear();
-    listGroups->insertItem( tr( "New Item" ) );
+    this->setWindowTitle( tr( "Group settings" ) );
+    listGroups->reset();
+    listGroups-> insertItem( tr( "New Item" ) );
     btnNew->setText( tr( "New group" ) );
     btnRemove->setText( tr( "Remove group" ) );
     btnUp->setText( tr( "Level up" ) );
@@ -339,7 +344,7 @@ void diaGroup::assignDocument( NCReportDesignerDocument *doc )
 
 	QMap<QString,ReportGroup>::ConstIterator it;
 	for ( it = doc->groups.begin(); it != doc->groups.end(); ++it )
-		listGroups->insertItem( it.data().name );
+		listGroups->insertItem( it.value().name );
 
 	listVars->load( doc->variables );	// load variables
 
@@ -370,17 +375,17 @@ void diaGroup::applyGroupSettings( )
 		cnt++;
 		if ( it_real != document->groups.end() ) {
 			// have pair
-			it_real.data().groupExpression = it_dia.data().groupExpression;
-			it_real.data().resetVariables = it_dia.data().resetVariables;
+			it_real.value().groupExpression = it_dia.value().groupExpression;
+			it_real.value().resetVariables = it_dia.value().resetVariables;
 
-			it_real.data().header->setTitle( tr("Group header")+": "+it_dia.data().name );
-			it_real.data().header->Title()->update();
-			it_real.data().footer->setTitle( tr("Group footer")+": "+it_dia.data().name );
-			it_real.data().footer->Title()->update();
+			it_real.value().header->setTitle( tr("Group header")+": "+it_dia.value().name );
+			it_real.value().header->Title()->update();
+			it_real.value().footer->setTitle( tr("Group footer")+": "+it_dia.value().name );
+			it_real.value().footer->Title()->update();
 
 			++it_real;
 		} else {
-			ReportGroup g( it_dia.data().name, it_dia.data().groupExpression, it_dia.data().resetVariables );
+			ReportGroup g( it_dia.value().name, it_dia.value().groupExpression, it_dia.value().resetVariables );
 			document->addGroup( g );
 			g.header->show();
 			g.footer->show();
@@ -395,7 +400,7 @@ void diaGroup::applyGroupSettings( )
 		for ( it = document->groups.begin(); it != document->groups.end(); ++it ) {
 			cnt_del++;
 			if (cnt_del>cnt)
-				deleteLst.append( it.data().name );	// mark for delete
+				deleteLst.append( it.value().name );	// mark for delete
 		}
 		for ( QStringList::Iterator it = deleteLst.begin(); it != deleteLst.end(); ++it ) {
 

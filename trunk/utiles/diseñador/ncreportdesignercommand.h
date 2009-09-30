@@ -104,7 +104,7 @@ signals:
     void modificationChanged( bool m );
 
 private:
-	QList<NCReportDesignerCommand> history;
+	QList<NCReportDesignerCommand *> history;
     int current, steps;
     bool modified;
     int savedAt;

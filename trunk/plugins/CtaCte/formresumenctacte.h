@@ -39,6 +39,12 @@ protected slots:
     void imprimir();
     void pdf();
     void email();
+    void menuContextual( const QModelIndex &indice );
+    void cancelarRecibo();
+    void pagarTodo();
+    void verFactura();
+    void verRecibo();
+    void pagarFactura();
 
 protected:
     MItemCuentaCorriente *modeloItem;

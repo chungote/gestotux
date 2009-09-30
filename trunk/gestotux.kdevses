@@ -1,19 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="4" >
-  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/dise%F1ador/ncreportdesignerwindow.cpp" >
-   <View0 Encoding="" line="875" Type="Source" />
+ <DocsAndViews NumberOfDocuments="1" >
+  <Doc0 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/reporte/ereporte.cpp" >
+   <View0 Encoding="" line="65" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/dise%F1ador/ncreportdesignerwindow.h" >
-   <View0 Encoding="" line="179" Type="Source" />
-  </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/Esteban/Programas/gestotux/utiles/dise%F1ador/ncreportdesignerdocument.cpp" >
-   <View0 Encoding="" line="0" Type="Source" />
-  </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///opt/qt4/doc/html/qt.html#WindowModality-enum" >
-   <View0 Type="Documentation" />
-  </Doc3>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

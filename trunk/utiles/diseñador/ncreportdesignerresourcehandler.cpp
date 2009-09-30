@@ -25,7 +25,7 @@
 #include "measurement.h"
 #include "globals.h"
 
-#include <QDom>
+#include <QDomElement>
 #include <QWidget>
 #include <QMessageBox>
 #include <QLabel>
@@ -213,7 +213,7 @@ bool NCReportDesignerResourceHandler::loadReportOptions( QDomElement & e )
 	if ( e.hasAttribute("masterAlias") ) document->po.masterAlias = e.attribute("masterAlias");
 	if ( e.hasAttribute("encoding") ) document->po.encoding = e.attribute("encoding");
 
-	if ( e.hasAttribute("dataSource") ) document->po.dataSource = ( e.attribute("dataSource").upper()=="TEXT" ? ReportPageOptions::Textfile : ReportPageOptions::Database );
+	if ( e.hasAttribute("dataSource") ) document->po.dataSource = ( e.attribute("dataSource").toUpper()=="TEXT" ? ReportPageOptions::Textfile : ReportPageOptions::Database );
 	if ( e.hasAttribute("resourceTextFile") ) document->po.resourceTextFile = e.attribute("resourceTextFile");
 	if ( e.hasAttribute("textDataDelimiter") ) document->po.textDataDelimiter = e.attribute("textDataDelimiter");
 	if ( e.hasAttribute("textRowFilterRegExp") ) document->po.rowFilterRegExp = e.attribute("textRowFilterRegExp");
@@ -360,15 +360,15 @@ bool NCReportDesignerResourceHandler::loadSectionWidgets( QDomElement & e )
 			if ( w ) {
 
 				NCReportDesignerWidget *dw =0;
-				if ( ::qt_cast<NCReportDesignerWidget*>(w) )
-					dw = (NCReportDesignerWidget*)w;
+				if ( qobject_cast<NCReportDesignerWidget*>(w) != 0 )
+					dw = qobject_cast<NCReportDesignerWidget*>(w);
 
 #ifdef REPORTDESIGNER_DEBUG
 	qDebug("loadWidget before time: %i", t.elapsed() );
 #endif
 				loadWidget( widgetelement, dw );
 				w->show();
-				designArea->widgets()->insert( w, w );
+				designArea->widgets().insert( designArea->widgets().indexOf( w ) , w );
 #ifdef REPORTDESIGNER_DEBUG
 	qDebug("loadWidget after time: %i", t.elapsed() );
 #endif
@@ -383,7 +383,7 @@ bool NCReportDesignerResourceHandler::loadSectionWidgets( QDomElement & e )
 	return TRUE;
 }
 
-
+#include  <QTextStream>
 QString NCReportDesignerResourceHandler::copy( )
 {
 	if ( !designArea )
@@ -391,15 +391,15 @@ QString NCReportDesignerResourceHandler::copy( )
 
 	copying = TRUE;
 	QString s;
-	QTextOStream ts( &s );
+	QTextStream ts( &s );
 
 	ts << "<NCREPORT-SELECTION>" << CRLF;
 	QWidgetList widgets = designArea->selectedWidgets();
 	QWidgetList tmp( widgets );
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
-		if ( !::qt_cast<NCReportDesignerWidget*>(w) )
+	foreach( QWidget *w, widgets ) {
+		if( qobject_cast<NCReportDesignerWidget*>(w) != 0 )
 			break;
-		NCReportDesignerWidget *dw = ::qt_cast<NCReportDesignerWidget*>(w);
+		NCReportDesignerWidget *dw = qobject_cast<NCReportDesignerWidget*>(w);
 		saveWidget( dw, ts, 1 );
 	}
 	ts << "</NCREPORT-SELECTION>" << CRLF;
@@ -415,7 +415,7 @@ bool NCReportDesignerResourceHandler::save( const QString & )
 bool NCReportDesignerResourceHandler::save( QIODevice *f )
 {
 	QTextStream t( f );
-	t.setCodec( QTextCodec::codecForName(document->po.encoding) );
+	t.setCodec( QTextCodec::codecForName( document->po.encoding.toLatin1() ) );
 
 	t << "<?xml version=\"1.0\" encoding=\"" << document->po.encoding << "\"?>" << CRLF;
 	t << "<NCReport" << CRLF;
@@ -447,8 +447,8 @@ bool NCReportDesignerResourceHandler::save( QIODevice *f )
 	{
 		QMap<QString,ReportQuery>::ConstIterator it;
 		for ( it = document->queries.begin(); it != document->queries.end(); ++it ) {
-			t << makeIndent(1) << "<query alias=\"" << it.data().alias << "\">" << CRLF;
-			t << makeIndent(2) << entitize(it.data().queryString, FALSE) << CRLF;
+			t << makeIndent(1) << "<query alias=\"" << it.value().alias << "\">" << CRLF;
+			t << makeIndent(2) << entitize(it.value().queryString, FALSE) << CRLF;
 			t << makeIndent(1) << "</query>" << CRLF;
 		}
 	}
@@ -457,11 +457,11 @@ bool NCReportDesignerResourceHandler::save( QIODevice *f )
 	{
 		QMap<QString,ReportVariable>::ConstIterator it;
 		for ( it = document->variables.begin(); it != document->variables.end(); ++it ) {
-			t << makeIndent(1) << "<variable name=\"" << it.data().name << "\"";
-			t << " type=\"" << it.data().type << "\"";
-			t << " funcType=\"" << it.data().funcType << "\"";
+			t << makeIndent(1) << "<variable name=\"" << it.value().name << "\"";
+			t << " type=\"" << it.value().type << "\"";
+			t << " funcType=\"" << it.value().funcType << "\"";
 			t << ">";
-			t << it.data().field;
+			t << it.value().field;
 			t << "</variable>" << CRLF;
 		}
 	}
@@ -493,19 +493,19 @@ bool NCReportDesignerResourceHandler::save( QIODevice *f )
 		for ( it = document->groups.begin(); it != document->groups.end(); ++it ) {
 			//ReportGroup g = it.data();
 
-			t << makeIndent(1) << "<group name=\"" << it.data().name << "\"";
-			t << " groupExpression=\"" << it.data().groupExpression << "\"";
-			t << " resetVariables=\"" << it.data().resetVariables << "\"";
+			t << makeIndent(1) << "<group name=\"" << it.value().name << "\"";
+			t << " groupExpression=\"" << it.value().groupExpression << "\"";
+			t << " resetVariables=\"" << it.value().resetVariables << "\"";
 			t << ">" << CRLF;
 			// ------ GROUP HEADER
-			s = it.data().header;
+			s = it.value().header;
 			t << makeIndent(2) << "<groupHeader";
 			t << " height=\"" << m->pixelToMeasure( s->designArea()->height() ) << "\"";
 			t << ">" << CRLF;
 			saveWidgetsOfSection( s, t, 3 );
 			t << makeIndent(2) << "</groupHeader>" << CRLF;
 			// ------ GROUP FOOTER
-			s = it.data().footer;
+			s = it.value().footer;
 			t << makeIndent(2) << "<groupFooter";
 			t << " height=\"" << m->pixelToMeasure( s->designArea()->height() ) << "\"";
 			t << ">" << CRLF;
@@ -537,19 +537,14 @@ bool NCReportDesignerResourceHandler::save( QIODevice *f )
 
 void NCReportDesignerResourceHandler::saveWidgetsOfSection( NCReportDesignerSection *s, QTextStream &ts, int indent )
 {
-	QObjectList *l = s->designArea()->findChildren<QWidget>();
+	QWidgetList l = s->designArea()->findChildren<QWidget*>();
 	//QObjectList *l = s->designArea()->queryList( "NCReportDesignerWidget" );
-	if ( l ) {
-		for ( QObject *o = l->first(); o; o = l->next() ) {
-			//if ( ::qt_cast<QWidget*>(o) ) {
-			if ( o->isA("QWidget") ) {
-				NCReportDesignerWidget *dw = ::qt_cast<NCReportDesignerWidget*>(o);
-				if ( ( (QWidget*)o )->isVisible() )
-				//if ( dw->isVisibleTo( s->designArea() ) )
-					saveWidget( dw, ts, indent );
-			}
+	if ( !l.isEmpty() ) {
+		foreach( QWidget *o, l ) {
+			NCReportDesignerWidget *dw = qobject_cast<NCReportDesignerWidget*>(o);
+			if ( o->isVisible() )
+				saveWidget( dw, ts, indent );
 		}
-		delete l;
 	}
 }
 
@@ -607,8 +602,8 @@ void NCReportDesignerResourceHandler::paste( const QString &cb, QWidget *parent 
 			continue;
 
 		NCReportDesignerWidget *dw =0;
-		if ( ::qt_cast<NCReportDesignerWidget*>(w) )
-			dw = (NCReportDesignerWidget*)w;
+		if ( qobject_cast<NCReportDesignerWidget*>(w) != 0 )
+			dw = qobject_cast<NCReportDesignerWidget*>(w);
 
 		loadWidget( widgetelement, dw );
 		widgets.append( w );
@@ -646,8 +641,8 @@ void NCReportDesignerResourceHandler::loadWidget( QDomElement & e, NCReportDesig
 
 	if ( e.hasAttribute("numDigitNo") ) w->p.numDigitNo = e.attribute("numDigitNo").toInt();
 	if ( e.hasAttribute("numSeparation") ) w->p.numSeparation = (e.attribute("numSeparation")=="true");
-	if ( e.hasAttribute("numSeparator") ) w->p.numSeparator = e.attribute("numSeparator").at(0).latin1();
-	if ( e.hasAttribute("numDigitPoint") ) w->p.numDigitPoint = e.attribute("numDigitPoint").at(0).latin1();
+	if ( e.hasAttribute("numSeparator") ) w->p.numSeparator = e.attribute("numSeparator").at(0).toLatin1();
+	if ( e.hasAttribute("numDigitPoint") ) w->p.numDigitPoint = e.attribute("numDigitPoint").at(0).toLatin1();
 	if ( e.hasAttribute("numBlankIfZero") ) w->p.numBlankIfZero = (e.attribute("numBlankIfZero")=="true");
 	if ( e.hasAttribute("numFormat") ) w->p.numFormat = e.attribute("numFormat");
 	if ( e.hasAttribute("dateFormat") ) w->p.dateFormat = e.attribute("dateFormat");
@@ -682,7 +677,7 @@ void NCReportDesignerResourceHandler::loadWidget( QDomElement & e, NCReportDesig
 	if ( e.hasAttribute("fontStrikeOut") ) w->p.fontStrikeOut = (e.attribute("fontStrikeOut")=="true");
 	if ( e.hasAttribute("rotation") ) w->p.rotation = e.attribute("rotation").toInt();
 	if ( e.hasAttribute("alignmentH") ) {
-		Qt::AlignmentFlags al= Qt::AlignLeft;
+		Qt::AlignmentFlag al = Qt::AlignLeft;
 		QString att = e.attribute("alignmentH");
 		if (att == "left")
 			al = Qt::AlignLeft;
@@ -694,7 +689,7 @@ void NCReportDesignerResourceHandler::loadWidget( QDomElement & e, NCReportDesig
 		w->p.alignmentH = al;
 	}
 	if ( e.hasAttribute("alignmentV") ) {
-		Qt::AlignmentFlags al= Qt::AlignVCenter;
+		Qt::AlignmentFlag al= Qt::AlignVCenter;
 		QString att = e.attribute("alignmentV");
 
 		if (att == "top")
@@ -982,7 +977,7 @@ QString NCReportDesignerResourceHandler::colorToString( const QColor & col )
 QString NCReportDesignerResourceHandler::entitize( const QString & s, bool isAttrib )
 {
 	QString s2 = s;
-	s2 = s2.stripWhiteSpace();
+	s2 = s2.trimmed();
 	s2 = s2.replace( "&", "&amp;" );
 	s2 = s2.replace( ">", "&gt;" );
 	s2 = s2.replace( "<", "&lt;" );

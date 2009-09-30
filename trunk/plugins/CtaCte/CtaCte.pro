@@ -16,8 +16,6 @@ QMAKE_CXXFLAGS_DEBUG += -ggdb \
   -g3 \
   -o0
 
-TARGETDEPS += ../../bin/libncreport.a \
-  ../../bin/libutiles.a
 
 OBJECTS_DIR = obj
 
@@ -31,7 +29,8 @@ HEADERS += cuentacorrienteplugin.h \
  vcuentacorriente.h \
  formnuevactacte.h \
  mitemcuentacorriente.h \
- formresumenctacte.h
+ formresumenctacte.h \
+ ../pagos/recibo.h
 
 SOURCES += cuentacorrienteplugin.cpp \
  formprefctacte.cpp \
@@ -39,11 +38,9 @@ SOURCES += cuentacorrienteplugin.cpp \
  vcuentacorriente.cpp \
  formnuevactacte.cpp \
  mitemcuentacorriente.cpp \
- formresumenctacte.cpp
+ formresumenctacte.cpp \
+ ../pagos/recibo.cpp
 
-INCLUDEPATH += ../../src \
-  ../../reporte \
-  ../../utiles
 
 
 RESOURCES += CtaCte.qrc
@@ -54,6 +51,14 @@ FORMS += FormPrefCtaCteBase.ui \
 
 DISTFILES += ctacte.QMYSQL.sql \
 ctacte.QSQLITE.sql
+
+TARGETDEPS += ../../bin/libncreport.a \
+  ../../bin/libutiles.a
+INCLUDEPATH += ../pagos \
+  ../../src \
+  ../../reporte \
+  ../../utiles
+
 LIBS += ../../bin/libutiles.a \
   ../../bin/libncreport.a
 

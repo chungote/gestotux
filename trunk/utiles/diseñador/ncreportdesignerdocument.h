@@ -45,7 +45,7 @@ class NCReportDesignerSection;
 class ReportQuery;
 class ReportVariable;
 class QVBoxLayout;
-class QScrollView;
+class QScrollArea;
 class Measurement;
 
 
@@ -293,7 +293,7 @@ class NCReportDesignerDocument : public QWidget
 {
 Q_OBJECT
 public:
-	NCReportDesignerDocument( NCReportDesignerWindow *main, QWidget *parent = 0, const char* name=0, int wflags =0 );
+	NCReportDesignerDocument( NCReportDesignerWindow *main, QWidget *parent = 0, const char* name=0, Qt::WindowFlags wflags =0 );
 	~NCReportDesignerDocument();
 
 	enum RulerPos { Top, Left };
@@ -345,7 +345,7 @@ signals:
 	void documentModified();
 
 protected:
-	QHash<QString,NCReportDesignerSection> sections;
+	QHash<QString,NCReportDesignerSection*> sections;
 	/*!Map of queries*/
 	QMap<QString,ReportQuery> queries;
 	/*!Map of variables*/
@@ -355,7 +355,7 @@ protected:
 	//NCReportDesignerSection *sect1, *sect2, *sect3;
 	NCReportDesignerRuler *rulertop, *rulerleft;
 	QWidget *sectioncontainer;
-	QScrollView *sv;
+	QScrollArea *sv;
 	QVBoxLayout *laySC;
 	QString filename;
 	NCReportDesignerWindow *mainwindow;

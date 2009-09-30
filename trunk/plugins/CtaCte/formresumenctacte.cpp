@@ -23,11 +23,14 @@
 #include <QSqlRecord>
 #include <QDate>
 #include <QSqlError>
+#include <QAction>
+#include <QMenu>
 #include "eactcerrar.h"
 #include "eactimprimir.h"
 #include "eactemail.h"
 #include "eactpdf.h"
 #include "mitemcuentacorriente.h"
+#include "eregistroplugins.h"
 
 FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormResumenCtaCteBase()
@@ -40,8 +43,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 	QSqlQuery cola( "SELECT cc.numero_cuenta, c.razon_social FROM ctacte AS cc, clientes AS c WHERE cc.id_cliente = c.id AND fecha_baja IS NOT NULL" );
 	while( cola.next() )
 	{
-		CBClienteCtaCte->insertItem( cola.record().value(0).toInt(),
-					     "#" + cola.record().value(0).toString() + " - " + cola.record().value(1).toString(),
+		CBClienteCtaCte->addItem(     "#" + cola.record().value(0).toString() + " - " + cola.record().value(1).toString(),
 					     cola.record().value(0).toString() );
 	}
 	CBClienteCtaCte->setEditable( true );
@@ -72,7 +74,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 	TVItems->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 	TVItems->setTextElideMode( Qt::ElideRight );
 	/// Menu contextual para cada operacion de la cuenta corriente
-	connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( hacerMenuContextual( const QModelIndex & ) ) );
+	connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
 
 
 }
@@ -90,8 +92,7 @@ FormResumenCtaCte::~FormResumenCtaCte()
 void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
 {
  // Seteo el numero de cuenta
- ///@todo CBClienteCtaCte->setCurrentIndex( numero_cuenta );
- //CBClienteCtaCte->setCurrentText( CBClienteCtaCte->model()->findItems( numero_cuenta ).first().data().toString() );
+ CBClienteCtaCte->setCurrentIndex( CBClienteCtaCte->findText( QString::number( numero_cuenta ), Qt::MatchContains ) );
  //Busco los datos
  QSqlQuery cola( QString( "SELECT fecha_alta, saldo, limite FROM ctacte WHERE numero_cuenta = '%1'" ).arg( numero_cuenta ) );
  if( cola.next() )
@@ -150,4 +151,130 @@ void FormResumenCtaCte::pdf()
 void FormResumenCtaCte::email()
 {
     /// @todo implement me
+}
+
+
+/*!
+    \fn FormResumenCtaCte::menuContextual( const QModelIndex &indice )
+ */
+void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
+{
+ if( QApplication::mouseButtons() != Qt::RightButton )
+ { return; }
+   // Calculo la posicion en que esta el item
+   QPoint posicion;
+   posicion.setX( TVItems->columnViewportPosition( indice.column() ) );
+   posicion.setY( TVItems->rowViewportPosition( indice.row() ) );
+   QMenu *_menuContextual = new QMenu( this );
+   // Pido el menu contextual a la clase que esta manejando la vista acutlamente
+
+ // Veo que tipo de item es
+ QModelIndex temp = indice.model()->index( indice.row(), 3 );
+ switch( temp.data( Qt::EditRole ).toInt() )
+ {
+	case MItemCuentaCorriente::Factura:
+	{
+		if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+ 		{
+			/// @todo Verificar si no esta pagada ya
+			QAction *ActCrearRecibo = new QAction( this );
+			ActCrearRecibo->setText( "Pagar esta factura..." );
+			connect( ActCrearRecibo, SIGNAL( triggered() ), this, SLOT( pagarFactura() ) );
+			_menuContextual->addAction( ActCrearRecibo );
+		}
+
+		QAction *ActVerFactura = new QAction( this );
+		ActVerFactura->setText( "Ver esta factura" );
+		connect( ActVerFactura, SIGNAL( triggered() ), this, SLOT( verFactura() ) );
+		_menuContextual->addAction( ActVerFactura );
+		break;
+	}
+	case MItemCuentaCorriente::Recibo:
+	{
+		if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+		{
+			QAction *ActVerRecibo = new QAction( this );
+			ActVerRecibo->setText( "Ver Recibo..." );
+			connect( ActVerRecibo, SIGNAL( triggered() ), this, SLOT( verRecibo() ) );
+			_menuContextual->addAction( ActVerRecibo );
+
+			QAction *ActCancelarRecibo = new QAction( this );
+			ActCancelarRecibo->setText( "Cancelar  Recibo... " );
+			connect( ActCancelarRecibo, SIGNAL( triggered() ), this, SLOT( cancelarRecibo() ) );
+			_menuContextual->addAction( ActCancelarRecibo );
+		}
+		break;
+	}
+ }
+ _menuContextual->addSeparator();
+
+ if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+ {
+ 	QAction *ActPagarTodo = new QAction( this );
+ 	ActPagarTodo->setText( "Pagar todo..." );
+ 	connect( ActPagarTodo, SIGNAL( triggered() ), this, SLOT( pagarTodo() ) );
+ 	_menuContextual->addAction( ActPagarTodo );
+ }
+
+ QAction *ActImprimirResumen = new QAction( this );
+ ActImprimirResumen->setText( "Imprimir resumen de cuenta" );
+ connect( ActImprimirResumen, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+ _menuContextual->addAction( ActImprimirResumen );
+
+ _menuContextual->addSeparator();
+ _menuContextual->addAction( new EActCerrar( this ) );
+ _menuContextual->popup( this->mapToGlobal( posicion ) );
+}
+
+
+/*!
+    \fn FormResumenCtaCte::cancelarRecibo()
+ */
+void FormResumenCtaCte::cancelarRecibo()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn FormResumenCtaCte::pagarTodo()
+ */
+void FormResumenCtaCte::pagarTodo()
+{
+    /// @todo implement me
+}
+
+
+/*!
+    \fn FormResumenCtaCte::verFactura()
+ */
+void FormResumenCtaCte::verFactura()
+{
+    /// @todo implement me
+}
+
+#include "evisorinformes.h"
+#include "recibo.h"
+/*!
+    \fn FormResumenCtaCte::verRecibo()
+ */
+void FormResumenCtaCte::verRecibo()
+{
+ Recibo *re = new Recibo( this );
+ re->setIDPago( 0  ); /// @todo Poner id del recibo
+ EVisorInformes *visor = new EVisorInformes( new QPrinter(), this );
+// re->hacerRecibo();
+ connect( visor, SIGNAL( paintRequested( QPrinter* ) ), re, SLOT( previsualizar( QPrinter * ) ) );
+ agregarVentana( visor );
+}
+
+
+/*!
+    \fn FormResumenCtaCte::pagarFactura()
+ */
+void FormResumenCtaCte::pagarFactura()
+{
+    /// @todo implement me
+ // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
+
 }

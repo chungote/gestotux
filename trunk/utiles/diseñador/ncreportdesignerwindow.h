@@ -158,6 +158,10 @@ private:
 	QAction *act_align_top;
 	QAction *act_align_bottom;
 
+	QAction *act_cascade;
+	QAction *act_tile;
+	QAction *act_htile;
+
 
 	//QToolButton *tool_Pointer;
 	//QToolButton *tool_Label;

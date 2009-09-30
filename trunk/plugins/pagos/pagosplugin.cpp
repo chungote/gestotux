@@ -84,11 +84,11 @@ void PagosPlugin::seCierraGestotux()
 
 Q_EXPORT_PLUGIN2( pagos, PagosPlugin );
 
-
+#include "vpagos.h"
 /*!
     \fn PagosPlugin::verPagos()
  */
 void PagosPlugin::verPagos()
 {
-    /// @todo implement me
+ emit agregarVentana( new VPagos() );
 }

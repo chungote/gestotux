@@ -20,13 +20,9 @@
 #ifndef NCREPORTDESIGNERFILEHANDLER_H
 #define NCREPORTDESIGNERFILEHANDLER_H
 
-/*
-	File/resource handler
-*/
-
-// #include <qstring.h>
-// #include <qtextstream.h>
-// #include <qcolor.h>
+#include <QString>
+#include <QColor>
+#include <QTextStream>
 
 class NCReportDesignerWidget;
 class NCReportDesignerDesignArea;

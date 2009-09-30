@@ -18,12 +18,15 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QGroupBox>
-#include <QSpinbox>
+#include <QSpinBox>
 #include <QCheckBox>
 #include <QRadioButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QButtonGroup>
+
 
 /*
-#include <qbuttongroup.h>
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <qwhatsthis.h>*/
@@ -43,144 +46,150 @@ NCReportDesignerWidgetSetDialogUI::NCReportDesignerWidgetSetDialogUI( QWidget* p
     this->setObjectName( name );
     this->setModal( modal );
     setSizeGripEnabled( TRUE );
-    setdialogLayout = new QVBoxLayout( this, 6, 6, "setdialogLayout");
+    setdialogLayout = new QVBoxLayout( this );
+    setdialogLayout->setObjectName( "setdialogLayout");
 
-    tab = new QTabWidget( this, "tab" );
+    tab = new QTabWidget( this );
+    tab->setObjectName( "tab" );
 
-    pageData = new QWidget( tab, "pageData" );
-    pageDataLayout = new QVBoxLayout( pageData, 6, 6, "pageDataLayout");
+    pageData = new QWidget( tab );
+    pageDataLayout = new QVBoxLayout( pageData );
 
-    lblLabel = new QLabel( pageData, "lblLabel" );
+    lblLabel = new QLabel( pageData );
+    lblLabel->setObjectName( "lblLabel" );
     pageDataLayout->addWidget( lblLabel );
 
-    textLabel = new QTextEdit( pageData, "textLabel" );
-	textLabel->setTextFormat( Qt::PlainText );
+    textLabel = new QTextEdit( pageData );
+    textLabel->setObjectName( "textLabel" );
+    textLabel->setAcceptRichText( false );// setTextFormat( Qt::PlainText );
     pageDataLayout->addWidget( textLabel );
 
-    layDSGrid = new QGridLayout( 0, 1, 1, 0, 6, "layDSGrid");
+    layDSGrid = new QGridLayout(tab);
 
-    lblSrcType = new QLabel( pageData, "lblSrcType" );
+    lblSrcType = new QLabel( pageData);
     layDSGrid->addWidget( lblSrcType, 0, 0 );
-    comboDSource = new QComboBox( FALSE, pageData, "comboDSource" );
+    comboDSource = new QComboBox( pageData );
+    comboDSource->setInsertPolicy( QComboBox::NoInsert );
     comboDSource->setMaximumSize( QSize( 120, 32767 ) );
     layDSGrid->addWidget( comboDSource, 0, 1 );
 
 
-    lblSrc = new QLabel( pageData, "lblSrc" );
+    lblSrc = new QLabel( pageData );
     layDSGrid->addWidget( lblSrc, 1, 0 );
-    leSource = new QLineEdit( pageData, "leSource" );
+    leSource = new QLineEdit( pageData );
     layDSGrid->addWidget( leSource, 1, 1 );
 
-	lblPWhen = new QLabel( pageData, "lblPWhen" );
+	lblPWhen = new QLabel( pageData );
     layDSGrid->addWidget( lblPWhen, 2, 0 );
-    lePrintWhen = new QLineEdit( pageData, "lePrintWhen" );
+    lePrintWhen = new QLineEdit( pageData );
     layDSGrid->addWidget( lePrintWhen, 2, 1 );
 
-    lblEmbed = new QLabel( pageData, "lblEmbed" );
+    lblEmbed = new QLabel( pageData );
     layDSGrid->addWidget( lblEmbed, 3, 0 );
-    leEmbed = new QLineEdit( pageData, "leEmbed" );
+    leEmbed = new QLineEdit( pageData );
     layDSGrid->addWidget( leEmbed, 3, 1 );
 
-    lblFunc = new QLabel( pageData, "lblFunc" );
+    lblFunc = new QLabel( pageData );
     layDSGrid->addWidget( lblFunc, 4, 0 );
-    leFunction = new QLineEdit( pageData, "leFunction" );
+    leFunction = new QLineEdit( pageData );
     layDSGrid->addWidget( leFunction, 4, 1 );
 
-    lblLookup = new QLabel( pageData, "lblLookup" );
+    lblLookup = new QLabel( pageData );
     layDSGrid->addWidget( lblLookup, 5, 0 );
-    leLookup = new QLineEdit( pageData, "leLookup" );
+    leLookup = new QLineEdit( pageData );
     layDSGrid->addWidget( leLookup, 5, 1 );
 
 	pageDataLayout->addLayout( layDSGrid );
 
     spacerDS = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
     pageDataLayout->addItem( spacerDS );
-    tab->insertTab( pageData, QString::fromLatin1("") );
+    tab->addTab( pageData, QString::fromLatin1("") );
 
-    TabPage = new QWidget( tab, "TabPage" );
-    TabPageLayout = new QVBoxLayout( TabPage, 6, 6, "TabPageLayout");
+    TabPage = new QWidget( tab );
+    TabPageLayout = new QVBoxLayout( TabPage );
 
-    layout42 = new QHBoxLayout( 0, 0, 6, "layout42");
+    layout42 = new QHBoxLayout(TabPage );
 
-    lblType = new QLabel( TabPage, "lblType" );
+    lblType = new QLabel( TabPage );
     layout42->addWidget( lblType );
 
-    comboType = new QComboBox( FALSE, TabPage, "comboType" );
+    comboType = new QComboBox( TabPage );
+    comboType->setInsertPolicy( QComboBox::NoInsert );
     layout42->addWidget( comboType );
     spDataType = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layout42->addItem( spDataType );
     TabPageLayout->addLayout( layout42 );
 
-    gbNumFormat = new QGroupBox( TabPage, "gbNumFormat" );
-    gbNumFormat->setColumnLayout(0, Qt::Vertical );
+    gbNumFormat = new QGroupBox( TabPage);
+    //gbNumFormat->setLayoutDirection( QLayout:: t::Vertical );
     gbNumFormat->layout()->setSpacing( 6 );
     gbNumFormat->layout()->setMargin( 6 );
     gbNumFormatLayout = new QGridLayout( gbNumFormat->layout() );
     gbNumFormatLayout->setAlignment( Qt::AlignTop );
 
-    lblNumFormat = new QLabel( gbNumFormat, "lblNumFormat" );
+    lblNumFormat = new QLabel( gbNumFormat );
 
     gbNumFormatLayout->addWidget( lblNumFormat, 0, 0 );
 
-    leNumFormat = new QLineEdit( gbNumFormat, "leNumFormat" );
+    leNumFormat = new QLineEdit( gbNumFormat );
     leNumFormat->setMaximumSize( QSize( 100, 32767 ) );
 
     gbNumFormatLayout->addMultiCellWidget( leNumFormat, 0, 0, 1, 3 );
 
-    lblNoDec = new QLabel( gbNumFormat, "lblNoDec" );
+    lblNoDec = new QLabel( gbNumFormat );
 
     gbNumFormatLayout->addMultiCellWidget( lblNoDec, 2, 2, 0, 1 );
 
-    spDec = new QSpinBox( gbNumFormat, "spDec" );
-    spDec->setMaxValue( 18 );
-    spDec->setMinValue( -1 );
+    spDec = new QSpinBox( gbNumFormat );
+    spDec->setMaximum( 18 );
+    spDec->setMinimum( -1 );
     spDec->setValue( -1 );
 
     gbNumFormatLayout->addWidget( spDec, 2, 2 );
 
-    lblDecPoint = new QLabel( gbNumFormat, "lblDecPoint" );
+    lblDecPoint = new QLabel( gbNumFormat );
 
     gbNumFormatLayout->addWidget( lblDecPoint, 2, 3 );
 
-    leDecPoint = new QLineEdit( gbNumFormat, "leDecPoint" );
+    leDecPoint = new QLineEdit( gbNumFormat );
     leDecPoint->setMaximumSize( QSize( 30, 32767 ) );
 
     gbNumFormatLayout->addWidget( leDecPoint, 2, 4 );
 
-    leSeparator = new QLineEdit( gbNumFormat, "leSeparator" );
+    leSeparator = new QLineEdit( gbNumFormat );
     leSeparator->setMaximumSize( QSize( 30, 32767 ) );
 
     gbNumFormatLayout->addWidget( leSeparator, 3, 4 );
 
-    lblSetSymb = new QLabel( gbNumFormat, "lblSetSymb" );
+    lblSetSymb = new QLabel( gbNumFormat );
 
     gbNumFormatLayout->addWidget( lblSetSymb, 3, 3 );
 
-    cbBlankIfZero = new QCheckBox( gbNumFormat, "cbBlankIfZero" );
+    cbBlankIfZero = new QCheckBox( gbNumFormat );
 
     gbNumFormatLayout->addMultiCellWidget( cbBlankIfZero, 4, 4, 0, 4 );
 
-    cbThousandSep = new QCheckBox( gbNumFormat, "cbThousandSep" );
+    cbThousandSep = new QCheckBox( gbNumFormat );
 
     gbNumFormatLayout->addMultiCellWidget( cbThousandSep, 3, 3, 0, 2 );
 
-    lblHelpNumF = new QLabel( gbNumFormat, "lblHelpNumF" );
+    lblHelpNumF = new QLabel( gbNumFormat );
     lblHelpNumF->setAlignment( int( QLabel::WordBreak | QLabel::AlignVCenter ) );
 
     gbNumFormatLayout->addMultiCellWidget( lblHelpNumF, 1, 1, 0, 4 );
     TabPageLayout->addWidget( gbNumFormat );
 
-    gbDateFormat = new QGroupBox( TabPage, "gbDateFormat" );
-    gbDateFormat->setColumnLayout(0, Qt::Vertical );
+    gbDateFormat = new QGroupBox( TabPage );
+//    gbDateFormat->setColumnLayout(0, Qt::Vertical );
     gbDateFormat->layout()->setSpacing( 6 );
     gbDateFormat->layout()->setMargin( 6 );
     gbDateFormatLayout = new QHBoxLayout( gbDateFormat->layout() );
     gbDateFormatLayout->setAlignment( Qt::AlignTop );
 
-    lblDateFmt = new QLabel( gbDateFormat, "lblDateFmt" );
+    lblDateFmt = new QLabel( gbDateFormat );
     gbDateFormatLayout->addWidget( lblDateFmt );
 
-    leDateFormat = new QLineEdit( gbDateFormat, "leDateFormat" );
+    leDateFormat = new QLineEdit( gbDateFormat );
     leDateFormat->setMaximumSize( QSize( 140, 32767 ) );
     gbDateFormatLayout->addWidget( leDateFormat );
     spDF = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -190,83 +199,83 @@ NCReportDesignerWidgetSetDialogUI::NCReportDesignerWidgetSetDialogUI( QWidget* p
     TabPageLayout->addItem( spDataF );
     tab->insertTab( TabPage, QString::fromLatin1("") );
 
-    pageTxt = new QWidget( tab, "pageTxt" );
-    pageTxtLayout = new QVBoxLayout( pageTxt, 6, 6, "pageTxtLayout");
+    pageTxt = new QWidget( tab );
+    pageTxtLayout = new QVBoxLayout( pageTxt);
 
-    layFont1 = new QHBoxLayout( 0, 0, 6, "layFont1");
+    layFont1 = new QHBoxLayout();
 
-    layFontIn = new QGridLayout( 0, 1, 1, 0, 6, "layFontIn");
+    layFontIn = new QGridLayout();
 
-    comboColor = new NCColorCombo( pageTxt, "comboColor" );
+    comboColor = new NCColorCombo( pageTxt );
     comboColor->setMinimumSize( QSize( 60, 0 ) );
 
     layFontIn->addMultiCellWidget( comboColor, 1, 1, 3, 4 );
 
-    btnSelFont = new QPushButton( pageTxt, "btnSelFont" );
+    btnSelFont = new QPushButton( pageTxt );
     btnSelFont->setMaximumSize( QSize( 25, 32767 ) );
 
     layFontIn->addWidget( btnSelFont, 0, 4 );
 
-    lblFont = new QLabel( pageTxt, "lblFont" );
+    lblFont = new QLabel( pageTxt );
 
     layFontIn->addWidget( lblFont, 0, 0 );
 
-    comboFontSize = new QComboBox( FALSE, pageTxt, "comboFontSize" );
+    comboFontSize = new QComboBox( FALSE, pageTxt );
     comboFontSize->setMinimumSize( QSize( 80, 0 ) );
     comboFontSize->setEditable( TRUE );
 
     layFontIn->addWidget( comboFontSize, 1, 1 );
 
-    leFont = new QLineEdit( pageTxt, "leFont" );
+    leFont = new QLineEdit( pageTxt );
 
     layFontIn->addMultiCellWidget( leFont, 0, 0, 1, 3 );
 
-    lblTxtColor = new QLabel( pageTxt, "lblTxtColor" );
+    lblTxtColor = new QLabel( pageTxt );
 
     layFontIn->addWidget( lblTxtColor, 1, 2 );
 
-    lblFontSize = new QLabel( pageTxt, "lblFontSize" );
+    lblFontSize = new QLabel( pageTxt );
 
     layFontIn->addWidget( lblFontSize, 1, 0 );
     layFont1->addLayout( layFontIn );
 
-    lblSample = new QLabel( pageTxt, "lblSample" );
+    lblSample = new QLabel( pageTxt );
     lblSample->setFrameShape( QLabel::Box );
 	lblSample->setFixedSize( QSize(120,40) );
     layFont1->addWidget( lblSample );
     pageTxtLayout->addLayout( layFont1 );
 
-    layCb = new QHBoxLayout( 0, 0, 6, "layCb");
+    layCb = new QHBoxLayout();
 
-    cbBold = new QCheckBox( pageTxt, "cbBold" );
+    cbBold = new QCheckBox( pageTxt );
     layCb->addWidget( cbBold );
 
-    cbItalic = new QCheckBox( pageTxt, "cbItalic" );
+    cbItalic = new QCheckBox( pageTxt );
     layCb->addWidget( cbItalic );
 
-    cbUnderline = new QCheckBox( pageTxt, "cbUnderline" );
+    cbUnderline = new QCheckBox( pageTxt );
     layCb->addWidget( cbUnderline );
 
-    cbStrikeout = new QCheckBox( pageTxt, "cbStrikeout" );
+    cbStrikeout = new QCheckBox( pageTxt );
     layCb->addWidget( cbStrikeout );
     spacerCb = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     layCb->addItem( spacerCb );
     pageTxtLayout->addLayout( layCb );
 
-    layRadio = new QHBoxLayout( 0, 0, 6, "layRadio");
+    layRadio = new QHBoxLayout();
 
-    bgHAlign = new QButtonGroup( pageTxt, "bgHAlign" );
+    bgHAlign = new QButtonGroup( pageTxt );
     bgHAlign->setColumnLayout(0, Qt::Vertical );
     bgHAlign->layout()->setSpacing( 6 );
     bgHAlign->layout()->setMargin( 6 );
     bgHAlignLayout = new QHBoxLayout( bgHAlign->layout() );
     bgHAlignLayout->setAlignment( Qt::AlignTop );
 
-    radioLeft = new QRadioButton( bgHAlign, "radioLeft" );
+    radioLeft = new QRadioButton( bgHAlign );
     radioLeft->setChecked( TRUE );
     bgHAlignLayout->addWidget( radioLeft );
 
-    radioCenter = new QRadioButton( bgHAlign, "radioCenter" );
+    radioCenter = new QRadioButton( bgHAlign );
     bgHAlignLayout->addWidget( radioCenter );
 
     radioRight = new QRadioButton( bgHAlign, "radioRight" );
@@ -477,28 +486,28 @@ NCReportDesignerWidgetSetDialogUI::~NCReportDesignerWidgetSetDialogUI()
  */
 void NCReportDesignerWidgetSetDialogUI::languageChange()
 {
-    setCaption( tr( "Object settings" ) );
+    this->setWindowTitle( tr( "Object settings" ) );
     lblLabel->setText( tr( "Label text" ) );
     lblSrc->setText( tr( "Source column or variable" ) );
     lblFunc->setText( tr( "User function" ) );
     lblLookup->setText( tr( "Lookup class name" ) );
     comboDSource->clear();
-    comboDSource->insertItem( tr( "None" ) );
-    comboDSource->insertItem( tr( "SQL field" ) );
-    comboDSource->insertItem( tr( "Parameter" ) );
-    comboDSource->insertItem( tr( "Variable" ) );
-    comboDSource->insertItem( tr( "System variable" ) );
-    comboDSource->insertItem( tr( "Lookup" ) );
-    comboDSource->insertItem( tr( "Text" ) );
+    comboDSource->addItem( tr( "None" ) );
+    comboDSource->addItem( tr( "SQL field" ) );
+    comboDSource->addItem( tr( "Parameter" ) );
+    comboDSource->addItem( tr( "Variable" ) );
+    comboDSource->addItem( tr( "System variable" ) );
+    comboDSource->addItem( tr( "Lookup" ) );
+    comboDSource->addItem( tr( "Text" ) );
     lblPWhen->setText( tr( "Print when expression" ) );
     lblSrcType->setText( tr( "Data source type" ) );
     lblEmbed->setText( tr( "Embed result to string (%1)" ) );
-    tab->changeTab( pageData, tr( "&Data source" ) );
+    tab->setTabText( tab->indexOf( pageData ), tr( "&Data source" ) );
     lblType->setText( tr( "Base type of data" ) );
     comboType->clear();
-    comboType->insertItem( tr( "Text" ) );
-    comboType->insertItem( tr( "Numeric" ) );
-    comboType->insertItem( tr( "Date" ) );
+    comboType->addItem( tr( "Text" ) );
+    comboType->addItem( tr( "Numeric" ) );
+    comboType->addItem( tr( "Date" ) );
     gbNumFormat->setTitle( tr( "Number settings" ) );
     lblNumFormat->setText( tr( "Number format code" ) );
     lblNoDec->setText( tr( "Number of decimals" ) );
@@ -510,80 +519,80 @@ void NCReportDesignerWidgetSetDialogUI::languageChange()
     lblHelpNumF->setText( tr( "(Eg.: Old number format: \"%9.2f\" New localized number format: \"%L1;9f2\" )" ) );
     gbDateFormat->setTitle( tr( "Date settings" ) );
     lblDateFmt->setText( tr( "Date format code" ) );
-    tab->changeTab( TabPage, tr( "Data &format" ) );
+    tab->setTabText( tab->indexOf(  TabPage ), tr( "Data &format" ) );
     btnSelFont->setText( tr( "..." ) );
     lblFont->setText( tr( "Font style" ) );
     comboFontSize->clear();
-    comboFontSize->insertItem( QString::null );
-    comboFontSize->insertItem( tr( "6" ) );
-    comboFontSize->insertItem( tr( "8" ) );
-    comboFontSize->insertItem( tr( "9" ) );
-    comboFontSize->insertItem( tr( "10" ) );
-    comboFontSize->insertItem( tr( "11" ) );
-    comboFontSize->insertItem( tr( "12" ) );
-    comboFontSize->insertItem( tr( "14" ) );
-    comboFontSize->insertItem( tr( "16" ) );
-    comboFontSize->insertItem( tr( "18" ) );
-    comboFontSize->insertItem( tr( "20" ) );
-    comboFontSize->insertItem( tr( "22" ) );
-    comboFontSize->insertItem( tr( "24" ) );
-    comboFontSize->insertItem( tr( "26" ) );
-    comboFontSize->insertItem( tr( "28" ) );
-    comboFontSize->insertItem( tr( "30" ) );
-    comboFontSize->insertItem( tr( "32" ) );
-    comboFontSize->insertItem( tr( "72" ) );
+    comboFontSize->addItem( QString::null );
+    comboFontSize->addItem( tr( "6" ) );
+    comboFontSize->addItem( tr( "8" ) );
+    comboFontSize->addItem( tr( "9" ) );
+    comboFontSize->addItem( tr( "10" ) );
+    comboFontSize->addItem( tr( "11" ) );
+    comboFontSize->addItem( tr( "12" ) );
+    comboFontSize->addItem( tr( "14" ) );
+    comboFontSize->addItem( tr( "16" ) );
+    comboFontSize->addItem( tr( "18" ) );
+    comboFontSize->addItem( tr( "20" ) );
+    comboFontSize->addItem( tr( "22" ) );
+    comboFontSize->addItem( tr( "24" ) );
+    comboFontSize->addItem( tr( "26" ) );
+    comboFontSize->addItem( tr( "28" ) );
+    comboFontSize->addItem( tr( "30" ) );
+    comboFontSize->addItem( tr( "32" ) );
+    comboFontSize->addItem( tr( "72" ) );
     lblTxtColor->setText( tr( "Text color" ) );
     lblFontSize->setText( tr( "Font size" ) );
     lblSample->setText( tr( "Sample text" ) );
     cbBold->setText( tr( "Bold" ) );
-    cbBold->setAccel( QKeySequence( QString::null ) );
+    cbBold->setShortcut( QKeySequence( QString::null ) );
     cbItalic->setText( tr( "Italic" ) );
-    cbItalic->setAccel( QKeySequence( QString::null ) );
+    cbItalic->setShortcut( QKeySequence( QString::null ) );
     cbUnderline->setText( tr( "&Underline" ) );
-    cbUnderline->setAccel( QKeySequence( tr( "Alt+U" ) ) );
+    cbUnderline->setShortcut( QKeySequence( tr( "Alt+U" ) ) );
     cbStrikeout->setText( tr( "Strikeout" ) );
     bgHAlign->setTitle( tr( "Horizontal alignment" ) );
     radioLeft->setText( tr( "&Left" ) );
     radioCenter->setText( tr( "Ce&nter" ) );
-    radioCenter->setAccel( QKeySequence( tr( "Alt+N" ) ) );
+    radioCenter->setShortcut( QKeySequence( tr( "Alt+N" ) ) );
     radioRight->setText( tr( "Rig&ht" ) );
-    radioRight->setAccel( QKeySequence( tr( "Alt+H" ) ) );
+    radioRight->setShortcut( QKeySequence( tr( "Alt+H" ) ) );
     bgVAlign->setTitle( tr( "Vertical alignment" ) );
     radioTop->setText( tr( "Top" ) );
     radioMid->setText( tr( "Middle" ) );
-    radioMid->setAccel( QKeySequence( QString::null ) );
+    radioMid->setShortcut( QKeySequence( QString::null ) );
     radioBottom->setText( tr( "Bottom" ) );
-    radioBottom->setAccel( QKeySequence( QString::null ) );
+    radioBottom->setShortcut( QKeySequence( QString::null ) );
     cbWordBreak->setText( tr( "Automatic &wordbreak if text is longer" ) );
-    cbWordBreak->setAccel( QKeySequence( tr( "Alt+W" ) ) );
+    cbWordBreak->setShortcut( QKeySequence( tr( "Alt+W" ) ) );
     cbRichText->setText( tr( "Use richtext format" ) );
     cbDynamicHeight->setText( tr( "Dymanic height when in details" ) );
     cbLoadFromFile->setText( tr( "Load text from file" ) );
     lblRotat->setText( tr( "Rotation angle" ) );
-    tab->changeTab( pageTxt, tr( "&Text style" ) );
+    tab->setTabText( tab->indexOf( pageTxt ), tr( "&Text style" ) );
     bgBackM->setTitle( tr( "Background mode" ) );
     radioTransp->setText( tr( "Tra&nsparent" ) );
-    radioTransp->setAccel( QKeySequence( tr( "Alt+N" ) ) );
+    radioTransp->setShortcut( QKeySequence( tr( "Alt+N" ) ) );
     radioFill->setText( tr( "Fi&lled" ) );
-    radioFill->setAccel( QKeySequence( tr( "Alt+L" ) ) );
+    radioFill->setShortcut( QKeySequence( tr( "Alt+L" ) ) );
     lblFillcol->setText( tr( "Fill color" ) );
     comboLineStyle->clear();
-    comboLineStyle->insertItem( tr( "Solid" ) );
-    comboLineStyle->insertItem( tr( "Dashed" ) );
-    comboLineStyle->insertItem( tr( "Dotted" ) );
-    comboLineStyle->insertItem( tr( "Dash+dot" ) );
-    comboLineStyle->insertItem( tr( "Dash+dot+dot" ) );
-    comboLineStyle->insertItem( tr( "None" ) );
+    comboLineStyle->addItem( tr( "Solid" ) );
+    comboLineStyle->addItem( tr( "Dashed" ) );
+    comboLineStyle->addItem( tr( "Dotted" ) );
+    comboLineStyle->addItem( tr( "Dash+dot" ) );
+    comboLineStyle->addItem( tr( "Dash+dot+dot" ) );
+    comboLineStyle->addItem( tr( "None" ) );
     lblLinesty->setText( tr( "Line style" ) );
     lblLinecol->setText( tr( "Line color" ) );
     lblLinew->setText( tr( "Line width" ) );
-    tab->changeTab( pageLine, tr( "L&ine/Border style" ) );
+    tab->setTabText( tab->indexOf(  pageLine ), tr( "L&ine/Border style" ) );
     buttonApply->setText( tr( "Appl&y" ) );
-    buttonApply->setAccel( QKeySequence( tr( "Alt+Y" ) ) );
+    buttonApply->setShortcut( QKeySequence( tr( "Alt+Y" ) ) );
     buttonOk->setText( tr( "&OK" ) );
-    buttonOk->setAccel( QKeySequence( QString::null ) );
+    buttonOk->setShortcut( QKeySequence( QString::null ) );
     buttonCancel->setText( tr( "&Cancel" ) );
-    buttonCancel->setAccel( QKeySequence( QString::null ) );
+    buttonCancel->setShortcut( QKeySequence( QString::null ) );
 }
 
 void NCReportDesignerWidgetSetDialogUI::applyOptions()

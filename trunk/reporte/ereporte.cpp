@@ -28,14 +28,11 @@ EReporte::EReporte(QObject *parent)
 {
  Q_INIT_RESOURCE( ncreport );
  reporte = new NCReport( QString::null, 0 );
- reporte->setShowPrintDialog( true );
- reporte->setPreviewAsMain( true );	// preview is the main form on preview mode
- reporte->setDeleteReportAfterPreview( true );	// delete report object after close preview
- reporte->setPreviewIsMaximized( false );
+ //reporte->setShowPrintDialog( true );
  reporte->setParseMode( NCReport::fromFile );
  reporte->setFileEncoding( "iso8859-2" );
  reporte->setOutput( NCReport::Preview );
- reporte->setOutputFile( "print.pdf" );
+ reporte->setOutputFile( "impreso.pdf" );
 }
 
 
@@ -60,30 +57,12 @@ bool EReporte::setArchivo( QString nombre )
  }
 }
 
-
-/*!
-    \fn EReporte::imprimir()
- */
-void EReporte::imprimir()
-{
- reporte->runReportToPrinter();
-}
-
-
-/*!
-    \fn EReporte::aPdf()
- */
-void EReporte::aPdf()
-{
- reporte->runReportToPDF();
-}
-
 /*!
     \fn EReporte::previsualizar()
  */
-void EReporte::previsualizar()
+void EReporte::previsualizar( QPrinter *p )
 {
- reporte->runReportToPreview();
+ reporte->runReportToPreview( p );
 }
 
 
@@ -111,13 +90,4 @@ void EReporte::agregarParametro( QString nombre, QVariant valor )
    reporte->addParameter( valor.toString(), nombre );
   }
  }
-}
-
-#include "ncpreview.h"
-/*!
-    \fn EReporte::ventana()
- */
-QWidget * EReporte::ventana()
-{
- return qobject_cast<QWidget *>( reporte->previewWidget()->centralWidget() );
 }

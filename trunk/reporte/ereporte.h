@@ -35,18 +35,15 @@ public:
     EReporte(QObject *parent = 0);
     ~EReporte();
     bool setArchivo( QString nombre );
-    void imprimir();
-    void aPdf();
-    void previsualizar();
     void agregarParametro( QString nombre, QVariant valor );
-    QWidget * ventana();
 
 private:
 	NCReport *reporte;
-
 signals:
 	void agregarVentana( QWidget * );
 
+public slots:
+    void previsualizar( QPrinter *p );
 };
 
 #endif

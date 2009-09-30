@@ -27,7 +27,7 @@ class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QSpacerItem;
-class QListBox;
+class QListView;
 class QListBoxItem;
 class QPushButton;
 class QButtonGroup;
@@ -67,7 +67,7 @@ protected:
     QHBoxLayout* layBtn;
     QSpacerItem* spButt;
 
-	QListBox* listGroups;
+	QListView* listGroups;
 	QPushButton* btnNew;
 	QPushButton* btnRemove;
 	QPushButton* btnUp;

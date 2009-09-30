@@ -21,7 +21,7 @@
 #define PAGOSPLUGIN_H
 
 #include <QObject>
-#include <eplugin.h>
+#include "eplugin.h"
 #include <QtPlugin>
 
 /**

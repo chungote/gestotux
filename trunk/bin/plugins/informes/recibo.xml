@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf8"?>
+<NCReport
+    name="unnamed"
+    dataSource="DB"
+    encoding="utf8"
+    pageSize="A4"
+    orientation="P"
+    printerMode="normal"
+    topMargin="20"
+    bottomMargin="20"
+    leftMargin="20"
+    rightMargin="20"
+    defaultFontName=""
+    defaultFontSize="10"
+    backcolor="#FFFFFF"
+    masterAlias="test"
+    >
+    
+<queries>
+    <query alias="test">
+        SELECT * FROM recibos;
+    </query>
+</queries>
+<variables>
+</variables>
+<pageHeader height="31.2073">
+    <label posX="55.359" posY="1.628" width="37.449" height="9.769" fontSize="20" fontWeight="bold" fontUnderline="true" alignmentH="center" alignmentV="center" forecolor="#000080">Recibo</label>
+    <pixmap posX="1.628" posY="1.628" width="34.192" height="27.679" resource="logo.png"></pixmap>
+    <label posX="47.218" posY="17.910" width="91.179" height="4.885" fontWeight="bold" alignmentH="center" forecolor="#000000">Recibo de Prueba</label>
+</pageHeader>
+<pageFooter height="14.9252">
+</pageFooter>
+<groups>
+</groups>
+<detail height="50.7457">
+    <field ftype="sql" type="" posX="29.308" posY="8.141" width="16.282" height="4.885" forecolor="#000000">recibo.id</field>
+</detail>
+</NCReport>

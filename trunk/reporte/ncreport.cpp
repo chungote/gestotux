@@ -19,7 +19,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "ncreport.h"
-#include "ncpreview.h"
 #include "reportparser.h"
 #include "ncutils.h"
 #include "globals.h"
@@ -162,11 +161,7 @@ NCReport::NCReport(const QString & fileName, QObject * parent, const char* name 
 	backcolor = QColor( 255,255,255 );
 	queryByParameter = false;
 	queryListChanged = false;
-	previewForm =0;
-	previewismainform = false;
-	deleteReportAfterPreview = false;
 	printerSetupParent = 0;
-	previewismaximized = false;
 	_globalPosX =0;
 	_globalPosY =0;
 	currentSection =0;
@@ -183,8 +178,6 @@ NCReport::NCReport(const QString & fileName, QObject * parent, const char* name 
 	//pQueries->queries.setAutoDelete( true );
 	//DataSession.setAutoDelete( TRUE );
 	//Parameters.setAutoDelete( TRUE );
-	logging = true;	// logging
-	loadConfig();
 
 	setPageSize( pageSize );
 	#ifdef REPORT_DEBUG_ON
@@ -286,31 +279,19 @@ void NCReport::setOutput( NCReport::Output o ) { reportOutput = o; }
 void NCReport::setOrientation( NCReport::Orientation po ) { pageOrientation = po; }
 
 //************* SLOTS
-void NCReport::runReportToPrinter()
+void NCReport::runReportToPrinter( QPrinter *p )
 {
-	reportOutput = Printer;
+	this->pr = p;
+ 	reportOutput = Printer;
 	runReport();
 }
 
-void NCReport::runReportToPrinterFromPreview()
+void NCReport::runReportToPreview( QPrinter *p )
 {
-	reportOutput = Printer;
-	printerSetupParent = previewForm;
-	runReport();
-	printerSetupParent = 0;
-}
-
-void NCReport::runReportToPreview()
-{
-	reportOutput = Preview;
+	//reportOutput = Preview;
+	this->pr = p;
+	//reportOutput = Printer;
 	_numforcecopies =1;	// safety
-	runReport();
-}
-
-void NCReport::runReportToPDF()
-{
-	reportOutput = Pdf;
-	_numforcecopies =1;
 	runReport();
 }
 
@@ -346,6 +327,8 @@ bool NCReport::openXMLFile()
 		flagError = true;
 
 		errorMsg = tr("%1 report file does not exists.").arg( reportFileName );
+		qDebug( errorMsg.toLocal8Bit() );
+
 		return false;
 	}
 	return true;
@@ -362,7 +345,7 @@ void NCReport::resetObjContainers()
 bool NCReport::parseXMLResource()
 {
 
-	reportLog( tr("Parse XML def...") );
+	qDebug( qPrintable( tr("Parse XML def...") ) );
 	QTime t;
     t.start();                          // start clock
 
@@ -394,12 +377,14 @@ bool NCReport::parseXMLResource()
 		if ( !sql->exec( _query ) ) {
 			flagError = true;
 			errorMsg = sql->getErrorMsg();
+			qDebug( errorMsg.toLocal8Bit() );
 			return false;
 		}
 
 		if ( sql->getRowCount() <= 0 ) {
 			flagError = true;
 			errorMsg = tr("No report definition found!");
+			qDebug( errorMsg.toLocal8Bit() );
 			return false;
 		}
 		_xml = sql->stringValue(0);
@@ -409,6 +394,7 @@ bool NCReport::parseXMLResource()
 	if ( _xml.isEmpty() ) {
 		flagError = true;
 		errorMsg = tr("Report definition is empty!");
+		qDebug( errorMsg.toLocal8Bit() );
 		return false;
 	}
 
@@ -431,12 +417,13 @@ bool NCReport::parseXMLResource()
 		//QMessageBox::information( 0, "Parse error", parser->errorProtocol() );
 		flagError = true;
 		errorMsg = tr("Error in report definition: %1").arg( errHand.errorString() );
+		qDebug( errorMsg.toLocal8Bit() );
 	}
 
 	#ifdef REPORT_DEBUG_ON
 	    qDebug( "Report file parsing time: %d\n", t.elapsed() );
 	#endif
-	reportLog( tr("Parsing time elapsed: %1 msec").arg( t.elapsed() ) );
+	qDebug( qPrintable( tr("Parsing time elapsed: %1 msec").arg( t.elapsed() ) ) );
 
 	return reportFileParsed;
 }
@@ -447,6 +434,7 @@ bool NCReport::loadResourceFromFile( QString& txt, const QString& filename )
 	if ( !txtFile.open( QIODevice::ReadOnly ) ) {
 		flagError = true;
 		errorMsg = tr("Cannot open file %1").arg( filename.left(60) );
+		qDebug( errorMsg.toLocal8Bit() );
 		return false;
 	}
 
@@ -468,6 +456,7 @@ bool NCReport::openTextSource()
 	if ( !resourceFile.open( QIODevice::ReadOnly ) ) {
 		flagError = true;
 		errorMsg = tr("Cannot open file %1").arg( resourceTextFile );
+		qDebug( errorMsg.toLocal8Bit() );
 		return false;
 	}
 	resourceStream.setDevice( &resourceFile );
@@ -512,7 +501,7 @@ void NCReport::copyQueryListToDataDef()
 }
 bool NCReport::printerSetup( QPrinter *pr )
 {
-	reportLog( tr("printerSetup() ...") );
+	qDebug( qPrintable( tr("printerSetup() ...") ) );
 
 	if ( reportOutput == Pdf ) {
 		pr->setOutputFormat( QPrinter::PdfFormat );
@@ -562,21 +551,10 @@ void NCReport::reportProcess()
 
 	QPainter paint;
 	pa = &paint;		// save QPainter pointer
-	pr = 0;
 
 	setPageSize( pageSize );	// size setting
 
-	if ( reportOutput == Printer || reportOutput == Pdf ) {
-		pr = new QPrinter( printerMode );
-
-		if ( printerSetup( pr ) ) {
-			setPageSize( pageSize );	// size setting
-		} else {
-			delete pr;
-			return;
-		}
-	}
-	else if ( reportOutput == XML )
+	if ( reportOutput == XML )
 	{
 		outputDomDocument = QDomDocument( "report" );
 		currentElement = outputDomDocument.createElement("report");
@@ -584,14 +562,9 @@ void NCReport::reportProcess()
 	}
 
 	QTime t;
-    t.start();                          // start clock
+	t.start();                          // start clock
 
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-
-	//NCPictureList *piclist =0;
-	//if (reportOutput == preview) {
-	//	piclist = new NCPictureList();
-	//}
 
 	bool querysucc;
 
@@ -618,6 +591,7 @@ void NCReport::reportProcess()
 		if ( masterAlias.isEmpty() || DataSession.isEmpty() ) {
 			flagError = true;
 			errorMsg = tr("Master alias is invalid!");
+			qDebug( errorMsg.toLocal8Bit() );
 			DataSession.clear();
 			if ( reportOutput == Printer || reportOutput == Pdf )
 				delete pr;
@@ -633,6 +607,7 @@ void NCReport::reportProcess()
 		if (reccount == 0) {
 			flagError = true;
 			errorMsg = tr("Data not found in master query! (%1)").arg(masterAlias);
+			qDebug( errorMsg.toLocal8Bit() );
 			DataSession.clear();
 			if ( reportOutput == Printer || reportOutput == Pdf )
 				delete pr;
@@ -658,7 +633,7 @@ void NCReport::reportProcess()
 	*****************************/
 	for ( int fcx=0; fcx < _numforcecopies; fcx++ ) {
 		_currentforcecopy = fcx+1;
-		reportLog( tr("Report cycle : %1").arg( _currentforcecopy ) );
+		qDebug( qPrintable( tr("Report cycle : %1").arg( _currentforcecopy ) ) );
 
 		if ( dataSource == Database )
 			DataSession[masterAlias]->first();
@@ -684,7 +659,7 @@ void NCReport::reportProcess()
 
 				flagBeginReport = false;
 			} else {
-				//_updateFieldValues( true );		//update system variables only
+				_updateFieldValues( true );		//update system variables only
 			}
 			initNewPage();
 			drawOverPageObjects();
@@ -749,26 +724,8 @@ void NCReport::reportProcess()
 	//#ifdef REPORT_DEBUG_ON
 	    qDebug( "Report process time: %d\n", t.elapsed() );
     //#endif
-	reportLog( tr("****** Report finished. Full process time: %1 msec").arg( t.elapsed() ) );
-	if (reportOutput == Preview) {
-	    //NCPreview *previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, AppMainWindow()->windowContainer(), "prw", Qt::WDestructiveClose );
-		//previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, 0, "prw", WDestructiveClose );
-		previewForm = new NCPreview( pageHeight_screen, pageWidth_screen, piclist, 0, "prw", 0, iconFactory );
-		previewForm->setAttribute( Qt::WA_DeleteOnClose );
-		previewForm->setWindowModality( Qt::ApplicationModal );
-		previewForm->setReport( this );
-		previewForm->setDeleteReportOnClose( deleteReportAfterPreview );
-		//connect( previewForm->actionPrint, SIGNAL( activated() ), this, SLOT( runReportToPrinter() ) );
+	qDebug( qPrintable( tr("****** Report finished. Full process time: %1 msec").arg( t.elapsed() ) ) );
 
-		//if ( previewismainform )
-			//qApp->setMainWidget(previewForm);
-
-		//if ( AppConf()->showMaximized )
-		if ( previewismaximized )
-    		previewForm->showMaximized();
-		else
-	    	previewForm->show();
-	}
 }
 
 void NCReport::initNewPage()
@@ -777,26 +734,14 @@ void NCReport::initNewPage()
 	    qDebug( "Init new page ..." );
 #endif
 
-	if ( reportOutput == Preview || reportOutput == XML ) {
-		// Print preview -> draw to QPicture
-		//picPages.append( new QPicture );	//append new preview page
-		QPicture *pic = new QPicture;
-		piclist.append( pic );	//append new preview page
-
-		if ( paintBegin )
-			pa->end();
-		paintBegin = pa->begin( pic );
-		//pa->setBackgroundMode( Qt::OpaqueMode );
-		//pa->setBackgroundColor( backcolor );
-	} else if ( reportOutput == Printer || reportOutput == Pdf ) {
-		// draw to printer
-		if (_init) {
-			pa->begin( pr );
-			_init = false;
-		} else
-			pr->newPage();
+	// Para la previsualización es igual que para la impresion
+	// Imprimo en la impresora
+	if (_init) {
+		pa->begin( pr );
+		_init = false;
+	} else {
+		pr->newPage();
 	}
-
 	flagNewPage = false;	// flag set back
 	pa->resetMatrix();	// reset transformations
 	_globalPosX =0;
@@ -806,18 +751,6 @@ void NCReport::initNewPage()
 	// 2004.01.23 switched to metric system
 	dpiX = pa->device()->logicalDpiX();
 	dpiY = pa->device()->logicalDpiY();
-
-	if ( reportOutput == Preview ) {
-		//pa->setWindow( 0, 0, pageWidth_screen, pageHeight_screen );
-		//QBrush brush( backcolor, Qt::SolidPattern );
-		//pa->setBrush( brush );
-		//pageWidth = 210;	//A4 teszt
-		//pageHeight = 297;
-	} else {
-		//pageWidth = pdm.width();
-		//pageHeight = pdm.height();
-		//pa->setWindow( 0, 0, pageWidth, pageHeight );
-	}
 
 	//netto size without margins
 	_pageWidth = pageWidth - leftMargin - rightMargin;
@@ -833,9 +766,9 @@ void NCReport::initNewPage()
 		qDebug("Logical dpiX=%i  dpiY=%i", dpiX, dpiY );
 		qDebug("Physical dpiX=%i  dpiY=%i", pa->device()->physicalDpiX(), pa->device()->physicalDpiY() );
 	#endif
-	reportLog( QString("pageWidth = %1(%2)  pageHeight = %3(%4)").arg(pageWidth).arg(toPixelX(pageWidth)).arg(pageHeight).arg(toPixelY(pageHeight)) );
-	reportLog( QString("pageFooterY = %1(%2)").arg( pageFooterY ).arg( toPixelY(pageFooterY) ) );
-	reportLog( QString("dpiX = %1  dpiY = %2").arg(dpiX).arg(dpiY) );
+	qDebug( qPrintable( QString("pageWidth = %1(%2)  pageHeight = %3(%4)").arg(pageWidth).arg(toPixelX(pageWidth)).arg(pageHeight).arg(toPixelY(pageHeight)) ) );
+	qDebug( qPrintable( QString("pageFooterY = %1(%2)").arg( pageFooterY ).arg( toPixelY(pageFooterY) ) ) );
+	qDebug( qPrintable( QString("dpiX = %1  dpiY = %2").arg(dpiX).arg(dpiY) ) );
 	/*************
 	  PAGE HEADER AND FOOTER
 	**************/
@@ -890,6 +823,7 @@ bool NCReport::drawPageHeader( )
 	if ( dataDef->pageHeader->height > _pageHeight ) {	// if true, than something wrong (ex. bad height of page)
 		flagError = true;
 		errorMsg = tr("Invalid page header operation!");
+
 		qDebug( qPrintable(errorMsg) );
 		return false;	// something wrong.
 	}
@@ -987,7 +921,7 @@ void NCReport::handleGroupHeader( )
 			#ifdef REPORT_DEBUG_ON
 				qDebug("Draw groupheader... %s", qPrintable(group->name) );
 			#endif
-			reportLog( tr("Draw groupheader ... %1").arg(group->name) );
+			qDebug( qPrintable( tr("Draw groupheader ... %1").arg(group->name) ) );
 			if ( drawGroupHeader( group ) )		//if have enough space
 				group->state = report_Group::onProcess;  //group in process
 		}
@@ -1010,13 +944,13 @@ void NCReport::handleGroupFooter( )
 			#ifdef REPORT_DEBUG_ON
 			qDebug("Draw groupfooter: %s",qPrintable(group->name));
 			#endif
-			reportLog( tr("Draw Groupfooter ... %1").arg(group->name) );
+			qDebug( qPrintable( tr("Draw Groupfooter ... %1").arg(group->name) ) );
 			if ( drawGroupFooter( group ) )	{ //if have enough space, close previous group
     			//it kell nullazni a Variableket
 				#ifdef REPORT_DEBUG_ON
 				qDebug("Reset variables: %s", qPrintable(group->resetVariables) );
 				#endif
-				reportLog( tr("Reset variables: ... %1").arg(group->resetVariables) );
+				qDebug( qPrintable( tr("Reset variables: ... %1").arg(group->resetVariables) ) );
 				_resetVariables( group->resetVariables );	//reset group's variables
 				//_updateFieldValues();	// refresh fields (later should refresh only variable fields)
 
@@ -1266,9 +1200,9 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 	}
 
 	if (isField)
-		reportLog( tr("Draw Field %1 ='%2'").arg( obj->name ).arg( obj->displayValue ) );
+		qDebug( qPrintable( tr("Draw Field %1 ='%2'").arg( obj->name ).arg( obj->displayValue ) ) );
 	else
-		reportLog( tr("Draw Label %1 ='%2'").arg( obj->name ).arg( obj->text ) );
+		qDebug( qPrintable( tr("Draw Label %1 ='%2'").arg( obj->name ).arg( obj->text ) ) );
 
 	int trim = 0;
 	if ( reportOutput == Printer || reportOutput == Pdf )
@@ -1330,7 +1264,7 @@ void NCReport::_drawLabel( report_Label *obj, bool isField )
 	#ifdef REPORT_DEBUG_ON
 		qDebug("x=%i y=%i w=%i h=%i startY=%f", toPixelX( obj->posX ), toPixelY( obj->posY ), w, h, startY );
 	#endif
-	reportLog( tr("x=%1 y=%2 w=%3 h=%4 startY=%5").arg(toPixelX( obj->posX )).arg(toPixelY( obj->posY )).arg(w).arg(h).arg(startY) );
+	qDebug( qPrintable( tr("x=%1 y=%2 w=%3 h=%4 startY=%5").arg(toPixelX( obj->posX )).arg(toPixelY( obj->posY )).arg(w).arg(h).arg(startY) ) );
 	//----------------------
 	//
 	//----------------------
@@ -1612,7 +1546,7 @@ void NCReport::_drawPixmap( report_Pixmap *obj )
 		#ifdef REPORT_DEBUG_ON
 			qDebug("Paint pixmap: ...");
 		#endif
-		reportLog( tr("Paint pixmap ...") );
+		qDebug( qPrintable( tr("Paint pixmap ...") ) );
 
 		#ifdef REPORT_DEBUG_ON
 			qDebug("Scale pixmap: ...");
@@ -1640,7 +1574,7 @@ void NCReport::_drawPixmap( report_Pixmap *obj )
 	//	#ifdef REPORT_DEBUG_ON
 	//		qDebug("Paint image: ...");
 	//	#endif
-	//	reportLog( tr("Paint image ...") );
+	//	qDebug( qPrintable( tr("Paint image ...") );
 	//	//pa->drawPixmap( toPixelX( obj->posX ), toPixelY( obj->posY ), im, 0, 0, toPixelX( obj->width ), toPixelY( obj->height ) );
 	//	//pa->drawPixmap( toPixelX( obj->posX ), toPixelY( obj->posY ), im );
 	//	pa->drawImage( _globalPosX+toPixelX( obj->posX ), _globalPosY+toPixelY( obj->posY ), im );
@@ -1681,7 +1615,6 @@ void NCReport::nextRecord()
 			flagError = true;
 			errorMsg = tr(" Error: DataSession[ masterAlias ] is null.");
 			qDebug( qPrintable(errorMsg) );
-			reportLog( errorMsg );
 			return;	// something wrong.
 		}
 
@@ -1689,7 +1622,7 @@ void NCReport::nextRecord()
 
 				qDebug("Step to next record. current is: %i", recno);
 			#endif
-			reportLog( tr("Step to next record. current is: %1").arg(recno) );
+			qDebug( qPrintable( tr("Step to next record. current is: %1").arg(recno) ) );
 		flagEndReport = !DataSession[ masterAlias ]->next();
 		if ( !flagEndReport )
 			recno++;
@@ -1727,7 +1660,6 @@ void NCReport::prevRecord()
 			flagError = true;
 			errorMsg = tr(" Error: DataSession[ masterAlias ] is null.");
 			qDebug( qPrintable(errorMsg) );
-			reportLog( errorMsg );
 
 			return;	// something wrong.
 		}
@@ -1738,7 +1670,7 @@ void NCReport::prevRecord()
 			#ifdef REPORT_DEBUG_ON
 				qDebug("Step to previous record. current is: %i", recno);
 			#endif
-			reportLog( tr("Step to previous record. current is: %1").arg(recno) );
+			qDebug( qPrintable( tr("Step to previous record. current is: %1").arg(recno) ) );
 			DataSession[ masterAlias ]->previous();
 
 			recno--;
@@ -1764,7 +1696,7 @@ void NCReport::_updateFieldValues( bool aTypeOnly, report_Field::refreshTypes t 
 #ifdef REPORT_DEBUG_ON
 	qDebug("Update field values...");
 #endif
-	reportLog( tr("Update field values...") );
+	qDebug( qPrintable( tr("Update field values...") ) );
 	// refresh all fields
 
 	//QListIterator<report_Field> it( dataDef->Flds ); // iterator for fields
@@ -1925,7 +1857,7 @@ QString NCReport::getParameterValue( const QString & pname )
 	#ifdef REPORT_DEBUG_ON
 		qDebug( "getParameterValue(%s)=%s", qPrintable(pname), qPrintable(rv) );
 	#endif
-	reportLog( tr("getParameterValue(%1)=%2").arg(pname).arg(rv) );
+	qDebug( qPrintable( tr("getParameterValue(%1)=%2").arg(pname).arg(rv) ) );
 	return rv;
 }
 
@@ -2103,7 +2035,7 @@ void NCReport::_updateGroupExp()
 #ifdef REPORT_DEBUG_ON
 	qDebug("Update group expressions...");
 #endif
-	reportLog( tr("Update group expressions...") );
+	qDebug( qPrintable( tr("Update group expressions...") ) );
 	flagGroupChanged = false;
 
     //QListIterator<report_Group> itgr( dataDef->Groups->groups); // iterator for groups
@@ -2148,7 +2080,7 @@ void NCReport::_evalGroupExp( report_Group* grp )
 		#ifdef REPORT_DEBUG_ON
 			qDebug( qPrintable(QString("Group exp changed: from '%1' to '%2' ").arg( curVal ).arg( newVal )) );
 		#endif
-		reportLog( QString("Group exp changed: from '%1' to '%2' ").arg( curVal ).arg( newVal ) );
+		qDebug( qPrintable( QString("Group exp changed: from '%1' to '%2' ").arg( curVal ).arg( newVal ) ) );
 	}
 	grp->needDrawGroupHeader = (grp->state == report_Group::closed);
 	grp->needDrawGroupFooter = (grp->state == report_Group::onProcess && (grp->groupChanged || flagEndReport) );
@@ -2156,8 +2088,8 @@ void NCReport::_evalGroupExp( report_Group* grp )
 		qDebug( "needDrawGroupFooter: %x", grp->needDrawGroupFooter);
 		qDebug( "needDrawGroupHeader: %x", grp->needDrawGroupHeader);
 	#endif
-	reportLog( tr("needDrawGroupFooter: %1").arg( grp->needDrawGroupFooter) );
-	reportLog( tr("needDrawGroupHeader: %1").arg( grp->needDrawGroupHeader) );
+	qDebug( qPrintable( tr("needDrawGroupFooter: %1").arg( grp->needDrawGroupFooter) ));
+	qDebug( qPrintable( tr("needDrawGroupHeader: %1").arg( grp->needDrawGroupHeader) ));
 	return;
 }
 
@@ -2167,7 +2099,7 @@ void NCReport::_updateVariableExp()
 #ifdef REPORT_DEBUG_ON
 	qDebug("Update variables...");
 #endif
-	reportLog( tr("Update variables...") );
+	qDebug( qPrintable( tr("Update variables...") ) );
 
 	QHashIterator<QString,report_Variable*> it( dataDef->Variables ); // iterator for variables
 
@@ -2277,6 +2209,7 @@ bool NCReport::execQueries( QListIterator<report_Query*>& it, const char qmode )
 		if ( DataSession[obj->alias] && obj->alias == masterAlias ) {	// master session is already exists
 			flagError = true;
 			errorMsg = tr("Master alias already exists. Alias name: %1").arg( obj->alias );
+			qDebug( errorMsg.toLocal8Bit() );
 			return false;
 		}
 
@@ -2289,11 +2222,12 @@ bool NCReport::execQueries( QListIterator<report_Query*>& it, const char qmode )
 		#ifdef REPORT_DEBUG_ON
 			qDebug("Run report query : %s", qPrintable(_query) );
 		#endif
-		reportLog( tr("Run report query: ")+ _query );
+		qDebug( qPrintable( tr("Run report query: ")+ _query ) );
 
 		if ( !DataSession[obj->alias]->exec( _query ) ) {
 			flagError = true;
 			errorMsg = DataSession[obj->alias]->getErrorMsg();
+			qDebug( errorMsg.toLocal8Bit() );
 			return false;
 
 		} else {
@@ -2329,6 +2263,7 @@ bool NCReport::runQueryToFile()
 	if ( !sql.exec( _query ) ) {
 		flagError = true;
 		errorMsg = sql.getErrorMsg();
+		qDebug( errorMsg.toLocal8Bit() );
 		return false;
 	}
 	int reccount = sql.getRowCount();
@@ -2766,7 +2701,7 @@ void NCReport::setPageSize(  const QString& ps )
 			qDebug("pageWidth = %f(%i)  pageHeight = %f(%i)", pageWidth, toPixelX(pageWidth), pageHeight, toPixelY(pageHeight) );
 			qDebug("pageWidth_screen = %i  pageHeight_screen = %i", pageWidth_screen, pageHeight_screen );
 		#endif
-		reportLog( tr("setPageSize(%1) ...").arg(ps) );
+		qDebug( qPrintable( tr("setPageSize(%1) ...").arg(ps) ) );
 		printerPageSize = pps;
 	}
 
@@ -2787,39 +2722,6 @@ void NCReport::setTrimmers(  int tfont_print, int tfont_prevw, int tline_print, 
 	trimLine_pvw = tline_prevw;
 }
 
-
-void NCReport::loadConfig()
-{
-
-	QString conf;
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "trimFontPrinter" );
-	if ( !conf.isEmpty() )
-		trimFont_prn = conf.toInt();
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "trimFontPreview" );
-	if ( !conf.isEmpty() )
-		trimFont_pvw = conf.toInt();
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "trimLinePrinter" );
-	if ( !conf.isEmpty() )
-		trimLine_prn = conf.toInt();
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "trimLinePreview" );
-	if ( !conf.isEmpty() )
-		trimLine_pvw = conf.toInt();
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "alwaysshowdialog" );
-	if ( !conf.isEmpty() )
-		alwaysShowPrintDialog = conf.toInt();
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "printerMode" );
-	if ( !conf.isEmpty() ) {
-		if ( conf == "screen")
-			printerMode = QPrinter::ScreenResolution;
-		else if ( conf == "printer")
-			printerMode = QPrinter::PrinterResolution;
-		else if ( conf == "high")
-			printerMode = QPrinter::HighResolution;
-
-	}
-	conf = readConfig( NCREPORT_CONFIGFILE, "settings", "log");
-	logging = ( conf == "1" );
-}
 
 QPointF NCReport::toPoint( qreal mm_x, qreal mm_y )
 {
@@ -2884,43 +2786,11 @@ double NCReport::toMillimeterY( int pixel )
 		return pixel*25.4/dpiY/SCREENFACTOR;
 }
 
-void NCReport::reportLog( const QString& log )
-{
-	if ( !logging )
-		return;
-
-	QFile f( NCREPORT_LOGFILE );
-	if ( !f.open( QIODevice::ReadWrite | QIODevice::Append ) )
-		return;
-	QTextStream t( &f );
-	t << log << "\n";
-	f.close();
-}
-
-NCPreview * NCReport::previewWidget( )
-{
-	return previewForm;
-}
-
-void NCReport::setPreviewAsMain( bool set )
-{
-	previewismainform = set;
-}
-
 void NCReport::setFileEncoding( const QString & e )
 {
 	encoding = e;
 }
 
-void NCReport::setDeleteReportAfterPreview( bool set )
-{
-	deleteReportAfterPreview = set;
-}
-
-void NCReport::setPreviewIsMaximized( bool set )
-{
-	previewismaximized = set;
-}
 
 void NCReport::setReportDef( const QString& rdef )
 {
@@ -2942,7 +2812,7 @@ void NCReport::translate_position( int x, int y, bool relative )
 	qDebug("translate_position( %i, %i )", x, y);
 	qDebug("Global positions: _globalPosX=%i _globalPosY=%i", _globalPosX, _globalPosY);
 #endif
-	reportLog( QString("translate( %1, %2 )").arg(x).arg(y) );
+	qDebug( qPrintable( QString("translate( %1, %2 )").arg(x).arg(y) ) );
 }
 
 
@@ -2990,4 +2860,13 @@ bool NCReport::textFromResource( QString & txt, report_Label * obj, bool isField
 QDomDocument NCReport::xmlOutput() const
 {
 	return outputDomDocument;
+}
+
+
+/*!
+    \fn NCReport::setImpresora( QPrinter *p )
+ */
+void NCReport::setImpresora( QPrinter *p )
+{
+ this->pr = p;
 }

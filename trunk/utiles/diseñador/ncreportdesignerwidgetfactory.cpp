@@ -25,7 +25,7 @@
 
 #include <QLineEdit>
 #include <QLabel>
-#include <QDom>
+#include <QDomElement>
 
 
 QWidget *NCReportDesignerWidgetFactory::create( int id, QWidget *parent, const char *name, bool init, const QRect *r )
@@ -36,7 +36,7 @@ QWidget *NCReportDesignerWidgetFactory::create( int id, QWidget *parent, const c
 
 	QWidget *w = 0;
 	//QString str = "report_widget"; //WidgetDatabase::createWidgetName( id );
-	const char *s = n.latin1();
+	const char *s = n.toLatin1();
 	w = createWidget( n, parent, name ? name : s, init, r );
 	if ( !w )
 		return 0;
@@ -65,7 +65,7 @@ QWidget * NCReportDesignerWidgetFactory::create( const QDomElement &e, QWidget *
 	else if ( e.tagName() == "image" ) nm="Image";
 
 	QWidget *w = 0;
-	const char *s = nm.latin1();
+	const char *s = nm.toLatin1();
 	w = createWidget( nm, parent, name ? name : s, init, r );
 	if ( !w )
 		return 0;

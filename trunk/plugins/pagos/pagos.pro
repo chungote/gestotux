@@ -12,11 +12,7 @@ TARGET = pagos
 
 DESTDIR = ../../bin/plugins/
 
-INCLUDEPATH += ../../src \
-  ../../utiles
 
-LIBS += ../../bin/libutiles.a \
-  ../../bin/libncreport.a
 
 TARGETDEPS += ../../bin/libncreport.a \
   ../../bin/libutiles.a
@@ -27,19 +23,29 @@ UI_DIR = ui
 
 MOC_DIR = moc
 
-RCC_DIR = rcc
 
 HEADERS += pagosplugin.h \
  mpagos.h \
  formagregarrecibo.h \
  ../CtaCte/mcuentacorriente.h \
- ../CtaCte/mitemcuentacorriente.h
+ ../CtaCte/mitemcuentacorriente.h \
+ vpagos.h \
+ recibo.h
 
 SOURCES += pagosplugin.cpp \
  mpagos.cpp \
  formagregarrecibo.cpp \
  ../CtaCte/mcuentacorriente.cpp \
- ../CtaCte/mitemcuentacorriente.cpp
+ ../CtaCte/mitemcuentacorriente.cpp \
+ vpagos.cpp \
+ recibo.cpp
 
 FORMS += FormReciboBase.ui
+
+INCLUDEPATH += ../../src \
+  ../../reporte \
+  ../../utiles
+
+LIBS += ../../bin/libncreport.a \
+  ../../bin/libutiles.a
 

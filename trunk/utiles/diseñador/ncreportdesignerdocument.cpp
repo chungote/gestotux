@@ -23,18 +23,17 @@
 #include "ncreportdesignerresourcehandler.h"
 
 
-//#include <qmouseevent>
-//#include <qlayout.h>
 #include <QLabel>
 #include <QPainter>
-//#include <qlinef>
-//#include <qscrollarea>
-#include <QScrollView>
 #include <QMessageBox>
 #include <QFile>
-//#include <qcursor.h>
 #include <QFileDialog>
 #include <QStyle>
+#include <QGridLayout>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QCloseEvent>
+#include <QScrollArea>
 
 #define RULERWEIGHT	28
 #define DEFAULT_PAGE_WIDTH	210.0
@@ -42,9 +41,10 @@
 ///////////////////////////////////
 // Workplace
 ///////////////////////////////////
-NCReportDesignerDocument::NCReportDesignerDocument( NCReportDesignerWindow *main, QWidget *parent, const char* name, int wflags )
-	: QWidget(parent, name, wflags )
+NCReportDesignerDocument::NCReportDesignerDocument( NCReportDesignerWindow *main, QWidget *parent, const char* name, Qt::WindowFlags wflags )
+	: QWidget( parent, wflags )
 {
+	this->setObjectName( name );
 	mainwindow = main;
 	sectionNextGroupAfter = 0;
 	modified = FALSE;
@@ -65,11 +65,13 @@ NCReportDesignerDocument::NCReportDesignerDocument( NCReportDesignerWindow *main
 	msrment = new Measurement();
 	//rulerleft->setMeasurement( msrment );
 
-	sv = new QScrollView( this );
-	sv->viewport()->setBackgroundColor( QColor( 160,160,160) );
+	sv = new QScrollArea( this );
+	QPalette p = sv->widget()->palette();
+	p.setColor( QPalette::Background, QColor( 160,160,160) );
+	sv->widget()->setPalette( p );
 	//sv->setMargins(0,0,0,0);
 
-	sectioncontainer = new QWidget( sv->viewport() );
+	sectioncontainer = new QWidget( sv->widget() );
 	laySC = new QVBoxLayout( sectioncontainer );
 	laySC->setMargin(0);
 	laySC->setSpacing(0);
@@ -95,8 +97,8 @@ NCReportDesignerDocument::NCReportDesignerDocument( NCReportDesignerWindow *main
 	//sect1->setFixedSize( msrment->measureToPixel( 210.0 ), 50 );	//test
 
 
-	//sa->setWidget( sectioncontainer );
-	sv->addChild(sectioncontainer,0,0);
+	sv->setWidget( sectioncontainer );
+	//sv->addChild(sectioncontainer,0,0);
 	grid->addWidget( sv, 1,1 );
 	//grid->addWidget( sectioncontainer, 1,1 );
 	connect( this, SIGNAL(destroyed()), main, SLOT(refreshTools()) );
@@ -120,7 +122,7 @@ void NCReportDesignerDocument::closeEvent( QCloseEvent *e )
 {
 	if ( isModified() ) {
 		switch( QMessageBox::warning( this, "Save Changes",
-				tr("Save changes to %1?").arg( caption() ),
+				tr("Save changes to %1?").arg( windowTitle() ),
 				tr("Yes"), tr("No"), tr("Cancel") ) ) {
 					case 0:
 					{
@@ -147,20 +149,20 @@ bool NCReportDesignerDocument::load( const QString& fn )
 {
 	filename  = fn;
 	QFile f( filename );
-	if ( !f.open( IO_ReadOnly ) )
+	if ( !f.open( QFile::ReadOnly ) )
 		return FALSE;
 
 	NCReportDesignerResourceHandler r;
 	r.setDocument( this );
 	r.setMeasurement( msrment );
-	qApp->setOverrideCursor( QCursor( Qt::waitCursor) );
+	qApp->setOverrideCursor( QCursor( Qt::WaitCursor) );
 	//setUpdatesEnabled( FALSE );
 	bool ok =  r.load( &f );
 	//setUpdatesEnabled( TRUE );
 	qApp->restoreOverrideCursor();
 
 	if ( ok ) {
-		setCaption( filename );
+		setWindowTitle( filename );
 		emit message( QString("Loaded document %1").arg(filename), 2000 );
 	} else {
 		emit message( r.lastLoadError(), 2000 );
@@ -178,13 +180,13 @@ void NCReportDesignerDocument::save()
 
 	QString text;	// = medit->text();
 	QFile f( filename );
-	if ( !f.open( IO_WriteOnly ) ) {
+	if ( !f.open( QFile::WriteOnly ) ) {
 		emit message( QString("Could not write to %1").arg(filename),
 					  2000 );
 		return;
 	}
 
-	qApp->setOverrideCursor( QCursor( Qt::waitCursor) );
+	qApp->setOverrideCursor( QCursor( Qt::WaitCursor) );
 	NCReportDesignerResourceHandler r;
 	r.setDocument( this );
 	r.setMeasurement( msrment );
@@ -193,7 +195,7 @@ void NCReportDesignerDocument::save()
 	qApp->restoreOverrideCursor();
 
 	if ( ok ) {
-		setCaption( filename );
+		setWindowTitle( filename );
 		emit message( tr( "File %1 saved" ).arg( filename ), 2000 );
 		setModified( FALSE );
 	} else {
@@ -204,14 +206,14 @@ void NCReportDesignerDocument::save()
 
 void NCReportDesignerDocument::saveAs()
 {
-	QString fn = QFileDialog::getSaveFileName( filename, QString::null, this );
+	QString fn = QFileDialog::getSaveFileName( this, tr( "Save as" ), filename  );
 	if ( !fn.isEmpty() ) {
 		if ( !fn.contains('.') )
 			fn+=".xml";
 		filename = fn;
 		save();
 	} else {
-		emit message( "Saving aborted", 2000 );
+		emit message( tr("Saving aborted"), 2000 );
 	}
 }
 
@@ -238,37 +240,34 @@ double NCReportDesignerDocument::defaultPageWidth( )
 
 NCReportDesignerDesignArea * NCReportDesignerDocument::activeDesignArea( )
 {
-	QDictIterator<NCReportDesignerSection> it( sections );
-	for( ; it.current(); ++it ) {
-		if ( it.current()->designArea()->hasFocus() )
-			return it.current()->designArea();
+	foreach( NCReportDesignerSection *it, sections.values() ) {
+		if ( it->designArea()->hasFocus() )
+			return it->designArea();
 	}
 	return 0;
 }
 
 void NCReportDesignerDocument::setPageWidth( double pwidth )
 {
-	QDictIterator<NCReportDesignerSection> it( sections );
-	for( ; it.current(); ++it )
-		it.current()->setWidth( pwidth - po.leftMargin - po.rightMargin );
-
+	foreach( NCReportDesignerSection *it, sections.values() ) {
+		it->setWidth( pwidth - po.leftMargin - po.rightMargin );
+	}
 }
 
 void NCReportDesignerDocument::updateSections()
 {
-	QDictIterator<NCReportDesignerSection> it( sections );
-	for( ; it.current(); ++it )
-		it.current()->update();
-
+	foreach( NCReportDesignerSection *it, sections.values() ) {
+		it->update();
+	}
 }
 
 NCReportDesignerSection* NCReportDesignerDocument::addSection( NCReportDesignerSection::SectionType st, const QString & sname, const QString& caption, double pWidth, double pHeight, QWidget* after )
 {
 	NCReportDesignerSection *s =0;
-	const char* n = sname.latin1();
+	const char* n = sname.toLatin1();
 	int wIndex =-1;
 	if ( after )
-		wIndex = laySC->findWidget( after )+1;
+		wIndex = laySC->indexOf( after )+1;
 
 	s = new NCReportDesignerSection( st, mainwindow, sectioncontainer, caption, n );
 	s->setMeasurement( msrment );
@@ -347,7 +346,7 @@ void NCReportDesignerDocument::removeGroup( const QString & gname )
 	QMap<QString,ReportGroup>::ConstIterator it;
 	it = groups.end();
 	it--;
-	sectionNextGroupAfter = it.data().header;		// last header
+	sectionNextGroupAfter = it.value().header;		// last header
 }
 
 void NCReportDesignerDocument::updateGroup( const ReportGroup &g )
@@ -374,7 +373,7 @@ NCReportDesignerSection* NCReportDesignerDocument::addDetail()
 
 NCReportDesignerSection* NCReportDesignerDocument::sectionByName( const QString& name )
 {
-	return sections[name];
+	return sections.value( name );
 }
 
 
@@ -637,7 +636,7 @@ void NCReportDesignerResizeBar::mouseMoveEvent(QMouseEvent * e)
 void NCReportDesignerResizeBar::paintEvent( QPaintEvent * )
 {
 	QPainter p( this );
-	style().drawPrimitive(QStyle::PE_Splitter, &p, rect(), colorGroup() );
+	style()->drawControl( QStyle::CE_Splitter, 0, &p, this );
 }
 
 
@@ -645,16 +644,18 @@ void NCReportDesignerResizeBar::paintEvent( QPaintEvent * )
 // Designer section
 ///////////////////////////////////
 NCReportDesignerSection::NCReportDesignerSection( NCReportDesignerWindow * mwin, QWidget * parent, const QString& cap, const char* name )
-	: QWidget( parent, name )
+	: QWidget( parent )
 {
+	setObjectName( name );
 	mainwindow = mwin;
 	caption = cap;
 	init();
 }
 
 NCReportDesignerSection::NCReportDesignerSection( SectionType t, NCReportDesignerWindow * mwin, QWidget * parent, const QString& cap, const char * name )
-	: QWidget( parent, name )
+	: QWidget( parent )
 {
+	setObjectName( name );
 	type = t;
 	mainwindow = mwin;
 	caption = cap;
@@ -683,7 +684,7 @@ void NCReportDesignerSection::init( )
 	//title->setMaximumHeight( 18 );
 	//title->setBackgroundRole(QPalette::Button);
 
-	QHBoxLayout *layMS = new QHBoxLayout( layout );
+	QHBoxLayout *layMS = new QHBoxLayout();
 	layMS->setMargin(0);
 	layMS->setSpacing(0);
 
@@ -784,8 +785,9 @@ NCReportDesignerSectionTitle * NCReportDesignerSection::Title()
 // Title
 //--------------------------------------------
 NCReportDesignerSectionTitle::NCReportDesignerSectionTitle( QWidget * parent, const char * name )
-	: QWidget( parent, name )
+	: QWidget( parent )
 {
+	setObjectName( name );
 	topMargin = 2;
 	//setFrameStyle( QFrame::WinPanel | QFrame::Raised);
 	setFixedHeight( 18 );
@@ -800,7 +802,7 @@ void NCReportDesignerSectionTitle::paintEvent( QPaintEvent * )
 {
 	QPainter p( this );
 
-	style().drawControl(QStyle::CE_PushButton, &p, this, rect(), colorGroup() );
+	style()->drawControl( QStyle::CE_PushButton, new QStyleOptionButton() , &p, this );
 
 	int tpos = 4;
 	if ( !pm.isNull() ) {

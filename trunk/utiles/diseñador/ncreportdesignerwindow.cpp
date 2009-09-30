@@ -359,6 +359,15 @@ void NCReportDesignerWindow::initToolBars( )
 	act_view_showgrid->setStatusTip( tr("Show grid") );
 	act_view_showgrid->setCheckable( true );
 	connect( act_view_grid, SLOT( triggered() ), this, SLOT( slotShowGrid() ) );
+
+	act_cascade = new QAction( this );
+	act_cascade->setText( tr( "&Cascade" ) );
+	connect( act_cascade, SIGNAL( triggered() ), this, SLOT(cascade() ) );
+
+	act_tile = new QAction( tr( "&Tile" ), this );
+	connect( act_tile, SIGNAL( triggered() ), this , SLOT( tile() ) );
+	act_htile = new QAction( tr( "Tile &Horizontally" ), this );
+	connect( act_htile, SIGNAL( triggered() ), this,  SLOT(tileHorizontal() ) );
 }
 
 void NCReportDesignerWindow::initMenus()
@@ -450,6 +459,10 @@ void NCReportDesignerWindow::initMenus()
 	// Windows
 	////////////////
 	mnWindows = menuBar()->addMenu( tr("&Windows") );
+	mnWindows->addAction( act_cascade );
+	mnWindows->addAction( act_tile );
+	mnWindows->addAction( act_htile );
+	mnWindows->addSeparator();
 	//mnWindows->setCheckable( TRUE );
 	connect( mnWindows, SIGNAL( aboutToShow() ), this, SLOT( windowsMenuAboutToShow() ) );
 
@@ -483,7 +496,7 @@ void NCReportDesignerWindow::newDoc()
 
 NCReportDesignerDocument * NCReportDesignerWindow::_newDoc( )
 {
-	NCReportDesignerDocument* w = new NCReportDesignerDocument( this, ws, 0, Qt::WA_DeleteOnClose );
+	NCReportDesignerDocument* w = new NCReportDesignerDocument( this, ws, 0/*, Qt::WA_DeleteOnClose*/ );
 	connect( w, SIGNAL( message(const QString&, int) ), statusBar(), SLOT( message(const QString&, int )) );
 	w->setWindowTitle( tr("Documento Nuevo") );
 	w->setWindowIcon( QIcon("document.xpm") );
@@ -571,30 +584,30 @@ void NCReportDesignerWindow::aboutQt()
 void NCReportDesignerWindow::windowsMenuAboutToShow()
 {
 	mnWindows->clear();
-	int cascadeId = mnWindows->addAction("&Cascade", ws, SLOT(cascade() ) );
-	int tileId = mnWindows->addAction("&Tile", ws, SLOT(tile() ) );
-	int horTileId = mnWindows->addAction("Tile &Horizontally", this, SLOT(tileHorizontal() ) );
 	if ( ws->windowList().isEmpty() ) {
-		mnWindows->setItemEnabled( cascadeId, FALSE );
-		mnWindows->setItemEnabled( tileId, FALSE );
-		mnWindows->setItemEnabled( horTileId, FALSE );
+		act_cascade->setEnabled( false );
+		act_tile->setEnabled( false );
+		act_htile->setEnabled( false );
+	} else {
+		act_cascade->setEnabled( true );
+		act_tile->setEnabled( true );
+		act_htile->setEnabled( true );
+
 	}
-	mnWindows->addSeparator();
-	QWidgetList windows = ws->windowList();
+	///@todo Generar estas ventanas dinamicamente
+	/*QWidgetList windows = ws->windowList();
 	for ( int i = 0; i < int(windows.count()); ++i ) {
 		int id = mnWindows->addAction(windows.at(i)->windowTitle(),
 										 this, SLOT( windowsMenuActivated( int ) ) );
 		mnWindows->setItemParameter( id, i );
 		mnWindows->setItemChecked( id, ws->activeWindow() == windows.at(i) );
-	}
+	}*/
 }
 
 void NCReportDesignerWindow::viewMenuAboutToShow( )
 {
-	//mnIdxSnapGrid = mnView->addAction( tr("Snap to grid"), this, SLOT(slotSnapToGrid()), 0, 1 );
-	//mnIdxShowGrid = mnView->addAction( tr("Show grid"), this, SLOT(slotShowGrid()), 0, 2 );
-	mnView->setItemChecked( 1, snGrid );
-	mnView->setItemChecked( 2, sGrid );
+	act_view_grid->setChecked( true );
+	act_view_showgrid->setChecked( true );
 }
 
 void NCReportDesignerWindow::windowsMenuActivated( int id )
@@ -794,12 +807,12 @@ void NCReportDesignerWindow::refreshTools( )
 	act_align_vcenter->setEnabled(cd);
 	act_align_top->setEnabled(cd);
 	act_align_bottom->setEnabled(cd);
-	mnTools->setItemEnabled( 1, cd );
-	mnTools->setItemEnabled( 2, cd );
-	mnTools->setItemEnabled( 3, FALSE );
-	mnTools->setItemEnabled( 4, cd );
-	mnTools->setItemEnabled( 5, cd );
-	mnTools->setItemEnabled( 6, FALSE );
+	mnTools->actions().at(  1 )->setEnabled( cd );
+	mnTools->actions().at(  2 )->setEnabled( cd );
+	mnTools->actions().at(  3 )->setEnabled( FALSE );
+	mnTools->actions().at(  4 )->setEnabled( cd );
+	mnTools->actions().at(  5 )->setEnabled( cd );
+	mnTools->actions().at(  6 )->setEnabled( FALSE );
 
 	act_tool_pointer->setEnabled(cd);
 	act_tool_label->setEnabled(cd);
@@ -825,10 +838,10 @@ void NCReportDesignerWindow::refreshTools( )
 	act_file_save->setEnabled(cd);
 	//act_file_saveAll->setEnabled(cd);
 
-	mnFile->setItemEnabled( 10, cd ); //saveas
-	mnFile->setItemEnabled( 11, cd ); //close
+	mnFile->actions().at( 10 )->setEnabled( cd ); //saveas
+	mnFile->actions().at( 11 )->setEnabled( cd ); //close
 	//mnView->setItemEnabled( 12, cd ); //quit
-	mnEdit->setItemEnabled( 13, cd ); //selall
+	mnEdit->actions().at(  13 )->setEnabled( cd ); //selall
 
 /*	if ( cd ) {
 		if ( !objTools->isEnabled() )
