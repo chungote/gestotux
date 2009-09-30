@@ -31,12 +31,12 @@
 #include <QPushButton>
 #include <QTabWidget>
 #include <QFontDialog>
-
-//#include <qbuttongroup.h>
+#include <QButtonGroup>
+#include <QGroupBox>
 
 
 NCReportDesignerWidgetSetDialog::NCReportDesignerWidgetSetDialog( NCReportDesignerWidget *dwidget, QWidget* parent, NCReportDesignerDocument *doc,
-		const char* name, bool modal, WFlags fl)
+		const char* name, bool modal, Qt::WindowFlags fl)
 : NCReportDesignerWidgetSetDialogUI(parent,name, modal,fl)
 {
 	dw = dwidget;
@@ -97,13 +97,13 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 		else if ( dw->p.ftype == "sys" ) idx = 4;
 		else if ( dw->p.ftype == "lookup" ) idx = 5;
 		else if ( dw->p.ftype == "text" ) idx = 6;
-		comboDSource->setCurrentItem( idx );
+		comboDSource->setCurrentIndex( idx );
 
 		if ( dw->p.type == "text" ) idx = 0;
 		else if ( dw->p.type == "numeric" ) idx = 1;
 		else if ( dw->p.type == "date" ) idx = 2;
 		else if ( dw->p.type.isEmpty() ) idx = 0;
-		comboType->setCurrentItem( idx );
+		comboType->setCurrentIndex( idx );
 
 		changedDataType( idx );
 		//---------------------
@@ -132,7 +132,7 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 			s = QString::null;
 
 		leFont->setText( dw->p.fontName );
-		comboFontSize->setCurrentText( QString::number(dw->p.fontSize) );
+		comboFontSize->setEditText( QString::number(dw->p.fontSize) );
 		comboColor->setColor( dw->p.forecolor );
 	/*	idx=1;
 		switch ( dw->p.fontWeight ) {
@@ -155,14 +155,14 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 			case Qt::AlignRight: idx=2; break;
 			default: idx=0;
 		}
-		bgHAlign->setButton( idx );
+		bgHAlign->button( idx )->setCheckable( true );
 		switch ( dw->p.alignmentV ) {
 			case Qt::AlignTop: idx=0; break;
 			case Qt::AlignVCenter: idx=1; break;
 			case Qt::AlignBottom: idx=2; break;
 			default: idx=0;
 		}
-		bgVAlign->setButton( idx );
+		bgVAlign->button( idx )->setCheckable( true );
 
 		cbWordBreak->setChecked( dw->p.wordbreak );
 		spinRotation->setValue( dw->p.rotation );
@@ -183,12 +183,12 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 		textLabel->setEnabled( FALSE );
 		leSource->setEnabled( FALSE );
 		comboDSource->setEnabled( FALSE );
-		tab->setCurrentPage(3);
-		tab->removePage(TabPage); //TabPage->hide(); //setEnabled( FALSE );
-		tab->removePage(pageTxt); //pageTxt->hide(); //setEnabled( FALSE );
+		tab->setCurrentIndex(3);
+		tab->removeTab(tab->indexOf(TabPage)); //TabPage->hide(); //setEnabled( FALSE );
+		tab->removeTab(tab->indexOf(pageTxt)); //pageTxt->hide(); //setEnabled( FALSE );
 
 
-		bgBackM->setButton( dw->p.fillStyle == WProperty::transparent ? 0 : 1 );
+		bgBackM->button( dw->p.fillStyle == WProperty::transparent ? 0 : 1 )->setChecked( true );
 		spinLineWidth->setValue( dw->p.lineWidth );
 		idx =0;
 		switch ( dw->p.lineStyle ) {
@@ -200,7 +200,7 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 			case Qt::NoPen: idx=5; break;
 			default: idx=0;
 		}
-		comboLineStyle->setCurrentItem(idx);
+		comboLineStyle->setCurrentIndex(idx);
 		comboColorL->setColor( dw->p.lineColor );
 		comboColorF->setColor( dw->p.fillColor );
 	}
@@ -213,8 +213,8 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 		//leSource->setEnabled( FALSE );
 		comboDSource->setEnabled( FALSE );
 		TabPage->setEnabled( FALSE );
-		tab->removePage(pageTxt); //pageTxt->hide(); //setEnabled( FALSE );
-		tab->removePage(pageLine); //pageLine->hide(); //setEnabled( FALSE );
+		tab->removeTab(tab->indexOf(pageTxt)); //pageTxt->hide(); //setEnabled( FALSE );
+		tab->removeTab(tab->indexOf(pageLine)); //pageLine->hide(); //setEnabled( FALSE );
 
 		leSource->setText( dw->p.resource.isEmpty() ? dw->p.text : dw->p.resource );
 		leSource->setFocus();
@@ -237,10 +237,10 @@ void NCReportDesignerWidgetSetDialog::alignHChanged(int i)
 
 void NCReportDesignerWidgetSetDialog::alignVChanged( int )
 {
-	int h = bgHAlign->selectedId();
-	int v = bgVAlign->selectedId();
-	//Qt::AlignmentFlags fh,fv;
-	int fh,fv;
+	int h = bgHAlign-> checkedId ();
+	int v = bgVAlign-> checkedId ();
+	Qt::AlignmentFlag fh,fv;
+	//int fh,fv;
 	switch (h) {
 		case 0: fh = Qt::AlignLeft; break;
 		case 1: fh = Qt::AlignHCenter; break;
@@ -296,7 +296,7 @@ void NCReportDesignerWidgetSetDialog::applyOptions()
 
 void NCReportDesignerWidgetSetDialog::init( )
 {
-	buttonOk->setAccel( CTRL+Key_Enter );
+	buttonOk->setShortcut(QKeySequence( "CTRL+Enter" ) );
 
 }
 
@@ -306,14 +306,14 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 		return;
 
 	if ( dw->wtype == NCReportDesignerWidget::Label ) {
-		p->text = textLabel->text();
+		p->text = textLabel->toPlainText();
 	} else if ( dw->wtype == NCReportDesignerWidget::Field ) {
 
 		p->text = leSource->text();
 		p->embedString = leEmbed->text();
 		p->callFunction = leFunction->text();
 
-		switch( comboDSource->currentItem() ) {
+		switch( comboDSource->currentIndex() ) {
 			case 0: p->ftype=QString::null; break;
 			case 1: p->ftype="sql"; break;
 			case 2: p->ftype="par"; break;
@@ -322,13 +322,13 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 			case 5: p->ftype="lookup"; break;
 			case 6: p->ftype="text"; break;
 		}
-		switch( comboType->currentItem() ) {
+		switch( comboType->currentIndex() ) {
 			case 0: p->type=QString::null; break;
 			case 1: p->type="numeric"; break;
 			case 2: p->type="date"; break;
 		}
 
-		if ( !leSource->text().isEmpty() && comboDSource->currentItem() == 0 )
+		if ( !leSource->text().isEmpty() && comboDSource->currentIndex() == 0 )
 			p->ftype="sql";
 
 	}
@@ -350,12 +350,12 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 		p->fontItalic = cbItalic->isChecked();
 		p->fontUnderline = cbUnderline->isChecked();
 		p->fontStrikeOut = cbStrikeout->isChecked();
-		switch ( bgHAlign->selectedId() ) {
+		switch ( bgHAlign-> checkedId() ) {
 			case 0: p->alignmentH = Qt::AlignLeft; break;
 			case 1: p->alignmentH = Qt::AlignHCenter; break;
 			case 2: p->alignmentH = Qt::AlignRight; break;
 		}
-		switch ( bgVAlign->selectedId() ) {
+		switch ( bgVAlign-> checkedId() ) {
 			case 0: p->alignmentV = Qt::AlignTop; break;
 			case 1: p->alignmentV = Qt::AlignVCenter; break;
 			case 2: p->alignmentV = Qt::AlignBottom; break;
@@ -368,8 +368,8 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 		dw->p.numFormat = leNumFormat->text();
 		dw->p.dateFormat = leDateFormat->text();
 		dw->p.numDigitNo = spDec->value();
-		dw->p.numDigitPoint = leDecPoint->text().at(0).latin1();
-		dw->p.numSeparator = leSeparator->text().at(0).latin1();
+		dw->p.numDigitPoint = leDecPoint->text().at(0).toLatin1();
+		dw->p.numSeparator = leSeparator->text().at(0).toLatin1();
 		dw->p.numSeparation = cbThousandSep->isChecked();
 		dw->p.numBlankIfZero = cbBlankIfZero->isChecked();
 		dw->p.isRichText = cbRichText->isChecked();
@@ -382,9 +382,9 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 		// LINE/RECTANGLE STYLE
 		//---------------------
 		if ( dw->wtype == NCReportDesignerWidget::Rectangle )
-			p->fillStyle = ( bgBackM->selectedId()==0 ? WProperty::transparent : WProperty::filled );
+			p->fillStyle = ( bgBackM-> checkedId()==0 ? WProperty::transparent : WProperty::filled );
 		p->lineWidth = spinLineWidth->value();
-		switch ( comboLineStyle->currentItem() ) {
+		switch ( comboLineStyle->currentIndex() ) {
 			case 0: p->lineStyle = Qt::SolidLine; break;
 			case 1: p->lineStyle = Qt::DashLine; break;
 			case 2: p->lineStyle = Qt::DotLine; break;
@@ -409,7 +409,7 @@ void NCReportDesignerWidgetSetDialog::selectFont( )
 	if ( ok ) {
         // font is set to the font the user selected
 		leFont->setText( font.family() );
-		comboFontSize->setCurrentText( QString::number(font.pointSize()) );
+		comboFontSize->setEditText( QString::number(font.pointSize()) );
 		cbBold->setChecked( font.bold() );
 		cbItalic->setChecked( font.italic() );
 		cbStrikeout->setChecked( font.strikeOut() );

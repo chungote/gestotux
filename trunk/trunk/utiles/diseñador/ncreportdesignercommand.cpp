@@ -39,7 +39,8 @@
 NCReportDesignerCommandHistory::NCReportDesignerCommandHistory( int s )
     : current( -1 ), steps( s ), savedAt( -1 )
 {
-    history.setAutoDelete( TRUE );
+	///@todo Revisar eliminaciones del historial
+    //history. setAutoDelete( TRUE );
     modified = FALSE;
     compressedCommand = 0;
 }
@@ -67,18 +68,18 @@ void NCReportDesignerCommandHistory::addCommand( NCReportDesignerCommand *cmd, b
 		if ( current < savedAt )
 			savedAt = -2;
 
-		QPtrList<NCReportDesignerCommand> commands;
-		commands.setAutoDelete( FALSE );
+		QList<NCReportDesignerCommand*> commands;
+		//commands.setAutoDelete( FALSE );
 
 		for( int i = 0; i <= current; ++i ) {
 			commands.insert( i, history.at( 0 ) );
-			history.take( 0 );
+			history.removeAt( 0 );
 		}
 
 		commands.append( cmd );
 		history.clear();
 		history = commands;
-		history.setAutoDelete( TRUE );
+		//history.setAutoDelete( TRUE );
 	} else {
 		history.append( cmd );
 	}
@@ -250,7 +251,7 @@ void cmd_InsertCommand::execute()
 		widget->setGeometry( r );
 	}
     widget->show();
-    designArea()->widgets()->insert( widget, widget );
+    designArea()->widgets().insert( designArea()->widgets().indexOf( widget ), widget );
     designArea()->clearSelection( FALSE );
     designArea()->selectWidget( widget );
 	designArea()->parentDocument()->setModified( TRUE );
@@ -261,7 +262,7 @@ void cmd_InsertCommand::unexecute()
 {
     widget->hide();
     designArea()->selectWidget( widget, FALSE );
-    designArea()->widgets()->remove( widget );
+    designArea()->widgets().removeOne( widget );
  }
 
 // ------------------------------------------------------------
@@ -274,7 +275,7 @@ cmd_MoveCommand::cmd_MoveCommand( const QString &n, NCReportDesignerDesignArea *
     : NCReportDesignerCommand( n, da ), widgets( w ), oldPos( op ), newPos( np ),
       oldParent( opr ), newParent( npr )
 {
-    widgets.setAutoDelete( FALSE );
+   // widgets.setAutoDelete( FALSE );
 }
 
 void cmd_MoveCommand::merge( NCReportDesignerCommand *c )
@@ -292,16 +293,19 @@ bool cmd_MoveCommand::canMerge( NCReportDesignerCommand *c )
 
 void cmd_MoveCommand::execute()
 {
-    for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+    foreach( QWidget *w, widgets ) {
 	//if ( !w->parentWidget() || WidgetFactory::layoutType( w->parentWidget() ) == WidgetFactory::NoLayout ) {
 	    if ( newParent && oldParent && newParent != oldParent ) {
 			QPoint pos = newParent->mapFromGlobal( w->mapToGlobal( QPoint( 0,0 ) ) );
-			w->reparent( newParent, pos, TRUE );
+			w->setParent( newParent );
+			w->move( pos );
+
+			//w->reparent( newParent, pos, TRUE );
 			designArea()->raiseSelection( w );
 			//designArea()->raiseChildSelections( w );
 			designArea()->widgetChanged( w );
 	    }
-	    w->move( newPos[ widgets.at() ] );
+	    w->move( newPos[ widgets.indexOf( w ) ] );
 		//}
 		designArea()->updateSelection( w );
 		//designArea()->updateChildSelections( w );
@@ -312,16 +316,18 @@ void cmd_MoveCommand::execute()
 
 void cmd_MoveCommand::unexecute()
 {
-    for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+    foreach( QWidget *w, widgets ) {
 	//if ( !w->parentWidget() || WidgetFactory::layoutType( w->parentWidget() ) == WidgetFactory::NoLayout ) {
 	    if ( newParent && oldParent && newParent != oldParent ) {
 		QPoint pos = oldParent->mapFromGlobal( w->mapToGlobal( QPoint( 0,0 ) ) );
-		w->reparent( oldParent, pos, TRUE );
+		w->setParent( oldParent );
+		w->move( pos );
+		//w->reparent( oldParent, pos, TRUE );
 		designArea()->raiseSelection( w );
 		//designArea()->raiseChildSelections( w );
 		designArea()->widgetChanged( w );
 	    }
-	    w->move( oldPos[ widgets.at() ] );
+	    w->move( oldPos[ widgets.indexOf( w ) ] );
 	//}
 	designArea()->updateSelection( w );
 	//designArea()->updateChildSelections( w );
@@ -335,21 +341,21 @@ cmd_DeleteCommand::cmd_DeleteCommand( const QString &n, NCReportDesignerDesignAr
 			      const QWidgetList &wl )
     : NCReportDesignerCommand( n, da ), widgets( wl )
 {
-    widgets.setAutoDelete( FALSE );
+   // widgets.setAutoDelete( FALSE );
     QWidgetList copyOfWidgets = widgets;
-    copyOfWidgets.setAutoDelete(FALSE);
+   // copyOfWidgets.setAutoDelete(FALSE);
 
 }
 
 void cmd_DeleteCommand::execute()
 {
-    for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+    foreach( QWidget *w, widgets ) {
 		w->hide();
-		QString s = w->name();
+		QString s = w->objectName();
 		s.prepend( "qt_dead_widget_" );
-		w->setName( s );
+		w->setObjectName( s );
 		designArea()->selectWidget( w, FALSE );
-		designArea()->widgets()->remove( w );
+		designArea()->widgets().removeOne( w );
 	}
 	designArea()->parentDocument()->setModified( TRUE );
     //designArea()->setPropertyShowingBlocked( FALSE );
@@ -361,12 +367,12 @@ void cmd_DeleteCommand::unexecute()
 {
     //designArea()->setPropertyShowingBlocked( TRUE );
     designArea()->clearSelection( FALSE );
-    for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+    foreach( QWidget *w, widgets ) {
 		w->show();
-		QString s = w->name();
+		QString s = w->objectName();
 		s.remove( 0, QString( "qt_dead_widget_" ).length() );
-		w->setName( s );
-		designArea()->widgets()->insert( w, w );
+		w->setObjectName( s );
+		designArea()->widgets().insert( designArea()->widgets().indexOf( w ), w );
 		designArea()->selectWidget( w );
 	}
     //designArea()->setPropertyShowingBlocked( FALSE );
@@ -432,7 +438,7 @@ cmd_LowerCommand::cmd_LowerCommand( const QString &name, NCReportDesignerDesignA
 
 void cmd_LowerCommand::execute()
 {
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+	foreach( QWidget *w , widgets ) {
 		w->lower();
 		designArea()->raiseSelection( w );
 	}
@@ -442,7 +448,7 @@ void cmd_LowerCommand::execute()
 
 void cmd_LowerCommand::unexecute()
 {
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+	foreach ( QWidget *w , widgets ) {
 		w->raise();
 		designArea()->raiseSelection( w );
 	}
@@ -457,7 +463,7 @@ cmd_RaiseCommand::cmd_RaiseCommand( const QString &name, NCReportDesignerDesignA
 
 void cmd_RaiseCommand::execute()
 {
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+	foreach ( QWidget *w , widgets ) {
 		w->raise();
 		designArea()->raiseSelection( w );
 	}
@@ -466,7 +472,7 @@ void cmd_RaiseCommand::execute()
 
 void cmd_RaiseCommand::unexecute()
 {
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+	foreach ( QWidget *w , widgets ) {
 		w->lower();
 		designArea()->raiseSelection( w );
 	}
@@ -482,10 +488,10 @@ cmd_PasteCommand::cmd_PasteCommand( const QString &n, NCReportDesignerDesignArea
 
 void cmd_PasteCommand::execute()
 {
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+	foreach ( QWidget *w , widgets ) {
 		w->show();
 		designArea()->selectWidget( w );
-		designArea()->widgets()->insert( w, w );
+		designArea()->widgets().insert( designArea()->widgets().indexOf( w ), w );
 		//designArea()->mainWindow()->objectHierarchy()->widgetInserted( w );
 	}
 	designArea()->parentDocument()->setModified( TRUE );
@@ -494,10 +500,10 @@ void cmd_PasteCommand::execute()
 
 void cmd_PasteCommand::unexecute()
 {
-	for ( QWidget *w = widgets.first(); w; w = widgets.next() ) {
+	foreach ( QWidget *w , widgets ) {
 		w->hide();
 		designArea()->selectWidget( w, FALSE );
-		designArea()->widgets()->remove( w );
+		designArea()->widgets().removeOne( w );
 		//designArea()->mainWindow()->objectHierarchy()->widgetRemoved( w );
 	}
 }

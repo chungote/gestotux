@@ -25,8 +25,9 @@
 #include <QPen>
 
 NCReportDesignerWidget::NCReportDesignerWidget( NCReportDesignerDesignArea* parent, const char* name )
-	: QWidget( parent, name )
+	: QWidget( parent )
 {
+	this->setObjectName( name );
 	area = parent;
 	etype = "widget";
 	wtype = Unknown;
@@ -168,7 +169,9 @@ dw_Label::dw_Label( NCReportDesignerDesignArea * parent, const char * name ) : N
 	defaultSize = QSize( 60, 18 );
 	resize( defaultSize );
 	//setMinimumSize( QSize(_width, _height) );
-	setPaletteBackgroundColor( Qt::white );
+ 	QPalette palette;
+ 	palette.setColor( backgroundRole(), Qt::white );
+ 	setPalette(palette);
 	p.text = "Label";
 	drawborder = FALSE;
 }
@@ -201,7 +204,7 @@ void dw_Label::paintEvent( QPaintEvent * )
 	pa.setPen( pen );
 	int aflag = p.alignmentH | p.alignmentV;
 	if ( p.wordbreak )
-		aflag = aflag | Qt::WordBreak;
+		aflag = aflag |   Qt::TextWordWrap;
 
 	if (p.rotation !=0) {
 		pa.save();
@@ -234,7 +237,9 @@ dw_Field::dw_Field( NCReportDesignerDesignArea * parent, const char * name )
 	borderColor = QColor( 255,0,0 );
 	p.text = "Field";
 	p.ftype = "sql";
-	setPaletteBackgroundColor( QColor(255,220,220) );
+	QPalette palette;
+	palette.setColor( backgroundRole(), QColor(255,220,220) );
+	setPalette(palette);
 	drawborder = TRUE;
 	useFType = TRUE;
 	useType = TRUE;
@@ -255,7 +260,7 @@ void dw_Field::paintEvent( QPaintEvent * e )
 //////////////
 // LINE
 //////////////
-dw_Line::dw_Line( Orientation ori, NCReportDesignerDesignArea * parent, const char * name ) : NCReportDesignerWidget( parent, name )
+dw_Line::dw_Line( Qt::Orientation ori, NCReportDesignerDesignArea * parent, const char * name ) : NCReportDesignerWidget( parent, name )
 {
 	wtype = Line;
 	tagname = "line";
@@ -274,7 +279,7 @@ dw_Line::dw_Line( Orientation ori, NCReportDesignerDesignArea * parent, const ch
 	//_height = 5.0;
 	//lineWidth = 0;
 
-	if ( ori == Horizontal ) {
+	if ( ori == Qt::Horizontal ) {
 		defaultSize = QSize(36,p.lineWidth);
 		d_selectType = Selection::Horizontal;
 		setMaximumHeight( p.lineWidth );
@@ -285,7 +290,7 @@ dw_Line::dw_Line( Orientation ori, NCReportDesignerDesignArea * parent, const ch
 	}
 	resize( defaultSize );
 
-	setAutoMask( TRUE );
+///@todo 	setAutoMask( TRUE );
 }
 
 dw_Line::~ dw_Line( )
@@ -294,7 +299,7 @@ dw_Line::~ dw_Line( )
 
 void dw_Line::updateWidget( )
 {
-	if ( orient == Horizontal ) {
+	if ( orient == Qt::Horizontal ) {
 		setMaximumHeight( p.lineWidth );
 		resize( width(), p.lineWidth );
 	} else {
@@ -312,7 +317,7 @@ void dw_Line::paintEvent( QPaintEvent * )
 	QPen pen( p.lineColor, p.lineWidth, p.lineStyle );
 	pa.setPen( pen );
 
-	if ( orient == Horizontal )
+	if ( orient == Qt::Horizontal )
 		pa.drawLine( 0, height()/2, width(), height()/2);
 	else
 		pa.drawLine( width()/2, 0, width()/2, height());
@@ -382,11 +387,11 @@ void dw_Rectangle::paintEvent( QPaintEvent * )
 	pa.setPen( pen );
 
 	if ( p.fillStyle == WProperty::filled ) {
-		setAutoMask( FALSE );
+///@todo 		setAutoMask( FALSE );
 		pa.setBrush( p.fillColor );
 	} else {
 		//setAutoMask( TRUE );
-		setAutoMask( FALSE );
+///@todo 		setAutoMask( FALSE );
 		pa.setBrush( Qt::white );
 	}
 
@@ -459,11 +464,11 @@ void dw_Circle::paintEvent( QPaintEvent * )
 	pa.setPen( pen );
 
 	if ( p.fillStyle == WProperty::filled ) {
-		setAutoMask( FALSE );
+///@todo 		setAutoMask( FALSE );
 		pa.setBrush( p.fillColor );
 	} else {
 		//setAutoMask( TRUE );
-		setAutoMask( FALSE );
+///@todo 		setAutoMask( FALSE );
 	}
 
 	if ( p.fillStyle == WProperty::transparent ) {
@@ -521,7 +526,7 @@ void dw_Image::paintEvent( QPaintEvent * )
 		//pm.load( p.resource.isEmpty() ? p.text : p.resource );
 
 	if ( pm.isNull() ) {
-		QBrush b( Qt::gray, QBrush::BDiagPattern );
+		QBrush b( Qt::gray, Qt::BDiagPattern );
 		pa.setBrush( b );
 		QPen pen( Qt::gray );
 		pa.setPen( pen );

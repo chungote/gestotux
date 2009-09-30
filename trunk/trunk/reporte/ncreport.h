@@ -633,10 +633,7 @@ public:
 	void addParameter( const QString&, const QString&, const char* =0 );
 	bool wasError();
 	QString ErrorMsg();
-	void setPreviewAsMain( bool );
-	NCPreview* previewWidget();
 	void setFileEncoding( const QString& );
-	void setPreviewIsMaximized( bool set );
 	/*!Print output format*/
 	void setOrientation( NCReport::Orientation );
 	void setDatabase( QSqlDatabase* );
@@ -647,6 +644,7 @@ public:
 	void setOutputFile( const QString& );
 
 	QDomDocument xmlOutput() const;
+    void setImpresora( QPrinter *p );
 
 signals:
 	void queryIsRunning( int );
@@ -655,10 +653,8 @@ signals:
 	void pageDone( int );
 public slots:
 	bool runReport();
-	void runReportToPrinter();
-	void runReportToPreview();
-	void runReportToPrinterFromPreview();
-	void runReportToPDF();
+	void runReportToPrinter( QPrinter *p );
+	void runReportToPreview( QPrinter *p );
 	//QList<report_Query> Queries;
 	//QList<report_Group> Groups;
 protected:
@@ -704,7 +700,6 @@ private:
 	int _numcopies;
 	int _numforcecopies;
 	int _currentforcecopy;
-	//NCPictureList *piclist;
 	QPrinter *pr;
 	bool _init;	// init printing
 	bool paintBegin;
@@ -723,9 +718,6 @@ private:
 	//QHash<report_Label*,report_Label*> overPageObjects;
 
 	QList<QPicture*> piclist;
-	//QList<QPicture> picPages;
-	//QPicture *pic;
-	//NCPreview *previewForm;
 
 	//tmode reportMode;
 	Output reportOutput;
@@ -759,21 +751,13 @@ private:
 	int recno, reccount, columncount;
 	QString masterAlias;
 	int trimFont_prn, trimFont_pvw, trimLine_prn, trimLine_pvw;
-	bool logging;
-	NCPreview *previewForm;
-	bool previewismainform;
 	QString encoding;
-	bool deleteReportAfterPreview;
 	QWidget *printerSetupParent;
-	bool previewismaximized;
 	bool prevRecordPending;
-	//QMap<QString, sqlField> currentRecord;
 
 	QDomDocument outputDomDocument;
 	QDomElement currentElement;
 
-	//bool execQueries( QDict<NCSql> & );
-	void loadConfig();
 	bool openXMLFile();
 	bool parseXMLResource();
 	bool loadResourceFromFile( QString& txt, const QString& filename );
@@ -836,7 +820,6 @@ private:
 	int toPixelY( const double& mm );
 	double toMillimeterX( int pixel );
 	double toMillimeterY( int pixel );
-	void reportLog( const QString& log );
 	void drawOverPageObjects();
 	int fixRichTextBreakPos( QTextDocument* rt, int ypos );
 	bool textFromResource( QString&, report_Label *obj, bool isField );

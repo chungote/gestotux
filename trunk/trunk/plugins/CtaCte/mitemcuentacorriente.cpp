@@ -166,6 +166,17 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
 		}
 		break;
 	}
+	case Qt::EditRole:
+	{
+		switch( item.column() )
+		{
+			case 3:
+			{ return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+			default:
+			{ return QSqlRelationalTableModel::data( item, role ); break; }
+		}
+		break;
+	}
 	default:
 	{
 		return QSqlRelationalTableModel::data(item, role);

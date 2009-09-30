@@ -2,8 +2,8 @@ SUBDIRS += utiles \
  reporte/libncreport.pro \
  src/src.pro \
  plugins/plugins.pro \
- utiles/estilos/estilos.pro \
- utiles/diseñador/diseñador.pro
+ utiles/estilos/estilos.pro #\
+ #utiles/diseñador/diseñador.pro
 TEMPLATE = subdirs
 CONFIG += warn_on \
           qt \

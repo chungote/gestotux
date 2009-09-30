@@ -3,147 +3,147 @@
     <name>NCPreview</name>
     <message>
         <source>Report print preview</source>
-        <translation>Vista preliminar</translation>
+        <translation type="obsolete">Vista preliminar</translation>
     </message>
     <message>
         <source>Print...</source>
-        <translation>Imprimir...</translation>
+        <translation type="obsolete">Imprimir...</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation>Imprimir</translation>
+        <translation type="obsolete">Imprimir</translation>
     </message>
     <message>
         <source>Zoom</source>
-        <translation>Acercar</translation>
+        <translation type="obsolete">Acercar</translation>
     </message>
     <message>
         <source>Zoom page</source>
-        <translation>Acercar la página</translation>
+        <translation type="obsolete">Acercar la página</translation>
     </message>
     <message>
         <source>Unzoom</source>
-        <translation>Alejar</translation>
+        <translation type="obsolete">Alejar</translation>
     </message>
     <message>
         <source>Unzoom page</source>
-        <translation>Alejar la página</translation>
+        <translation type="obsolete">Alejar la página</translation>
     </message>
     <message>
         <source>First page</source>
-        <translation>Primera página</translation>
+        <translation type="obsolete">Primera página</translation>
     </message>
     <message>
         <source>Go to first page</source>
-        <translation>Ir a la primera página</translation>
+        <translation type="obsolete">Ir a la primera página</translation>
     </message>
     <message>
         <source>Previous page</source>
-        <translation>Página anterior</translation>
+        <translation type="obsolete">Página anterior</translation>
     </message>
     <message>
         <source>Go to previous page</source>
-        <translation>Ir a la página anterior</translation>
+        <translation type="obsolete">Ir a la página anterior</translation>
     </message>
     <message>
         <source>Next page</source>
-        <translation>Página siguiente</translation>
+        <translation type="obsolete">Página siguiente</translation>
     </message>
     <message>
         <source>Go to next page</source>
-        <translation>Ir a la página siguiente</translation>
+        <translation type="obsolete">Ir a la página siguiente</translation>
     </message>
     <message>
         <source>Last page</source>
-        <translation>Última página</translation>
+        <translation type="obsolete">Última página</translation>
     </message>
     <message>
         <source>Go to final page</source>
-        <translation>Ir a la última página</translation>
+        <translation type="obsolete">Ir a la última página</translation>
     </message>
     <message>
         <source>Go to page...</source>
-        <translation>Ir a la página...</translation>
+        <translation type="obsolete">Ir a la página...</translation>
     </message>
     <message>
         <source>Go to specified page</source>
-        <translation>Ir a</translation>
+        <translation type="obsolete">Ir a</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Cerrar</translation>
+        <translation type="obsolete">Cerrar</translation>
     </message>
     <message>
         <source>Exit preview</source>
-        <translation>Cerrar la vista preliminar</translation>
+        <translation type="obsolete">Cerrar la vista preliminar</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Fichero</translation>
+        <translation type="obsolete">&amp;Fichero</translation>
     </message>
     <message>
         <source>&amp;Navigate</source>
-        <translation>&amp;Navegar</translation>
+        <translation type="obsolete">&amp;Navegar</translation>
     </message>
     <message>
         <source>Tools</source>
-        <translation>Herramientas</translation>
+        <translation type="obsolete">Herramientas</translation>
     </message>
     <message>
         <source> 10 %</source>
-        <translation>10 %</translation>
+        <translation type="obsolete">10 %</translation>
     </message>
     <message>
         <source> 20 %</source>
-        <translation>20 %</translation>
+        <translation type="obsolete">20 %</translation>
     </message>
     <message>
         <source> 50 %</source>
-        <translation>50 %</translation>
+        <translation type="obsolete">50 %</translation>
     </message>
     <message>
         <source> 75 %</source>
-        <translation>75 %</translation>
+        <translation type="obsolete">75 %</translation>
     </message>
     <message>
         <source>100 %</source>
-        <translation>100 %</translation>
+        <translation type="obsolete">100 %</translation>
     </message>
     <message>
         <source>120 %</source>
-        <translation>120 %</translation>
+        <translation type="obsolete">120 %</translation>
     </message>
     <message>
         <source>150 %</source>
-        <translation>150 %</translation>
+        <translation type="obsolete">150 %</translation>
     </message>
     <message>
         <source>200 %</source>
-        <translation>200 %</translation>
+        <translation type="obsolete">200 %</translation>
     </message>
     <message>
         <source>300 %</source>
-        <translation>300 %</translation>
+        <translation type="obsolete">300 %</translation>
     </message>
     <message>
         <source>400 %</source>
-        <translation>400 %</translation>
+        <translation type="obsolete">400 %</translation>
     </message>
     <message>
         <source>500 %</source>
-        <translation>500 %</translation>
+        <translation type="obsolete">500 %</translation>
     </message>
     <message>
         <source>Go to page</source>
-        <translation>Ir a página</translation>
+        <translation type="obsolete">Ir a página</translation>
     </message>
     <message>
         <source>Page number:</source>
-        <translation>Página número:</translation>
+        <translation type="obsolete">Página número:</translation>
     </message>
     <message>
         <source>Page: %1 / %2</source>
-        <translation>Página %1 / %2</translation>
+        <translation type="obsolete">Página %1 / %2</translation>
     </message>
 </context>
 <context>

@@ -13,7 +13,6 @@ OBJECTS_DIR = obj
 UI_DIR = uic
 # Input
 HEADERS += globals.h \
-           ncpreview.h \
            ncreport.h \
            ncsqlquery.h \
            ncutils.h \
@@ -21,8 +20,7 @@ HEADERS += globals.h \
  	   ereporte.h \
            nciconfactorybase.h \
 	   nciconfactory.h
-SOURCES += ncpreview.cpp \
-           ncreport.cpp \
+SOURCES += ncreport.cpp \
            ncsqlquery.cpp \
            ncutils.cpp \
            reportparser.cpp \

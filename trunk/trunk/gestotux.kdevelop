@@ -190,7 +190,7 @@
       </debugarguments>
     </run>
     <general>
-      <activedir>utiles/diseñador/diseñador.pro</activedir>
+      <activedir>reporte/libncreport.pro</activedir>
     </general>
     <make>
       <abortonerror>true</abortonerror>
