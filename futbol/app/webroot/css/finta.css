@@ -1,0 +1,208 @@
+body {
+    font-size : 12px;
+    text-align : left;
+    font-family: Arial;
+    vertical-align:top;
+  }
+
+
+td.item-menu {
+    background: inherit;
+    border-bottom-width : 0;
+    border-left-width : 0;
+    border-right-width : 0;
+    border-top-width : 0;
+    text-align : center;
+  }
+
+
+table.tabla-general {
+    margin: 0px;
+  }
+
+
+tr.menu-abajo {
+    background-image : url('/futbol/img/fondo-menu.png');
+    /*background-image : url('/img/fondo-menu.png');
+    */ background-repeat : repeat-x;
+    text-align : center;
+    padding: 5px;
+    height: 20px;
+  }
+
+
+td.menu-abajo-item {
+    text-align:center;
+    vertical-align:middle;
+  }
+
+
+td.pie {
+    font-size : x-small;
+    text-align : center;
+  }
+
+
+div.fondo-general {
+    background-repeat : no-repeat;
+    /*background-image : url('/img/fondo-web.png');
+    */ background-image : url('/futbol/img/fondo-web.png');
+    background-position : top center;
+  }
+
+
+div.separacion {
+    height:138px;
+  }
+
+
+img {
+    border: 0px;
+  }
+
+
+tr.menu-arriba {
+    height: 19px;
+    text-align: center;
+  }
+
+
+h1 {
+    background-image : url('/futbol/img/punto.png');
+    /*background-image : url('/img/punto.png');
+    */ background-position : center left;
+    background-repeat : no-repeat;
+    font-size : 13px;
+    padding-left : 9px;
+    text-align: left;
+  }
+
+
+h2 {
+    font-size : 12px;
+    padding-left : 9px;
+    text-align: left;
+  }
+
+
+h3 {
+    background-image : url('/futbol/img/punto.png');
+    /*background-image : url('/img/punto.png');
+    */ background-position : center left;
+    background-repeat : no-repeat;
+    font-size : 12px;
+    padding-left : 9px;
+    text-align: left;
+  }
+
+
+td.menu-izq {
+    background-repeat : repeat-y;
+    /*background-image : url('/img/fond_medio_izq.png');
+    */ background-image : url('/futbol/img/fond_medio_izq.png');
+    color : white;
+    font-family : 'Arial Black';
+    font-size : 9px;
+    font-variant : normal;
+    font-weight : bold;
+    padding-left : 3px;
+    text-align : left;
+  }
+
+
+td.menu-der {
+    background-repeat : repeat-y;
+    /*background-image : url('/img/fond_medio_der.png');
+    */ background-image : url('/futbol/img/fond_medio_der.png');
+    text-align : left;
+  }
+
+
+td.menu {
+    width: 160px;
+  }
+
+
+td.publicidades {
+    text-align : center;
+    width : 160px;
+  }
+
+
+a.item-menu {
+    text-decoration: none;
+    color: white;
+  }
+
+
+.fecha {
+    height : 20px;
+    text-align : right;
+    padding-right: 5px;
+  }
+
+
+td.textosombra1 {
+    background-color : #dbe1e0;
+    border-bottom-color : #525252;
+    border-bottom-style : dotted;
+    border-bottom-width : 1px;
+  }
+
+
+td.textosombra2 {
+    border-bottom-color : #525252;
+    border-bottom-style : dotted;
+    border-bottom-width : 1px;
+  }
+
+.textosombra1 {
+    background-color : #dbe1e0;
+    border-bottom-color : #525252;
+    border-bottom-style : dotted;
+    border-bottom-width : 1px;
+  }
+
+a {
+    text-decoration: none;
+  }
+
+
+img.boton_home {
+    margin-left: 8px;
+    float : left;
+  }
+
+
+img.boton_contacto {
+    margin-left : 6px;
+    float : left;
+  }
+
+
+div.botones {
+    float: left;
+    margin: 6px;
+  }
+
+
+img.publicidad {
+    margin-top: 3px;
+  }
+
+
+
+a.titulo_galeria {
+ text-align: center;
+  font-weight: bold;
+ border-top-color: green;
+ border-top-style : dotted;
+}
+
+table.tabla_sancionados {
+  border: 1px solid black;
+  width: 100%;
+}
+
+th.tabla_sancionados {
+}

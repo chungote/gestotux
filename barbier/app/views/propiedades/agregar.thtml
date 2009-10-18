@@ -1,0 +1,183 @@
+<h1>Agregar Nueva Propiedad</h1>
+<?php echo $html->formTag( '/propiedades/agregar' ); ?>
+<table>
+ <tbody>
+  <tr>
+   <td colspan="3" bgcolor="Silver"><b>Datos de la Propiedad</b></td>
+  </tr>
+  <tr>
+   <td>Direcci&oacute;n:</td>
+   <td colspan="2">
+     <?php echo $html->input( 'propiedad/direccion', array( 'type' => 'text', 'size' => '20' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/direccion', 'Por favor ingrese una direccion para la propiedad' ); ?>
+  </td>
+  </tr>
+  <tr>
+   <td>Ciudad:</td>
+   <td colspan="2">
+     <?php echo $html->input( 'propiedad/ciudad', array( 'type' => 'text', 'size' => '20' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/ciudad', 'Por favor ingrese una ciudad para la propiedad' ); ?>
+  </td>
+  </tr>
+  <tr>
+   <td>Provincia:</td>
+   <td colspan="2">
+    <?php echo $html->input( 'propiedad/provincia', array( 'type' => 'text', 'size' => '20' ) );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/provincia', 'Por favor ingrese una provincia para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Codigo Postal:</td>
+   <td colspan="2">
+     <?php echo $html->input( 'propiedad/codigo_postal', array( 'type' => 'text', 'size' => '5' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/codigo_postal', 'Por favor ingrese un codigo postal para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Precio:</td>
+   <td colspan="2">
+     <?php echo $html->selectTag( 'propiedad/moneda_id', $monedas ) . $html->input( 'propiedad/precio', array( 'type' => 'text', 'size' => '10' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/precio', 'Por favor ingrese un precio para la propiedad' ); ?>
+     <?php echo $html->tagErrorMsg( 'propiedad/moneda_id', 'Por favor ingrese una moneda para el precio de la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Cantidad de Ba&ntilde;os:</td>
+   <td colspan="2">
+    <?php echo $html->input( 'propiedad/banos', array( 'type' => 'text', 'size' => '2' ) );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/banos', 'Por favor ingrese una cantidad de ba&ntilde;os para la propiedad' ); ?>
+  </td>
+  </tr>
+  <tr>
+   <td>Cantidad de Pisos:</td>
+   <td colspan="2">
+    <?php echo $html->input( 'propiedad/pisos', array( 'type' => 'text', 'size' => '2' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/pisos', 'Por favor ingrese una cantidad de pisos para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Cantidad de Dormitorios:</td>
+   <td colspan="2">
+    <?php echo $html->input( 'propiedad/dormitorios', array( 'type' => 'text', 'size' => '2' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/dormitorios', 'Por favor ingrese una cantidad de dormitorios para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Cantidad de Autos en cochera:</td>
+   <td colspan="2">
+    <?php echo $html->input( 'propiedad/cochera', array( 'type' => 'text', 'size' => '2' ) );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/cochera', 'Por favor ingrese una cantidad de autos en cochera para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td><label>Tipo de Propiedad:</label></td>
+   <td colspan="2">
+    <?php echo $html->selectTag( 'propiedad/tipo_id', $tipos );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/tipo_id', 'Por favor elija una tipo de propiedad para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td><label>Zona:</label></td>
+   <td colspan="2">
+     <?php echo $html->selectTag( 'propiedad/zona_id', $zonas );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/zona_id', 'Por favor elija una zona para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td><label>Estado:</label></td>
+   <td colspan="2">
+    <?php echo $html->selectTag( 'propiedad/estado', $estados );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/estado', 'Por favor elija un estado para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td><label>Situacion:</label></td>
+   <td colspan="2">
+    <?php echo $html->selectTag( 'propiedad/situacion_id', $situaciones );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/situacion_id', 'Por favor elija una situacion para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Metros Cuadrados:</td>
+   <td colspan="2">
+     <?php echo $html->input( 'propiedad/metros_cuadrados', array( 'type' => 'text', 'size' => '5' ) );?>
+     <?php echo $html->tagErrorMsg( 'propiedad/metros_cuadrados', 'Por favor ingrese una cantidad de metros cuadrados para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Dimension del terreno:</td>
+   <td colspan="2">Frente:
+    <?php echo $html->input( 'propiedad/dimension_x', array( 'type' => 'text', 'size' => '5' ) );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/dimension_x', 'Por favor ingrese una dimension de terreno para la propiedad' ); ?>
+    Fondo:
+    <?php echo $html->input( 'propiedad/dimension_y', array( 'type' => 'text', 'size' => '5' ) );?>
+    <?php echo $html->tagErrorMsg( 'propiedad/dimension_y', 'Por favor ingrese una dimension de terreno para la propiedad' ); ?>
+   </td>
+  </tr>
+  <tr>
+   <td>Descripcion Completa:</td>
+   <td colspan="2"><?php echo $html->textArea( 'propiedad/descripcion_completa', array( 'cols' => '45', 'rows' => '10' ) );?></td>
+  </tr>
+  <tr>
+   <td colspan="3" bgcolor="Silver"><b>Imagenes</b></td>
+  </tr>
+   <tr><TD>Es necesario guardar la propiedad primero antes de poder asignarle imagenes</TD></tr>
+  <tr>
+   <td colspan="3" bgcolor="Silver"><b>Caracteristicas</b></td>
+  </tr>
+  <tr>
+   <td>Actuales:</td>
+   <td></td>
+   <td>Todos:</td>
+  </tr>
+  <tr>
+   <?php echo $javascript->codeBlock( '
+		function agregarItem()
+		{
+			oListaParticular = document.getElementById( \'CaracteristicasCaracteristicas\' );
+			oListaGeneral = document.getElementById( \'CarGeneralCarGeneral\' );
+			for( var i = 0; i < oListaGeneral.options.length; i++ )
+			{
+				if( oListaGeneral.options[i].selected == true )
+				{
+					var newOpt = new Option( oListaGeneral.options[i].text, oListaGeneral.options[i].value);
+					var selLength = oListaParticular.length;
+					oListaParticular.options[selLength] = newOpt;
+					oListaGeneral.options[i] = null;
+				}
+			}
+		}
+
+		function eliminarItem()
+		{
+			oListaParticular = document.getElementById( \'CaracteristicasCaracteristicas\' );
+			oListaGeneral = document.getElementById( \'CarGeneralCarGeneral\' );
+			for( var i = 0; i < oListaParticular.options.length; i++ )
+			{
+				if( oListaParticular.options[i].selected == true )
+				{
+					var newOpt = new Option( oListaParticular.options[i].text, oListaParticular.options[i].value);
+					var selLength = oListaGeneral.length;
+					oListaGeneral.options[selLength] = newOpt;
+					oListaParticular.options[i] = null;
+				}
+			}
+		}
+
+		function enviar()
+		{
+			oLista = document.getElementById( \'CaracteristicasCaracteristicas\' );
+			for( var i=0; i< oLista.options.length; i++ )
+			{
+				oLista.options[i].selected = true;
+			}
+		}
+		' ); ?>
+   <td><?php echo $html->selectTag( 'Caracteristicas/Caracteristicas', $caracteristicas, null, array( 'multiple' => 'multiple' ), null, true );?></td>
+   <td><INPUT type="button" name="agregar" value="&lt;-- Agregar" onclick="agregarItem()"><br><INPUT type="button" name="eliminar" value="Eliminar --&gt;" onclick="eliminarItem()"></td>
+   <td><?php echo $html->selectTag( 'CarGeneral/car_general', $car_todas, null, array( 'multiple' => 'multiple'), null, true  ); ?></td>
+  </tr>
+ </tbody>
+</table>
+<?php echo $html->hiddenTag( 'propiedad/created' ); ?>
+<?php echo $html->submitTag( 'Guardar', array( 'onclick' => 'enviar()' ) ); ?>

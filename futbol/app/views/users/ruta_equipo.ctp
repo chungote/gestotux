@@ -1,0 +1,1 @@
+<?php echo "> " . $html->link( $nombre_equipo, '/admin/equipos/index' ); ?>

@@ -1,0 +1,74 @@
+
+
+.tablaAdmin {
+    background-color : #ededed;
+    border-bottom-color : #898989;
+    border-bottom-style : double;
+    border-bottom-width : 1px;
+    border-left-color : #898989;
+    border-left-style : double;
+    border-left-width : 1px;
+    border-right-color : #898989;
+    border-right-style : double;
+    border-right-width : 1px;
+    border-top-color : #898989;
+    border-top-style : double;
+    border-top-width : 1px;
+    text-align : center;
+  }
+
+
+.tituloSeccion {
+    background-color : #4b827a;
+    border-bottom-color : #3a655f;
+    border-left-color : #3a655f;
+    border-right-color : #3a655f;
+    border-top-color : #3a655f;
+    color : #ffffff;
+    font-size : medium;
+    font-weight : bolder;
+    text-align : center;
+  }
+
+
+.headerAdmin {
+    background-color : #468aff;
+    border-bottom-color : #0026ff;
+    border-bottom-style : groove;
+    border-bottom-width : 2px;
+    border-left-color : #0026ff;
+    border-left-style : groove;
+    border-left-width : 2px;
+    border-right-color : #0026ff;
+    border-right-style : groove;
+    border-right-width : 2px;
+    border-top-color : #0026ff;
+    border-top-style : groove;
+    border-top-width : 2px;
+    font-size : 15px;
+    font-weight : bold;
+    text-align : center;
+    text-transform : uppercase;
+  }
+
+
+#tablaAdmin {
+    text-align: center;
+  }
+
+
+#content {
+    clear : both;
+    vertical-align : middle;
+  }
+
+
+table {
+    border: 0px;
+  }
+
+
+td {
+    text-align: left;
+  }
+

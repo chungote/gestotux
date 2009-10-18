@@ -1,0 +1,87 @@
+<table border="0" cellpadding="0" cellspacing="0">
+ <tbody>
+  <tr>
+    <TD colspan="4">&nbsp;</TD>
+  </tr>
+  <tr>
+    <td colspan="4"><?php echo $this->renderElement( 'titulo', array( 'titulo' => 'tasaciones', 'imagen' => 'tasaciones.png' ) ); ?></td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <?php if( isset( $mensaje ) )
+            {
+      ?>
+    	<div class="flash">
+			<?php echo $mensaje;?>
+		</div>&nbsp;</td>
+      <?php } ?>
+  </tr>
+  <tr>
+   <td></td>
+   <td width="60%" rowspan="2">
+    <form action="<?php echo $html->url('/secciones/tasacion' ); ?>" method="post">
+     <table>
+       <tbody>
+         <tr>
+           <td class="tituloForm">Nombre y Apellido</td>
+         </tr>
+         <tr>
+           <td><?php echo $html->input( 'tasacion/nombre', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">E-mail</td>
+         </tr>
+         <tr>
+           <td><?php echo $html->input( 'tasacion/email', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">Telefono de Contacto</td>
+         </tr>
+         <tr>
+           <td><?php echo $html->input( 'tasacion/telefono', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">Tipo de Inmueble</td>
+         </tr>
+         <tr>
+            <td><?php echo $html->input( 'tasacion/inmueble', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">Cantidad de Ambientes</td>
+         </tr>
+         <tr>
+           <td><?php echo $html->input( 'tasacion/ambientes', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">Direccion</td>
+         </tr>
+         <tr>
+           <td><?php echo $html->input( 'tasacion/direccion', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">Zona/Barrio</td>
+         </tr>
+         <tr>
+          <td><?php echo $html->input( 'tasacion/barrio', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+         </tr>
+         <tr>
+           <td class="tituloForm">Mensaje</td>
+         </tr>
+         <tr>
+           <td><?php echo $html->textArea( 'tasacion/mensaje', array( 'cols' => '40', 'rows' => '5' ) ); ?></td>
+         </tr>
+         <tr>
+           <td align="center"><?php echo $html->submit('ENVIAR', array('class' => 'boton' ) ); ?></td>
+         </tr>
+       </tbody>
+     </table>
+   </form></td>
+   <td colspan="2" align="center" valign="middle"><?php echo $html->image( 'tasacion_borde.png' );?></td>
+  </tr>
+  <tr align="center" valign="center">
+   <td></td>
+   <td colspan="2" align="center" valign="middle" style="padding-left : 89px; padding-right : 89px; padding-top : 40px; vertical-align : top;">Si Ud. desea que realicemos la tasaci&oacute;n de su propiedad o bien necesita de nuestro servicios de tasacion profesional, complete el siguiente formulario y nos contaremos con usted a la brevedad.<br />Muchas Gracias</td>
+   <td></td>
+  </tr>
+ </tbody>
+</table>

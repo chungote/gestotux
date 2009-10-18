@@ -1,0 +1,9 @@
+<table width="100%" cellspacing="0" border="0" cellpadding="0">
+ <tbody>
+  <tr>
+   <td width="65"><?php echo $html->image( 'bordetitulo.png', array('border' => 0, 'align' => 'left' ) ); ?></td>
+   <td colspan="2" class="tituloSeccion"><?php echo $titulo; ?></td>
+   <td style="border: 0px; margin: 0px; padding: 0px;"><?php echo $html->image( $imagen, array('border' => 0, 'align' => 'left' ) ); ?></td>
+  </tr>
+ </tbody>
+</table>

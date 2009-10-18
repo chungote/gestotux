@@ -1,0 +1,54 @@
+<table cellpadding="0" cellspacing="0" width="350" border="0">
+ <tbody>
+	<tr>
+		<td style="background-image : url('./img/titulo_consulta_borde_izq.jpg'); background-color : #eb3d00; background-repeat : no-repeat; height : 24px;">&nbsp;</TD>
+		<td colspan="2" width="94%" style="background-color : #eb3d00; color: white; text-align: center"></td>
+		<td style="background-image : url('./img/titulo_consulta_borde.jpg'); background-position : right; background-repeat : no-repeat;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="border-left-color : #DA251D; border-left-style : solid; border-left-width : 2px; border-right-color : #DA251D; border-right-style : solid; border-right-width : 2px; padding-left : 7px; padding-right : 7px;">
+			<FORM action="<?php echo $html->url('/buscador/buscar' ); ?>" method="POST">
+			 <table>
+			  <tbody>
+				<tr>
+					<td colspan="2" class="tituloUltimas">Buscador de propiedades</td>
+				</tr>
+				<tr>
+					<td colspan="2"><label>Tipo de Operacion:</label></td>
+				</tr>
+				<tr>
+					<td colspan="2"><?php echo $html->radio( 'buscador/venta', array( '1' => 'Venta', '2' => 'Alquiler' ), null, array( 'value' => '1' ) ); ?></td>
+				</tr>
+				<tr>
+					<td colspan="2"><label>Tipo de Inmueble:</label></td>
+				</tr>
+				<tr>
+					<?php $tipos = $this->requestAction( '/tipos/lista' ); ?>
+					<td colspan="2"><?php echo $html->selectTag( 'buscador/tipo_id', $tipos ); ?></tde>
+				</tr>
+				<tr>
+					<td colspan="2"><label>Zona:</label></td>
+				</tr>
+				<tr>
+					<?php $zonas = $this->requestAction( '/zonas/lista' ); ?>
+					<td colspan="2"><?php echo $html->selectTag( 'buscador/zona_id', $zonas ); ?></td>
+				</tr>
+				<tr>
+					<td width="40%"><label>Precio M&aacute;ximo:</label></td>
+					<td>$<?php echo $html->input( 'buscador/precio_maximo', array( 'size' => '5' ) ); ?></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><?php echo $html->submit( 'Buscar', array( 'class' => 'boton' ) ); ?></td>
+				</tr>
+			  </tbody>
+			 </table>
+			</FORM>
+		</td>
+	</tr>
+      <tr>
+      	<td width="22" height="18" valign="bottom"><?php echo $html->image( 'bordeinfizq.png' ); ?></td>
+		<td colspan="2" style="border-bottom-color : #eb3d00; border-bottom-style : solid; border-bottom-width : 2px;">&nbsp;</td>
+		<td width="30"><?php echo $html->image( 'bordeinfder.png' ) ?></td>
+	</tr>
+ </tbody>
+</table>
