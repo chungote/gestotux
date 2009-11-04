@@ -62,3 +62,5 @@ INCLUDEPATH += ../pagos \
 LIBS += ../../bin/libutiles.a \
   ../../bin/libncreport.a
 
+TRANSLATIONS += CtaCte.ts
+

@@ -10,15 +10,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Costo:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>$ </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Fecha:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Datos de compra</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Agregar Producto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Eliminar Producto</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -63,3 +63,5 @@ CONFIG -= release
 
 RESOURCES += diseñador.qrc
 
+FORMS += ncreportdesigndialogbase.ui
+

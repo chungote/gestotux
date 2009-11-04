@@ -2,7 +2,7 @@
  *   Copyright (C) 2007 by Esteban Zeller   				   *
  *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
+ *    This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
@@ -256,25 +256,10 @@ void FormAgregarVenta::guardar()
   else
   {
    // Disminuyo el stock
-   MProductos::modificarStock( mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() , mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
-   /*int id_producto = mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt();
-   QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) );
-   if( cola.next() )
-   {
-    double cantidad = cola.record().value( 0 ).toDouble();
-    cantidad -= ;
-    if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) ) {
-	qDebug( "Stock Actualizado correctamente" );
-    }
-    else
-    {
-      qWarning( "Error al actualizar el stock" );
-    }
-   }
-   else
-   {
-    qWarning( "Error al buscar el stock" );
-   }*/
+  bool devuelve = MProductos::modificarStock( mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() , mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
+  if( !devuelve )
+  { qWarning( "Error al intentar disminuir el stock de un producto" ); ///@ todo Cancelar todo return; }
+     }
   }
  }
  m->submit();
@@ -317,10 +302,25 @@ void FormAgregarVenta::guardar()
   { QSqlDatabase::database().rollback(); qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); }
  }
  // Actualizar la cuenta general del programa
- ///\todo Actualizar la cuenta general del programa
+ ///@todo Actualizar la cuenta general del programa
  // listo
   if( QSqlDatabase::database().commit() ) {
-   QMessageBox::information( this, "Correcto" , "La venta se ha registrado correctamente" );
+   // Ver si quiere ver la factura o imprimirla
+   int respuesta = QMessageBox::question( this, "Correcto", "La venta se ha registrado correctamente. Desea imprimir un comprobante de venta?",
+                                     QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
+   switch( respuesta )
+   {
+    case QMessageBox::Yes:
+    {
+     ///@todo Crear sistema de impresion de facturas
+     break;
+    }
+    case QMessageBox::No:
+    case QMessageBox::Cancel:
+    {
+     break;
+    }
+   }
    this->close();
    return;
 

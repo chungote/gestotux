@@ -50,8 +50,6 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 	CBClienteCtaCte->setCurrentIndex( -1 );
  	connect( CBClienteCtaCte, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCtaCte( int ) ) );
 
-	this->addAction( new EActCerrar( this ) );
-
 	EActImprimir *ActImprimir = new EActImprimir( this );
 	connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 	this->addAction( ActImprimir );
@@ -64,7 +62,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
  	this->addAction( ActEmail );
 	connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );
 
-	modeloItem = new MItemCuentaCorriente( TVItems );
+	modeloItem = new MItemCuentaCorriente( TVItems, false );
 	TVItems->setModel( modeloItem );
 	TVItems->hideColumn( 0 );
 	TVItems->hideColumn( 2 );
@@ -75,6 +73,8 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 	TVItems->setTextElideMode( Qt::ElideRight );
 	/// Menu contextual para cada operacion de la cuenta corriente
 	connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
+
+	this->addAction( new EActCerrar( this ) );
 
 
 }
@@ -198,10 +198,6 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
 			connect( ActVerRecibo, SIGNAL( triggered() ), this, SLOT( verRecibo() ) );
 			_menuContextual->addAction( ActVerRecibo );
 
-			QAction *ActCancelarRecibo = new QAction( this );
-			ActCancelarRecibo->setText( "Cancelar  Recibo... " );
-			connect( ActCancelarRecibo, SIGNAL( triggered() ), this, SLOT( cancelarRecibo() ) );
-			_menuContextual->addAction( ActCancelarRecibo );
 		}
 		break;
 	}
@@ -225,16 +221,6 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
  _menuContextual->addAction( new EActCerrar( this ) );
  _menuContextual->popup( this->mapToGlobal( posicion ) );
 }
-
-
-/*!
-    \fn FormResumenCtaCte::cancelarRecibo()
- */
-void FormResumenCtaCte::cancelarRecibo()
-{
-    /// @todo implement me
-}
-
 
 /*!
     \fn FormResumenCtaCte::pagarTodo()
@@ -274,7 +260,11 @@ void FormResumenCtaCte::verRecibo()
  */
 void FormResumenCtaCte::pagarFactura()
 {
-    /// @todo implement me
+ // Verifico que la factura no este pagada
+
  // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
+
+ // Busco los detalles de la factura
+
 
 }

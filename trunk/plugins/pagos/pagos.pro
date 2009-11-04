@@ -49,3 +49,5 @@ INCLUDEPATH += ../../src \
 LIBS += ../../bin/libncreport.a \
   ../../bin/libutiles.a
 
+TRANSLATIONS += pagos.ts
+

@@ -19,17 +19,20 @@
  ***************************************************************************/
 #include "mpagos.h"
 #include <QDate>
+#include <QSqlQuery>
+#include <QSqlRecord>
 
 MPagos::MPagos(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
 {
- setTable( "pagos" );
+ setTable( "recibos" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Cliente" );
  setHeaderData( 2, Qt::Horizontal, "Texto" );
  setHeaderData( 3, Qt::Horizontal, "Cantidad" );
  setHeaderData( 4, Qt::Horizontal, "Fecha Pago" );
- setHeaderData( 5, Qt::Horizontal, "Template" );
+ setHeaderData( 5, Qt::Horizontal, "Cancelado" );
+ setHeaderData( 6, Qt::Horizontal, "Template" );
  if( relaciones )
  {
   setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
@@ -75,6 +78,19 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
    }
    break;
   }
+  case Qt::TextAlignmentRole:
+  {
+   switch( item.column() )
+   {
+    case 3:
+    case 4:
+    case 5:
+    { return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
+    default:
+    { return QSqlRelationalTableModel::data( item, role ); break; }
+   }
+   break;
+  }
   default:
   {
    return QSqlRelationalTableModel::data( item, role );
@@ -83,4 +99,3 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
  }
     return QSqlRelationalTableModel::data(item, role);
 }
-

@@ -29,8 +29,8 @@ class QGridLayout;
 class QSpacerItem;
 class QLabel;
 class QLineEdit;
-class QListBox;
-class QListBoxItem;
+class QListWidget;
+class QListWidgetItem;
 class QPushButton;
 class QTextEdit;
 class NCReportDesignerDocument;
@@ -51,7 +51,7 @@ public slots:
     virtual void moveUp();
     virtual void renameQuery();
 
-	virtual void currentChanged( QListBoxItem * );
+	virtual void currentChanged( QListWidgetItem * );
 	virtual void qryChanged();
 
 protected:
@@ -63,7 +63,7 @@ protected:
     QSpacerItem* spBtn;
 	QLabel* lblName;
 	QLineEdit* leName;
-	QListBox* listQuery;
+	QListWidget* listQuery;
 	QLabel* textLabel2;
 	QPushButton* btnAdd;
 	QPushButton* btnRemove;
