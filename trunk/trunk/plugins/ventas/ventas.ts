@@ -6,10 +6,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cliente</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cliente:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -26,15 +22,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Forma de pago</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Lista de precio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Datos de la Venta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forma de Pago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cuenta Corriente</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -20,13 +20,13 @@
 #ifndef NCREPORTDESIGNERWIDGETSETDIALOG_H
 #define NCREPORTDESIGNERWIDGETSETDIALOG_H
 
-#include "ncreportdesignerwidgetsetdialogui.h"
-
+#include "ui_ncreportdesigndialogbase.h"
+#include <QDialog>
 class NCReportDesignerWidget;
 class NCReportDesignerDocument;
 class WProperty;
 
-class NCReportDesignerWidgetSetDialog : public NCReportDesignerWidgetSetDialogUI
+class NCReportDesignerWidgetSetDialog : public Ui_NCReportDesignDialogBase, public QDialog
 {
   Q_OBJECT
 public:

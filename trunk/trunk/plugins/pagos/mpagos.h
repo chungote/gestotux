@@ -34,7 +34,6 @@ class MPagos : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MPagos(QObject *parent = 0, bool relaciones = false );
-
     ~MPagos();
 
     bool setData(const QModelIndex& item, const QVariant& value, int role);

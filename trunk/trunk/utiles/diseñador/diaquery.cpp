@@ -19,6 +19,15 @@
  ***************************************************************************/
 #include "diaquery.h"
 #include "ncreportdesignerdocument.h"
+
+#include <QVBoxLayout>
+#include <QTextEdit>
+#include <QListWidget>
+#include <QLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QMessageBox>
+#include <QLineEdit>
 /*
 #include <qvariant.h>
 #include <qpushbutton.h>
@@ -39,65 +48,71 @@
  *  TRUE to construct a modal dialog.
  */
 diaQuery::diaQuery( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
-    : QDialog( parent, modal, fl )
+    : QDialog( parent, fl )
 {
     if ( !name )
 	setObjectName( "query_editor" );
     else
         setObjectName( name );
-    query_editorLayout = new QVBoxLayout( this, 6, 6, "query_editorLayout");
+    this->setModal( modal );
+    query_editorLayout = new QVBoxLayout( this );
+    query_editorLayout->setObjectName( "query_editorLayout" );
 
-    layUp = new QHBoxLayout( 0, 0, 6, "layUp");
-	layUp->setResizeMode( QLayout::Minimum );
+    layUp = new QHBoxLayout();
+    layUp->setObjectName("layUp");
+    layUp->setSizeConstraint( QLayout::SetMinimumSize );
 
-    layLeft = new QVBoxLayout( 0, 0, 6, "layLeft");
+    layLeft = new QVBoxLayout();
+    layLeft->setObjectName("layLeft");
 
-    layName = new QHBoxLayout( 0, 0, 6, "layName");
+    layName = new QHBoxLayout();
+    layName->setObjectName("layName");
 
-    lblName = new QLabel( this, "lblName" );
+    lblName = new QLabel( this );
+    lblName->setObjectName( "lblName" );
     layName->addWidget( lblName );
 
-    leName = new QLineEdit( this, "leName" );
+    leName = new QLineEdit( this );
     layName->addWidget( leName );
     layLeft->addLayout( layName );
 
-    listQuery = new QListBox( this, "listQuery" );
+    listQuery = new QListWidget( this );
     listQuery->setMinimumSize( QSize( 0, 130 ) );
     listQuery->setMaximumSize( QSize( 32767, 80 ) );
     layLeft->addWidget( listQuery );
 
-    textLabel2 = new QLabel( this, "textLabel2" );
+    textLabel2 = new QLabel( this );
     layLeft->addWidget( textLabel2 );
     layUp->addLayout( layLeft );
 
-    layBtn = new QVBoxLayout( 0, 0, 6, "layBtn");
+    layBtn = new QVBoxLayout();
 
-    btnAdd = new QPushButton( this, "btnAdd" );
+    btnAdd = new QPushButton( this );
     layBtn->addWidget( btnAdd );
 
-    btnRemove = new QPushButton( this, "btnRemove" );
+    btnRemove = new QPushButton( this );
     layBtn->addWidget( btnRemove );
 
-    btnRename = new QPushButton( this, "btnRename" );
+    btnRename = new QPushButton( this );
     layBtn->addWidget( btnRename );
 
-    btnUp = new QPushButton( this, "btnUp" );
+    btnUp = new QPushButton( this );
     layBtn->addWidget( btnUp );
     spBtn = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
     layBtn->addItem( spBtn );
 
-    btnClose = new QPushButton( this, "btnClose" );
+    btnClose = new QPushButton( this );
     layBtn->addWidget( btnClose );
     layUp->addLayout( layBtn );
     query_editorLayout->addLayout( layUp );
 
-    editQuery = new QTextEdit( this, "editQuery" );
+    editQuery = new QTextEdit( this);
 	editQuery->setMinimumHeight( 220 );
-	editQuery->setFamily( "Courier" );
+	editQuery->setFontFamily( "Courier" );
     query_editorLayout->addWidget( editQuery );
     languageChange();
     resize( QSize(598, 343).expandedTo(minimumSizeHint()) );
-    clearWState( WState_Polished );
+    //clearWState( WState_Polished );
 
     // signals and slots connections
     connect( btnAdd, SIGNAL( clicked() ), this, SLOT( addQuery() ) );
@@ -106,7 +121,7 @@ diaQuery::diaQuery( QWidget* parent, const char* name, bool modal, Qt::WFlags fl
     connect( btnUp, SIGNAL( clicked() ), this, SLOT( moveUp() ) );
     connect( btnClose, SIGNAL( clicked() ), this, SLOT( close() ) );
 
-	connect( listQuery, SIGNAL( currentChanged(QListBoxItem *)), this, SLOT(currentChanged( QListBoxItem *)) );
+	connect( listQuery, SIGNAL( currentChanged(QListWidgetItem *)), this, SLOT(currentChanged( QListWidgetItem *)) );
 	connect( editQuery, SIGNAL( textChanged()), this, SLOT(qryChanged()) );
 
 }
@@ -125,10 +140,10 @@ diaQuery::~diaQuery()
  */
 void diaQuery::languageChange()
 {
-    setCaption( tr( "Query editor" ) );
+    this->setWindowTitle( tr( "Query editor" ) );
     lblName->setText( tr( "Query alias name" ) );
     listQuery->clear();
-    listQuery->insertItem( tr( "New Item" ) );
+    listQuery->insertItem( 0, tr( "New Item" ) );
     textLabel2->setText( tr( "SQL query:" ) );
     btnAdd->setText( tr( "Add" ) );
     btnRemove->setText( tr( "Remove" ) );
@@ -140,12 +155,12 @@ void diaQuery::languageChange()
 void diaQuery::addQuery()
 {
 	bool ok = TRUE;
-	QString val = leName->text().lower();
+	QString val = leName->text().toLower();
 	if ( val.isEmpty() )
 		return;
 
 	for ( int i=0; i<listQuery->count(); ++i ) {
-		if ( listQuery->item(i)->text().lower() == val ) {
+		if ( listQuery->item(i)->text().toLower() == val ) {
 			ok = false;
 			break;
 		}
@@ -153,12 +168,12 @@ void diaQuery::addQuery()
 	if ( !ok ) {
 		return;
 	}
-	listQuery->insertItem( val );
+	listQuery->insertItem( -1, val );
 	ReportQuery rq;
 	rq.alias = val;
 	document->queries[val]= rq;
 
-	QListBoxItem *item = listQuery->findItem( val );
+	QListWidgetItem *item = listQuery->findItems( val, Qt::MatchContains ).first();
 	if ( item ) {
 		listQuery->setCurrentItem( item );
 	}
@@ -169,11 +184,11 @@ void diaQuery::addQuery()
 
 void diaQuery::removeQuery()
 {
-	int curr = listQuery->currentItem();
+	int curr = listQuery->currentIndex().row();
 	if ( curr<0 )
 		return;
 
-	QString key = listQuery->currentText();
+	QString key = listQuery->currentItem()->text();
 	QMessageBox mb( tr("Remove query"),
 					tr("Are you sure you want to remove query: %1 ?").arg(key),
 					QMessageBox::Question,
@@ -181,28 +196,28 @@ void diaQuery::removeQuery()
 					QMessageBox::No  | QMessageBox::Escape, 0 );
 	if ( mb.exec() == QMessageBox::Yes ) {
 		document->queries.remove(key);
-		listQuery->removeItem( curr );
+		listQuery->removeItemWidget( listQuery->item( curr ) );
 	}
 }
 
 void diaQuery::moveUp()
 {
-	int c = listQuery->currentItem();
+	int c = listQuery->currentIndex().row();
 	if ( c < 1 )
 		return;
 
-	QString key = listQuery->currentText();
+	QString key = listQuery->currentItem()->text();
 	//reset
 	QMap<QString,ReportQuery>::Iterator it;
 	for ( it = document->queries.begin(); it != document->queries.end(); ++it )
-		it.data().master = FALSE;
+		it.value().master = FALSE;
 	// set as master
 	document->queries[key].master = TRUE;
 
-	QListBoxItem *item = listQuery->item( c );
-	listQuery->takeItem( item );
+	QListWidgetItem *item = listQuery->item( c );
+	listQuery->removeItemWidget( item );
 	//listQuery->insertItem( item, c-1 );
-	listQuery->insertItem( item, 0 );
+	listQuery->insertItem( 0, item );
 	listQuery->setCurrentItem( item );
 }
 
@@ -217,7 +232,7 @@ void diaQuery::assignDocument( NCReportDesignerDocument *doc )
 	document = doc;
 	QMap<QString,ReportQuery>::ConstIterator it;
 	for ( it = document->queries.begin(); it != document->queries.end(); ++it ) {
-		listQuery->insertItem( it.data().alias );
+		listQuery->insertItem( -1,  it.value().alias );
 			//ReportGroup g = it.data();
 	}
 
@@ -230,7 +245,7 @@ void diaQuery::assignDocument( NCReportDesignerDocument *doc )
 	editQuery->setEnabled( enable );
 }
 
-void diaQuery::currentChanged( QListBoxItem *item )
+void diaQuery::currentChanged( QListWidgetItem *item )
 {
 	if ( !item )
 		return;
@@ -238,7 +253,7 @@ void diaQuery::currentChanged( QListBoxItem *item )
 	if ( document->queries.contains(item->text()) ) {
 		QString qry = document->queries[item->text()].queryString;
 		qry.replace( '\t', QString::null );
-		qry = qry.stripWhiteSpace();
+		qry = qry.trimmed();
 		editQuery->setText( qry );
 		editQuery->setEnabled( TRUE );
 
@@ -253,7 +268,7 @@ void diaQuery::qryChanged( )
 	if ( listQuery->currentItem()<0 )
 		return;
 
-	QString key = listQuery->currentText();
-	document->queries[key].queryString = editQuery->text();
+	QString key = listQuery->currentItem()->text();
+	document->queries[key].queryString = editQuery->toPlainText();
 }
 

@@ -37,8 +37,10 @@
 
 NCReportDesignerWidgetSetDialog::NCReportDesignerWidgetSetDialog( NCReportDesignerWidget *dwidget, QWidget* parent, NCReportDesignerDocument *doc,
 		const char* name, bool modal, Qt::WindowFlags fl)
-: NCReportDesignerWidgetSetDialogUI(parent,name, modal,fl)
+: Ui_NCReportDesignDialogBase(), QDialog( parent, fl )
 {
+	this->setObjectName( name );
+	this->setModal( modal );
 	dw = dwidget;
 	document = doc;
 	init();
@@ -133,7 +135,7 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 
 		leFont->setText( dw->p.fontName );
 		comboFontSize->setEditText( QString::number(dw->p.fontSize) );
-		comboColor->setColor( dw->p.forecolor );
+		//comboColor->setColor( dw->p.forecolor );
 	/*	idx=1;
 		switch ( dw->p.fontWeight ) {
 			case QFont::Light: idx=0; break;
@@ -150,19 +152,17 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 		cbStrikeout->setChecked( dw->p.fontStrikeOut );
 		idx = 0;
 		switch ( dw->p.alignmentH ) {
-			case Qt::AlignLeft: idx=0; break;
-			case Qt::AlignHCenter: idx=1; break;
-			case Qt::AlignRight: idx=2; break;
+			case Qt::AlignLeft: idx=0; radioLeft->setChecked(true); break;
+			case Qt::AlignHCenter: idx=1; radioCenter->setChecked( true ); break;
+			case Qt::AlignRight: idx=2; radioRight->setChecked( true ); break;
 			default: idx=0;
 		}
-		bgHAlign->button( idx )->setCheckable( true );
 		switch ( dw->p.alignmentV ) {
-			case Qt::AlignTop: idx=0; break;
-			case Qt::AlignVCenter: idx=1; break;
-			case Qt::AlignBottom: idx=2; break;
+			case Qt::AlignTop: idx=0; radioTop->setChecked( true ); break;
+			case Qt::AlignVCenter: idx=1; radioMid->setChecked( true ); break;
+			case Qt::AlignBottom: idx=2; radioBottom->setChecked( true ); break;
 			default: idx=0;
 		}
-		bgVAlign->button( idx )->setCheckable( true );
 
 		cbWordBreak->setChecked( dw->p.wordbreak );
 		spinRotation->setValue( dw->p.rotation );
@@ -183,12 +183,12 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 		textLabel->setEnabled( FALSE );
 		leSource->setEnabled( FALSE );
 		comboDSource->setEnabled( FALSE );
-		tab->setCurrentIndex(3);
-		tab->removeTab(tab->indexOf(TabPage)); //TabPage->hide(); //setEnabled( FALSE );
-		tab->removeTab(tab->indexOf(pageTxt)); //pageTxt->hide(); //setEnabled( FALSE );
+		TabPage->setCurrentIndex( 3 );
+		TabPage->removeTab(TabPage->indexOf(TabPage)); //TabPage->hide(); //setEnabled( FALSE );
+		TabPage->removeTab(TabPage->indexOf(pageTxt)); //pageTxt->hide(); //setEnabled( FALSE );
 
 
-		bgBackM->button( dw->p.fillStyle == WProperty::transparent ? 0 : 1 )->setChecked( true );
+		radioTransp->setChecked( dw->p.fillStyle == WProperty::transparent ? false : true );
 		spinLineWidth->setValue( dw->p.lineWidth );
 		idx =0;
 		switch ( dw->p.lineStyle ) {
@@ -213,8 +213,8 @@ void NCReportDesignerWidgetSetDialog::loadOptions( )
 		//leSource->setEnabled( FALSE );
 		comboDSource->setEnabled( FALSE );
 		TabPage->setEnabled( FALSE );
-		tab->removeTab(tab->indexOf(pageTxt)); //pageTxt->hide(); //setEnabled( FALSE );
-		tab->removeTab(tab->indexOf(pageLine)); //pageLine->hide(); //setEnabled( FALSE );
+		TabPage->removeTab(TabPage->indexOf(pageTxt)); //pageTxt->hide(); //setEnabled( FALSE );
+		TabPage->removeTab(TabPage->indexOf(pageLine)); //pageLine->hide(); //setEnabled( FALSE );
 
 		leSource->setText( dw->p.resource.isEmpty() ? dw->p.text : dw->p.resource );
 		leSource->setFocus();
@@ -237,8 +237,9 @@ void NCReportDesignerWidgetSetDialog::alignHChanged(int i)
 
 void NCReportDesignerWidgetSetDialog::alignVChanged( int )
 {
-	int h = bgHAlign-> checkedId ();
-	int v = bgVAlign-> checkedId ();
+        /*
+	int h = bgHAlign->checkedId();
+	int v = bgVAlign->checkedId();
 	Qt::AlignmentFlag fh,fv;
 	//int fh,fv;
 	switch (h) {
@@ -255,7 +256,7 @@ void NCReportDesignerWidgetSetDialog::alignVChanged( int )
 	}
 
 	//lblSample->setAlignment( fh | fv );
-	lblSample->setAlignment( fh | fv );
+	lblSample->setAlignment( fh | fv );*/
 }
 
 
@@ -296,7 +297,7 @@ void NCReportDesignerWidgetSetDialog::applyOptions()
 
 void NCReportDesignerWidgetSetDialog::init( )
 {
-	buttonOk->setShortcut(QKeySequence( "CTRL+Enter" ) );
+	//buttonOk->setShortcut(QKeySequence( "CTRL+Enter" ) );
 
 }
 
@@ -350,16 +351,13 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 		p->fontItalic = cbItalic->isChecked();
 		p->fontUnderline = cbUnderline->isChecked();
 		p->fontStrikeOut = cbStrikeout->isChecked();
-		switch ( bgHAlign-> checkedId() ) {
-			case 0: p->alignmentH = Qt::AlignLeft; break;
-			case 1: p->alignmentH = Qt::AlignHCenter; break;
-			case 2: p->alignmentH = Qt::AlignRight; break;
-		}
-		switch ( bgVAlign-> checkedId() ) {
-			case 0: p->alignmentV = Qt::AlignTop; break;
-			case 1: p->alignmentV = Qt::AlignVCenter; break;
-			case 2: p->alignmentV = Qt::AlignBottom; break;
-		}
+		if( radioLeft->isChecked() ) { p->alignmentH = Qt::AlignLeft; }
+		if( radioCenter->isChecked() ) { p->alignmentH = Qt::AlignHCenter; }
+		if( radioRight->isChecked() ) { p->alignmentH = Qt::AlignRight; }
+
+		if( radioTop->isChecked() ) { p->alignmentV = Qt::AlignTop; }
+		if( radioMid->isChecked() ) { p->alignmentV = Qt::AlignVCenter; }
+		if( radioBottom->isChecked() ) { p->alignmentV = Qt::AlignBottom; }
 		p->wordbreak = cbWordBreak->isChecked();
 
 		//---------------------
@@ -382,7 +380,7 @@ void NCReportDesignerWidgetSetDialog::saveSettings( )
 		// LINE/RECTANGLE STYLE
 		//---------------------
 		if ( dw->wtype == NCReportDesignerWidget::Rectangle )
-			p->fillStyle = ( bgBackM-> checkedId()==0 ? WProperty::transparent : WProperty::filled );
+			p->fillStyle = ( radioTransp->isChecked() ? WProperty::transparent : WProperty::filled );
 		p->lineWidth = spinLineWidth->value();
 		switch ( comboLineStyle->currentIndex() ) {
 			case 0: p->lineStyle = Qt::SolidLine; break;

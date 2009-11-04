@@ -40,7 +40,6 @@ protected slots:
     void pdf();
     void email();
     void menuContextual( const QModelIndex &indice );
-    void cancelarRecibo();
     void pagarTodo();
     void verFactura();
     void verRecibo();

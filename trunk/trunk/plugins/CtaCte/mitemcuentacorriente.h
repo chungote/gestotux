@@ -37,10 +37,16 @@ public:
 	  NotaDebito = 3
 	 };
 
-    MItemCuentaCorriente(QObject *parent = 0);
+    MItemCuentaCorriente( QObject *parent = 0, bool saldos = false );
     ~MItemCuentaCorriente();
     static bool agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
     QVariant data(const QModelIndex& item, int role) const;
+    bool seleccionarNumCuenta( const QString &num_cuenta );
+
+private:
+    QHash<int, double> *saldos;
+    bool _saldo;
+    QString _num_cuenta;
 
 };
 

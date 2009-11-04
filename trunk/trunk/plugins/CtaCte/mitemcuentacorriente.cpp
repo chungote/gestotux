@@ -25,8 +25,8 @@
 
 #include "mcuentacorriente.h"
 
-MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent)
- : QSqlRelationalTableModel(parent)
+MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool s )
+ : QSqlRelationalTableModel(parent), _saldo(saldos)
 {
  setTable( "item_ctacte" );
  setHeaderData( 0, Qt::Horizontal, "IdOperacion" );
@@ -38,6 +38,12 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent)
  setHeaderData( 6, Qt::Horizontal, "Haber" );
  setHeaderData( 7, Qt::Horizontal, "Numero cuenta Corriente" );
  setHeaderData( 8, Qt::Horizontal, "Numero de Comprobante" );
+ if( saldos )
+ {
+  setHeaderData( 9, Qt::Horizontal, "Saldo" );
+  saldos = new QHash<int, double>();
+ }
+ _num_cuenta = "";
 }
 
 
@@ -134,6 +140,26 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
 				return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::DefaultLocaleShortDate );
 				break;
 			}
+			case 8:
+			{
+				if( _saldo && !saldos->keys().contains( item.row() ) )
+				{
+					// Calcular el saldo
+					if( item.row() > 1 )
+					{
+						/*double saldoNuevo = saldos->value( item.row()-1 );
+						saldoNuevo -= this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble();
+						saldoNuevo += this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble();
+						saldos->insert( item.row(), saldoNuevo );*/
+						saldos->insert( item.row(),
+							saldos->value(item.row()-1) -
+							this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble() +
+							this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble() );
+					}
+				}
+				return QString( "$ %L1" ).arg( saldos->value( item.row() ) );
+				break;
+			}
 			default:
 			{
 				return QSqlRelationalTableModel::data(item, role);
@@ -182,4 +208,23 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
 		return QSqlRelationalTableModel::data(item, role);
 	}
  }
+}
+
+
+/*!
+    \fn MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
+ */
+bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
+{
+  _num_cuenta = num_cuenta;
+  if( _num_cuenta.isEmpty() )
+  {
+   this->setFilter( _num_cuenta );
+  }
+  else
+  {
+   this->setFilter( QString( "num_cuenta = %1" ).arg( _num_cuenta ) );
+  }
+  return true;
+ ///@todo Verificar que existe la cuenta
 }

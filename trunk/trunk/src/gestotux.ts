@@ -5,14 +5,6 @@
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <source>Conección mysql</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Host:</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Usuario:</source>
         <translation type="unfinished"></translation>
@@ -22,19 +14,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Base de Datos:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%p %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Conectar...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancelar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cambiar a interna</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -97,11 +85,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Utilizar estilo de barra de progreso personalizado</source>
+        <source>Mostrar reloj digital</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%p % completado</source>
+        <source>SobreEstilo:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -123,30 +111,15 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <source>Actualizando: %p%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic; color:#0000ff;&quot;&gt;Actualizaciones&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Verificar Actualizaciones del programa General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actualizaciones Especificas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Usuario:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <source>Contraseña:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actualizando: %p%</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Presione &quot;Iniciar&quot; Para comenzar&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -197,6 +170,101 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>FormClienteBase</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numero de Cliente:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Razon Social:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nombre:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Segundos Nombres:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apellidos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>Dirección</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Calle:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numero:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Piso:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Depto:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ciudad:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Codigo Postal:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Provincia:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pais:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Telefonos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Telefono Fijo:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Celular:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fax:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Otros</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Em@il:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enviar Comprobantes por email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lista de Precio</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context encoding="UTF-8">
     <name>FormPrefDbBase</name>
     <message>
         <source>Form</source>
@@ -227,11 +295,63 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Nombre:</source>
+        <source>Puerto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>Recordar Contraseña:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Todos los cambios que se realicen tendran efecto una vez que reinice el programa. Recuerde que si cambia de base de datos no se transferiran los datos entre ellas, pero no los perdera cambiando de interna a externa.</source>
+        <source>Nombre de la base de datos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conectarse automaticamente al iniciar el programa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Todos los cambios que se realicen tendran efecto una vez que reinice el programa. Recuerde que si cambia de base de datos no se transferiran los datos entre ellas, pero no los perdera.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Backups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>Frecuencia de Verificación:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>1 día</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>2 días</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>5 días</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 semana</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 semanas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 mes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 meses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nunca</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
