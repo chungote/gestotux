@@ -1,0 +1,3 @@
+<?php echo $html->image( 'enconstruccion.gif' , array( 'align' => 'left', 'border' => 0 ) ); ?><h1>Lo Sentimos, en este momento, estamos en construccion...</h1>
+<h3>Por favor vuelva pronto que seguro habra avances...
+Gracias x su paciencia..</h3>

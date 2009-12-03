@@ -1,0 +1,27 @@
+<FORM action="<?php echo $html->url('/buscador/buscar' ); ?>" method="POST">
+ <table width="100%">
+  <tbody>
+	<tr>
+		<td><label>Tipo de Operacion:</label></td>
+		<td><label>Tipo de Inmueble:</label></td>
+	</tr>
+	<tr>
+		<td><?php echo $html->radio( 'buscador/venta', array( '1' => 'Venta', '2' => 'Alquiler' ), null, array( 'value' => '1' ) ); ?></tdn="2">
+		<?php $tipos = $this->requestAction( '/tipos/lista' ); ?>
+		<td><?php echo $html->selectTag( 'buscador/tipo_id', $tipos ); ?></tde>
+	</tr>
+	<tr>
+		<td><label>Zona:</label></td>
+		<td width="40%"><label>Precio M&aacute;ximo:</label></td>
+	</tr>
+	<tr>
+		<?php $zonas = $this->requestAction( '/zonas/lista' ); ?>
+		<td><?php echo $html->selectTag( 'buscador/zona_id', $zonas ); ?></td>
+		<td>$<?php echo $html->input( 'buscador/precio_maximo', array( 'size' => '5' ) ); ?></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><?php echo $html->submit( 'Buscar', array( 'class' => 'boton' ) ); ?></td>
+	</tr>
+  </tbody>
+ </table>
+</FORM>

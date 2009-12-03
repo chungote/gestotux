@@ -1,0 +1,7 @@
+<h1>Cambiar Contrase&ntilde;a</h1>
+<div class="flash"><? if( isset( $mensaje ) ) { echo $mensaje; } ?></div>
+<?php echo $html->formTag( '/users/cambiarPass' ); ?>
+<label>Contrase&ntilde;a Anterior:</label><?php echo $html->password( 'user/passwd_ant' ); ?><br />
+<label>Contrase&ntilde;a Nueva:</label><?php echo $html->password( 'user/passwd_nueva' ); ?><br />
+<label>Repetir contrase&ntilde;a nueva:</label><?php echo $html->password( 'user/passwd_nueva_conf' ); ?><br />
+<?php echo $html->submit( 'Cambiar' ); ?>

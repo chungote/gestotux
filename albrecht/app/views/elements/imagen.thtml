@@ -1,0 +1,1 @@
+<?php echo $html->image( 'principal.jpg'/*, array( 'width' => '650' )*/ ); ?>

@@ -1,0 +1,26 @@
+<br />
+<br />
+<?php echo $html->formTag( '/buscador/buscar' ); ?>
+<table border="0" width="100%">
+  <tbody>
+    <tr>
+      <td width="18%" rowspan="8" align="center" valign="middle"><?php echo $html->image( 'buscador_alquiler.png' );?></td>
+	<td><?php echo $html->image( 'logo_alquileres.png' ); ?></td>
+    </tr>
+    <tr>
+      <td><label>Tipo de Inmueble:</label><?php echo $html->selectTag( 'buscador/tipo_id', $tipos ); ?></td>
+    </tr>
+    <tr>
+      <td><label>Zona:</label><?php echo $html->selectTag( 'buscador/zona_id', $zonas ); ?></td>
+    </tr>
+    <tr>
+      <td><label>Precio M&aacute;ximo:</label><?php echo $html->selectTag( 'buscador/moneda', $monedas ) . $html->input( 'buscador/precio_maximo', array( 'size' => '5' ) ); ?></td>
+    </tr>
+    <tr>
+      <td><?php echo $html->hidden( 'buscador/venta', array( 'value' => 1 ) ); ?></td>
+    </tr>
+    <tr>
+      <td><?php echo $html->submit( 'Buscar' ); ?></td>
+    </tr>
+  </tbody>
+</table>

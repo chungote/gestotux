@@ -1,0 +1,56 @@
+<br />
+<?php echo $html->image( 'logo_imprimir_ventasalquileres.png' ); ?>
+<br />
+<table border="0">
+  <tbody>
+    <tr>
+      <td rowspan="10"><?php echo $this->renderElement( 'galeria', array( 'id_propiedad' => $propiedad['propiedad']['id'], 'borde' => false ) ); ?></td>
+      <td colspan="3"><?php echo $propiedad['propiedad']['direccion']; ?></td>
+    </tr>
+    <tr>
+       <td colspan="3"><label>Precio:</label><?php echo $propiedad['Moneda']['simbolo'] . ' ' . $propiedad['propiedad']['precio']; ?></td>
+    </tr>
+    <tr>
+      <td><label>Tipo de Inmueble:</label></td>
+      <td colspan="2"><?php echo $propiedad['Tipo']['nombre']; ?></td>
+    </tr>
+    <tr>
+      <td><label>Metros Cuadrados: </label><?php echo $propiedad['propiedad']['metros_cuadrados']; ?></td>
+      <td><label>Pisos: </label><?php echo $propiedad['propiedad']['pisos']; ?></td>
+      <td><label>Dormitorios: </label><?php echo $propiedad['propiedad']['dormitorios']; ?></td>
+    </tr>
+    <tr>
+      <td><label>Situacion:</label></td>
+      <td colspan="2"><?php echo $propiedad['Situacion']['name']; ?></td>
+    </tr>
+    <tr>
+      <td><label>Zona: </label></td>
+      <td colspan="2"><?php echo $propiedad['Zona']['name']; ?></td>
+    </tr>
+    <tr>
+      <td><label>Ciudad:</label></td>
+      <td colspan="2"><?php echo $propiedad['propiedad']['ciudad']; ?></td>
+    </tr>
+    <tr>
+      <td colspan="3"><label>Descripci&oacute;n de la propiedad:</label></td>
+   </tr>
+   <tr>
+     <td colspan="3"><?php echo $propiedad['propiedad']['descripcion_completa']; ?></td>
+    </tr>
+   <tr>
+      <td><label>Caracteristicas de la zona</label></td>
+      <td><label>Caracteristicas de la Propiedad</label></td>
+    </tr>
+   <tr>
+      <td><?php echo $propiedad['Zona']['caracteristicas']; ?></td>
+      <td>
+        <?php
+		foreach( $propiedad['Caracteristicas'] as $car )
+		{
+			echo $car['name'] . "<br>";
+      	}
+        ?>
+	</td>
+    </tr>
+  </tbody>
+</table>

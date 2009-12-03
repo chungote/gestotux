@@ -1,0 +1,35 @@
+<?php
+  //Obtengo las propiedades en oferta
+  foreach( $ofertas as $oferta )
+  {
+	$img = null;
+	foreach( $oferta['Imagenes'] as $imagen )
+	{
+		if( $imagen['principal'] == 1 )
+		{
+			$img = $imagen;
+		}
+	}
+	$contenido = "<table width=\"100%\">\n"
+			." <tbody>\n"
+			."    <tr>\n";
+			if( $img != null )
+			{ $contenido .= "      <td rowspan=\"3\">". $html->image( $img['ruta'].'/'.$img['filename'], array( 'border' => '0', 'width' => 80 ) ). "</td>\n"; }
+			else
+			{ $contenido .= "<td rowspan=\"3\"></td>"; }
+	$contenido	.= "      <td> ". $oferta['Zona']['name'].", ". $oferta['propiedad']['provincia']."</td>\n"
+			."      <td align=\"right\">".$oferta['Moneda']['simbolo'].$oferta['propiedad']['precio']."</td>\n"
+			."    </tr>\n"
+			."    <tr>\n"
+			."      <td colspan=\"2\"> ".$oferta['propiedad']['descripcion_completa']."</td>\n"
+			."    </tr>\n"
+			."    <tr>\n"
+			."      <td></td>\n"
+			."      <td align=\"right\"><ul><li>".$html->link( 'Ver mas informacion', '/propiedades/ver/'.$oferta['propiedad']['id'] ) . "</li></ul></td>\n"
+			."    </tr>\n"
+			."  </tbody>\n"
+			."</table>";
+    echo $bordes->hacerborde( $oferta['propiedad']['direccion'], $contenido );
+    echo "<br />";
+  }
+?>

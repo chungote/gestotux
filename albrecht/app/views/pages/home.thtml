@@ -1,0 +1,36 @@
+<table width="100%" border="0">
+  <tbody>
+    <tr>
+      <td width="30%" valign="top"  class="relleno_rojo">
+<!-- -->
+ <table cellspacing="0" border="0" cellpadding="0">
+  <tbody>
+    <TR>
+      <TD colspan="2" class="antirelleno"><?php echo $html->image( 'casa_portada.png', array( 'class' => 'antirelleno' ) ); ?></TD>
+    </TR>
+    <tr>
+      <td class="relleno_rojo" width="100"></td>
+      <td class="antirelleno"><?php echo $this->renderElement( 'consulta' ); ?></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+      </td>
+      <td valign="top">
+<!-- -->
+ <table cellspacing="0" border="0" cellpadding="0">
+  <tbody>
+    <TR>
+      <TD valign="top" class="titulo_home"><?php echo $html->image('titulo_buscador.png' ); ?><?php echo $this->renderElement( 'buscador' ); ?></TD>
+    </TR>
+    <tr>
+      <td class="titulo_home"><?php echo $html->image('titulo_ofertas.png' ); ?>
+	<?php echo $this->renderElement( 'ofertas' ); ?></td>
+    </tr>
+  </tbody>
+</table>
+<!-- -->
+      </td>
+    </tr>
+  </tbody>
+</table>

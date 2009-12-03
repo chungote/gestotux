@@ -1,0 +1,36 @@
+<FORM action="<?php echo $html->url('/secciones/contacto' ); ?>" method="POST">
+     <table width="100%">
+      <tbody>
+	 <tr>
+           <td class="titulo_home"><?php echo $html->image('titulo_consulta.png' ); ?></td>
+      </tr>
+      <tr>
+       <td><label>Nombre y Apellido</label></td>
+      </tr>
+	<tr>
+       <td><?php echo $html->input( 'datos/nombre', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+      </tr>
+      <tr>
+       <td><label>E-mail</label></td>
+      </tr>
+	<tr>
+       <td><?php echo $html->input( 'datos/email', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+      </tr>
+      <tr>
+       <td><label>Telefono de Contacto</label></td>
+      </tr>
+	<tr>
+       <td><?php echo $html->input( 'datos/telefono', array( 'type' => 'text', 'size' => '20', 'align' => 'left' ) ) ?></td>
+      </tr>
+      <tr>
+       <td><label>Su Consulta</label></td>
+      </tr>
+	<tr>
+       <td><?php echo $html->textArea( 'datos/mensaje', array( 'cols' => '30', 'rows' => '5' ) ); ?></td>
+      </tr>
+      <tr>
+	 <td align="center"><?php echo $html->submit('ENVIAR', array('class' => 'boton' ) ); ?></td>
+      </tr>
+     </tbody>
+    </table>
+   </FORM>

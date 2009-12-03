@@ -1,0 +1,18 @@
+<h1>Ingreso al Sistema:</h1>
+<?php if( isset( $auth_msg ) ) { echo "<div class=\"flash\">".$auth_msg."</div>"; } ?>
+<form action="<?php echo $html->url('/users/login'); ?>" method="post">
+<div class="required">
+    <label for="user_username">Usuario</label>
+     <?php echo $html->input('User/username', array('id' => 'user_username', 'size' => '40')) ?>
+    <?php echo $html->tagErrorMsg('User/username', 'Por Favor, ingrese su nombre de usuario') ?>
+</div>
+<div class="required">
+    <label for="user_password">Contrase&ntilde;a</label>
+     <?php echo $html->input('User/passwd', array('id' => 'user_passwd', 'size' => '40', 'type'=>"password")) ?>
+    <?php echo $html->tagErrorMsg('User/passwd', 'Por favor, ingrese una contraseña!') ?>
+</div>
+
+ <?php echo $html->checkbox("User/cookie");?>Recordarme
+
+<div class="submit"><input type="submit" value="Ingresar" /></div>
+</form>
