@@ -17,45 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PLANIFICADORPLUGIN_H
-#define PLANIFICADORPLUGIN_H
 
-#include "eplugin.h"
-#include <QObject>
+#ifndef ITEMCALENDARIO_H
+#define ITEMCALENDARIO_H
 
-class QAction;
-/**
-\brief Planificador
+#include <QGraphicsItem>
+#include <QRectF>
+#include <QPainterPath>
 
-Clase del planificador del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class PlanificadorPlugin : public QObject, public EPlugin
+class ItemCalendario : public QGraphicsItem
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
 public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m );
-    void crearToolBar( QToolBar* t );
+    ItemCalendario(QGraphicsItem *parent = 0,
+                   QGraphicsScene *scene = 0);
 
-signals:
-    void agregarVentana( QWidget* v );
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionGraphicsItem *option,
+                       QWidget *widget);
 
-public slots:
-    void seCierraGestotux();
-    void verCalendario();
+    virtual QPainterPath shape () const;
 
-private:
-    QAction *ActCalendario;
+    QRectF boundingRect() const;
 
+    void setSize(const QSize &size);
+    void setSize(qreal width, qreal height);
+
+    virtual void onResize(const QSizeF &size, const QSizeF &oldSize);
+
+    virtual void layoutChanged();
+    virtual void dataChanged();
+
+protected:
+    QRectF myBoundingRect;
 };
 
-#endif
+#endif // ITEMCALENDARIO_H

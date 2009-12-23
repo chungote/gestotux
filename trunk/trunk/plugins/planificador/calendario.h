@@ -17,45 +17,25 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PLANIFICADORPLUGIN_H
-#define PLANIFICADORPLUGIN_H
 
-#include "eplugin.h"
-#include <QObject>
+#ifndef VCALENDARIO_H
+#define VCALENDARIO_H
 
-class QAction;
-/**
-\brief Planificador
+#include <QGraphicsView>
 
-Clase del planificador del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class PlanificadorPlugin : public QObject, public EPlugin
+class VCalendario : public QGraphicsView
 {
 Q_OBJECT
-Q_INTERFACES( EPlugin )
 public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m );
-    void crearToolBar( QToolBar* t );
+    explicit VCalendario(QWidget *parent = 0);
+
+    enum ModoMostrar {
+      MostrarSemanasCompletas = 0,
+      MostrarRango = 1,
+    };
 
 signals:
-    void agregarVentana( QWidget* v );
-
-public slots:
-    void seCierraGestotux();
-    void verCalendario();
-
-private:
-    QAction *ActCalendario;
-
+    void agregarVentana( QWidget * );
 };
 
-#endif
+#endif // VCALENDARIO_H
