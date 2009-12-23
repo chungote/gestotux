@@ -17,45 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PLANIFICADORPLUGIN_H
-#define PLANIFICADORPLUGIN_H
 
-#include "eplugin.h"
-#include <QObject>
+#include "itemsemana.h"
 
-class QAction;
-/**
-\brief Planificador
-
-Clase del planificador del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class PlanificadorPlugin : public QObject, public EPlugin
+ItemSemana::ItemSemana()
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
-public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m );
-    void crearToolBar( QToolBar* t );
-
-signals:
-    void agregarVentana( QWidget* v );
-
-public slots:
-    void seCierraGestotux();
-    void verCalendario();
-
-private:
-    QAction *ActCalendario;
-
-};
-
-#endif
+}

@@ -17,45 +17,49 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PLANIFICADORPLUGIN_H
-#define PLANIFICADORPLUGIN_H
 
-#include "eplugin.h"
-#include <QObject>
+#ifndef ESTILOCALENDARIO_H
+#define ESTILOCALENDARIO_H
 
-class QAction;
-/**
-\brief Planificador
+#include <QFont>
+#include <QLinearGradient>
+#include <QPen>
 
-Clase del planificador del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class PlanificadorPlugin : public QObject, public EPlugin
+class EstiloCalendario
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
 public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m );
-    void crearToolBar( QToolBar* t );
+    EstiloCalendario();
 
-signals:
-    void agregarVentana( QWidget* v );
+    QFont weekNumberFont;
+    QFont dayNumberFont;
+    QFont dayNameFont;
 
-public slots:
-    void seCierraGestotux();
-    void verCalendario();
+    QFont appointmentSubjectFont;
+    QFont clockBarFont;
 
-private:
-    QAction *ActCalendario;
+    int weekLeftMargin;
+    int weekRightMargin;
+    int quarterHeight;
+
+    int expandedWeekHeaderHeight;
+
+    QPen pastDayPen;
+    QPen todayPen;
+    QPen comingDayPen;
+
+    QLinearGradient pastDayGradient;
+    QLinearGradient todayGradient;
+    QLinearGradient comingDayGradient;
+
+    QLinearGradient pastWeekendGradient;
+    QLinearGradient weekendGradient;
+    QLinearGradient comingWeekendGradient;
+
+    QFont expandedDayNumberFont;
+    QFont collapsedDayNumberFont;
+
+    int collapsedWeekHeight() const;
 
 };
 
-#endif
+#endif // ESTILOCALENDARIO_H

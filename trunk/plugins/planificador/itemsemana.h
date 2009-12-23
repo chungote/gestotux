@@ -17,45 +17,61 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PLANIFICADORPLUGIN_H
-#define PLANIFICADORPLUGIN_H
 
-#include "eplugin.h"
-#include <QObject>
+#ifndef ITEMSEMANA_H
+#define ITEMSEMANA_H
 
-class QAction;
-/**
-\brief Planificador
+#include <QDate>
+#include <QGraphicsScene>
+#include "vcalendario.h"
 
-Clase del planificador del programa
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class PlanificadorPlugin : public QObject, public EPlugin
+class ItemSemana : public ItemCalendario
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
 public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m );
-    void crearToolBar( QToolBar* t );
+    ItemSemana(VCalendario *calendarView,
+               const QDate &fecha,
+               const QDate &fin,
+               QGraphicsItem *parent = 0,
+               QGraphicsScene *scene = 0);
+    ~ItemSemana() {}
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+                    QWidget *widget);
 
-signals:
-    void agregarVentana( QWidget* v );
+        virtual void layoutChanged();
+        virtual void dataChanged();
 
-public slots:
-    void seCierraGestotux();
-    void verCalendario();
+        bool tieneFecha(const QDate &fecha );
+        int diaDeSemana(const QDate &fecha );
 
-private:
-    QAction *ActCalendario;
+    protected:
+        void mousePressEvent(QGraphicsSceneMouseEvent *event);
+        void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+        void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
+    private:
+        VCalendario *pCalendario;
+
+        ItemCalendario *dayHeaderContainer;
+        ItemCalendario *dayContentContainer;
+
+        ItemCalendario *ptrScrollPane;
+
+        /*ScrollAreaItem *ptrScrollArea;
+
+        ClockBar *clockBar;*/
+
+        QDate _fecha;
+        QDate _rangoInicio;
+        QDate _rangoFin;
+
+        QList <ItemDia *> _dias;
+
+        QFont _fuente;
+
+        friend class VCalendario;
+        friend class ItemDia;
+        friend class ItemContenidoDia;
+        friend class ItemCita;
 };
 
-#endif
+#endif // ITEMSEMANA_H

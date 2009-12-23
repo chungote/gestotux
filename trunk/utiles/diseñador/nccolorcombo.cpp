@@ -57,17 +57,18 @@ static void createStandardPalette()
 
 
 NCColorCombo::NCColorCombo( QWidget *parent, const char *name )
-    : QComboBox( parent, name )
+    : QComboBox( parent )
 {
+	this->setObjectName( name );
 	_showEmptyList=false;
-	
+
 	customColor.setRgb( 255, 255, 255 );
 	internalcolor.setRgb( 255, 255, 255 );
-	
+
 	createStandardPalette();
-	
+
 	addColors();
-	
+
 	connect( this, SIGNAL( activated(int) ), SLOT( slotActivated(int) ) );
 	connect( this, SIGNAL( highlighted(int) ), SLOT( slotHighlighted(int) ) );
 }
@@ -112,28 +113,28 @@ void NCColorCombo::slotActivated( int index )
 			QPen pen;
 			QRect rect( 0, 0, width(), QFontMetrics(painter.font()).height()+4);
 			QPixmap pixmap( rect.width(), rect.height() );
-	
+
  			if ( qGray( customColor.rgb() ) < 128 )
- 				pen.setColor( white );
+ 				pen.setColor( Qt::white );
  			else
- 				pen.setColor( black );
-	
+ 				pen.setColor( Qt::black );
+
 			painter.begin( &pixmap );
 			QBrush brush( customColor );
 			painter.fillRect( rect, brush );
 			painter.setPen( pen );
 			painter.drawText( 2, QFontMetrics(painter.font()).ascent()+2, tr("Custom...") );
 			painter.end();
-	
-			changeItem( pixmap, 0 );
+
+			this->setItemData( 0, pixmap, Qt::BackgroundColorRole );
 			pixmap.detach();
 		}
-	
+
 		internalcolor = customColor;
 	}
 	else
 		internalcolor = standardPalette[ index - 1 ];
-	
+
 	emit activated( internalcolor );
 }
 
@@ -167,9 +168,9 @@ void NCColorCombo::addColors()
         customColor = internalcolor;
 
     if ( qGray( customColor.rgb() ) < 128 )
-        pen.setColor( white );
+        pen.setColor( Qt::white );
     else
-        pen.setColor( black );
+        pen.setColor( Qt::black );
 
     painter.begin( &pixmap );
     QBrush brush( customColor );
@@ -178,7 +179,7 @@ void NCColorCombo::addColors()
     painter.drawText( 2, QFontMetrics(painter.font()).ascent()+2, tr("Custom...") );
     painter.end();
 
-    insertItem( pixmap );
+    this->insertItem( -1, "", pixmap );
     pixmap.detach();
 
     for ( i = 0; i < COLORARRAY_SIZE; i++ )
@@ -188,11 +189,11 @@ void NCColorCombo::addColors()
         painter.fillRect( rect, brush );
         painter.end();
 
-        insertItem( pixmap );
+        this->insertItem( -1, "", pixmap );
         pixmap.detach();
 
         if ( standardPalette[i] == internalcolor )
-            setCurrentItem( i + 1 );
+            setCurrentIndex( i + 1 );
     }
 }
 
@@ -212,7 +213,7 @@ void NCColorCombo::setWebColor( const QString & colorstring )
 }
 
 QString NCColorCombo::webColor() const
-{		
+{
 	QString webcol;
 	webcol.sprintf( "#%02X%02X%02X", internalcolor.red(), internalcolor.green(), internalcolor.blue() );
 	return webcol;

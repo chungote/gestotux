@@ -19,8 +19,17 @@
  ***************************************************************************/
 #include "planificadorplugin.h"
 
+#include "calendario.h"
+
 bool PlanificadorPlugin::inicializar()
 {
+ Q_INIT_RESOURCE(planificador);
+
+ ActCalendario = new QAction( this );
+ ActCalendario->setText( "Ver Calendario" );
+ ActCalendario->setShortcut( QKeySequence( "Ctrl + T" ) );
+ ActCalendario->setStatusTip( "Visualizar el calendario ( Ctrl + T ) ");
+ connect( ActCalendario, SIGNAL(triggered()), this, SLOT( verCalendario()));
  return true;
 }
 
@@ -56,6 +65,11 @@ QWidgetList PlanificadorPlugin::formsPreferencias()
 
 void PlanificadorPlugin::crearMenu(QMenuBar* m)
 {
+    QMenu *mPlanificador = m->addMenu( "Agenda" );
+    mPlanificador->setObjectName( "menuPlanificador" );
+    /*mPlanificador->addAction( ActAgregarCompra );
+    mPlanificador->addSeparator();
+    mPlanificador->addAction( ActCompras );*/
 }
 
 void PlanificadorPlugin::crearToolBar(QToolBar* t)
@@ -64,6 +78,12 @@ void PlanificadorPlugin::crearToolBar(QToolBar* t)
 
 void PlanificadorPlugin::seCierraGestotux()
 {
+  Q_CLEANUP_RESOURCE(planificador);
 }
 
 Q_EXPORT_PLUGIN2( planificador, PlanificadorPlugin );
+
+void PlanificadorPlugin::verCalendario()
+{
+ agregarVentana( new VCalendario() );
+}

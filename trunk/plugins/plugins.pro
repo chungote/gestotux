@@ -4,7 +4,8 @@ ventas \
 proveedor \
 productos \
 default \
-informes \
-informes/informa.pro \
+planificador \
+#informes \
+#informes/informa.pro \
 CtaCte \
  pagos
