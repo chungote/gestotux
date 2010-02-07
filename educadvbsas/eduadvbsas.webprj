@@ -668,6 +668,6 @@
     <item url="app/webroot/img/vacio.png" uploadstatus="1" />
     <item url="app/webroot/css/estilos_local.css" uploadstatus="1" />
     <item url="app/config/database.php" uploadstatus="1" />
-    <item url="app/views/elements/menu.php" />
+    <item url="app/views/elements/menu.ctp" />
   </project>
 </webproject>

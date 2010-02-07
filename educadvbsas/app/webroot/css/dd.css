@@ -1,0 +1,80 @@
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.shadow{
+	border:1px solid silver;
+	position:relative;
+	display:inline;
+	z-index:100;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 17pt;
+	color: #494949;
+	margin: 15px;
+	background-color: #EBEBEB;
+}
+
+.shadow_inner{
+overflow:hidden;
+position:absolute;
+top: -1000px;
+filter:alpha(Opacity=10); /*modify to change the shade solidity/opacity, same as below*/
+opacity:0.1; /*firefox 1.5 opacity*/
+-moz-opacity:0.1; /*mozilla opacity*/
+-khtml-opacity:0.1; /*opacity*/
+z-index:10
+}
+.shadowCopia {
+
+	border:1px solid silver;
+	position:relative;
+	display:inline;
+	z-index:100;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 9pt;
+	color: #494949;
+	margin: 15px;
+	background-color: #EBEBEB;
+}
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+a.boldbuttons{
+	display: block;
+	float: left; /* Change 13px as desired */
+	line-height: 30px; /* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 30px) */
+	height: 30px; /* Height of button background height */
+	padding-left: 8px; /* Width of left menu image */
+	text-decoration: none;
+	background-color: transparent;
+	background-image: url(file:///C|/Documents%20and%20Settings/Milton/Mis%20documentos/web/ABo/media/roundedge-gray-left.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	font-family: Arial;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+a:link.boldbuttons, a:visited.boldbuttons, a:hover.boldbuttons, a:active.boldbuttons{
+color: white; /*button text color*/
+}
+
+a.boldbuttons span{
+	display: block; /*Set 10px to be equal or greater than'padding-left' value above*/
+	background-color: transparent;
+	background-image: url(file:///C|/Documents%20and%20Settings/Milton/Mis%20documentos/web/ABo/media/roundedge-gray-right.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding-right: 8px;
+}
+
+a:hover.boldbuttons{ /* Hover state CSS */
+text-decoration: underline;
+}
+
+
+.buttonwrapper{ /* Container you can use to surround a CSS button to clear float */
+	overflow: hidden; /*See: http://www.quirksmode.org/css/clearing.html */
+	width: 100%;
+	padding-left: 270px;
+}

@@ -1,0 +1,469 @@
+/* CSS Document */
+body {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: #000000;
+	background-color: #6699cc;
+}
+#sidebar1 h3 {
+	cursor: pointer;
+}
+.twoColElsLtHdr #container {
+	width: 46em;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 1px solid #000000;
+	text-align: left;
+}
+.twoColElsLtHdr #header {
+	background: #DDDDDD;
+	padding: 0 0px;
+}
+.twoColElsLtHdr #header h1 {
+	margin: 0;
+	padding: 10px 0;
+}
+.twoColElsLtHdr #sidebar1 {
+	float: left;
+	width: 12em;
+	background: #EBEBEB;
+	padding: 15px 0;
+}
+.twoColElsLtHdr #sidebar1 h3, .twoColElsLtHdr #sidebar1 p {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.twoColElsLtHdr #mainContent {
+	margin: 0 1.5em 0 13em;
+}
+.twoColElsLtHdr #footer {
+	padding: 0 10px;
+	background: #DDDDDD;
+}
+.twoColElsLtHdr #footer p {
+	margin: 0;
+	padding: 10px 0;
+	font-size: xx-small;
+}
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+	height: 0;
+	font-size: 1px;
+	line-height: 0px;
+}
+#divCargando {
+	position: absolute;
+	top: 385px;
+	right: :5px;
+	background-color: red;
+	color: white;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px;
+}
+.fotos {
+	width: 46em;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 0px solid #000000;
+	text-align: left;
+}
+
+.Estilo1 {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: regular;
+	font-size: x-small;
+}
+.Estilo3 {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: small;
+	text-align: center;
+}
+.Estilo5 {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	margin: 5px;
+}
+.Estilo7 {
+	font-size: 11px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+	padding: 0.1em;
+}
+.menu{
+	color: #FFFFFF;
+	background-image: url('/educadvbsas/img/fondo_subtitulos.png');
+	/background: #993333;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding: 5px;
+}
+.menuItem
+{
+	color: #FFFFFF;
+	/background: #993333;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding: 3px;
+	letter-spacing: 0.1em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.pieDePagina
+{
+	padding: 5px;
+	/background-image: url('/educadvbsas/img/fondo_gris_clarito_1x1.png');
+	color: #FFFFFF;
+	/background: #993333;
+	background-image: url('/educadvbsas/img/fondo_subtitulos.png');
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;	
+}
+.linea_doble_bordo
+{
+	background-image: url('/educadvbsas/img/linea_doble_bordo_4_x_1.png');
+	font-size: 0px;	
+	height: 4;
+	width: 736px;
+}
+.fondo_seccion_derecha
+{
+	background-image: url('/educadvbsas/img/fondo_seccion_derecha.png');
+	font-size: 0px;	
+}
+.fondo_seccion_izquierda
+{
+	background-image: url('/educadvbsas/img/fondo_seccion_izquierda.png');
+	font-size: 0px;	
+}
+.derecha
+{
+	align:	right;
+	text-align:	right;
+}
+.parrafoIzquierda
+{
+	text-align: center;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	margin: 15px;
+	color: #003366;
+}
+.tituloSeccionIzquierda
+{
+	/*background: #993333;*/
+	background-image: url('/educadvbsas/img/titular_seccion_izquierda.png');
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	text-align: center;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	font-size: small;
+	letter-spacing: 0.1em;
+	width:148px;
+	height:26px;
+
+}
+.tituloSeccionDerecha
+{
+	/*background: #993333;*/
+	background-image: url('/educadvbsas/img/titular_seccion_derecha.png');
+	background-repeat: no-repeat;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	text-align: center;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	font-size: small;
+	width:175px;
+	height:26px;
+}
+.pieSeccionIzquierda
+{
+	/*background: #993333;*/
+	background-image: url('/educadvbsas/img/final_seccion_izquierda.png');
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 0px;
+	padding: 0px;
+	height: 10px;
+}
+.pieSeccionDerecha
+{
+	/*background: #993333;*/
+	background-image: url('/educadvbsas/img/final_seccion_derecha.png');
+	background-repeat: no-repeat;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 0px;
+	width:175px;
+	height:10px;
+}
+.centrado
+{
+	align: center;
+	text-align: center;
+}
+.sinEspacio
+{
+	font-size: 0px;
+	padding: 0px;
+	height: 10px;
+	align: center;
+	text-align: center;
+}
+.calendarioProximosEventos
+{
+	color: #000000;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	align: left;
+	text-align: left;
+	padding: 6px;
+}
+.espacioInicial
+{
+	height: 24px;
+	font-size: 3pt;
+}
+.espacioIntermedio
+{
+	height: 4px;
+	font-size: 3pt;
+}
+.etiquetaColegios
+{
+	color: #000000;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	align: left;
+	text-align: left;
+}
+.colegiosDescripcion
+{
+	color: #000000;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	align: left;
+	text-align: left;
+}
+.fondoSubtitulos
+{
+	background-image: url('/educadvbsas/img/fondo_subtitulos.png');
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	width:175px;
+	height:22px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+.tableFotos
+{
+	background: #eeeeee;
+	background-repeat: no-repeat;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 0px;
+}
+
+.trFotos
+{
+	background: #CCCCCC;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 0px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.tdFotos
+{
+	border: #999999 1pt solid;
+	background: #eeeeee;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 0px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.tdFotosVacio
+{
+	background: #FFFFFF;
+}
+.fondoTitulosAntes
+{
+	background-image: url('/educadvbsas/img/titulo_izq.png');
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	width:64px;
+	height:50px;
+	font-weight: bold;
+	text-align: center;
+}
+.fondoTitulosDespues
+{
+	background-image: url('/educadvbsas/img/titulo_der.png');
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	width:64px;
+	height:50px;
+	font-weight: bold;
+	text-align: center;
+}
+.fondoTitulosDurante
+{
+	background-image: url('/educadvbsas/img/titulo_med.png');
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	height:50px;	
+	font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+	padding-top: 4px;
+}
+
+.tdTitulo
+{
+
+}
+
+.formularioEtiqueta
+{
+/*
+	text-align: left;
+	font-family: Verdana;
+	font-weight: normal;
+	font-size: 12px;
+	color: #000000;
+	padding: 0px 10px 4px 0px;
+*/
+	font-size: 11px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+	padding: 0.1em;
+
+}
+.formularioCampo
+{
+
+}
+.arriba
+{
+	vertical-align: top;
+}
+.formularioContactoTabla
+{
+	border: 3px double #999999;
+	/background-image: url('/educadvbsas/img/fondo_gris_clarito_1x1.png');
+	background: #F9F9F9;
+	padding: 15px;
+}
+.izquierda
+{
+	align: left;
+	text-align: left;
+}
+.listadoCalendarioEventos
+{
+	font-size: 13px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+	padding: 3px;
+}
+.calendarioMueveMes
+{
+	font-size: 12px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	text-align: justify;
+	text-decoration: none:
+}
+.alto54
+{
+	height: 54px;
+}
+.etiquetaQuienes{
+	text-decoration: underline;
+	font-size: 11px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+}
+.descripcionQuienes{
+	font-size: 11px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+}
+.verMasInfo
+{
+	color: #6699cc;
+	font-size: 11px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: right;
+	align: right;
+}
+.titulo
+{
+	font: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	color: #000000;
+	font-size: 16px;
+	padding: 0.1em;
+}
+.subtitulo {
+	font-size: 12px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+	padding: 0.1em;
+}
+.texto {
+	font-size: 11px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin: 10px;
+	text-align: justify;
+	padding: 0.1em;
+}
+.muyPequenia {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: regular;
+	font-size: x-small;
+}
+.pequeniaYnegrita {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: small;
+	text-align: center;
+}
+.medianaConMargen {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	margin: 5px;
+}
+a
+{
+	color: #333333;
+	text-decoration: none;
+}
