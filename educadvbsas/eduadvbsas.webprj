@@ -17,7 +17,6 @@
     <item url="app/config/acl.ini.php" uploadstatus="1" />
     <item url="app/config/bootstrap.php" uploadstatus="1" />
     <item url="app/config/core.php" uploadstatus="1" />
-    <item url="app/config/database.php.default" uploadstatus="1" />
     <item url="app/config/inflections.php" uploadstatus="1" />
     <item url="app/config/routes.php" uploadstatus="1" />
     <item url="app/controllers/" uploadstatus="1" />
@@ -72,7 +71,6 @@
     <item url="app/vendors/shells/templates/empty" uploadstatus="1" />
     <item url="app/views/" uploadstatus="1" />
     <item url="app/views/elements/" uploadstatus="1" />
-    <item url="app/views/elements/empty" uploadstatus="1" />
     <item url="app/views/errors/" uploadstatus="1" />
     <item url="app/views/errors/empty" uploadstatus="1" />
     <item url="app/views/helpers/" uploadstatus="1" />
@@ -669,5 +667,18 @@
     <item url="app/webroot/css/estilos_local.css" uploadstatus="1" />
     <item url="app/config/database.php" uploadstatus="1" />
     <item url="app/views/elements/menu.ctp" />
+    <item url="app/views/pages/inicial.ctp" />
+    <item url="app/controllers/noticias_controller.php" />
+    <item url="app/models/noticias.php" />
+    <item url="app/controllers/colegios_controller.php" />
+    <item url="app/models/colegios.php" />
+    <item url="app/views/elements/noticias.ctp" />
+    <item url="app/models/grupo.php" />
+    <item url="app/controllers/usuarios_controller.php" />
+    <item url="app/models/personales.php" />
+    <item url="app/controllers/personal_controller.php" />
+    <item url="app/views/personal/" />
+    <item url="app/views/personal/login.ctp" />
+    <item url="app/views/layouts/ingreso.ctp" />
   </project>
 </webproject>

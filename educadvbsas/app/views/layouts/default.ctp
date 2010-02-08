@@ -48,17 +48,19 @@
 	<?php echo $this->element( 'menu' ); ?>
 	<table width="736" border="0">
 		<tr>
+			<?php if( $col_izq ) { ?>
 			<!-- COLUMNA DERECHA -->
 			<td width="153" valign="top">
 				<table>
 					<tr>
 						<td>
-							<?php echo "noticias"; ?>
+							<?php echo $this->element( 'noticias' ); ?>
 						</td>
 						<td class="espacioIntermedio">&nbsp;</td>
 					</td>
 				</table>
 			</td>
+			<?php } ?>
 			<!-- Separador -->
 			<td width="10" class="fondo_seccion_izquierda">&nbsp;</td>
 			<!-- Contenido -->
@@ -67,6 +69,7 @@
 			</td>
 			<!-- Separador -->
 			<td width="10" class="fondo_seccion_derecha">&nbsp;</td>
+			<?php if( $col_der ) { ?>
 			<!-- Columna Izquierda -->
 			<td width="190" class="centrado">
 				<table width="175">
@@ -85,6 +88,7 @@
 					</tr>
 				</table>
 			</td>
+			<?php } ?>
 		</tr>
 	</table>
 	<div class="linea_doble_bordo" width="736" height="3">&nbsp;</div>
@@ -93,6 +97,7 @@
 		<br>
 		&copy; 2009 - MVG Consulting
 	</div>
+<?php echo $cakeDebug; ?>
 </div>
 </body>
 </html>

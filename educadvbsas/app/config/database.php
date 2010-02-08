@@ -30,9 +30,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
+		'login' => 'educaadvbsas',
+		'password' => 'educa',
+		'database' => 'educaadvbsas',
 		'prefix' => '',
 	);
 
@@ -40,9 +40,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'login' => 'educaadvbsas',
+		'password' => 'educa',
+		'database' => ' educaadvbsas',
 		'prefix' => '',
 	);
 }

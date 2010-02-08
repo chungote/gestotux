@@ -213,7 +213,8 @@ class Inflector extends Object {
 			'soliloquy' => 'soliloquies',
 			'testis' => 'testes',
 			'trilby' => 'trilbys',
-			'turf' => 'turfs');
+			'turf' => 'turfs',
+			'personal' => 'personal');
 
 		$pluralRules = Set::pushDiff($this->__pluralRules, $corePluralRules);
 		$uninflected = Set::pushDiff($this->__uninflectedPlural, $coreUninflectedPlural);
