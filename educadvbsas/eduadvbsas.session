@@ -7,11 +7,9 @@
     </uploadprofiles>
     <treestatus>
       <openfolder url="app" />
-      <openfolder url="app/config" />
       <openfolder url="app/controllers" />
       <openfolder url="app/models" />
       <openfolder url="app/views" />
-      <openfolder url="app/views/layouts" />
     </treestatus>
   </session>
 </webprojectsession>

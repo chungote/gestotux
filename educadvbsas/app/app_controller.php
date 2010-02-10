@@ -9,7 +9,7 @@ class AppController extends Controller {
 		$this->set( 'col_izq', true );
 		$this->Auth->userModel = 'personal';
 		$this->Auth->fields = array( 'username' => 'usuario', 'password' => 'contraseña' );
-		$this->Auth->allow( 'display' );
+		$this->Auth->allow( '*' );
 		$this->L10n = new L10n();
 		$this->L10n->get("spa");
       }

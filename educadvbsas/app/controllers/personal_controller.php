@@ -1,6 +1,7 @@
 <?php
 class PersonalController extends AppController {
 	var $name = "Personal";
+	var $scaffold;
 
       function login() {
 		$this->layout = 'ingreso';

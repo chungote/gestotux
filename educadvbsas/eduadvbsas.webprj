@@ -666,19 +666,21 @@
     <item url="app/webroot/img/vacio.png" uploadstatus="1" />
     <item url="app/webroot/css/estilos_local.css" uploadstatus="1" />
     <item url="app/config/database.php" uploadstatus="1" />
-    <item url="app/views/elements/menu.ctp" />
-    <item url="app/views/pages/inicial.ctp" />
-    <item url="app/controllers/noticias_controller.php" />
-    <item url="app/models/noticias.php" />
-    <item url="app/controllers/colegios_controller.php" />
-    <item url="app/models/colegios.php" />
-    <item url="app/views/elements/noticias.ctp" />
-    <item url="app/models/grupo.php" />
-    <item url="app/controllers/usuarios_controller.php" />
-    <item url="app/models/personales.php" />
-    <item url="app/controllers/personal_controller.php" />
-    <item url="app/views/personal/" />
-    <item url="app/views/personal/login.ctp" />
-    <item url="app/views/layouts/ingreso.ctp" />
+    <item url="app/views/elements/menu.ctp" uploadstatus="1" />
+    <item url="app/views/pages/inicial.ctp" uploadstatus="1" />
+    <item url="app/controllers/noticias_controller.php" uploadstatus="1" />
+    <item url="app/models/noticias.php" uploadstatus="1" />
+    <item url="app/controllers/colegios_controller.php" uploadstatus="1" />
+    <item url="app/models/colegios.php" uploadstatus="1" />
+    <item url="app/views/elements/noticias.ctp" uploadstatus="1" />
+    <item url="app/models/grupo.php" uploadstatus="1" />
+    <item url="app/controllers/personal_controller.php" uploadstatus="1" />
+    <item url="app/views/personal/" uploadstatus="1" />
+    <item url="app/views/personal/login.ctp" uploadstatus="1" />
+    <item url="app/views/layouts/ingreso.ctp" uploadstatus="1" />
+    <item url="app/models/personal.php" uploadstatus="1" />
+    <item url="app/views/noticias/" />
+    <item url="app/views/noticias/leer.ctp" />
+    <item url="app/models/noticias_fotos.php" />
   </project>
 </webproject>

@@ -3,7 +3,7 @@ $this->pageTitle = "..:: Ingreso a la administracion ::..";
 // Muestro los mensajes de error de loggeo
 if ($session->check('Message.auth')) $session->flash('auth');
 
-echo $form->create( 'User', array( 'url' => array( 'controller' => 'users', 'action' =>'login' ) ) );
+echo $form->create( 'Personal', array( 'url' => array( 'controller' => 'personal', 'action' =>'login' ) ) );
 
 
 ?>
@@ -15,10 +15,10 @@ echo $form->create( 'User', array( 'url' => array( 'controller' => 'users', 'act
       <td align="center"><b>Formulario de Ingreso</b></td>
     </tr>
     <tr>
-      <td align="left" valign="middle"><?php echo $form->input( 'username' ); ?></td>
+      <td align="left" valign="middle"><?php echo $form->input( 'usuario' ); ?></td>
     </tr>
     <tr>
-      <td align="left" valign="middle"><?php echo $form->input( 'password' ); ?></td>
+      <td align="left" valign="middle"><?php echo $form->input( 'constraseña' ); ?></td>
     </tr>
     <tr>
       <td><?php echo $form->end( 'Ingresar' ); ?></td>

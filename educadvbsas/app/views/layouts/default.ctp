@@ -6,6 +6,7 @@
 	<title><?php echo $title_for_layout; ?></title>
 	<?php
 	 echo $html->meta( 'icon' );
+	 echo $html->css( 'cake.generic' );
 	 echo $html->css( 'estilos_local' );
 	 echo $html->css( 'cal' );
 	 echo $html->css( 'lightbox' );
