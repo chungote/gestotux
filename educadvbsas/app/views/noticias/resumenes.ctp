@@ -1,0 +1,1 @@
+<!-- Muestra el resumen de todas las noticias principales hasta cierto punto -->

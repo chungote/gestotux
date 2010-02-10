@@ -41,7 +41,7 @@
 									<tr>
 										<td class="verMasInfo" colspan="2">
 											<?php echo $html->link( 
-												$html->image( 'flecha_izquierda_volver.png', array( 'alt' => "ver más" ) ) . " Volver",
+												$html->image( 'flecha_izquierda_volver.png', array( 'alt' => "ver más", 'border' => 0 ) ) . " Volver",
 												'', array( 'class' => 'verMasInfo', 'escape' => false ) ); ?>
 										</td>
 									</tr>
@@ -50,19 +50,26 @@
 							</td>
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 								<!-- imagenes laterales -->
-				<?php if( isset( $noticia['Imagenes'] ) ) { ?>
-							<td class="arriba">
+				<?php if( count( $noticia['NoticiasFotos'] ) ) { ?>
+							<td class="arriba" style="border-style: dotted; border-color: gray; border-width: 1px;">
 								<table>
 									<tbody>
+									<?php foreach( $noticia['NoticiasFotos'] as $foto ) {
+										if( $foto['publicado'] == true ) { ?>
 									<tr>
-										<td><img border="0" align="left" width="73" height="97" src="./uploaded_images/noticias/1.png"></td>
+										<td>
+										<?php echo $html->link( 
+												$html->image( $foto['miniatura'],
+														 array( 'border' => 0,
+															'align' => 'left',
+															'width' => 73,
+															'height' => 97,
+															'alt' => $foto['titulo'] ) ),
+												'/img'.DS.$foto['ruta'], array( 'escape' => false,
+														      'title' => $foto['titulo'],
+														      'rel' => 'lightbox['.$foto['noticia_id'].']' ) ); ?></td>
 									</tr>
-									<tr>
-										<td><img border="0" align="left" width="73" height="97" src="./uploaded_images/noticias/2.png"></td>
-									</tr>
-									<tr>
-										<td><img border="0" align="left" width="73" height="97" src="./uploaded_images/noticias/3.png"></td>
-									</tr>
+									<?php } } ?>
 									</tbody>
 								</table>
 							</td>

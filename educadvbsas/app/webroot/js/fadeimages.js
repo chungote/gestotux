@@ -1,27 +1,10 @@
 /***********************************************
-* Ultimate Fade-In Slideshow (v1.51): � Dynamic Drive (http://www.dynamicdrive.com)
+* Ultimate Fade-In Slideshow (v1.51): Dynamic Drive (http://www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
 * Visit http://www.dynamicdrive.com/ for this script and 100s more.
 ***********************************************/
  
-var fadeimages=new Array()
-//SET IMAGE PATHS. Extend or contract array as needed
-fadeimages[0]=["img/eama.jpg", "http://www.eama.edu.ar", "_new"] //plain image syntax
-fadeimages[1]=["img/iaf3.jpg", "http://www.iaf1.edu.ar", "_new"] //image with link and target syntax
-fadeimages[2]=["img/iada1.jpg", "http://www.iada.edu.ar", "_new"] //image with link and target syntax
-fadeimages[3]=["img/ialp2.jpg", "http://www.ialp.edu.ar", "_new"] //image with link and target syntax
-fadeimages[4]=["img/iamo1.jpg", "http://www.iamo.edu.ar", "_new"] //image with link and target syntax
-fadeimages[5]=["img/iab.jpg", "", ""] //image with link and target syntax
- 
-/*var fadeimages2=new Array() //2nd array set example. Remove or add more sets as needed.
-//SET IMAGE PATHS. Extend or contract array as needed
-fadeimages2[0]=["photo1.jpg", "", ""] //plain image syntax
-fadeimages2[1]=["photo2.jpg", "http://www.cssdrive.com", ""] //image with link syntax
-fadeimages2[2]=["photo3.jpg", "http://www.javascriptkit.com", "_new"] //image with link and target syntax
- */
-var fadebgcolor="white"
-
-////NO need to edit beyond here/////////////
+/// NO EDIT BEYOND HERE
  
 var fadearray=new Array() //array to cache fadeshow instances
 var fadeclear=new Array() //array to cache corresponding clearinterval pointers

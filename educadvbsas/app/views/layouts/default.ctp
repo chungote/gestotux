@@ -6,7 +6,7 @@
 	<title><?php echo $title_for_layout; ?></title>
 	<?php
 	 echo $html->meta( 'icon' );
-	 echo $html->css( 'cake.generic' );
+	 //echo $html->css( 'cake.generic' );
 	 echo $html->css( 'estilos_local' );
 	 echo $html->css( 'cal' );
 	 echo $html->css( 'lightbox' );
@@ -40,12 +40,7 @@
 	<div id="header">
 		<?php echo $html->image( 'logocopia.jpg', array( 'width' => 736, 'height' => 90, 'alt' => "Escuelas Adventistas - ABo" ) ); ?>
 	</div>
-	<div id="fotos">
-		<script type="text/javascript">
-			//new fadeshow(IMAGES_ARRAY_NAME, slideshow_width, slideshow_height, borderwidth, delay, pause (0=no, 1=yes), 				optionalRandomOrder)
-			new fadeshow(fadeimages, 736, 240, 0, 3000, 1, "R")
-		</script>
-	</div>
+	<?php echo $this->element( 'rotacion_superior' ); ?>
 	<?php echo $this->element( 'menu' ); ?>
 	<table width="736" border="0">
 		<tr>
@@ -58,6 +53,9 @@
 							<?php echo $this->element( 'noticias' ); ?>
 						</td>
 						<td class="espacioIntermedio">&nbsp;</td>
+						<td>
+							<?php echo $this->element( 'ingreso' ); ?>
+						</td>
 					</td>
 				</table>
 			</td>

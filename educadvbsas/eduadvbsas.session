@@ -1,7 +1,9 @@
 <!DOCTYPE webprojectsession>
 <webprojectsession>
   <session usePreviewPrefix="0" previewPrefix="" >
-    <itemcursorpositions/>
+    <itemcursorpositions>
+      <item line="0" column="80" url="app/views/noticias/resumenes.ctp" />
+    </itemcursorpositions>
     <uploadprofiles defaultProfile="@" >
       <profile remote_host="" remote_port="" remote_path="" remote_protocol="ftp" user="" name="@" />
     </uploadprofiles>
@@ -10,6 +12,9 @@
       <openfolder url="app/controllers" />
       <openfolder url="app/models" />
       <openfolder url="app/views" />
+      <openfolder url="app/views/elements" />
+      <openfolder url="app/webroot" />
+      <openfolder url="app/webroot/js" />
     </treestatus>
   </session>
 </webprojectsession>

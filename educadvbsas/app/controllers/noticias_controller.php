@@ -18,5 +18,12 @@ class NoticiasController extends AppController {
 		$this->set( 'col_izq', false );
 		$this->set( 'col_der', false );
 	}
+	
+	function resumenes() {
+		$this->set( 'noticias', $this->Noticias->ultimas() );
+		$this->set( 'col_izq', false );
+		$this->set( 'col_der', false );
+		
+	}
 }
 ?>

@@ -567,7 +567,6 @@
     <item url="app/webroot/img/noticias/3.png" uploadstatus="1" />
     <item url="app/webroot/img/noticias/4.png" uploadstatus="1" />
     <item url="app/webroot/img/noticias/5.png" uploadstatus="1" />
-    <item url="app/webroot/img/noticias/Thumbs.db" uploadstatus="1" />
     <item url="app/webroot/img/quienes/" uploadstatus="1" />
     <item url="app/webroot/img/quienes/1.png" uploadstatus="1" />
     <item url="app/webroot/img/quienes/2.png" uploadstatus="1" />
@@ -682,5 +681,8 @@
     <item url="app/views/noticias/" />
     <item url="app/views/noticias/leer.ctp" />
     <item url="app/models/noticias_fotos.php" />
+    <item url="app/views/elements/ingreso.ctp" />
+    <item url="app/views/noticias/resumenes.ctp" />
+    <item url="app/views/elements/rotacion_superior.ctp" />
   </project>
 </webproject>

@@ -6,7 +6,7 @@ if (count($noticias) > 0)
 {
 ?>
 <tr>
- <td class="tituloSeccionIzquierda">Noticias</td>
+ <td class="tituloSeccionIzquierda"><?php echo $html->link( 'Noticias', array( 'controller' => 'noticias', 'action' => 'resumenes' ) ); ?></td>
 </tr>
 <?php
 	foreach( $noticias as $noticia )
