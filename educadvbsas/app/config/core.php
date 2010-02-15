@@ -24,6 +24,7 @@
  * @lastmodified  $Date: 2008-12-18 18:16:01 -0800 (Thu, 18 Dec 2008) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+//define('SERVER_APACHE',false);
 /**
  * CakePHP Debug Level:
  *
@@ -54,7 +55,7 @@
  *
  * And uncomment the App.baseUrl below:
  */
-	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
+	//Configure::write('App.baseUrl', env('SCRIPT_NAME'). '?url=');
 /**
  * Uncomment the define below to use CakePHP admin routes.
  *
@@ -70,7 +71,7 @@
  * Turn off all caching application-wide.
  *
  */
-	//Configure::write('Cache.disable', true);
+	Configure::write('Cache.disable', true);
 /**
  * Enable cache checking.
  *

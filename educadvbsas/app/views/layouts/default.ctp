@@ -75,7 +75,7 @@
 					<tr>
 						<td class="espacioInicial">&nbsp;</td>
 					</tr>
-					<?php echo "calendario";//hacerCalendario(); ?>
+					<?php echo $this->element( 'calendario' ); ?>
 					<tr>
 						<td class="espacioInicial">&nbsp;</td>
 					</tr>

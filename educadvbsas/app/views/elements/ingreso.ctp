@@ -16,10 +16,10 @@
 				<td align="center"><b>Formulario de Ingreso</b></td>
 			</tr>
 			<tr>
-				<td align="left" valign="middle"><?php echo $form->input( 'usuario', array( 'size' => 10 ) ); ?></td>
+				<td align="left" valign="middle"><?php echo $form->input( 'usuario', array( 'size' => 10, 'label' => 'Usuario' ) ); ?></td>
 			</tr>
 			<tr>
-				<td align="left" valign="middle"><?php echo $form->input( 'constraseña', array( 'size' => 10 ) ); ?></td>
+				<td align="left" valign="middle"><?php echo $form->input( 'constraseña', array( 'size' => 10, 'label' => 'Contraseña' ) ); ?></td>
 			</tr>
 			<tr>
 				<td><?php echo $form->end( 'Ingresar' ); ?></td>

@@ -18,7 +18,7 @@ echo $form->create( 'Personal', array( 'url' => array( 'controller' => 'personal
       <td align="left" valign="middle"><?php echo $form->input( 'usuario' ); ?></td>
     </tr>
     <tr>
-      <td align="left" valign="middle"><?php echo $form->input( 'constraseña' ); ?></td>
+      <td align="left" valign="middle"><?php echo $form->input( 'constrasena' ); ?></td>
     </tr>
     <tr>
       <td><?php echo $form->end( 'Ingresar' ); ?></td>

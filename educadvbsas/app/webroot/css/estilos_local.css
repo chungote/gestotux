@@ -429,7 +429,8 @@ body {
 	padding: 0;
 	text-align: left;
 	color: #000000;
-	font-size: 16px;
+	font-size: 18px;
+	font-weight: bold;
 	padding: 0.1em;
 }
 .subtitulo {
