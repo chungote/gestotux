@@ -1,13 +1,7 @@
 <!DOCTYPE webprojectsession>
 <webprojectsession>
   <session usePreviewPrefix="0" previewPrefix="" usePersistentBookmarks="0" >
-    <itemcursorpositions>
-      <item line="23" column="0" url="app/views/errors/missing_view.ctp" />
-      <item line="0" column="0" url="app/controllers/noticias_controller.php" />
-      <item line="24" column="69" url="app/models/eventos.php" />
-      <item line="76" column="114" url="app/views/elements/calendario.ctp" />
-      <item line="13" column="74" url="app/controllers/eventos_controller.php" />
-    </itemcursorpositions>
+    <itemcursorpositions/>
     <uploadprofiles showtreeviews="true" defaultProfile="TempEducaAdvBsAs" >
       <profile remote_host="educacionadvbsas.edu.ar" remote_port="21" remote_path="public_html/temp" remote_protocol="ftp" user="educacionadv" name="TempEducaAdvBsAs" >
         <uploadeditem upload_time="1150308157" url=".htaccess" />
@@ -32,7 +26,7 @@
         <uploadeditem upload_time="1265595840" url="app/controllers/colegios_controller.php" />
         <uploadeditem upload_time="0" url="app/controllers/components/" />
         <uploadeditem upload_time="1179508793" url="app/controllers/components/empty" />
-        <uploadeditem upload_time="1265933398" url="app/controllers/eventos_controller.php" />
+        <uploadeditem upload_time="1266275938" url="app/controllers/eventos_controller.php" />
         <uploadeditem upload_time="1265764167" url="app/controllers/noticias_controller.php" />
         <uploadeditem upload_time="1265757304" url="app/controllers/personal_controller.php" />
         <uploadeditem upload_time="1266193040" url="app/index.php" />
@@ -46,7 +40,7 @@
         <uploadeditem upload_time="1265680353" url="app/models/colegios.php" />
         <uploadeditem upload_time="0" url="app/models/datasources/" />
         <uploadeditem upload_time="1179508793" url="app/models/datasources/empty" />
-        <uploadeditem upload_time="1266196268" url="app/models/eventos.php" />
+        <uploadeditem upload_time="1266198289" url="app/models/eventos.php" />
         <uploadeditem upload_time="1237413123" url="app/models/grupo.php" />
         <uploadeditem upload_time="1265760859" url="app/models/noticias.php" />
         <uploadeditem upload_time="1265760898" url="app/models/noticias_fotos.php" />
@@ -96,13 +90,14 @@
         <uploadeditem upload_time="1179508793" url="app/vendors/shells/templates/empty" />
         <uploadeditem upload_time="0" url="app/views/" />
         <uploadeditem upload_time="0" url="app/views/elements/" />
-        <uploadeditem upload_time="1266197820" url="app/views/elements/calendario.ctp" />
+        <uploadeditem upload_time="1266198018" url="app/views/elements/calendario.ctp" />
         <uploadeditem upload_time="1266197887" url="app/views/elements/ingreso.ctp" />
         <uploadeditem upload_time="1265761656" url="app/views/elements/menu.ctp" />
         <uploadeditem upload_time="1265764087" url="app/views/elements/noticias.ctp" />
         <uploadeditem upload_time="1266194129" url="app/views/elements/rotacion_superior.ctp" />
         <uploadeditem upload_time="0" url="app/views/errors/" />
         <uploadeditem upload_time="1179508793" url="app/views/errors/empty" />
+        <uploadeditem upload_time="1266198352" url="app/views/errors/missing_view.ctp" />
         <uploadeditem upload_time="0" url="app/views/helpers/" />
         <uploadeditem upload_time="1179508793" url="app/views/helpers/empty" />
         <uploadeditem upload_time="0" url="app/views/layouts/" />
@@ -691,10 +686,7 @@
       <openfolder url="app/controllers" />
       <openfolder url="app/models" />
       <openfolder url="app/views" />
-      <openfolder url="cake" />
-      <openfolder url="cake/libs" />
-      <openfolder url="cake/libs/view" />
-      <openfolder url="cake/libs/view/errors" />
+      <openfolder url="app/views/pages" />
     </treestatus>
   </session>
   <teamdata yourself="" />
