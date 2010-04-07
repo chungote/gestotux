@@ -75,3 +75,4 @@ void GestotuxDefault::seCierraGestotux()
  qDebug( "Cerrado plugin default" );
  return;
 }
+

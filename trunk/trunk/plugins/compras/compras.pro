@@ -2,8 +2,7 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-help \
- debug
+help
 
 QT += sql
 
@@ -49,5 +48,3 @@ vcompras.h \
 compras.h \
 ../proveedor/mproveedor.h \
  mcompraproducto.h
-CONFIG -= release
-

@@ -45,7 +45,6 @@ CONFIG += warn_on \
 	  thread \
           qt \
  exceptions \
- debug \
  precompile_header \
  help
 QT += sql \

@@ -53,8 +53,7 @@ linux-g++ {
 
 CONFIG += staticlib \
  help \
- exceptions \
- debug
+ exceptions
 
 RESOURCES += utiles.qrc
 
@@ -65,6 +64,4 @@ FORMS += EAyudaBase.ui
 TRANSLATIONS += utiles.ts
 
 INCLUDEPATH += ../src
-
-CONFIG -= release
 

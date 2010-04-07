@@ -18,47 +18,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "estilocalendario.h"
+#ifndef MCITAS_H
+#define MCITAS_H
 
-EstiloCalendario::EstiloCalendario() :
-        weekNumberFont("arial", 30),
-        dayNumberFont("arial", 24),
-        dayNameFont("arial", 16),
-        appointmentSubjectFont("arial", 16),
-        clockBarFont("arial", 16),
-        expandedDayNumberFont("Arial", 24),
-        collapsedDayNumberFont("Arial", 18)
+#include <QSqlRelationalTableModel>
+
+class MCitas : public QSqlRelationalTableModel
 {
-    weekLeftMargin = 50;
-    weekRightMargin = 16;
-    quarterHeight = 10;
+Q_OBJECT
+public:
+    explicit MCitas(QObject *parent = 0);
 
-    expandedWeekHeaderHeight = 40;
+private:
+    int _idCita;
+};
 
-    pastDayGradient.setColorAt(0, QColor(199,199,199));
-    pastDayGradient.setColorAt(1, QColor(191,191,191));
-
-    todayGradient.setColorAt(0, QColor(229,182,114));
-    todayGradient.setColorAt(1, QColor(229,153,45));
-
-    comingDayGradient.setColorAt(0, QColor(255,255,255));
-    comingDayGradient.setColorAt(1, QColor(215,215,215));
-
-    pastWeekendGradient.setColorAt(0, QColor(169,169,169));
-    pastWeekendGradient.setColorAt(1, QColor(161,161,161));
-
-    weekendGradient.setColorAt(0, QColor(199,152,84));
-    weekendGradient.setColorAt(1, QColor(199,123,15));
-
-    comingWeekendGradient.setColorAt(0, QColor(225,225,225));
-    comingWeekendGradient.setColorAt(1, QColor(185,185,185));
-
-    pastDayPen.setColor(QColor(127,127,127));
-    todayPen.setColor(QColor(0,0,0));
-    comingDayPen.setColor(QColor(63,63,63));
-}
-
-int EstiloCalendario::collapsedWeekHeight() const
-{
-    return 30;
-}
+#endif // MCITAS_H

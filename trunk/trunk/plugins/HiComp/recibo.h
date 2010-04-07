@@ -52,6 +52,7 @@ private:
     QDomDocument domdoc;
     bool reajusteXML();
     QString generarNumeroRecibo();
+    void ajustarDuplicado();
 
 private:
     void hacerText( QDomNode padre,const double ancho, double x, double y );

@@ -21,91 +21,49 @@
 #ifndef VCALENDARIO_H
 #define VCALENDARIO_H
 
-#include <QGraphicsView>
-#include "estilocalendario.h"
-#include "itemcalendario.h"
-#include "itemsemana.h"
+#include "eventana.h"
+#include <QTableView>
+#include "ui_quickcalendarwindow.h"
+#include "quickcalendarview.h"
+#include "selectorwidget.h"
+#include "calendar.h"
+#include "calendartablemodel.h"
 
-class VCalendario : public QGraphicsView
+class VCalendario : public EVentana
 {
 Q_OBJECT
 public:
     explicit VCalendario(QWidget *parent = 0);
 
-    enum ModoMostrar {
-      MostrarSemanasCompletas = 0,
-      MostrarRango = 1,
-    };
-
-    int modoMostrar() const { return _modoMostrar; }
-
-    int expandidoDiaSemana() const { return _DiaSemanaExpandido; }
-
-    int semanaExpandidaNumero() const;
-
-    ItemSemana *ItemSemanaExpandido() const { return _itemSemanaExpandido; }
-
-    int contadorSemanas() const { return _contadorSemanas; }
-
-    int anchoDia( int diaDeSemana ) const {
-        if( diDeSemana >= 0 && diaDeSemana < 21 ) return _anchoDias[diaDeSemana]; else return 0;
-    }
-
-    EstiloCalendario * estilo() const { return pEstilo; }
-
-    QList<Calendario*>* calendarios() { return pCalendarios; }
-signals:
-    void agregarVentana( QWidget * );
-    void fechaExpandida( const QDate &fecha );
-
-public slots:
-    void expandirFecha( const QDate &fecha );
-    void expandirDiaDeSemana( int diaDeSemana );
-    void expandirSemana( int numSemana );
-    void expandirSemana( ItemSemana *semana );
-    void colapsarTodo();
-
-    void setearRango( const QDate &inicio, const QDate &fin );
-    void setearMes( int ano, int mes );
-
-    void setearModoMostrar( ModoMostrar modo );
-    void setearCalendarios( QList<Calendario *> *calendarios );
-
-    void mostrarFormularioCita( Cita *cita );
-
-    void dataChanged();
-    void layoutChanged();
-
 protected:
-    void resizeEvent( QResizeEvent *event );
+    void closeEvent(QCloseEvent *event);
+    void createDockWidgets();
 
 private slots:
-    void onFormClosed( Cita *cita );
+    void onExit();
+    void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
+    void modeChanged(int mode);
 
 private:
-    ItemSemana *_itemSemanaExpandido;
-    int _modoMostrar;
-    int _DiaSemanaExpandido;
-    int _contadorSemanas;
+    void cargarDatos();
 
-    QDate _fechaInicio;
-    QDate _fechaFin;
+    QList <QColor> myColors;
+    QList <QIcon> myIcons;
 
-    QDate _rangoInicio;
-    QDate _rangoFin;
+    QuickCalendarView *ptrCalendarView;
+    SelectorWidget *ptrSelectorWidget;
+    QTableView *ptrTableView;
+    CalendarTableModel *ptrCalendarModel;
 
-    QDate _fechaExpandida;
+    QList <Calendar *> myCalendars;
 
-    ItemCalendario *pCabecera;
-    ItemCalendario *pPanelContenido;
+    QAction *ActMes;
+    QAction *ActSemana;
+    QAction *ActRango;
 
-    QList<ItemSemana *> _semanas;
-    ItemSemana *_itemSemanaExpandido;
-
-    int _anchoDias[21];
-
-    EstiloCalendario *pEstilo;
-    QList<Calendario*> *pCalendarios;
+ signals:
+    void agregarVentana( QWidget * );
+    void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
 };
 
 #endif // VCALENDARIO_H

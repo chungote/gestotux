@@ -196,6 +196,8 @@ void Recibo::imprimir( QPainter *impresora )
  defasaje *= 30;
  defasaje += preferencias::getInstancia()->value( "preferencias/recibos/margen", 40 ).toDouble() * 30;
  impresora->translate( QPointF( defasaje, 0 ) );
+ this->ajustarDuplicado();
+ rend.load( this->obtenerByteArray() );
  rend.render( impresora );
 }
 
@@ -312,4 +314,23 @@ double Recibo::anchoCaracter( QString car )
  }
  // si es espacio
  return 2.3;
+}
+
+void Recibo::ajustarDuplicado()
+{
+    QDomNodeList lista = domdoc.elementsByTagName( "svg:text" );
+    if( lista.isEmpty() )
+    {
+     qWarning( "Error: no existen nodos de texto en el xml!" );
+     return;
+    }
+
+    for( int i = 0; i< lista.size(); i++ )
+    {
+        if( lista.item(i).toElement().attribute( "id" ) == "tOriginal" )
+        {
+         lista.item(i).firstChild().toText().setData( "Duplicado" );
+         break;
+        }
+    }
 }

@@ -55,6 +55,9 @@ public:
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
 
+  public slots:
+      void agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana );
+
 protected:
       void closeEvent(QCloseEvent *event);
       void keyPressEvent( QKeyEvent *event );

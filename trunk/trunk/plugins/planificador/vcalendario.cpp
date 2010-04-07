@@ -19,421 +19,141 @@
  ***************************************************************************/
 #include "vcalendario.h"
 
-#include "estilocalendario.h"
+#include <QList>
+#include <QColor>
+#include <QPixmap>
+#include <QIcon>
+#include <QDockWidget>
 
 VCalendario::VCalendario(QWidget *parent) :
-    QGraphicsView(new QGraphicsScene(), parent)
+    EVentana(parent)
 {
- pEstilo = new EstiloCalendario();
- _modoMostrar = MostrarSemanasCompletas;
+    this->setObjectName( "VentanaCalendario" );
 
- pPanelContenido = new ItemCalendario();
- scene()->addItem( pPanelContenido );
+   /* myColors << QColor(56, 128, 189)
+    << QColor(249, 162, 57)
+    << QColor(0, 139, 70)
+    << QColor(237, 19, 93)
+    << QColor(165, 93, 38)
+    << QColor(239, 71, 63)
+    << QColor(132, 199, 112)
+    << QColor(0, 90, 157);
 
- pCabecera = new ItemCalendario();
-
- scene()->addItem( pCabecera );
- scene()->setBackgroundBrush( QColor( 127, 127, 127 ) );
-
- for( int i=1; i<=7; i++ ) {
-     ItemCabeceraDiaSemana *item = new ItemCabeceraDiaSemana( this, i, pCabecera );
- }
-
- _diaSemanaExpandido = 0;
- _itemDiaSemanaExpandido = 0;
-
- _fechaExpandida = QDate( 0,0,0 );
-
- _contadorSemanas = 0;
-
- pCalendarios = new QList<Calendario *>();
-
- setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
- setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
- setFrameShape(QFrame::NoFrame);
- setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-}
-
-void VCalendario::setearModoMostrar( ModoMostrar modo )
-{
-    if( modo != _modoMostrar )
-    {
-        _modoMostrar = modo;
-        setearCalendarios( _rangoInicio, _rangoFin );
-    }
-}
-
-void VCalendario::setearCalendarios( const QDate &inicio, const QDate &fin )
-{
-  colapsarTodo();
-  if( _semanas.cout() > 0 )
-  {
-      qDeleteAll(_semanas);
-      _semanas.clear();
-  }
-
-  _rangoInicio = inicio;
-  _rantoFin = fin;
-
-  if( _rangoFin < _rangoInicio )
-      _rangoFin = _rangoInicio;
-
-  if( _rangoInicio.daysTo(_rangoFin) > (7*10)-1 )
-      _rangoFin = _rangoInicio.addDays( (7*10)-1 );
-  if( _modoMostrar == MostrarSemanasCompletas )
-  {
-      _rangoInicio = _rangoInicio.addDays( -(_rangoInicio.dayOfWeek() - 1 ) );
-      _rangoFin = _rangoFin.addDays( 7-_rangoFin.dayOfWeek() );
-
-      _contadorSemanas = (_rangoInicio.daysTo(_rangoFin) + 1 ) / 7;
-
-      for( int i=0; i<_contadorSemanas; i++ )
-      {
-          ItemSemana *semana;
-          if( i == 0 )
-          {
-              semana = new ItemSemana( this, _rangoInicio, _rangoFin, pPanelContenido );
-          }
-          else
-          {
-              semana = new ItemSemana( this, _rangoInicio.addDays(i*7), _rangoFin, pPanelContenido );
-          }
-
-          _semanas.append(semana);
-      }
-      dataChanged();
-
-      if( _contadorSemanas == 1 )
-          expandirSemana( _semanas.at(0));
-      else
-          layoutChanged();
-
-  }
-  else if( _modoMostrar == MostrarRango )
-  {
-    _fechaInicio = _rangoInicio;
-
-
-    if( _rangoFin.daysTo(_rangoFin) > 13 )
-        _rangoFin = _rangoInicio.addDays(13);
-
-    _fechaFin = _rangoFin;
-
-    ItemSemana *semana = new ItemSemana( this, _rangoInicio, _rangoFin, pPanelContenido );
-    _semanas.append(semana);
-
-    _contadorSemanas = 1;
-    dataChanged();
-    expandirSemana(semana);
-  }
-}
-
-void VCalendario::setearMes( int ano, int mes )
-{
- QDate inicio( ano, mes, 1);
- QDate fin = start.addDays( inicio.daysInMonth() - 1 );
-
- setearRango( inicio, fin );
-}
-
-void VCalendario::setearCalendarios( QList<Calendarios *>* cal )
-{
-   pCalendarios = cal;
-}
-
-void VCalendario::expandirFecha( const QDate &fecha )
-{
- bool semanaCambiada = false;
-
- if( fecha != _fechaExpandida )
- {
-     QListIterator <ItemSemana *> i(_semanas);
-     while( i.hasNext())
-     {
-         ItemSemana *semana = i.next();
-
-         int diaDeSemana = semana->diaDeSemana(fecha);
-         if( diaDeSemana >= 0 )
-         {
-             if( _itemSemanaExpandido != semana )
-             {
-                 semanaCambiada = true;
-             }
-
-             _itemSemanaExpandido = semana;
-             _DiaSemanaExpandido = diaDeSemana;
-             _fechaExpandida = fecha;
-             i.toBack();
-
-             emit fechaExpandida();
-         }
-     }
- }
- else
- {
-     _DiaSemanaExpandido = 0;
-     _fechaExpandida = QDate( 0, 0, 0 );
- }
-
- layoutChanged();
-
- if( _itemSemanaExpandido != 0 && semanaCambiada )
-     _itemSemanaExpandido->ptrScrollArea->scrollTo( pEstilo->quarterHeight * 4 * 7 );
-}
-
-void VCalendario::expandirSemana( int numero )
-{
-    QListIterator<ItemSemana *> i(_semanas);
+    QListIterator <QColor> i(myColors);
     while(i.hasNext())
     {
-        ItemSemana *semana = i.next();
-
-        if(semana->myDate.weekNumber() == numero)
-        {
-            expandirSemana( semana );
-            i.toBack();
-        }
+        QColor color = i.next();
+        QPixmap pixmap(24, 24);
+        pixmap.fill(color);
+        QIcon icon;
+        icon.addPixmap(pixmap);
+        myIcons.append(icon);
     }
+*/
+    ptrCalendarModel = new CalendarTableModel();
+    ptrCalendarModel->setCalendars(&myCalendars);
+
+    //cargarDatos();
+
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setMargin(0);
+
+    ptrSelectorWidget = new SelectorWidget(this);
+    layout->addWidget(ptrSelectorWidget);
+
+    ptrCalendarView = new QuickCalendarView();
+    ptrCalendarView->setCalendars(&myCalendars);
+    ptrCalendarView->setMonth(QDate::currentDate().year(), QDate::currentDate().month());
+    layout->addWidget(ptrCalendarView);
+
+    this->setLayout(layout);
+
+    createDockWidgets();
+
+   /* connect(ptrSelectorWidget,
+            SIGNAL(monthChanged(int, int)),
+            ptrCalendarView,
+            SLOT(setMonth(int, int)));
+    connect(ptrSelectorWidget,
+            SIGNAL(rangeChanged(const QDate &, const QDate &)),
+            ptrCalendarView,
+            SLOT(setRange(const QDate &, const QDate &)));
+    connect(ptrSelectorWidget,
+            SIGNAL(modeChanged(int)),
+            this,
+            SLOT(modeChanged(int)));
+
+    connect( ActMes, SIGNAL(triggered()),
+            ptrSelectorWidget, SLOT(showMonthBased()));
+    connect( ActSemana, SIGNAL(triggered()),
+            ptrSelectorWidget, SLOT(showWeekBased()));
+//    connect(dayAction, SIGNAL(triggered()),
+//            ptrSelectorWidget, SLOT(showDayBased()));
+    connect( ActRango, SIGNAL(triggered()),
+            ptrSelectorWidget, SLOT(showRangeBased()));*/
+    this->setWindowTitle("Calendario");
+    this->setWindowIcon( QIcon( ":/imagenes/calendario.png" ) );
 }
 
-void VCalendario::expandirSemana(ItemSemana *semana)
+void VCalendario::closeEvent(QCloseEvent *event)
 {
-    if(semana != _itemSemanaExpandido)
-    {
-        _itemSemanaExpandido = semana;
-    }else
-    {
-        if(_semanas.count() > 1)
-        {
-            _itemSemanaExpandido = 0;
-            _DiaSemanaExpandido = 0;
-            _fechExpandida = QDate(0,0,0);
-        }
-    }
 
-    layoutChanged();
-
-    if(_itemSemanaExpandido != 0)
-        _itemSemanaExpandido->ptrScrollArea->scrollTo(pEstilo->quarterHeight * 4 * 7);
 }
 
-int VCalendario::expandirDiaDeSemana() const
+void VCalendario::createDockWidgets()
 {
-    if(_itemSemanaExpandido != 0)
-        return _itemSemanaExpandido->myDate.numeroSemana();
-    else
-        return 0;
+    ptrTableView = new QTableView();
+    ptrTableView->setModel(ptrCalendarModel);
+    ptrTableView->setSelectionMode(QAbstractItemView::NoSelection);
+    ptrTableView->setGridStyle(Qt::NoPen);
+    ptrTableView->setDragDropMode(QAbstractItemView::NoDragDrop);
+    ptrTableView->setSelectionMode(QAbstractItemView::NoSelection);
+    ptrTableView->horizontalHeader()->hide();
+    ptrTableView->verticalHeader()->hide();
+    ptrTableView->resizeColumnsToContents();
+
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->setMargin(0);
+    layout->addWidget(ptrTableView);
+
+    QWidget *widget = new QWidget();
+    widget->setLayout(layout);
+    //widget->setGeometry(0,0,100,100);
+
+    QDockWidget *dock = new QDockWidget();
+    dock->setWindowTitle( tr("Calendarios") );
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dock->setWidget(widget);
+    emit agregarDockWidget( Qt::LeftDockWidgetArea, dock);
+
+
+    connect( ptrCalendarModel, SIGNAL( dataChanged( const QModelIndex &, const QModelIndex & ) ),
+            this, SLOT( dataChanged( const QModelIndex &, const QModelIndex & ) ) );
 }
 
-void VCalendario::colapsarTodo()
+
+void VCalendario::dataChanged(const QModelIndex &topLeft,
+                                      const QModelIndex &bottomRight)
 {
-    if(_itemSemanaExpandido != 0)
-    {
-        if(_semanas.count() > 1)
-        {
-            _itemSemanaExpandido = 0;
-            _DiaSemanaExpandido = 0;
-            _fechaExpandida = QDate(0,0,0);
-            layoutChanged();
-        }
-    }
-}
-
-void VCalendario::resizeEvent(QResizeEvent *event)
-{  layoutChanged(); }
-
-void VCalendario::layoutChanged()
-{
-    if(_semanas.count() == 0)
-        return;
-
-    int ancho = this->width();
-    int alto = this->height();
-
-
-    setSceneRect( 0, 0, ancho, alto );
-
-    // Calculate day widths
-    int anchoAreaTrabajo = ancho - pEstilo->weekLeftMargin - pEstilo->weekRightMargin;
-
-    for( int i=0; i<21; i++ )
-        _anchoDias[i] = 0;
-
-    int contadorDias;
-    int primerDia = 0;
-
-    if( _modoMostrar == MostrarSemanasEnteras)
-        contadorDias = 7;
-    else if(_modoMostrar == MostrarRango)
-    {
-        primerDia = _fechaInicio.dayOfWeek() - 1;
-        contadorDias = _fechaInicio.daysTo(_fechaFin) + 1;
-    }
-
-    if(contadorDias > 1)
-    {
-        if(_DiaSemanaExpandido != 0)
-        {
-            int expandedDayWidth = (workAreaWidth / 3) * 2;
-            workAreaWidth -= expandedDayWidth;
-            int dayWidth = workAreaWidth / (dayCount - 1);
-            int mod = workAreaWidth % (dayCount - 1);
-
-            for(int i=firstDay;i<firstDay+dayCount;i++)
-            {
-                if(i == firstDay + _DiaSemanaExpandido - 1)
-                {
-                    _anchoDias[i] = expandedDayWidth + mod;
-                }else
-                {
-                    _anchoDias[i] = dayWidth;
-                }
-            }
-        }else
-        {
-            int dayWidth = workAreaWidth / dayCount;
-            int mod = workAreaWidth % dayCount;
-
-            for(int i=firstDay;i<firstDay+dayCount;i++)
-            {
-                _anchoDias[i] = dayWidth;
-            }
-            _anchoDias[firstDay] += mod;
-        }
-    }else
-    {
-        _anchoDias[firstDay] = workAreaWidth;
-    }
-
-//    for(int i=0;i<21;i++)
-//    {
-//        qDebug(qPrintable("W: [" + QString::number(i) + "] = " + QString::number(_anchoDias[i])));
-//    }
-
-    int weekTop = 0;
-    int weekHeight = 0;
-    int expandedWeekHeight = 0;
-
-    if(_contadorSemanas > 1)
-    {
-        int headerLeft = 0;
-        int headerCount = 0;
-        int headerHeight = 40 + (height - 40)%_semanas.count();
-
-        pCabecera->setPos(pEstilo->weekLeftMargin, 0);
-        pCabecera->setSize(width, headerHeight);
-        pCabecera->setVisible(true);
-
-        QListIterator <QGraphicsItem *> i(pCabecera->childItems());
-        while(i.hasNext())
-        {
-            WeekDayHeaderItem *item = (WeekDayHeaderItem *)i.next();
-            item->setPos(headerLeft, 0);
-            item->setSize(_anchoDias[headerCount], headerHeight);
-            item->layoutChanged();
-
-            headerLeft += _anchoDias[headerCount];
-
-            headerCount++;
-        }
-
-        weekTop = headerHeight;
-    }else
-    {
-        pCabecera->setVisible(false);
-    }
-
-    if(_itemSemanaExpandido != 0)
-    {
-        expandedWeekHeight = (height - weekTop) - ((_contadorSemanas - 1) *
-                                  pEstilo->collapsedWeekHeight());
-        weekHeight = pEstilo->collapsedWeekHeight();
-    }else
-    {
-        weekHeight = (height - weekTop)/_semanas.count();
-    }
-
-    for(int i=0;i<_semanas.count();i++)
-    {
-        ItemSemana *semana = _semanas.at(i);
-
-        semana->setPos(0, weekTop);
-        if(semana == _itemSemanaExpandido)
-        {
-            semana->setSize(width, expandedWeekHeight);
-            weekTop += expandedWeekHeight;
-        }else
-        {
-            semana->setSize(width, weekHeight);
-            weekTop += weekHeight;
-        }
-
-        semana->layoutChanged();
-    }
+    ptrCalendarView->dataChanged();
+    ptrCalendarView->layoutChanged();
 
     //update();
 }
 
-void VCalendario::showAppointmentForm(Cita *Cita)
+void VCalendario::modeChanged(int mode)
 {
-    bool someSelected = false;
-
-    for(int i=0;i<pCalendarios->count();i++)
+    if(mode == 0)
     {
-        if(pCalendarios->at(i)->isSelected())
-            someSelected = true;
-    }
-
-    if(!someSelected)
+        ptrCalendarView->setDisplayMode(QuickCalendarView::DisplayFullWeeks);
+    }else
     {
-        QMessageBox::warning(0, QObject::tr("Calendar error"), QObject::tr("Select at least one calendar first!"));
-        return;
-    }
-
-    if(pCalendarios->count() > 0)
-    {
-        AppointmentDetailsForm *form = new AppointmentDetailsForm(Cita,
-                                                                  pCalendarios);
-
-        connect(form, SIGNAL(onClose(Cita*)), this, SLOT(onFormClosed(Cita*)));
-
-        if(Cita->key() == 0)
-            form->deleteAppointmentButton->hide();
-
-        form->setGeometry(300,300,400,250);
-        form->show();
-
+        ptrCalendarView->setDisplayMode(QuickCalendarView::DisplayOnlyRange);
     }
 }
 
-void VCalendario::dataChanged()
+void VCalendario::cargarDatos()
 {
-    QListIterator <ItemSemana *> i(_semanas);
-    while(i.hasNext())
-    {
-        ItemSemana *semana = i.next();
-        semana->dataChanged();
-    }
-}
+ // Carga todos los calendarios que haya en la base de datos
 
-void VCalendario::onFormClosed(Cita *Cita)
-{
-    if(Cita != 0)
-    {
-        dataChanged();
-        layoutChanged();
-    }
-}
-
-void VCalendario::expandDayOfWeek(int dayOfWeek)
-{
-    if(_itemSemanaExpandido != 0)
-    {
-        if(dayOfWeek != _DiaSemanaExpandido)
-            _DiaSemanaExpandido = dayOfWeek;
-        else
-            _DiaSemanaExpandido = 0;
-
-        layoutChanged();
-    }
 }

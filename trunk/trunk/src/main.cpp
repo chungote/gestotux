@@ -338,6 +338,7 @@ int main(int argc, char *argv[])
 			if( plug->inicializar() )
 			{
 				QObject::connect( obj, SIGNAL( agregarVentana( QWidget * ) ), mw->formCen(), SLOT( agregarForm( QWidget * ) ) );
+                                QObject::connect( obj, SIGNAL( agregarDockWidget( Qt::DockWidgetArea, QDockWidget * ) ), mw, SLOT( agregarDock( Qt::DockWidgetArea, QDockWidget * ) ) );
 				QObject::connect( mw, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
 				//Verifico sus tablas
 				if( plug->verificarTablas() != true )

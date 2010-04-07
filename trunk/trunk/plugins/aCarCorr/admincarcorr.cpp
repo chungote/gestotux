@@ -42,7 +42,7 @@ QString AdminCarCorr::directorioBackup() const
 
 QString AdminCarCorr::nombrePrograma() const
 {
- return "Caravanas - Administracion Corrientes";
+ return "Administracion de Caravanas";
 }
 
 QList<QActionGroup *> AdminCarCorr::accionesBarra()
@@ -102,7 +102,7 @@ bool AdminCarCorr::inicializar()
 {
  _acciones.clear();
  // Verifico el uso
- if( !preferencias::getInstancia()->contains( "comprado" ) )
+ /*if( !preferencias::getInstancia()->contains( "comprado" ) )
  {
   preferencias::getInstancia()->setValue( "comprado", true );
   preferencias::getInstancia()->setValue( "fechas_informes", QDate::currentDate() );
@@ -119,7 +119,7 @@ bool AdminCarCorr::inicializar()
   {
    qWarning( QString( "Le quedan %1 dias para pruebas" ).arg( fecha.daysTo( QDate::currentDate() ) ).toLocal8Bit() );
   }
- }
+ }*/
 
  ActCategoria = new QAction( "Ver Categorias", this );
  ActCategoria->setIcon( QIcon( ":/imagenes/categoria.png" ) );
