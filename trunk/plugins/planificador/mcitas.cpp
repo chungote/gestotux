@@ -18,48 +18,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef ESTILOCALENDARIO_H
-#define ESTILOCALENDARIO_H
+#include "mcitas.h"
 
-#include <QFont>
-#include <QLinearGradient>
-#include <QPen>
+#include <QSqlRelationalTableModel>
 
-class EstiloCalendario
+MCitas::MCitas(QObject *parent) :
+    QSqlRelationalTableModel(parent)
 {
-public:
-    EstiloCalendario();
-
-    QFont weekNumberFont;
-    QFont dayNumberFont;
-    QFont dayNameFont;
-
-    QFont appointmentSubjectFont;
-    QFont clockBarFont;
-
-    int weekLeftMargin;
-    int weekRightMargin;
-    int quarterHeight;
-
-    int expandedWeekHeaderHeight;
-
-    QPen pastDayPen;
-    QPen todayPen;
-    QPen comingDayPen;
-
-    QLinearGradient pastDayGradient;
-    QLinearGradient todayGradient;
-    QLinearGradient comingDayGradient;
-
-    QLinearGradient pastWeekendGradient;
-    QLinearGradient weekendGradient;
-    QLinearGradient comingWeekendGradient;
-
-    QFont expandedDayNumberFont;
-    QFont collapsedDayNumberFont;
-
-    int collapsedWeekHeight() const;
-
-};
-
-#endif // ESTILOCALENDARIO_H
+    setTable( "citas" );
+    setHeaderData( 0, Qt::Horizontal, "#ID cita" );
+    setHeaderData( 1, Qt::Horizontal, "Asunto" );
+    setHeaderData( 2, Qt::Horizontal, "Lugar" );
+    setHeaderData( 3, Qt::Horizontal, "Descripcion" );
+    setHeaderData( 4, Qt::Horizontal, "Inicio" );
+    setHeaderData( 5, Qt::Horizontal, "Fin" );
+    setRelation( 6, QSqlRelation( "calendarios", "id_calendario", "nombre" ) );
+}

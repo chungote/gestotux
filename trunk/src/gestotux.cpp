@@ -214,6 +214,7 @@ FormularioCentral *gestotux::formCen()
 
 /*!
     \fn gestotux::acerca()
+    Muestra la ventana de Acerca de...
  */
 void gestotux::acerca()
 {
@@ -225,6 +226,7 @@ void gestotux::acerca()
 
 /*!
     \fn gestotux::verClientes()
+    Muestra la ventana de clientes
  */
 void gestotux::verClientes()
 { formCen()->agregarForm( new VCliente( this ) ); }
@@ -266,6 +268,7 @@ QToolBar* gestotux::barraAcciones()
 
 /*!
     \fn gestotux::crearReloj()
+    Crea el reloj digital si esta configurado y coloca la publicidad de ser necesario.
  */
 void gestotux::crearReloj()
 {
@@ -294,15 +297,25 @@ void gestotux::crearReloj()
  }
 }
 
-
+/*!
+  \fn gestotux::verPreferencias()
+  Slot llamado cuando se desea ver la ventana de preferencias
+*/
 void gestotux::verPreferencias()
 { formCen()->agregarForm( new FormPreferencias( this ) ); }
 
 
+/*!
+  \fn gestotux::verBackup()
+  Slot llamado cuando se desea ver la ventana de backups
+*/
 void gestotux::verBackup()
 { formCen()->agregarForm( new Ebackup( this ) ); }
 
-
+/*!
+  \fn gestotux::bandeja_sistema()
+  Funcion que genera el icono y sus sistemas de soporte de la bandeja del sistema.
+*/
 void gestotux::bandeja_sistema()
 {
  preferencias *p = preferencias::getInstancia();
@@ -345,7 +358,11 @@ void gestotux::bandeja_sistema()
  }
 }
 
-
+/*!
+    \fn gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
+    Funcion que es llamada cada vez que se interactua con el icono del sistema.
+    @param razon Razon por la cual se genero el evento.
+*/
 void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 {
  switch( razon )
@@ -372,6 +389,7 @@ void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 
 /*!
     \fn gestotux::verActualizacion()
+    Slot llamado para mostrar la ventana de actualizaciones.
  */
 void gestotux::verActualizacion()
 { formCen()->agregarForm( new FormActualizacion( formCen() ) ); }
@@ -398,6 +416,7 @@ void gestotux::keyPressEvent( QKeyEvent *event )
 
 /*!
     \fn gestotux::ayuda()
+    Slot que es llamado cada vez que se solicita la ayuda. Abre la ventana y muestra el indice.
  */
 void gestotux::ayuda()
 {
@@ -408,6 +427,7 @@ void gestotux::ayuda()
 #include "barralateral.h"
 /*!
     \fn gestotux::crearBarraLateral()
+    Funcion que crea la barra lateral que contiene los iconos de acceso directo a acciones mas usadas
  */
 void gestotux::crearBarraLateral()
 {
@@ -416,3 +436,14 @@ void gestotux::crearBarraLateral()
 }
 
 
+/*!
+   \fn gestotux::agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana )
+       Metodo que es llamado cuando un plugin desea agregar una ventna tipo Dock en una posicion.
+       @param area Area donde se desea colocar la ventana ( Qt::DockWidgetArea )
+       @param ventana Ventana que se desea agregar
+*/
+void gestotux::agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana )
+{
+    ventana->setParent( this );
+    this->addDockWidget( area, ventana );
+}

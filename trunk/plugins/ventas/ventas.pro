@@ -1,8 +1,7 @@
 TEMPLATE = lib
 CONFIG += dll \
 plugin \
-help \
- debug
+help
 
 SOURCES += mventa.cpp \
 ventas.cpp \

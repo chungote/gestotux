@@ -3,9 +3,7 @@ TEMPLATE = lib
 CONFIG += dll \
 plugin \
 exceptions \
- help \
- debug \
- build_all
+ help
 
 QT += sql \
  svg

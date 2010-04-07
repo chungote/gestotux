@@ -58,6 +58,7 @@ public slots:
 
 signals:
 	void agregarVentana( QWidget * );
+            void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 };
 
 #endif

@@ -20,6 +20,8 @@
 #include "planificadorplugin.h"
 
 #include "calendario.h"
+//#include "vcalendario.h"
+#include "QSqlDatabase"
 
 bool PlanificadorPlugin::inicializar()
 {
@@ -35,7 +37,11 @@ bool PlanificadorPlugin::inicializar()
 
 bool PlanificadorPlugin::verificarTablas()
 {
- return true;
+    if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "calendarios" ) )
+    { qWarning( "Error al buscar la tabla de calendarios" ); return false; }
+    if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "citas" ) )
+    { qWarning( "Error al buscar la tabla de citas" ); return false; }
+    return true;
 }
 
 double PlanificadorPlugin::version() const
@@ -67,13 +73,18 @@ void PlanificadorPlugin::crearMenu(QMenuBar* m)
 {
     QMenu *mPlanificador = m->addMenu( "Agenda" );
     mPlanificador->setObjectName( "menuPlanificador" );
-    /*mPlanificador->addAction( ActAgregarCompra );
-    mPlanificador->addSeparator();
-    mPlanificador->addAction( ActCompras );*/
+    mPlanificador->addAction( ActCalendario );
 }
 
 void PlanificadorPlugin::crearToolBar(QToolBar* t)
 {
+}
+
+void PlanificadorPlugin::verCalendario()
+{
+    VCalendario *v = new VCalendario();
+    connect( v, SIGNAL( agregarDockWidget( Qt::DockWidgetArea, QDockWidget * ) ), this, SIGNAL( agregarDockWidget( Qt::DockWidgetArea, QDockWidget *) )  );
+    agregarVentana( v );
 }
 
 void PlanificadorPlugin::seCierraGestotux()
@@ -82,8 +93,3 @@ void PlanificadorPlugin::seCierraGestotux()
 }
 
 Q_EXPORT_PLUGIN2( planificador, PlanificadorPlugin );
-
-void PlanificadorPlugin::verCalendario()
-{
- agregarVentana( new VCalendario() );
-}

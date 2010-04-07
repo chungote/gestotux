@@ -28,6 +28,8 @@
 #include <QSettings>
 #include <QMenuBar>
 #include <QToolBar>
+#include <QDockWidget>
+#include <Qt>
 
 /**
  *  \brief Interface de plugin en general
@@ -61,9 +63,11 @@ public:
     virtual void seCierraGestotux() = 0;
     // Señal que debe implementarse
     virtual void agregarVentana( QWidget *v ) = 0;
+    // Señal para agregar Dockwidgets
+    virtual void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EPlugin,
-                     "tranfuga.EPlugin/1.1" );
+                     "tranfuga.EPlugin/2.0" );
 
 #endif
