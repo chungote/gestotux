@@ -20,6 +20,7 @@
 #ifndef MPRODUCTOSTOTALES_H
 #define MPRODUCTOSTOTALES_H
 
+
 #include <QAbstractTableModel>
 
 /**

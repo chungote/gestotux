@@ -1,11 +1,14 @@
 TEMPLATE = subdirs
-SUBDIRS += compras \
-ventas \
-proveedor \
-productos \
-default \
-planificador \
+#SUBDIRS += compras \
+#ventas \
+#proveedor \
+#productos \
+#default \
+#planificador \
+#aCarCorr \
+#HiComp \
 #informes \
 #informes/informa.pro \
-CtaCte \
- pagos
+#CtaCte \
+SUBDIRS = HiComp \
+          pagos
