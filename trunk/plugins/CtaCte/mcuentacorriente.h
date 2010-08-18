@@ -25,16 +25,14 @@
 /**
 Clase de modelo para las cuentas correintes
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MCuentaCorriente : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MCuentaCorriente(QObject *parent = 0);
-
+    MCuentaCorriente( QObject *parent = 0, bool relaciones = true );
     ~MCuentaCorriente();
-
     QVariant data(const QModelIndex& item, int role) const;
     static QString obtenerNumeroCuentaCorriente( const int id_cliente );
     static int verificarSaldo( const QString numero_cuenta, double aplicar );

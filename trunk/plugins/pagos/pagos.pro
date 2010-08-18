@@ -11,8 +11,6 @@ TARGET = pagos
 
 DESTDIR = ../../bin/plugins/
 
-
-
 TARGETDEPS += ../../bin/libncreport.a \
   ../../bin/libutiles.a
 
@@ -50,3 +48,6 @@ LIBS += ../../bin/libncreport.a \
 
 TRANSLATIONS += pagos.ts
 
+RESOURCES = pagos.qrc
+
+OTHER_FILES += pagos.SQLITE.sql

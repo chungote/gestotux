@@ -94,8 +94,8 @@ system( $$join( DIR_EXE, , , '/lupdate' ) $$TRANSLATIONS )
 
 QT += webkit
 
-TARGETDEPS += ../bin/libncreport.a \
-  ../bin/libutiles.a
+#TARGETDEPS += ../bin/libncreport.a \
+TARGETDEPS +=  ../bin/libutiles.a
 
 DEFINES += GESTOTUX_DESARROLLO
 
@@ -104,5 +104,10 @@ INCLUDEPATH += ../reporte \
   ../utiles/email \
   ../utiles/ui
 
-LIBS += ../bin/libutiles.a \
-  ../bin/libncreport.a
+LIBS += ../bin/libutiles.a #\
+#  ../bin/libncreport.a
+
+OTHER_FILES += \
+    gestotux.ts \
+    tablas.QSQLITE.sql \
+    tablas.QMYSQL.sql

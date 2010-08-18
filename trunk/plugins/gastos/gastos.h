@@ -54,7 +54,8 @@ protected slots:
     void ver_gastos();
 
 signals:
-	void agregarVentana( QWidget *v );
+        void agregarVentana( QWidget *v );
+        void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
 
 public slots:
     void seCierraGestotux();

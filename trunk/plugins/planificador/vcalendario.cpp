@@ -51,7 +51,7 @@ VCalendario::VCalendario(QWidget *parent) :
     }
 */
     ptrCalendarModel = new CalendarTableModel();
-    ptrCalendarModel->setCalendars(&myCalendars);
+    //ptrCalendarModel->setCalendars(&myCalendars);
 
     //cargarDatos();
 

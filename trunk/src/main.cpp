@@ -47,68 +47,79 @@
 #define NOMBRE_CONEXION "gestotux"
 
 FILE *debug;
-
+/*!
+ * /fn myMessageOutput( QtMsgType type, const char *msg )
+ * Función de salida personalizada para redireccionar la salida de la aplicación al archivo debug.txt y mantener un registro de todas las cosas que suceden dentro del programa.
+ * @param type Tipo de salida.
+ * @param msg Mensaje de salida.
+ */
  void myMessageOutput(QtMsgType type, const char *msg)
  {
      switch (type) {
-     case QtDebugMsg:
-         fprintf(debug, "Debug: %s\n", msg);
-	 fflush(debug);
-         break;
-     case QtWarningMsg:
-#ifdef GESTOTUX_DESARROLLO
-	QMessageBox::warning( 0, "Warning de aplicacion", msg );
-#endif
-	fprintf(debug, "warning: %s\n", msg);
-	 fflush(debug);
-        break;
-     case QtCriticalMsg:
-	QMessageBox::critical( 0, "Error Critico", msg );
-	fprintf(debug, "critico: %s\n", msg);
-	 fflush(debug);
-        break;
-     case QtFatalMsg:
-         fprintf( debug, "Fatal: %s\n", msg);
-	 fflush(debug);
-         QMessageBox::critical( 0, "¡¡¡¡¡¡FATAL!!!!!!", msg );
-         abort();
+         case QtDebugMsg:
+            fprintf(debug, "Debug: %s\n", msg);
+            fflush(debug);
+            break;
+         case QtWarningMsg:
+            #ifdef GESTOTUX_DESARROLLO
+            QMessageBox::warning( 0, "Warning de aplicacion", msg );
+            #endif
+            fprintf(debug, "warning: %s\n", msg);
+            fflush(debug);
+            break;
+         case QtCriticalMsg:
+            QMessageBox::critical( 0, "Error Critico", msg );
+            fprintf(debug, "critico: %s\n", msg);
+            fflush(debug);
+            break;
+         case QtFatalMsg:
+            fprintf( debug, "Fatal: %s\n", msg);
+            fflush(debug);
+            QMessageBox::critical( 0, "¡¡¡¡¡¡FATAL!!!!!!", msg );
+            abort();
      }
  }
 
 
 /*!
-    \fn hacerTablas( QString nombrePlug )
+ * \fn hacerTablas( QString nombrePlug )
+ * Función auxiliar que irve para generar las tablas al inicializar la aplicacion o cuando se inicializa un nuevo plugin.
+ * Busca dentro los recursos embebidos, dentro de la carpeta sql, el archivo <plugin>.<driversql>.sql
+ * @param nombrePlug Nombre del plugin que se intenta inicializar sus datos.
+ * @return si se pudo crear la tabla o si existio algun error al intentar ejecutar la cola de creación.
  */
 bool hacerTablas( QString nombrePlug )
 {
  if( QFile::exists( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) )
  {
-	QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" );
-	if( archivo.open( QIODevice::ReadOnly | QIODevice::Text ) )
-	{
-		QStringList cadenas = QString( archivo.readAll() ).split( ";" );
-		QString cadena; QSqlQuery cola;
-		foreach( cadena, cadenas )
-		{
-			qDebug( qPrintable( cadena ) );
-			if( !cola.exec( cadena ) )
-			{
-				qDebug( qPrintable( cadena ) );
-				qDebug( qPrintable( "Fallo...." + cola.lastError().text() ) );
-				return false;
-			}
-			else
-			{
-				qDebug( "Ok" );
-			}
-		}
-		return true;
-	}
-	else
-	{
-		qWarning(qPrintable( "Error al abrir el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
-		return false;
-	}
+        QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" );
+        if( archivo.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
+                QStringList cadenas = QString( archivo.readAll() ).split( ";" );
+                QString cadena; QSqlQuery cola;
+                foreach( cadena, cadenas )
+                {
+                        qDebug( qPrintable( cadena ) );
+                        if( cadena.isEmpty() || cadena.isNull() ) {
+                                qDebug( "Cadena vacia, salteandola..." );
+                            } else {
+                                if( !cola.exec( cadena ) )
+                                {
+                                        qDebug( qPrintable( cadena ) );
+                                        qDebug( qPrintable( "Fallo...." + cola.lastError().text() ) );
+                                        return false;
+                                }
+                                else
+                                { qDebug( "Ok" ); }
+                            }
+                }
+                return true;
+        }
+        else
+        {
+                qWarning(qPrintable( "Error al abrir el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+                return false;
+        }
  }
  else
  {
@@ -128,9 +139,9 @@ int main(int argc, char *argv[])
       // Inicializa imagenes y archivos internos
       Q_INIT_RESOURCE(gestotux);
       // Maneja la salida del programa
-	debug = fopen( "debug.txt", "w" );
-	fseek( debug, 0, 0 );
-	qInstallMsgHandler(myMessageOutput);
+        debug = fopen( "debug.txt", "w" );
+        fseek( debug, 0, 0 );
+        qInstallMsgHandler(myMessageOutput);
       QApplication app(argc, argv);
       // Muestro el splash
       ESplash splash;
@@ -148,13 +159,13 @@ int main(int argc, char *argv[])
       app.setEffectEnabled( Qt::UI_FadeMenu, true );
       if( p->value( "sobreestilo", false ).toBool() )
       {
-		QDir dir( QCoreApplication::applicationDirPath() );
-		dir.cd( "sobreestilos" );
-		dir.cd( p->value( "sobreestilonombre", "" ).toString() );
-		QFile file( dir.absoluteFilePath( p->value( "sobreestilonombre", "" ).toString().append( ".qss" ) ) );
-		file.open(QFile::ReadOnly);
-		QString styleSheet = QLatin1String(file.readAll());
-		qApp->setStyleSheet(styleSheet);
+                QDir dir( QCoreApplication::applicationDirPath() );
+                dir.cd( "sobreestilos" );
+                dir.cd( p->value( "sobreestilonombre", "" ).toString() );
+                QFile file( dir.absoluteFilePath( p->value( "sobreestilonombre", "" ).toString().append( ".qss" ) ) );
+                file.open(QFile::ReadOnly);
+                QString styleSheet = QLatin1String(file.readAll());
+                qApp->setStyleSheet(styleSheet);
       }
       // Preferencias Idiomaticas
       QLocale locale( QLocale::Spanish, QLocale::Argentina );
@@ -171,16 +182,12 @@ int main(int argc, char *argv[])
       }
       else
       {
-	qDebug( "Fallo al cargar la traduccion" );
+        qDebug( "Fallo al cargar la traduccion" );
       }
       if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
-      {
-        QCoreApplication::instance()->installTranslator(&tran);
-      }
+      { QCoreApplication::instance()->installTranslator(&tran); }
       else
-      {
-        qDebug( "Fallo al cargar la traduccion del reporte" );
-      }
+      { qDebug( "Fallo al cargar la traduccion del reporte" ); }
       delete directorio;
       directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
@@ -188,36 +195,36 @@ int main(int argc, char *argv[])
       QSqlDatabase DB; bool fallosql = false;
       if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
       {
-	 //qWarning( "Usando mysql" );
-	 EMysql dialogo;
-	 dialogo.setDb( &DB );
-	 int ret = dialogo.exec();
-	 switch( ret )
-	 {
-		case EMysql::Conectado:
-		{
-			qDebug( "Base de datos abierta correctamente" );
-			fallosql = false;
-			break;
-		}
-		case EMysql::Cancelado:
-		{
-			qWarning( "No se puede continuar sin la base de datos. Se saldra del programa" );
-			exit(0);
-			break;
-        	}
-		case EMysql::Interna:
-		{
-			fallosql = true;
-			break;
-		}
-		default:
-		{
-			qWarning( qPrintable( "Retorno desconocido: " + QString::number( ret ) ) );
-			abort();
-			break;
-		}
-	}
+         //qWarning( "Usando mysql" );
+         EMysql dialogo;
+         dialogo.setDb( &DB );
+         int ret = dialogo.exec();
+         switch( ret )
+         {
+                case EMysql::Conectado:
+                {
+                        qDebug( "Base de datos abierta correctamente" );
+                        fallosql = false;
+                        break;
+                }
+                case EMysql::Cancelado:
+                {
+                        qWarning( "No se puede continuar sin la base de datos. Se saldra del programa" );
+                        exit(0);
+                        break;
+                }
+                case EMysql::Interna:
+                {
+                        fallosql = true;
+                        break;
+                }
+                default:
+                {
+                        qWarning( qPrintable( "Retorno desconocido: " + QString::number( ret ) ) );
+                        abort();
+                        break;
+                }
+        }
       }
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
@@ -227,47 +234,47 @@ int main(int argc, char *argv[])
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )
        {
-	 qDebug( "-------------------------------------------------" );
-	 qDebug( "El archivo de Base de datos no existe!");
-	 qDebug( "-------------------------------------------------" );
-		DB = QSqlDatabase::addDatabase("QSQLITE");
-		DB.setDatabaseName( "gestotux.database" );
-       		if( !DB.open() )
-       		{
-			qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
-			abort();
-       		}
-	}
-	else
-	{
-		// Aunque exista chequeo que no sea de tam 0
-		if( base->size() <= 0 )
-		{
-			qFatal( "Error! El archivo de db tiene menos o es igual a 0 bytes " );
-		}
-	}
-	delete base;
+         qDebug( "-------------------------------------------------" );
+         qDebug( "El archivo de Base de datos no existe!");
+         qDebug( "-------------------------------------------------" );
+                DB = QSqlDatabase::addDatabase("QSQLITE");
+                DB.setDatabaseName( "gestotux.database" );
+                if( !DB.open() )
+                {
+                        qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+                        abort();
+                }
+        }
+        else
+        {
+                // Aunque exista chequeo que no sea de tam 0
+                if( base->size() <= 0 )
+                {
+                        qFatal( "Error! El archivo de db tiene menos o es igual a 0 bytes " );
+                }
+        }
+        delete base;
         DB = QSqlDatabase::addDatabase("QSQLITE");
         DB.setDatabaseName("gestotux.database");
-       	if( !DB.open() )
+        if( !DB.open() )
         {
-     		qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
-		abort();
+                qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+                abort();
         }
         /// FIN SQLITE
        }
        // si existe el driver y esta autorizado usar db externa o se quiere usar si o si la db mysql
        else if( fallosql == true || !QSqlDatabase::database().isValid() )
        {
-	// No se puede usar sqlite para el programa
-	qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
-	QStringList drivers = DB.drivers();
-	qDebug( "Lista de Drivers Soportados:" );
-	for (int i = 0; i < drivers.size(); ++i)
-	{
-		qDebug( drivers.at(i).toLocal8Bit() );
-	}
-	abort();
+        // No se puede usar sqlite para el programa
+        qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
+        QStringList drivers = DB.drivers();
+        qDebug( "Lista de Drivers Soportados:" );
+        for (int i = 0; i < drivers.size(); ++i)
+        {
+                qDebug( drivers.at(i).toLocal8Bit() );
+        }
+        abort();
        }
        ////////////////////////////////////////////////////////////////////////////////////////////////////
        // Inicia codigo general
@@ -276,119 +283,119 @@ int main(int argc, char *argv[])
        QStringList tablas = DB.tables( QSql::Tables );
        if( tablas.isEmpty() )
        {
-		// Es la primera vez que se arranca el programa
-		qDebug( "No existen tablas en la base de datos." );
-		// Cada plugin debe inicializar sus propias tablas
+                // Es la primera vez que se arranca el programa
+                qDebug( "No existen tablas en la base de datos." );
+                // Cada plugin debe inicializar sus propias tablas
        }
        else
        {
-		qDebug( "Base de datos abierta" );
+                qDebug( "Base de datos abierta" );
        }
        // Fin de arranque de la base de datos
-	splash.showMessage( "Base de datos Abierta correctamente" );
-	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// Cargo los plugins aca
-	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// Necesito el formulario principal para algunas cosas
-	splash.showMessage( "Cargando Ventana Principal" );
-	gestotux * mw = new gestotux();
-	////////////////////////////////////////////////////////
-	splash.showMessage( "Cargando plugins" );
-	QPluginLoader loader;
-	QDir pluginsDir = QDir(qApp->applicationDirPath());
+        splash.showMessage( "Base de datos Abierta correctamente" );
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // Cargo los plugins aca
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // Necesito el formulario principal para algunas cosas
+        splash.showMessage( "Cargando Ventana Principal" );
+        gestotux * mw = new gestotux();
+        ////////////////////////////////////////////////////////
+        splash.showMessage( "Cargando plugins" );
+        QPluginLoader loader;
+        QDir pluginsDir = QDir(qApp->applicationDirPath());
 
-	 #if defined(Q_OS_WIN)
-	     if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
-		 pluginsDir.cdUp();
-	 #elif defined(Q_OS_MAC)
-	     if (pluginsDir.dirName() == "MacOS") {
-		 pluginsDir.cdUp();
-		 pluginsDir.cdUp();
-		 pluginsDir.cdUp();
-	     }
-	 #endif
-	     pluginsDir.cd("plugins");
-		QStringList filtro;
-	#ifdef Q_WS_WIN32
-		filtro.append( "*.dll" );
-	#endif
-	#ifdef Q_WS_X11
-		filtro.append( "*.so" );
-	#endif
-	     foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
-	     {
-		loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
-		 if( loader.load() )
-		 {
-			QObject *obj = loader.instance();
-			EPlugin *plug = qobject_cast<EPlugin *>( obj );
-			// veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
-			if( plug->tipo() == EPlugin::info )
-			{
-				ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
-				preferencias::getInstancia()->inicio();
-				preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
-			}
-			else if ( plug->tipo() == EPlugin::email )
-			{
-				ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
-				preferencias::getInstancia()->inicio();
-				preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
-			}
-			if( plug->inicializar() )
-			{
-				QObject::connect( obj, SIGNAL( agregarVentana( QWidget * ) ), mw->formCen(), SLOT( agregarForm( QWidget * ) ) );
+         #if defined(Q_OS_WIN)
+             if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+                 pluginsDir.cdUp();
+         #elif defined(Q_OS_MAC)
+             if (pluginsDir.dirName() == "MacOS") {
+                 pluginsDir.cdUp();
+                 pluginsDir.cdUp();
+                 pluginsDir.cdUp();
+             }
+         #endif
+             pluginsDir.cd("plugins");
+                QStringList filtro;
+        #ifdef Q_WS_WIN32
+                filtro.append( "*.dll" );
+        #endif
+        #ifdef Q_WS_X11
+                filtro.append( "*.so" );
+        #endif
+             foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
+             {
+                loader.setFileName(  pluginsDir.absoluteFilePath( fileName )  );
+                 if( loader.load() )
+                 {
+                        QObject *obj = loader.instance();
+                        EPlugin *plug = qobject_cast<EPlugin *>( obj );
+                        // veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
+                        if( plug->tipo() == EPlugin::info )
+                        {
+                                ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
+                                preferencias::getInstancia()->inicio();
+                                preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
+                        }
+                        else if ( plug->tipo() == EPlugin::email )
+                        {
+                                ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
+                                preferencias::getInstancia()->inicio();
+                                preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
+                        }
+                        if( plug->inicializar() )
+                        {
+                                QObject::connect( obj, SIGNAL( agregarVentana( QWidget * ) ), mw->formCen(), SLOT( agregarForm( QWidget * ) ) );
                                 QObject::connect( obj, SIGNAL( agregarDockWidget( Qt::DockWidgetArea, QDockWidget * ) ), mw, SLOT( agregarDock( Qt::DockWidgetArea, QDockWidget * ) ) );
-				QObject::connect( mw, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
-				//Verifico sus tablas
-				if( plug->verificarTablas() != true )
-				{
-					// estan cargados los archivo resource cuando cargo el plugin?
-					if( hacerTablas( plug->nombre() ) )
-					{
-						// todo ok
-						qDebug( "Tablas creadas correctamente" );
-					}
-					else
-					{
-						// No se pudieron cargar las tablas
-						qWarning( "No se pudo crear la tabla" );
-						continue;
-					}
-				}
-				ERegistroPlugins::getInstancia()->agregarPlugin( plug );
-				splash.showMessage( "Cargando plugin "+ plug->nombre() );
-				//////////////////////////////////////////////////////////////////////////////////////
-				if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )
-				{  qDebug( qPrintable( "Error al cargar la traduccion de " + plug->nombre()  ) ); }
-				else {  QCoreApplication::instance()->installTranslator( &tran ); }
-				qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
-			}
-			else
-			{
-				qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
-			}
-		 }
-		 else
-		 {
-			qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
-		 }
-	     }
+                                QObject::connect( mw, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
+                                //Verifico sus tablas
+                                if( plug->verificarTablas() != true )
+                                {
+                                        // estan cargados los archivo resource cuando cargo el plugin?
+                                        if( hacerTablas( plug->nombre() ) )
+                                        {
+                                                // todo ok
+                                                qDebug( "Tablas creadas correctamente" );
+                                        }
+                                        else
+                                        {
+                                                // No se pudieron cargar las tablas
+                                                qWarning( "No se pudo crear la tabla" );
+                                                continue;
+                                        }
+                                }
+                                ERegistroPlugins::getInstancia()->agregarPlugin( plug );
+                                splash.showMessage( "Cargando plugin "+ plug->nombre() );
+                                //////////////////////////////////////////////////////////////////////////////////////
+                                if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )
+                                {  qDebug( qPrintable( "Error al cargar la traduccion de " + plug->nombre()  ) ); }
+                                else {  QCoreApplication::instance()->installTranslator( &tran ); }
+                                qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
+                        }
+                        else
+                        {
+                                qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
+                        }
+                 }
+                 else
+                 {
+                        qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
+                 }
+             }
 
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////
-	if ( !p->value( "splash", false ).toBool() )
-	{ splash.finish( mw ); }
-	mw->show();
-	// Salir del programa cuando se cierren todas las ventanas
-	app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
- 	splash.showMessage( "Listo." );
-	// Inicio el hilo de envio del backup
-	EEnvioBackup envios( &app );
-	envios.start( QThread::IdlePriority );
-	QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );
-	mw->inicializar();
-	if( p->value( "maximizado", true ).toBool() )
-	{ mw->showMaximized(); }
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        if ( !p->value( "splash", false ).toBool() )
+        { splash.finish( mw ); }
+        mw->show();
+        // Salir del programa cuando se cierren todas las ventanas
+        app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
+        splash.showMessage( "Listo." );
+        // Inicio el hilo de envio del backup
+        EEnvioBackup envios( &app );
+        envios.start( QThread::IdlePriority );
+        QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );
+        mw->inicializar();
+        if( p->value( "maximizado", true ).toBool() )
+        { mw->showMaximized(); }
       return app.exec();
 }

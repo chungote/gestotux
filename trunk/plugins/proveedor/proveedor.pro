@@ -44,3 +44,7 @@ DISTFILES += ../../templates/qrc
 
 RESOURCES += proveedor.qrc
 
+OTHER_FILES += \
+    proveedor.ts \
+    proveedor.QMYSQL.sql \
+    proveedor.QSQLITE.sql

@@ -43,3 +43,8 @@ INCLUDEPATH += ../pagos \
 LIBS += ../../bin/libutiles.a \
     ../../bin/libncreport.a
 TRANSLATIONS += CtaCte.ts
+
+OTHER_FILES += \
+    CtaCte.ts \
+    ctacte.QMYSQL.sql \
+    ctacte.QSQLITE.sql

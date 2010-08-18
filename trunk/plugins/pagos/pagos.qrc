@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/sql">
+        <file>pagos.QSQLITE.sql</file>
+    </qresource>
+</RCC>

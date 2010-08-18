@@ -81,7 +81,11 @@
       </widget>
      </item>
      <item>
-      <widget class="EDSBPrecio" name="DSBLimiteMaximo"/>
+      <widget class="EDSBPrecio" name="DSBLimiteMaximo">
+       <property name="maximum">
+        <double>999999.989999999990687</double>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

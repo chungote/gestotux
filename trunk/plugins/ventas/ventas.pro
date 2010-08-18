@@ -53,3 +53,8 @@ INCLUDEPATH += ../../src \
   ../../utiles
 
 RESOURCES += ventas.qrc
+
+OTHER_FILES += \
+    ventas.ts \
+    ventas.QSQLITE.sql \
+    ventas.QMYSQL.sql
