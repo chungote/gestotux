@@ -25,7 +25,7 @@
 #include <QObject>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class Servicios : public QObject, public EPlugin
 {
@@ -44,12 +44,13 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
+    void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
 
 public slots:
     void seCierraGestotux();
 
 private:
-	QAction *ActServicios;
+        QAction *ActServicios;
 
 protected slots:
     void mostrarServicios();

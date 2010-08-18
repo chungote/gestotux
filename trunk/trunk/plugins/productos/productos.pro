@@ -59,3 +59,7 @@ CONFIG -= release
 
 FORMS += FormPrefProductosBase.ui
 
+OTHER_FILES += \
+    productos.QMYSQL.sql \
+    productos.ts \
+    productos.QSQLITE.sql

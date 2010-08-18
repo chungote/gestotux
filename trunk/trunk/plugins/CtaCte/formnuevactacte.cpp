@@ -24,6 +24,7 @@
 #include <QSqlError>
 #include <QSqlField>
 #include <QSqlRelationalTableModel>
+#include "mcuentacorriente.h"
 
 FormNuevaCtaCte::FormNuevaCtaCte ( QWidget* parent, Qt::WFlags fl )
  : QDialog( parent, fl ), Ui::FormCtaCteBase()

@@ -17,35 +17,44 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VCUENTACORRIENTE_H
-#define VCUENTACORRIENTE_H
 
-#include <evlista.h>
+#ifndef CAJA_H
+#define CAJA_H
+
+#include <QObject>
+#include <eplugin.h>
+#include <QtPlugin>
 
 /**
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class VCuentaCorriente : public EVLista
+ * \brief Plugin de Caja
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
+class Caja : public QObject, public EPlugin
 {
-Q_OBJECT
-public:
-    VCuentaCorriente(QWidget *parent = 0);
-    ~VCuentaCorriente();
+    Q_OBJECT
+    Q_INTERFACES(EPlugin)
 
-public slots:
-    void agregar( bool autoeliminarid );
+    public:
+            QList<QActionGroup *> accionesBarra();
+            QString nombre() const;
+            QWidgetList formsPreferencias();
+            bool inicializar();
+            bool verificarTablas();
+            int tipo() const;
+            void crearMenu( QMenuBar *m );
+            double version() const;
+            static QStackedWidget *tabs();
+            void crearToolBar( QToolBar *t );
+            bool publicidad() { return true; }
 
-protected:
-    void menuContextual( const QModelIndex &indice, QMenu *menu );
-   /*!
-    * Acción que muestra el resumen de una cuenta corriente especifica
-    */
-    QAction *ActResumen;
+        public slots:
+            void seCierraGestotux();
 
-protected slots:
-    void modificarLimite();
-    void darBaja();
-    void verResumen();
+        signals:
+                void agregarVentana( QWidget * );
+                void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+
 };
 
-#endif
+#endif // CAJA_H

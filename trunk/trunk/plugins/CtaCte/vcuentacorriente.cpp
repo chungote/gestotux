@@ -74,13 +74,13 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
  menu->addSeparator();
  if( !indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "fecha_baja" ) ) ).toDate().isValid() )
  {
-	QAction *ActDarBaja = new QAction( "Dar de Baja", this );
-	connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
-	menu->addAction( ActDarBaja );
+        QAction *ActDarBaja = new QAction( "Dar de Baja", this );
+        connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
+        menu->addAction( ActDarBaja );
 
- 	QAction *ActModificarLimite = new QAction( "Modificar Limite", this );
- 	connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
- 	menu->addAction( ActModificarLimite );
+        QAction *ActModificarLimite = new QAction( "Modificar Limite", this );
+        connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
+        menu->addAction( ActModificarLimite );
  }
 
  menu->addAction( ActResumen );

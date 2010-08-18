@@ -29,13 +29,12 @@ class FormNuevaCtaCte : public QDialog, private Ui::FormCtaCteBase
 {
 Q_OBJECT
 public:
-	FormNuevaCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-	~FormNuevaCtaCte();
-    void setModelo( QSqlRelationalTableModel *m );
-public slots:
+        FormNuevaCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+        ~FormNuevaCtaCte();
+        void setModelo( QSqlRelationalTableModel *m );
 protected:
-    QSqlRelationalTableModel *modelo;
-    void accept();
+        QSqlRelationalTableModel *modelo;
+        void accept();
 };
 
 #endif

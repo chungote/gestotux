@@ -60,10 +60,10 @@ QVariant CalendarTableModel::data(const QModelIndex &index, int role) const
             case Qt::BackgroundColorRole:
                 {
                     // Busco el color elegido para este calendario
-                    QColor color;
+                    /*QColor color;
                     QString cadena = this->data( this->index( index.row(), 2 ), Qt::DisplayRole ).toString();
                     color.setRgb( QRgb( cadena ) );
-                    return color;
+                    return color;*/
                 }
             case Qt::DisplayRole:
                 { return QSqlTableModel::data( index, role ); }
