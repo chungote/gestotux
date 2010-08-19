@@ -6,7 +6,8 @@ proveedor \
 productos \
 CtaCte \
 pagos \
-caja \
+#caja \
+email \
 gastos \
 servicios
 #planificador \

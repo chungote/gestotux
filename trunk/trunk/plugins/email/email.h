@@ -27,7 +27,7 @@
 class QLabel;
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class Email : public QObject , public EPlugin, public EInterfazEmail
 {
@@ -47,6 +47,7 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
+    void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *widget );
 
 public slots:
     void seCierraGestotux();

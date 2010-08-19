@@ -31,7 +31,11 @@ MServicios::MServicios(QObject *parent)
  setHeaderData( 0, Qt::Horizontal, tr( "#ID" ) );
  setHeaderData( 1, Qt::Horizontal, tr( "Nombre" ) );
  setHeaderData( 2, Qt::Horizontal, tr( "Fecha de Alta" ) );
- setHeaderData( 3, Qt::Horizontal, tr( "Precio Base" ) );
+ setHeaderData( 3, Qt::Horizontal, tr( "Fecha de Baja" ) );
+ setHeaderData( 4, Qt::Horizontal, tr( "Precio Base" ) );
+ setHeaderData( 5, Qt::Horizontal, tr( "periodo" ) );
+ setHeaderData( 6, Qt::Horizontal, tr( "Dia de Cobro" ) );
+ setHeaderData( 7, Qt::Horizontal, tr( "Forma de cobro incompleto" ) );
 }
 
 

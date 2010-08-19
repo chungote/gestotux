@@ -55,6 +55,13 @@ class Caja : public QObject, public EPlugin
                 void agregarVentana( QWidget * );
                 void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
+            private:
+                QAction *ActCajas;
+                QAction *ActAgregarMovimiento;
+                QAction *ActVerEstado;
+                QAction *ActHacerCierre;
+                QAction *ActResumenes;
+
 };
 
 #endif // CAJA_H

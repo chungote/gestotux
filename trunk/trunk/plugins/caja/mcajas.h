@@ -18,28 +18,17 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMSERVICIO_H
-#define FORMSERVICIO_H
+#ifndef MCAJAS_H
+#define MCAJAS_H
 
-#include "eventana.h"
-#include "ui_formServicioBase.h"
-class MRecargos;
+#include <QSqlTableModel>
 
-class FormServicio : public EVentana, private Ui::FormServicioBase
+class MCajas : public QSqlTableModel
 {
-Q_OBJECT
+    Q_OBJECT
+    public:
+        MCajas(QObject *parent = 0 );
 
-public:
-        FormServicio ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormServicio();
-
-protected slots:
-    void guardar();
-    void agregarRecargo();
-    void cambiarBaja( bool estado );
-
-private:
-   MRecargos *modRecargos;
 };
 
-#endif
+#endif // MCAJAS_H
