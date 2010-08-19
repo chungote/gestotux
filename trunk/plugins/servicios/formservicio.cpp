@@ -29,43 +29,47 @@
 FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormServicioBase()
 {
-	setupUi ( this );
-	this->setWindowTitle( "Agregar nuevo servicio" );
-	this->setWindowIcon( QIcon( ":/imagenes/servicio.png" ) );
+        setupUi ( this );
+        this->setWindowTitle( "Agregar nuevo servicio" );
+        this->setWindowIcon( QIcon( ":/imagenes/servicio.png" ) );
 
-	// Pongo la fecha de alta en hoy
-	DEFechaAlta->setDate( QDate::currentDate() );
+        // Pongo la fecha de alta en hoy
+        DEFechaAlta->setDate( QDate::currentDate() );
 
-	// Imagenes para los botones de recargos
-	PBAgregarRecargo->setIcon( QIcon( ":/imagenes/add.png" ) );
-	connect( PBAgregarRecargo, SIGNAL( clicked() ), this, SLOT( agregarRecargo() ) );
-	PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
-	connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarRecargo() ) );
+        // Imagenes para los botones de recargos
+        PBAgregarRecargo->setIcon( QIcon( ":/imagenes/add.png" ) );
+        connect( PBAgregarRecargo, SIGNAL( clicked() ), this, SLOT( agregarRecargo() ) );
+        PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarRecargo() ) );
 
-	// Dias en el mes que se hace el batch de calcular los nuevos importes 1->31 ( cuidado con los meses  28 y 30 )
-	for( int i=1; i<=31; i++ )
-	{ CBInicioCobro->addItem( QString::number( i ), QString::number( i ) ); }
+        // Dias en el mes que se hace el batch de calcular los nuevos importes 1->31 ( cuidado con los meses  28 y 30 )
+        for( int i=1; i<=31; i++ )
+        { CBInicioCobro->addItem( QString::number( i ), QString::number( i ) ); }
 
-	CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes" );
+        CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes" );
+        CBMetodoIncompleto->insertItem( -1, "Mes Completo" );
 
-	// Modelo de recargos
-	modRecargos = new MRecargos( this );
-	TVRecargos->setModel( modRecargos );
-	//TVRecargos->hideColumn( 0 );
-	//TVRecargos->hideColumn( 1 );
-	//TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
-	//modRecargos->ponerEnTemporal();
-	//modRecargos->select();
+        // Modelo de recargos
+        modRecargos = new MRecargos( this );
+        TVRecargos->setModel( modRecargos );
+        TVRecargos->hideColumn( 0 );
+        TVRecargos->hideColumn( 1 );
+        //TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
+        //modRecargos->ponerEnTemporal();
+        //modRecargos->select();
 
-	EActGuardar *ActGuardar = new EActGuardar( this );
-	connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
-	addAction( ActGuardar );
+        EActGuardar *ActGuardar = new EActGuardar( this );
+        connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
+        addAction( ActGuardar );
 
-	EActCerrar *ActCerrar = new EActCerrar( this );
-	connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
-	addAction( ActCerrar );
+        EActCerrar *ActCerrar = new EActCerrar( this );
+        connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
+        addAction( ActCerrar );
 
-	connect( dSBPrecioBase, SIGNAL( valueChanged( double ) ), modRecargos, SLOT( setearPrecioBase( double ) ) );
+        connect( dSBPrecioBase, SIGNAL( valueChanged( double ) ), modRecargos, SLOT( setearPrecioBase( double ) ) );
+
+        connect( CkBBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambiarBaja( bool ) ) );
+        DEFechaBaja->setEnabled( CkBBaja->checkState() );
 }
 
 FormServicio::~FormServicio()
@@ -85,14 +89,24 @@ void FormServicio::guardar()
  { return; }
  if( dSBPrecioBase->value() <= 0 )
  { return; }
-
+ ///@todo Agregar Sistema de guardado del servicio
 }
 
 
 /*!
     \fn FormServicio:: agregarRecargo()
+        Slot llamado para agregar un nuevo recargo en la vista temporal
  */
 void FormServicio:: agregarRecargo()
 {
  modRecargos->agregarTemporal();
+}
+
+/*!
+    \fn FormServicio::cambiarBaja( bool estado )
+        Slot llamado para habilitar y deshabilitar el selector de fecha de cuando fue dado de baja
+ */
+void FormServicio::cambiarBaja( bool estado )
+{
+    DEFechaBaja->setEnabled( estado );
 }

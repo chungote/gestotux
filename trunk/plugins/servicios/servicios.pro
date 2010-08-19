@@ -62,3 +62,6 @@ TRANSLATIONS += servicios.ts
 FORMS += FormAsociarBase.ui \
  formServicioBase.ui
 
+OTHER_FILES += \
+    servicios.QMYSQL.sql \
+    servicios.QSQLITE.sql

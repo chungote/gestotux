@@ -20,6 +20,7 @@
 
 #include "caja.h"
 #include <QMenuBar>
+#include <QSqlDatabase>
 
 Q_EXPORT_PLUGIN2( Caja, Caja );
 
@@ -69,6 +70,37 @@ QWidgetList Caja::formsPreferencias()
 bool Caja::inicializar()
 {
  Q_INIT_RESOURCE(caja);
+
+ ActCajas = new QAction( this );
+ ActCajas->setText( "Cajas" );
+ ActCajas->setToolTip( "Ver el listado de las cajas que hay en el sistema." );
+ ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ connect( ActCajas, SIGNAL(triggered()), this, SLOT( verCajas() ) );
+
+ ActAgregarMovimiento = new QAction( this );
+ ActAgregarMovimiento->setText( "Agregar Movimiento" );
+ ActAgregarMovimiento->setToolTip( "Agrega un nuevo movimento para la caja." );
+ //ActAgregarMovimiento->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ connect( ActAgregarMovimiento, SIGNAL(triggered()), this, SLOT( agregarMoviemientoCaja() ) );
+
+ ActVerEstado = new QAction( this );
+ ActVerEstado->setText( "Ver Estado Caja" );
+ ActVerEstado->setToolTip( "Ver el estado actual de la caja." );
+ //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ connect( ActVerEstado, SIGNAL( triggered() ), this, SLOT( verEstadoCaja() ) );
+
+ ActHacerCierre = new QAction( this );
+ ActHacerCierre->setText( "Hacer cierre de caja" );
+ ActHacerCierre->setToolTip( "Resume todas las operaciones del dia y cierra la caja." );
+ //ActHacerCierre->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ connect( ActHacerCierre, SIGNAL( triggered() ), this, SLOT( hacerCierre() ) );
+
+ ActResumenes = new QAction( this );
+ ActResumenes->setText( "Resumen" );
+ //ActResumenes->setToolTip( "Ver el listado de las cajas que hay en el sistema." );
+ //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ connect( ActResumenes, SIGNAL( triggered() ), this, SLOT( verResumenCaja() ) );
+
  return true;
 }
 
@@ -78,10 +110,10 @@ bool Caja::inicializar()
  */
 bool Caja::verificarTablas()
 {
-/* if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
- { qWarning( "Error al buscar la tabla producto" ); return false; }
- else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
- { qWarning( "Error al buscar la tabla categorias" ); return false; }*/
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "caja" ) )
+ { qWarning( "Error al buscar la tabla caja" ); return false; }
+ else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "movimiento_caja" ) )
+ { qWarning( "Error al buscar la tabla movimiento_caja" ); return false; }
  return true;
 }
 
@@ -106,7 +138,9 @@ void Caja::crearMenu( QMenuBar *m )
   qDebug( "Error en las baras de menu" );
  }
  else
- {}
+ {
+     menuHer->addAction( ActCajas );
+ }
 }
 
 

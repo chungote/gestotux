@@ -18,28 +18,14 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMSERVICIO_H
-#define FORMSERVICIO_H
+#include "mcajas.h"
 
-#include "eventana.h"
-#include "ui_formServicioBase.h"
-class MRecargos;
-
-class FormServicio : public EVentana, private Ui::FormServicioBase
+MCajas::MCajas(QObject *parent ) :
+    QSqlTableModel(parent)
 {
-Q_OBJECT
-
-public:
-        FormServicio ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormServicio();
-
-protected slots:
-    void guardar();
-    void agregarRecargo();
-    void cambiarBaja( bool estado );
-
-private:
-   MRecargos *modRecargos;
-};
-
-#endif
+    setTable( "cajas" );
+    this->setHeaderData( 0, Qt::Horizontal, "#ID" );
+    this->setHeaderData( 1, Qt::Horizontal, "Nombre" );
+    this->setHeaderData( 2, Qt::Horizontal, "Fecha de Alta"  );
+    this->setHeaderData( 3, Qt::Horizontal, "Saldo Actual" );
+}
