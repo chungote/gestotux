@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/sql">
-        <file>planificador.QMYSQL.sql</file>
-        <file>planificador.QSQLITE.sql</file>
-    </qresource>
-    <qresource prefix="/imagenes">
-        <file alias="calendario.png">imagenes/calendario.png</file>
-    </qresource>
-</RCC>
