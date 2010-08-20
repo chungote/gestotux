@@ -43,16 +43,13 @@ MServicios::~MServicios()
 {
 }
 
-
-QVariant MServicios::data(const QModelIndex& idx, int role) const
-{
-    return QSqlTableModel::data(idx, role);
-}
-
-
-
 /*!
     \fn MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
+        Asocia el cliente con el servicio correspondiente en la base de datos en la fecha de alta indicada.
+        @param id_cliente Identificador de cliente
+        @param id_servicio Identificador del servicio
+        @param fecha Fecha en que el cliente se da de alta en el servicio
+        @return Verdadero si la asociacion se pudo realizar correctamente
  */
 bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
 {
@@ -79,4 +76,20 @@ bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
  }
  delete modelo;
  return true;
+}
+
+/*!
+    \fn MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, Periodo periodo, int dia_cobro, int forma_incompleto )
+        Agrega un nuevo servicio a la base de datos con los datos pasados como parametro
+        @param nombre Nombre del servicio
+        @param detalle Explicacion mas detallada del servicio
+        @param fecha_alta Fecha desde cuando empieza a funcionar el servicio
+        @param precio_base Precio base sobre el cual se calculan los recargos
+        @param periodo Periodo de cobro del servicio @MServicios::Periodo
+        @param dia_cobro Dia del periodo en que se inicia el cobro del servicio
+        @param forma_incompleto Forma de cobro cuando se da de alta un cliente fuera del inicio del periodo @MServicios::FormaIncompleto
+ */
+bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
+{
+  return false;
 }

@@ -25,25 +25,29 @@
 #include <QSqlRelationalTableModel>
 #include "ui_FormClienteBase.h"
 
+/*!
+ * \brief Formulario de edicion de clientes
+ * @author Esteban Zeller <tranfuga25s@gmail.com>
+ */
 class FormCliente : public EVentana, private Ui::FormClienteBase
 {
   Q_OBJECT
 public:
-	FormCliente ( QWidget* parent = 0, QSqlRelationalTableModel *modelo = 0,  Qt::WFlags fl = 0 );
-	~FormCliente();
+        FormCliente ( QWidget* parent = 0, QSqlRelationalTableModel *modelo = 0,  Qt::WFlags fl = 0 );
+        ~FormCliente();
     void setearCliente( QModelIndex &indice );
 
   signals:
-	void agregarVentana( QWidget * );
+        void agregarVentana( QWidget * );
 
 public slots:
-	void guardar();
+        void guardar();
 
 private slots:
-	void rehaceRazonSocial( const QString &texto );
+        void rehaceRazonSocial( const QString &texto );
 
 private:
-	QSqlRelationalTableModel *modelo;
+        QSqlRelationalTableModel *modelo;
 };
 
 #endif

@@ -23,10 +23,10 @@
 #include <QSqlTableModel>
 
 /**
-Clase que sirve de modelo para los servidores y al mismo tiempo proporciona la informacion del servidor predeterminado.
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * @brief Modelo de servidores de email
+ * Clase que sirve de modelo para los servidores y al mismo tiempo proporciona la informacion del servidor predeterminado.
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EServidorEmail : public QSqlTableModel
 {
 Q_OBJECT

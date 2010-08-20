@@ -25,6 +25,7 @@
 #include "eactguardar.h"
 #include "mrecargos.h"
 #include "edrecargos.h"
+#include "mservicios.h"
 
 FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormServicioBase()
@@ -89,7 +90,6 @@ void FormServicio::guardar()
  { return; }
  if( dSBPrecioBase->value() <= 0 )
  { return; }
- ///@todo Agregar Sistema de guardado del servicio
 }
 
 

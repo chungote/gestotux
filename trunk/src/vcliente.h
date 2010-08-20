@@ -24,8 +24,9 @@
 class MClientes;
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * @brief Vista de la lista de Clientes
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VCliente : public EVLista
 {
   Q_OBJECT

@@ -24,8 +24,9 @@
 #include <QSqlQuery>
 
 /*!
-Wrapper class used by me for SQL data manipulation derived from QSqlQuery. 
-It has capability for name resolving of fields in 
+ * @brief Envoltorio para consultas SQL de la libreria NC
+Wrapper class used by me for SQL data manipulation derived from QSqlQuery.
+It has capability for name resolving of fields in
 SQL result. This can log sql errors and debug sql execution events.
 */
 
@@ -33,32 +34,32 @@ class NCSqlQuery : public QSqlQuery
 {
 public:
     //NCSqlQuery();
-	NCSqlQuery();
-	NCSqlQuery( QSqlDatabase db );
-	NCSqlQuery( const QString & query, QSqlDatabase db );
-	virtual ~NCSqlQuery();
+        NCSqlQuery();
+        NCSqlQuery( QSqlDatabase db );
+        NCSqlQuery( const QString & query, QSqlDatabase db );
+        virtual ~NCSqlQuery();
 
-	virtual bool query( const QString &qs );
-	virtual bool exec( const QString &qs = QString::null );
-	QString getErrorMsg();
-	int getError();
-	int getRowCount();
-	int getLastInsertedPK();
-	QString fieldName(int);
-	
-	QString stringValue(const QString& columnname);
-	QString stringValue(int columnno);
-	QVariant value(const QString& columnname);
-	QVariant value( int i );
-	int getFieldCount();
-	QSqlDatabase defaultDatabase();
-	bool beginTransaction();
-	bool commitTransaction();
-	bool rollbackTransaction();
+        virtual bool query( const QString &qs );
+        virtual bool exec( const QString &qs = QString::null );
+        QString getErrorMsg();
+        int getError();
+        int getRowCount();
+        int getLastInsertedPK();
+        QString fieldName(int);
+
+        QString stringValue(const QString& columnname);
+        QString stringValue(int columnno);
+        QVariant value(const QString& columnname);
+        QVariant value( int i );
+        int getFieldCount();
+        QSqlDatabase defaultDatabase();
+        bool beginTransaction();
+        bool commitTransaction();
+        bool rollbackTransaction();
 protected:
-	void saveColumns();
-	void logSqlError( const QString& qs, const QString& error );
-	//QSqlRecord rec;
+        void saveColumns();
+        void logSqlError( const QString& qs, const QString& error );
+        //QSqlRecord rec;
 
 };
 

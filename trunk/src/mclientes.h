@@ -23,8 +23,9 @@
 #include <QSqlRelationalTableModel>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * @brief Modelo de Clientes
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MClientes : public QSqlRelationalTableModel
 {
 public:

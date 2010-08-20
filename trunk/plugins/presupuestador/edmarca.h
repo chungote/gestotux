@@ -23,7 +23,8 @@
 #include <QItemDelegate>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ * \brief Delegate para la edicion de campos de tipo marca de auto
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class EDMarca : public QItemDelegate
 {
