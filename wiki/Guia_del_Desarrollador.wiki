@@ -30,12 +30,12 @@ Para ver como generar y llamar al generador de reportes vea la pagina [generar_r
 Los plugins son la parte mas importante del programa, y son los que realizaran la parte _pesada_ del programa. Vea la pagina [creacion_plugins] para mas informacion.
 
 *Plugins actuales*
-email
-compras
-ventas
-productos
-gastos
-caja
-pagos
-servicios
-proveedor
+* email
+* compras
+* ventas
+* productos
+* gastos
+* caja
+* pagos
+* servicios
+* proveedor
