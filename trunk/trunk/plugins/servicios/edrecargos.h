@@ -23,7 +23,8 @@
 #include <QSqlRelationalDelegate>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ * @brief Delegate personalizado para la tabla de recargos
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class EDRecargos : public QSqlRelationalDelegate
 {

@@ -27,37 +27,45 @@
 class QLabel;
 
 /**
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Plugin para el envio de emails
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class Email : public QObject , public EPlugin, public EInterfazEmail
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin EInterfazEmail )
-public:
-    bool inicializar();
-    bool verificarTablas();
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
-    QWidget * statusBarWidget();
+    Q_OBJECT
+    Q_INTERFACES( EPlugin EInterfazEmail )
 
-signals:
-    void agregarVentana(QWidget* v);
-    void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *widget );
+    public:
+        bool inicializar();
+        bool verificarTablas();
+        double version() const;
+        int tipo() const;
+        QList< QActionGroup * > accionesBarra();
+        QString nombre() const;
+        QWidgetList formsPreferencias();
+        void crearMenu(QMenuBar* m);
+        void crearToolBar(QToolBar* t);
+        QWidget * statusBarWidget();
 
-public slots:
-    void seCierraGestotux();
+    signals:
+        void agregarVentana(QWidget* v);
+        void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *widget );
 
-private:
-    QLabel *_etiqueta;
-    Smtp *enviador;
+    public slots:
+        void seCierraGestotux();
 
-protected slots:
-    void cambioEstado( const QString &texto );
+    private:
+        /*!
+         * Etiqueta de la barra de estado
+         */
+        QLabel *_etiqueta;
+       /*!
+        * Enviador de emails.
+        */
+        Smtp *enviador;
+
+    protected slots:
+        void cambioEstado( const QString &texto );
 };
 
 #endif

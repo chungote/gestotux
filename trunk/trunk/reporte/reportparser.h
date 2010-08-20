@@ -29,8 +29,9 @@
 #include <QXmlDefaultHandler>
 
 /*!
-Derived XML SAX parser class for parsing report definition XML structure.
-*/
+ * @breif Parseador de estructura de los reportes
+ * Derived XML SAX parser class for parsing report definition XML structure.
+ */
 class ReportParser : public QXmlDefaultHandler
 {
 public:
@@ -52,9 +53,9 @@ public:
     QString errorString();
 
     bool fatalError( const QXmlParseException& exception );
-	bool error( const QXmlParseException& exception );
-	//QString getErrorMsg() { return errorProt; }
-	void appendElementObjectList( report_ElementObject *eo );
+        bool error( const QXmlParseException& exception );
+        //QString getErrorMsg() { return errorProt; }
+        void appendElementObjectList( report_ElementObject *eo );
 
 private:
     QStringList quoteList;
@@ -62,47 +63,47 @@ private:
 
     QString author;
     QString reference;
-	QString curText;	// current parsed characters
+        QString curText;	// current parsed characters
 
-	// These pointers need, because used by both startElement() and endElement()
-	// The text saved in characters() can be process in endElement() only.
-	report_Query *curQuery;
-	report_Label *curLabel;
-	report_Field *curField;
-	report_Variable *curVariable;
-	//report_Group *curGroup;
-	//report_groupHeader *curGroupHeader;
-	//report_groupFooter *curGroupFooter;
+        // These pointers need, because used by both startElement() and endElement()
+        // The text saved in characters() can be process in endElement() only.
+        report_Query *curQuery;
+        report_Label *curLabel;
+        report_Field *curField;
+        report_Variable *curVariable;
+        //report_Group *curGroup;
+        //report_groupHeader *curGroupHeader;
+        //report_groupFooter *curGroupFooter;
 
 
-	int QNum;
+        int QNum;
 
     enum State {
-		StateInit,
-		StateDocument,
-		StatePageHeader,
-		StatePageFooter,
-		StateGroups,
-		StateGroup,
-		StateGroupHeader,
-		StateGroupFooter,
-		StateQueries,
-		StateQuery,
-		StateGroupFooterQueries,
-		StateGroupFooterQuery,
-		StateDetail,
-		StateElement,
-		StateVariables,
-		StateVariable,
-	StateQuote,
-	StateLine,
-	StateHeading,
-	StateP
+                StateInit,
+                StateDocument,
+                StatePageHeader,
+                StatePageFooter,
+                StateGroups,
+                StateGroup,
+                StateGroupHeader,
+                StateGroupFooter,
+                StateQueries,
+                StateQuery,
+                StateGroupFooterQueries,
+                StateGroupFooterQuery,
+                StateDetail,
+                StateElement,
+                StateVariables,
+                StateVariable,
+        StateQuote,
+        StateLine,
+        StateHeading,
+        StateP
 
     };
     State state, prevstate;		//prevstate: because of saving the last state
 
-	NCReport* Report;
+        NCReport* Report;
 };
 
 /*!
@@ -111,13 +112,13 @@ Derived XML SAX error handler for parser
 class ReportParserErrorHandler : public QXmlErrorHandler
 {
 public:
-	virtual ~ReportParserErrorHandler() {}
-	bool warning( const QXmlParseException & exception );
-	bool error( const QXmlParseException & exception );
-	bool fatalError( const QXmlParseException & exception );
-	QString errorString() const;
+        virtual ~ReportParserErrorHandler() {}
+        bool warning( const QXmlParseException & exception );
+        bool error( const QXmlParseException & exception );
+        bool fatalError( const QXmlParseException & exception );
+        QString errorString() const;
 private:
-	QString errorProt;
+        QString errorProt;
 };
 
 #endif //REPORTPARSER_H

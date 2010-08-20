@@ -33,10 +33,10 @@ bool Email::inicializar()
  EServidorEmail *datosServer = new EServidorEmail();
 
  enviador = new Smtp(	datosServer->usuario(),
-			datosServer->password(),
-			datosServer->direccion(),
-			this,
-			QSqlDatabase::cloneDatabase( QSqlDatabase::database(), "correo" ) );
+                        datosServer->password(),
+                        datosServer->direccion(),
+                        this,
+                        QSqlDatabase::cloneDatabase( QSqlDatabase::database(), "correo" ) );
  delete datosServer;
  // La cola la mantiene el mismo objecto
  _etiqueta = new QLabel();
@@ -103,6 +103,8 @@ void Email::seCierraGestotux()
 
 /*!
     \fn Email::cambioEstado( const QString &texto )
+    Cambia la etiqueta de la barra de estado donde se indica el estado de envio de emails.
+    @param texto Texto a colocar en la etiqueta
  */
 void Email::cambioEstado( const QString &texto )
 {
@@ -118,6 +120,8 @@ Q_EXPORT_PLUGIN2( email, Email );
 
 /*!
     \fn Email::statusBarWidget()
+    Devuelve la etiqueta que se va a colocar en la barra de estado al enviar emails.
+    @return QLabel para agregar en la barra de estado.
  */
 QWidget * Email::statusBarWidget()
 {

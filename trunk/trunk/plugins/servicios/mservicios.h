@@ -22,10 +22,11 @@
 
 #include <QSqlTableModel>
 #include <QDate>
+
 /**
 Clase que mantiene y administra los datos de los distintos tipos de servicios que tiene el programa
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MServicios : public QSqlTableModel
 {
@@ -34,8 +35,30 @@ public:
     MServicios(QObject *parent = 0);
     ~MServicios();
 
-    QVariant data( const QModelIndex& idx, int role ) const;
+    /*! \enum FormaIncompleto
+      *  Define la manera en que se cobran los dias cuando un cliente se adihere a un serivicio fuera del inicio del periodo.
+      */
+    enum FormaIncompleto {
+        DiasFaltantes = 1, /**< Cuenta los dias que faltan hasta el siguiente periodo, divide el valor del servicio por la cantidad de dias en el periodo y calcula el total con estos dos datos */
+        MesCompleto = 2 /**< Cobra un periodo completo aunque sea un dia antes del fin del periodo */
+    };
+
+    /*! \enum Periodo
+     *  Tipos de periodos que podemos considerar al generar el cobro de los servicios
+     */
+    enum Periodo {
+        Semanal = 1, /**< Una semana - 7 dias */
+        Quincenal = 2, /**< Dos semana - 15 dias */
+        Mensual = 3,  /**< Un mes - 28 a 31 dias */
+        BiMensual = 4,  /**< Dos meses - 56 a 62 dias */
+        Trimestral = 5, /**< Tres meses */
+        Cuatrimestral = 6, /**< Cuatro meses */
+        Seximestral = 7, /**< Seis meses */
+        Anual = 8 /**< 12 meses - 365 dias */
+    };
+
     bool asociarCliente( int id_cliente, int id_servicio, QDate fecha = QDate::currentDate() );
+    bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto );
 
 };
 

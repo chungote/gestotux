@@ -24,11 +24,10 @@
 class Mail;
 
 /**
-Modelo que sirve para mantener la cola de mensajes entre inicio y cierre del programa
-
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * @brief Modelo de cola de emails
+ * Modelo que sirve para mantener la cola de mensajes entre inicio y cierre del programa
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EModeloMails : public QSqlTableModel
 {
 Q_OBJECT

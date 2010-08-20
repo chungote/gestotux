@@ -29,10 +29,10 @@ class QSplitter;
 class QPushButton;
 
 /**
-Genera el formulario donde se colocan todas las preferencias de la aplicación
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * @brief Formulario base para todas ventanas de preferencias
+ * Genera el formulario donde se colocan todas las preferencias de la aplicación
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class FormPreferencias : public EVentana
 {
 Q_OBJECT
@@ -53,10 +53,10 @@ private:
     QAction *ActGuardar;
 
 signals:
-	void guardar();
-	void aplicar();
-	void cargar();
-	void cerrar();
+        void guardar();
+        void aplicar();
+        void cargar();
+        void cerrar();
 
 };
 

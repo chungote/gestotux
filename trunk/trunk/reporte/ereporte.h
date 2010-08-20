@@ -24,10 +24,10 @@
 #include "ncreport.h"
 
 /**
-ENvoltorio a la libreria que hace los reportes
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * @brief Envoltorio de la libreria de reportes
+ * Envoltorio a la libreria que hace los reportes
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EReporte : public QObject
 {
 Q_OBJECT
@@ -38,9 +38,9 @@ public:
     void agregarParametro( QString nombre, QVariant valor );
 
 private:
-	NCReport *reporte;
+        NCReport *reporte;
 signals:
-	void agregarVentana( QWidget * );
+        void agregarVentana( QWidget * );
 
 public slots:
     void previsualizar( QPrinter *p );

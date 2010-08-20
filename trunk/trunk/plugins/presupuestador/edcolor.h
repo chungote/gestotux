@@ -23,8 +23,10 @@
 #include <QItemDelegate>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Delegate para edicion de campos con valor de un color
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class EDColor : public QItemDelegate
 {
 Q_OBJECT
