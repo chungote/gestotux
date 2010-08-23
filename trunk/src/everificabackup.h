@@ -39,10 +39,13 @@ protected slots:
     void verificar();
 
 private:
-	QTimer *tiempo;
+       /*!
+        * Timer para hacer el control del backup
+        */
+        QTimer *tiempo;
 
 signals:
-	void abrirBackups();
+        void abrirBackups();
 
 };
 

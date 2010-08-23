@@ -29,41 +29,49 @@
 EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
 : QDialog( parent, fl ), Ui::EMysqlBase()
 {
-	setupUi(this);
-	this->setModal( false );
-	id_timer = -1;
-	preferencias *p = preferencias::getInstancia();
-	LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
-	if( p->contains( "mysql/contra" ) )
-	{
-		LEContra->setText( p->value( "mysql/contra" ).toString() );
-	}
-	adjustSize();
-	this->setWindowTitle( "Conexion a gestotux");
-	this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
-	LEContra->setEchoMode( QLineEdit::Password );
-	connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
-	connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
-	PBConectar->setDefault( true );
-	if( p->value( "Preferencias/General/mysql/automatico" ).toBool() && p->contains( "mysql/contra" ) )
-	{
-		id_timer = this->startTimer( 1000 );
-		if( id_timer == 0 )
-		{
-			qDebug( "Error al iniciar el timer" );
-		}
-	}
+        setupUi(this);
+        this->setModal( false );
+        id_timer = -1;
+        preferencias *p = preferencias::getInstancia();
+        LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
+        if( p->contains( "mysql/contra" ) )
+        {
+                LEContra->setText( p->value( "mysql/contra" ).toString() );
+        }
+        adjustSize();
+        this->setWindowTitle( "Conexion a gestotux");
+        this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
+        LEContra->setEchoMode( QLineEdit::Password );
+        connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
+        connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
+        PBConectar->setDefault( true );
+        if( p->value( "Preferencias/General/mysql/automatico" ).toBool() && p->contains( "mysql/contra" ) )
+        {
+                id_timer = this->startTimer( 1000 );
+                if( id_timer == 0 )
+                {
+                        qDebug( "Error al iniciar el timer" );
+                }
+        }
 }
 
 EMysql::~EMysql()
 {
 }
 
+/*!
+ * @fn EMysql::reject()
+ * Slot llamado cuando se apreta el boton de cancelar
+ */
 void EMysql::reject()
 {
   this->done( Cancelado );
 }
 
+/*!
+ * @fn EMysql::accept()
+ * Slot llamado cuando se apreta el boton de  aceptar, para conectar con la base de datos.
+ */
 void EMysql::accept()
 {
   // intento conectar
@@ -83,18 +91,18 @@ void EMysql::accept()
   {
    switch( _db->lastError().type() )
    {
-	case QSqlError::ConnectionError:
-	{
-		QMessageBox::information( this, "Error de conexión", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" );
- 		_db->removeDatabase( _db->connectionName() );
-		break;
-	}
-	default:
-	{
-		qDebug( "Error de conección" );
-		qWarning( qPrintable( "Ultimo error: -> " + QString::number( _db->lastError().number() ) + "<- - " + _db->lastError().text() ) );
-		 _db->removeDatabase( _db->connectionName() );
-	}
+        case QSqlError::ConnectionError:
+        {
+                QMessageBox::information( this, "Error de conexión", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" );
+                _db->removeDatabase( _db->connectionName() );
+                break;
+        }
+        default:
+        {
+                qDebug( "Error de conección" );
+                qWarning( qPrintable( "Ultimo error: -> " + QString::number( _db->lastError().number() ) + "<- - " + _db->lastError().text() ) );
+                 _db->removeDatabase( _db->connectionName() );
+        }
     }
   }
 }
@@ -111,6 +119,7 @@ void EMysql::setDb( QSqlDatabase *db )
 
 /*!
     \fn EMysql::dbinterna()
+    Slot llamado cuando se apreta el boton para utilizar la db interna ( SQLITE )
  */
 void EMysql::dbinterna()
 {
@@ -120,6 +129,7 @@ void EMysql::dbinterna()
 
 /*!
     \fn EMysql::timerEvent ( QTimerEvent * event )
+    Slot llamado cuando se vence el tiempo de espera
  */
 void EMysql::timerEvent ( QTimerEvent * event )
 {
@@ -134,7 +144,7 @@ void EMysql::timerEvent ( QTimerEvent * event )
    }
    else
    {
-	qDebug( "autoconexion pasada por id erroneo" );
+    qDebug( "autoconexion pasada por id erroneo" );
     QDialog::timerEvent( event );
    }
   }

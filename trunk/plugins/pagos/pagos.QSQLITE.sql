@@ -1,0 +1,1 @@
+CREATE TABLE recibos ( id INTEGER PRIMARY KEY AUTOINCREMENT, cliente TEXT, num_mes INTEGER,  texto TEXT, precio NUMBER, fecha_pago TEXT, contado INTEGER, cuenta_corriente INTEGER  )

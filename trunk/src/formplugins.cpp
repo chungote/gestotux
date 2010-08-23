@@ -18,25 +18,29 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMSERVICIO_H
-#define FORMSERVICIO_H
+#include "formplugins.h"
+#include "ui_formplugins.h"
 
-#include "eventana.h"
-#include "ui_formServicioBase.h"
-
-class FormServicio : public EVentana, private Ui::FormServicioBase
+FormPlugins::FormPlugins(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::FormPlugins)
 {
-Q_OBJECT
+    ui->setupUi(this);
+}
 
-public:
-        FormServicio ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormServicio();
+FormPlugins::~FormPlugins()
+{
+    delete ui;
+}
 
-protected slots:
-    void guardar();
-    void agregarRecargo();
-    void cambiarBaja( bool estado );
-
-};
-
-#endif
+void FormPlugins::changeEvent(QEvent *e)
+{
+    QDialog::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}

@@ -143,48 +143,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="CBPeriodo">
-            <item>
-             <property name="text">
-              <string>Semanal ( 7 dias )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quincenal ( 15 dias )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Mensual ( 28-31 dias )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bi-Mensual ( 2 meses )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Trimestral ( 3 meses )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cuatrimestral ( 4 meses )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Seximestral ( 6 meses )</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Anual ( 12 meses )</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="QComboBox" name="CBPeriodo"/>
           </item>
          </layout>
         </item>
@@ -220,49 +179,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Recargos</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <widget class="QTableView" name="TVRecargos"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QPushButton" name="PBAgregarRecargo">
-          <property name="text">
-           <string>Agregar</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="PBEliminar">
-          <property name="text">
-           <string>Eliminar</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
    </item>
   </layout>
  </widget>

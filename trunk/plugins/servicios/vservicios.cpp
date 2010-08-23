@@ -53,7 +53,7 @@ VServicios::~VServicios()
 }
 
 
-void VServicios::agregar(bool autoeliminarid)
+void VServicios::agregar( bool autoeliminarid )
 {
   emit agregarVentana( new FormServicio );
 }

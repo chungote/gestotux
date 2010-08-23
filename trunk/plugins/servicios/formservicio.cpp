@@ -20,6 +20,8 @@
 #include "formservicio.h"
 
 #include <QDate>
+#include <QMessageBox>
+#include <QSqlError>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -37,27 +39,22 @@ FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
         // Pongo la fecha de alta en hoy
         DEFechaAlta->setDate( QDate::currentDate() );
 
-        // Imagenes para los botones de recargos
-        PBAgregarRecargo->setIcon( QIcon( ":/imagenes/add.png" ) );
-        connect( PBAgregarRecargo, SIGNAL( clicked() ), this, SLOT( agregarRecargo() ) );
-        PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
-        connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarRecargo() ) );
+        // Coloco los periodos
+        CBPeriodo->addItem( "Semanal ( 7 dias )", MServicios::Semanal );
+        CBPeriodo->addItem( "Quincenal ( 15 dias )", MServicios::Quincenal );
+        CBPeriodo->addItem( "Mensual", MServicios::Mensual );
+        CBPeriodo->addItem( "Bi-Mensual", MServicios::BiMensual );
+        CBPeriodo->addItem( "Trimestral", MServicios::Trimestral );
+        CBPeriodo->addItem( "Cuatrimestral", MServicios::Cuatrimestral );
+        CBPeriodo->addItem( "Seximestral", MServicios::Seximestral );
+        CBPeriodo->addItem( "Anual", MServicios::Anual );
 
         // Dias en el mes que se hace el batch de calcular los nuevos importes 1->31 ( cuidado con los meses  28 y 30 )
         for( int i=1; i<=31; i++ )
         { CBInicioCobro->addItem( QString::number( i ), QString::number( i ) ); }
 
-        CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes" );
-        CBMetodoIncompleto->insertItem( -1, "Mes Completo" );
-
-        // Modelo de recargos
-        modRecargos = new MRecargos( this );
-        TVRecargos->setModel( modRecargos );
-        TVRecargos->hideColumn( 0 );
-        TVRecargos->hideColumn( 1 );
-        //TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
-        //modRecargos->ponerEnTemporal();
-        //modRecargos->select();
+        CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes", MServicios::DiasFaltantes );
+        CBMetodoIncompleto->insertItem( -1, "Mes Completo", MServicios::MesCompleto );
 
         EActGuardar *ActGuardar = new EActGuardar( this );
         connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
@@ -66,8 +63,6 @@ FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
         EActCerrar *ActCerrar = new EActCerrar( this );
         connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
         addAction( ActCerrar );
-
-        connect( dSBPrecioBase, SIGNAL( valueChanged( double ) ), modRecargos, SLOT( setearPrecioBase( double ) ) );
 
         connect( CkBBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambiarBaja( bool ) ) );
         DEFechaBaja->setEnabled( CkBBaja->checkState() );
@@ -90,17 +85,28 @@ void FormServicio::guardar()
  { return; }
  if( dSBPrecioBase->value() <= 0 )
  { return; }
+ MServicios *modelo = new MServicios( this );
+ if( modelo->agregarServicio( LENombre->text(),
+                              TEDescripcion->toPlainText(),
+                              DEFechaAlta->date(),
+                              dSBPrecioBase->value(),
+                              CBPeriodo->itemData( CBPeriodo->currentIndex() ).toInt(),
+                              CBInicioCobro->itemData( CBInicioCobro->currentIndex() ).toInt(),
+                              CBMetodoIncompleto->itemData( CBMetodoIncompleto->currentIndex() ).toInt()
+   ) )
+ {
+     QMessageBox::information( this, "Correcto", "El servicio fue dado de alta correctamente" );
+     delete modelo;
+     this->close();
+     return;
+ } else {
+     QMessageBox::information( this, "Incorrecto", "El servicio <b>NO</b> pudo ser dado de alta" );
+     qDebug( QString( "Error de modelo: %1").arg( modelo->lastError().text() ).toLocal8Bit() );
+     delete modelo;
+     return;
+ }
 }
 
-
-/*!
-    \fn FormServicio:: agregarRecargo()
-        Slot llamado para agregar un nuevo recargo en la vista temporal
- */
-void FormServicio:: agregarRecargo()
-{
- modRecargos->agregarTemporal();
-}
 
 /*!
     \fn FormServicio::cambiarBaja( bool estado )

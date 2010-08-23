@@ -16,7 +16,8 @@ SOURCES += gestotux.cpp \
  everificabackup.cpp \
  barralateral.cpp \
  botoneslaterales.cpp \
- formcliente.cpp
+ formcliente.cpp \
+    formplugins.cpp
 
 HEADERS += gestotux.h \
  ebackup.h \
@@ -39,7 +40,8 @@ HEADERS += gestotux.h \
  barralateral.h \
  botoneslaterales.h \
  formcliente.h \
- einterfazemail.h
+ einterfazemail.h \
+    formplugins.h
 TEMPLATE = app
 CONFIG += warn_on \
 	  thread \
@@ -58,7 +60,8 @@ FPrefGeneral.ui \
  FormActualizacionBase.ui \
  EMysql.ui \
  ForPrefDb.ui \
- FormClienteBase.ui
+ FormClienteBase.ui \
+    formplugins.ui
 
 !include( cliente.pri ){
     TARGET = gestotux
