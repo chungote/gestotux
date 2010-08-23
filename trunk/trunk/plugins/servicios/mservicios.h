@@ -35,6 +35,8 @@ public:
     MServicios(QObject *parent = 0);
     ~MServicios();
 
+    QVariant data(const QModelIndex& item, int role) const;
+
     /*! \enum FormaIncompleto
       *  Define la manera en que se cobran los dias cuando un cliente se adihere a un serivicio fuera del inicio del periodo.
       */

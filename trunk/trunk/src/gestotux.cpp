@@ -82,7 +82,7 @@ void gestotux::inicializar()
  { this->showMinimized(); }
 }
 
-void gestotux::closeEvent(QCloseEvent *event)
+void gestotux::closeEvent( QCloseEvent *event )
 {
  salir();
  event->accept();
@@ -119,21 +119,28 @@ void gestotux::createActions()
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
-	ActActualizar = new QAction( "Actualizar", this );
- 	ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
- 	ActActualizar->setStatusTip( "Actualiza la aplicacion " );
- 	connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
+        /*ActActualizar = new QAction( "Actualizar", this );
+        ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
+        ActActualizar->setStatusTip( "Actualiza la aplicacion " );
+        connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );*/
 
-	ActRestaurar = new QAction( "Restaurar", this );
- 	connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
+        ActRestaurar = new QAction( "Restaurar", this );
+        connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
 }
 
+/*!
+ * @fn gestotux::createMenus()
+ * Genera el menu general de la aplicacion, con las acciones predefinidas y agrega los menus que coloque cada plugin.
+ */
 void gestotux::createMenus()
 {
  fileMenu = menuBar()->addMenu( "&Archivo" );
  fileMenu->setObjectName( "menuArchivo" );
- fileMenu->addAction( ActActualizar );
+ fileMenu->addAction( ActBackup );
+ fileMenu->addAction( ActPreferencias );
  fileMenu->addSeparator();
+ /*fileMenu->addAction( ActActualizar );
+ fileMenu->addSeparator();*/
  fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );
@@ -145,10 +152,6 @@ void gestotux::createMenus()
   //qDebug( QString("Creando menu de %1" ).arg( plug->nombre() ).toLocal8Bit() );
   plug->crearMenu( menuBar() );
  }
-
- menuHer->addSeparator();
- menuHer->addAction( ActBackup );
- menuHer->addAction( ActPreferencias );
 
  menuVer = menuBar()->addMenu( "&Ver");
  if( !this->findChildren<QDockWidget*>().isEmpty() )
@@ -168,13 +171,17 @@ void gestotux::createMenus()
 }
 
 #include "everificabackup.h"
+/*!
+ * @fn gestotux::createStatusBar()
+ * Genera la barra de estado y agrega el formulario de verificacion de backup.
+ */
 void gestotux::createStatusBar()
 {
       statusBar()->showMessage( "Listo" );
-	// Coloco el boton de verificacion  en la barra de tareas para que aparezca el icono de aviso de backup
-	EVerificaBackup *e = new EVerificaBackup( statusBar() );
-	connect( e, SIGNAL( abrirBackups() ), this, SLOT( verBackup() ) );
-	statusBar()->addPermanentWidget( e );
+        // Coloco el boton de verificacion  en la barra de tareas para que aparezca el icono de aviso de backup
+        EVerificaBackup *e = new EVerificaBackup( statusBar() );
+        connect( e, SIGNAL( abrirBackups() ), this, SLOT( verBackup() ) );
+        statusBar()->addPermanentWidget( e );
 }
 
 gestotux::~gestotux()
@@ -231,7 +238,10 @@ void gestotux::acerca()
 void gestotux::verClientes()
 { formCen()->agregarForm( new VCliente( this ) ); }
 
-
+/*!
+ * @fn gestotux::createToolBar()
+ * Genera la barra de herramientas del programa y llama a las funciones de cada plugin para que devuelvan las barra de herramientas suyas
+ */
 void gestotux::createToolBar()
 {
  tb = new QToolBar( "Barra de Herramientas", this );
@@ -275,25 +285,25 @@ void gestotux::crearReloj()
  //preferencias::getInstancia()->inicio();
  if( preferencias::getInstancia()->value( "Preferencias/General/reloj", false ).toBool() )
  {
-	 QDockWidget *dw = new QDockWidget( "Reloj" , this );
-	 dw->setObjectName( "reloj" );
-	 dw->setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
-	 addDockWidget( Qt::LeftDockWidgetArea, dw );
-	 Reloj *r = new Reloj( dw );
-	 dw->setWidget( r );
+         QDockWidget *dw = new QDockWidget( "Reloj" , this );
+         dw->setObjectName( "reloj" );
+         dw->setAllowedAreas( Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea );
+         addDockWidget( Qt::LeftDockWidgetArea, dw );
+         Reloj *r = new Reloj( dw );
+         dw->setWidget( r );
  }
  if( ERegistroPlugins::pluginInfo()->publicidad() )
  {
-	 QDockWidget *dp = new QDockWidget( "Publicidad", this );
-	 dp->setObjectName( "publicidad" );
-	 dp->setAllowedAreas( Qt::BottomDockWidgetArea );
-	 dp->setFeatures( QDockWidget::NoDockWidgetFeatures );
-	 addDockWidget( Qt::BottomDockWidgetArea, dp );
-	 QWebView *vista = new QWebView( dp );
-	 vista->load( QUrl( "http://tranfuga.no-ip.org/publicidad.html" ) );
-	 dp->setFixedHeight( 140 );
-	 vista->show();
-	 dp->setWidget( vista );
+         QDockWidget *dp = new QDockWidget( "Publicidad", this );
+         dp->setObjectName( "publicidad" );
+         dp->setAllowedAreas( Qt::BottomDockWidgetArea );
+         dp->setFeatures( QDockWidget::NoDockWidgetFeatures );
+         addDockWidget( Qt::BottomDockWidgetArea, dp );
+         QWebView *vista = new QWebView( dp );
+         vista->load( QUrl( "http://tranfuga.no-ip.org/publicidad.html" ) );
+         dp->setFixedHeight( 140 );
+         vista->show();
+         dp->setWidget( vista );
  }
 }
 
@@ -396,7 +406,8 @@ void gestotux::verActualizacion()
 
 #include "eayuda.h"
 /*!
-    \fn gestotux::keyPressEvent( QKeyEvent *event )
+ * @fn gestotux::keyPressEvent( QKeyEvent *event )
+ * Slot llamado cuando se presiona una tecla en el programa. Si es F1 llama a la ayuda.
  */
 void gestotux::keyPressEvent( QKeyEvent *event )
 {
@@ -407,9 +418,7 @@ void gestotux::keyPressEvent( QKeyEvent *event )
    ayuda->mostrarIndice();
  }
  else
- {
-	QWidget::keyPressEvent( event );
- }
+ { QWidget::keyPressEvent( event ); }
 }
 
 

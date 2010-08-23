@@ -33,7 +33,7 @@ MServicios::MServicios(QObject *parent)
  setHeaderData( 2, Qt::Horizontal, tr( "Fecha de Alta" ) );
  setHeaderData( 3, Qt::Horizontal, tr( "Fecha de Baja" ) );
  setHeaderData( 4, Qt::Horizontal, tr( "Precio Base" ) );
- setHeaderData( 5, Qt::Horizontal, tr( "periodo" ) );
+ setHeaderData( 5, Qt::Horizontal, tr( "Periodo" ) );
  setHeaderData( 6, Qt::Horizontal, tr( "Dia de Cobro" ) );
  setHeaderData( 7, Qt::Horizontal, tr( "Forma de cobro incompleto" ) );
 }
@@ -42,6 +42,61 @@ MServicios::MServicios(QObject *parent)
 MServicios::~MServicios()
 {
 }
+
+/*!
+ * @fn MServicios::data( const QModelIndex& item, int role ) const
+ * Implementacion del metodo de datos para que las enumeraciones se vena como texto
+ */
+QVariant MServicios::data( const QModelIndex& item, int role ) const {
+    if( !item.isValid() ) { return QVariant(); }
+    switch( role ) {
+        case Qt::DisplayRole:
+        {
+            switch( item.column() ) {
+                case 5: // Periodo
+                {
+                        switch( QSqlTableModel::data( item, role ).toInt() ) {
+                            case MServicios::Semanal:
+                            { return "Semanal"; }
+                            case MServicios::Quincenal:
+                            { return "Quincenal"; }
+                            case MServicios::Mensual:
+                            { return "Mensual"; }
+                            case MServicios::BiMensual:
+                            { return "Bimensual"; }
+                            case MServicios::Trimestral:
+                            { return "Trimestral"; }
+                            case MServicios::Cuatrimestral:
+                            { return "Cuatrimestral"; }
+                            case MServicios::Seximestral:
+                            { return "Seximestral"; }
+                            case MServicios::Anual:
+                            { return "Anual"; }
+                        }
+                }
+                case 7: // Metodo Incompleto
+                {
+                        switch( QSqlTableModel::data( item, role ).toInt() ) {
+                            case MServicios::DiasFaltantes:
+                            { return "Dias Faltantes"; }
+                            case MServicios::MesCompleto:
+                            { return "Mes Completo"; }
+                        }
+                }
+                case 4:
+                { return QString( "$ %L1" ).arg( QSqlTableModel::data( item, role ).toDouble() ); }
+                default:
+                { return QSqlTableModel::data( item, role ); }
+            }
+        }
+        default:
+        { return QSqlTableModel::data( item, role ); }
+    }
+}
+
+
+
+
 
 /*!
     \fn MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
@@ -89,7 +144,33 @@ bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
         @param dia_cobro Dia del periodo en que se inicia el cobro del servicio
         @param forma_incompleto Forma de cobro cuando se da de alta un cliente fuera del inicio del periodo @MServicios::FormaIncompleto
  */
-bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
+bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
 {
-  return false;
+  // Teoricamente los datos se controlaron de ser correctos
+  QSqlRecord registro = this->record();
+  registro.setValue( "nombre", nombre );
+  registro.setValue( "detalle", detalle );
+  registro.setValue( "fecha_alta", fecha_alta );
+  registro.setValue( "precio_base", precio_base );
+  registro.setValue( "periodo", periodo ); // Agregar verificacion de enumeracion
+  registro.setValue( "dia_cobro", dia_cobro );// Agregar verificacion de enumeracion
+  registro.setValue( "forma_incompleto", forma_incompleto );// Agregar verificacion de enumeracion
+  if( this->insertRecord( -1, registro ) ) {
+      return true;
+  } else {
+      qDebug( QString( "Error MServicios::agregarServicio(): %1").arg( this->lastError().text() ).toLocal8Bit() );
+      return false;
+  }
 }
+
+/*
+"id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL
+"nombre" TEXT NOT NULL
+"descripcion" TEXT
+"fecha_alta" DATETIME NOT NULL
+"fecha_baja" DATETIME
+"precio_base" DOUBLE NOT NULL
+"periodo" INTEGER NOT NULL
+"dia_cobro" INTEGER NOT NULL
+"forma_incompleto" INTEGER NOT NULL
+*/

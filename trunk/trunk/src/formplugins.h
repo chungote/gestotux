@@ -18,25 +18,34 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMSERVICIO_H
-#define FORMSERVICIO_H
+#ifndef FORMPLUGINS_H
+#define FORMPLUGINS_H
 
-#include "eventana.h"
-#include "ui_formServicioBase.h"
+#include <QDialog>
 
-class FormServicio : public EVentana, private Ui::FormServicioBase
+namespace Ui {
+    class FormPlugins;
+}
+
+/*!
+ * @brief Clase para mostrar información sobre los plugins y sus versiones
+ *
+ * Formulario para mostrar en la ayuda, los distintos componentes cargados en el programa, sus versiones y sus ultimas actualizaciones.
+ * @author Esteban Zeller <tranfuga25s@gmail.com>
+ */
+class FormPlugins : public QDialog
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-        FormServicio ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormServicio();
+    explicit FormPlugins(QWidget *parent = 0);
+    ~FormPlugins();
 
-protected slots:
-    void guardar();
-    void agregarRecargo();
-    void cambiarBaja( bool estado );
+protected:
+    void changeEvent(QEvent *e);
 
+private:
+    Ui::FormPlugins *ui;
 };
 
-#endif
+#endif // FORMPLUGINS_H

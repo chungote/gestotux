@@ -144,8 +144,8 @@ bool Ebackup::generar_config()
  QStringList::const_iterator iterador;
  for( iterador = claves.constBegin(); iterador != claves.constEnd(); ++iterador )
  {
-	if( !_continuar )
-	{ return false; }
+        if( !_continuar )
+        { return false; }
    datos->append( (*iterador).toLocal8Bit().constData() );
    PBProgreso->setValue( PBProgreso->value() + 1 );
    datos->append( "=" );
@@ -154,8 +154,8 @@ bool Ebackup::generar_config()
    QString result;
    switch( v.type() )
    {
-	///////////////////////////////////////////////////////////////////////////
-	// Copiado desde la clase qsettings de qt
+        ///////////////////////////////////////////////////////////////////////////
+        // Copiado desde la clase qsettings de qt
        case QVariant::Invalid:
        {
             result = QLatin1String("@Invalid()");
@@ -252,9 +252,9 @@ bool Ebackup::generar_config()
 
 /*!
     \fn Ebackup::generar_db( bool estructura )
-	Funcion que hace la obtencion de los datos de la base de datos y los prepara para la compresion.
-	@param estructura Hacer backup de la estructura de la db
-	@return Verdadero si no existieron errores, falso en caso contrario
+        Funcion que hace la obtencion de los datos de la base de datos y los prepara para la compresion.
+        @param estructura Hacer backup de la estructura de la db
+        @return Verdadero si no existieron errores, falso en caso contrario
  */
 bool Ebackup::generar_db( bool estructura )
 {
@@ -268,12 +268,12 @@ bool Ebackup::generar_db( bool estructura )
  QString tabla; QSqlQuery cola;
  foreach( tabla, tablas )
  {
-	//Calculo para la barra
-	cola.exec( QString("SELECT COUNT(*) FROM %1" ).arg( tabla ) );
-	if( cola.next() )
-	{
-		total += cola.record().value(0).toInt();
-	}
+        //Calculo para la barra
+        cola.exec( QString("SELECT COUNT(*) FROM %1" ).arg( tabla ) );
+        if( cola.next() )
+        {
+                total += cola.record().value(0).toInt();
+        }
  }
  total += tablas.size();
  PBProgreso->setRange( 0, total );
@@ -282,23 +282,23 @@ bool Ebackup::generar_db( bool estructura )
   QFile origen( ":/sql/tablas."+QSqlDatabase::database().driverName()+".sql" );
   if( origen.open( QIODevice::ReadOnly ) )
   {
-	datos->append( QTextStream( &origen ).readAll() );
+        datos->append( QTextStream( &origen ).readAll() );
   }
  }
  foreach( tabla, tablas )
  {
   PBProgreso->setValue( PBProgreso->value() + 1 );
-	// Genero la cola de creacion de la tabla si es necesario
-	/*if( estructura )
-	{
-	}*/
-	cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
-	while( cola.next() )
-	{
-		datos->append( db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
-		datos->append( ";\n" );
-		PBProgreso->setValue( PBProgreso->value() + 1 );
-	}
+        // Genero la cola de creacion de la tabla si es necesario
+        /*if( estructura )
+        {
+        }*/
+        cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
+        while( cola.next() )
+        {
+                datos->append( db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
+                datos->append( ";\n" );
+                PBProgreso->setValue( PBProgreso->value() + 1 );
+        }
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
  datos->append( "<-basedatossql<-|" );
@@ -315,8 +315,8 @@ bool Ebackup::generar_db( bool estructura )
 
 /*!
     \fn Ebackup::comprimir()
-	Funcion que comprime los datos en datos y lo agrega al buffer de datos comprimidos
-	@return Verdadero si no hubo errores.
+        Funcion que comprime los datos en datos y lo agrega al buffer de datos comprimidos
+        @return Verdadero si no hubo errores.
  */
 bool Ebackup::comprimir()
 {
@@ -327,18 +327,18 @@ bool Ebackup::comprimir()
 
 /*!
     \fn Ebackup::guardar_a_archivo( QString *nombre )
-	Guarda los datos comprimidos en el archivo cuya ruta se encuentra en "nombre"
-	@param nombre path del archivo de salida
-	@return Verdadero si no hubo errores
+        Guarda los datos comprimidos en el archivo cuya ruta se encuentra en "nombre"
+        @param nombre path del archivo de salida
+        @return Verdadero si no hubo errores
  */
 bool Ebackup::guardar_a_archivo( QString *nombre )
 {
  destino = new QFile( *nombre );
  if( !destino->open( QIODevice::ReadWrite | QIODevice::Truncate ) )
  {
-	qDebug( "Error al abrir el archivo en modo lectura escritura" );
-	delete destino;
-	return false;
+        qDebug( "Error al abrir el archivo en modo lectura escritura" );
+        delete destino;
+        return false;
  }
  qint64 escritos = destino->write( *comprimidos );
  if( escritos != comprimidos->size() )
@@ -362,6 +362,7 @@ bool Ebackup::guardar_a_archivo( QString *nombre )
 
 /*!
     \fn Ebackup::detener()
+     Slot llamado para detener la generacion del backup
  */
 void Ebackup::detener()
 {
@@ -414,11 +415,11 @@ void Ebackup::generarBackup()
  options |= QFileDialog::DontUseNativeDialog;
  QString selectedFilter;
  QString fileName = QFileDialog::getSaveFileName( this,
-						  "Seleccione el lugar a donde guardar el archivo",
-						  QDir::home().path()+QDir::separator()+nombre,
-						  "Archivos de Backup ( *.bkp );; Todos los archivos (*.*)",
-						  &selectedFilter,
-						  options );
+                                                  "Seleccione el lugar a donde guardar el archivo",
+                                                  QDir::home().path()+QDir::separator()+nombre,
+                                                  "Archivos de Backup ( *.bkp );; Todos los archivos (*.*)",
+                                                  &selectedFilter,
+                                                  options );
  if( !fileName.isEmpty() )
  {
   if( !fileName.contains( ".bkp" ) )
@@ -458,9 +459,9 @@ void Ebackup::restaurarBackup()
  QFile archivo( LEArchivo->text() );
  if( !archivo.open( QIODevice::ReadOnly ) )
  {
-	qWarning( "No se puede arbir el archivo de backup para restaruarlo. Verifique que la ruta sea correcta y que no este en uso" );
-	emit cambiarDetener( false );
-	return;
+        qWarning( "No se puede arbir el archivo de backup para restaruarlo. Verifique que la ruta sea correcta y que no este en uso" );
+        emit cambiarDetener( false );
+        return;
  }
 
  QString contenido = archivo.readAll();
@@ -517,17 +518,21 @@ void Ebackup::abrirArchivoBackup()
  options |= QFileDialog::DontUseNativeDialog;
  QString selectedFilter;
  QString fileName = QFileDialog::getOpenFileName( this,
-						  "Seleccione el archivo de backup",
-						  QDir::home().path()+QDir::separator(),
-						  "Archivos de Backup ( *.bkp )",
-						  &selectedFilter,
-						  options );
+                                                  "Seleccione el archivo de backup",
+                                                  QDir::home().path()+QDir::separator(),
+                                                  "Archivos de Backup ( *.bkp )",
+                                                  &selectedFilter,
+                                                  options );
  LEArchivo->setText( fileName );
 }
 
 
 /*!
     \fn Ebackup::ejecutarColas( QStringList colas )
+    Metodo utilizado para ejecutar las consultas SQl definidas en @param colas en la base de datos.
+    Todas las consultas se realizan dentro de una transacción, y de fallar cualquiera de las consultas, se realiza un rollback.
+    @param colas Lista de QString con las consultas SQL dentro.
+    @return Verdadero si todas las consultas fueron ejecutadas correctamente.
  */
 bool Ebackup::ejecutarColas( QStringList colas )
 {
@@ -541,8 +546,8 @@ bool Ebackup::ejecutarColas( QStringList colas )
   }
   else
   {
-	qWarning( qPrintable( cola->lastError().text() + ". Cola: " + cola->lastQuery() ) );
-	estado = false;
+        qWarning( qPrintable( cola->lastError().text() + ". Cola: " + cola->lastQuery() ) );
+        estado = false;
   }
  }
  delete cola;
