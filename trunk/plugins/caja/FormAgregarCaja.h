@@ -18,56 +18,28 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef CAJA_H
-#define CAJA_H
+#ifndef FORMAGREGARCAJA_H
+#define FORMAGREGARCAJA_H
 
-#include <QObject>
-#include <eplugin.h>
-#include <QtPlugin>
+#include <QDialog>
 
-/**
- * \brief Plugin de Caja
- *
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class Caja : public QObject, public EPlugin
+namespace Ui {
+    class FormAgregarCaja;
+}
+
+class FormAgregarCaja : public QDialog
 {
     Q_OBJECT
-    Q_INTERFACES(EPlugin)
 
-    public:
-        QList<QActionGroup *> accionesBarra();
-        QString nombre() const;
-        QWidgetList formsPreferencias();
-        bool inicializar();
-        bool verificarTablas();
-        int tipo() const;
-        void crearMenu( QMenuBar *m );
-        double version() const;
-        static QStackedWidget *tabs();
-        void crearToolBar( QToolBar *t );
-        bool publicidad() { return true; }
+public:
+    explicit FormAgregarCaja(QWidget *parent = 0);
+    ~FormAgregarCaja();
 
-    public slots:
-        void seCierraGestotux();
+protected:
+    void changeEvent(QEvent *e);
 
-    signals:
-        void agregarVentana( QWidget * );
-        void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
-
-    private:
-        QAction *ActCajas;
-        QAction *ActAgregarMovimiento;
-        QAction *ActVerEstado;
-        QAction *ActHacerCierre;
-        QAction *ActResumenes;
-
-    protected slots:
-        void verCajas();
-        void verResumenCaja();
-        void verEstadoCaja();
-        void hacerCierre();
-
+private:
+    Ui::FormAgregarCaja *ui;
 };
 
-#endif // CAJA_H
+#endif // FORMAGREGARCAJA_H

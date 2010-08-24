@@ -1,8 +1,21 @@
 - Buscar icono para recargos.
 - Definir plugin para Cuotas:
   - Utilizamos como base la "forma de pago"?
-- Eliminar cartel del inicio. Verificar que colas todavia estan andando
+- Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
 
+- Agregar formas de pago en recibos y/o ventas.
+
+- Agregar Movimiento inicial ( cierre de caja ) al agregar una caja con el saldo inicial.
+
+Diseño:
+
+- Definir como hacer los cierres de caja diarios.
+- Definir si hacer parte para sacar datos de caja.
+
+- Definir sistema de cuotas.
+  - Colocar como forma de pago.
+
+- Definir sistema final de creacion de comprobantes.
 
 :: Pruebas para hacer ::
 

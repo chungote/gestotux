@@ -77,12 +77,6 @@ bool Caja::inicializar()
  ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
  connect( ActCajas, SIGNAL(triggered()), this, SLOT( verCajas() ) );
 
- ActAgregarMovimiento = new QAction( this );
- ActAgregarMovimiento->setText( "Agregar Movimiento" );
- ActAgregarMovimiento->setToolTip( "Agrega un nuevo movimento para la caja." );
- //ActAgregarMovimiento->setIcon( QIcon( ":/imagenes/caja.png" ) );
- connect( ActAgregarMovimiento, SIGNAL(triggered()), this, SLOT( agregarMoviemientoCaja() ) );
-
  ActVerEstado = new QAction( this );
  ActVerEstado->setText( "Ver Estado Caja" );
  ActVerEstado->setToolTip( "Ver el estado actual de la caja." );
@@ -139,7 +133,12 @@ void Caja::crearMenu( QMenuBar *m )
  }
  else
  {
-     menuHer->addAction( ActCajas );
+     QMenu *menuCaja = menuHer->addMenu( QIcon( ":/imagenes/caja.png"), "Caja" );
+     menuCaja->addAction( ActVerEstado );
+     menuCaja->addAction( ActHacerCierre );
+     menuCaja->addAction( ActResumenes );
+     menuCaja->addSeparator();
+     menuCaja->addAction( ActCajas );
  }
 }
 
@@ -169,4 +168,33 @@ void Caja::seCierraGestotux()
  Q_CLEANUP_RESOURCE(caja);
  qDebug( "Cerrado plugin Caja" );
  return;
+}
+
+#include "vcajas.h"
+/*!
+ * @fn Caja::verCajas
+ * Slot llamado cuando se quiere ve la lista de cajas actuales.
+ */
+void Caja::verCajas()
+{
+    emit agregarVentana( new VCajas() );
+}
+
+void Caja::verResumenCaja()
+{}
+
+
+#include "FormEstadoCaja.h"
+void Caja::verEstadoCaja()
+{
+  // Dialogo mostrando el saldo que debe existir en cada caja
+  FormEstadoCaja *f = new FormEstadoCaja();
+  f->exec();
+}
+
+#include "FormCierreCaja.h"
+void Caja::hacerCierre()
+{
+    //Genero el dialogo donde pongo el saldo actual y pongo el widget para hacer las sumas de lo que hay en la caja
+    emit agregarVentana( new FormCierreCaja() );
 }

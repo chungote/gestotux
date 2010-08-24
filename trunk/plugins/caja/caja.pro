@@ -7,7 +7,14 @@ TARGET = caja
 
 DESTDIR = ../../bin/plugins/
 
-INCLUDEPATH += ../../src
+INCLUDEPATH += ../../src \
+               ../../utiles
+
+LIBS += ../../bin/libutiles.a \
+  ../../bin/libncreport.a
+
+TARGETDEPS += ../../bin/libncreport.a \
+  ../../bin/libutiles.a
 
 QT += sql
 
@@ -19,8 +26,21 @@ RESOURCES += \
 
 HEADERS += \
     caja.h \
-    mcajas.h
+    mcajas.h \
+    vcajas.h \
+    FormAgregarCaja.h \
+    FormEstadoCaja.h \
+    FormCierreCaja.h
 
 SOURCES += \
     caja.cpp \
-    mcajas.cpp
+    mcajas.cpp \
+    vcajas.cpp \
+    FormAgregarCaja.cpp \
+    FormEstadoCaja.cpp \
+    FormCierreCaja.cpp
+
+FORMS += \
+    FormAgregarCajaBase.ui \
+    FormEstadoCajaBase.ui \
+    FormCierreCajaBase.ui

@@ -18,56 +18,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef CAJA_H
-#define CAJA_H
+#include "vcajas.h"
 
-#include <QObject>
-#include <eplugin.h>
-#include <QtPlugin>
+#include <QIcon>
+#include <QAction>
+#include <QTableView>
 
-/**
- * \brief Plugin de Caja
- *
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class Caja : public QObject, public EPlugin
+#include "mcajas.h"
+
+#include "FormAgregarCaja.h"
+
+VCajas::VCajas(QWidget *parent) :
+    EVLista(parent)
 {
-    Q_OBJECT
-    Q_INTERFACES(EPlugin)
+    this->setObjectName( "visorServicios" );
+    this->setWindowTitle( "Servicios" );
+    this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
 
-    public:
-        QList<QActionGroup *> accionesBarra();
-        QString nombre() const;
-        QWidgetList formsPreferencias();
-        bool inicializar();
-        bool verificarTablas();
-        int tipo() const;
-        void crearMenu( QMenuBar *m );
-        double version() const;
-        static QStackedWidget *tabs();
-        void crearToolBar( QToolBar *t );
-        bool publicidad() { return true; }
+    modelo = new MCajas( this );
+    vista->setModel( modelo );
+    vista->setAlternatingRowColors( true );
+    modelo->select();
 
-    public slots:
-        void seCierraGestotux();
+    connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
-    signals:
-        void agregarVentana( QWidget * );
-        void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    addAction( ActAgregar );
+    //addAction( ActEliminar );
+    addAction( ActCerrar );
+}
 
-    private:
-        QAction *ActCajas;
-        QAction *ActAgregarMovimiento;
-        QAction *ActVerEstado;
-        QAction *ActHacerCierre;
-        QAction *ActResumenes;
 
-    protected slots:
-        void verCajas();
-        void verResumenCaja();
-        void verEstadoCaja();
-        void hacerCierre();
-
-};
-
-#endif // CAJA_H
+void VCajas::agregar( bool autoeliminarid ) {
+   FormAgregarCaja *f = new FormAgregarCaja( this );
+   f->exec();
+}
