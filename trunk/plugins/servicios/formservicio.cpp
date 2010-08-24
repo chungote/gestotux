@@ -116,3 +116,8 @@ void FormServicio::cambiarBaja( bool estado )
 {
     DEFechaBaja->setEnabled( estado );
 }
+
+
+void FormServicio::agregarRecargo()
+{
+}

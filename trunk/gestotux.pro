@@ -13,3 +13,5 @@ DESTDIR = .
 
 DIR_EXE = $$DIRNAME(QMAKE_QMAKE)
 system( $$join( DIR_EXE, , , '/qcollectiongenerator' ) ayuda/docs.qhcp -o $$DESTDIR/bin/docs.qch )
+
+OTHER_FILES = tareas-pendientes.txt

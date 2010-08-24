@@ -30,12 +30,13 @@ MServicios::MServicios(QObject *parent)
  setTable( "servicios" );
  setHeaderData( 0, Qt::Horizontal, tr( "#ID" ) );
  setHeaderData( 1, Qt::Horizontal, tr( "Nombre" ) );
- setHeaderData( 2, Qt::Horizontal, tr( "Fecha de Alta" ) );
- setHeaderData( 3, Qt::Horizontal, tr( "Fecha de Baja" ) );
- setHeaderData( 4, Qt::Horizontal, tr( "Precio Base" ) );
- setHeaderData( 5, Qt::Horizontal, tr( "Periodo" ) );
- setHeaderData( 6, Qt::Horizontal, tr( "Dia de Cobro" ) );
- setHeaderData( 7, Qt::Horizontal, tr( "Forma de cobro incompleto" ) );
+ setHeaderData( 2, Qt::Horizontal, tr( "Descripcion" ) );
+ setHeaderData( 3, Qt::Horizontal, tr( "Fecha de Alta" ) );
+ setHeaderData( 4, Qt::Horizontal, tr( "Fecha de Baja" ) );
+ setHeaderData( 5, Qt::Horizontal, tr( "Precio Base" ) );
+ setHeaderData( 6, Qt::Horizontal, tr( "Periodo" ) );
+ setHeaderData( 7, Qt::Horizontal, tr( "Dia de Cobro" ) );
+ setHeaderData( 8, Qt::Horizontal, tr( "Forma de cobro incompleto" ) );
 }
 
 
@@ -53,7 +54,7 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
         case Qt::DisplayRole:
         {
             switch( item.column() ) {
-                case 5: // Periodo
+                case 6: // Periodo
                 {
                         switch( QSqlTableModel::data( item, role ).toInt() ) {
                             case MServicios::Semanal:
@@ -74,7 +75,7 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                             { return "Anual"; }
                         }
                 }
-                case 7: // Metodo Incompleto
+                case 8: // Metodo Incompleto
                 {
                         switch( QSqlTableModel::data( item, role ).toInt() ) {
                             case MServicios::DiasFaltantes:
@@ -83,10 +84,28 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                             { return "Mes Completo"; }
                         }
                 }
-                case 4:
+                case 5:
                 { return QString( "$ %L1" ).arg( QSqlTableModel::data( item, role ).toDouble() ); }
                 default:
                 { return QSqlTableModel::data( item, role ); }
+            }
+        }
+        case Qt::TextAlignmentRole:
+        {
+            switch( item.column() ) {
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                {
+                    return int( Qt::AlignCenter | Qt::AlignHCenter );
+                }
+                default:
+                {
+                    return QSqlTableModel::data( item, role );
+                }
             }
         }
         default:

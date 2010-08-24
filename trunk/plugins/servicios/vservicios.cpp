@@ -37,9 +37,10 @@ VServicios::VServicios(QWidget *parent)
  modelo = new MServicios( this );
 
  vista->setModel( modelo );
- vista->hideColumn( 0 );
  vista->setAlternatingRowColors( true );
  modelo->select();
+ vista->hideColumn( 0 );
+ vista->hideColumn( 2 );
 
  connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 

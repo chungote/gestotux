@@ -1,6 +1,7 @@
 - Buscar icono para recargos.
 - Definir plugin para Cuotas:
   - Utilizamos como base la "forma de pago"?
+- Eliminar cartel del inicio. Verificar que colas todavia estan andando
 
 
 :: Pruebas para hacer ::
