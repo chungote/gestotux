@@ -1,11 +1,8 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-debug \
-debug_and_release \
-help
-CONFIG -= release
+          plugin \
+          help
 
 QT += sql
 
@@ -30,38 +27,39 @@ TARGETDEPS += ../../bin/libncreport.a \
 OBJECTS_DIR = obj
 
 UI_DIR = ui
-
 MOC_DIR = moc
-
 RCC_DIR = rcc
 
 HEADERS += servicios.h \
-mservicios.h \
-vservicios.h \
+ mservicios.h \
+ vservicios.h \
  mrecargos.h \
  mcobroservicio.h \
  mrecargoshechos.h \
  formasociarserviciocliente.h \
  formservicio.h \
- edrecargos.h
+ edrecargos.h \
+ formrecargos.h
 SOURCES += servicios.cpp \
-mservicios.cpp \
-vservicios.cpp \
+ mservicios.cpp \
+ vservicios.cpp \
  mrecargos.cpp \
  mcobroservicio.cpp \
  mrecargoshechos.cpp \
  formasociarserviciocliente.cpp \
  formservicio.cpp \
- edrecargos.cpp
+ edrecargos.cpp \
+ formrecargos.cpp
 RESOURCES += servicios.qrc
 
 DISTFILES += servicios.QMYSQL.sql \
 servicios.QSQLITE.sql
-TRANSLATIONS += servicios.ts
+
+TRANSLATIONS = servicios.ts
 
 FORMS += FormAsociarBase.ui \
- formServicioBase.ui
+ formServicioBase.ui \
+    FormRecargoBase.ui
 
-OTHER_FILES += \
-    servicios.QMYSQL.sql \
+OTHER_FILES += servicios.QMYSQL.sql \
     servicios.QSQLITE.sql

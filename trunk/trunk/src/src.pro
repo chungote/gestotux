@@ -63,9 +63,7 @@ FPrefGeneral.ui \
  FormClienteBase.ui \
     formplugins.ui
 
-!include( cliente.pri ){
-    TARGET = gestotux
-}
+TARGET = gestotux
 
 DESTDIR = ../bin
 
