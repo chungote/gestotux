@@ -1,4 +1,3 @@
-
 TEMPLATE = lib
 HEADERS += floatstyle.h \
            helpers.h

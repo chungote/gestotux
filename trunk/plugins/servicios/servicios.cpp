@@ -30,7 +30,13 @@ bool Servicios::inicializar()
  ActServicios = new QAction( this );
  ActServicios->setText( "Servicios" );
  ActServicios->setStatusTip( "Muestra todos los servicios disponibles que hay" );
+ ActServicios->setIcon( QIcon( ":/imagenes/servicios.png" ) );
  connect( ActServicios, SIGNAL( triggered() ), this, SLOT( mostrarServicios() ) );
+
+ ActRecargos = new QAction( this );
+ ActRecargos->setText( "Recargos" );
+ ActRecargos->setStatusTip( "Muestra la lista de recargos posibles que se pueden utilizar en cualquier servicio" );
+ connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( mostrarRecargos() ) );
  return true;
 }
 
@@ -74,6 +80,7 @@ void Servicios::crearMenu(QMenuBar* m)
 {
  QMenu *serv = m->addMenu( "Servicios" );
  serv->addAction( ActServicios );
+ serv->addAction( ActRecargos );
  return;
 }
 
@@ -92,6 +99,14 @@ void Servicios::seCierraGestotux()
 void Servicios::mostrarServicios()
 {
   emit agregarVentana( new VServicios() );
+}
+
+/*!
+    @fn Servicios::mostrarRecargos()
+ */
+void Servicios::mostrarRecargos()
+{
+    //emit agregarVentana( new VRecargos() );
 }
 
 Q_EXPORT_PLUGIN2( servicios, Servicios );
