@@ -34,7 +34,7 @@ FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
 {
         setupUi ( this );
         this->setWindowTitle( "Agregar nuevo servicio" );
-        this->setWindowIcon( QIcon( ":/imagenes/servicio.png" ) );
+        this->setWindowIcon( QIcon( ":/imagenes/add.png" ) );
 
         // Pongo la fecha de alta en hoy
         DEFechaAlta->setDate( QDate::currentDate() );

@@ -50,10 +50,18 @@ public slots:
     void seCierraGestotux();
 
 private:
+       /*!
+        * Accion para mostrar los distintos servicios
+        */
         QAction *ActServicios;
+       /*!
+        * Accion para mostrar los distintos recargos posibles a servicios
+        */
+        QAction *ActRecargos;
 
 protected slots:
     void mostrarServicios();
+    void mostrarRecargos();
 
 };
 

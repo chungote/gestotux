@@ -378,7 +378,8 @@ int main(int argc, char *argv[])
                  }
                  else
                  {
-                        qWarning( QString( "Error al cargar el plugin: %1" ).arg( loader.errorString() ).toLocal8Bit() );
+                        qWarning( QString( "Error al cargar el plugin" ).toLocal8Bit() );
+                        qWarning( loader.errorString().toLocal8Bit() );
                  }
              }
 

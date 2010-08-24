@@ -1,0 +1,12 @@
+- Buscar icono para recargos.
+- Definir plugin para Cuotas:
+  - Utilizamos como base la "forma de pago"?
+
+
+:: Pruebas para hacer ::
+
+- Verificar correcta restauracion de un backup.
+- Verificar correcta iniziaclizacion de todas las tablas de todos los plugins
+   - SQLite
+   - MySql
+ - Verificar Funcionamiento correcto del nuevo formulario de clientes.

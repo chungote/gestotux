@@ -32,6 +32,7 @@ VServicios::VServicios(QWidget *parent)
 {
  this->setObjectName( "visorServicios" );
  this->setWindowTitle( "Servicios" );
+ this->setWindowIcon( QIcon( ":/imagenes/servicios.png" ) );
 
  modelo = new MServicios( this );
 
@@ -109,19 +110,32 @@ void VServicios::modificar( const QModelIndex &indice )
 void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
  // Agrego las acciones que quiero que aparezcan en el menu
- QAction *actNuevoCliente = new QAction( menu );
- actNuevoCliente->setText( "Adherir Cliente" );
- actNuevoCliente->setStatusTip( "Adhiere un cliente al servicio seleccionado en la lista" );
- connect( actNuevoCliente, SIGNAL( triggered() ), this, SLOT( darAltaServicioCliente() ) );
+ QAction *ActNuevoCliente = new QAction( menu );
+ ActNuevoCliente->setText( "Adherir Cliente" );
+ ActNuevoCliente->setStatusTip( "Adhiere un cliente al servicio seleccionado en la lista" );
+ connect( ActNuevoCliente, SIGNAL( triggered() ), this, SLOT( darAltaServicioCliente() ) );
 
- QAction *actVerClientes = new QAction( menu );
- actVerClientes->setText( "Ver Clientes adheridos" );
- actVerClientes->setStatusTip( "Muestra la lista de clientes adheridos a este servicio" );
- connect( actVerClientes, SIGNAL( triggered() ), this, SLOT( verClientesAdheridos() ) );
+ QAction *ActVerClientes = new QAction( menu );
+ ActVerClientes->setText( "Ver Clientes adheridos" );
+ ActVerClientes->setStatusTip( "Muestra la lista de clientes adheridos a este servicio" );
+ connect( ActVerClientes, SIGNAL( triggered() ), this, SLOT( verClientesAdheridos() ) );
+
+ QAction *ActGenerarFacturacion = new QAction( menu );
+ ActGenerarFacturacion->setText( "Generar Facturacion" );
+ ActGenerarFacturacion->setStatusTip( "Genera todas las facturas para el periodo que se desea cobrar automaticamente" );
+ connect( ActGenerarFacturacion, SIGNAL( triggered() ), this, SLOT( generarFacturacion() ) );
+
+ QAction *ActRecargos = new QAction( menu );
+ ActRecargos->setText( "Administrar Recargos" );
+ ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
+ connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( verRecargos() ) );
 
  menu->addAction( ActAgregar );
- menu->addAction( actNuevoCliente );
- menu->addAction( actVerClientes );
+ menu->addAction( ActNuevoCliente );
+ menu->addAction( ActVerClientes );
+ menu->addSeparator();
+ menu->addAction( ActGenerarFacturacion );
+ menu->addAction( ActRecargos );
  indiceMenu = indice;
  return;
 }

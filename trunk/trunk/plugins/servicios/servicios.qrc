@@ -1,8 +1,9 @@
 <RCC>
-    <qresource prefix="">
+    <qresource prefix="/">
+        <file>imagenes/servicios.png</file>
     </qresource>
-    <qresource prefix="sql">
-	<file>servicios.QMYSQL.sql</file>
-	<file>servicios.QSQLITE.sql</file>
+    <qresource prefix="/sql">
+        <file>servicios.QMYSQL.sql</file>
+        <file>servicios.QSQLITE.sql</file>
     </qresource>
 </RCC>
