@@ -22,13 +22,14 @@
 #define MCAJAS_H
 
 #include <QSqlTableModel>
+#include <QDate>
 
 class MCajas : public QSqlTableModel
 {
     Q_OBJECT
     public:
         MCajas(QObject *parent = 0 );
-
+        bool agregarCaja( QString nombre, QDate fecha_alta = QDate::currentDate(), double saldo_inicial = 0 );
 };
 
 #endif // MCAJAS_H

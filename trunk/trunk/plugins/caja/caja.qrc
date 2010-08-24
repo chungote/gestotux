@@ -1,4 +1,7 @@
 <RCC>
+    <qresource>
+        <file>imagenes/caja.png</file>
+    </qresource>
     <qresource prefix="/sql">
         <file>caja.QSQLITE.sql</file>
         <file>caja.QMYSQL.sql</file>

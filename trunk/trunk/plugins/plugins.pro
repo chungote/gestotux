@@ -1,5 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS += servicios
+SUBDIRS += servicios \
+           caja
 #compras \
 # ventas \
 # proveedor \
