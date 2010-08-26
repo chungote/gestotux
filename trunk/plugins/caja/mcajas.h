@@ -30,6 +30,7 @@ class MCajas : public QSqlTableModel
     public:
         MCajas(QObject *parent = 0 );
         bool agregarCaja( QString nombre, QDate fecha_alta = QDate::currentDate(), double saldo_inicial = 0 );
+        static bool actualizarSaldo( const int id_caja, const double cantidad );
 };
 
 #endif // MCAJAS_H

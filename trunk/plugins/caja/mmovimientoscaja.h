@@ -18,47 +18,18 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "FormCierreCaja.h"
-#include "ui_FormCierreCajaBase.h"
+#ifndef MMOVIMIENTOSCAJA_H
+#define MMOVIMIENTOSCAJA_H
 
-#include "mcajas.h"
+#include <QSqlRelationalTableModel>
 
-FormCierreCaja::FormCierreCaja(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::FormCierreCaja)
+class MMovimientosCaja : public QSqlRelationalTableModel
 {
-    ui->setupUi(this);
-    this->setObjectName( "cierre_caja" );
-    this->setWindowTitle( "Cierre de Caja" );
+    Q_OBJECT
+public:
+    explicit MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
+    bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0 );
 
-    ui->PBConfirmar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
-    ui->PBCancelar->setIcon( QIcon( ":/imagenes/stop.png" ) );
+};
 
-    ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
-    ui->CBCaja->setModelColumn( 1 );
-
-    connect( ui->CBCaja, SIGNAL( currentIndexChanged(int) ), this, SLOT( cambioCaja(int ) ) );
-}
-
-FormCierreCaja::~FormCierreCaja()
-{
-    delete ui;
-}
-
-void FormCierreCaja::changeEvent(QEvent *e)
-{
-    QWidget::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
-}
-
-void FormCierreCaja::cambioCaja( int id_combo )
-{
-   // @todo Buscar los ultimos saldos cuando se cambia la caja del combo
-
-}
+#endif // MMOVIMIENTOSCAJA_H
