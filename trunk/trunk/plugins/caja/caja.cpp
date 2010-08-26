@@ -95,6 +95,10 @@ bool Caja::inicializar()
  //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
  connect( ActResumenes, SIGNAL( triggered() ), this, SLOT( verResumenCaja() ) );
 
+ ActVerCierresAnteriores = new QAction( this );
+ ActVerCierresAnteriores->setText( "Ver Cierres anteriores" );
+ connect( ActVerCierresAnteriores, SIGNAL( triggered() ), this, SLOT( verResumenesAnteriores() ) );
+
  return true;
 }
 
@@ -138,6 +142,7 @@ void Caja::crearMenu( QMenuBar *m )
      menuCaja->addAction( ActHacerCierre );
      menuCaja->addAction( ActResumenes );
      menuCaja->addSeparator();
+     menuCaja->addAction( ActVerCierresAnteriores );
      menuCaja->addAction( ActCajas );
  }
 }
@@ -181,6 +186,10 @@ void Caja::verCajas()
 }
 
 void Caja::verResumenCaja()
+{}
+
+
+void Caja::verResumenesAnteriores()
 {}
 
 

@@ -38,6 +38,9 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
+protected slots:
+    void cambioCaja( int id_combo );
+
 private:
     Ui::FormCierreCaja *ui;
 };
