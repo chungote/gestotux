@@ -21,6 +21,7 @@
 #include <QSqlDatabase>
 
 #include "vservicios.h"
+#include "formrecargos.h"
 
 bool Servicios::inicializar()
 {
@@ -106,7 +107,7 @@ void Servicios::mostrarServicios()
  */
 void Servicios::mostrarRecargos()
 {
-    //emit agregarVentana( new VRecargos() );
+   emit agregarVentana( new FormRecargos() );
 }
 
 Q_EXPORT_PLUGIN2( servicios, Servicios );

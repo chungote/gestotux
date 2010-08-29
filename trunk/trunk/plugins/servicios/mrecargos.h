@@ -25,7 +25,7 @@
 /**
 Modelo para mantener los datos de los recargos que se aplican
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MRecargos : public QSqlRelationalTableModel
 {
@@ -36,15 +36,16 @@ public:
 
     bool setData(const QModelIndex& index, const QVariant& value, int role);
     QVariant data(const QModelIndex& idx, int role) const;
-    void ponerEnTemporal();
-    void agregarTemporal();
+    void agregarRecargo();
+    void setearServicio( int id_servicio = -1 );
     int columnCount();
 
 public slots:
     void setearPrecioBase( double precio );
 
 private:
-	double _precio_base;
+        double _precio_base;
+        int _servicio_actual;
 };
 
 #endif

@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
       preferencias *p = preferencias::getInstancia();
       p->beginGroup( "Preferencias" );
       p->beginGroup( "General" );
-      QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "l4ustyle2" ).toString() ) );
+      QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "float" ).toString() ) );
       app.setEffectEnabled( Qt::UI_AnimateMenu, true );
       app.setEffectEnabled( Qt::UI_AnimateCombo, true );
       app.setEffectEnabled( Qt::UI_FadeTooltip, true );
@@ -398,5 +398,5 @@ int main(int argc, char *argv[])
         mw->inicializar();
         if( p->value( "maximizado", true ).toBool() )
         { mw->showMaximized(); }
-      return app.exec();
+        return app.exec();
 }

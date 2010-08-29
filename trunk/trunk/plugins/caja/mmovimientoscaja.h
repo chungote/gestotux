@@ -27,7 +27,7 @@ class MMovimientosCaja : public QSqlRelationalTableModel
 {
     Q_OBJECT
 public:
-    explicit MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
+    MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
     bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0 );
 
 };

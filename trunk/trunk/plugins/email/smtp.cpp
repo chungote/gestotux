@@ -37,145 +37,145 @@
 
 void Smtp::exitLoop()
 {
-	qDebug()<<"exit loop";
-	mutex.lock();
-	running=false;
-	// Cierro la conexion de la db clonada
-	queuedMails->database().close();
-	// Elimino el objeto de cola que se conecta con la base de datos
-	delete queuedMails;
-	mutex.unlock();
+        qDebug()<<"exit loop";
+        mutex.lock();
+        running=false;
+        // Cierro la conexion de la db clonada
+        queuedMails->database().close();
+        // Elimino el objeto de cola que se conecta con la base de datos
+        delete queuedMails;
+        mutex.unlock();
 }
 
 void Smtp::run()
 {
-	running=true;
-	qDebug()<<"Inciado servidor de email";
+        running=true;
+        qDebug()<<"Inciado servidor de email";
 
-	smtpsocket = new QTcpSocket();
-	t = new QTextStream( smtpsocket );
-	connect(smtpsocket,SIGNAL(disconnected()),this,SLOT(exitLoop()));
+        smtpsocket = new QTcpSocket();
+        t = new QTextStream( smtpsocket );
+        connect(smtpsocket,SIGNAL(disconnected()),this,SLOT(exitLoop()));
 
-	int waittime = 50 * 1000;
-	readyToSend=false;
+        int waittime = 50 * 1000;
+        readyToSend=false;
 
-	ErrorMSG.clear();
+        ErrorMSG.clear();
 
-	Timeout = waittime;
+        Timeout = waittime;
 
-	//qDebug() << "Config server smtp connect to......  "  << smtphost;
+        //qDebug() << "Config server smtp connect to......  "  << smtphost;
 
-	QCoreApplication::processEvents();
+        QCoreApplication::processEvents();
         //qDebug()<<smtphost<<smtpusername<<smtppass;
 
-	connect( this, SIGNAL(ConnectorSuccess()), this ,SLOT(ReadLiner()));
-	connect( this, SIGNAL(sendNextLine()), this ,SLOT(nextLine()));
+        connect( this, SIGNAL(ConnectorSuccess()), this ,SLOT(ReadLiner()));
+        connect( this, SIGNAL(sendNextLine()), this ,SLOT(nextLine()));
 
-	smtpsocket->connectToHost(smtphost,25);
-	if (smtpsocket->waitForConnected(Timeout)) {
-		qDebug() <<"connected on  " << smtphost;
-		QCoreApplication::processEvents();
-		if (smtpsocket->waitForReadyRead(Timeout)) {
-			qDebug() <<"emit from waitForReadyRead connect go can read";
-			emit ConnectorSuccess();
-			emit status(tr("Connected to host"));
-		}
-	} else {
-		qDebug()<<"error"<<smtpsocket->errorString()<<smtphost;
-		emit ErrorCloseAll();
-	}
-	connect( smtpsocket,SIGNAL(readyRead()),this,SLOT(grabLine()));
+        smtpsocket->connectToHost(smtphost,25);
+        if (smtpsocket->waitForConnected(Timeout)) {
+                qDebug() <<"connected on  " << smtphost;
+                QCoreApplication::processEvents();
+                if (smtpsocket->waitForReadyRead(Timeout)) {
+                        qDebug() <<"emit from waitForReadyRead connect go can read";
+                        emit ConnectorSuccess();
+                        emit status(tr("Connected to host"));
+                }
+        } else {
+                qDebug()<<"error"<<smtpsocket->errorString()<<smtphost;
+                emit ErrorCloseAll();
+        }
+        connect( smtpsocket,SIGNAL(readyRead()),this,SLOT(grabLine()));
 
-	while(running){
-		QCoreApplication::processEvents();
-		if(readyToSend && queuedMails->size()>0){
-			mutex.lock();
-			Mail *m=queuedMails->takeFirst();
-			mutex.unlock();
-			sendMail(m,quitAfterSending);
-		}
-		//qDebug()<<quitAfterSending << sentMail << queuedMails.size();
-		if( quitAfterSending && sentMail && queuedMails->size()<=0 )
-		{
-			disconnectSmtp();
-		}
-		else
-		{
-			// intervalo de verificación de email
-			this->sleep( 2 );
-		}
-	}
-	qDebug()<<"end";
-	quit();
-	delete t;
-	t=0;
-	delete smtpsocket;
-	smtpsocket=0;
+        while(running){
+                QCoreApplication::processEvents();
+                if(readyToSend && queuedMails->size()>0){
+                        mutex.lock();
+                        Mail *m=queuedMails->takeFirst();
+                        mutex.unlock();
+                        sendMail(m,quitAfterSending);
+                }
+                //qDebug()<<quitAfterSending << sentMail << queuedMails.size();
+                if( quitAfterSending && sentMail && queuedMails->size()<=0 )
+                {
+                        disconnectSmtp();
+                }
+                else
+                {
+                        // intervalo de verificación de email
+                        this->sleep( 2 );
+                }
+        }
+        qDebug()<<"end";
+        quit();
+        delete t;
+        t=0;
+        delete smtpsocket;
+        smtpsocket=0;
 }
 
 void Smtp::queueMail(Mail *m, bool qas)
 {
-	//qDebug()<<"qas"<<qas;
-	if(readyToSend && queuedMails->size()==0){
-		mutex.lock();
-		quitAfterSending=qas;
-		mutex.unlock();
-		sendMail(m,qas);
-		return;
-	}
+        //qDebug()<<"qas"<<qas;
+        if(readyToSend && queuedMails->size()==0){
+                mutex.lock();
+                quitAfterSending=qas;
+                mutex.unlock();
+                sendMail(m,qas);
+                return;
+        }
 
-	mutex.lock();
-	quitAfterSending=qas;
-	queuedMails->append(m);
+        mutex.lock();
+        quitAfterSending=qas;
+        queuedMails->append(m);
 //qDebug()<<"appended queued mail";
-	mutex.unlock();
-	if(!running) start();
-	mutex.unlock();
+        mutex.unlock();
+        if(!running) start();
+        mutex.unlock();
 }
 
 void Smtp::sendMail(Mail *m, bool qas)
 {
-	//qDebug()<<readyToSend;//"qas"<<qas;
-	if(!readyToSend){
-		qDebug()<<"not ready: queue mail";
-		queueMail(m,qas);
-		return;
-	}
-	mutex.lock();
-	quitAfterSending=qas;
-	//qDebug()<<qas;
-	readyToSend=false;
-	newMail=true;
+        //qDebug()<<readyToSend;//"qas"<<qas;
+        if(!readyToSend){
+                qDebug()<<"not ready: queue mail";
+                queueMail(m,qas);
+                return;
+        }
+        mutex.lock();
+        quitAfterSending=qas;
+        //qDebug()<<qas;
+        readyToSend=false;
+        newMail=true;
 
-	emit status(tr("Send mail"));
+        emit status(tr("Send mail"));
 
-	from = m->from();
-	if(from.contains("<")){
-		from=from.mid(from.indexOf("<")+1);
-		from=from.left(from.indexOf(">"));
-	}
+        from = m->from();
+        if(from.contains("<")){
+                from=from.mid(from.indexOf("<")+1);
+                from=from.left(from.indexOf(">"));
+        }
 
-	if(m->bcc()!="") bcc=m->bcc().split(QRegExp(",|;"));
-	if(m->cc()!="") bcc<<m->cc().split(QRegExp(",|;"));
+        if(m->bcc()!="") bcc=m->bcc().split(QRegExp(",|;"));
+        if(m->cc()!="") bcc<<m->cc().split(QRegExp(",|;"));
 
-	//m->emptyBcc();
-	rcpt=m->to();
-	message=m->getSendData();
+        //m->emptyBcc();
+        rcpt=m->to();
+        message=m->getSendData();
 
-	read_state=Rcpt;
-	mutex.unlock();
+        read_state=Rcpt;
+        mutex.unlock();
 
-	sendLine(QString("MAIL FROM: %1\r\n").arg(from));
-	if(preserveMails) currentMail=m;
-	else delete m;
+        sendLine(QString("MAIL FROM: %1\r\n").arg(from));
+        if(preserveMails) currentMail=m;
+        else delete m;
 }
 
 void Smtp::disconnectSmtp()
 {
-	//disconnect(this, SIGNAL(ConnectorSuccess()), this ,SLOT(ReadLiner()));
-	//disconnect(this, SIGNAL(sendNextLine()), this ,SLOT(PutsendNextLine()));
-	read_state=Close;
-	nextLine();
+        //disconnect(this, SIGNAL(ConnectorSuccess()), this ,SLOT(ReadLiner()));
+        //disconnect(this, SIGNAL(sendNextLine()), this ,SLOT(PutsendNextLine()));
+        read_state=Close;
+        nextLine();
 }
 
 void Smtp::ReadLiner()
@@ -193,7 +193,7 @@ void Smtp::ReadLiner()
         RemoteServerName = response;
         mailstatus = response.left(3);
         if (mailstatus == "220") {
-        	qDebug()<<"connected with status 220";
+                qDebug()<<"connected with status 220";
                 response="";
                 read_state = Connect;
                 emit sendNextLine();
@@ -206,96 +206,96 @@ void Smtp::ReadLiner()
 Smtp::~Smtp()
 
 {
-	delete smtpsocket;
-	delete t;
+        delete smtpsocket;
+        delete t;
 }
 
 /* LINE SENDER  */
 void Smtp::nextLine()
 {
-	State current = read_state;
-	if( running == false )
-	{
-		disconnectSmtp();
-		return;
-	}
-	//qDebug() <<"### Go and Send line " << read_state;
-	switch(current) {
-	case Connect:
-		qDebug()<<"send HELO";
-		read_state=Response;
-		response="";
-		sendLine("HELO gestotux\r\n");
-	break;
-	case Response:
-		qDebug()<<"send EHLO";
-		read_state=Connected;
-		response="";
-		sendLine("EHLO\r\n");
-	break;
-	case Connected:
-		if (response.size() > 0) {
-		    ErrorMSG.append(response);
-		    qDebug() << "1---- " << response;
-		     read_state=Auth;
-		     response ="";
-		     sendLine("AUTH LOGIN\r\n");
-		} else {
-		     qDebug() << "Connection lost1";
-		     response ="";
-		     emit ErrorCloseAll();
-		}
-	break;
-	case Auth:
-		if (response.size() > 0) {
-			ErrorMSG.append(response);
-			qDebug() << "2---- " << response;
-			read_state=Pass;
-			sendLine(encodeBase64(smtpusername)+"\r\n");   //send username
-		} else {
-			qDebug() << "Connection lost2";
-			emit ErrorCloseAll();
-		}
-		response ="";
-	break;
-	case Pass:
-		if (response.size() > 0) {
-		ErrorMSG.append(response);
-			qDebug() << "3---- " << response;
-			read_state=AuthOk;
-		 	sendLine(encodeBase64(smtppass)+"\r\n"); //send password
-		} else {
-		     qDebug() << "Connection lost3";
-		     emit ErrorCloseAll();
-		}
-		response ="";
-	break;
-	case AuthOk:
-		qDebug() << "4---- " << response;
-		if (response.size() > 0) {
-			ErrorMSG.append(response);
-			if( response.contains( "235", Qt::CaseInsensitive ) ||
-			    response.contains( "successful", Qt::CaseInsensitive)||
-			    response.contains( "ok", Qt::CaseInsensitive) ||
-			    response.contains( "succeeded", Qt::CaseInsensitive ) )
-			{
-				response="";
-				read_state=Noop;
-				emit status(tr("Login successful"));
-				emit sendNextLine();
-			}else if( response.contains( "535", Qt::CaseInsensitive ) ) {
-				qDebug() << "Error de contraseña incorrecta. Fallo la autentificcacion";
-				emit badPassword();
-				emit ErrorCloseAll();
-			} else {
-				qDebug() << "Connection lost4.1";
-				emit ErrorCloseAll();
-			}
-		} else {
-			qDebug() << "Connection lost4.2";
-			emit ErrorCloseAll();
-		}
-		response ="";
+        State current = read_state;
+        if( running == false )
+        {
+                disconnectSmtp();
+                return;
+        }
+        //qDebug() <<"### Go and Send line " << read_state;
+        switch(current) {
+        case Connect:
+                qDebug()<<"send HELO";
+                read_state=Response;
+                response="";
+                sendLine("HELO gestotux\r\n");
+        break;
+        case Response:
+                qDebug()<<"send EHLO";
+                read_state=Connected;
+                response="";
+                sendLine("EHLO\r\n");
+        break;
+        case Connected:
+                if (response.size() > 0) {
+                    ErrorMSG.append(response);
+                    qDebug() << "1---- " << response;
+                     read_state=Auth;
+                     response ="";
+                     sendLine("AUTH LOGIN\r\n");
+                } else {
+                     qDebug() << "Connection lost1";
+                     response ="";
+                     emit ErrorCloseAll();
+                }
+        break;
+        case Auth:
+                if (response.size() > 0) {
+                        ErrorMSG.append(response);
+                        qDebug() << "2---- " << response;
+                        read_state=Pass;
+                        sendLine(encodeBase64(smtpusername)+"\r\n");   //send username
+                } else {
+                        qDebug() << "Connection lost2";
+                        emit ErrorCloseAll();
+                }
+                response ="";
+        break;
+        case Pass:
+                if (response.size() > 0) {
+                ErrorMSG.append(response);
+                        qDebug() << "3---- " << response;
+                        read_state=AuthOk;
+                        sendLine(encodeBase64(smtppass)+"\r\n"); //send password
+                } else {
+                     qDebug() << "Connection lost3";
+                     emit ErrorCloseAll();
+                }
+                response ="";
+        break;
+        case AuthOk:
+                qDebug() << "4---- " << response;
+                if (response.size() > 0) {
+                        ErrorMSG.append(response);
+                        if( response.contains( "235", Qt::CaseInsensitive ) ||
+                            response.contains( "successful", Qt::CaseInsensitive)||
+                            response.contains( "ok", Qt::CaseInsensitive) ||
+                            response.contains( "succeeded", Qt::CaseInsensitive ) )
+                        {
+                                response="";
+                                read_state=Noop;
+                                emit status(tr("Login successful"));
+                                emit sendNextLine();
+                        }else if( response.contains( "535", Qt::CaseInsensitive ) ) {
+                                qDebug() << "Error de contraseña incorrecta. Fallo la autentificcacion";
+                                emit badPassword();
+                                emit ErrorCloseAll();
+                        } else {
+                                qDebug() << "Connection lost4.1";
+                                emit ErrorCloseAll();
+                        }
+                } else {
+                        qDebug() << "Connection lost4.2";
+                        emit ErrorCloseAll();
+                }
+                response ="";
       break;
       case Rcpt:
           //if (!newMail) break;
@@ -307,129 +307,129 @@ void Smtp::nextLine()
                 qDebug() << "Connection lost5";
                 emit ErrorCloseAll();
            }
-	break;
-	case Data:
-		qDebug() << "6---- " << response;
-		if (response.size() > 0){
-			if(bcc.size()>0){
-				read_state=Data;
-				sendLine("RCPT TO: "+bcc.takeFirst()+"\r\n");
-			}else{
-				ErrorMSG.append(response);
-				read_state=Send;
-				sendLine("DATA\r\n");
-			}
-		} else {
-			qDebug() << "Connection lost6";
-			emit ErrorCloseAll();
-		}
-		//response ="";
-	break;
-	case Send:
+        break;
+        case Data:
+                qDebug() << "6---- " << response;
+                if (response.size() > 0){
+                        if(bcc.size()>0){
+                                read_state=Data;
+                                sendLine("RCPT TO: "+bcc.takeFirst()+"\r\n");
+                        }else{
+                                ErrorMSG.append(response);
+                                read_state=Send;
+                                sendLine("DATA\r\n");
+                        }
+                } else {
+                        qDebug() << "Connection lost6";
+                        emit ErrorCloseAll();
+                }
+                //response ="";
+        break;
+        case Send:
         qDebug() << "7---- " << response;
-	       if (!response.contains("not", Qt::CaseInsensitive)) {
-	        ErrorMSG.append(response);
-	        response ="";
-	        read_state = Sent;
-	       	sendLine(message+"\r\n.\r\n");
-	       } else {
-	          // qDebug() << "Connection lost7";
-	           emit ErrorCloseAll();
-	       }
-	break;
-	case Sent:
-		qDebug() << "8---- " << response;
-		if(response.left(3)=="354"){
+               if (!response.contains("not", Qt::CaseInsensitive)) {
+                ErrorMSG.append(response);
+                response ="";
+                read_state = Sent;
+                sendLine(message+"\r\n.\r\n");
+               } else {
+                  // qDebug() << "Connection lost7";
+                   emit ErrorCloseAll();
+               }
+        break;
+        case Sent:
+                qDebug() << "8---- " << response;
+                if(response.left(3)=="354"){
 
-		}else{
-			if (response.size() && (response.contains("ok", Qt::CaseInsensitive)||response.contains("accepted", Qt::CaseInsensitive))) {
-				ErrorMSG.append(response);
-				read_state = Noop;
-				qDebug() << "Mail to " << rcpt << " successfully sent";
-				response="";
-				if(preserveMails) emit mailSent(currentMail);
-				emit status(tr("Mail successfully sent"));
-				mutex.lock();
-				mailsSent++;
-				sentMail=true;
-				mutex.unlock();
-				sendLine("NOOP\r\n");
-			} else {
-				qDebug() << "Connection lost8";
-				emit ErrorCloseAll();
-			}
-			response ="";
-		}
-	break;
-	case Noop:
-		if(response=="") sendLine("NOOP\r\n");
-		else{
-			qDebug() << "9---- "<<response;
-			//QCoreApplication::processEvents();
+                }else{
+                        if (response.size() && (response.contains("ok", Qt::CaseInsensitive)||response.contains("accepted", Qt::CaseInsensitive))) {
+                                ErrorMSG.append(response);
+                                read_state = Noop;
+                                qDebug() << "Mail to " << rcpt << " successfully sent";
+                                response="";
+                                if(preserveMails) emit mailSent(currentMail);
+                                emit status(tr("Mail successfully sent"));
+                                mutex.lock();
+                                mailsSent++;
+                                sentMail=true;
+                                mutex.unlock();
+                                sendLine("NOOP\r\n");
+                        } else {
+                                qDebug() << "Connection lost8";
+                                emit ErrorCloseAll();
+                        }
+                        response ="";
+                }
+        break;
+        case Noop:
+                if(response=="") sendLine("NOOP\r\n");
+                else{
+                        qDebug() << "9---- "<<response;
+                        //QCoreApplication::processEvents();
 //qDebug()<<"queuedMails.size"<<queuedMails.size();
 //qDebug()<<mailsSent<<queuedMails.size()<<quitAfterSending;
-			if(queuedMails->size()>0){
-				mutex.lock();
-				readyToSend=true;
-				Mail *m=queuedMails->takeFirst();
-				mutex.unlock();
-				sendMail(m,quitAfterSending);
-			} else {
-				mutex.lock();
-				readyToSend=true;
-				mutex.unlock();
-				emit ReadyToSend();
-			}
-			//qDebug() << "Signal ReadyToSend emitted";
-			response ="";
-		}
-	break;
-	case Close:
-		read_state=Quit;
-		emit status(tr("Disconnect Smtp"));
-		sendLine("QUIT\r\n");
-	break;
-	case Quit:
-		//qDebug() << "10---- " << response;
-		ErrorMSG.append(response);
-		smtpsocket->disconnectFromHost();
-		qDebug()<<"disconnectFromHost";
-		emit status(tr("Disconnected"));
-		emit SuccessQuit();
-		response ="";
-		if(quitAfterSending) exitLoop();
-	break;
-	default:
-		//qDebug() << "ERROR!  last loop or false line emit...";
-		emit ErrorCloseAll();
-	break;
-	}
+                        if(queuedMails->size()>0){
+                                mutex.lock();
+                                readyToSend=true;
+                                Mail *m=queuedMails->takeFirst();
+                                mutex.unlock();
+                                sendMail(m,quitAfterSending);
+                        } else {
+                                mutex.lock();
+                                readyToSend=true;
+                                mutex.unlock();
+                                emit ReadyToSend();
+                        }
+                        //qDebug() << "Signal ReadyToSend emitted";
+                        response ="";
+                }
+        break;
+        case Close:
+                read_state=Quit;
+                emit status(tr("Disconnect Smtp"));
+                sendLine("QUIT\r\n");
+        break;
+        case Quit:
+                //qDebug() << "10---- " << response;
+                ErrorMSG.append(response);
+                smtpsocket->disconnectFromHost();
+                qDebug()<<"disconnectFromHost";
+                emit status(tr("Disconnected"));
+                emit SuccessQuit();
+                response ="";
+                if(quitAfterSending) exitLoop();
+        break;
+        default:
+                //qDebug() << "ERROR!  last loop or false line emit...";
+                emit ErrorCloseAll();
+        break;
+        }
 }
 
 /* SENDER AND RECIVER  */
 void Smtp::sendLine(QString senddata)
 {
-	*t << senddata.toAscii();
-	t->flush();
+        *t << senddata.toAscii();
+        t->flush();
 //qDebug()<<"line sent";
-	return;
+        return;
 }
 
 void Smtp::grabLine()
 {
 //qDebug()<<"grabLine";
-	int loops = 0;
-	QString incommingData = "";
-	while (!t->atEnd()) {
-		QCoreApplication::processEvents();
-		loops++;
-		QString opera = t->readLine();
-		if(loops==1)incommingData.append(opera);
-		else incommingData.append("\n"+opera);
-		//qDebug() << loops << "|#" << opera << "#|";
-		response=incommingData;
-	}
-	emit sendNextLine();
+        int loops = 0;
+        QString incommingData = "";
+        while (!t->atEnd()) {
+                QCoreApplication::processEvents();
+                loops++;
+                QString opera = t->readLine();
+                if(loops==1)incommingData.append(opera);
+                else incommingData.append("\n"+opera);
+                //qDebug() << loops << "|#" << opera << "#|";
+                response=incommingData;
+        }
+        emit sendNextLine();
 }
 
 /*
@@ -463,18 +463,18 @@ QString Smtp::decodeBase64( QString xml )
 
 QString Smtp::TimeStampMail()
 {
-	/* Date: Mon, 08 May 2006 17:57:52 +0200 */
-	/* Date: Sun, 28 May 2006 06:32:25 -0420 */
-	QLocale english(QLocale::English,QLocale::UnitedKingdom);
+        /* Date: Mon, 08 May 2006 17:57:52 +0200 */
+        /* Date: Sun, 28 May 2006 06:32:25 -0420 */
+        QLocale english(QLocale::English,QLocale::UnitedKingdom);
 
-	QDateTime dt = QDateTime::currentDateTime();
-	QDate timecute = QDate::currentDate();
-	QString day_en = english.dayName(timecute.dayOfWeek(),QLocale::ShortFormat);
-	QString month_en = english.monthName(timecute.month(),QLocale::ShortFormat);
-	QString last = dt.toString("yyyy hh:mm:ss");
-	QString maildate = QString( "Date: %1, %2 %3 %4 +0200" ).arg( day_en , QString::number(timecute.day()), month_en ,   last );
-	qDebug() << maildate;
-	return maildate;
+        QDateTime dt = QDateTime::currentDateTime();
+        QDate timecute = QDate::currentDate();
+        QString day_en = english.dayName(timecute.dayOfWeek(),QLocale::ShortFormat);
+        QString month_en = english.monthName(timecute.month(),QLocale::ShortFormat);
+        QString last = dt.toString("yyyy hh:mm:ss");
+        QString maildate = QString( "Date: %1, %2 %3 %4 +0200" ).arg( day_en , QString::number(timecute.day()), month_en ,   last );
+        qDebug() << maildate;
+        return maildate;
 }
 
 
@@ -487,6 +487,7 @@ void Smtp::terminarEjecucion()
  {
    this->exitLoop();
  }
+ // Cierro la base de datos clonada
 }
 
 

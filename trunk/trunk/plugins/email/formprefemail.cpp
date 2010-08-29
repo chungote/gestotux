@@ -19,39 +19,41 @@
  ***************************************************************************/
 #include "formprefemail.h"
 
+#include <QSqlError>
+
 FormPrefEmail::FormPrefEmail(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPrefEmailBase()
 {
-	setupUi(this);
-	servidores = new EServidorEmail( LVServidores );
+        setupUi(this);
+        servidores = new EServidorEmail( LVServidores );
 
-	LVServidores->setModel( servidores );
-	LVServidores->setModelColumn( servidores->fieldIndex( "nombre" ) );
+        LVServidores->setModel( servidores );
+        LVServidores->setModelColumn( servidores->fieldIndex( "nombre" ) );
 
-	mapeador = new QDataWidgetMapper( this );
-	mapeador->setModel( servidores );
-	mapeador->addMapping( LENombre, servidores->fieldIndex( "nombre" ) );
-	mapeador->addMapping( LEDireccion, servidores->fieldIndex( "direccion" ) );
-	mapeador->addMapping( SBPuerto, servidores->fieldIndex( "puerto" ) );
-	mapeador->addMapping( LEUsuario, servidores->fieldIndex( "usuario" ) );
-	mapeador->addMapping( LEPass, servidores->fieldIndex( "pass" ) );
-	mapeador->addMapping( CkBPredeterminado, servidores->fieldIndex( "predeterminado" ) );
-	mapeador->addMapping( LEFrom, servidores->fieldIndex( "de" ) );
-	mapeador->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
+        mapeador = new QDataWidgetMapper( this );
+        mapeador->setModel( servidores );
+        mapeador->addMapping( LENombre, servidores->fieldIndex( "nombre" ) );
+        mapeador->addMapping( LEDireccion, servidores->fieldIndex( "direccion" ) );
+        mapeador->addMapping( SBPuerto, servidores->fieldIndex( "puerto" ) );
+        mapeador->addMapping( LEUsuario, servidores->fieldIndex( "usuario" ) );
+        mapeador->addMapping( LEPass, servidores->fieldIndex( "pass" ) );
+        mapeador->addMapping( CkBPredeterminado, servidores->fieldIndex( "predeterminado" ) );
+        mapeador->addMapping( LEFrom, servidores->fieldIndex( "de" ) );
+        mapeador->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
 
         connect(LVServidores->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
              mapeador, SLOT(setCurrentModelIndex(QModelIndex)));
 
-	mapeador->toFirst();
+        mapeador->toFirst();
 
-	connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregar() ) );
-	connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminar() ) );
+        connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregar() ) );
+        connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminar() ) );
 
-	PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
-	PBEliminar->setIcon( QIcon( ":/imagenes/stop.png" ) );
+        PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+        PBEliminar->setIcon( QIcon( ":/imagenes/stop.png" ) );
 
-	this->setWindowTitle( "Servidor Em@il" );
-	this->setWindowIcon( QIcon( ":/imagenes/servidor_email.png" ) );
+        this->setWindowTitle( "Servidor Em@il" );
+        this->setWindowIcon( QIcon( ":/imagenes/servidor_email.png" ) );
 }
 
 FormPrefEmail::~FormPrefEmail()
@@ -66,7 +68,9 @@ void FormPrefEmail::guardar()
 {
  if( !mapeador->submit() )
  {
-  qWarning( "Error al hacer submit" );
+     if( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().isValid() ) {
+        qWarning( QString( "Error de submit:%1" ).arg( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().text() ).toLocal8Bit() );
+     }
  }
 }
 
@@ -78,7 +82,9 @@ void FormPrefEmail::aplicar()
 {
  if( !mapeador->submit() )
  {
-  qWarning( "Error al hacer submit" );
+     if( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().isValid() ) {
+        qWarning( QString( "Error de submit:%1" ).arg( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().text() ).toLocal8Bit() );
+     }
  }
 }
 
@@ -125,15 +131,15 @@ void FormPrefEmail::eliminar()
                    "Si", "No" );
  if ( ret == 0 )
  {
-	QModelIndexList indices = LVServidores->selectionModel()->selectedIndexes();
-	QModelIndex indice;
-	foreach( indice, indices )
-	{
-		if( indice.isValid() )
-		{
-			servidores->removeRow( indice.row() );
-		}
-	}
+        QModelIndexList indices = LVServidores->selectionModel()->selectedIndexes();
+        QModelIndex indice;
+        foreach( indice, indices )
+        {
+                if( indice.isValid() )
+                {
+                        servidores->removeRow( indice.row() );
+                }
+        }
  }
  return;
 }

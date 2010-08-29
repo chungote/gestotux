@@ -29,8 +29,8 @@
 VGastos::VGastos( QWidget* parent )
 : EVLista( parent, false )
 {
- setObjectName("vistaGastos");
- setWindowTitle(  "Visor de Gastos" );
+ setObjectName( "vistaGastos" );
+ setWindowTitle( "Visor de Gastos" );
  setWindowIcon( QIcon(":/imagenes/gasto.jpg" ) );
 
  // Redirijo la opcion de agregar al plugin
@@ -65,13 +65,12 @@ VGastos::~VGastos()
 
 
 void VGastos::antes_de_insertar(int row, QSqlRecord& record)
-{
- return;
-}
+{ return; }
 
 #include "formagregargasto.h"
 /*!
     \fn VGastos::agregarGasto()
+    Muestra la ventana de agregar gastos
  */
 void VGastos::agregarGasto()
 { emit agregarVentana( new FormAgregarGasto() ); }

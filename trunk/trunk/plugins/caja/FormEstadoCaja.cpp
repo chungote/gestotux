@@ -21,11 +21,19 @@
 #include "FormEstadoCaja.h"
 #include "ui_FormEstadoCajaBase.h"
 
+#include "mcajas.h"
+
 FormEstadoCaja::FormEstadoCaja(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::FormEstadoCaja)
 {
     ui->setupUi(this);
+    this->setWindowTitle( "Estado de caja" );
+
+    ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
+    ui->CBCaja->setModelColumn( 1 );
+
+    connect( ui->CBCaja, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCaja( int ) ) );
 }
 
 FormEstadoCaja::~FormEstadoCaja()

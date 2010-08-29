@@ -1,7 +1,8 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin
+plugin \
+help
 
 TARGET = caja
 
@@ -21,11 +22,9 @@ QT += sql
 OTHER_FILES += caja.QSQLITE.sql \
                caja.QMYSQL.sql
 
-RESOURCES += \
-    caja.qrc
+RESOURCES += caja.qrc
 
-HEADERS += \
-    caja.h \
+HEADERS += caja.h \
     mcajas.h \
     vcajas.h \
     FormAgregarCaja.h \
@@ -33,8 +32,7 @@ HEADERS += \
     FormCierreCaja.h \
     mmovimientoscaja.h
 
-SOURCES += \
-    caja.cpp \
+SOURCES += caja.cpp \
     mcajas.cpp \
     vcajas.cpp \
     FormAgregarCaja.cpp \
@@ -42,7 +40,6 @@ SOURCES += \
     FormCierreCaja.cpp \
     mmovimientoscaja.cpp
 
-FORMS += \
-    FormAgregarCajaBase.ui \
+FORMS += FormAgregarCajaBase.ui \
     FormEstadoCajaBase.ui \
     FormCierreCajaBase.ui

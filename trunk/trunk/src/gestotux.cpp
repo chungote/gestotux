@@ -52,7 +52,7 @@ QToolBar *gestotux::_barraAcciones = 0;
 
 gestotux::gestotux()
 {
-// Eliminarse al cerarse
+ // Eliminarse al cerarse
  this->setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "VentanaPrincipal" );
 }
@@ -186,7 +186,9 @@ void gestotux::createStatusBar()
 
 gestotux::~gestotux()
 {
-
+    // Cierro la base de datos
+    QSqlDatabase::database().close();
+    QSqlDatabase::removeDatabase( QSqlDatabase::database().connectionName() );
 }
 
 /*!
@@ -197,16 +199,8 @@ void gestotux::salir()
 {
  // Envio señal de que salgo para los plugins que estan escuchando
  emit saliendoGestotux();
- // Guardo el estado de la ventana principal
- preferencias *p = preferencias::getInstancia();
- // sincronizo las preferencias para que queden guardadas efectivamente
- p->sync();
- // Cierro la base de datos
- QSqlDatabase::database().close();
- QSqlDatabase::removeDatabase( QSqlDatabase::database().connectionName() );
- // Cierro el formulario... deberia de ser el ultimo...
- close();
- QApplication::quit();
+ // Guardo el estado de la ventana principal y sincronizo las preferencias para que queden guardas efectivamente
+ preferencias::getInstancia()->sync();
 }
 
 FormularioCentral *gestotux::formCen()

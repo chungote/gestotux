@@ -21,7 +21,10 @@
 #include "mcajas.h"
 
 #include <QSqlRecord>
+#include <QSqlQuery>
 #include <QSqlError>
+
+#include "mmovimientoscaja.h"
 
 MCajas::MCajas(QObject *parent ) :
     QSqlTableModel(parent)
@@ -46,10 +49,16 @@ bool MCajas::agregarCaja( QString nombre, QDate fecha_alta, double saldo_inicial
   rec.setValue( "nombre", nombre );
   rec.setValue( "fecha_alta", fecha_alta );
   rec.setValue( "saldo", saldo_inicial );
-  // Agregar el registro de transaccion inicial en la tabla de movimientos
-
   if( insertRecord( -1, rec ) ) {
-      return true;
+      // Agregar el registro de transaccion inicial en la tabla de movimientos
+      MMovimientosCaja *mmov = new MMovimientosCaja( this );
+      if( saldo_inicial > 0.0 ) {
+          if( mmov->agregarMovimiento( query().lastInsertId().toInt(), "Apertura de Caja - Saldo Inicial", QString(), saldo_inicial ) )
+          {  return true; } else { return false; }
+      } else {
+        if( mmov->agregarMovimiento( query().lastInsertId().toInt(), "Apertura de Caja - Saldo Inicial", QString(), 0.0, saldo_inicial ) )
+        {  return true; } else { return false; }
+      }
   } else {
       qWarning( QString( "Error al insertar caja nueva: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
       return false;
