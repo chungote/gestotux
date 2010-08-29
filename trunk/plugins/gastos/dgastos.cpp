@@ -34,19 +34,19 @@ QWidget* DGastos::createEditor( QWidget* parent, const QStyleOptionViewItem& opt
 {
  switch( index.column() )
  {
-	case 1:
-	{
-		QComboBox *combo = qobject_cast<QComboBox *>( QSqlRelationalDelegate::createEditor( parent, option, index));
- 		QSqlTableModel *modelo = qobject_cast<QSqlTableModel *>(combo->model());
- 		modelo->setFilter( "tipo = '2'" );
-		combo->setModel( modelo );
-		return combo;
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalDelegate::createEditor(parent, option, index);
-		break;
-	}
+        case 1:
+        {
+                QComboBox *combo = qobject_cast<QComboBox *>( QSqlRelationalDelegate::createEditor( parent, option, index));
+                QSqlTableModel *modelo = qobject_cast<QSqlTableModel *>(combo->model());
+                modelo->setFilter( "tipo = '2'" );
+                combo->setModel( modelo );
+                return combo;
+                break;
+        }
+        default:
+        {
+                return QSqlRelationalDelegate::createEditor(parent, option, index);
+                break;
+        }
  }
 }

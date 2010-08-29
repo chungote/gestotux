@@ -25,18 +25,6 @@ ventas.h \
 
 TRANSLATIONS = ventas.ts
 
-
-win32 {
-    MOC_DIR = win/moc
-    UI_DIR = win/ui
-    OBJECTS_DIR = win/objeto
-}
-
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
 QT += sql
 
 TARGET = ventas

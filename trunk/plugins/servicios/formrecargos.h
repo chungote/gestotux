@@ -23,6 +23,9 @@
 
 #include "eventana.h"
 #include "ui_FormRecargoBase.h"
+class QAction;
+class MServicios;
+class MRecargos;
 
 class FormRecargos : public EVentana, private Ui::FormRecargoBase
 {
@@ -39,6 +42,13 @@ protected slots:
     void agregarRecargo();
     void eliminarRecargo();
     void guardarTodo();
+
+private:
+    QAction *ActAgregar;
+    QAction *ActEliminar;
+
+    MRecargos *mrecargos;
+    MServicios *mservicios;
 };
 
 #endif // FORMRECARGOS_H

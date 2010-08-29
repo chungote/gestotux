@@ -84,13 +84,13 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
 
 
 /*!
-    \fn MRecargos::agregarTemporal()
+    \fn MRecargos::agregarRecargo()
  */
-void MRecargos::agregarTemporal()
+void MRecargos::agregarRecargo()
 {
  QSqlRecord registro = this->record();
  registro.remove( 0 );
- registro.setValue( "id_servicio", -2 );
+ registro.setValue( "id_servicio", _servicio_actual );
  registro.setGenerated( 2, true );
  registro.setGenerated( 3, true );
  registro.setGenerated( 4, true );
@@ -99,14 +99,14 @@ void MRecargos::agregarTemporal()
 
 
 /*!
-    \fn MRecargos::ponerEnTemporal()
+    \fn MRecargos::setearServicio( int id_servicio )
  */
-void MRecargos::ponerEnTemporal()
+void MRecargos::setearServicio( int id_servicio )
 {
-  if( this->filter().isEmpty() )
-  {
-   this->setFilter( "id_servicio = -2" );
-  }
+    if( id_servicio > 0 ) {
+        _servicio_actual = id_servicio;
+        this->setFilter( QString( "id_servicio = %1" ).arg( id_servicio ) );
+    }
 }
 
 

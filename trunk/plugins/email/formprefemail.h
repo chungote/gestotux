@@ -27,6 +27,13 @@
 #include "eservidoremail.h"
 #include <QDataWidgetMapper>
 
+
+/*!
+ * @brief Formulario de preferencias del plugin de email
+ *
+ * Formulario de preferencias del plugin de email que muestra la lista de servidores, permite ABM y setear el servidor predefinido.
+ * @author Esteban Zeller <tranfuga25s@gmail.com>
+ */
 class FormPrefEmail : public EVentana, public FormPrefHijo, private Ui::FormPrefEmailBase
 {
   Q_OBJECT
@@ -42,8 +49,8 @@ public slots:
     void cargar();
 
 private:
-	EServidorEmail *servidores;
-	QDataWidgetMapper *mapeador;
+        EServidorEmail *servidores;
+        QDataWidgetMapper *mapeador;
 
 private slots:
     void agregar();

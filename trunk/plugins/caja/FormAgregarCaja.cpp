@@ -28,6 +28,9 @@ FormAgregarCaja::FormAgregarCaja(QWidget *parent) :
     ui(new Ui::FormAgregarCaja)
 {
     ui->setupUi(this);
+    this->setWindowTitle( "Agregar nueva caja" );
+
+    ui->DEFechaAlta->setDate( QDate::currentDate() );
 }
 
 FormAgregarCaja::~FormAgregarCaja()
@@ -45,4 +48,20 @@ void FormAgregarCaja::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+
+
+/*!
+ * @fn FormAgregarCaja::accept()
+ * Funcion llamada al apretar el boton de aceptar
+ */
+void FormAgregarCaja::accept()
+{
+    if( ui->LENombre->text().isEmpty() ) {
+        /// @todo Patri: Agregar cartelito de que tiene que poner un nombre
+    }
+    // Guardo los datos
+    /// @todo Patri: Implementar funcion de agregar caja
+    this->close();
 }

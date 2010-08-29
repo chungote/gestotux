@@ -26,7 +26,7 @@
 #include "eventana.h"
 
 /*!
- *	\brief Clase que maneja las preferencias de estilo e inicializacion
+ *	@brief Clase que maneja las preferencias de estilo e inicializacion
  *
  *	Clase que muestra las opciones de tipo de estilo, maximizacion y splash screen del programa
  *

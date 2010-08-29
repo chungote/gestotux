@@ -42,6 +42,106 @@
     <class kind="class">Caja</class>
   </compound>
   <compound kind="file">
+    <name>FormAgregarCaja.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>FormAgregarCaja_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>FormAgregarCaja.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>FormAgregarCaja_8h</filename>
+    <class kind="class">FormAgregarCaja</class>
+    <namespace>Ui</namespace>
+  </compound>
+  <compound kind="file">
+    <name>FormCierreCaja.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>FormCierreCaja_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>FormCierreCaja.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>FormCierreCaja_8h</filename>
+    <class kind="class">FormCierreCaja</class>
+    <namespace>Ui</namespace>
+  </compound>
+  <compound kind="file">
+    <name>FormEstadoCaja.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>FormEstadoCaja_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>FormEstadoCaja.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>FormEstadoCaja_8h</filename>
+    <class kind="class">FormEstadoCaja</class>
+    <namespace>Ui</namespace>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>plugins_2caja_2main_8cpp</filename>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>plugins_2caja_2main_8cpp.html</anchorfile>
+      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
+    <filename>plugins_2servicios_2main_8cpp</filename>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>plugins_2servicios_2main_8cpp.html</anchorfile>
+      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/</path>
+    <filename>src_2main_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>NOMBRE_CONEXION</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>ab2b208d537697bd8890a4ac690f801e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hacerTablas</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>af40668b6a0614b1d76eb472cf2c9ecea</anchor>
+      <arglist>(QString nombrePlug)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>myMessageOutput</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>aebadb8b787d33ef1f3033d8c64d9acbd</anchor>
+      <arglist>(QtMsgType type, const char *msg)</arglist>
+    </member>
+    <member kind="variable">
+      <type>FILE *</type>
+      <name>debug</name>
+      <anchorfile>src_2main_8cpp.html</anchorfile>
+      <anchor>a7f0158669de514eb00dcf8d3a7408285</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>mcajas.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
     <filename>mcajas_8cpp</filename>
@@ -51,6 +151,17 @@
     <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
     <filename>mcajas_8h</filename>
     <class kind="class">MCajas</class>
+  </compound>
+  <compound kind="file">
+    <name>mmovimientoscaja.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>mmovimientoscaja_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>mmovimientoscaja.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
+    <filename>mmovimientoscaja_8h</filename>
+    <class kind="class">MMovimientosCaja</class>
   </compound>
   <compound kind="file">
     <name>vcajas.cpp</name>
@@ -1382,58 +1493,6 @@
     <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
     <filename>formservicio_8h</filename>
     <class kind="class">FormServicio</class>
-  </compound>
-  <compound kind="file">
-    <name>main.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
-    <filename>plugins_2servicios_2main_8cpp</filename>
-    <member kind="function">
-      <type>int</type>
-      <name>main</name>
-      <anchorfile>plugins_2servicios_2main_8cpp.html</anchorfile>
-      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
-      <arglist>(int argc, char *argv[])</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>main.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/src/</path>
-    <filename>src_2main_8cpp</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>NOMBRE_CONEXION</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
-      <anchor>ab2b208d537697bd8890a4ac690f801e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>hacerTablas</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
-      <anchor>af40668b6a0614b1d76eb472cf2c9ecea</anchor>
-      <arglist>(QString nombrePlug)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>main</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
-      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
-      <arglist>(int argc, char *argv[])</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>myMessageOutput</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
-      <anchor>aebadb8b787d33ef1f3033d8c64d9acbd</anchor>
-      <arglist>(QtMsgType type, const char *msg)</arglist>
-    </member>
-    <member kind="variable">
-      <type>FILE *</type>
-      <name>debug</name>
-      <anchorfile>src_2main_8cpp.html</anchorfile>
-      <anchor>a7f0158669de514eb00dcf8d3a7408285</anchor>
-      <arglist></arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>mcobroservicio.cpp</name>
@@ -3288,6 +3347,13 @@
       <anchor>aef6778be26f46a1de101d1a5748d94e0</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verResumenesAnteriores</name>
+      <anchorfile>classCaja.html</anchorfile>
+      <anchor>a6c0f742db20ea22e9ef469e86955a152</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActAgregarMovimiento</name>
@@ -3314,6 +3380,13 @@
       <name>ActResumenes</name>
       <anchorfile>classCaja.html</anchorfile>
       <anchor>a1400a64ec2aaf50aba28d8c3befc2d43</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActVerCierresAnteriores</name>
+      <anchorfile>classCaja.html</anchorfile>
+      <anchor>a91f7546c29eb3a37fcea330e3ebf80eb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -7102,6 +7175,45 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormAgregarCaja</name>
+    <filename>classFormAgregarCaja.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FormAgregarCaja</name>
+      <anchorfile>classFormAgregarCaja.html</anchorfile>
+      <anchor>a03851e0ea75f786bce2c02a5ddfa550a</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormAgregarCaja</name>
+      <anchorfile>classFormAgregarCaja.html</anchorfile>
+      <anchor>ac04dabd02bf91ec0119f8f614e649242</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>changeEvent</name>
+      <anchorfile>classFormAgregarCaja.html</anchorfile>
+      <anchor>a520b7b82f841d3a2cfb3f033ca94a286</anchor>
+      <arglist>(QEvent *e)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>accept</name>
+      <anchorfile>classFormAgregarCaja.html</anchorfile>
+      <anchor>aeb8838e996f6f903708d378811cdcb27</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Ui::FormAgregarCaja *</type>
+      <name>ui</name>
+      <anchorfile>classFormAgregarCaja.html</anchorfile>
+      <anchor>acad92e579b677a4c97a698e926bcf2bf</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormAgregarCompra</name>
     <filename>classFormAgregarCompra.html</filename>
     <base>EVentana</base>
@@ -7865,6 +7977,45 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormCierreCaja</name>
+    <filename>classFormCierreCaja.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FormCierreCaja</name>
+      <anchorfile>classFormCierreCaja.html</anchorfile>
+      <anchor>a63142ea06819eedc0a3191c374bd53bf</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormCierreCaja</name>
+      <anchorfile>classFormCierreCaja.html</anchorfile>
+      <anchor>a3094b7d75b6d53aac17fb0eea87cfe86</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>cambioCaja</name>
+      <anchorfile>classFormCierreCaja.html</anchorfile>
+      <anchor>af38c27ac023966ba0e8438caa409f2c9</anchor>
+      <arglist>(int id_combo)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>changeEvent</name>
+      <anchorfile>classFormCierreCaja.html</anchorfile>
+      <anchor>a6d29470f71d485cb3626838b7dfbf28a</anchor>
+      <arglist>(QEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Ui::FormCierreCaja *</type>
+      <name>ui</name>
+      <anchorfile>classFormCierreCaja.html</anchorfile>
+      <anchor>a5ea5e1d12806f5d78e86cd178ab3a701</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormCliente</name>
     <filename>classFormCliente.html</filename>
     <base>EVentana</base>
@@ -7972,6 +8123,38 @@
       <name>modelo</name>
       <anchorfile>classFormCliente.html</anchorfile>
       <anchor>a7180e22c436a6e6a84958697b1dd3920</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormEstadoCaja</name>
+    <filename>classFormEstadoCaja.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FormEstadoCaja</name>
+      <anchorfile>classFormEstadoCaja.html</anchorfile>
+      <anchor>a91ca142fa039b8fa944916e26e030aa0</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormEstadoCaja</name>
+      <anchorfile>classFormEstadoCaja.html</anchorfile>
+      <anchor>a6b19c8ef34d6c5854478f099ffe7a64c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>changeEvent</name>
+      <anchorfile>classFormEstadoCaja.html</anchorfile>
+      <anchor>a2b9b2be606dc64f2375fab3e722fa4ad</anchor>
+      <arglist>(QEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Ui::FormEstadoCaja *</type>
+      <name>ui</name>
+      <anchorfile>classFormEstadoCaja.html</anchorfile>
+      <anchor>a254358ac465ffca355e6ebb0ff5696a4</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -9047,6 +9230,34 @@
       <name>padre</name>
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActAgregar</name>
+      <anchorfile>classFormRecargos.html</anchorfile>
+      <anchor>ae8f533655dce8708d5822aa39ef3a3d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActEliminar</name>
+      <anchorfile>classFormRecargos.html</anchorfile>
+      <anchor>ae84ae9cf7f7849e1793ec1281b88f9dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MRecargos *</type>
+      <name>mrecargos</name>
+      <anchorfile>classFormRecargos.html</anchorfile>
+      <anchor>a96698b5f8309261aad848109d6c704fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MServicios *</type>
+      <name>mservicios</name>
+      <anchorfile>classFormRecargos.html</anchorfile>
+      <anchor>a6b0a1d119641436ad25c90a513210f9e</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -11975,6 +12186,13 @@
       <anchor>a942a529e18f17bbf8958f7a930d89135</anchor>
       <arglist>(QObject *parent=0)</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>actualizarSaldo</name>
+      <anchorfile>classMCajas.html</anchorfile>
+      <anchor>a12ea4803c7b588338c704ef0ef02f1cb</anchor>
+      <arglist>(const int id_caja, const double cantidad)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>MCategorias</name>
@@ -12444,6 +12662,24 @@
       <anchorfile>classMMascota.html</anchorfile>
       <anchor>a11e44557b08f6d468daf8d389f4310d5</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MMovimientosCaja</name>
+    <filename>classMMovimientosCaja.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>agregarMovimiento</name>
+      <anchorfile>classMMovimientosCaja.html</anchorfile>
+      <anchor>a0a907985bde80b9bd5ee955398cc7175</anchor>
+      <arglist>(int id_caja, QString razon, QString responsable=QString(), double ingreso=0.0, double egreso=0.0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MMovimientosCaja</name>
+      <anchorfile>classMMovimientosCaja.html</anchorfile>
+      <anchor>ae8c50b4322e4ed30723346e4beb51c7b</anchor>
+      <arglist>(QObject *parent=0, bool relaciones=false)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -12931,9 +13167,9 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>agregarTemporal</name>
+      <name>agregarRecargo</name>
       <anchorfile>classMRecargos.html</anchorfile>
-      <anchor>a47916b6b73b5e3db69017d56494730d6</anchor>
+      <anchor>a8372b2c927170ea608b687128a4a73f5</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -12958,18 +13194,18 @@
       <arglist>(QObject *parent=0)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>ponerEnTemporal</name>
-      <anchorfile>classMRecargos.html</anchorfile>
-      <anchor>a5e5954ebb126b0ccb00dff495781b8a8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>setData</name>
       <anchorfile>classMRecargos.html</anchorfile>
       <anchor>afd654f25fa7ff7d1777fc6b5b914b945</anchor>
       <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setearServicio</name>
+      <anchorfile>classMRecargos.html</anchorfile>
+      <anchor>aa752c5e3f308b69fc4a73f04353607dc</anchor>
+      <arglist>(int id_servicio=-1)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -12983,6 +13219,13 @@
       <name>_precio_base</name>
       <anchorfile>classMRecargos.html</anchorfile>
       <anchor>ac153439cf4333d1729c1438862146e36</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>_servicio_actual</name>
+      <anchorfile>classMRecargos.html</anchorfile>
+      <anchor>acf8cde9760137433a6480d0366912d7a</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -20982,12 +21225,12 @@
       <anchor>afe3df10a1bff0632a7b79e81754bf7f8</anchor>
       <arglist></arglist>
     </member>
-    <member kind="slot" protection="protected" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="slot" protection="protected">
+      <type>void</type>
       <name>agregar</name>
-      <anchorfile>classEVLista.html</anchorfile>
-      <anchor>aafb6447023c377dba9d5aabfbccf57d4</anchor>
-      <arglist>(bool autoeliminarid=true)</arglist>
+      <anchorfile>classVCajas.html</anchorfile>
+      <anchor>af0a959bc0f809ef7a48dc64924ed0e6a</anchor>
+      <arglist>(bool autoeliminarid)</arglist>
     </member>
     <member kind="slot" protection="protected" virtualness="virtual">
       <type>virtual void</type>
@@ -24887,8 +25130,17 @@
     <filename>dir_cca8692013ef54ef72e40402eaac83fe.html</filename>
     <file>caja.cpp</file>
     <file>caja.h</file>
+    <file>FormAgregarCaja.cpp</file>
+    <file>FormAgregarCaja.h</file>
+    <file>FormCierreCaja.cpp</file>
+    <file>FormCierreCaja.h</file>
+    <file>FormEstadoCaja.cpp</file>
+    <file>FormEstadoCaja.h</file>
+    <file>main.cpp</file>
     <file>mcajas.cpp</file>
     <file>mcajas.h</file>
+    <file>mmovimientoscaja.cpp</file>
+    <file>mmovimientoscaja.h</file>
     <file>vcajas.cpp</file>
     <file>vcajas.h</file>
   </compound>

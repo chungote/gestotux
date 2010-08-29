@@ -24,6 +24,12 @@
 #include "ui_FormPrefOpcionesBase.h"
 #include "eventana.h"
 
+/*!
+ * @brief Formulario de preferencias del plugin digifauno
+ *
+ * Formulario de preferencias del plugin digifauno
+ * @author
+ */
 class FormPrefOpciones : public EVentana, public FormPrefHijo, private Ui::FormPrefOpcionesBase
 {
   Q_OBJECT

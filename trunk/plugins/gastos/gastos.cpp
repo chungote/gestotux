@@ -98,21 +98,23 @@ void Gastos::crearMenu(QMenuBar* m)
 void Gastos::crearToolBar(QToolBar* t)
 {}
 
+
 #include "formagregargasto.h"
 /*!
     \fn Gastos::agregarGasto()
-	Abre la ventana para agregar un gasto
+        Abre la ventana para agregar un gasto
  */
 void Gastos::agregarGasto()
 { emit agregarVentana( new FormAgregarGasto() ); }
 
+
 #include "vgastos.h"
 /*!
     \fn Gastos::ver_gastos()
+    Muestra el listado de gastos que haya cargado
  */
 void Gastos::ver_gastos()
 { emit agregarVentana( new VGastos() ); }
-
 
 
 /*!

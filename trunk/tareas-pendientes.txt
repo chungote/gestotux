@@ -1,26 +1,42 @@
-- Buscar icono para recargos.
-- Definir plugin para Cuotas:
-  - Utilizamos como base la "forma de pago"?
-- Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
+::: Diseño :::
 
-- Agregar formas de pago en recibos y/o ventas.
-
-- Agregar Movimiento inicial ( cierre de caja ) al agregar una caja con el saldo inicial.
-
-Diseño:
-
+-- Caja --
 - Definir como hacer los cierres de caja diarios.
 - Definir si hacer parte para sacar datos de caja.
 
+-- Cuotas --
 - Definir sistema de cuotas.
   - Colocar como forma de pago.
+    - Utilizamos como base la "forma de pago"?
+    - Agregar formas de pago en recibos y/o ventas.
 
+-- Reportes --
 - Definir sistema final de creacion de comprobantes.
 
-:: Pruebas para hacer ::
+::: Pruebas para hacer :::
 
-- Verificar correcta restauracion de un backup.
-- Verificar correcta iniziaclizacion de todas las tablas de todos los plugins
+- Verificar correcta restauración de un backup.
+- Verificar correcta inizialización de todas las tablas de todos los plugins
    - SQLite
    - MySql
- - Verificar Funcionamiento correcto del nuevo formulario de clientes.
+ - Verificar el correcto funcionamiento del nuevo formulario de clientes.
+ - Verificar que al agregar una nueva caja, se agrege una entrada en la tabla de movimientos reflejando el saldo nuevo.
+ - Verificar que al agregar un gasto y seleccionar la opcion de sacar de caja, se registre la operación en movimientos.
+
+::: Iconos necesarios :::
+
+- Recargos
+- Cerrar caja
+- Resumen de caja
+- Estado de caja
+- Listado de gastos
+
+::: Problemas Generales :::
+
+- Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
+- Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
+
+:::::: PARA PATRI ::::::
+
+Busca todos los lugares donde dice "/// @todo Patri:"
+Son tareas bien sencillas que podes hacer incluso copiando y pegando de otras partes del codigo.

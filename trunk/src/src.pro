@@ -47,7 +47,6 @@ CONFIG += warn_on \
           thread \
           qt \
  exceptions \
- precompile_header \
  help
 QT += sql \
 svg \
@@ -61,7 +60,8 @@ FPrefGeneral.ui \
  EMysql.ui \
  ForPrefDb.ui \
  FormClienteBase.ui \
-    formplugins.ui
+    formplugins.ui \
+    ../utiles/EAyudaBase.ui
 
 TARGET = gestotux
 
@@ -69,19 +69,6 @@ DESTDIR = ../bin
 
 DISTFILES += qt_es.qm \
  ../ayuda/salir.html
-
-win32 {
-    CONFIG += release
-    CONFIG -= debug
-}
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
-
-QMAKE_CXXFLAGS_DEBUG += -ggdb \
-  -g3
 
 RESOURCES += gestotux.qrc
 
@@ -96,11 +83,10 @@ DEFINES += GESTOTUX_DESARROLLO
 
 INCLUDEPATH += ../reporte \
   ../utiles \
-  ../utiles/email \
-  ../utiles/ui
+  ../utiles/email
 
-LIBS += ../bin/libutiles.a #\
-#  ../bin/libncreport.a
+LIBS += ../bin/libutiles.a \
+  ../bin/libncreport.a
 
 OTHER_FILES += \
     gestotux.ts \

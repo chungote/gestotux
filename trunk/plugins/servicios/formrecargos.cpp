@@ -21,6 +21,9 @@
 #include "formrecargos.h"
 
 #include "mservicios.h"
+#include "mrecargos.h"
+
+#include "eactcerrar.h"
 
 FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
         EVentana( parent, fl ), Ui::FormRecargoBase()
@@ -30,31 +33,48 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     setWindowTitle( "Recargos" );
 
     // Modelo de los servicios para el combobox
-    CBServicios->setModel( new MServicios( CBServicios ) );
+    mservicios = new MServicios( this );
+    CBServicios->setModel( mservicios );
     CBServicios->setModelColumn( 1 );
-    connect( CBServicios, SIGNAL( currentIndexChanged(int) ), SLOT( cambioServicio(int) ), Qt::AutoConnection );
+    mservicios->select();
+    connect( CBServicios, SIGNAL( currentIndexChanged(int) ), this, SLOT( cambioServicio(int) ) );
 
-    // Imagenes de los botones
-    PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
-    PBEliminar->setIcon( QIcon( ":/imagenes/delete.png" ) );
-    PBCancelar->setIcon( QIcon( ":/imagenes/stop.png" ) );
-    //PBAceptar->setIcon( QIcon( ":/imagenes/" ) );
+    // Genero las acciones
+    ActAgregar = new QAction( this );
+    ActAgregar->setText( "Agregar" );
+    ActAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+    this->addAction( ActAgregar );
+
+    ActEliminar = new QAction( this );
+    ActEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+    ActEliminar->setText( "Eliminar" );
+    this->addAction( ActEliminar );
+
+    this->addAction( new EActCerrar( this ) );
 
     // Conexiones para los botones
-    connect( PBAgregar , SIGNAL( clicked() ), this, SLOT( agregarRecargo() ) );
-    connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarRecargo()) );
-    connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close()          ) );
-    connect( PBAceptar , SIGNAL( clicked() ), this, SLOT( guardarTodo()    ) );
+    connect( ActAgregar , SIGNAL( triggered() ), this, SLOT( agregarRecargo() ) );
+    connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminarRecargo()) );
+
+    // Inizializo el modelo de los recargos
+    mrecargos = new MRecargos( this );
+    TVRecargos->setModel( mrecargos );
+    mrecargos->select();
 }
 
 void FormRecargos::cambioServicio( int servicio )
 {
-
+  // Busco los datos de los recargos del servicio seleccionado
+  int id_servicio = mservicios->data( mservicios->index( servicio, 0 ), Qt::DisplayRole ).toInt();
+  mrecargos->setearServicio( id_servicio );
+  mrecargos->select();
 }
 
 void FormRecargos::agregarRecargo()
 {
-
+ // Agrega un nuevo recargo a la lista del servicio seleccionado
+    mrecargos->setearServicio( mservicios->data( mservicios->index( CBServicios->currentIndex(), 0 ), Qt::DisplayRole ).toInt() );
+    mrecargos->agregarRecargo();
 }
 
 void FormRecargos::eliminarRecargo()
@@ -64,7 +84,7 @@ void FormRecargos::eliminarRecargo()
 
 void FormRecargos::guardarTodo()
 {
-
+ this->close();
 }
 
 void FormRecargos::changeEvent(QEvent *e)

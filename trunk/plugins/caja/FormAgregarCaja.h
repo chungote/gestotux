@@ -38,6 +38,9 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
+private slots:
+    void accept();
+
 private:
     Ui::FormAgregarCaja *ui;
 };

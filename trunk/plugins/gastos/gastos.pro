@@ -1,39 +1,26 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-help \
- debug_and_release \
- debug
+          plugin \
+          help
 
-TARGET = gastos
+SOURCES +=  dgastos.cpp \
+            mgasto.cpp \
+            vgastos.cpp \
+            gastos.cpp \
+            formagregargasto.cpp \
+            ../caja/mmovimientoscaja.cpp \
+            ../caja/mcajas.cpp
 
-SOURCES += dgastos.cpp \
-mgasto.cpp \
-vgastos.cpp \
-gastos.cpp \
-formagregargasto.cpp
-
-HEADERS += dgastos.h \
-mgasto.h \
-vgastos.h \
-gastos.h \
-formagregargasto.h
+HEADERS +=  dgastos.h \
+            mgasto.h \
+            vgastos.h \
+            gastos.h \
+            formagregargasto.h \
+            ../caja/mmovimientoscaja.h \
+            ../caja/mcajas.h
 
 QT += sql
-
-win32 {
-    MOC_DIR = win/moc
-    UI_DIR = win/ui
-    OBJECTS_DIR = win/objeto
-}
-
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
-
 
 DESTDIR = ../../bin/plugins/
 
@@ -50,3 +37,7 @@ RESOURCES += gastos.qrc
 
 TRANSLATIONS += gastos.ts
 
+TARGET = gastos
+
+OTHER_FILES += gastos.QSQLITE.sql \
+               gastos.QMYSQL.sql
