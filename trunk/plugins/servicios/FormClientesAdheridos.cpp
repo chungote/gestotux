@@ -17,46 +17,41 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VSERVICIOS_H
-#define VSERVICIOS_H
 
-#include <evlista.h>
-#include <QModelIndex>
-/**
-Listado de Servicios
+#include "FormClientesAdheridos.h"
+#include "ui_FormClietnesAdheridosBase.h"
+#include "mservicios.h"
 
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class VServicios : public EVLista
+FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
+    EVentana(parent),
+    ui(new Ui::FormClientesAdheridos)
 {
-Q_OBJECT
+    ui->setupUi(this);
+    setObjectName("Servicios_clientes");
+    setWindowTitle( "Clientes para un servicio");
+    setWindowIcon( QIcon( ":/imagenes/desconocido.png" ) );
 
-public:
-    VServicios(QWidget *parent = 0);
-    ~VServicios();
+    mservicios = new MServicios( ui->CBServicios );
+    ui->CBServicios->setModel( mservicios );
+    ui->CBServicios->setModelColumn( 1 );
+    connect( ui->CBServicios, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioServicio( int ) ) );
 
-protected slots:
-    virtual void agregar( bool autoeliminarid );
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
-    virtual void aPdf();
-    virtual void buscar();
-    virtual void eliminar();
-    virtual void email();
-    virtual void imprimir();
-    virtual void modificar();
-    void verClientesAdheridos();
-    void verRecargos();
 
-private slots:
-    void modificar( const QModelIndex &indice );
-    void darAltaServicioCliente();
+}
 
-protected:
-    void menuContextual( const QModelIndex &indice, QMenu *menu );
+FormClientesAdheridos::~FormClientesAdheridos()
+{
+    delete ui;
+}
 
-private:
-    QModelIndex indiceMenu;
-
-};
-
-#endif
+void FormClientesAdheridos::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}

@@ -38,7 +38,7 @@ public:
     QVariant data(const QModelIndex& idx, int role) const;
     void agregarRecargo();
     void setearServicio( int id_servicio = -1 );
-    int columnCount();
+    int columnCount( const QModelIndex & index = QModelIndex() ) const;
 
 public slots:
     void setearPrecioBase( double precio );

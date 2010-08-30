@@ -39,7 +39,8 @@ HEADERS += servicios.h \
  formasociarserviciocliente.h \
  formservicio.h \
  edrecargos.h \
- formrecargos.h
+ formrecargos.h \
+    FormClientesAdheridos.h
 SOURCES += servicios.cpp \
  mservicios.cpp \
  vservicios.cpp \
@@ -49,7 +50,8 @@ SOURCES += servicios.cpp \
  formasociarserviciocliente.cpp \
  formservicio.cpp \
  edrecargos.cpp \
- formrecargos.cpp
+ formrecargos.cpp \
+    FormClientesAdheridos.cpp
 RESOURCES += servicios.qrc
 
 DISTFILES += servicios.QMYSQL.sql \
@@ -59,7 +61,8 @@ TRANSLATIONS = servicios.ts
 
 FORMS += FormAsociarBase.ui \
  formServicioBase.ui \
-    FormRecargoBase.ui
+    FormRecargoBase.ui \
+    FormClietnesAdheridosBase.ui
 
 OTHER_FILES += servicios.QMYSQL.sql \
     servicios.QSQLITE.sql

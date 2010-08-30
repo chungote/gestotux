@@ -20,6 +20,7 @@
 #include "mrecargos.h"
 
 #include <QSqlRecord>
+#include "mservicios.h"
 
 MRecargos::MRecargos(QObject *parent)
  : QSqlRelationalTableModel(parent), _precio_base(0.0)
@@ -40,9 +41,24 @@ MRecargos::~MRecargos()
 }
 
 
-bool MRecargos::setData(const QModelIndex& index, const QVariant& value, int role)
+bool MRecargos::setData(const QModelIndex& idx, const QVariant& value, int role)
 {
-    return QSqlRelationalTableModel::setData(index, value, role);
+    switch( idx.column() ) {
+    case 3:
+    case 4:
+    case 5:
+        {
+            bool valor = QSqlRelationalTableModel::setData( idx, value, role );
+            emit dataChanged( index( idx.row(), 5 ), index( idx.row(), 5 ) );
+            return valor;
+            break;
+        }
+    default:
+        {
+            return QSqlRelationalTableModel::setData(idx, value, role);
+            break;
+        }
+    }
 }
 
 QVariant MRecargos::data(const QModelIndex& idx, int role) const
@@ -58,22 +74,36 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
     case 3:
     case 4:
     { return QSqlRelationalTableModel::data( idx, role ).toDouble(); break; }
-    case 5:
-    {
-     if( this->data( this->index( idx.row(), 3 ), Qt::EditRole ).toDouble() <= 0 )
-     {
-       return _precio_base + ( _precio_base * this->data( this->index( idx.row(), 3 ), Qt::EditRole ).toDouble() *.01 );
-     }
-     else if( this->data( this->index( idx.row(), 4 ), Qt::EditRole ).toDouble() <= 0 )
-     {
-       return _precio_base + this->data( this->index( idx.row(), 4 ), Qt::EditRole ).toDouble();
-     }
-     break;
-    }
     default:
     { return QSqlRelationalTableModel::data( idx, role ); break; }
    }
    break;
+  }
+  case Qt::DisplayRole:
+  {
+   switch( idx.column() )
+   {
+    case 3:
+    { return QString( "%L1 %").arg( QSqlRelationalTableModel::data( idx, role ).toInt() ); break; }
+    case 4:
+    { return QString( "$ %L1").arg( QSqlRelationalTableModel::data( idx, role ).toDouble() ); break; }
+    case 5:
+    {
+     if( this->data( this->index( idx.row(), 3 ), Qt::EditRole ).toDouble() > 0.0 )
+     {
+      return QString( "$ %L1" ).arg( _precio_base + ( _precio_base * this->data( this->index( idx.row(), 3 ), Qt::EditRole ).toDouble() *.01 ) );
+     }
+     else if( this->data( this->index( idx.row(), 4 ), Qt::EditRole ).toDouble() > 0.0 )
+     {
+      return QString( "$ %L1" ).arg( _precio_base + this->data( this->index( idx.row(), 4 ), Qt::EditRole ).toDouble() );
+     }
+     else
+     {
+      return QString( "$ %L1" ).arg( _precio_base );
+     }
+     break;
+    }
+   }
   }
   default:
   { return QSqlRelationalTableModel::data(idx, role); break; }
@@ -85,6 +115,7 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
 
 /*!
     \fn MRecargos::agregarRecargo()
+    Agrega un tipo de recargo a la lista de recargos para un servicio
  */
 void MRecargos::agregarRecargo()
 {
@@ -106,6 +137,8 @@ void MRecargos::setearServicio( int id_servicio )
     if( id_servicio > 0 ) {
         _servicio_actual = id_servicio;
         this->setFilter( QString( "id_servicio = %1" ).arg( id_servicio ) );
+        // Busco el precio base
+        setearPrecioBase( MServicios::precioBase( _servicio_actual ) );
     }
 }
 
@@ -120,10 +153,10 @@ void MRecargos::setearPrecioBase( double precio )
 
 
 /*!
-    \fn MRecargos::columnCount()
+    \fn MRecargos::columnCount( const QModelIndex & index ) const
  */
-int MRecargos::columnCount()
+int MRecargos::columnCount( const QModelIndex &index ) const
 {
- return QSqlRelationalTableModel::columnCount() + 2;
+ return QSqlRelationalTableModel::columnCount() + 1;
 }
 
