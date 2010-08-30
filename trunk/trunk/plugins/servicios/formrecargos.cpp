@@ -50,15 +50,20 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     ActEliminar->setText( "Eliminar" );
     this->addAction( ActEliminar );
 
-    this->addAction( new EActCerrar( this ) );
+    ActCerrar = new EActCerrar( this );
+    this->addAction( ActCerrar );
 
     // Conexiones para los botones
     connect( ActAgregar , SIGNAL( triggered() ), this, SLOT( agregarRecargo() ) );
     connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminarRecargo()) );
+    connect( ActCerrar  , SIGNAL( triggered() ), this, SLOT( guardarTodo()    ) );
 
     // Inizializo el modelo de los recargos
     mrecargos = new MRecargos( this );
+    mrecargos->setEditStrategy( QSqlTableModel::OnManualSubmit );
     TVRecargos->setModel( mrecargos );
+    TVRecargos->hideColumn( 0 );
+    TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     mrecargos->select();
 }
 

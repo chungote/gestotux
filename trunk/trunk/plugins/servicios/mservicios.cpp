@@ -20,6 +20,7 @@
 #include "mservicios.h"
 
 #include <QSqlTableModel>
+#include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDate>
@@ -180,6 +181,15 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
       qDebug( QString( "Error MServicios::agregarServicio(): %1").arg( this->lastError().text() ).toLocal8Bit() );
       return false;
   }
+}
+
+double MServicios::precioBase( int id_servicio )
+{
+  QSqlQuery cola( QString( "SELECT precio_base FROM %2 WHERE id_servicio = %1" ).arg( id_servicio ).arg( "servicios" ) );
+  if( cola.next() )
+  {
+      return cola.record().value(0).toDouble();
+  } else { return 0.0; }
 }
 
 /*

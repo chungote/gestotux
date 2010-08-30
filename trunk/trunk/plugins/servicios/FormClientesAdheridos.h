@@ -17,46 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef VSERVICIOS_H
-#define VSERVICIOS_H
 
-#include <evlista.h>
-#include <QModelIndex>
-/**
-Listado de Servicios
+#ifndef FORMCLIENTESADHERIDOS_H
+#define FORMCLIENTESADHERIDOS_H
 
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class VServicios : public EVLista
+#include "eventana.h"
+
+namespace Ui {
+    class FormClientesAdheridos;
+}
+class MServicios;
+
+class FormClientesAdheridos : public EVentana
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    VServicios(QWidget *parent = 0);
-    ~VServicios();
-
-protected slots:
-    virtual void agregar( bool autoeliminarid );
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
-    virtual void aPdf();
-    virtual void buscar();
-    virtual void eliminar();
-    virtual void email();
-    virtual void imprimir();
-    virtual void modificar();
-    void verClientesAdheridos();
-    void verRecargos();
-
-private slots:
-    void modificar( const QModelIndex &indice );
-    void darAltaServicioCliente();
+    explicit FormClientesAdheridos(QWidget *parent = 0);
+    ~FormClientesAdheridos();
 
 protected:
-    void menuContextual( const QModelIndex &indice, QMenu *menu );
+    void changeEvent(QEvent *e);
 
 private:
-    QModelIndex indiceMenu;
-
+    Ui::FormClientesAdheridos *ui;
+    MServicios *mservicios;
 };
 
-#endif
+#endif // FORMCLIENTESADHERIDOS_H

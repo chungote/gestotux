@@ -164,3 +164,14 @@ void VServicios::verClientesAdheridos()
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
 }
+
+/*!
+    \fn VServicios::verRecargos()
+ */
+void VServicios::verRecargos()
+{
+ // Obtengo el numero de servicio de la vista...
+ int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+ // Muestro el formulario de recargos con el id seteado
+ /// @todo Patri: Abrir formulario y mostrar recargos para el id de servicio
+}

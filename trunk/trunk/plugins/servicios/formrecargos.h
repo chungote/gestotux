@@ -46,6 +46,7 @@ protected slots:
 private:
     QAction *ActAgregar;
     QAction *ActEliminar;
+    QAction *ActCerrar;
 
     MRecargos *mrecargos;
     MServicios *mservicios;
