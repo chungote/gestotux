@@ -43,10 +43,20 @@ MMovimientosCaja::MMovimientosCaja( QObject *parent, bool relaciones ) :
     }
 }
 
+/*!
+ * @fn MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso )
+ * Almacena una operación de caja. ingreso y egreso son mutuamente excluentes y no pueden ser los 2 iguales a 0
+ * @param id_caja #ID de caja para la operacion
+ * @param razon Texto para incluir ( luego sale en el resumen de caja )
+ * @param responsable Persona responsable del movimiento ( usuario de la db o persona )
+ * @param ingreso cantidad que ingresa a la caja
+ * @param egreso cantidad que sacamos de la caja
+ * @return verdadero si la operacion se completo satisfactoriamente
+ */
 bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso )
 {
   // Verificaciones previas
-  if( ingreso != 0 && egreso != 0 ) {
+  if( ( ingreso != 0 && egreso != 0 ) || ( ingreso > 0 && egreso > 0 ) ) {
        qWarning( QString( "El movimiento debe ser de entrada o salida, no ambos" ).toLocal8Bit() );
        return false;
   }
@@ -75,4 +85,16 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
       return false;
   }
 
+}
+
+/*!
+ * @fn MMovimientosCaja::recalcularSaldo( int id_caja )
+ * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
+ * @param id_caja #ID de caja
+ * @return saldo calculado
+ */
+double MMovimientosCaja::recalcularSaldo( int id_caja )
+{
+    /// @todo Patri: Un lindo metodo para hacer con una simple consulta... :)
+    // Sumar todos los ingresos y restarle los egresos en una consulta con QSqlQuery
 }

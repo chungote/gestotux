@@ -38,6 +38,9 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
+private slots:
+    void cambioCaja( int num_caja );
+
 private:
     Ui::FormEstadoCaja *ui;
 };

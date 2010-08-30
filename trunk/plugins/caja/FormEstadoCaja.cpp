@@ -52,3 +52,12 @@ void FormEstadoCaja::changeEvent(QEvent *e)
         break;
     }
 }
+
+/*!
+ * @fn FormEstadoCaja::cambioCaja( int num_caja )
+ * Slot llamado cada vez que se cambia la caja en el combobox
+ */
+void FormEstadoCaja::cambioCaja( int num_caja )
+{
+    /// @todo Patri: Buscar el saldo de la caja elegida y mostrarla en el spinbox correspondiente
+}

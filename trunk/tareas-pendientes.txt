@@ -2,7 +2,6 @@
 
 -- Caja --
 - Definir como hacer los cierres de caja diarios.
-- Definir si hacer parte para sacar datos de caja.
 
 -- Cuotas --
 - Definir sistema de cuotas.
@@ -19,9 +18,9 @@
 - Verificar correcta inizialización de todas las tablas de todos los plugins
    - SQLite
    - MySql
- - Verificar el correcto funcionamiento del nuevo formulario de clientes.
- - Verificar que al agregar una nueva caja, se agrege una entrada en la tabla de movimientos reflejando el saldo nuevo.
- - Verificar que al agregar un gasto y seleccionar la opcion de sacar de caja, se registre la operación en movimientos.
+- Verificar el correcto funcionamiento del nuevo formulario de clientes.
+- Verificar que al agregar una nueva caja, se agrege una entrada en la tabla de movimientos reflejando el saldo nuevo.
+- Verificar que al agregar un gasto y seleccionar la opcion de sacar de caja, se registre la operación en movimientos.
 
 ::: Iconos necesarios :::
 
@@ -35,6 +34,7 @@
 
 - Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
 - Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
+- Hacer necesario los backups para continuar con el programa al iniciar.
 
 :::::: PARA PATRI ::::::
 
