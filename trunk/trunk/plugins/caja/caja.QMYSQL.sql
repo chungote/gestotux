@@ -1,1 +1,2 @@
- 
+CREATE TABLE IF NOT EXISTS `caja` ( `id_caja` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  `nombre` TEXT NOT NULL ,`fecha_alta` DATE NOT NULL ,`saldo` DOUBLE NOT NULL ) ENGINE = MYISAM;
+CREATE TABLE IF NOT EXISTS `movimiento_caja` ( `id_movimiento` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `id_caja` INT NOT NULL , `fecha_hora` DATETIME NOT NULL , `debe` DOUBLE NOT NULL , `haber` DOUBLE NOT NULL , `razon` TEXT NOT NULL , `responsable` TEXT NOT NULL , `cierre` BOOL NOT NULL ) ENGINE = MYISAM;

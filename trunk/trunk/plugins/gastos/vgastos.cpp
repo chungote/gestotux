@@ -53,6 +53,7 @@ VGastos::VGastos( QWidget* parent )
 
  vista->resizeColumnsToContents();
 
+ ///@todo Patri:Agregar verificación de que existan categorias para agregar la accion de agregar gastos
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCerrar );

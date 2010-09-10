@@ -35,7 +35,7 @@
 
 QString HiComp::nombrePrograma()  const
 {
- return "HiComp Computacion - 0.2";
+ return "HiComp Computacion - 0.3";
 }
 
 Q_EXPORT_PLUGIN2(hicomp, HiComp )
@@ -47,8 +47,8 @@ QIcon HiComp::iconoPrograma() const
 
 /*!
     \fn HiComp::accionesBarra()
-	Retorna las acciones que tiene la barra lateral para este plugin
-	@return Lista de acciones
+        Retorna las acciones que tiene la barra lateral para este plugin
+        @return Lista de acciones
  */
 QList<QActionGroup *> HiComp::accionesBarra()
 {
