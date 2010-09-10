@@ -46,6 +46,7 @@ protected slots:
     virtual void modificar();
     void verClientesAdheridos();
     void verRecargos();
+    void generarFacturacion();
 
 private slots:
     void modificar( const QModelIndex &indice );

@@ -12,6 +12,9 @@
 -- Reportes --
 - Definir sistema final de creacion de comprobantes.
 
+-- Recibos --
+- Hacer que al elegir la opcion de pago contado, genere la entrada de caja.
+
 ::: Pruebas para hacer :::
 
 - Verificar correcta restauración de un backup.
@@ -29,6 +32,7 @@
 - Resumen de caja
 - Estado de caja
 - Listado de gastos
+- Recibos
 
 ::: Problemas Generales :::
 

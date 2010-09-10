@@ -96,9 +96,9 @@ void VServicios::modificar()
 }
 
 /*!
-    \fn VServicios::modificar( const QModelIndex &indice )
+    \fn VServicios::modificar( const QModelIndex &idx )
  */
-void VServicios::modificar( const QModelIndex &indice )
+void VServicios::modificar( const QModelIndex &idx )
 {
  // modifico el indice actual
  return;
@@ -174,4 +174,15 @@ void VServicios::verRecargos()
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
  // Muestro el formulario de recargos con el id seteado
  /// @todo Patri: Abrir formulario y mostrar recargos para el id de servicio
+}
+
+/*!
+ * @fn VServicios::generarFacturacion()
+ */
+void VServicios::generarFacturacion()
+{
+ // Obtengo el numero de servicio de la vista...
+ int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+ // Muestro el formulario de recargos con el id seteado
+ /// @todo Generar algoritmia para la facturación de el servicio
 }
