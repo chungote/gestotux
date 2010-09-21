@@ -30,6 +30,7 @@
 #include "eactguardar.h"
 #include "eactcerrar.h"
 #include "eregistroplugins.h"
+#include "preferencias.h"
 #include "../caja/mcajas.h"
 
 FormAgregarGasto::FormAgregarGasto( QWidget* parent )
@@ -92,6 +93,16 @@ void FormAgregarGasto::guardar()
  }
  else
  {
+  if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+      if( preferencias::getInstancia()->value("Preferencias/Caja/gastos-sinfondo").toBool() )
+      {
+          int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
+          if( MCajas::saldo( id_caja ) < dSBCosto->value() ) {
+              QMessageBox::warning( this, "Error", "El saldo en esta caja no es suficiente para ingresar este gasto. Modifique las preferencias para evitar este dialogo" );
+              return;
+          }
+      }
+  }
   MGasto *modelo = new MGasto( this );
   modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
   if ( modelo->agregarGasto( CBDescripcion->currentText(),
@@ -103,7 +114,8 @@ void FormAgregarGasto::guardar()
         {
              if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
                  MMovimientosCaja *m = new MMovimientosCaja();
-                 if( !m->agregarMovimiento( CBCajas->currentIndex(), CBDescripcion->currentText(), QString(), 0.0, dSBCosto->value() ) ) {
+                 int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
+                 if( !m->agregarMovimiento( id_caja, CBDescripcion->currentText(), QString(), 0.0, dSBCosto->value() ) ) {
                      QMessageBox::information( this, "Error", "El gasto se guardo correctamente, pero no se pudo registrar la operacion en la cuenta de caja" );
                      this->close();
                      return;

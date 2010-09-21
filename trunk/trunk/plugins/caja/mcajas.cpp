@@ -53,10 +53,10 @@ bool MCajas::agregarCaja( QString nombre, QDate fecha_alta, double saldo_inicial
       // Agregar el registro de transaccion inicial en la tabla de movimientos
       MMovimientosCaja *mmov = new MMovimientosCaja( this );
       if( saldo_inicial > 0.0 ) {
-          if( mmov->agregarMovimiento( query().lastInsertId().toInt(), "Apertura de Caja - Saldo Inicial", QString(), saldo_inicial ) )
+          if( mmov->agregarMovimiento( query().lastInsertId().toInt(), "Apertura de Caja - Saldo Inicial", QString(), saldo_inicial, 0.0, true ) )
           {  return true; } else { return false; }
       } else {
-        if( mmov->agregarMovimiento( query().lastInsertId().toInt(), "Apertura de Caja - Saldo Inicial", QString(), 0.0, saldo_inicial ) )
+        if( mmov->agregarMovimiento( query().lastInsertId().toInt(), "Apertura de Caja - Saldo Inicial", QString(), 0.0, saldo_inicial, true ) )
         {  return true; } else { return false; }
       }
   } else {
@@ -87,4 +87,38 @@ bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
     qWarning( QString( "Error al buscar el saldo anterior." ).toLocal8Bit() );
     return false;
  }
+}
+
+/*!
+ * @fn MCajas::saldo( const int id_caja ) const
+ * Funcion que devuelve el saldo actual de una caja
+ * @param id_caja Identificador de la caja a la cual se le actualizará el saldo
+ * @return Saldo de la caja
+ */
+double MCajas::saldo( const int id_caja )
+{
+   QSqlQuery cola;
+   if( cola.exec( QString( "SELECT saldo FROM %1 WHERE id_caja = %2" ).arg( "caja" ).arg( id_caja )  ) ) {
+       //qDebug( QString( "Ejecutado: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+       if( cola.next() ) {
+        return cola.record().value("saldo").toDouble();
+       } else { return 0.0;  }
+   } else {
+        qDebug( "Saldo no encontrado" );
+        return 0.0;
+   }
+}
+
+/*!
+ * @fn MCajas::hacerCierre( const int id_caja, QDateTime fecha, double saldo ) const
+ * Funcion que realiza el cierre de una caja.
+ * @param id_caja Identificador de la caja a la cual se le actualizar el saldo
+ * @param fecha Fecha y hora en que se realiza el cierre
+ * @param saldo Saldo que se contabilizo
+ * @return Saldo de la caja
+ */
+bool MCajas::hacerCierre( const int id_caja, QDateTime fecha, double saldo )
+{
+   MMovimientosCaja *m = new MMovimientosCaja( this );
+    //if( m->)
 }

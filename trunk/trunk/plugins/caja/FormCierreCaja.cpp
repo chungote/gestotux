@@ -22,9 +22,12 @@
 #include "ui_FormCierreCajaBase.h"
 
 #include "mcajas.h"
+#include "preferencias.h"
+
+#include <QMessageBox>
 
 FormCierreCaja::FormCierreCaja(QWidget *parent) :
-    QWidget(parent),
+    EVentana(parent),
     ui(new Ui::FormCierreCaja)
 {
     ui->setupUi(this);
@@ -36,8 +39,9 @@ FormCierreCaja::FormCierreCaja(QWidget *parent) :
 
     ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
     ui->CBCaja->setModelColumn( 1 );
-
     connect( ui->CBCaja, SIGNAL( currentIndexChanged(int) ), this, SLOT( cambioCaja(int ) ) );
+    qobject_cast<QSqlTableModel *>(ui->CBCaja->model())->select();
+
 }
 
 FormCierreCaja::~FormCierreCaja()
@@ -57,8 +61,31 @@ void FormCierreCaja::changeEvent(QEvent *e)
     }
 }
 
-void FormCierreCaja::cambioCaja( int id_combo )
+void FormCierreCaja::cambioCaja( int num )
 {
-   // @todo Buscar los ultimos saldos cuando se cambia la caja del combo
+    int num_caja = ui->CBCaja->model()->data( ui->CBCaja->model()->index( num, 0 ), Qt::DisplayRole ).toInt();
+    ui->dSBComputado->setValue( MCajas::saldo( num_caja ) );
+}
 
+void FormCierreCaja::hacerCierre()
+{
+    // Verifico que concuerden los saldos
+    if( ( ui->dSBComputado->value() != ui->dSBSumado->value() ) && ( preferencias::getInstancia()->value( "Preferencias/Caja/no-cierre-dif", false ).toBool() ) )
+    {
+        QMessageBox::critical( this, "Error", "Los Saldos no coinciden" );
+        return;
+    }
+    MCajas *caja = qobject_cast<MCajas *>(ui->CBCaja->model());
+    int id_caja = ui->CBCaja->model()->data( ui->CBCaja->model()->index( ui->CBCaja->currentIndex(), 0 ), Qt::DisplayRole ).toInt();
+    if( caja->hacerCierre( id_caja, QDateTime::currentDateTime(), ui->dSBComputado->value() ) ) {
+        QMessageBox::information( this, "Correcto", "El cierre se realizo correctamente" );
+        if( ( ui->CkBResumen->checkState() == Qt::Checked ) || ( preferencias::getInstancia()->value( "Preferencias/Caja/siempre-resumen", false ).toBool() ) ) {
+            ///@todo Agregar sistema para hacer el resumen
+        }
+        this->close();
+        return;
+    } else {
+        QMessageBox::warning( this, "Error", "El cierre no se pudo realizar correctamente" );
+        return;
+    }
 }

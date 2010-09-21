@@ -322,13 +322,7 @@ void gestotux::verBackup()
 */
 void gestotux::bandeja_sistema()
 {
- preferencias *p = preferencias::getInstancia();
- p->beginGroup( "Preferencias" );
- p->beginGroup( "General" );
- bool bandeja = p->value( "icono_bandeja", false ).toBool();
- p->endGroup();
- p->endGroup();
- if( bandeja )
+ if( preferencias::getInstancia()->value( "Preferencias/General/icono_bandeja", false ).toBool() )
  {
    if( QSystemTrayIcon::isSystemTrayAvailable() )
    {

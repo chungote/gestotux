@@ -18,39 +18,34 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "vcajas.h"
+#ifndef FORMPREFCAJA_H
+#define FORMPREFCAJA_H
 
-#include <QIcon>
-#include <QAction>
-#include <QTableView>
+#include "formprefhijo.h"
+#include <QWidget>
 
-#include "mcajas.h"
+namespace Ui {
+    class FormPrefCaja;
+}
 
-#include "FormAgregarCaja.h"
-
-VCajas::VCajas(QWidget *parent) :
-    EVLista(parent)
+class FormPrefCaja : public QWidget, public FormPrefHijo
 {
-    this->setObjectName( "visorServicios" );
-    this->setWindowTitle( "Servicios" );
-    this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
+    Q_OBJECT
 
-    modelo = new MCajas( this );
-    vista->setModel( modelo );
-    vista->setAlternatingRowColors( true );
-    vista->hideColumn(0);
-    modelo->select();
+public:
+    explicit FormPrefCaja(QWidget *parent = 0);
+    ~FormPrefCaja();
 
-    connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
+public slots:
+    void aplicar();
+    void cargar();
+    void guardar();
 
-    addAction( ActAgregar );
-    //addAction( ActEliminar );
-    addAction( ActCerrar );
-}
+protected:
+    void changeEvent(QEvent *e);
 
+private:
+    Ui::FormPrefCaja *ui;
+};
 
-void VCajas::agregar( bool autoeliminarid ) {
-   FormAgregarCaja *f = new FormAgregarCaja( this );
-   f->exec();
-   modelo->select();
-}
+#endif // FORMPREFCAJA_H

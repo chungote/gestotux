@@ -1,7 +1,7 @@
 ::: Diseño :::
 
 -- Caja --
-- Definir como hacer los cierres de caja diarios.
+- Definir resumen de caja.
 
 -- Cuotas --
 - Definir sistema de cuotas.
@@ -39,8 +39,3 @@
 - Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
 - Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
 - Hacer necesario los backups para continuar con el programa al iniciar.
-
-:::::: PARA PATRI ::::::
-
-Busca todos los lugares donde dice "/// @todo Patri:"
-Son tareas bien sencillas que podes hacer incluso copiando y pegando de otras partes del codigo.

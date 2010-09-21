@@ -30,7 +30,8 @@ HEADERS += caja.h \
     FormAgregarCaja.h \
     FormEstadoCaja.h \
     FormCierreCaja.h \
-    mmovimientoscaja.h
+    mmovimientoscaja.h \
+    formprefcaja.h
 
 SOURCES += caja.cpp \
     mcajas.cpp \
@@ -38,8 +39,10 @@ SOURCES += caja.cpp \
     FormAgregarCaja.cpp \
     FormEstadoCaja.cpp \
     FormCierreCaja.cpp \
-    mmovimientoscaja.cpp
+    mmovimientoscaja.cpp \
+    formprefcaja.cpp
 
 FORMS += FormAgregarCajaBase.ui \
     FormEstadoCajaBase.ui \
-    FormCierreCajaBase.ui
+    FormCierreCajaBase.ui \
+    formprefcajabase.ui

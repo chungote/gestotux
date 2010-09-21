@@ -21,13 +21,13 @@
 #ifndef FORMCIERRECAJA_H
 #define FORMCIERRECAJA_H
 
-#include <QWidget>
+#include "eventana.h"
 
 namespace Ui {
     class FormCierreCaja;
 }
 
-class FormCierreCaja : public QWidget
+class FormCierreCaja : public EVentana
 {
     Q_OBJECT
 
@@ -39,7 +39,11 @@ protected:
     void changeEvent(QEvent *e);
 
 protected slots:
-    void cambioCaja( int id_combo );
+    void cambioCaja( int num );
+    void hacerCierre();
+
+signals:
+    void agregarVentana(QWidget *);
 
 private:
     Ui::FormCierreCaja *ui;

@@ -103,6 +103,30 @@
   </compound>
   <compound kind="file">
     <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>reporte_2dise_xF1ador_2main_8cpp</filename>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>reporte_2dise_xF1ador_2main_8cpp.html</anchorfile>
+      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>reporte_2dise_xF1ador_2src_2main_8cpp</filename>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>reporte_2dise_xF1ador_2src_2main_8cpp.html</anchorfile>
+      <anchor>a0ddf1224851353fc92bfbff6f499fa97</anchor>
+      <arglist>(int argc, char *argv[])</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>main.cpp</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>src_2main_8cpp</filename>
     <member kind="define">
@@ -1473,6 +1497,18 @@
     <class kind="class">FormAsociarServicioCliente</class>
   </compound>
   <compound kind="file">
+    <name>FormClientesAdheridos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
+    <filename>FormClientesAdheridos_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>FormClientesAdheridos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
+    <filename>FormClientesAdheridos_8h</filename>
+    <class kind="class">FormClientesAdheridos</class>
+    <namespace>Ui</namespace>
+  </compound>
+  <compound kind="file">
     <name>formrecargos.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
     <filename>formrecargos_8cpp</filename>
@@ -1652,15 +1688,256 @@
     <class kind="class">VVentas</class>
   </compound>
   <compound kind="file">
-    <name>ereporte.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/reporte/</path>
-    <filename>ereporte_8cpp</filename>
+    <name>diagroup.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diagroup_8cpp</filename>
   </compound>
   <compound kind="file">
-    <name>ereporte.h</name>
-    <path>/home/Esteban/Programas/gestotux/reporte/</path>
-    <filename>ereporte_8h</filename>
-    <class kind="class">EReporte</class>
+    <name>diagroup.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diagroup_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>diagroup.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diagroup_8h</filename>
+    <class kind="class">diaGroup</class>
+  </compound>
+  <compound kind="file">
+    <name>diagroup.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diagroup_8h</filename>
+    <class kind="class">diaGroup</class>
+  </compound>
+  <compound kind="file">
+    <name>diapage.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diapage_8cpp</filename>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_datasources</name>
+      <anchorfile>diapage_8cpp.html</anchorfile>
+      <anchor>acc5ebb88034c9cd6f565e1fb65ecf6b5</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_localenames</name>
+      <anchorfile>diapage_8cpp.html</anchorfile>
+      <anchor>a57c2ba847adbcdd2531ce05575cbfaa5</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_pagesizes</name>
+      <anchorfile>diapage_8cpp.html</anchorfile>
+      <anchor>a3d7cb5bf3a9378dcbf0b5dde64139a30</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_printermodes</name>
+      <anchorfile>diapage_8cpp.html</anchorfile>
+      <anchor>a7d112d4784b901a8b0833b475670db57</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_txtdelimiters</name>
+      <anchorfile>diapage_8cpp.html</anchorfile>
+      <anchor>ad051ddf8c89071ab82354c93c8631ad8</anchor>
+      <arglist>[]</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>diapage.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diapage_8cpp</filename>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_datasources</name>
+      <anchorfile>src_2diapage_8cpp.html</anchorfile>
+      <anchor>acc5ebb88034c9cd6f565e1fb65ecf6b5</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_localenames</name>
+      <anchorfile>src_2diapage_8cpp.html</anchorfile>
+      <anchor>a57c2ba847adbcdd2531ce05575cbfaa5</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_pagesizes</name>
+      <anchorfile>src_2diapage_8cpp.html</anchorfile>
+      <anchor>a3d7cb5bf3a9378dcbf0b5dde64139a30</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_printermodes</name>
+      <anchorfile>src_2diapage_8cpp.html</anchorfile>
+      <anchor>a7d112d4784b901a8b0833b475670db57</anchor>
+      <arglist>[]</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *const</type>
+      <name>_txtdelimiters</name>
+      <anchorfile>src_2diapage_8cpp.html</anchorfile>
+      <anchor>ad051ddf8c89071ab82354c93c8631ad8</anchor>
+      <arglist>[]</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>diapage.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diapage_8h</filename>
+    <class kind="class">diaPage</class>
+  </compound>
+  <compound kind="file">
+    <name>diapage.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diapage_8h</filename>
+    <class kind="class">diaPage</class>
+  </compound>
+  <compound kind="file">
+    <name>diaquery.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diaquery_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>diaquery.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diaquery_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>diaquery.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diaquery_8h</filename>
+    <class kind="class">diaQuery</class>
+  </compound>
+  <compound kind="file">
+    <name>diaquery.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diaquery_8h</filename>
+    <class kind="class">diaQuery</class>
+  </compound>
+  <compound kind="file">
+    <name>diavariable.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diavariable_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>diavariable.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diavariable_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>diavariable.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>diavariable_8h</filename>
+    <class kind="class">diaVariable</class>
+  </compound>
+  <compound kind="file">
+    <name>diavariable.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2diavariable_8h</filename>
+    <class kind="class">diaVariable</class>
+  </compound>
+  <compound kind="file">
+    <name>globals.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>dise_xF1ador_2globals_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_ABOUT</name>
+      <anchorfile>dise_xF1ador_2globals_8h.html</anchorfile>
+      <anchor>a3de0aaa30357be11af795ecc8e59d730</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_AUTHOR</name>
+      <anchorfile>dise_xF1ador_2globals_8h.html</anchorfile>
+      <anchor>a001fb994939d89eeff4b64376b9b6d75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_COPYRIGHT</name>
+      <anchorfile>dise_xF1ador_2globals_8h.html</anchorfile>
+      <anchor>aacb6764569488ab31951b8446750cd1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_NAME</name>
+      <anchorfile>dise_xF1ador_2globals_8h.html</anchorfile>
+      <anchor>a2cc342fbc274e2ece1e4b0c0f8bf4fdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_VERSION</name>
+      <anchorfile>dise_xF1ador_2globals_8h.html</anchorfile>
+      <anchor>a71f3d1f0f3e6d80d31f3fa08d9bf9985</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *</type>
+      <name>REPORTDESIGNER_LICENSE</name>
+      <anchorfile>dise_xF1ador_2globals_8h.html</anchorfile>
+      <anchor>a5f194d3ed39a1fc91ceaf6c3b9962231</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>globals.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>dise_xF1ador_2src_2globals_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_ABOUT</name>
+      <anchorfile>dise_xF1ador_2src_2globals_8h.html</anchorfile>
+      <anchor>a3de0aaa30357be11af795ecc8e59d730</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_AUTHOR</name>
+      <anchorfile>dise_xF1ador_2src_2globals_8h.html</anchorfile>
+      <anchor>a001fb994939d89eeff4b64376b9b6d75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_COPYRIGHT</name>
+      <anchorfile>dise_xF1ador_2src_2globals_8h.html</anchorfile>
+      <anchor>aacb6764569488ab31951b8446750cd1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_NAME</name>
+      <anchorfile>dise_xF1ador_2src_2globals_8h.html</anchorfile>
+      <anchor>a2cc342fbc274e2ece1e4b0c0f8bf4fdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REPORTDESIGNER_VERSION</name>
+      <anchorfile>dise_xF1ador_2src_2globals_8h.html</anchorfile>
+      <anchor>a71f3d1f0f3e6d80d31f3fa08d9bf9985</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static const char *</type>
+      <name>REPORTDESIGNER_LICENSE</name>
+      <anchorfile>dise_xF1ador_2src_2globals_8h.html</anchorfile>
+      <anchor>a5f194d3ed39a1fc91ceaf6c3b9962231</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>globals.h</name>
@@ -1736,6 +2013,593 @@
       <anchor>a94728a2996e3b59a986822e38da79895</anchor>
       <arglist></arglist>
     </member>
+  </compound>
+  <compound kind="file">
+    <name>licence.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>licence_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>licence.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2licence_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>measurement.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>measurement_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>SCREENDPI</name>
+      <anchorfile>measurement_8cpp.html</anchorfile>
+      <anchor>a086d73ca67892a942b86ede2d1c0591a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TRIMFACTOR</name>
+      <anchorfile>measurement_8cpp.html</anchorfile>
+      <anchor>aacaa0c42133ba263598c51ed4f4a07e5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>measurement.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2measurement_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>SCREENDPI</name>
+      <anchorfile>src_2measurement_8cpp.html</anchorfile>
+      <anchor>a086d73ca67892a942b86ede2d1c0591a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TRIMFACTOR</name>
+      <anchorfile>src_2measurement_8cpp.html</anchorfile>
+      <anchor>aacaa0c42133ba263598c51ed4f4a07e5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>measurement.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>measurement_8h</filename>
+    <class kind="class">Measurement</class>
+  </compound>
+  <compound kind="file">
+    <name>measurement.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2measurement_8h</filename>
+    <class kind="class">Measurement</class>
+  </compound>
+  <compound kind="file">
+    <name>ncaboutdialog.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncaboutdialog_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncaboutdialog.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncaboutdialog_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncaboutdialog.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncaboutdialog_8h</filename>
+    <class kind="class">NCAboutDialog</class>
+  </compound>
+  <compound kind="file">
+    <name>ncaboutdialog.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncaboutdialog_8h</filename>
+    <class kind="class">NCAboutDialog</class>
+  </compound>
+  <compound kind="file">
+    <name>nccolorcombo.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>nccolorcombo_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>COLORARRAY_SIZE</name>
+      <anchorfile>nccolorcombo_8cpp.html</anchorfile>
+      <anchor>abc56f66d1664672a2d7b6d5c2555a030</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>createStandardPalette</name>
+      <anchorfile>nccolorcombo_8cpp.html</anchorfile>
+      <anchor>a3afc78b9fb632ffb5da60dd2976d7896</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static QColor *</type>
+      <name>standardPalette</name>
+      <anchorfile>nccolorcombo_8cpp.html</anchorfile>
+      <anchor>ab90901b3d9fc96b72977f3e30b5348cb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>nccolorcombo.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2nccolorcombo_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>COLORARRAY_SIZE</name>
+      <anchorfile>src_2nccolorcombo_8cpp.html</anchorfile>
+      <anchor>abc56f66d1664672a2d7b6d5c2555a030</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>createStandardPalette</name>
+      <anchorfile>src_2nccolorcombo_8cpp.html</anchorfile>
+      <anchor>a3afc78b9fb632ffb5da60dd2976d7896</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static QColor *</type>
+      <name>standardPalette</name>
+      <anchorfile>src_2nccolorcombo_8cpp.html</anchorfile>
+      <anchor>ab90901b3d9fc96b72977f3e30b5348cb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>nccolorcombo.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>nccolorcombo_8h</filename>
+    <class kind="class">NCColorCombo</class>
+  </compound>
+  <compound kind="file">
+    <name>nccolorcombo.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2nccolorcombo_8h</filename>
+    <class kind="class">NCColorCombo</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignercommand.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignercommand_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignercommand.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignercommand_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignercommand.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignercommand_8h</filename>
+    <class kind="class">cmd_ChangeOrderCommand</class>
+    <class kind="class">cmd_DeleteCommand</class>
+    <class kind="class">cmd_InsertCommand</class>
+    <class kind="class">cmd_LowerCommand</class>
+    <class kind="class">cmd_MoveCommand</class>
+    <class kind="class">cmd_PasteCommand</class>
+    <class kind="class">cmd_RaiseCommand</class>
+    <class kind="class">cmd_ResizeCommand</class>
+    <class kind="class">cmd_SetPropertyCommand</class>
+    <class kind="class">NCReportDesignerCommand</class>
+    <class kind="class">NCReportDesignerCommandHistory</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignercommand.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignercommand_8h</filename>
+    <class kind="class">cmd_ChangeOrderCommand</class>
+    <class kind="class">cmd_DeleteCommand</class>
+    <class kind="class">cmd_InsertCommand</class>
+    <class kind="class">cmd_LowerCommand</class>
+    <class kind="class">cmd_MoveCommand</class>
+    <class kind="class">cmd_PasteCommand</class>
+    <class kind="class">cmd_RaiseCommand</class>
+    <class kind="class">cmd_ResizeCommand</class>
+    <class kind="class">cmd_SetPropertyCommand</class>
+    <class kind="class">NCReportDesignerCommand</class>
+    <class kind="class">NCReportDesignerCommandHistory</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdesignarea.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerdesignarea_8cpp</filename>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>restoreCursors</name>
+      <anchorfile>ncreportdesignerdesignarea_8cpp.html</anchorfile>
+      <anchor>a58718335a4317f38f54c09607183845a</anchor>
+      <arglist>(QWidget *start, NCReportDesignerDesignArea *area)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setCursorToAll</name>
+      <anchorfile>ncreportdesignerdesignarea_8cpp.html</anchorfile>
+      <anchor>a1081dd5a710ac24e6529f9895ef26289</anchor>
+      <arglist>(const QCursor &amp;c, QWidget *start)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdesignarea.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerdesignarea_8cpp</filename>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>restoreCursors</name>
+      <anchorfile>src_2ncreportdesignerdesignarea_8cpp.html</anchorfile>
+      <anchor>a58718335a4317f38f54c09607183845a</anchor>
+      <arglist>(QWidget *start, NCReportDesignerDesignArea *area)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>setCursorToAll</name>
+      <anchorfile>src_2ncreportdesignerdesignarea_8cpp.html</anchorfile>
+      <anchor>a1081dd5a710ac24e6529f9895ef26289</anchor>
+      <arglist>(const QCursor &amp;c, QWidget *start)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdesignarea.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerdesignarea_8h</filename>
+    <class kind="class">NCReportDesignerDesignArea</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdesignarea.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerdesignarea_8h</filename>
+    <class kind="class">NCReportDesignerDesignArea</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdocument.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerdocument_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFAULT_PAGE_WIDTH</name>
+      <anchorfile>ncreportdesignerdocument_8cpp.html</anchorfile>
+      <anchor>a81fc510c3eafc5e7adaf15966d73d596</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>RULERWEIGHT</name>
+      <anchorfile>ncreportdesignerdocument_8cpp.html</anchorfile>
+      <anchor>a770e44b6a29467213943ebc0006445c8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdocument.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerdocument_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEFAULT_PAGE_WIDTH</name>
+      <anchorfile>src_2ncreportdesignerdocument_8cpp.html</anchorfile>
+      <anchor>a81fc510c3eafc5e7adaf15966d73d596</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>RULERWEIGHT</name>
+      <anchorfile>src_2ncreportdesignerdocument_8cpp.html</anchorfile>
+      <anchor>a770e44b6a29467213943ebc0006445c8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdocument.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerdocument_8h</filename>
+    <class kind="class">NCReportDesignerDocument</class>
+    <class kind="class">NCReportDesignerResizeBar</class>
+    <class kind="class">NCReportDesignerRuler</class>
+    <class kind="class">NCReportDesignerSection</class>
+    <class kind="class">NCReportDesignerSectionTitle</class>
+    <class kind="class">ReportGroup</class>
+    <class kind="class">ReportPageOptions</class>
+    <class kind="class">ReportQuery</class>
+    <class kind="class">ReportVariable</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerdocument.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerdocument_8h</filename>
+    <class kind="class">NCReportDesignerDocument</class>
+    <class kind="class">NCReportDesignerResizeBar</class>
+    <class kind="class">NCReportDesignerRuler</class>
+    <class kind="class">NCReportDesignerSection</class>
+    <class kind="class">NCReportDesignerSectionTitle</class>
+    <class kind="class">ReportGroup</class>
+    <class kind="class">ReportPageOptions</class>
+    <class kind="class">ReportQuery</class>
+    <class kind="class">ReportVariable</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerobjects.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerobjects_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerobjects.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerobjects_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerobjects.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerobjects_8h</filename>
+    <class kind="class">NCReportDesignerObject</class>
+    <class kind="class">obj_Label</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerobjects.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerobjects_8h</filename>
+    <class kind="class">NCReportDesignerObject</class>
+    <class kind="class">obj_Label</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerresourcehandler.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerresourcehandler_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>CRLF</name>
+      <anchorfile>ncreportdesignerresourcehandler_8cpp.html</anchorfile>
+      <anchor>a6cb23a858b0a21bdaa644b9181dc415f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TRIM_DEFAULT_TEXTHEIGHT</name>
+      <anchorfile>ncreportdesignerresourcehandler_8cpp.html</anchorfile>
+      <anchor>aabc4e782b0ae716ed3e83294483d81e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TRIM_DEFAULT_TEXTWIDTH</name>
+      <anchorfile>ncreportdesignerresourcehandler_8cpp.html</anchorfile>
+      <anchor>abe78338d58d593ce6c32be565d7903bc</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerresourcehandler.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerresourcehandler_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>CRLF</name>
+      <anchorfile>src_2ncreportdesignerresourcehandler_8cpp.html</anchorfile>
+      <anchor>a6cb23a858b0a21bdaa644b9181dc415f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TRIM_DEFAULT_TEXTHEIGHT</name>
+      <anchorfile>src_2ncreportdesignerresourcehandler_8cpp.html</anchorfile>
+      <anchor>aabc4e782b0ae716ed3e83294483d81e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TRIM_DEFAULT_TEXTWIDTH</name>
+      <anchorfile>src_2ncreportdesignerresourcehandler_8cpp.html</anchorfile>
+      <anchor>abe78338d58d593ce6c32be565d7903bc</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerresourcehandler.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerresourcehandler_8h</filename>
+    <class kind="class">NCReportDesignerResourceHandler</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerresourcehandler.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerresourcehandler_8h</filename>
+    <class kind="class">NCReportDesignerResourceHandler</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignersizehandler.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignersizehandler_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>SIZEHANDLERSIZE</name>
+      <anchorfile>ncreportdesignersizehandler_8cpp.html</anchorfile>
+      <anchor>a22da3f4f5f097bb42be34c8a2ba47a9b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignersizehandler.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignersizehandler_8cpp</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>SIZEHANDLERSIZE</name>
+      <anchorfile>src_2ncreportdesignersizehandler_8cpp.html</anchorfile>
+      <anchor>a22da3f4f5f097bb42be34c8a2ba47a9b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignersizehandler.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignersizehandler_8h</filename>
+    <class kind="class">Selection</class>
+    <class kind="class">SizeHandler</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignersizehandler.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignersizehandler_8h</filename>
+    <class kind="class">Selection</class>
+    <class kind="class">SizeHandler</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidget.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidget_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidget.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidget_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidget.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidget_8h</filename>
+    <class kind="class">dw_Circle</class>
+    <class kind="class">dw_Field</class>
+    <class kind="class">dw_Image</class>
+    <class kind="class">dw_Label</class>
+    <class kind="class">dw_Line</class>
+    <class kind="class">dw_Rectangle</class>
+    <class kind="class">NCReportDesignerWidget</class>
+    <class kind="class">WProperty</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidget.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidget_8h</filename>
+    <class kind="class">dw_Circle</class>
+    <class kind="class">dw_Field</class>
+    <class kind="class">dw_Image</class>
+    <class kind="class">dw_Label</class>
+    <class kind="class">dw_Line</class>
+    <class kind="class">dw_Rectangle</class>
+    <class kind="class">NCReportDesignerWidget</class>
+    <class kind="class">WProperty</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetfactory.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidgetfactory_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetfactory.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidgetfactory_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetfactory.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidgetfactory_8h</filename>
+    <class kind="class">NCReportDesignerWidgetFactory</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetfactory.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidgetfactory_8h</filename>
+    <class kind="class">NCReportDesignerWidgetFactory</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialog.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidgetsetdialog_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialog.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidgetsetdialog_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialog.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidgetsetdialog_8h</filename>
+    <class kind="class">NCReportDesignerWidgetSetDialog</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialog.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidgetsetdialog_8h</filename>
+    <class kind="class">NCReportDesignerWidgetSetDialog</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialogui.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidgetsetdialogui_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialogui.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidgetsetdialogui_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialogui.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwidgetsetdialogui_8h</filename>
+    <class kind="class">NCReportDesignerWidgetSetDialogUI</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwidgetsetdialogui.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwidgetsetdialogui_8h</filename>
+    <class kind="class">NCReportDesignerWidgetSetDialogUI</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwindow.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwindow_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwindow.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwindow_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwindow.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>ncreportdesignerwindow_8h</filename>
+    <class kind="class">NCReportDesignerWindow</class>
+  </compound>
+  <compound kind="file">
+    <name>ncreportdesignerwindow.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2ncreportdesignerwindow_8h</filename>
+    <class kind="class">NCReportDesignerWindow</class>
+  </compound>
+  <compound kind="file">
+    <name>reportvariablelistview.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>reportvariablelistview_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>reportvariablelistview.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2reportvariablelistview_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>reportvariablelistview.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>reportvariablelistview_8h</filename>
+    <class kind="class">ReportVariableListView</class>
+  </compound>
+  <compound kind="file">
+    <name>reportvariablelistview.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>src_2reportvariablelistview_8h</filename>
+    <class kind="class">ReportVariableListView</class>
+  </compound>
+  <compound kind="file">
+    <name>ereporte.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/</path>
+    <filename>ereporte_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>ereporte.h</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/</path>
+    <filename>ereporte_8h</filename>
+    <class kind="class">EReporte</class>
   </compound>
   <compound kind="file">
     <name>nciconfactory.cpp</name>
@@ -3398,6 +4262,3518 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>cmd_ChangeOrderCommand</name>
+    <filename>classcmd__ChangeOrderCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>canMerge</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>afc3d0382df45e2e2a30aba46ccefcf78</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>canMerge</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>afc3d0382df45e2e2a30aba46ccefcf78</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_ChangeOrderCommand</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a072c3afce08592cbf564d70c451e51fa</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;ol, const QWidgetList &amp;nl)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_ChangeOrderCommand</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a072c3afce08592cbf564d70c451e51fa</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;ol, const QWidgetList &amp;nl)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a5355066072d46ef9276f48f6e04dbd19</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a5355066072d46ef9276f48f6e04dbd19</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>merge</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a550410c4a8bf0f90ecc6e68441df91c8</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>merge</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a550410c4a8bf0f90ecc6e68441df91c8</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>acd417fe3876b345430fd51f386ccbb47</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>acd417fe3876b345430fd51f386ccbb47</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a8ecd159253c432ef91f16af35f27fa11</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a8ecd159253c432ef91f16af35f27fa11</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>newOrder</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a8d165d907a6317678f71be3c6ad44e2e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>oldOrder</name>
+      <anchorfile>classcmd__ChangeOrderCommand.html</anchorfile>
+      <anchor>a6cdbc9a18e0d394ffe5464f69fc1f8ea</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_DeleteCommand</name>
+    <filename>classcmd__DeleteCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_DeleteCommand</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a54505d6e247468e918c896f5537d9fee</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_DeleteCommand</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a54505d6e247468e918c896f5537d9fee</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a324b63de2f416b70880927b6804ff434</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a324b63de2f416b70880927b6804ff434</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a0ba7a9c5bbd67bb92cbc4abe7e5c1595</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a0ba7a9c5bbd67bb92cbc4abe7e5c1595</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a33e7bd3bc18934055daef0cffc51f5a8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a33e7bd3bc18934055daef0cffc51f5a8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>widgets</name>
+      <anchorfile>classcmd__DeleteCommand.html</anchorfile>
+      <anchor>a4586139cbfe15a6b27037dd0751ff6a7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_InsertCommand</name>
+    <filename>classcmd__InsertCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_InsertCommand</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>aaf2e85e7d8c292db60f759f9b3edd591</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, QWidget *w, const QRect &amp;g)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_InsertCommand</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>aaf2e85e7d8c292db60f759f9b3edd591</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, QWidget *w, const QRect &amp;g)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>a9df8dbf83db51f537d0ebffa9140a89a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>a9df8dbf83db51f537d0ebffa9140a89a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>a02c590995ef110891481f1b6812a5467</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>a02c590995ef110891481f1b6812a5467</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>af40355a99a4516ddb042d418e412eac4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>af40355a99a4516ddb042d418e412eac4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>geometry</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>a55207d05b41ba010ef396a49f65b7e65</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>widget</name>
+      <anchorfile>classcmd__InsertCommand.html</anchorfile>
+      <anchor>ae32027c5cd5f90bd3854fff715d7170e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_LowerCommand</name>
+    <filename>classcmd__LowerCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_LowerCommand</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a61f8412fea55b62db2bfdeb7e5d7e5d3</anchor>
+      <arglist>(const QString &amp;name, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_LowerCommand</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a61f8412fea55b62db2bfdeb7e5d7e5d3</anchor>
+      <arglist>(const QString &amp;name, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a41005b7a4648d33833743cf036f945c3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a41005b7a4648d33833743cf036f945c3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a3c7b5bf97bab862f616f66551e7e8d16</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a3c7b5bf97bab862f616f66551e7e8d16</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a3fa85f90b3d063f20a2b1832df16c1f3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>a3fa85f90b3d063f20a2b1832df16c1f3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>widgets</name>
+      <anchorfile>classcmd__LowerCommand.html</anchorfile>
+      <anchor>ac9e9523c0d46130f45e48e92ca1b2677</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_MoveCommand</name>
+    <filename>classcmd__MoveCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>canMerge</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>aa2cc79962940000aad013b1ab03a5941</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>canMerge</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>aa2cc79962940000aad013b1ab03a5941</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_MoveCommand</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a7c22e8b17c7efef4856d6931c3013ddf</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;w, const QValueList&lt; QPoint &gt; op, const QValueList&lt; QPoint &gt; np, QWidget *opr, QWidget *npr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_MoveCommand</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a7c22e8b17c7efef4856d6931c3013ddf</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;w, const QValueList&lt; QPoint &gt; op, const QValueList&lt; QPoint &gt; np, QWidget *opr, QWidget *npr)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>ae1062c17b4c2167356c547775bca1ac8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>ae1062c17b4c2167356c547775bca1ac8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>merge</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a7c676b68f5a00228f8b7cee80e09317b</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>merge</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a7c676b68f5a00228f8b7cee80e09317b</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>af85c35a612438b46c014f8786b4c5ee9</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>af85c35a612438b46c014f8786b4c5ee9</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a17816abbd28b7096f27035782d92cf13</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a17816abbd28b7096f27035782d92cf13</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>newParent</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a2b5baa0622856de7efc20185d7237ae1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QValueList&lt; QPoint &gt;</type>
+      <name>newPos</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>ab66c57fe0a247c18bd2c7fec72e67eed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>oldParent</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a7ff7c38b8cdfadda9bdd8a879f9ed13d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QValueList&lt; QPoint &gt;</type>
+      <name>oldPos</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a6d7a635418c2de53c678d29e01fdb8a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>widgets</name>
+      <anchorfile>classcmd__MoveCommand.html</anchorfile>
+      <anchor>a76eb0ef77ebbc970fb11b65497889884</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_PasteCommand</name>
+    <filename>classcmd__PasteCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_PasteCommand</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>aa1f0906330c8d28f4040d5aff79b1ac5</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_PasteCommand</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>aa1f0906330c8d28f4040d5aff79b1ac5</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>ae6407d0dc8dd583dd413a6d3019e42c6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>ae6407d0dc8dd583dd413a6d3019e42c6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>a66c71017a02bc487d588dd80e2357db0</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>a66c71017a02bc487d588dd80e2357db0</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>a34334201a05cd57d1eef931ada933019</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>a34334201a05cd57d1eef931ada933019</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>widgets</name>
+      <anchorfile>classcmd__PasteCommand.html</anchorfile>
+      <anchor>a5c1d6f23b8d7d0431dbd90a46184127e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_RaiseCommand</name>
+    <filename>classcmd__RaiseCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_RaiseCommand</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>af2109f7bf2c4d0573459fb06eefdfcbc</anchor>
+      <arglist>(const QString &amp;name, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_RaiseCommand</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>af2109f7bf2c4d0573459fb06eefdfcbc</anchor>
+      <arglist>(const QString &amp;name, NCReportDesignerDesignArea *da, const QWidgetList &amp;w)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>abec17a6cf0d09732b8bd9ba422c4819a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>abec17a6cf0d09732b8bd9ba422c4819a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>a2f6e423e2733044d85133f2b8d3c6e5f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>a2f6e423e2733044d85133f2b8d3c6e5f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>a4dd0f4f317def575472c572b0d7612f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>a4dd0f4f317def575472c572b0d7612f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidgetList</type>
+      <name>widgets</name>
+      <anchorfile>classcmd__RaiseCommand.html</anchorfile>
+      <anchor>a77a9399d4f47a83cd9d4dfcead625018</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_ResizeCommand</name>
+    <filename>classcmd__ResizeCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_ResizeCommand</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>a54602178b31c340358d5bde1f056d08d</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, QWidget *w, const QRect &amp;oldr, const QRect &amp;nr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_ResizeCommand</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>a54602178b31c340358d5bde1f056d08d</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, QWidget *w, const QRect &amp;oldr, const QRect &amp;nr)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>acedf05ede37fa5c97f8f32cd866d572f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>acedf05ede37fa5c97f8f32cd866d572f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>afdf8d8c209becd606e29863cece8148c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>afdf8d8c209becd606e29863cece8148c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>a6a069da926a5fcce8ffa57d85ed4c5d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>a6a069da926a5fcce8ffa57d85ed4c5d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>newRect</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>a1ac351d7fe6302f32f91dd668b229fa1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>oldRect</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>ac1433d11bddc53b89c8345028c3919fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>widget</name>
+      <anchorfile>classcmd__ResizeCommand.html</anchorfile>
+      <anchor>aabd41a60e4e56330b490e1f70aa29858</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>cmd_SetPropertyCommand</name>
+    <filename>classcmd__SetPropertyCommand.html</filename>
+    <base>NCReportDesignerCommand</base>
+    <base>NCReportDesignerCommand</base>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>canMerge</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>ad8e93af6f0aa5976c28aece8474cb4aa</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>canMerge</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>ad8e93af6f0aa5976c28aece8474cb4aa</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkProperty</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a490ac29b4b2525031e0a681115241949</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkProperty</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a490ac29b4b2525031e0a681115241949</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_SetPropertyCommand</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a877a222a32560ea270602dfa276b5955</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, QObject *w, const WProperty &amp;op, const WProperty &amp;np, bool reset=FALSE)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>cmd_SetPropertyCommand</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a877a222a32560ea270602dfa276b5955</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da, QObject *w, const WProperty &amp;op, const WProperty &amp;np, bool reset=FALSE)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>aad2c469e477119ab9a14010235565d57</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>execute</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>aad2c469e477119ab9a14010235565d57</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>merge</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>ad3281c6ca2c9989ca07be9625a052110</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>merge</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>ad3281c6ca2c9989ca07be9625a052110</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a83c5dbcdc24557e4df8edd8c6fc93bfd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Type</type>
+      <name>type</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a83c5dbcdc24557e4df8edd8c6fc93bfd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a47d4267a3eeae777bb7f1fa406de8ce3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unexecute</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a47d4267a3eeae777bb7f1fa406de8ce3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setProperty</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a371087799683135e71904b27d35437a3</anchor>
+      <arglist>(const WProperty &amp;v)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setProperty</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a371087799683135e71904b27d35437a3</anchor>
+      <arglist>(const WProperty &amp;v)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>isResetCommand</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a69639bea91894b4f8582bc9af0ff9197</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WProperty</type>
+      <name>newValue</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a3da8e7cec5e14ad0f52dfe226fbfd0a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WProperty</type>
+      <name>oldValue</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a25dbf85249b267422538c5c09fe8698f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>propName</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a348816ae404115cfa5b8d123c3ec07ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>wasChanged</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a5b6a4839ec0a094559d03642644150d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QGuardedPtr&lt; QObject &gt;</type>
+      <name>widget</name>
+      <anchorfile>classcmd__SetPropertyCommand.html</anchorfile>
+      <anchor>a8cba7f8714767030986280740c1a8907</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ColorAction</name>
     <filename>classColorAction.html</filename>
     <member kind="signal">
@@ -3792,6 +8168,1625 @@
       <anchorfile>classDGastos.html</anchorfile>
       <anchor>a079ba9152d484265a99458c6194177e7</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>diaGroup</name>
+    <filename>classdiaGroup.html</filename>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyGroupSettings</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a16ad13b5e7adfeb3f7eeaaf5424256bd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyGroupSettings</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a2a3917aa0c8e1be1b75802b16384d051</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>moveDown</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a0c49345a4a1137f99e73ce1f1f73d7df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>moveDown</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a77c8daf847b87c03cdc5bd410176382b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>moveUp</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a9720f069895d3f3c3f66d4b5fc47e1ff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>moveUp</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a8a2fee295f08531dac7da28371470cf6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>newGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a12991b72ac3593dc91f701802733aed1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>newGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a692b891f468e8dc987f1b27e0306de8d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a8bd04a6ed14f87076a940394e9144e4b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a6f1d414da7bbbb400e151068f2db67d3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a7285321263e8904f0099c26e0f4d4311</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a7285321263e8904f0099c26e0f4d4311</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>ab186a687bdcadf4ee9abb8ffe8da9a5c</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>ab186a687bdcadf4ee9abb8ffe8da9a5c</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>refreshForm</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a35afc33c7760562832c02d4f6857ff2c</anchor>
+      <arglist>(bool enable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>refreshForm</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a35afc33c7760562832c02d4f6857ff2c</anchor>
+      <arglist>(bool enable)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a6fff0383f3cbd49a4a9c2864e18a9194</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a6fff0383f3cbd49a4a9c2864e18a9194</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_changed_expr</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a1c909dbfed4eaf5fe0ade29178d20b72</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_changed_expr</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a1c909dbfed4eaf5fe0ade29178d20b72</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_changed_name</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a5e6286271a526fd8bd6109c125dabf22</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_changed_name</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a5e6286271a526fd8bd6109c125dabf22</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_changed_resetvars</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>af09df429f20488e10a63984291ec08d9</anchor>
+      <arglist>(QListViewItem *)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_changed_resetvars</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>af09df429f20488e10a63984291ec08d9</anchor>
+      <arglist>(QListViewItem *)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>groupChanged</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a14799f5efee6772e8caa16b7dc2d1f03</anchor>
+      <arglist>(QListBoxItem *)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>groupChanged</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a420d6c1ab44adba0103dc8664a6e06ca</anchor>
+      <arglist>(QListBoxItem *)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>ab1afae0d264faab065f7642e2b03d53f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>aa78289486f6cc23557184c06cc2f3c1a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>clearWidgets</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>aff5e1fc9ea9cb835e2719fa65ce9e7e5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>clearWidgets</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>aff5e1fc9ea9cb835e2719fa65ce9e7e5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>groupDataChange</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a199b6af5648f1b6a38e1d058d227beef</anchor>
+      <arglist>(const QString &amp;gname_old, const QString &amp;gname_new, bool changeName, bool changeExpr, bool changeReset)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>groupDataChange</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a199b6af5648f1b6a38e1d058d227beef</anchor>
+      <arglist>(const QString &amp;gname_old, const QString &amp;gname_new, bool changeName, bool changeExpr, bool changeReset)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setLineEditValue</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a128d61d0225d78b261e04790b80cb391</anchor>
+      <arglist>(QLineEdit *, const QString &amp;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setLineEditValue</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a128d61d0225d78b261e04790b80cb391</anchor>
+      <arglist>(QLineEdit *, const QString &amp;)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QButtonGroup *</type>
+      <name>bgGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a894ee29503fed168624077674ca1ad74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>bgGroupLayout</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a9a66c3ae0d0f97ec8d84a7fd2a1c0c78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnApply</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>af91da174867826aadeefbb5335e34d2e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnCancel</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a6d227a8f03be59d7e466d55c891e09a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnDown</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a170a012ef503a991a06a90bc90f05565</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnNew</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>ae69b3bf4dbb62d47a8a3345d3736a94a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnOK</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a767b7c7cfb42ea3d1ba03760beff6384</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnRemove</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a15d76d8d2290d7b0822b70b31744aea7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnUp</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a60566a53cb906312665b13baf2fe5f31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QListBoxItem *</type>
+      <name>currItem</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a1fe6ed2974f39798f1a58c7fd5ec68b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>diaGroupLayout</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>aa4224e3692fb487635484e453d2e5774</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a623d0022e1a128ffad93f7f4910e2352</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QMap&lt; QString, ReportGroup &gt;</type>
+      <name>groups</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>aff2bcb68c9a44237d32414fed6dd0692</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>ab0fc8b78357665c495fc6207f1ee0811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layGB</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a31935c86a70b25c7feb05bcf130c15ae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layGroup</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a31ef6a985509d8f9c595e3e7fa84f54a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layNames</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a613a610d35ad6c6a44e6c527ec540734</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblExp</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a539c0f4b9572caa7162ad90641de76d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblName</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a3da882e0ac1191f4e35c0850b83723a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblVars</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a8520a046def8d45c93d442df0e928e5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leExpr</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>afd46af0761282c45c9f4194cef69049d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leName</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a7561cf8c6066d923a32ccfffb25c0c31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QListBox *</type>
+      <name>listGroups</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a2527e40bb03cf99e55e5899046d7bd23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ReportVariableListView *</type>
+      <name>listVars</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>aec764471d9ee42ce9f6545f21ee64506</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spButt</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a12d3e331823fe065714ede3f4ad677af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spGB</name>
+      <anchorfile>classdiaGroup.html</anchorfile>
+      <anchor>a7b220d4a3d1418be31321decd11efaa8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>diaPage</name>
+    <filename>classdiaPage.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>applySettings</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a14bbdd87bcae4137b93261a2269a9c16</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>applySettings</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a14bbdd87bcae4137b93261a2269a9c16</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a32579b28f92a3e32c1fa0339a2135586</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a32579b28f92a3e32c1fa0339a2135586</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaPage</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ad2d4c8a2722310e94653c888be4348b7</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaPage</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ad2d4c8a2722310e94653c888be4348b7</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaPage</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aa69687805bf8d4415bf59ce969dd146f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaPage</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aa69687805bf8d4415bf59ce969dd146f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a3f478def0cd897ab1e36553d06f06090</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a1a755cad058ad378391eaa3205951928</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initComboBoxes</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a005823fec53e60b1be3bf9c7aaaeb468</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initComboBoxes</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a005823fec53e60b1be3bf9c7aaaeb468</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnCancel</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aed4cb3f945f8aafc43cf10a79c08107a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnOK</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a37ac1e7af4c10843bd34a27f50109835</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboDataSource</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a5e734e94c8d8d8166e144bad0afc5e3c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboDelimiter</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a1b212ffc4d2bc6069ec6af96456384c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboEncodings</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a4c6b8238245fe00534aa8e4ceadbef54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboPageSize</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a2ae4cfa4f4c70a3f6146b386b9283178</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboPrinterMode</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a74c04a1c70000cdbb44109d997d06504</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>diaPageLayout</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a1fd56a2cae672529e0e6a21f5f05763b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ad1c315486fca8df2081aed6b3385e8f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGroupBox *</type>
+      <name>gbCon</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a96bfb32001d03f4897fe52d54dcc7351</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbConLayout</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>af98139e2c9b9ce4f0d89cdabc900e49e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGroupBox *</type>
+      <name>gbGen</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ac77a11f1e1cb9ab4028c06abb3608d81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbGenLayout</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a8874472eacf4cc199d8df883be372b04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGroupBox *</type>
+      <name>gbMargin</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>af830db9595c69b57d0fde9b3d746a59c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbMarginLayout</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a2cc810a484d25cc8e926c9c25c01a5e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QButtonGroup *</type>
+      <name>gbOrient</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a3ca55e39c2fef1dae5ea660eb6277fc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>gbOrientLayout</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>af592d796d6d80ad3b778e3a7c1cbda2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGroupBox *</type>
+      <name>gbText</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a35ad65e255cd28a7586f4cda985f45f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbTextLayout</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ae8b8a89ec95ade8a28a394ac9bdad483</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aebda6b7fc0e962af6d959ad064e672af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layDSTop</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a316902459f7fdbb36af396ad1ab5e722</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layLeft</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a8d5de8008664932f835d9309ef640176</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layMargin</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ae315bb38c67afdfc7c4a008d0d530fa3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layPageDataSource</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ab27581933221ea5ef2c20ea722849266</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layPagePage</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ac77ee7151a59b535d62465df313703d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblBottom</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a90229dd3c97ed64ca166f3b290838a0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblDataSrc</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a1345ef0ee351094d3714f35a5acc8766</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblDB</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a3687293431bed8523194924616a2521f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblEncode</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a4bfcd61c13cc6c1160cb1a0a27006ac1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblFonstSize</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a264488a1c752fad3754c77aa0769c133</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblFont</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aaef697a5be867f07d4c7937fe2bbff78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblHot</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a4df86c73411d60a0fb36533b3f49b0d5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblLeft</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a83786265c82a475fcce70c27c9289570</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblName</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a1cddc12c1307b5dc370e1462fa2e9eda</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblPageSize</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a45535ee4de43f59bc258c57f9bf37ca6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblPassword</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ac06e7dd0716f60a37b05784d5c674698</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblPrintMode</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>ac9518fc7851340f950e232c1eecc92be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblResrcText</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aa8b9486ae80d31f89f9190733d121fa4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblRight</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a9e0d4a127fa42b55592e13da34c32947</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblRowFilter</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a93ca640564cfe2336a2eced9e1b8a93e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblTextDataDelim</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a7499c62781a28db8e3cb0cac7e4f3af1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblTop</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aeaff04eee0d67cab38a2446a6605487d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblUser</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a48b9fb739f2e373507d87099afc1b174</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leDB</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aae4bbfd2d4632cf703a1c0ca19353ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leFont</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a3551ff4ec0017ea4b7108407faa8df48</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leHost</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a21d028f626e465f0c15fbb70a688c0e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leMasterAlias</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a589768c544bfdb38130edf498a5cd5e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leName</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a254dc21d467be9e6b2a10972b247aa8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>lePassw</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a199ae8bcd1ff589dfce05f2eae387370</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leResourceText</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a0d33df1b9eb7f81ba034ac23c05f659c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leRowFilter</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a0439e5291a8a2cc8dd38b5278689f74c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leUSer</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>af3a3abaedb76894d21bfc6e9e2011c0d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QWidget *</type>
+      <name>pageDataSource</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a48a65b6ee99ae9185a97b4fc1d1b32b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QWidget *</type>
+      <name>pagePage</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a12a655ab1d4205902a35a617d64a5f83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QRadioButton *</type>
+      <name>radioL</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a674b22989893446a7300214a4c4cfde0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QRadioButton *</type>
+      <name>radioP</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a78f6d1b28a2e0b5dcc1ebaba100d49f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpinBox *</type>
+      <name>spBottom</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aedf9ac97b6ef5edc6fcd74d6e1f5211d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spBtn</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a14eb87e2797cf7a2026bea918e58c607</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpinBox *</type>
+      <name>spFontSize</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a36bc0a9194f75298ba03912bd74690e4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpinBox *</type>
+      <name>spLeft</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>aa1163af3ba163bb90b5516990ebe435e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpinBox *</type>
+      <name>spRight</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a5535de945c91c2026cce484f2bdc7640</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpinBox *</type>
+      <name>spTop</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a9e4138d1149bf3b02413f1bc3d5291de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QTabWidget *</type>
+      <name>tab</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a6831a26e6aa31e0b62225e5bd39c885f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>textLabel10</name>
+      <anchorfile>classdiaPage.html</anchorfile>
+      <anchor>a342605aa01ddcc29ec0d50bf34436205</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>diaQuery</name>
+    <filename>classdiaQuery.html</filename>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>addQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a45cbb3b5927459e430cbfb0c9e082853</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>addQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aca1e9358d7eb3313d260e087d9969cba</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>currentChanged</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a76fbfdc2a7819e57a3ed30be026a01d4</anchor>
+      <arglist>(QListBoxItem *)</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>currentChanged</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aa2e59f04dd2eb97e4e06fcbed56ad73d</anchor>
+      <arglist>(QListBoxItem *)</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>moveUp</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a060c86d8101209844bee6cfac88ee9fa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>moveUp</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a9e827b63216abd51c63d9c1bea2b40dd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>qryChanged</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>acbcfa3cd2029d947398060f526f769bf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>qryChanged</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a1fadbb5a9576706e89711fffca903c72</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>abba16c11ccbfa55a21989e5863fcf760</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aac54896cf2376055e5bb5712af738b6b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>renameQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a58d66d877c8bfe5baec03d16838cc823</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>renameQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a8e4fbc729f21f81dc64e5c40a91928a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ad4a3500382add9ebf20c969a1c79f705</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ad4a3500382add9ebf20c969a1c79f705</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a2018cefd699be02aac932e4ad73f7db0</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a2018cefd699be02aac932e4ad73f7db0</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a2a78545d5d4bdbfbf48457f818f2db08</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a2a78545d5d4bdbfbf48457f818f2db08</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a4d68cfa09c076c86e36a52fd66393165</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ad6ad7e19aa0e6429a4403a17012d7ebd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnAdd</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ad44c8d1643ad0cd02e6d8b3eff177d91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnClose</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a1efea13aff3b90253a39d00b2a91cc11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnRemove</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ac2dd40eae432d0191d02d615489581e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnRename</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aa6c5479fc99d72a9311427bbb149e7a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnUp</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aabf260293cdd07f5a2189c175e8eefe0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a9ac8945e29f1b0cfccb0cd1b67d97b99</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QTextEdit *</type>
+      <name>editQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aee4ec821d0a7288fea1d1e11e9bb5f27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aaee9ba32e4506989ff04c52225929206</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layLeft</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>afd60e444ffb4892a8afd73d65732ed9b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layName</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a503b99b3c0763ba9f7ad3a5aec3c7e12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layUp</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>a3901605c9ee13e05132fd48497bbe35f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblName</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aafd7af3750e5f54616c1116e78b54d4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leName</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ac18fd91a4a852b587d798f484e4fedb0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QListBox *</type>
+      <name>listQuery</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ac48c34aa69dc962da5f489c8f9887873</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>query_editorLayout</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ae54f986a4279693a5e20e52b6cbea9fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spBtn</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>ab79e3a1a26cd3493d78a2faf9ea1ba2f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>textLabel2</name>
+      <anchorfile>classdiaQuery.html</anchorfile>
+      <anchor>aef741ede8a13874b79bf0a7e4984d0ee</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>diaVariable</name>
+    <filename>classdiaVariable.html</filename>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>newVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a710a11a2ec0a756c69931d5429717d2a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>newVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>afc45d0727bd85811fd8573380bed6bd8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a0d9ca13bdbc3d71d8252d1bc9c283d5c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a412328e22c3f8c65bd956b23902274f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applySettings</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a3cb64216fcf2d82cc0c315c18eede65a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applySettings</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ad0c05f44ec3e2d1d49d6bf4936e04577</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ad994b8e2067a309b8d2f0b6755b5428e</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>assignDocument</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ad994b8e2067a309b8d2f0b6755b5428e</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a588bee546fd59f0e6ffce97626cb5679</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>diaVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a588bee546fd59f0e6ffce97626cb5679</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>refreshForm</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a320442d3933897ccf59be7c4433b0428</anchor>
+      <arglist>(bool enable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>refreshForm</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a320442d3933897ccf59be7c4433b0428</anchor>
+      <arglist>(bool enable)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>acec62db1e9ce5083388b2e89ce34577c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~diaVariable</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>acec62db1e9ce5083388b2e89ce34577c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_datatype</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a271640ada0f0c30c7017912d417409e5</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_datatype</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a271640ada0f0c30c7017912d417409e5</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_field</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a170c5fabe0de07b35fa1634d52f5f09a</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_field</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a170c5fabe0de07b35fa1634d52f5f09a</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_function</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a53571b3e32b84e2fde0ac37270e963b2</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_function</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a53571b3e32b84e2fde0ac37270e963b2</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_listView</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a6f9b0c00c34dcb39ed56cb4cd89234a7</anchor>
+      <arglist>(QListViewItem *)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_listView</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a6f9b0c00c34dcb39ed56cb4cd89234a7</anchor>
+      <arglist>(QListViewItem *)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_name</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a378e18dbc41b286138297567026d07b6</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>_change_name</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a378e18dbc41b286138297567026d07b6</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a639624a5f79f73460a6e5a5cadf947b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>languageChange</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a639624a5f79f73460a6e5a5cadf947b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>clearWidgets</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a8a594684568cf0510290e88d115552a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>clearWidgets</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a8a594684568cf0510290e88d115552a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>dataChange</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a6347ed2f0c6e75ea6dd6f6dc8fb49a77</anchor>
+      <arglist>(bool changeName, bool changeField, bool changeFunc, bool changeDataType)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>dataChange</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a6347ed2f0c6e75ea6dd6f6dc8fb49a77</anchor>
+      <arglist>(bool changeName, bool changeField, bool changeFunc, bool changeDataType)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setComboBoxValue</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ae767b71b1184edf63f835bad517d0b4f</anchor>
+      <arglist>(QComboBox *, const QString &amp;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setComboBoxValue</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ae767b71b1184edf63f835bad517d0b4f</anchor>
+      <arglist>(QComboBox *, const QString &amp;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setLineEditValue</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a19f8e36bb21991ffa8953416d7e45491</anchor>
+      <arglist>(QLineEdit *, const QString &amp;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setLineEditValue</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a19f8e36bb21991ffa8953416d7e45491</anchor>
+      <arglist>(QLineEdit *, const QString &amp;)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnCancel</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a6f2f08cb0f43ef163fdc45553f55c2c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnDelete</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a5f3fe313a9a6c8061afc0e371dce3f40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnNew</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ac64a13121054d3a84dc26babca34d3c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPushButton *</type>
+      <name>btnOK</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a81a34f7c275b67d24dcdf28148be747a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboFunc</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a68bedd80a1c1dd2d234bae615552376c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QComboBox *</type>
+      <name>comboType</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a951f7d0b77f801400838478c11cfbb35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QListViewItem *</type>
+      <name>currItem</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a89a27a557468c7b302e1338db121e3b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>diaVariableLayout</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>aac96b00acd9385c1afe58c15e2e2f0b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>afc9969199b10d0827c3c531504b016a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGroupBox *</type>
+      <name>gbVar</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a7bbf8fba1e95f6702a876d157d1156fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbVarLayout</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a965d15cf5452075b7085229a18982c94</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a4e988ba1e0f475a430e7e94df9ac6422</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>layLeft</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a51712fb1318d9230f990960860f480b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblField</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a9376803fee7d063751fe0c6944edc594</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblFunc</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>aab28f8e0d366e84c89ac567c83fcaf93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblName</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a47d854d05ef586da56a6a09bdda2a638</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLabel *</type>
+      <name>lblType</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ad7d54dd6f7e9d946868dbe1ad2e245db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leField</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a8c64a5d4a0782a0e189f4697d17fd3f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QLineEdit *</type>
+      <name>leName</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a7a3ef508001afa31794a29394657647a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>ReportVariableListView *</type>
+      <name>listVars</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>ac0269d40c82b90d6fd49fc879fc081b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spBtn</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>af2a3b4459962b1231b215f351e840028</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QMap&lt; QString, ReportVariable &gt;</type>
+      <name>variables</name>
+      <anchorfile>classdiaVariable.html</anchorfile>
+      <anchor>a8f6c0b8bf12b7253394551073c77edfa</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4451,6 +10446,3978 @@
       <anchorfile>classDSiNo.html</anchorfile>
       <anchor>aee7e24ef72e3bd68a29331c46b892fd9</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>dw_Circle</name>
+    <filename>classdw__Circle.html</filename>
+    <base>NCReportDesignerWidget</base>
+    <base>NCReportDesignerWidget</base>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Circle</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>a53e3049600212a1ea6349b1a37a30f30</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Circle</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>a53e3049600212a1ea6349b1a37a30f30</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9e289cc611b2c3651c3df6f12b682dcd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5d4ce7ae284acb7a398c4e312bb37f78</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Circle</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>a462e64560c92b9302d223fab3f3c4dff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Circle</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>a462e64560c92b9302d223fab3f3c4dff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>a4f440652664c53474605fad7fd1ca463</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>afef97d2f7a4f42a5c0f0b90cf0744bc7</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateMask</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>aefe3ccefd95917da3a5b8441f22c0a87</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateMask</name>
+      <anchorfile>classdw__Circle.html</anchorfile>
+      <anchor>a02555a8c6468f5e6688b27ec66294f5c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>dw_Field</name>
+    <filename>classdw__Field.html</filename>
+    <base>dw_Label</base>
+    <base>dw_Label</base>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Field</name>
+      <anchorfile>classdw__Field.html</anchorfile>
+      <anchor>ad9a52fa76267dcd4fc2feb4845177109</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Field</name>
+      <anchorfile>classdw__Field.html</anchorfile>
+      <anchor>ad9a52fa76267dcd4fc2feb4845177109</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9e289cc611b2c3651c3df6f12b682dcd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5d4ce7ae284acb7a398c4e312bb37f78</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Field</name>
+      <anchorfile>classdw__Field.html</anchorfile>
+      <anchor>a59ff3da311011738d8b90278652c83b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Field</name>
+      <anchorfile>classdw__Field.html</anchorfile>
+      <anchor>a59ff3da311011738d8b90278652c83b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Field.html</anchorfile>
+      <anchor>a7b1633ac8a5bc843b7848e7a95b20322</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Field.html</anchorfile>
+      <anchor>a3d048d6eabe27225bb5cfd57fdb14ef1</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QColor</type>
+      <name>borderColor</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>a31174c9a95fbc2452bd8b0ec63ee66c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>drawborder</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>a4ef050253aec193a7fd3eb187db62102</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>dw_Image</name>
+    <filename>classdw__Image.html</filename>
+    <base>NCReportDesignerWidget</base>
+    <base>NCReportDesignerWidget</base>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Image</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a7a5760c4df6d14e50c2f3836ef5ca6b3</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Image</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a7a5760c4df6d14e50c2f3836ef5ca6b3</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWidget</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a45f395462d96221bad083c1b991bfdd0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWidget</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a45f395462d96221bad083c1b991bfdd0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Image</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>ab2562a18c1dca9ede1f5e09e93a1775b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Image</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>ab2562a18c1dca9ede1f5e09e93a1775b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a22d403f75d239a6ff3a7e06afca36348</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a3854e3cb032e7080d7cf11b714db96e7</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPixmap</type>
+      <name>pm</name>
+      <anchorfile>classdw__Image.html</anchorfile>
+      <anchor>a2f853876da4feb57ea644917e955d37f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>dw_Label</name>
+    <filename>classdw__Label.html</filename>
+    <base>NCReportDesignerWidget</base>
+    <base>NCReportDesignerWidget</base>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Label</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>af6cb59629fabbd4404feb07fb5a6e7e8</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Label</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>af6cb59629fabbd4404feb07fb5a6e7e8</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9e289cc611b2c3651c3df6f12b682dcd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5d4ce7ae284acb7a398c4e312bb37f78</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Label</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>ab953f3684e1658ec1d7ecef2d2a933c9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Label</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>ab953f3684e1658ec1d7ecef2d2a933c9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>aecdd05a0dd3a6aeb7bb1aaa948806c5d</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>aa2ef4f2842cea218570b0041055a6829</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QColor</type>
+      <name>borderColor</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>a31174c9a95fbc2452bd8b0ec63ee66c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>drawborder</name>
+      <anchorfile>classdw__Label.html</anchorfile>
+      <anchor>a4ef050253aec193a7fd3eb187db62102</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>dw_Line</name>
+    <filename>classdw__Line.html</filename>
+    <base>NCReportDesignerWidget</base>
+    <base>NCReportDesignerWidget</base>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Line</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>ac0bb5ad56bd15e7cf907b2996bcbb1a2</anchor>
+      <arglist>(Orientation ori, NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Line</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>ac0bb5ad56bd15e7cf907b2996bcbb1a2</anchor>
+      <arglist>(Orientation ori, NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWidget</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>aaf7a4b444aaf35c4cd2a852085396228</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWidget</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>aaf7a4b444aaf35c4cd2a852085396228</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Line</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>a522869cb9563671404d51d007173401d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Line</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>a522869cb9563671404d51d007173401d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>a6b9cb26a5be2f162c76823414e8ca59f</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>afb0c039d0c1354831a7f090707ff9603</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateMask</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>a13edb32ea8cd6aee6f07b8b50fcce3e4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateMask</name>
+      <anchorfile>classdw__Line.html</anchorfile>
+      <anchor>a341daab0a64248ce9dba851263e4b744</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>dw_Rectangle</name>
+    <filename>classdw__Rectangle.html</filename>
+    <base>NCReportDesignerWidget</base>
+    <base>NCReportDesignerWidget</base>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Rectangle</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a6dbeae16df9175b16ccffff414ffca73</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>dw_Rectangle</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a6dbeae16df9175b16ccffff414ffca73</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWidget</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a933d93e127cc93abad07827bba885586</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWidget</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a933d93e127cc93abad07827bba885586</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Rectangle</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a04f1c2d83ecdf2318502e4a8da7aa2ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~dw_Rectangle</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a04f1c2d83ecdf2318502e4a8da7aa2ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a1c3f25e17523d884b1cb8e28e23883e5</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a6ec9642c09579ee469600eeda024e991</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateMask</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a68c53ab33fc0362892661cd07f6574d8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateMask</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a6f704a5a97e630e784040418b860304b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>int</type>
+      <name>margin</name>
+      <anchorfile>classdw__Rectangle.html</anchorfile>
+      <anchor>a242f040a29edf8a6ac97f57749c395ad</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -8127,6 +18094,67 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FormClientesAdheridos</name>
+    <filename>classFormClientesAdheridos.html</filename>
+    <base>EVentana</base>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classEVentana.html</anchorfile>
+      <anchor>a37ab6ec8c3fd3129a00850816ac8a3f4</anchor>
+      <arglist>(QWidget *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classEVentana.html</anchorfile>
+      <anchor>a5e5f4238cfeadf7d2edf4d1ec36ba597</anchor>
+      <arglist>(QCloseEvent *e)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FormClientesAdheridos</name>
+      <anchorfile>classFormClientesAdheridos.html</anchorfile>
+      <anchor>a4e4307067576bc19d9068c75f409fcd3</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FormClientesAdheridos</name>
+      <anchorfile>classFormClientesAdheridos.html</anchorfile>
+      <anchor>aff7c847e55c3bf094e81889db8df78a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>changeEvent</name>
+      <anchorfile>classFormClientesAdheridos.html</anchorfile>
+      <anchor>a869cc1c8972178878e7a608863605d6e</anchor>
+      <arglist>(QEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QWidget *</type>
+      <name>padre</name>
+      <anchorfile>classEVentana.html</anchorfile>
+      <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MServicios *</type>
+      <name>mservicios</name>
+      <anchorfile>classFormClientesAdheridos.html</anchorfile>
+      <anchor>a45e2770fe2d3e2c58bafa0791e609d1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Ui::FormClientesAdheridos *</type>
+      <name>ui</name>
+      <anchorfile>classFormClientesAdheridos.html</anchorfile>
+      <anchor>a5b15ebb9f6aa09c6d9ba7ca78227cbdd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FormEstadoCaja</name>
     <filename>classFormEstadoCaja.html</filename>
     <member kind="function">
@@ -8149,6 +18177,13 @@
       <anchorfile>classFormEstadoCaja.html</anchorfile>
       <anchor>a2b9b2be606dc64f2375fab3e722fa4ad</anchor>
       <arglist>(QEvent *e)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>cambioCaja</name>
+      <anchorfile>classFormEstadoCaja.html</anchorfile>
+      <anchor>ab1f36d22d65ba9054a41ca2c4626837e</anchor>
+      <arglist>(int num_caja)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>Ui::FormEstadoCaja *</type>
@@ -9237,6 +19272,13 @@
       <name>ActAgregar</name>
       <anchorfile>classFormRecargos.html</anchorfile>
       <anchor>ae8f533655dce8708d5822aa39ef3a3d1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>ActCerrar</name>
+      <anchorfile>classFormRecargos.html</anchorfile>
+      <anchor>a29229fc7cc80abe75960118ec2812f61</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -12433,6 +22475,280 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>Measurement</name>
+    <filename>classMeasurement.html</filename>
+    <member kind="enumeration">
+      <name>Measure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Metric</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927a7599f8a6381eecf8ea4530bc356ad03d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>English</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927aefc3f4e563f2d2a21a44f8cc163745b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Metric</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927a7599f8a6381eecf8ea4530bc356ad03d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>English</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927aefc3f4e563f2d2a21a44f8cc163745b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Measure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Metric</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927a7599f8a6381eecf8ea4530bc356ad03d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>English</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927aefc3f4e563f2d2a21a44f8cc163745b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Metric</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927a7599f8a6381eecf8ea4530bc356ad03d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>English</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a65d3b151d086a9f2ce67e74ad3a81927aefc3f4e563f2d2a21a44f8cc163745b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>changeZoomLevelBy</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a48a9ff563f913f5c7459f356b11853d4</anchor>
+      <arglist>(double)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>changeZoomLevelBy</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a48a9ff563f913f5c7459f356b11853d4</anchor>
+      <arglist>(double)</arglist>
+    </member>
+    <member kind="function">
+      <type>Measurement::Measure</type>
+      <name>measure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a4ed7f316153e4ce0418114593039413f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Measurement::Measure</type>
+      <name>measure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a4ed7f316153e4ce0418114593039413f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Measurement</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a80b305f40c6b3a713e39770de9753666</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Measurement</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a80b305f40c6b3a713e39770de9753666</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>measureToPixel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a8c739d7db32af14521eb84243dd36074</anchor>
+      <arglist>(double m)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>measureToPixel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a8c739d7db32af14521eb84243dd36074</anchor>
+      <arglist>(double m)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>measureUnit</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a7b0875fe28c04e3bc62f06919a006ceb</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>measureUnit</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a7b0875fe28c04e3bc62f06919a006ceb</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelPosToMeasureCaption</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a00840928c2647a8331b14b86aa5c8a7c</anchor>
+      <arglist>(int x, int y)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelPosToMeasureCaption</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a00840928c2647a8331b14b86aa5c8a7c</anchor>
+      <arglist>(int x, int y)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelSizeToMeasureCaption</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a48072eb9fa1397bde93510b11d7a72fb</anchor>
+      <arglist>(int w, int h)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelSizeToMeasureCaption</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a48072eb9fa1397bde93510b11d7a72fb</anchor>
+      <arglist>(int w, int h)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>pixelToMeasure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a2eb561578673c62193bccc12ea9910e8</anchor>
+      <arglist>(int p)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>pixelToMeasure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a2eb561578673c62193bccc12ea9910e8</anchor>
+      <arglist>(int p)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelToMeasureCaption</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a58f71bb6063ae52bbe366fe1162b021e</anchor>
+      <arglist>(int p)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelToMeasureCaption</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a58f71bb6063ae52bbe366fe1162b021e</anchor>
+      <arglist>(int p)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelToMeasureStr</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a11b86e02b22b371e77cccdd689bcfeab</anchor>
+      <arglist>(int p, int decimals=3)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>pixelToMeasureStr</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a11b86e02b22b371e77cccdd689bcfeab</anchor>
+      <arglist>(int p, int decimals=3)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a59109cfec6bf1ba7ae2cc44a781af7b7</anchor>
+      <arglist>(Measure)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasure</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a59109cfec6bf1ba7ae2cc44a781af7b7</anchor>
+      <arglist>(Measure)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setZoomLevel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>afab92977c0f4c0ee0b3b093387a0c647</anchor>
+      <arglist>(double)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setZoomLevel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>afab92977c0f4c0ee0b3b093387a0c647</anchor>
+      <arglist>(double)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>zoomLevel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a416e320e82416cbe40869a367c8a578c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>zoomLevel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a416e320e82416cbe40869a367c8a578c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~Measurement</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>ac94dd8728fe078e337e9ac4b2187a5dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~Measurement</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>ac94dd8728fe078e337e9ac4b2187a5dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Measure</type>
+      <name>msr</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>a670a60a0dc9b0bfea3e0f4f579bcc26f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>zoomlevel</name>
+      <anchorfile>classMeasurement.html</anchorfile>
+      <anchor>ace577113a2c486278594b97f2b85b995</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>MGasto</name>
     <filename>classMGasto.html</filename>
     <member kind="function">
@@ -12680,6 +22996,13 @@
       <anchorfile>classMMovimientosCaja.html</anchorfile>
       <anchor>ae8c50b4322e4ed30723346e4beb51c7b</anchor>
       <arglist>(QObject *parent=0, bool relaciones=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>recalcularSaldo</name>
+      <anchorfile>classMMovimientosCaja.html</anchorfile>
+      <anchor>a4862832288b8b0f580e81dad770e0cb1</anchor>
+      <arglist>(int id_caja)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -13176,8 +23499,8 @@
       <type>int</type>
       <name>columnCount</name>
       <anchorfile>classMRecargos.html</anchorfile>
-      <anchor>ade52650f590d6544ba982e6a37c42a45</anchor>
-      <arglist>()</arglist>
+      <anchor>a6539e4936fe6b4d88b95492eb2deae84</anchor>
+      <arglist>(const QModelIndex &amp;index=QModelIndex()) const </arglist>
     </member>
     <member kind="function">
       <type>QVariant</type>
@@ -13410,6 +23733,13 @@
       <anchor>a7bf77561b3a4aac16c5c77fb14d03b55</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>precioBase</name>
+      <anchorfile>classMServicios.html</anchorfile>
+      <anchor>a1231c7860ccda86a72a492e54e573b28</anchor>
+      <arglist>(int id_servicio)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>MTProductosPresupuesto</name>
@@ -13554,6 +23884,448 @@
       <anchorfile>classMVentaProducto.html</anchorfile>
       <anchor>aab1fb943707979a511e4769437c46901</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCAboutDialog</name>
+    <filename>classNCAboutDialog.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>NCAboutDialog</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ad649be80d291d917e964eeabbbc78095</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCAboutDialog</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ad649be80d291d917e964eeabbbc78095</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setAbout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ab89b42cf3efe125c99424fe5c5163bdc</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setAbout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a284224546d730841f248bdcac4bd16aa</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setAuthor</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a723c73432d1e520b505ee6489e402ce3</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setAuthor</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ae4f3c96667f543dbe4e308c8154b9e12</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setIcon</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a713e525e47b4dc8f73cd97eca69b53c3</anchor>
+      <arglist>(const QPixmap &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setIcon</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>aea34ecf754e7967f4b595cafeb509ffb</anchor>
+      <arglist>(const QPixmap &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setLicence</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a0a40e6ff009e425726afa3224749606c</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setLicence</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a84bd3527542dfa54cc8de4228ee3d1b1</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setName</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a51fe4900db48809a9c1e19985e30126f</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setName</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a806d34a03d8f959e42b486ba14a22cbb</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCAboutDialog</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ad283117f3e0ba800359be0f31d986abb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCAboutDialog</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ad283117f3e0ba800359be0f31d986abb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>btnOK</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a53af077c545865d625c2b22af7b3b9c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblAbout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>aa176a2556ffc31736c2644d5431a8bac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblAuthor</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a96ab23345616453b5a08f04fe5405e4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblImage</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>ac6e148bd29ff9d9f97b169913a490ed4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblName</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a6ded8671c703914469b8cb708c53589f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>tab</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a2308e6f6ff7b8985ccb8f959e0eeeab0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTabWidget *</type>
+      <name>tabAbout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a262695a69af13d8fdc3897b50fdd59ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>TabPage</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>af19751df23e4a7009feb3b1669e08a89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>TabPage_2</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a558aaca8597d2731af483c0c5d36c2ef</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTextBrowser *</type>
+      <name>textLicence</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a3ca14984530d7652711bca230c43b54a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a8342fb13886e790d40b0641e29d2c4da</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>aafe5f84accb4191d9c20bb197d24bd2b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a7cacc3439d47f2ac10ef1768d4f3f866</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layTitle</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a632c8b2f70e5465819e926cc7fbe29ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>NCAboutDialogLayout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>aef3d0a24412a3a074e1dc4a34b0235be</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spButtons</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a9aaef44261abe74d082748fe6f709ca7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>tabLayout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a03fdcc34c4ea82a6ec1a1d826412511a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>TabPageLayout</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a0f5a9011fb7f9d20e84ff93fedf117a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>TabPageLayout_2</name>
+      <anchorfile>classNCAboutDialog.html</anchorfile>
+      <anchor>a1469022d388566b0b40fb73dcbeb6cfb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCColorCombo</name>
+    <filename>classNCColorCombo.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>activated</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>af20e45b80fcb87f75a978eb2d16e9fc0</anchor>
+      <arglist>(const QColor &amp;col)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>activated</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>af20e45b80fcb87f75a978eb2d16e9fc0</anchor>
+      <arglist>(const QColor &amp;col)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>highlighted</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a3f1e72bb5b00942ca40701f60eda2372</anchor>
+      <arglist>(const QColor &amp;col)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>highlighted</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a3f1e72bb5b00942ca40701f60eda2372</anchor>
+      <arglist>(const QColor &amp;col)</arglist>
+    </member>
+    <member kind="function">
+      <type>QColor</type>
+      <name>color</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a6d4483e2fe5bc2bf1353ab6907c27528</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QColor</type>
+      <name>color</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a6d4483e2fe5bc2bf1353ab6907c27528</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCColorCombo</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>ad288e0f53fcfe475cf423cff6c3e15c1</anchor>
+      <arglist>(QWidget *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCColorCombo</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>ad288e0f53fcfe475cf423cff6c3e15c1</anchor>
+      <arglist>(QWidget *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>af5e9867900ba87971ef21e05c1096246</anchor>
+      <arglist>(const QColor &amp;col)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>af5e9867900ba87971ef21e05c1096246</anchor>
+      <arglist>(const QColor &amp;col)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWebColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>afd7e7dbc8c4fa2ab4f403a35de7e44ae</anchor>
+      <arglist>(const QString &amp;colorstring)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWebColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>afd7e7dbc8c4fa2ab4f403a35de7e44ae</anchor>
+      <arglist>(const QString &amp;colorstring)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>showEmptyList</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a694eb8dd519e6fad75ecbf7787033f09</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>showEmptyList</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a694eb8dd519e6fad75ecbf7787033f09</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>webColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a54018e70288992e9e1765d100a5535f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>webColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a54018e70288992e9e1765d100a5535f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCColorCombo</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a4cc5abfc7a2a718fb89c26fc7e1e698d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCColorCombo</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a4cc5abfc7a2a718fb89c26fc7e1e698d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>resizeEvent</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a5a7ebd35d6fffd2cdfe699fcda0c2d60</anchor>
+      <arglist>(QResizeEvent *re)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>resizeEvent</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>ab4b21128bf26e93f1ae1a88f731b28a1</anchor>
+      <arglist>(QResizeEvent *re)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotActivated</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>ae88c743985f6c9f5faee86fa60072bb8</anchor>
+      <arglist>(int index)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotActivated</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>ae88c743985f6c9f5faee86fa60072bb8</anchor>
+      <arglist>(int index)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotHighlighted</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a754d93799d12dd137521e5d91e59d0d8</anchor>
+      <arglist>(int index)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotHighlighted</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a754d93799d12dd137521e5d91e59d0d8</anchor>
+      <arglist>(int index)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>addColors</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>afefadec247124eb89f18f4e6512682a9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>addColors</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>afefadec247124eb89f18f4e6512682a9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>_showEmptyList</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>aaa7a433e1a27b0ca8b9e386014899c05</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QColor</type>
+      <name>customColor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>a9ed334b2b5b30939ea92ca65c8c09418</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QColor</type>
+      <name>internalcolor</name>
+      <anchorfile>classNCColorCombo.html</anchorfile>
+      <anchor>ad08352a0078131775e2bf6efc27523f1</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -15059,6 +25831,9040 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>NCReportDesignerCommand</name>
+    <filename>classNCReportDesignerCommand.html</filename>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Resize</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a0d71e2fc20039c8cf25ca9de64459bcd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ab2fccb0a569fedf0f89a02127160096c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Move</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a14ff3f28b1607ba0b8cd7f203c0df77b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Delete</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a64cff45a4525403fa799798c739a531d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SetProperty</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a31965705a777ce5cbb333c9af8cbe411</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Macro</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3aa5e2850d80f3b51be510efac709f341d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Lower</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3ad3452e512a4edb1558c752b82369d800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Raise</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3af4f14d1b20c7800343e915b288895301</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Paste</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a1efbdcf8d51e8ae72a5c524ba1d00d6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ChangeOrder</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>aca8f0df876b92b087ad0ed90a90e8dd3a62fc342bbb439d153f113b7f228492e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af9ab04e7d3008f6e982f661a70596aaf</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>canMerge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>af0ee814e2aada178cc4103ba044d5769</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a54179744ad9b39dd47673fca76e143ef</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a110b875f820f6590f1e8b62755ae6a88</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>execute</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a1383ca59138de3f0ca171c650290c6ca</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>execute</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a1383ca59138de3f0ca171c650290c6ca</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a07cfe8c1f06dd0a27d7a6fa4f72ed836</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>merge</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6379ee56ef883001ede9446cf9e63c15</anchor>
+      <arglist>(NCReportDesignerCommand *c)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>adad38fe35fbd33cc55d6a3cdfb6f4929</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerCommand</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a8b174e017b119203045db925f181474b</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerCommand</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a8b174e017b119203045db925f181474b</anchor>
+      <arglist>(const QString &amp;n, NCReportDesignerDesignArea *da)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Type</type>
+      <name>type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a444bd9f69f29f7b287df6b56b25cc592</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Type</type>
+      <name>type</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a444bd9f69f29f7b287df6b56b25cc592</anchor>
+      <arglist>() const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>unexecute</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a2c472969991e44fae81fb9bfa1d7da37</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>unexecute</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a2c472969991e44fae81fb9bfa1d7da37</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerCommand</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a9f46fb7dd73dbe1c07c45862db40c4c4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerCommand</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a67a45809a844826c4b310d6c0a9dad23</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>cmdName</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a5b21d7d00cba49897d754cfef4c7f97f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>dArea</name>
+      <anchorfile>classNCReportDesignerCommand.html</anchorfile>
+      <anchor>a6b28a111622378aa80cc3e30e05b5358</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerCommandHistory</name>
+    <filename>classNCReportDesignerCommandHistory.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>checkCompressedCommand</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>afdc520fb31b003cde1775723c9faf1d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>checkCompressedCommand</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>afdc520fb31b003cde1775723c9faf1d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>modificationChanged</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a384c0eded3fbf8d4dec15647b9f8da1d</anchor>
+      <arglist>(bool m)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>modificationChanged</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a384c0eded3fbf8d4dec15647b9f8da1d</anchor>
+      <arglist>(bool m)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>undoRedoChanged</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a926a68cf355541f3a38a2c96ec88b2ee</anchor>
+      <arglist>(bool undoAvailable, bool redoAvailable, const QString &amp;undoCmd, const QString &amp;redoCmd)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>undoRedoChanged</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a926a68cf355541f3a38a2c96ec88b2ee</anchor>
+      <arglist>(bool undoAvailable, bool redoAvailable, const QString &amp;undoCmd, const QString &amp;redoCmd)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addCommand</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>accf1fd8a2765e569bf885926132a2373</anchor>
+      <arglist>(NCReportDesignerCommand *cmd, bool tryCompress=FALSE)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addCommand</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>accf1fd8a2765e569bf885926132a2373</anchor>
+      <arglist>(NCReportDesignerCommand *cmd, bool tryCompress=FALSE)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>emitUndoRedo</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>ab14c12b6bc7b404413b011e553b7d0fa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>emitUndoRedo</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>ab14c12b6bc7b404413b011e553b7d0fa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isModified</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a47b9046727dc9339369cf6bdcdaa3c9d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isModified</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a47b9046727dc9339369cf6bdcdaa3c9d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerCommandHistory</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>ac51bfccf6c6c69175fa070b16aadc41a</anchor>
+      <arglist>(int s)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerCommandHistory</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>ac51bfccf6c6c69175fa070b16aadc41a</anchor>
+      <arglist>(int s)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>redo</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a8cd3de0feb41110aa81455e7d9d3c95e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>redo</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a8cd3de0feb41110aa81455e7d9d3c95e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModified</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a5bb2750c4c4272868ace549cba3e9e0b</anchor>
+      <arglist>(bool m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModified</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a5bb2750c4c4272868ace549cba3e9e0b</anchor>
+      <arglist>(bool m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>undo</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>aa635b594b17caabe3c9ca42a08161dc8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>undo</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>aa635b594b17caabe3c9ca42a08161dc8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerCommand *</type>
+      <name>compressedCommand</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>ae294795aec3069e99c6a50bb266eb2d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>current</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a3c4932669bb5aac909820236865d7e1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPtrList&lt; NCReportDesignerCommand &gt;</type>
+      <name>history</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a71fc0b79d88e6dff572d1cde7e4d828d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>modified</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>aeb0fbfd07233ca45b1fe86843b9a91eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>savedAt</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a3a5dcb2c1ef8c3a55a9793a52bc1d8dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>steps</name>
+      <anchorfile>classNCReportDesignerCommandHistory.html</anchorfile>
+      <anchor>a0a68ac2a35ed0cfada3a06090fff2a44</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerDesignArea</name>
+    <filename>classNCReportDesignerDesignArea.html</filename>
+    <member kind="enumeration">
+      <name>Tools</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PointerTool</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700a55abe1cd9c1c19809f6880eb5caf7a75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>InsertObject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700ac5db8ec7e4797ffe03f916032deee21a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PointerTool</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700a55abe1cd9c1c19809f6880eb5caf7a75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>InsertObject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700ac5db8ec7e4797ffe03f916032deee21a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Tools</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PointerTool</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700a55abe1cd9c1c19809f6880eb5caf7a75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>InsertObject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700ac5db8ec7e4797ffe03f916032deee21a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PointerTool</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700a55abe1cd9c1c19809f6880eb5caf7a75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>InsertObject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac529779f67286b6bcef1aab303c58700ac5db8ec7e4797ffe03f916032deee21a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>toolChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a8b7a6145878ee1abee1d5f77971506da</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>toolChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad0a2662dbe8783347ed99b7fe3a6a040</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>visibilityChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1e33d49167c96c0f9edb1b940a8585b8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>visibilityChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4615859b555fa2aeb78bdbfd648da884</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>widgetChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>adefbc7159514ccab3f5c6202becf8386</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>widgetChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>abd2f668fe133215119962ddabe1ac6b3</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>selectionChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a61cfd108bce640bf8c0ff2351cdf05fd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>selectionChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a61cfd108bce640bf8c0ff2351cdf05fd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>showProperties</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af1dda4e7b056f1f80088eb8f764ad6dd</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>showProperties</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af1dda4e7b056f1f80088eb8f764ad6dd</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>undoRedoChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a765f9e10cbd00a4845a8586c5189da99</anchor>
+      <arglist>(bool undoAvailable, bool redoAvailable, const QString &amp;undoCmd, const QString &amp;redoCmd)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>undoRedoChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a765f9e10cbd00a4845a8586c5189da99</anchor>
+      <arglist>(bool undoAvailable, bool redoAvailable, const QString &amp;undoCmd, const QString &amp;redoCmd)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>updateProperties</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa1d80ad4257e67505c7159cd2414c736</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>updateProperties</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa1d80ad4257e67505c7159cd2414c736</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>acdcb9a0def9a5e2890951e48321e5863</anchor>
+      <arglist>(Qt::AlignmentFlags)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad6e8965b932dbc2a29f8d9778e1a57b8</anchor>
+      <arglist>(Qt::AlignmentFlags)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkCustomWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a44dece12314befe7552b666aa0ac7bb4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkCustomWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a44dece12314befe7552b666aa0ac7bb4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>checkGeometry</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a02deb729ebd4f2510975e45dd1a86205</anchor>
+      <arglist>(QRect &amp;r)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>checkGeometry</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a02deb729ebd4f2510975e45dd1a86205</anchor>
+      <arglist>(QRect &amp;r)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>clearSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad5cdacc46fd56c514c2aad5840870a93</anchor>
+      <arglist>(bool changePropertyDisplay=TRUE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>clearSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a55134ce9be998585dd92f9eb0efb8ea0</anchor>
+      <arglist>(bool changePropertyDisplay=TRUE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual NCReportDesignerCommandHistory *</type>
+      <name>commandHistory</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a2b9242e0b2c2a5ad9ded2c160c8d9ef5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual NCReportDesignerCommandHistory *</type>
+      <name>commandHistory</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0c891bd64fd37cce4e816600c9fad300</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QString</type>
+      <name>copy</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a53e9d8a289449a52ab893ed188e273c6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QString</type>
+      <name>copy</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>affe761d82c8ddd17e3a936ee5eacccdb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidget *</type>
+      <name>currentWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4f17d4921fdbddb48b17d7664fdc2b15</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidget *</type>
+      <name>currentWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4f17d4921fdbddb48b17d7664fdc2b15</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>deleteWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6e4619c6ca851eb8500fec8d81d79072</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>deleteWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a123723e0fc501c190bc513652ec3d32b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidget *</type>
+      <name>designerWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a486b1456531e3557b23105c26e6d5622</anchor>
+      <arglist>(QObject *o) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidget *</type>
+      <name>designerWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a54bb4154d2c0ddf33a3e80601ffd9f36</anchor>
+      <arglist>(QObject *o) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>editAdjustSize</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aad73f9496400f6894170481936ed776d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>editAdjustSize</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab059ad4ce23393cbbf8b7ade832959f3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>editConnections</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a666d301774808feaab1007ff8e653a72</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>editConnections</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae1305d45b3a22cac282934c56d4e71a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>emitSelectionChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a95e8c5dd3c9c8ad5b9e15c52e820612e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>emitSelectionChanged</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a9c40fcf52f695e7294020e4a38cdffa1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPoint</type>
+      <name>grid</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a84068dec1923804951fe7faa6c910cfd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPoint</type>
+      <name>grid</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab733a4a1b2295e2bba9e18a58f70f9f4</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPoint</type>
+      <name>gridPoint</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4d1c3f14c09ae065fd17d3fa1d61cf62</anchor>
+      <arglist>(const QPoint &amp;p)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPoint</type>
+      <name>gridPoint</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a8f13e478ef59fc00fae61e603a59df16</anchor>
+      <arglist>(const QPoint &amp;p)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleContextMenu</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1b0c006ad2b8485628ff943a8b2a6e8d</anchor>
+      <arglist>(QContextMenuEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleContextMenu</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa52ff68961c3507edec282774f0b4e95</anchor>
+      <arglist>(QContextMenuEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleKeyPress</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7b061c9c1763aa7c7ea5bb3f9bde23db</anchor>
+      <arglist>(QKeyEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleKeyPress</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab013e1681054aead4f7fa400e3fdd0f3</anchor>
+      <arglist>(QKeyEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleKeyRelease</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af79e2d1f67fb6cbe5c112b85e2ad5fef</anchor>
+      <arglist>(QKeyEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleKeyRelease</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a8015d0ee8873b4fb3da2a52902aa204a</anchor>
+      <arglist>(QKeyEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMouseDblClick</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa6ca2ffd5aec7d95b8e45792c580da35</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMouseDblClick</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a9fc123beaaf187cf22cd2b649529a36f</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMouseMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7f8fc6d8d44f3456d43496172880c6ec</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMouseMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac305c5d2106343fd407f195dadce14e2</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMousePress</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a391b1cef44d397d7361b731ef79b518a</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMousePress</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a9e2deeebc7f4c534d59c29923cd21e0b</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMouseRelease</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a825e2ed4c5596afe2be1c8660ab199c0</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>handleMouseRelease</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a8ba8460ae815e65b2a035fee9949ec67</anchor>
+      <arglist>(QMouseEvent *e, QWidget *w)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1bfbcfae778706cb07e423e48f9f6501</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1bfbcfae778706cb07e423e48f9f6501</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initSlots</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a56cbf7a66942d263b5f1d49ee01404b2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initSlots</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a56cbf7a66942d263b5f1d49ee01404b2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>insertWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4a357f289e3bf61e33a37eab969d90e1</anchor>
+      <arglist>(QWidget *w, bool checkName=FALSE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>insertWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af98fcd10ecae56771080d0172e7e01f7</anchor>
+      <arglist>(QWidget *w, bool checkName=FALSE)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isCentralWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7ec0641128bcb6f396ee167c09e90207</anchor>
+      <arglist>(QObject *w) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isCentralWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7ec0641128bcb6f396ee167c09e90207</anchor>
+      <arglist>(QObject *w) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isMainContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac35339181a92a4f8ff23baf219e66f59</anchor>
+      <arglist>(QObject *w) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isMainContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac35339181a92a4f8ff23baf219e66f59</anchor>
+      <arglist>(QObject *w) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isWidgetSelected</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aede8c3319fd1b26c38c0a5b496a79ce6</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isWidgetSelected</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aede8c3319fd1b26c38c0a5b496a79ce6</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>lowerWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a64cde596e1b6744806109d5679859f80</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>lowerWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa07d4bbb1ddf5e30e08fe6705194ada1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>mainContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a270aef6cf69b2099c1aa5a093a4ce83b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>mainContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a270aef6cf69b2099c1aa5a093a4ce83b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual NCReportDesignerWindow *</type>
+      <name>mainWindow</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab8be49043cc2eedff6ae567080712d12</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual NCReportDesignerWindow *</type>
+      <name>mainWindow</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab8be49043cc2eedff6ae567080712d12</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPoint</type>
+      <name>mapToForm</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a60f50d722fdfbb2821a751ca5ae9c3df</anchor>
+      <arglist>(const QWidget *w, const QPoint &amp;) const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPoint</type>
+      <name>mapToForm</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>acd1093a061ccf2b5056f678837afe1be</anchor>
+      <arglist>(const QWidget *w, const QPoint &amp;) const </arglist>
+    </member>
+    <member kind="function">
+      <type>Measurement *</type>
+      <name>measurement</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a81d44fb2e417c4f128c6e1843f66afae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Measurement *</type>
+      <name>measurement</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a81d44fb2e417c4f128c6e1843f66afae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerDesignArea</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac73d734e8fb576328dad13e1180ad15a</anchor>
+      <arglist>(QWidget *parent, const char *name, Qt::WFlags f=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerDesignArea</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5d5e9ca20215dcbb947273db21b4fce5</anchor>
+      <arglist>(NCReportDesignerWindow *mw, QWidget *parent, const char *name, Qt::WFlags f=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerDesignArea</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac73d734e8fb576328dad13e1180ad15a</anchor>
+      <arglist>(QWidget *parent, const char *name, Qt::WFlags f=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerDesignArea</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5d5e9ca20215dcbb947273db21b4fce5</anchor>
+      <arglist>(NCReportDesignerWindow *mw, QWidget *parent, const char *name, Qt::WFlags f=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>numSelectedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5b105932f7eba66708c0f536fa0e0b0c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>numSelectedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6a49b56868999bb96d15f73c5d3bc5e1</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>numVisibleWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7e95f0205c16a1badf504d3758a08573</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual int</type>
+      <name>numVisibleWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5e2c3fad1705d7f340f43e75423b738f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paintGrid</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aedc043ca1f57282cb14d72184c519dd7</anchor>
+      <arglist>(QPainter &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paintGrid</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aedc043ca1f57282cb14d72184c519dd7</anchor>
+      <arglist>(QPainter &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDocument *</type>
+      <name>parentDocument</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7ae12a0c4b8c24ae02df30219ba15ae3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDocument *</type>
+      <name>parentDocument</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7ae12a0c4b8c24ae02df30219ba15ae3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>parentSection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa4906178b91ce64dadc1fb8067c049af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>parentSection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa4906178b91ce64dadc1fb8067c049af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paste</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af8bf079ab8fe287c3c7ef4e3c2c37ba6</anchor>
+      <arglist>(const QString &amp;cb, QWidget *parent)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paste</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a2ce9813f591405769b7122790b274c9f</anchor>
+      <arglist>(const QString &amp;cb, QWidget *parent)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>raiseSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a66e42263d2eca26abec27ccc4ed8b408</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>raiseSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a743112571820bdc33fd135865384a966</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>raiseWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae5c46abc38d711a7de82f51499545b0f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>raiseWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af70dffd607965b228928b7304f4361ed</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>redo</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aaf8040d49f72d1ec16a378f79703b2df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>redo</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab362c6bb77767e62c0e13c55518f389f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1c571eecef7ab8f47f09ff401688971e</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>removeWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a37a81d062974a31ed5203033438509e0</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>repaintSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1298e9cf6d078a897fc04b6c05676a6f</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>repaintSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a433885a50eff2454c79bf5cb684ad66a</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>runWidgetSettingsDialog</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6a5e6cddfff7036fd824e1357af8ce38</anchor>
+      <arglist>(NCReportDesignerWidget *, bool init=FALSE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>runWidgetSettingsDialog</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5cfa12760967da83bf8bb080539134d9</anchor>
+      <arglist>(NCReportDesignerWidget *, bool init=FALSE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectAll</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>acc246b62055c844daf07e41d1dbdcc66</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectAll</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a81b88a3018203fd0788c7de1da2c5144</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidgetList</type>
+      <name>selectedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a9ae9afb7d010d248661a5ba47a04bde0</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QWidgetList</type>
+      <name>selectedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a645342b395be4a89172ce637c26d8345</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a3af412c00f4a967a3f84b864eb8ca21c</anchor>
+      <arglist>(QObject *w, bool select=TRUE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae0c575b4b8a1bc3dc2b72e704331146b</anchor>
+      <arglist>(QObject *w, bool select=TRUE)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a65c17b0dca1091fd65a91b13dc521002</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7e4169b2cbfabd987f1bc77b2e106554</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setActiveObject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6ae2ebc2cdcc5fd6461d8a9a4789e800</anchor>
+      <arglist>(QObject *o)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setActiveObject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6ae2ebc2cdcc5fd6461d8a9a4789e800</anchor>
+      <arglist>(QObject *o)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMainContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>acac653d15e5be357927971a431592b92</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMainContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>acac653d15e5be357927971a431592b92</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setMainWindow</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a32950435496312633ec249c1a6fb8554</anchor>
+      <arglist>(NCReportDesignerWindow *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setMainWindow</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6c2e14c4043598914589851c60b6437e</anchor>
+      <arglist>(NCReportDesignerWindow *w)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7a43ee9d62b01af2b8d0cf04326167a0</anchor>
+      <arglist>(Measurement *mmnt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7a43ee9d62b01af2b8d0cf04326167a0</anchor>
+      <arglist>(Measurement *mmnt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setParentDocument</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad3c7f7500b32fa41af79ef0be023bb7c</anchor>
+      <arglist>(NCReportDesignerDocument *d)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setParentDocument</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad3c7f7500b32fa41af79ef0be023bb7c</anchor>
+      <arglist>(NCReportDesignerDocument *d)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setParentSection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>adba3bf857739bc653cfb5034b59f294c</anchor>
+      <arglist>(NCReportDesignerSection *s)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setParentSection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>adba3bf857739bc653cfb5034b59f294c</anchor>
+      <arglist>(NCReportDesignerSection *s)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setToolFixed</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa4874a48787a7cc7ce8b9f0fed6def64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setToolFixed</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa4874a48787a7cc7ce8b9f0fed6def64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7bd0047e1a93450621d03a7f2d51c53a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab83142ebfa5ec6c17164dfc58d2d60f3</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QLabel *</type>
+      <name>sizePreview</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aeda7a08723131f60f62bfd460024b9fd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QLabel *</type>
+      <name>sizePreview</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a317881357ee9570cefb9f93acd35cfa9</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>undo</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a35117cb6973529bf68018f627b4be9ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>undo</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a07e36d8894c2d8a29629c5ccfe33ff60</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a58a2f28c439e550eae488abb00c45df2</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateSelection</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aadbc4ff1edbe4e237cdae2213014661c</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateUndoInfo</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a854bc3fd29553aa66a999147710c068e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateUndoInfo</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a2f0ac2f02963069ac04883cb904f7812</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPtrDict&lt; QWidget &gt; *</type>
+      <name>widgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1780b6cd5d4b12e79ba0bd98c0192cef</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QPtrDict&lt; QWidget &gt; *</type>
+      <name>widgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac592084aa7be91fc12a0c0ae3feb4a34</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerDesignArea</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5fdcabdbd3a11a84e47d43539b9e0c58</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerDesignArea</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5fdcabdbd3a11a84e47d43539b9e0c58</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>closeEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a2a9296807ec75f762f4350e1f16cd2e3</anchor>
+      <arglist>(QCloseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>closeEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a3757a297626f07290c2f90c60656da47</anchor>
+      <arglist>(QCloseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>focusInEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aeb21a8b0e38734fcdab92398988d75b9</anchor>
+      <arglist>(QFocusEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>focusInEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a59977d019b4d9f7d302fc8ef96b8a15a</anchor>
+      <arglist>(QFocusEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>focusOutEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>afca10d21901fa74ccc5b53bd1214d59e</anchor>
+      <arglist>(QFocusEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>focusOutEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4e715b3c70a0ac72a29305ede7528148</anchor>
+      <arglist>(QFocusEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a3d9d876cdfa68485e587e273ffd44efc</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a3d9d876cdfa68485e587e273ffd44efc</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a37917129d0cc1ec0f0be55ff3922741b</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a37917129d0cc1ec0f0be55ff3922741b</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a265e36feb0848e038818e04f47861f03</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a265e36feb0848e038818e04f47861f03</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a03382e64292a855701bed4012c18f371</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a03382e64292a855701bed4012c18f371</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af8bc52ef62f9fd930e40a57189c92f5a</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af8bc52ef62f9fd930e40a57189c92f5a</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1720657f3451a34cf13d3a50cb7d394a</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1720657f3451a34cf13d3a50cb7d394a</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae8fe4d62800c9a14460099b35f210adb</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a69ea665213f454c2a3e6321e91a81f38</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintFocus</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a23d78299aad66acb8df1c36370cd709f</anchor>
+      <arglist>(QPainter *, bool focusOn)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintFocus</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af8856ab63e053aff5f7f3ec78a1abeb6</anchor>
+      <arglist>(QPainter *, bool focusOn)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>resizeEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a9540038a4aac7bafec5467af6ab4707b</anchor>
+      <arglist>(QResizeEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>resizeEvent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aea591b81a809ed342878fc07761d734e</anchor>
+      <arglist>(QResizeEvent *e)</arglist>
+    </member>
+    <member kind="enumeration">
+      <name>RectType</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da860e6887de5673c1f387f759934606d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rubber</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da83f68a33396815f290a4534033ba548a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da860e6887de5673c1f387f759934606d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rubber</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da83f68a33396815f290a4534033ba548a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>RectType</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da860e6887de5673c1f387f759934606d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rubber</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da83f68a33396815f290a4534033ba548a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Insert</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da860e6887de5673c1f387f759934606d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rubber</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ace49de825dbf93b80cd5f706b3a8174da83f68a33396815f290a4534033ba548a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>invalidCheckedSelections</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a44576de1049f9664d042c975da990cdc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>invalidCheckedSelections</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a44576de1049f9664d042c975da990cdc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>selectionChangedTimerDone</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7bcb7373d13577d4df0c728c17f3bda8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>selectionChangedTimerDone</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7bcb7373d13577d4df0c728c17f3bda8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>showPropertiesTimerDone</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae4da69121d2f6d56f697cbefbe31f6d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>showPropertiesTimerDone</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae4da69121d2f6d56f697cbefbe31f6d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>updatePropertiesTimerDone</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac1747a4ca30b87d6363b97f4b086dcc6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>updatePropertiesTimerDone</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac1747a4ca30b87d6363b97f4b086dcc6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>allowMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>abe4f569cf38c56f82fe73f58a12f5e6b</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>allowMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>abe4f569cf38c56f82fe73f58a12f5e6b</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>beginUnclippedPainter</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa4b1fa25540647b33f9cbd23604777e4</anchor>
+      <arglist>(bool doNot)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>beginUnclippedPainter</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aa4b1fa25540647b33f9cbd23604777e4</anchor>
+      <arglist>(bool doNot)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>checkSelectionsForMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4cfccab65e9bffd09a659d2a16add152</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>checkSelectionsForMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4cfccab65e9bffd09a659d2a16add152</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QWidget *</type>
+      <name>containerAt</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae4ecf3d918d786b7648d5247af569a00</anchor>
+      <arglist>(const QPoint &amp;pos, QWidget *notParentOf)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QWidget *</type>
+      <name>containerAt</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae4ecf3d918d786b7648d5247af569a00</anchor>
+      <arglist>(const QPoint &amp;pos, QWidget *notParentOf)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>continueRectDraw</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a690d02ec6f7cbdbe38a5dc39992db836</anchor>
+      <arglist>(const QPoint &amp;p, const QPoint &amp;global, QWidget *w, RectType t)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>continueRectDraw</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a690d02ec6f7cbdbe38a5dc39992db836</anchor>
+      <arglist>(const QPoint &amp;p, const QPoint &amp;global, QWidget *w, RectType t)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>drawConnectionLine</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aca3fe91940f8e475ef132599155cadae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>drawConnectionLine</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aca3fe91940f8e475ef132599155cadae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>drawSizePreview</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4ea4b0e118859cd659c00c60d378217b</anchor>
+      <arglist>(const QPoint &amp;pos, const QString &amp;text)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>drawSizePreview</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4ea4b0e118859cd659c00c60d378217b</anchor>
+      <arglist>(const QPoint &amp;pos, const QString &amp;text)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>endRectDraw</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aba92147f9991296af86f3ba07ecbd50f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>endRectDraw</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aba92147f9991296af86f3ba07ecbd50f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>endUnclippedPainter</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6a2d55257fc6fb93795a0fd68cf37b9c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>endUnclippedPainter</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6a2d55257fc6fb93795a0fd68cf37b9c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>hideOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0ef046c2dd16f68a0767ac3c484945bc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>hideOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0ef046c2dd16f68a0767ac3c484945bc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>insertWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad473e02a96f96eebf0704bca815dafc3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>insertWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ad473e02a96f96eebf0704bca815dafc3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>moveSelectedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0b724aa1bf55826e1067c3be06f61892</anchor>
+      <arglist>(int dx, int dy)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>moveSelectedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0b724aa1bf55826e1067c3be06f61892</anchor>
+      <arglist>(int dx, int dy)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>repositionOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7817205a3b2c7d9f075c3e92f1c6a2f8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>repositionOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7817205a3b2c7d9f075c3e92f1c6a2f8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>restoreConnectionLine</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a83e8eb72298115e7d8414047c038ea02</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>restoreConnectionLine</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a83e8eb72298115e7d8414047c038ea02</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>restoreRect</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>afc0fbed5057117ce7b88faa6c70b2daf</anchor>
+      <arglist>(const QRect &amp;rect)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>restoreRect</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>afc0fbed5057117ce7b88faa6c70b2daf</anchor>
+      <arglist>(const QRect &amp;rect)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveBackground</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a05a630e533945e185071672e00b73d26</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveBackground</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a05a630e533945e185071672e00b73d26</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>showOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5e14fe63fd2e1d29eb248494fb3df084</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>showOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5e14fe63fd2e1d29eb248494fb3df084</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>startRectDraw</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a77f14c9f1009f10e7a3c7708faf36835</anchor>
+      <arglist>(const QPoint &amp;p, const QPoint &amp;global, QWidget *w, RectType t)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>startRectDraw</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a77f14c9f1009f10e7a3c7708faf36835</anchor>
+      <arglist>(const QPoint &amp;p, const QPoint &amp;global, QWidget *w, RectType t)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>updateOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a39646d9bb99e2bb3b0398b0f4a847aff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>updateOrderIndicators</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a39646d9bb99e2bb3b0398b0f4a847aff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPixmap *</type>
+      <name>buffer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1a51282e02a8f611d59b9a57e4d5a908</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>checkedSelectionsForMove</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af95c5198c237c9091294af373449dcc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTimer *</type>
+      <name>checkSelectionsTimer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ae857762ac4fa3434fdbdf46032ef08ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QColor</type>
+      <name>color0</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>abf6f78e4cc818ce5c56312292b49e708</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QColor</type>
+      <name>color1</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab2ebb021faa817f44dad2f606ddd8e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerCommandHistory</type>
+      <name>commands</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af3243459541151053615a72a3b5491d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>currentPos</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5a54fb0211e0c24db950c5ab0e8d8a4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>currRect</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a91bb67f77d255ce802c4926be9cb0639</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>currTool</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a19190a085788e0a2bc1bad7d2d4afd75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>defMargin</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5231cfe95dfee19caae066ee14fb9828</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>defSpacing</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a55abe77788cde970123c2d8cd7829a8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4032e6ea1cdca4b45798176e27017ad5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>drawRubber</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a22452e217ef1382edd34bd21fd8e0601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>endWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab54c1c98f414482d8d417b1bd4e45a8f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>fake</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5d6a3e502d6d9268a37a6aaba462253e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>hadOwnPalette</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aeb76009a1d4d0ac31bfe1def868bc9b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>hasLayoutFunc</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>aaa261bec32cb4cbf5983c29fb9366ff1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPtrDict&lt; QWidget &gt;</type>
+      <name>insertedWidgets</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a150299a33ccfcf2076d3b72b66ce5536</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>insertParent</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5808de9a550580d862ea2835dfe9d8aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Measurement *</type>
+      <name>m</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a71a5a6fca49a2444cb46b04071a0f69a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>margFunction</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a3c8cb40c8f6645917930274a1c3039b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>mContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a64c7f8153c77bd561837fc067fe6956f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMap&lt; QWidget *, QPoint &gt;</type>
+      <name>moving</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5db30dab0c640aec3419ae7eb7808a9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerWindow *</type>
+      <name>mwindow</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a12473a270745a3943a7cd1ce1586b870</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>oldPressPos</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0faed088c63d0600af6746c3a1f305c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>oldRectValid</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a46466db909a01ee70e5d68cf5257f939</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>origPressPos</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5dc95935eb7901101894af80ba2a83f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>pixInline</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a670f93b57a77c3a8b398185011ae43b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>pixLoader</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>acdec11825dc0ab69806a7118a4b2015f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>pixProject</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5d541e24f9a28e09c4f09c996bc41db8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QObject *</type>
+      <name>propertyWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a27a65b6502376e4762a838c5818bce15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>propShowBlocked</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a326836f1f401b33b9e442c2d252fbd89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>rectAnchor</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a03f2c3634259d48638931e02da95e2a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPalette</type>
+      <name>restorePalette</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a62dd22ecde99434312983e29a3015c17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>rubber</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5855b990e82e844b3853214521ab6955</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerSection *</type>
+      <name>section</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ab25ab452176fec922eba8d5b8b4232bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTimer *</type>
+      <name>selectionChangedTimer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a6995dac6b226014f69029fea05a3ffbc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPtrList&lt; Selection &gt;</type>
+      <name>selections</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a222be23297dfbedb3de65490b77cca28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTimer *</type>
+      <name>showPropertiesTimer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a52b4a2a6b64351c65aed9681c112ab57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QLabel *</type>
+      <name>sizePreviewLabel</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a1e3ad81aa721bbbce6974abd9fcfbd0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPixmap</type>
+      <name>sizePreviewPixmap</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0570bee363dc442e6cb9d982d19dda5a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>sizePreviewPos</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>afb76586a3b9a675669137f07e95bff64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>spacFunction</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a33be7642b2568da028fcf33543d607af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>startPos</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a94a429cab9484b167573050cb4db3e89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>startWidget</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a119e26c133fd7e643172ad8ac7e49eab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>targetContainer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac1d7aa4c4a16bdcf65de9f53cef2279c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>toolFixed</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>ac86105360bef54c7c9cf1fde9c7dd254</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPainter *</type>
+      <name>unclippedPainter</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a4724606c0d247138ca31081cdc1f85aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTimer *</type>
+      <name>updatePropertiesTimer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a2b617823a74fcb25b8ee38d378ba303c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPtrDict&lt; Selection &gt;</type>
+      <name>usedSelections</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a145d66d0ffc5c98b49f9347b2b67ceb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>validForBuddy</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>af3e33e369882d3036245c1fc5aee89af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>widgetGeom</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a5e3e8b5e0246b5563ea45f699087f9b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>widgetPressed</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a7076403c7686b09b5e2bb7d9a5a67685</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QTimer *</type>
+      <name>windowsRepaintWorkaroundTimer</name>
+      <anchorfile>classNCReportDesignerDesignArea.html</anchorfile>
+      <anchor>a0426d751036de78e20c76fb401992b19</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerDocument</name>
+    <filename>classNCReportDesignerDocument.html</filename>
+    <member kind="enumeration">
+      <name>RulerPos</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba5c4d5fde7cdb3b4c14c1f36f55863442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba8a26eb8d9eb829241559dd26f060e312</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba5c4d5fde7cdb3b4c14c1f36f55863442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba8a26eb8d9eb829241559dd26f060e312</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>RulerPos</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba5c4d5fde7cdb3b4c14c1f36f55863442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba8a26eb8d9eb829241559dd26f060e312</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba5c4d5fde7cdb3b4c14c1f36f55863442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac92fbda28d7a878765140bddc3ea616ba8a26eb8d9eb829241559dd26f060e312</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>documentModified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a5b02e5d096c64ee5be96045509ada8b0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>documentModified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a5b02e5d096c64ee5be96045509ada8b0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>message</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>abdb3d9cdb76cd19463d0fd77868bb075</anchor>
+      <arglist>(const QString &amp;, int)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>message</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>abdb3d9cdb76cd19463d0fd77868bb075</anchor>
+      <arglist>(const QString &amp;, int)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>activeDesignArea</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a25598b13581f584a9a015398fbf5aba1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>activeDesignArea</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aad3015999095d2e03411ca29c53727b2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addDetail</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac8b54284d0cdb2df527938873d9b10df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addDetail</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a5b899bd973065dde42f75007aede0ba2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGroup</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a8020647ded39a5f5ac0be85b90cf11a1</anchor>
+      <arglist>(ReportGroup &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGroup</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a8020647ded39a5f5ac0be85b90cf11a1</anchor>
+      <arglist>(ReportGroup &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addPageFooter</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a584ef098f8e290ea6b18a2ebbc9ce8e4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addPageFooter</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a47dec2cea77335aaabe22a9c29ecd937</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addPageHeader</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ae7e86416076b5185045faba4cafeb8df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addPageHeader</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a4ed21cf403de89b40ad76a95566a9050</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addQuery</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a41f5e214c353d14ee7397fa23ba8a78e</anchor>
+      <arglist>(const ReportQuery &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addQuery</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a41f5e214c353d14ee7397fa23ba8a78e</anchor>
+      <arglist>(const ReportQuery &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addSection</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a268667a797dcdddfcf38d0c288c4a2b1</anchor>
+      <arglist>(NCReportDesignerSection::SectionType, const QString &amp;sname, const QString &amp;caption, double pWidth=210.0, double pHeight=8.0, QWidget *after=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>addSection</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ad4e96d068495e1657122dec08cccbe4d</anchor>
+      <arglist>(NCReportDesignerSection::SectionType, const QString &amp;sname, const QString &amp;caption, double pWidth=210.0, double pHeight=8.0, QWidget *after=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addVariable</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>af3e095a01f58aaf83758bced2c074098</anchor>
+      <arglist>(const ReportVariable &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addVariable</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>af3e095a01f58aaf83758bced2c074098</anchor>
+      <arglist>(const ReportVariable &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>defaultPageWidth</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a6a8f1228128c6f9a0dfc4bb14c6d105a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>defaultPageWidth</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a6a8f1228128c6f9a0dfc4bb14c6d105a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isModified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a14a2e2dff45e08caae32cbd281a196b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isModified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a14a2e2dff45e08caae32cbd281a196b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>load</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>abc2838748293c9b14e7b532a90881068</anchor>
+      <arglist>(const QString &amp;fn)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>load</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>abc2838748293c9b14e7b532a90881068</anchor>
+      <arglist>(const QString &amp;fn)</arglist>
+    </member>
+    <member kind="function">
+      <type>Measurement *</type>
+      <name>measurement</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a363885aba097413593ba3ad11e6028ef</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Measurement *</type>
+      <name>measurement</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a0aa5486e57806ed47ddfc7d09346b4ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerDocument</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a469833228ec4a5b2c222f286f20157d2</anchor>
+      <arglist>(NCReportDesignerWindow *main, QWidget *parent=0, const char *name=0, int wflags=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerDocument</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a469833228ec4a5b2c222f286f20157d2</anchor>
+      <arglist>(NCReportDesignerWindow *main, QWidget *parent=0, const char *name=0, int wflags=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeGroup</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a89d6c986c6967beb517608f0c35a8f42</anchor>
+      <arglist>(const QString &amp;gname)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeGroup</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a89d6c986c6967beb517608f0c35a8f42</anchor>
+      <arglist>(const QString &amp;gname)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeQuery</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ae157aeb9a622cec67e28398b79900efc</anchor>
+      <arglist>(const QString &amp;alias)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeQuery</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ae157aeb9a622cec67e28398b79900efc</anchor>
+      <arglist>(const QString &amp;alias)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeSection</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa0d415b41b9c07c41dc0a9373169c288</anchor>
+      <arglist>(const QString &amp;sname)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeSection</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa0d415b41b9c07c41dc0a9373169c288</anchor>
+      <arglist>(const QString &amp;sname)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeVariable</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa31526bba129e6093a12a0220e95a71f</anchor>
+      <arglist>(const QString &amp;varname)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeVariable</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa31526bba129e6093a12a0220e95a71f</anchor>
+      <arglist>(const QString &amp;varname)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerRuler *</type>
+      <name>rulerLeft</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac3e46db700df7a4315723a24cdaa505d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerRuler *</type>
+      <name>rulerLeft</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac3e46db700df7a4315723a24cdaa505d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerRuler *</type>
+      <name>rulerTop</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a1054f48e34bbf2ff2c9dbfda70cf4df1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerRuler *</type>
+      <name>rulerTop</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a1054f48e34bbf2ff2c9dbfda70cf4df1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a010bc48e6776faf7619f377aa86fb2ed</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a010bc48e6776faf7619f377aa86fb2ed</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveAs</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>afd8ef33e02bfc699d03525c10451df6c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveAs</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>afd8ef33e02bfc699d03525c10451df6c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>sectionByName</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a465fc30594fdc3d11e708c8933c7014e</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>sectionByName</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aed0947774ca0bea3ede86adaadd3dfab</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>sectionContainer</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac8ed1db36c1fbb41347afebdf39c09af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>sectionContainer</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ac8ed1db36c1fbb41347afebdf39c09af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QVBoxLayout *</type>
+      <name>sectionContainerLayout</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a36b57045b8b866747803c1a33b762e2b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QVBoxLayout *</type>
+      <name>sectionContainerLayout</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a36b57045b8b866747803c1a33b762e2b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa9c8c59472b13238da82ded059d40077</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setModified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa9c8c59472b13238da82ded059d40077</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPageSize</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a0f0ed639d629b0a4ed53fb11ffdcd307</anchor>
+      <arglist>(NCReportDesignerSection *sect=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPageSize</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a0f0ed639d629b0a4ed53fb11ffdcd307</anchor>
+      <arglist>(NCReportDesignerSection *sect=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPageWidth</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a0d7fbda791923e917463e7a3ba033bac</anchor>
+      <arglist>(double pwidth)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPageWidth</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a0d7fbda791923e917463e7a3ba033bac</anchor>
+      <arglist>(double pwidth)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateGroup</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>af9f4327aa6c56b5719a3c241fbd661af</anchor>
+      <arglist>(const ReportGroup &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateGroup</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>af9f4327aa6c56b5719a3c241fbd661af</anchor>
+      <arglist>(const ReportGroup &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateSections</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a2f577ff982a622195f8ee302c03d9e10</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateSections</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a2f577ff982a622195f8ee302c03d9e10</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerDocument</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a55bc3eab7d7880188a61f242bd31797b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerDocument</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a55bc3eab7d7880188a61f242bd31797b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>adbea3edc2ff9e1c0d4db43adc7d894a7</anchor>
+      <arglist>(QCloseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>adbea3edc2ff9e1c0d4db43adc7d894a7</anchor>
+      <arglist>(QCloseEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QString</type>
+      <name>filename</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a0c48e5d57cfc9347110898f75b69bd66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QMap&lt; QString, ReportGroup &gt;</type>
+      <name>groups</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a19a8a0db5c25de1750ee2f1f32fc0ce1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>laySC</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a30c8bbb29a115c2324f304119652a221</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerWindow *</type>
+      <name>mainwindow</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a72a7f9f310e6d4b3856f84a1cbb76326</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Measurement *</type>
+      <name>msrment</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>acb4413c342c7dd465f9bee23a22abd5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QMap&lt; QString, ReportQuery &gt;</type>
+      <name>queries</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aa9c09ea781061e4e7fd9aecb8845bf67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerRuler *</type>
+      <name>rulerleft</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>afe127af651748063f05892f288936b93</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerRuler *</type>
+      <name>rulertop</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>acafa06fab42bf7734b3463a2d7b30386</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QWidget *</type>
+      <name>sectioncontainer</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a605612a20da782b612dee7e737bf2b9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerSection *</type>
+      <name>sectionNextGroupAfter</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a7bde3c74bde8669448756b57536de8d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QDict&lt; NCReportDesignerSection &gt;</type>
+      <name>sections</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aaccb83fe908dea1eeaafa53082076822</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QScrollView *</type>
+      <name>sv</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a04bd758c96041d02f4b87bcea310b409</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QMap&lt; QString, ReportVariable &gt;</type>
+      <name>variables</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>ad8a5d380722e1730d55b389c8d18f54e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>modified</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>a72dace8f91471d8b95c545cfeffea30a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ReportPageOptions</type>
+      <name>po</name>
+      <anchorfile>classNCReportDesignerDocument.html</anchorfile>
+      <anchor>aeac1ff0d46426aaa8356ad79259a1a2f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerObject</name>
+    <filename>classNCReportDesignerObject.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerObject</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a42d619c1c356f9f206bf3696a5b3bf71</anchor>
+      <arglist>(QWidget *parent, const char *name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerObject</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a42d619c1c356f9f206bf3696a5b3bf71</anchor>
+      <arglist>(QWidget *parent, const char *name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerObject</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a12951687affef4ec3accf87687ded987</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerObject</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>ac59ce6cb0b7015756b2deeb6d466db19</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>acb924171e4b57b53f20c6af4a41547db</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>acb924171e4b57b53f20c6af4a41547db</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>afd6f829e1ee23b9d776eb0684daa37fe</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>afd6f829e1ee23b9d776eb0684daa37fe</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a5ab36d38d7b8711f0ffb7e1e5589a738</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a5ab36d38d7b8711f0ffb7e1e5589a738</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a666a9d6e4c21eb4c0ab6900003be9112</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a666a9d6e4c21eb4c0ab6900003be9112</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a350335946db93eca3822ba8ad5a214a1</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a350335946db93eca3822ba8ad5a214a1</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerResizeBar</name>
+    <filename>classNCReportDesignerResizeBar.html</filename>
+    <member kind="signal">
+      <type>void</type>
+      <name>barDragged</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a6cfd661c3d096df96d0452cf02b6eb8e</anchor>
+      <arglist>(int d)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>barDragged</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a6cfd661c3d096df96d0452cf02b6eb8e</anchor>
+      <arglist>(int d)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerResizeBar</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a4ff9e780b1a364d62feb43fb62510bf1</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerResizeBar</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a4ff9e780b1a364d62feb43fb62510bf1</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerResizeBar</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a2cc2c8d9ae560f86cbb0b9aaa0e11af1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerResizeBar</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>ae5a287771f8cbc99246f9a8fa66e8d63</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a9232791fa37c93dcc71ff85cab8f7dfc</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a9232791fa37c93dcc71ff85cab8f7dfc</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>a00a026a0ebd2def3bf7d8b2594cef149</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerResizeBar.html</anchorfile>
+      <anchor>afe0adbfa1218f651f3aa991a92a4ae55</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerResourceHandler</name>
+    <filename>classNCReportDesignerResourceHandler.html</filename>
+    <member kind="function">
+      <type>QString</type>
+      <name>copy</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>aa131ea4456460cee0a3bf3dacc4fa500</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>copy</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>aa131ea4456460cee0a3bf3dacc4fa500</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>lastLoadError</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a3a5c7b21091b5aa0d3904d7e1792b975</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>lastLoadError</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a3a5c7b21091b5aa0d3904d7e1792b975</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>load</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ab4222fdc7e18ceaeead4f6ad4206e203</anchor>
+      <arglist>(QIODevice *file)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>load</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ab4222fdc7e18ceaeead4f6ad4206e203</anchor>
+      <arglist>(QIODevice *file)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerResourceHandler</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a7034a3bb8f2b9b63d5e88363be71cadb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerResourceHandler</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a7034a3bb8f2b9b63d5e88363be71cadb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paste</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a6dd0104b0a1a3061dbf152458df7b5ff</anchor>
+      <arglist>(const QString &amp;cb, QWidget *parent)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>paste</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a6dd0104b0a1a3061dbf152458df7b5ff</anchor>
+      <arglist>(const QString &amp;cb, QWidget *parent)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeXMLComments</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a373b3366fcd6de05f555eea7ce686b89</anchor>
+      <arglist>(QString &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeXMLComments</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a373b3366fcd6de05f555eea7ce686b89</anchor>
+      <arglist>(QString &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a64a46c4e200743b7c51e6e026a341452</anchor>
+      <arglist>(QIODevice *)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a97715069fc2ba2368de5ca6821da28e0</anchor>
+      <arglist>(const QString &amp;filename)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a64a46c4e200743b7c51e6e026a341452</anchor>
+      <arglist>(QIODevice *)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a97715069fc2ba2368de5ca6821da28e0</anchor>
+      <arglist>(const QString &amp;filename)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDesignArea</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a3d527e00c9d5cae0eb468bf3044d690d</anchor>
+      <arglist>(NCReportDesignerDesignArea *da)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDesignArea</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a3d527e00c9d5cae0eb468bf3044d690d</anchor>
+      <arglist>(NCReportDesignerDesignArea *da)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDocument</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a9d521ac34653fe5887b7184063dea261</anchor>
+      <arglist>(NCReportDesignerDocument *doc)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDocument</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a9d521ac34653fe5887b7184063dea261</anchor>
+      <arglist>(NCReportDesignerDocument *doc)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>af9ec6b91df5f2341c415ef3381d96d2e</anchor>
+      <arglist>(Measurement *mmnt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>af9ec6b91df5f2341c415ef3381d96d2e</anchor>
+      <arglist>(Measurement *mmnt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSection</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a4ac12dcda163db24abd3f76658ee623b</anchor>
+      <arglist>(NCReportDesignerSection *se)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSection</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a4ac12dcda163db24abd3f76658ee623b</anchor>
+      <arglist>(NCReportDesignerSection *se)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerResourceHandler</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a2510418235edf26596a1080d9bab33fa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerResourceHandler</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a2510418235edf26596a1080d9bab33fa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>entitize</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ad97c124bc50ac9c73b9ea0e86d720b4e</anchor>
+      <arglist>(const QString &amp;s, bool isAttrib=FALSE)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>entitize</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a507b2b1b28fe2bbfb6a2be170188a2cf</anchor>
+      <arglist>(const QString &amp;s, bool isAttrib=FALSE)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>makeIndent</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a8ea86cdf432f89c48176a094f31d19b1</anchor>
+      <arglist>(int indent)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>makeIndent</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ac93ba3d884173dba0183c6be5cdfb098</anchor>
+      <arglist>(int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QString</type>
+      <name>colorToString</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>affd8fc798e9273e129f468d4ffcbda45</anchor>
+      <arglist>(const QColor &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QString</type>
+      <name>colorToString</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>affd8fc798e9273e129f468d4ffcbda45</anchor>
+      <arglist>(const QColor &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadDetail</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>abf68c6b2327b48fa9a8d691edb1f7161</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadDetail</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>abf68c6b2327b48fa9a8d691edb1f7161</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadGroups</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a2ede075aef8551614133e8ab4a8a02c8</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadGroups</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a2ede075aef8551614133e8ab4a8a02c8</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadPageFooter</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a4697ab851c86faa5f1747a22c3f7acf2</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadPageFooter</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a4697ab851c86faa5f1747a22c3f7acf2</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadPageHeader</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ae99c83baa36afc99775a259d618ad6c4</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadPageHeader</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ae99c83baa36afc99775a259d618ad6c4</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadQueries</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a75eed041eeeaf49b6502a22084ddc1be</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadQueries</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a75eed041eeeaf49b6502a22084ddc1be</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadReportOptions</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a3231f2d425bd2204034402520a4f6dfd</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadReportOptions</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a3231f2d425bd2204034402520a4f6dfd</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadSectionWidgets</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a9ab50d2ba7a88111e905bebcea6abd44</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadSectionWidgets</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a9ab50d2ba7a88111e905bebcea6abd44</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadVariables</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a78c3ece042807b19a175596e977d93da</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>loadVariables</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a78c3ece042807b19a175596e977d93da</anchor>
+      <arglist>(QDomElement &amp;e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>loadWidget</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a252b9416820c91d40ba2a8ad4c4282b3</anchor>
+      <arglist>(QDomElement &amp;e, NCReportDesignerWidget *w)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>loadWidget</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a252b9416820c91d40ba2a8ad4c4282b3</anchor>
+      <arglist>(QDomElement &amp;e, NCReportDesignerWidget *w)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveElement</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a65617b0a5025bd1a0d272bc2f103499c</anchor>
+      <arglist>(QObject *obj, QTextStream &amp;ts, int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveElement</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a65617b0a5025bd1a0d272bc2f103499c</anchor>
+      <arglist>(QObject *obj, QTextStream &amp;ts, int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveWidget</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a31529371ae0cd6dedbc4c81f0ae70afe</anchor>
+      <arglist>(NCReportDesignerWidget *w, QTextStream &amp;ts, int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveWidget</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a31529371ae0cd6dedbc4c81f0ae70afe</anchor>
+      <arglist>(NCReportDesignerWidget *w, QTextStream &amp;ts, int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveWidgetsOfSection</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a2f6f4674e4ad183bb23e803d604fea07</anchor>
+      <arglist>(NCReportDesignerSection *s, QTextStream &amp;ts, int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>saveWidgetsOfSection</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a2f6f4674e4ad183bb23e803d604fea07</anchor>
+      <arglist>(NCReportDesignerSection *s, QTextStream &amp;ts, int indent)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setWidgetOptimalSizeForFont</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a4920ef0e76cf1534999fbc6c7267a437</anchor>
+      <arglist>(NCReportDesignerWidget *w, bool setWidth, bool setHeight)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setWidgetOptimalSizeForFont</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a4920ef0e76cf1534999fbc6c7267a437</anchor>
+      <arglist>(NCReportDesignerWidget *w, bool setWidth, bool setHeight)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QColor</type>
+      <name>stringToColor</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a58feb5c419f54ce1a13f80c4dfab44d6</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QColor</type>
+      <name>stringToColor</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a58feb5c419f54ce1a13f80c4dfab44d6</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>copying</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a20665e12ce463cc700f9bbefb2f00d86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ab97ce8707b10efe11cb843769508adbd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a31eda72b39ff7dd41aa4edc49fdf34cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>errorcol</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a9c112c8f8f4ef8cd7b908a5fc155b801</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>errorline</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a67e05ce467d3f82c7258c78fb633cfa3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>loadErrorMsg</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>af2861ed98db389cbfb70a587b9a16cf0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Measurement *</type>
+      <name>m</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a159f0ad12a2b30a85d3c3c2dc8295904</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>pasteOffset</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ac4e267ce186db8cf3da5be47d86bd09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>pasting</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>ad2f8c5af2b46d9b8ffff6482944a9c63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerSection *</type>
+      <name>section</name>
+      <anchorfile>classNCReportDesignerResourceHandler.html</anchorfile>
+      <anchor>a51727d91cb01aea760bd8c5e301311fe</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerRuler</name>
+    <filename>classNCReportDesignerRuler.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerRuler</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a3241345ebb5246593c0749aa841c532e</anchor>
+      <arglist>(Orientation ori, QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerRuler</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a3241345ebb5246593c0749aa841c532e</anchor>
+      <arglist>(Orientation ori, QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>aec2df4eb29e869db29117cbb7c493299</anchor>
+      <arglist>(Measurement *msr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>aec2df4eb29e869db29117cbb7c493299</anchor>
+      <arglist>(Measurement *msr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setScaleStartPoint</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a0d63e5ca0d36f8d5b3bc57d9f2a4bf70</anchor>
+      <arglist>(int p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setScaleStartPoint</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a0d63e5ca0d36f8d5b3bc57d9f2a4bf70</anchor>
+      <arglist>(int p)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerRuler</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>ae8329fb1747d4e630723e09696b08eb5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerRuler</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>ae8329fb1747d4e630723e09696b08eb5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>affebdbb80e92801d9c632978482875b5</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a345c8f1f89dda4cdc47d74e1e65123a8</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Measurement *</type>
+      <name>m</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a93062c14a2a5b84085a3f6794d776422</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a15a5a59df2a993c12d676caff354c6c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerResizeBar *</type>
+      <name>rbar</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>a66d9701a475c676803dd6abc3cd58900</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>scStart</name>
+      <anchorfile>classNCReportDesignerRuler.html</anchorfile>
+      <anchor>ac54d83effaa64da9e7fde44432b57b04</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerSection</name>
+    <filename>classNCReportDesignerSection.html</filename>
+    <member kind="enumeration">
+      <name>SectionType</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074ae41d9d57c7a97c3fa5cdbf37c38f34ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074af057afd12d593bf3d0cc9d76a138a67d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a420d9ad872a049ed7ede2b667cabf7cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a239f890959b4392674a0d316a13f7314</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Detail</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a22a06b120cd4461883d65c58b7eae0fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074ae41d9d57c7a97c3fa5cdbf37c38f34ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074af057afd12d593bf3d0cc9d76a138a67d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a420d9ad872a049ed7ede2b667cabf7cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a239f890959b4392674a0d316a13f7314</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Detail</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a22a06b120cd4461883d65c58b7eae0fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>SectionType</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074ae41d9d57c7a97c3fa5cdbf37c38f34ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074af057afd12d593bf3d0cc9d76a138a67d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a420d9ad872a049ed7ede2b667cabf7cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a239f890959b4392674a0d316a13f7314</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Detail</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a22a06b120cd4461883d65c58b7eae0fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074ae41d9d57c7a97c3fa5cdbf37c38f34ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>PageFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074af057afd12d593bf3d0cc9d76a138a67d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupHeader</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a420d9ad872a049ed7ede2b667cabf7cb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>GroupFooter</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a239f890959b4392674a0d316a13f7314</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Detail</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a7f4571a10084f0caef7847062c3c5074a22a06b120cd4461883d65c58b7eae0fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a4201d079e05fadce0a70f81febccb0a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designArea</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>add76e80061396a7916ae06829794ee68</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>getFooterSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a9d1b9ac269561dc9bf033e90936bb86f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSection *</type>
+      <name>getFooterSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a8142db213d7530f052a130a82b0e29d9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerRuler *</type>
+      <name>leftRuler</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a6c9e351bdad036d182d7b3a1ae9ea957</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerRuler *</type>
+      <name>leftRuler</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a6c9e351bdad036d182d7b3a1ae9ea957</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a3597e2b9f7589886f3f1f4c09cfa3860</anchor>
+      <arglist>(SectionType t, NCReportDesignerWindow *mwin, QWidget *parent, const QString &amp;cap, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a81025019005b34e0bac800f2523854a6</anchor>
+      <arglist>(NCReportDesignerWindow *mwin, QWidget *parent, const QString &amp;cap, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a3597e2b9f7589886f3f1f4c09cfa3860</anchor>
+      <arglist>(SectionType t, NCReportDesignerWindow *mwin, QWidget *parent, const QString &amp;cap, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a81025019005b34e0bac800f2523854a6</anchor>
+      <arglist>(NCReportDesignerWindow *mwin, QWidget *parent, const QString &amp;cap, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setFooterSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a6c5291703700b02955c6b0863943ce05</anchor>
+      <arglist>(NCReportDesignerSection *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setFooterSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a6c5291703700b02955c6b0863943ce05</anchor>
+      <arglist>(NCReportDesignerSection *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setGroupSettings</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a02636a0b3bff0afd73e94308d855e37c</anchor>
+      <arglist>(const QString &amp;expr, const QString &amp;rvars)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setGroupSettings</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a02636a0b3bff0afd73e94308d855e37c</anchor>
+      <arglist>(const QString &amp;expr, const QString &amp;rvars)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setHeight</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>af8fda153dc8427304f32176bb3da170f</anchor>
+      <arglist>(double dh)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setHeight</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>af8fda153dc8427304f32176bb3da170f</anchor>
+      <arglist>(double dh)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a8582d86fc1e54da95eee7ff973e73b33</anchor>
+      <arglist>(Measurement *msr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMeasurement</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a8582d86fc1e54da95eee7ff973e73b33</anchor>
+      <arglist>(Measurement *msr)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTitle</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a453b6b28295b35b77fd02d2a4d3d41e8</anchor>
+      <arglist>(const QString &amp;s)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTitle</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>ac9b675cacb694b624224d5ff892998f8</anchor>
+      <arglist>(const QString &amp;s, const QPixmap &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTitle</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a453b6b28295b35b77fd02d2a4d3d41e8</anchor>
+      <arglist>(const QString &amp;s)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTitle</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>ac9b675cacb694b624224d5ff892998f8</anchor>
+      <arglist>(const QString &amp;s, const QPixmap &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setType</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a4b03abff31028c1caef80aab78a8b4e4</anchor>
+      <arglist>(SectionType t)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setType</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a4b03abff31028c1caef80aab78a8b4e4</anchor>
+      <arglist>(SectionType t)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidth</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a1b69e241de662ae87d61dbefcb402cd2</anchor>
+      <arglist>(double dw)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidth</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a1b69e241de662ae87d61dbefcb402cd2</anchor>
+      <arglist>(double dw)</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSectionTitle *</type>
+      <name>Title</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a72ba0f2c0c3ba70be8fa117b95f9a1b8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerSectionTitle *</type>
+      <name>Title</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a8a49eee879e68abb4b64ade9fd94c4a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a133e166284b6eed76049057a9961e148</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a2eee17ca8d0811b825a78910fe33f2ac</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>resizeBarDragged</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a49125770fba2452266ae71bb849ef4e2</anchor>
+      <arglist>(int d)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>resizeBarDragged</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a49125770fba2452266ae71bb849ef4e2</anchor>
+      <arglist>(int d)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a931ec136f347c9efdb7f417c8e5a633c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a931ec136f347c9efdb7f417c8e5a633c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QString</type>
+      <name>caption</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a49a70b1e2d3d9ac5475edbc117e01bb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>designarea</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a2c5a6337c22dc01da314dc1855a3d403</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerSection *</type>
+      <name>footerSection</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a21bd01a1115814e166ac81d06ab87491</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QString</type>
+      <name>groupExpr</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a39ac5dfc59719f1c30db5d69e77be393</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Measurement *</type>
+      <name>m</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a35446930b8f85cc33cc0297abbeea55e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerWindow *</type>
+      <name>mainwindow</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a177a931b3b5046d4978686d41365f07c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerResizeBar *</type>
+      <name>rbar</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>aa7d57b44782b3cdc52f9eb2fc4f3a825</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QString</type>
+      <name>resetVars</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a06a68d59302ed946fd3954e49007781e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerRuler *</type>
+      <name>ruler</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a51e22c24c7a94a9f1e56e59c6a8dd9a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerSectionTitle *</type>
+      <name>title</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a738ab9095c8d1bf0cf5a35a8b20b057f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QFrame *</type>
+      <name>titleFrame</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>aa88a7269a65d1b668850ecec89a208f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SectionType</type>
+      <name>type</name>
+      <anchorfile>classNCReportDesignerSection.html</anchorfile>
+      <anchor>a1e272c027e985d79b7befb195757633e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerSectionTitle</name>
+    <filename>classNCReportDesignerSectionTitle.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerSectionTitle</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>aa8be94a1d605828fdb36eb5e7760ff63</anchor>
+      <arglist>(QWidget *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerSectionTitle</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>aa8be94a1d605828fdb36eb5e7760ff63</anchor>
+      <arglist>(QWidget *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPixmap</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>aa8421c9037dcedb1a0f8e5fa2fbd8935</anchor>
+      <arglist>(const QPixmap &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPixmap</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>aa8421c9037dcedb1a0f8e5fa2fbd8935</anchor>
+      <arglist>(const QPixmap &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setText</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a37feb70bac6bf6e18a7cf2ec0103f340</anchor>
+      <arglist>(const QString &amp;t)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setText</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a37feb70bac6bf6e18a7cf2ec0103f340</anchor>
+      <arglist>(const QString &amp;t)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerSectionTitle</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a2170e5ddf99ccc40d96c0aa174b6f3b7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~NCReportDesignerSectionTitle</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a0bc2de2f85e576e0ae461e879780b8d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a2871ffe9c37fe3afe6687b6cbb654521</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>afa86e355b962747862b70d3029de8128</anchor>
+      <arglist>(QPaintEvent *)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPixmap</type>
+      <name>pm</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a4cdfb73c3ebc6a10e99bb125fb2c491c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>text</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>a8139afd26b0825463d05e261bf753b89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>topMargin</name>
+      <anchorfile>classNCReportDesignerSectionTitle.html</anchorfile>
+      <anchor>af3b666158410a26e12989181ce662073</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerWidget</name>
+    <filename>classNCReportDesignerWidget.html</filename>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>WidgetType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ab8c639117e16341d09baab02d0759b1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a632e4b776457d6cea144663d068c2c56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a1e4055a463ec1be1486ccdb83d762b09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229ac6b8b39d2e8f365e235a1e2038ee1872</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a3d577d3838c0dab3373ec15adafb2fe1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a89d8416d1ca86188e15c6a9610188e81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Unknown</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a38b2104f11203cd07700c7d8afbc4229a79e0778565ddb0de65f86bd88ea5ffce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a7fbe4c258e17e229125d403663fcd375</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>minimumSizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a866831bd03f9c4bfa894aa4838a6e0f8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a09a6ce16d4d979c60de593fffc73bf21</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a09a6ce16d4d979c60de593fffc73bf21</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, const char *name=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad7e9a65ed2fde3d05eb5026c790cf1a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>WProperty &amp;</type>
+      <name>prop</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a95f1be4c7880bbb41c55be373f567d29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac1b5eba6869c35bdc7d8671f6f16f0a8</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual QSize</type>
+      <name>sizeHint</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adb37ae3792890978ca31ca7c1d48fccc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9e289cc611b2c3651c3df6f12b682dcd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>updateWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5d4ce7ae284acb7a398c4e312bb37f78</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a12319e2b29886e9f4b2d4e00e09798fc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWidget</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a12319e2b29886e9f4b2d4e00e09798fc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>Selection::SelectionType</type>
+      <name>d_selectType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79ce78bc9b84a9d9fa32b5b3bd436617</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSize</type>
+      <name>defaultSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e4433f2c3015deedbda2982814acafa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>etype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a970d9e00efed30ebcf9cab9362252442</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>initOpenPropDia</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a8a394a49f7b5d355c357ca78fc87eedc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>objectname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0e3a1dc5f0b908916557786f35649ac3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::Orientation</type>
+      <name>orient</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af61f54d6d46819ec6bc82953d65f67a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WProperty</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad8fc5cb0c44b81295f9e201abac8a337</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>tagname</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac8c07669703394aa22e952a8e7a1d41d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useAlignment</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a769e6f2f9967916479c1f284212c9ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useBackColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aaa2ddf7bb1eab76146d3d0c8c46162c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useCallFunction</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a497d1e734219536fb932b9987167ab19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDataFormat</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a612720ff9e07a34ec29c8d2b7b717a72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDisplayValue</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a1f7ee9bfd0580872695a58674421da9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9837cba968e3293cb56a9eee136b6509</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useEmbedString</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac2c2ed02c864ee5af45bc7eb44e04a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a119937bfc73cd2b3409cb2d636e074dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFillStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b8cfe459c30fe542224d85062aa3531</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontItalic</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a80d6b3d56d1f4c62bf9e8d175ccb2e07</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontName</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6ca5422607eb640bab27abd6ec358752</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4e6fdb317e7992a6631bbdcaf43e6147</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontStrikeOut</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad41892ac3da5380e5006560bc30aa31c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontUnderline</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a4a80bc060baece35e7b2433cdc8d5330</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFontWeight</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>adc1c13468a64b2ef002265a5832f88ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useForeColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9fd89470b30eb30989faa131a8ad852</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useFType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad74ad30e29d383c38985cc3c290fe2f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineColor</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a88c8da25dcc28780c29b8e3247f8dd1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineStyle</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a02de6d99d3a1ccbeec51f3c00d343e3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLineWidth</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a9b7c4d89485115fcd621ad5e5170245f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ad9f518264dfc79242bf670cb49a5176d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePointFromTo</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af43dd8de8db778c3eb27876e2977cacd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>usePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5cebbb3db881c22ddfc5494de04e3a69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useResource</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a5fafee75057746aadb84cf620ea500f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRichText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae0ccf458670be3ee77652c14facdc09c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useRotation</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a6d9b47f19997bc5ad26efd6ddb594109</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useSize</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3678c8e3dfcbf4bff5ff30a8baa8cfd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useText</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aef7c432875249cfb825b2f8d60f0c92b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useType</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a79393de068e6767b7b30041c53002601</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>useWordBreak</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a03e353832a5901e33dc796bf7ec3270b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>WidgetType</type>
+      <name>wtype</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f73dcb60fcdd2128bbde76f470a6c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>af7a5b16bcfa80fdbf440ad135b467da5</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ae9411907165403ff9fc2f1b6681396ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a3926d3ed9ae8eca6b23c77ba227e99ef</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>keyReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>afc8f5dd9f3dea085701354a4d1d2df2a</anchor>
+      <arglist>(QKeyEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a34a013779d97b657cadcfefe35fda390</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>aeb88fe3be22b8459c680d3700bb82a0f</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a0f679cb10caf43a4518153800360be94</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>ac332339acbe4b33efb095f92c7da0ce8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>add9bd35d468a0977ec8186e1d314f141</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a2f67af0a177691ab00796272b578c63e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a27d8690f8a3341990b1f1d13a3644ab8</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a71fcb073305e0321ed41abbad039240c</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>area</name>
+      <anchorfile>classNCReportDesignerWidget.html</anchorfile>
+      <anchor>a99c24c9471dc2a94efbe70e253b559a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerWidgetFactory</name>
+    <filename>classNCReportDesignerWidgetFactory.html</filename>
+    <member kind="enumeration">
+      <name>RWType</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baaff6844d5bc992432001a816338ddf5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baa7143c689d072b926cc0c7798b22fd17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba2c15c84614cd4d1b8b77897b3352f3c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba94ff59d5a1bcba6020b836d07fe2fe72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba9d55fc35d4226f06abbcd849c725224c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba53caed7f5740121434679347fa7bdd5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baaff6844d5bc992432001a816338ddf5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baa7143c689d072b926cc0c7798b22fd17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba2c15c84614cd4d1b8b77897b3352f3c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba94ff59d5a1bcba6020b836d07fe2fe72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba9d55fc35d4226f06abbcd849c725224c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba53caed7f5740121434679347fa7bdd5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>RWType</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baaff6844d5bc992432001a816338ddf5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baa7143c689d072b926cc0c7798b22fd17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba2c15c84614cd4d1b8b77897b3352f3c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba94ff59d5a1bcba6020b836d07fe2fe72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba9d55fc35d4226f06abbcd849c725224c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba53caed7f5740121434679347fa7bdd5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baaff6844d5bc992432001a816338ddf5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28baa7143c689d072b926cc0c7798b22fd17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Line</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba2c15c84614cd4d1b8b77897b3352f3c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba94ff59d5a1bcba6020b836d07fe2fe72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba9d55fc35d4226f06abbcd849c725224c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a5a3b4b73f82e1ece7923c4864769a28ba53caed7f5740121434679347fa7bdd5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QWidget *</type>
+      <name>create</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>aa7ce6d6bc79d9c517485fd18f8d5f9af</anchor>
+      <arglist>(const QDomElement &amp;e, QWidget *parent, const char *name=0, bool init=TRUE, const QRect *rect=0)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QWidget *</type>
+      <name>create</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a32e2dd592ea23a19cb8c3c3dc343c576</anchor>
+      <arglist>(int id, QWidget *parent, const char *name=0, bool init=TRUE, const QRect *rect=0)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QWidget *</type>
+      <name>create</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a7a3890c10f854af0a9d81f5c7ce94366</anchor>
+      <arglist>(const QDomElement &amp;e, QWidget *parent, const char *name=0, bool init=TRUE, const QRect *rect=0)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QWidget *</type>
+      <name>create</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a78cc07a794ff0b17ef2414a1c217a7aa</anchor>
+      <arglist>(int id, QWidget *parent, const char *name=0, bool init=TRUE, const QRect *rect=0)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>defaultSignal</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>afbd3a8d05bd6b5b4261427c9fc27cb01</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>defaultSignal</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>afbd3a8d05bd6b5b4261427c9fc27cb01</anchor>
+      <arglist>(QObject *w)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QVariant</type>
+      <name>defaultValue</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a54302d9638df6d0cb35f50a0e097934b</anchor>
+      <arglist>(QObject *w, const QString &amp;propName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QVariant</type>
+      <name>defaultValue</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a54302d9638df6d0cb35f50a0e097934b</anchor>
+      <arglist>(QObject *w, const QString &amp;propName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>saveChangedProperties</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ad05200f4980963841fbcadadabaa4bcd</anchor>
+      <arglist>(QObject *w, int id)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>saveChangedProperties</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ad05200f4980963841fbcadadabaa4bcd</anchor>
+      <arglist>(QObject *w, int id)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>saveDefaultProperties</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ad69b788f13cd63be3cd120e950bf0e9c</anchor>
+      <arglist>(QObject *w, int id)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>saveDefaultProperties</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ad69b788f13cd63be3cd120e950bf0e9c</anchor>
+      <arglist>(QObject *w, int id)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static QString</type>
+      <name>className</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ad03116be84193bc9145e6c8426e53b66</anchor>
+      <arglist>(const QString &amp;tagname)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static QString</type>
+      <name>className</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ab62992c0dd9bef5950381f506e9d67cb</anchor>
+      <arglist>(int id)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static QString</type>
+      <name>className</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a49a66ee2ba321128a44034cf011b13b7</anchor>
+      <arglist>(const QString &amp;tagname)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static QString</type>
+      <name>className</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>ad798dfb73a6ae51efe8970f802bc5029</anchor>
+      <arglist>(int id)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static QWidget *</type>
+      <name>createWidget</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>aec2c4984b5490c74cafb86e1c5c144b0</anchor>
+      <arglist>(const QString &amp;className, QWidget *parent, const char *name, bool init, const QRect *r=0)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static QWidget *</type>
+      <name>createWidget</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a15f394b5cb1905b079fc19800861fec2</anchor>
+      <arglist>(const QString &amp;className, QWidget *parent, const char *name, bool init, const QRect *r=0)</arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static QGuardedPtr&lt; QObject &gt; *</type>
+      <name>lastPassiveInteractor</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a9a57dfa5aca68ebc395e7ba7ffebceac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static bool</type>
+      <name>lastWasAPassiveInteractor</name>
+      <anchorfile>classNCReportDesignerWidgetFactory.html</anchorfile>
+      <anchor>a7da726bcbbee301ad2afbab9116f3889</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerWidgetSetDialog</name>
+    <filename>classNCReportDesignerWidgetSetDialog.html</filename>
+    <base>NCReportDesignerWidgetSetDialogUI</base>
+    <base>NCReportDesignerWidgetSetDialogUI</base>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyOptions</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>ac9b5a95e88a1d9eab5764ef65a02b2a9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyOptions</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a39484b8b801944f731135c19a56d04ae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWidgetSetDialog</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>af08bbeeb697e9a8ae5a365f60cffb55c</anchor>
+      <arglist>(NCReportDesignerWidget *dwidget, QWidget *parent, NCReportDesignerDocument *, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWidgetSetDialog</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>af08bbeeb697e9a8ae5a365f60cffb55c</anchor>
+      <arglist>(NCReportDesignerWidget *dwidget, QWidget *parent, NCReportDesignerDocument *, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveSettings</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>abc0b7f8e214bf0603ef49fb44f90d3f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveSettings</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>abc0b7f8e214bf0603ef49fb44f90d3f4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDocument</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a1535fefc1f1ba422a95a4e6a54c17fdb</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDocument</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a1535fefc1f1ba422a95a4e6a54c17fdb</anchor>
+      <arglist>(NCReportDesignerDocument *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSaveToProperty</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a35d4e81efe036106f9e92069015fa83f</anchor>
+      <arglist>(WProperty *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSaveToProperty</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a35d4e81efe036106f9e92069015fa83f</anchor>
+      <arglist>(WProperty *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidget</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>ac2be23c73c7c7f31db6441e109630189</anchor>
+      <arglist>(NCReportDesignerWidget *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidget</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>ac2be23c73c7c7f31db6441e109630189</anchor>
+      <arglist>(NCReportDesignerWidget *)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWidgetSetDialog</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a7eaa1bc234045fcfbe3221d5517924e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWidgetSetDialog</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a7eaa1bc234045fcfbe3221d5517924e1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>QButtonGroup *</type>
+      <name>bgBackM</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af4091e0ceb04627d5d5760ca41f6331c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QButtonGroup *</type>
+      <name>bgHAlign</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a58fbbc6e5ea0bd42ad9d30407c928e6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QButtonGroup *</type>
+      <name>bgVAlign</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a45910a07c4257184da8fee2d50fefc95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>btnSelFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a630ae598b1a16be273f614483ef4021a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonApply</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a3c8a49a8270c41668fad09f790dd7a63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonCancel</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a1c3ec10e408853b8b6df65d74480ed84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonOk</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae71d812e03b8cf693714f2e05b6392c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbBlankIfZero</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a99b695338a23e8d14e50b9d4d5a28634</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbBold</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad5028d0a3baa0a72c9ac03463a049562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a7d55e855568939a06cc8dd2341baba11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbItalic</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a730049bea32ca8e5b99cb69e2672313b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>abee6b9af7a1dd58581cb4e37597d7992</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbRichText</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac8bb092996f2605be3f369ade7fd9370</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbStrikeout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af3ef5bdbb1c5746ea8f5ea2aedc1d88b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbThousandSep</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a866dc05eaf7e3fa674ea3907bed2799f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbUnderline</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a77f9f8c461be8293aa1eee4456162e5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbWordBreak</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aefd45cc52e07e7e683e723b3968baeb1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCColorCombo *</type>
+      <name>comboColor</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a387ef3fbfa51bdb6305b907cf07964e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCColorCombo *</type>
+      <name>comboColorF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2c19c7f89e0d37c8cff7c4e214639424</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCColorCombo *</type>
+      <name>comboColorL</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab0f7d5d745c71bfe445a199df7557365</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboDSource</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>abbba0fd1b3d0034763d02bc05602b732</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboFontSize</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad63ed730fe25efe41646118fdb6104b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboLineStyle</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a49669dff6376a64a4a4fe9cd57c88bd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6945ca55ad38ac5dcec849ed515fa04a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>gbDateFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a5ef9456243e4795bfcfcaa9e0fcfc6c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>gbNumFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a57ecf56868497887d2359501156a441d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblDateFmt</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a383140d05e33ef7b56c947335acc0080</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblDecPoint</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a67e2e888ff749bf8399a1144247af8f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblEmbed</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8e9600dd58707da3cd5f0403035a51ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFillcol</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac527cc8898348d828ca95d99e59bc670</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab46656aa66811683922764ff1b0e5a1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFontSize</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8bfc08b943aa3097a0b00c43c974b41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFunc</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a3192c7950987a12c142789b7ce013789</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblHelpNumF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a739ada51d6a3e4fe560cc32a4182330a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLabel</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9c8c8bd9dfb6e5e697428954be4a639b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLinecol</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a876ab0f8db2bf75da4324b87a588ddb1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLinesty</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6f9c37a33df880dfe37507a1b2d6eb89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLinew</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4f4fb5503b83e27a5e51584251eeacae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLookup</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab9d56ffde1955e7959aead32cef6c5f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblNoDec</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af8b59aac29a8e899c95b63b54da20048</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblNumFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8c1d73c9ff740d949a20561d97f8d010</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblPWhen</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a7a63bec699014acac08a5236e25420a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblRotat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>adc675585a00b076ac2cc041059040017</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSample</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae06bbeffbc7373164267df9e3ba7e647</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSetSymb</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a27cbe9cca7f8e3778727d9af0f0471ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSrc</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aec98f5a3def9949c1ea04250cf7d710f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSrcType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2b9a7192ca6524e2f6bad1534e82534b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblTxtColor</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a72749cfc15036434ff32fb851427a998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af2973976c05d726087dc34d8afc379e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leDateFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4ea8648dff4d1eb3bb939391436a3288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leDecPoint</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9027576a868f385e4f036ea846d7524e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leEmbed</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a0d84cc21e6a3cc83baa479feb8c2a0dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>afc4e2e4f733ad2a583f848bd74707664</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leFunction</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a16f87da8bc21d3eca11b9211519906fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leLookup</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae8fd12e56cebce130a17fb058066a7b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leNumFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>adc7ef1fc1f994ff3809bf2b17112361b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>lePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a56be3a65742d6f4dd616d239aff33c66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leSeparator</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab60067caac924da1585e4c4857a1e46e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leSource</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa509672eed52cd4f103578599644b3e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>pageData</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad281208af63ea2d74d5550d52fb3fcae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>pageLine</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>abef5e7a53ebe7c5dd125653aa2202611</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>pageTxt</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a207a03a2c78ec4d04d2c5bf9489642da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioBottom</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aae80cc1cba91f592def68b446731deaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioCenter</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa4da85b8aa66399e5a992a985c0a7971</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioFill</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9ebb85d032a3e94e145686e3cd70ea46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioLeft</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9ea55d89c5def7a216c265fd74da4848</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioMid</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>afe7df340ed16f450a4de8ec258b6b946</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioRight</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6d445093bc43d1bc06c377af997a3cfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioTop</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af3204dbadb7d4a1ab94d59cfa3294bc8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioTransp</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2fe1085caa17b11b82696cef2178d3dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSpinBox *</type>
+      <name>spDec</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af8a9881806d9abb29df3dec841e36525</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSpinBox *</type>
+      <name>spinLineWidth</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6578017c5f67bc5a828a7baef1cedf83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSpinBox *</type>
+      <name>spinRotation</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6acfcfb8b188e2e54c432e61800a58d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTabWidget *</type>
+      <name>tab</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a25bf3703ced3c11d76f7bcb38854de47</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>TabPage</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae4eba247ec7d0b009f868d583ee05908</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTextEdit *</type>
+      <name>textLabel</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a313dd0fcaa6899b467fb3a461ef607a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignHChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>ad22509090d995193431b4f9cdba5e6fa</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignHChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a1ab540901633803dc9a6d92e71a08792</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignVChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a112c522e49ae701d7779a419fe2c61ee</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignVChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>aca37a940f90ff08f55de45eda85e5c52</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>backModeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a99718bfef2a5837d6ea38adddc60eedb</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>backModeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a5c6ae939ff6ae594ea7cad23fdcbde6d</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>changedDataType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a03a501aeaa51258de93f699cd4ee044f</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>changedDataType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a34af6d1960427b2093a7d02fc02087ab</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontBoldChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>af00caed92a5f0a6e367ec8a606d866a2</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontBoldChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>af55db2da2bf8d81f593cd9fb83bd5a19</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontColorChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a65ea35e83f8b8059d28542635bc352b8</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontColorChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a7e95f71ba0a543d24d7976b81a518115</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontItalicChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a69afe4c5f4e4f75273eb5b4fce23e061</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontItalicChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a614c7bd62163369c345193585bba8cd9</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontSizeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a17cf95b210485cfb41c5275d5d5faea8</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontSizeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a582fe49e365e8a192556ccbf582e37aa</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStrikeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a17249b9f2538cb378b208db0da4e797a</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStrikeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>aa8156c8ceaed4232f34508f81650a7e3</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStyleChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>ac1fb5dd8524631fa117b28f6e7db9f46</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStyleChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a5b1dbf7815c716c07779c87ee7ec1371</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontUnderlineChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a0095a0b0021cb84251d69b7ca4f38d50</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontUnderlineChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a37d5e04bcd63b79d108700a076758191</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aaf3993352306c3550497c487378944fd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aec1f5989a0a07a8622eae035d8188351</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a56e91a0b7fc39e318bdf7763c71e7414</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>aec2a6887794e2675c6c8cc18d326bc1d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a86fe28fdd16d16bb469380e9aa69822a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>init</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a86fe28fdd16d16bb469380e9aa69822a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>loadOptions</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>add3cadb13fc278b493038e5a4db8bee2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>loadOptions</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>add3cadb13fc278b493038e5a4db8bee2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>bgBackMLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad52021957b158868b9910505d5c79f1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>bgHAlignLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a75e92ea5214461430ed76df9c97538da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>bgVAlignLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6b010315cf9219e4333b3d5ee8f2da42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>gbDateFormatLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a38ea0bfbdb93f82ee790998a56cc1e25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbNumFormatLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa779bd9dd4f2fbd099fad25d32939c18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a307ede1caec8f900b2758e114725a417</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layCb</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac7b4ce7d37f57adfee1812ca7585e512</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layDSGrid</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab83901363b2965dc10f2740ca478da22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layFont1</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a232fa8889df4796e08370d7fd076dbb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layFontIn</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa300068a4d5132e9125923cd2926a934</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layLin1</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab837a945654acc9c9d378f11f4c418e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layLin2</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a14d90891913ade0ac724e76ec94f2c09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layout11</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a950eb1132616ec9d0e3335544aa7c97f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layout42</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a871632c4aeacbfec97a9907db8d04040</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layRadio</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a948d9641f19a847db9bd4090ad1056ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layRot</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa1470d97042acf172194090857344419</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>pageDataLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad586e6d4213a10519d2fe33851da86bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>pageLineLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>acedc08374096de3c9f1a8bc41cab82ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>pageTxtLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6800ab60631b7ae7307aee7bcc02c6d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>setdialogLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a56688f3d1a68309b2728c88122998750</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerBM</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9cd571108b8e2649ec54f24ac130db5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerBtn</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac13f37508f0cde21d24e2084f470b7a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerBtn2</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae74b11b42cf067939ee7a5869bc646aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerCb</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae2087e2279cac37985b64abf15cf0f67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerDS</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aeca664d4e61dd80d22b3c0e32a03b75a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerLineS</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a726ff6e7f0a70dce6e6276ce4a0473e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerPageLine</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8fa9e8c953267c6d7621177d6ea3ea44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerRot</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a90873e228093b035ec895caf2f2d001d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerTextPage</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6999e43357364b4de301e632d5b6a4eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spDataF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae2653aa4bcb1cd092cb15021e4501357</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spDataType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae80e14d507efa3c9714ff8c7e4b304f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spDF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad894d8fcb59e565943fe8358cb4edd81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>TabPageLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a1fd2c7969a6ff4421c432b9345fc74b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>af79d24e7265c50521aa22548057fd40f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerWidget *</type>
+      <name>dw</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>adccbaf7016d2be7f94d34eda056794b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>WProperty *</type>
+      <name>p</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialog.html</anchorfile>
+      <anchor>a5afce989f28ac649c889d9c2828e5423</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerWidgetSetDialogUI</name>
+    <filename>classNCReportDesignerWidgetSetDialogUI.html</filename>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyOptions</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aae7c48c7c2bb2c0a38197b5d9a2369cd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyOptions</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a791cb6b54a46c6b312ab602ef41df7a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWidgetSetDialogUI</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9b30f0f24be0f90da768df5a4ac5a29c</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWidgetSetDialogUI</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9b30f0f24be0f90da768df5a4ac5a29c</anchor>
+      <arglist>(QWidget *parent=0, const char *name=0, bool modal=FALSE, WFlags fl=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWidgetSetDialogUI</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4b0edea21b2ef61d303fa8989093a9d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWidgetSetDialogUI</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4b0edea21b2ef61d303fa8989093a9d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>QButtonGroup *</type>
+      <name>bgBackM</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af4091e0ceb04627d5d5760ca41f6331c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QButtonGroup *</type>
+      <name>bgHAlign</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a58fbbc6e5ea0bd42ad9d30407c928e6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QButtonGroup *</type>
+      <name>bgVAlign</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a45910a07c4257184da8fee2d50fefc95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>btnSelFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a630ae598b1a16be273f614483ef4021a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonApply</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a3c8a49a8270c41668fad09f790dd7a63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonCancel</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a1c3ec10e408853b8b6df65d74480ed84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonOk</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae71d812e03b8cf693714f2e05b6392c3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbBlankIfZero</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a99b695338a23e8d14e50b9d4d5a28634</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbBold</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad5028d0a3baa0a72c9ac03463a049562</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbDynamicHeight</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a7d55e855568939a06cc8dd2341baba11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbItalic</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a730049bea32ca8e5b99cb69e2672313b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbLoadFromFile</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>abee6b9af7a1dd58581cb4e37597d7992</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbRichText</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac8bb092996f2605be3f369ade7fd9370</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbStrikeout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af3ef5bdbb1c5746ea8f5ea2aedc1d88b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbThousandSep</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a866dc05eaf7e3fa674ea3907bed2799f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbUnderline</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a77f9f8c461be8293aa1eee4456162e5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QCheckBox *</type>
+      <name>cbWordBreak</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aefd45cc52e07e7e683e723b3968baeb1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCColorCombo *</type>
+      <name>comboColor</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a387ef3fbfa51bdb6305b907cf07964e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCColorCombo *</type>
+      <name>comboColorF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2c19c7f89e0d37c8cff7c4e214639424</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCColorCombo *</type>
+      <name>comboColorL</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab0f7d5d745c71bfe445a199df7557365</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboDSource</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>abbba0fd1b3d0034763d02bc05602b732</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboFontSize</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad63ed730fe25efe41646118fdb6104b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboLineStyle</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a49669dff6376a64a4a4fe9cd57c88bd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>comboType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6945ca55ad38ac5dcec849ed515fa04a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>gbDateFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a5ef9456243e4795bfcfcaa9e0fcfc6c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>gbNumFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a57ecf56868497887d2359501156a441d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblDateFmt</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a383140d05e33ef7b56c947335acc0080</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblDecPoint</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a67e2e888ff749bf8399a1144247af8f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblEmbed</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8e9600dd58707da3cd5f0403035a51ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFillcol</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac527cc8898348d828ca95d99e59bc670</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab46656aa66811683922764ff1b0e5a1b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFontSize</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8bfc08b943aa3097a0b00c43c974b41e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblFunc</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a3192c7950987a12c142789b7ce013789</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblHelpNumF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a739ada51d6a3e4fe560cc32a4182330a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLabel</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9c8c8bd9dfb6e5e697428954be4a639b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLinecol</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a876ab0f8db2bf75da4324b87a588ddb1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLinesty</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6f9c37a33df880dfe37507a1b2d6eb89</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLinew</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4f4fb5503b83e27a5e51584251eeacae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblLookup</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab9d56ffde1955e7959aead32cef6c5f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblNoDec</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af8b59aac29a8e899c95b63b54da20048</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblNumFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8c1d73c9ff740d949a20561d97f8d010</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblPWhen</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a7a63bec699014acac08a5236e25420a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblRotat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>adc675585a00b076ac2cc041059040017</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSample</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae06bbeffbc7373164267df9e3ba7e647</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSetSymb</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a27cbe9cca7f8e3778727d9af0f0471ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSrc</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aec98f5a3def9949c1ea04250cf7d710f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblSrcType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2b9a7192ca6524e2f6bad1534e82534b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblTxtColor</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a72749cfc15036434ff32fb851427a998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>lblType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af2973976c05d726087dc34d8afc379e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leDateFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4ea8648dff4d1eb3bb939391436a3288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leDecPoint</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9027576a868f385e4f036ea846d7524e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leEmbed</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a0d84cc21e6a3cc83baa479feb8c2a0dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>afc4e2e4f733ad2a583f848bd74707664</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leFunction</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a16f87da8bc21d3eca11b9211519906fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leLookup</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae8fd12e56cebce130a17fb058066a7b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leNumFormat</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>adc7ef1fc1f994ff3809bf2b17112361b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>lePrintWhen</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a56be3a65742d6f4dd616d239aff33c66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leSeparator</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab60067caac924da1585e4c4857a1e46e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>leSource</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa509672eed52cd4f103578599644b3e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>pageData</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad281208af63ea2d74d5550d52fb3fcae</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>pageLine</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>abef5e7a53ebe7c5dd125653aa2202611</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>pageTxt</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a207a03a2c78ec4d04d2c5bf9489642da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioBottom</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aae80cc1cba91f592def68b446731deaf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioCenter</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa4da85b8aa66399e5a992a985c0a7971</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioFill</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9ebb85d032a3e94e145686e3cd70ea46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioLeft</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9ea55d89c5def7a216c265fd74da4848</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioMid</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>afe7df340ed16f450a4de8ec258b6b946</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioRight</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6d445093bc43d1bc06c377af997a3cfe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioTop</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af3204dbadb7d4a1ab94d59cfa3294bc8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QRadioButton *</type>
+      <name>radioTransp</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2fe1085caa17b11b82696cef2178d3dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSpinBox *</type>
+      <name>spDec</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>af8a9881806d9abb29df3dec841e36525</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSpinBox *</type>
+      <name>spinLineWidth</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6578017c5f67bc5a828a7baef1cedf83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSpinBox *</type>
+      <name>spinRotation</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6acfcfb8b188e2e54c432e61800a58d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTabWidget *</type>
+      <name>tab</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a25bf3703ced3c11d76f7bcb38854de47</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>TabPage</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae4eba247ec7d0b009f868d583ee05908</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTextEdit *</type>
+      <name>textLabel</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a313dd0fcaa6899b467fb3a461ef607a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignHChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a26509028f82d7aa01f37f02de0d2fd0e</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignHChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a70b4e0b889db09ed1a7de02f8829850b</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignVChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>adfb828ee513bd19d682f384ddc5007d5</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>alignVChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6c83817f761de25eab8125520dc92ef7</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>backModeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a7510207ce360ce9561d092de05f58b29</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>backModeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa3abff49b2f05357bc273bd5a588432f</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>changedDataType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad60cfdfedd438b2f623ea02d9571ad34</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>changedDataType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae164c5d4d9971223069e4e5f05ccccae</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontBoldChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aae0eda0def09adb0b697fe88a0ce7b36</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontBoldChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a53b06152908234cee68316b15bc23bde</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontColorChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a11a7391888466941b17bb46375097c7f</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontColorChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a1824e99958fe288705f550e5105206c3</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontItalicChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2a76fbd5deeb89efe496baf79b3f0f71</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontItalicChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a77485c6d98a30ef801498ba4b99a21be</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontSizeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>afdc2a52c1149953a6cb1cc73b6a9f639</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontSizeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a5e0fcd50656848e5a677daf4220013be</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStrikeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8871b48a73adb35a0377aff17edbc0af</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStrikeChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2008d8ed15a0365fa5967b062f10cdf1</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStyleChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a2036e8ddbac87b639db79667cd365416</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontStyleChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>adff7d4cae10276b5b214d2f2c175d731</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontUnderlineChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a339e18c5e9b18f1f1823b2a5552ce77c</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>fontUnderlineChanged</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a43d3594ac54d6a4e9f5c68ccb0ce1b79</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aaf3993352306c3550497c487378944fd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>languageChange</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aec1f5989a0a07a8622eae035d8188351</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a4f22089038a39112fff47759909fb076</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>selectFont</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa8b14b38c196fbf9522a10a0c07275ad</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>bgBackMLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad52021957b158868b9910505d5c79f1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>bgHAlignLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a75e92ea5214461430ed76df9c97538da</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>bgVAlignLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6b010315cf9219e4333b3d5ee8f2da42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>gbDateFormatLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a38ea0bfbdb93f82ee790998a56cc1e25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>gbNumFormatLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa779bd9dd4f2fbd099fad25d32939c18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layBtn</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a307ede1caec8f900b2758e114725a417</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layCb</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac7b4ce7d37f57adfee1812ca7585e512</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layDSGrid</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab83901363b2965dc10f2740ca478da22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layFont1</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a232fa8889df4796e08370d7fd076dbb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layFontIn</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa300068a4d5132e9125923cd2926a934</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layLin1</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ab837a945654acc9c9d378f11f4c418e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layLin2</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a14d90891913ade0ac724e76ec94f2c09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QGridLayout *</type>
+      <name>layout11</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a950eb1132616ec9d0e3335544aa7c97f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layout42</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a871632c4aeacbfec97a9907db8d04040</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layRadio</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a948d9641f19a847db9bd4090ad1056ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QHBoxLayout *</type>
+      <name>layRot</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aa1470d97042acf172194090857344419</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>pageDataLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad586e6d4213a10519d2fe33851da86bf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>pageLineLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>acedc08374096de3c9f1a8bc41cab82ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>pageTxtLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6800ab60631b7ae7307aee7bcc02c6d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>setdialogLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a56688f3d1a68309b2728c88122998750</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerBM</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a9cd571108b8e2649ec54f24ac130db5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerBtn</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ac13f37508f0cde21d24e2084f470b7a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerBtn2</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae74b11b42cf067939ee7a5869bc646aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerCb</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae2087e2279cac37985b64abf15cf0f67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerDS</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>aeca664d4e61dd80d22b3c0e32a03b75a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerLineS</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a726ff6e7f0a70dce6e6276ce4a0473e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerPageLine</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a8fa9e8c953267c6d7621177d6ea3ea44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerRot</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a90873e228093b035ec895caf2f2d001d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spacerTextPage</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a6999e43357364b4de301e632d5b6a4eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spDataF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae2653aa4bcb1cd092cb15021e4501357</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spDataType</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ae80e14d507efa3c9714ff8c7e4b304f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QSpacerItem *</type>
+      <name>spDF</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>ad894d8fcb59e565943fe8358cb4edd81</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QVBoxLayout *</type>
+      <name>TabPageLayout</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a1fd2c7969a6ff4421c432b9345fc74b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPixmap</type>
+      <name>image0</name>
+      <anchorfile>classNCReportDesignerWidgetSetDialogUI.html</anchorfile>
+      <anchor>a1cf3b42b7cd0b6b0781189b5caf57d87</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NCReportDesignerWindow</name>
+    <filename>classNCReportDesignerWindow.html</filename>
+    <member kind="enumeration">
+      <name>ToolType</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a2960e1ceb50b936b7802d67ef63815f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a3af52c9d0ce5d73df3a0091732191ab6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a7249ee549ce5dbef3666ec32c6d865e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54aa294530491a526f3f59b0eeae22dcbc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a41c64aeed30467750a45eae3deed2e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a9261973f8c72b660d3ff944f401ae915</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab01cd8ddffaeed0e6b1d656712afa8b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab406228b63e895748f03793eb5e50adc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a2960e1ceb50b936b7802d67ef63815f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a3af52c9d0ce5d73df3a0091732191ab6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a7249ee549ce5dbef3666ec32c6d865e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54aa294530491a526f3f59b0eeae22dcbc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a41c64aeed30467750a45eae3deed2e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a9261973f8c72b660d3ff944f401ae915</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab01cd8ddffaeed0e6b1d656712afa8b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab406228b63e895748f03793eb5e50adc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>ToolType</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a2960e1ceb50b936b7802d67ef63815f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a3af52c9d0ce5d73df3a0091732191ab6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a7249ee549ce5dbef3666ec32c6d865e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54aa294530491a526f3f59b0eeae22dcbc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a41c64aeed30467750a45eae3deed2e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a9261973f8c72b660d3ff944f401ae915</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab01cd8ddffaeed0e6b1d656712afa8b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab406228b63e895748f03793eb5e50adc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a2960e1ceb50b936b7802d67ef63815f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a3af52c9d0ce5d73df3a0091732191ab6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a7249ee549ce5dbef3666ec32c6d865e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54aa294530491a526f3f59b0eeae22dcbc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a41c64aeed30467750a45eae3deed2e33</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Rectangle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54a9261973f8c72b660d3ff944f401ae915</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Circle</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab01cd8ddffaeed0e6b1d656712afa8b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Image</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3c03fc7ee0a5bd1625d34f00fbe2ff54ab406228b63e895748f03793eb5e50adc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>refreshTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>adce38d92739ea535781922cbfd6dbfa6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>refreshTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>adce38d92739ea535781922cbfd6dbfa6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>resetTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aafe831449e345deb612939783e08bd0f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>resetTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aafe831449e345deb612939783e08bd0f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>currentToolChanged</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a688f53213caf3a16d5ae1fa6d945623e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>currentToolChanged</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a688f53213caf3a16d5ae1fa6d945623e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDocument *</type>
+      <name>currentDoc</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a06a1198cdbdaa9792a39d1e13b4ada99</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>NCReportDesignerDocument *</type>
+      <name>currentDoc</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2f68831760823c48fa458ba0b6997805</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>currentTool</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa279f5abfd270465513485ed760c77dd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>currentTool</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa279f5abfd270465513485ed760c77dd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QPoint</type>
+      <name>grid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac51c5ea03ab99444ce62dd0e06be8f96</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QPoint</type>
+      <name>grid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac51c5ea03ab99444ce62dd0e06be8f96</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWindow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac51a931cc3a94a7866f1e6f217506de5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NCReportDesignerWindow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac51a931cc3a94a7866f1e6f217506de5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a42b9d19a0b8ae7d41d0f8d849c713f08</anchor>
+      <arglist>(const QPoint &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a42b9d19a0b8ae7d41d0f8d849c713f08</anchor>
+      <arglist>(const QPoint &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setShowGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa6ecef4517b0302846de2b17ff68ca66</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setShowGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa6ecef4517b0302846de2b17ff68ca66</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSnapGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>abf062a5aa477d5f052848384f6ce6a10</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSnapGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>abf062a5aa477d5f052848384f6ce6a10</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>showGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a8a3f802c9c8ad6c4fefefaa443868f8c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>showGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a8a3f802c9c8ad6c4fefefaa443868f8c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>snapGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a831a2303d90c64ac8bf9fdac9159bb3c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>snapGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a831a2303d90c64ac8bf9fdac9159bb3c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWindow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac49d330ceb5fad2d54df84a081c7f29d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NCReportDesignerWindow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac49d330ceb5fad2d54df84a081c7f29d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a820ac7c3da9f41ba5a91c1970c29addc</anchor>
+      <arglist>(QCloseEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a820ac7c3da9f41ba5a91c1970c29addc</anchor>
+      <arglist>(QCloseEvent *)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initMenus</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6721a38557aeeb7e4feece6213dd8e17</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initMenus</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6721a38557aeeb7e4feece6213dd8e17</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initToolBars</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa34d1c48b8be4f005256157b6092324a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>initToolBars</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa34d1c48b8be4f005256157b6092324a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_copy</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3ad9c29a4a62b8fb6f2af32e02fa6d85</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_copy</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3ad9c29a4a62b8fb6f2af32e02fa6d85</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_cut</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a1a82c2d764f27916fa3e44b022f21223</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_cut</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a1a82c2d764f27916fa3e44b022f21223</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_delete</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a0776d54a639f2b8d897c432a873bfbd8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_delete</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a0776d54a639f2b8d897c432a873bfbd8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_paste</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a35a9a2d7d35203f6bbb3054ac94f4be3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_paste</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a35a9a2d7d35203f6bbb3054ac94f4be3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_redo</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a48f1c382a07b9c70add31965a733b74a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_redo</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a48f1c382a07b9c70add31965a733b74a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_undo</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6dd2533b23543ea7717e4db3dc90147d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_undo</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6dd2533b23543ea7717e4db3dc90147d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_zoomIn</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae67b9b031f495992ed3a4ac67c544712</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_zoomIn</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae67b9b031f495992ed3a4ac67c544712</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_zoomOut</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a767abb6ed5aa0192a750b39dbf052644</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>_zoomOut</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a767abb6ed5aa0192a750b39dbf052644</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>about</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a9eb9e974bfb2f6a6f92092df0bbf574b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>about</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a9eb9e974bfb2f6a6f92092df0bbf574b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>aboutQt</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>acaa5375590eb84e5ff2eb2a6641f79db</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>aboutQt</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>acaa5375590eb84e5ff2eb2a6641f79db</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Circ</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2082a9509977399d0efe5d3f590ac49c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Circ</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2082a9509977399d0efe5d3f590ac49c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2ed44fb540c62894ed8aae2b2288391c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2ed44fb540c62894ed8aae2b2288391c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Img</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>af69a9f5a7c5487dfab6fa7600168832d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Img</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>af69a9f5a7c5487dfab6fa7600168832d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a8dc679721b3d05ee32ed8210ceafbfa3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a8dc679721b3d05ee32ed8210ceafbfa3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_LineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab782836c149a028196f987fc5681d91f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_LineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab782836c149a028196f987fc5681d91f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_LineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a619b48cb3f71dd12ea37d4993d2e316e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_LineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a619b48cb3f71dd12ea37d4993d2e316e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a5fba21d2929ee5a1dfa2aa4f7b66e34d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a5fba21d2929ee5a1dfa2aa4f7b66e34d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Rect</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa6ec49bd8b5e55e0bf172ba0c75eb7be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>activate_Rect</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa6ec49bd8b5e55e0bf172ba0c75eb7be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignBack</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a11c3b3b0b609ca0d611cb7fbf6cf64f5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignBack</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a11c3b3b0b609ca0d611cb7fbf6cf64f5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignBackward</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a423989404c5af86761e34f612d8b8f24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignBackward</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a423989404c5af86761e34f612d8b8f24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignBottom</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa380d859d4279b0cbf9fa48a82396040</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignBottom</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa380d859d4279b0cbf9fa48a82396040</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignForward</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a093b9a83387777faa423116c5971aac8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignForward</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a093b9a83387777faa423116c5971aac8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignFront</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a22042ba6b1bab50c464b070651b74c98</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignFront</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a22042ba6b1bab50c464b070651b74c98</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignHCenter</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6fbfc0bfe4bdbc4d9637914ceaa5409c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignHCenter</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6fbfc0bfe4bdbc4d9637914ceaa5409c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignLeft</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>af52d26310696f05d9bb51b470cdd0e55</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignLeft</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>af52d26310696f05d9bb51b470cdd0e55</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignRight</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aaaff30268eebf853d9f9fae01306aadc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignRight</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aaaff30268eebf853d9f9fae01306aadc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignTop</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae2dbd6022762f74552291327f9308064</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignTop</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae2dbd6022762f74552291327f9308064</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignVCenter</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aed942528b07e00289e2e229719416105</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>alignVCenter</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aed942528b07e00289e2e229719416105</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>closeWindow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae2bfc04fd41b48edaaafe0b1f1a0e072</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>closeWindow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae2bfc04fd41b48edaaafe0b1f1a0e072</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>dataGrouping</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a151cf7e4af575514f0301621521a9372</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>dataGrouping</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a151cf7e4af575514f0301621521a9372</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa2496cf6c68342d00c5e25abb299bca2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa2496cf6c68342d00c5e25abb299bca2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>newDoc</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a8744328db74bda8f98fddf10c35f660b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>newDoc</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a8744328db74bda8f98fddf10c35f660b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>pageSetup</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6b2d17afe3e20a077ec9c8f8e92f704b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>pageSetup</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a6b2d17afe3e20a077ec9c8f8e92f704b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>parameters</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae01eab1e47c28e9775fc3d15dad04be6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>parameters</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae01eab1e47c28e9775fc3d15dad04be6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>print</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>afaef716d1620dc804bc97453e289db12</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>print</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>afaef716d1620dc804bc97453e289db12</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>queries</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aac37b726a6ef3f691c3dc85cc7dcb4b9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>queries</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aac37b726a6ef3f691c3dc85cc7dcb4b9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a78c622a760168be93bab531cac113962</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a78c622a760168be93bab531cac113962</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>saveAs</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae02a2cef0b5e4c12534f750d0661757a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>saveAs</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae02a2cef0b5e4c12534f750d0661757a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>selectAll</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae9f6e57809152478f55e9f5d0cea2f74</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>selectAll</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae9f6e57809152478f55e9f5d0cea2f74</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>setOptions</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a391d5fac8d9835c675e7121f2b11af29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>setOptions</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a391d5fac8d9835c675e7121f2b11af29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotShowGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a995124d188cf1bfdc93ee9bec2eede8f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotShowGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a995124d188cf1bfdc93ee9bec2eede8f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotSnapToGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ad4d40b694bbb0b27790594e983c04e35</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>slotSnapToGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ad4d40b694bbb0b27790594e983c04e35</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>tileHorizontal</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab46bfbc0d4f2d8cefdd9ad5790fdcb3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>tileHorizontal</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab46bfbc0d4f2d8cefdd9ad5790fdcb3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>variables</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a4294015644a6ecb8b84e70994fbf9c24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>variables</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a4294015644a6ecb8b84e70994fbf9c24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>viewMenuAboutToShow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae945f542fa60a3723333472aeb1e9c0c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>viewMenuAboutToShow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae945f542fa60a3723333472aeb1e9c0c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>windowsMenuAboutToShow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>afff1736fb129cd80661127ec3c31eb8d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>windowsMenuAboutToShow</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>afff1736fb129cd80661127ec3c31eb8d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>windowsMenuActivated</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab4036b0cd561a30362a8588fb21847f1</anchor>
+      <arglist>(int id)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>windowsMenuActivated</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab4036b0cd561a30362a8588fb21847f1</anchor>
+      <arglist>(int id)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>NCReportDesignerDocument *</type>
+      <name>_newDoc</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab1a11c0151e293e877043c67bacdc101</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>NCReportDesignerDocument *</type>
+      <name>_newDoc</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae2b277151b15a4073a1934a3eaeae572</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>insertObject</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa7d00dac882a4543fbfee27a6b288337</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>insertObject</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa7d00dac882a4543fbfee27a6b288337</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_back</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a84e95a212ebd0dfd2d63d95eb6d41f03</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_backward</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a171aa7850b8f293732bd9bc21a845325</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_bottom</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3844cf4ef2da9801b9b5529379850c1e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_forward</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a1ebbf82a490ef722706669f822ef0360</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_front</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac3327898ffea3dbb7ee8b5de7374e3b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_hcenter</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae12ec60c729f73d34d3d5ecf15011e30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_left</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae31a1e664c0e56491a716febfb09f161</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_right</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa58e000e99a57f09ed184744f9e7716f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_top</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a068a3826c55a83e84cf3b7c4115ee5b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_align_vcenter</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aac4f785f4d77dec0e1efe0d9418d40ee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_copy</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a5c422fdc79d683f96c9c8f002fa8ee24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_cut</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ad94a2de3e31d6a3d41b7ca7de5a7534c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_delete</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a110cf6fb7d75e814308d9ae3878abd24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_paste</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac9c14417376a9e0b33e2efa8b40f7300</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_redo</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a5057dd6ca3287105a1419c04a33509b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_undo</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a92885e578b3d5de8eacd927f32703bd9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_zoomIn</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2da9b7bafce67dd8107de971b83459f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_edit_zoomOut</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a2a977d144e6ae317c5c2997ddebb2541</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_file_close</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa0af62e7101ec0a114f321a8ab320ad9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_file_new</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a998ef21c5205aed2ab37f0bed250203b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_file_open</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>afbfa73d0f59acb768860211ba390dbf3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_file_save</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ad037ef51edb56861b8589e460f779b46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_file_saveAll</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ac0880961c16513df9d7b89d4ac35fe30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_circ</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a765c6d5d0ef93995671dea5e0cade2f6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_field</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a9e42c96d975242c80658ff03da687b8e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_img</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a9f0d41bfd587bdd2daa3be914f3d75b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_label</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a41ac9c4f06bbf9639071599c67c6ec7a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_lineH</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae95954fb5374b06c19fd4ec16f0a3b85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_lineV</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a7465134b25c9729e7153e94ec5eb5f7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_pointer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a628f32b78214f64d51381f5cb95e99f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QAction *</type>
+      <name>act_tool_rect</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a4efab67940eb584b24f1c17dde246c9e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>copyStr</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>afe173b09060f9a0aa4fd8a08f05306b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ToolType</type>
+      <name>currtool</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ad30eef41392b5abb0424b243653a97c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDocument *</type>
+      <name>document</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aaaa943170b4c13edfb913f37f0e8443f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QToolBar *</type>
+      <name>editTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a627f101d1ec887e2e935e2ad48b9d1c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QToolBar *</type>
+      <name>fileTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a1684adce048e7d1ea4bccaeb0b39cbca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>grd</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ab0580804feee69a26bd3c78b6ee4f362</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ToolType</type>
+      <name>lasttool</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>abad1316fd3f82c80d70f309e104603bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnAlign</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a88645b7ea8f62ea45db82119a33a938d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnEdit</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a582de2ec0ee795b48bc8ae5266ddf0a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnFile</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ad0e46ed4945bb9152938b15b9c78a792</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnHelp</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a32f15f75c0b3f17436a4f46907441cf0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>mnIdxShowGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>ae7217f354fd82b88311211e645148bed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>mnIdxSnapGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a0edd3cc75c257493d9303d9f34bbeef2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a3b99a17f01964c54274a1e7fa4d6c759</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnView</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a9eeae56a621d2325b29586f593c3513c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPopupMenu *</type>
+      <name>mnWindows</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a0ceb5204b08ddafc83b5765ca1bff3c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QToolBar *</type>
+      <name>objTools</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a539e745cd38cc86881654b3e9fda8696</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPrinter *</type>
+      <name>printer</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a1f3d5ea557ce2fc8889e3488e88d3de1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>sGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a44095b9a9d8eccd394400ae0f5722aad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>snGrid</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>aa5df26c908924d130a71a4d2d27dbbeb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWorkspace *</type>
+      <name>ws</name>
+      <anchorfile>classNCReportDesignerWindow.html</anchorfile>
+      <anchor>a89d55d7e1dea82297a1dbbc23873d0d8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>NCReportLookup</name>
     <filename>classNCReportLookup.html</filename>
     <member kind="function" virtualness="pure">
@@ -15267,6 +35073,110 @@
       <anchorfile>classNCSqlQuery.html</anchorfile>
       <anchor>a38ceca127d4c88a24a122ccd79ca6bae</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>obj_Label</name>
+    <filename>classobj__Label.html</filename>
+    <base>NCReportDesignerObject</base>
+    <base>NCReportDesignerObject</base>
+    <member kind="function">
+      <type></type>
+      <name>obj_Label</name>
+      <anchorfile>classobj__Label.html</anchorfile>
+      <anchor>a359ed706c11b215253c34c3d35c649a2</anchor>
+      <arglist>(QWidget *parent, const char *name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>obj_Label</name>
+      <anchorfile>classobj__Label.html</anchorfile>
+      <anchor>a359ed706c11b215253c34c3d35c649a2</anchor>
+      <arglist>(QWidget *parent, const char *name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~obj_Label</name>
+      <anchorfile>classobj__Label.html</anchorfile>
+      <anchor>a7187ba1a4c6936a7be40c6561cad1466</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~obj_Label</name>
+      <anchorfile>classobj__Label.html</anchorfile>
+      <anchor>a7187ba1a4c6936a7be40c6561cad1466</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>acb924171e4b57b53f20c6af4a41547db</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>acb924171e4b57b53f20c6af4a41547db</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>afd6f829e1ee23b9d776eb0684daa37fe</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>afd6f829e1ee23b9d776eb0684daa37fe</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a5ab36d38d7b8711f0ffb7e1e5589a738</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a5ab36d38d7b8711f0ffb7e1e5589a738</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a666a9d6e4c21eb4c0ab6900003be9112</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a666a9d6e4c21eb4c0ab6900003be9112</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a350335946db93eca3822ba8ad5a214a1</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>paintEvent</name>
+      <anchorfile>classNCReportDesignerObject.html</anchorfile>
+      <anchor>a350335946db93eca3822ba8ad5a214a1</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -19417,6 +39327,365 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ReportGroup</name>
+    <filename>classReportGroup.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>operator=</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>adef0cf670b579d3f5ff772a9f5fcd1b2</anchor>
+      <arglist>(const ReportGroup &amp;g)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator=</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>adef0cf670b579d3f5ff772a9f5fcd1b2</anchor>
+      <arglist>(const ReportGroup &amp;g)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportGroup</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>aecd14bf0c94bbd1405b893a709f21c2e</anchor>
+      <arglist>(const QString &amp;_name, const QString &amp;gexp, const QString &amp;resetvars)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportGroup</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>a731acc47570a740a48904d66064f33b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportGroup</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>aecd14bf0c94bbd1405b893a709f21c2e</anchor>
+      <arglist>(const QString &amp;_name, const QString &amp;gexp, const QString &amp;resetvars)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportGroup</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>a731acc47570a740a48904d66064f33b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>NCReportDesignerSection *</type>
+      <name>footer</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>aaa8e1c5b600355271b3e830e89c436b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>groupExpression</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>a351b163a37842e50716367af1365fcff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NCReportDesignerSection *</type>
+      <name>header</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>a38f53f88b5be383d5407d6eab0cbec51</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>a132703c11a903228ead122bdb4ed120d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>resetVariables</name>
+      <anchorfile>classReportGroup.html</anchorfile>
+      <anchor>a72613fafc4a60e3010e368ac4aac9064</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ReportPageOptions</name>
+    <filename>classReportPageOptions.html</filename>
+    <member kind="enumeration">
+      <name>DataSource</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Database</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044fea9d4a15ceac78f7acd5fa68c6997283e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Textfile</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044feaad3152a4f12969584c96c006cfdcba95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Database</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044fea9d4a15ceac78f7acd5fa68c6997283e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Textfile</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044feaad3152a4f12969584c96c006cfdcba95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>DataSource</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044fe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Database</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044fea9d4a15ceac78f7acd5fa68c6997283e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Textfile</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044feaad3152a4f12969584c96c006cfdcba95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Database</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044fea9d4a15ceac78f7acd5fa68c6997283e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Textfile</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae5841cf05044b1c0ec6695dadca044feaad3152a4f12969584c96c006cfdcba95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Orientation</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Portrait</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023aaf1cea7d24e9fc423bc2bb54273c2cce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Landscape</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023a04b299574c790554c7f61dbb704ea6e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Portrait</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023aaf1cea7d24e9fc423bc2bb54273c2cce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Landscape</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023a04b299574c790554c7f61dbb704ea6e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Orientation</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Portrait</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023aaf1cea7d24e9fc423bc2bb54273c2cce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Landscape</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023a04b299574c790554c7f61dbb704ea6e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Portrait</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023aaf1cea7d24e9fc423bc2bb54273c2cce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Landscape</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aa407372365208b05126c4cccfe17d023a04b299574c790554c7f61dbb704ea6e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportPageOptions</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aee586133b8e1cb2ff75eba670631c199</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportPageOptions</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aee586133b8e1cb2ff75eba670631c199</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>backColor</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a98017aa471fd97d3da6ef800ce18de56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>bottomMargin</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>af454936900dce086bcae6eecd1052f73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>columnCount</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a2a399d71c22c8fbd16cdd94cda76200e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>DataSource</type>
+      <name>dataSource</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a2ba3946b9c78b82532c627f59fd06cfc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>defaultFontName</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a6c0ae1ca881678d5b1e6393d98e7ff88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>defaultFontSize</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a27fd9a889a56d105ccbdc07196c1dc05</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>encoding</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a014445fd07808a4f305cafed8ce7d451</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>leftMargin</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ae722cce3ea32e7d9e37695d9d1205a91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>masterAlias</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aca352c722c893006f4eb6f371b9d2499</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Orientation</type>
+      <name>orient</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>aeab7635c38958ba5c6c496faa7693fdd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>pageHeight</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a10608ea971c4076a889d269dc5cfe53e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>pageSize</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a51120271e97fb2673bd3a8a5bcc17aff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>pageWidth</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a92049ca318f2024fc4f3c8fb7339bcf9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>printerMode</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a82116c25ad56bc5370d7fdb3c9d6dd45</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>reportName</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ac79a6e6eadfc9c562f5f5c6c0748d1c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>resourceTextFile</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>ade5dab03eae141be16303ad738219cc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>rightMargin</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>afcdfd5f94648138ff69e8f32a3c39525</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>rowFilterRegExp</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a149ff9b5feb6291bf57d03104a2a014b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>textDataDelimiter</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a874a15ef7d29dcbd1692f01c6bb10b4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>topMargin</name>
+      <anchorfile>classReportPageOptions.html</anchorfile>
+      <anchor>a16c16e9bc6dbb23b028da0c3ea22f8e4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ReportParser</name>
     <filename>classReportParser.html</filename>
     <member kind="function">
@@ -19764,6 +40033,298 @@
       <name>errorProt</name>
       <anchorfile>classReportParserErrorHandler.html</anchorfile>
       <anchor>a91952418451236775eb3fce5c31ea7a8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ReportQuery</name>
+    <filename>classReportQuery.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ReportQuery</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>a527ca7ef6776e491709e139b5d5b0f74</anchor>
+      <arglist>(const QString &amp;ali, const QString &amp;qry)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportQuery</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>aae2e6db3c5f8d9db68b5dca6d261ad37</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportQuery</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>a527ca7ef6776e491709e139b5d5b0f74</anchor>
+      <arglist>(const QString &amp;ali, const QString &amp;qry)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportQuery</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>aae2e6db3c5f8d9db68b5dca6d261ad37</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setQuery</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>aa1a8de1b508f310ac3ec1ed409e45cc9</anchor>
+      <arglist>(const QString &amp;ali, const QString &amp;qry, bool m=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setQuery</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>aa1a8de1b508f310ac3ec1ed409e45cc9</anchor>
+      <arglist>(const QString &amp;ali, const QString &amp;qry, bool m=false)</arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>alias</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>a5dfb5b234432837ca55c76534beeee0a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>master</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>ae7cd6a8161cc8e8a218ff3dfd168dd9f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>queryString</name>
+      <anchorfile>classReportQuery.html</anchorfile>
+      <anchor>af8d06dd1f73ef8fc3f1ac0c602631f8c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ReportVariable</name>
+    <filename>classReportVariable.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ReportVariable</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>aa7e3efb11b7f49c4a090101ba5c02b7f</anchor>
+      <arglist>(const QString &amp;_name, const QString &amp;_type, const QString &amp;_ftype)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportVariable</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>a29211ffadf8db1bba928c37916c583ea</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportVariable</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>aa7e3efb11b7f49c4a090101ba5c02b7f</anchor>
+      <arglist>(const QString &amp;_name, const QString &amp;_type, const QString &amp;_ftype)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportVariable</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>a29211ffadf8db1bba928c37916c583ea</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>field</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>af7fd91d3f787e25751c058e0163dfa49</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>funcType</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>a3d9e3b5d8e698324c26d8f11e49fc811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>name</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>aa119939942382c5a4540eb341e2599cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>type</name>
+      <anchorfile>classReportVariable.html</anchorfile>
+      <anchor>a2c47302b5583be58164213d538e4356e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ReportVariableListView</name>
+    <filename>classReportVariableListView.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>addVariable</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>a5340cb45c64cb328ff8c65a6177b16d3</anchor>
+      <arglist>(const ReportVariable &amp;, bool setCurrent)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addVariable</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>a5340cb45c64cb328ff8c65a6177b16d3</anchor>
+      <arglist>(const ReportVariable &amp;, bool setCurrent)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>currentVarName</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ab52422ff5fde1642bd23aaf5d5579b62</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>currentVarName</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ab52422ff5fde1642bd23aaf5d5579b62</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>a21952e60d05be6eba711b95281313177</anchor>
+      <arglist>(QMap&lt; QString, ReportVariable &gt; &amp;source)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>a21952e60d05be6eba711b95281313177</anchor>
+      <arglist>(QMap&lt; QString, ReportVariable &gt; &amp;source)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportVariableListView</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ad812d16d5e4cfe70c3cdbd796483d21d</anchor>
+      <arglist>(QWidget *parent, const char *name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ReportVariableListView</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ad812d16d5e4cfe70c3cdbd796483d21d</anchor>
+      <arglist>(QWidget *parent, const char *name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ac473ffb7e1c7623481bcda3e0ecc69f7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ac473ffb7e1c7623481bcda3e0ecc69f7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>selectedVarList</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>aba0dccfdf8aaa22adf6769aad6872196</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>selectedVarList</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>aba0dccfdf8aaa22adf6769aad6872196</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCheckable</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>af1e422fd11f61e35881e1733090b1857</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCheckable</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>af1e422fd11f61e35881e1733090b1857</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateChecked</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ac396bf72558d2016f2dd58b8f6ea47a7</anchor>
+      <arglist>(const QString &amp;varlist)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateChecked</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ac396bf72558d2016f2dd58b8f6ea47a7</anchor>
+      <arglist>(const QString &amp;varlist)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateCurrentItem</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>af418c36713a7c11ca8cf0d5da2f66c35</anchor>
+      <arglist>(const ReportVariable &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateCurrentItem</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>af418c36713a7c11ca8cf0d5da2f66c35</anchor>
+      <arglist>(const ReportVariable &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~ReportVariableListView</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ab87d64d332c1c597b6060da70522f212</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~ReportVariableListView</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ab87d64d332c1c597b6060da70522f212</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>updateItem</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ad6f3c08fa4690d1c2d2007bc0b16b5bd</anchor>
+      <arglist>(QListViewItem *, const ReportVariable &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>updateItem</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>ad6f3c08fa4690d1c2d2007bc0b16b5bd</anchor>
+      <arglist>(QListViewItem *, const ReportVariable &amp;)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>checkable</name>
+      <anchorfile>classReportVariableListView.html</anchorfile>
+      <anchor>a6e68ea4b3c005f38efd95e02157611fa</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -20380,6 +40941,255 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>Selection</name>
+    <filename>classSelection.html</filename>
+    <member kind="enumeration">
+      <name>SelectionType</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Full</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ab67d8652e43937d0c66119ea9b269273</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Horizontal</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ac11c3b02daef045b7a0c6a55ea56850a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Vertical</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ad6288c59da1c8ea77af27aedce78f114</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Full</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ab67d8652e43937d0c66119ea9b269273</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Horizontal</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ac11c3b02daef045b7a0c6a55ea56850a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Vertical</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ad6288c59da1c8ea77af27aedce78f114</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>SelectionType</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Full</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ab67d8652e43937d0c66119ea9b269273</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Horizontal</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ac11c3b02daef045b7a0c6a55ea56850a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Vertical</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ad6288c59da1c8ea77af27aedce78f114</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Full</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ab67d8652e43937d0c66119ea9b269273</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Horizontal</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ac11c3b02daef045b7a0c6a55ea56850a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Vertical</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>adce0acaa1e3436adcc65f188ca5bb030ad6288c59da1c8ea77af27aedce78f114</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>hide</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a854abbad9a46f10f3d14a668eda087a9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>hide</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a854abbad9a46f10f3d14a668eda087a9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isUsed</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a1cb581e93c1c67394a33b009b73ecf06</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isUsed</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a1cb581e93c1c67394a33b009b73ecf06</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Selection</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a63c51cdea304fa21e0adf27eea554068</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, QPtrDict&lt; Selection &gt; *selDict)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Selection</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a63c51cdea304fa21e0adf27eea554068</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, QPtrDict&lt; Selection &gt; *selDict)</arglist>
+    </member>
+    <member kind="function">
+      <type>SelectionType</type>
+      <name>selectType</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a276c5ccdf9b5fe081327da47776d87e8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>SelectionType</type>
+      <name>selectType</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a7831fc59dce1e7e030a25b848f1ecc6c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidget</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a9149efe9caf71f9bfbeb0630c00c437b</anchor>
+      <arglist>(QWidget *w, bool updateDict=TRUE)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidget</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a9149efe9caf71f9bfbeb0630c00c437b</anchor>
+      <arglist>(QWidget *w, bool updateDict=TRUE)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>show</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a1243e1d86c00062de1307f8d37eddc80</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>show</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a1243e1d86c00062de1307f8d37eddc80</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>acef1d0301b1d88fb45d2a732c4ffba2f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>acef1d0301b1d88fb45d2a732c4ffba2f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateGeometry</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a62608f3b94b6af24cecad8945d99be98</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateGeometry</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a62608f3b94b6af24cecad8945d99be98</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>widget</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>acc9fa18c184170c4e7ecce742eaf21f0</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QWidget *</type>
+      <name>widget</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a5b026ca55a567037cd91c32252113a65</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>da</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a80ee37713daf318f31f293e566b55a4b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QIntDict&lt; SizeHandler &gt;</type>
+      <name>handles</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a9f3b0bec7ebc099faa97da0fe4eba8ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QPtrDict&lt; Selection &gt; *</type>
+      <name>selectionDict</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a09afe0b5c1f6edaf3239cc45a3429bf5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SelectionType</type>
+      <name>selType</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a1bf21fb83437d9c67152ddffd9fc8d4c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QWidget *</type>
+      <name>wid</name>
+      <anchorfile>classSelection.html</anchorfile>
+      <anchor>a06ed16c725bc6145e0b15ced4fa519fa</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>Servicios</name>
     <filename>classServicios.html</filename>
     <base>EPlugin</base>
@@ -20523,6 +41333,438 @@
       <name>ActServicios</name>
       <anchorfile>classServicios.html</anchorfile>
       <anchor>a6af39a6e163f932229ef83bed7708034</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SizeHandler</name>
+    <filename>classSizeHandler.html</filename>
+    <member kind="enumeration">
+      <name>Direction</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba22475b31ad38e2a8e4eace8ec3580717</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba47a1a3d0e456e2271d6ebed7d8a5bba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae27a4e202ddba6f3eef8c33453a57057</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Right</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae170b7b7c3b58495d6d5ecad20e9873d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0baf0a0bb2de25ed7eb029b8f8e0f786726</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Bottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba2b2c2064e82346683f3796cb5aa205f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba529b8b00784de2af27488896b9125143</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba3c41e9f2501373f2ad54e6f47f551ef7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba22475b31ad38e2a8e4eace8ec3580717</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba47a1a3d0e456e2271d6ebed7d8a5bba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae27a4e202ddba6f3eef8c33453a57057</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Right</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae170b7b7c3b58495d6d5ecad20e9873d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0baf0a0bb2de25ed7eb029b8f8e0f786726</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Bottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba2b2c2064e82346683f3796cb5aa205f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba529b8b00784de2af27488896b9125143</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba3c41e9f2501373f2ad54e6f47f551ef7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Direction</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba22475b31ad38e2a8e4eace8ec3580717</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba47a1a3d0e456e2271d6ebed7d8a5bba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae27a4e202ddba6f3eef8c33453a57057</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Right</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae170b7b7c3b58495d6d5ecad20e9873d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0baf0a0bb2de25ed7eb029b8f8e0f786726</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Bottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba2b2c2064e82346683f3796cb5aa205f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba529b8b00784de2af27488896b9125143</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba3c41e9f2501373f2ad54e6f47f551ef7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba22475b31ad38e2a8e4eace8ec3580717</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Top</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba47a1a3d0e456e2271d6ebed7d8a5bba9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightTop</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae27a4e202ddba6f3eef8c33453a57057</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Right</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0bae170b7b7c3b58495d6d5ecad20e9873d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0baf0a0bb2de25ed7eb029b8f8e0f786726</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Bottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba2b2c2064e82346683f3796cb5aa205f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftBottom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba529b8b00784de2af27488896b9125143</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Left</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af0f6bc6b45d0d3242d6a6a0648520d0ba3c41e9f2501373f2ad54e6f47f551ef7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setActive</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af7c3253b3f6bd342e1615e2c82d94f0a</anchor>
+      <arglist>(bool a)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setActive</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>af7c3253b3f6bd342e1615e2c82d94f0a</anchor>
+      <arglist>(bool a)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEnabled</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>ae3a18801626be6cda61090ec2551fd8b</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setEnabled</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>ae3a18801626be6cda61090ec2551fd8b</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidget</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a7ad53543bd2f9bc02fcdc64169a18b49</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWidget</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a7ad53543bd2f9bc02fcdc64169a18b49</anchor>
+      <arglist>(QWidget *w)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SizeHandler</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a40b2ae0834cb58d97b668fbfb5df85e9</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, Direction d, Selection *s)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SizeHandler</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a40b2ae0834cb58d97b668fbfb5df85e9</anchor>
+      <arglist>(NCReportDesignerDesignArea *parent, Direction d, Selection *s)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateCursor</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a4f8733fe9eee420b19edb425711ce472</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateCursor</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a4f8733fe9eee420b19edb425711ce472</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~SizeHandler</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a4d905f26ecee466f0a0157863b7d801d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~SizeHandler</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a4d905f26ecee466f0a0157863b7d801d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a28fbe911f3835064fb23f640db49727e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a28fbe911f3835064fb23f640db49727e</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a4a181658c79cea4383aff6b30837f0b9</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a4a181658c79cea4383aff6b30837f0b9</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a96c8874073f9909e186167d66e9a481a</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a96c8874073f9909e186167d66e9a481a</anchor>
+      <arglist>(QMouseEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>paintEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a1a58c5b127f5f52cedb58a4d293301c0</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>paintEvent</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a1a58c5b127f5f52cedb58a4d293301c0</anchor>
+      <arglist>(QPaintEvent *e)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>tryResize</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a9fa953cbd546015e798aafd650bc98bf</anchor>
+      <arglist>(QWidget *w, int width, int height)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>tryResize</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a9fa953cbd546015e798aafd650bc98bf</anchor>
+      <arglist>(QWidget *w, int width, int height)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>trySetGeometry</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>abf6ff11fc13b6604ff974e692c1d8a6d</anchor>
+      <arglist>(QWidget *w, int x, int y, int width, int height)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>trySetGeometry</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>abf6ff11fc13b6604ff974e692c1d8a6d</anchor>
+      <arglist>(QWidget *w, int x, int y, int width, int height)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>active</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a634213e599e471889294f7e7bfc2080f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>NCReportDesignerDesignArea *</type>
+      <name>da</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>aba41010176c4441251a598cfb88213c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Direction</type>
+      <name>dir</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a36a96c3c01598ae469a9041e4ecd76c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>geom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>ac980012f111c334d087a805b6707ec58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>oldPressPos</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a447512669026cae2fa0e0b81c2f23d67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QRect</type>
+      <name>origGeom</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a0be1b82426a14d1188cd2a2ae79fde37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Selection *</type>
+      <name>sel</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a9eee503b7cd03cd013e5e4cc04f038c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QWidget *</type>
+      <name>widget</name>
+      <anchorfile>classSizeHandler.html</anchorfile>
+      <anchor>a6d871036ea961737f69e9b43b6d4e8dd</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -24690,6 +45932,13 @@
       <anchor>a8b1f6466841db586a1c8e1419c2bbe60</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>generarFacturacion</name>
+      <anchorfile>classVServicios.html</anchorfile>
+      <anchor>a9e5d9b8099f628fdc27918dd04605be5</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="slot" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>hacerMenuContextual</name>
@@ -24716,6 +45965,13 @@
       <name>verClientesAdheridos</name>
       <anchorfile>classVServicios.html</anchorfile>
       <anchor>abcfb9570e7220cf2bdd6de5635aefe8d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verRecargos</name>
+      <anchorfile>classVServicios.html</anchorfile>
+      <anchor>a72a75510d17ca4507963152053f7a4f6</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -24966,6 +46222,406 @@
       <name>rmodelo</name>
       <anchorfile>classEVLista.html</anchorfile>
       <anchor>a9c4272f676cfaae810a39dd831103227</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>WProperty</name>
+    <filename>classWProperty.html</filename>
+    <member kind="enumeration">
+      <name>fillStyles</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>transparent</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfcab3ffce99eacc2bc4323505527c4d3ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>filled</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfca06522d938346488c96c11c9b531b4267</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>transparent</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfcab3ffce99eacc2bc4323505527c4d3ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>filled</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfca06522d938346488c96c11c9b531b4267</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <name>fillStyles</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>transparent</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfcab3ffce99eacc2bc4323505527c4d3ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>filled</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfca06522d938346488c96c11c9b531b4267</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>transparent</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfcab3ffce99eacc2bc4323505527c4d3ef3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>filled</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a12ed6494a425b2f33919a180d08e4dfca06522d938346488c96c11c9b531b4267</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator=</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a1bb12d7fe677f037cad5e65bb7eaaf2a</anchor>
+      <arglist>(const WProperty &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>operator=</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a1bb12d7fe677f037cad5e65bb7eaaf2a</anchor>
+      <arglist>(const WProperty &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WProperty</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a985a898171f807eaf0aa4d5a9f07f5a4</anchor>
+      <arglist>(const WProperty &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WProperty</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a96c808aa8a8bd3dd899a132f2adfae04</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WProperty</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a985a898171f807eaf0aa4d5a9f07f5a4</anchor>
+      <arglist>(const WProperty &amp;p)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>WProperty</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a96c808aa8a8bd3dd899a132f2adfae04</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WProperty</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ad37b0b5c1256717f51e519df41b0991e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~WProperty</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ad37b0b5c1256717f51e519df41b0991e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>_height</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a6dcb93bcaf78c60f14f32db3808bba0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>_posX</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a3ec0bcfb76f4ab1cfcf401a3a526f913</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>_posY</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a7c993b8b1ff75a34311748d8c32b99c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>_width</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ae0f362d4796e47a6e7c5c7c6d8a21cdc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::AlignmentFlags</type>
+      <name>alignmentH</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a43792c758b8f0b9e586233768d5834b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::AlignmentFlags</type>
+      <name>alignmentV</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>aa5757d89f1c0807e7c1e8ff9336d45ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QColor</type>
+      <name>backcolor</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a662d56634f551109118eea9e14cd53c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>callFunction</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>aaf7937ffb0dbd31bbe31b24ddeaca734</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>dateFormat</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ae4e3d1bcb3d7d3b8c34adf75ee249a40</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>displayValue</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ad152c4fdfb009c74567fbc6b34ee902c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>dynamicHeight</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>adecece834a418af7007281da7a6c473c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>embedString</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a273e723d8de67c5af347bdd2afe007de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QColor</type>
+      <name>fillColor</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>af9aaf3b46d0d0f01e3e5101a76dd2987</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>fillStyles</type>
+      <name>fillStyle</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a72fe0149270ce7eb1e672a30ffaaca60</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>fontItalic</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a382247107e36a4a2a422bc5dfbd2aede</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>fontName</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a9a3c041ec9696290c7371389a3c0a415</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>fontSize</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a61d29baf2fbfd257b2a1f1124cd14df2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>fontStrikeOut</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a320a6687880fe4d411b8c179b3785a6b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>fontUnderline</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a217a3592a4b46a65194cc3099a304610</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>fontWeight</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>aa2f5f8236e92a280d76f577052689dbb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QColor</type>
+      <name>forecolor</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a489ef0fb61c2fb5064d0432a685ab4c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>ftype</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a7c40ebca9b4d5dac9cf5448b790a9c27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>isRichText</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>aef2f049e9bc6429c65b37a94fd9b7488</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QColor</type>
+      <name>lineColor</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a4d147a76cc3907d29336a7c57204987a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Qt::PenStyle</type>
+      <name>lineStyle</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a587067d6077bb0a54219a431830439bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>lineWidth</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a39502721302de15239689465f2db1560</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>loadFromFile</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a34554a3a4964e6004f44865e1aa97cf1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>lookupClass</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a7988e3f5bceaac33363dd75ed03a8453</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>numBlankIfZero</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a6019ea82e15151b8fa11048c9499bb4f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>numDigitNo</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a6ae03d9dd0690b0048d672b9be5f66f0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>numDigitPoint</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ab1de98a22ebf53d1871437f7bbbe1f06</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>numFormat</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>ad761ca2c66836a2c5ad7538c0b4a91b2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>numSeparation</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a0238c27d7cdb190a0f791686c3defcf0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>numSeparator</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>afb0cb5e2b163afc2af700ab37826f974</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>printWhen</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a1a8ffd399ed878889d958815aaacfa92</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>resource</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>adfd56129b8acab8b56132f2ef686147f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>rotation</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a97dc24568a7dec2f07ca42915a53d421</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>text</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>aaa79a6a44682725598da57b203ec8f95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>type</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a9523c5a51739c732ee1027ca0f193879</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>wordbreak</name>
+      <anchorfile>classWProperty.html</anchorfile>
+      <anchor>a0d56dc8c5d677eb49cbb0aa53ebdacef</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -25238,6 +46894,53 @@
     <file>vmascota.h</file>
   </compound>
   <compound kind="dir">
+    <name>reporte/diseñador/</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/</path>
+    <filename>dir_7dc353df13eceb348706a0f903382629.html</filename>
+    <dir>reporte/diseñador/src/</dir>
+    <file>diagroup.cpp</file>
+    <file>diagroup.h</file>
+    <file>diapage.cpp</file>
+    <file>diapage.h</file>
+    <file>diaquery.cpp</file>
+    <file>diaquery.h</file>
+    <file>diavariable.cpp</file>
+    <file>diavariable.h</file>
+    <file>globals.h</file>
+    <file>licence.h</file>
+    <file>main.cpp</file>
+    <file>measurement.cpp</file>
+    <file>measurement.h</file>
+    <file>ncaboutdialog.cpp</file>
+    <file>ncaboutdialog.h</file>
+    <file>nccolorcombo.cpp</file>
+    <file>nccolorcombo.h</file>
+    <file>ncreportdesignercommand.cpp</file>
+    <file>ncreportdesignercommand.h</file>
+    <file>ncreportdesignerdesignarea.cpp</file>
+    <file>ncreportdesignerdesignarea.h</file>
+    <file>ncreportdesignerdocument.cpp</file>
+    <file>ncreportdesignerdocument.h</file>
+    <file>ncreportdesignerobjects.cpp</file>
+    <file>ncreportdesignerobjects.h</file>
+    <file>ncreportdesignerresourcehandler.cpp</file>
+    <file>ncreportdesignerresourcehandler.h</file>
+    <file>ncreportdesignersizehandler.cpp</file>
+    <file>ncreportdesignersizehandler.h</file>
+    <file>ncreportdesignerwidget.cpp</file>
+    <file>ncreportdesignerwidget.h</file>
+    <file>ncreportdesignerwidgetfactory.cpp</file>
+    <file>ncreportdesignerwidgetfactory.h</file>
+    <file>ncreportdesignerwidgetsetdialog.cpp</file>
+    <file>ncreportdesignerwidgetsetdialog.h</file>
+    <file>ncreportdesignerwidgetsetdialogui.cpp</file>
+    <file>ncreportdesignerwidgetsetdialogui.h</file>
+    <file>ncreportdesignerwindow.cpp</file>
+    <file>ncreportdesignerwindow.h</file>
+    <file>reportvariablelistview.cpp</file>
+    <file>reportvariablelistview.h</file>
+  </compound>
+  <compound kind="dir">
     <name>plugins/email/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/email/</path>
     <filename>dir_e699b28cc711cbd2626508bba7d334d9.html</filename>
@@ -25469,6 +47172,7 @@
     <name>reporte/</name>
     <path>/home/Esteban/Programas/gestotux/reporte/</path>
     <filename>dir_01fc0c96b079637c8875abeb363e5d2a.html</filename>
+    <dir>reporte/diseñador/</dir>
     <file>ereporte.cpp</file>
     <file>ereporte.h</file>
     <file>globals.h</file>
@@ -25493,6 +47197,8 @@
     <file>edrecargos.h</file>
     <file>formasociarserviciocliente.cpp</file>
     <file>formasociarserviciocliente.h</file>
+    <file>FormClientesAdheridos.cpp</file>
+    <file>FormClientesAdheridos.h</file>
     <file>formrecargos.cpp</file>
     <file>formrecargos.h</file>
     <file>formservicio.cpp</file>
@@ -25562,6 +47268,52 @@
     <file>vcliente.nuevo.cpp</file>
     <file>vcliente.nuevo.h</file>
     <file>version.h</file>
+  </compound>
+  <compound kind="dir">
+    <name>reporte/diseñador/src/</name>
+    <path>/home/Esteban/Programas/gestotux/reporte/diseñador/src/</path>
+    <filename>dir_20dab039ea7818b338c7bb384c1d2766.html</filename>
+    <file>diagroup.cpp</file>
+    <file>diagroup.h</file>
+    <file>diapage.cpp</file>
+    <file>diapage.h</file>
+    <file>diaquery.cpp</file>
+    <file>diaquery.h</file>
+    <file>diavariable.cpp</file>
+    <file>diavariable.h</file>
+    <file>globals.h</file>
+    <file>licence.h</file>
+    <file>main.cpp</file>
+    <file>measurement.cpp</file>
+    <file>measurement.h</file>
+    <file>ncaboutdialog.cpp</file>
+    <file>ncaboutdialog.h</file>
+    <file>nccolorcombo.cpp</file>
+    <file>nccolorcombo.h</file>
+    <file>ncreportdesignercommand.cpp</file>
+    <file>ncreportdesignercommand.h</file>
+    <file>ncreportdesignerdesignarea.cpp</file>
+    <file>ncreportdesignerdesignarea.h</file>
+    <file>ncreportdesignerdocument.cpp</file>
+    <file>ncreportdesignerdocument.h</file>
+    <file>ncreportdesignerobjects.cpp</file>
+    <file>ncreportdesignerobjects.h</file>
+    <file>ncreportdesignerresourcehandler.cpp</file>
+    <file>ncreportdesignerresourcehandler.h</file>
+    <file>ncreportdesignersizehandler.cpp</file>
+    <file>ncreportdesignersizehandler.h</file>
+    <file>ncreportdesignerwidget.cpp</file>
+    <file>ncreportdesignerwidget.h</file>
+    <file>ncreportdesignerwidgetfactory.cpp</file>
+    <file>ncreportdesignerwidgetfactory.h</file>
+    <file>ncreportdesignerwidgetsetdialog.cpp</file>
+    <file>ncreportdesignerwidgetsetdialog.h</file>
+    <file>ncreportdesignerwidgetsetdialogui.cpp</file>
+    <file>ncreportdesignerwidgetsetdialogui.h</file>
+    <file>ncreportdesignerwindow.cpp</file>
+    <file>ncreportdesignerwindow.h</file>
+    <file>reportvariablelistview.cpp</file>
+    <file>reportvariablelistview.h</file>
   </compound>
   <compound kind="dir">
     <name>utiles/</name>

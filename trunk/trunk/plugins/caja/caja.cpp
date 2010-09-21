@@ -21,6 +21,7 @@
 #include "caja.h"
 #include <QMenuBar>
 #include <QSqlDatabase>
+#include "formprefcaja.h"
 
 Q_EXPORT_PLUGIN2( Caja, Caja );
 
@@ -56,11 +57,10 @@ QString Caja::nombre() const
  */
 QWidgetList Caja::formsPreferencias()
 {
- /*
  QWidgetList lista;
- lista.append( new FormPrefProductos() );
- return lista;*/
-    return QWidgetList();
+ lista.append( new FormPrefCaja() );
+ return lista;
+ /*return QWidgetList();*/
 }
 
 

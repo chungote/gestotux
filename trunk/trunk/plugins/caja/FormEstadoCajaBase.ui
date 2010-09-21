@@ -56,14 +56,32 @@
      </item>
      <item>
       <widget class="QDoubleSpinBox" name="dSBSaldo">
-       <property name="readOnly">
+       <property name="wrapping">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::NoButtons</enum>
+       </property>
+       <property name="keyboardTracking">
+        <bool>false</bool>
        </property>
        <property name="prefix">
         <string>$  </string>
        </property>
        <property name="decimals">
         <number>3</number>
+       </property>
+       <property name="maximum">
+        <double>999999999.998999953269958</double>
        </property>
       </widget>
      </item>
