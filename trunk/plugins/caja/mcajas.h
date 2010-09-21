@@ -23,6 +23,7 @@
 
 #include <QSqlTableModel>
 #include <QDate>
+#include <QDateTime>
 
 class MCajas : public QSqlTableModel
 {
@@ -30,7 +31,9 @@ class MCajas : public QSqlTableModel
     public:
         MCajas(QObject *parent = 0 );
         bool agregarCaja( QString nombre, QDate fecha_alta = QDate::currentDate(), double saldo_inicial = 0 );
+        bool hacerCierre( const int id_caja, QDateTime fecha, double saldo );
         static bool actualizarSaldo( const int id_caja, const double cantidad );
+        static double saldo( const int id_caja );
 };
 
 #endif // MCAJAS_H

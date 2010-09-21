@@ -23,6 +23,8 @@
 
 #include "mcajas.h"
 
+#include <QMessageBox>
+
 FormAgregarCaja::FormAgregarCaja(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::FormAgregarCaja)
@@ -59,9 +61,15 @@ void FormAgregarCaja::changeEvent(QEvent *e)
 void FormAgregarCaja::accept()
 {
     if( ui->LENombre->text().isEmpty() ) {
-        /// @todo Patri: Agregar cartelito de que tiene que poner un nombre
+        QMessageBox::warning( this, "Error de datos", "El nombre de la caja no puede estar vacio" );
     }
     // Guardo los datos
-    /// @todo Patri: Implementar funcion de agregar caja
+    MCajas *m = new MCajas( this );
+    if( m->agregarCaja( ui->LENombre->text(), ui->DEFechaAlta->date(), ui->dSBSaldoInicial->value() ) ) {
+        QMessageBox::information( this, "Correcto", "Caja agregada correctamente" );
+    } else {
+        // Error al intentar agregar la caja
+        QMessageBox::critical( this, "Error", "No se pudo agregar la caja. Verifique el log" );
+    }
     this->close();
 }

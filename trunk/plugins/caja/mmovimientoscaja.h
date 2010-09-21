@@ -22,14 +22,16 @@
 #define MMOVIMIENTOSCAJA_H
 
 #include <QSqlRelationalTableModel>
+#include <QDateTime>
 
 class MMovimientosCaja : public QSqlRelationalTableModel
 {
     Q_OBJECT
 public:
     MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
-    bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0 );
+    bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0, bool agregando_caja = false );
     double recalcularSaldo( int id_caja );
+    bool agregarCierre( int id_caja, QDateTime fechahora, double saldo );
 
 };
 

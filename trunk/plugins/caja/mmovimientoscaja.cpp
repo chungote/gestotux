@@ -23,6 +23,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDateTime>
+#include <QSqlQuery>
 
 #include "mcajas.h"
 
@@ -51,9 +52,10 @@ MMovimientosCaja::MMovimientosCaja( QObject *parent, bool relaciones ) :
  * @param responsable Persona responsable del movimiento ( usuario de la db o persona )
  * @param ingreso cantidad que ingresa a la caja
  * @param egreso cantidad que sacamos de la caja
+ * @param agregando_caja Verdadero si no se desea actualizar el saldo por estar agregando la caja
  * @return verdadero si la operacion se completo satisfactoriamente
  */
-bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso )
+bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso, bool agregando_caja )
 {
   // Verificaciones previas
   if( ( ingreso != 0 && egreso != 0 ) || ( ingreso > 0 && egreso > 0 ) ) {
@@ -78,8 +80,13 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
   }
   if( this->insertRecord( -1, rec ) ) {
       // Actualizo el saldo de la cuenta en la tabla de cajas
-      MCajas::actualizarSaldo( id_caja, ingreso-egreso );
-      return true;
+      if( agregando_caja ) {
+          // Si estamos agregando caja, busca el saldo anterior para actualizarlo el cual no existe todavia.
+          return true;
+      } else {
+          return MCajas::actualizarSaldo( id_caja, ingreso-egreso );
+      }
+
   } else {
       qWarning( QString( "Error al insertar movimiento: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
       return false;
@@ -95,6 +102,42 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
  */
 double MMovimientosCaja::recalcularSaldo( int id_caja )
 {
-    /// @todo Patri: Un lindo metodo para hacer con una simple consulta... :)
     // Sumar todos los ingresos y restarle los egresos en una consulta con QSqlQuery
+    QSqlQuery cola( QString( "SELECT SUM(ingreso)-SUM(egreso) FROM %1 WHERE id_caja = %2 AND cierre = %3" ).arg( this->tableName() ).arg( id_caja ).arg( false ) );
+    if( cola.next() ) {
+        return MCajas::actualizarSaldo( id_caja, cola.record().value(0).toDouble() );
+    } else { return false; }
+}
+
+/*!
+ * @fn MMovimientosCaja::agregarCiere( int id_caja, QDateTime fechahora, double saldo )
+ * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
+ * @param id_caja #ID de caja
+ * @param fechahora Fech y hora del cierre
+ * @param double Saldo computado para el cierre
+ * @return Verdadero si se pudo realizar el cierre
+ */
+bool MMovimientosCaja::agregarCierre( int id_caja, QDateTime fechahora, double saldo )
+{
+    QSqlRecord rec = this->record();
+    rec.setValue( "id_caja", id_caja );
+    rec.setValue( "razon", "Cierre de caja del dia " + fechahora.toString() );
+    rec.setValue( "responsable", "USERNAME()" );
+    rec.setValue( "fecha_hora", fechahora );
+    rec.setValue( "cierre", true );
+    double saldo_anterior = MCajas::saldo( id_caja );
+    double dif = saldo_anterior - saldo;
+    if( dif == 0 ) {
+        this->agregarMovimiento( id_caja, "Diferencia en el cierre de caja", QString(), dif );
+    } else if( dif < 0 ){
+        this->agregarMovimiento( id_caja, "Diferencia en el cierre de caja", QString(), 0.0, dif );
+    }
+    rec.setValue( "egreso", 0.0 );
+    rec.setValue( "ingreso", 0.0 );
+    if( this->insertRecord( -1, rec ) ) {
+        return true;
+    } else {
+        qWarning( QString( "Error al insertar movimiento de cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        return false;
+    }
 }

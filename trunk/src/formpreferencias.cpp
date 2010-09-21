@@ -68,36 +68,36 @@ FormPreferencias::FormPreferencias(QWidget *parent)
         db->setText( "Base de datos" );
         db->setTextAlignment( Qt::AlignHCenter );
         db->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-	FormPrefDb *formDb = new FormPrefDb( this );
-	connect( this, SIGNAL( aplicar() ), formDb, SLOT( aplicar() ) );
-	connect( this, SIGNAL( cargar() ), formDb, SLOT( cargar() ) );
-	connect( this, SIGNAL( guardar() ), formDb, SLOT( guardar() ) );
-	pagesWidget->addWidget( formDb );
+        FormPrefDb *formDb = new FormPrefDb( this );
+        connect( this, SIGNAL( aplicar() ), formDb, SLOT( aplicar() ) );
+        connect( this, SIGNAL( cargar() ), formDb, SLOT( cargar() ) );
+        connect( this, SIGNAL( guardar() ), formDb, SLOT( guardar() ) );
+        pagesWidget->addWidget( formDb );
      }
      /// \todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
      foreach( plugin, ERegistroPlugins::plugins() )
      {
-	qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
-	if( !plugin->formsPreferencias().isEmpty() )
-	{
-		QWidget *form;
-		foreach( form, plugin->formsPreferencias() )
-		{
-			// agrego el item a la lista
-			QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
-			opciones->setIcon( form->windowIcon() );
-			opciones->setText( form->windowTitle() );
-			opciones->setTextAlignment( Qt::AlignHCenter );
-			opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-			contentsWidget->addItem( opciones );
-			// Agrego el formulario
-			pagesWidget->addWidget( form );
-			connect( this, SIGNAL( guardar() ), form, SLOT( guardar() ) );
-			connect( this, SIGNAL( cargar() ), form, SLOT( cargar() ) );
-			connect( this, SIGNAL( aplicar() ), form, SLOT( aplicar() ) );
-		}
-	}
+        qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
+        if( !plugin->formsPreferencias().isEmpty() )
+        {
+                QWidget *form;
+                foreach( form, plugin->formsPreferencias() )
+                {
+                        // agrego el item a la lista
+                        QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
+                        opciones->setIcon( form->windowIcon() );
+                        opciones->setText( form->windowTitle() );
+                        opciones->setTextAlignment( Qt::AlignHCenter );
+                        opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+                        contentsWidget->addItem( opciones );
+                        // Agrego el formulario
+                        pagesWidget->addWidget( form );
+                        connect( this, SIGNAL( guardar() ), form, SLOT( guardar() ) );
+                        connect( this, SIGNAL( cargar() ), form, SLOT( cargar() ) );
+                        connect( this, SIGNAL( aplicar() ), form, SLOT( aplicar() ) );
+                }
+        }
      }
     // seteo el tamaño de los iconos
     contentsWidget->setIconSize( QSize( 48, 48 ) );
@@ -147,37 +147,33 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     connect(contentsWidget, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
             this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 
-	connect( this, SIGNAL( guardar() ), this, SIGNAL( aplicar() ) );
+        connect( this, SIGNAL( guardar() ), this, SIGNAL( aplicar() ) );
 
-	// Cargo la ultima pos de el spliter
-	p->beginGroup( "Ventanas" );
-	p->beginGroup( "Preferencias" );
-	Splitter->restoreState( p->value( "spliter", QByteArray() ).toByteArray() );
-	p->endGroup();
-	p->endGroup();
+        // Cargo la ultima pos de el spliter
+        Splitter->restoreState( p->value( "Ventanas/Preferencias/spliter", QByteArray() ).toByteArray() );
 
-	// Cargo las preferencias
-	emit cargar();
+        // Cargo las preferencias
+        emit cargar();
 }
 
 
 FormPreferencias::~FormPreferencias()
 {
-	preferencias *p = preferencias::getInstancia();
-	p->inicio();
-	p->beginGroup( "Ventanas" );
-	p->beginGroup( "Preferencias" );
-	p->setValue( "spliter", Splitter->saveState() );
-	p->endGroup();
-	p->endGroup();
+        preferencias *p = preferencias::getInstancia();
+        p->inicio();
+        p->beginGroup( "Ventanas" );
+        p->beginGroup( "Preferencias" );
+        p->setValue( "spliter", Splitter->saveState() );
+        p->endGroup();
+        p->endGroup();
 }
 
 
 /*!
     \fn FormPreferencias::changePage(QListWidgetItem *current, QListWidgetItem *previous)
-	Cambia la pagina de la configuracion
-	@param current Item actual de la lista
-	@param previous Item anterior en la lista
+        Cambia la pagina de la configuracion
+        @param current Item actual de la lista
+        @param previous Item anterior en la lista
  */
 void FormPreferencias::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 {

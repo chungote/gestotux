@@ -18,33 +18,28 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "FormEstadoCaja.h"
-#include "ui_FormEstadoCajaBase.h"
+#include "formprefcaja.h"
+#include "ui_formprefcajabase.h"
+#include "preferencias.h"
 
-#include "mcajas.h"
-
-FormEstadoCaja::FormEstadoCaja(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::FormEstadoCaja)
+FormPrefCaja::FormPrefCaja(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::FormPrefCaja)
 {
     ui->setupUi(this);
-    this->setWindowTitle( "Estado de caja" );
-
-    ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
-    ui->CBCaja->setModelColumn( 1 );
-    connect( ui->CBCaja, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCaja( int ) ) );
-    qobject_cast<QSqlTableModel *>(ui->CBCaja->model())->select();
-
+    this->setObjectName( "preferencias_caja" );
+    this->setWindowTitle( "Caja" );
+    this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
 }
 
-FormEstadoCaja::~FormEstadoCaja()
+FormPrefCaja::~FormPrefCaja()
 {
     delete ui;
 }
 
-void FormEstadoCaja::changeEvent(QEvent *e)
+void FormPrefCaja::changeEvent(QEvent *e)
 {
-    QDialog::changeEvent(e);
+    QWidget::changeEvent(e);
     switch (e->type()) {
     case QEvent::LanguageChange:
         ui->retranslateUi(this);
@@ -54,12 +49,33 @@ void FormEstadoCaja::changeEvent(QEvent *e)
     }
 }
 
-/*!
- * @fn FormEstadoCaja::cambioCaja( int num )
- * Slot llamado cada vez que se cambia la caja en el combobox
- */
-void FormEstadoCaja::cambioCaja( int num )
+void FormPrefCaja::aplicar()
 {
-    int num_caja = ui->CBCaja->model()->data( ui->CBCaja->model()->index( num, 0 ), Qt::DisplayRole ).toInt();
-    ui->dSBSaldo->setValue( MCajas::saldo( num_caja ) );
+ this->guardar();
+}
+
+void FormPrefCaja::cargar()
+{
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias");
+    p->beginGroup( "Caja" );
+    ui->CkBResumen->setChecked( p->value( "siempre-resumen", false  ).toBool() );
+    ui->CkBNoGastos->setChecked( p->value( "gastos-sinfondo", true ).toBool() );
+    ui->RBAjuste->setChecked( p->value( "autoajuste", true ).toBool() );
+    ui->RBDiferencia->setChecked( p->value( "no-cierre-dif", false ).toBool() );
+    p->endGroup();
+    p->endGroup();
+}
+
+void FormPrefCaja::guardar()
+{
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias");
+    p->beginGroup( "Caja" );
+    p->setValue( "siempre-resumen", ui->CkBResumen->checkState() );
+    p->setValue( "gastos-sinfondo" , ui->CkBNoGastos->checkState() );
+    p->setValue( "autoajuste", ui->RBAjuste->isChecked() );
+    p->setValue( "no-cierre-dif", ui->RBDiferencia->isChecked() );
+    p->endGroup();
+    p->endGroup();
 }
