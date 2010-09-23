@@ -188,12 +188,22 @@ void Caja::verCajas()
 void Caja::verResumenCaja()
 {}
 
-
+#include "VCierresAnteriores.h"
+/*!
+ * @fn Caja::verResumenesAnteriores()
+ * Slot llamado cuando se quiere mostrar la lista de resmenes anteriores
+ */
 void Caja::verResumenesAnteriores()
-{}
+{
+    emit agregarVentana( new VCierresAnteriores() );
+}
 
 
 #include "FormEstadoCaja.h"
+/*!
+ * @fn Caja::verEstadoCaja()
+ * Slot llamado cuando se quiere mostrar la lista de cajas y sus estados
+ */
 void Caja::verEstadoCaja()
 {
   // Dialogo mostrando el saldo que debe existir en cada caja
@@ -204,6 +214,6 @@ void Caja::verEstadoCaja()
 #include "FormCierreCaja.h"
 void Caja::hacerCierre()
 {
-    //Genero el dialogo donde pongo el saldo actual y pongo el widget para hacer las sumas de lo que hay en la caja
+    // Genero el dialogo donde pongo el saldo actual y pongo el widget para hacer las sumas de lo que hay en la caja
     emit agregarVentana( new FormCierreCaja() );
 }

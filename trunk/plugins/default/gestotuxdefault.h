@@ -27,7 +27,7 @@
 /**
  * \brief Plugin info predeterminado
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class GestotuxDefault : public QObject, public EPlugin, public EInfoProgramaInterface
 {
@@ -37,6 +37,7 @@ public:
     bool publicidad();
     double version() const;
     QIcon iconoPrograma() const;
+    QImage imagenPrograma() const;
     QString companeros();
     QString directorioActualizaciones() const;
     QString directorioBackup() const;

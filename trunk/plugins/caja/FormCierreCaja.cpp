@@ -23,6 +23,9 @@
 
 #include "mcajas.h"
 #include "preferencias.h"
+#include "evisorinformes.h"
+#include "informecierrecaja.h"
+#include "eactcerrar.h"
 
 #include <QMessageBox>
 
@@ -34,8 +37,15 @@ FormCierreCaja::FormCierreCaja(QWidget *parent) :
     this->setObjectName( "cierre_caja" );
     this->setWindowTitle( "Cierre de Caja" );
 
-    ui->PBConfirmar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
-    ui->PBCancelar->setIcon( QIcon( ":/imagenes/stop.png" ) );
+    QAction *ActConfirmar = new QAction( this );
+    ActConfirmar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
+    ActConfirmar->setText( "Confirmar" );
+    connect( ActConfirmar, SIGNAL( triggered() ), this, SLOT( hacerCierre() ) );
+    addAction( ActConfirmar );
+
+    QAction *ActCerrar = new EActCerrar( this );
+    addAction( ActCerrar );
+    connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
     ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
     ui->CBCaja->setModelColumn( 1 );
@@ -80,7 +90,11 @@ void FormCierreCaja::hacerCierre()
     if( caja->hacerCierre( id_caja, QDateTime::currentDateTime(), ui->dSBComputado->value() ) ) {
         QMessageBox::information( this, "Correcto", "El cierre se realizo correctamente" );
         if( ( ui->CkBResumen->checkState() == Qt::Checked ) || ( preferencias::getInstancia()->value( "Preferencias/Caja/siempre-resumen", false ).toBool() ) ) {
-            ///@todo Agregar sistema para hacer el resumen
+            EVisorInformes *visor = new EVisorInformes();
+            InformeCierreCaja *informe = new InformeCierreCaja( visor );
+            informe->hacerResumen( id_caja, true );
+            connect( visor, SIGNAL( paintRequested( QPrinter* ) ), informe, SLOT( imprimir( QPrinter* ) ) );
+            emit agregarVentana( visor );
         }
         this->close();
         return;

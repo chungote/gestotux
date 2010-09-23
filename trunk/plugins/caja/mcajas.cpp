@@ -119,6 +119,22 @@ double MCajas::saldo( const int id_caja )
  */
 bool MCajas::hacerCierre( const int id_caja, QDateTime fecha, double saldo )
 {
-   MMovimientosCaja *m = new MMovimientosCaja( this );
-    //if( m->)
+   MMovimientosCaja *m = new MMovimientosCaja();
+   bool ret = m->agregarCierre( id_caja, fecha, saldo );
+   delete m;
+   return ret;
+}
+
+QString MCajas::nombreCaja( const int id_caja )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT nombre FROM %1 WHERE id_caja = %2" ).arg( "caja" ).arg( id_caja )  ) ) {
+        //qDebug( QString( "Ejecutado: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+        if( cola.next() ) {
+         return cola.record().value(0).toString();
+        } else { return QString();  }
+    } else {
+         qDebug( "Nombre no encontrado" );
+         return QString();
+    }
 }

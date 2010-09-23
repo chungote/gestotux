@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,35 +17,17 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EINFOPROGRAMAINTERFACE_H
-#define EINFOPROGRAMAINTERFACE_H
 
-#include <QtPlugin>
-#include <QString>
-#include <QIcon>
-#include <QImage>
-/*!
- *  \brief Interfaz de informacion del programa
- *
- *   Clase que se utiliza para conocer que metodos va a tener un plugin de informacion
- *   @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class EInfoProgramaInterface
+#include "VCierresAnteriores.h"
+#include "mmovimientoscaja.h"
+
+VCierresAnteriores::VCierresAnteriores( QWidget *parent ) :
+EVLista(parent)
 {
-public:
-    virtual ~EInfoProgramaInterface() {}
-    virtual QString nombrePrograma() const = 0;
-    virtual QIcon iconoPrograma() const = 0;
-    virtual QImage imagenPrograma() const = 0;
-    virtual QString directorioBackup() const = 0;
-    virtual QString directorioActualizaciones() const = 0;
-    virtual double version() const = 0;
-    virtual QString empresa() const = 0;
-    virtual QString companeros() = 0;
-    virtual bool publicidad() = 0;
-};
+    this->setObjectName( "ver_cierres_anteriores" );
+    this->setWindowTitle( "Ver cierres anteriores");
+    /*this->setWindowIcon( QIcon( ":/imagenes/" ) );*/
 
-Q_DECLARE_INTERFACE( EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.2" );
+    modelo = new MMovimientosCaja( this, false );
 
-#endif
+}

@@ -20,7 +20,8 @@ TARGETDEPS += ../../bin/libncreport.a \
 QT += sql
 
 OTHER_FILES += caja.QSQLITE.sql \
-               caja.QMYSQL.sql
+               caja.QMYSQL.sql \
+    estilo.css
 
 RESOURCES += caja.qrc
 
@@ -31,7 +32,9 @@ HEADERS += caja.h \
     FormEstadoCaja.h \
     FormCierreCaja.h \
     mmovimientoscaja.h \
-    formprefcaja.h
+    formprefcaja.h \
+    informecierrecaja.h \
+    VCierresAnteriores.h
 
 SOURCES += caja.cpp \
     mcajas.cpp \
@@ -40,7 +43,9 @@ SOURCES += caja.cpp \
     FormEstadoCaja.cpp \
     FormCierreCaja.cpp \
     mmovimientoscaja.cpp \
-    formprefcaja.cpp
+    formprefcaja.cpp \
+    informecierrecaja.cpp \
+    VCierresAnteriores.cpp
 
 FORMS += FormAgregarCajaBase.ui \
     FormEstadoCajaBase.ui \

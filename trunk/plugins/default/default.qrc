@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagenes/gestotux.png</file>
+        <file>imagenes/gestotux32.png</file>
+        <file>imagenes/gestotux64.png</file>
+    </qresource>
+</RCC>

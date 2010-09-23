@@ -34,6 +34,7 @@ class MCajas : public QSqlTableModel
         bool hacerCierre( const int id_caja, QDateTime fecha, double saldo );
         static bool actualizarSaldo( const int id_caja, const double cantidad );
         static double saldo( const int id_caja );
+        static QString nombreCaja( const int id_caja );
 };
 
 #endif // MCAJAS_H
