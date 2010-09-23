@@ -21,7 +21,9 @@
 #define ESPLASH_H
 
 #include <QSplashScreen>
-#include <QSvgWidget>
+#include <QColor>
+#include <QString>
+#include <QPixmap>
 
 /**
  * \brief Ventana de bienvenida a la aplicacion
@@ -35,6 +37,16 @@ class ESplash : public QSplashScreen
 public:
     ESplash(QWidget *parent = 0);
     ~ESplash();
+    void showMessage(const QString &message, int alignment = Qt::AlignLeft, const QColor &color = Qt::black );
+
+
+protected:
+    void drawContents(QPainter *painter);
+
+    QString texto;
+    int alineacion;
+    QColor color;
+
 };
 
 #endif

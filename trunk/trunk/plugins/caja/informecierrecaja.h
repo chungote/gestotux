@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,35 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef EINFOPROGRAMAINTERFACE_H
-#define EINFOPROGRAMAINTERFACE_H
 
-#include <QtPlugin>
-#include <QString>
-#include <QIcon>
-#include <QImage>
-/*!
- *  \brief Interfaz de informacion del programa
- *
- *   Clase que se utiliza para conocer que metodos va a tener un plugin de informacion
- *   @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class EInfoProgramaInterface
+#ifndef INFORMECIERRECAJA_H
+#define INFORMECIERRECAJA_H
+
+#include <QObject>
+#include <QDateTime>
+class QPrinter;
+class QTextDocument;
+class MCajas;
+class MMovimientosCaja;
+
+class InformeCierreCaja : public QObject
 {
+    Q_OBJECT
 public:
-    virtual ~EInfoProgramaInterface() {}
-    virtual QString nombrePrograma() const = 0;
-    virtual QIcon iconoPrograma() const = 0;
-    virtual QImage imagenPrograma() const = 0;
-    virtual QString directorioBackup() const = 0;
-    virtual QString directorioActualizaciones() const = 0;
-    virtual double version() const = 0;
-    virtual QString empresa() const = 0;
-    virtual QString companeros() = 0;
-    virtual bool publicidad() = 0;
+    explicit InformeCierreCaja(QObject *parent = 0);
+    void hacerResumen( int id_caja = -1, bool ultimo = false, int id_cierre = -1 );
+
+public slots:
+    void imprimir( QPrinter *impresora );
+
+private:
+    QTextDocument *documento;
+    QString _estilo;
+
 };
 
-Q_DECLARE_INTERFACE( EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.2" );
-
-#endif
+#endif // INFORMECIERRECAJA_H

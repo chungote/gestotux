@@ -24,12 +24,12 @@
 FormAcercaDe::FormAcercaDe(QWidget* parent)
 : EVentana( parent ), Ui::FormAcercaDe()
 {
- 	this->setAttribute( Qt::WA_DeleteOnClose );
-	setupUi(this);
-	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
-	LImagen->setPixmap( ERegistroPlugins::pluginInfo()->iconoPrograma().pixmap( 100, 100 ) );
+        this->setAttribute( Qt::WA_DeleteOnClose );
+        setupUi(this);
+        connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( close() ) );
+        LImagen->setPixmap( QPixmap().fromImage( ERegistroPlugins::pluginInfo()->imagenPrograma() ).scaledToHeight( 100 ) );
 
-	label_2->setText(  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; font-weight:600;\">" + ERegistroPlugins::pluginInfo()->nombrePrograma() + "</span></p></body></html>" );
+        label_2->setText(  "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; font-weight:600;\">" + ERegistroPlugins::pluginInfo()->nombrePrograma() + "</span></p></body></html>" );
         label_4->setText( QString( "Version %1" ).arg( ERegistroPlugins::pluginInfo()->version() ) );
         label_3->setText( ERegistroPlugins::pluginInfo()->nombrePrograma() + " es un programa desarrollado especificamente para " + ERegistroPlugins::pluginInfo()->empresa() + ".\nRealizado bajo licencia GPL, completamente desarrollado con Software Libre.\nBasado en las librerias Qt.\n\nProgramador y Analista:\nEsteban Zeller <juiraze@yahoo.com.ar>\n \n" + ERegistroPlugins::pluginInfo()->companeros() );
         PBCerrar->setText( "Cerrar" );

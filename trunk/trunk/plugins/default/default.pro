@@ -14,3 +14,5 @@ DESTDIR = ../../bin/plugins/
 
 TRANSLATIONS += default.ts
 
+RESOURCES += \
+    default.qrc

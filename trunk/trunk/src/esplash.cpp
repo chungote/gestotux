@@ -21,6 +21,9 @@
 #include <QFile>
 #include <QDir>
 #include <QApplication>
+#include <QPainter>
+#include <QBitmap>
+#include <QDesktopWidget>
 
 ESplash::ESplash(QWidget *parent)
  : QSplashScreen( parent )
@@ -41,3 +44,19 @@ ESplash::~ESplash()
 {
 }
 
+void ESplash::drawContents(QPainter *painter)
+{
+  painter->setPen( this->color );
+  QRect pos = rect();
+  pos.setRect( pos.x() + 200, pos.y() + 150, pos.width(), pos.height() );
+  painter->drawText( pos, this->alineacion, this->texto );
+}
+
+
+void ESplash::showMessage(const QString &message, int alignment, const QColor &color) {
+  this->texto = message;
+  this->alineacion = alignment;
+  this->color = color;
+  emit messageChanged( this->texto );
+  repaint();
+}

@@ -7,9 +7,10 @@ SUBDIRS +=  servicios \
             proveedor \
             productos \
             CtaCte \
-            pagos
-#            email \
+            pagos #\
 #            HiComp
+#            email \
+
 #planificador \
 #aCarCorr \
 #HiComp \

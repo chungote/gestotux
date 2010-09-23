@@ -24,6 +24,7 @@
 #include <QSqlError>
 #include <QDateTime>
 #include <QSqlQuery>
+#include <QSqlQuery>
 
 #include "mcajas.h"
 
@@ -127,17 +128,85 @@ bool MMovimientosCaja::agregarCierre( int id_caja, QDateTime fechahora, double s
     rec.setValue( "cierre", true );
     double saldo_anterior = MCajas::saldo( id_caja );
     double dif = saldo_anterior - saldo;
-    if( dif == 0 ) {
+    if( dif > 0 ) {
         this->agregarMovimiento( id_caja, "Diferencia en el cierre de caja", QString(), dif );
+        saldo_anterior += dif;
     } else if( dif < 0 ){
         this->agregarMovimiento( id_caja, "Diferencia en el cierre de caja", QString(), 0.0, dif );
+        saldo_anterior -= dif;
     }
-    rec.setValue( "egreso", 0.0 );
-    rec.setValue( "ingreso", 0.0 );
+    // ATENCION: Se guarda el saldo en los 2 campos igual
+    rec.setValue( "egreso", saldo_anterior );
+    rec.setValue( "ingreso", saldo_anterior );
     if( this->insertRecord( -1, rec ) ) {
         return true;
     } else {
         qWarning( QString( "Error al insertar movimiento de cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
         return false;
     }
+}
+
+int MMovimientosCaja::buscarUltimoCierre( int id_caja ) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_movimiento FROM %1 WHERE id_caja = %3 AND cierre = %2 ORDER BY fecha_hora DESC" ).arg( this->tableName() ).arg( true ).arg( id_caja ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qWarning( "Error al hacer next en la cola de ultimo cierre " );
+            return -1;
+        }
+    } else {
+        qWarning( QString( "Error al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        return -1;
+    }
+}
+
+QSqlQuery MMovimientosCaja::buscarMovimientos( int id_cierre )
+{
+  // Busco el cierre anterior al que me pasaron
+    int id_cierre_anterior = -1;
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_movimiento FROM %1 WHERE cierre = %2 AND id_movimiento < %3 ORDER BY fecha_hora DESC" ).arg( this->tableName() ).arg( true ).arg( id_cierre ) ) ) {
+        if( cola.next() ) {
+            id_cierre_anterior = cola.record().value(0).toInt();
+        } else {
+            qWarning( "Error al hacer next en la cola de ultimo cierre " );
+        }
+    } else {
+        qWarning( QString( "Error al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+    }
+    if( id_cierre_anterior == -1 ) {
+        return QSqlQuery();
+    }
+   // Busco los datos
+    if( cola.exec( QString( "SELECT fecha_hora, ingreso, egreso, razon, responsable, cierre FROM %1 WHERE id_movimiento >= %2 AND id_movimiento <= %3 ORDER BY fecha_hora ASC" ).arg( this->tableName() ).arg( id_cierre_anterior ).arg( id_cierre ) ) ) {
+        if( cola.next() ) {
+            return cola;
+        } else {
+            return QSqlQuery();
+        }
+    } else {
+        return QSqlQuery();
+    }
+}
+
+double MMovimientosCaja::saldoEnMovimientoAnteriorA( int id_movimiento_cierre ) {
+  // Busco el movimiento de cierre anterior al recibido de parametro y devuelvo el saldo
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT id_movimiento FROM %1 WHERE cierre = %2 AND id_movimiento < %3 ORDER BY fecha_hora DESC" ).arg( this->tableName() ).arg( true ).arg( id_movimiento_cierre ) ) ) {
+     if( cola.next() ) {
+         if( cola.record().value("ingreso").toDouble() == cola.record().value("egreso").toDouble() ) {
+             return cola.record().value( "ingreso" ).toDouble();
+         } else {
+             qWarning( "Los datos del cierre no coinciden entre si" );
+             return 0.0;
+         }
+     } else {
+        qWarning( "Error al hacer next en la cola de ultimo cierre " );
+        return 0.0;
+     }
+  } else {
+     qWarning( QString( "Error al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+     return 0.0;
+  }
 }

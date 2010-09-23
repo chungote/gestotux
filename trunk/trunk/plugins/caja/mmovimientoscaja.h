@@ -23,6 +23,7 @@
 
 #include <QSqlRelationalTableModel>
 #include <QDateTime>
+class QSqlQuery;
 
 class MMovimientosCaja : public QSqlRelationalTableModel
 {
@@ -32,6 +33,9 @@ public:
     bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0, bool agregando_caja = false );
     double recalcularSaldo( int id_caja );
     bool agregarCierre( int id_caja, QDateTime fechahora, double saldo );
+    int buscarUltimoCierre( int id_caja );
+    double saldoEnMovimientoAnteriorA( int id_movimiento_cierre );
+    QSqlQuery buscarMovimientos( int id_cierre );
 
 };
 

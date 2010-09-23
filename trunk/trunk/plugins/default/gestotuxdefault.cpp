@@ -27,7 +27,10 @@ double GestotuxDefault::version() const
 { return 1; }
 
 QIcon GestotuxDefault::iconoPrograma() const
-{ return QIcon(); }
+{ return QIcon( ":/imagenes/gestotux32.png"  ); }
+
+QImage GestotuxDefault::imagenPrograma() const
+{ return QImage( ":/imagenes/gestotux.png"  ); }
 
 QString GestotuxDefault::companeros()
 { return ""; }
@@ -39,13 +42,16 @@ QString GestotuxDefault::directorioBackup() const
 { return ""; }
 
 QString GestotuxDefault::empresa() const
-{ return "<generico>"; }
+{ return "uso generico"; }
 
 QString GestotuxDefault::nombrePrograma() const
 { return "Gestotux"; }
 
 bool GestotuxDefault::inicializar()
-{ return true; }
+{
+    Q_INIT_RESOURCE(default);
+    return true;
+}
 
 bool GestotuxDefault::verificarTablas()
 { return true; }
@@ -68,11 +74,11 @@ void GestotuxDefault::crearMenu(QMenuBar* m)
 void GestotuxDefault::crearToolBar(QToolBar* t)
 {}
 
-Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );
-
 void GestotuxDefault::seCierraGestotux()
 {
  qDebug( "Cerrado plugin default" );
+ Q_CLEANUP_RESOURCE(default);
  return;
 }
 
+Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );

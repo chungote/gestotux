@@ -24,8 +24,9 @@
 FormPrefCtaCte::FormPrefCtaCte ( QWidget* parent, Qt::WFlags fl )
 : QWidget ( parent, fl ), Ui::FormPrefCtaCteBase()
 {
-	setupUi ( this );
-	this->setWindowTitle( "Cuenta Corriente" );
+        setupUi ( this );
+        this->setWindowTitle( "Cuenta Corriente" );
+        this->setWindowIcon( QIcon( ":/imagenes/ctacte.png" ) );
 }
 
 FormPrefCtaCte::~FormPrefCtaCte()
@@ -46,7 +47,7 @@ void FormPrefCtaCte::guardar()
  */
 void FormPrefCtaCte::aplicar()
 {
-    /// \todo implement me
+    this->guardar();
 }
 
 

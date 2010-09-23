@@ -25,16 +25,16 @@ EAyuda *EAyuda::yo = 0;
 EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::EAyudaBase()
 {
-	setupUi(this);
-	engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "docs.qch", parent );
-	if( !engine->setupData() )
-	{
-		qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
-	}
-	PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
-	this->setVisible(false);
-	connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( hide() ) );
-	this->setWindowTitle( "Ayuda" );
+        setupUi(this);
+        engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "docs.qch", parent );
+        if( !engine->setupData() )
+        {
+                qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
+        }
+        PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
+        this->setVisible(false);
+        connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( hide() ) );
+        this->setWindowTitle( "Ayuda" );
 }
 
 EAyuda::~EAyuda()
@@ -53,12 +53,12 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
  qWarning( QString( "Pedida documentacion para: %1" ).arg( nombreObjeto ).toLocal8Bit().constData() );
  if( engine->linksForIdentifier( nombreObjeto ).count() > 0 )
  {
-	return true;
+        return true;
  }
  else
  {
-	qWarning( qPrintable( "Documentación no encontrada: " + nombreObjeto + ": " + QString::number( engine->linksForIdentifier( nombreObjeto ).count() ) ) );
-	return false;
+        qWarning( qPrintable( "Documentacion no encontrada: " + nombreObjeto + ": " + QString::number( engine->linksForIdentifier( nombreObjeto ).count() ) ) );
+        return false;
  }
 }
 

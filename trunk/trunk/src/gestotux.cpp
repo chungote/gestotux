@@ -330,7 +330,7 @@ void gestotux::bandeja_sistema()
     QMenu *menu = new QMenu( this );
     menu->addAction( ActPreferencias );
     menu->addAction( ActBackup );
-    menu->addAction( ActActualizar );
+    //menu->addAction( ActActualizar );
     menu->addSeparator();
     menu->addAction( ActAyuda );
     menu->addAction( acercade );
@@ -338,7 +338,7 @@ void gestotux::bandeja_sistema()
     menu->addAction( ActRestaurar );
     menu->addAction( exitAct );
     iconoBandeja->setIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
-    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.4" );
+    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.5b" );
     iconoBandeja->show();
     iconoBandeja->setContextMenu( menu );
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );

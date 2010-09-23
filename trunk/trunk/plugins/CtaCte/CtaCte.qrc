@@ -1,8 +1,9 @@
 <RCC>
-    <qresource prefix="">
+    <qresource prefix="/">
+        <file>imagenes/ctacte.png</file>
     </qresource>
-    <qresource prefix="sql">
-	<file>ctacte.QMYSQL.sql</file>
-	<file>ctacte.QSQLITE.sql</file>
+    <qresource prefix="/sql">
+        <file>ctacte.QMYSQL.sql</file>
+        <file>ctacte.QSQLITE.sql</file>
     </qresource>
 </RCC>
