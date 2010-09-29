@@ -30,12 +30,17 @@ class MMovimientosCaja : public QSqlRelationalTableModel
     Q_OBJECT
 public:
     MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
+    QVariant data( const QModelIndex& idx, int role ) const;
     bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0, bool agregando_caja = false );
     double recalcularSaldo( int id_caja );
     bool agregarCierre( int id_caja, QDateTime fechahora, double saldo );
     int buscarUltimoCierre( int id_caja );
-    double saldoEnMovimientoAnteriorA( int id_movimiento_cierre );
-    QSqlQuery buscarMovimientos( int id_cierre );
+    double saldoEnMovimientoAnteriorA( int id_caja, int id_movimiento_cierre );
+    QSqlQuery buscarMovimientos( int id_caja, int id_cierre );
+    void ultimosMovimientosCaja( int id_caja );
+
+private:
+    QString usuarioActual();
 
 };
 

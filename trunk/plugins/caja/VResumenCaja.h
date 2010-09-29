@@ -18,17 +18,27 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef VCIERRESANTERIORES_H
-#define VCIERRESANTERIORES_H
+#ifndef VRESUMENCAJA_H
+#define VRESUMENCAJA_H
 
-#include <QWidget>
 #include "evlista.h"
+class QComboBox;
+class MCajas;
+class MMovimientosCaja;
 
-class VCierresAnteriores : public EVLista
+class VResumenCaja : public EVLista
 {
     Q_OBJECT
 public:
-    VCierresAnteriores( QWidget *parent = 0);
+    VResumenCaja( QWidget *parent = 0 );
+
+public slots:
+    void cambioCaja( int id_caja );
+
+private:
+    QComboBox *CBCajas;
+    MMovimientosCaja *modelo;
+    MCajas *cmodelo;
 };
 
-#endif // VCIERRESANTERIORES_H
+#endif // VRESUMENCAJA_H
