@@ -43,12 +43,12 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         this->addAction( new EActGuardar( this ) );
         this->addAction( new EActCerrar( this ) );
 
-        modeloCombo = new QSqlQueryModel( this );
+        /*modeloCombo = new QSqlQueryModel( this );
         modeloCombo->setQuery( "SELECT id, nombre FROM categoria WHERE tipo = '2'" );
         CBTipo->setModelColumn( 1 );
         CBTipo->setModel( modeloCombo );
         CBTipo->setModelColumn( 1 );
-        CBTipo->setInsertPolicy( QComboBox::NoInsert );
+        CBTipo->setInsertPolicy( QComboBox::NoInsert );*/
 
         CWFecha->setSelectedDate( QDate::currentDate() );
 
@@ -60,6 +60,7 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
             CBCajas->setModel( new MCajas( this ) );
             CBCajas->setModelColumn( 1 );
+            qobject_cast<QSqlTableModel *>(CBCajas->model())->select();
         } else {
             CkBSacarCaja->setVisible( false );
             CBCajas->setVisible( false );
@@ -81,11 +82,11 @@ void FormAgregarGasto::guardar()
   QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una descripcion para el gasto" );
   return;
  }
- else if( CBTipo->currentIndex() < 0 )
+ /*else if( CBTipo->currentIndex() < 0 )
  {
   QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una categoria para el gasto" );
   return;
- }
+ }*/
  else if( dSBCosto->value() <= 0 )
  {
   QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una costo para este gasto" );

@@ -1,7 +1,7 @@
 ::: Diseño :::
 
 -- Caja --
-- Definir resumen de caja.
+- Ver que hacer cuando se hace el primer cierre de caja. Falta ver como poner el codigo para que funciones si no encuentra un cierre de caja antes.
 
 -- Cuotas --
 - Definir sistema de cuotas.
@@ -22,8 +22,6 @@
    - SQLite
    - MySql
 - Verificar el correcto funcionamiento del nuevo formulario de clientes.
-- Verificar que al agregar una nueva caja, se agrege una entrada en la tabla de movimientos reflejando el saldo nuevo.
-- Verificar que al agregar un gasto y seleccionar la opcion de sacar de caja, se registre la operación en movimientos.
 - Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
 
 ::: Iconos necesarios :::

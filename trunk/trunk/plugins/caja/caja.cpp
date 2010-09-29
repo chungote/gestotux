@@ -95,10 +95,6 @@ bool Caja::inicializar()
  //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
  connect( ActResumenes, SIGNAL( triggered() ), this, SLOT( verResumenCaja() ) );
 
- ActVerCierresAnteriores = new QAction( this );
- ActVerCierresAnteriores->setText( "Ver Cierres anteriores" );
- connect( ActVerCierresAnteriores, SIGNAL( triggered() ), this, SLOT( verResumenesAnteriores() ) );
-
  return true;
 }
 
@@ -142,7 +138,6 @@ void Caja::crearMenu( QMenuBar *m )
      menuCaja->addAction( ActHacerCierre );
      menuCaja->addAction( ActResumenes );
      menuCaja->addSeparator();
-     menuCaja->addAction( ActVerCierresAnteriores );
      menuCaja->addAction( ActCajas );
  }
 }
@@ -185,19 +180,15 @@ void Caja::verCajas()
     emit agregarVentana( new VCajas() );
 }
 
-void Caja::verResumenCaja()
-{}
-
-#include "VCierresAnteriores.h"
+#include "VResumenCaja.h"
 /*!
- * @fn Caja::verResumenesAnteriores()
- * Slot llamado cuando se quiere mostrar la lista de resmenes anteriores
+ * @fn Caja::verEstadoCaja()
+ * Muestra el resumen de movimientos hasta el momento
  */
-void Caja::verResumenesAnteriores()
+void Caja::verResumenCaja()
 {
-    emit agregarVentana( new VCierresAnteriores() );
+  emit agregarVentana( new VResumenCaja());
 }
-
 
 #include "FormEstadoCaja.h"
 /*!

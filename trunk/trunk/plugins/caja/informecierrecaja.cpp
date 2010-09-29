@@ -24,6 +24,7 @@
 #include "eregistroplugins.h"
 #include "einfoprogramainterface.h"
 #include "mcajas.h"
+#include "preferencias.h"
 
 #include <QPrinter>
 #include <QDomDocument>
@@ -83,15 +84,18 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
           return;
       }
     }
-    QSqlQuery resultados = m->buscarMovimientos( id_cierre );
+    QSqlQuery resultados = m->buscarMovimientos( id_caja, id_cierre );
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // Inicio el renderizado
     QTextCursor cursor( documento );
+    int cantidadCol = 6;
+    if( preferencias::getInstancia()->value( "Preferencias/Caja/responsable", true ).toBool() ) { cantidadCol++; }
     /////////////////////////////////////
     /// Hago la cabecera de la tabla
-    QTextTable *tabla = cursor.insertTable( 1, 6 );
+    QTextTable *tabla = cursor.insertTable( 1, cantidadCol );
     QTextTableFormat formatoTabla = tabla->format();
     formatoTabla.setHeaderRowCount( 1 );
+    formatoTabla.setWidth( QTextLength( QTextLength::PercentageLength, 100 ) );
     tabla->setFormat( formatoTabla );
     tabla->cellAt( 0,0 ).firstCursorPosition().insertHtml( " # Op " );
     tabla->cellAt( 0,1 ).firstCursorPosition().insertHtml( " Fecha/Hora " );
@@ -99,8 +103,11 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     tabla->cellAt( 0,3 ).firstCursorPosition().insertHtml( " Ingreso " );
     tabla->cellAt( 0,4 ).firstCursorPosition().insertHtml( " Egreso " );
     tabla->cellAt( 0,5 ).firstCursorPosition().insertHtml( " Saldo " );
+    if( preferencias::getInstancia()->value( "Preferencias/Caja/responsable", true ).toBool() ) {
+        tabla->cellAt( 0, 6 ).firstCursorPosition().insertHtml( " Responsable " );
+    }
     // Averiguo el saldo hasta el momento del cierre anterior
-    double saldo_anterior = m->saldoEnMovimientoAnteriorA( id_cierre );
+    double saldo_anterior = m->saldoEnMovimientoAnteriorA( id_caja, id_cierre );
     while( resultados.next() ) {
         int pos = tabla->rows();
         tabla->insertRows( pos, 1 );
@@ -122,23 +129,29 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
             saldo_anterior += resultados.record().value( "ingreso" ).toDouble();
             tabla->cellAt( pos, 5 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( saldo_anterior ) );
         }
+        if( preferencias::getInstancia()->value( "Preferencias/Caja/responsable", true ).toBool() ) {
+            tabla->cellAt( pos, 6 ).firstCursorPosition().insertHtml( resultados.record().value( "responsable" ).toString() );
+        }
     }
     // Saldos finales
     cursor.movePosition( QTextCursor::End );
     cursor.insertBlock();
-    cursor.insertHtml( QString( "<b>Saldo Final:</b> $  %L1" ).arg( saldo_anterior ) );
+    cursor.insertHtml( QString( "<b>Saldo Final:</b>   $  %L1" ).arg( saldo_anterior ) );
     cursor.insertBlock();
-    cursor.insertBlock();
-    cursor.insertText( "Controlado por: ________________________" );
-    cursor.insertBlock();
-    cursor.insertBlock();
-    cursor.insertText( "Firma: ____________" );
-
+    if( preferencias::getInstancia()->value( "Preferencias/Caja/firma", true ).toBool() ) {
+        cursor.insertBlock();
+        cursor.insertText( "Controlado por: ________________________" );
+        cursor.insertBlock();
+        cursor.insertBlock();
+        cursor.insertText( "Firma: ____________" );
+    }
     // Termino el resumen
     cursor.movePosition( QTextCursor::Start );
     cursor.insertBlock();
-    //cursor.insertImage( ERegistroPlugins::pluginInfo()->imagenPrograma() );
-    cursor.insertImage( ":/imagenes/gestotux32.png" );
+    if( preferencias::getInstancia()->value( "Preferencias/Caja/logo" ).toBool() ) {
+        //cursor.insertImage( ERegistroPlugins::pluginInfo()->imagenPrograma() );
+        cursor.insertImage( ":/imagenes/gestotux32.png" );
+    }
     cursor.insertHtml( "<h1>Cierre de Caja</h1>" );
     cursor.insertBlock();
     cursor.insertHtml( QString( "<b>Fecha de Cierre:</b> %1 <br />" ).arg( QDateTime::currentDateTime().toString( Qt::SystemLocaleLongDate ) ) );

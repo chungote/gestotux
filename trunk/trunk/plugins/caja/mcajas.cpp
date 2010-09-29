@@ -76,11 +76,16 @@ bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
 {
  QSqlQuery cola;
  if( cola.exec( QString( "SELECT saldo FROM %1 WHERE id_caja = %2" ).arg( "caja" ).arg( id_caja )  ) ) {
-    double saldo_nuevo = cola.record().value(0).toDouble() + cantidad;
-    if( cola.exec( QString( "UPDATE FROM caja SET saldo = %1 WHERE id_caja = %2" ).arg( saldo_nuevo ).arg( id_caja ) ) ) {
-        return true;
+     if( cola.next() ) {
+        double saldo_nuevo = cola.record().value(0).toDouble() + cantidad;
+        if( cola.exec( QString( "UPDATE caja SET saldo = %1 WHERE id_caja = %2" ).arg( saldo_nuevo ).arg( id_caja ) ) ) {
+            return true;
+        } else {
+            qWarning( QString( "Error al guardar el nuevo saldo." ).toLocal8Bit() );
+            return false;
+        }
     } else {
-        qWarning( QString( "Error al guardar el nuevo saldo." ).toLocal8Bit() );
+        qWarning( QString( "Error al buscar el saldo anterior haciendo next." ).toLocal8Bit() );
         return false;
     }
  } else {

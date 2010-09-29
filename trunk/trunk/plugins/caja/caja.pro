@@ -34,7 +34,7 @@ HEADERS += caja.h \
     mmovimientoscaja.h \
     formprefcaja.h \
     informecierrecaja.h \
-    VCierresAnteriores.h
+    VResumenCaja.h
 
 SOURCES += caja.cpp \
     mcajas.cpp \
@@ -45,7 +45,7 @@ SOURCES += caja.cpp \
     mmovimientoscaja.cpp \
     formprefcaja.cpp \
     informecierrecaja.cpp \
-    VCierresAnteriores.cpp
+    VResumenCaja.cpp
 
 FORMS += FormAgregarCajaBase.ui \
     FormEstadoCajaBase.ui \

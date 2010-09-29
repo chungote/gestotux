@@ -60,7 +60,6 @@ class Caja : public QObject, public EPlugin
         QAction *ActAgregarMovimiento;
         QAction *ActVerEstado;
         QAction *ActHacerCierre;
-        QAction *ActVerCierresAnteriores;
         QAction *ActResumenes;
 
     protected slots:

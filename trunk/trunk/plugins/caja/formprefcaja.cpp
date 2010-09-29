@@ -63,6 +63,9 @@ void FormPrefCaja::cargar()
     ui->CkBNoGastos->setChecked( p->value( "gastos-sinfondo", true ).toBool() );
     ui->RBAjuste->setChecked( p->value( "autoajuste", true ).toBool() );
     ui->RBDiferencia->setChecked( p->value( "no-cierre-dif", false ).toBool() );
+    ui->CkBFirma->setChecked( p->value( "firma", true ).toBool() );
+    ui->CkBLogo->setChecked( p->value( "logo", true ).toBool() );
+    ui->CkBResponsable->setChecked( p->value( "responsable", true ).toBool() );
     p->endGroup();
     p->endGroup();
 }
@@ -76,6 +79,9 @@ void FormPrefCaja::guardar()
     p->setValue( "gastos-sinfondo" , ui->CkBNoGastos->checkState() );
     p->setValue( "autoajuste", ui->RBAjuste->isChecked() );
     p->setValue( "no-cierre-dif", ui->RBDiferencia->isChecked() );
+    p->setValue( "firma", ui->CkBFirma->isChecked() );
+    p->setValue( "logo", ui->CkBLogo->isChecked() );
+    p->setValue( "responsable", ui->CkBResponsable->isChecked() );
     p->endGroup();
     p->endGroup();
 }
