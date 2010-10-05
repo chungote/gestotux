@@ -18,36 +18,42 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef MMOVIMIENTOSCAJA_H
-#define MMOVIMIENTOSCAJA_H
+#include "vcategoriasgastos.h"
+#include <QWidget>
+#include <QIcon>
+#include <QTableView>
+#include "mcategoriasgastos.h"
+#include <QSqlRecord>
+#include <QSqlField>
+#include <QSqlError>
 
-#include <QSqlRelationalTableModel>
-#include <QDateTime>
-class QSqlQuery;
-
-class MMovimientosCaja : public QSqlRelationalTableModel
+VCategoriasGastos::VCategoriasGastos( QWidget *parent )
+: EVLista(parent)
 {
-    Q_OBJECT
-public:
-    MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
-    QVariant data( const QModelIndex& idx, int role ) const;
+    this->setObjectName( "categorias_gastos" );
+    this->setWindowTitle( "Categorias de gastos" );
+    this->setWindowIcon( QIcon( ":/imagenes/categorias.png" ) );
 
-    void ultimosMovimientosCaja( const int id_caja );
+    this->modelo = new MCategoriasGastos( this );
+    this->vista->setModel( this->modelo );
+    this->vista->hideColumn( 0 );
+    this->modelo->select();
 
-    bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0, bool agregando_caja = false );
-    bool verificarCierreCaja( const int id_caja );
-    bool agregarCierre( const int id_caja, const QDateTime fechahora, const double saldo );
+    this->addAction( ActAgregar );
+    this->addAction( ActCerrar );
+}
 
-    int buscarUltimoCierre( const int id_caja );
-
-    double recalcularSaldo( const int id_caja );
-    double saldoEnMovimientoAnteriorA( const int id_caja, const int id_movimiento_cierre );
-
-    QSqlQuery buscarMovimientos( const int id_caja, const int id_cierre );
-
-private:
-    QString usuarioActual();
-
-};
-
-#endif // MMOVIMIENTOSCAJA_H
+void VCategoriasGastos::agregar(bool autoeliminarid )
+{
+    QSqlRecord registro = this->modelo->record();
+    if( autoeliminarid ) {
+        registro.remove( registro.indexOf( "id_categorias_gastos" ) );
+    }
+    registro.setValue( "nombre", "" );
+    if( this->modelo->insertRecord( -1, registro ) )  {
+        return;
+    } else {
+        qWarning( "Error alinsertar el registro" );
+        qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() ).toLocal8Bit() );
+    }
+}

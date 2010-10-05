@@ -21,6 +21,7 @@
 
 #include "mcategorias.h"
 #include "dcategoria.h"
+#include "mcategorias.h"
 #include <QTableView>
 #include <QSqlRecord>
 #include <QMessageBox>
@@ -31,11 +32,12 @@
 #include <QSqlError>
 
 VCategorias::VCategorias( QWidget *parent )
- : EVLista( parent )
+: EVLista( parent )
 {
  setObjectName( "ListaCategorias" );
  setWindowTitle( "Categorias" );
  setWindowIcon( QIcon( ":/imagenes/categorias.png" ) );
+
  modelo = new MCategorias( this );
  vista->setModel( modelo );
  modelo->select();
@@ -70,8 +72,8 @@ void VCategorias::antes_de_insertar( int row, QSqlRecord & record )
 
 /*!
     \fn VCategorias::eliminar()
-	Metodo reimplementado para ver que cuando se intente eliminar una categoria, vea si existen productos
-	en ella y evite eliminarlos para no dejarlos huerfanos
+        Metodo reimplementado para ver que cuando se intente eliminar una categoria, vea si existen productos
+        en ella y evite eliminarlos para no dejarlos huerfanos
  */
 void VCategorias::eliminar()
 {
@@ -97,6 +99,7 @@ void VCategorias::eliminar()
  {
   lista.remove( lista.size() - 1, 1 );
  }
+ // Veo si existen productos con esta categoria
  qDebug( QString("SELECT COUNT(id) FROM producto WHERE id_categoria IN ( %1 )" ).arg( lista ).toLocal8Bit() );
  QSqlQuery cola( QString("SELECT COUNT(id) FROM producto WHERE id_categoria IN ( %1 )" ).arg( lista ) );
  if( cola.next() )
@@ -104,27 +107,27 @@ void VCategorias::eliminar()
    int cantidad = cola.record().value(0).toInt();
    if( cantidad > 0 )
    {
-	QMessageBox::warning( this, "No se puede eliminar",
-				QString( "Existen %1 producto(s) que pertenecen a esta categoria, no se podra eliminar" ).arg( cantidad ) );
-	return;
+        QMessageBox::warning( this, "No se puede eliminar",
+                                QString( "Existen %1 producto(s) que pertenecen a esta categoria, no se podra eliminar" ).arg( cantidad ) );
+        return;
    }
    else
    {
-	int ret;
-	ret = QMessageBox::warning( this, "Esta seguro?",
-			QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
-			"Si", "No" );
-	if ( ret == 0 )
-	{
-		QModelIndex indice;
-		foreach( indice, indices )
-		{
-			if( indice.isValid() )
-			{
-				modelo->removeRow( indice.row() );
-			}
-		}
-	}
+        int ret;
+        ret = QMessageBox::warning( this, "Esta seguro?",
+                        QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
+                        "Si", "No" );
+        if ( ret == 0 )
+        {
+                QModelIndex indice;
+                foreach( indice, indices )
+                {
+                        if( indice.isValid() )
+                        {
+                                modelo->removeRow( indice.row() );
+                        }
+                }
+        }
    }
  }
  else

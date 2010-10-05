@@ -85,6 +85,7 @@ private:
       void createStatusBar();
       void createToolBar();
       void crearReloj();
+      void crearPantallaInicio();
       void bandeja_sistema();
       void crearBarraLateral();
 

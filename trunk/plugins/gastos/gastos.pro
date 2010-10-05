@@ -10,7 +10,9 @@ SOURCES +=  dgastos.cpp \
             gastos.cpp \
             formagregargasto.cpp \
             ../caja/mmovimientoscaja.cpp \
-            ../caja/mcajas.cpp
+            ../caja/mcajas.cpp \
+    vcategoriasgastos.cpp \
+    mcategoriasgastos.cpp
 
 HEADERS +=  dgastos.h \
             mgasto.h \
@@ -18,7 +20,9 @@ HEADERS +=  dgastos.h \
             gastos.h \
             formagregargasto.h \
             ../caja/mmovimientoscaja.h \
-            ../caja/mcajas.h
+            ../caja/mcajas.h \
+    vcategoriasgastos.h \
+    mcategoriasgastos.h
 
 QT += sql
 

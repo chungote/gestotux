@@ -27,7 +27,7 @@
 #include "mmovimientoscaja.h"
 
 MCajas::MCajas(QObject *parent ) :
-    QSqlTableModel(parent)
+QSqlTableModel(parent)
 {
     setTable( "caja" );
     this->setHeaderData( 0, Qt::Horizontal, "#ID" );
@@ -125,11 +125,23 @@ double MCajas::saldo( const int id_caja )
 bool MCajas::hacerCierre( const int id_caja, QDateTime fecha, double saldo )
 {
    MMovimientosCaja *m = new MMovimientosCaja();
-   bool ret = m->agregarCierre( id_caja, fecha, saldo );
+   bool ret;
+   if( m->verificarCierreCaja( id_caja ) ) {
+     ret = m->agregarCierre( id_caja, fecha, saldo );
+   } else {
+       qWarning( "No se pudo realizar el cierre porque ya existe uno anterior y no hay operaciones aparte de esta");
+       ret = false;
+   }
    delete m;
    return ret;
 }
 
+/*!
+ * @fn MCajas::nombreCaja( const int id_caja )
+ * Funcion que retorna el nombre de una caja
+ * @param id_caja Identificador de la caja
+ * @returns Nombre de la caja
+ */
 QString MCajas::nombreCaja( const int id_caja )
 {
     QSqlQuery cola;

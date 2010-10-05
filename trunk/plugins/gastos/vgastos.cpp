@@ -27,7 +27,7 @@
 #include <QAction>
 
 VGastos::VGastos( QWidget* parent )
-: EVLista( parent, false )
+: EVLista( parent )
 {
  setObjectName( "vistaGastos" );
  setWindowTitle( "Visor de Gastos" );
@@ -37,25 +37,25 @@ VGastos::VGastos( QWidget* parent )
  ActAgregar->disconnect();
  connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregarGasto() ) );
 
-
- modelo = new MGasto( this );
+ modelo = new MGasto( this, true );
  modelo->select();
- while( modelo->canFetchMore() )
- {
-  modelo->fetchMore();
- }
+ while( modelo->canFetchMore() ) { modelo->fetchMore(); }
 
  vista->setModel( modelo );
  vista->hideColumn( 0 );
- //vista->hideColumn( 1 );
+ vista->hideColumn( 5 );
  vista->setItemDelegate( new DGastos( vista ) );
 
-
  vista->resizeColumnsToContents();
+ QAction *ActCategorias = new QAction( this );
+ ActCategorias->setText( "Categorias" );
+ ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
+ ActCategorias->setStatusTip( "Muestra las distintas categorias de gastos disponibles" );
+ connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( mostrarCategorias() ) );
 
- ///@todo Patri:Agregar verificación de que existan categorias para agregar la accion de agregar gastos
  addAction( ActAgregar );
- addAction( ActEliminar );
+ //addAction( ActEliminar );
+ addAction( ActCategorias );
  addAction( ActCerrar );
 }
 
@@ -63,7 +63,6 @@ VGastos::VGastos( QWidget* parent )
 VGastos::~VGastos()
 {
 }
-
 
 void VGastos::antes_de_insertar(int row, QSqlRecord& record)
 { return; }
@@ -76,3 +75,10 @@ void VGastos::antes_de_insertar(int row, QSqlRecord& record)
 void VGastos::agregarGasto()
 { emit agregarVentana( new FormAgregarGasto() ); }
 
+#include "vcategoriasgastos.h"
+/*!
+    \fn VGastos::mostrarCategorias()
+    Muestra la ventana de cateogiras de gastos
+ */
+void VGastos::mostrarCategorias()
+{ emit agregarVentana( new VCategoriasGastos() ); }

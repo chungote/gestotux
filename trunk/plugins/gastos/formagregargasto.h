@@ -24,6 +24,7 @@
 #include "eventana.h"
 #include "ui_FormAgregarGastoBase.h"
 
+class MCategoriasGastos;
 class QSqlQueryModel;
 
 class FormAgregarGasto : public EVentana, private Ui::FormAgregarGastoBase
@@ -37,8 +38,8 @@ protected slots:
     void guardar();
 
 private:
-	QSqlQueryModel *modeloCombo;
-	QSqlQueryModel *modeloEdit;
+        MCategoriasGastos *modeloCombo;
+        QSqlQueryModel *modeloEdit;
 };
 
 #endif

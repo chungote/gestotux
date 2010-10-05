@@ -36,6 +36,7 @@ FormCierreCaja::FormCierreCaja(QWidget *parent) :
     ui->setupUi(this);
     this->setObjectName( "cierre_caja" );
     this->setWindowTitle( "Cierre de Caja" );
+    this->setWindowIcon( QIcon( ":/imagenes/cierrecaja.png" ) );
 
     QAction *ActConfirmar = new QAction( this );
     ActConfirmar->setIcon( QIcon( ":/imagenes/aplicar.png" ) );
@@ -71,12 +72,21 @@ void FormCierreCaja::changeEvent(QEvent *e)
     }
 }
 
+/*!
+ * @fn FormCierreCaja::cambioCaja( int num )
+ * Slot llamado cada vez que se cambia la caja en el combo box
+ * @param num Identificador de caja
+ */
 void FormCierreCaja::cambioCaja( int num )
 {
     int num_caja = ui->CBCaja->model()->data( ui->CBCaja->model()->index( num, 0 ), Qt::DisplayRole ).toInt();
     ui->dSBComputado->setValue( MCajas::saldo( num_caja ) );
 }
 
+/*!
+ * @fn FormCierreCaja::hacerCierre()
+ * Slot llamado para hacer el cierre
+ */
 void FormCierreCaja::hacerCierre()
 {
     // Verifico que concuerden los saldos

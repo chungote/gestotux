@@ -45,6 +45,7 @@
 #include "eemail.h"
 #include "einterfazemail.h"
 #include "eregistroplugins.h"
+#include "FormPantallaInicial.h"
 
 
 FormularioCentral *gestotux::formCentral = 0;
@@ -68,6 +69,7 @@ void gestotux::inicializar()
  crearBarraLateral();
  bandeja_sistema();
  createMenus();
+ crearPantallaInicio();
 
  if( ERegistroPlugins::getInstancia()->pluginEmail() != 0 )
  {
@@ -443,4 +445,13 @@ void gestotux::agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana )
 {
     ventana->setParent( this );
     this->addDockWidget( area, ventana );
+}
+
+/*!
+   \fn gestotux::crearPantallaInicio()
+       Metodo llamado para crear la pantalla inicial
+*/
+void gestotux::crearPantallaInicio()
+{
+    formCen()->agregarForm( new FormPantallaInicial() );
 }

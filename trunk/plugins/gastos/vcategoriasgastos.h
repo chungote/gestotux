@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,21 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MGASTO_H
-#define MGASTO_H
 
-#include <QSqlRelationalTableModel>
-class QDate;
+#ifndef VCATEGORIASGASTOS_H
+#define VCATEGORIASGASTOS_H
 
-/**
- * @brief Modelo de gastos
- * @class MGasto
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class MGasto : public QSqlRelationalTableModel
+#include "evlista.h"
+
+class VCategoriasGastos : public EVLista
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    MGasto(QObject *parent = 0, bool relaciones = false );
-    ~MGasto();
-    QVariant data(const QModelIndex& item, int role) const;
-    bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
+    explicit VCategoriasGastos(QWidget *parent = 0);
+
+protected slots:
+    void agregar( bool autoeliminarid );
 
 };
 
-#endif
+#endif // VCATEGORIASGASTOS_H

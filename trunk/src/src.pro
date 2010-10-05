@@ -17,7 +17,9 @@ SOURCES += gestotux.cpp \
  barralateral.cpp \
  botoneslaterales.cpp \
  formcliente.cpp \
-    formplugins.cpp
+    formplugins.cpp \
+    FormPantallaInicial.cpp \
+    EFlecha.cpp
 
 HEADERS += gestotux.h \
  ebackup.h \
@@ -41,7 +43,9 @@ HEADERS += gestotux.h \
  botoneslaterales.h \
  formcliente.h \
  einterfazemail.h \
-    formplugins.h
+    formplugins.h \
+    FormPantallaInicial.h \
+    EFlecha.h
 TEMPLATE = app
 CONFIG += warn_on \
           thread \
@@ -61,7 +65,8 @@ FPrefGeneral.ui \
  ForPrefDb.ui \
  FormClienteBase.ui \
     formplugins.ui \
-    ../utiles/EAyudaBase.ui
+    ../utiles/EAyudaBase.ui \
+    FormPantallaInicialBase.ui
 
 TARGET = gestotux
 
