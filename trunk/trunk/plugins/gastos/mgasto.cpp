@@ -24,16 +24,20 @@
 #include <QDate>
 #include <QColor>
 
-MGasto::MGasto(QObject *parent)
- : QSqlRelationalTableModel(parent)
+MGasto::MGasto( QObject *parent, bool relaciones )
+ : QSqlRelationalTableModel( parent )
 {
  setTable( "gastos" );
  setHeaderData( 0, Qt::Horizontal, "ID#" );
  setHeaderData( 1, Qt::Horizontal, "Categoria" );
- setRelation(   1, QSqlRelation( "categoria", "id", "nombre" ) );
  setHeaderData( 2, Qt::Horizontal, "Descripcion" );
  setHeaderData( 3, Qt::Horizontal, "Costo" );
  setHeaderData( 4, Qt::Horizontal, "Fecha" );
+ setHeaderData( 5, Qt::Horizontal, "Caja" );
+ if( relaciones ) {
+   setRelation( 1, QSqlRelation( "categoria_gastos", "id_categoria_gastos", "nombre" ) );
+   //setRelation( 5, QSqlRelation( "movimiento_caja", "id_movimiento", "id_movimiento" ) );
+ }
 }
 
 
@@ -50,86 +54,86 @@ QVariant MGasto::data(const QModelIndex& item, int role) const
   }
   switch( role )
  {
-	case Qt::DisplayRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			{
-				return QSqlRelationalTableModel::data(item, role).toString().prepend("$");
-				break;
-			}
-			default:
-			{
-				return QSqlRelationalTableModel::data(item, role);
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::EditRole:
-	{
-		switch( item.column() )
- 		{
-			case 3:
-			{
-				return QSqlRelationalTableModel::data( item, role ).toDouble();
-				break;
-			}
-			default:
-			{
-				return QSqlRelationalTableModel::data( item, role );
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextColorRole:
-	{
-		switch ( item.column() )
-		{
-			case 3:
-			{
-				return QColor(Qt::blue);
-				break;
-			}
-			default:
-			{
-				return QColor(Qt::black);
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextAlignmentRole:
-	{
-		switch ( item.column() )
-		{
-			case 3:
-			case 4:
-			{
-				return int( Qt::AlignCenter | Qt::AlignVCenter );
-				break;
-			}
-			default:
-			{
-				return int( Qt::AlignLeft | Qt::AlignVCenter );
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::ToolTipRole:
-	case Qt::StatusTipRole:
-	{
-		return QVariant( "Haga doble click o seleccione y F2 para editar" );
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalTableModel::data( item, role);
-		break;
-	}
+        case Qt::DisplayRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        {
+                                return QSqlRelationalTableModel::data(item, role).toString().prepend("$");
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data(item, role);
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::EditRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        {
+                                return QSqlRelationalTableModel::data( item, role ).toDouble();
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data( item, role );
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextColorRole:
+        {
+                switch ( item.column() )
+                {
+                        case 3:
+                        {
+                                return QColor(Qt::blue);
+                                break;
+                        }
+                        default:
+                        {
+                                return QColor(Qt::black);
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextAlignmentRole:
+        {
+                switch ( item.column() )
+                {
+                        case 3:
+                        case 4:
+                        {
+                                return int( Qt::AlignCenter | Qt::AlignVCenter );
+                                break;
+                        }
+                        default:
+                        {
+                                return int( Qt::AlignLeft | Qt::AlignVCenter );
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::ToolTipRole:
+        case Qt::StatusTipRole:
+        {
+                return QVariant( "Haga doble click o seleccione y F2 para editar" );
+                break;
+        }
+        default:
+        {
+                return QSqlRelationalTableModel::data( item, role);
+                break;
+        }
  }
 }
 
@@ -138,21 +142,36 @@ QVariant MGasto::data(const QModelIndex& item, int role) const
  */
 bool MGasto::agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria )
 {
+ QSqlTableModel::EditStrategy modo = this->editStrategy();
+ this->setEditStrategy( QSqlTableModel::OnManualSubmit );
  QSqlRecord registro = this->record();
  registro.setValue( "descripcion", descripcion );
  registro.setValue( "costo", costo );
  registro.setValue( "fecha", Fecha );
- registro.setValue( 1, categoria );
+ registro.setValue( "id_categoria", categoria );
  registro.remove( 0 );
- if( insertRecord( -1, registro ) == false )
+ if( this->insertRecord( -1, registro ) == false )
  {
-  qDebug( "Error al insertar registro de mascota" );
+  qDebug( "Error al insertar registro de gasto" );
   qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+  this->setEditStrategy( modo );
   return false;
  }
  else
  {
-//   qDebug( "Gasto agregado correctamente" );
-  return true;
+     if( submitAll() )
+     {
+         qDebug( "Gasto agregado correctamente" );
+         this->setEditStrategy( modo );
+         return true;
+     }
+     else
+     {
+         qDebug( "Error al insertar registro de gasto" );
+         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+         this->setEditStrategy( modo );
+         return false;
+     }
+
  }
 }

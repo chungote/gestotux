@@ -47,7 +47,7 @@ bool Gastos::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "gastos" ) )
  { qWarning( "Error al buscar la tabla gastos" );	return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_gastos" ) )
  { qWarning( "Error al buscar la tabla categorias" );	return false; }
  return true;
 }
@@ -64,12 +64,13 @@ int Gastos::tipo() const
 
 QList< QActionGroup * > Gastos::accionesBarra()
 {
- QList<QActionGroup *> lista;
+ /*QList<QActionGroup *> lista;
  QActionGroup *compras = new QActionGroup( this );
  compras->setObjectName( "compras" );
  compras->addAction( ActAgregarGasto );
  lista.append( compras );
- return lista;
+ return lista;*/
+ return QList<QActionGroup *>();
 }
 
 QString Gastos::nombre() const

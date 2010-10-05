@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MGASTO_H
-#define MGASTO_H
 
-#include <QSqlRelationalTableModel>
-class QDate;
+#ifndef FORMPANTALLAINICIAL_H
+#define FORMPANTALLAINICIAL_H
 
-/**
- * @brief Modelo de gastos
- * @class MGasto
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class MGasto : public QSqlRelationalTableModel
+#include "eventana.h"
+#include "ui_FormPantallaInicialBase.h"
+#include <QPaintEvent>
+
+class FormPantallaInicial : public EVentana, private Ui::FormPantallaInicial
 {
-Q_OBJECT
-public:
-    MGasto(QObject *parent = 0, bool relaciones = false );
-    ~MGasto();
-    QVariant data(const QModelIndex& item, int role) const;
-    bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
+    Q_OBJECT
 
+public:
+    explicit FormPantallaInicial(QWidget *parent = 0);
+
+protected:
+    void changeEvent( QEvent *e );
+    /*void paintEvent( QPaintEvent *event );*/
+
+protected slots:
+    void caja();
+    void backup();
+    void preferencias();
 };
 
-#endif
+#endif // FORMPANTALLAINICIAL_H

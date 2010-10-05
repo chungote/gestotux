@@ -2,6 +2,7 @@
 
 -- Caja --
 - Ver que hacer cuando se hace el primer cierre de caja. Falta ver como poner el codigo para que funciones si no encuentra un cierre de caja antes.
+- Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
 
 -- Cuotas --
 - Definir sistema de cuotas.
@@ -14,6 +15,9 @@
 
 -- Recibos --
 - Hacer que al elegir la opcion de pago contado, genere la entrada de caja.
+
+-- General --
+- Ver porque no se dibujan las flechas en la pantalla inicial.
 
 ::: Pruebas para hacer :::
 
@@ -32,6 +36,7 @@
 - Estado de caja
 - Listado de gastos
 - Recibos
+- Inicio
 
 ::: Problemas Generales :::
 

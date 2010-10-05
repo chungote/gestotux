@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,14 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MGASTO_H
-#define MGASTO_H
 
-#include <QSqlRelationalTableModel>
-class QDate;
+#include "mcategoriasgastos.h"
 
-/**
- * @brief Modelo de gastos
- * @class MGasto
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class MGasto : public QSqlRelationalTableModel
+MCategoriasGastos::MCategoriasGastos(QObject *parent) :
+    QSqlTableModel(parent)
 {
-Q_OBJECT
-public:
-    MGasto(QObject *parent = 0, bool relaciones = false );
-    ~MGasto();
-    QVariant data(const QModelIndex& item, int role) const;
-    bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
-
-};
-
-#endif
+   this->setTable( "categoria_gastos" );
+   this->setHeaderData( 0, Qt::Horizontal, "#ID" );
+   this->setHeaderData( 1, Qt::Horizontal, "Nombre" );
+   this->setHeaderData( 2, Qt::Horizontal, "Descripcion" );
+}

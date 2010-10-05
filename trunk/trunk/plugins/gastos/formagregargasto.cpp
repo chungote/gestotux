@@ -25,6 +25,7 @@
 #include <QDate>
 #include <QMessageBox>
 #include <QSqlError>
+#include <QSqlQuery>
 
 #include "mgasto.h"
 #include "eactguardar.h"
@@ -32,6 +33,7 @@
 #include "eregistroplugins.h"
 #include "preferencias.h"
 #include "../caja/mcajas.h"
+#include "mcategoriasgastos.h"
 
 FormAgregarGasto::FormAgregarGasto( QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarGastoBase()
@@ -43,12 +45,12 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         this->addAction( new EActGuardar( this ) );
         this->addAction( new EActCerrar( this ) );
 
-        /*modeloCombo = new QSqlQueryModel( this );
-        modeloCombo->setQuery( "SELECT id, nombre FROM categoria WHERE tipo = '2'" );
-        CBTipo->setModelColumn( 1 );
+        modeloCombo = new MCategoriasGastos( CBTipo );
         CBTipo->setModel( modeloCombo );
         CBTipo->setModelColumn( 1 );
-        CBTipo->setInsertPolicy( QComboBox::NoInsert );*/
+        CBTipo->setInsertPolicy( QComboBox::NoInsert );
+        modeloCombo->select();
+        CBTipo->setCurrentIndex( -1 );
 
         CWFecha->setSelectedDate( QDate::currentDate() );
 
@@ -56,11 +58,13 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         modeloEdit->setQuery( "SELECT DISTINCT descripcion FROM gastos" );
         CBDescripcion->setModel( modeloEdit );
         CBDescripcion->setEditable( true );
+        CBDescripcion->setCurrentIndex( -1 );
 
         if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
             CBCajas->setModel( new MCajas( this ) );
             CBCajas->setModelColumn( 1 );
             qobject_cast<QSqlTableModel *>(CBCajas->model())->select();
+            CBCajas->setCurrentIndex( -1 );
         } else {
             CkBSacarCaja->setVisible( false );
             CBCajas->setVisible( false );
@@ -82,20 +86,20 @@ void FormAgregarGasto::guardar()
   QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una descripcion para el gasto" );
   return;
  }
- /*else if( CBTipo->currentIndex() < 0 )
+ else if( CBTipo->currentIndex() < 0 )
  {
   QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una categoria para el gasto" );
   return;
- }*/
+ }
  else if( dSBCosto->value() <= 0 )
  {
-  QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una costo para este gasto" );
+  QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese un costo para este gasto" );
   return;
  }
  else
  {
   if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
-      if( preferencias::getInstancia()->value("Preferencias/Caja/gastos-sinfondo").toBool() )
+      if( preferencias::getInstancia()->value("Preferencias/Caja/gastos-sinfondo").toBool() && this->CkBSacarCaja->isChecked() )
       {
           int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
           if( MCajas::saldo( id_caja ) < dSBCosto->value() ) {
@@ -104,40 +108,32 @@ void FormAgregarGasto::guardar()
           }
       }
   }
-  MGasto *modelo = new MGasto( this );
-  modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
-  if ( modelo->agregarGasto( CBDescripcion->currentText(),
+  MGasto *modeloGastos = new MGasto( this );
+  if ( modeloGastos->agregarGasto( CBDescripcion->currentText(),
                                 dSBCosto->value(),
                                 CWFecha->selectedDate(),
                                 CBTipo->model()->data( CBTipo->model()->index( CBTipo->currentIndex(), 0 ), Qt::EditRole ).toInt() ) == true )
   {
-        if( modelo->submitAll() )
-        {
-             if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
-                 MMovimientosCaja *m = new MMovimientosCaja();
-                 int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
-                 if( !m->agregarMovimiento( id_caja, CBDescripcion->currentText(), QString(), 0.0, dSBCosto->value() ) ) {
-                     QMessageBox::information( this, "Error", "El gasto se guardo correctamente, pero no se pudo registrar la operacion en la cuenta de caja" );
-                     this->close();
-                     return;
-                 }
+        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+             MMovimientosCaja *m = new MMovimientosCaja();
+             int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
+             if( !m->agregarMovimiento( id_caja, CBDescripcion->currentText(), QString(), 0.0, dSBCosto->value() ) ) {
+                 QMessageBox::information( this, "Error", "El gasto se guardo correctamente, pero no se pudo registrar la operacion en la cuenta de caja" );
              }
-            QMessageBox::information( this, "Correcto", "El gasto se han agregado correctamente" );
-            this->close();
-            return;
-        }
-        else
-        {
-                QMessageBox::information( this, "Error de base de datos", "Los datos del gasto no se han agregado" );
-                qDebug( "Error de submit" );
-                qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() ).toLocal8Bit() );
-                return;
-        }
+             delete m;
+         } else {
+             QMessageBox::information( this, "Correcto", "El gasto se han agregado correctamente" );
+         }
   }
   else
   {
-   QMessageBox::critical( this, "Error", "Hubo un error al intentar agregar el gasto. No se guardaron datos." );
-   return;
+      QMessageBox::information( this, "Error de base de datos", "Los datos del gasto no se han agregado correctamente" );
+      qDebug( "Error de guardar" );
+      qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modeloGastos->lastError().type() ).arg( modeloGastos->lastError().number() ).arg( modeloGastos->lastError().text() ).toLocal8Bit() );
+      qDebug( QString( "Detalles: cola: %1" ).arg( modeloGastos->query().lastQuery() ).toLocal8Bit() );
   }
+  delete modeloGastos;
  }
+ this->close();
+ return;
 }

@@ -94,6 +94,8 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  /////////////////////////////////////
  connect( vista, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( hacerMenuContextual( const QModelIndex & ) ) );
 
+ rmodelo = 0;
+ modelo = 0;
 }
 
 
@@ -114,25 +116,26 @@ void EVLista::cerrar()
 
 /*!
     \fn EVLista::agregar( bool autoeliminarid )
-	Agrega un nuevo registro mediante la vista al modelo
+        Agrega un nuevo registro mediante la vista al modelo
  */
 void EVLista::agregar( bool autoeliminarid )
 {
- QSqlRelationalTableModel *m = qobject_cast<QSqlRelationalTableModel *>(vista->model());
- QSqlRecord registro = m->record();
+    QSqlTableModel *m = qobject_cast<QSqlTableModel *>(vista->model());
+    QSqlRecord registro = m->record();
 
- if( autoeliminarid )
- { registro.remove( 0 ); }
- if( !m->insertRecord( -1, registro ) )
- {
-  qDebug( "Error al insertar el registro" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( m->lastError().type() ).arg( m->lastError().number() ).arg( m->lastError().text() ).toLocal8Bit() );
- }
+    if( autoeliminarid )
+    { registro.remove( 0 ); }
+
+    if( !m->insertRecord( -1, registro ) )
+    {
+         qDebug( "Error al insertar el registro" );
+         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( rmodelo->lastError().type() ).arg( rmodelo->lastError().number() ).arg( rmodelo->lastError().text() ).toLocal8Bit() );
+    }
 }
 
 /*!
     \fn EVLista::eliminar()
-	Elimina los items seleccionados de la vista
+        Elimina los items seleccionados de la vista
  */
 void EVLista::eliminar()
 {
@@ -154,25 +157,25 @@ void EVLista::eliminar()
                    "Si", "No" );
  if ( ret == 0 )
  {
-	QModelIndex indice;
-	foreach( indice, indices )
-	{
-		if( indice.isValid() )
-		{
-			if( m->removeRow( indice.row() ) )
-			{ return; }
-			else
-			{ qWarning( qPrintable( "Error al eliminar el registro" + m->lastError().text() ) ); }
-		}
-	}
+        QModelIndex indice;
+        foreach( indice, indices )
+        {
+                if( indice.isValid() )
+                {
+                        if( m->removeRow( indice.row() ) )
+                        { return; }
+                        else
+                        { qWarning( qPrintable( "Error al eliminar el registro" + m->lastError().text() ) ); }
+                }
+        }
  }
  return;
 }
 
 /*!
     \fn EVLista::closeEvent( QCloseEvent * c)
-	Metodo llamado al cerrarse el form
-	@param c evento de cierre
+        Metodo llamado al cerrarse el form
+        @param c evento de cierre
  */
 void EVLista::closeEvent( QCloseEvent * c)
 {
@@ -234,8 +237,8 @@ void EVLista::antes_de_insertar( int row, QSqlRecord & record )
 {
  /*if( QSqlDatabase::database().driverName() == "QSQLITE" )
  {
-	Se utiliza este truco para que no falle la insercion y se puedan agregar registros sin problemas
-	como sqlite no tiene forma de insertar timestamps en los registros al actualizar hay que hacerlo a mano
+        Se utiliza este truco para que no falle la insercion y se puedan agregar registros sin problemas
+        como sqlite no tiene forma de insertar timestamps en los registros al actualizar hay que hacerlo a mano
    if( record.contains( "creado" ) )
    {  record.setValue( "creado", QDate::currentDate() );  }
    if( record.contains( "modificado" ) )
@@ -243,16 +246,16 @@ void EVLista::antes_de_insertar( int row, QSqlRecord & record )
  }
  else if( QSqlDatabase::database().driverName() == "QMYSQL" )
  {
-	  MySql solo permite tener un registro con timestamp activado, asique ponemos la fecha en el de crear
-	if( record.contains( "creado" ) )
-	{ record.setValue( "creado", QDate::currentDate() ); }
+          MySql solo permite tener un registro con timestamp activado, asique ponemos la fecha en el de crear
+        if( record.contains( "creado" ) )
+        { record.setValue( "creado", QDate::currentDate() ); }
  }*/
 }
 
 
 /*!
     \fn EVLista::menuContextual( const QModelIndex &indice, QMenu *menu )
-	Rellena el menu contextual con las acciones que se deben utilizar para el item en indice. Debe reimplementarse para cada vista que dese agregar acciones personalizadas.
+        Rellena el menu contextual con las acciones que se deben utilizar para el item en indice. Debe reimplementarse para cada vista que dese agregar acciones personalizadas.
  */
 void EVLista::menuContextual( const QModelIndex &indice, QMenu *menu )
 {

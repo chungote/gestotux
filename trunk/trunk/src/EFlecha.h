@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,26 +17,39 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MGASTO_H
-#define MGASTO_H
 
-#include <QSqlRelationalTableModel>
-class QDate;
+#ifndef EFLECHA_H
+#define EFLECHA_H
 
-/**
- * @brief Modelo de gastos
- * @class MGasto
- * @author Esteban Zeller <juiraze@yahoo.com.ar>
- */
-class MGasto : public QSqlRelationalTableModel
+#include <QWidget>
+#include <QLineF>
+#include <QPaintEvent>
+#include <QColor>
+
+class EFlecha : public QWidget, public QLineF
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    MGasto(QObject *parent = 0, bool relaciones = false );
-    ~MGasto();
-    QVariant data(const QModelIndex& item, int role) const;
-    bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
+    explicit EFlecha( QWidget *parent );
+    explicit EFlecha( QWidget *parent, QWidget *origen, QWidget *destino, int tamFlecha );
+    void setearOrigen( QWidget *origen );
+    void setearDestino( QWidget *destino );
+    void setearTamFlecha( int tam );
+    QSize sizeHint() const;
+
+    enum PosicionWidgets {
+        EsquinaSuperior = 0,
+        EsquinaInferior = 0,
+        Medio = 0
+    };
+protected:
+    void paintEvent( QPaintEvent *evento );
+
+private:
+    QWidget *origen;
+    QWidget *destino;
+    float tamFlecha;
 
 };
 
-#endif
+#endif // EFLECHA_H

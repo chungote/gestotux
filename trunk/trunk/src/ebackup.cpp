@@ -57,6 +57,7 @@ Ebackup::Ebackup( QWidget* parent )
  this->setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "backup" );
  setWindowTitle( "Copia de Seguridad" );
+ setWindowIcon( QIcon( ":/imagenes/backup.png" ) );
  PBProgreso->setValue( 0 );
  LDebug->setText( "Presione Iniciar para comenzar" );
  // inicializo el deposito de datos
@@ -93,6 +94,7 @@ Ebackup::Ebackup( QWidget* parent )
  Pestanas->setTabIcon( 1, QIcon( ":/imagenes/backup2.png" ) );
  Pestanas->widget( 0 )->setObjectName( "crearBackup" );
  Pestanas->widget( 1 )->setObjectName( "restaurarBackup" );
+ Pestanas->setCurrentIndex(0);
 }
 
 

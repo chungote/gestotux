@@ -48,9 +48,7 @@ QList<QActionGroup *> Caja::accionesBarra()
     \fn Caja::nombre() const
  */
 QString Caja::nombre() const
-{
-  return "caja";
-}
+{ return "caja"; }
 
 /*!
     \fn Caja::formsPreferencias()
@@ -60,7 +58,6 @@ QWidgetList Caja::formsPreferencias()
  QWidgetList lista;
  lista.append( new FormPrefCaja() );
  return lista;
- /*return QWidgetList();*/
 }
 
 
@@ -86,12 +83,12 @@ bool Caja::inicializar()
  ActHacerCierre = new QAction( this );
  ActHacerCierre->setText( "Hacer cierre de caja" );
  ActHacerCierre->setToolTip( "Resume todas las operaciones del dia y cierra la caja." );
- //ActHacerCierre->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ ActHacerCierre->setIcon( QIcon( ":/imagenes/cierrecaja.png" ) );
  connect( ActHacerCierre, SIGNAL( triggered() ), this, SLOT( hacerCierre() ) );
 
  ActResumenes = new QAction( this );
  ActResumenes->setText( "Resumen" );
- //ActResumenes->setToolTip( "Ver el listado de las cajas que hay en el sistema." );
+ ActResumenes->setToolTip( "Muestra el estado de la cajas hasta el momento." );
  //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
  connect( ActResumenes, SIGNAL( triggered() ), this, SLOT( verResumenCaja() ) );
 
@@ -111,14 +108,11 @@ bool Caja::verificarTablas()
  return true;
 }
 
-
 /*!
     \fn Caja::tipo() const
  */
 int Caja::tipo() const
-{
- return EPlugin::comun;
-}
+{ return EPlugin::comun; }
 
 
 /*!
@@ -148,9 +142,7 @@ void Caja::crearMenu( QMenuBar *m )
         Devuelve la version del plugin
  */
 double Caja::version() const
-{
- return 0.01;
-}
+{ return 0.02; }
 
 /*!
     \fn Caja::crearToolBar( QToolBar *t )
@@ -176,9 +168,7 @@ void Caja::seCierraGestotux()
  * Slot llamado cuando se quiere ve la lista de cajas actuales.
  */
 void Caja::verCajas()
-{
-    emit agregarVentana( new VCajas() );
-}
+{ emit agregarVentana( new VCajas() ); }
 
 #include "VResumenCaja.h"
 /*!
@@ -186,9 +176,7 @@ void Caja::verCajas()
  * Muestra el resumen de movimientos hasta el momento
  */
 void Caja::verResumenCaja()
-{
-  emit agregarVentana( new VResumenCaja());
-}
+{ emit agregarVentana( new VResumenCaja()); }
 
 #include "FormEstadoCaja.h"
 /*!

@@ -23,7 +23,7 @@
 #include <evlista.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class VGastos : public EVLista
 {
@@ -37,6 +37,7 @@ protected slots:
 
 private slots:
     void agregarGasto();
+    void mostrarCategorias();
 
 signals:
     void agregarVentana( QWidget *ventana );

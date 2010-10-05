@@ -139,12 +139,12 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
 }
 
 /*!
- * @fn MMovimientosCaja::recalcularSaldo( int id_caja )
+ * @fn MMovimientosCaja::recalcularSaldo( const int id_caja )
  * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
  * @param id_caja #ID de caja
  * @return saldo calculado
  */
-double MMovimientosCaja::recalcularSaldo( int id_caja )
+double MMovimientosCaja::recalcularSaldo( const int id_caja )
 {
     // Sumar todos los ingresos y restarle los egresos en una consulta con QSqlQuery
     QSqlQuery cola( QString( "SELECT SUM(ingreso)-SUM(egreso) FROM %1 WHERE id_caja = %2 AND cierre = %3" ).arg( this->tableName() ).arg( id_caja ).arg( false ) );
@@ -154,14 +154,14 @@ double MMovimientosCaja::recalcularSaldo( int id_caja )
 }
 
 /*!
- * @fn MMovimientosCaja::agregarCiere( int id_caja, QDateTime fechahora, double saldo )
+ * @fn MMovimientosCaja::agregarCiere( const int id_caja, QDateTime fechahora, double saldo )
  * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
  * @param id_caja #ID de caja
  * @param fechahora Fech y hora del cierre
  * @param double Saldo computado para el cierre
  * @return Verdadero si se pudo realizar el cierre
  */
-bool MMovimientosCaja::agregarCierre( int id_caja, QDateTime fechahora, double saldo )
+bool MMovimientosCaja::agregarCierre( const int id_caja, QDateTime fechahora, double saldo )
 {
     QSqlRecord rec = this->record();
     rec.setValue( "id_caja", id_caja );
@@ -189,9 +189,15 @@ bool MMovimientosCaja::agregarCierre( int id_caja, QDateTime fechahora, double s
     }
 }
 
-int MMovimientosCaja::buscarUltimoCierre( int id_caja ) {
+/*!
+ * @fn MMovimientosCaja::buscarUltimoCierre( const int id_caja )
+ * Busca el ultimo cierre de la caja especificada
+ * @param id_caja Identificador de la caja
+ * @returns ID de Movimiento de cierre si existe, -1 si hubo error al ejecutar la cola y 0 si error al obtener los datos por next
+ */
+int MMovimientosCaja::buscarUltimoCierre( const int id_caja ) {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_movimiento FROM %1 WHERE id_caja = %3 AND cierre = %2 ORDER BY fecha_hora DESC" ).arg( this->tableName() ).arg( true ).arg( id_caja ) ) ) {
+    if( cola.exec( QString( "SELECT id_movimiento FROM %1 WHERE id_caja = %3 AND cierre = %2 ORDER BY fecha_hora DESC LIMIT 1" ).arg( this->tableName() ).arg( true ).arg( id_caja ) ) ) {
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
@@ -204,7 +210,14 @@ int MMovimientosCaja::buscarUltimoCierre( int id_caja ) {
     }
 }
 
-QSqlQuery MMovimientosCaja::buscarMovimientos( int id_caja, int id_cierre )
+/*!
+ * @fn MMovimientosCaja::buscarMovimientos( const int id_caja, const int id_cierre )
+ * Funcion que retorna los datos de todos los movimientos en una caja desde el cierre anterior al pasado como parametro
+ * @param id_caja Identificador de la caja
+ * @param id_cierre Cierre desde el cual se desean obtener todos los datos al cierre anterior
+ * @returns Objeto QSqlQuery vacio si no hay ningun dato o con los datos asociados
+ */
+QSqlQuery MMovimientosCaja::buscarMovimientos( const int id_caja, const int id_cierre )
 {
   // Busco el cierre anterior al que me pasaron
     int id_cierre_anterior = -1;
@@ -232,13 +245,13 @@ QSqlQuery MMovimientosCaja::buscarMovimientos( int id_caja, int id_cierre )
 }
 
 /*!
- * @fn MMovimientosCaja::saldoEnMovimientoAnteriorA( int id_caja, int id_movimiento_cierre )
+ * @fn MMovimientosCaja::saldoEnMovimientoAnteriorA( const int id_caja, const int id_movimiento_cierre )
  * Devuelve el sado que existia en el cierre anterior al recibido como parametro para la caja indicada
  * @param id_caja Caja sobre la cual se busca
  * @param id_movimiento_cierre Identificador del movimiento de cierre del cual queremos saber el saldo del cierre anterior
  * @return Saldo anterior al cierre pasado como parametro
  */
-double MMovimientosCaja::saldoEnMovimientoAnteriorA( int id_caja, int id_movimiento_cierre ) {
+double MMovimientosCaja::saldoEnMovimientoAnteriorA( const int id_caja, const int id_movimiento_cierre ) {
   // Busco el movimiento de cierre anterior al recibido de parametro y devuelvo el saldo
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT id_movimiento, ingreso, egreso FROM %1 WHERE cierre = %2 AND id_movimiento < %3 AND id_caja = %4 ORDER BY fecha_hora DESC" ).arg( this->tableName() ).arg( true ).arg( id_movimiento_cierre ).arg( id_caja ) ) ) {
@@ -275,11 +288,11 @@ double MMovimientosCaja::saldoEnMovimientoAnteriorA( int id_caja, int id_movimie
 }
 
 /*!
- * @fn MMovimientosCaja::ultimosMovimientosCaja( int id_caja )
+ * @fn MMovimientosCaja::ultimosMovimientosCaja( const int id_caja )
  * Funcion que genera el filtro para mostrar los movimientos de caja desde el ultimo cierre, incluyendolo. Esta funcion hace select()
  * @param id_caja Identificador de caja
  **/
-void MMovimientosCaja::ultimosMovimientosCaja( int id_caja )
+void MMovimientosCaja::ultimosMovimientosCaja( const int id_caja )
 {
  int id_mov = this->buscarUltimoCierre( id_caja );
  this->setFilter( QString( " id_movimiento >=  %1 AND id_caja = %2 " ).arg( id_mov ).arg( id_caja ) );
@@ -297,4 +310,34 @@ QString MMovimientosCaja::usuarioActual()
        if( cola.exec( "SELECT SUBSTRING_INDEX( USER(), '@', 1 );" ) )
        { cola.next(); return cola.record().value(0).toString(); } else { return "default"; }
    } else { return "default"; }
+}
+
+/*!
+ * @fn MMovimientosCaja::verificarCierreCaja( const int id_caja )
+ * Verifica si se puede hacer el cierre de caja, o sea, si existe algun movimiento aparte del ultimo cierre.
+ * @param id_caja Identificador de la caja de la cual se desea averiguar
+ * @returns Verdadero si se puede hacer, falso si no se puede hacer
+ */
+bool MMovimientosCaja::verificarCierreCaja( const int id_caja )
+{
+    QSqlQuery cola;
+    // Busco el ultimo cierre
+    int id_ultimo_cierre = this->buscarUltimoCierre( id_caja );
+    if( id_ultimo_cierre <= 0 ) { return false; }
+    // Cuento la cantidad de movimientos que hubo despues de ese movimiento de cierre
+    if( cola.exec( QString( "SELECT COUNT(id_movimiento) FROM %2 WHERE id_caja = %1 AND id_movimiento > %3" ).arg( id_caja ).arg( this->tableName() ).arg( id_ultimo_cierre ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            qWarning( "Error al hacer next en la cola de averiguacion de si se puede hacer el cierre de caja" );
+            return false;
+        }
+    } else {
+        qWarning( "No se pudo ejecutar la cola de averiguacion de si se puede hacer el cierre de caja" );
+        return false;
+    }
 }

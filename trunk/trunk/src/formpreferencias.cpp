@@ -38,6 +38,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
  : EVentana(parent)
 {
     setObjectName( "Preferencias" );
+    setWindowIcon( QIcon( ":/imagenes/configure.png" ) );
     this->setAttribute( Qt::WA_DeleteOnClose );
     contentsWidget = new QListWidget;
     contentsWidget->setViewMode(QListView::IconMode);
