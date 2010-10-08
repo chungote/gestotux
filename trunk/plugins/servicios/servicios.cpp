@@ -110,4 +110,7 @@ void Servicios::mostrarRecargos()
    emit agregarVentana( new FormRecargos() );
 }
 
+QAction *Servicios::botonPantallaInicial()
+{ return ActServicios; }
+
 Q_EXPORT_PLUGIN2( servicios, Servicios );

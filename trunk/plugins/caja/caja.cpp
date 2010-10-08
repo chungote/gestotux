@@ -77,7 +77,7 @@ bool Caja::inicializar()
  ActVerEstado = new QAction( this );
  ActVerEstado->setText( "Ver Estado Caja" );
  ActVerEstado->setToolTip( "Ver el estado actual de la caja." );
- //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ //ActVerEstado->setIcon( QIcon( ":/imagenes/cajaestado.png" ) );
  connect( ActVerEstado, SIGNAL( triggered() ), this, SLOT( verEstadoCaja() ) );
 
  ActHacerCierre = new QAction( this );
@@ -89,7 +89,7 @@ bool Caja::inicializar()
  ActResumenes = new QAction( this );
  ActResumenes->setText( "Resumen" );
  ActResumenes->setToolTip( "Muestra el estado de la cajas hasta el momento." );
- //ActCajas->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ ActResumenes->setIcon( QIcon( ":/imagenes/cajaresumen.png" ) );
  connect( ActResumenes, SIGNAL( triggered() ), this, SLOT( verResumenCaja() ) );
 
  return true;

@@ -24,7 +24,7 @@
 #include <eplugin.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class Ventas : public QObject, public EPlugin
 {
@@ -42,7 +42,7 @@ public:
     static QStackedWidget *tabs();
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
-
+    QAction *botonPantallaInicial() { return ActVentas; }
 private:
     QList<QAction *> _acciones;
     QAction *ActAgregarVentas;
@@ -57,7 +57,7 @@ private slots:
     void listaPrecios();
 
 signals:
-	void agregarVentana( QWidget * );
+        void agregarVentana( QWidget * );
             void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 public slots:
     void seCierraGestotux();

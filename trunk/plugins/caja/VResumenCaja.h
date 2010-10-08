@@ -34,6 +34,8 @@ public:
 
 public slots:
     void cambioCaja( int id_caja );
+    void retiro();
+    void ingreso();
 
 private:
     QComboBox *CBCajas;

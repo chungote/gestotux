@@ -81,4 +81,7 @@ void GestotuxDefault::seCierraGestotux()
  return;
 }
 
+QAction *GestotuxDefault::botonPantallaInicial()
+{ return 0; }
+
 Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );

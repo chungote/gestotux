@@ -80,8 +80,10 @@ void gestotux::inicializar()
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
 
+ this->restoreState( preferencias::getInstancia()->value( "Ventanas/Principal/estado" ).toByteArray() );
+ this->restoreGeometry( preferencias::getInstancia()->value( "Ventanas/Principal/geometry" ).toByteArray() );
  if( preferencias::getInstancia()->value( "Preferencias/General/maximizado" ).toBool() )
- { this->showMinimized(); }
+ { this->showMaximized(); }
 }
 
 void gestotux::closeEvent( QCloseEvent *event )
@@ -201,6 +203,8 @@ void gestotux::salir()
 {
  // Envio señal de que salgo para los plugins que estan escuchando
  emit saliendoGestotux();
+ preferencias::getInstancia()->setValue( "Ventanas/Principal/estado", this->saveState( 1 ) );
+ preferencias::getInstancia()->setValue( "Ventanas/Principal/geometry", this->geometry() );
  // Guardo el estado de la ventana principal y sincronizo las preferencias para que queden guardas efectivamente
  preferencias::getInstancia()->sync();
 }

@@ -42,14 +42,15 @@ public:
     QWidgetList formsPreferencias();
     void crearMenu(QMenuBar* m);
     void crearToolBar(QToolBar* t);
+    QAction *botonPantallaInicial() { return ActCompras; }
 
 signals:
     void agregarVentana(QWidget* v);
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
 private:
-	QAction *ActAgregarCompra;
-	QAction *ActCompras;
+        QAction *ActAgregarCompra;
+        QAction *ActCompras;
 
 public slots:
     void agregarCompra();

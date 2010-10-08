@@ -29,15 +29,17 @@ ESplash::ESplash(QWidget *parent)
  : QSplashScreen( parent )
 {
  //setAttribute( Qt::WA_DeleteOnClose );
- this->setAttribute( Qt::WA_TranslucentBackground );
- if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.png" ) )
- {
-  this->setPixmap( QApplication::applicationDirPath() + QDir::separator() + "splash.png" );
- }
- else
- {
-  this->setPixmap( QPixmap( ":/imagenes/splash.png" ) );
- }
+    this->setAttribute( Qt::WA_OpaquePaintEvent );
+    this->setAttribute( Qt::WA_NoSystemBackground );
+    this->setAutoFillBackground( false );
+    if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.png" ) )
+    {
+      this->setPixmap( QApplication::applicationDirPath() + QDir::separator() + "splash.png" );
+    }
+    else
+    {
+      this->setPixmap( QPixmap( ":/imagenes/splash.png" ) );
+    }
 }
 
 
@@ -45,7 +47,7 @@ ESplash::~ESplash()
 {
 }
 
-void ESplash::drawContents(QPainter *painter)
+void ESplash::drawContents( QPainter *painter )
 {
   painter->setPen( this->color );
   QRect pos = rect();

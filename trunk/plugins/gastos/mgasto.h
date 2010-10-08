@@ -36,7 +36,7 @@ public:
     ~MGasto();
     QVariant data(const QModelIndex& item, int role) const;
     bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
-
+    bool setearIdMovimiento( int num_mov, double valor );
 };
 
 #endif

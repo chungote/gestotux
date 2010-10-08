@@ -44,6 +44,7 @@ public:
     static QStackedWidget *tabs();
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
+    QAction *botonPantallaInicial() { return ActProductos; }
 
 private:
     QList<QAction *> _acciones;
@@ -57,7 +58,7 @@ public slots:
     void seCierraGestotux();
 
 signals:
-	void agregarVentana( QWidget * );
+        void agregarVentana( QWidget * );
             void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 };
 

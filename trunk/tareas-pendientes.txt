@@ -1,7 +1,6 @@
 ::: Diseño :::
 
 -- Caja --
-- Ver que hacer cuando se hace el primer cierre de caja. Falta ver como poner el codigo para que funciones si no encuentra un cierre de caja antes.
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
 
 -- Cuotas --
@@ -24,19 +23,18 @@
 - Verificar correcta restauración de un backup.
 - Verificar correcta inizialización de todas las tablas de todos los plugins
    - SQLite
+     - Semi completo
    - MySql
+     - Semi completo
 - Verificar el correcto funcionamiento del nuevo formulario de clientes.
 - Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
 
 ::: Iconos necesarios :::
 
 - Recargos
-- Cerrar caja
-- Resumen de caja
 - Estado de caja
 - Listado de gastos
 - Recibos
-- Inicio
 
 ::: Problemas Generales :::
 

@@ -29,6 +29,10 @@ class VCajas : public EVLista
 public:
     VCajas(QWidget *parent = 0);
 
+public slots:
+    void ingreso();
+    void retiro();
+
 protected slots:
     void agregar( bool autoeliminarid  );
 

@@ -24,7 +24,7 @@
 #include <QSqlError>
 #include <QDateTime>
 #include <QSqlQuery>
-#include <QSqlQuery>
+#include <QSqlResult>
 
 #include "mcajas.h"
 
@@ -114,7 +114,12 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
       rec.setValue( "responsable", this->usuarioActual() );
   }
   rec.setValue( "fecha_hora", QDateTime::currentDateTime() );
-  rec.setValue( "cierre", false );
+  if( agregando_caja == true ) {
+      rec.setValue( "cierre", true );
+      // Es necesario que la apertura de la caja este como un cierre para evitar problemas de busquedas fallidas del 1º cierre
+  } else {
+      rec.setValue( "cierre", false );
+  }
   if( ingreso != 0 ) {
       rec.setValue( "ingreso", ingreso );
       rec.setValue( "egreso", 0.0 );
@@ -340,4 +345,13 @@ bool MMovimientosCaja::verificarCierreCaja( const int id_caja )
         qWarning( "No se pudo ejecutar la cola de averiguacion de si se puede hacer el cierre de caja" );
         return false;
     }
+}
+
+int MMovimientosCaja::ultimoIdInsertado() {
+    QSqlQuery cola;
+    if( cola.exec( "SELECT MAX(id_movimiento) FROM movimiento_caja" ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else { return -1; }
+    } else { return -1; }
 }

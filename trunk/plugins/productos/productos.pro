@@ -10,34 +10,22 @@ TARGET = productos
 
 DESTDIR = ../../bin/plugins
 
-win32 {
-    MOC_DIR = win/moc
-    UI_DIR = win/ui
-    OBJECTS_DIR = win/objeto
-}
-
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
-
 SOURCES += mcategorias.cpp \
-mproductos.cpp \
-vcategorias.cpp \
-vproductos.cpp \
- productos.cpp \
- dproductos.cpp \
- dcategoria.cpp \
- formprefproductos.cpp
+           mproductos.cpp \
+           vcategorias.cpp \
+           vproductos.cpp \
+           productos.cpp \
+           dproductos.cpp \
+           dcategoria.cpp \
+           formprefproductos.cpp
 HEADERS += mcategorias.h \
-mproductos.h \
-vcategorias.h \
-vproductos.h \
- productos.h \
- dproductos.h \
- dcategoria.h \
- formprefproductos.h
+           mproductos.h \
+           vcategorias.h \
+           vproductos.h \
+           productos.h \
+           dproductos.h \
+           dcategoria.h \
+           formprefproductos.h
 
 LIBS += ../../bin/libutiles.a
 
@@ -46,20 +34,14 @@ TARGETDEPS += ../../bin/libutiles.a
 INCLUDEPATH += ../../src \
   ../../utiles
 
-QMAKE_CXXFLAGS_DEBUG += -ggdb \
-  -g3
-
 DISTFILES += productos.SQLITE.sql \
  productos.QMYSQL.sql
 
 TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc
 
-CONFIG -= release
-
 FORMS += FormPrefProductosBase.ui
 
-OTHER_FILES += \
-    productos.QMYSQL.sql \
-    productos.ts \
-    productos.QSQLITE.sql
+OTHER_FILES += productos.QMYSQL.sql \
+               productos.ts \
+               productos.QSQLITE.sql

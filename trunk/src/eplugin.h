@@ -65,9 +65,11 @@ public:
     virtual void agregarVentana( QWidget *v ) = 0;
     // Señal para agregar Dockwidgets
     virtual void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana ) = 0;
+    // Funcion para el boton de la pantalla inicial
+    virtual QAction *botonPantallaInicial() = 0;
 };
 
 Q_DECLARE_INTERFACE( EPlugin,
-                     "tranfuga.EPlugin/2.0" );
+                     "tranfuga.EPlugin/2.1" );
 
 #endif
