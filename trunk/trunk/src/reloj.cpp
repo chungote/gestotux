@@ -21,7 +21,8 @@
 
 #include <QTimer>
 #include <QTime>
-#include <QPainter>
+#include <QCloseEvent>
+#include "preferencias.h"
 
 Reloj::Reloj(QWidget *parent)
  : QLCDNumber( parent )
@@ -31,6 +32,7 @@ Reloj::Reloj(QWidget *parent)
  QTimer *timer = new QTimer(this);
  connect( timer, SIGNAL( timeout() ), this, SLOT( showTime() ) );
  timer->start(1000);
+ this->resize( preferencias::getInstancia()->value( "Ventanas/Reloj", this->size() ).toSize() );
 }
 
 
@@ -45,4 +47,10 @@ void Reloj::showTime()
      if ((time.second() % 2) == 0)
          text[2] = ' ';
      display(text);
+}
+
+void Reloj::closeEvent( QCloseEvent *e ) {
+    // Guardo mi tamaño
+    preferencias::getInstancia()->setValue( "Ventanas/Reloj", this->size() );
+    e->accept();
 }

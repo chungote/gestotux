@@ -26,6 +26,7 @@
 
 class MCategoriasGastos;
 class QSqlQueryModel;
+class MGasto;
 
 class FormAgregarGasto : public EVentana, private Ui::FormAgregarGastoBase
 {
@@ -37,6 +38,8 @@ public:
 protected slots:
     void guardar();
 
+signals:
+    void actualizarVista();
 private:
         MCategoriasGastos *modeloCombo;
         QSqlQueryModel *modeloEdit;

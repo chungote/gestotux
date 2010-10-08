@@ -29,7 +29,7 @@
 
 Plugin para realizar pagos y/o imprirmir recibos
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class PagosPlugin : public QObject, public EPlugin
 {
@@ -45,6 +45,7 @@ public:
     QWidgetList formsPreferencias();
     void crearMenu(QMenuBar* m);
     void crearToolBar(QToolBar* t);
+    QAction *botonPantallaInicial() { return ActPagos; }
 
 signals:
     void agregarVentana(QWidget* v);
@@ -54,7 +55,7 @@ public slots:
     void verPagos();
 
 private:
-	QAction *ActPagos;
+        QAction *ActPagos;
 };
 
 #endif

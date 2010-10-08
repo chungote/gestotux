@@ -25,6 +25,9 @@
 #include <QComboBox>
 #include "mmovimientoscaja.h"
 #include "mcajas.h"
+#include "actingresocaja.h"
+#include "actretirocaja.h"
+#include "FormRetiroIngreso.h"
 #include <QGridLayout>
 #include <QHeaderView>
 
@@ -33,15 +36,14 @@ VResumenCaja::VResumenCaja( QWidget *parent )
 {
   this->setObjectName( "resumenCaja" );
   this->setWindowTitle( "Resumen de caja" );
-  this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
+  this->setWindowIcon( QIcon( ":/imagenes/cajaresumen.png" ) );
 
   // Inicializo el modelo de la vista
   modelo = new MMovimientosCaja( this );
   vista->setModel( modelo );
   vista->hideColumn( 1 );
   vista->hideColumn( 0 );
-  vista->hideColumn( modelo->fieldIndex( "cierre" )) ;
-  vista->horizontalHeader()->resizeSections( QHeaderView::ResizeToContents );
+  vista->hideColumn( modelo->fieldIndex( "cierre" ) );
   CBCajas = new QComboBox( this );
   // Reordena los items para que el combo box este arriba
   QGridLayout *l = qobject_cast<QGridLayout *>(this->layout());
@@ -56,6 +58,10 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   connect( CBCajas, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCaja( int ) ) );
   cmodelo->select();
 
+  this->vista->horizontalHeader()->resizeSections( QHeaderView::ResizeToContents );
+
+  this->addAction( new ActIngresoCaja( this ) );
+  this->addAction( new ActRetiroCaja( this ) );
   this->addAction( ActCerrar );
 }
 
@@ -64,4 +70,18 @@ void VResumenCaja::cambioCaja( int id )
 {
     int id_caja = CBCajas->model()->data( CBCajas->model()->index( id, 0 ), Qt::EditRole ).toInt();
     modelo->ultimosMovimientosCaja( id_caja );
+}
+
+void VResumenCaja::ingreso() {
+    FormRetiroIngreso *f = new FormRetiroIngreso( this, FormRetiroIngreso::Ingreso );
+    f->setearCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    f->exec();
+    modelo->ultimosMovimientosCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+}
+
+void VResumenCaja::retiro() {
+    FormRetiroIngreso *f = new FormRetiroIngreso( this, FormRetiroIngreso::Retiro );
+    f->setearCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    f->exec();
+    modelo->ultimosMovimientosCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
 }

@@ -88,6 +88,9 @@ void proveedor::crearMenu(QMenuBar* m)
 void proveedor::crearToolBar(QToolBar* t)
 {}
 
+QAction *proveedor::botonPantallaInicial()
+{  return ActProveedores; }
+
 #include "vproveedor.h"
 
 /*!

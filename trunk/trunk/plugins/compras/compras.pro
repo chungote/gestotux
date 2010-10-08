@@ -23,28 +23,16 @@ FORMS += FormAgregarCompraBase.ui
 
 RESOURCES += compras.qrc
 
-win32 {
-    MOC_DIR = win/moc
-    UI_DIR = win/ui
-    OBJECTS_DIR = win/objeto
-}
-
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
-
 SOURCES += mcompra.cpp \
-vcompras.cpp \
-formagregarcompra.cpp \
-compras.cpp \
-../proveedor/mproveedor.cpp \
- mcompraproducto.cpp
+           vcompras.cpp \
+           formagregarcompra.cpp \
+           compras.cpp \
+           mcompraproducto.cpp \
+    ../proveedor/mproveedor.cpp
 
 HEADERS += formagregarcompra.h \
-mcompra.h \
-vcompras.h \
-compras.h \
-../proveedor/mproveedor.h \
- mcompraproducto.h
+           mcompra.h \
+           vcompras.h \
+           compras.h \
+           mcompraproducto.h \
+    ../proveedor/mproveedor.h

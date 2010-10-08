@@ -38,6 +38,7 @@ protected slots:
 private slots:
     void agregarGasto();
     void mostrarCategorias();
+    void actualizarVista();
 
 signals:
     void agregarVentana( QWidget *ventana );

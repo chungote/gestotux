@@ -34,12 +34,11 @@ public:
 
 protected:
     void changeEvent( QEvent *e );
-    /*void paintEvent( QPaintEvent *event );*/
 
 protected slots:
-    void caja();
     void backup();
     void preferencias();
+    void clientes();
 };
 
 #endif // FORMPANTALLAINICIAL_H

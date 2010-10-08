@@ -11,7 +11,8 @@ ventas.cpp \
  mventaproducto.cpp \
  vlistaprecio.cpp \
  ../CtaCte/mcuentacorriente.cpp \
- ../CtaCte/mitemcuentacorriente.cpp
+ ../CtaCte/mitemcuentacorriente.cpp \
+    ../productos/mproductos.cpp
 
 HEADERS += mventa.h \
 ventas.h \
@@ -21,7 +22,8 @@ ventas.h \
  mventaproducto.h \
  vlistaprecio.h \
  ../CtaCte/mcuentacorriente.h \
- ../CtaCte/mitemcuentacorriente.h
+ ../CtaCte/mitemcuentacorriente.h \
+    ../productos/mproductos.h
 
 TRANSLATIONS = ventas.ts
 

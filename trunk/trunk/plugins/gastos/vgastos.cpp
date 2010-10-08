@@ -73,7 +73,11 @@ void VGastos::antes_de_insertar(int row, QSqlRecord& record)
     Muestra la ventana de agregar gastos
  */
 void VGastos::agregarGasto()
-{ emit agregarVentana( new FormAgregarGasto() ); }
+{
+    FormAgregarGasto *f = new FormAgregarGasto();
+    connect( f, SIGNAL( actualizarVista() ), this, SLOT( actualizarVista() ) );
+    emit agregarVentana( f );
+}
 
 #include "vcategoriasgastos.h"
 /*!
@@ -82,3 +86,8 @@ void VGastos::agregarGasto()
  */
 void VGastos::mostrarCategorias()
 { emit agregarVentana( new VCategoriasGastos() ); }
+
+
+void VGastos::actualizarVista() {
+  this->modelo->select();
+}

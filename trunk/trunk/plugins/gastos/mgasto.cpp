@@ -20,7 +20,10 @@
 #include "mgasto.h"
 
 #include <QSqlRecord>
+#include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlResult>
+#include <QSqlField>
 #include <QDate>
 #include <QColor>
 
@@ -173,5 +176,24 @@ bool MGasto::agregarGasto( QString descripcion, double costo, QDate Fecha, int c
          return false;
      }
 
+ }
+}
+
+bool MGasto::setearIdMovimiento( int num_mov, double valor ) {
+  QSqlQuery cola;
+  int id_gasto = -1;
+  if( cola.exec( "SELECT MAX(id_gasto) FROM gastos") ) {
+      if( cola.next() ) {
+          id_gasto = cola.record().value(0).toInt();
+      } else { return false; }
+  } else { return false; }
+  if( cola.exec( QString( "UPDATE %1 SET id_caja = %4 WHERE id_gasto = %2 AND costo = %3" ).arg( this->tableName() ).arg( id_gasto ).arg( valor ).arg( num_mov ) ) ) {
+     qDebug( "movimiento de caja y gastos enlazados correctamente");
+     qDebug( cola.lastQuery().toLocal8Bit() );
+     return true;
+ } else {
+     qDebug( "Error al actualizar el indicador de caja en un gasto" );
+     qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+     return false;
  }
 }

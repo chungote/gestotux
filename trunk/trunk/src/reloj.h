@@ -35,7 +35,10 @@ public:
     Reloj(QWidget *parent = 0);
     ~Reloj();
 
-    private slots:
+protected:
+    void closeEvent( QCloseEvent *e );
+
+private slots:
      void showTime();
 
 };

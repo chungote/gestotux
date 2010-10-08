@@ -83,34 +83,43 @@ void EFlecha::setearTamFlecha( int tam )
 
 void EFlecha::paintEvent( QPaintEvent *evento )
 {
-    this->setP1( QPointF( 10, 10 ) );
-    this->setP2( QPointF( 50, 50 ) );
+    this->setP1( QPointF( 10, 50 ) );
+    this->setP2( QPointF( 100, 50 ) );
     tamFlecha = 20;
-    QPoint f1,f2;
+    QPoint f1;
     double tangente = atan2( (double)( p2().y() - p1().y() ), (double) ( p2().x() - p1().x() ) );
 
     /*qDebug( QString( "f1x = %1 ").arg( tamFlecha * cos( M_PI * ( 3.0 / 4.0 ) ) ).toLocal8Bit() );
     qDebug( QString( "f1y = %1 ").arg( tamFlecha * sin( M_PI * ( 3.0 / 4.0 ) ) ).toLocal8Bit() );
-    qDebug( QString( "f2x = %1 ").arg( tamFlecha * cos( M_PI * ( 5.0 / 4.0 ) ) ).toLocal8Bit() );
-    qDebug( QString( "f2y = %1 ").arg( tamFlecha * sin( M_PI * ( 5.0 / 4.0 ) ) ).toLocal8Bit() );
-
-    qDebug( QString( "cos1 = %1 ").arg( cos( M_PI * ( 3.0 / 4.0 ) ) ).toLocal8Bit() );
-    qDebug( QString( "cos2 = %1 ").arg( cos( M_PI * ( 5.0 / 4.0 ) ) ).toLocal8Bit() );
+    qDebug( QString( "difx = %1 ").arg( ( p2().x() - p1().x() ) ).toLocal8Bit() );
+    qDebug( QString( "dify = %1 ").arg( ( p2().y() - p1().y() ) ).toLocal8Bit() );
     qDebug( QString( "sin1 = %1 ").arg( sin( M_PI * ( 3.0 / 4.0 ) ) ).toLocal8Bit() );
     qDebug( QString( "sin2 = %1 ").arg( sin( M_PI * ( 5.0 / 4.0 ) ) ).toLocal8Bit() );
     qDebug( QString( "tangente = %1 ").arg( tangente ).toLocal8Bit() );*/
 
     f1.setX( tamFlecha * cos( M_PI * ( 3.0 / 4.0 ) ) );
     f1.setY( tamFlecha * sin( M_PI * ( 3.0 / 4.0 ) ) );
-    f2.setX( tamFlecha * cos( M_PI * ( 5.0 / 2.0 ) ) );
-    f2.setY( tamFlecha * sin( M_PI * ( 5.0 / 2.0 ) ) );
 
     QPainter p(this);
+    p.setPen( Qt::yellow );
     p.drawLine( this->p1(), this->p2() );
-    p.save();
-    p.rotate( tangente );
-    p.translate( p2().x(), p2().y() );
-    p.drawLine( QPointF( 0, 0 ), f1 );
-    p.drawLine( QPointF( 0, 0 ), f2 );
+     p.save();
+     p.setPen( Qt::red );
+     // Me muevo a la punta de la flecha
+     p.translate( p2().x(), p2().y() );
+     p.save();
+      // Me muevo el angulo de la linea ( esta en radianes )
+      p.rotate( ( tangente * 180 ) / M_PI );
+      p.drawLine( QPointF( 0, 0 ), f1 );
+       //p.save();
+       // Giro 90 grados
+       p.rotate( ( 90.0 * 180 ) / M_PI );
+       p.setPen( Qt::blue );
+       //qDebug( QString( "f1 x = %1 y=%2 ").arg( f1.x() ).arg( f1.y() ).toLocal8Bit() );
+       p.drawLine( QPointF( 0, 0 ), f1 );
+
+     // p.restore();
+     p.restore();
     p.restore();
+    // fin
 }

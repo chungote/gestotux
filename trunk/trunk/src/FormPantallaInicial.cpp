@@ -20,6 +20,7 @@
 
 #include "FormPantallaInicial.h"
 #include "EFlecha.h"
+#include "eregistroplugins.h"
 #include <QPaintEngine>
 
 FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
@@ -31,24 +32,84 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     this->setWindowIcon( QIcon( ":/imagenes/inicio.png" ) );
 
     // Seteo los iconos
-    //TBPresupuestos->setIcon( QIcon( ":/imagenes/presupuesto.png" ) );
-    TBCaja->setIcon( QIcon( ":/imagenes/caja.png" ) );
-    TBClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
-    TBCompras->setIcon( QIcon( ":/imagenes/compras.png" ) );
-    TBProductos->setIcon( QIcon( ":/imagenes/productos.png" ) );
-    TBCuentasCorrientes->setIcon( QIcon( ":/imagenes/ctacte.png" ) );
-    TBProveedores->setIcon( QIcon( ":/imagenes/proveedores.png" ) );
-    TBServicios->setIcon( QIcon( ":/imagenes/servicios.png" ) );
-    TBGastos->setIcon( QIcon( ":/imagenes/gastos.png" ) );
     // Generales
     TBBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
-    TBPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
+    connect( TBBackup, SIGNAL( clicked() ), this, SLOT( backup() ) );
 
-    // Conecto los slots
-    connect( TBCaja        , SIGNAL( clicked() ), this, SLOT( caja()         ) );
-    connect( TBBackup      , SIGNAL( clicked() ), this, SLOT( backup()       ) );
+    TBPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
     connect( TBPreferencias, SIGNAL( clicked() ), this, SLOT( preferencias() ) );
 
+    TBClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
+    connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // Plugins
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //  Presupuestos
+    if( ERegistroPlugins::getInstancia()->existePlugin( "presupuesto" ) ) {
+        connect( TBPresupuestos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("presupuesto")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBPresupuestos->setIcon(ERegistroPlugins::getInstancia()->plugin("presupuesto")->botonPantallaInicial()->icon() );
+    } else {
+        TBPresupuestos->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Caja
+    if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+        connect( TBCaja, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("caja")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBCaja->setIcon(ERegistroPlugins::getInstancia()->plugin("caja")->botonPantallaInicial()->icon() );
+    } else {
+        TBCaja->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Compras
+    if( ERegistroPlugins::getInstancia()->existePlugin( "compras" ) ) {
+        connect( TBCompras, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("compras")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBCompras->setIcon(ERegistroPlugins::getInstancia()->plugin("compras")->botonPantallaInicial()->icon() );
+    } else {
+        TBCompras->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Productos
+    if( ERegistroPlugins::getInstancia()->existePlugin( "productos" ) ) {
+        connect( TBProductos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("productos")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBProductos->setIcon( ERegistroPlugins::getInstancia()->plugin("productos")->botonPantallaInicial()->icon() );
+    } else {
+        TBProductos->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Cuentas Corrientes
+    if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) ) {
+        connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
+    } else {
+        TBCuentasCorrientes->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Proveedores
+    if( ERegistroPlugins::getInstancia()->existePlugin( "proveedor" ) ) {
+        TBProveedores->setIcon( ERegistroPlugins::getInstancia()->plugin("proveedor")->botonPantallaInicial()->icon() );
+        connect( TBProveedores, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("proveedor")->botonPantallaInicial(), SIGNAL(triggered()) );
+    } else {
+        TBProveedores->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Servicios
+    if( ERegistroPlugins::getInstancia()->existePlugin( "servicios" ) ) {
+        TBServicios->setIcon( ERegistroPlugins::getInstancia()->plugin("servicios")->botonPantallaInicial()->icon() );
+        connect( TBServicios, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("servicios")->botonPantallaInicial(), SIGNAL(triggered()) );
+    } else {
+        TBServicios->setVisible( false );
+    }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Gastos
+    if( ERegistroPlugins::getInstancia()->existePlugin( "gastos" ) ) {
+        TBGastos->setIcon( ERegistroPlugins::getInstancia()->plugin("gastos")->botonPantallaInicial()->icon() );
+        connect( TBGastos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("gastos")->botonPantallaInicial(), SIGNAL(triggered()) );
+    } else {
+        TBGastos->setVisible( false );
+    }
+    ///////////////////////////////////////////////////////////////////////////////////
     // Dibujo las flechas
     f1->setearOrigen( TBPresupuestos );
     f1->setearDestino( TBFacturas );
@@ -67,10 +128,6 @@ void FormPantallaInicial::changeEvent(QEvent *e)
     }
 }
 
-void FormPantallaInicial::caja()
-{
-}
-
 #include "ebackup.h"
 void FormPantallaInicial::backup()
 { emit agregarVentana( new Ebackup( this ) ); }
@@ -79,17 +136,6 @@ void FormPantallaInicial::backup()
 void FormPantallaInicial::preferencias()
 { emit agregarVentana( new FormPreferencias( ) ); }
 
-/*
-void FormPantallaInicial::paintEvent( QPaintEvent *event )
-{
-    QPainter p( this );
-    // Dibujo las lineas y flechas
-    QLine l = f1->linea1();
-    p.drawLine( l.p1(), l.p2() );
-    l = f1->linea2();
-    p.drawLine( l.p1(), l.p2() );
-    l = f1->linea3();
-    p.drawLine( l.p1(), l.p2() );
-    p.end();
-}
-*/
+#include "vcliente.h"
+void FormPantallaInicial::clientes()
+{ emit agregarVentana( new VCliente()); }

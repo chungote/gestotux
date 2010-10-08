@@ -26,6 +26,7 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QDebug>
 
 #include "mgasto.h"
 #include "eactguardar.h"
@@ -114,14 +115,21 @@ void FormAgregarGasto::guardar()
                                 CWFecha->selectedDate(),
                                 CBTipo->model()->data( CBTipo->model()->index( CBTipo->currentIndex(), 0 ), Qt::EditRole ).toInt() ) == true )
   {
-        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" )  && CkBSacarCaja->isChecked() ) {
              MMovimientosCaja *m = new MMovimientosCaja();
              int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
              if( !m->agregarMovimiento( id_caja, CBDescripcion->currentText(), QString(), 0.0, dSBCosto->value() ) ) {
                  QMessageBox::information( this, "Error", "El gasto se guardo correctamente, pero no se pudo registrar la operacion en la cuenta de caja" );
              }
+             // enlazo los datos
+             int id_mov = m->ultimoIdInsertado();
+             qDebug() << "Ultimo id movimiento: " << id_mov;
+             if( !modeloGastos->setearIdMovimiento( id_mov, dSBCosto->value() ) ) {
+                 QMessageBox::information( this, "Error", "El gasto se guardo correctamente pero no se pudo relacionar la entrada de caja con el gasto." );
+             }
              delete m;
          } else {
+
              QMessageBox::information( this, "Correcto", "El gasto se han agregado correctamente" );
          }
   }
@@ -134,6 +142,7 @@ void FormAgregarGasto::guardar()
   }
   delete modeloGastos;
  }
+ emit actualizarVista();
  this->close();
  return;
 }

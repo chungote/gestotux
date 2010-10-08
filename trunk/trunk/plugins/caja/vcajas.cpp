@@ -25,6 +25,8 @@
 #include <QTableView>
 
 #include "mcajas.h"
+#include "actretirocaja.h"
+#include "actingresocaja.h"
 
 #include "FormAgregarCaja.h"
 
@@ -44,6 +46,8 @@ VCajas::VCajas(QWidget *parent) :
     connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
     addAction( ActAgregar );
+    addAction( new ActRetiroCaja( this ) );
+    addAction( new ActIngresoCaja( this ) );
     //addAction( ActEliminar );
     addAction( ActCerrar );
 }
@@ -53,4 +57,16 @@ void VCajas::agregar( bool autoeliminarid ) {
    FormAgregarCaja *f = new FormAgregarCaja( this );
    f->exec();
    modelo->select();
+}
+
+#include "FormRetiroIngreso.h"
+
+void VCajas::retiro() {
+ FormRetiroIngreso *r = new FormRetiroIngreso( this );
+ r->exec();
+}
+
+void VCajas::ingreso() {
+    FormRetiroIngreso *r = new FormRetiroIngreso( this, FormRetiroIngreso::Ingreso );
+    r->exec();
 }
