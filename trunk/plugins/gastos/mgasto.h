@@ -25,7 +25,7 @@ class QDate;
 
 /**
  * @brief Modelo de gastos
- * @class MGasto
+ *
  * @author Esteban Zeller <juiraze@yahoo.com.ar>
  */
 class MGasto : public QSqlRelationalTableModel
@@ -37,6 +37,7 @@ public:
     QVariant data(const QModelIndex& item, int role) const;
     bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
     bool setearIdMovimiento( int num_mov, double valor );
+    bool eliminarFila( const int fila );
 };
 
 #endif

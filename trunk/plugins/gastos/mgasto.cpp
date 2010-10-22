@@ -24,8 +24,13 @@
 #include <QSqlError>
 #include <QSqlResult>
 #include <QSqlField>
+#include <QSqlRecord>
 #include <QDate>
 #include <QColor>
+#include <QModelIndex>
+
+#include "../caja/mmovimientoscaja.h"
+#include <eregistroplugins.h>
 
 MGasto::MGasto( QObject *parent, bool relaciones )
  : QSqlRelationalTableModel( parent )
@@ -196,4 +201,32 @@ bool MGasto::setearIdMovimiento( int num_mov, double valor ) {
      qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
      return false;
  }
+}
+
+bool MGasto::eliminarFila( const int fila ) {
+    // Como no es posible relacionar tablas con id nula, tengro que verificar a pata
+    qDebug( "Eliminando fila de caja" );
+    QSqlRecord rf = this->record(fila);
+    if( !rf.field( "id_caja" ).isNull() ) {
+        // Elimino la acción de caja
+        qDebug( "Campo de caja no nulo, intentando eliminarlo.");
+        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) == true ) {
+            MMovimientosCaja *m = new MMovimientosCaja();
+            bool r = m->eliminarMovimiento( rf.field("id_caja").value().toInt() );
+            delete m;
+            if( r ) {
+                qDebug( "Campo de caja eliminado" );
+                return ( r && QSqlRelationalTableModel::removeRow( fila ) );
+            } else {
+                qDebug( "Error al eliminar el registro de operacion de caja, no se elimina la entrada de gasto." );
+                return false;
+            }
+        } else {
+            qDebug( "Campo de caja presente pero plugin no cargado. No se elimino el registro.");
+            return QSqlRelationalTableModel::removeRow( fila );
+        }
+    } else {
+        qDebug( "Campo de caja es nulo.");
+        return QSqlRelationalTableModel::removeRow( fila );
+    }
 }

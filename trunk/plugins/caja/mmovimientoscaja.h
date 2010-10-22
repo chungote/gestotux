@@ -37,6 +37,7 @@ public:
     bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0, bool agregando_caja = false );
     bool verificarCierreCaja( const int id_caja );
     bool agregarCierre( const int id_caja, const QDateTime fechahora, const double saldo );
+    bool eliminarMovimiento( const int id_movimiento = -1 );
 
     int buscarUltimoCierre( const int id_caja );
     int ultimoIdInsertado();

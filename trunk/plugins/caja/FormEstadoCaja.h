@@ -27,6 +27,9 @@ namespace Ui {
     class FormEstadoCaja;
 }
 
+/*!
+ * @brief Formulario para verificar el saldo de las cajas en el sistema
+ */
 class FormEstadoCaja : public QDialog
 {
     Q_OBJECT

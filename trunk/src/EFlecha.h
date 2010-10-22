@@ -26,6 +26,9 @@
 #include <QPaintEvent>
 #include <QColor>
 
+/*!
+ * @brief Clase para mostrar una flecha entre 2 widgets de la pantalla principal
+ */
 class EFlecha : public QWidget, public QLineF
 {
     Q_OBJECT

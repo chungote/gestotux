@@ -25,6 +25,8 @@
 #include <QTableView>
 #include <QSqlRelationalDelegate>
 #include <QAction>
+#include <QMessageBox>
+#include <QSqlError>
 
 VGastos::VGastos( QWidget* parent )
 : EVLista( parent )
@@ -54,7 +56,7 @@ VGastos::VGastos( QWidget* parent )
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( mostrarCategorias() ) );
 
  addAction( ActAgregar );
- //addAction( ActEliminar );
+ addAction( ActEliminar );
  addAction( ActCategorias );
  addAction( ActCerrar );
 }
@@ -90,4 +92,38 @@ void VGastos::mostrarCategorias()
 
 void VGastos::actualizarVista() {
   this->modelo->select();
+}
+
+void VGastos::eliminar() {
+    MGasto *m = qobject_cast<MGasto *>(vista->model());
+    //Preguntar al usuario si esta seguro
+    QItemSelectionModel *selectionModel = vista->selectionModel();
+    QModelIndexList indices = selectionModel->selectedRows();
+    if( indices.size() < 1 )
+    {
+      QMessageBox::warning( this, "Seleccione un item",
+                      "Por favor, seleccione un item para eliminar",
+                      QMessageBox::Ok );
+      return;
+    }
+    //Hacer dialogo de confirmacion..
+    int ret;
+    ret = QMessageBox::warning( this, "Esta seguro?",
+                      QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
+                      "Si", "No" );
+    if ( ret == 0 )
+    {
+           QModelIndex indice;
+           foreach( indice, indices )
+           {
+                   if( indice.isValid() )
+                   {
+                           if( m->eliminarFila( indice.row() ) )
+                           { return; }
+                           else
+                           { qWarning( qPrintable( "Error al eliminar el registro" + m->lastError().text() ) ); }
+                   }
+           }
+    }
+    return;
 }

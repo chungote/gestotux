@@ -103,11 +103,11 @@ private:
       QAction *exitAct;
       QAction *acercade;
       QAction *ActCerrar;
-      QAction *ActPdf;
-      QAction *ActImprimir;
+      //QAction *ActPdf;
+      //QAction *ActImprimir;
       QAction *ActPreferencias;
       QAction *ActBackup;
-      QAction *ActProductos;
+      //QAction *ActProductos;
       QAction *ActActualizar;
       QAction *ActAyuda;
       QAction *ActRestaurar;
