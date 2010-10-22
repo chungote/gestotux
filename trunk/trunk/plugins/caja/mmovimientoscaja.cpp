@@ -347,6 +347,11 @@ bool MMovimientosCaja::verificarCierreCaja( const int id_caja )
     }
 }
 
+/*!
+ * @fn MMovimientosCaja::ultimoIdInsertado()
+ * Devuelve el maximo id de la base de datos en la tabla movimiento_caja. Utilizar con cuidado en las operaciones concurrentes.
+ * @returns entero con el numero
+ */
 int MMovimientosCaja::ultimoIdInsertado() {
     QSqlQuery cola;
     if( cola.exec( "SELECT MAX(id_movimiento) FROM movimiento_caja" ) ) {
@@ -354,4 +359,50 @@ int MMovimientosCaja::ultimoIdInsertado() {
             return cola.record().value(0).toInt();
         } else { return -1; }
     } else { return -1; }
+}
+
+/*!
+ * @fn MMovimientosCaja::eliminarMovimiento( const int id_movimiento )
+ * Elimina el movimiento de caja correspondiente al id pasado como parametro y actualiza el saldo
+ * @param id_caja Identificador de la caja de la cual se desea averiguar
+ * @returns Verdadero si se puede hacer, falso si no se puede hacer
+ */
+bool MMovimientosCaja::eliminarMovimiento( const int id_movimiento ) {
+    if( id_movimiento != -1 ) {
+        QSqlQuery cola;
+        int id_caja = -1;
+        // Busco la caja a la que pertenece
+        if( cola.exec( QString( "SELECT id_caja FROM movimiento_caja WHERE id_movimiento = %1 LIMIT 1" ).arg( id_movimiento ) ) ) {
+            if( cola.next() ) {
+                id_caja = cola.record().value(0).toInt();
+            } else {
+                qWarning( "No se pudo hace next de la cola de obtener la caja correspondiente al movimiento de caja a eliminar" );
+                qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+                return false;
+            }
+        } else {
+            qWarning( "No se pudo ejecutar la cola de obtencion de caja correspondiente al movimiento de caja a eliminar" );
+            qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+            return false;
+        }
+        if( cola.exec( QString( "DELETE FROM movimiento_caja WHERE id_movimiento = %1 LIMIT 1" ).arg( id_movimiento ) ) ) {
+            // Una vez eliminado el movimiento si recalculo el saldo
+            if( !this->recalcularSaldo( id_caja ) ) {
+                qWarning( "No se pudo actualizar el saldo de la caja cuyo movimiento estamos eliminado" );
+                qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+                return false;
+            } else {
+                qDebug( "Saldo actualizado correctamente." );
+                return true;
+            }
+        } else {
+            qWarning( "No se pudo ejecutar la cola de eliminacion de movimiento de caja" );
+            qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+            return false;
+        }
+    } else {
+        qWarning( "No se pudo ejecutar la cola de eiminacion de movimiento porque el id es invalido" );
+        qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        return false;
+    }
 }

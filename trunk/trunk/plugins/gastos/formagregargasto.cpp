@@ -127,6 +127,8 @@ void FormAgregarGasto::guardar()
              if( !modeloGastos->setearIdMovimiento( id_mov, dSBCosto->value() ) ) {
                  QMessageBox::information( this, "Error", "El gasto se guardo correctamente pero no se pudo relacionar la entrada de caja con el gasto." );
              }
+             modeloGastos->submitAll();
+             m->submitAll();
              delete m;
          } else {
 

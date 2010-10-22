@@ -34,6 +34,7 @@ public:
 
 protected slots:
     virtual void antes_de_insertar(int row, QSqlRecord& record);
+    void eliminar();
 
 private slots:
     void agregarGasto();

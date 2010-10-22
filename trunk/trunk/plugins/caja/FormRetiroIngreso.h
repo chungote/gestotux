@@ -24,11 +24,17 @@
 #include "ui_FormRetiroIngresoBase.h"
 #include <QDialog>
 
+/*!
+ * @brief Formulario para ingresar o retirar dinero de una caja
+ */
 class FormRetiroIngreso : public QDialog, private Ui::FormRetiroIngreso
 {
     Q_OBJECT
-
 public:
+    /*!
+     * @enum Modo
+     * Permite definir la accion a llevar a cabo al realizar la consutccion del formulario
+     */
     enum Modo {
         Retiro = 0,
         Ingreso = 1

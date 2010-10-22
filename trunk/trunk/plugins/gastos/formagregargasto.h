@@ -28,6 +28,9 @@ class MCategoriasGastos;
 class QSqlQueryModel;
 class MGasto;
 
+/*!
+ * @brief Formulario para agregar un gasto
+ */
 class FormAgregarGasto : public EVentana, private Ui::FormAgregarGastoBase
 {
   Q_OBJECT

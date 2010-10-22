@@ -117,6 +117,7 @@ void EVLista::cerrar()
 /*!
     \fn EVLista::agregar( bool autoeliminarid )
         Agrega un nuevo registro mediante la vista al modelo
+        @param autoeliminarid elimina el primer campo de los registros
  */
 void EVLista::agregar( bool autoeliminarid )
 {
@@ -129,7 +130,7 @@ void EVLista::agregar( bool autoeliminarid )
     if( !m->insertRecord( -1, registro ) )
     {
          qDebug( "Error al insertar el registro" );
-         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( rmodelo->lastError().type() ).arg( rmodelo->lastError().number() ).arg( rmodelo->lastError().text() ).toLocal8Bit() );
+         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( m->lastError().type() ).arg( m->lastError().number() ).arg( m->lastError().text() ).toLocal8Bit() );
     }
 }
 

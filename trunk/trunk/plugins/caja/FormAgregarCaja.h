@@ -27,6 +27,9 @@ namespace Ui {
     class FormAgregarCaja;
 }
 
+/*!
+ * @brief Formulario para agregar una caja
+ */
 class FormAgregarCaja : public QDialog
 {
     Q_OBJECT

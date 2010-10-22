@@ -27,6 +27,9 @@ namespace Ui {
     class FormCierreCaja;
 }
 
+/*!
+ * @brief Formulario para generar un cierre de caja
+ */
 class FormCierreCaja : public EVentana
 {
     Q_OBJECT

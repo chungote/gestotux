@@ -1,7 +1,13 @@
 ::: Diseño :::
 
+- Terminar diseños de entidad relación para el conjunto general y cada plugin.
+- Terminar de definir el sistema de impesion.
+- Eliminar sistema de lista de precios
+- Verificar el diseño de las categorias.
+
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
+- Agregar la posibilidad de agregar transferencia entre cajas
 
 -- Cuotas --
 - Definir sistema de cuotas.
@@ -9,14 +15,30 @@
     - Utilizamos como base la "forma de pago"?
     - Agregar formas de pago en recibos y/o ventas.
 
--- Reportes --
-- Definir sistema final de creacion de comprobantes.
-
 -- Recibos --
 - Hacer que al elegir la opcion de pago contado, genere la entrada de caja.
+- Diseñar para que se pueda hacer el pago diferido de la impresion.
 
 -- General --
 - Ver porque no se dibujan las flechas en la pantalla inicial.
+
+-- Cuentas corrientes --
+- Ver integracion con los otros plugins
+
+-- Productos --
+- Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos )
+- Ver como integrar el sistema de codigo de barras en el programa.
+- Ver como hacer los tickets de precios.
+
+-- Servicios --
+- Diseñar sistema de preimpresion de recibos
+
+-- Compras --
+- Verificar si es posible hacer autoagregado de productos dandolos de alta al agregarlos en una factura de venta.
+
+-- Ventas --
+- Diseñar sistema para que soporte ventas al contado.
+- Diseñar sistema para que soporte automaticamente el sistema de cuotas.
 
 ::: Pruebas para hacer :::
 
@@ -27,7 +49,11 @@
    - MySql
      - Semi completo
 - Verificar el correcto funcionamiento del nuevo formulario de clientes.
-- Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
+- Probar cierre de caja cuando no hay operaciones mas que el ultimo cierre.
+- Probar agregar gastos y verificar si se guardan en el listado de caja.
+- Probar eliminar un gasto y verificar si se elimina en el listado de caja.
+- Probar eliminar un gasto y verificar si se elimina en el listado de caja y actualiza correctamente el saldo.
+- Verificar sistema de ingreso de proveedores.
 
 ::: Iconos necesarios :::
 
@@ -41,3 +67,14 @@
 - Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
 - Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
 - Hacer necesario los backups para continuar con el programa al iniciar.
+- Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
+
+::: Otros :::
+- Averiguar librerias de codigos de barra.
+- Averiguar integracion con lectores de codigo de barra.
+- Averiguar posibilidades de venta para telefonos inteligentes.
+- Averiguar sistemas de interconexion con bluethoot pc->tel
+- Averiguar sistema de interconexion tel->serv ( costos posibles )
+
+::: Ideas sueltas :::
+- Recibos de HiComp con codigo de barras o codigo para ingresar el pago del recibo ya impreso.

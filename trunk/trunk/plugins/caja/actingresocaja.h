@@ -23,16 +23,14 @@
 
 #include <QAction>
 
+/*!
+ * @brief Clase de accion de agregar dinero a la caja
+ */
 class ActIngresoCaja : public QAction
 {
     Q_OBJECT
 public:
     explicit ActIngresoCaja(QObject *parent = 0);
-
-signals:
-
-public slots:
-
 };
 
 #endif // ACTINGRESOCAJA_H
