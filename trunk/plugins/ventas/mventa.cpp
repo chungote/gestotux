@@ -41,15 +41,14 @@ MVenta::~MVenta()
 
 
 /*!
-    \fn MVenta::agregarVenta( QDate fecha, int id_cliente, int id_lista_precio, int id_forma_pago, QString num_comprobante )
+    \fn MVenta::agregarVenta( QDate fecha, int id_cliente, int id_forma_pago, QString num_comprobante )
  */
-bool MVenta::agregarVenta( QDate fecha, int id_cliente, int id_lista_precio, int id_forma_pago, QString num_comprobante )
+bool MVenta::agregarVenta( QDate fecha, int id_cliente, int id_forma_pago, QString num_comprobante )
 {
   QSqlRecord regVenta = record();
  regVenta.remove( 0 );
  regVenta.setValue( "fecha"       , fecha );
  regVenta.setValue( "id_cliente", id_cliente );
- regVenta.setValue( "id_lista_precio", id_lista_precio );
  regVenta.setValue( "id_forma_pago", id_forma_pago );
  regVenta.setValue( "num_comprobante", num_comprobante );
  if( !insertRecord( -1, regVenta ) )

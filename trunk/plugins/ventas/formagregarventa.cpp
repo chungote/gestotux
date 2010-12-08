@@ -41,69 +41,61 @@
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
 {
-	setupUi( this );
-	this->setObjectName( "formagregarcompra" );
-	this->setWindowTitle( "Agregar Venta" );
-	this->setWindowIcon( QIcon(":/imagenes/add.png" ) );
+        setupUi( this );
+        this->setObjectName( "formagregarcompra" );
+        this->setWindowTitle( "Agregar Venta" );
+        this->setWindowIcon( QIcon(":/imagenes/add.png" ) );
 
-	PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
-	PBAgregarProducto->setText( "Agregar Producto" );
-	PBEliminarProducto->setText( "Eliminar Producto" );
-	PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
+        PBAgregarProducto->setText( "Agregar Producto" );
+        PBEliminarProducto->setText( "Eliminar Producto" );
+        PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
 
-	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
-	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
+        connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
+        connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
-	// Inicio los modelos
-	CBCliente->setModel( new EMCliente( CBCliente ) );
-	CBCliente->setModelColumn( 1 );
-	CBCliente->setEditable( true );
+        // Inicio los modelos
+        CBCliente->setModel( new EMCliente( CBCliente ) );
+        CBCliente->setModelColumn( 1 );
+        CBCliente->setEditable( true );
 
-	// Lista de Precios
-	CBListaPrecio->setModel( new MListaPrecio( CBListaPrecio ) );
-	CBListaPrecio->setModelColumn( 1 );
-	qobject_cast<QSqlTableModel *>(CBListaPrecio->model())->select();
-
-	// Rellenar los items de productos
-	QSqlQueryModel *cola = new QSqlQueryModel( this );
-	cola->setQuery( "SELECT id, nombre FROM producto WHERE habilitado = 1" );
-	CBProducto->setModel( cola );
-	CBProducto->setModelColumn( 1 );
-	CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
-	CBProducto->setEditable( true );
-	CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
-	CBProducto->setCurrentIndex( -1 );
+        // Rellenar los items de productos
+        QSqlQueryModel *cola = new QSqlQueryModel( this );
+        cola->setQuery( "SELECT id, nombre FROM producto WHERE habilitado = 1" );
+        CBProducto->setModel( cola );
+        CBProducto->setModelColumn( 1 );
+        CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
+        CBProducto->setEditable( true );
+        CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
+        CBProducto->setCurrentIndex( -1 );
 
         DEFecha->setMaximumDate( QDate::currentDate() );
         DEFecha->setDate( QDate::currentDate() );
 
-	// Modelo del tableview
-	mcp = new MProductosTotales( TVProductos );
-	mcp->calcularTotales( true );
-	mcp->buscarPrecios( true );
-	TVProductos->setModel( mcp );
-	TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
-	TVProductos->setAlternatingRowColors( true );
-	TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
-	TVProductos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+        // Modelo del tableview
+        mcp = new MProductosTotales( TVProductos );
+        mcp->calcularTotales( true );
+        mcp->buscarPrecios( true );
+        TVProductos->setModel( mcp );
+        TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
+        TVProductos->setAlternatingRowColors( true );
+        TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
+        TVProductos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
-	this->addAction( new EActCerrar( this ) );
-	this->addAction( new EActGuardar( this ) );
+        this->addAction( new EActCerrar( this ) );
+        this->addAction( new EActGuardar( this ) );
 
-	connect( CBListaPrecio, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioListaPrecio( int ) ) );
-	connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
+        connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 
-	cambioListaPrecio( CBListaPrecio->currentIndex() );
+        DSBCant->setValue( 1.0 );
+        DSBCant->setPrefix( "" );
 
-	DSBCant->setValue( 1.0 );
-	DSBCant->setPrefix( "" );
-
-	// Verifico si la venta a cta corriente esta habilitada
-	if( !preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada" ).toBool() )
-	{
-		GBFormaPago->setVisible( false );
-		RBContado->setChecked( true );
-	}
+        // Verifico si la venta a cta corriente esta habilitada
+        if( !preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada" ).toBool() )
+        {
+                GBFormaPago->setVisible( false );
+                RBContado->setChecked( true );
+        }
 
 
 }
@@ -178,12 +170,12 @@ void FormAgregarVenta::eliminarProducto()
                    "Si", "No" );
  if ( ret == 0 )
  {
-	QModelIndex indice;
-	foreach( indice, indices )
-	{
-		if( indice.isValid() )
-		{ TVProductos->model()->removeRow( indice.row() ); }
-	}
+        QModelIndex indice;
+        foreach( indice, indices )
+        {
+                if( indice.isValid() )
+                { TVProductos->model()->removeRow( indice.row() ); }
+        }
  }
  return;
 }
@@ -197,11 +189,6 @@ void FormAgregarVenta::guardar()
  if( CBCliente->currentIndex() == -1 )
  {
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un cliente para esta venta" );
-  return;
- }
- if( CBListaPrecio->currentIndex() == -1 )
- {
-  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una lista de precio para esta venta" );
   return;
  }
  if( !DEFecha->date().isValid() )
@@ -224,8 +211,7 @@ void FormAgregarVenta::guardar()
  mcp->calcularTotales( false );
  // veo el id del proveedor
  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
- int id_lista_precio = CBListaPrecio->model()->data( CBListaPrecio->model()->index( CBListaPrecio->currentIndex(), 0 ) , Qt::EditRole ).toInt();
- int id_forma_pago = -1;
+  int id_forma_pago = -1;
  if( RBCtaCte->isChecked() )
  {
    id_forma_pago = VENTA_CTACTE;
@@ -237,7 +223,7 @@ void FormAgregarVenta::guardar()
  QString num_comprobante = LENumComp->text();
  // Genero la compra
  MVenta *compra = new MVenta( this, false );
- if( compra->agregarVenta( DEFecha->date(), id_cliente, id_lista_precio, id_forma_pago, num_comprobante ) == false )
+ if( compra->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago, num_comprobante ) == false )
  { QSqlDatabase::database().rollback(); return; }
  // Busco el ultimo id de compra
  int id_venta = compra->ultimoId();
@@ -271,34 +257,34 @@ void FormAgregarVenta::guardar()
   QString num_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
   switch( MCuentaCorriente::verificarSaldo( num_ctacte, total_calculado ) )
   {
-	case CTACTE_LIMITE_EXCEDIDO:
-	{
-		QMessageBox::information( this, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
-		QSqlDatabase::database().rollback();
-		return;
-		break;
-	}
-	case CTACTE_LIMITE_ENLIMITE:
-	{
-		QMessageBox::information( this, "Limite de Saldo Alcanzado", "El limite de saldo para este cliente ha sido alcanzado." );
-		break;
-	}
-	case E_CTACTE_BUSCAR_LIMITE:
-	{
-		QSqlDatabase::database().rollback();
-		return;
-		break;
-	}
-	default:
-	{ break; }
+        case CTACTE_LIMITE_EXCEDIDO:
+        {
+                QMessageBox::information( this, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
+                QSqlDatabase::database().rollback();
+                return;
+                break;
+        }
+        case CTACTE_LIMITE_ENLIMITE:
+        {
+                QMessageBox::information( this, "Limite de Saldo Alcanzado", "El limite de saldo para este cliente ha sido alcanzado." );
+                break;
+        }
+        case E_CTACTE_BUSCAR_LIMITE:
+        {
+                QSqlDatabase::database().rollback();
+                return;
+                break;
+        }
+        default:
+        { break; }
   }
   if( !MItemCuentaCorriente::agregarOperacion(    num_ctacte,
-						 num_comprobante,
-						 id_venta,
-						 MItemCuentaCorriente::Factura,
-						 DEFecha->date(),
-						 "Venta a CtaCte",
-						 total_calculado ) )
+                                                 num_comprobante,
+                                                 id_venta,
+                                                 MItemCuentaCorriente::Factura,
+                                                 DEFecha->date(),
+                                                 "Venta a CtaCte",
+                                                 total_calculado ) )
   { QSqlDatabase::database().rollback(); qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); }
  }
  // Actualizar la cuenta general del programa
@@ -330,23 +316,10 @@ void FormAgregarVenta::guardar()
   }
 }
 
-
-/*!
-    \fn FormAgregarVenta::cambioListaPrecio( int id_combo )
-	Slot llamado cada vez que se cambia la lista de precio
-	@param id_combo Indice dentro del combobox que indica la lista de precio utilizada
- */
-void FormAgregarVenta::cambioListaPrecio( int id_combo )
-{
- qDebug( qPrintable( QString( "Cambiado id lista precio: %1" ).arg( id_combo ) ) );
- mcp->setearListaPrecio( CBListaPrecio->model()->data( CBListaPrecio->model()->index(CBListaPrecio->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
-}
-
-
 /*!
     \fn FormAgregarVenta::cambioCliente( int id_combo )
-	Slot llamado cada vez que cambia el cliente.
-	@param id_combo Indice en la lista de combobox que indica el cliente
+        Slot llamado cada vez que cambia el cliente.
+        @param id_combo Indice en la lista de combobox que indica el cliente
  */
 void FormAgregarVenta::cambioCliente( int id_combo )
 {

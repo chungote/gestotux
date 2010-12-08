@@ -27,14 +27,16 @@
 #include "mcajas.h"
 #include "actretirocaja.h"
 #include "actingresocaja.h"
+#include "acttransferir.h"
+#include "formtransferir.h"
 
 #include "FormAgregarCaja.h"
 
 VCajas::VCajas(QWidget *parent) :
     EVLista(parent)
 {
-    this->setObjectName( "visorServicios" );
-    this->setWindowTitle( "Servicios" );
+    this->setObjectName( "visorCajas" );
+    this->setWindowTitle( "Cajas" );
     this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
 
     modelo = new MCajas( this );
@@ -43,11 +45,12 @@ VCajas::VCajas(QWidget *parent) :
     vista->hideColumn(0);
     modelo->select();
 
-    connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
+    //connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
     addAction( ActAgregar );
     addAction( new ActRetiroCaja( this ) );
     addAction( new ActIngresoCaja( this ) );
+    addAction( new ActTransferir( this ) );
     //addAction( ActEliminar );
     addAction( ActCerrar );
 }
@@ -62,11 +65,21 @@ void VCajas::agregar( bool autoeliminarid ) {
 #include "FormRetiroIngreso.h"
 
 void VCajas::retiro() {
- FormRetiroIngreso *r = new FormRetiroIngreso( this );
- r->exec();
+   FormRetiroIngreso *r = new FormRetiroIngreso( this );
+   r->exec();
+   modelo->select();
 }
 
 void VCajas::ingreso() {
     FormRetiroIngreso *r = new FormRetiroIngreso( this, FormRetiroIngreso::Ingreso );
     r->exec();
+    modelo->select();
+}
+
+void VCajas::transferir()
+{
+   FormTransferir *f = new FormTransferir();
+   f->adjustSize();
+   f->exec();
+   modelo->select();
 }

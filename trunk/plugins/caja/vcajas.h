@@ -32,6 +32,7 @@ public:
 public slots:
     void ingreso();
     void retiro();
+    void transferir();
 
 protected slots:
     void agregar( bool autoeliminarid  );

@@ -1,8 +1,8 @@
 ::: Diseño :::
 
 - Terminar diseños de entidad relación para el conjunto general y cada plugin.
-- Terminar de definir el sistema de impesion.
-- Eliminar sistema de lista de precios
+- Terminar de definir el sistema de impresion.
+- Eliminar sistema de lista de precios ( revisar eliminacion )
 - Verificar el diseño de las categorias.
 
 -- Caja --
@@ -23,15 +23,15 @@
 - Ver porque no se dibujan las flechas en la pantalla inicial.
 
 -- Cuentas corrientes --
-- Ver integracion con los otros plugins
+- Ver integracion con los otros plugins.
 
 -- Productos --
-- Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos )
+- Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos ).
 - Ver como integrar el sistema de codigo de barras en el programa.
 - Ver como hacer los tickets de precios.
 
 -- Servicios --
-- Diseñar sistema de preimpresion de recibos
+- Diseñar sistema de preimpresion de recibos.
 
 -- Compras --
 - Verificar si es posible hacer autoagregado de productos dandolos de alta al agregarlos en una factura de venta.
@@ -43,7 +43,7 @@
 ::: Pruebas para hacer :::
 
 - Verificar correcta restauración de un backup.
-- Verificar correcta inizialización de todas las tablas de todos los plugins
+- Verificar correcta inizialización de todas las tablas de todos los plugins:
    - SQLite
      - Semi completo
    - MySql
@@ -61,6 +61,7 @@
 - Estado de caja
 - Listado de gastos
 - Recibos
+- CajaTransferir.png
 
 ::: Problemas Generales :::
 
@@ -78,3 +79,8 @@
 
 ::: Ideas sueltas :::
 - Recibos de HiComp con codigo de barras o codigo para ingresar el pago del recibo ya impreso.
+
+Versión para SmartPhones:
+======= ==== ============
+
+- Pasar las librerias de impresion a un tipo de "Application Server"
