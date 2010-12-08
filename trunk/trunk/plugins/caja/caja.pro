@@ -37,7 +37,9 @@ HEADERS += caja.h \
     VResumenCaja.h \
     FormRetiroIngreso.h \
     actingresocaja.h \
-    actretirocaja.h
+    actretirocaja.h \
+    acttransferir.h \
+    formtransferir.h
 
 SOURCES += caja.cpp \
     mcajas.cpp \
@@ -51,10 +53,13 @@ SOURCES += caja.cpp \
     VResumenCaja.cpp \
     FormRetiroIngreso.cpp \
     actingresocaja.cpp \
-    actretirocaja.cpp
+    actretirocaja.cpp \
+    acttransferir.cpp \
+    formtransferir.cpp
 
 FORMS += FormAgregarCajaBase.ui \
     FormEstadoCajaBase.ui \
     FormCierreCajaBase.ui \
     formprefcajabase.ui \
-    FormRetiroIngresoBase.ui
+    FormRetiroIngresoBase.ui \
+    formtransferirbase.ui

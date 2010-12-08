@@ -36,6 +36,11 @@ QSqlTableModel(parent)
     this->setHeaderData( 3, Qt::Horizontal, "Saldo Actual" );
 }
 
+Qt::ItemFlags MCajas::flags( const QModelIndex &idx ) const
+{
+    return Qt::ItemFlags( Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+}
+
 /*!
   @fn MCajas::agregarCaja( QString nombre, QDate fecha_alta = QDate::currentDate(), double saldo_inicial )
   Funcion para agregar una caja nueva al sistema

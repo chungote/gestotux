@@ -1,3 +1,2 @@
 CREATE TABLE IF NOT EXISTS `ventas` ( `id` mediumint(1) NOT NULL auto_increment, `fecha` date NOT NULL, PRIMARY KEY  (`id`) );
 CREATE TABLE IF NOT EXISTS `ventas_productos` ( `id` int(1) NOT NULL auto_increment, `id_venta` int(1) REFERENCES `ventas`(`id`), `id_producto` int(1) REFERENCES `producto`(`id`), `precio` decimal(4,0) NOT NULL, `cantidad` decimal(4,0) NOT NULL, PRIMARY KEY  (`id`) );
-CREATE TABLE IF NOT EXISTS `lista_precio` ( `id_lista_precio` bigint(1) NOT NULL auto_increment, `nombre` tinytext NOT NULL, `descripcion` text NOT NULL, `recargo` decimal(4,4) NOT NULL,   `habilitado` tinyint(3) NOT NULL default '1',  PRIMARY KEY  (`id_lista_precio`) );

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,25 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MVENTA_H
-#define MVENTA_H
 
-#include <QSqlRelationalTableModel>
+#ifndef ACTTRANSFERIR_H
+#define ACTTRANSFERIR_H
 
-/**
-Modelo para mantener los datos de ventas del programa
+#include <QAction>
 
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class MVenta : public QSqlRelationalTableModel
+/*!
+ * @brief Accion de transferir entre cajas
+ *
+ * Clase que mantiene la informacion de transferir entre cajas
+ */
+class ActTransferir : public QAction
 {
-Q_OBJECT
-public:
-    MVenta( QObject *parent = 0, bool relaciones = true );
-    ~MVenta();
-    bool agregarVenta( QDate fecha, int id_cliente, int id_forma_pago, QString num_comprobante );
-    int ultimoId();
+    Q_OBJECT
+ public:
+    explicit ActTransferir( QWidget *parent = 0 );
 
 };
 
-#endif
+#endif // ACTTRANSFERIR_H

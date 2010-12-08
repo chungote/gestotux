@@ -83,20 +83,6 @@
         </item>
        </layout>
       </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Lista de precio:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="CBListaPrecio"/>
-        </item>
-       </layout>
-      </item>
      </layout>
     </widget>
    </item>
@@ -220,6 +206,16 @@
        <widget class="QRadioButton" name="RBContado">
         <property name="text">
          <string>Contado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="RBCuotas">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Cuotas</string>
         </property>
        </widget>
       </item>
