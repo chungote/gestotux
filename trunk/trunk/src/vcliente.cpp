@@ -58,6 +58,7 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "fax" ) );
  vista->hideColumn( mc->fieldIndex( "email" ) );
  vista->hideColumn( mc->fieldIndex( "comprobante_email" ) );
+ vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->setAlternatingRowColors( true );
  mc->select();
 

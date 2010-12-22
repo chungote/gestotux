@@ -44,11 +44,11 @@ bool Servicios::inicializar()
 bool Servicios::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios" ) )
- { qWarning( "Error al buscar la tabla de servicios" ); return false; }
+    { qWarning( "Servicios::Error al buscar la tabla de servicios" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios_cliente" ) )
- { qWarning( "Error al buscar la tabla de servicios_cliente" ); return false; }
+ { qWarning( "Servicios::Error al buscar la tabla de servicios_cliente" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recargos" ) )
- { qWarning( "Error al buscar la tabla de recargos" ); return false; }
+ { qWarning( "Servicios::Error al buscar la tabla de recargos" ); return false; }
  return true;
 }
 

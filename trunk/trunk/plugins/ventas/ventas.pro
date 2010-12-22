@@ -9,7 +9,6 @@ ventas.cpp \
  mlistaprecio.cpp \
  formagregarventa.cpp \
  mventaproducto.cpp \
- vlistaprecio.cpp \
  ../CtaCte/mcuentacorriente.cpp \
  ../CtaCte/mitemcuentacorriente.cpp \
     ../productos/mproductos.cpp
@@ -20,7 +19,6 @@ ventas.h \
  mlistaprecio.h \
  formagregarventa.h \
  mventaproducto.h \
- vlistaprecio.h \
  ../CtaCte/mcuentacorriente.h \
  ../CtaCte/mitemcuentacorriente.h \
     ../productos/mproductos.h

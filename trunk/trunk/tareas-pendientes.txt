@@ -7,7 +7,6 @@
 
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
-- Agregar la posibilidad de agregar transferencia entre cajas
 
 -- Cuotas --
 - Definir sistema de cuotas.
@@ -29,6 +28,7 @@
 - Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos ).
 - Ver como integrar el sistema de codigo de barras en el programa.
 - Ver como hacer los tickets de precios.
+- Ver agregado de productos. ( verificar editor personalizado )
 
 -- Servicios --
 - Diseñar sistema de preimpresion de recibos.

@@ -25,7 +25,7 @@
 MCategorias::MCategorias(QObject *parent)
  : QSqlTableModel(parent)
 {
- setTable( "categoria" );
+ setTable( "categoria_producto" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Nombre" );
  setHeaderData( 2, Qt::Horizontal, "Descripcion" );
@@ -56,45 +56,45 @@ if( !item.isValid() )
  {
   switch(role)
   {
-	case Qt::DisplayRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			{
-				switch( QSqlTableModel::data( item, role ).toInt() )
-				{
-					case 1:
-					{
-						return "Compras";
-						break;
-					}
-					case 2:
-					{
-						return "Gastos";
-						break;
-					}
-					default:
-					{
-						return "Ventas";
-						break;
-					}
-				}
-				break;
-			}
-			default:
-			{
-				return QSqlTableModel::data( item, role );
-				break;
-			}
-		}
-		break;
-	}
-	default:
-	{
-		return QSqlTableModel::data( item, role );
-		break;
-	}
+        case Qt::DisplayRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        {
+                                switch( QSqlTableModel::data( item, role ).toInt() )
+                                {
+                                        case 1:
+                                        {
+                                                return "Compras";
+                                                break;
+                                        }
+                                        case 2:
+                                        {
+                                                return "Gastos";
+                                                break;
+                                        }
+                                        default:
+                                        {
+                                                return "Ventas";
+                                                break;
+                                        }
+                                }
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlTableModel::data( item, role );
+                                break;
+                        }
+                }
+                break;
+        }
+        default:
+        {
+                return QSqlTableModel::data( item, role );
+                break;
+        }
   }
  }
 }

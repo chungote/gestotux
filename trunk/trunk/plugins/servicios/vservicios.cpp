@@ -45,7 +45,7 @@ VServicios::VServicios(QWidget *parent)
  connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
  addAction( ActAgregar );
- addAction( ActEliminar );
+ //addAction( ActEliminar );
  addAction( ActCerrar );
 }
 

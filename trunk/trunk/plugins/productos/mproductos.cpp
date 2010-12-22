@@ -30,7 +30,7 @@ MProductos::MProductos(QObject *parent)
  setHeaderData( 1, Qt::Horizontal, "Categoria" );
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
-  setRelation( 1, QSqlRelation( "categoria", "id", "nombre" ) );
+  setRelation( 1, QSqlRelation( "categoria_producto", "id", "nombre" ) );
  }
  setHeaderData( 2, Qt::Horizontal, "Nombre" );
  setHeaderData( 3, Qt::Horizontal, "Precio de Costo" );
@@ -55,95 +55,95 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
  }
  switch( role )
  {
-	case Qt::DisplayRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			{
-				return QSqlRelationalTableModel::data(item, role).toString().prepend( "$" );
-				break;
-			}
-			case 6:
-			{
-				if( QSqlRelationalTableModel::data( item, role ).toBool() )
-				{ return "Si"; }
-				else
-				{ return "No"; }
-				break;
-			}
-			default:
-			{
-				return QSqlRelationalTableModel::data( item, role );
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextColorRole:
-	{
-		switch ( item.column() )
-		{
-			case 3:
-			{
-				return QColor(Qt::blue);
-				break;
-			}
-			default:
-			{
-				return QColor(Qt::black);
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::EditRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			{
-				return QSqlRelationalTableModel::data( item, role ).toDouble();
-				break;
-			}
-			default:
-			{
-				return QSqlRelationalTableModel::data( item, role );
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextAlignmentRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			case 6:
-			case 7:
-			{
-				return int( Qt::AlignHCenter | Qt::AlignVCenter );
-				break;
-			}
-			default:
-			{
-				return int( Qt::AlignLeft | Qt::AlignVCenter );
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::ToolTipRole:
-	case Qt::StatusTipRole:
-	{
-		return QVariant( "Haga doble click o seleccione y F2 para editar" );
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalTableModel::data( item, role );
-		break;
-	}
+        case Qt::DisplayRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        {
+                                return QSqlRelationalTableModel::data(item, role).toString().prepend( "$" );
+                                break;
+                        }
+                        case 6:
+                        {
+                                if( QSqlRelationalTableModel::data( item, role ).toBool() )
+                                { return "Si"; }
+                                else
+                                { return "No"; }
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data( item, role );
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextColorRole:
+        {
+                switch ( item.column() )
+                {
+                        case 3:
+                        {
+                                return QColor(Qt::blue);
+                                break;
+                        }
+                        default:
+                        {
+                                return QColor(Qt::black);
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::EditRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        {
+                                return QSqlRelationalTableModel::data( item, role ).toDouble();
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data( item, role );
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextAlignmentRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        case 6:
+                        case 7:
+                        {
+                                return int( Qt::AlignHCenter | Qt::AlignVCenter );
+                                break;
+                        }
+                        default:
+                        {
+                                return int( Qt::AlignLeft | Qt::AlignVCenter );
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::ToolTipRole:
+        case Qt::StatusTipRole:
+        {
+                return QVariant( "Haga doble click o seleccione y F2 para editar" );
+                break;
+        }
+        default:
+        {
+                return QSqlRelationalTableModel::data( item, role );
+                break;
+        }
  }
 }
 
@@ -153,7 +153,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
 #include <QSqlError>
 /*!
     \fn MProductos::stock( const int id_producto )
-	Devuelve la cantidad de stock que existe de un producto si el control de stock esta habilitado
+        Devuelve la cantidad de stock que existe de un producto si el control de stock esta habilitado
  */
 double MProductos::stock( const int id_producto )
 {
@@ -182,20 +182,20 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
  QSqlQuery cola( QString( "SELECT stock FROM productos WHERE id_producto = %2" ).arg( id_producto ) );
  if( cola.next() )
  {
-	double anterior = cola.record().value(0).toDouble();
-	anterior += cantidad;
-	if(  cola.exec( QString( "UPDATE productos SET stock = %1 WHERE id_producto = %2" ).arg( anterior ).arg( id_producto ) ) )
-	{
-		qDebug( "Stock actualizado correctamente" );
-		return true;
-	}
-	else
-	{
-		qWarning( "Error al actualizar el stock del producto" );
-		qDebug( qPrintable( cola.lastError().text() ) );
-		qDebug( qPrintable( cola.executedQuery() ) );
-		return false;
-	}
+        double anterior = cola.record().value(0).toDouble();
+        anterior += cantidad;
+        if(  cola.exec( QString( "UPDATE productos SET stock = %1 WHERE id_producto = %2" ).arg( anterior ).arg( id_producto ) ) )
+        {
+                qDebug( "Stock actualizado correctamente" );
+                return true;
+        }
+        else
+        {
+                qWarning( "Error al actualizar el stock del producto" );
+                qDebug( qPrintable( cola.lastError().text() ) );
+                qDebug( qPrintable( cola.executedQuery() ) );
+                return false;
+        }
  }
  else
  {

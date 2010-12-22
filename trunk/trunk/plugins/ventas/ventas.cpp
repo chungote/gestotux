@@ -36,7 +36,6 @@ QList<QActionGroup *> Ventas::accionesBarra()
  ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
  ventas->setProperty( "titulo", "Ventas" );
  ventas->addAction( ActAgregarVentas );
- ventas->addAction( ActListaPrecio );
  lista.append( ventas );
  return lista;
 }
@@ -72,9 +71,6 @@ bool Ventas::inicializar()
  ActAgregarVentas->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
 
- ActListaPrecio = new QAction( "Lista de precios", this );
- connect( ActListaPrecio, SIGNAL( triggered() ), this, SLOT( listaPrecios() ) );
-
  /*ActCategorias = new QAction( "Categorias", this );
  */
  return true;
@@ -87,15 +83,13 @@ bool Ventas::inicializar()
 bool Ventas::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
- { qWarning( "Error al buscar la tabla producto" ); return false; }
- else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
- { qWarning( "Error al buscar la tabla categorias" ); return false; }
+ { qWarning( "Ventas::Error al buscar la tabla producto" ); return false; }
+ else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_producto" ) )
+ { qWarning( "Ventas::Error al buscar la tabla categorias_producto" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas" ) )
- { qWarning( "Error al buscar la tabla ventas" ); return false; }
+ { qWarning( "Ventas::Error al buscar la tabla ventas" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas_productos" ) )
- { qWarning( "Error al buscar la tabla ventas_productos" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "lista_precio" ) )
- { qWarning( "Error al buscar la tabla lista_precios" ); return false; }
+ { qWarning( "Ventas::Error al buscar la tabla ventas_productos" ); return false; }
  return true;
 }
 
@@ -124,8 +118,7 @@ void Ventas::crearMenu( QMenuBar *m )
  lista.append( ActAgregarVentas );
  QAction *sep = new QAction( mVentas );
  sep->setSeparator( true );
- lista.append( sep );
- lista.append( ActListaPrecio );
+ //lista.append( sep );
  //lista.append( ActCategorias );
  mVentas->insertActions( mVentas->actions().first(), lista );
 }
@@ -160,14 +153,6 @@ void Ventas::agregarVenta()
 void Ventas::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(ventas);
- //qDebug( "Cerrado plugin ventas" );
+ qDebug( "Cerrado plugin ventas" );
  return;
 }
-
-#include "vlistaprecio.h"
-/*!
-    \fn Ventas::listaPrecios()
-	Muestra la ventana de listado de listas de precio
- */
-void Ventas::listaPrecios()
-{ emit agregarVentana( new VListaPrecio() ); }

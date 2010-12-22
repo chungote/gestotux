@@ -37,7 +37,7 @@ bool proveedor::inicializar()
 bool proveedor::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "proveedor" ) )
- { qWarning( "Error al buscar la tabla proveedor" ); return false; }
+    { qWarning( "Proveedor::Error al buscar la tabla proveedor" ); return false; }
  return true;
 }
 
