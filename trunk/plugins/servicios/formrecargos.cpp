@@ -22,6 +22,9 @@
 
 #include "mservicios.h"
 #include "mrecargos.h"
+#include <QMessageBox>
+#include <QSqlError>
+#include <QItemDelegate>
 
 #include "eactcerrar.h"
 
@@ -38,6 +41,7 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     CBServicios->setModelColumn( 1 );
     mservicios->select();
     connect( CBServicios, SIGNAL( currentIndexChanged(int) ), this, SLOT( cambioServicio(int) ) );
+    CBServicios->setCurrentIndex( 0 );
 
     // Genero las acciones
     ActAgregar = new QAction( this );
@@ -63,14 +67,16 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     mrecargos->setEditStrategy( QSqlTableModel::OnManualSubmit );
     TVRecargos->setModel( mrecargos );
     TVRecargos->hideColumn( 0 );
+    TVRecargos->hideColumn( 1 );
     TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    this->cambioServicio( CBServicios->currentIndex() );
     mrecargos->select();
 }
 
 void FormRecargos::cambioServicio( int servicio )
 {
   // Busco los datos de los recargos del servicio seleccionado
-  int id_servicio = mservicios->data( mservicios->index( servicio, 0 ), Qt::DisplayRole ).toInt();
+  int id_servicio = mservicios->data( mservicios->index( servicio, 0 ), Qt::EditRole ).toInt();
   mrecargos->setearServicio( id_servicio );
   mrecargos->select();
 }
@@ -78,18 +84,29 @@ void FormRecargos::cambioServicio( int servicio )
 void FormRecargos::agregarRecargo()
 {
  // Agrega un nuevo recargo a la lista del servicio seleccionado
-    mrecargos->setearServicio( mservicios->data( mservicios->index( CBServicios->currentIndex(), 0 ), Qt::DisplayRole ).toInt() );
+    mrecargos->setearServicio( mservicios->data( mservicios->index( CBServicios->currentIndex(), 0 ), Qt::EditRole ).toInt() );
     mrecargos->agregarRecargo();
 }
 
 void FormRecargos::eliminarRecargo()
 {
-
+ QMessageBox::information( this, "this", "Todavia no implementado!" );
 }
 
 void FormRecargos::guardarTodo()
 {
- this->close();
+  if( QMessageBox::question( this, "Guardar cambios", "¿Desea guardar los cambios realizados?", QMessageBox::Ok, QMessageBox::Cancel ) ==  QMessageBox::Ok )
+  {
+      if( mrecargos->submitAll() ) {
+                QMessageBox::information( this, "Correcto", "Cambios guardados correctamente" );
+                this->close();
+                return;
+            } else {
+                QMessageBox::critical( this, "Erroneo", "No se pudieron guardar los cambios realizados" );
+                qDebug( "FormRecargos::guardarTodo::ErrorGuardado::infodb:" );
+                qDebug( mrecargos->lastError().text().toLocal8Bit() );
+            }
+  }
 }
 
 void FormRecargos::changeEvent(QEvent *e)

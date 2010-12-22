@@ -22,7 +22,7 @@
 #include <QSqlRecord>
 #include "mservicios.h"
 
-MRecargos::MRecargos(QObject *parent)
+MRecargos::MRecargos( QObject *parent )
  : QSqlRelationalTableModel(parent), _precio_base(0.0)
 {
  setTable( "recargos" );
@@ -84,7 +84,7 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
    switch( idx.column() )
    {
     case 3:
-    { return QString( "%L1 %").arg( QSqlRelationalTableModel::data( idx, role ).toInt() ); break; }
+    { return QString( "%L1 %").arg( QSqlRelationalTableModel::data( idx, role ).toDouble() ); break; }
     case 4:
     { return QString( "$ %L1").arg( QSqlRelationalTableModel::data( idx, role ).toDouble() ); break; }
     case 5:
@@ -103,10 +103,14 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
      }
      break;
     }
+    default:
+    { return QSqlRelationalTableModel::data( idx, role ); break; }
    }
   }
+  case Qt::TextAlignmentRole:
+  { return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
   default:
-  { return QSqlRelationalTableModel::data(idx, role); break; }
+  { return QSqlRelationalTableModel::data( idx, role); break; }
  }
  return QSqlRelationalTableModel::data( idx, role );
 }
@@ -135,10 +139,13 @@ void MRecargos::agregarRecargo()
 void MRecargos::setearServicio( int id_servicio )
 {
     if( id_servicio > 0 ) {
-        _servicio_actual = id_servicio;
-        this->setFilter( QString( "id_servicio = %1" ).arg( id_servicio ) );
+        this->_servicio_actual = id_servicio;
+        this->setFilter( QString( "recargos.id_servicio = %1" ).arg( id_servicio ) );
         // Busco el precio base
-        setearPrecioBase( MServicios::precioBase( _servicio_actual ) );
+        this->_precio_base = MServicios::precioBase( _servicio_actual );
+        //qDebug( QString( "Precio base: %1" ).arg( this->_precio_base ).toLocal8Bit() );
+    } else {
+        qDebug( QString( "MRecargos::setearServicio::id de servicio erroneo: %1" ).arg( id_servicio ).toLocal8Bit() );
     }
 }
 

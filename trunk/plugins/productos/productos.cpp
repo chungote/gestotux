@@ -99,9 +99,9 @@ bool productos::inicializar()
 bool productos::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
- { qWarning( "Error al buscar la tabla producto" ); return false; }
- else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria" ) )
- { qWarning( "Error al buscar la tabla categorias" ); return false; }
+ { qWarning( "Productos::Error al buscar la tabla producto" ); return false; }
+ else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_producto" ) )
+ { qWarning( "Productos::Error al buscar la tabla categoria_producto" ); return false; }
  return true;
 }
 
@@ -123,7 +123,7 @@ void productos::crearMenu( QMenuBar *m )
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer == 0 )
  {
-  qDebug( "Error en las baras de menu" );
+     qDebug( "Productos::Error en las baras de menu" );
  }
  else
  {
@@ -135,7 +135,7 @@ void productos::crearMenu( QMenuBar *m )
 
 /*!
     \fn productos::version() const
-	Devuelve la version del plugin
+        Devuelve la version del plugin
  */
 double productos::version() const
 {
@@ -144,7 +144,7 @@ double productos::version() const
 
 /*!
     \fn productos::verProductos()
-	Muestra la lista de productos
+        Muestra la lista de productos
  */
 void productos::verProductos()
 { emit agregarVentana( new VProductos( ) ); }
@@ -160,7 +160,7 @@ void productos::crearToolBar( QToolBar *t )
 
 /*!
     \fn productos::categorias()
-	Muestra la ventana de categorias
+        Muestra la ventana de categorias
  */
 void productos::categorias()
 { emit agregarVentana( new VCategorias() ); }

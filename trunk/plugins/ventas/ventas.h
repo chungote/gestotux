@@ -47,14 +47,12 @@ private:
     QList<QAction *> _acciones;
     QAction *ActAgregarVentas;
     QAction *ActVentas;
-    QAction *ActListaPrecio;
 /*
 
     QAction *ActCategorias;
 */
 private slots:
     void agregarVenta();
-    void listaPrecios();
 
 signals:
         void agregarVentana( QWidget * );

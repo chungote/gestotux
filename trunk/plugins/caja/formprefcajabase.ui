@@ -60,7 +60,7 @@
       <item>
        <widget class="QCheckBox" name="CkBFirma">
         <property name="text">
-         <string>Agregar firma y aurorizante al final</string>
+         <string>Agregar firma y autorizante al final del resumen</string>
         </property>
        </widget>
       </item>
@@ -80,6 +80,19 @@
       </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

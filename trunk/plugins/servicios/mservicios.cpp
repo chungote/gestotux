@@ -25,6 +25,22 @@
 #include <QSqlError>
 #include <QDate>
 
+
+/*
+CREATE TABLE IF NOT EXISTS `servicios` (
+  `id_servicio` bigint(1) NOT NULL AUTO_INCREMENT,
+  `nombre` tinytext NOT NULL,
+  `descripcion` text,
+  `fecha_alta` date NOT NULL,
+  `fecha_baja` date DEFAULT NULL,
+  `precio_base` double(10,3) NOT NULL,
+  `periodo` int(10) NOT NULL,
+  `dia_cobro` int(10) NOT NULL,
+  `forma_incompleto` int(10) NOT NULL,
+  PRIMARY KEY (`id_servicio`)
+) ENGINE=MyISAM ;
+*/
+
 MServicios::MServicios(QObject *parent)
  : QSqlTableModel(parent)
 {
@@ -186,10 +202,12 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
 double MServicios::precioBase( int id_servicio )
 {
   QSqlQuery cola( QString( "SELECT precio_base FROM %2 WHERE id_servicio = %1" ).arg( id_servicio ).arg( "servicios" ) );
-  if( cola.next() )
-  {
-      return cola.record().value(0).toDouble();
-  } else { return 0.0; }
+  if( cola.exec() ) {
+    if( cola.next() )
+    {
+     return cola.record().value(0).toDouble();
+    } else { qDebug( "Error al hacer next en la cola de precio base de servicio" ); return 0.0; }
+  } else { qDebug( "Error al hacer exec en la cola de precio base de servicio" ); return 0.0; }
 }
 
 /*
