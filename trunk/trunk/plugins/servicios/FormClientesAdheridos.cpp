@@ -19,29 +19,30 @@
  ***************************************************************************/
 
 #include "FormClientesAdheridos.h"
-#include "ui_FormClietnesAdheridosBase.h"
+
 #include "mservicios.h"
+#include <QTableView>
+#include "MClientesServicios.h"
 
 FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
-    EVentana(parent),
-    ui(new Ui::FormClientesAdheridos)
-{
-    ui->setupUi(this);
-    setObjectName("Servicios_clientes");
-    setWindowTitle( "Clientes para un servicio");
-    setWindowIcon( QIcon( ":/imagenes/desconocido.png" ) );
+    EVentana(parent) {
+    setupUi(this);
 
-    mservicios = new MServicios( ui->CBServicios );
-    ui->CBServicios->setModel( mservicios );
-    ui->CBServicios->setModelColumn( 1 );
-    connect( ui->CBServicios, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioServicio( int ) ) );
+    setObjectName( "ClientesAdheridos" );
+    setWindowTitle( "Clientes Adheridos" );
+    //setWindowIcon();
 
+    CBServicios->setModel( new MServicios( CBServicios ) );
+    CBServicios->setModelColumn( 1 );
+    qobject_cast<QSqlTableModel *>(CBServicios->model())->select();
+    connect( CBServicios, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioServicio( int ) ) );
 
-}
+    modelo = new MClientesServicios( this );
+    TVAdheridos->setModel( modelo );
+    TVAdheridos->hideColumn( 1 );
+    TVAdheridos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    modelo->select();
 
-FormClientesAdheridos::~FormClientesAdheridos()
-{
-    delete ui;
 }
 
 void FormClientesAdheridos::changeEvent(QEvent *e)
@@ -49,9 +50,21 @@ void FormClientesAdheridos::changeEvent(QEvent *e)
     QWidget::changeEvent(e);
     switch (e->type()) {
     case QEvent::LanguageChange:
-        ui->retranslateUi(this);
+        retranslateUi(this);
         break;
     default:
         break;
     }
+}
+
+void FormClientesAdheridos::setServicioInicial( int id_servicio )
+{
+    modelo->filtrarPorServicio( id_servicio );
+    modelo->select();
+}
+
+void FormClientesAdheridos::cambioServicio( int id_servicio )
+{
+    modelo->filtrarPorServicio( id_servicio );
+    modelo->select();
 }

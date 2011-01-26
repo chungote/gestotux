@@ -155,14 +155,18 @@ void VServicios::darAltaServicioCliente()
  f->exec();
 }
 
-
+#include "FormClientesAdheridos.h"
 /*!
     \fn VServicios::verClientesAdheridos()
+    LLama al formulario que muestra la lista de clientes que estan adheridos al servicio
  */
 void VServicios::verClientesAdheridos()
 {
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+ FormClientesAdheridos *f = new FormClientesAdheridos( this );
+ //f->setServicioInicial( id_servicio );
+ emit agregarVentana( f );
 }
 
 /*!

@@ -60,10 +60,15 @@ private:
         * Accion para mostrar los distintos recargos posibles a servicios
         */
         QAction *ActRecargos;
+       /*!
+        * Accion para realizar una facturación de un servicio
+        */
+        QAction *ActFacturarServicio;
 
 protected slots:
     void mostrarServicios();
     void mostrarRecargos();
+    void facturarServicio();
 
 };
 

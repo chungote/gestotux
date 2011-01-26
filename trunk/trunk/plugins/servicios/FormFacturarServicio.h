@@ -18,29 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMCLIENTESADHERIDOS_H
-#define FORMCLIENTESADHERIDOS_H
+#ifndef FORMFACTURARSERVICIO_H
+#define FORMFACTURARSERVICIO_H
 
-#include "ui_FormClientesAdheridosBase.h"
-#include "eventana.h"
-class MClientesServicios;
+#include "ui_FormFacturarServicioBase.h"
 
-class FormClientesAdheridos : public EVentana, private Ui::FormClientesAdheridos
+class FormFacturarServicio : public QWidget, private Ui::FormFacturarServicio
 {
     Q_OBJECT
 
 public:
-    explicit FormClientesAdheridos(QWidget *parent = 0);
-    void setServicioInicial( int id_servicio );
+    explicit FormFacturarServicio(QWidget *parent = 0);
 
 protected:
     void changeEvent(QEvent *e);
-
-protected slots:
-    void cambioServicio( int id_servicio );
-
-private:
-    MClientesServicios *modelo;
 };
 
-#endif // FORMCLIENTESADHERIDOS_H
+#endif // FORMFACTURARSERVICIO_H

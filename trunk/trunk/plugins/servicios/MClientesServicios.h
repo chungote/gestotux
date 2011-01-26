@@ -18,29 +18,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMCLIENTESADHERIDOS_H
-#define FORMCLIENTESADHERIDOS_H
+#ifndef MCLIENTESSERVICIOS_H
+#define MCLIENTESSERVICIOS_H
 
-#include "ui_FormClientesAdheridosBase.h"
-#include "eventana.h"
-class MClientesServicios;
+#include <QSqlRelationalTableModel>
 
-class FormClientesAdheridos : public EVentana, private Ui::FormClientesAdheridos
+class MClientesServicios : public QSqlRelationalTableModel
 {
     Q_OBJECT
-
 public:
-    explicit FormClientesAdheridos(QWidget *parent = 0);
-    void setServicioInicial( int id_servicio );
+    explicit MClientesServicios(QObject *parent = 0);
+    void filtrarPorServicio( const int id_servicio );
+    void filtrarPorCliente( const int id_cliente );
 
-protected:
-    void changeEvent(QEvent *e);
-
-protected slots:
-    void cambioServicio( int id_servicio );
-
-private:
-    MClientesServicios *modelo;
 };
 
-#endif // FORMCLIENTESADHERIDOS_H
+#endif // MCLIENTESSERVICIOS_H
