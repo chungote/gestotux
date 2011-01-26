@@ -38,6 +38,11 @@ bool Servicios::inicializar()
  ActRecargos->setText( "Recargos" );
  ActRecargos->setStatusTip( "Muestra la lista de recargos posibles que se pueden utilizar en cualquier servicio" );
  connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( mostrarRecargos() ) );
+
+ ActFacturarServicio = new QAction( this );
+ ActFacturarServicio->setText( "Facturar Servico" );
+ connect( ActFacturarServicio, SIGNAL( triggered() ), this, SLOT( facturarServicio() ) );
+
  return true;
 }
 
@@ -45,8 +50,8 @@ bool Servicios::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios" ) )
     { qWarning( "Servicios::Error al buscar la tabla de servicios" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios_cliente" ) )
- { qWarning( "Servicios::Error al buscar la tabla de servicios_cliente" ); return false; }
+ if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios_clientes" ) )
+ { qWarning( "Servicios::Error al buscar la tabla de servicios_clientes" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recargos" ) )
  { qWarning( "Servicios::Error al buscar la tabla de recargos" ); return false; }
  return true;
@@ -108,6 +113,11 @@ void Servicios::mostrarServicios()
 void Servicios::mostrarRecargos()
 {
    emit agregarVentana( new FormRecargos() );
+}
+
+void Servicios::facturarServicio()
+{
+    return;
 }
 
 QAction *Servicios::botonPantallaInicial()

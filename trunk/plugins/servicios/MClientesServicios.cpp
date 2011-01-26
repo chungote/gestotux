@@ -18,29 +18,27 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMCLIENTESADHERIDOS_H
-#define FORMCLIENTESADHERIDOS_H
+#include "MClientesServicios.h"
 
-#include "ui_FormClientesAdheridosBase.h"
-#include "eventana.h"
-class MClientesServicios;
-
-class FormClientesAdheridos : public EVentana, private Ui::FormClientesAdheridos
+MClientesServicios::MClientesServicios(QObject *parent) :
+    QSqlRelationalTableModel(parent)
 {
-    Q_OBJECT
+   this->setTable( "servicios_clientes" );
+   this->setHeaderData( 0, Qt::Horizontal, "Cliente" );
+   this->setHeaderData( 1, Qt::Horizontal, "Servicio");
+   this->setHeaderData( 2, Qt::Horizontal, "Fecha Alta" );
+   this->setHeaderData( 3, Qt::Horizontal, "Fecha Baja" );
+   // Relaciones
+   this->setRelation( 0, QSqlRelation( "clientes", "id", "razon_social" ) );
+   this->setRelation( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
+}
 
-public:
-    explicit FormClientesAdheridos(QWidget *parent = 0);
-    void setServicioInicial( int id_servicio );
+void MClientesServicios::filtrarPorCliente( const int id_cliente )
+{
+    this->setFilter( QString( "id_cliente = %1 ").arg( id_cliente ) );
+}
 
-protected:
-    void changeEvent(QEvent *e);
-
-protected slots:
-    void cambioServicio( int id_servicio );
-
-private:
-    MClientesServicios *modelo;
-};
-
-#endif // FORMCLIENTESADHERIDOS_H
+void MClientesServicios::filtrarPorServicio( const int id_servicio )
+{
+    this->setFilter( QString( "id_servicio = %1 ").arg( id_servicio ) );
+}

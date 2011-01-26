@@ -34,6 +34,7 @@
 #include "dsino.h"
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QSqlError>
 
 VProductos::VProductos(QWidget *parent)
  : EVLista(parent)
@@ -70,13 +71,13 @@ VProductos::VProductos(QWidget *parent)
 
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
-	 QAction *ActCategorias = new QAction( "Categorias" , this );
-	 ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
-	 ActCategorias->setStatusTip( "Ver y administrar las categorias de productos" );
-	 ActCategorias->setShortcut( QKeySequence( "Ctrl + c" ) );
-	 connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( verCategorias() ) );
+         QAction *ActCategorias = new QAction( "Categorias" , this );
+         ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
+         ActCategorias->setStatusTip( "Ver y administrar las categorias de productos" );
+         ActCategorias->setShortcut( QKeySequence( "Ctrl + c" ) );
+         connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( verCategorias() ) );
 
-	 addAction( ActCategorias );
+         addAction( ActCategorias );
  }
 
  addAction( ActCerrar );
@@ -91,9 +92,9 @@ VProductos::~VProductos()
 
 /*!
     \fn VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
-	Funcion que coloca en el valor predeterminado los valores del registro. Esto evita la falla al insertar el registro.
-	@param row Numero de fila a insertar
-	@param registro Registro a insertar
+        Funcion que coloca en el valor predeterminado los valores del registro. Esto evita la falla al insertar el registro.
+        @param row Numero de fila a insertar
+        @param registro Registro a insertar
  */
 void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
 {
@@ -104,7 +105,7 @@ void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
 
 /*!
     \fn VProductos::closeEvent( QCloseEvent * event )
-	Metodo llamado cuando se cierra la ventana
+        Metodo llamado cuando se cierra la ventana
  */
 void VProductos::closeEvent( QCloseEvent * event )
 {
@@ -114,7 +115,7 @@ void VProductos::closeEvent( QCloseEvent * event )
 
 /*!
     \fn VProductos::verCategorias()
-	Slot llamado para ver la lista de categorias
+        Slot llamado para ver la lista de categorias
  */
 void VProductos::verCategorias()
 { emit agregarVentana( new VCategorias() ); }
@@ -128,42 +129,55 @@ void VProductos::agregar( bool autoeliminarid )
  // Ver si existe alguna categoria primero
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
-	 qDebug( "Verificando que existan categorias" );
-	 MCategorias *m = new MCategorias();
-	 if( m->rowCount() <= 0 )
-	 {
-	  qWarning( "Por favor, primero ingrese al menos una categoria de productos" );
-	  delete m;
-	  return;
-	 }
-	 delete m;
+         qDebug( "Verificando que existan categorias" );
+         MCategorias *m = new MCategorias();
+         if( m->rowCount() <= 0 )
+         {
+          qWarning( "Por favor, primero ingrese al menos una categoria de productos" );
+          delete m;
+          return;
+         }
+         delete m;
  }
  bool ok;
  QString nombre = QInputDialog::getText(this,tr("Nombre"), tr("Ingrese un nombre para el producto"), QLineEdit::Normal, QString(), &ok);
  if (!ok || nombre.isEmpty() )
  { return; }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Solicito la categoria del producto si esta habilitado
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
    //vista->hideColumn( rmodelo->fieldIndex( "id_categoria" ) );
  }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Solicito la descripcion si esta habilitado
  QString descripcion = ""; ok = false;
  if( preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
  {
    descripcion = QInputDialog::getText( this, "Descripcion:", "Ingrese una descripcion", QLineEdit::Normal, "", &ok );
    if( !ok ) { return; }
  }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Solicito la marca del producto si esta habilitado
  QString marca = ""; ok = false;
  if( preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
  {
    marca = QInputDialog::getText( this, "Marca:", "Ingrese una marca", QLineEdit::Normal, marca, &ok );
    if( !ok ) { return; }
  }
- ok = false;
- double stock = QInputDialog::getDouble( this, "Stock:", "Ingrese el stock inicial", 0.0, 0.0, 1000000.0, 3, &ok );
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Solicito el stock del producto si esta habilitado
+ ok = false; double stock = -100.0;
+ if( preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() ) {
+    stock = QInputDialog::getDouble( this, "Stock:", "Ingrese el stock inicial", 0.0, 0.0, 2147483647, 3, &ok );
+    if( !ok ) { return; }
+ }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Solicito el precio de costo del producto
+ ok = false;double precio_costo = 0.0;
+ precio_costo = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de costo", 0.0, 0.0, 2147483647, 3, &ok );
  if( !ok ) { return; }
- ok = false;
- double precio_costo = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de costo", 0.0, 0.0, 1000000.0, 3, &ok );
- if( !ok ) { return; }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
  // Agrego el producto
  QSqlRecord rec = rmodelo->record();
  rec.setValue( "nombre", nombre );
@@ -175,23 +189,25 @@ void VProductos::agregar( bool autoeliminarid )
  { rec.setNull( "marca" ); }
  else
  { rec.setValue( "marca", marca ); }
- rec.setValue( "stock", stock );
+ if( stock == -100.0 ) {
+     rec.setNull( "stock" );
+ } else {
+     rec.setValue( "stock", stock );
+ }
  rec.setValue( "precio_costo", precio_costo );
  rec.setValue( "habilitado", true );
  rec.remove( rmodelo->fieldIndex( "id_categoria" ) );
  rec.remove( rmodelo->fieldIndex( "id" ) );
- /*for( int i = 0; i < rec.count(); i++ )
- {
-  qDebug( qPrintable( QString( "campo: %1 - %2" ).arg( i ).arg( rec.fieldName(i) ) ) );
- }*/
+ /* for( int i = 0; i < rec.count(); i++ ) { qDebug( qPrintable( QString( "campo: %1 - %2" ).arg( i ).arg( rec.fieldName(i) ) ) ); } */
  if( rmodelo->insertRecord( -1, rec ) )
  {
-  QMessageBox::information( this, "Correcto", "Producto Agregado correctamente" );
+  QMessageBox::information( this, "Correcto", "El producto fue agregado correctamente" );
   return;
  }
  else
  {
   qWarning( "Error al intentar insertar el producto." );
-
+  qDebug( "visorProductos::Salida debug modelo relacional:" );
+  qDebug( rmodelo->lastError().text().toLocal8Bit() );
  }
 }

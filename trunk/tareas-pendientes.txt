@@ -4,6 +4,7 @@
 - Terminar de definir el sistema de impresion.
 - Eliminar sistema de lista de precios ( revisar eliminacion )
 - Verificar el diseño de las categorias.
+- Eliminar ncreport
 
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
@@ -39,6 +40,9 @@
 -- Ventas --
 - Diseñar sistema para que soporte ventas al contado.
 - Diseñar sistema para que soporte automaticamente el sistema de cuotas.
+
+-- Gastos --
+- No permitir agregar un gasto si no existe una categoría seleccionada.
 
 ::: Pruebas para hacer :::
 

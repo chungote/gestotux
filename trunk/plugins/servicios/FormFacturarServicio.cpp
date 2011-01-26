@@ -18,29 +18,32 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMCLIENTESADHERIDOS_H
-#define FORMCLIENTESADHERIDOS_H
+#include "FormFacturarServicio.h"
 
-#include "ui_FormClientesAdheridosBase.h"
-#include "eventana.h"
-class MClientesServicios;
+FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
+QWidget(parent)  {
 
-class FormClientesAdheridos : public EVentana, private Ui::FormClientesAdheridos
+    setupUi(this);
+
+    this->setWindowTitle( "Facturación de un servicio" );
+    //this->setWindowIcon( QIcon( ":/imagenes/" ) );
+    this->setObjectName( "facturaservicios" );
+
+    PBCancelar->setIcon( QIcon( ":/imagenes/stop.png" ) );
+    connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close() ) );
+
+    connect( PBFacturar, SIGNAL( clicked() ), this, SLOT( close() ) );
+
+}
+
+void FormFacturarServicio::changeEvent(QEvent *e)
 {
-    Q_OBJECT
-
-public:
-    explicit FormClientesAdheridos(QWidget *parent = 0);
-    void setServicioInicial( int id_servicio );
-
-protected:
-    void changeEvent(QEvent *e);
-
-protected slots:
-    void cambioServicio( int id_servicio );
-
-private:
-    MClientesServicios *modelo;
-};
-
-#endif // FORMCLIENTESADHERIDOS_H
+    QWidget::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}
