@@ -182,41 +182,41 @@
             </property>
            </spacer>
           </item>
+          <item>
+           <widget class="QGroupBox" name="GBFormaPago">
+            <property name="title">
+             <string>Forma de Pago</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QRadioButton" name="RBCtaCte">
+               <property name="text">
+                <string>Cuenta Corriente</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="RBContado">
+               <property name="text">
+                <string>Contado</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="RBCuotas">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Cuotas</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
          </layout>
         </widget>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="GBFormaPago">
-     <property name="title">
-      <string>Forma de Pago</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <widget class="QRadioButton" name="RBCtaCte">
-        <property name="text">
-         <string>Cuenta Corriente</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="RBContado">
-        <property name="text">
-         <string>Contado</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="RBCuotas">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Cuotas</string>
-        </property>
        </widget>
       </item>
      </layout>

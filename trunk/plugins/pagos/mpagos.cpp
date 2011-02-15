@@ -22,17 +22,30 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 
+/*
+CREATE TABLE IF NOT EXISTS `recibos` (
+  `id_recibo` int(10) NOT NULL AUTO_INCREMENT,
+  `id_cliente` bigint REFERENCES clientes(id),
+  `fecha_pago` datetime NOT NULL,
+  `texto` tinyblob DEFAULT NULL,
+  `precio` double(15,4) DEFAULT NULL,
+  `cancelado` tinyint NOT NULL DEFAULT 0,
+  `pagado` tinyint NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_recibo`)
+) ENGINE=InnoDB;
+*/
+
 MPagos::MPagos(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
 {
  setTable( "recibos" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Cliente" );
- setHeaderData( 2, Qt::Horizontal, "Texto" );
- setHeaderData( 3, Qt::Horizontal, "Cantidad" );
- setHeaderData( 4, Qt::Horizontal, "Fecha Pago" );
+ setHeaderData( 2, Qt::Horizontal, "Fecha Pago" );
+ setHeaderData( 3, Qt::Horizontal, "Texto" );
+ setHeaderData( 4, Qt::Horizontal, "Cantidad" );
  setHeaderData( 5, Qt::Horizontal, "Cancelado" );
- setHeaderData( 6, Qt::Horizontal, "Template" );
+ setHeaderData( 6, Qt::Horizontal, "Pagado" ); // Campo utilizado en hicomp
  if( relaciones )
  {
   setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
@@ -58,21 +71,20 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
   {
    switch( item.column() )
    {
-     case 0:
+     case 0: // ID
      { return QString( "#%L1" ).arg( QSqlRelationalTableModel::data( item, role ).toInt() ); break;}
-     case 1:
-     {
-	return QSqlRelationalTableModel::data( item, role ).toString();
-      break;
-     }
-     case 2:
+     case 1: // Cliente
      { return QSqlRelationalTableModel::data( item, role ).toString(); break; }
-     case 3:
-     { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble() ); break; }
-     case 4:
+     case 2: // fecha de pago
      { return QSqlRelationalTableModel::data( item, role ).toDate(); break; }
-     case 5:
+     case 3: // Texto
      { return QSqlRelationalTableModel::data( item, role ).toString(); break; }
+     case 4: // Cantidad pagada
+     { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble() ); break; }
+     case 5: // Cancelado ( anulado )
+     { return QSqlRelationalTableModel::data( item, role ).toBool(); break; }
+     case 6: // Pagado ( solo hicomp - por default en true )
+     { return QSqlRelationalTableModel::data( item, role ).toBool(); break; }
      default:
      { return QSqlRelationalTableModel::data( item, role ); break; }
    }

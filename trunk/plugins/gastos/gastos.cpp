@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "gastos.h"
 #include <QSqlDatabase>
+#include <QMessageBox>
 
 Q_EXPORT_PLUGIN2( gastos, Gastos );
 
@@ -46,9 +47,9 @@ bool Gastos::inicializar()
 bool Gastos::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "gastos" ) )
- { qWarning( "Error al buscar la tabla gastos" );	return false; }
+ { qWarning( "Gastos::Error al buscar la tabla gastos" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_gastos" ) )
- { qWarning( "Error al buscar la tabla categorias_gastos" );	return false; }
+ { qWarning( "Gastos::Error al buscar la tabla categorias_gastos" ); return false; }
  return true;
 }
 
@@ -65,10 +66,10 @@ int Gastos::tipo() const
 QList< QActionGroup * > Gastos::accionesBarra()
 {
  /*QList<QActionGroup *> lista;
- QActionGroup *compras = new QActionGroup( this );
- compras->setObjectName( "compras" );
- compras->addAction( ActAgregarGasto );
- lista.append( compras );
+ QActionGroup *gastos = new QActionGroup( this );
+ gastos->setObjectName( "Gastos" );
+ gastos->addAction( ActAgregarGasto );
+ lista.append( Gastos );
  return lista;*/
  return QList<QActionGroup *>();
 }
@@ -101,12 +102,21 @@ void Gastos::crearToolBar(QToolBar* t)
 
 
 #include "formagregargasto.h"
+#include "mcategoriasgastos.h"
 /*!
     \fn Gastos::agregarGasto()
         Abre la ventana para agregar un gasto
  */
 void Gastos::agregarGasto()
-{ emit agregarVentana( new FormAgregarGasto() ); }
+{
+    if( !MCategoriasGastos::vacio() ) {
+        emit agregarVentana( new FormAgregarGasto() );
+        return;
+    } else {
+        QMessageBox::information( 0, "Faltan datos", "No existe ninguna categoría de gastos definida. \n Ingrese a la lista de gastos para agregar una nueva categoría" );
+        return;
+    }
+}
 
 
 #include "vgastos.h"

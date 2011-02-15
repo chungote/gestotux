@@ -21,6 +21,7 @@
 #include "formprefcaja.h"
 #include "ui_formprefcajabase.h"
 #include "preferencias.h"
+#include "mcajas.h"
 
 FormPrefCaja::FormPrefCaja(QWidget *parent) :
     QWidget(parent),
@@ -30,6 +31,11 @@ FormPrefCaja::FormPrefCaja(QWidget *parent) :
     this->setObjectName( "preferencias_caja" );
     this->setWindowTitle( "Caja" );
     this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
+
+    // Cargo la lista de cajas
+    ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
+    ui->CBCaja->setModelColumn( 1 );
+    qobject_cast<QSqlTableModel *>(ui->CBCaja->model())->select();
 }
 
 FormPrefCaja::~FormPrefCaja()
@@ -66,6 +72,7 @@ void FormPrefCaja::cargar()
     ui->CkBFirma->setChecked( p->value( "firma", true ).toBool() );
     ui->CkBLogo->setChecked( p->value( "logo", true ).toBool() );
     ui->CkBResponsable->setChecked( p->value( "responsable", true ).toBool() );
+    ui->CBCaja->setCurrentIndex( p->value( "caja-predeterminada", -1 ).toInt() );
     p->endGroup();
     p->endGroup();
 }
@@ -82,6 +89,7 @@ void FormPrefCaja::guardar()
     p->setValue( "firma", ui->CkBFirma->isChecked() );
     p->setValue( "logo", ui->CkBLogo->isChecked() );
     p->setValue( "responsable", ui->CkBResponsable->isChecked() );
+    p->setValue( "caja-predeterminada", ui->CBCaja->model()->data( ui->CBCaja->model()->index( ui->CBCaja->currentIndex(), 0 ), Qt::EditRole ).toInt() );
     p->endGroup();
     p->endGroup();
 }

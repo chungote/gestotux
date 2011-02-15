@@ -19,9 +19,11 @@
  ***************************************************************************/
 
 #include "FormFacturarServicio.h"
+#include "eactcerrar.h"
+#include "mservicios.h"
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
-QWidget(parent)  {
+EVentana(parent), _id_servicio(0)  {
 
     setupUi(this);
 
@@ -29,10 +31,15 @@ QWidget(parent)  {
     //this->setWindowIcon( QIcon( ":/imagenes/" ) );
     this->setObjectName( "facturaservicios" );
 
-    PBCancelar->setIcon( QIcon( ":/imagenes/stop.png" ) );
-    connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close() ) );
+    ActCerrar = new EActCerrar( this );
+    this->addAction( ActCerrar );
 
-    connect( PBFacturar, SIGNAL( clicked() ), this, SLOT( close() ) );
+    ActFacturar = new QAction( this );
+    ActFacturar->setText( "Facturar" );
+    ActFacturar->setStatusTip( "Factura el servicio con los clientes seleccionados" );
+    ActFacturar->setIcon( QIcon( ":/imagenes/" ) );
+    connect( ActFacturar, SIGNAL( triggered() ), this, SLOT( facturar() ) );
+
 
 }
 
@@ -46,4 +53,32 @@ void FormFacturarServicio::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+/*!
+ * \fn FormFacturarServicio::setearServicio( const int id_servicio )
+ *  Setea el id de servicio que se desea realizar la facturación
+ * \param id_servicio ID del servicio
+ */
+void FormFacturarServicio::setearServicio(const int id_servicio)
+{
+    if( id_servicio > 0 ) {
+        this->_id_servicio = id_servicio;
+        this->cargar_datos_servicio();
+    } else {
+        qWarning( "Servicios:FormFacturarServicio: Seteando un servicio < o = 0");
+        return;
+    }
+}
+
+/*!
+ * \fn FormFacturarServicio::cargar_datos_servicio()
+ * Carga los datos de un servicio seleccionado
+ */
+void FormFacturarServicio::cargar_datos_servicio()
+{
+    MServicios *m = new MServicios( this );
+    this->LNombreServicio->setText( m->getNombreServicio( this->_id_servicio ) );
+    this->LPrecioBase->setText( QString( "$ %L1" ).arg( m->precioBase( this->_id_servicio ) ) );
+    this->LPeriodo->setText( m->getPeriodoActual( this->_id_servicio ) );
 }

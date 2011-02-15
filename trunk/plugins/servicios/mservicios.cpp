@@ -25,6 +25,7 @@
 #include <QSqlError>
 #include <QDate>
 
+#include "math.h"
 
 /*
 CREATE TABLE IF NOT EXISTS `servicios` (
@@ -209,6 +210,115 @@ double MServicios::precioBase( int id_servicio )
     } else { qDebug( "Error al hacer next en la cola de precio base de servicio" ); return 0.0; }
   } else { qDebug( "Error al hacer exec en la cola de precio base de servicio" ); return 0.0; }
 }
+
+QString MServicios::getNombreServicio( int id_servicio )
+{
+  QSqlQuery cola( QString( "SELECT nombre FROM %2 WHERE id_servicio = %1" ).arg( id_servicio ).arg( "servicios") );
+  if( cola.exec()) {
+      if( cola.next() ) {
+          return cola.record().value(0).toString();
+      } else { qDebug( "Servicios:MServicios:Error al hacer el next en la cola de nombre del servicio" ); return ""; }
+  } else { qDebug( "Servicios:MServicios:Error al hacer el exec en la cola del nombre del servicio" ); return ""; }
+}
+
+/*!
+ * \fn MServicios::getPeriodoActual( int id_servicio )
+ * Devuelve el periodo actual del servicio.
+ * \param id_servicio ID del servicio que queremos buscar
+ * \return ?
+ */
+/*QString MServicios::getPeriodoActual( const int id_servicio )
+{
+    QDate fecha_alta_servicio = this->getFechaAlta( id_servicio );
+    QDate hoy = QDate::currentDate();
+    int cant_dias_periodo = this->getCantidadDiasPeriodo( id_servicio );
+    // Calculo
+    int t = fecha_alta_servicio.daysTo( hoy );
+    double u = t/cant_dias_periodo;
+    int periodo = floor( u );
+    return "No lo se calcular todavía! " + periodo;
+}*/
+
+/*QDate MServicios::getFechaAlta( const int id_servicio )
+{
+    QSqlQuery cola( QString( "SELECT fecha_alta FROM %1 WHERE id_servicio = %2" ).arg( this->tableName() ).arg( id_servicio ) );
+    if( cola.exec() ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDate();
+        } else {
+            qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo -> next" );
+            return QDate();
+        }
+    } else {
+        qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo -> exec" );
+        return QDate();
+    }
+}*/
+
+/*int MServicios::getCantidadDiasPeriodo( const int id_servicio )
+{
+    QSqlQuery cola( QString( "SELECT fecha_alta, periodo FROM %1 WHERE id_servicio = %2" ).arg( this->tableName() ).arg( id_servicio ) );
+    if( cola.exec() ) {
+        if( cola.next() ) {
+            return this->getDiasEnPeriodo( cola.record().value(1).toInt(), cola.record().value(0).toDate() );
+        } else {
+            qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo y su periodo -> next" );
+            return -1;
+        }
+    } else {
+        qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo y su periodo  -> exec" );
+        return -1;
+    }
+}*/
+
+/*!
+ * \fn MServicios::getDiasEnPeriodo( const int id_periodo, const QDate fecha_alta, QDate fecha_calculo )
+ * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
+ * @param id_periodo Tipo de periodo que estamos considerando
+ * @param fecha_alta Fecha en que se dió de alta el servicio
+ * @param fecha_calculo Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
+ * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
+ */
+/*
+int MServicios::getDiasEnPeriodo( const int tipo_periodo, const QDate fecha_alta, QDate fecha_calculo )
+{
+    // Cuidado con los mensuales! ( feb en año bisiesto )
+    switch( tipo_periodo )
+    {
+        case MServicios::Semanal:
+        {
+            // Semanal -> La semana siempre tiene 7 dias independientemente del día del mes
+            // Corte anual ¿Considerarlo? ( cuando la semana no esta completa un año )
+            return 7;
+        }
+        case MServicios::Quincenal:
+        {
+            // Quincenal -> se considera como "medio mes"
+            // Verificar caso de febrero y meses con 30 o 31 días
+            return 14;
+        }
+        case MServicios::Mensual:
+        {
+            // Mensual
+            // Verificar el mes del periodo y devolver la cantidad de días
+            // ¿que pasa cuando el periodo no arranca en el 1º de mes?
+        }
+        case MServicios::BiMensual:
+        { return "Bimensual"; }
+        case MServicios::Trimestral:
+        { return "Trimestral"; }
+        case MServicios::Cuatrimestral:
+        { return "Cuatrimestral"; }
+        case MServicios::Seximestral:
+        { return "Seximestral"; }
+        case MServicios::Anual:
+        {
+            // Como consideramos los servicios con base en 1 año, siempre es periodo 1
+            return fecha_calculo.daysInYear();
+        }
+    }
+}
+*/
 
 /*
 "id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL

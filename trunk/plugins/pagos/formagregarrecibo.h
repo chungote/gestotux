@@ -29,12 +29,14 @@ class FormAgregarRecibo : public EVentana, private Ui::FormReciboBase
 Q_OBJECT
 
 public:
-	FormAgregarRecibo ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-	~FormAgregarRecibo();
+        FormAgregarRecibo ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+        ~FormAgregarRecibo();
 
 protected slots:
     void cambioPagado( double valor );
     void cambioCliente( int id_combo );
+
+private:
     void recalcularTotal();
 };
 

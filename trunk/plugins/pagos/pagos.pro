@@ -42,4 +42,5 @@ TRANSLATIONS += pagos.ts
 
 RESOURCES = pagos.qrc
 
-OTHER_FILES += pagos.SQLITE.sql
+OTHER_FILES += pagos.QMYSQL.sql \
+               pagos.QSQLITE.sql

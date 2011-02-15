@@ -22,6 +22,7 @@
 #include "mservicios.h"
 #include "formasociarserviciocliente.h"
 #include "formservicio.h"
+#include "FormFacturarServicio.h"
 
 #include <QTableView>
 #include <QAction>
@@ -188,5 +189,8 @@ void VServicios::generarFacturacion()
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
  // Muestro el formulario de recargos con el id seteado
+ FormFacturarServicio *f  = new FormFacturarServicio();
+ f->setearServicio( id_servicio );
+ emit agregarVentana( f );
  /// @todo Generar algoritmia para la facturación de el servicio
 }

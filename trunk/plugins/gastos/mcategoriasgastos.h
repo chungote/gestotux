@@ -28,6 +28,7 @@ class MCategoriasGastos : public QSqlTableModel
     Q_OBJECT
 public:
     explicit MCategoriasGastos(QObject *parent = 0);
+    static bool vacio();
 
 };
 
