@@ -32,7 +32,7 @@ VPagos::VPagos(QWidget *parent)
 
  modelo = new MPagos( this, true );
  vista->setModel( modelo );
- vista->hideColumn( 5 );
+ //vista->hideColumn( 5 );
  vista->setSortingEnabled( true );
  vista->setAlternatingRowColors( true );
  modelo->select();

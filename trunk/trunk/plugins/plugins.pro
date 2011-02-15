@@ -1,13 +1,13 @@
 TEMPLATE = subdirs
-SUBDIRS +=  servicios \
-            caja \
+SUBDIRS +=  caja \
             gastos \
             compras \
             ventas \
             proveedor \
             productos \
             CtaCte \
-            pagos #\
+            pagos \
+           servicios #\
 #            HiComp
 #            email \
 

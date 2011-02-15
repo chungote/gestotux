@@ -109,6 +109,14 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     } else {
         TBGastos->setVisible( false );
     }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Pagos / Recibos
+    if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) ) {
+        TBRecibos->setIcon( ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial()->icon() );
+        connect( TBRecibos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial(), SIGNAL(triggered()) );
+    } else {
+        TBRecibos->setVisible( false );
+    }
     ///////////////////////////////////////////////////////////////////////////////////
     // Dibujo las flechas
     f1->setearOrigen( TBPresupuestos );

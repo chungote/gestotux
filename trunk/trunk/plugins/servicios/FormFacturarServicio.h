@@ -22,16 +22,28 @@
 #define FORMFACTURARSERVICIO_H
 
 #include "ui_FormFacturarServicioBase.h"
+#include "eventana.h"
+class QAction;
+class EActCerrar;
 
-class FormFacturarServicio : public QWidget, private Ui::FormFacturarServicio
+class FormFacturarServicio : public EVentana, private Ui::FormFacturarServicio
 {
     Q_OBJECT
 
 public:
     explicit FormFacturarServicio(QWidget *parent = 0);
+    void setearServicio( const int id_servicio = 0 );
 
 protected:
     void changeEvent(QEvent *e);
+
+private:
+    int _id_servicio;
+    EActCerrar *ActCerrar;
+    QAction *ActFacturar;
+
+    void cargar_datos_servicio();
+
 };
 
 #endif // FORMFACTURARSERVICIO_H

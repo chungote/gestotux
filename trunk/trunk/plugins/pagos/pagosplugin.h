@@ -53,9 +53,11 @@ signals:
 public slots:
     void seCierraGestotux();
     void verPagos();
+    void agregarRecibo();
 
 private:
         QAction *ActPagos;
+        QAction *ActAgregarRecibo;
 };
 
 #endif

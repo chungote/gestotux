@@ -19,6 +19,9 @@
  ***************************************************************************/
 
 #include "mcategoriasgastos.h"
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QSqlRecord>
 
 MCategoriasGastos::MCategoriasGastos(QObject *parent) :
     QSqlTableModel(parent)
@@ -27,4 +30,24 @@ MCategoriasGastos::MCategoriasGastos(QObject *parent) :
    this->setHeaderData( 0, Qt::Horizontal, "#ID" );
    this->setHeaderData( 1, Qt::Horizontal, "Nombre" );
    this->setHeaderData( 2, Qt::Horizontal, "Descripcion" );
+}
+
+bool MCategoriasGastos::vacio()
+{
+ QSqlQuery cola;
+ if( cola.exec( "SELECT COUNT(id) FROM categoria_gastos" ) ) {
+     if( cola.next() ) {
+         if( cola.record().value(0).toInt() > 0 ) {
+             return true;
+         } else { return false; }
+     } else {
+         qDebug( "Gastos:MCategoriasGastos:Error al hacer next en el conteo de cantidad de items.");
+         return false;
+     }
+ } else {
+     qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola" );
+     qDebug( QString( "Gastos:MCategoriasGastos:cola=%1").arg( cola.lastQuery() ).toLocal8Bit() );
+     qDebug( QString( "Gastos:MCategoriasGastos:error=%1").arg( cola.lastError().text() ).toLocal8Bit() );
+     return false;
+ }
 }

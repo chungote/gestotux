@@ -28,13 +28,16 @@ bool PagosPlugin::inicializar()
  ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
  connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
 
+ ActAgregarRecibo = new QAction( "Agregar Recibo", this );
+ connect( ActAgregarRecibo, SIGNAL( triggered() ), this, SLOT( agregarRecibo() ) );
+
  return true;
 }
 
 bool PagosPlugin::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
-    { qWarning( "Recibos::Error al buscar la tabla recibos" ); return false; }
+ { qWarning( "Recibos::Error al buscar la tabla recibos" ); return false; }
  return true;
 }
 
@@ -72,6 +75,7 @@ void PagosPlugin::crearMenu( QMenuBar* m )
   mVentas->setObjectName( "menuVentas" );
  }
  mVentas->addAction( ActPagos );
+ mVentas->addAction( ActAgregarRecibo );
 }
 
 void PagosPlugin::crearToolBar(QToolBar* t)
@@ -82,8 +86,6 @@ void PagosPlugin::seCierraGestotux()
 {
 }
 
-Q_EXPORT_PLUGIN2( pagos, PagosPlugin );
-
 #include "vpagos.h"
 /*!
     \fn PagosPlugin::verPagos()
@@ -92,3 +94,14 @@ void PagosPlugin::verPagos()
 {
  emit agregarVentana( new VPagos() );
 }
+
+#include "formagregarrecibo.h"
+/*!
+    \fn PagosPlugin::agregarRecibo()
+*/
+void PagosPlugin::agregarRecibo()
+{
+    emit agregarVentana( new FormAgregarRecibo() );
+}
+
+Q_EXPORT_PLUGIN2( pagos, PagosPlugin );

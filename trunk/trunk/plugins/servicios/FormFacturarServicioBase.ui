@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>703</width>
-    <height>483</height>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="GBDatos">
      <property name="title">
       <string>Datos del Servicio</string>
      </property>
@@ -135,50 +135,42 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="GBClientes">
      <property name="title">
       <string>Clientes</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QTableView" name="TVClientes"/>
+       <widget class="QTableView" name="TVClientes">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QPushButton" name="PBCancelar">
-       <property name="text">
-        <string>Cancelar</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::MinimumExpanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>54</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="PBFacturar">
-       <property name="text">
-        <string>Facturar</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QGroupBox" name="GBRecargos">
+     <property name="title">
+      <string>Recargos</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QTableView" name="TVRecargos">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>

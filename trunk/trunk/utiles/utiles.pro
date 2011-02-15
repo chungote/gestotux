@@ -57,5 +57,6 @@ FORMS += EAyudaBase.ui
 
 TRANSLATIONS += utiles.ts
 
-INCLUDEPATH += ../src
+INCLUDEPATH += ../src \
+               ../reporte
 

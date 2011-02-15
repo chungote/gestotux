@@ -33,6 +33,7 @@
 
 -- Servicios --
 - Diseñar sistema de preimpresion de recibos.
+- Ver como hacer el automatico de los sitemas de cobro
 
 -- Compras --
 - Verificar si es posible hacer autoagregado de productos dandolos de alta al agregarlos en una factura de venta.

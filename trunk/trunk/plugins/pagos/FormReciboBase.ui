@@ -139,7 +139,14 @@
          </widget>
         </item>
         <item>
-         <widget class="EDSBPrecio" name="dSBPagado"/>
+         <widget class="EDSBPrecio" name="dSBPagado">
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="prefix">
+           <string>$ </string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -154,8 +161,14 @@
         </item>
         <item>
          <widget class="EDSBPrecio" name="dSBDeuda">
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
+          </property>
+          <property name="prefix">
+           <string>$ </string>
           </property>
          </widget>
         </item>
@@ -172,8 +185,14 @@
         </item>
         <item>
          <widget class="EDSBPrecio" name="dSBTotal">
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
+          </property>
+          <property name="prefix">
+           <string>$ </string>
           </property>
          </widget>
         </item>

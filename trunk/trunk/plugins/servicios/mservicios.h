@@ -62,6 +62,8 @@ public:
     bool asociarCliente( int id_cliente, int id_servicio, QDate fecha = QDate::currentDate() );
     bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto );
     static double precioBase( int id_servicio );
+    static QString getNombreServicio( int id_servicio );
+    static QString getPeriodoActual( int id_servicio );
 
 };
 
