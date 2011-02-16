@@ -21,9 +21,9 @@
 #include <QDir>
 
 Recibo::Recibo(QObject *parent)
- : EReporte(parent)
+ : QObject(parent)
 {
- this->setArchivo( QString( "plugins%1informes%1recibo.xml" ).arg( QDir::separator() ) );
+ //this->setArchivo( QString( "plugins%1informes%1recibo.xml" ).arg( QDir::separator() ) );
 }
 
 
@@ -39,6 +39,6 @@ Recibo::~Recibo()
  */
 void Recibo::setIDPago( const int numero )
 {
- this->agregarParametro( "numero_recibo", numero );
+ //this->agregarParametro( "numero_recibo", numero );
  _numero_recibo = numero;
 }

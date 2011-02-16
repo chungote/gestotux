@@ -20,14 +20,14 @@
 #ifndef RECIBO_H
 #define RECIBO_H
 
-#include "ereporte.h"
+#include <QObject>
 
 /**
  \brief Renderiza un recibo
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class Recibo : public EReporte
+class Recibo : public QObject
 {
 Q_OBJECT
 public:

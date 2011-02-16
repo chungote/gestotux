@@ -35,46 +35,46 @@
 FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormResumenCtaCteBase()
 {
-	setupUi ( this );
-	this->setObjectName( "Resumen_cuenta-cte" );
-	this->setWindowTitle( "Resumen de Cta Cte" );
+        setupUi ( this );
+        this->setObjectName( "Resumen_cuenta-cte" );
+        this->setWindowTitle( "Resumen de Cta Cte" );
 
-	// Relleno el combobox
-	QSqlQuery cola( "SELECT cc.numero_cuenta, c.razon_social FROM ctacte AS cc, clientes AS c WHERE cc.id_cliente = c.id AND fecha_baja IS NOT NULL" );
-	while( cola.next() )
-	{
-		CBClienteCtaCte->addItem(     "#" + cola.record().value(0).toString() + " - " + cola.record().value(1).toString(),
-					     cola.record().value(0).toString() );
-	}
-	CBClienteCtaCte->setEditable( true );
-	CBClienteCtaCte->setCurrentIndex( -1 );
- 	connect( CBClienteCtaCte, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCtaCte( int ) ) );
+        // Relleno el combobox
+        QSqlQuery cola( "SELECT cc.numero_cuenta, c.razon_social FROM ctacte AS cc, clientes AS c WHERE cc.id_cliente = c.id AND fecha_baja IS NOT NULL" );
+        while( cola.next() )
+        {
+                CBClienteCtaCte->addItem(     "#" + cola.record().value(0).toString() + " - " + cola.record().value(1).toString(),
+                                             cola.record().value(0).toString() );
+        }
+        CBClienteCtaCte->setEditable( true );
+        CBClienteCtaCte->setCurrentIndex( -1 );
+        connect( CBClienteCtaCte, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCtaCte( int ) ) );
 
-	EActImprimir *ActImprimir = new EActImprimir( this );
-	connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
-	this->addAction( ActImprimir );
+        EActImprimir *ActImprimir = new EActImprimir( this );
+        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+        this->addAction( ActImprimir );
 
-	EActPdf *ActPdf = new EActPdf( this );
-	this->addAction( ActPdf );
-	connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
+        EActPdf *ActPdf = new EActPdf( this );
+        this->addAction( ActPdf );
+        connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
 
-	EActEmail *ActEmail = new EActEmail( this );
- 	this->addAction( ActEmail );
-	connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );
+        EActEmail *ActEmail = new EActEmail( this );
+        this->addAction( ActEmail );
+        connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );
 
-	modeloItem = new MItemCuentaCorriente( TVItems, false );
-	TVItems->setModel( modeloItem );
-	TVItems->hideColumn( 0 );
-	TVItems->hideColumn( 2 );
-	TVItems->hideColumn( 7 );
-	TVItems->setSelectionMode( QAbstractItemView::SingleSelection );
-	TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
-	TVItems->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-	TVItems->setTextElideMode( Qt::ElideRight );
-	/// Menu contextual para cada operacion de la cuenta corriente
-	connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
+        modeloItem = new MItemCuentaCorriente( TVItems, false );
+        TVItems->setModel( modeloItem );
+        TVItems->hideColumn( 0 );
+        TVItems->hideColumn( 2 );
+        TVItems->hideColumn( 7 );
+        TVItems->setSelectionMode( QAbstractItemView::SingleSelection );
+        TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
+        TVItems->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+        TVItems->setTextElideMode( Qt::ElideRight );
+        /// Menu contextual para cada operacion de la cuenta corriente
+        connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
 
-	this->addAction( new EActCerrar( this ) );
+        this->addAction( new EActCerrar( this ) );
 
 
 }
@@ -86,8 +86,8 @@ FormResumenCtaCte::~FormResumenCtaCte()
 
 /*!
     \fn FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
-	Setea todas las condiciones del formulario para mostrar los datos de la cuenta corriente seleccionada por el parametro
-	@param numero_cuenta Numero de cuenta al que se desea ver el resumen
+        Setea todas las condiciones del formulario para mostrar los datos de la cuenta corriente seleccionada por el parametro
+        @param numero_cuenta Numero de cuenta al que se desea ver el resumen
  */
 void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
 {
@@ -118,8 +118,8 @@ void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
 
 /*!
     \fn FormResumenCtaCte::cambioCtaCte( int numero_cuenta )
-	Slot llamado cada vez que se cambia el combobox de la cuenta corriente
-	@param numero_cuenta Numero de cuenta que indica el combobox
+        Slot llamado cada vez que se cambia el combobox de la cuenta corriente
+        @param numero_cuenta Numero de cuenta que indica el combobox
  */
 void FormResumenCtaCte::cambioCtaCte( int numero_cuenta )
 {
@@ -172,44 +172,44 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
  QModelIndex temp = indice.model()->index( indice.row(), 3 );
  switch( temp.data( Qt::EditRole ).toInt() )
  {
-	case MItemCuentaCorriente::Factura:
-	{
-		if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
- 		{
-			/// @todo Verificar si no esta pagada ya
-			QAction *ActCrearRecibo = new QAction( this );
-			ActCrearRecibo->setText( "Pagar esta factura..." );
-			connect( ActCrearRecibo, SIGNAL( triggered() ), this, SLOT( pagarFactura() ) );
-			_menuContextual->addAction( ActCrearRecibo );
-		}
+        case MItemCuentaCorriente::Factura:
+        {
+                if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+                {
+                        /// @todo Verificar si no esta pagada ya
+                        QAction *ActCrearRecibo = new QAction( this );
+                        ActCrearRecibo->setText( "Pagar esta factura..." );
+                        connect( ActCrearRecibo, SIGNAL( triggered() ), this, SLOT( pagarFactura() ) );
+                        _menuContextual->addAction( ActCrearRecibo );
+                }
 
-		QAction *ActVerFactura = new QAction( this );
-		ActVerFactura->setText( "Ver esta factura" );
-		connect( ActVerFactura, SIGNAL( triggered() ), this, SLOT( verFactura() ) );
-		_menuContextual->addAction( ActVerFactura );
-		break;
-	}
-	case MItemCuentaCorriente::Recibo:
-	{
-		if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
-		{
-			QAction *ActVerRecibo = new QAction( this );
-			ActVerRecibo->setText( "Ver Recibo..." );
-			connect( ActVerRecibo, SIGNAL( triggered() ), this, SLOT( verRecibo() ) );
-			_menuContextual->addAction( ActVerRecibo );
+                QAction *ActVerFactura = new QAction( this );
+                ActVerFactura->setText( "Ver esta factura" );
+                connect( ActVerFactura, SIGNAL( triggered() ), this, SLOT( verFactura() ) );
+                _menuContextual->addAction( ActVerFactura );
+                break;
+        }
+        case MItemCuentaCorriente::Recibo:
+        {
+                if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+                {
+                        QAction *ActVerRecibo = new QAction( this );
+                        ActVerRecibo->setText( "Ver Recibo..." );
+                        connect( ActVerRecibo, SIGNAL( triggered() ), this, SLOT( verRecibo() ) );
+                        _menuContextual->addAction( ActVerRecibo );
 
-		}
-		break;
-	}
+                }
+                break;
+        }
  }
  _menuContextual->addSeparator();
 
  if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
  {
- 	QAction *ActPagarTodo = new QAction( this );
- 	ActPagarTodo->setText( "Pagar todo..." );
- 	connect( ActPagarTodo, SIGNAL( triggered() ), this, SLOT( pagarTodo() ) );
- 	_menuContextual->addAction( ActPagarTodo );
+        QAction *ActPagarTodo = new QAction( this );
+        ActPagarTodo->setText( "Pagar todo..." );
+        connect( ActPagarTodo, SIGNAL( triggered() ), this, SLOT( pagarTodo() ) );
+        _menuContextual->addAction( ActPagarTodo );
  }
 
  QAction *ActImprimirResumen = new QAction( this );
@@ -250,8 +250,8 @@ void FormResumenCtaCte::verRecibo()
  re->setIDPago( 0  ); /// @todo Poner id del recibo
  EVisorInformes *visor = new EVisorInformes( new QPrinter(), this );
 // re->hacerRecibo();
- connect( visor, SIGNAL( paintRequested( QPrinter* ) ), re, SLOT( previsualizar( QPrinter * ) ) );
- agregarVentana( visor );
+ //connect( visor, SIGNAL( paintRequested( QPrinter* ) ), re, SLOT( previsualizar( QPrinter * ) ) );
+ //agregarVentana( visor );
 }
 
 

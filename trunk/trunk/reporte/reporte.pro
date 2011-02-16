@@ -59,6 +59,7 @@ SOURCES = openreports.cpp \
           common/parsexmlutils.cpp \
           common/querysource.cpp \
           common/reportpageoptions.cpp
+OTHER_FILES += openreports.txt
 
 INCLUDEPATH += common
 
