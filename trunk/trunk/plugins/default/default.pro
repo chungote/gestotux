@@ -2,6 +2,7 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin
+
 INCLUDEPATH += ../../src
 
 HEADERS += gestotuxdefault.h
@@ -14,5 +15,4 @@ DESTDIR = ../../bin/plugins/
 
 TRANSLATIONS += default.ts
 
-RESOURCES += \
-    default.qrc
+RESOURCES += default.qrc

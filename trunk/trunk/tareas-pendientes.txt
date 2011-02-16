@@ -4,7 +4,8 @@
 - Terminar de definir el sistema de impresion.
 - Eliminar sistema de lista de precios ( revisar eliminacion )
 - Verificar el diseño de las categorias.
-- Eliminar ncreport
+- Agregar tabla de reportes dentro de las tablas normales.
+- Ver como hacer el cliente "Consumidor Final"
 
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
@@ -98,3 +99,7 @@ All I Want Is You - Brian Simpson
 Acustica Alchemy - The Velvet Swing
 Jessy J - True Love
 Boney James - Stop, Look, Lisent
+No Two Ways About It - Jeff Golub
+Euge Groove - Slow Jam
+Duncan Millar - Secret Smile
+Michael Lington - It's Too Late

@@ -72,7 +72,7 @@ bool MCajas::agregarCaja( QString nombre, QDate fecha_alta, double saldo_inicial
 
 #include <QSqlQuery>
 /*!
- * @fn actualizarSaldo( int id_caja, double cantidad )
+ * @fn MCajas::actualizarSaldo( int id_caja, double cantidad )
  * Funcion que actualiza el sado de una caja especifica
  * @param id_caja Identificador de la caja a la cual se le actualizará el saldo
  * @param cantidad Cantidad ( positiva para aumentar, negativa para disminuir ) que se modificara al saldo
@@ -100,7 +100,7 @@ bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
 }
 
 /*!
- * @fn MCajas::saldo( const int id_caja ) const
+ * @fn MCajas::saldo( const int id_caja )
  * Funcion que devuelve el saldo actual de una caja
  * @param id_caja Identificador de la caja a la cual se le actualizará el saldo
  * @return Saldo de la caja
@@ -120,7 +120,7 @@ double MCajas::saldo( const int id_caja )
 }
 
 /*!
- * @fn MCajas::hacerCierre( const int id_caja, QDateTime fecha, double saldo ) const
+ * @fn MCajas::hacerCierre( const int id_caja, QDateTime fecha, double saldo )
  * Funcion que realiza el cierre de una caja.
  * @param id_caja Identificador de la caja a la cual se le actualizar el saldo
  * @param fecha Fecha y hora en que se realiza el cierre

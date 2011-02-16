@@ -90,7 +90,7 @@ QVariant MMovimientosCaja::data(const QModelIndex& item, int role) const
 
 
 /*!
- * @fn MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso )
+ * @fn MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso, bool agregando_caja )
  * Almacena una operación de caja. ingreso y egreso son mutuamente excluentes y no pueden ser los 2 iguales a 0
  * @param id_caja #ID de caja para la operacion
  * @param razon Texto para incluir ( luego sale en el resumen de caja )
@@ -159,7 +159,7 @@ double MMovimientosCaja::recalcularSaldo( const int id_caja )
 }
 
 /*!
- * @fn MMovimientosCaja::agregarCiere( const int id_caja, QDateTime fechahora, double saldo )
+ * @fn MMovimientosCaja::agregarCierre( const int id_caja, QDateTime fechahora, double saldo )
  * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
  * @param id_caja #ID de caja
  * @param fechahora Fech y hora del cierre

@@ -10,7 +10,7 @@ TARGET = pagos
 
 DESTDIR = ../../bin/plugins/
 
-TARGETDEPS += ../../bin/libncreport.a \
+TARGETDEPS += ../../bin/libreporte.a \
   ../../bin/libutiles.a
 
 HEADERS += pagosplugin.h \
@@ -35,7 +35,7 @@ INCLUDEPATH += ../../src \
                ../../reporte \
                ../../utiles
 
-LIBS += ../../bin/libncreport.a \
+LIBS += ../../bin/libreporte.a \
         ../../bin/libutiles.a
 
 TRANSLATIONS += pagos.ts
