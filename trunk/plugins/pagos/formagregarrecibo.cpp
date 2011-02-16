@@ -24,6 +24,7 @@
 #include "eregistroplugins.h"
 #include "../CtaCte/mcuentacorriente.h"
 #include "eactcerrar.h"
+#include "eactguardar.h"
 
 FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormReciboBase()
@@ -42,6 +43,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
         connect( dSBPagado, SIGNAL( valueChanged( double ) ), this, SLOT( cambioPagado( double ) ) );
 
+        this->addAction( new EActGuardar( this ) );
         this->addAction( new EActCerrar( this ) );
 
 }
@@ -97,8 +99,6 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
 void FormAgregarRecibo::cambioPagado( double valor )
 {
  recalcularTotal();
- ///@todo Ver si poner el numero en texto en el campo de texto
-
 }
 
 

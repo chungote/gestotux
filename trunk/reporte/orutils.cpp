@@ -20,7 +20,7 @@
 
 #include "orutils.h"
 
-#include "../../MetaSQL/metasql.h"
+#include "MetaSQL/metasql.h"
 
 //
 // Class orQuery implementations
@@ -165,11 +165,11 @@ const QString &orData::getValue()
 
 const QVariant orData::getVariant() const
 {
-	QVariant v;
-	if (_valid)
-		v = qryThis->getQuery()->value(qstrField);
+        QVariant v;
+        if (_valid)
+                v = qryThis->getQuery()->value(qstrField);
 
-	return v;
+        return v;
 }
 
 
