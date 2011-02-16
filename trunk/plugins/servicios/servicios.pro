@@ -19,9 +19,9 @@ INCLUDEPATH += ../../src \
   ../../utiles
 
 LIBS += ../../bin/libutiles.a \
-  ../../bin/libncreport.a
+  ../../bin/libreporte.a
 
-TARGETDEPS += ../../bin/libncreport.a \
+TARGETDEPS += ../../bin/libreporte.a \
   ../../bin/libutiles.a
 
 OBJECTS_DIR = obj

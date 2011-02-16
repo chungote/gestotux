@@ -27,14 +27,14 @@ FORMS += FormPrefCtaCteBase.ui \
     FormResumenCtaCteBase.ui
 DISTFILES += ctacte.QMYSQL.sql \
              ctacte.QSQLITE.sql
-TARGETDEPS += ../../bin/libncreport.a \
+TARGETDEPS += ../../bin/libreporte.a \
     ../../bin/libutiles.a
 INCLUDEPATH += ../pagos \
                ../../src \
                ../../reporte \
                ../../utiles
 LIBS += ../../bin/libutiles.a \
-        ../../bin/libncreport.a
+        ../../bin/libreporte.a
 TRANSLATIONS += CtaCte.ts
 OTHER_FILES +=  CtaCte.ts \
                 ctacte.QMYSQL.sql \

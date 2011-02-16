@@ -19,7 +19,8 @@
 #
 
 TEMPLATE = lib
-CONFIG  += qt warn_on staticlib qt3support
+CONFIG  += staticlib \
+           qt3support
 DEFINES += MAKELIB
 
 DESTDIR = ../bin

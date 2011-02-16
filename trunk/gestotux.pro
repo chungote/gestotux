@@ -1,9 +1,9 @@
 SUBDIRS += utiles \
+ reporte/reporte.pro \
  src/src.pro \
  plugins/default/default.pro \
  plugins/plugins.pro \
- utiles/estilos/estilos.pro \
- reporte/reporte.pro
+ utiles/estilos/estilos.pro
 
 TEMPLATE = subdirs
 CONFIG += warn_on \

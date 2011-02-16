@@ -81,7 +81,7 @@ TRANSLATIONS += gestotux.ts
 
 QT += webkit
 
-TARGETDEPS += ../bin/libncreport.a \
+TARGETDEPS += ../bin/libreporte.a \
               ../bin/libutiles.a
 
 DEFINES += GESTOTUX_DESARROLLO
@@ -91,9 +91,8 @@ INCLUDEPATH += ../reporte \
   ../utiles/email
 
 LIBS += ../bin/libutiles.a \
-  ../bin/libncreport.a
+  ../bin/libreporte.a
 
-OTHER_FILES += \
-    gestotux.ts \
+OTHER_FILES += gestotux.ts \
     tablas.QSQLITE.sql \
     tablas.QMYSQL.sql
