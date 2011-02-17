@@ -346,10 +346,10 @@ void RichTextEditorToolBar::setVAlignSub(bool sub)
 void RichTextEditorToolBar::insertImage()
 {
  QString fileName = QFileDialog::getOpenFileName( this,
-						 tr("Insertar Imagen"),
-						 QApplication::applicationDirPath(),
-						 tr( "Archivos de imagen (*.png *.jpg *.bmp)" )
-						 );
+                                                 tr("Insertar Imagen"),
+                                                 QApplication::applicationDirPath(),
+                                                 tr( "Archivos de imagen (*.png *.jpg *.bmp)" )
+                                                 );
  if (!fileName.isEmpty())
         m_editor->insertHtml(QLatin1String("<img src=\"") + fileName + QLatin1String("\"/>"));
 }
@@ -416,16 +416,16 @@ EEditor::EEditor( QWidget *parent)  :
 
 /*!
     \fn EEditor::setDefaultFont( const QFont &font )
-	Setea la fuente predefinida
-	@param font Fuente a utilizar
+        Setea la fuente predefinida
+        @param font Fuente a utilizar
  */
 void EEditor::setDefaultFont(const QFont &font )
 {  m_editor->setDefaultFont(font); }
 
 /*!
     \fn EEditor::setText( const QString &text )
-	Coloca el texto pasado como parametro en el editor
-	@param text Texto a editar
+        Coloca el texto pasado como parametro en el editor
+        @param text Texto a editar
  */
 void EEditor::setText(const QString &text)
 { m_editor->setText(text); m_state = Clean; }
@@ -433,9 +433,9 @@ void EEditor::setText(const QString &text)
 
 /*!
     \fn EEditor::contenido( Qt::TextFormat format ) const
-	Devuelve el contenido del editor en el formato elegido
-	@param format Formato de devolución ( Qt::TextFormat )
-	@return Texto del editor
+        Devuelve el contenido del editor en el formato elegido
+        @param format Formato de devolución ( Qt::TextFormat )
+        @return Texto del editor
  */
 QString EEditor::contenido(Qt::TextFormat format) const
 { return m_editor->text(format);  }
@@ -444,6 +444,7 @@ QString EEditor::contenido(Qt::TextFormat format) const
 
 /*!
     \fn RichTextEditor::focusInEvent( QFocusEvent *event )
+    Muestra la barra de edición cuando entra en foco
  */
 void RichTextEditor::focusInEvent( QFocusEvent *event )
 {
@@ -454,17 +455,19 @@ void RichTextEditor::focusInEvent( QFocusEvent *event )
 
 /*!
     \fn RichTextEditor::focusOutEvent( QFocusEvent *event )
+    Oculta la barra de edición cuando se sale de foco
  */
 void RichTextEditor::focusOutEvent( QFocusEvent *event )
 {
  emit mostrarToolBar( false );
  QTextEdit::focusOutEvent( event );
-
 }
 
 
 /*!
     \fn EEditor::ocultarBarra( bool estado )
+    Muestra o oculta la barra de estado
+    @param estado mostrar o no mostrar
  */
 void EEditor::ocultarBarra( bool estado )
 {
@@ -490,6 +493,8 @@ void EEditor::ocultarBarra( bool estado )
 
 /*!
     \fn EEditor::setHtml( QString contenido )
+    Setea el contenido del editor con el codigo html pasado como parametro
+    @param contenido Contenido a mostrar en codigo html
  */
 void EEditor::setHtml( QString contenido )
 { m_editor->setHtml( contenido ); m_state = Clean; }

@@ -33,6 +33,15 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="inputMask">
+          <string>99999-9999999; </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
       </layout>
@@ -85,7 +94,7 @@
     </layout>
    </item>
    <item row="2" column="0" colspan="4">
-    <widget class="QTextEdit" name="TETexto"/>
+    <widget class="EEditor" name="TETexto"/>
    </item>
    <item row="3" column="0">
     <widget class="QGroupBox" name="GBFormaPago">
@@ -221,6 +230,11 @@
    <class>EDSBPrecio</class>
    <extends>QDoubleSpinBox</extends>
    <header location="global">edsbprecio.h</header>
+  </customwidget>
+  <customwidget>
+   <class>EEditor</class>
+   <extends>QTextEdit</extends>
+   <header location="global">eeditor.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

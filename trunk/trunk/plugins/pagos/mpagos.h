@@ -27,7 +27,7 @@
 
 Modelo que administra los pagos realizados en el programa.
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MPagos : public QSqlRelationalTableModel
 {
@@ -35,9 +35,10 @@ Q_OBJECT
 public:
     MPagos(QObject *parent = 0, bool relaciones = false );
     ~MPagos();
-
-    bool setData(const QModelIndex& item, const QVariant& value, int role);
     QVariant data(const QModelIndex& item, int role) const;
+    int buscarUltimoNumeroRecibo() const;
+    QDate buscarFechaUltimoRecibo() const;
+    int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
 
 };
 

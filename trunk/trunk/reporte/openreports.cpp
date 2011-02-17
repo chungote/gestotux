@@ -54,7 +54,7 @@ class orReportPrivate {
 
 orReportPrivate::orReportPrivate()
 {
-  _reportExists = false;  
+  _reportExists = false;
   _genDoc = 0;
 }
 
@@ -261,7 +261,7 @@ bool orReport::print(QPrinter *prtThis, bool boolSetupPrinter, bool showPreview)
             pd.setMinMax(1, _internal->_genDoc->pages());
             retval = (pd.exec() == QDialog::Accepted);
           }
-  
+
           if(retval == true)
             retval = render(0, prtThis);
 
@@ -314,7 +314,7 @@ bool orReport::render(QPainter *pPainter, QPrinter *pPrinter)
     if(_internal->_genDoc)
     {
       ORPrintRender render;
-  
+
       render.setPrinter(pPrinter);
       render.setPainter(pPainter);
       retval = render.render(_internal->_genDoc);
@@ -574,16 +574,17 @@ qDebug("orReport[_wrapper]::satisfyParams() not implemented");
 
 int orReport::reportError(QWidget *pParent)
 {
-  if (!_internal->_reportExists)
-    QMessageBox::critical( pParent, QObject::tr("Report Definition Not Found"),
+    if (!_internal->_reportExists) {
+        QMessageBox::critical( pParent, QObject::tr("Report Definition Not Found"),
                            QObject::tr( "The report definition for this report, \"%1\" cannot be found.\n"
                                         "Please contact your Systems Administrator and report this issue." )
                            .arg(_internal->_reportName) );
-  else
+    } else {
     QMessageBox::critical( pParent, QObject::tr("Unknown Error"),
                            QObject::tr( "An unknown error was encountered while processing your request.\n"
                                         "Please contact your Systems Administrator and report this issue." ) );
-//  ToDo  Add support for unsatisfied parameters list and return something meaningful
-  return -1;
+    }
+    //  ToDo  Add support for unsatisfied parameters list and return something meaningful
+    return -1;
 }
 

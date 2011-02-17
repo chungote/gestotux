@@ -24,6 +24,8 @@
 #include "eventana.h"
 #include "ui_FormReciboBase.h"
 
+class MPagos;
+
 class FormAgregarRecibo : public EVentana, private Ui::FormReciboBase
 {
 Q_OBJECT
@@ -31,6 +33,10 @@ Q_OBJECT
 public:
         FormAgregarRecibo ( QWidget* parent = 0, Qt::WFlags fl = 0 );
         ~FormAgregarRecibo();
+        void setearModelo( MPagos *m );
+
+public slots:
+    void guardar();
 
 protected slots:
     void cambioPagado( double valor );
@@ -38,6 +44,8 @@ protected slots:
 
 private:
     void recalcularTotal();
+
+    MPagos *_modelo;
 };
 
 #endif

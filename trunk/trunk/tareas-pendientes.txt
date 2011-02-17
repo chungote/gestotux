@@ -6,9 +6,11 @@
 - Verificar el diseño de las categorias.
 - Agregar tabla de reportes dentro de las tablas normales.
 - Ver como hacer el cliente "Consumidor Final"
+- Verificar que los reportes tienen un limite para la base de datos, buscarlo.
 
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
+- Verificar que al eliminar una caja no sea la predeterminada.
 
 -- Cuotas --
 - Definir sistema de cuotas.

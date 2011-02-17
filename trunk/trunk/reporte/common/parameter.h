@@ -40,9 +40,9 @@ class Parameter
     Parameter & operator= (const Parameter &);
 
 inline
-    QString  name() const  { return _name;   };
+    QString  name() const  { return _name;   }
 inline
-    QVariant value() const { return _value;  };
+    QVariant value() const { return _value;  }
 
   protected:
     QString  _name;
@@ -62,13 +62,13 @@ class ParameterList : public QList<Parameter>
     void append(const QString &, double);
     void append(const Parameter &);
 
-	void remove( QString &);
+        void remove( QString &);
 
     QString  name(int) const;
     QVariant value(int, bool * = NULL) const;
     QVariant value(const QString &, bool * = NULL) const;
     bool     inList(const QString &) const;
 };
-  
+
 #endif
 
