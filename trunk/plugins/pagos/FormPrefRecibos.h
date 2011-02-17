@@ -17,41 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "vpagos.h"
 
-#include "mpagos.h"
-#include "formagregarrecibo.h"
-#include <QTableView>
-#include <QIcon>
+#ifndef FORMPREFRECIBOS_H
+#define FORMPREFRECIBOS_H
 
-VPagos::VPagos(QWidget *parent)
- : EVLista(parent)
+#include "ui_FormPrefRecibos.h"
+#include "formprefhijo.h"
+
+class FormPrefRecibos : public QWidget, public FormPrefHijo, private Ui::FormPrefRecibos
 {
- this->setObjectName( "vpagos" );
- this->setWindowTitle( "Visor de Pagos" );
- this->setWindowIcon( QIcon( ":/imagenes/recibo.png" ) );
+    Q_OBJECT
 
- modelo = new MPagos( this, true );
- vista->setModel( modelo );
- vista->hideColumn( 0 );
- vista->hideColumn( 3 );
- vista->hideColumn( 7 );
- vista->setSortingEnabled( true );
- vista->setAlternatingRowColors( true );
- modelo->select();
+public:
+    explicit FormPrefRecibos(QWidget *parent = 0);
 
- addAction( ActAgregar );
- addAction( ActCerrar );
-}
+protected:
+    void changeEvent(QEvent *e);
+};
 
-
-VPagos::~VPagos()
-{
-}
-
-void VPagos::agregar( bool a )
-{
- FormAgregarRecibo *f = new FormAgregarRecibo( this );
- f->setearModelo( qobject_cast<MPagos *>(this->modelo) );
- emit agregarVentana( f );
-}
+#endif // FORMPREFRECIBOS_H

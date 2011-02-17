@@ -36,6 +36,7 @@ class MCajas : public QSqlTableModel
         static bool actualizarSaldo( const int id_caja, const double cantidad );
         static double saldo( const int id_caja );
         static QString nombreCaja( const int id_caja );
+        static int cajaPredeterminada();
 };
 
 #endif // MCAJAS_H

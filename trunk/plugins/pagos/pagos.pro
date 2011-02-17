@@ -18,18 +18,25 @@ HEADERS += pagosplugin.h \
            formagregarrecibo.h \
            ../CtaCte/mcuentacorriente.h \
            ../CtaCte/mitemcuentacorriente.h \
+           ../caja/mmovimientoscaja.h \
+           ../caja/mcajas.h \
            vpagos.h \
-           recibo.h
+           recibo.h \
+           FormPrefRecibos.h
 
 SOURCES += pagosplugin.cpp \
            mpagos.cpp \
            formagregarrecibo.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
+           ../caja/mmovimientoscaja.cpp \
+           ../caja/mcajas.cpp \
            vpagos.cpp \
-           recibo.cpp
+           recibo.cpp \
+           FormPrefRecibos.cpp
 
-FORMS += FormReciboBase.ui
+FORMS += FormReciboBase.ui \
+    FormPrefRecibos.ui
 
 INCLUDEPATH += ../../src \
                ../../reporte \

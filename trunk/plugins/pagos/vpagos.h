@@ -25,7 +25,7 @@
 /**
 Visor de los ultimos recibos pasados/echos
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class VPagos : public EVLista
 {
@@ -33,7 +33,8 @@ Q_OBJECT
 public:
     VPagos(QWidget *parent = 0);
     ~VPagos();
-
+public slots:
+    void agregar( bool autoeliminarid );
 };
 
 #endif

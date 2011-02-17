@@ -17,41 +17,22 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "vpagos.h"
 
-#include "mpagos.h"
-#include "formagregarrecibo.h"
-#include <QTableView>
-#include <QIcon>
+#include "FormPrefRecibos.h"
 
-VPagos::VPagos(QWidget *parent)
- : EVLista(parent)
-{
- this->setObjectName( "vpagos" );
- this->setWindowTitle( "Visor de Pagos" );
- this->setWindowIcon( QIcon( ":/imagenes/recibo.png" ) );
-
- modelo = new MPagos( this, true );
- vista->setModel( modelo );
- vista->hideColumn( 0 );
- vista->hideColumn( 3 );
- vista->hideColumn( 7 );
- vista->setSortingEnabled( true );
- vista->setAlternatingRowColors( true );
- modelo->select();
-
- addAction( ActAgregar );
- addAction( ActCerrar );
+FormPrefRecibos::FormPrefRecibos(QWidget *parent) :
+ QWidget(parent){
+    setupUi(this);
 }
 
-
-VPagos::~VPagos()
+void FormPrefRecibos::changeEvent(QEvent *e)
 {
-}
-
-void VPagos::agregar( bool a )
-{
- FormAgregarRecibo *f = new FormAgregarRecibo( this );
- f->setearModelo( qobject_cast<MPagos *>(this->modelo) );
- emit agregarVentana( f );
+    QWidget::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        retranslateUi(this);
+        break;
+    default:
+        break;
+    }
 }

@@ -25,6 +25,7 @@
 #include <QSqlError>
 
 #include "mmovimientoscaja.h"
+#include "preferencias.h"
 
 MCajas::MCajas(QObject *parent ) :
 QSqlTableModel(parent)
@@ -159,4 +160,22 @@ QString MCajas::nombreCaja( const int id_caja )
          qDebug( "Nombre no encontrado" );
          return QString();
     }
+}
+
+/*!
+ * @fn MCajas::cajaPredeterminada()
+ * Devuelve la caja que se haya elegido como predeterminada en las funciones de preferencias de cajas.
+ * Si no se eligio ninguna, devuelve -1
+ * @returns ID de la caja predeterminada
+ */
+int MCajas::cajaPredeterminada()
+{
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias");
+    p->beginGroup( "Caja" );
+    int id = p->value( "caja-predeterminada", -1 ).toInt();
+    p->endGroup();
+    p->endGroup();
+    p = 0;
+    return id;
 }
