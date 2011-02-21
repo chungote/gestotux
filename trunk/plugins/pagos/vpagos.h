@@ -35,6 +35,7 @@ public:
     ~VPagos();
 public slots:
     void agregar( bool autoeliminarid );
+    void imprimir();
 };
 
 #endif

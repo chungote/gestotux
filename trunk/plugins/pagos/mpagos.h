@@ -40,6 +40,9 @@ public:
     QDate buscarFechaUltimoRecibo() const;
     int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
 
+private:
+    void inicializar();
+    void relacionar();
 };
 
 #endif

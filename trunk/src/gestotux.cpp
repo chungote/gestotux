@@ -123,10 +123,10 @@ void gestotux::createActions()
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
-        /*ActActualizar = new QAction( "Actualizar", this );
+        ActActualizar = new QAction( "Actualizar", this );
         ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
         ActActualizar->setStatusTip( "Actualiza la aplicacion " );
-        connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );*/
+        connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
 
         ActRestaurar = new QAction( "Restaurar", this );
         connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
@@ -143,8 +143,8 @@ void gestotux::createMenus()
  fileMenu->addAction( ActBackup );
  fileMenu->addAction( ActPreferencias );
  fileMenu->addSeparator();
- /*fileMenu->addAction( ActActualizar );
- fileMenu->addSeparator();*/
+ fileMenu->addAction( ActActualizar );
+ fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );
