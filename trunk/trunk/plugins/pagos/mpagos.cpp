@@ -45,22 +45,28 @@ CREATE TABLE IF NOT EXISTS `recibos` (
 MPagos::MPagos(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
 {
- setTable( "recibos" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Cliente" );
- setHeaderData( 2, Qt::Horizontal, "Fecha Pago" );
- setHeaderData( 3, Qt::Horizontal, "Texto" );
- setHeaderData( 4, Qt::Horizontal, "Cantidad" );
- setHeaderData( 5, Qt::Horizontal, "Cancelado" );
- setHeaderData( 6, Qt::Horizontal, "Pagado" ); // Campo utilizado en hicomp
- setHeaderData( 7, Qt::Horizontal, "ID mov caja" );
- if( relaciones )
- {
-  setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
-  //setRelation( 7, QSqlRelation( "movimientos_caja", "id_movimiento", "descripcion" ) );
- }
+ inicializar();
+ if( relaciones ) { relacionar(); }
 }
 
+void MPagos::inicializar()
+{
+    setTable( "recibos" );
+    setHeaderData( 0, Qt::Horizontal, "#ID" );
+    setHeaderData( 1, Qt::Horizontal, "Cliente" );
+    setHeaderData( 2, Qt::Horizontal, "Fecha Pago" );
+    setHeaderData( 3, Qt::Horizontal, "Texto" );
+    setHeaderData( 4, Qt::Horizontal, "Cantidad" );
+    setHeaderData( 5, Qt::Horizontal, "Cancelado" );
+    setHeaderData( 6, Qt::Horizontal, "Pagado" ); // Campo utilizado en hicomp
+    setHeaderData( 7, Qt::Horizontal, "ID mov caja" );
+}
+
+void MPagos::relacionar()
+{
+    setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
+    //setRelation( 7, QSqlRelation( "movimientos_caja", "id_movimiento", "descripcion" ) );
+}
 
 MPagos::~MPagos()
 {
@@ -85,10 +91,17 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
      { return QSqlRelationalTableModel::data( item, role ).toString(); break; }
      case 4: // Cantidad pagada
      { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble() ); break; }
-     case 5: // Cancelado ( anulado )
-     { return QSqlRelationalTableModel::data( item, role ).toBool(); break; }
-     case 6: // Pagado ( solo hicomp - por default en true )
-     { return QSqlRelationalTableModel::data( item, role ).toBool(); break; }
+     case 5: // Cancelado ( anulado ) y pagado
+     case 6:
+     //{ return QSqlRelationalTableModel::data( item, role ).toBool(); break; }
+     {
+             if( QSqlRelationalTableModel::data( item, role ).toBool() ) {
+                return "Si";
+             } else {
+                 return "No";
+             }
+             break;
+     }
      default:
      { return QSqlRelationalTableModel::data( item, role ); break; }
    }
@@ -98,6 +111,7 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
   {
    switch( item.column() )
    {
+    case 2:
     case 3:
     case 4:
     case 5:
@@ -192,10 +206,14 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
             }
         }
     }
+    // Elimino la asociación si existe
+    int ret = -1;
+    this->clear();
+    this->inicializar();
     QSqlRecord rec = this->record();
     // Cliente
     rec.setValue( "id_cliente", id_cliente );
-    rec.setValue( "fecha_pagado", fecha );
+    rec.setValue( "fecha_pago", fecha );
     rec.setValue( "texto", contenido );
     rec.setValue( "precio", total );
     rec.setValue( "pagado", pagado );
@@ -205,26 +223,25 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
         rec.setNull( "id_caja" );
     }
     rec.setValue( "cancelado", false );
+    for( int i=0; i<rec.count(); ++i ) {
+        qDebug( QString( "Campo %1 es %2: %3 " ).arg( i ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
+    }
     if( this->insertRecord( -1, rec ) ) {
         this->submitAll();
-        for(int i=0;i<rec.count();++i){
-          qDebug( QString( "Field %1 is called %2 " ).arg( i ).arg( rec.fieldName(i) ).toLocal8Bit() );
-        }
-        qDebug( QString( "ultimo id rec=%1" ).arg( rec.value( "id_recibo" ).toInt() ).toLocal8Bit() );
         int id_recibo = query().lastInsertId().toInt();
-        qDebug( QString( "ultimo id query=%1" ).arg( rec.value( "id_recibo" ).toInt() ).toLocal8Bit() );
+        qDebug( QString( "ultimo id query=%1" ).arg( id_recibo ).toLocal8Bit() );
         qDebug( query().lastQuery().toLocal8Bit() );
         if( id_recibo > 0 ) {
-            return id_recibo;
+            ret = id_recibo;
         } else {
             // ¿no se lleno el campo ?
-            qDebug( "No se pudo llenar el id del recibo?" );
-            return -1;
+            qDebug( "MPagos::agregarRecibo::No se pudo llenar el id del recibo?" );
         }
     } else {
         // Error al insertar el registro
         qDebug( "MPagos::agregarRecibo:: Error al insertar el registro" );
         qDebug( this->lastError().text().toLocal8Bit() );
-        return -1;
     }
+    this->relacionar();
+    return ret;
 }

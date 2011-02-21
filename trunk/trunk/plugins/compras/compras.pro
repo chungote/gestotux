@@ -36,3 +36,7 @@ HEADERS += formagregarcompra.h \
            compras.h \
            mcompraproducto.h \
     ../proveedor/mproveedor.h
+
+OTHER_FILES += \
+    compras.QMYSQL.sql \
+    compras.QSQLITE.sql
