@@ -33,7 +33,7 @@ MProductosTotales::MProductosTotales(QObject *parent)
 {
  // Inicializo los sistemas
  Total = 0;
- _id_listaPrecio = -1;
+ //_id_listaPrecio = -1;
  _calcularTotal = false;
  _buscarPrecio = false;
  cantidades = new QHash<int, double>();
@@ -41,10 +41,10 @@ MProductosTotales::MProductosTotales(QObject *parent)
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
  prods = new QMap<int, QString>();
- QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
+ QSqlQuery cola( "SELECT nombre, id FROM producto" );
  while( cola.next() )
  {
-	prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );
+        prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );
  }
  cantidades->clear();
 }
@@ -92,96 +92,88 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
  }
  switch( role )
  {
-	case Qt::EditRole:
-	{
-		switch( index.column() )
-		{
-			// Producto
-			case 0:
-			{
-				//qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
-				productos->insert( index.row(), value.toInt()  );
-				if( _buscarPrecio && _id_listaPrecio != -1 )
-				{
-					// Busco el precio de venta este producto
-					this->setData( this->index( index.row(), 1 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
-					//qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
-				}
-				break;
-			}
-			// Precio Unitario
-			case 1:
-			{
-				precio_unitario->insert( index.row(), value.toDouble() );
-				if( _calcularTotal )
-				{
-					subtotales->insert( index.row(), cantidades->value( index.row() ) * value.toDouble() );
-					recalcularTotal();
-				}
-				emit dataChanged( index , this->index( index.row(), 3 ) );
-				break;
-			}
-			// Cantidad
-			case 2:
-			{
-				// Veo si tengo que verificar el maximo posible
-				if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
-				{
-					// Busco si el stock actual menos la cantidad es <= 0
-					if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
-					{
-						qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-						return false;
-					}
-				}
-				cantidades->insert( index.row(), value.toDouble() );
-				if( _calcularTotal )
-				{
-					subtotales->insert( index.row(), precio_unitario->value( index.row() ) * value.toDouble() );
-					recalcularTotal();
-				}
-				emit dataChanged( index , this->index( index.row(), 3) );
-				break;
-			}
-			// Subtotal
-			case 3:
-			{
-				return true;
-			}
-			default:
-			{
-				return false;
-			}
-		}
-		break;
-	}
-	default:
-	{ return false; break; }
+        case Qt::EditRole:
+        {
+                switch( index.column() )
+                {
+                        // Producto
+                        case 0:
+                        {
+                                //qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
+                                productos->insert( index.row(), value.toInt()  );
+                                if( _buscarPrecio )
+                                {
+                                        // Busco el precio de venta este producto
+                                        this->setData( this->index( index.row(), 1 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
+                                        //qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
+                                }
+                                break;
+                        }
+                        // Precio Unitario
+                        case 1:
+                        {
+                                precio_unitario->insert( index.row(), value.toDouble() );
+                                if( _calcularTotal )
+                                {
+                                        subtotales->insert( index.row(), cantidades->value( index.row() ) * value.toDouble() );
+                                        recalcularTotal();
+                                }
+                                emit dataChanged( index , this->index( index.row(), 3 ) );
+                                break;
+                        }
+                        // Cantidad
+                        case 2:
+                        {
+                                // Veo si tengo que verificar el maximo posible
+                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
+                                {
+                                        // Busco si el stock actual menos la cantidad es <= 0
+                                        if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
+                                        {
+                                                qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+                                                return false;
+                                        }
+                                }
+                                cantidades->insert( index.row(), value.toDouble() );
+                                if( _calcularTotal )
+                                {
+                                        subtotales->insert( index.row(), precio_unitario->value( index.row() ) * value.toDouble() );
+                                        recalcularTotal();
+                                }
+                                emit dataChanged( index , this->index( index.row(), 3) );
+                                break;
+                        }
+                        // Subtotal
+                        case 3:
+                        {
+                                return true;
+                        }
+                        default:
+                        {
+                                return false;
+                        }
+                }
+                break;
+        }
+        default:
+        { return false; break; }
   }
 }
 
 int MProductosTotales::columnCount(const QModelIndex& parent) const
 {
  if( _calcularTotal )
- {
-  return 4;
- }
+ { return 4; }
  else
- {
-  return 3;
- }
+ { return 3; }
 }
 
 int MProductosTotales::rowCount(const QModelIndex& parent) const
 {
  if( _calcularTotal )
- {
-  return productos->size() + 1;
- }
+ { return productos->size() + 1; }
  else
- {
-  return productos->size();
- }
+ { return productos->size(); }
 }
 
 Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
@@ -211,57 +203,63 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
   //qDebug( qPrintable( QString::number( this->productos->size() ) ) );
   switch( idx.column() )
   {
-	case 0:
-	{
-		if( role != Qt::DisplayRole )
-		{
-			return QVariant();
-		}
-		return "Cant:";
-		break;
-	}
-	case 1:
-	{
-		if( role == Qt::DisplayRole )
-		{
-			return QString( "%L1" ).arg( this->productos->size() );
-		}
-		else if( role == Qt::TextAlignmentRole )
-		{
-			return Qt::AlignHCenter;
-		}
-		else
-		{ return QVariant(); }
-		break;
-	}
-	case 2:
-	{
-		if( role != Qt::DisplayRole )
-		{
-			return QVariant();
-		}
-		return "Total:";
-		break;
-	}
-	case 3:
-	{
-		if( role == Qt::DisplayRole )
-		{
- 			return QString( "$ %L1" ).arg( Total );
-		}
-		else if( role == Qt::TextAlignmentRole )
-		{
-			return int( Qt::AlignRight | Qt::AlignVCenter );
-		}
-		else
-		{ return QVariant(); }
-		break;
-	}
-	default:
-	{
-		return QVariant();
-		break;
-	}
+        case 0:
+        {
+                if( role == Qt::DisplayRole )
+                {
+                        return "Cant:";
+                } else if( role == Qt::TextAlignmentRole ) {
+                    return int( Qt::AlignCenter || Qt::AlignVCenter );
+                } else {
+                    return QVariant();
+                }
+                break;
+        }
+        case 1:
+        {
+                if( role == Qt::DisplayRole )
+                {
+                        return QString( "%L1" ).arg( this->productos->size() );
+                }
+                else if( role == Qt::TextAlignmentRole )
+                {
+                    return int( Qt::AlignVCenter || Qt::AlignHCenter );
+                }
+                else
+                { return QVariant(); }
+                break;
+        }
+        case 2:
+        {
+                if( role != Qt::DisplayRole )
+                {
+                        return "Total:";
+                } else if( role == Qt::TextAlignmentRole ) {
+                    return int( Qt::AlignCenter || Qt::AlignVCenter );
+                } else {
+                    return QVariant();
+                }
+                break;
+        }
+        case 3:
+        {
+                if( role == Qt::DisplayRole )
+                {
+                        return QString( "$ %L1" ).arg( Total );
+                }
+                else if( role == Qt::TextAlignmentRole )
+                {
+                        return int( Qt::AlignRight | Qt::AlignVCenter );
+                }
+                else
+                { return QVariant(); }
+                break;
+        }
+        default:
+        {
+                return QVariant();
+                break;
+        }
   }
  } // Fin ultima fila
  else
@@ -269,128 +267,128 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 
  switch( role )
  {
-	case Qt::DisplayRole:
-	{
-		switch( idx.column() )
-		{
-			// Producto
-			case 0:
-			{
-				return prods->value( productos->value( idx.row() ) );
-				break;
-			}
-			// precio unitario
-			case 1:
-			{
-				return QString( "$ %L1" ).arg( precio_unitario->value( idx.row() ) );
-				break;
-			}
-			// Cantidades
-			case 2:
-			{
-				// Busco si existe
-				return QString( "%L1" ).arg( cantidades->value( idx.row() ) );
-				break;
-			}
-			// Subtotal
-			case 3:
-			{
-				return QString( "$ %L1" ).arg( subtotales->value( idx.row() ) );
-				break;
-			}
-			default:
-			{
-				return QVariant();
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextColorRole:
-	{
-		switch ( idx.column() )
-		{
-			case 1:
-			case 3:
-			{
-				return QColor(Qt::blue);
-				break;
-			}
-			case 2:
-			{
-				return QColor(Qt::green);
-				break;
-			}
-			default:
-			{
-				return QColor(Qt::black);
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::EditRole:
-	{
-		switch( idx.column() )
- 		{
-			//Producto
-			case 0:
-			{
-				// tengo que devolver el Id de producto
-				return productos->value( idx.row() );
-				break;
-			}
-			// precio unitario
-			case 1:
-			{
-				return precio_unitario->value( idx.row() );
-				break;
-			}
-			// Cantidad
-			case 2:
-			{
-				return cantidades->value( idx.row() );
-				break;
-			}
-			default:
-			{
-				return false;
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextAlignmentRole:
-	{
-		switch ( idx.column() )
-		{
-			case 2:
-			case 1:
-			{
-				return int( Qt::AlignHCenter | Qt::AlignVCenter );
-				break;
-			}
-			case 0:
-			{
-				return int( Qt::AlignLeft | Qt::AlignVCenter );
-				break;
-			}
-			default:
-			{
-				return int( Qt::AlignRight | Qt::AlignVCenter );
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::ToolTipRole:
-	case Qt::StatusTipRole:
-	{
-		return QVariant( "Haga doble click o seleccione y F2 para editar" );
-		break;
-	}
-	default:
-	{ return QVariant(); break; }
+        case Qt::DisplayRole:
+        {
+                switch( idx.column() )
+                {
+                        // Producto
+                        case 0:
+                        {
+                                return prods->value( productos->value( idx.row() ) );
+                                break;
+                        }
+                        // precio unitario
+                        case 1:
+                        {
+                                return QString( "$ %L1" ).arg( precio_unitario->value( idx.row() ) );
+                                break;
+                        }
+                        // Cantidades
+                        case 2:
+                        {
+                                // Busco si existe
+                                return QString( "%L1" ).arg( cantidades->value( idx.row() ) );
+                                break;
+                        }
+                        // Subtotal
+                        case 3:
+                        {
+                                return QString( "$ %L1" ).arg( subtotales->value( idx.row() ) );
+                                break;
+                        }
+                        default:
+                        {
+                                return QVariant();
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextColorRole:
+        {
+                switch ( idx.column() )
+                {
+                        case 1:
+                        case 3:
+                        {
+                                return QColor(Qt::blue);
+                                break;
+                        }
+                        case 2:
+                        {
+                                return QColor(Qt::green);
+                                break;
+                        }
+                        default:
+                        {
+                                return QColor(Qt::black);
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::EditRole:
+        {
+                switch( idx.column() )
+                {
+                        //Producto
+                        case 0:
+                        {
+                                // tengo que devolver el Id de producto
+                                return productos->value( idx.row() );
+                                break;
+                        }
+                        // precio unitario
+                        case 1:
+                        {
+                                return precio_unitario->value( idx.row() );
+                                break;
+                        }
+                        // Cantidad
+                        case 2:
+                        {
+                                return cantidades->value( idx.row() );
+                                break;
+                        }
+                        default:
+                        {
+                                return false;
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextAlignmentRole:
+        {
+                switch ( idx.column() )
+                {
+                        case 2:
+                        case 1:
+                        {
+                                return int( Qt::AlignHCenter | Qt::AlignVCenter );
+                                break;
+                        }
+                        case 0:
+                        {
+                                return int( Qt::AlignLeft | Qt::AlignVCenter );
+                                break;
+                        }
+                        default:
+                        {
+                                return int( Qt::AlignRight | Qt::AlignVCenter );
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::ToolTipRole:
+        case Qt::StatusTipRole:
+        {
+                return QVariant( "Haga doble click o seleccione y F2 para editar" );
+                break;
+        }
+        default:
+        { return QVariant(); break; }
  }
  }// Fin fila de total else
 }
@@ -428,16 +426,16 @@ QVariant MProductosTotales::headerData ( int section, Qt::Orientation orientatio
  {
   switch( section )
   {
-	case 0:
-	{ return "Producto"; break; }
-	case 1:
-	{ return "Precio Unitario"; break; }
-	case 2:
-	{ return "Cantidad"; break; }
-	case 3:
-	{ return "Subtotal"; break; }
-	default:
-	{ return section; }
+        case 0:
+        { return "Producto"; break; }
+        case 1:
+        { return "Precio Unitario"; break; }
+        case 2:
+        { return "Cantidad"; break; }
+        case 3:
+        { return "Subtotal"; break; }
+        default:
+        { return section; }
   }
  }
  else
@@ -469,41 +467,6 @@ void MProductosTotales::buscarPrecios( bool activado )
 
 
 /*!
-    \fn MProductosTotales::listaPrecio()
- */
-int MProductosTotales::listaPrecio()
-{ return _id_listaPrecio; }
-
-
-/*!
-    \fn MProductosTotales::setearListaPrecio( int id_listaPrecio )
- */
-void MProductosTotales::setearListaPrecio( int id_listaPrecio )
-{
-  if( id_listaPrecio <= 0 )
-  { qDebug( "id lista precio invalido" ); return; }
-  QSqlQuery cola( QString( "SELECT recargo FROM lista_precio WHERE id_lista_precio = %1" ).arg( id_listaPrecio ) );
-  if( cola.next() )
-  {
- 	__recargo = cola.record().value( 0 ).toDouble();
-	// Si la lista de precios existe recien se coloca el id
-   	_id_listaPrecio = id_listaPrecio;
-	// Recalcula todos los precios
-	for( int i = 0; i < productos->size(); i++ )
-	{
-		this->setData( this->index( i, 1 ), QVariant::fromValue( buscarPrecioVenta( this->data( this->index( i, 0 ), Qt::EditRole ).toInt() ) ), Qt::EditRole );
-	}
-	//qDebug( "cambiada la lista de precios" );
-  }
-  else
-  {
-   qDebug( "Error al buscar el recargo" );
-   qDebug( cola.lastQuery().toLocal8Bit() );
-  }
-}
-
-
-/*!
     \fn MProductosTotales::buscarPrecioVenta( int id_producto )
  */
 double MProductosTotales::buscarPrecioVenta( int id_producto )
@@ -514,19 +477,10 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
   cola.next();
  // qDebug( qPrintable( cola.lastQuery() ) );
   double precio = cola.record().value( 0 ).toDouble();
-  if( _id_listaPrecio != -1 )
-  {
-    /*qDebug( "Precio encontrado" );
-    qDebug( qPrintable( QString::number( __recargo ) ) );
-    qDebug( qPrintable( QString::number( precio ) ) );
-    qDebug( qPrintable( QString::number( precio + ( precio * ( __recargo / 100 ) ) ) ) );*/
-    return precio + ( precio * (__recargo/100) );
-  }
-  else
-  {
-   //qDebug( "Precio de costo" );
-   return precio;
-  }
+  qDebug( "Precio encontrado" );
+  //preferencias::getInstancia()->value( "Productos/");
+  double __recargo = 10.0;
+  return precio * ( 1 + (__recargo/100) );
  }
  else
  {

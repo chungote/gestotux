@@ -21,7 +21,8 @@ HEADERS += eactcerrar.h \
            dproductostotales.h \
            edsbprecio.h \
            dsino.h \
-           definiciones.h
+           definiciones.h \
+    EReporte.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -59,4 +60,3 @@ TRANSLATIONS += utiles.ts
 
 INCLUDEPATH += ../src \
                ../reporte
-

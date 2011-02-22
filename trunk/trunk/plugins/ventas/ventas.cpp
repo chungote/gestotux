@@ -71,8 +71,6 @@ bool Ventas::inicializar()
  ActAgregarVentas->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
 
- /*ActCategorias = new QAction( "Categorias", this );
- */
  return true;
 }
 
@@ -118,8 +116,6 @@ void Ventas::crearMenu( QMenuBar *m )
  lista.append( ActAgregarVentas );
  QAction *sep = new QAction( mVentas );
  sep->setSeparator( true );
- //lista.append( sep );
- //lista.append( ActCategorias );
  mVentas->insertActions( mVentas->actions().first(), lista );
 }
 
@@ -138,7 +134,6 @@ void Ventas::crearToolBar( QToolBar *t )
 
 
 #include "formagregarventa.h"
-
 /*!
     \fn Ventas::agregarVenta()
  */
