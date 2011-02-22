@@ -30,14 +30,15 @@ MVenta::MVenta(QObject *parent, bool relaciones)
  setTable( "ventas" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Fecha de Venta" );
+ setHeaderData( 2, Qt::Horizontal, "Comprobante #" );
+ setHeaderData( 3, Qt::Horizontal, "Forma de Pago" );
+ setHeaderData( 4, Qt::Horizontal, "Cliente" );
 }
 
 
 MVenta::~MVenta()
 {
 }
-
-
 
 
 /*!

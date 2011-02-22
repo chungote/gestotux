@@ -26,7 +26,7 @@
 /**
 Modelo que calcula totales segun modelo de venta y compra
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MProductosTotales : public QAbstractTableModel
 {
@@ -49,22 +49,18 @@ public:
     void calcularTotales( bool sino = true );
     bool buscaPrecios();
     void buscarPrecios( bool activado = true );
-    int listaPrecio();
-    void setearListaPrecio( int id_listaPrecio );
 
 private:
-	QHash<int, double> *subtotales;
-	QHash<int, double> *cantidades;
-	QHash<int, double> *precio_unitario;
-	QHash<int, int> *productos;
-	QMap<int, QString> *prods;
-	double Total;
-	bool _calcularTotal;
-	bool _buscarPrecio;
-	int _id_listaPrecio;
-	double __recargo;
+        QHash<int, double> *subtotales;
+        QHash<int, double> *cantidades;
+        QHash<int, double> *precio_unitario;
+        QHash<int, int> *productos;
+        QMap<int, QString> *prods;
+        double Total;
+        bool _calcularTotal;
+        bool _buscarPrecio;
 private:
-    double buscarPrecioVenta( int id_producto );
+        double buscarPrecioVenta( int id_producto );
 };
 
 #endif

@@ -37,6 +37,7 @@
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../productos/mproductos.h"
 #include "preferencias.h"
+#include "EReporte.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -48,11 +49,8 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
         PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBAgregarProducto->setText( "Agregar Producto" );
-        PBEliminarProducto->setText( "Eliminar Producto" );
-        PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
 
         connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
-        connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
         // Inicio los modelos
         CBCliente->setModel( new EMCliente( CBCliente ) );
@@ -61,7 +59,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
         // Rellenar los items de productos
         QSqlQueryModel *cola = new QSqlQueryModel( this );
-        cola->setQuery( "SELECT id, nombre FROM producto WHERE habilitado = 1" );
+        cola->setQuery( "SELECT id, nombre FROM producto" );
         CBProducto->setModel( cola );
         CBProducto->setModelColumn( 1 );
         CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
@@ -112,7 +110,7 @@ void FormAgregarVenta::agregarProducto()
 {
  // Verificación previa
  if( DSBCant->value() == 0 )
- { QMessageBox::information( this, "Eror de dato", "La cantidad a agregar debe ser mayor que cero" ); return; }
+ { QMessageBox::information( this, "Error de dato", "La cantidad a agregar debe ser mayor que cero" ); return; }
  // Inserto la fila
  mcp->insertRow( -1 );
  // Pongo el producto
@@ -298,7 +296,10 @@ void FormAgregarVenta::guardar()
    {
     case QMessageBox::Yes:
     {
-     ///@todo Crear sistema de impresion de facturas
+     ParameterList lista;
+     lista.append( "id_factura", id_venta );
+     orReport *rep = new orReport( "factura", lista );
+     rep->print();
      break;
     }
     case QMessageBox::No:
@@ -318,22 +319,31 @@ void FormAgregarVenta::guardar()
 
 /*!
     \fn FormAgregarVenta::cambioCliente( int id_combo )
-        Slot llamado cada vez que cambia el cliente.
+        Slot llamado cada vez que cambia el cliente para verificar si tiene cuenta corriente habilitada
         @param id_combo Indice en la lista de combobox que indica el cliente
  */
 void FormAgregarVenta::cambioCliente( int id_combo )
 {
  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
-  QString num_cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
+  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+  if( id_cliente == 0 ) {
+      // Es el Consumidor Final
+      RBContado->setChecked( true );
+      GBFormaPago->setEnabled( false );
+      return;
+  }
+  QString num_cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
   if( num_cuenta.toInt() > 0 )
   {
    RBCtaCte->setEnabled( true );
+   return;
   }
   else
   {
    RBContado->setChecked( true );
    RBCtaCte->setEnabled( false );
+   return;
   }
  }
 }
