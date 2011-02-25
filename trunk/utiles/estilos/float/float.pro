@@ -8,8 +8,7 @@ SOURCES += floatstyle.cpp \
            drawcomplexcontrol.cpp
 TARGET = floatstyle
 CONFIG += plugin \
- debug \
- dll
+          dll
 RESOURCES = images.qrc
 DESTDIR = ../../../bin/styles
 linux-g++ {
