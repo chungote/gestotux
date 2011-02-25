@@ -30,6 +30,7 @@ class Ventas : public QObject, public EPlugin
 {
 Q_OBJECT
 Q_INTERFACES( EPlugin )
+
 public:
     QList<QActionGroup *> accionesBarra();
     QString nombre() const;
@@ -43,20 +44,19 @@ public:
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
     QAction *botonPantallaInicial() { return ActVentas; }
+
 private:
     QList<QAction *> _acciones;
     QAction *ActAgregarVentas;
     QAction *ActVentas;
-/*
 
-    QAction *ActCategorias;
-*/
 private slots:
     void agregarVenta();
 
 signals:
-        void agregarVentana( QWidget * );
-            void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void agregarVentana( QWidget * );
+    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+
 public slots:
     void seCierraGestotux();
 
