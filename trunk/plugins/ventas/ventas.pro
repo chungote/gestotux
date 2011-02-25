@@ -6,7 +6,6 @@ help
 SOURCES += mventa.cpp \
 ventas.cpp \
  vventas.cpp \
- mlistaprecio.cpp \
  formagregarventa.cpp \
  mventaproducto.cpp \
  ../CtaCte/mcuentacorriente.cpp \
@@ -17,7 +16,6 @@ ventas.cpp \
 HEADERS += mventa.h \
 ventas.h \
  vventas.h \
- mlistaprecio.h \
  formagregarventa.h \
  mventaproducto.h \
  ../CtaCte/mcuentacorriente.h \

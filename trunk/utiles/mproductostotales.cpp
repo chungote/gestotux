@@ -477,9 +477,8 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
   cola.next();
  // qDebug( qPrintable( cola.lastQuery() ) );
   double precio = cola.record().value( 0 ).toDouble();
-  qDebug( "Precio encontrado" );
-  //preferencias::getInstancia()->value( "Productos/");
-  double __recargo = 10.0;
+  //qDebug( "Precio encontrado" );
+  double __recargo = preferencias::getInstancia()->value( "Preferencias/Ventas/ganancia", 10.00 ).toDouble();
   return precio * ( 1 + (__recargo/100) );
  }
  else

@@ -24,16 +24,18 @@
 #include "ui_FormPrefVentaBase.h"
 #include "preferencias.h"
 #include "formprefhijo.h"
+#include <QWidget>
 
-class FormPrefVenta : public FormPrefVentaBase, private FormPrefHijo
+class FormPrefVenta : public QWidget, private FormPrefHijo, public Ui::FormPrefVentaBase
 {
     Q_OBJECT
 public:
     explicit FormPrefVenta(QWidget *parent = 0);
 
-signals:
-
 public slots:
+    void cargar();
+    void aplicar();
+    void guardar();
 
 };
 

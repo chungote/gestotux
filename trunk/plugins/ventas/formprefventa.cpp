@@ -21,6 +21,40 @@
 #include "formprefventa.h"
 
 FormPrefVenta::FormPrefVenta(QWidget *parent) :
-    FormPrefVentaBase(parent)
+ FormPrefHijo(), FormPrefVentaBase()
 {
+    this->setParent( parent );
+    this->setWindowTitle( "Ventas" );
+    //this->setWindowIcon( QIcon( ":/imagenes/" ) );
+}
+
+
+/*!
+    \fn FormPrefVenta::cargar()
+ */
+void FormPrefVenta::cargar()
+{
+ preferencias *p = preferencias::getInstancia();
+ CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
+ CkBLimitarAStock->setChecked( p->value( "Preferencias/Ventas/limitarastock", false ).toBool() );
+ DSBGanancia->setValue( p->value( "Preferencias/Ventas/ganancia", 10.00 ).toDouble() );
+}
+
+
+/*!
+    \fn FormPrefVenta::aplicar()
+ */
+void FormPrefVenta::aplicar()
+{ return; }
+
+
+/*!
+    \fn FormPrefVenta::guardar()
+ */
+void FormPrefVenta::guardar()
+{
+ preferencias *p = preferencias::getInstancia();
+ p->setValue( "Preferencias/Ventas/buscarPrecio",CkBBusquedaPrecio->isChecked() );
+ p->setValue( "Preferencias/Ventas/marcas", CkBLimitarAStock->isChecked() );
+ p->setValue( "Preferencias/Ventas/descripcion",DSBGanancia->value() );
 }

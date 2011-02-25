@@ -43,17 +43,14 @@ HEADERS = openreports.h \
           common/parsexmlutils.h \
           common/querysource.h \
           common/reportpageoptions.h \
-    common/xsqlquery.h \
-    previewdialog.h \
-    orcrosstab.h \
-    crosstab.h \
-    previewdialog.h \
-    orcrosstab.h \
-    crosstab.h \
-    common/quuencode.h \
-    common/memdbloader.h \
-    common/parameter.h \
-    common/builtinSqlFunctions.h
+          common/xsqlquery.h \
+          previewdialog.h \
+          orcrosstab.h \
+          crosstab.h \
+          common/quuencode.h \
+          common/memdbloader.h \
+          common/parameter.h \
+          common/builtinSqlFunctions.h
 SOURCES = openreports.cpp \
           3of9.cpp \
           ext3of9.cpp \
@@ -71,15 +68,13 @@ SOURCES = openreports.cpp \
           common/parsexmlutils.cpp \
           common/querysource.cpp \
           common/reportpageoptions.cpp \
-    common/parameter.cpp \
-    common/xsqlquery.cpp \
-    previewdialog.cpp \
-    crosstab.cpp \
-    previewdialog.cpp \
-    crosstab.cpp \
-    common/quuencode.cpp \
-    common/memdbloader.cpp \
-    common/builtinSqlFunctions.cpp
+          common/parameter.cpp \
+          common/xsqlquery.cpp \
+          previewdialog.cpp \
+          crosstab.cpp \
+          common/quuencode.cpp \
+          common/memdbloader.cpp \
+          common/builtinSqlFunctions.cpp
 OTHER_FILES += openreports.txt \
     renderer_es.qm \
     renderer_es.qm

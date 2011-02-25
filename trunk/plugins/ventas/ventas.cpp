@@ -49,13 +49,15 @@ QString Ventas::nombre() const
   return "ventas";
 }
 
-
+#include "formprefventa.h"
 /*!
     \fn Ventas::formsPreferencias()
  */
 QWidgetList Ventas::formsPreferencias()
 {
- return QWidgetList();
+    QWidgetList lista;
+    lista.append( new FormPrefVenta() );
+    return lista;
 }
 
 
