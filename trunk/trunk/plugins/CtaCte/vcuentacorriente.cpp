@@ -41,6 +41,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  connect( ActResumen, SIGNAL( triggered() ), this, SLOT( verResumen() ) );
 
  ActAgregar->setText( "Agregar Nueva CtaCte" );
+ ActAgregar->setIcon( QIcon( ":/imagenes/ctacte_nueva.png" ) );
 
  addAction( ActAgregar );
  addAction( ActResumen );
