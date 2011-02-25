@@ -22,7 +22,8 @@ HEADERS += eactcerrar.h \
            edsbprecio.h \
            dsino.h \
            definiciones.h \
-    EReporte.h
+           EReporte.h \
+           ../plugins/productos/mproductos.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -42,7 +43,8 @@ SOURCES += eactcerrar.cpp \
            mproductostotales.cpp \
            dproductostotales.cpp \
            edsbprecio.cpp \
-           dsino.cpp
+           dsino.cpp \
+           ../plugins/productos/mproductos.cpp
 
 QT += sql
 

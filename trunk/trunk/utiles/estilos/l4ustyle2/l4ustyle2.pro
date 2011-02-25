@@ -1,8 +1,7 @@
 TEMPLATE = lib
 TARGET = l4ustyle2
 CONFIG += plugin \
-	debug \
-	dll
+          dll
 Qt += gui \
       core
 INCLUDEPATH += .
