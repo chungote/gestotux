@@ -55,6 +55,6 @@ void FormPrefVenta::guardar()
 {
  preferencias *p = preferencias::getInstancia();
  p->setValue( "Preferencias/Ventas/buscarPrecio",CkBBusquedaPrecio->isChecked() );
- p->setValue( "Preferencias/Ventas/marcas", CkBLimitarAStock->isChecked() );
- p->setValue( "Preferencias/Ventas/descripcion",DSBGanancia->value() );
+ p->setValue( "Preferencias/Ventas/limitarastock", CkBLimitarAStock->isChecked() );
+ p->setValue( "Preferencias/Ventas/ganancia",DSBGanancia->value() );
 }
