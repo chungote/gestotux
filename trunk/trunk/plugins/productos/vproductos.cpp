@@ -98,6 +98,7 @@ VProductos::~VProductos()
  */
 void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
 {
+ (void)row;
  registro.setValue( "descripcion", "" );
  registro.setValue( "marca", "" );
 }
@@ -126,6 +127,7 @@ void VProductos::verCategorias()
  */
 void VProductos::agregar( bool autoeliminarid )
 {
+ (void)autoeliminarid;
  // Ver si existe alguna categoria primero
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {

@@ -79,7 +79,9 @@ void Compras::crearMenu(QMenuBar* m)
 }
 
 void Compras::crearToolBar(QToolBar* t)
-{}
+{
+    (void)t;
+}
 
 Q_EXPORT_PLUGIN2( compras, Compras )
 

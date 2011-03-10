@@ -132,6 +132,7 @@ double Ventas::version() const
 
 void Ventas::crearToolBar( QToolBar *t )
 {
+    (void)t;
 }
 
 

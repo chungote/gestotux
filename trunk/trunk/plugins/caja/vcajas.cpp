@@ -57,6 +57,7 @@ VCajas::VCajas(QWidget *parent) :
 
 
 void VCajas::agregar( bool autoeliminarid ) {
+   (void)autoeliminarid;
    FormAgregarCaja *f = new FormAgregarCaja( this );
    f->exec();
    modelo->select();

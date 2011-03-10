@@ -32,7 +32,6 @@
 #include "mventa.h"
 #include "mventaproducto.h"
 #include "eregistroplugins.h"
-#include "mlistaprecio.h"
 #include "../CtaCte/mcuentacorriente.h"
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../productos/mproductos.h"
@@ -194,7 +193,10 @@ void FormAgregarVenta::guardar()
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta venta" );
   return;
  }
- /// @todo Verificar que este elegido uno de los tipos de pago
+ if( !( RBContado->isChecked() || RBCuotas->isChecked() || RBCtaCte->isChecked()  ) ) {
+     QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
+     return;
+ }
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {
@@ -217,6 +219,10 @@ void FormAgregarVenta::guardar()
  else if( RBContado->isChecked() )
  {
    id_forma_pago = VENTA_CONTADO;
+ }
+ else if( RBCuotas->isChecked() )
+ {
+     id_forma_pago = VENTA_CUOTAS;
  }
  QString num_comprobante = LENumComp->text();
  // Genero la compra
@@ -324,6 +330,7 @@ void FormAgregarVenta::guardar()
  */
 void FormAgregarVenta::cambioCliente( int id_combo )
 {
+ (void)id_combo;
  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
   int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();

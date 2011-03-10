@@ -149,6 +149,7 @@ double Caja::version() const
  */
 void Caja::crearToolBar( QToolBar *t )
 {
+    (void)t;
  return;
 }
 

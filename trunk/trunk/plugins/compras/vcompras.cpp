@@ -48,6 +48,8 @@ VCompras::~VCompras()
 
 void VCompras::antes_de_insertar(int row, QSqlRecord& record)
 {
+    (void)record;
+    (void)row;
 }
 
 

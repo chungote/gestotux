@@ -53,6 +53,7 @@ VProveedor::~VProveedor()
  */
 void VProveedor::antes_de_insertar( int row, QSqlRecord & record )
 {
+ (void)row;(void)record;
  return;
 }
 

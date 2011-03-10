@@ -23,6 +23,7 @@
  **************/
 #define VENTA_CTACTE 1
 #define VENTA_CONTADO 2
+#define VENTA_CUOTAS 3
 
 /************************
  *   Cuenta Corriente   *

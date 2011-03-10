@@ -155,6 +155,7 @@ void productos::verProductos()
  */
 void productos::crearToolBar( QToolBar *t )
 {
+    (void)t;
  return;
 }
 

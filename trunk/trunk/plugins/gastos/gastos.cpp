@@ -98,7 +98,9 @@ void Gastos::crearMenu(QMenuBar* m)
 }
 
 void Gastos::crearToolBar(QToolBar* t)
-{}
+{
+    (void)t;
+}
 
 
 #include "formagregargasto.h"

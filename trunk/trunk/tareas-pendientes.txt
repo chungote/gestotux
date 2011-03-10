@@ -33,6 +33,7 @@
 - Ver como integrar el sistema de codigo de barras en el programa.
 - Ver como hacer los tickets de precios.
 - Ver agregado de productos. ( verificar editor personalizado )
+- Colocar columna de precio de venta, aplicando el recargo personalizado en las preferencias.
 
 -- Servicios --
 - Diseñar sistema de preimpresion de recibos.
@@ -42,6 +43,7 @@
 - Verificar si es posible hacer autoagregado de productos dandolos de alta al agregarlos en una factura de venta.
 
 -- Ventas --
+- Modificar sistema de productos para que pueda ingresarse el precio de venta.
 - Diseñar sistema para que soporte ventas al contado.
 - Diseñar sistema para que soporte automaticamente el sistema de cuotas.
 
@@ -77,13 +79,10 @@
 - Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
 - Hacer necesario los backups para continuar con el programa al iniciar.
 - Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
+- Eliminar warning de variables no usadas con (void)<parametro>;
 
 ::: Otros :::
-- Averiguar librerias de codigos de barra.
 - Averiguar integracion con lectores de codigo de barra.
-- Averiguar posibilidades de venta para telefonos inteligentes.
-- Averiguar sistemas de interconexion con bluethoot pc->tel
-- Averiguar sistema de interconexion tel->serv ( costos posibles )
 
 ::: Ideas sueltas :::
 - Recibos de HiComp con codigo de barras o codigo para ingresar el pago del recibo ya impreso.
