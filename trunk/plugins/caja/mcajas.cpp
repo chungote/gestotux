@@ -39,6 +39,7 @@ QSqlTableModel(parent)
 
 Qt::ItemFlags MCajas::flags( const QModelIndex &idx ) const
 {
+    (void)idx;
     return Qt::ItemFlags( Qt::ItemIsEnabled | Qt::ItemIsSelectable );
 }
 

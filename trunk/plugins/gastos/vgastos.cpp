@@ -67,7 +67,10 @@ VGastos::~VGastos()
 }
 
 void VGastos::antes_de_insertar(int row, QSqlRecord& record)
-{ return; }
+{
+    (void)row;(void)record;
+    return;
+}
 
 #include "formagregargasto.h"
 /*!

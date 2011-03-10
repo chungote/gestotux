@@ -24,9 +24,11 @@
 FormPrefProductos::FormPrefProductos ( QWidget* parent, Qt::WFlags fl )
 : FormPrefHijo(), Ui::FormPrefProductosBase()
 {
+ this->setParent(parent);
  setupUi ( this );
  this->setWindowTitle( "Productos" );
  this->setWindowIcon( QIcon( ":/imagenes/productos.png" ) );
+ this->setWindowFlags( fl );
 }
 
 FormPrefProductos::~FormPrefProductos()

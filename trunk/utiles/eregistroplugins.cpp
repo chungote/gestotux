@@ -28,6 +28,7 @@ EInterfazEmail *ERegistroPlugins::_pluginEmail = 0;
 
 ERegistroPlugins::ERegistroPlugins(QWidget *parent)
 {
+ (void)parent; // Elimina el mensaje de warning
  _plugins = new QHash<QString, EPlugin *>();
 }
 
@@ -92,7 +93,7 @@ void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 
 /*!
     \fn ERegistroPlugins::plugin( const QString &nombre )
-	Devuelve el objeto referenciante al plugin con ese nombre
+        Devuelve el objeto referenciante al plugin con ese nombre
  */
 EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 {
@@ -102,7 +103,7 @@ EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 
 /*!
     \fn ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
-	Setea el objeto de plugin de informacion
+        Setea el objeto de plugin de informacion
  */
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {

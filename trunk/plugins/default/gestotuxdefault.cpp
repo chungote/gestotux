@@ -69,10 +69,14 @@ QWidgetList GestotuxDefault::formsPreferencias()
 { return QWidgetList();}
 
 void GestotuxDefault::crearMenu(QMenuBar* m)
-{}
+{
+    (void)m;
+}
 
 void GestotuxDefault::crearToolBar(QToolBar* t)
-{}
+{
+    (void)t;
+}
 
 void GestotuxDefault::seCierraGestotux()
 {

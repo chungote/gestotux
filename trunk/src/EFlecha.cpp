@@ -83,6 +83,7 @@ void EFlecha::setearTamFlecha( int tam )
 
 void EFlecha::paintEvent( QPaintEvent *evento )
 {
+    (void)evento;
     this->setP1( QPointF( 10, 50 ) );
     this->setP2( QPointF( 100, 50 ) );
     tamFlecha = 20;

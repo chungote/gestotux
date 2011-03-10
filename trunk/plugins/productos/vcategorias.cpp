@@ -66,6 +66,7 @@ VCategorias::~VCategorias()
  */
 void VCategorias::antes_de_insertar( int row, QSqlRecord & record )
 {
+    (void)record;(void)row;
  record.setValue( "nombre", "" );
 }
 

@@ -209,7 +209,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                 {
                         return "Cant:";
                 } else if( role == Qt::TextAlignmentRole ) {
-                    return int( Qt::AlignCenter || Qt::AlignVCenter );
+                    return int( Qt::AlignRight | Qt::AlignVCenter );
                 } else {
                     return QVariant();
                 }
@@ -223,7 +223,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                 }
                 else if( role == Qt::TextAlignmentRole )
                 {
-                    return int( Qt::AlignVCenter || Qt::AlignHCenter );
+                    return int( Qt::AlignVCenter | Qt::AlignHCenter );
                 }
                 else
                 { return QVariant(); }
@@ -231,11 +231,11 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         }
         case 2:
         {
-                if( role != Qt::DisplayRole )
+                if( role == Qt::DisplayRole )
                 {
-                        return "Total:";
+                    return "Total:";
                 } else if( role == Qt::TextAlignmentRole ) {
-                    return int( Qt::AlignCenter || Qt::AlignVCenter );
+                    return int( Qt::AlignRight | Qt::AlignVCenter );
                 } else {
                     return QVariant();
                 }
