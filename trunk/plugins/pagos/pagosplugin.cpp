@@ -24,11 +24,15 @@
 
 bool PagosPlugin::inicializar()
 {
+ Q_INIT_RESOURCE(pagos);
  ActPagos = new QAction( "Pagos", this );
  ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
+ ActPagos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
  connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
 
  ActAgregarRecibo = new QAction( "Agregar Recibo", this );
+ ActAgregarRecibo->setIcon( QIcon( ":/imagenes/recibo-nuevo.png" ) );
+ ActAgregarRecibo->setStatusTip( "Ingresa un nuevo registro de recibo al sistema y lo imprime automaticamente" );
  connect( ActAgregarRecibo, SIGNAL( triggered() ), this, SLOT( agregarRecibo() ) );
 
  return true;
@@ -80,10 +84,12 @@ void PagosPlugin::crearMenu( QMenuBar* m )
 
 void PagosPlugin::crearToolBar(QToolBar* t)
 {
+    (void)t;
 }
 
 void PagosPlugin::seCierraGestotux()
 {
+    Q_CLEANUP_RESOURCE(pagos);
 }
 
 #include "vpagos.h"
