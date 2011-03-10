@@ -45,7 +45,7 @@ public:
     QWidgetList formsPreferencias();
     void crearMenu(QMenuBar* m);
     void crearToolBar(QToolBar* t);
-    QAction *botonPantallaInicial() { return ActPagos; }
+    QAction *botonPantallaInicial() { return ActAgregarRecibo; }
 
 signals:
     void agregarVentana(QWidget* v);
