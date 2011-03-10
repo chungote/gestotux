@@ -54,6 +54,8 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
         // Coloco el numero de recibo al hacer set del modelo
+        ///@todo Hacer
+        // Por ahora elimino el contado por no estar programado
         RBContado->setEnabled(false);
 }
 
@@ -129,6 +131,10 @@ void FormAgregarRecibo::cambioPagado( double valor )
  */
 void FormAgregarRecibo::guardar()
 {
+    // Si fue llamado sin modelo adyacente
+    if( this->_modelo ) {
+        this->setearModelo( 0 );
+    }
     // Verificaciónes iniciales
     if( this->LENumero->text().isEmpty() ) {
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que exista el numero de recibo" );
@@ -158,7 +164,7 @@ void FormAgregarRecibo::guardar()
     }
     ///@todo Ver porque no toma el id del modelo esto
     int id_cliente = this->CBCliente->model()->data( this->CBCliente->model()->index( this->CBCliente->currentIndex(), 0 ), Qt::UserRole ).toInt();
-    qDebug( QString( "IDCliente=%1").arg(id_cliente).toLocal8Bit());
+    //qDebug( QString( "IDCliente=%1").arg(id_cliente).toLocal8Bit());
     QDate fecha = this->DEFecha->date();
     QString contenido = this->TETexto->contenido( Qt::AutoText );
     double total = this->dSBPagado->value();
@@ -173,7 +179,7 @@ void FormAgregarRecibo::guardar()
     // Genero la transacción
     QSqlDatabase::database().transaction();
     this->_modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
-    int num_recibo = this->_modelo->agregarRecibo( 1 /* id_cliente */, fecha, contenido, total, pagado, contado );
+    int num_recibo = this->_modelo->agregarRecibo( id_cliente, fecha, contenido, total, pagado, contado );
     if( num_recibo == -1 ) {
         this->_modelo->revertAll();
         QSqlDatabase::database().rollback();
@@ -187,8 +193,6 @@ void FormAgregarRecibo::guardar()
     /// Imprimo el recibo
     ParameterList lista;
     lista.append( "id_recibo", num_recibo );
-    //lista.append( "id_cliente", id_cliente );
-    lista.append( "id_cliente", 1 );
     orReport *rep = new orReport( "recibo", lista );
     if( rep->isValid() ) {
         rep->print( 0, true, true );

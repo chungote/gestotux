@@ -43,7 +43,7 @@ public:
     static QStackedWidget *tabs();
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
-    QAction *botonPantallaInicial() { return ActVentas; }
+    QAction *botonPantallaInicial() { return ActAgregarVentas; }
 
 private:
     QList<QAction *> _acciones;
