@@ -121,7 +121,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
 /*!
     \fn FormAgregarRecibo::cambioPagado( double valor )
  */
-void FormAgregarRecibo::cambioPagado( double valor )
+void FormAgregarRecibo::cambioPagado( double /*valor*/ )
 {
  recalcularTotal();
 }
