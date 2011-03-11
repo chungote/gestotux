@@ -8,6 +8,7 @@
         <file>imagenes/cajaretiro.png</file>
         <file>imagenes/retiro.png</file>
         <file>imagenes/ingreso.png</file>
+        <file>imagenes/cajaestado.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>caja.QSQLITE.sql</file>

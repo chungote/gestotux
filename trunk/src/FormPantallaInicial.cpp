@@ -82,9 +82,13 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) ) {
         connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
         TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
+        TBResumenCtaCte->setIcon( QIcon( ":/imagenes/resumen_cuenta.png" ) );
+        //connect( TBResumenCtaCte, SIGNAL(clicked()), )
     } else {
         TBCuentasCorrientes->setVisible( false );
+        TBResumenCtaCte->setVisible( false );
     }
+
     //////////////////////////////////////////////////////////////////////////////////
     // Proveedores
     if( ERegistroPlugins::getInstancia()->existePlugin( "proveedor" ) ) {
