@@ -162,7 +162,7 @@ void MRecargos::setearPrecioBase( double precio )
 /*!
     \fn MRecargos::columnCount( const QModelIndex & index ) const
  */
-int MRecargos::columnCount( const QModelIndex &index ) const
+int MRecargos::columnCount( const QModelIndex &/*index*/ ) const
 {
  return QSqlRelationalTableModel::columnCount() + 1;
 }

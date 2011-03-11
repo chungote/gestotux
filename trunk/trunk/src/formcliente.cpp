@@ -31,22 +31,22 @@
 FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormClienteBase()
 {
-	setupUi ( this );
-	setObjectName( "visorCliente" );
-	setWindowTitle( "Visor de Cliente" );
-	setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
-	this->modelo = modelo;
-	modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
+        setupUi ( this );
+        setObjectName( "visorCliente" );
+        setWindowTitle( "Visor de Cliente" );
+        setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
+        this->modelo = modelo;
+        modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
 
-	connect( LENombre       , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
-	connect( LESegundoNombre, SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
-	connect( LEApellido     , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
+        connect( LENombre       , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
+        connect( LESegundoNombre, SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
+        connect( LEApellido     , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
 
-	//Acciones predefinidas
-	EActGuardar *ActGuardar = new EActGuardar( this );
-	this->addAction( ActGuardar );
-	EActCerrar *ActCerrar = new EActCerrar( this );
-	this->addAction( ActCerrar );
+        //Acciones predefinidas
+        EActGuardar *ActGuardar = new EActGuardar( this );
+        this->addAction( ActGuardar );
+        EActCerrar *ActCerrar = new EActCerrar( this );
+        this->addAction( ActCerrar );
 
 }
 
@@ -184,7 +184,7 @@ void FormCliente::guardar()
 /*!
     \fn FormCliente::setearCliente( QModelIndex &indice )
  */
-void FormCliente::setearCliente( QModelIndex &indice )
+void FormCliente::setearCliente( QModelIndex &/*indice*/ )
 {
     //! \todo implement me
 }

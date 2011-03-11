@@ -25,7 +25,7 @@
 
 #include "mcuentacorriente.h"
 
-MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool s )
+MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool /*s */)
  : QSqlRelationalTableModel(parent), _saldo(saldos)
 {
  setTable( "item_ctacte" );
@@ -54,15 +54,15 @@ MItemCuentaCorriente::~MItemCuentaCorriente()
 
 /*!
     \fn MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
- 	Genera un registro unico de la opercion en cuenta corriente sin hacer confirmacion ( commit ) en la base de datos.
-	@param numero_cuenta Numero de cuenta corriente a aplicar la operacion
-	@param num_comb Numero del comprobante relacionado a la operacion
-	@param num_ref ID de clave foranea que tiene la operacion
-	@param tipo Tipo de operación
-	@param fecha Fecha de la operacion
-	@param descripcion Descripcion de la operacion
-	@param aplicar Valor a aplicar a la cuenta. Si es positivo es en favor nuestro -> el cliente nos debe. Si es negativo  es a favor del cliente -> recibimos pago ( ej ).
-	@return Operacion satisfactoria o no.
+        Genera un registro unico de la opercion en cuenta corriente sin hacer confirmacion ( commit ) en la base de datos.
+        @param numero_cuenta Numero de cuenta corriente a aplicar la operacion
+        @param num_comb Numero del comprobante relacionado a la operacion
+        @param num_ref ID de clave foranea que tiene la operacion
+        @param tipo Tipo de operación
+        @param fecha Fecha de la operacion
+        @param descripcion Descripcion de la operacion
+        @param aplicar Valor a aplicar a la cuenta. Si es positivo es en favor nuestro -> el cliente nos debe. Si es negativo  es a favor del cliente -> recibimos pago ( ej ).
+        @return Operacion satisfactoria o no.
  */
 bool MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
 {
@@ -108,105 +108,105 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
 {
   switch( role )
  {
-	case Qt::DisplayRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			{
-				switch( QSqlRelationalTableModel::data(item, role).toInt() )
-				{
-					case Factura:
-					{ return "F"; break; }
-					case Recibo:
-					{ return "R"; break; }
-					case NotaCredito:
-					{ return "NC"; break; }
-					case NotaDebito:
-					{ return "ND"; break; }
-					default:
-					{ return "";  break; }
-				}
-				break;
-			}
-			case 5:
-			case 6:
-			{
-				return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item, role).toDouble() );
-				break;
-			}
-			case 1:
-			{
-				return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::DefaultLocaleShortDate );
-				break;
-			}
-			case 8:
-			{
-				if( _saldo && !saldos->keys().contains( item.row() ) )
-				{
-					// Calcular el saldo
-					if( item.row() > 1 )
-					{
-						/*double saldoNuevo = saldos->value( item.row()-1 );
-						saldoNuevo -= this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble();
-						saldoNuevo += this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble();
-						saldos->insert( item.row(), saldoNuevo );*/
-						saldos->insert( item.row(),
-							saldos->value(item.row()-1) -
-							this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble() +
-							this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble() );
-					}
-				}
-				return QString( "$ %L1" ).arg( saldos->value( item.row() ) );
-				break;
-			}
-			default:
-			{
-				return QSqlRelationalTableModel::data(item, role);
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::TextAlignmentRole:
-	{
-		switch( item.column() )
-		{
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 8:
-			{
-				return Qt::AlignCenter;
-				break;
-			}
-			case 5:
-			case 6:
-			default:
-			{
-				return QSqlRelationalTableModel::data(item, role);
-				break;
-			}
-		}
-		break;
-	}
-	case Qt::EditRole:
-	{
-		switch( item.column() )
-		{
-			case 3:
-			{ return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
-			default:
-			{ return QSqlRelationalTableModel::data( item, role ); break; }
-		}
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalTableModel::data(item, role);
-	}
+        case Qt::DisplayRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        {
+                                switch( QSqlRelationalTableModel::data(item, role).toInt() )
+                                {
+                                        case Factura:
+                                        { return "F"; break; }
+                                        case Recibo:
+                                        { return "R"; break; }
+                                        case NotaCredito:
+                                        { return "NC"; break; }
+                                        case NotaDebito:
+                                        { return "ND"; break; }
+                                        default:
+                                        { return "";  break; }
+                                }
+                                break;
+                        }
+                        case 5:
+                        case 6:
+                        {
+                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item, role).toDouble() );
+                                break;
+                        }
+                        case 1:
+                        {
+                                return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::DefaultLocaleShortDate );
+                                break;
+                        }
+                        case 8:
+                        {
+                                if( _saldo && !saldos->keys().contains( item.row() ) )
+                                {
+                                        // Calcular el saldo
+                                        if( item.row() > 1 )
+                                        {
+                                                /*double saldoNuevo = saldos->value( item.row()-1 );
+                                                saldoNuevo -= this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble();
+                                                saldoNuevo += this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble();
+                                                saldos->insert( item.row(), saldoNuevo );*/
+                                                saldos->insert( item.row(),
+                                                        saldos->value(item.row()-1) -
+                                                        this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble() +
+                                                        this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble() );
+                                        }
+                                }
+                                return QString( "$ %L1" ).arg( saldos->value( item.row() ) );
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data(item, role);
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::TextAlignmentRole:
+        {
+                switch( item.column() )
+                {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 8:
+                        {
+                                return Qt::AlignCenter;
+                                break;
+                        }
+                        case 5:
+                        case 6:
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data(item, role);
+                                break;
+                        }
+                }
+                break;
+        }
+        case Qt::EditRole:
+        {
+                switch( item.column() )
+                {
+                        case 3:
+                        { return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+                        default:
+                        { return QSqlRelationalTableModel::data( item, role ); break; }
+                }
+                break;
+        }
+        default:
+        {
+                return QSqlRelationalTableModel::data(item, role);
+        }
  }
 }
 

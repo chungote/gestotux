@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "mventaproducto.h"
 
-MVentaProducto::MVentaProducto( QObject *parent, bool relaciones  )
+MVentaProducto::MVentaProducto( QObject *parent, bool /*relaciones*/  )
  : QSqlRelationalTableModel(parent)
 {
  setTable( "ventas_productos" );

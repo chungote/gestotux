@@ -58,7 +58,7 @@ VCuentaCorriente::~VCuentaCorriente()
 /*!
     \fn VCuentaCorriente::agregar( bool autoeliminarid )
  */
-void VCuentaCorriente::agregar( bool autoeliminarid )
+void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
 {
  FormNuevaCtaCte d;
  d.setModelo( rmodelo );

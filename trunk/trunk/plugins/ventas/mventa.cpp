@@ -24,7 +24,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
-MVenta::MVenta(QObject *parent, bool relaciones)
+MVenta::MVenta(QObject *parent, bool /*relaciones*/)
  : QSqlRelationalTableModel(parent)
 {
  setTable( "ventas" );

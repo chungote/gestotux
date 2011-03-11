@@ -56,7 +56,7 @@ VServicios::~VServicios()
 }
 
 
-void VServicios::agregar( bool autoeliminarid )
+void VServicios::agregar( bool /*autoeliminarid*/ )
 {
   emit agregarVentana( new FormServicio );
 }
@@ -99,7 +99,7 @@ void VServicios::modificar()
 /*!
     \fn VServicios::modificar( const QModelIndex &idx )
  */
-void VServicios::modificar( const QModelIndex &idx )
+void VServicios::modificar( const QModelIndex &/*idx*/ )
 {
  // modifico el indice actual
  return;
