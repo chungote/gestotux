@@ -7,6 +7,8 @@
 - Agregar tabla de reportes dentro de las tablas normales.
 - Ver como hacer el cliente "Consumidor Final"
 - Verificar que los reportes tienen un limite para la base de datos, buscarlo.
+- Agregar inicialización de reportes en la base de datos.
+- Agregar numero de CUIT/CUIL para los clientes.
 
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.

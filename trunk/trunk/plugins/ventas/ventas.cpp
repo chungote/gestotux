@@ -70,7 +70,7 @@ bool Ventas::inicializar()
  _acciones.clear();
 
  ActAgregarVentas = new QAction( "Agregar venta", this );
- ActAgregarVentas->setIcon( QIcon( ":/imagenes/add.png" ) );
+ ActAgregarVentas->setIcon( QIcon( ":/imagenes/factura-nueva.png" ) );
  connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
 
  return true;
