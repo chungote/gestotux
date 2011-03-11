@@ -18,36 +18,30 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMFACTURARSERVICIO_H
-#define FORMFACTURARSERVICIO_H
+#ifndef MTEMPCLIENTESFACTURARSERVICIO_H
+#define MTEMPCLIENTESFACTURARSERVICIO_H
 
-#include "ui_FormFacturarServicioBase.h"
-#include "eventana.h"
-class QAction;
-class EActCerrar;
+#include <QAbstractTableModel>
 
-class FormFacturarServicio : public EVentana, private Ui::FormFacturarServicio
+class MTempClientesFacturarServicio : public QAbstractTableModel
 {
     Q_OBJECT
-
 public:
-    explicit FormFacturarServicio(QWidget *parent = 0);
-    void setearServicio( const int id_servicio = 0 );
-
-protected:
-    void changeEvent(QEvent *e);
-
-
-protected slots:
-    void facturar();
+    explicit MTempClientesFacturarServicio(QObject *parent = 0);
+    bool insertRow(int row, const QModelIndex& parent = QModelIndex() );
+    bool removeRow(int row, const QModelIndex& parent = QModelIndex() );
+    bool setData(const QModelIndex& index, const QVariant& value, int role);
+    int columnCount(const QModelIndex& parent = QModelIndex() ) const;
+    int rowCount(const QModelIndex& parent = QModelIndex() ) const;
+    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QVariant data(const QModelIndex& idx, int role) const;
+    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+    void cargarClientesDelServicio( const int id );
 
 private:
-    int _id_servicio;
-    EActCerrar *ActCerrar;
-    QAction *ActFacturar;
-
-    void cargar_datos_servicio();
+        QHash<int, QString> *clientes;
+        QHash<int, bool> *marcados;
 
 };
 
-#endif // FORMFACTURARSERVICIO_H
+#endif // MTEMPCLIENTESFACTURARSERVICIO_H

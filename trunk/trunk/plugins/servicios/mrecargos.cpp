@@ -22,17 +22,19 @@
 #include <QSqlRecord>
 #include "mservicios.h"
 
-MRecargos::MRecargos( QObject *parent )
+MRecargos::MRecargos( QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent), _precio_base(0.0)
 {
  setTable( "recargos" );
  setHeaderData( 0, Qt::Horizontal, tr( "#ID" ) );
  setHeaderData( 1, Qt::Horizontal, tr( "Serivicio" ) );
- setRelation  ( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
  setHeaderData( 2, Qt::Horizontal, tr( "Dias pasados" ) );
  setHeaderData( 3, Qt::Horizontal, tr( "Porcentaje" ) );
  setHeaderData( 4, Qt::Horizontal, tr( "Recargo" ) );
  setHeaderData( 5, Qt::Horizontal, tr( "Precio recargado" ) );
+ if( relaciones ) {
+     setRelation  ( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
+ }
 }
 
 

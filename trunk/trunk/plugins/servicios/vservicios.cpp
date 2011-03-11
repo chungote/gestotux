@@ -166,12 +166,13 @@ void VServicios::verClientesAdheridos()
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
  FormClientesAdheridos *f = new FormClientesAdheridos( this );
- //f->setServicioInicial( id_servicio );
+ f->setServicioInicial( id_servicio );
  emit agregarVentana( f );
 }
 
 /*!
     \fn VServicios::verRecargos()
+    Llama al formulario que muestra los recargos por servicio
  */
 void VServicios::verRecargos()
 {

@@ -42,7 +42,8 @@ HEADERS += servicios.h \
  formrecargos.h \
     FormClientesAdheridos.h \
     MClientesServicios.h \
-    FormFacturarServicio.h
+    FormFacturarServicio.h \
+    MTempClientesFacturarServicio.h
 SOURCES += servicios.cpp \
  mservicios.cpp \
  vservicios.cpp \
@@ -55,7 +56,8 @@ SOURCES += servicios.cpp \
  formrecargos.cpp \
     FormClientesAdheridos.cpp \
     MClientesServicios.cpp \
-    FormFacturarServicio.cpp
+    FormFacturarServicio.cpp \
+    MTempClientesFacturarServicio.cpp
 RESOURCES += servicios.qrc
 
 DISTFILES += servicios.QMYSQL.sql \

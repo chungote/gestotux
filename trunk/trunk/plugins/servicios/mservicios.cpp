@@ -223,25 +223,26 @@ QString MServicios::getNombreServicio( int id_servicio )
 
 /*!
  * \fn MServicios::getPeriodoActual( int id_servicio )
- * Devuelve el periodo actual del servicio.
+ * Devuelve el periodo actual del servicio en el año en curso.
  * \param id_servicio ID del servicio que queremos buscar
  * \return ?
  */
-/*QString MServicios::getPeriodoActual( const int id_servicio )
+QString MServicios::getPeriodoActual( const int id_servicio )
 {
-    QDate fecha_alta_servicio = this->getFechaAlta( id_servicio );
+    QDate fecha_alta_servicio = getFechaAlta( id_servicio );
     QDate hoy = QDate::currentDate();
-    int cant_dias_periodo = this->getCantidadDiasPeriodo( id_servicio );
+    int cant_dias_periodo = MServicios::getCantidadDiasPeriodo( id_servicio, hoy );
     // Calculo
     int t = fecha_alta_servicio.daysTo( hoy );
     double u = t/cant_dias_periodo;
     int periodo = floor( u );
-    return "No lo se calcular todavía! " + periodo;
-}*/
+    // Busco las fechas del inicio y fin del periodo
+    return QString( "%1/%2 del <fecha_inicio_periodo> al <fecha_fin_periodo>" ).arg( periodo ).arg( hoy.year() )/*.arg( hoy.toString() ).arg( fecha_alta_servicio.toString() )*/;
+}
 
-/*QDate MServicios::getFechaAlta( const int id_servicio )
+QDate MServicios::getFechaAlta( const int id_servicio )
 {
-    QSqlQuery cola( QString( "SELECT fecha_alta FROM %1 WHERE id_servicio = %2" ).arg( this->tableName() ).arg( id_servicio ) );
+    QSqlQuery cola( QString( "SELECT fecha_alta FROM servicios WHERE id_servicio = %2" ).arg( id_servicio ) );
     if( cola.exec() ) {
         if( cola.next() ) {
             return cola.record().value(0).toDate();
@@ -253,14 +254,21 @@ QString MServicios::getNombreServicio( int id_servicio )
         qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo -> exec" );
         return QDate();
     }
-}*/
+}
 
-/*int MServicios::getCantidadDiasPeriodo( const int id_servicio )
+/*!
+ * \fn MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo )
+ * Devuelve la cantidad de días en el periodo del servicio solicitado. Utilitaria.
+ * @param id_servicio Identificador del servicio al cual se le quiere saber la cantidad de días.
+ * @param fecha_calculo utilizado para referencia en @MSercicios::getCantidadDiasEnPeriodo
+ * @return Cantidad de días en el periodo del servicio
+ */
+int MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo )
 {
-    QSqlQuery cola( QString( "SELECT fecha_alta, periodo FROM %1 WHERE id_servicio = %2" ).arg( this->tableName() ).arg( id_servicio ) );
+    QSqlQuery cola( QString( "SELECT periodo FROM servicios WHERE id_servicio = %2" ).arg( id_servicio ) );
     if( cola.exec() ) {
         if( cola.next() ) {
-            return this->getDiasEnPeriodo( cola.record().value(1).toInt(), cola.record().value(0).toDate() );
+            return getDiasEnPeriodo( cola.record().value(0).toInt(), fecha_calculo );
         } else {
             qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo y su periodo -> next" );
             return -1;
@@ -269,18 +277,19 @@ QString MServicios::getNombreServicio( int id_servicio )
         qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo y su periodo  -> exec" );
         return -1;
     }
-}*/
+}
 
 /*!
  * \fn MServicios::getDiasEnPeriodo( const int id_periodo, const QDate fecha_alta, QDate fecha_calculo )
  * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
+ * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
+ * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
+ * En el caso de que sea trimestra, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tienen los 2 meses siguientes.
  * @param id_periodo Tipo de periodo que estamos considerando
- * @param fecha_alta Fecha en que se dió de alta el servicio
  * @param fecha_calculo Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
  * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
  */
-/*
-int MServicios::getDiasEnPeriodo( const int tipo_periodo, const QDate fecha_alta, QDate fecha_calculo )
+int MServicios::getDiasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
 {
     // Cuidado con los mensuales! ( feb en año bisiesto )
     switch( tipo_periodo )
@@ -301,24 +310,54 @@ int MServicios::getDiasEnPeriodo( const int tipo_periodo, const QDate fecha_alta
         {
             // Mensual
             // Verificar el mes del periodo y devolver la cantidad de días
-            // ¿que pasa cuando el periodo no arranca en el 1º de mes?
+            return QDate( 0, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
+            // Eso se encarga automaticamnete de los años bisiestos
         }
         case MServicios::BiMensual:
-        { return "Bimensual"; }
+        {
+            // BiMensual
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(1);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 );
+        }
         case MServicios::Trimestral:
-        { return "Trimestral"; }
+        {
+            // Trimensual
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(2);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 );
+        }
         case MServicios::Cuatrimestral:
-        { return "Cuatrimestral"; }
+        {
+            // Cuatrimestral
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(3);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 );
+        }
         case MServicios::Seximestral:
-        { return "Seximestral"; }
+        {
+            //Seximestral
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(5);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 );
+        }
         case MServicios::Anual:
         {
             // Como consideramos los servicios con base en 1 año, siempre es periodo 1
             return fecha_calculo.daysInYear();
         }
+        default:
+        { return 0; }
     }
 }
-*/
 
 /*
 "id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL
