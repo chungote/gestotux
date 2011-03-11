@@ -10479,7 +10479,7 @@
    id="base"
    inkscape:zoom="3.7708336"
    inkscape:cx="23.473436"
-   inkscape:cy="-12.300796"
+   inkscape:cy="-22.90853"
    inkscape:window-width="1280"
    inkscape:window-height="957"
    inkscape:window-x="-3"
@@ -14553,7 +14553,10 @@ image/svg+xml</dc:format>
      id="path18615"
      inkscape:connector-curvature="0" /></g><g
    id="g20044"
-   transform="matrix(0.29363328,0,0,0.29363328,71.00943,32.873612)"><g
+   transform="matrix(0.29363328,0,0,0.29363328,71.00943,32.873612)"
+   inkscape:export-filename="/home/Esteban/Programas/gestotux/plugins/ventas/imagenes/factura-nueva.png"
+   inkscape:export-xdpi="845.30005"
+   inkscape:export-ydpi="845.30005"><g
      transform="matrix(0.01732122,0,0,0.01188594,-56.320816,70.347995)"
      id="g5022-3-1"
      style="display:inline"><rect
@@ -14730,9 +14733,9 @@ image/svg+xml</dc:format>
      style="color:#000000;fill:url(#radialGradient18672-1);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.25000024;marker:none;visibility:visible;display:block"
      sodipodi:type="arc" /></g><g
    id="g19765"
-   inkscape:export-filename="/home/Esteban/Programas/gestotux/micelaseos/recibo-nuevo.png"
-   inkscape:export-xdpi="33"
-   inkscape:export-ydpi="33"
+   inkscape:export-filename="/home/Esteban/Programas/gestotux/plugins/pagos/imagenes/recibo-nuevo.png"
+   inkscape:export-xdpi="845.30005"
+   inkscape:export-ydpi="845.30005"
    transform="matrix(0.29363328,0,0,0.29363328,37.9133,33.722231)"><g
      transform="matrix(0.01732122,0,0,0.01188594,-56.751594,109.95503)"
      id="g5022-3-1-6"
@@ -15260,7 +15263,7 @@ image/svg+xml</dc:format>
    transform="matrix(0.29363328,0,0,0.29363328,26.076836,45.229273)"
    style="overflow:visible"
    id="g20044-5"
-   inkscape:export-filename="/home/Esteban/Programas/gestotux/micelaseos/factura.png"
+   inkscape:export-filename="/home/Esteban/Programas/gestotux/plugins/ventas/imagenes/factura.png"
    inkscape:export-xdpi="33"
    inkscape:export-ydpi="33"><g
      transform="matrix(0.01732122,0,0,0.01188594,-56.320816,70.347995)"
@@ -15429,9 +15432,9 @@ image/svg+xml</dc:format>
    transform="matrix(0.29363328,0,0,0.29363328,49.909864,33.890419)"
    style="overflow:visible"
    id="g19765-7"
-   inkscape:export-filename="/home/Esteban/Programas/gestotux/micelaseos/recibo.png"
-   inkscape:export-xdpi="33"
-   inkscape:export-ydpi="33"><g
+   inkscape:export-filename="/home/Esteban/Programas/gestotux/plugins/pagos/imagenes/recibo.png"
+   inkscape:export-xdpi="895.0509"
+   inkscape:export-ydpi="895.0509"><g
      transform="matrix(0.01732122,0,0,0.01188594,-56.751594,109.95503)"
      id="g5022-3-1-6-3"
      style="display:inline;overflow:visible"><rect

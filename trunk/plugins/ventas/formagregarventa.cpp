@@ -44,7 +44,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         setupUi( this );
         this->setObjectName( "formagregarcompra" );
         this->setWindowTitle( "Agregar Venta" );
-        this->setWindowIcon( QIcon(":/imagenes/add.png" ) );
+        this->setWindowIcon( QIcon(":/imagenes/factura-nueva.png" ) );
 
         PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBAgregarProducto->setText( "Agregar Producto" );
@@ -79,8 +79,8 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVProductos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
-        this->addAction( new EActCerrar( this ) );
         this->addAction( new EActGuardar( this ) );
+        this->addAction( new EActCerrar( this ) );
 
         connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 

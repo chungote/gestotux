@@ -117,11 +117,20 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     } else {
         TBRecibos->setVisible( false );
     }
+    //////////////////////////////////////////////////////////////////////////////////
+    // Ventas / Facturas
+    if( ERegistroPlugins::getInstancia()->existePlugin( "ventas" ) ) {
+        TBFacturas->setIcon( ERegistroPlugins::getInstancia()->plugin("ventas")->botonPantallaInicial()->icon() );
+        connect( TBFacturas, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ventas")->botonPantallaInicial(), SIGNAL(triggered()) );
+    } else {
+        TBFacturas->setVisible( false );
+    }
     ///////////////////////////////////////////////////////////////////////////////////
     // Dibujo las flechas
-    f1->setearOrigen( TBPresupuestos );
+    /*f1->setearOrigen( TBPresupuestos );
     f1->setearDestino( TBFacturas );
-    f1->setearTamFlecha( 2 );
+    f1->setearTamFlecha( 2 );*/
+    f1->setVisible( false );
 }
 
 void FormPantallaInicial::changeEvent(QEvent *e)
