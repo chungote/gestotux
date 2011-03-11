@@ -160,7 +160,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
   }
 }
 
-int MProductosTotales::columnCount(const QModelIndex& parent) const
+int MProductosTotales::columnCount(const QModelIndex& /*parent*/) const
 {
  if( _calcularTotal )
  { return 4; }
@@ -168,7 +168,7 @@ int MProductosTotales::columnCount(const QModelIndex& parent) const
  { return 3; }
 }
 
-int MProductosTotales::rowCount(const QModelIndex& parent) const
+int MProductosTotales::rowCount(const QModelIndex& /*parent*/) const
 {
  if( _calcularTotal )
  { return productos->size() + 1; }

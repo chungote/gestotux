@@ -90,7 +90,7 @@ void Servicios::crearMenu(QMenuBar* m)
  return;
 }
 
-void Servicios::crearToolBar(QToolBar* t)
+void Servicios::crearToolBar(QToolBar* /*t*/)
 {
 }
 

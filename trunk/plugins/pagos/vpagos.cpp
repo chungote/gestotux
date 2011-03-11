@@ -57,7 +57,7 @@ VPagos::~VPagos()
   \fn VPagos::agregar( bool a )
   Llama al formulario para agregar un nuevo cliente
   */
-void VPagos::agregar( bool a )
+void VPagos::agregar( bool /*a*/)
 {
  FormAgregarRecibo *f = new FormAgregarRecibo( this );
  f->setearModelo( qobject_cast<MPagos *>(this->modelo) );

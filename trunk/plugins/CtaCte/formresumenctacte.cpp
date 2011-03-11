@@ -121,7 +121,7 @@ void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
         Slot llamado cada vez que se cambia el combobox de la cuenta corriente
         @param numero_cuenta Numero de cuenta que indica el combobox
  */
-void FormResumenCtaCte::cambioCtaCte( int numero_cuenta )
+void FormResumenCtaCte::cambioCtaCte( int /*numero_cuenta*/ )
 {
  setNumeroCuenta( CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toInt() );
 }

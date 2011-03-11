@@ -90,7 +90,7 @@ void CuentaCorrientePlugin::crearMenu( QMenuBar* m )
  }
 }
 
-void CuentaCorrientePlugin::crearToolBar(QToolBar* t)
+void CuentaCorrientePlugin::crearToolBar(QToolBar* /*t*/)
 {
 }
 

@@ -568,7 +568,7 @@ bool Ebackup::ejecutarColas( QStringList colas )
 /*!
     \fn Ebackup::regenerarPreferencias( const QString *pref )
  */
-void Ebackup::regenerarPreferencias( const QString *pref )
+void Ebackup::regenerarPreferencias( const QString */*pref*/ )
 {
     /// \todo implement me
 }

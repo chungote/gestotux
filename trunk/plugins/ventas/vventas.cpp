@@ -31,7 +31,7 @@ VVentas::~VVentas()
 void VVentas::agregar()
 {}
 
-void VVentas::antes_de_insertar(int row, QSqlRecord& record)
+void VVentas::antes_de_insertar(int /*row*/, QSqlRecord& /*record*/)
 {}
 
 void VVentas::buscar()
