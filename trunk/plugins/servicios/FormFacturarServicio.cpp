@@ -21,6 +21,8 @@
 #include "FormFacturarServicio.h"
 #include "eactcerrar.h"
 #include "mservicios.h"
+#include "mrecargos.h"
+#include "MTempClientesFacturarServicio.h"
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
@@ -32,7 +34,6 @@ EVentana(parent), _id_servicio(0)  {
     this->setObjectName( "facturaservicios" );
 
     ActCerrar = new EActCerrar( this );
-    this->addAction( ActCerrar );
 
     ActFacturar = new QAction( this );
     ActFacturar->setText( "Facturar" );
@@ -40,6 +41,8 @@ EVentana(parent), _id_servicio(0)  {
     ActFacturar->setIcon( QIcon( ":/imagenes/" ) );
     connect( ActFacturar, SIGNAL( triggered() ), this, SLOT( facturar() ) );
 
+    this->addAction( ActFacturar );
+    this->addAction( ActCerrar );
 
 }
 
@@ -79,6 +82,30 @@ void FormFacturarServicio::cargar_datos_servicio()
 {
     MServicios *m = new MServicios( this );
     this->LNombreServicio->setText( m->getNombreServicio( this->_id_servicio ) );
-    this->LPrecioBase->setText( QString( "$ %L1" ).arg( m->precioBase( this->_id_servicio ) ) );
+    double precio_base = m->precioBase( this->_id_servicio );
+    this->LPrecioBase->setText( QString( "$ %L1" ).arg( precio_base  ) );
     this->LPeriodo->setText( m->getPeriodoActual( this->_id_servicio ) );
+    // Cargo los clientes del servicio
+    MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
+    // Cargo los clientes
+    this->TVClientes->setModel( mc );
+    mc->cargarClientesDelServicio( this->_id_servicio );
+    // Cargo los recargos del servicio
+    MRecargos *mr = new MRecargos( this, false );
+    mr->setFilter( QString( "id_servicio = %1 " ).arg( this->_id_servicio ) );
+    mr->setearPrecioBase( precio_base );
+    this->TVRecargos->setModel( mr );
+    this->TVRecargos->hideColumn( 0 );
+    this->TVRecargos->hideColumn( 1 );
+    this->TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    mr->select();
+}
+
+/*!
+ * \fn FormFacturarServicio::facturar()
+ * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
+ */
+void FormFacturarServicio::facturar()
+{
+
 }

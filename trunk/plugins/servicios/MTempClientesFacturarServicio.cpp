@@ -1,0 +1,233 @@
+/***************************************************************************
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+
+#include "MTempClientesFacturarServicio.h"
+
+#include <QColor>
+
+MTempClientesFacturarServicio::MTempClientesFacturarServicio(QObject *parent) :
+    QAbstractTableModel(parent)
+{
+    // Inicializo los arrays
+    clientes = new QHash<int, QString>();
+    marcados = new QHash<int, bool>();
+}
+
+bool MTempClientesFacturarServicio::insertRow(int row, const QModelIndex& parent )
+{
+    if( row == -1 )
+    { row = this->marcados->size(); }
+    beginInsertRows( parent, row, row );
+    clientes->insert( row, "" );
+    marcados->insert( row, false );
+    endInsertRows();
+    emit dataChanged( this->index( row, 0 ), this->index( row, 3 ) );
+    return true;
+
+}
+
+bool MTempClientesFacturarServicio::removeRow(int row, const QModelIndex& parent )
+{
+    beginRemoveRows( parent, row, row );
+    clientes->remove( row );
+    marcados->remove( row );
+    endRemoveRows();
+    return true;
+}
+
+bool MTempClientesFacturarServicio::setData(const QModelIndex& index, const QVariant& value, int role)
+{
+    if( !index.isValid() )
+    {
+      //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
+      return false;
+    }
+    switch( role )
+    {
+           case Qt::EditRole:
+           {
+                   switch( index.column() )
+                   {
+                           // Marcado
+                           case 0:
+                           {
+                                this->marcados->insert( index.row(), value.toBool() );
+                                emit dataChanged( index, index );
+                                return true;
+                                break;
+                           }
+                           // Cliente
+                           case 1:
+                           {
+                                this->clientes->insert( index.row(), value.toString() );
+                                emit dataChanged( index, index );
+                                return true;
+                                break;
+                           }
+                           default:
+                           {
+                                   return false;
+                           }
+                   }
+                   break;
+           }
+           default:
+           { return false; break; }
+     }
+}
+
+int MTempClientesFacturarServicio::columnCount(const QModelIndex& /*parent*/ ) const
+{ return 2; }
+
+int MTempClientesFacturarServicio::rowCount(const QModelIndex& /*parent*/ ) const
+{ return this->marcados->size();}
+
+Qt::ItemFlags MTempClientesFacturarServicio::flags(const QModelIndex& index) const
+{
+  if( index.column() == 1 )
+  { return QFlags<Qt::ItemFlag>(!Qt::ItemIsEditable |  Qt::ItemIsSelectable ); }
+  else
+  { return QFlags<Qt::ItemFlag>(Qt::ItemIsEditable | Qt::ItemIsEnabled); }
+
+}
+
+QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) const
+{
+    if( !idx.isValid() )
+    {
+     //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
+     return( QVariant() );
+    }
+    switch( role )
+    {
+           case Qt::DisplayRole:
+           {
+                   switch( idx.column() )
+                   {
+                           // Marcado
+                           case 0:
+                           {
+                                   return this->marcados->value( idx.row() );
+                                   break;
+                           }
+                           // Cliente
+                           case 1:
+                           {
+                                   return this->clientes->value( idx.row() );
+                                   break;
+                           }
+                           default:
+                           {
+                                   return QVariant();
+                                   break;
+                           }
+                   }
+                   break;
+           }
+           case Qt::TextColorRole:
+           {
+                   switch ( idx.column() )
+                   {
+                           case 0:
+                           {
+                                   return QColor(Qt::blue);
+                                   break;
+                           }
+                           default:
+                           {
+                                   return QColor(Qt::black);
+                                   break;
+                           }
+                   }
+                   break;
+           }
+           case Qt::EditRole:
+           {
+                   switch( idx.column() )
+                   {
+                           // Marcado
+                           case 0:
+                           {
+                                   // tengo que devolver si esta marcado
+                                   return this->marcados->value( idx.row() );
+                                   break;
+                           }
+                           default:
+                           {
+                                   return false;
+                                   break;
+                           }
+                   }
+                   break;
+           }
+           case Qt::TextAlignmentRole:
+           {
+                   switch ( idx.column() )
+                   {
+                           case 1:
+                           {
+                                   return int( Qt::AlignLeft | Qt::AlignVCenter );
+                                   break;
+                           }
+                           default:
+                           {
+                                   return int( Qt::AlignRight | Qt::AlignVCenter );
+                                   break;
+                           }
+                   }
+                   break;
+           }
+           case Qt::ToolTipRole:
+           case Qt::StatusTipRole:
+           {
+                   return QVariant( "Haga doble click o seleccione y F2 para editar" );
+                   break;
+           }
+           default:
+           { return QVariant(); break; }
+    }
+}
+
+QVariant MTempClientesFacturarServicio::headerData ( int section, Qt::Orientation orientation, int role ) const
+{
+  if( orientation == Qt::Horizontal ) {
+      if( section == 0 ) { return "¿Facturar?"; } else { return "Cliente"; }
+  } else {
+      return section;
+  }
+}
+
+#include "MClientesServicios.h"
+#include <QSqlQuery>
+#include <QSqlRecord>
+
+void MTempClientesFacturarServicio::cargarClientesDelServicio( const int id )
+{
+    // Busco los clientes qe estan adheridos al servicio solcitiado
+    MClientesServicios *m = new MClientesServicios();
+    m->filtrarPorServicio( id );
+    while ( m->query().next() ) {
+        this->insertRow( -1 );
+        this->setData( this->index( this->rowCount(), 0 ), true, Qt::EditRole );
+        this->setData( this->index( this->rowCount(), 1 ), m->query().record().value( "razon_social ").toString(), Qt::EditRole  );
+    }
+    delete m;
+    m=0;
+}

@@ -31,7 +31,7 @@ class MRecargos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MRecargos(QObject *parent = 0);
+    MRecargos(QObject *parent = 0, bool relaciones = true );
     ~MRecargos();
 
     bool setData(const QModelIndex& index, const QVariant& value, int role);
