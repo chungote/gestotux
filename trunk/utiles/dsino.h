@@ -42,8 +42,8 @@ public:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
 private:
-    QPolygonF diamondPolygon;
-    QPolygonF starPolygon;
+    QPolygonF crossPolygon;
+    QPolygonF tickPolygon;
 };
 
 #endif

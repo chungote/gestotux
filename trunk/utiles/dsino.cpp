@@ -22,19 +22,21 @@
 #include <QPainter>
 #include <math.h>
 #include <QPolygonF>
+#include <QPointF>
 
 const int PaintingScaleFactor = 20;
 
 DSiNo::DSiNo(QObject *parent)
  : QItemDelegate(parent)
 {
-    starPolygon << QPointF( 0.15, 0.00 ) << QPointF( 0.50, 0.35 ) << QPointF( 0.85, 0.00 ) << QPointF( 1.00, 0.15 )
+    crossPolygon << QPointF( 0.15, 0.00 ) << QPointF( 0.50, 0.35 ) << QPointF( 0.85, 0.00 ) << QPointF( 1.00, 0.15 )
                 << QPointF( 0.65, 0.50 ) << QPointF( 1.00, 0.85 ) << QPointF( 0.85, 1.00 ) << QPointF( 0.50, 0.65 )
                 << QPointF( 0.15, 1.00 ) << QPointF( 0.00, 0.85 ) << QPointF( 0.35, 0.50 ) << QPointF( 0.00, 0.15 )
                 << QPointF( 0.15, 0.00 );
-    diamondPolygon << QPointF(0.4, 0.5) << QPointF(0.5, 0.4)
-                   << QPointF(0.6, 0.5) << QPointF(0.5, 0.6)
-                   << QPointF(0.4, 0.5);
+    tickPolygon << QPointF( 0.00, 0.70 ) << QPointF( 0.30, 1.00 )
+                   << QPointF( 1.00, 0.15 ) << QPointF( 0.85, 0.00 )
+                   << QPointF( 0.30, 0.70 ) << QPointF( 0.15, 0.65 )
+                   << QPointF( 0.00, 0.70 );
 }
 
 
@@ -89,9 +91,9 @@ void DSiNo::paint( QPainter *painter, const QStyleOptionViewItem &option, const 
     painter->scale( PaintingScaleFactor, PaintingScaleFactor);
 
     if ( index.data(Qt::DisplayRole).toBool() ) {
-            painter->drawPolygon( starPolygon, Qt::WindingFill );
+            painter->drawPolygon( tickPolygon, Qt::WindingFill );
         } else {
-            painter->drawPolygon( diamondPolygon, Qt::WindingFill );
+            painter->drawPolygon( crossPolygon, Qt::WindingFill );
         }
     painter->translate(1.0, 0.0);
     painter->restore();
