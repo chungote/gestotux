@@ -26,11 +26,11 @@
 #include "formprefhijo.h"
 #include <QWidget>
 
-class FormPrefVenta : public QWidget, private FormPrefHijo, public Ui::FormPrefVentaBase
+class FormPrefVenta : public QWidget, public FormPrefHijo, private Ui::FormPrefVentaBase
 {
     Q_OBJECT
 public:
-    explicit FormPrefVenta(QWidget *parent = 0);
+    FormPrefVenta( QWidget* parent = 0, Qt::WFlags fl = 0 );
 
 public slots:
     void cargar();

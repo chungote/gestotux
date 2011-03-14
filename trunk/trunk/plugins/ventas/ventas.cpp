@@ -58,6 +58,7 @@ QWidgetList Ventas::formsPreferencias()
     QWidgetList lista;
     lista.append( new FormPrefVenta() );
     return lista;
+    /*return QWidgetList();*/
 }
 
 

@@ -38,7 +38,7 @@ bool MTempClientesFacturarServicio::insertRow(int row, const QModelIndex& parent
     clientes->insert( row, "" );
     marcados->insert( row, false );
     endInsertRows();
-    emit dataChanged( this->index( row, 0 ), this->index( row, 3 ) );
+    emit dataChanged( this->index( row, 0 ), this->index( row, 1 ) );
     return true;
 
 }
@@ -82,9 +82,7 @@ bool MTempClientesFacturarServicio::setData(const QModelIndex& index, const QVar
                                 break;
                            }
                            default:
-                           {
-                                   return false;
-                           }
+                           { return false; break; }
                    }
                    break;
            }
@@ -97,7 +95,7 @@ int MTempClientesFacturarServicio::columnCount(const QModelIndex& /*parent*/ ) c
 { return 2; }
 
 int MTempClientesFacturarServicio::rowCount(const QModelIndex& /*parent*/ ) const
-{ return this->marcados->size();}
+{ return this->marcados->size(); }
 
 Qt::ItemFlags MTempClientesFacturarServicio::flags(const QModelIndex& index) const
 {
@@ -223,10 +221,12 @@ void MTempClientesFacturarServicio::cargarClientesDelServicio( const int id )
     // Busco los clientes qe estan adheridos al servicio solcitiado
     MClientesServicios *m = new MClientesServicios();
     m->filtrarPorServicio( id );
+    m->select();
     while ( m->query().next() ) {
         this->insertRow( -1 );
-        this->setData( this->index( this->rowCount(), 0 ), true, Qt::EditRole );
-        this->setData( this->index( this->rowCount(), 1 ), m->query().record().value( "razon_social ").toString(), Qt::EditRole  );
+        this->setData( this->index( this->rowCount()-1, 0 ), true, Qt::EditRole );
+        QString val = m->query().record().value(0).toString();
+        this->setData( this->index( this->rowCount()-1, 1 ), val, Qt::EditRole  );
     }
     delete m;
     m=0;

@@ -19,10 +19,22 @@
  ***************************************************************************/
 #include "dsino.h"
 #include <QCheckBox>
+#include <QPainter>
+#include <math.h>
+#include <QPolygonF>
+
+const int PaintingScaleFactor = 20;
 
 DSiNo::DSiNo(QObject *parent)
  : QItemDelegate(parent)
 {
+    starPolygon << QPointF( 0.15, 0.00 ) << QPointF( 0.50, 0.35 ) << QPointF( 0.85, 0.00 ) << QPointF( 1.00, 0.15 )
+                << QPointF( 0.65, 0.50 ) << QPointF( 1.00, 0.85 ) << QPointF( 0.85, 1.00 ) << QPointF( 0.50, 0.65 )
+                << QPointF( 0.15, 1.00 ) << QPointF( 0.00, 0.85 ) << QPointF( 0.35, 0.50 ) << QPointF( 0.00, 0.15 )
+                << QPointF( 0.15, 0.00 );
+    diamondPolygon << QPointF(0.4, 0.5) << QPointF(0.5, 0.4)
+                   << QPointF(0.6, 0.5) << QPointF(0.5, 0.6)
+                   << QPointF(0.4, 0.5);
 }
 
 
@@ -52,3 +64,44 @@ void DSiNo::setModelData(QWidget* editor, QAbstractItemModel* model, const QMode
  model->setData( index, qobject_cast<QCheckBox *>(editor)->isChecked(), Qt::EditRole );
 }
 
+/*!
+    \fn DSiNo::paint(QPainter *painter, const QStyleOptionViewItem &option,  const QModelIndex &index) const
+ */
+void DSiNo::paint( QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(Qt::NoPen);
+    painter->setBackgroundMode( Qt::TransparentMode );
+
+    if( option.state & QStyle::State_Selected )
+    {
+        painter->setBrush( option.palette.alternateBase() );
+        painter->fillRect( option.rect, option.palette.highlight());
+    }
+    else
+    {
+        painter->setBrush( option.palette.highlight() );
+    }
+    int yOffset = ( option.rect.height() - PaintingScaleFactor ) / 2;
+    int xOffset = ( option.rect.width() - PaintingScaleFactor ) / 2;
+    painter->translate( option.rect.x() + xOffset, option.rect.y() + yOffset);
+    painter->scale( PaintingScaleFactor, PaintingScaleFactor);
+
+    if ( index.data(Qt::DisplayRole).toBool() ) {
+            painter->drawPolygon( starPolygon, Qt::WindingFill );
+        } else {
+            painter->drawPolygon( diamondPolygon, Qt::WindingFill );
+        }
+    painter->translate(1.0, 0.0);
+    painter->restore();
+}
+
+
+/*!
+    \fn DSiNo::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+ */
+QSize DSiNo::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    return PaintingScaleFactor * QSize( 1, 1 );
+}

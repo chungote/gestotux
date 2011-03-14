@@ -23,6 +23,7 @@
 #include "mservicios.h"
 #include "mrecargos.h"
 #include "MTempClientesFacturarServicio.h"
+#include "dsino.h"
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
@@ -90,6 +91,8 @@ void FormFacturarServicio::cargar_datos_servicio()
     // Cargo los clientes
     this->TVClientes->setModel( mc );
     mc->cargarClientesDelServicio( this->_id_servicio );
+    this->TVClientes->setItemDelegateForColumn( 0, new DSiNo( this->TVClientes ) );
+    this->TVClientes->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     // Cargo los recargos del servicio
     MRecargos *mr = new MRecargos( this, false );
     mr->setFilter( QString( "id_servicio = %1 " ).arg( this->_id_servicio ) );

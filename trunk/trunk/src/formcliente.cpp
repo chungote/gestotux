@@ -39,7 +39,6 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
         modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
 
         connect( LENombre       , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
-        connect( LESegundoNombre, SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
         connect( LEApellido     , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
 
         //Acciones predefinidas
@@ -76,11 +75,6 @@ void FormCliente::guardar()
  { rc.setNull( "nombre" ); }
  else
  { rc.setValue( "nombre", LENombre->text() ); }
- ///////////////////////////////////////////////////////////////////////
- if( LESegundoNombre->text().isEmpty() )
- { rc.setNull( "segundo" ); }
- else
- { rc.setValue( "segundo", LESegundoNombre->text() ); }
  ///////////////////////////////////////////////////////////////////////
  if( LEApellido->text().isEmpty() )
  { rc.setNull( "apellido" ); }
@@ -201,7 +195,7 @@ void FormCliente::rehaceRazonSocial( const QString &texto )
  QString anterior = texto; anterior.remove( texto.length()-1, 1 );
  if( LERazonSocial->text().contains( anterior ) || LERazonSocial->text().isEmpty() )
  {
-  LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() + " " + LESegundoNombre->text() );
+  LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() );
  }
  return;
 }
