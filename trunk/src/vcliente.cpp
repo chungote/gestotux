@@ -47,7 +47,6 @@ VCliente::VCliente( QWidget *parent )
  vista->setModel( mc );
  vista->hideColumn( mc->fieldIndex( "id" ) );
  vista->hideColumn( mc->fieldIndex( "nombre" ) );
- vista->hideColumn( mc->fieldIndex( "segundo" ) );
  vista->hideColumn( mc->fieldIndex( "apellido" ) );
  vista->hideColumn( mc->fieldIndex( "nombre" ) );
  vista->hideColumn( mc->fieldIndex( "piso" ) );

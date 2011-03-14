@@ -35,10 +35,10 @@ MClientesServicios::MClientesServicios(QObject *parent) :
 
 void MClientesServicios::filtrarPorCliente( const int id_cliente )
 {
-    this->setFilter( QString( "id_cliente = %1 ").arg( id_cliente ) );
+    this->setFilter( QString( "servicios_clientes.id_cliente = %1 ").arg( id_cliente ) );
 }
 
 void MClientesServicios::filtrarPorServicio( const int id_servicio )
 {
-    this->setFilter( QString( "id_servicio = %1 ").arg( id_servicio ) );
+    this->setFilter( QString( "servicios_clientes.id_servicio = %1 ").arg( id_servicio ) );
 }

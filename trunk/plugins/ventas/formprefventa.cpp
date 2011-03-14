@@ -20,10 +20,15 @@
 
 #include "formprefventa.h"
 
-FormPrefVenta::FormPrefVenta(QWidget *parent) :
- FormPrefHijo(), FormPrefVentaBase()
+#include "preferencias.h"
+#include <QCheckBox>
+#include <QDoubleSpinBox>
+
+FormPrefVenta::FormPrefVenta( QWidget* parent, Qt::WFlags fl ) :
+ FormPrefHijo(), Ui::FormPrefVentaBase()
 {
     this->setParent( parent );
+    setupUi(this);
     this->setWindowTitle( "Ventas" );
     //this->setWindowIcon( QIcon( ":/imagenes/" ) );
 }
@@ -35,9 +40,9 @@ FormPrefVenta::FormPrefVenta(QWidget *parent) :
 void FormPrefVenta::cargar()
 {
  preferencias *p = preferencias::getInstancia();
- CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
- CkBLimitarAStock->setChecked( p->value( "Preferencias/Ventas/limitarastock", false ).toBool() );
- DSBGanancia->setValue( p->value( "Preferencias/Ventas/ganancia", 10.00 ).toDouble() );
+ this->CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
+ this->CkBLimitarAStock->setChecked( p->value( "Preferencias/Ventas/limitarastock", false ).toBool() );
+ this->DSBGanancia->setValue( p->value( "Preferencias/Ventas/ganancia", 10.00 ).toDouble() );
 }
 
 
@@ -54,7 +59,7 @@ void FormPrefVenta::aplicar()
 void FormPrefVenta::guardar()
 {
  preferencias *p = preferencias::getInstancia();
- p->setValue( "Preferencias/Ventas/buscarPrecio",CkBBusquedaPrecio->isChecked() );
- p->setValue( "Preferencias/Ventas/limitarastock", CkBLimitarAStock->isChecked() );
- p->setValue( "Preferencias/Ventas/ganancia",DSBGanancia->value() );
+ p->setValue( "Preferencias/Ventas/buscarPrecio", this->CkBBusquedaPrecio->isChecked() );
+ p->setValue( "Preferencias/Ventas/limitarastock", this->CkBLimitarAStock->isChecked() );
+ p->setValue( "Preferencias/Ventas/ganancia", this->DSBGanancia->value() );
 }
