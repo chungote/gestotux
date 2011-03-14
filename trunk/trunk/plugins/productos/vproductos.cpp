@@ -180,6 +180,13 @@ void VProductos::agregar( bool autoeliminarid )
  precio_costo = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de costo", 0.0, 0.0, 2147483647, 3, &ok );
  if( !ok ) { return; }
  ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Solicito el precio de venta del producto
+ ok = false;double precio_venta = 0.0;
+ double recargo = preferencias::getInstancia()->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble();
+ precio_venta = precio_costo * ( 1 + ( recargo / 100 ) );
+ precio_venta = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de venta que desea", precio_venta, precio_costo, 2147483647, 3, &ok );
+ if( !ok ) { return; }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
  // Agrego el producto
  QSqlRecord rec = rmodelo->record();
  rec.setValue( "nombre", nombre );
@@ -197,6 +204,7 @@ void VProductos::agregar( bool autoeliminarid )
      rec.setValue( "stock", stock );
  }
  rec.setValue( "precio_costo", precio_costo );
+ rec.setValue( "precio_venta", precio_venta );
  rec.setValue( "habilitado", true );
  rec.remove( rmodelo->fieldIndex( "id_categoria" ) );
  rec.remove( rmodelo->fieldIndex( "id" ) );

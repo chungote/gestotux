@@ -472,14 +472,10 @@ void MProductosTotales::buscarPrecios( bool activado )
 double MProductosTotales::buscarPrecioVenta( int id_producto )
 {
  QSqlQuery cola;
- if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+ if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1" ).arg( id_producto ) ) )
  {
   cola.next();
- // qDebug( qPrintable( cola.lastQuery() ) );
-  double precio = cola.record().value( 0 ).toDouble();
-  //qDebug( "Precio encontrado" );
-  double __recargo = preferencias::getInstancia()->value( "Preferencias/Ventas/ganancia", 10.00 ).toDouble();
-  return precio * ( 1 + (__recargo/100) );
+  return cola.record().value(0).toDouble();
  }
  else
  {
