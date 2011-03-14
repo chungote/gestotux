@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>430</width>
     <height>300</height>
    </rect>
   </property>
@@ -99,6 +99,39 @@
          <widget class="QDoubleSpinBox" name="DSBLimiteMinimo">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="GBGanancia">
+     <property name="title">
+      <string>Ganancia Predeterminada</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Porcentaje de Ganancia:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="DsBGanancia">
+          <property name="suffix">
+           <string> %</string>
+          </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>999.990000000000009</double>
           </property>
          </widget>
         </item>

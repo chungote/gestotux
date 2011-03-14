@@ -34,10 +34,11 @@ MProductos::MProductos(QObject *parent)
  }
  setHeaderData( 2, Qt::Horizontal, "Nombre" );
  setHeaderData( 3, Qt::Horizontal, "Precio de Costo" );
- setHeaderData( 4, Qt::Horizontal, "Descripcion" );
- setHeaderData( 5, Qt::Horizontal, "Marca" );
- setHeaderData( 6, Qt::Horizontal, "Habilitado" );
- setHeaderData( 7, Qt::Horizontal, "Stock" );
+ setHeaderData( 4, Qt::Horizontal, "Precio de venta" );
+ setHeaderData( 5, Qt::Horizontal, "Descripcion" );
+ setHeaderData( 6, Qt::Horizontal, "Marca" );
+ setHeaderData( 7, Qt::Horizontal, "Habilitado" );
+ setHeaderData( 8, Qt::Horizontal, "Stock" );
  setSort( 0, Qt::AscendingOrder );
 }
 
@@ -60,6 +61,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                 switch( item.column() )
                 {
                         case 3:
+                        case 4:
                         {
                                 return QSqlRelationalTableModel::data(item, role).toString().prepend( "$" );
                                 break;
@@ -85,6 +87,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                 switch ( item.column() )
                 {
                         case 3:
+                        case 4:
                         {
                                 return QColor(Qt::blue);
                                 break;
@@ -102,6 +105,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                 switch( item.column() )
                 {
                         case 3:
+                        case 4:
                         {
                                 return QSqlRelationalTableModel::data( item, role ).toDouble();
                                 break;
@@ -119,6 +123,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                 switch( item.column() )
                 {
                         case 3:
+                        case 4:
                         case 6:
                         case 7:
                         {
@@ -199,7 +204,7 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
  }
  else
  {
-  qWarning( "Error al intentar actualizar el stock del cuproducto solicitado" );
+  qWarning( "Error al intentar actualizar el stock del producto solicitado" );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.executedQuery() ) );
   return false;

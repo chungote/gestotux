@@ -42,7 +42,6 @@ void FormPrefVenta::cargar()
  preferencias *p = preferencias::getInstancia();
  this->CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
  this->CkBLimitarAStock->setChecked( p->value( "Preferencias/Ventas/limitarastock", false ).toBool() );
- this->DSBGanancia->setValue( p->value( "Preferencias/Ventas/ganancia", 10.00 ).toDouble() );
 }
 
 
@@ -61,5 +60,4 @@ void FormPrefVenta::guardar()
  preferencias *p = preferencias::getInstancia();
  p->setValue( "Preferencias/Ventas/buscarPrecio", this->CkBBusquedaPrecio->isChecked() );
  p->setValue( "Preferencias/Ventas/limitarastock", this->CkBLimitarAStock->isChecked() );
- p->setValue( "Preferencias/Ventas/ganancia", this->DSBGanancia->value() );
 }
