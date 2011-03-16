@@ -28,6 +28,7 @@ MTempClientesFacturarServicio::MTempClientesFacturarServicio(QObject *parent) :
     // Inicializo los arrays
     clientes = new QHash<int, QString>();
     marcados = new QHash<int, bool>();
+    ids = new QHash<int, int>();
 }
 
 bool MTempClientesFacturarServicio::insertRow(int row, const QModelIndex& parent )
@@ -37,6 +38,7 @@ bool MTempClientesFacturarServicio::insertRow(int row, const QModelIndex& parent
     beginInsertRows( parent, row, row );
     clientes->insert( row, "" );
     marcados->insert( row, false );
+    ids->insert( row, -1 );
     endInsertRows();
     emit dataChanged( this->index( row, 0 ), this->index( row, 1 ) );
     return true;
@@ -48,6 +50,7 @@ bool MTempClientesFacturarServicio::removeRow(int row, const QModelIndex& parent
     beginRemoveRows( parent, row, row );
     clientes->remove( row );
     marcados->remove( row );
+    ids->remove( row );
     endRemoveRows();
     return true;
 }
@@ -81,6 +84,14 @@ bool MTempClientesFacturarServicio::setData(const QModelIndex& index, const QVar
                                 return true;
                                 break;
                            }
+                           // Id del cliente
+                           case 2:
+                           {
+                                this->ids->insert( index.row(), value.toInt() );
+                                emit dataChanged( index, index );
+                                return true;
+                                break;
+                           }
                            default:
                            { return false; break; }
                    }
@@ -92,14 +103,14 @@ bool MTempClientesFacturarServicio::setData(const QModelIndex& index, const QVar
 }
 
 int MTempClientesFacturarServicio::columnCount(const QModelIndex& /*parent*/ ) const
-{ return 2; }
+{ return 3; }
 
 int MTempClientesFacturarServicio::rowCount(const QModelIndex& /*parent*/ ) const
 { return this->marcados->size(); }
 
 Qt::ItemFlags MTempClientesFacturarServicio::flags(const QModelIndex& index) const
 {
-  if( index.column() == 1 )
+  if( index.column() != 0 )
   { return QFlags<Qt::ItemFlag>(!Qt::ItemIsEditable |  Qt::ItemIsSelectable ); }
   else
   { return QFlags<Qt::ItemFlag>(Qt::ItemIsEditable | Qt::ItemIsEnabled); }
@@ -130,6 +141,12 @@ QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) c
                            {
                                    return this->clientes->value( idx.row() );
                                    break;
+                           }
+                           // ID cliente
+                           case 2:
+                           {
+                                return this->ids->value( idx.row() );
+                                break;
                            }
                            default:
                            {
@@ -203,7 +220,7 @@ QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) c
     }
 }
 
-QVariant MTempClientesFacturarServicio::headerData ( int section, Qt::Orientation orientation, int role ) const
+QVariant MTempClientesFacturarServicio::headerData( int section, Qt::Orientation orientation, int role ) const
 {
   if( orientation == Qt::Horizontal ) {
       if( section == 0 ) { return "¿Facturar?"; } else { return "Cliente"; }
@@ -212,22 +229,19 @@ QVariant MTempClientesFacturarServicio::headerData ( int section, Qt::Orientatio
   }
 }
 
-#include "MClientesServicios.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 
 void MTempClientesFacturarServicio::cargarClientesDelServicio( const int id )
 {
     // Busco los clientes qe estan adheridos al servicio solcitiado
-    MClientesServicios *m = new MClientesServicios();
-    m->filtrarPorServicio( id );
-    m->select();
-    while ( m->query().next() ) {
+    QSqlQuery cola( QString( "SELECT c.razon_social, c.id FROM servicios_clientes, clientes c WHERE ( servicios_clientes.`id_cliente` = c.id ) AND ( servicios_clientes.id_servicio = %1 )" ).arg( id ) );
+    qDebug( cola.lastQuery().toLocal8Bit() );
+    while ( cola.next() ) {
         this->insertRow( -1 );
         this->setData( this->index( this->rowCount()-1, 0 ), true, Qt::EditRole );
-        QString val = m->query().record().value(0).toString();
+        QString val = cola.record().value(0).toString();
         this->setData( this->index( this->rowCount()-1, 1 ), val, Qt::EditRole  );
+        this->setData( this->index( this->rowCount()-1, 2 ), cola.record().value(1).toInt(), Qt::EditRole );
     }
-    delete m;
-    m=0;
 }

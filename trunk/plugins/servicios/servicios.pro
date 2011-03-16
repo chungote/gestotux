@@ -10,19 +10,15 @@ TARGET = servicios
 
 DESTDIR = ../../bin/plugins/
 
-QMAKE_CXXFLAGS_DEBUG += -o0 \
-  -g3 \
-  -ggdb
-
 INCLUDEPATH += ../../src \
-  ../../reporte \
-  ../../utiles
+              ../../reporte \
+              ../../utiles
 
 LIBS += ../../bin/libutiles.a \
-  ../../bin/libreporte.a
+        ../../bin/libreporte.a
 
 TARGETDEPS += ../../bin/libreporte.a \
-  ../../bin/libutiles.a
+             ../../bin/libutiles.a
 
 OBJECTS_DIR = obj
 
@@ -31,46 +27,52 @@ MOC_DIR = moc
 RCC_DIR = rcc
 
 HEADERS += servicios.h \
- mservicios.h \
- vservicios.h \
- mrecargos.h \
- mcobroservicio.h \
- mrecargoshechos.h \
- formasociarserviciocliente.h \
- formservicio.h \
- edrecargos.h \
- formrecargos.h \
-    FormClientesAdheridos.h \
-    MClientesServicios.h \
-    FormFacturarServicio.h \
-    MTempClientesFacturarServicio.h
+           mservicios.h \
+           vservicios.h \
+           mrecargos.h \
+           mcobroservicio.h \
+           mrecargoshechos.h \
+           formasociarserviciocliente.h \
+           formservicio.h \
+           edrecargos.h \
+           formrecargos.h \
+           FormClientesAdheridos.h \
+           MClientesServicios.h \
+           FormFacturarServicio.h \
+           MTempClientesFacturarServicio.h \
+           ../pagos/mpagos.h \
+           ../CtaCte/mcuentacorriente.h \
+           ../CtaCte/mitemcuentacorriente.h
 SOURCES += servicios.cpp \
- mservicios.cpp \
- vservicios.cpp \
- mrecargos.cpp \
- mcobroservicio.cpp \
- mrecargoshechos.cpp \
- formasociarserviciocliente.cpp \
- formservicio.cpp \
- edrecargos.cpp \
- formrecargos.cpp \
-    FormClientesAdheridos.cpp \
-    MClientesServicios.cpp \
-    FormFacturarServicio.cpp \
-    MTempClientesFacturarServicio.cpp
+           mservicios.cpp \
+           vservicios.cpp \
+           mrecargos.cpp \
+           mcobroservicio.cpp \
+           mrecargoshechos.cpp \
+           formasociarserviciocliente.cpp \
+           formservicio.cpp \
+           edrecargos.cpp \
+           formrecargos.cpp \
+           FormClientesAdheridos.cpp \
+           MClientesServicios.cpp \
+           FormFacturarServicio.cpp \
+           MTempClientesFacturarServicio.cpp \
+           ../pagos/mpagos.cpp \
+           ../CtaCte/mcuentacorriente.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp
+
 RESOURCES += servicios.qrc
 
 DISTFILES += servicios.QMYSQL.sql \
-servicios.QSQLITE.sql
+             servicios.QSQLITE.sql
 
 TRANSLATIONS = servicios.ts
 
 FORMS += FormAsociarBase.ui \
- formServicioBase.ui \
-    FormRecargoBase.ui \
-    FormClietnesAdheridosBase.ui \
-    FormClientesAdheridosBase.ui \
-    FormFacturarServicioBase.ui
+         formServicioBase.ui \
+         FormRecargoBase.ui \
+         FormClientesAdheridosBase.ui \
+         FormFacturarServicioBase.ui
 
 OTHER_FILES += servicios.QMYSQL.sql \
-    servicios.QSQLITE.sql
+               servicios.QSQLITE.sql

@@ -41,6 +41,7 @@ public:
 private:
         QHash<int, QString> *clientes;
         QHash<int, bool> *marcados;
+        QHash<int, int> *ids;
 
 };
 

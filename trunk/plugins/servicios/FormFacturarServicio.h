@@ -43,8 +43,11 @@ protected slots:
 
 private:
     int _id_servicio;
+    double _precio_base;
     EActCerrar *ActCerrar;
     QAction *ActFacturar;
+
+    bool _cancelar;
 
     void cargar_datos_servicio();
 
