@@ -45,6 +45,9 @@ EVentana(parent), _id_servicio(0)  {
     this->addAction( ActFacturar );
     this->addAction( ActCerrar );
 
+    // Escondo el progreso
+    this->GBProgreso->setVisible( false );
+
 }
 
 void FormFacturarServicio::changeEvent(QEvent *e)
@@ -83,20 +86,21 @@ void FormFacturarServicio::cargar_datos_servicio()
 {
     MServicios *m = new MServicios( this );
     this->LNombreServicio->setText( m->getNombreServicio( this->_id_servicio ) );
-    double precio_base = m->precioBase( this->_id_servicio );
-    this->LPrecioBase->setText( QString( "$ %L1" ).arg( precio_base  ) );
+    this->_precio_base = m->precioBase( this->_id_servicio );
+    this->LPrecioBase->setText( QString( "$ %L1" ).arg( this->_precio_base  ) );
     this->LPeriodo->setText( m->getPeriodoActual( this->_id_servicio ) );
     // Cargo los clientes del servicio
     MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
     // Cargo los clientes
     this->TVClientes->setModel( mc );
+    this->TVClientes->hideColumn( 2 );
     mc->cargarClientesDelServicio( this->_id_servicio );
     this->TVClientes->setItemDelegateForColumn( 0, new DSiNo( this->TVClientes ) );
     this->TVClientes->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     // Cargo los recargos del servicio
     MRecargos *mr = new MRecargos( this, false );
     mr->setFilter( QString( "id_servicio = %1 " ).arg( this->_id_servicio ) );
-    mr->setearPrecioBase( precio_base );
+    mr->setearPrecioBase( this->_precio_base );
     this->TVRecargos->setModel( mr );
     this->TVRecargos->hideColumn( 0 );
     this->TVRecargos->hideColumn( 1 );
@@ -104,11 +108,142 @@ void FormFacturarServicio::cargar_datos_servicio()
     mr->select();
 }
 
+#include <QLabel>
+#include <QMessageBox>
+#include <QProgressBar>
+#include <QInputDialog>
+#include <QPushButton>
+#include <QSqlQuery>
+#include "EReporte.h"
+#include "../pagos/mpagos.h"
+#include "../CtaCte/mitemcuentacorriente.h"
+#include "../CtaCte/mcuentacorriente.h"
 /*!
  * \fn FormFacturarServicio::facturar()
  * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
  */
 void FormFacturarServicio::facturar()
 {
+    // Deshabilito los elementos editables
+    this->GBClientes->setEnabled( false );
+    this->GBRecargos->setEnabled( false );
+    // Genero una barra de progreso y sus botones y demas
+    this->GBProgreso->setVisible( true );
+    LIndicador->setText( "Iniciando...");
+    PBProgreso->setValue( 0 );
+    connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( cancelar() ) );
+    this->_cancelar = false;
 
+    // Cuento la cantidad de recibos a realizar
+    int cantidad_total = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model())->rowCount();
+    int cantidad_actual = 0;
+    // usar para calcular cantidad de operaciones mostradas x recibo
+    int multiplicador_pasos = 3;
+    this->PBProgreso->setRange( 0, cantidad_total * multiplicador_pasos );
+
+    // Inicializo el reporter
+    orReport *reporte_recibo = new orReport( "recibo" );
+    // Inicializo el modelo
+    MPagos *mr = new MPagos();
+    MTempClientesFacturarServicio *mtemp = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model());
+
+    // Inicializo los valores que voy a ir refrescando
+    int id_recibo = -1;
+    int id_cliente = -1;
+    QString nombre_cliente = "";
+
+    // Itero por todos los recibos
+    for( int i = 0; i<cantidad_total; i++ ) {
+        // Veo si el elemento esta para ser facturado
+        if( !mtemp->data( mtemp->index( i, 0 ), Qt::EditRole ).toBool() ) {
+            continue;
+        }
+
+        // Cargo el dato correspondiente a esa fila
+        id_cliente = mtemp->data( mtemp->index( i, 2 ), Qt::DisplayRole ).toInt();
+        nombre_cliente = mtemp->data( mtemp->index( i, 1 ), Qt::DisplayRole ).toString();
+
+        // Paso 1
+        // Generar el recibo
+        LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( cantidad_actual ).arg( i ) );
+        id_recibo = mr->agregarRecibo( id_cliente,
+                                       QDate::currentDate(),
+                                       QString( "Recibo por el pago del periodo %1" ).arg( this->LPeriodo->text() ),
+                                       this->_precio_base,
+                                       false,
+                                       false ); // Lo pongo en no pagado
+        if( id_recibo <= 0 )
+        {
+                qWarning( "Error al obtener el id del recibo " );
+                continue;
+        }
+        PBProgreso->setValue( PBProgreso->value() + 1 );
+
+        // Paso 2
+        // Ponerlo en la cuenta corriente
+        LIndicador->setText( QString( "Actualizando cuenta corriente del cliente %1  ( %2 de %3 )..." ).arg( nombre_cliente ).arg( cantidad_actual ).arg( i ) );
+        // Busco el id de cuenta corriente
+        QString id_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+        if( !MItemCuentaCorriente::agregarOperacion( id_ctacte,
+                                                QString( "%L1" ).arg( id_recibo ),
+                                                id_recibo,
+                                                MItemCuentaCorriente::Factura,
+                                                QDate::currentDate(),
+                                                QString( "Cobro del servicio %2 por el periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
+                                                this->_precio_base ) )
+        {
+            // Error al guardar la cuenta corriente
+            qWarning( "Error al guardar el item de cuenta corriente" );
+            // Cancelo el recibo ?
+            continue;
+        }
+        PBProgreso->setValue( PBProgreso->value() + 1 );
+
+        // Paso 3
+        // Imprimir recibo
+        /// Genero los parametros
+        ParameterList lista;
+        lista.append( "id_recibo", id_recibo );
+        reporte_recibo->setParamList( lista );
+        LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
+        PBProgreso->setValue( PBProgreso->value() + 1 );
+        reporte_recibo->print( 0, true, false );
+        // Actualizo indices y reinicio valores
+        cantidad_actual++;
+        id_recibo = -1;
+        nombre_cliente = "";
+    } // Fin for recibos
+
+
+    // Pregunto si los recibos se imprimieron bien
+    int ret = QMessageBox::question( this, "Impresion", "¿Se imprimieron correctamente <b>TODOS</b> los recibos?" );
+
+    if( ret == QMessageBox::Rejected ) {
+       // Si no, pregunto que numero de recibo falta y lo mando a imprimir
+        ret = true;
+        while( ret ) {
+
+            // Pregunto el numero del recibo y doy opcion a cancelar cuando se acabaron
+            bool ok = false;
+            int ret2 = QInputDialog::getInt( this, "Numero de recibo", "Ingrese el numero del recibo que se imprimio incorrectamente, si no hay mas recibos mal impresos, presione cancelar", 0, 0,2147483647, 1, &ok );
+            if( ok == true ) {
+                // Ingreso un recibo mal impreso, lo reimprimo
+                ParameterList lista;
+                lista.append("id_recibo", ret2 );
+                reporte_recibo->print( 0, false, false );
+            } else {
+                // No hay mas recibos fallados
+                ret = false;
+            }
+        }
+    }
+
+    // Libero modelos
+    delete reporte_recibo;
+    delete mr;
+    reporte_recibo = 0;
+    mr = 0;
+    // Cierro el formulario
+    this->close();
+    return;
 }
