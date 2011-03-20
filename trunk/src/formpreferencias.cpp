@@ -40,20 +40,21 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     setObjectName( "Preferencias" );
     setWindowIcon( QIcon( ":/imagenes/configure.png" ) );
     this->setAttribute( Qt::WA_DeleteOnClose );
-    contentsWidget = new QListWidget;
-    contentsWidget->setViewMode(QListView::IconMode);
-    contentsWidget->setIconSize(QSize(96, 84));
-    contentsWidget->setMovement(QListView::Static);
-    contentsWidget->setMaximumWidth(128);
-    contentsWidget->setSpacing(12);
+    contentsWidget = new QListWidget( this );
+    contentsWidget->setViewMode( QListView::IconMode );
+    contentsWidget->setMovement( QListView::Static );
+    contentsWidget->setMinimumWidth( 128 );
+    contentsWidget->setMaximumWidth( 128 );
+    contentsWidget->setSpacing( 12 );
     contentsWidget->sizePolicy().setVerticalPolicy( QSizePolicy::MinimumExpanding );
 
     pagesWidget = new QStackedWidget;
     QListWidgetItem *configButton = new QListWidgetItem( contentsWidget );
     configButton->setIcon( QIcon( ":/imagenes/general.png" ) );
     configButton->setText( "Estilo" );
-    configButton->setTextAlignment( Qt::AlignHCenter );
     configButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+    configButton->setTextAlignment( Qt::AlignBottom | Qt::AlignHCenter );
+    configButton->setSizeHint( QSize( 128, 128 ) );
      ////////////////////////////////////////////////////////////////////
      /// Agregar aqui los widgets de configuracion
      FPrefGeneral *formGeneral = new FPrefGeneral( this );
@@ -67,8 +68,8 @@ FormPreferencias::FormPreferencias(QWidget *parent)
         QListWidgetItem *db = new QListWidgetItem( contentsWidget );
         db->setIcon( QIcon( ":/imagenes/dbconfig.png" ) );
         db->setText( "Base de datos" );
-        db->setTextAlignment( Qt::AlignHCenter );
         db->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+        db->setTextAlignment( Qt::AlignBottom | Qt::AlignHCenter );
         FormPrefDb *formDb = new FormPrefDb( this );
         connect( this, SIGNAL( aplicar() ), formDb, SLOT( aplicar() ) );
         connect( this, SIGNAL( cargar() ), formDb, SLOT( cargar() ) );
@@ -89,8 +90,8 @@ FormPreferencias::FormPreferencias(QWidget *parent)
                         QListWidgetItem *opciones = new QListWidgetItem( contentsWidget );
                         opciones->setIcon( form->windowIcon() );
                         opciones->setText( form->windowTitle() );
-                        opciones->setTextAlignment( Qt::AlignHCenter );
                         opciones->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+                        opciones->setTextAlignment( Qt::AlignBottom | Qt::AlignHCenter );
                         contentsWidget->addItem( opciones );
                         // Agrego el formulario
                         pagesWidget->addWidget( form );
@@ -101,7 +102,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
         }
      }
     // seteo el tamaño de los iconos
-    contentsWidget->setIconSize( QSize( 48, 48 ) );
+    contentsWidget->setIconSize( QSize( 128, 128 ) );
     contentsWidget->setUniformItemSizes( true );
 
     ActCerrar  = new QAction( "Cerrar", this );

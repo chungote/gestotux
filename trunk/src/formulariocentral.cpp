@@ -48,6 +48,9 @@ void FormularioCentral::cambioWidget( int id )
  {
   gestotux::barraAcciones()->addActions( this->widget( id )->actions() );
  }
+ if( this->widget( id )->objectName() == "inicio" ) {
+     this->cornerWidget()->setVisible(false);
+ } else { this->cornerWidget()->setVisible(true); }
 }
 
 
