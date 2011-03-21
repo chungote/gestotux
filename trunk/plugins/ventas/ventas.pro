@@ -33,7 +33,7 @@ DESTDIR = ../../bin/plugins/
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
-TARGETDEPS += ../../bin/libutiles.a \
+POST_TARGETDEPS += ../../bin/libutiles.a \
               ../../bin/libreporte.a
 
 FORMS += FormAgregarVentaBase.ui \

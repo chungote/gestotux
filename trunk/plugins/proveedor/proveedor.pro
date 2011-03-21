@@ -15,7 +15,7 @@ INCLUDEPATH += ../../src \
 
 LIBS += ../../bin/libutiles.a
 
-TARGETDEPS += ../../bin/libutiles.a
+POST_TARGETDEPS += ../../bin/libutiles.a
 
 win32 {
     MOC_DIR = win/moc
