@@ -29,7 +29,7 @@ HEADERS += mcategorias.h \
 
 LIBS += ../../bin/libutiles.a
 
-TARGETDEPS += ../../bin/libutiles.a
+POST_TARGETDEPS += ../../bin/libutiles.a
 
 INCLUDEPATH += ../../src \
   ../../utiles

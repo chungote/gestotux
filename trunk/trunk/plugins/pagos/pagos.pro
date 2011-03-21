@@ -10,7 +10,7 @@ TARGET = pagos
 
 DESTDIR = ../../bin/plugins/
 
-TARGETDEPS += ../../bin/libreporte.a \
+POST_TARGETDEPS += ../../bin/libreporte.a \
   ../../bin/libutiles.a
 
 HEADERS += pagosplugin.h \

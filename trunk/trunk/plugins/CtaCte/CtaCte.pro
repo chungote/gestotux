@@ -27,7 +27,7 @@ FORMS += FormPrefCtaCteBase.ui \
     FormResumenCtaCteBase.ui
 DISTFILES += ctacte.QMYSQL.sql \
              ctacte.QSQLITE.sql
-TARGETDEPS += ../../bin/libreporte.a \
+POST_TARGETDEPS += ../../bin/libreporte.a \
     ../../bin/libutiles.a
 INCLUDEPATH += ../pagos \
                ../../src \

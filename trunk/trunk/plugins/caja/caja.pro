@@ -14,7 +14,7 @@ INCLUDEPATH += ../../src \
 LIBS += ../../bin/libutiles.a \
   ../../bin/libreporte.a
 
-TARGETDEPS += ../../bin/libreporte.a \
+POST_TARGETDEPS += ../../bin/libreporte.a \
   ../../bin/libutiles.a
 
 QT += sql
