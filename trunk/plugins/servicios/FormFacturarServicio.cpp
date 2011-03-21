@@ -114,6 +114,8 @@ void FormFacturarServicio::cargar_datos_servicio()
 #include <QInputDialog>
 #include <QPushButton>
 #include <QSqlQuery>
+#include <QSqlDatabase>
+#include <QHash>
 #include "EReporte.h"
 #include "../pagos/mpagos.h"
 #include "../CtaCte/mitemcuentacorriente.h"
@@ -151,7 +153,10 @@ void FormFacturarServicio::facturar()
     int id_recibo = -1;
     int id_cliente = -1;
     QString nombre_cliente = "";
+    QHash<int, int> recibos;
 
+    // Genero la transación en la base de datos
+    QSqlDatabase::database().transaction();
     // Itero por todos los recibos
     for( int i = 0; i<cantidad_total; i++ ) {
         // Veo si el elemento esta para ser facturado
@@ -175,7 +180,10 @@ void FormFacturarServicio::facturar()
         if( id_recibo <= 0 )
         {
                 qWarning( "Error al obtener el id del recibo " );
-                continue;
+                QSqlDatabase::database().rollback();
+                break;
+        } else {
+            recibos.insert( i, id_recibo );
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
 
@@ -195,15 +203,19 @@ void FormFacturarServicio::facturar()
             // Error al guardar la cuenta corriente
             qWarning( "Error al guardar el item de cuenta corriente" );
             // Cancelo el recibo ?
-            continue;
+            QSqlDatabase::database().rollback();
+            break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
-
+    }
+    // Guardo todos los datos
+    QSqlDatabase::database().commit();
+    for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
         /// Genero los parametros
         ParameterList lista;
-        lista.append( "id_recibo", id_recibo );
+        lista.append( "id_recibo", recibos.take( i ) );
         reporte_recibo->setParamList( lista );
         LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
         PBProgreso->setValue( PBProgreso->value() + 1 );
