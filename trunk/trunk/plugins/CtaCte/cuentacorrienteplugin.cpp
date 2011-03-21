@@ -25,16 +25,17 @@
 
 bool CuentaCorrientePlugin::inicializar()
 {
- if( preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada", true ).toBool() )
- { QApplication::instance()->setProperty( "habilitada-ctacte", true ); }
- else
- { QApplication::instance()->setProperty( "habilitada-ctacte", false ); return true; }
 
  ActCuentasCorrientes = new QAction( this );
  ActCuentasCorrientes->setText( "Cuentas Corrientes" );
  ActCuentasCorrientes->setIcon( QIcon( ":/imagenes/ctacte.png" ) );
  ActCuentasCorrientes->setToolTip( "Muestra la lista de cuentas corrientes" );
  connect( ActCuentasCorrientes, SIGNAL( triggered() ), this, SLOT( verCuentasCorrientes() ) );
+
+ if( preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada", true ).toBool() )
+ { QApplication::instance()->setProperty( "habilitada-ctacte", true ); }
+ else
+ { QApplication::instance()->setProperty( "habilitada-ctacte", false ); return true; }
 
  return true;
 }
@@ -82,7 +83,7 @@ void CuentaCorrientePlugin::crearMenu( QMenuBar* m )
  QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHerramientas == 0 )
  {
-  qDebug( "Error en las baras de menu" );
+  qDebug( "CtaCte: Error en las baras de menu" );
  }
  else
  {

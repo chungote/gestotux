@@ -80,10 +80,12 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     //////////////////////////////////////////////////////////////////////////////////
     // Cuentas Corrientes
     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) ) {
-        connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
-        TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
-        TBResumenCtaCte->setIcon( QIcon( ":/imagenes/resumen_cuenta.png" ) );
-        //connect( TBResumenCtaCte, SIGNAL(clicked()), )
+        if( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() )
+        { connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
+          TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
+          TBResumenCtaCte->setIcon( QIcon( ":/imagenes/resumen_cuenta.png" ) );
+          //connect( TBResumenCtaCte, SIGNAL(clicked()), )
+        } else { qWarning( "Error de accion de cuenta corriente") ; }
     } else {
         TBCuentasCorrientes->setVisible( false );
         TBResumenCtaCte->setVisible( false );
