@@ -52,19 +52,20 @@ public:
     double version() const;
     bool verificarTablas();
     void crearToolBar( QToolBar *t );
+    QAction *botonPantallaInicial() { return ActNuevoPresu; }
 
 private:
     QList<QAction *> _acciones;
-
-	QAction *ActNuevoPresu;
-	QAction *ActPresuAnteriores;
+    QAction *ActNuevoPresu;
+    QAction *ActPresuAnteriores;
 
 protected slots:
     void nuevoPresupuesto();
     void verAnteriores();
 
 signals:
-	void agregarVentana( QWidget * );
+        void agregarVentana( QWidget * );
+        void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
 
 public slots:
     void seCierraGestotux();

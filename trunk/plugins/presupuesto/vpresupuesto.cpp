@@ -53,7 +53,7 @@ void VPresupuesto::agregar()
  this->close();
 }
 
-void VPresupuesto::antes_de_insertar(int row, QSqlRecord& record)
+void VPresupuesto::antes_de_insertar(int /*row*/, QSqlRecord& /*record*/)
 {
 }
 

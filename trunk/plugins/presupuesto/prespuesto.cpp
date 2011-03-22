@@ -31,8 +31,8 @@
 
 /*!
     \fn prespuesto::accionesBarra()
-	Devuelve la lista de acciones que deben ir en cada una de las barras laterales en sus repectivos grupos
-	@return QList<QActionGroup *> Lista
+        Devuelve la lista de acciones que deben ir en cada una de las barras laterales en sus repectivos grupos
+        @return QList<QActionGroup *> Lista
  */
 QList<QActionGroup *> prespuesto::accionesBarra()
 {
@@ -40,7 +40,7 @@ QList<QActionGroup *> prespuesto::accionesBarra()
   QActionGroup *presupuestos = new QActionGroup( this );
   presupuestos->setObjectName( "presupuestos" );
   presupuestos->setProperty( "titulo", "Presupuestos" );
-  presupuestos->setProperty( "icono",  ":/imagenes/resumenes.png" );
+  presupuestos->setProperty( "icono",  ":/imagenes/presupuesto.png" );
   presupuestos->addAction( ActNuevoPresu );
   presupuestos->addAction( ActPresuAnteriores );
   lista.append( presupuestos );
@@ -72,10 +72,9 @@ QWidgetList prespuesto::formsPreferencias()
 bool prespuesto::inicializar()
 {
  Q_INIT_RESOURCE(presupuesto);
- _acciones.clear();
  // Genero las acciones y la lista
  ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
- ActNuevoPresu->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
+ ActNuevoPresu->setIcon( QIcon( ":/imagenes/presupuesto-nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
 
@@ -83,9 +82,6 @@ bool prespuesto::inicializar()
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
-
- _acciones.append( ActNuevoPresu );
- _acciones.append( ActPresuAnteriores );
 
  return true;
 }
@@ -134,9 +130,9 @@ double prespuesto::version() const
 bool prespuesto::verificarTablas()
 {
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "presupuestos" ) )
- { qWarning( "Error al buscar la tabla presupuestos" ); return false; }
+ { qWarning( "Presupuesto::Error al buscar la tabla presupuestos" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
- { qWarning( "Error al buscar la tabla cproducto" ); return false; }
+ { qWarning( "Presupuesto::Error al buscar la tabla producto" ); return false; }
  return true;
 }
 
@@ -162,10 +158,8 @@ void prespuesto::verAnteriores()
 /*!
     \fn prespuesto::crearToolBar( QToolBar *t )
  */
-void prespuesto::crearToolBar( QToolBar *t )
-{
- t->addActions( _acciones );
-}
+void prespuesto::crearToolBar( QToolBar */*t*/ )
+{}
 
 
 /*!
