@@ -44,7 +44,8 @@ CREATE TABLE clientes (
     "fax" TEXT,
     "email" TEXT,
     "comprobante_email" INTEGER,
-    "ctacte" INTEGER )
+    "ctacte" INTEGER,
+    "CUIT/CUIL" TEXT )
 */
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Razon Social" );
@@ -65,6 +66,7 @@ CREATE TABLE clientes (
  setHeaderData( 16, Qt::Horizontal, "Em@il" );
  setHeaderData( 17, Qt::Horizontal, "EnviarComprobantexEmail" );
  setHeaderData( 19, Qt::Horizontal, "¿CtaCte?" );
+ setHeaderData( 20, Qt::Horizontal, "CUIT/CUIL" );
 }
 
 

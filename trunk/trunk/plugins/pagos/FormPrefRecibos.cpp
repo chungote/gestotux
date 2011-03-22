@@ -19,10 +19,19 @@
  ***************************************************************************/
 
 #include "FormPrefRecibos.h"
+#include "mpagos.h"
 
-FormPrefRecibos::FormPrefRecibos(QWidget *parent) :
- QWidget(parent){
-    setupUi(this);
+FormPrefRecibos::FormPrefRecibos( QWidget *parent ) :
+ QWidget( parent ), Ui::FormPrefRecibos() {
+
+    setupUi( this );
+
+    connect( PBRenumerar, SIGNAL( clicked() ), this, SLOT( renumerar() ) );
+
+    // Coloco los numeros minimos
+    int serie = MPagos::numeroSerieActual();
+    SBSerie->setMinValue( serie );
+    SBNumero->setMinValue( MPagos::numeroReciboActual( serie ) );
 }
 
 void FormPrefRecibos::changeEvent(QEvent *e)
@@ -35,4 +44,9 @@ void FormPrefRecibos::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void FormPrefRecibos::renumerar()
+{
+  // Verifico que el numero sea mayor que el que esta actualmente
 }

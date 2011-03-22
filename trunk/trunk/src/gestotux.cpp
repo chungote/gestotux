@@ -123,13 +123,13 @@ void gestotux::createActions()
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
-        ActActualizar = new QAction( "Actualizar", this );
-        ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
-        ActActualizar->setStatusTip( "Actualiza la aplicacion " );
-        connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
+      ActActualizar = new QAction( "Actualizar", this );
+      ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
+      ActActualizar->setStatusTip( "Actualiza la aplicacion " );
+      connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
 
-        ActRestaurar = new QAction( "Restaurar", this );
-        connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
+      ActRestaurar = new QAction( "Restaurar", this );
+      connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
 }
 
 /*!
@@ -274,8 +274,6 @@ QToolBar* gestotux::barraAcciones()
  }
 }
 
-#include <QWebView>
-
 /*!
     \fn gestotux::crearReloj()
     Crea el reloj digital si esta configurado y coloca la publicidad de ser necesario.
@@ -291,19 +289,6 @@ void gestotux::crearReloj()
          addDockWidget( Qt::LeftDockWidgetArea, dw );
          Reloj *r = new Reloj( dw );
          dw->setWidget( r );
- }
- if( ERegistroPlugins::pluginInfo()->publicidad() )
- {
-         QDockWidget *dp = new QDockWidget( "Publicidad", this );
-         dp->setObjectName( "publicidad" );
-         dp->setAllowedAreas( Qt::BottomDockWidgetArea );
-         dp->setFeatures( QDockWidget::NoDockWidgetFeatures );
-         addDockWidget( Qt::BottomDockWidgetArea, dp );
-         QWebView *vista = new QWebView( dp );
-         vista->load( QUrl( "http://tranfuga.no-ip.org/publicidad.html" ) );
-         dp->setFixedHeight( 140 );
-         vista->show();
-         dp->setWidget( vista );
  }
 }
 

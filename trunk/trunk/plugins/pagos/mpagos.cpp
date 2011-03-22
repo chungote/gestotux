@@ -245,3 +245,35 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     this->relacionar();
     return ret;
 }
+
+/*!
+ * MPagos::numeroSerieActual()
+ * Devuelve el numero de serie actual para el recibo
+ * \return Numero de serie
+ */
+int MPagos::numeroSerieActual()
+{
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT MAX(serie) FROM recibos") ) ) {
+
+ } else {
+
+ }
+ return "AAAAA";
+}
+
+/*!
+ * MPagos::numeroReciboActual()
+ * Devuelve el numero de recibo de ultima emision
+ * \return Numero de recibo actual
+ */
+int MPagos::numeroReciboActual( const int serie )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT MAX(numero) FROM recibos WHERE serie = %1" ).arg( serie ) ) ) {
+
+    } else {
+
+    }
+    return "AAAAA";
+}
