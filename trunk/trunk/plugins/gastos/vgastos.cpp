@@ -73,12 +73,22 @@ void VGastos::antes_de_insertar(int row, QSqlRecord& record)
 }
 
 #include "formagregargasto.h"
+#include "mcategoriasgastos.h"
+#include <QMessageBox>
 /*!
     \fn VGastos::agregarGasto()
     Muestra la ventana de agregar gastos
  */
 void VGastos::agregarGasto()
 {
+    MCategoriasGastos *mc = new MCategoriasGastos();
+    if( mc->vacio() ) {
+        QMessageBox::warning( this, "Faltan datos", "No existe ninguna categoría de gastos definida. Por favor cree una." );
+        mostrarCategorias();
+        delete mc;
+        return;
+    }
+    delete mc;
     FormAgregarGasto *f = new FormAgregarGasto();
     connect( f, SIGNAL( actualizarVista() ), this, SLOT( actualizarVista() ) );
     emit agregarVentana( f );

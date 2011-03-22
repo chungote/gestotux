@@ -32,6 +32,11 @@ MCategoriasGastos::MCategoriasGastos(QObject *parent) :
    this->setHeaderData( 2, Qt::Horizontal, "Descripcion" );
 }
 
+/*!
+ * \fn MCategoriasGastos::vacio()
+ * Devuelve verdadero si esta vacío la cantidad de categorías de gastos.
+ * \return Verdadero si  esta vacio o error.
+ */
 bool MCategoriasGastos::vacio()
 {
  QSqlQuery cola;
