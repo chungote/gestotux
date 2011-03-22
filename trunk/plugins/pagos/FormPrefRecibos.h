@@ -33,6 +33,10 @@ public:
 
 protected:
     void changeEvent(QEvent *e);
+
+protected slots:
+    void renumerar();
+
 };
 
 #endif // FORMPREFRECIBOS_H

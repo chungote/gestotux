@@ -147,7 +147,13 @@ void FormCliente::guardar()
  { rc.setValue( "email", LEEmail->text() ); }
  ////////////////////////////////////////////////////////////////////////
  rc.setValue( "comprobante_email", CkBComprobanteEmail->isChecked() );
- //map->addMapping( CBListaPrecio      , modelo->fieldIndex( "lista_precio_id"   ) );
+ ////////////////////////////////////////////////////////////////////////
+ if( LECUITCUIL->text().isEmpty() )
+ { rc.setNull("CUIT/CUIL"); }
+ else
+ { rc.setValue( "CUIT/CUIL", LECUITCUIL->text() ); }
+ ////////////////////////////////////////////////////////////////////////
+ // Inserto los datos
  if( modelo->insertRecord( -1, rc ) )
  {
   if( modelo->submitAll() )
@@ -185,7 +191,7 @@ void FormCliente::setearCliente( QModelIndex &/*indice*/ )
 
 
 /*!
-    \fn FormCliente::rehaceRazonSocial( const QString & )
+    \fn FormCliente::rehaceRazonSocial( const QString &texto )
  */
 void FormCliente::rehaceRazonSocial( const QString &texto )
 {

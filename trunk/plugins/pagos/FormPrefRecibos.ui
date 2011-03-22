@@ -70,7 +70,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="PBRenumerar">
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>

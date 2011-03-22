@@ -67,7 +67,7 @@ FormAgregarRecibo::~FormAgregarRecibo()
 /*!
   \fn FormAgregarRecibo::setearModelo( MPagos *m )
   Setea el modelo que se utilizará para agregar los datos  que se actualize en la vista
-  @param m Modelo de pagos ( clase @MPagos )
+  @param m Modelo de pagos ( clase #MPagos )
  */
 void FormAgregarRecibo::setearModelo( MPagos *m )
 {

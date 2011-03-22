@@ -39,6 +39,8 @@ public:
     int buscarUltimoNumeroRecibo() const;
     QDate buscarFechaUltimoRecibo() const;
     int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
+    static int numeroSerieActual();
+    static int numeroReciboActual( const int serie );
 
 private:
     void inicializar();
