@@ -23948,6 +23948,13 @@
     </member>
     <member kind="signal">
       <type>void</type>
+      <name>agregarDockWidget</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>a2259ff8f3a38625404bd524e04acf13e</anchor>
+      <arglist>(Qt::DockWidgetArea, QDockWidget *)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
       <name>agregarVentana</name>
       <anchorfile>classprespuesto.html</anchorfile>
       <anchor>a0bbbb8ae43be5da3bf8cd60deb42c309</anchor>
@@ -23958,6 +23965,13 @@
       <name>accionesBarra</name>
       <anchorfile>classprespuesto.html</anchorfile>
       <anchor>a42a8c1a0661adbeb49c03c0c86c5d595</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QAction *</type>
+      <name>botonPantallaInicial</name>
+      <anchorfile>classprespuesto.html</anchorfile>
+      <anchor>a582ef49da9fba9c66cb932683266f051</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -24059,20 +24073,6 @@
       <anchorfile>classEPlugin.html</anchorfile>
       <anchor>a7de686acce916756068da63931c21586a2ce30b82b08d0776ea13ac5857a5694c</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual void</type>
-      <name>agregarDockWidget</name>
-      <anchorfile>classEPlugin.html</anchorfile>
-      <anchor>aeb80b24f500a96baa13983eadbf1aa15</anchor>
-      <arglist>(Qt::DockWidgetArea area, QDockWidget *ventana)=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual QAction *</type>
-      <name>botonPantallaInicial</name>
-      <anchorfile>classEPlugin.html</anchorfile>
-      <anchor>a04c95d89744bc042ac6d2a249fcbc73d</anchor>
-      <arglist>()=0</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QList&lt; QAction * &gt;</type>

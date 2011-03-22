@@ -132,9 +132,6 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
 }
 
 
-
-
-
 /*!
     \fn MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
         Asocia el cliente con el servicio correspondiente en la base de datos en la fecha de alta indicada.
@@ -171,15 +168,15 @@ bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
 }
 
 /*!
-    \fn MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, Periodo periodo, int dia_cobro, int forma_incompleto )
+    \fn MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
         Agrega un nuevo servicio a la base de datos con los datos pasados como parametro
-        @param nombre Nombre del servicio
-        @param detalle Explicacion mas detallada del servicio
-        @param fecha_alta Fecha desde cuando empieza a funcionar el servicio
-        @param precio_base Precio base sobre el cual se calculan los recargos
-        @param periodo Periodo de cobro del servicio @MServicios::Periodo
-        @param dia_cobro Dia del periodo en que se inicia el cobro del servicio
-        @param forma_incompleto Forma de cobro cuando se da de alta un cliente fuera del inicio del periodo @MServicios::FormaIncompleto
+        \param nombre Nombre del servicio
+        \param detalle Explicacion mas detallada del servicio
+        \param fecha_alta Fecha desde cuando empieza a funcionar el servicio
+        \param precio_base Precio base sobre el cual se calculan los recargos
+        \param periodo Periodo de cobro del servicio #MServicios::Periodo
+        \param dia_cobro Dia del periodo en que se inicia el cobro del servicio
+        \param forma_incompleto Forma de cobro cuando se da de alta un cliente fuera del inicio del periodo #MServicios::FormaIncompleto
  */
 bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
 {
@@ -200,6 +197,12 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
   }
 }
 
+/*!
+ * \fn MServicios::precioBase( int id_servicio )
+ * Devuelve el precio base de un servicio
+ * @param id_servicio Identificador del servicio al cual se le quiere saber el percio base.
+ * @return precio base para el servicio solicitado o 0.0 si existió un error.
+ */
 double MServicios::precioBase( int id_servicio )
 {
   QSqlQuery cola( QString( "SELECT precio_base FROM %2 WHERE id_servicio = %1" ).arg( id_servicio ).arg( "servicios" ) );
@@ -211,6 +214,12 @@ double MServicios::precioBase( int id_servicio )
   } else { qDebug( "Error al hacer exec en la cola de precio base de servicio" ); return 0.0; }
 }
 
+/*!
+ * \fn MServicios::getNombreServicio( int id_servicio )
+ * Devuelve el nombre de un servicio
+ * @param id_servicio Identificador del servicio al cual se le quiere saber el nombre.
+ * @return Nombre del servicio o una cadena vacía si existio un error al obtener el nombre
+ */
 QString MServicios::getNombreServicio( int id_servicio )
 {
   QSqlQuery cola( QString( "SELECT nombre FROM %2 WHERE id_servicio = %1" ).arg( id_servicio ).arg( "servicios") );
@@ -225,7 +234,7 @@ QString MServicios::getNombreServicio( int id_servicio )
  * \fn MServicios::getPeriodoActual( int id_servicio )
  * Devuelve el periodo actual del servicio en el año en curso.
  * \param id_servicio ID del servicio que queremos buscar
- * \return ?
+ * \return Texto explicativo de el periodo actual. Formato: <periodo>/<año> del <fecha_inicio> al <fecha_fin>.
  */
 QString MServicios::getPeriodoActual( const int id_servicio )
 {
@@ -240,6 +249,12 @@ QString MServicios::getPeriodoActual( const int id_servicio )
     return QString( "%1/%2 del <fecha_inicio_periodo> al <fecha_fin_periodo>" ).arg( periodo ).arg( hoy.year() )/*.arg( hoy.toString() ).arg( fecha_alta_servicio.toString() )*/;
 }
 
+/*!
+ * \fn MServicios::getFechaAlta( const int id_servicio )
+ * Devuelve la fecha de alta de un servicio
+ * \param id_servicio Identificador de servicio
+ * \return Fecha de alta si se pudo encontrar o un QDate() si existio un error.
+ */
 QDate MServicios::getFechaAlta( const int id_servicio )
 {
     QSqlQuery cola( QString( "SELECT fecha_alta FROM servicios WHERE id_servicio = %2" ).arg( id_servicio ) );
