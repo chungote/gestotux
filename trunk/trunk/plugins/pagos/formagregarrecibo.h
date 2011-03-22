@@ -25,7 +25,11 @@
 #include "ui_FormReciboBase.h"
 
 class MPagos;
-
+/*!
+ * \brief Formulario para agregar Recibo
+ *
+ * Formulario con el codigo de validación necesario para ingresar un nuevo recibo en el sistema
+ */
 class FormAgregarRecibo : public EVentana, private Ui::FormReciboBase
 {
 Q_OBJECT

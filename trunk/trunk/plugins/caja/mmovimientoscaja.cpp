@@ -92,7 +92,7 @@ QVariant MMovimientosCaja::data(const QModelIndex& item, int role) const
 /*!
  * @fn MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso, bool agregando_caja )
  * Almacena una operación de caja. ingreso y egreso son mutuamente excluentes y no pueden ser los 2 iguales a 0
- * @param id_caja #ID de caja para la operacion
+ * @param id_caja ID de caja para la operacion
  * @param razon Texto para incluir ( luego sale en el resumen de caja )
  * @param responsable Persona responsable del movimiento ( usuario de la db o persona )
  * @param ingreso cantidad que ingresa a la caja
@@ -161,9 +161,9 @@ double MMovimientosCaja::recalcularSaldo( const int id_caja )
 /*!
  * @fn MMovimientosCaja::agregarCierre( const int id_caja, QDateTime fechahora, double saldo )
  * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
- * @param id_caja #ID de caja
+ * @param id_caja ID de caja
  * @param fechahora Fech y hora del cierre
- * @param double Saldo computado para el cierre
+ * @param saldo computado para el cierre
  * @return Verdadero si se pudo realizar el cierre
  */
 bool MMovimientosCaja::agregarCierre( const int id_caja, QDateTime fechahora, double saldo )
@@ -364,7 +364,7 @@ int MMovimientosCaja::ultimoIdInsertado() {
 /*!
  * @fn MMovimientosCaja::eliminarMovimiento( const int id_movimiento )
  * Elimina el movimiento de caja correspondiente al id pasado como parametro y actualiza el saldo
- * @param id_caja Identificador de la caja de la cual se desea averiguar
+ * @param id_movimiento Identificador del movimiento de caja de la cual se desea eliminar
  * @returns Verdadero si se puede hacer, falso si no se puede hacer
  */
 bool MMovimientosCaja::eliminarMovimiento( const int id_movimiento ) {
