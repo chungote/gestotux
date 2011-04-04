@@ -22,8 +22,11 @@
 #include "emcliente.h"
 #include <QDate>
 #include <QSqlError>
+#include <QHeaderView>
 #include "eeditor.h"
 #include "presupuesto.h"
+#include "mproductostotales.h"
+#include "dproductostotales.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -75,10 +78,24 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Pongo la fecha actual
         dEFecha->setDate( QDate::currentDate() );
-}
 
-FormAgregarPresupuesto::~FormAgregarPresupuesto()
-{}
+        // Pongo el sistema de relleno
+        m = new MProductosTotales( this );
+        m->calcularTotales( true );
+        m->buscarPrecios( true );
+        TVContenido->setModel( m );
+        TVContenido->resizeColumnsToContents();
+        TVContenido->setItemDelegateForColumn( 0, new DProductosTotales() );
+
+        // Pongo los botones en funcionamiento
+        PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+        PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        PBEliminarTodo->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+
+        connect( PBAgregar     , SIGNAL( clicked() ), this, SLOT( agregarProducto()    ) );
+        connect( PBEliminar    , SIGNAL( clicked() ), this, SLOT( eliminarProducto()   ) );
+        connect( PBEliminarTodo, SIGNAL( clicked() ), this, SLOT( borrarTodoProducto() ) );
+}
 
 /*!
     \fn FormAgregarPresupuesto::cancelar()
@@ -114,7 +131,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  }
  // Inicio la transacción
  QSqlDatabase::database().transaction();
- MPresupuesto *mod = new MPresupuesto( this, false );
+ MPresupuesto *mod = new MPresupuesto( this );
  QSqlRecord reg = mod->record();
  // le pongo los valores a el registro
  reg.setValue( "titulo", LETitulo->text() );
@@ -177,8 +194,9 @@ void FormAgregarPresupuesto::imprimir()
  */
 void FormAgregarPresupuesto::guardarImprimir()
 {
- guardar( false );
- imprimir();
+ //guardar( false );
+ //imprimir();
+ qWarning( "No implementado todavia" );
 }
 
 
@@ -187,5 +205,39 @@ void FormAgregarPresupuesto::guardarImprimir()
  */
 void FormAgregarPresupuesto::guardar()
 {
- guardar( true );
+ //guardar( true );
+ qWarning( "No implementado todavia" );
 }
+
+/*!
+    \fn FormAgregarPresupuesto::agregarProducto()
+ */
+void FormAgregarPresupuesto::agregarProducto()
+{  m->insertRow( -1 ); }
+
+/*!
+    \fn FormAgregarPresupuesto::eliminarProducto()
+ */
+void FormAgregarPresupuesto::eliminarProducto()
+{
+ QModelIndexList lista = TVContenido->selectionModel()->selectedRows();
+ int ret = QMessageBox::question( this, "¿Seguro?",QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ) );
+ if( ret == QMessageBox::Accepted ) {
+     foreach( QModelIndex item, lista )
+     {
+        if( item.isValid() ) {
+            m->removeRow( item.row() );
+        }
+     }
+ }
+}
+
+/*!
+    \fn FormAgregarPresupuesto::borrarTodoProducto()
+ */
+void FormAgregarPresupuesto::borrarTodoProducto()
+{
+ qWarning( "No implementado todavia" );
+}
+
+

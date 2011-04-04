@@ -11714,6 +11714,13 @@
       <anchor>abff213f50abb890b19ba61934503813e</anchor>
       <arglist>()=0</arglist>
     </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>renumerar</name>
+      <anchorfile>classFormPrefRecibos.html</anchorfile>
+      <anchor>a525fb4517b9e66758d27be9be0f14462</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>changeEvent</name>
@@ -16643,6 +16650,27 @@
       <name>~MPagos</name>
       <anchorfile>classMPagos.html</anchorfile>
       <anchor>af02732b056cdfc57fd9f4285ca214ce1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static int</type>
+      <name>numeroReciboActual</name>
+      <anchorfile>classMPagos.html</anchorfile>
+      <anchor>ab819cd26199d8fedd8886fc4eed84095</anchor>
+      <arglist>(const int serie)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static int</type>
+      <name>numeroSerieActual</name>
+      <anchorfile>classMPagos.html</anchorfile>
+      <anchor>ad1823db29229f369ff40a36104ac4779</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QPair&lt; int, int &gt;</type>
+      <name>proximoSerieNumeroRecibo</name>
+      <anchorfile>classMPagos.html</anchorfile>
+      <anchor>aa530b0e1c3e48bceb4dde0d5b10466d2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -25446,9 +25474,9 @@
     </member>
     <member kind="variable" protection="private">
       <type>int</type>
-      <name>_numero_recibo</name>
+      <name>_id_recibo</name>
       <anchorfile>classRecibo.html</anchorfile>
-      <anchor>aca54fac9622b4a8e7cc0101e32d856a0</anchor>
+      <anchor>ad4d08ae05f01a5f2f8eee63c71acf9ad</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">

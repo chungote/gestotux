@@ -45,9 +45,9 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
         connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
         connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
         PBConectar->setDefault( true );
-        if( p->value( "Preferencias/General/mysql/automatico" ).toBool() && p->contains( "mysql/contra" ) )
+        if( p->value( "mysql/automatico" ).toBool() && p->contains( "mysql/contra" ) )
         {
-                id_timer = this->startTimer( 1000 );
+                id_timer = this->startTimer( 100 );
                 if( id_timer == 0 )
                 {
                         qDebug( "Error al iniciar el timer" );
@@ -76,45 +76,35 @@ void EMysql::accept()
 {
   // intento conectar
   preferencias *p = preferencias::getInstancia();
-  *_db = QSqlDatabase::addDatabase( "QMYSQL" );
-  _db->setHostName( p->value( "mysql/host", "localhost" ).toString() );
-  _db->setPort( p->value( "mysql/puerto", 3306).toInt() );
-  _db->setDatabaseName( p->value( "mysql/base", "gestotux" ).toString() );
-  _db->setUserName( LEUsuario->text() );
-  _db->setPassword( LEContra->text() );
-  if( _db->open() )
+  QSqlDatabase _db = QSqlDatabase::addDatabase( "QMYSQL" );
+  _db.setHostName( p->value( "mysql/host", "localhost" ).toString() );
+  _db.setPort( p->value( "mysql/puerto", 3306).toInt() );
+  _db.setDatabaseName( p->value( "mysql/base", "gestotux" ).toString() );
+  _db.setUserName( LEUsuario->text() );
+  _db.setPassword( LEContra->text() );
+  if( _db.open() )
   {
    qDebug( "Conectado con mysql" );
    this->done( Conectado );
   }
   else
   {
-   switch( _db->lastError().type() )
+   switch( _db.lastError().type() )
    {
         case QSqlError::ConnectionError:
         {
                 QMessageBox::information( this, "Error de conexión", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" );
-                _db->removeDatabase( _db->connectionName() );
+                _db.removeDatabase( _db.connectionName() );
                 break;
         }
         default:
         {
                 qDebug( "Error de conección" );
-                qWarning( qPrintable( "Ultimo error: -> " + QString::number( _db->lastError().number() ) + "<- - " + _db->lastError().text() ) );
-                 _db->removeDatabase( _db->connectionName() );
+                qWarning( qPrintable( "Ultimo error: -> " + QString::number( _db.lastError().number() ) + "<- - " + _db.lastError().text() ) );
+                 _db.removeDatabase( _db.connectionName() );
         }
     }
   }
-}
-
-
-
-/*!
-    \fn EMysql::setDb( QSqlDatabase *db )
- */
-void EMysql::setDb( QSqlDatabase *db )
-{
- _db = db;
 }
 
 /*!

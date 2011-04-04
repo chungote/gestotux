@@ -36,25 +36,23 @@ class EMysql : public QDialog, private Ui::EMysqlBase
 public:
   EMysql(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~EMysql();
-    void setDb( QSqlDatabase *db );
-    void timerEvent ( QTimerEvent * event );
+  void timerEvent ( QTimerEvent * event );
 
 enum {
-	Conectado = 1,
-	Cancelado = 2,
-	Interna = 3
-} Estado;
+        Conectado = 1,
+        Cancelado = 2,
+        Interna = 3
+      } Estado;
 
 protected slots:
-  virtual void reject();
-  virtual void accept();
+  void reject();
+  void accept();
 
 private:
-	QSqlDatabase *_db;
-	int id_timer;
+  int id_timer;
 
 private slots:
-    void dbinterna();
+  void dbinterna();
 
 
 };

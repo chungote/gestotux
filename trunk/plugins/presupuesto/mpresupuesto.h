@@ -25,18 +25,20 @@
 /**
 Modelo de la tabla de recibos
 
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MPresupuesto : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MPresupuesto(QObject *parent = 0, bool relacion = true );
-
-    ~MPresupuesto();
+    MPresupuesto(QObject *parent = 0 );
 
     QVariant data(const QModelIndex& idx, int role) const;
     bool setData(const QModelIndex& index, const QVariant& value, int role);
+
+private:
+    void inicializar();
+    void relacionar();
 
 };
 

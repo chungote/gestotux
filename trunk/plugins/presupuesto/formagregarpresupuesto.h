@@ -29,6 +29,7 @@ class QSqlQueryModel;
 class FormListaProductos;
 class Presupuesto;
 class QTextCursor;
+class MProductosTotales;
 
 class FormAgregarPresupuesto : public EVentana, private Ui::FormPresupuestoBase
 {
@@ -36,7 +37,6 @@ class FormAgregarPresupuesto : public EVentana, private Ui::FormPresupuestoBase
 
 public:
   FormAgregarPresupuesto(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FormAgregarPresupuesto();
 
 protected slots:
     void cancelar();
@@ -44,12 +44,19 @@ protected slots:
     void guardarImprimir();
     void guardar();
     void imprimir();
+    void agregarProducto();
+    void eliminarProducto();
+    void borrarTodoProducto();
 
 private:
    /*!
     * Modelo utilizado por el combo box de clientes para hacer su selección
     */
     QSqlQueryModel *modeloClientes;
+   /*!
+    * Modelo para mostrar la lista de productos e items
+    */
+    MProductosTotales *m;
   /*!
    * Puntero al presupuesto actual
    */
