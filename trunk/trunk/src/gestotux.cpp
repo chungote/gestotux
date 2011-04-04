@@ -66,7 +66,7 @@ void gestotux::inicializar()
  createToolBar();
  createStatusBar();
  crearReloj();
- crearBarraLateral();
+ //crearBarraLateral();
  bandeja_sistema();
  createMenus();
  crearPantallaInicio();

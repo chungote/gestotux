@@ -41,7 +41,7 @@ MProductosTotales::MProductosTotales(QObject *parent)
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
  prods = new QMap<int, QString>();
- QSqlQuery cola( "SELECT nombre, id FROM producto" );
+ QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
  while( cola.next() )
  {
         prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );
@@ -100,7 +100,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                         case 0:
                         {
                                 //qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
-                                productos->insert( index.row(), value.toInt()  );
+                                productos->insert( index.row(), value.toInt() );
                                 if( _buscarPrecio )
                                 {
                                         // Busco el precio de venta este producto
@@ -471,15 +471,20 @@ void MProductosTotales::buscarPrecios( bool activado )
  */
 double MProductosTotales::buscarPrecioVenta( int id_producto )
 {
- QSqlQuery cola;
- if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1" ).arg( id_producto ) ) )
- {
-  cola.next();
-  return cola.record().value(0).toDouble();
- }
- else
- {
-  qDebug( "No se encontro el precio" );
-  return 0.0;
- }
+ if( id_producto <= 0 ) {
+     QSqlQuery cola;
+     if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+     {
+      cola.next();
+      return cola.record().value(0).toDouble();
+     }
+     else
+     {
+      qDebug( "No se encontro el precio" );
+      return 0.0;
+     }
+  } else {
+      // El precio se va a ingresar a mano, porque no esta en la base de datos de productos
+     return 0.0;
+  }
 }

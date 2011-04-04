@@ -192,12 +192,11 @@ int main(int argc, char *argv[])
       directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
-      QSqlDatabase DB; bool fallosql = false;
-      if( (DB.isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
+      bool fallosql = false;
+      if( ( QSqlDatabase::isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
       {
          //qWarning( "Usando mysql" );
          EMysql dialogo;
-         dialogo.setDb( &DB );
          int ret = dialogo.exec();
          switch( ret )
          {
@@ -229,7 +228,7 @@ int main(int argc, char *argv[])
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if( DB.isDriverAvailable( "QSQLITE" ) == true && p->value( "noForzarMysql", true ).toBool() && ( p->value( "dbInterna", true ).toBool() || fallosql == true ) )
+      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) == true && p->value( "noForzarMysql", true ).toBool() && ( p->value( "dbInterna", true ).toBool() || fallosql == true ) )
       {
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )
@@ -237,7 +236,7 @@ int main(int argc, char *argv[])
          qDebug( "-------------------------------------------------" );
          qDebug( "El archivo de Base de datos no existe!");
          qDebug( "-------------------------------------------------" );
-                DB = QSqlDatabase::addDatabase("QSQLITE");
+                QSqlDatabase DB = QSqlDatabase::addDatabase("QSQLITE");
                 DB.setDatabaseName( "gestotux.database" );
                 if( !DB.open() )
                 {
@@ -254,7 +253,7 @@ int main(int argc, char *argv[])
                 }
         }
         delete base;
-        DB = QSqlDatabase::addDatabase("QSQLITE");
+        QSqlDatabase DB = QSqlDatabase::addDatabase("QSQLITE");
         DB.setDatabaseName("gestotux.database");
         if( !DB.open() )
         {
@@ -268,7 +267,7 @@ int main(int argc, char *argv[])
        {
         // No se puede usar sqlite para el programa
         qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
-        QStringList drivers = DB.drivers();
+        QStringList drivers = QSqlDatabase::drivers();
         qDebug( "Lista de Drivers Soportados:" );
         for (int i = 0; i < drivers.size(); ++i)
         {
@@ -280,7 +279,7 @@ int main(int argc, char *argv[])
        // Inicia codigo general
        ////////////////////////////////////////////////////////////////////////////////////////////////////
        // Chequeo si existen las tablas, llegado este punto la base de datos debe estar abierta
-       QStringList tablas = DB.tables( QSql::Tables );
+       QStringList tablas = QSqlDatabase::database().tables( QSql::Tables );
        if( tablas.isEmpty() )
        {
                 // Es la primera vez que se arranca el programa

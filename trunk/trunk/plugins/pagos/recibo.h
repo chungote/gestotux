@@ -36,7 +36,7 @@ public:
     void setIDPago( const int numero );
 
 private:
-    int _numero_recibo;
+    int _id_recibo;
 
 };
 

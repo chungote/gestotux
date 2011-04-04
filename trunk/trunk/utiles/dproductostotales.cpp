@@ -33,6 +33,7 @@ DProductosTotales::DProductosTotales(QWidget *parent)
  : QItemDelegate(parent)
 {
  setClipping( false );
+ _min = -1;
 }
 
 
@@ -44,49 +45,49 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
 {
  switch( index.column() )
  {
-	//Producto
-	case 0:
-	{
-		QComboBox *combo = new QComboBox( parent );
-		// Rellenar los items
-		QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
-		while( cola.next() )
-		{
-			combo->addItem( cola.record().value("nombre").toString(), cola.record().value( "id" ) );
-		}
-		combo->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
-		combo->setEditable( true );
-		combo->completer()->setCompletionMode( QCompleter::PopupCompletion );
-		return combo;
-	}
-	// Precio Unitario
-	case 1:
-	{
-		EDSBPrecio *e = new EDSBPrecio( parent );
-		e->setPrefix( "$" );
-		e->setSingleStep( 1 );
-		e->setRange( 0.00, 9999.00 );
-		return e;
+        //Producto
+        case 0:
+        {
+                QComboBox *combo = new QComboBox( parent );
+                // Rellenar los items
+                QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
+                while( cola.next() )
+                {
+                        combo->addItem( cola.record().value("nombre").toString(), cola.record().value( "id" ) );
+                }
+                combo->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
+                combo->setEditable( true );
+                combo->completer()->setCompletionMode( QCompleter::PopupCompletion );
+                return combo;
+        }
+        // Precio Unitario
+        case 1:
+        {
+                EDSBPrecio *e = new EDSBPrecio( parent );
+                e->setPrefix( "$" );
+                e->setSingleStep( 1 );
+                e->setRange( 0.00, 9999.00 );
+                return e;
 
-	}
-	// Cantidad
-	case 2:
-	{
+        }
+        // Cantidad
+        case 2:
+        {
 
-		EDSBPrecio *e = new EDSBPrecio( parent );
-		e->setRange( 0.0, 99999.9 );
-		e->setPrefix("");
-		/*if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar", false ).toBool() )
-		{
-		 e->setMaximum( MProductos::stock( index.model()->data( index.model()->index( index.row(), 0 ), Qt::EditRole ).toInt() ) );
-		}*/
-		return e;
-	}
-	default:
-	{
-		// Los demas no deben ser editables
-		return QItemDelegate::createEditor(parent, option, index);
-	}
+                EDSBPrecio *e = new EDSBPrecio( parent );
+                e->setRange( 0.0, 99999.9 );
+                e->setPrefix("");
+                /*if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar", false ).toBool() )
+                {
+                 e->setMaximum( MProductos::stock( index.model()->data( index.model()->index( index.row(), 0 ), Qt::EditRole ).toInt() ) );
+                }*/
+                return e;
+        }
+        default:
+        {
+                // Los demas no deben ser editables
+                return QItemDelegate::createEditor(parent, option, index);
+        }
  }
 }
 
@@ -94,27 +95,27 @@ void DProductosTotales::setEditorData(QWidget* editor, const QModelIndex& index)
 {
  switch( index.column() )
  {
-	//Producto
-	case 0:
-	{
-		QComboBox *combo = qobject_cast<QComboBox *>(editor);
-		combo->setCurrentIndex( combo->findData(  index.model()->data(index, Qt::EditRole).toInt() ) );
-		break;
-	}
-	// Precio Unitario
-	case 1:
-	// Cantidad
-	case 2:
-	{
-		EDSBPrecio *e = qobject_cast<EDSBPrecio *>( editor );
-		e->setValue( index.data( Qt::EditRole ).toDouble() );
-		break;
-	}
-	default:
-	{
-		// Los demas no deben ser editables
-		return QItemDelegate::setEditorData( editor, index);
-	}
+        //Producto
+        case 0:
+        {
+                QComboBox *combo = qobject_cast<QComboBox *>(editor);
+                combo->setCurrentIndex( combo->findData(  index.model()->data(index, Qt::EditRole).toInt() ) );
+                break;
+        }
+        // Precio Unitario
+        case 1:
+        // Cantidad
+        case 2:
+        {
+                EDSBPrecio *e = qobject_cast<EDSBPrecio *>( editor );
+                e->setValue( index.data( Qt::EditRole ).toDouble() );
+                break;
+        }
+        default:
+        {
+                // Los demas no deben ser editables
+                return QItemDelegate::setEditorData( editor, index);
+        }
  }
 }
 
@@ -122,29 +123,30 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
 {
   switch( index.column() )
  {
-	//Producto
-	case 0:
-	{
-		QComboBox *combo = qobject_cast<QComboBox *>(editor);
-		if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
-		{ qDebug( "ERROR" ); }
-		model->setData( index, combo->itemData( combo->currentIndex() ) );
-		break;
-	}
-	// Precio Unitario
-	case 1:
-	// Cantidad
-	case 2:
-	{
-		EDSBPrecio *e = qobject_cast<EDSBPrecio *>( editor );
-		model->setData( index, e->value() );
-		break;
-	}
-	default:
-	{
-		// Los demas no deben ser editables
-		return QItemDelegate::setEditorData( editor, index);
-	}
+        //Producto
+        case 0:
+        {
+                QComboBox *combo = qobject_cast<QComboBox *>(editor);
+                // Veo si tiene el dato de ser un producto, sino, lo agrego
+                if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
+                { combo->setItemData( combo->currentIndex(), _min ); }
+                model->setData( index, combo->itemData( combo->currentIndex() ) );
+                break;
+        }
+        // Precio Unitario
+        case 1:
+        // Cantidad
+        case 2:
+        {
+                EDSBPrecio *e = qobject_cast<EDSBPrecio *>( editor );
+                model->setData( index, e->value() );
+                break;
+        }
+        default:
+        {
+                // Los demas no deben ser editables
+                return QItemDelegate::setEditorData( editor, index);
+        }
  }
 }
 

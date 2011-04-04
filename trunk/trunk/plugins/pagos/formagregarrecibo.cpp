@@ -53,8 +53,6 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
-        // Coloco el numero de recibo al hacer set del modelo
-        ///@todo Hacer
         // Por ahora elimino el contado por no estar programado
         RBContado->setEnabled(false);
 }
@@ -77,11 +75,13 @@ void FormAgregarRecibo::setearModelo( MPagos *m )
         this->_modelo = new MPagos( this );
     }
     // Busco el ultimo numero de recibo
-    this->LENumero->setText( QString( "%L1" ).arg( this->_modelo->buscarUltimoNumeroRecibo() + 1 ) );
+    QPair<int,int> numero = this->_modelo->proximoSerieNumeroRecibo();
+    this->LENumero->setText( QString( "%1-%2" ).arg( numero.first ).arg( numero.second ) );
 }
 
 /*!
     \fn FormAgregarRecibo::recalcularTotal()
+    Recalcula el total debido por el cliente si posee deuda
  */
 void FormAgregarRecibo::recalcularTotal()
 {
@@ -96,6 +96,7 @@ void FormAgregarRecibo::recalcularTotal()
 
 /*!
     \fn FormAgregarRecibo::cambioCliente( int id_combo )
+    Slot llamado cuando se cambia o seleccióna un nuevo cliente.
  */
 void FormAgregarRecibo::cambioCliente( int id_combo )
 {
@@ -120,6 +121,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
 
 /*!
     \fn FormAgregarRecibo::cambioPagado( double valor )
+    Slot llamado cuando se cambia la cantidad ingresada en pagado
  */
 void FormAgregarRecibo::cambioPagado( double /*valor*/ )
 {
@@ -189,7 +191,7 @@ void FormAgregarRecibo::guardar()
     this->_modelo->submitAll();
     QSqlDatabase::database().commit();
     // Imprimir el recibo
-    QMessageBox::information( this, "Correcto", QString( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( num_recibo ) );
+    QMessageBox::information( this, "Correcto", QString( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( /*num_recibo*/-1 ) );
     /// Imprimo el recibo
     ParameterList lista;
     lista.append( "id_recibo", num_recibo );
@@ -199,7 +201,7 @@ void FormAgregarRecibo::guardar()
         rep->exportToPDF( "/home/Esteban/test.pdf" );
     } else {
         rep->reportError( this );
-        QMessageBox::information( this, "Eroor", QString( "No se pudo encontrar la definicion del informe. Contactese con el administrador." ) );
+        QMessageBox::information( this, "Error", QString( "No se pudo encontrar la definicion del informe. Contactese con el administrador." ) );
     }
     this->close();
     this->_modelo = 0;

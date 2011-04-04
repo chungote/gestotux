@@ -41,6 +41,7 @@ public:
     int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
     static int numeroSerieActual();
     static int numeroReciboActual( const int serie );
+    static QPair<int,int> proximoSerieNumeroRecibo();
 
 private:
     void inicializar();

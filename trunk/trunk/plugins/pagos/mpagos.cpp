@@ -37,8 +37,11 @@ CREATE TABLE IF NOT EXISTS `recibos` (
   `precio` double(15,4) DEFAULT NULL,
   `cancelado` tinyint(4) NOT NULL DEFAULT '0',
   `pagado` tinyint(4) NOT NULL DEFAULT '1',
+  `serie` int NOT NULL,
+  `numero` int NOT NULL,
   `id_caja` bigint(20) REFERENCES movimiento_caja(id_movimiento),
-  PRIMARY KEY (`id_recibo`)
+  PRIMARY KEY (`id_recibo`),
+  UNIQUE KEY `numero_recibo` (`serie`,`numero`)
 ) ENGINE=InnoDB;
 */
 
@@ -59,13 +62,15 @@ void MPagos::inicializar()
     setHeaderData( 4, Qt::Horizontal, "Cantidad" );
     setHeaderData( 5, Qt::Horizontal, "Cancelado" );
     setHeaderData( 6, Qt::Horizontal, "Pagado" ); // Campo utilizado en hicomp
-    setHeaderData( 7, Qt::Horizontal, "ID mov caja" );
+    setHeaderData( 7, Qt::Horizontal, "#Serie" );
+    setHeaderData( 8, Qt::Horizontal, "#Numero" );
+    setHeaderData( 9, Qt::Horizontal, "ID mov caja" );
 }
 
 void MPagos::relacionar()
 {
     setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
-    //setRelation( 7, QSqlRelation( "movimientos_caja", "id_movimiento", "descripcion" ) );
+    //setRelation( 9, QSqlRelation( "movimientos_caja", "id_movimiento", "descripcion" ) );
 }
 
 MPagos::~MPagos()
@@ -102,6 +107,9 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
              }
              break;
      }
+     case 7:
+     case 8:
+     { return QSqlRelationalTableModel::data( item, role ).toInt(); }
      default:
      { return QSqlRelationalTableModel::data( item, role ); break; }
    }
@@ -115,6 +123,8 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
     case 3:
     case 4:
     case 5:
+    case 6:
+    case 7:
     { return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
     default:
     { return QSqlRelationalTableModel::data( item, role ); break; }
@@ -217,6 +227,9 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "texto", contenido );
     rec.setValue( "precio", total );
     rec.setValue( "pagado", pagado );
+    QPair<int,int> proximo = this->proximoSerieNumeroRecibo();
+    rec.setValue( "serie", proximo.first );
+    rec.setValue( "numero",proximo.second );
     if( efectivo == true ) {
        rec.setValue( "id_caja", id_caja );
     } else {
@@ -247,33 +260,50 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
 }
 
 /*!
- * MPagos::numeroSerieActual()
+ * \fn MPagos::numeroSerieActual()
  * Devuelve el numero de serie actual para el recibo
- * \return Numero de serie
+ * \return Numero de serie o -1 si hay error
  */
 int MPagos::numeroSerieActual()
 {
  QSqlQuery cola;
  if( cola.exec( QString( "SELECT MAX(serie) FROM recibos") ) ) {
-
+    if( cola.next() ) {
+        return cola.record().value(0).toInt();
+    } else {
+        return -1;
+    }
  } else {
-
+    return -1;
  }
- return "AAAAA";
 }
 
 /*!
- * MPagos::numeroReciboActual()
+ * \fn MPagos::numeroReciboActual()
  * Devuelve el numero de recibo de ultima emision
- * \return Numero de recibo actual
+ * \return Numero de recibo actual o -1 si hay error
  */
 int MPagos::numeroReciboActual( const int serie )
 {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT MAX(numero) FROM recibos WHERE serie = %1" ).arg( serie ) ) ) {
-
+        if( cola.next() ) {
+           return cola.record().value(0).toInt();
+        } else {
+            return -1;
+        }
     } else {
-
+        return -1;
     }
-    return "AAAAA";
+}
+
+/*!
+ * \fn MPagos::proximoSerieNumeroRecibo()
+ * Devuelve un par de numeros indicando la serie y numero de recibo que se debería guardar al agregar un recibo.
+ * \return QPair<int,int> indicando <serie, numero>
+ */
+QPair<int,int> MPagos::proximoSerieNumeroRecibo()
+{
+    abort();
+    return QPair<int,int>();
 }
