@@ -103,7 +103,7 @@ void DSiNo::paint( QPainter *painter, const QStyleOptionViewItem &option, const 
 /*!
     \fn DSiNo::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
  */
-QSize DSiNo::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+QSize DSiNo::sizeHint(const QStyleOptionViewItem &/*option*/, const QModelIndex &/*index*/) const
 {
     return PaintingScaleFactor * QSize( 1, 1 );
 }

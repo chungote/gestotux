@@ -84,8 +84,9 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         m->calcularTotales( true );
         m->buscarPrecios( true );
         TVContenido->setModel( m );
-        TVContenido->resizeColumnsToContents();
-        TVContenido->setItemDelegateForColumn( 0, new DProductosTotales() );
+        DProductosTotales *d = new DProductosTotales( TVContenido );
+        d->setearListaProductos( m->listaProductos() );
+        TVContenido->setItemDelegateForColumn( 1, d );
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );

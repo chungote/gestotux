@@ -96,33 +96,8 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
         {
                 switch( index.column() )
                 {
-                        // Producto
-                        case 0:
-                        {
-                                //qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
-                                productos->insert( index.row(), value.toInt() );
-                                if( _buscarPrecio )
-                                {
-                                        // Busco el precio de venta este producto
-                                        this->setData( this->index( index.row(), 1 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
-                                        //qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
-                                }
-                                break;
-                        }
-                        // Precio Unitario
-                        case 1:
-                        {
-                                precio_unitario->insert( index.row(), value.toDouble() );
-                                if( _calcularTotal )
-                                {
-                                        subtotales->insert( index.row(), cantidades->value( index.row() ) * value.toDouble() );
-                                        recalcularTotal();
-                                }
-                                emit dataChanged( index , this->index( index.row(), 3 ) );
-                                break;
-                        }
                         // Cantidad
-                        case 2:
+                        case 0:
                         {
                                 // Veo si tengo que verificar el maximo posible
                                 if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
@@ -143,6 +118,32 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 emit dataChanged( index , this->index( index.row(), 3) );
                                 break;
                         }
+                        // Producto
+                        case 1:
+                        {
+                                //qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
+                                productos->insert( index.row(), value.toInt() );
+                                if( _buscarPrecio )
+                                {
+                                        // Busco el precio de venta este producto
+                                        this->setData( this->index( index.row(), 2 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
+                                        //qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
+                                }
+                                break;
+                        }
+                        // Precio Unitario
+                        case 2:
+                        {
+                                precio_unitario->insert( index.row(), value.toDouble() );
+                                if( _calcularTotal )
+                                {
+                                        subtotales->insert( index.row(), cantidades->value( index.row() ) * value.toDouble() );
+                                        recalcularTotal();
+                                }
+                                emit dataChanged( index , this->index( index.row(), 3 ) );
+                                break;
+                        }
+
                         // Subtotal
                         case 3:
                         {
@@ -271,25 +272,26 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 switch( idx.column() )
                 {
-                        // Producto
-                        case 0:
-                        {
-                                return prods->value( productos->value( idx.row() ) );
-                                break;
-                        }
-                        // precio unitario
-                        case 1:
-                        {
-                                return QString( "$ %L1" ).arg( precio_unitario->value( idx.row() ) );
-                                break;
-                        }
                         // Cantidades
-                        case 2:
+                        case 0:
                         {
                                 // Busco si existe
                                 return QString( "%L1" ).arg( cantidades->value( idx.row() ) );
                                 break;
                         }
+                        // Producto
+                        case 1:
+                        {
+                                return prods->value( productos->value( idx.row() ) );
+                                break;
+                        }
+                        // precio unitario
+                        case 2:
+                        {
+                                return QString( "$ %L1" ).arg( precio_unitario->value( idx.row() ) );
+                                break;
+                        }
+
                         // Subtotal
                         case 3:
                         {
@@ -308,15 +310,9 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 switch ( idx.column() )
                 {
-                        case 1:
-                        case 3:
+                        case 0:
                         {
                                 return QColor(Qt::blue);
-                                break;
-                        }
-                        case 2:
-                        {
-                                return QColor(Qt::green);
                                 break;
                         }
                         default:
@@ -331,25 +327,26 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 switch( idx.column() )
                 {
-                        //Producto
+                        // Cantidad
                         case 0:
+                        {
+                                return cantidades->value( idx.row() );
+                                break;
+                        }
+                        //Producto
+                        case 1:
                         {
                                 // tengo que devolver el Id de producto
                                 return productos->value( idx.row() );
                                 break;
                         }
                         // precio unitario
-                        case 1:
+                        case 2:
                         {
                                 return precio_unitario->value( idx.row() );
                                 break;
                         }
-                        // Cantidad
-                        case 2:
-                        {
-                                return cantidades->value( idx.row() );
-                                break;
-                        }
+
                         default:
                         {
                                 return false;
@@ -362,13 +359,13 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 switch ( idx.column() )
                 {
+                        case 0:
                         case 2:
-                        case 1:
                         {
                                 return int( Qt::AlignHCenter | Qt::AlignVCenter );
                                 break;
                         }
-                        case 0:
+                        case 1:
                         {
                                 return int( Qt::AlignLeft | Qt::AlignVCenter );
                                 break;
@@ -427,11 +424,11 @@ QVariant MProductosTotales::headerData ( int section, Qt::Orientation orientatio
   switch( section )
   {
         case 0:
-        { return "Producto"; break; }
-        case 1:
-        { return "Precio Unitario"; break; }
-        case 2:
         { return "Cantidad"; break; }
+        case 1:
+        { return "Producto"; break; }
+        case 2:
+        { return "Precio Unitario"; break; }
         case 3:
         { return "Subtotal"; break; }
         default:
@@ -488,3 +485,6 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
      return 0.0;
   }
 }
+
+QMap<int, QString> * MProductosTotales::listaProductos()
+{ return this->prods; }

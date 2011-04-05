@@ -35,6 +35,7 @@ public:
     DProductosTotales(QWidget *parent = 0);
 
     ~DProductosTotales();
+    void setearListaProductos( QMap<int, QString> *l );
 
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
@@ -42,6 +43,8 @@ public:
     void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
 private:
+    int nuevoProducto( QString nombre );
+    QMap<int, QString> *lista;
     int _min;
 
 };
