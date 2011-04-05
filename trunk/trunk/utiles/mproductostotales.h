@@ -32,8 +32,7 @@ class MProductosTotales : public QAbstractTableModel
 {
 Q_OBJECT
 public:
-    MProductosTotales(QObject *parent = 0);
-
+    MProductosTotales( QObject *parent = 0 );
     ~MProductosTotales();
 
     bool insertRow(int row, const QModelIndex& parent = QModelIndex() );
@@ -49,6 +48,7 @@ public:
     void calcularTotales( bool sino = true );
     bool buscaPrecios();
     void buscarPrecios( bool activado = true );
+    QMap<int, QString> *listaProductos();
 
 private:
         QHash<int, double> *subtotales;

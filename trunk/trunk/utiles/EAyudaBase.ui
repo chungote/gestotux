@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>EAyudaBase</class>
- <widget class="QWidget" name="EAyudaBase" >
-  <property name="geometry" >
+ <widget class="QWidget" name="EAyudaBase">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,43 +10,43 @@
     <height>480</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form1</string>
   </property>
-  <property name="autoFillBackground" >
+  <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTextBrowser" name="textBrowser" >
-     <property name="autoFillBackground" >
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="autoFillBackground">
       <bool>true</bool>
      </property>
-     <property name="frameShape" >
+     <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
-     <property name="frameShadow" >
+     <property name="frameShadow">
       <enum>QFrame::Plain</enum>
      </property>
-     <property name="lineWidth" >
+     <property name="lineWidth">
       <number>0</number>
      </property>
-     <property name="horizontalScrollBarPolicy" >
+     <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
-     <property name="autoFormatting" >
+     <property name="autoFormatting">
       <set>QTextEdit::AutoAll</set>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" >
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer" >
-       <property name="orientation" >
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
          <height>20</height>
@@ -54,23 +55,23 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="PBCerrar" >
-       <property name="text" >
+      <widget class="QPushButton" name="PBCerrar">
+       <property name="text">
         <string>Cerrar Ayuda</string>
        </property>
-       <property name="checkable" >
+       <property name="checkable">
         <bool>true</bool>
        </property>
-       <property name="checked" >
+       <property name="checked">
         <bool>false</bool>
        </property>
-       <property name="autoRepeat" >
+       <property name="autoRepeat">
         <bool>false</bool>
        </property>
-       <property name="autoExclusive" >
+       <property name="autoExclusive">
         <bool>false</bool>
        </property>
-       <property name="flat" >
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
@@ -79,8 +80,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11" />
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
