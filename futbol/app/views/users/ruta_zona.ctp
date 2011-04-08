@@ -1,1 +1,0 @@
-<?php echo " > " . $html->link( $nombre_zona, '/admin/zonas/index' ); ?>

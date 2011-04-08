@@ -1,1 +1,0 @@
-<span>No existen fechas proximas definidas para este torneo.</span>
