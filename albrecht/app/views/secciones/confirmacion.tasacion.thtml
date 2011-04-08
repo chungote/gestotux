@@ -1,7 +1,0 @@
-<br /><br /><br /><br />
-<?php echo $html->image( 'logo_tasaciones.png', array( 'align' => 'center' ) ); ?>
-<br /><br />
-<div class="flash">El Mensaje ha sido enviado correctamente. Gracias x su interes!</div>
-<br />
-<br />
-<br />

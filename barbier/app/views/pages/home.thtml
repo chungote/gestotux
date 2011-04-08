@@ -1,9 +1,0 @@
-<table border="0" width="100%">
-  <tbody>
-    <tr valign="top">
-      <td width="80%"> <?php echo $this->renderElement( 'ofertas' ); ?></td>
-      <td width="20%"><?php echo $this->renderElement( 'consulta' ); ?><br /><a href="<?php echo $html->url( '/secciones/tasacion' ); ?>"><?php echo $html->image( 'tasacion_borde.png', array( 'border' => '0' ) ); ?></a></td>
-    </tr>
-  </tbody>
-</table>
-
