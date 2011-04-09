@@ -21,6 +21,7 @@
 #include "MTempClientesFacturarServicio.h"
 
 #include <QColor>
+#include <QSize>
 
 MTempClientesFacturarServicio::MTempClientesFacturarServicio(QObject *parent) :
     QAbstractTableModel(parent)
@@ -214,6 +215,19 @@ QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) c
            {
                    return QVariant( "Haga doble click o seleccione y F2 para editar" );
                    break;
+           }
+           case Qt::SizeHintRole:
+           {
+                    switch( idx.column() )
+                    {
+                         case 0:
+                         { return QSize( 1, 1 ); break; }
+                         case 1:
+                         { return QSize( 3, 1 ); break; }
+                         default:
+                         { return QVariant(); break; }
+                    }
+                    break;
            }
            default:
            { return QVariant(); break; }

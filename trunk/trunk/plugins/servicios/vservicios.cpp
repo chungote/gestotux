@@ -170,6 +170,7 @@ void VServicios::verClientesAdheridos()
  emit agregarVentana( f );
 }
 
+#include "formrecargos.h"
 /*!
     \fn VServicios::verRecargos()
     Llama al formulario que muestra los recargos por servicio
@@ -179,7 +180,9 @@ void VServicios::verRecargos()
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
  // Muestro el formulario de recargos con el id seteado
- /// @todo Patri: Abrir formulario y mostrar recargos para el id de servicio
+ FormRecargos *f = new FormRecargos();
+ f->setearId( id_servicio );
+ emit agregarVentana( f );
 }
 
 /*!

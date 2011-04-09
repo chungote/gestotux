@@ -87,6 +87,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         DProductosTotales *d = new DProductosTotales( TVContenido );
         d->setearListaProductos( m->listaProductos() );
         TVContenido->setItemDelegateForColumn( 1, d );
+        TVContenido->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );

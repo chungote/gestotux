@@ -105,6 +105,7 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->TVRecargos->hideColumn( 0 );
     this->TVRecargos->hideColumn( 1 );
     this->TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    // Arreglar problema con el item de si o no tamaño.
     mr->select();
 }
 
@@ -153,7 +154,7 @@ void FormFacturarServicio::facturar()
     int id_recibo = -1;
     int id_cliente = -1;
     QString nombre_cliente = "";
-    QHash<int, int> recibos;
+    QHash<int, int> recibos; // Guarda el paso con el id del recibo guardado
 
     // Genero la transación en la base de datos
     QSqlDatabase::database().transaction();
@@ -213,7 +214,7 @@ void FormFacturarServicio::facturar()
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
-        /// Genero los parametros
+        // Genero los parametros
         ParameterList lista;
         lista.append( "id_recibo", recibos.take( i ) );
         reporte_recibo->setParamList( lista );

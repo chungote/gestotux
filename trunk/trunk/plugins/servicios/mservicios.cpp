@@ -232,7 +232,7 @@ QString MServicios::getNombreServicio( int id_servicio )
 
 /*!
  * \fn MServicios::getPeriodoActual( int id_servicio )
- * Devuelve el periodo actual del servicio en el año en curso.
+ * Devuelve el periodo actual del servicio en el año en curso en formato <periodo>/<año> del <fecha_inicio> al <fecha_fin>.
  * \param id_servicio ID del servicio que queremos buscar
  * \return Texto explicativo de el periodo actual. Formato: <periodo>/<año> del <fecha_inicio> al <fecha_fin>.
  */
@@ -246,7 +246,10 @@ QString MServicios::getPeriodoActual( const int id_servicio )
     double u = t/cant_dias_periodo;
     int periodo = floor( u );
     // Busco las fechas del inicio y fin del periodo
-    return QString( "%1/%2 del <fecha_inicio_periodo> al <fecha_fin_periodo>" ).arg( periodo ).arg( hoy.year() )/*.arg( hoy.toString() ).arg( fecha_alta_servicio.toString() )*/;
+    // Inicio del periodo
+    /*QDate fecha_inicio = ???;
+    QDate fecha_fin = fecha_inicio.addDays( cant_dias_periodo );*/
+    return QString( "%1/%2 del %3 al %4" ).arg( periodo ).arg( hoy.year() )/*.arg( fecha_inicio.toString() ).arg( fecha_fin.toString() )*/;
 }
 
 /*!

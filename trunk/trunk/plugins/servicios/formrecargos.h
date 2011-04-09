@@ -33,6 +33,7 @@ class FormRecargos : public EVentana, private Ui::FormRecargoBase
 
 public:
     FormRecargos( QWidget *parent = 0, Qt::WFlags fl = 0 );
+    void setearId( const int id );
 
 protected:
     void changeEvent(QEvent *e);
