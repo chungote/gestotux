@@ -24,7 +24,7 @@
 #include <QAbstractTableModel>
 
 /**
-Modelo que calcula totales segun modelo de venta y compra
+Modelo que calcula totales segun modelo de venta, compra y presupuesto
 
         @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
@@ -48,18 +48,18 @@ public:
     void calcularTotales( bool sino = true );
     bool buscaPrecios();
     void buscarPrecios( bool activado = true );
-    QMap<int, QString> *listaProductos();
+    QMap<int, QString> *listaProductos() { return this->prods; }
+
+    QMap<int, QString> *prods;
 
 private:
         QHash<int, double> *subtotales;
         QHash<int, double> *cantidades;
         QHash<int, double> *precio_unitario;
         QHash<int, int> *productos;
-        QMap<int, QString> *prods;
         double Total;
         bool _calcularTotal;
         bool _buscarPrecio;
-private:
         double buscarPrecioVenta( int id_producto );
 };
 

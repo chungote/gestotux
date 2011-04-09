@@ -208,7 +208,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 if( role == Qt::DisplayRole )
                 {
-                        return "Cant:";
+                    return "Cant:";
                 } else if( role == Qt::TextAlignmentRole ) {
                     return int( Qt::AlignRight | Qt::AlignVCenter );
                 } else {
@@ -244,16 +244,13 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         }
         case 3:
         {
-                if( role == Qt::DisplayRole )
-                {
+                if( role == Qt::DisplayRole ) {
                         return QString( "$ %L1" ).arg( Total );
+                } else if( role == Qt::TextAlignmentRole ) {
+                    return int( Qt::AlignRight | Qt::AlignVCenter );
+                } else {
+                    return QVariant();
                 }
-                else if( role == Qt::TextAlignmentRole )
-                {
-                        return int( Qt::AlignRight | Qt::AlignVCenter );
-                }
-                else
-                { return QVariant(); }
                 break;
         }
         default:
@@ -336,7 +333,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                         //Producto
                         case 1:
                         {
-                                // tengo que devolver el Id de producto
+                                // tengo que devolver el Id de producto de la lista de general
                                 return productos->value( idx.row() );
                                 break;
                         }
@@ -468,7 +465,7 @@ void MProductosTotales::buscarPrecios( bool activado )
  */
 double MProductosTotales::buscarPrecioVenta( int id_producto )
 {
- if( id_producto <= 0 ) {
+ if( id_producto > 0 ) {
      QSqlQuery cola;
      if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1" ).arg( id_producto ) ) )
      {
@@ -485,6 +482,3 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
      return 0.0;
   }
 }
-
-QMap<int, QString> * MProductosTotales::listaProductos()
-{ return this->prods; }

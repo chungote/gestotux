@@ -119,3 +119,6 @@ void FormRecargos::changeEvent(QEvent *e)
             break;
     }
 }
+
+void FormRecargos::setearId(const int id)
+{ this->cambioServicio( id ); }
