@@ -50,6 +50,7 @@ public:
     bool buscarSiPagado( const NumeroRecibo num );
     int buscarIdPorSerieNumero( const NumeroRecibo num );
     int buscarIdPorSerieNumero( const int serie, const int numero );
+    double buscarImporte( NumeroRecibo num );
 
     static NumeroRecibo buscarMenorSerieNumeroPagado();
     static int numeroSerieActual();

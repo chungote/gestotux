@@ -382,9 +382,21 @@ bool MPagos::buscarSiPagado( const MPagos::NumeroRecibo num )
  * \param Numero y serie del recibo buscado
  * \returns ID en la base de datos
  */
-int MPagos::buscarIdPorSerieNumero(const int serie, const int numero)
+int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
 {
- abort();
+ if( this->query().exec( QString( "SELECT id_recibo FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) )
+ {
+     if( this->query().next() )
+     {
+         return this->query().record().value(0).toInt();
+     } else {
+         qDebug( "Error al hacer next en la cola de buscar id recibo x num y serie" );
+         return -1;
+     }
+ } else {
+     qDebug( "Error al hacer exec en la cola de buscar id recibo x num y serie" );
+     return -2;
+ }
 }
 
 /*!
@@ -393,5 +405,24 @@ int MPagos::buscarIdPorSerieNumero(const int serie, const int numero)
  * \param Numero y serie del recibo buscado
  * \returns ID en la base de datos
  */
-int MPagos::buscarIdPorSerieNumero( const NumeroRecibo num )
+int MPagos::buscarIdPorSerieNumero( const MPagos::NumeroRecibo num )
 { return buscarIdPorSerieNumero( num.first, num.second ); }
+
+double MPagos::buscarImporte( MPagos::NumeroRecibo num )
+{
+  if( this->query().exec( QString( "SELECT precio FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.first ).arg( num.second ) ) ) {
+    if( this->query().next() ) {
+       if( this->query().record().value(1).toBool() ) {
+         return true;
+       } else {
+         return false;
+       }
+    } else {
+       qDebug( "Error al hacer next en cola de importe de recibo" );
+       return false;
+    }
+  } else {
+    qDebug( "error al hacer exec de cola de importe de recibo" );
+    return false;
+  }
+}
