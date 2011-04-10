@@ -38,6 +38,8 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
     // Conecto la señal para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
     connect( this->SBNumeroRecibo, SIGNAL( valueChanged( int ) ), this, SLOT( cambioNumeroRecibo( int ) ) );
 
+    // Conecto la señal para que al poner la cantidad pagada o cambiarla se actualize el saldo
+    connect( this->DSBPagar, SIGNAL( valueChanged( double ) ), this, SLOT( cambioAPagar( double ) ) );
 
 }
 
@@ -77,9 +79,17 @@ void DPagarRecibo::accept()
     QDialog::accept();
 }
 
-void DPagarRecibo::reject()
+/*!
+ * \fn DPagarRecibo::cambioNumeroRecibo( int id_recibo )
+ * Slot llamado para cargar los datos recibo
+ */
+void DPagarRecibo::cambioNumeroRecibo( int /*id_recibo*/ )
 {
-    QMessageBox::critical( this, "error", "No implementado" );
-    abort();
-    QDialog::accept();
+  // Busco todos los datos y los pongo en los lugares correspondientes
+
+
 }
+
+
+void DPagarRecibo::cambioAPagar( double /*cantidad*/ )
+{ DSBSaldo->setValue( DSBImporte->value() - DSBPagar->value() ); }

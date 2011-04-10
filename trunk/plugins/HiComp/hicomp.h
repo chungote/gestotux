@@ -57,12 +57,9 @@ public:
     QAction *botonPantallaInicial();
 
 private:
-    QAction *ActNuevoRecibo;
-    QAction *ActRecibos;
-
+    QAction *ActPagarRecibo;
 public slots:
-    void verRecibosAnteriores();
-    void nuevoRecibo();
+    void pagarRecibosEmitidos();
     void seCierraGestotux();
 
 signals:

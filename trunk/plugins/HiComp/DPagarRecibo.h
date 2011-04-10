@@ -36,7 +36,8 @@ protected:
 
 protected slots:
     void accept();
-    void reject();
+    void cambioNumeroRecibo( int id_recibo );
+    void cambioAPagar( double cantidad );
 
 private:
     MPagos::NumeroRecibo _num_recibo;

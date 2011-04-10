@@ -940,79 +940,6 @@
     <class kind="class">DPagarRecibo</class>
   </compound>
   <compound kind="file">
-    <name>drecibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>drecibo_8cpp</filename>
-    <member kind="variable">
-      <type>const int</type>
-      <name>PaintingScaleFactor</name>
-      <anchorfile>drecibo_8cpp.html</anchorfile>
-      <anchor>ad63fb93e445d2cc07201d228d711fd29</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>drecibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>drecibo_8h</filename>
-    <class kind="class">DRecibo</class>
-  </compound>
-  <compound kind="file">
-    <name>filtroclientes.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>filtroclientes_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>filtroclientes.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>filtroclientes_8h</filename>
-    <class kind="class">FiltroClientes</class>
-  </compound>
-  <compound kind="file">
-    <name>formagregarrecibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>HiComp_2formagregarrecibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>formagregarrecibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
-    <filename>pagos_2formagregarrecibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>formagregarrecibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>HiComp_2formagregarrecibo_8h</filename>
-    <class kind="class">FormAgregarRecibo</class>
-  </compound>
-  <compound kind="file">
-    <name>formagregarrecibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
-    <filename>pagos_2formagregarrecibo_8h</filename>
-    <class kind="class">FormAgregarRecibo</class>
-  </compound>
-  <compound kind="file">
-    <name>formmodificarrecibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>formmodificarrecibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>formmodificarrecibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>formmodificarrecibo_8h</filename>
-    <class kind="class">FormModificarRecibo</class>
-  </compound>
-  <compound kind="file">
-    <name>fprefrecibos.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>fprefrecibos_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>fprefrecibos.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>fprefrecibos_8h</filename>
-    <class kind="class">FPrefRecibos</class>
-  </compound>
-  <compound kind="file">
     <name>hicomp.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>hicomp_8cpp</filename>
@@ -1022,56 +949,6 @@
     <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
     <filename>hicomp_8h</filename>
     <class kind="class">HiComp</class>
-  </compound>
-  <compound kind="file">
-    <name>mrecibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>mrecibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>mrecibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>mrecibo_8h</filename>
-    <class kind="class">MRecibo</class>
-  </compound>
-  <compound kind="file">
-    <name>recibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>HiComp_2recibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>recibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
-    <filename>pagos_2recibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>recibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>HiComp_2recibo_8h</filename>
-    <class kind="class">Recibo</class>
-  </compound>
-  <compound kind="file">
-    <name>recibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
-    <filename>pagos_2recibo_8h</filename>
-    <class kind="class">Recibo</class>
-  </compound>
-  <compound kind="file">
-    <name>visorrecibo.cpp</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>visorrecibo_8cpp</filename>
-  </compound>
-  <compound kind="file">
-    <name>visorrecibo.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>visorrecibo_8h</filename>
-    <class kind="class">visorRecibo</class>
-  </compound>
-  <compound kind="file">
-    <name>vrecibos.h</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/HiComp/</path>
-    <filename>vrecibos_8h</filename>
-    <class kind="class">VRecibos</class>
   </compound>
   <compound kind="file">
     <name>informesplugin.cpp</name>
@@ -1090,6 +967,17 @@
     <path>/home/Esteban/Programas/gestotux/plugins/informes/</path>
     <filename>informesplugin_8h</filename>
     <class kind="class">InformesPlugin</class>
+  </compound>
+  <compound kind="file">
+    <name>formagregarrecibo.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
+    <filename>formagregarrecibo_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>formagregarrecibo.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
+    <filename>formagregarrecibo_8h</filename>
+    <class kind="class">FormAgregarRecibo</class>
   </compound>
   <compound kind="file">
     <name>FormPrefRecibos.cpp</name>
@@ -1130,6 +1018,17 @@
     <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
     <filename>pagosplugin_8h</filename>
     <class kind="class">PagosPlugin</class>
+  </compound>
+  <compound kind="file">
+    <name>recibo.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
+    <filename>recibo_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>recibo.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
+    <filename>recibo_8h</filename>
+    <class kind="class">Recibo</class>
   </compound>
   <compound kind="file">
     <name>vpagos.cpp</name>
@@ -6485,73 +6384,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>DRecibo</name>
-    <filename>classDRecibo.html</filename>
-    <member kind="function">
-      <type>QWidget *</type>
-      <name>createEditor</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>a6877d62410d16e8523d0eb4476fbc3bb</anchor>
-      <arglist>(QWidget *parent, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>DRecibo</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>af3ab0aa909c29e20126fac9faa5162fc</anchor>
-      <arglist>(QObject *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>paint</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>ad92798912ad72becd40db27e6eee4e45</anchor>
-      <arglist>(QPainter *painter, const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setEditorData</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>a9d2748c03e5da3b6ce7361e308d519aa</anchor>
-      <arglist>(QWidget *editor, const QModelIndex &amp;index) const </arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setModelData</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>ad0e852bb9c7acd47e78c172c56eec7b0</anchor>
-      <arglist>(QWidget *editor, QAbstractItemModel *model, const QModelIndex &amp;index) const </arglist>
-    </member>
-    <member kind="function">
-      <type>QSize</type>
-      <name>sizeHint</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>a2f98d027b7aeb8bb080bab9c6dc30e75</anchor>
-      <arglist>(const QStyleOptionViewItem &amp;option, const QModelIndex &amp;index) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~DRecibo</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>a27b022e0e4f20324dd06b66d7e019f46</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPolygonF</type>
-      <name>diamondPolygon</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>a8efea82a64bf38ccd371c3ecdb7ab031</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QPolygonF</type>
-      <name>starPolygon</name>
-      <anchorfile>classDRecibo.html</anchorfile>
-      <anchor>a621ac2718ac9358eeee9aec655e655c5</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>DSiNo</name>
     <filename>classDSiNo.html</filename>
     <member kind="function">
@@ -8845,52 +8677,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>FiltroClientes</name>
-    <filename>classFiltroClientes.html</filename>
-    <member kind="signal">
-      <type>void</type>
-      <name>cambioCliente</name>
-      <anchorfile>classFiltroClientes.html</anchorfile>
-      <anchor>a81d7c8fe26a98c5e0fe909141bf6a0de</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>seteaFiltrado</name>
-      <anchorfile>classFiltroClientes.html</anchorfile>
-      <anchor>aae31f41bf131f70e30b1964ba8c56c84</anchor>
-      <arglist>(bool, int)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FiltroClientes</name>
-      <anchorfile>classFiltroClientes.html</anchorfile>
-      <anchor>a3f8ceb746d738abee4d2f675ee5e4672</anchor>
-      <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FiltroClientes</name>
-      <anchorfile>classFiltroClientes.html</anchorfile>
-      <anchor>ad5e2b978d530fbeb01c41f809b02d51a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>cambioClienteSlot</name>
-      <anchorfile>classFiltroClientes.html</anchorfile>
-      <anchor>a521f1e733757d025a73637819d074a68</anchor>
-      <arglist>(int idcombo)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>seteaFiltradoSlot</name>
-      <anchorfile>classFiltroClientes.html</anchorfile>
-      <anchor>acaf410d225cc46a80f0cb0abc38f1b29</anchor>
-      <arglist>(bool activo)</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>FloatStyle</name>
     <filename>classFloatStyle.html</filename>
     <member kind="function">
@@ -9804,7 +9590,6 @@
     <name>FormAgregarRecibo</name>
     <filename>classFormAgregarRecibo.html</filename>
     <base>EVentana</base>
-    <base>EVentana</base>
     <member kind="slot">
       <type>void</type>
       <name>guardar</name>
@@ -9834,32 +9619,11 @@
       <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>FormAgregarRecibo</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>ae6c02c347b49fcfabb6a959e482d8536</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>nombre</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>a0c1797b00588bc61571077c36977f1a7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>setearModelo</name>
       <anchorfile>classFormAgregarRecibo.html</anchorfile>
       <anchor>a5d41993013b404f3a46cfdceedf1e3f8</anchor>
       <arglist>(MPagos *m)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormAgregarRecibo</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>aa1bc209f0f3cb8cb75967c1d14a66e80</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -9877,45 +9641,10 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
-      <name>cambioEstadoPagoMes</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>a6fbdc6d80dab838aae3ba9fb2ffb16c4</anchor>
-      <arglist>(int estado)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>cambioEstadoRecargos</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>abfd7d30cb6280bdca95f2d5912db3646</anchor>
-      <arglist>(int estado)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>cambioImporte</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>abedb081406bfb131ad564c6e4342629b</anchor>
-      <arglist>(double)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
       <name>cambioPagado</name>
       <anchorfile>classFormAgregarRecibo.html</anchorfile>
       <anchor>a7ede2ee07a9f1d1d48b597b0912fc315</anchor>
       <arglist>(double valor)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>guardar</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>abc4388d2dfb2fc5d8e03dec139673ef8</anchor>
-      <arglist>(bool imprimir=false)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>guardarImprimir</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>ab0f9e9831c69a1ec36669b6b718c9b66</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>QWidget *</type>
@@ -9923,13 +9652,6 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>recalcular</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>a68e05e448fad8e6197a3764c2f489278</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
@@ -9943,34 +9665,6 @@
       <name>_modelo</name>
       <anchorfile>classFormAgregarRecibo.html</anchorfile>
       <anchor>a53f438832ceee465227dc5efcc871e89</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActCancelar</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>a4f3932bbf2894a6381d6db80e6f0a4ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActGuardar</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>a9b933edc9f60aac19ef97f953255d061</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActGuardarImprimir</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>ae04723e8321d5e802458de3d5ca04036</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>recargo</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>aabbdbaf9c00c3e677a0bed43701e5da8</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -10944,129 +10638,6 @@
       <name>modelo</name>
       <anchorfile>classFormModificarPresupuesto.html</anchorfile>
       <anchor>a856a028a243958a2dba4a5ec0613433b</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>FormModificarRecibo</name>
-    <filename>classFormModificarRecibo.html</filename>
-    <member kind="signal">
-      <type>void</type>
-      <name>agregarVentana</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a0d46740fdc0c177cf9fc938d159815a6</anchor>
-      <arglist>(QWidget *w)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>cargarDatos</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a6a30b5afd2c03db833f657b8ce5c94b6</anchor>
-      <arglist>(QModelIndex idDB, QSqlTableModel *modelo)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FormModificarRecibo</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>addbdea66f7e3556fad01a20c2ae79168</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>nombre</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a399b88773ecaf0123cd01502e6a15fae</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormModificarRecibo</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>ad0744be1b9a57fb1788958271df0ffed</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>cambioEstadoPagoMes</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>ad6554dfa9a76696a91786ad895a50807</anchor>
-      <arglist>(int estado)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>cambioEstadoRecargos</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a02de0d46b4e679d7f6d1c0b126294b36</anchor>
-      <arglist>(int estado)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>cambioImporte</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>ae0c0f0e0487fddaac889773429eb0d9b</anchor>
-      <arglist>(double)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>guardar</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>ae6615670bf1ca80274369c6b9f5efb10</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>guardarImprimir</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>aedb2c89258e7718b45e0cb2d8ef3f6cd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>recalcular</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a648cea910d025e1035b3a274f3e7ff31</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActCerrar</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a2481102d9e5516f1aa560b02ae03c044</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActGuardar</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a15fe0e78785ff61861b46846c09de604</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActGuardarImprimir</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a2502d51bebcca6a4772ab6fe245ff647</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QModelIndex</type>
-      <name>indice</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>ad6531efa8aad0ff77df246b47160d6db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QSqlTableModel *</type>
-      <name>modelo</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>a977e3aeeef81d3ad46b74065738ea1dc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>recargo</name>
-      <anchorfile>classFormModificarRecibo.html</anchorfile>
-      <anchor>ae83f88e20141294d67732171a3a1dc74</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -12379,75 +11950,6 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
       <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>FPrefRecibos</name>
-    <filename>classFPrefRecibos.html</filename>
-    <base>EVentana</base>
-    <base>FormPrefHijo</base>
-    <member kind="slot">
-      <type>void</type>
-      <name>aplicar</name>
-      <anchorfile>classFPrefRecibos.html</anchorfile>
-      <anchor>ab11bfc79310ee8070d0a82b2c7c2dc5f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>cargar</name>
-      <anchorfile>classFPrefRecibos.html</anchorfile>
-      <anchor>af1b90ce37e894965def60dfec6f121a5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>guardar</name>
-      <anchorfile>classFPrefRecibos.html</anchorfile>
-      <anchor>ab36c2efe57e9a7ba5bb196934cfdc901</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>agregarVentana</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>a37ab6ec8c3fd3129a00850816ac8a3f4</anchor>
-      <arglist>(QWidget *)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>closeEvent</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>a5e5f4238cfeadf7d2edf4d1ec36ba597</anchor>
-      <arglist>(QCloseEvent *e)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>FPrefRecibos</name>
-      <anchorfile>classFPrefRecibos.html</anchorfile>
-      <anchor>a4faaffdd913d550d1fecafa76af68042</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FPrefRecibos</name>
-      <anchorfile>classFPrefRecibos.html</anchorfile>
-      <anchor>ad9eb314874440564454cbe38af8e492e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QWidget *</type>
-      <name>padre</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="slot" protection="private">
-      <type>void</type>
-      <name>setear</name>
-      <anchorfile>classFPrefRecibos.html</anchorfile>
-      <anchor>a8ee2b75e828a7a4b0ccad53054c1686d</anchor>
-      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -17552,45 +17054,6 @@
       <name>~MRecargosHechos</name>
       <anchorfile>classMRecargosHechos.html</anchorfile>
       <anchor>ace44cdd792e755cb57673847b6a9b4ed</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MRecibo</name>
-    <filename>classMRecibo.html</filename>
-    <member kind="function">
-      <type>QVariant</type>
-      <name>data</name>
-      <anchorfile>classMRecibo.html</anchorfile>
-      <anchor>a3bb5370e2b33a91f16bfbd017cd2adbf</anchor>
-      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
-    </member>
-    <member kind="function">
-      <type>Qt::ItemFlags</type>
-      <name>flags</name>
-      <anchorfile>classMRecibo.html</anchorfile>
-      <anchor>ac818f500ec2f500a74add70067a1de14</anchor>
-      <arglist>(const QModelIndex &amp;index) const </arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>MRecibo</name>
-      <anchorfile>classMRecibo.html</anchorfile>
-      <anchor>a4f3302a3aa3113373aa3f5eb1ba355b4</anchor>
-      <arglist>(QObject *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>setData</name>
-      <anchorfile>classMRecibo.html</anchorfile>
-      <anchor>a617c2763fb51caa87d82b1a410f714b2</anchor>
-      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~MRecibo</name>
-      <anchorfile>classMRecibo.html</anchorfile>
-      <anchor>a64fd35dd29f75d21e62b9faa256c8c9f</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -25516,34 +24979,6 @@
     <name>Recibo</name>
     <filename>classRecibo.html</filename>
     <member kind="function">
-      <type>bool</type>
-      <name>cargarRegistro</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a3af9ba15c27f31401803c616aa327400</anchor>
-      <arglist>(int idDB)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a08794b97e55fc8ae9d0c086ab60024b7</anchor>
-      <arglist>(QPainter *impresora)</arglist>
-    </member>
-    <member kind="function">
-      <type>QByteArray</type>
-      <name>obtenerByteArray</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a48e24e933b12f9df0cab67491a352338</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Recibo</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a43224f7d2b296206cacbc97eaa8acbd5</anchor>
-      <arglist>(QObject *parent=0)</arglist>
-    </member>
-    <member kind="function">
       <type></type>
       <name>Recibo</name>
       <anchorfile>classRecibo.html</anchorfile>
@@ -25558,59 +24993,10 @@
       <arglist>(const int numero)</arglist>
     </member>
     <member kind="function">
-      <type>QString</type>
-      <name>titulo</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>ae1e3fc397adb8a4bd53b7e45de8ae1c5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type></type>
       <name>~Recibo</name>
       <anchorfile>classRecibo.html</anchorfile>
       <anchor>ad4d6ec1c09dfd9cd26d8aa2d2edc98ed</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~Recibo</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>ad4d6ec1c09dfd9cd26d8aa2d2edc98ed</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>ajustarDuplicado</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>af28eec4046b8c5524de65c600907408f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>anchoCaracter</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a313c88d5e85139b076506dcece49138b</anchor>
-      <arglist>(QString car)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QString</type>
-      <name>generarNumeroRecibo</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>ac7691e0214e7e83a11b9231186cd7cc7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>hacerText</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>aa56171e9fe0ff0d815e0930de2bf0354</anchor>
-      <arglist>(QDomNode padre, const double ancho, double x, double y)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>reajusteXML</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a51d95f96fe2b6c13faca8022ada9f33e</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
@@ -25618,76 +25004,6 @@
       <name>_id_recibo</name>
       <anchorfile>classRecibo.html</anchorfile>
       <anchor>ad4d08ae05f01a5f2f8eee63c71acf9ad</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>contado</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a71545c593198f4ca2ad8614012bac4c7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>cuenta_corriente</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a35e48cecb1a1d8d7237d5f7440c6a100</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>descripcion</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a608470db8c7a2ef378a2d055192dd790</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>direccion</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a37c86ddfaa7d005a57c9fdf64eb5cbc8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QDomDocument</type>
-      <name>domdoc</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a9c6d3e8522319289d3e872565ea450b1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QDate</type>
-      <name>fecha_pagado</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a37e937898b0129e2863b26b2ad96fd42</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
-      <name>nombre_cliente</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a2341bb594358c054ae54e7bb7cfabf73</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>num_mes</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a9a368afd3da8a0a08335d8c59ed51dbe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>num_recibo</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a3d8e7c41d882c7734a0c73006ab0fb3d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>total</name>
-      <anchorfile>classRecibo.html</anchorfile>
-      <anchor>a58b6488fd582ddda9a10a6f293d4684f</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -29808,94 +29124,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>visorRecibo</name>
-    <filename>classvisorRecibo.html</filename>
-    <member kind="slot">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>ad7b27d910dbf2f408c3171cb6a438d6e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>agregarVentana</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>ace35a0adba9fcb42c351ab0befa55335</anchor>
-      <arglist>(QWidget *)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>nombre</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a383de93406e5813f5492db7a9f31574f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>Recibo *</type>
-      <name>recibo</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a10d658bd0f286982f093e56f1df1fbcb</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>verRecibo</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a45ab766a3b38ade864e48365bb105df2</anchor>
-      <arglist>(int idDB)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>visorRecibo</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a9184ca3dc175f7fd7affea7fba3471b6</anchor>
-      <arglist>(QWidget *parent=0, const int id=-1)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~visorRecibo</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a2192bdbb04f8609be01f50727d0d6edd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>aPdf</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a7984044cdc23c4b57a1fede7ba104938</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActCerrar</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a986469284e1543076673ca9f7eef29ee</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActImprimir</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a0bbb1b35880fce99931bdc0d17a9f2ba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActPdf</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a115236c3d2499e1b3332e8ab578017a2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>Recibo *</type>
-      <name>rec</name>
-      <anchorfile>classvisorRecibo.html</anchorfile>
-      <anchor>a4d64c980aa6e75cce8506b6e5324b185</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>visorResumen</name>
     <filename>classvisorResumen.html</filename>
     <member kind="signal">
@@ -31211,172 +30439,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>VRecibos</name>
-    <filename>classVRecibos.html</filename>
-    <base>EVentana</base>
-    <member kind="slot">
-      <type>void</type>
-      <name>cambioClienteFiltro</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a98995a3da3a785f7c5f33929a6af7cd4</anchor>
-      <arglist>(int id_cliente)</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>close</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a00cfd317b44e07ba4c936526810a6672</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>setearFiltrado</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a506d842a1071375c675882c01ee30e62</anchor>
-      <arglist>(bool activo, int id_cliente)</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>agregarVentana</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a419d282533805db0360b6f2cfe0ae276</anchor>
-      <arglist>(QWidget *v)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>closeEvent</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>a5e5f4238cfeadf7d2edf4d1ec36ba597</anchor>
-      <arglist>(QCloseEvent *e)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>VRecibos</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a2ae49fcbd395092b8c4d17201f431022</anchor>
-      <arglist>(QWidget *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~VRecibos</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a7a001553bc96653d3828eabad989e178</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>agregar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a8db60ff5b8b570bab8f937a0e294b189</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>eliminar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a88f2408dd39c7d79c01a4b45904fefaf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a2f08454ed36c75141b4dc4e459dd44f0</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>modificar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a5bc889232d3f06222057e783b6de2156</anchor>
-      <arglist>(const QModelIndex &amp;index)</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>modificar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a7ae6722ddeaf39d3d8d6e7216a015a4d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>ver</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a5f6ebe8d43114b5c90788e1e9d2770cd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>QWidget *</type>
-      <name>padre</name>
-      <anchorfile>classEVentana.html</anchorfile>
-      <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActAgregar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>ad8cffaf403f46155051d953ed36d8638</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActCerrar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a11c87367ffb24fc7e6e080700f0eb569</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActEliminar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>aec5aa38cd438ce5d54fbc1fe5799ceed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActImprimir</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a7fdfec2dd640b853525407541783d1d1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActModificar</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a7059f7702727a1323bd7ad0097c1e451</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QAction *</type>
-      <name>ActVer</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>ad5e342f7bed1f82222fdca626aeccb93</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QToolBar *</type>
-      <name>d</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a48eb4ffa101716e69a50fb6c3aec7656</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QSqlTableModel *</type>
-      <name>modelo</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a137a06e4bdba4759374d1ef546904e87</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QTableView *</type>
-      <name>vista</name>
-      <anchorfile>classVRecibos.html</anchorfile>
-      <anchor>a6efd1d1ccf398c720545bd3a267a1ff0</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>VResumenCaja</name>
     <filename>classVResumenCaja.html</filename>
     <base>EVLista</base>
@@ -32638,25 +31700,8 @@
     <filename>dir_1451eb9720553d8ad984619be31bc0df.html</filename>
     <file>DPagarRecibo.cpp</file>
     <file>DPagarRecibo.h</file>
-    <file>drecibo.cpp</file>
-    <file>drecibo.h</file>
-    <file>filtroclientes.cpp</file>
-    <file>filtroclientes.h</file>
-    <file>formagregarrecibo.cpp</file>
-    <file>formagregarrecibo.h</file>
-    <file>formmodificarrecibo.cpp</file>
-    <file>formmodificarrecibo.h</file>
-    <file>fprefrecibos.cpp</file>
-    <file>fprefrecibos.h</file>
     <file>hicomp.cpp</file>
     <file>hicomp.h</file>
-    <file>mrecibo.cpp</file>
-    <file>mrecibo.h</file>
-    <file>recibo.cpp</file>
-    <file>recibo.h</file>
-    <file>visorrecibo.cpp</file>
-    <file>visorrecibo.h</file>
-    <file>vrecibos.h</file>
   </compound>
   <compound kind="dir">
     <name>plugins/informes/</name>
