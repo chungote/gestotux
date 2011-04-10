@@ -56,6 +56,10 @@ void DPagarRecibo::changeEvent(QEvent *e)
 }
 
 #include <QMessageBox>
+/*!
+ * \fn DPagarRecibo::accept()
+ * Función llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
+ */
 void DPagarRecibo::accept()
 {
     QMessageBox::critical( this, "error", "No implementado" );
@@ -86,10 +90,20 @@ void DPagarRecibo::accept()
 void DPagarRecibo::cambioNumeroRecibo( int /*id_recibo*/ )
 {
   // Busco todos los datos y los pongo en los lugares correspondientes
-
-
+  MPagos *m = new MPagos();
+  if( m->buscarSiPagado( this->_num_recibo.first, this->SBNumeroRecibo->value() ) ) {
+        delete m;
+        return;
+  }
+  // Como no esta pagado, pongo el importe
+  DSBImporte->setValue( m->buscarImporte( this->_num_recibo ) );
+  // Coloco automaticamente el importe en a pagar
+  DSBPagar->setValue( DSBImporte->value() );
 }
 
-
+/*!
+ * \fn DPagarRecibo::cambioAPagar( double cantidad )
+ * slot llamado cuando se cambia la cantidad a pagar
+ */
 void DPagarRecibo::cambioAPagar( double /*cantidad*/ )
 { DSBSaldo->setValue( DSBImporte->value() - DSBPagar->value() ); }
