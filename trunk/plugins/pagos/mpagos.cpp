@@ -73,11 +73,6 @@ void MPagos::relacionar()
     //setRelation( 9, QSqlRelation( "movimientos_caja", "id_movimiento", "descripcion" ) );
 }
 
-MPagos::~MPagos()
-{
-}
-
-
 QVariant MPagos::data(const QModelIndex& item, int role) const
 {
  switch( role )
@@ -297,13 +292,106 @@ int MPagos::numeroReciboActual( const int serie )
     }
 }
 
+#include <QMessageBox>
 /*!
  * \fn MPagos::proximoSerieNumeroRecibo()
  * Devuelve un par de numeros indicando la serie y numero de recibo que se debería guardar al agregar un recibo.
- * \return QPair<int,int> indicando <serie, numero>
+ * \return NumeroRecibo indicando <serie, numero>
  */
-QPair<int,int> MPagos::proximoSerieNumeroRecibo()
+MPagos::NumeroRecibo MPagos::proximoSerieNumeroRecibo()
 {
+    QMessageBox::critical(0, "error", "No implementado" );
     abort();
     return QPair<int,int>();
 }
+
+/*!
+ * \fn MPagos::setearComoPagado( const in id_recibo )
+ * Setea como pago el recibo que se pasa como id. Si ya esta como pagado, no hace nada y devuelve true.
+ * \param id_recibo ID del recibo
+ * \return Verdadero si pudo ser puesto como pagado y descontado de la ctacte o si ya estaba como pagado.
+ */
+bool MPagos::setearComoPagado( const int /*id_recibo*/ )
+{
+ QMessageBox::critical(0, "error", "No implementado" );
+ return false;
+}
+
+#include <QSqlQuery>
+#include <QSqlRecord>
+/*!
+ * \fn MPagos::buscarMenorSerieNumeroPagado()
+ * Devuelve el par serie-numero del menor recibo pagado de la base de datos
+ * \return NumeroRecibo indicando <serie,numero> o <0,0> si se produjo un error
+ */
+MPagos::NumeroRecibo MPagos::buscarMenorSerieNumeroPagado()
+{
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT serie, numero FROM recibos WHERE pagado = 0 ORDER BY serie ASC, numero ASC LIMIT 1" ) ) )
+ {
+     if( cola.next() ) {
+         return QPair<int,int>( cola.record().value( 0 ).toInt(), cola.record().value( 1 ).toInt() );
+     } else {
+         qDebug( "Error en cola.next al obtener el minimo de serie y numero de un recibo" );
+         return QPair<int,int>( 0, 0 );
+     }
+ } else {
+     qDebug( "Error en cola.exec al obtener el minimo de serie y numero de un recibo" );
+     return QPair<int,int>( 0, 0 );
+ }
+}
+
+/*!
+ * \fn MPagos::buscarSiPagado( const int serie, const int numero )
+ * Busca si un recibo con los datos del parametro esta pagado o no
+ * \param serie Serie del recibo buscado
+ * \param numero Numero del recibo buscado
+ * \returns pagado o no
+ */
+bool MPagos::buscarSiPagado(const int serie, const int numero)
+{
+ if( this->query().exec( QString( "SELECT pagado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) ) {
+     if( this->query().next() ) {
+         if( this->query().record().value(1).toBool() ) {
+             return true;
+         } else {
+             return false;
+         }
+     } else {
+         qDebug( "Error al hacer next en cola de si pagado serie-numero" );
+         return false;
+     }
+ } else {
+     qDebug( "error al hacer exec de cola de si pagado serie-numero" );
+     return false;
+ }
+}
+
+/*!
+ * \fn MPagos::buscarSiPagado( const NumeroRecibo num )
+ * Sobrecarga
+ * \param Numero y serie del recibo buscado
+ * \returns pagado o no
+ */
+bool MPagos::buscarSiPagado( const MPagos::NumeroRecibo num )
+{ return buscarSiPagado( num.first, num.second ); }
+
+/*!
+ * \fn MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
+ * Devuelve el identificador de base de datos para una serie y numero de recibo
+ * \param Numero y serie del recibo buscado
+ * \returns ID en la base de datos
+ */
+int MPagos::buscarIdPorSerieNumero(const int serie, const int numero)
+{
+ abort();
+}
+
+/*!
+ * \fn MPagos::buscarIdPorSerieNumero( const NumeroRecibo num )
+ * Sobrecarga para tomar el parametro NumeroRecibo
+ * \param Numero y serie del recibo buscado
+ * \returns ID en la base de datos
+ */
+int MPagos::buscarIdPorSerieNumero( const NumeroRecibo num )
+{ return buscarIdPorSerieNumero( num.first, num.second ); }

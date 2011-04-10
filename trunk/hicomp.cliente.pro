@@ -1,22 +1,23 @@
 # HiComp Computación - Sergio Sack
 TEMPLATE = subdirs
 CONFIG += warn_on \
-        qt \
-        thread  \
-	ordered
+          qt \
+          thread  \
+          ordered
 
 SUBDIRS = utiles/utiles.pro \
-        src/src.pro \
-	utiles/estilos/estilos.pro \
-	plugins/HiComp/HiComp.pro \
-	#plugins/productos/productos.pro \
-	#plugins/presupuesto/presupuesto.pro \
-	#plugins/presupuesto/plugins/default/default.pro \
-	#plugins/presupuesto/plugins/hicomp/hicomp.pro \
-	#plugins/ventas/ventas.pro \
-	#plugins/gastos/gastos.pro \
-	#plugins/compras/compras.pro \
-	#plugins/proveedor/proveedor.pro
+          reporte/reporte.pro \
+          src/src.pro \
+          utiles/estilos/estilos.pro \
+          plugins/HiComp/HiComp.pro \
+          plugins/productos/productos.pro \
+          plugins/servicios/servicios.pro \
+          plugins/pagos/pagos.pro
+          #plugins/presupuesto/presupuesto.pro \
+          #plugins/ventas/ventas.pro \
+          #plugins/gastos/gastos.pro \
+          #plugins/compras/compras.pro \
+          #plugins/proveedor/proveedor.pro
 
 NOMBRE_PROGRAMA = hicomp
 ARCHIVO_RC = HiComp/icono.rc

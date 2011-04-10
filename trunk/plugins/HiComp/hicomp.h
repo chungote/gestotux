@@ -53,12 +53,12 @@ public:
     QString companeros();
     void crearToolBar( QToolBar *t );
     bool publicidad() { return false; }
+    QImage imagenPrograma() const;
+    QAction *botonPantallaInicial();
 
 private:
-    QList<QAction *> _acciones;
-
-     QAction *ActNuevoRecibo;
-     QAction *ActRecibos;
+    QAction *ActNuevoRecibo;
+    QAction *ActRecibos;
 
 public slots:
     void verRecibosAnteriores();
@@ -66,8 +66,9 @@ public slots:
     void seCierraGestotux();
 
 signals:
-	void agregarVentana( QWidget *v );
-        void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
+    void agregarVentana( QWidget *v );
+    void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
+
 };
 
 #endif

@@ -1,58 +1,34 @@
 TEMPLATE = lib
 CONFIG += plugin \
- dll \
- help
+          dll \
+          help
 
 TARGET = hicomp
 
-HEADERS +=   hicomp.h \
-             visorrecibo.h \
-             vrecibos.h \
-             recibo.h \
-             mrecibo.h \
-             drecibo.h \
-             formagregarrecibo.h \
-             formmodificarrecibo.h \
-             fprefrecibos.h \
-             filtroclientes.h
+HEADERS += hicomp.h \
+    DPagarRecibo.h
 
-SOURCES +=   hicomp.cpp \
-             visorrecibo.cpp \
-             vrecibos.cpp \
-             recibo.cpp \
-             mrecibo.cpp \
-             drecibo.cpp \
-             formagregarrecibo.cpp \
-             formmodificarrecibo.cpp \
-             fprefrecibos.cpp \
-             filtroclientes.cpp
+SOURCES += hicomp.cpp \
+    DPagarRecibo.cpp
 
 DESTDIR = ../../bin/plugins
 
 RESOURCES += hicomp.qrc
 
-QT =    gui \
-        core \
-        svg \
-        sql \
-        xml
+DISTFILES += hicomp.SQLITE.sql \
+             hicomp.rc
 
-FORMS += FormAgregarReciboBase.ui \
- FPrefRecibos.ui	 \
- FiltroClientesBase.ui
-
-DISTFILES += recibo.svg \
- hicomp.SQLITE.sql \
- hicomp.rc
-
-INCLUDEPATH += ../../utiles
+INCLUDEPATH += ../../utiles \
+               ../pagos
 
 LIBS += ../../bin/libutiles.a
 
-TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a
 
 TRANSLATIONS += hicomp.ts
 
-OTHER_FILES += \
-    hicomp.QSQLITE.sql \
-    hicomp.QMYSQL.sql
+OTHER_FILES += hicomp.QSQLITE.sql \
+               hicomp.QMYSQL.sql
+
+FORMS += \
+    DPagarReciboBase.ui

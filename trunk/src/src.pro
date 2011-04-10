@@ -94,3 +94,7 @@ LIBS += ../bin/libutiles.a \
 OTHER_FILES += gestotux.ts \
                tablas.QSQLITE.sql \
                tablas.QMYSQL.sql
+
+exists( cliente.pri ) {
+    include( cliente.pri )
+}

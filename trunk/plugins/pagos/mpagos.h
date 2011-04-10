@@ -33,15 +33,28 @@ class MPagos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
+   /*!
+    * \typedef NumeroRecibo
+    * Definido como QPair<int,int> con par.first = serie y par.second = numero
+    */
+    typedef QPair<int,int> NumeroRecibo;
+
     MPagos(QObject *parent = 0, bool relaciones = false );
-    ~MPagos();
+
     QVariant data(const QModelIndex& item, int role) const;
     int buscarUltimoNumeroRecibo() const;
     QDate buscarFechaUltimoRecibo() const;
     int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
+    bool setearComoPagado( const int id_recibo );
+    bool buscarSiPagado( const int serie, const int numero );
+    bool buscarSiPagado( const NumeroRecibo num );
+    int buscarIdPorSerieNumero( const NumeroRecibo num );
+    int buscarIdPorSerieNumero( const int serie, const int numero );
+
+    static NumeroRecibo buscarMenorSerieNumeroPagado();
     static int numeroSerieActual();
     static int numeroReciboActual( const int serie );
-    static QPair<int,int> proximoSerieNumeroRecibo();
+    static NumeroRecibo proximoSerieNumeroRecibo();
 
 private:
     void inicializar();
