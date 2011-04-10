@@ -9,6 +9,7 @@
 - Agregar inicialización de reportes en la base de datos.
  - Agregar capacidad para actualizar los reportes x internet ( caso db local )?
 - Agregar numero de CUIT/CUIL para los clientes.
+- Ver por la creacion de indices en la base de datos.
 
 -- Caja --
 - Agregar comprobación de que no se intente cerrar la caja despues de un cierre.

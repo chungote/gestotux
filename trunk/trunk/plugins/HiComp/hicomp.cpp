@@ -18,9 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "hicomp.h"
-#include "vrecibos.h"
-#include "fprefrecibos.h"
-#include "formagregarrecibo.h"
 
 #include <QString>
 #include <QIcon>
@@ -34,16 +31,10 @@
 #include <QSqlError>
 
 QString HiComp::nombrePrograma()  const
-{
- return "HiComp Computacion - 0.3";
-}
-
-Q_EXPORT_PLUGIN2(hicomp, HiComp )
+{  return "HiComp Computacion - 0.3";  }
 
 QIcon HiComp::iconoPrograma() const
-{
- return QIcon( ":/imagenes/icono.png" );
-}
+{  return QIcon( ":/imagenes/icono.png" ); }
 
 /*!
     \fn HiComp::accionesBarra()
@@ -67,9 +58,8 @@ QList<QActionGroup *> HiComp::accionesBarra()
 bool HiComp::inicializar()
 {
  Q_INIT_RESOURCE(hicomp);
- _acciones.clear();
  // Genero las acciones y la lista
- ActRecibos = new QAction( "Ver Recibos", this );
+ /*ActRecibos = new QAction( "Ver Recibos", this );
  ActRecibos->setToolTip( "Ver los recibos emitidos" );
  ActRecibos->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  connect( ActRecibos, SIGNAL( triggered() ), this, SLOT( verRecibosAnteriores() ) );
@@ -77,28 +67,18 @@ bool HiComp::inicializar()
  ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
  ActNuevoRecibo->setToolTip( "Crear un nuevo recibo" );
  ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
- connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );
-
- _acciones.append( ActNuevoRecibo );
+ connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );*/
 
  return true;
 }
 
 
-void HiComp::verRecibosAnteriores()
-{ emit agregarVentana( new VRecibos() ); }
-
-
 QString HiComp::directorioBackup() const
-{
-  return "HiComp";
-}
+{ return "HiComp"; }
 
 
 QString HiComp::directorioActualizaciones() const
-{
- return "HiComp";
-}
+{ return "HiComp"; }
 
 
 /*!
@@ -106,43 +86,29 @@ QString HiComp::directorioActualizaciones() const
  */
 QWidgetList HiComp::formsPreferencias()
 {
- QWidgetList lista;
- lista.append( new FPrefRecibos() );
- return lista;
+ return QWidgetList();
 }
-
-
-/*!
-    \fn HiComp::nuevoRecibo()
- */
-void HiComp::nuevoRecibo()
-{ emit agregarVentana( new FormAgregarRecibo() ); }
-
 
 /*!
     \fn HiComp::nombre() const
  */
 QString HiComp::nombre() const
-{
- return "hicomp";
-}
+{ return "hicomp"; }
 
 
 /*!
     \fn HiComp::tipo() const
  */
 int HiComp::tipo() const
-{
-  return EPlugin::info;
-}
+{ return EPlugin::info; }
 
 
 /*!
     \fn HiComp::crearMenu( QMenuBar *m )
  */
-void HiComp::crearMenu( QMenuBar *m )
+void HiComp::crearMenu( QMenuBar */* m */ )
 {
- QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
+ /*QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer == 0 )
  {
   qDebug( "Error en las baras de menu" );
@@ -153,15 +119,15 @@ void HiComp::crearMenu( QMenuBar *m )
   menuRecibos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
   menuRecibos->addAction( ActRecibos );
   menuRecibos->addAction( ActNuevoRecibo );
- }
+ }*/
 }
 
 bool HiComp::verificarTablas()
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
+ /*if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
  {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }
  if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "clientes" ) )
- {qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }
+ {qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }*/
  return true;
 }
 
@@ -170,36 +136,28 @@ bool HiComp::verificarTablas()
     \fn HiComp::version() const
  */
 double HiComp::version() const
-{
-  return 0.2;
-}
+{  return 0.2; }
 
 
 /*!
     \fn HiComp::empresa() const
  */
 QString HiComp::empresa() const
-{
- return "HiComp Computacion";
-}
+{ return "HiComp Computacion"; }
 
 
 /*!
     \fn HiComp::companeros()
  */
 QString HiComp::companeros()
-{
- return QString();
-}
+{  return QString(); }
 
 
 /*!
     \fn HiComp::crearToolBar( QToolBar *t )
  */
-void HiComp::crearToolBar( QToolBar *t )
-{
- t->addActions( _acciones );
-}
+void HiComp::crearToolBar( QToolBar */*t*/ )
+{}
 
 
 /*!
@@ -209,3 +167,15 @@ void HiComp::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(hicomp);
 }
+
+QImage HiComp::imagenPrograma() const
+{
+    return QImage( ":/imagenes/icono.png" );
+}
+
+QAction *HiComp::botonPantallaInicial()
+{
+    return ( new QAction( this ) );
+}
+
+Q_EXPORT_PLUGIN2(hicomp, HiComp )

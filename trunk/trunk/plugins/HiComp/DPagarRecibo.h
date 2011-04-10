@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,28 +18,29 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FILTROCLIENTES_H
-#define FILTROCLIENTES_H
+#ifndef DPAGARRECIBO_H
+#define DPAGARRECIBO_H
 
-#include <QWidget>
-#include "ui_FiltroClientesBase.h"
+#include "ui_DPagarReciboBase.h"
+#include "mpagos.h"
 
-class FiltroClientes : public QWidget, private Ui::FiltroClientesBase
+class DPagarRecibo : public QDialog, private Ui::DPagarRecibo
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  FiltroClientes(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FiltroClientes();
+    explicit DPagarRecibo( QWidget *parent = 0 );
 
-signals:
-	void cambioCliente( int );
-	void seteaFiltrado( bool, int );
+protected:
+    void changeEvent(QEvent *e);
 
 protected slots:
-    void seteaFiltradoSlot( bool activo );
-    void cambioClienteSlot( int idcombo );
+    void accept();
+    void reject();
+
+private:
+    MPagos::NumeroRecibo _num_recibo;
+
 };
 
-#endif
-
+#endif // DPAGARRECIBO_H
