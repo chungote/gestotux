@@ -6,10 +6,12 @@ CONFIG += plugin \
 TARGET = hicomp
 
 HEADERS += hicomp.h \
-    DPagarRecibo.h
+           DPagarRecibo.h\
+           ../pagos/mpagos.h
 
 SOURCES += hicomp.cpp \
-    DPagarRecibo.cpp
+           DPagarRecibo.cpp \
+           ../pagos/mpagos.cpp
 
 DESTDIR = ../../bin/plugins
 
@@ -19,7 +21,8 @@ DISTFILES += hicomp.SQLITE.sql \
              hicomp.rc
 
 INCLUDEPATH += ../../utiles \
-               ../pagos
+               ../pagos \
+               ../../src
 
 LIBS += ../../bin/libutiles.a
 
@@ -30,5 +33,4 @@ TRANSLATIONS += hicomp.ts
 OTHER_FILES += hicomp.QSQLITE.sql \
                hicomp.QMYSQL.sql
 
-FORMS += \
-    DPagarReciboBase.ui
+FORMS = DPagarReciboBase.ui

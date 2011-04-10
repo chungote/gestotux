@@ -43,15 +43,15 @@ QIcon HiComp::iconoPrograma() const
  */
 QList<QActionGroup *> HiComp::accionesBarra()
 {
- QActionGroup *recibos = new QActionGroup( this );
+ /*QActionGroup *recibos = new QActionGroup( this );
  recibos->setObjectName( "recibos" );
  recibos->addAction( ActNuevoRecibo );
  recibos->addAction( ActRecibos );
  recibos->setProperty( "icono", ":/imagenes/recibo.png" );
  recibos->setProperty( "titulo", "Recibos" );
  QList<QActionGroup*> lista;
- lista.append( recibos );
- return lista;
+ lista.append( recibos );*/
+ return QList<QActionGroup*>();
 }
 
 
@@ -59,12 +59,12 @@ bool HiComp::inicializar()
 {
  Q_INIT_RESOURCE(hicomp);
  // Genero las acciones y la lista
- /*ActRecibos = new QAction( "Ver Recibos", this );
- ActRecibos->setToolTip( "Ver los recibos emitidos" );
- ActRecibos->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
- connect( ActRecibos, SIGNAL( triggered() ), this, SLOT( verRecibosAnteriores() ) );
+ ActPagarRecibo = new QAction( "Pagar Recibos", this );
+ ActPagarRecibo->setToolTip( "Abre la ventana de dialogo para pagar un recibo ya emitido" );
+ //ActPagarRecibo->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
+ connect( ActPagarRecibo, SIGNAL( triggered() ), this, SLOT( pagarRecibosEmitidos() ) );
 
- ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
+ /*ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
  ActNuevoRecibo->setToolTip( "Crear un nuevo recibo" );
  ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
  connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );*/
@@ -106,20 +106,18 @@ int HiComp::tipo() const
 /*!
     \fn HiComp::crearMenu( QMenuBar *m )
  */
-void HiComp::crearMenu( QMenuBar */* m */ )
+void HiComp::crearMenu( QMenuBar *m )
 {
- /*QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
+ QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer == 0 )
  {
-  qDebug( "Error en las baras de menu" );
+  qDebug( "HiComp::Error en las baras de menu" );
  }
  else
  {
-  QMenu *menuRecibos = menuHer->addMenu( "Recibos" );
-  menuRecibos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
-  menuRecibos->addAction( ActRecibos );
-  menuRecibos->addAction( ActNuevoRecibo );
- }*/
+  menuHer->addSeparator();
+  menuHer->addAction( ActPagarRecibo );
+ }
 }
 
 bool HiComp::verificarTablas()
@@ -176,6 +174,14 @@ QImage HiComp::imagenPrograma() const
 QAction *HiComp::botonPantallaInicial()
 {
     return ( new QAction( this ) );
+}
+
+#include "DPagarRecibo.h"
+void HiComp::pagarRecibosEmitidos()
+{
+  DPagarRecibo d;
+  d.exec();
+  return;
 }
 
 Q_EXPORT_PLUGIN2(hicomp, HiComp )
