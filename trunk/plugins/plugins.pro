@@ -8,8 +8,8 @@ SUBDIRS +=  caja \
             CtaCte \
             pagos \
             presupuesto \
-            servicios #\
-#            HiComp
+            servicios \
+            HiComp
 #            email \
 #planificador \
 #aCarCorr \

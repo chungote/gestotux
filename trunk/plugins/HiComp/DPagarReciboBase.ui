@@ -155,6 +155,16 @@
         </item>
        </layout>
       </item>
+      <item>
+       <widget class="QCheckBox" name="CkBEfectivo">
+        <property name="text">
+         <string>¿Pagado en efectivo?</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -173,6 +183,7 @@
  <tabstops>
   <tabstop>SBNumeroRecibo</tabstop>
   <tabstop>DSBPagar</tabstop>
+  <tabstop>CkBEfectivo</tabstop>
   <tabstop>buttonBox</tabstop>
   <tabstop>DSBImporte</tabstop>
   <tabstop>DSBSaldo</tabstop>

@@ -103,6 +103,13 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
+       <widget class="QRadioButton" name="RBLuego">
+        <property name="text">
+         <string>A Pagar Luego</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QRadioButton" name="RBContado">
         <property name="text">
          <string>Contado</string>

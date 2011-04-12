@@ -176,7 +176,7 @@ void FormFacturarServicio::facturar()
                                        QDate::currentDate(),
                                        QString( "Recibo por el pago del periodo %1" ).arg( this->LPeriodo->text() ),
                                        this->_precio_base,
-                                       false,
+                                       false, // No efectivo y no pagado para que quede para despues
                                        false ); // Lo pongo en no pagado
         if( id_recibo <= 0 )
         {

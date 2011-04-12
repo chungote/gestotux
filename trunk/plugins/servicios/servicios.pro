@@ -17,14 +17,8 @@ INCLUDEPATH += ../../src \
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
 
-POST_TARGETDEPS += ../../bin/libreporte.a \
-             ../../bin/libutiles.a
-
-OBJECTS_DIR = obj
-
-UI_DIR = ui
-MOC_DIR = moc
-RCC_DIR = rcc
+PRE_TARGETDEPS += ../../bin/libreporte.a \
+                   ../../bin/libutiles.a
 
 HEADERS += servicios.h \
            mservicios.h \

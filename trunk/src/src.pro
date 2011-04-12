@@ -79,7 +79,7 @@ RESOURCES += gestotux.qrc
 
 TRANSLATIONS += gestotux.ts
 
-POST_TARGETDEPS += ../bin/libreporte.a \
+PRE_TARGETDEPS += ../bin/libreporte.a \
                    ../bin/libutiles.a
 
 DEFINES += GESTOTUX_DESARROLLO
