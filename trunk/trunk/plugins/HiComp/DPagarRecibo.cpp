@@ -35,10 +35,10 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
     // Busco el minimo numero de recibo que tiene el pagado puesto y lo coloco como minimo
     this->SBNumeroRecibo->setMinimum( this->_num_recibo.second );
 
-    // Conecto la seÃ±al para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
+    // Conecto la señal para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
     connect( this->SBNumeroRecibo, SIGNAL( valueChanged( int ) ), this, SLOT( cambioNumeroRecibo( int ) ) );
 
-    // Conecto la seÃ±al para que al poner la cantidad pagada o cambiarla se actualize el saldo
+    // Conecto la señal para que al poner la cantidad pagada o cambiarla se actualize el saldo
     connect( this->DSBPagar, SIGNAL( valueChanged( double ) ), this, SLOT( cambioAPagar( double ) ) );
 
 }
@@ -56,6 +56,9 @@ void DPagarRecibo::changeEvent(QEvent *e)
 }
 
 #include <QMessageBox>
+#include "eregistroplugins.h"
+#include "mcajas.h"
+#include "mcuentacorriente.h"
 /*!
  * \fn DPagarRecibo::accept()
  * FunciÃ³n llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
@@ -72,7 +75,8 @@ void DPagarRecibo::accept()
         return;
     }
     // El recibo no esta pagado. Lo intento poner como pagado.
-    if( m->setearComoPagado( m->buscarIdPorSerieNumero( this->_num_recibo ) ) ) {
+    if( m->setearComoPagado( m->buscarIdPorSerieNumero( this->_num_recibo ), CkBEfectivo->isChecked() ) ) {
+        abort();
         QMessageBox::information( this, "Correcto", QString( "El recibo %1-%2 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.first ).arg( this->_num_recibo.second ) );
     } else {
         QMessageBox::warning( this, "Error", "No se pudo poner como pagado. Verifique debug.txt" );

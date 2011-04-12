@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `recibos` (
   `fecha_pago` datetime NOT NULL,
   `texto` tinyblob,
   `precio` double(15,4) DEFAULT NULL,
+  `forma_pago` int(11) NOT NULL,
   `cancelado` tinyint(4) NOT NULL DEFAULT '0',
   `pagado` tinyint(4) NOT NULL DEFAULT '1',
   `serie` int NOT NULL,
@@ -60,11 +61,12 @@ void MPagos::inicializar()
     setHeaderData( 2, Qt::Horizontal, "Fecha Pago" );
     setHeaderData( 3, Qt::Horizontal, "Texto" );
     setHeaderData( 4, Qt::Horizontal, "Cantidad" );
-    setHeaderData( 5, Qt::Horizontal, "Cancelado" );
-    setHeaderData( 6, Qt::Horizontal, "Pagado" ); // Campo utilizado en hicomp
-    setHeaderData( 7, Qt::Horizontal, "#Serie" );
-    setHeaderData( 8, Qt::Horizontal, "#Numero" );
-    setHeaderData( 9, Qt::Horizontal, "ID mov caja" );
+    setHeaderData( 5, Qt::Horizontal, "Forma Pago" );
+    setHeaderData( 6, Qt::Horizontal, "Cancelado" );
+    setHeaderData( 7, Qt::Horizontal, "Pagado" ); // Campo utilizado en hicomp
+    setHeaderData( 8, Qt::Horizontal, "#Serie" );
+    setHeaderData( 9, Qt::Horizontal, "#Numero" );
+    setHeaderData( 10, Qt::Horizontal, "ID mov caja" );
 }
 
 void MPagos::relacionar()
@@ -91,8 +93,19 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
      { return QSqlRelationalTableModel::data( item, role ).toString(); break; }
      case 4: // Cantidad pagada
      { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble() ); break; }
-     case 5: // Cancelado ( anulado ) y pagado
-     case 6:
+     case 5:
+     {
+       switch( QSqlRelationalTableModel::data( item, role ).toInt() )
+       {
+        case Efectivo:
+        { return "Efectivo"; break; }
+        case Otro:
+        { return "Otro"; break; }
+       }
+       break;
+     }
+     case 6: // Cancelado ( anulado ) y pagado
+     case 7:
      //{ return QSqlRelationalTableModel::data( item, role ).toBool(); break; }
      {
              if( QSqlRelationalTableModel::data( item, role ).toBool() ) {
@@ -102,8 +115,8 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
              }
              break;
      }
-     case 7:
      case 8:
+     case 9:
      { return QSqlRelationalTableModel::data( item, role ).toInt(); }
      default:
      { return QSqlRelationalTableModel::data( item, role ); break; }
@@ -117,9 +130,9 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
     case 2:
     case 3:
     case 4:
-    case 5:
     case 6:
     case 7:
+    case 8:
     { return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
     default:
     { return QSqlRelationalTableModel::data( item, role ); break; }
@@ -221,19 +234,28 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "fecha_pago", fecha );
     rec.setValue( "texto", contenido );
     rec.setValue( "precio", total );
-    rec.setValue( "pagado", pagado );
+    rec.setValue( "pagado", pagado ); ///@todo Ver si esto andaría bien con el formulario de pago retrasado
+    if( efectivo && pagado )  {
+        rec.setValue( "forma_pago", MPagos::Efectivo );
+        rec.setValue( "id_caja", id_caja );
+    } else {
+        if( pagado ) {
+            rec.setValue( "forma_pago", MPagos::Otro );
+            rec.setNull( "id_caja" );
+        } else {
+            rec.setValue( "forma_pago", MPagos::SinPagar );
+            rec.setNull( "id_caja" );
+        }
+    }
     QPair<int,int> proximo = this->proximoSerieNumeroRecibo();
+    // Ver por el tema de numero de caja
+    if( proximo.first == -1 ) { qDebug( "Error de numeracion!" );  return -1; }
     rec.setValue( "serie", proximo.first );
     rec.setValue( "numero",proximo.second );
-    if( efectivo == true ) {
-       rec.setValue( "id_caja", id_caja );
-    } else {
-        rec.setNull( "id_caja" );
-    }
     rec.setValue( "cancelado", false );
-    for( int i=0; i<rec.count(); ++i ) {
+    /*for( int i=0; i<rec.count(); ++i ) {
         qDebug( QString( "Campo %1 es %2: %3 " ).arg( i ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
-    }
+    }*/
     if( this->insertRecord( -1, rec ) ) {
         this->submitAll();
         int id_recibo = query().lastInsertId().toInt();
@@ -296,25 +318,110 @@ int MPagos::numeroReciboActual( const int serie )
 /*!
  * \fn MPagos::proximoSerieNumeroRecibo()
  * Devuelve un par de numeros indicando la serie y numero de recibo que se debería guardar al agregar un recibo.
- * \return NumeroRecibo indicando <serie, numero>
+ * \return NumeroRecibo indicando <serie, numero> o <-1,-1> si hubo un error
  */
 MPagos::NumeroRecibo MPagos::proximoSerieNumeroRecibo()
 {
-    QMessageBox::critical(0, "error", "No implementado" );
-    abort();
-    return QPair<int,int>();
+ QSqlQuery cola;
+ if( cola.exec( "SELECT serie, numero FROM recibos ORDER BY serie DESC, numero DESC LIMIT 1" ) )
+ {
+     if( cola.next() )
+     {
+         int serie = cola.record().value(0).toInt();
+         int numero = cola.record().value(1).toInt();
+         if( numero == 999999 ) {
+             if( serie == 999999) {
+                 qCritical( "Numero de serie terminado! :S?" );
+                 abort();
+             }
+             serie++;
+         }
+         return MPagos::NumeroRecibo( serie, numero );
+     } else {
+         return MPagos::NumeroRecibo( -1, -1 );
+     }
+ } else {
+     return MPagos::NumeroRecibo( -1, -1 );
+ }
 }
 
+#include "../CtaCte/mitemcuentacorriente.h"
+#include "../CtaCte/mcuentacorriente.h"
+#include "../caja/mcajas.h"
+#include "../caja/mmovimientoscaja.h"
 /*!
- * \fn MPagos::setearComoPagado( const in id_recibo )
+ * \fn MPagos::setearComoPagado( const in id_recibo, const bool efectivo )
  * Setea como pago el recibo que se pasa como id. Si ya esta como pagado, no hace nada y devuelve true.
  * \param id_recibo ID del recibo
- * \return Verdadero si pudo ser puesto como pagado y descontado de la ctacte o si ya estaba como pagado.
+ * \param efectivo Define si la forma de pago es MPagos::Efectivo ( si el parametro es true ) o MPagos::Otro ( si es false )
+ * \return Verdadero si pudo ser puesto como pagado o si ya estaba como pagado.
  */
-bool MPagos::setearComoPagado( const int /*id_recibo*/ )
+bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
 {
- QMessageBox::critical(0, "error", "No implementado" );
- return false;
+ QSqlDatabase::database().transaction();
+ if( this->query().exec( QString( "UPDATE recibos SET pagado = 1 WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
+    if( this->query().exec( QString( "SELECT id_cliente, precio, serie, numero FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) )
+    {
+        int id_cliente = this->query().value(0).toInt();
+        double precio = this->query().value(1).toDouble();
+        QString t = QString( "%1-%2" ).arg( this->query().value(2).toInt() ).arg( this->query().value(3).toInt() );
+        // Coloco el recibo en la cuenta corriente del cliente si no es el consumidor final
+        if( id_cliente > 0 ) {
+            MItemCuentaCorriente *m = new MItemCuentaCorriente();
+            if( m->agregarOperacion( MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente ), // Numero de cuenta del cliente
+                                     t, // Numero de recibo ( real )
+                                     id_recibo, // Id de referencia
+                                     MItemCuentaCorriente::Recibo,
+                                     QDate::currentDate(),
+                                     QString( "Pago mediante recibo %1" ).arg( t ),
+                                     precio ) )
+            {
+                qDebug( "Operación de cuenta corriente guardada correctamente" );
+            } else {
+                qDebug( "Error al intentar agregar la operación de cuenta corriente cuando poniendo como pagado un recibo." );
+                QSqlDatabase::database().rollback();
+                return false;
+            }
+            delete m;
+        } // El cliente es consumidor final sino
+        // Si el recibo se pago en efectivo, hago su ingreso en caja
+        if( efectivo )
+        {
+            MMovimientosCaja *m = new MMovimientosCaja();
+            if( m->agregarMovimiento( MCajas::cajaPredeterminada(),
+                                      QString( "Pago del recibo %1" ).arg( t ),
+                                      QString(),
+                                      precio ) )
+            {
+                qDebug( "Operación de movimiento de caja agregado correctamente" );
+            } else {
+                qDebug( "Error al intentar registrar el movimiento de caja al pagar un recibo ya emitido." );
+                QSqlDatabase::database().rollback();
+                return false;
+            }
+            delete m;
+        } else {
+            // El metodo de pago es otro ( desconocido )
+            if( this->query().exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Otro ).arg( id_recibo ) ) ) {
+                // Todos los pasos guardados correctamente
+            } else {
+                qDebug( "Error al intentar poner la forma de pago en otro al poner como pagado un recibo ya emitido" )   ;
+                QSqlDatabase::database().rollback();
+                return false;
+            }
+        }
+    }
+ } else {
+    qDebug( "Error al intentar colocar el recibo como pagado" );
+    QSqlDatabase::database().rollback();
+    return false;
+ }
+ if( !QSqlDatabase::database().commit() ) {
+     qCritical( "Error al hacer commit de la base de datos!" );
+     abort();
+ } else {
+     return true;
+ }
 }
 
 #include <QSqlQuery>

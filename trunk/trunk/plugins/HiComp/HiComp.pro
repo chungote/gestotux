@@ -7,22 +7,27 @@ TARGET = hicomp
 
 HEADERS += hicomp.h \
            DPagarRecibo.h\
-           ../pagos/mpagos.h
+           ../pagos/mpagos.h \
+           ../CtaCte/mitemcuentacorriente.h \
+           ../CtaCte/mcuentacorriente.h \
+           ../caja/mcajas.h
 
 SOURCES += hicomp.cpp \
            DPagarRecibo.cpp \
-           ../pagos/mpagos.cpp
+           ../pagos/mpagos.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp \
+           ../CtaCte/mcuentacorriente.cpp \
+           ../caja/mcajas.cpp
 
 DESTDIR = ../../bin/plugins
 
 RESOURCES += hicomp.qrc
 
-DISTFILES += hicomp.SQLITE.sql \
-             hicomp.rc
-
 INCLUDEPATH += ../../utiles \
                ../pagos \
-               ../../src
+               ../../src \
+               ../CtaCte \
+               ../caja
 
 LIBS += ../../bin/libutiles.a
 

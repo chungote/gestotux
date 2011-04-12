@@ -42,6 +42,7 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     TBClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
     connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
 
+    this->TBNotas->setVisible( false );
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     // Plugins

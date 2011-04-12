@@ -31,7 +31,8 @@ Modelo que administra los pagos realizados en el programa.
 */
 class MPagos : public QSqlRelationalTableModel
 {
-Q_OBJECT
+    Q_OBJECT
+
 public:
    /*!
     * \typedef NumeroRecibo
@@ -39,13 +40,21 @@ public:
     */
     typedef QPair<int,int> NumeroRecibo;
 
+    enum FormaPago {
+        SinPagar = 0,
+        Efectivo = 1,
+        Otro = 2
+    };
+
     MPagos(QObject *parent = 0, bool relaciones = false );
 
     QVariant data(const QModelIndex& item, int role) const;
+
+    int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
+
     int buscarUltimoNumeroRecibo() const;
     QDate buscarFechaUltimoRecibo() const;
-    int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
-    bool setearComoPagado( const int id_recibo );
+    bool setearComoPagado( const int id_recibo, const bool efectivo );
     bool buscarSiPagado( const int serie, const int numero );
     bool buscarSiPagado( const NumeroRecibo num );
     int buscarIdPorSerieNumero( const NumeroRecibo num );

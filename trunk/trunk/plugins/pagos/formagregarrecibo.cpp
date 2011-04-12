@@ -54,7 +54,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
         // Por ahora elimino el contado por no estar programado
-        RBContado->setEnabled(false);
+        RBContado->setEnabled( false );
 }
 
 FormAgregarRecibo::~FormAgregarRecibo()
@@ -150,8 +150,8 @@ void FormAgregarRecibo::guardar()
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que el texto del recibo no este vacio" );
         return;
     }
-    if( (!this->RBContado->isChecked()) && (!this->RBotro->isChecked()) ) {
-        QMessageBox::warning( this, "Faltan datos", "Por favor verifique que haya elegido una forma de pago" );
+    if( (!this->RBContado->isChecked()) && (!this->RBotro->isChecked()) && (!this->RBLuego->isChecked()) ) {
+        QMessageBox::warning( this, "Faltan datos", "Por favor verifique que haya elegido una forma de pago." );
         return;
     }
     if( this->dSBPagado->value() <= 0.0 ) {
@@ -177,7 +177,7 @@ void FormAgregarRecibo::guardar()
         contado = true;
     } else if( this->RBotro->isChecked() ) {
         pagado = true;
-    }
+    } // Si esta como luego, pongo los dos parametros como estan false, false
     // Genero la transacción
     QSqlDatabase::database().transaction();
     this->_modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );

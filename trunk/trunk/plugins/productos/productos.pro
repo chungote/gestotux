@@ -1,8 +1,8 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-help
+          plugin \
+          help
 
 QT += sql
 
@@ -29,13 +29,13 @@ HEADERS += mcategorias.h \
 
 LIBS += ../../bin/libutiles.a
 
-POST_TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a
 
 INCLUDEPATH += ../../src \
-  ../../utiles
+               ../../utiles
 
 DISTFILES += productos.SQLITE.sql \
- productos.QMYSQL.sql
+             productos.QMYSQL.sql
 
 TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc

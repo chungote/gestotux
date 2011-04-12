@@ -10,8 +10,8 @@ TARGET = pagos
 
 DESTDIR = ../../bin/plugins/
 
-POST_TARGETDEPS += ../../bin/libreporte.a \
-  ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libreporte.a \
+                  ../../bin/libutiles.a
 
 HEADERS += pagosplugin.h \
            mpagos.h \
@@ -36,11 +36,13 @@ SOURCES += pagosplugin.cpp \
            FormPrefRecibos.cpp
 
 FORMS += FormReciboBase.ui \
-    FormPrefRecibos.ui
+         FormPrefRecibos.ui
 
 INCLUDEPATH += ../../src \
                ../../reporte \
-               ../../utiles
+               ../../utiles \
+               ../caja \
+               ../CtaCte
 
 LIBS += ../../bin/libreporte.a \
         ../../bin/libutiles.a
