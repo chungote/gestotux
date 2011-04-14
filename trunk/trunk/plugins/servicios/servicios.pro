@@ -20,7 +20,9 @@ LIBS += ../../bin/libutiles.a \
 PRE_TARGETDEPS += ../../bin/libreporte.a \
                    ../../bin/libutiles.a
 
-HEADERS += servicios.h \
+HEADERS =   ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h \
+           servicios.h \
            mservicios.h \
            vservicios.h \
            mrecargos.h \
@@ -36,10 +38,10 @@ HEADERS += servicios.h \
            MTempClientesFacturarServicio.h \
            ../pagos/mpagos.h \
            ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h
-SOURCES += servicios.cpp \
+           ../CtaCte/mitemcuentacorriente.h
+
+
+SOURCES = servicios.cpp \
            mservicios.cpp \
            vservicios.cpp \
            mrecargos.cpp \
@@ -56,13 +58,9 @@ SOURCES += servicios.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h
+
 
 RESOURCES += servicios.qrc
-
-DISTFILES += servicios.QMYSQL.sql \
-             servicios.QSQLITE.sql
 
 TRANSLATIONS = servicios.ts
 
@@ -74,3 +72,6 @@ FORMS += FormAsociarBase.ui \
 
 OTHER_FILES += servicios.QMYSQL.sql \
                servicios.QSQLITE.sql
+
+SOURCES += ../caja/mcajas.cpp \
+           ../caja/mmovimientoscaja.cpp

@@ -76,6 +76,7 @@ void DPagarRecibo::accept()
     }
     // El recibo no esta pagado. Lo intento poner como pagado.
     if( m->setearComoPagado( m->buscarIdPorSerieNumero( this->_num_recibo ), CkBEfectivo->isChecked() ) ) {
+        QMessageBox::warning( this, "Error", "Verificar si es un recibo de un servicio para conocer los recargos!!!" );
         abort();
         QMessageBox::information( this, "Correcto", QString( "El recibo %1-%2 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.first ).arg( this->_num_recibo.second ) );
     } else {

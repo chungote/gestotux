@@ -33,7 +33,7 @@ PRE_TARGETDEPS += ../../bin/libutiles.a
 INCLUDEPATH += ../../src \
               ../../utiles
 
-DISTFILES += presupuesto.SQLITE.sql \
-             presupuesto.QMYSQL.sql
+OTHER_FILES += presupuesto.QSQLITE.sql \
+               presupuesto.QMYSQL.sql
 
 TRANSLATIONS += presupuesto.ts
