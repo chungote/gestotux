@@ -10,14 +10,16 @@ HEADERS += hicomp.h \
            ../pagos/mpagos.h \
            ../CtaCte/mitemcuentacorriente.h \
            ../CtaCte/mcuentacorriente.h \
-           ../caja/mcajas.h
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h
 
 SOURCES += hicomp.cpp \
            DPagarRecibo.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
            ../CtaCte/mcuentacorriente.cpp \
-           ../caja/mcajas.cpp
+           ../caja/mcajas.cpp \
+           ../caja/mmovimientoscaja.cpp
 
 DESTDIR = ../../bin/plugins
 
