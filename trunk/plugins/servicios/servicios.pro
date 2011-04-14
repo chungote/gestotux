@@ -36,7 +36,9 @@ HEADERS += servicios.h \
            MTempClientesFacturarServicio.h \
            ../pagos/mpagos.h \
            ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h
+           ../CtaCte/mitemcuentacorriente.h \
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h
 SOURCES += servicios.cpp \
            mservicios.cpp \
            vservicios.cpp \
@@ -53,7 +55,9 @@ SOURCES += servicios.cpp \
            MTempClientesFacturarServicio.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mcuentacorriente.cpp \
-           ../CtaCte/mitemcuentacorriente.cpp
+           ../CtaCte/mitemcuentacorriente.cpp \
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h
 
 RESOURCES += servicios.qrc
 
