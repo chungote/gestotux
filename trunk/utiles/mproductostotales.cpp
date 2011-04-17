@@ -33,7 +33,7 @@ MProductosTotales::MProductosTotales(QObject *parent)
 {
  // Inicializo los sistemas
  Total = 0;
- //_id_listaPrecio = -1;
+ _min = -1;
  _calcularTotal = false;
  _buscarPrecio = false;
  cantidades = new QHash<int, double>();
@@ -54,7 +54,7 @@ MProductosTotales::~MProductosTotales()
 {}
 
 
-bool MProductosTotales::insertRow(int row, const QModelIndex& parent)
+bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
 {
  if( row == -1 )
  { row = cantidades->size(); }
@@ -481,4 +481,14 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
       // El precio se va a ingresar a mano, porque no esta en la base de datos de productos
      return 0.0;
   }
+}
+
+void MProductosTotales::agregarNuevoProducto( QString nombre )
+{
+  // Lo agrego a la lista de productos
+  this->prods->insert( this->_min, nombre );
+  // aumento el minimo
+  this->_min--;
+  // Actualizo la lista de productos
+  emit cambioListaProductos( this );
 }

@@ -21,6 +21,7 @@
 #define DPRODUCTOSTOTALES_H
 
 #include <QItemDelegate>
+#include "mproductostotales.h"
 
 /**
  * \brief Delegate para editar los campos de una tabla mproductostotales
@@ -42,10 +43,11 @@ public:
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
     void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
+public slots:
+    void neceistoActualizarListaSlots( MProductosTotales *);
+
 private:
-    int nuevoProducto( QString nombre );
     QMap<int, QString> *lista;
-    int _min;
 
 };
 

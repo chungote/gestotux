@@ -49,8 +49,11 @@ public:
     bool buscaPrecios();
     void buscarPrecios( bool activado = true );
     QMap<int, QString> *listaProductos() { return this->prods; }
-
     QMap<int, QString> *prods;
+    void agregarNuevoProducto( const QString nombre );
+
+signals:
+    void cambioListaProductos( MProductosTotales * );
 
 private:
         QHash<int, double> *subtotales;
@@ -60,6 +63,7 @@ private:
         double Total;
         bool _calcularTotal;
         bool _buscarPrecio;
+        int _min;
         double buscarPrecioVenta( int id_producto );
 };
 

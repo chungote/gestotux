@@ -33,7 +33,6 @@ DProductosTotales::DProductosTotales(QWidget *parent)
  : QItemDelegate(parent)
 {
  setClipping( false );
- _min = -1;
  lista = 0;
 }
 
@@ -98,6 +97,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
                 break;
         }
  }
+ return QItemDelegate::createEditor( parent, option, index );
 }
 
 void DProductosTotales::setEditorData(QWidget* editor, const QModelIndex& index) const
@@ -137,10 +137,11 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
         {
                 QComboBox *combo = qobject_cast<QComboBox *>(editor);
                 // Veo si tiene el dato de ser un producto, sino, lo agrego
-                /*if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
+                if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
                 {
-                    combo->setItemData( combo->currentIndex(), nuevoProducto( combo->itemText( combo->currentIndex() ) ) );
-                }*/
+                    // Lo agrego en el modelo para que recarge despues
+                    qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( combo->itemText( combo->currentIndex() ) );
+                }
                 model->setData( index, combo->itemData( combo->currentIndex() ) );
                 break;
         }
@@ -167,10 +168,5 @@ void DProductosTotales::updateEditorGeometry(QWidget* editor, const QStyleOption
     QItemDelegate::updateEditorGeometry(editor, option, index);
 }
 
-int DProductosTotales::nuevoProducto( QString nombre )
-{
-    lista->insert( _min, nombre );
-    int m = _min;
-    _min--;
-    return m;
-}
+void DProductosTotales::neceistoActualizarListaSlots( MProductosTotales *m )
+{ lista = m->listaProductos(); }
