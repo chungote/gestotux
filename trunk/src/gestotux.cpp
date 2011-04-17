@@ -192,7 +192,6 @@ gestotux::~gestotux()
 {
     // Cierro la base de datos
     QSqlDatabase::database().close();
-    QSqlDatabase::removeDatabase( QSqlDatabase::database().connectionName() );
 }
 
 /*!

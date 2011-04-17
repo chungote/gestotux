@@ -397,5 +397,7 @@ int main(int argc, char *argv[])
         mw->inicializar();
         if( p->value( "maximizado", true ).toBool() )
         { mw->showMaximized(); }
-        return app.exec();
+        int ret = app.exec();
+        QSqlDatabase::removeDatabase( "qt_sql_default_connection" );
+        return ret;
 }

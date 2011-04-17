@@ -47,6 +47,7 @@ void FormPrefDb::cargar()
  if( p->contains( "mysql/puerto" ) )
  {
   SBPuerto->setValue( p->value( "mysql/puerto", 3306 ).toInt() );
+  CkBPuerto->setChecked( true );
  }
  LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
  if( p->contains( "mysql/contra" ) )
