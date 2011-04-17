@@ -86,6 +86,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         TVContenido->setModel( m );
         DProductosTotales *d = new DProductosTotales( TVContenido );
         d->setearListaProductos( m->listaProductos() );
+        connect( m, SIGNAL( cambioListaProductos( MProductosTotales* ) ), d, SLOT( neceistoActualizarListaSlots( MProductosTotales* ) ) );
         TVContenido->setItemDelegateForColumn( 1, d );
         TVContenido->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
