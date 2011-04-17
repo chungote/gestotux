@@ -233,25 +233,8 @@ void EVLista::aPdf()
     /// \todo implement me
 }
 
-#include <QDate>
 void EVLista::antes_de_insertar( int /*row*/, QSqlRecord & /*record*/ )
-{
- /*if( QSqlDatabase::database().driverName() == "QSQLITE" )
- {
-        Se utiliza este truco para que no falle la insercion y se puedan agregar registros sin problemas
-        como sqlite no tiene forma de insertar timestamps en los registros al actualizar hay que hacerlo a mano
-   if( record.contains( "creado" ) )
-   {  record.setValue( "creado", QDate::currentDate() );  }
-   if( record.contains( "modificado" ) )
-   { record.setValue( "modificado", QDate::currentDate() ); }
- }
- else if( QSqlDatabase::database().driverName() == "QMYSQL" )
- {
-          MySql solo permite tener un registro con timestamp activado, asique ponemos la fecha en el de crear
-        if( record.contains( "creado" ) )
-        { record.setValue( "creado", QDate::currentDate() ); }
- }*/
-}
+{}
 
 
 /*!
