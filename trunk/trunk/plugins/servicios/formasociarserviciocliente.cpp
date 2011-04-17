@@ -37,6 +37,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                         CBServicio->setVisible( false );
                         LServicio->setVisible( false );
                         CBCliente->setModel( new EMCliente( CBCliente ) );
+                        qobject_cast<EMCliente *>( CBCliente->model())->setQuery( "SELECT id, razon_social FROM clientes WHERE id != 0" );
                         CBCliente->setModelColumn( 1 );
                         break;
                 }
@@ -53,6 +54,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                         CBServicio->setVisible( false );
                         LServicio->setVisible( false );
                         CBCliente->setModel( new EMCliente( CBCliente ) );
+                        qobject_cast<EMCliente *>( CBCliente->model())->setQuery( "SELECT id, razon_social FROM clientes WHERE id != 0" );
                         CBCliente->setModelColumn( 1 );
                         break;
                 }

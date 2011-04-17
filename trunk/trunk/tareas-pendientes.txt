@@ -74,7 +74,6 @@
 
 ::: Problemas Generales :::
 
-- Eliminar cartel de colas funcionando al cerrar el programa. Verificar que colas todavia estan andando.
 - Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
 - Hacer necesario los backups para continuar con el programa al iniciar.
 - Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
