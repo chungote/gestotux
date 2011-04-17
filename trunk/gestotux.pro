@@ -12,3 +12,7 @@ CONFIG += warn_on \
 DESTDIR = .
 
 OTHER_FILES = tareas-pendientes.txt
+
+unix {
+  system( generar_pri.sh eliminar )
+}

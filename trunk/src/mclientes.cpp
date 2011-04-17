@@ -50,23 +50,22 @@ CREATE TABLE clientes (
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Razon Social" );
  setHeaderData( 2, Qt::Horizontal, "Nombre" );
- setHeaderData( 3, Qt::Horizontal, "Segundo Nombre" );
- setHeaderData( 4, Qt::Horizontal, "Apellido" );
- setHeaderData( 5, Qt::Horizontal, "Calle" );
- setHeaderData( 6, Qt::Horizontal, "Numero" );
- setHeaderData( 7, Qt::Horizontal, "Piso" );
- setHeaderData( 8, Qt::Horizontal, "Depto" );
- setHeaderData( 9, Qt::Horizontal, "Ciudad" );
- setHeaderData( 10, Qt::Horizontal, "Codigo Postal" );
- setHeaderData( 11, Qt::Horizontal, "Provincia" );
- setHeaderData( 12, Qt::Horizontal, "Pais" );
- setHeaderData( 13, Qt::Horizontal, "Telefono" );
- setHeaderData( 14, Qt::Horizontal, "Celular" );
- setHeaderData( 15, Qt::Horizontal, "Fax" );
- setHeaderData( 16, Qt::Horizontal, "Em@il" );
- setHeaderData( 17, Qt::Horizontal, "EnviarComprobantexEmail" );
- setHeaderData( 19, Qt::Horizontal, "¿CtaCte?" );
- setHeaderData( 20, Qt::Horizontal, "CUIT/CUIL" );
+ setHeaderData( 3, Qt::Horizontal, "Apellido" );
+ setHeaderData( 4, Qt::Horizontal, "Calle" );
+ setHeaderData( 5, Qt::Horizontal, "Numero" );
+ setHeaderData( 6, Qt::Horizontal, "Piso" );
+ setHeaderData( 7, Qt::Horizontal, "Depto" );
+ setHeaderData( 8, Qt::Horizontal, "Ciudad" );
+ setHeaderData( 9, Qt::Horizontal, "Codigo Postal" );
+ setHeaderData( 10, Qt::Horizontal, "Provincia" );
+ setHeaderData( 11, Qt::Horizontal, "Pais" );
+ setHeaderData( 12, Qt::Horizontal, "Telefono" );
+ setHeaderData( 13, Qt::Horizontal, "Celular" );
+ setHeaderData( 14, Qt::Horizontal, "Fax" );
+ setHeaderData( 15, Qt::Horizontal, "Em@il" );
+ setHeaderData( 16, Qt::Horizontal, "EnviarComprobantexEmail" );
+ setHeaderData( 17, Qt::Horizontal, "¿CtaCte?" );
+ setHeaderData( 18, Qt::Horizontal, "CUIT/CUIL" );
 }
 
 
