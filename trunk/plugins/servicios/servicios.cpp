@@ -46,13 +46,13 @@ bool Servicios::inicializar()
  return true;
 }
 
-bool Servicios::verificarTablas()
+bool Servicios::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios" ) )
+ if( !tablas.contains( "servicios" ) )
     { qWarning( "Servicios::Error al buscar la tabla de servicios" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servicios_clientes" ) )
+ if( !tablas.contains( "servicios_clientes" ) )
  { qWarning( "Servicios::Error al buscar la tabla de servicios_clientes" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recargos" ) )
+ if( !tablas.contains( "recargos" ) )
  { qWarning( "Servicios::Error al buscar la tabla de recargos" ); return false; }
  return true;
 }

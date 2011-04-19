@@ -44,7 +44,7 @@ public:
     QString empresa() const;
     QString nombrePrograma() const;
     bool inicializar();
-    bool verificarTablas();
+    bool verificarTablas( QStringList tablas );
     int tipo() const;
     QList< QActionGroup * > accionesBarra();
     QString nombre() const;

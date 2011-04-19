@@ -156,7 +156,7 @@ void FormFacturarServicio::facturar()
     QString nombre_cliente = "";
     QHash<int, int> recibos; // Guarda el paso con el id del recibo guardado
 
-    // Genero la transación en la base de datos
+    // Genero la transación en la base de datos ( total )
     QSqlDatabase::database().transaction();
     // Itero por todos los recibos
     for( int i = 0; i<cantidad_total; i++ ) {
@@ -208,9 +208,13 @@ void FormFacturarServicio::facturar()
             break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
+        QMessageBox::warning( this, "Atencion!", "bucle terminado" );
     }
     // Guardo todos los datos
-    QSqlDatabase::database().commit();
+    QMessageBox::warning( this, "Atencion!", "Luego de este cartel se hara un rollback!" );
+    QSqlDatabase::database().rollback();
+    return;
+    //QSqlDatabase::database().commit();
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo

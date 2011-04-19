@@ -90,6 +90,31 @@ Versión para SmartPhones:
 
 - Pasar las librerias de impresion a un tipo de "Application Server"
 
+Ejemplo de Store Procedure en MySQL:
+======= == ===== ========= == ======
+
+CREATE PROCEDURE arreglarazonsocial()
+BEGIN
+  DECLARE listo INT DEFAULT 0;
+  DECLARE nombre, apellido TEXT;
+  DECLARE id INT DEFAULT -1;
+  DECLARE cur CURSOR FOR SELECT c.id FROM clientes AS c;
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET listo = 1;
+  OPEN cur;
+  read_loop: LOOP
+     IF listo THEN
+       LEAVE read_loop;
+     END IF;
+     FETCH cur INTO id;
+     SELECT c.nombre FROM clientes AS c WHERE c.id = id INTO nombre;
+     SELECT c.apellido FROM clientes AS c WHERE c.id = id INTO apellido;
+     UPDATE clientes AS c SET c.razon_social = CONCAT( CONCAT( apellido, ',' ), nombre ) WHERE c.id = id;
+  END LOOP;
+  CLOSE cur;
+END
+
+
+
 Temas de Jazz:
 ===== == =====
 

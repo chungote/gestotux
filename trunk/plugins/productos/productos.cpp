@@ -96,11 +96,11 @@ bool productos::inicializar()
 /*!
     \fn productos::verificarTablas()
  */
-bool productos::verificarTablas()
+bool productos::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
+ if( !tablas.contains( "producto" ) )
  { qWarning( "Productos::Error al buscar la tabla producto" ); return false; }
- else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_producto" ) )
+ else if( !tablas.contains( "categoria_producto" ) )
  { qWarning( "Productos::Error al buscar la tabla categoria_producto" ); return false; }
  return true;
 }

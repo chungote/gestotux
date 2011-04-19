@@ -31,7 +31,7 @@
 #include <QSqlError>
 
 QString HiComp::nombrePrograma()  const
-{  return "HiComp Computacion - 0.3";  }
+{  return QString( "%1 - %2" ).arg( this->empresa() ).arg( this->version() );  }
 
 QIcon HiComp::iconoPrograma() const
 {  return QIcon( ":/imagenes/icono.png" ); }
@@ -134,7 +134,7 @@ bool HiComp::verificarTablas()
     \fn HiComp::version() const
  */
 double HiComp::version() const
-{  return 0.2; }
+{  return 0.5; }
 
 
 /*!

@@ -133,37 +133,40 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
 
 
 /*!
-    \fn MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
+    \fn MServicios::asociarCliente( int id_cliente, int id_servicio, QDateTime fecha )
         Asocia el cliente con el servicio correspondiente en la base de datos en la fecha de alta indicada.
         @param id_cliente Identificador de cliente
         @param id_servicio Identificador del servicio
         @param fecha Fecha en que el cliente se da de alta en el servicio
         @return Verdadero si la asociacion se pudo realizar correctamente
  */
-bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDate fecha )
+bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDateTime fecha )
 {
  QSqlTableModel *modelo = new QSqlTableModel();
- modelo->setTable( "servicios_cliente" );
+ modelo->setTable( "servicios_clientes" );
  modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
  QSqlRecord registro = modelo->record();
  registro.setValue( "id_cliente", id_cliente );
  registro.setValue( "id_servicio", id_servicio );
- registro.setValue( "fecha_adhesion", fecha );
+ registro.setValue( "fecha_alta", fecha );
  registro.setNull( "fecha_baja" );
  if( modelo->insertRecord( -1, registro ) )
  {
   if( !modelo->submitAll() )
   {
    qWarning( qPrintable( "Error al hacer submit en el modelo: " + modelo->lastError().text() ) );
+   delete modelo;
    return false;
   }
  }
  else
  {
   qWarning( qPrintable( "Error al hacer insertar en el modelo: " + modelo->lastError().text() ) );
+  delete modelo;
   return false;
  }
  delete modelo;
+ qDebug( "Datos guardados correctamente" );
  return true;
 }
 
@@ -247,6 +250,7 @@ QString MServicios::getPeriodoActual( const int id_servicio )
     int periodo = floor( u );
     // Busco las fechas del inicio y fin del periodo
     // Inicio del periodo
+
     /*QDate fecha_inicio = ???;
     QDate fecha_fin = fecha_inicio.addDays( cant_dias_periodo );*/
     return QString( "%1/%2 del %3 al %4" ).arg( periodo ).arg( hoy.year() )/*.arg( fecha_inicio.toString() ).arg( fecha_fin.toString() )*/;

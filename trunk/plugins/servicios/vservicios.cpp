@@ -150,7 +150,7 @@ void VServicios::darAltaServicioCliente()
 {
  // El item actual seleccionado es en el cual se pidio el menu
  // Obtengo el numero de servicio de la vista...
- int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+ int id_servicio = vista->model()->data( vista->model()->index( vista->currentIndex().row(), 0 ), Qt::EditRole ).toInt();
  FormAsociarServicioCliente *f = new FormAsociarServicioCliente( this, FormAsociarServicioCliente::Cliente );
  f->setIdServicio( id_servicio );
  f->exec();
@@ -164,7 +164,7 @@ void VServicios::darAltaServicioCliente()
 void VServicios::verClientesAdheridos()
 {
  // Obtengo el numero de servicio de la vista...
- int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+ int id_servicio = vista->model()->data( vista->model()->index( vista->currentIndex().row(), 0 ), Qt::EditRole ).toInt();
  FormClientesAdheridos *f = new FormClientesAdheridos( this );
  f->setServicioInicial( id_servicio );
  emit agregarVentana( f );

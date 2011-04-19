@@ -40,7 +40,7 @@ class Caja : public QObject, public EPlugin
         QString nombre() const;
         QWidgetList formsPreferencias();
         bool inicializar();
-        bool verificarTablas();
+        bool verificarTablas( QStringList tablas );
         int tipo() const;
         void crearMenu( QMenuBar *m );
         double version() const;

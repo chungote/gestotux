@@ -49,14 +49,14 @@ enum tipoForm {
 public slots:
     int exec();
 
-protected slots:
-  virtual void          reject();
-  virtual void          accept();
+private slots:
+    void reject();
+    void accept();
 
 private:
-	int _id_cliente;
-	int _id_servicio;
-	QDate _fecha;
+        int _id_cliente;
+        int _id_servicio;
+        QDate _fecha;
 
 };
 

@@ -36,7 +36,7 @@ public:
     QString nombre() const;
     QWidgetList formsPreferencias();
     bool inicializar();
-    bool verificarTablas();
+    bool verificarTablas( QStringList tablas );
     int tipo() const;
     void crearMenu( QMenuBar *m );
     double version() const;

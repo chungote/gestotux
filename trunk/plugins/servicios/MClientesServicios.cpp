@@ -24,13 +24,13 @@ MClientesServicios::MClientesServicios(QObject *parent) :
     QSqlRelationalTableModel(parent)
 {
    this->setTable( "servicios_clientes" );
-   this->setHeaderData( 0, Qt::Horizontal, "Cliente" );
-   this->setHeaderData( 1, Qt::Horizontal, "Servicio");
+   this->setHeaderData( 0, Qt::Horizontal, "Servicio" );
+   this->setHeaderData( 1, Qt::Horizontal, "Cliente");
    this->setHeaderData( 2, Qt::Horizontal, "Fecha Alta" );
    this->setHeaderData( 3, Qt::Horizontal, "Fecha Baja" );
    // Relaciones
-   this->setRelation( 0, QSqlRelation( "clientes", "id", "razon_social" ) );
-   this->setRelation( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
+   this->setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
+   this->setRelation( 0, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
 }
 
 void MClientesServicios::filtrarPorCliente( const int id_cliente )

@@ -53,7 +53,7 @@ bool GestotuxDefault::inicializar()
     return true;
 }
 
-bool GestotuxDefault::verificarTablas()
+bool GestotuxDefault::verificarTablas( QStringList /*tablas*/ )
 { return true; }
 
 int GestotuxDefault::tipo() const
