@@ -81,15 +81,15 @@ bool Ventas::inicializar()
 /*!
     \fn Ventas::verificarTablas()
  */
-bool Ventas::verificarTablas()
+bool Ventas::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
+ if( !tablas.contains( "producto" ) )
  { qWarning( "Ventas::Error al buscar la tabla producto" ); return false; }
- else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_producto" ) )
+ else if( !tablas.contains( "categoria_producto" ) )
  { qWarning( "Ventas::Error al buscar la tabla categorias_producto" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas" ) )
+ if( !tablas.contains( "ventas" ) )
  { qWarning( "Ventas::Error al buscar la tabla ventas" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ventas_productos" ) )
+ if( !tablas.contains( "ventas_productos" ) )
  { qWarning( "Ventas::Error al buscar la tabla ventas_productos" ); return false; }
  return true;
 }

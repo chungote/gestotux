@@ -36,11 +36,11 @@ bool Compras::inicializar()
  return true;
 }
 
-bool Compras::verificarTablas()
+bool Compras::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "compras" ) )
+ if( !tablas.contains( "compras" ) )
  { qWarning( "Error al buscar la tabla compras" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "compras_productos" ) )
+ if( !tablas.contains( "compras_productos" ) )
  { qWarning( "Error al buscar la tabla compras_productos" ); return false; }
  return true;
 }

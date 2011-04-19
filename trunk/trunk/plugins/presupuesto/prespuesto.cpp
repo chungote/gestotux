@@ -127,11 +127,11 @@ double prespuesto::version() const
 /*!
     \fn prespuesto::verificarTablas()
  */
-bool prespuesto::verificarTablas()
+bool prespuesto::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "presupuestos" ) )
+ if( !tablas.contains( "presupuestos" ) )
  { qWarning( "Presupuesto::Error al buscar la tabla presupuestos" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "producto" ) )
+ if( !tablas.contains( "producto" ) )
  { qWarning( "Presupuesto::Error al buscar la tabla producto" ); return false; }
  return true;
 }

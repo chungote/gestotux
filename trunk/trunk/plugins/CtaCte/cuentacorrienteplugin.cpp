@@ -40,11 +40,11 @@ bool CuentaCorrientePlugin::inicializar()
  return true;
 }
 
-bool CuentaCorrientePlugin::verificarTablas()
+bool CuentaCorrientePlugin::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "ctacte" ) )
+ if( !tablas.contains( "ctacte" ) )
  { qWarning( "Error al buscar la tabla de cuenta corriente" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "item_ctacte" ) )
+ if( !tablas.contains( "item_ctacte" ) )
   { qWarning( "Error al buscar la tabla de item cuenta corriente" ); return false; }
  return true;
 }

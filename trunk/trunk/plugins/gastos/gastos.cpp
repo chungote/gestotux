@@ -44,11 +44,11 @@ bool Gastos::inicializar()
  return true;
 }
 
-bool Gastos::verificarTablas()
+bool Gastos::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "gastos" ) )
+ if( !tablas.contains( "gastos" ) )
  { qWarning( "Gastos::Error al buscar la tabla gastos" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "categoria_gastos" ) )
+ if( !tablas.contains( "categoria_gastos" ) )
  { qWarning( "Gastos::Error al buscar la tabla categorias_gastos" ); return false; }
  return true;
 }

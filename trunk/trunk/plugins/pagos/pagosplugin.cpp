@@ -38,9 +38,9 @@ bool PagosPlugin::inicializar()
  return true;
 }
 
-bool PagosPlugin::verificarTablas()
+bool PagosPlugin::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
+ if( !tablas.contains( "recibos" ) )
  { qWarning( "Recibos::Error al buscar la tabla recibos" ); return false; }
  return true;
 }

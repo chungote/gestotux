@@ -21,7 +21,7 @@
 #define MSERVICIOS_H
 
 #include <QSqlTableModel>
-#include <QDate>
+#include <QDateTime>
 
 /**
 Clase que mantiene y administra los datos de los distintos tipos de servicios que tiene el programa
@@ -59,7 +59,7 @@ public:
         Anual = 8 /**< 12 meses - 365 dias */
     };
 
-    bool asociarCliente( int id_cliente, int id_servicio, QDate fecha = QDate::currentDate() );
+    bool asociarCliente( int id_cliente, int id_servicio, QDateTime fecha = QDateTime::currentDateTime() );
     bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto );
 
     static double precioBase( int id_servicio );

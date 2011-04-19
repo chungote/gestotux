@@ -347,13 +347,15 @@ int main(int argc, char *argv[])
                                 QObject::connect( obj, SIGNAL( agregarDockWidget( Qt::DockWidgetArea, QDockWidget * ) ), mw, SLOT( agregarDock( Qt::DockWidgetArea, QDockWidget * ) ) );
                                 QObject::connect( mw, SIGNAL( saliendoGestotux() ), obj, SLOT( seCierraGestotux() ) );
                                 //Verifico sus tablas
-                                if( plug->verificarTablas() != true )
+                                if( plug->verificarTablas( tablas ) != true )
                                 {
                                         // estan cargados los archivo resource cuando cargo el plugin?
                                         if( hacerTablas( plug->nombre() ) )
                                         {
                                                 // todo ok
                                                 qDebug( "Tablas creadas correctamente" );
+                                                // Actualizo la lista de tablas para que incluya las ultimas agregadas
+                                                tablas = QSqlDatabase::database().tables();
                                         }
                                         else
                                         {

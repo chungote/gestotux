@@ -56,7 +56,7 @@ public:
     virtual QString nombre() const = 0;
     virtual int tipo() const = 0;
     virtual void crearMenu( QMenuBar *m ) = 0;
-    virtual bool verificarTablas() = 0;
+    virtual bool verificarTablas( QStringList tablas ) = 0;
     virtual double version() const = 0;
     virtual void crearToolBar( QToolBar *t ) = 0;
     // Slot para desinicializar los plugins

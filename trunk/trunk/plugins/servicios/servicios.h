@@ -34,7 +34,7 @@ Q_OBJECT
 Q_INTERFACES( EPlugin )
 public:
     bool inicializar();
-    bool verificarTablas();
+    bool verificarTablas( QStringList tablas );
     double version() const;
     int tipo() const;
     QList< QActionGroup * > accionesBarra();

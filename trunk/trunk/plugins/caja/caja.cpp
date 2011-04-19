@@ -99,11 +99,11 @@ bool Caja::inicializar()
 /*!
     \fn Caja::verificarTablas()
  */
-bool Caja::verificarTablas()
+bool Caja::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "caja" ) )
+ if( !tablas.contains( "caja" ) )
  { qWarning( "Error al buscar la tabla caja" ); return false; }
- else if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "movimiento_caja" ) )
+ else if( !tablas.contains( "movimiento_caja" ) )
  { qWarning( "Error al buscar la tabla movimiento_caja" ); return false; }
  return true;
 }
