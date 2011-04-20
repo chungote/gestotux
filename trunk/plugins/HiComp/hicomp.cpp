@@ -120,7 +120,7 @@ void HiComp::crearMenu( QMenuBar *m )
  }
 }
 
-bool HiComp::verificarTablas()
+bool HiComp::verificarTablas( QStringList )
 {
  /*if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
  {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }

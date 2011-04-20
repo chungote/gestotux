@@ -31,6 +31,8 @@ public:
     void filtrarPorServicio( const int id_servicio );
     void filtrarPorCliente( const int id_cliente );
 
+    QVariant data(const QModelIndex &item, int role) const;
+
 };
 
 #endif // MCLIENTESSERVICIOS_H

@@ -57,6 +57,7 @@ private:
         int _id_cliente;
         int _id_servicio;
         QDate _fecha;
+        bool _agregado;
 
 };
 

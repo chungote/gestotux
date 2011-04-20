@@ -63,21 +63,31 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
         }
         DEFechaAlta->setDate( _fecha );
         this->adjustSize();
+        this->connect( buttonBox, SIGNAL( accepted() ), this, SLOT( accept() ) );
+        this->connect( buttonBox, SIGNAL( rejected() ), this, SLOT( reject() ) );
+        _agregado = false;
 }
 
 FormAsociarServicioCliente::~FormAsociarServicioCliente()
 {
 }
 
+/*!
+ * \fn FormAsociarServicioCliente::reject()
+ * Slot llamado cuando el usuario presiona el boton de cancelar
+ */
 void FormAsociarServicioCliente::reject()
 {
   QDialog::reject();
 }
 
+/*!
+ * \fn FormAsociarServicioCliente::accept()
+ * Slot llamado cuando el usuario presiona el boton de aceptar
+ */
 void FormAsociarServicioCliente::accept()
 {
- this->setIdCliente( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
- this->setIdServicio( CBServicio->model()->data( CBServicio->model()->index( CBServicio->currentIndex(), 0 ) , Qt::EditRole ).toInt()  );
+ if( _agregado ) { return; }
  switch( this->_tipo )
  {
         case Cliente:
@@ -93,15 +103,17 @@ void FormAsociarServicioCliente::accept()
         default:
         { break; }
  }
- if( _id_cliente > 0 || _id_servicio > 0 || !_fecha.isValid() )
+ _fecha = this->DEFechaAlta->date();
+ if( _id_cliente <= 0 || _id_servicio <= 0 || !_fecha.isValid() )
  {
-  qDebug( QString( "Error de comprobación: id_cliente=%1, id_servicio=%2").arg( _id_cliente ).arg( _id_servicio ).toLocal8Bit() );
+  qDebug( QString( "Error de comprobación: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );
   return;
  }
  MServicios *mservicios = new MServicios();
  if( mservicios->asociarCliente( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) )
  {
   delete mservicios;
+  _agregado = true;
   this->close();
  }
  else
@@ -169,7 +181,10 @@ void FormAsociarServicioCliente::setIdCliente( int id_cliente )
  */
 void FormAsociarServicioCliente::setIdServicio( int id_servicio )
 {
-    _id_servicio = id_servicio; }
+  if( id_servicio > 0 ) {
+     _id_servicio = id_servicio;
+  }
+}
 
 
 /*!
