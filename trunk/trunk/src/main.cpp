@@ -171,7 +171,8 @@ int main(int argc, char *argv[])
       QLocale locale( QLocale::Spanish, QLocale::Argentina );
       QLocale::setDefault( locale );
 
-      splash.showMessage( "Cargando Traduccion" );
+
+      /*splash.showMessage( "Cargando Traduccion" );
       // Cargo las traducciones
       QTranslator tran;
       QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
@@ -189,7 +190,7 @@ int main(int argc, char *argv[])
       else
       { qDebug( "Fallo al cargar la traduccion del reporte" ); }
       delete directorio;
-      directorio = 0;
+      directorio = 0;*/
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
       bool fallosql = false;
@@ -228,7 +229,7 @@ int main(int argc, char *argv[])
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) == true && p->value( "noForzarMysql", true ).toBool() && ( p->value( "dbInterna", true ).toBool() || fallosql == true ) )
+      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) && fallosql == true )
       {
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )
@@ -262,7 +263,6 @@ int main(int argc, char *argv[])
         }
         /// FIN SQLITE
        }
-       // si existe el driver y esta autorizado usar db externa o se quiere usar si o si la db mysql
        else if( fallosql == true || !QSqlDatabase::database().isValid() )
        {
         // No se puede usar sqlite para el programa
@@ -367,9 +367,9 @@ int main(int argc, char *argv[])
                                 ERegistroPlugins::getInstancia()->agregarPlugin( plug );
                                 splash.showMessage( "Cargando plugin "+ plug->nombre() );
                                 //////////////////////////////////////////////////////////////////////////////////////
-                                if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )
+                                /*if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )
                                 {  qDebug( qPrintable( "Error al cargar la traduccion de " + plug->nombre()  ) ); }
-                                else {  QCoreApplication::instance()->installTranslator( &tran ); }
+                                else {  QCoreApplication::instance()->installTranslator( &tran ); }*/
                                 qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
                         }
                         else

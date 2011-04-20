@@ -47,7 +47,7 @@ public:
     QString nombre() const;
     int tipo() const;
     void crearMenu( QMenuBar *m );
-    bool verificarTablas();
+    bool verificarTablas( QStringList tablas );
     double version() const;
     QString empresa() const;
     QString companeros();

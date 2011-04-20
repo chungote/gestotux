@@ -42,3 +42,22 @@ void MClientesServicios::filtrarPorServicio( const int id_servicio )
 {
     this->setFilter( QString( "servicios_clientes.id_servicio = %1 ").arg( id_servicio ) );
 }
+
+QVariant MClientesServicios::data(const QModelIndex &item, int role) const
+{
+ switch( item.column() ) {
+    case 2:
+    case 3:
+    {
+     switch( role ) {
+        case Qt::TextAlignmentRole:
+        {  return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
+        default:
+        { return QSqlRelationalTableModel::data( item, role ); break; }
+     }
+     break;
+    }
+    default:
+    { return QSqlRelationalTableModel::data( item, role ); break; }
+ }
+}
