@@ -18,6 +18,16 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+/*
+CREATE TABLE IF NOT EXISTS `categoria_gastos` (
+  `id_categoria_gastos` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` tinytext NOT NULL,
+  `descripcion` text,
+  PRIMARY KEY (`id_categoria_gastos`)
+) ENGINE=InnoDB;
+*/
+
+
 #include "mcategoriasgastos.h"
 #include <QSqlQuery>
 #include <QSqlError>
@@ -34,25 +44,25 @@ MCategoriasGastos::MCategoriasGastos(QObject *parent) :
 
 /*!
  * \fn MCategoriasGastos::vacio()
- * Devuelve verdadero si esta vacío la cantidad de categorías de gastos.
+ * Devuelve verdadero si esta vacÃ­o la cantidad de categorÃ­as de gastos.
  * \return Verdadero si  esta vacio o error.
  */
 bool MCategoriasGastos::vacio()
 {
  QSqlQuery cola;
- if( cola.exec( "SELECT COUNT(id) FROM categoria_gastos" ) ) {
+ if( cola.exec( "SELECT COUNT(id_categoria_gastos) FROM categoria_gastos" ) ) {
      if( cola.next() ) {
          if( cola.record().value(0).toInt() > 0 ) {
-             return true;
-         } else { return false; }
+             return false;
+         } else { return true; }
      } else {
          qDebug( "Gastos:MCategoriasGastos:Error al hacer next en el conteo de cantidad de items.");
-         return false;
+         return true;
      }
  } else {
      qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola" );
      qDebug( QString( "Gastos:MCategoriasGastos:cola=%1").arg( cola.lastQuery() ).toLocal8Bit() );
      qDebug( QString( "Gastos:MCategoriasGastos:error=%1").arg( cola.lastError().text() ).toLocal8Bit() );
-     return false;
+     return true;
  }
 }

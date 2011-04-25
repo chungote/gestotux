@@ -47,6 +47,7 @@ EVentana(parent), _id_servicio(0)  {
 
     // Escondo el progreso
     this->GBProgreso->setVisible( false );
+    this->PBCancelar->setText( "Cancelar" );
 
 }
 
@@ -162,12 +163,15 @@ void FormFacturarServicio::facturar()
     for( int i = 0; i<cantidad_total; i++ ) {
         // Veo si el elemento esta para ser facturado
         if( !mtemp->data( mtemp->index( i, 0 ), Qt::EditRole ).toBool() ) {
+            qDebug( QString( "Item %1: No se facturara" ).arg( i ).toLocal8Bit() );
             continue;
         }
 
         // Cargo el dato correspondiente a esa fila
         id_cliente = mtemp->data( mtemp->index( i, 2 ), Qt::DisplayRole ).toInt();
+        qDebug( QString( "Item %1-ID Cliente: %2." ).arg( i ).arg( id_cliente ).toLocal8Bit() );
         nombre_cliente = mtemp->data( mtemp->index( i, 1 ), Qt::DisplayRole ).toString();
+        qDebug( QString( "Item %1-Nombre Cliente: %2." ).arg( i ).arg( nombre_cliente ).toLocal8Bit() );
 
         // Paso 1
         // Generar el recibo
@@ -180,8 +184,9 @@ void FormFacturarServicio::facturar()
                                        false ); // Lo pongo en no pagado
         if( id_recibo <= 0 )
         {
-                qWarning( "Error al obtener el id del recibo " );
+                qWarning( QString( "Error al obtener el id del recibo. Item %1" ).arg( i ).toLocal8Bit() );
                 QSqlDatabase::database().rollback();
+                abort();
                 break;
         } else {
             recibos.insert( i, id_recibo );

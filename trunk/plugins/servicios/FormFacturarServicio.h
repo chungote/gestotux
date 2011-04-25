@@ -40,6 +40,7 @@ protected:
 
 protected slots:
     void facturar();
+    void cancelar() { _cancelar = true; }
 
 private:
     int _id_servicio;
