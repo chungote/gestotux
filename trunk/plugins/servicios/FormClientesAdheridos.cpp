@@ -23,6 +23,7 @@
 #include "mservicios.h"
 #include <QTableView>
 #include "MClientesServicios.h"
+#include "eactcerrar.h"
 
 FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     EVentana(parent) {
@@ -40,8 +41,18 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     modelo = new MClientesServicios( this );
     TVAdheridos->setModel( modelo );
     TVAdheridos->hideColumn( 0 );
+    TVAdheridos->setSelectionBehavior( QAbstractItemView::SelectRows );
     TVAdheridos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     modelo->select();
+
+    // Acciones
+    //// Dar de baja
+    QAction *ActDarDeBaja = new QAction( this );
+    ActDarDeBaja->setText( "Dar de Baja" );
+    connect( ActDarDeBaja, SIGNAL( triggered() ), this, SLOT( darDeBaja() ) );
+    this->addAction( ActDarDeBaja );
+
+    this->addAction( new EActCerrar( this ) );
 
 }
 

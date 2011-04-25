@@ -32,6 +32,7 @@ public:
     void filtrarPorCliente( const int id_cliente );
 
     QVariant data(const QModelIndex &item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex& index) const;
 
 };
 
