@@ -256,22 +256,21 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
     QSqlQuery cola;
     // Datos predeterminados
     ///@todo Pasar esto a valores de preferencias
-  /*  double saldo = 0;
+    double saldo = 0;
     double limite = 1000;
     // Numero de cuenta
+    cola.prepare( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite ) VALUES( :num_cuenta, :id_cliente, :fecha_alta, :saldo, :limite )" );
     QString num_cuenta = QString( "%L1" ).arg( id_cliente );
-    if( cola.exec(
-                QString( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite ) VALUES( %1, %2, %3, %4, %5, %6 )" )
-                .arg( num_cuenta )
-                .arg( id_cliente )
-                .arg( fecha_alta )
-                .arg( saldo )
-                .arg( limite ) ) )
-    {
+    cola.bindValue( ":num_cuenta", num_cuenta );
+    cola.bindValue( ":id_cliente", id_cliente );
+    cola.bindValue( ":fecha_alta", fecha_alta );
+    cola.bindValue( ":saldo", saldo );
+    cola.bindValue( ":limite", limite );
+    if( cola.exec() ) {
         return true;
     } else {
         qDebug( "MCuentaCorriente::Error al intentar insertar una cuenta corriente predeterminada" );
-        qDebug( QString( "%1" ).arg( cola.lastError().text() ).toLocal8Bit() );*/
+        qDebug( QString( "%1" ).arg( cola.lastError().text() ).toLocal8Bit() );
         return false;
-    //}
+    }
 }
