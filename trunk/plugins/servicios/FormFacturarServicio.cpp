@@ -30,7 +30,7 @@ EVentana(parent), _id_servicio(0)  {
 
     setupUi(this);
 
-    this->setWindowTitle( "Facturación de un servicio" );
+    this->setWindowTitle( "FacturaciÃ³n de un servicio" );
     //this->setWindowIcon( QIcon( ":/imagenes/" ) );
     this->setObjectName( "facturaservicios" );
 
@@ -65,7 +65,7 @@ void FormFacturarServicio::changeEvent(QEvent *e)
 
 /*!
  * \fn FormFacturarServicio::setearServicio( const int id_servicio )
- *  Setea el id de servicio que se desea realizar la facturación
+ *  Setea el id de servicio que se desea realizar la facturaciÃ³n
  * \param id_servicio ID del servicio
  */
 void FormFacturarServicio::setearServicio(const int id_servicio)
@@ -106,7 +106,7 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->TVRecargos->hideColumn( 0 );
     this->TVRecargos->hideColumn( 1 );
     this->TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-    // Arreglar problema con el item de si o no tamaño.
+    // Arreglar problema con el item de si o no tamaÃ±o.
     mr->select();
 }
 
@@ -124,7 +124,7 @@ void FormFacturarServicio::cargar_datos_servicio()
 #include "../CtaCte/mcuentacorriente.h"
 /*!
  * \fn FormFacturarServicio::facturar()
- * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
+ * Realiza la facturaciÃ³n efectiva del servicio. El usuario ya acepto el facturar y los datos.
  */
 void FormFacturarServicio::facturar()
 {
@@ -157,7 +157,7 @@ void FormFacturarServicio::facturar()
     QString nombre_cliente = "";
     QHash<int, int> recibos; // Guarda el paso con el id del recibo guardado
 
-    // Genero la transación en la base de datos ( total )
+    // Genero la transaciÃ³n en la base de datos ( total )
     QSqlDatabase::database().transaction();
     // Itero por todos los recibos
     for( int i = 0; i<cantidad_total; i++ ) {
@@ -175,7 +175,7 @@ void FormFacturarServicio::facturar()
 
         // Paso 1
         // Generar el recibo
-        LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( cantidad_actual ).arg( i ) );
+        LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( cantidad_actual + 1  ).arg( cantidad_total ) );
         id_recibo = mr->agregarRecibo( id_cliente,
                                        QDate::currentDate(),
                                        QString( "Recibo por el pago del periodo %1" ).arg( this->LPeriodo->text() ),
@@ -213,6 +213,7 @@ void FormFacturarServicio::facturar()
             break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
+        cantidad_actual++;
         QMessageBox::warning( this, "Atencion!", "bucle terminado" );
     }
     // Guardo todos los datos
@@ -227,7 +228,7 @@ void FormFacturarServicio::facturar()
         ParameterList lista;
         lista.append( "id_recibo", recibos.take( i ) );
         reporte_recibo->setParamList( lista );
-        LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
+        LIndicador->setText( QString( "Imprimiendo recibo NÂº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
         PBProgreso->setValue( PBProgreso->value() + 1 );
         reporte_recibo->print( 0, true, false );
         // Actualizo indices y reinicio valores
@@ -238,7 +239,7 @@ void FormFacturarServicio::facturar()
 
 
     // Pregunto si los recibos se imprimieron bien
-    int ret = QMessageBox::question( this, "Impresion", "¿Se imprimieron correctamente <b>TODOS</b> los recibos?" );
+    int ret = QMessageBox::question( this, "Impresion", "Â¿Se imprimieron correctamente <b>TODOS</b> los recibos?" );
 
     if( ret == QMessageBox::Rejected ) {
        // Si no, pregunto que numero de recibo falta y lo mando a imprimir

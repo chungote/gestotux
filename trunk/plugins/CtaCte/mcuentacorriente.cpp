@@ -250,14 +250,20 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
  }
 }
 
-
+#include "preferencias.h"
+/*!
+ * \fn MCuentaCorriente::agregarCuentaCorrientePredeterminada( const int id_cliente, const QDate fecha_alta )
+ *  Genera una cuenta corriente nueva para el cliente seleccionado en la fecha de alta elegida con los valores de saldo inicial y limite de credito seleccionados en las preferencias
+ * @param id_cliente Identificador del cliente al cual se le abrirá la cuenta corriente.
+ * @param fecha_alta Fecha en que se dará de alta la cuenta corriente
+ * @return Verdadero si se pudo crear
+ */
 bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente, const QDate fecha_alta)
 {
     QSqlQuery cola;
     // Datos predeterminados
-    ///@todo Pasar esto a valores de preferencias
-    double saldo = 0;
-    double limite = 1000;
+    double saldo = preferencias::getInstancia()->value( "Preferencias/CtaCte/saldo-inicial", 0.0 ).toDouble();
+    double limite = preferencias::getInstancia()->value( "Preferencias/CtaCte/limite", 1000.0 ).toDouble();
     // Numero de cuenta
     cola.prepare( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite ) VALUES( :num_cuenta, :id_cliente, :fecha_alta, :saldo, :limite )" );
     QString num_cuenta = QString( "%L1" ).arg( id_cliente );
