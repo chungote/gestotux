@@ -328,14 +328,18 @@ MPagos::NumeroRecibo MPagos::proximoSerieNumeroRecibo()
      if( cola.next() )
      {
          int serie = cola.record().value(0).toInt();
+         qDebug( QString( "Numero serie actual: %1 ").arg( serie ).toLocal8Bit() );
          int numero = cola.record().value(1).toInt();
+         qDebug( QString( "Numero actual: %1 ").arg( numero ).toLocal8Bit() );
          if( numero == 999999 ) {
              if( serie == 999999) {
                  qCritical( "Numero de serie terminado! :S?" );
                  abort();
              }
              serie++;
-         }
+             numero = 0;
+         } else { numero ++; }
+         qDebug( QString( "Devuelto: %1-%2").arg( serie ).arg( numero ).toLocal8Bit() );
          return MPagos::NumeroRecibo( serie, numero );
      } else {
          return MPagos::NumeroRecibo( -1, -1 );

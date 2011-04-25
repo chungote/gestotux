@@ -12,7 +12,8 @@ DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
               ../../reporte \
-              ../../utiles
+              ../../utiles \
+              ../CtaCte
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
@@ -58,7 +59,6 @@ SOURCES = servicios.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
-
 
 RESOURCES += servicios.qrc
 

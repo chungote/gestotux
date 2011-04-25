@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) && fallosql == true )
+      else if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) )
       {
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )

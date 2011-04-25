@@ -20,6 +20,7 @@
 #include "mcuentacorriente.h"
 
 #include <QColor>
+#include <QDate>
 #include <QSqlError>
 
 MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
@@ -247,4 +248,30 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
   qDebug( qPrintable( cola.executedQuery() ) );
   return E_CTACTE_BUSCAR_SALDO;
  }
+}
+
+
+bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente, const QDate fecha_alta)
+{
+    QSqlQuery cola;
+    // Datos predeterminados
+    ///@todo Pasar esto a valores de preferencias
+  /*  double saldo = 0;
+    double limite = 1000;
+    // Numero de cuenta
+    QString num_cuenta = QString( "%L1" ).arg( id_cliente );
+    if( cola.exec(
+                QString( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite ) VALUES( %1, %2, %3, %4, %5, %6 )" )
+                .arg( num_cuenta )
+                .arg( id_cliente )
+                .arg( fecha_alta )
+                .arg( saldo )
+                .arg( limite ) ) )
+    {
+        return true;
+    } else {
+        qDebug( "MCuentaCorriente::Error al intentar insertar una cuenta corriente predeterminada" );
+        qDebug( QString( "%1" ).arg( cola.lastError().text() ).toLocal8Bit() );*/
+        return false;
+    //}
 }

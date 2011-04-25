@@ -83,7 +83,7 @@ void VGastos::agregarGasto()
 {
     MCategoriasGastos *mc = new MCategoriasGastos();
     if( mc->vacio() ) {
-        QMessageBox::warning( this, "Faltan datos", "No existe ninguna categoría de gastos definida. Por favor cree una." );
+        QMessageBox::warning( this, "Faltan datos", "No existe ninguna categorÃ­a de gastos definida. Por favor cree una." );
         mostrarCategorias();
         delete mc;
         return;

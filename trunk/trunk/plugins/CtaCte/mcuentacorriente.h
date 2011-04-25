@@ -21,6 +21,7 @@
 #define MCUENTACORRIENTE_H
 
 #include <QSqlRelationalTableModel>
+class QDate;
 
 /**
 Clase de modelo para las cuentas correintes
@@ -38,6 +39,7 @@ public:
     static int verificarSaldo( const QString numero_cuenta, double aplicar );
     static bool actualizarSaldo( const QString numero_cuenta, const double aplicar );
     static double saldo( const QString numero_cuenta );
+    static bool agregarCuentaCorrientePredeterminada( const int id_cliente, const QDate fecha_alta );
 
 };
 
