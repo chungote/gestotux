@@ -18,30 +18,30 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef FORMCLIENTESADHERIDOS_H
-#define FORMCLIENTESADHERIDOS_H
+#ifndef NUMEROCOMPROBANTE_H
+#define NUMEROCOMPROBANTE_H
 
-#include "ui_FormClientesAdheridosBase.h"
-#include "eventana.h"
-class MClientesServicios;
+#include <QObject>
+#include <QPair>
 
-class FormClientesAdheridos : public EVentana, private Ui::FormClientesAdheridos
+class NumeroComprobante : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit FormClientesAdheridos(QWidget *parent = 0);
-    void setServicioInicial( int id_servicio );
-
-protected:
-    void changeEvent(QEvent *e);
-
-protected slots:
-    void cambioServicio( int id_servicio );
-    void darDeBaja();
+    explicit NumeroComprobante( QObject *parent = 0 );
+    explicit NumeroComprobante( QObject *padre = 0, int serie = 0, int numero = 0 );
+    void setearNumeroSerie( int serie );
+    void setearNumero( int numero );
+    int serie() const;
+    int numero() const;
+    QString aCadena();
+    bool esValido() const;
 
 private:
-    MClientesServicios *modelo;
+    QPair<int,int> _dato;
+    int cuentaRecursivo( const int dato );
+    QString numeroLleno();
+    QString serieLleno();
 };
 
-#endif // FORMCLIENTESADHERIDOS_H
+#endif // NUMEROCOMPROBANTE_H

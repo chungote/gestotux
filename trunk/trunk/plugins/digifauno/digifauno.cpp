@@ -101,7 +101,7 @@ QString DigiFauno::nombre() const
     \fn DigiFauno::version() const
  */
 double DigiFauno::version() const
-{ return 0.4; }
+{ return 0.5; }
 
 
 /*!
@@ -110,13 +110,12 @@ double DigiFauno::version() const
 bool DigiFauno::inicializar()
 {
  Q_INIT_RESOURCE(embebido);
- _acciones.clear();
  // Acciones estandar
  ////////////////////////////////
  // Muestra los miembros
  ////////////////////////////////
- ActDuenos = new QAction( "Dueños", this );
- ActDuenos->setStatusTip( "Muestra todos los dueños" );
+ ActDuenos = new QAction( "DueÃ±os", this );
+ ActDuenos->setStatusTip( "Muestra todos los dueÃ±os" );
  ActDuenos->setIcon( QIcon( ":/imagenes/duenos.png" ) );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( duenos() ) );
  /////////////////////////////////////////////
@@ -129,7 +128,7 @@ bool DigiFauno::inicializar()
  // Muestra la lista de mascotas
  /////////////////////////////////////
  ActMascotas = new QAction( "Ver Mascotas", this );
- ActMascotas->setStatusTip( "Ver todas las mascotas y sus dueños" );
+ ActMascotas->setStatusTip( "Ver todas las mascotas y sus dueÃ±os" );
  ActMascotas->setIcon( QIcon( ":/imagenes/mascotas.gif" ) );
  connect( ActMascotas, SIGNAL( triggered() ), this, SLOT( mascotas() ) );
  /////////////////////////////////////
@@ -166,13 +165,13 @@ bool DigiFauno::inicializar()
 /*!
     \fn DigiFauno::verificarTablas()
  */
-bool DigiFauno::verificarTablas()
+bool DigiFauno::verificarTablas( QStringList lista )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "mascota" ) )
+ if( !lista.contains( "mascota" ) )
  { qWarning( "Error al buscar la tabla mascota" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "dueno" ) )
+ if( !lista.contains( "dueno" ) )
  { qWarning( "Error al buscar la tabla dueno" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "peluqueria" ) )
+ if( !lista.contains( "peluqueria" ) )
  { qWarning( "Error al buscar la tabla peluqueria" ); return false; }
  return true;
 }
@@ -228,8 +227,8 @@ QString DigiFauno::directorioBackup() const
 
 /*!
     \fn DigiFauno::nombrePrograma() const
-	Devuelve el nombre del programa
-	@return Nombre del programa
+        Devuelve el nombre del programa
+        @return Nombre del programa
  */
 QString DigiFauno::nombrePrograma() const
 {  return "Digifauno  -  " + QString::number( version() ); }
@@ -238,8 +237,8 @@ QString DigiFauno::nombrePrograma() const
 #include "formprefopciones.h"
 /*!
     \fn DigiFauno::formsPreferencias()
-	Devuleve la lista de formularios de configuración para el programa
-	@return QWidgetList con los formularios
+        Devuleve la lista de formularios de configuraciÃ³n para el programa
+        @return QWidgetList con los formularios
  */
 QWidgetList DigiFauno::formsPreferencias()
 {
@@ -251,8 +250,8 @@ QWidgetList DigiFauno::formsPreferencias()
 
 /*!
     \fn DigiFauno::crearMenu( QMenuBar* m )
-	Agrega las acciones al menu del programa
-	@param m Barra del menu principal
+        Agrega las acciones al menu del programa
+        @param m Barra del menu principal
  */
 void DigiFauno::crearMenu( QMenuBar* m )
 {
@@ -272,8 +271,8 @@ QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
 
 /*!
     \fn DigiFauno::iconoPrograma() const
-	Devuelve el icono del programa
-	@return Icono del programa
+        Devuelve el icono del programa
+        @return Icono del programa
  */
 QIcon DigiFauno::iconoPrograma() const
 { return QIcon( ":/imagenes/icono.png" ); }
@@ -281,8 +280,8 @@ QIcon DigiFauno::iconoPrograma() const
 
 /*!
     \fn DigiFauno::empresa() const
-	Devuelve el nombre de la empresa qu a  la que fue realizado el programa
-	@return Nombre de la empresa
+        Devuelve el nombre de la empresa qu a  la que fue realizado el programa
+        @return Nombre de la empresa
  */
 QString DigiFauno::empresa() const
 { return "Veterinaria \"El Fauno\""; }
@@ -290,8 +289,8 @@ QString DigiFauno::empresa() const
 
 /*!
     \fn DigiFauno::companeros()
-	Devuelve el socio que trabajo conmigo
-	@return Nombre del socio
+        Devuelve el socio que trabajo conmigo
+        @return Nombre del socio
  */
 QString DigiFauno::companeros()
 { return "Daniel Sequeira"; }
@@ -299,13 +298,12 @@ QString DigiFauno::companeros()
 
 /*!
     \fn DigiFauno::tipo() const
-	Devuelve el tipo de plugin que es EPlugin::info
- 	@return EPlugin::info
+        Devuelve el tipo de plugin que es EPlugin::info
+        @return EPlugin::info
  */
 int DigiFauno::tipo() const
 { return EPlugin::info; }
 
-Q_EXPORT_PLUGIN2( adigifauno, DigiFauno );
 
 
 /*!
@@ -329,3 +327,11 @@ void DigiFauno::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(embebido);
 }
+
+QImage DigiFauno::imagenPrograma() const
+{ return QImage(); }
+
+QAction *DigiFauno::botonPantallaInicial()
+{}
+
+Q_EXPORT_PLUGIN2( adigifauno, DigiFauno );

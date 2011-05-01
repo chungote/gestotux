@@ -89,7 +89,10 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->LNombreServicio->setText( m->getNombreServicio( this->_id_servicio ) );
     this->_precio_base = m->precioBase( this->_id_servicio );
     this->LPrecioBase->setText( QString( "$ %L1" ).arg( this->_precio_base  ) );
-    this->LPeriodo->setText( m->getPeriodoActual( this->_id_servicio ) );
+    QPair<QPair<int,int>,QString> ret = m->getPeriodoActual( this->_id_servicio );
+    this->_periodo = ret.first.first;
+    this->_ano = ret.first.first;
+    this->LPeriodo->setText( ret.second );
     // Cargo los clientes del servicio
     MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
     // Cargo los clientes
@@ -119,6 +122,7 @@ void FormFacturarServicio::cargar_datos_servicio()
 #include <QSqlDatabase>
 #include <QHash>
 #include "EReporte.h"
+#include "mcobroservicio.h"
 #include "../pagos/mpagos.h"
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../CtaCte/mcuentacorriente.h"
@@ -142,7 +146,7 @@ void FormFacturarServicio::facturar()
     int cantidad_total = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model())->rowCount();
     int cantidad_actual = 0;
     // usar para calcular cantidad de operaciones mostradas x recibo
-    int multiplicador_pasos = 3;
+    int multiplicador_pasos = 4;
     this->PBProgreso->setRange( 0, cantidad_total * multiplicador_pasos );
 
     // Inicializo el reporter
@@ -189,6 +193,7 @@ void FormFacturarServicio::facturar()
                 abort();
                 break;
         } else {
+            // Inserto los datos en la tabla correspondiente!
             recibos.insert( i, id_recibo );
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -213,6 +218,16 @@ void FormFacturarServicio::facturar()
             break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
+
+        // Paso 3 - Guardo el cobro
+        if( MCobroServicio::agregarCobro( this->_id_servicio, id_cliente, id_recibo, this->_periodo, this->_ano ) )
+        {
+            PBProgreso->setValue( PBProgreso->value() + 1 );
+        } else {
+            qWarning( "Error al intentar agregar el cobro" );
+            QSqlDatabase::database().rollback();
+            break;
+        }
         cantidad_actual++;
         QMessageBox::warning( this, "Atencion!", "bucle terminado" );
     }

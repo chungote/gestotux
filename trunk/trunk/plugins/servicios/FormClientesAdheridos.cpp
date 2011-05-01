@@ -80,3 +80,9 @@ void FormClientesAdheridos::cambioServicio( int /*id_combo*/ )
     modelo->filtrarPorServicio( id_servicio );
     modelo->select();
 }
+
+
+void FormClientesAdheridos::darDeBaja()
+{
+ // Busco el ID que quiere dar de baja
+}

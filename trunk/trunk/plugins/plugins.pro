@@ -8,7 +8,8 @@ SUBDIRS +=  caja \
             CtaCte \
             pagos \
             presupuesto \
-            servicios #\
+            servicios \
+            digifauno
 #            HiComp
 #            email \
 #planificador \

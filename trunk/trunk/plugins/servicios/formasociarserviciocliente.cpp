@@ -115,7 +115,7 @@ void FormAsociarServicioCliente::accept()
  // Busco si el cliente tiene cuenta corriente
  if( MCuentaCorriente::obtenerNumeroCuentaCorriente( _id_cliente ) == E_CTACTE_BUSCAR_NUMEROCUENTA ) {
      QMessageBox::information( this, "Creando nueva cuenta corriente", "El cliente no posee cuenta corriente, se le creara una automaticamente." );
-     MCuentaCorriente::agregarCuentaCorrientePredeterminada( _id_cliente, _fecha );
+     MCuentaCorriente::agregarCuentaCorrientePredeterminada( _id_cliente, DEFechaAlta->dateTime() );
  }
  MServicios *mservicios = new MServicios();
  if( mservicios->asociarCliente( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) )

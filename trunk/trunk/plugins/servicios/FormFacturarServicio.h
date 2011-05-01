@@ -44,6 +44,8 @@ protected slots:
 
 private:
     int _id_servicio;
+    int _periodo;
+    int _ano;
     double _precio_base;
     EActCerrar *ActCerrar;
     QAction *ActFacturar;

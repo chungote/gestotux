@@ -44,12 +44,14 @@
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
 
+#include "CSplashScreen.h"
+
 #define NOMBRE_CONEXION "gestotux"
 
 FILE *debug;
 /*!
  * /fn myMessageOutput( QtMsgType type, const char *msg )
- * Funci髇 de salida personalizada para redireccionar la salida de la aplicaci髇 al archivo debug.txt y mantener un registro de todas las cosas que suceden dentro del programa.
+ * Funci贸n de salida personalizada para redireccionar la salida de la aplicaci贸n al archivo debug.txt y mantener un registro de todas las cosas que suceden dentro del programa.
  * @param type Tipo de salida.
  * @param msg Mensaje de salida.
  */
@@ -75,7 +77,7 @@ FILE *debug;
          case QtFatalMsg:
             fprintf( debug, "Fatal: %s\n", msg);
             fflush(debug);
-            QMessageBox::critical( 0, "　　　FATAL!!!!!!", msg );
+            QMessageBox::critical( 0, "隆隆隆隆隆隆FATAL!!!!!!", msg );
             abort();
      }
  }
@@ -83,10 +85,10 @@ FILE *debug;
 
 /*!
  * \fn hacerTablas( QString nombrePlug )
- * Funci髇 auxiliar que irve para generar las tablas al inicializar la aplicacion o cuando se inicializa un nuevo plugin.
+ * Funci贸n auxiliar que irve para generar las tablas al inicializar la aplicacion o cuando se inicializa un nuevo plugin.
  * Busca dentro los recursos embebidos, dentro de la carpeta sql, el archivo <plugin>.<driversql>.sql
  * @param nombrePlug Nombre del plugin que se intenta inicializar sus datos.
- * @return si se pudo crear la tabla o si existio algun error al intentar ejecutar la cola de creaci髇.
+ * @return si se pudo crear la tabla o si existio algun error al intentar ejecutar la cola de creaci贸n.
  */
 bool hacerTablas( QString nombrePlug )
 {
