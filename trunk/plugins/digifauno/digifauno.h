@@ -54,9 +54,13 @@ public:
     int tipo() const;
     void crearToolBar( QToolBar *t );
     bool publicidad() { return false; }
+    QImage imagenPrograma() const;
+    bool verificarTablas( QStringList lista );
+    QAction *botonPantallaInicial();
 
 signals:
     void agregarVentana( QWidget *ventana );
+    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
 private:
     QAction *ActBackup;
@@ -75,9 +79,6 @@ private:
    QActionGroup *compras;
    QActionGroup *resumen;
 
-private:
-    QList<QAction *> _acciones;
-
 public slots:
     void duenos();
     void agregarMascota();
@@ -90,7 +91,6 @@ public slots:
     void ver_peluqueria();
     void resumenEntreFechas();
     void seCierraGestotux();
-
 
 };
 

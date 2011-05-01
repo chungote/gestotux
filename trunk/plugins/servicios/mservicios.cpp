@@ -204,7 +204,7 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
  * \fn MServicios::precioBase( int id_servicio )
  * Devuelve el precio base de un servicio
  * @param id_servicio Identificador del servicio al cual se le quiere saber el percio base.
- * @return precio base para el servicio solicitado o 0.0 si existió un error.
+ * @return precio base para el servicio solicitado o 0.0 si existiÃ³ un error.
  */
 double MServicios::precioBase( int id_servicio )
 {
@@ -221,7 +221,7 @@ double MServicios::precioBase( int id_servicio )
  * \fn MServicios::getNombreServicio( int id_servicio )
  * Devuelve el nombre de un servicio
  * @param id_servicio Identificador del servicio al cual se le quiere saber el nombre.
- * @return Nombre del servicio o una cadena vacía si existio un error al obtener el nombre
+ * @return Nombre del servicio o una cadena vacÃ­a si existio un error al obtener el nombre
  */
 QString MServicios::getNombreServicio( int id_servicio )
 {
@@ -235,11 +235,11 @@ QString MServicios::getNombreServicio( int id_servicio )
 
 /*!
  * \fn MServicios::getPeriodoActual( int id_servicio )
- * Devuelve el periodo actual del servicio en el año en curso en formato <periodo>/<año> del <fecha_inicio> al <fecha_fin>.
+ * Devuelve el periodo actual del servicio en el aÃ±o en curso en formato <periodo>/<aÃ±o> del <fecha_inicio> al <fecha_fin>.
  * \param id_servicio ID del servicio que queremos buscar
- * \return Texto explicativo de el periodo actual. Formato: <periodo>/<año> del <fecha_inicio> al <fecha_fin>.
+ * \return Texto explicativo de el periodo actual. Formato: <periodo>/<aÃ±o> del <fecha_inicio> al <fecha_fin>.
  */
-QString MServicios::getPeriodoActual( const int id_servicio )
+QPair<QPair<int,int>, QString> MServicios::getPeriodoActual( const int id_servicio )
 {
     QDate fecha_alta_servicio = getFechaAlta( id_servicio );
     QDate hoy = QDate::currentDate();
@@ -253,7 +253,11 @@ QString MServicios::getPeriodoActual( const int id_servicio )
 
     /*QDate fecha_inicio = ???;
     QDate fecha_fin = fecha_inicio.addDays( cant_dias_periodo );*/
-    return QString( "%1/%2 del %3 al %4" ).arg( periodo ).arg( hoy.year() )/*.arg( fecha_inicio.toString() ).arg( fecha_fin.toString() )*/;
+    QPair<QPair<int,int>,QString> devolucion;
+    devolucion.first.first = periodo;
+    devolucion.first.second = hoy.year();
+    devolucion.second = QString( "%1/%2 del %3 al %4" ).arg( periodo ).arg( hoy.year() )/*.arg( fecha_inicio.toString() ).arg( fecha_fin.toString() )*/;
+    return devolucion;
 }
 
 /*!
@@ -280,10 +284,10 @@ QDate MServicios::getFechaAlta( const int id_servicio )
 
 /*!
  * \fn MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo )
- * Devuelve la cantidad de días en el periodo del servicio solicitado. Utilitaria.
- * @param id_servicio Identificador del servicio al cual se le quiere saber la cantidad de días.
+ * Devuelve la cantidad de dÃ­as en el periodo del servicio solicitado. Utilitaria.
+ * @param id_servicio Identificador del servicio al cual se le quiere saber la cantidad de dÃ­as.
  * @param fecha_calculo utilizado para referencia en @MSercicios::getCantidadDiasEnPeriodo
- * @return Cantidad de días en el periodo del servicio
+ * @return Cantidad de dÃ­as en el periodo del servicio
  */
 int MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo )
 {
@@ -303,37 +307,37 @@ int MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha
 
 /*!
  * \fn MServicios::getDiasEnPeriodo( const int id_periodo, const QDate fecha_alta, QDate fecha_calculo )
- * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
- * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
- * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
- * En el caso de que sea trimestra, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tienen los 2 meses siguientes.
+ * Considerando que todos los periodos se ajustan dentro de un aÃ±o, devolverÃ¡ el numero de dÃ­as que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
+ * En el caso de que sea mensual, se devolverÃ¡ la cantidad de dÃ­as que tiene el mes de fecha_calculo
+ * En el caso de que sea bimestral, se devolverÃ¡ la cantidad de dÃ­as que tiene el mes de fecha_calculo mas la cantidad de dÃ­as que tiene el mes siguiente.
+ * En el caso de que sea trimestra, se devolverÃ¡ la cantidad de dÃ­as que tiene el mes de fecha_calculo mas la cantidad de dÃ­as que tienen los 2 meses siguientes.
  * @param id_periodo Tipo de periodo que estamos considerando
  * @param fecha_calculo Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
- * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
+ * @return Cantidad de DÃ­as que tiene el periodo que corresponde a la fecha solicitada
  */
 int MServicios::getDiasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
 {
-    // Cuidado con los mensuales! ( feb en año bisiesto )
+    // Cuidado con los mensuales! ( feb en aÃ±o bisiesto )
     switch( tipo_periodo )
     {
         case MServicios::Semanal:
         {
-            // Semanal -> La semana siempre tiene 7 dias independientemente del día del mes
-            // Corte anual ¿Considerarlo? ( cuando la semana no esta completa un año )
+            // Semanal -> La semana siempre tiene 7 dias independientemente del dÃ­a del mes
+            // Corte anual Â¿Considerarlo? ( cuando la semana no esta completa un aÃ±o )
             return 7;
         }
         case MServicios::Quincenal:
         {
             // Quincenal -> se considera como "medio mes"
-            // Verificar caso de febrero y meses con 30 o 31 días
+            // Verificar caso de febrero y meses con 30 o 31 dÃ­as
             return 14;
         }
         case MServicios::Mensual:
         {
             // Mensual
-            // Verificar el mes del periodo y devolver la cantidad de días
+            // Verificar el mes del periodo y devolver la cantidad de dÃ­as
             return QDate( 0, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
-            // Eso se encarga automaticamnete de los años bisiestos
+            // Eso se encarga automaticamnete de los aÃ±os bisiestos
         }
         case MServicios::BiMensual:
         {
@@ -373,7 +377,7 @@ int MServicios::getDiasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
         }
         case MServicios::Anual:
         {
-            // Como consideramos los servicios con base en 1 año, siempre es periodo 1
+            // Como consideramos los servicios con base en 1 aÃ±o, siempre es periodo 1
             return fecha_calculo.daysInYear();
         }
         default:

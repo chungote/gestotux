@@ -258,7 +258,7 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
  * @param fecha_alta Fecha en que se dará de alta la cuenta corriente
  * @return Verdadero si se pudo crear
  */
-bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente, const QDate fecha_alta)
+bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente, const QDateTime fecha_alta)
 {
     QSqlQuery cola;
     // Datos predeterminados

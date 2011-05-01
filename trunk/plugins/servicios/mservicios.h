@@ -64,7 +64,7 @@ public:
 
     static double precioBase( int id_servicio );
     static QString getNombreServicio( int id_servicio );
-    static QString getPeriodoActual( int id_servicio );
+    static QPair<QPair<int,int>, QString> getPeriodoActual( int id_servicio );
 
 private:
     static int getDiasEnPeriodo( int tipo_periodo, const QDate fecha_calculo );

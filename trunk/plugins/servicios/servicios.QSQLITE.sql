@@ -1,5 +1,7 @@
 CREATE TABLE IF NOT EXISTS "main"."servicios" ("id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "nombre" TEXT NOT NULL , "descripcion" TEXT, "fecha_alta" DATETIME NOT NULL , "fecha_baja" DATETIME, "precio_base" DOUBLE NOT NULL , "periodo" INTEGER NOT NULL , "dia_cobro" INTEGER NOT NULL , "forma_incompleto" INTEGER NOT NULL );
 CREATE TABLE IF NOT EXISTS "main"."servicios_clientes" ("id_servicio" INTEGER NOT NULL , "id_cliente" INTEGER NOT NULL , "fecha_alta" DATETIME NOT NULL , "fecha_baja" DATETIME, PRIMARY KEY ("id_servicio", "id_cliente"));
 CREATE TABLE IF NOT EXISTS "main"."recargos" ("id_recargo" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "id_servicio" INTEGER NOT NULL, "cant_dias" INTEGER NOT NULL , "porcentaje" DOUBLE, "recargo" DOUBLE);
+CREATE TABLE IF NOT EXISTS "main"."cobro_servicio" ( "id_cobro_servicio" INTEGER NOT NULL AUTO_INCREMENT, "id_servicios_clientes" INTEGER NOT NULL, "fecha" TEXT NOT NULL, "factura" INTEGER NOT NULL DEFAULT -1, "recibo" INTEGER NOT NULL DEFAULT -1, "periodo" INTEGER NOT NULL, "ano" INTEGER NOT NULL );
 INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "servicios", 0 );
 INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "recargos", 0 );
+INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "cobro_servicio", 0 );
