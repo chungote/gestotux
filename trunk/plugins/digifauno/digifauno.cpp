@@ -309,8 +309,8 @@ int DigiFauno::tipo() const
 /*!
     \fn DigiFauno::crearToolBar( QToolBar *t )
  */
-void DigiFauno::crearToolBar( QToolBar *t )
-{  t->addActions( _acciones ); }
+void DigiFauno::crearToolBar( QToolBar */*t*/ )
+{  /*t->addActions( _acciones );*/ }
 
 
 /*!
