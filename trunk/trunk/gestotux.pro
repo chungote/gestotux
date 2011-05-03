@@ -15,4 +15,5 @@ OTHER_FILES = tareas-pendientes.txt
 
 unix {
   system( generar_pri.sh eliminar )
+  system( generar_doc_usuario.sh )
 }

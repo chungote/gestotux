@@ -19,8 +19,7 @@ SOURCES += gestotux.cpp \
            formcliente.cpp \
            formplugins.cpp \
            FormPantallaInicial.cpp \
-           EFlecha.cpp \
-    CSplashScreen.cpp
+           EFlecha.cpp
 
 HEADERS += gestotux.h \
            ebackup.h \
@@ -46,8 +45,7 @@ HEADERS += gestotux.h \
            einterfazemail.h \
            formplugins.h \
            FormPantallaInicial.h \
-           EFlecha.h \
-    CSplashScreen.h
+           EFlecha.h
 
 TEMPLATE = app
 

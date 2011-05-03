@@ -44,8 +44,6 @@
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
 
-#include "CSplashScreen.h"
-
 #define NOMBRE_CONEXION "gestotux"
 
 FILE *debug;

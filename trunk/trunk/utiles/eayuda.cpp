@@ -26,7 +26,7 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::EAyudaBase()
 {
         setupUi(this);
-        engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "docs.qch", parent );
+        engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch", parent );
         if( !engine->setupData() )
         {
                 qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
@@ -47,6 +47,10 @@ EAyuda::~EAyuda()
 
 /*!
     \fn EAyuda::hayAyuda( QString nombreObjeto )
+    Devuelve verdadero si hay una entrada para el identificador pasado como parametro.
+    El identificador generamente puede ser padre::hijo linkeado en la doc.
+    @param nombreObjeto Identificador a buscar en la ayuda.
+    @return Verdadero si se encontro.
  */
 bool EAyuda::hayAyuda( QString nombreObjeto )
 {
@@ -65,6 +69,8 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
 
 /*!
     \fn EAyuda::mostrarAyuda( QString nombreObjecto )
+    Abre la ventana de ayuda mostrando el contenido de la ayuda traida para el identificador pasado como parametro.
+    @param nombreObjeto
  */
 void EAyuda::mostrarAyuda( QString nombreObjecto )
 {
@@ -99,6 +105,7 @@ EAyuda* EAyuda::instancia()
 
 /*!
     \fn EAyuda::mostrarIndice()
+    Muestra la pagina inicial de la documentación de usuario
  */
 void EAyuda::mostrarIndice()
 {
