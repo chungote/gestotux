@@ -1,2 +1,2 @@
-CREATE TABLE IF NOT EXISTS `ventas` ( `id_factura` BIGINT NOT NULL auto_increment, `fecha` date NOT NULL, PRIMARY KEY  (`id`) );
-CREATE TABLE IF NOT EXISTS `ventas_productos` ( `id` BIGINT NOT NULL auto_increment, `id_venta` BIGINT REFERENCES `ventas`(`id`), `id_producto` BIGINT REFERENCES `producto`(`id`), `precio` decimal(4,0) NOT NULL, `cantidad` decimal NOT NULL, PRIMARY KEY  (`id`) );
+CREATE TABLE IF NOT EXISTS `ventas` ( `id_factura` BIGINT NOT NULL auto_increment, `fecha` date NOT NULL, PRIMARY KEY  (`id`) )  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE IF NOT EXISTS `ventas_productos` ( `id` BIGINT NOT NULL auto_increment, `id_venta` BIGINT REFERENCES `ventas`(`id`), `id_producto` BIGINT REFERENCES `producto`(`id`), `precio` decimal(4,0) NOT NULL, `cantidad` decimal NOT NULL, PRIMARY KEY  (`id`) )  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

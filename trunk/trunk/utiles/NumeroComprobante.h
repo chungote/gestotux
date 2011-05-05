@@ -29,6 +29,8 @@ class NumeroComprobante : public QObject
     Q_OBJECT
 public:
     explicit NumeroComprobante( QObject *parent = 0 );
+    explicit NumeroComprobante( const NumeroComprobante &original );
+    NumeroComprobante( NumeroComprobante &original );
     explicit NumeroComprobante( QObject *padre = 0, int serie = 0, int numero = 0 );
     void setearNumeroSerie( int serie );
     void setearNumero( int numero );
@@ -36,6 +38,7 @@ public:
     int numero() const;
     QString aCadena();
     bool esValido() const;
+    void siguienteNumero();
 
 private:
     QPair<int,int> _dato;
