@@ -13,95 +13,90 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Datos del presupuesto</string>
      </property>
-     <layout class="QVBoxLayout" name="_2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="_3">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="LNumeroComprobante">
           <property name="text">
-           <string>Fecha:</string>
+           <string>Numero:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QDateEdit" name="dEFecha">
-          <property name="calendarPopup">
-           <bool>true</bool>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="_4">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Destinatario</string>
+          <property name="sizeType">
+           <enum>QSizePolicy::MinimumExpanding</enum>
           </property>
-         </widget>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="_5">
+         <layout class="QHBoxLayout" name="_3">
           <item>
-           <widget class="QRadioButton" name="RBCliente">
+           <widget class="QLabel" name="label">
             <property name="text">
-             <string>Cliente</string>
+             <string>Fecha:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="CBCliente">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <widget class="QDateEdit" name="dEFecha">
+            <property name="calendarPopup">
+             <bool>true</bool>
             </property>
            </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="_6">
-          <item>
-           <widget class="QRadioButton" name="RBOtro">
-            <property name="text">
-             <string>Otro</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="LEOtro"/>
           </item>
          </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="_7">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QCheckBox" name="CkBTitulo">
+         <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Titulo Personalizado</string>
+           <string>Cliente</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="LETitulo">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>PRESUPUESTO</string>
+         <widget class="QComboBox" name="CBCliente">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
          </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Dirección:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEDireccion"/>
         </item>
        </layout>
       </item>
@@ -114,9 +109,6 @@
       <string>Contenido</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QTableView" name="TVContenido"/>
-      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
@@ -154,6 +146,9 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QTableView" name="TVContenido"/>
       </item>
      </layout>
     </widget>

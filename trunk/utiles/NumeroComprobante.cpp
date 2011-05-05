@@ -35,6 +35,18 @@ NumeroComprobante::NumeroComprobante( QObject *parent, int serie, int numero )
     _dato.second = numero;
 }
 
+NumeroComprobante::NumeroComprobante( const NumeroComprobante &original ) : QObject() {
+    setParent( original.parent() );
+    _dato.first = original.serie();
+    _dato.second = original.numero();
+}
+
+NumeroComprobante::NumeroComprobante( NumeroComprobante &original ) : QObject() {
+    setParent( original.parent() );
+    _dato.first = original.serie();
+    _dato.second = original.numero();
+}
+
 /*!
  * \fn NumeroComprobante::setearNumero( int numero )
  * Setea el numero de comprobante
@@ -102,4 +114,29 @@ bool NumeroComprobante::esValido() const {
     if( _dato.first == -1 || _dato.second == -1 ) {
         return false;
     } else { return true; }
+}
+
+/*!
+ * \fn NumeroComprobante::siguienteNumero()
+ * Devuelve un objeto con el siguiente numero valido.
+ */
+void NumeroComprobante::siguienteNumero() {
+  if( !this->esValido() ) {
+      return;
+  }
+
+  if( _dato.first <= 99999 ) {
+      if( ( _dato.second + 1 ) <= 99999 ) {
+          this->_dato.second++;
+      } else {
+          if( ( _dato.first + 1 ) <= 99999 ) {
+            _dato.first++;
+            _dato.second = 1;
+          } else {
+              qCritical( "Error de desbordamiento de numero de comprobante!" );
+              return;
+          }
+      }
+  }
+  return;
 }

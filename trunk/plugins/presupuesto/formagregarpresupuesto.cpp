@@ -27,6 +27,8 @@
 #include "presupuesto.h"
 #include "mproductostotales.h"
 #include "dproductostotales.h"
+#include "NumeroComprobante.h"
+#include "mpresupuesto.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -38,10 +40,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         this->setObjectName( "FormAgregarPresupuesto" );
         this->setWindowTitle( "Agregar Presupuesto" );
         this->setWindowIcon( QIcon( ":/imagenes/presupuesto-nuevo.png" ) );
-
-        connect( RBCliente, SIGNAL( toggled( bool ) ), CBCliente , SLOT( setEnabled( bool ) ) );
-        connect( RBOtro   , SIGNAL( toggled( bool ) ), LEOtro    , SLOT( setEnabled( bool ) ) );
-        connect( CkBTitulo, SIGNAL( toggled( bool ) ), LETitulo  , SLOT( setEnabled( bool ) ) );
 
         QAction *ActGuardar = new QAction( "Guardar", this );
         ActGuardar->setIcon( QIcon( ":/imagenes/guardar.png" ) );
@@ -75,6 +73,12 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         CBCliente->setModel( new EMCliente( CBCliente ) );
         CBCliente->setModelColumn( 1 );
         CBCliente->setCurrentIndex( -1 );
+        // Permito la creacion para un no cliente
+        CBCliente->setAutoCompletion( true );
+        CBCliente->setEditable( true );
+
+        // Habilita el buscador de direccion.
+        connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 
         // Pongo la fecha actual
         dEFecha->setDate( QDate::currentDate() );
@@ -98,6 +102,9 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         connect( PBAgregar     , SIGNAL( clicked() ), this, SLOT( agregarProducto()    ) );
         connect( PBEliminar    , SIGNAL( clicked() ), this, SLOT( eliminarProducto()   ) );
         connect( PBEliminarTodo, SIGNAL( clicked() ), this, SLOT( borrarTodoProducto() ) );
+
+        // Busco el siguiente numero de comprobante valido para un presupuesto
+        LNumeroComprobante->setText( LNumeroComprobante->text() + ":    " + MPresupuesto::proximoComprobante().aCadena() );
 }
 
 /*!
@@ -111,75 +118,48 @@ void FormAgregarPresupuesto::cancelar()
 
 
 #include <QMessageBox>
-#include <QSqlRecord>
 #include <QSqlDatabase>
-#include <QSqlDriver>
-#include <QSqlQuery>
 #include "mpresupuesto.h"
 /*!
     \fn FormAgregarPresupuesto::guardar( bool cerrar )
  */
 void FormAgregarPresupuesto::guardar( bool cerrar )
 {
- // Verifico que esten todos los datos
- if( !RBCliente->isChecked() && !RBOtro->isChecked() )
- {
-  QMessageBox::information( this, "Faltan Datos", "Por favor, elija un cliente o destinatario" );
-  return;
+ // Verifico que esten todos los datos - fecha valida
+ if( !dEFecha->date().isValid() ) {
+     QMessageBox::information( this, "Error de fecha", "La fecha no es valida. Ingrese una correcta." );
+     return;
  }
- if( CkBTitulo->isChecked() && LETitulo->text().isEmpty() )
- {
-        QMessageBox::information( this, "Faltan Datos", "Por favor, ingrese el titulo personalizado" );
-        return;
+ // Algun cliente seleccionado o agregado
+ if( !CBCliente->currentIndex() > 0 ) {
+     QMessageBox::information( this, "Error de destinatario", "El cliente no es valido o no existe un destinatario ingresado. Por favor coloque uno." );
+     return;
  }
- // Inicio la transacci�n
- QSqlDatabase::database().transaction();
+ QMessageBox::critical( this, "No implementado", "Todavía no se implemento esto!" );
+ // Inicio la transacción
+ /*QSqlDatabase::database().transaction();
  MPresupuesto *mod = new MPresupuesto( this );
- QSqlRecord reg = mod->record();
- // le pongo los valores a el registro
- reg.setValue( "titulo", LETitulo->text() );
- //reg.setValue( "contenido", editor->contenido() );
- reg.setValue( "fecha", dEFecha->date() );
- if( RBOtro->isChecked() )
- {
-  reg.setValue( "destinatario", LEOtro->text() );
-  reg.setValue( "id_cliente", -1 );
- }
- else
- {
-  reg.setValue( "id_cliente", CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt() );
-  reg.setValue( "destinatario", "" );
- }
- if( mod->insertRecord( -1, reg ) )
- {
-  int id_presupuesto = -1;
-  if( !QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) )
-  { qDebug("Error, no hay last_id" ); QSqlDatabase::database().rollback(); return; }
-  else
-  {
-        QVariant var = mod->query().lastInsertId();
-        if( !var.isValid() )
-        {
-                qWarning( "Error al obtener el ultimo id" );
-        }
-        else
-        {
-                id_presupuesto = var.toInt();
-        }
-  }
-  QSqlDatabase::database().commit();
-  QMessageBox::information( this, "Correcto", "Datos Guardados correctamente" );
-  return;
- }
- else
- {
-  qWarning( qPrintable( "No se pudo guardar el registro: " + mod->lastError().text() ) );
-  QSqlDatabase::database().rollback();
+
+ int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt();
+
+ int id_presupuesto = -1;
+
+ if( mod->agregarPrespuesto(
+             id_cliente,
+             CBCliente->currentText(),
+             LEDireccion->text(),
+             dEFecha->dateTime() ) ) {
+     // Guardo el id del presupuesto recién agregado para los datos
+     id_presupuesto = mod->ultimoIdInsertado();
+ } else {
+     qDebug( "Error al intentar agregar un prespuesto." );
+     QMessageBox::Information( this, "Error", "No se pudo agregar el presupuesto. No se guardo nada" );
+     return;
  }
  if( cerrar )
  {
   this->close();
- }
+ }*/
 }
 
 
@@ -224,7 +204,7 @@ void FormAgregarPresupuesto::agregarProducto()
 void FormAgregarPresupuesto::eliminarProducto()
 {
  QModelIndexList lista = TVContenido->selectionModel()->selectedRows();
- int ret = QMessageBox::question( this, "�Seguro?",QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ) );
+ int ret = QMessageBox::question( this, "¿Seguro?",QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ) );
  if( ret == QMessageBox::Accepted ) {
      foreach( QModelIndex item, lista )
      {
@@ -240,7 +220,9 @@ void FormAgregarPresupuesto::eliminarProducto()
  */
 void FormAgregarPresupuesto::borrarTodoProducto()
 {
- qWarning( "No implementado todavia" );
+ int ret = QMessageBox::question( this, "¿Seguro?", "Esta seguro que desea eliminar todos los elementos del prespuesto?" );
+ if( ret == QMessageBox::Accepted ) {
+         TVContenido->model()->removeRows( 0, TVContenido->model()->rowCount() );
+ }
 }
-
 

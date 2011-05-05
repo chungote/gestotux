@@ -1,6 +1,7 @@
 ::::::::::::::
 ::: Diseño :::
 ::::::::::::::
+- Pasar toda la base de datos a utf8_spanish_ci
 - Terminar diseños de entidad relación para el conjunto general y cada plugin.
 - Terminar de definir el sistema de impresion.
 - Eliminar sistema de lista de precios ( revisar eliminacion )
@@ -32,6 +33,7 @@
 -- General --
 -------------
 - Ver porque no se dibujan las flechas en la pantalla inicial.
+- Agregar a todos los modelos el metodo estatico siguienteNumero() para obtener el siguiente numero de comprobante.
 
 -- Cuentas corrientes --
 ------------------------

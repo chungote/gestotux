@@ -21,6 +21,7 @@
 #define MPRESUPUESTO_H
 
 #include <QSqlRelationalTableModel>
+#include "NumeroComprobante.h"
 
 /**
 Modelo de la tabla de recibos
@@ -35,6 +36,8 @@ public:
 
     QVariant data(const QModelIndex& idx, int role) const;
     bool setData(const QModelIndex& index, const QVariant& value, int role);
+
+    static NumeroComprobante proximoComprobante();
 
 private:
     void inicializar();
