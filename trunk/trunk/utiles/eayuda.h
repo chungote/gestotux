@@ -49,6 +49,10 @@ private:
   QHelpEngineCore *engine;
   static EAyuda *yo;
 
+private slots:
+  void errorEngine( const QString &mensaje );
+  void inicioConstruccion();
+  void finConstruccion();
 };
 
 #endif
