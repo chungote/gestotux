@@ -26,11 +26,17 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::EAyudaBase()
 {
         setupUi(this);
+        qDebug( QString( "Cargando Documentacion desde: %1").arg(QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch").toLocal8Bit());
         engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch", parent );
+        connect( engine, SIGNAL( setupStarted() ), this, SLOT( inicioConstruccion() ) );
+        connect( engine, SIGNAL( setupFinished() ), this, SLOT( finConstruccion() ) );
         if( !engine->setupData() )
         {
                 qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
+        } else {
+            qDebug( QString( "Documentacion cargada desde %1. OK!" ).arg( engine->collectionFile() ).toLocal8Bit() );
         }
+        connect( engine, SIGNAL( warning( const QString & ) ), this, SLOT( errorEngine( const QString & ) ) );
         PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
         this->setVisible(false);
         connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( hide() ) );
@@ -109,8 +115,31 @@ EAyuda* EAyuda::instancia()
  */
 void EAyuda::mostrarIndice()
 {
- if( hayAyuda( "index" ) )
+ if( hayAyuda( "indice" ) )
  {
-  mostrarAyuda( "index" );
+  mostrarAyuda( "indice" );
  }
 }
+
+
+/*!
+  \fn EAyuda::errorEngine( const QString mensaje )
+  Muestra el mensaje que tira el engine de la ayuda por salida normal
+*/
+void EAyuda::errorEngine( const QString &mensaje )
+{
+    qDebug( mensaje.toLocal8Bit() );
+    qWarning( "Error de documentacion reportado." );
+}
+
+/*!
+  \fn EAyuda::inicioConstruccion()
+  Muestra el mensaje que tira el engine de la ayuda por salida normal
+*/
+void EAyuda::inicioConstruccion()
+{ qDebug( "Inicio de construccion de la documentacion." ); }
+
+
+void EAyuda::finConstruccion()
+{ qDebug( "Fin de la construccion de la documentacion" ); }
+

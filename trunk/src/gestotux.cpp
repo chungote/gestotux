@@ -200,7 +200,7 @@ gestotux::~gestotux()
  */
 void gestotux::salir()
 {
- // Envio señal de que salgo para los plugins que estan escuchando
+ // Envio seÃ±al de que salgo para los plugins que estan escuchando
  emit saliendoGestotux();
  preferencias::getInstancia()->setValue( "Ventanas/Principal/estado", this->saveState( 1 ) );
  preferencias::getInstancia()->setValue( "Ventanas/Principal/geometry", this->geometry() );
