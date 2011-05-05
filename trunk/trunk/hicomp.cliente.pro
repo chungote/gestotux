@@ -30,3 +30,5 @@ unix {
 win32 {
   system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }
+
+DEFINES += GESTOTUX_HICOMP

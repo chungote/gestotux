@@ -137,12 +137,16 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
         {
                 QComboBox *combo = qobject_cast<QComboBox *>(editor);
                 // Veo si tiene el dato de ser un producto, sino, lo agrego
+                //qDebug( "Verificando existencia real del producto!");
                 if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
                 {
                     // Lo agrego en el modelo para que recarge despues
-                    qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( combo->itemText( combo->currentIndex() ) );
+                    //qDebug( QString( "Agregando producto no existente: %1").arg( combo->currentText() ).toLocal8Bit() );
+                    int valor_indice_nuevo = qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( combo->itemText( combo->currentIndex() ) );
+                    model->setData( index, valor_indice_nuevo );
+                } else {
+                    model->setData( index, combo->itemData( combo->currentIndex() ) );
                 }
-                model->setData( index, combo->itemData( combo->currentIndex() ) );
                 break;
         }
         // Precio Unitario

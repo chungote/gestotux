@@ -130,7 +130,7 @@ void FormFacturarServicio::cargar_datos_servicio()
  * \fn FormFacturarServicio::facturar()
  * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
  */
-void FormFacturarServicio::facturar()
+/*void FormFacturarServicio::facturar()
 {
     // Deshabilito los elementos editables
     this->GBClientes->setEnabled( false );
@@ -151,8 +151,12 @@ void FormFacturarServicio::facturar()
 
     // Inicializo el reporter
     orReport *reporte_recibo = new orReport( "recibo" );
-    // Inicializo el modelo
+    // Inicializo el modelo  de las facturas
+#ifdef GESTOTUX_HICOMP
     MPagos *mr = new MPagos();
+#else
+    //MFactura *mr = new MFactura();
+#endif
     MTempClientesFacturarServicio *mtemp = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model());
 
     // Inicializo los valores que voy a ir refrescando
@@ -178,9 +182,9 @@ void FormFacturarServicio::facturar()
         qDebug( QString( "Item %1-Nombre Cliente: %2." ).arg( i ).arg( nombre_cliente ).toLocal8Bit() );
 
         // Paso 1
-        // Generar el recibo
-        LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( cantidad_actual + 1  ).arg( cantidad_total ) );
-        id_recibo = mr->agregarRecibo( id_cliente,
+        // Generar la Factura
+        LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( cantidad_actual + 1  ).arg( cantidad_total ) );
+        id_factura = mr->agregarRecibo( id_cliente,
                                        QDate::currentDate(),
                                        QString( "Recibo por el pago del periodo %1" ).arg( this->LPeriodo->text() ),
                                        this->_precio_base,
@@ -220,6 +224,7 @@ void FormFacturarServicio::facturar()
         PBProgreso->setValue( PBProgreso->value() + 1 );
 
         // Paso 3 - Guardo el cobro
+        // Se hace ultimo para tener todos los ids de los comprobantes.
         if( MCobroServicio::agregarCobro( this->_id_servicio, id_cliente, id_recibo, this->_periodo, this->_ano ) )
         {
             PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -284,4 +289,4 @@ void FormFacturarServicio::facturar()
     // Cierro el formulario
     this->close();
     return;
-}
+}*/
