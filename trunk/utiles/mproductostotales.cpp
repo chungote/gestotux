@@ -41,7 +41,7 @@ MProductosTotales::MProductosTotales(QObject *parent)
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
  prods = new QMap<int, QString>();
- QSqlQuery cola( "SELECT nombre, id FROM producto WHERE habilitado = 1" );
+ QSqlQuery cola( "SELECT nombre, id FROM producto" );
  while( cola.next() )
  {
         prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );
@@ -87,7 +87,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
 {
  if( !index.isValid() )
  {
-   //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
+   //qDebug( QString( "Indice invalido DueÃ±os: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
    return false;
  }
  switch( role )
@@ -116,19 +116,27 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         recalcularTotal();
                                 }
                                 emit dataChanged( index , this->index( index.row(), 3) );
+                                return true;
                                 break;
                         }
                         // Producto
                         case 1:
                         {
                                 //qDebug( qPrintable( QString( "insert: size: %1, index.row(): %2" ).arg( this->productos->size() ).arg( index.row() ) ) );
+                                if( !value.isValid() ) { qDebug( "El valor es invalido!" ); return false; }
+                                if( !prods->contains( value.toInt() ) ) {
+                                    qDebug( "Indice no encontrado en la lista de productos" );
+                                    return false;
+                                }
                                 productos->insert( index.row(), value.toInt() );
-                                if( _buscarPrecio )
+                                //qDebug( QString( "Valor insertado en productos %1!").arg( value.toInt() ).toLocal8Bit() );
+                                if( _buscarPrecio && value.toInt() > 0 )
                                 {
                                         // Busco el precio de venta este producto
                                         this->setData( this->index( index.row(), 2 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
                                         //qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
                                 }
+                                return true;
                                 break;
                         }
                         // Precio Unitario
@@ -141,6 +149,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         recalcularTotal();
                                 }
                                 emit dataChanged( index , this->index( index.row(), 3 ) );
+                                return true;
                                 break;
                         }
 
@@ -196,7 +205,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 {
   if( !idx.isValid() )
   {
-   //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
+   //qDebug( QString( "Indice invalido DueÃ±os: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
    return( QVariant() );
   }
  if( idx.row() == this->productos->size() && _calcularTotal )
@@ -272,14 +281,19 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                         // Cantidades
                         case 0:
                         {
-                                // Busco si existe
                                 return QString( "%L1" ).arg( cantidades->value( idx.row() ) );
                                 break;
                         }
                         // Producto
                         case 1:
                         {
-                                return prods->value( productos->value( idx.row() ) );
+                                // Devuelvo el mapeo idfila->productos->prods
+                                if( prods->contains( productos->value( idx.row()) ) ) {
+                                    return prods->value( productos->value( idx.row() ) );
+                                } else {
+                                    //qDebug( QString( "No se encontro el articulo en el data. Row=%1, indice=%2 " ).arg( idx.row() ).arg( productos->value( idx.row()) ).toLocal8Bit() );
+                                    return false;
+                                }
                                 break;
                         }
                         // precio unitario
@@ -397,7 +411,7 @@ void MProductosTotales::recalcularTotal()
  {
   Total += i.value();
  }
- // Emito la señal de que cambio el valor
+ // Emito la seÃ±al de que cambio el valor
  emit dataChanged( this->index( this->cantidades->size(), 0 ), this->index( this->cantidades->size(), 3 ) );
 }
 
@@ -483,12 +497,16 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
   }
 }
 
-void MProductosTotales::agregarNuevoProducto( QString nombre )
+int MProductosTotales::agregarNuevoProducto( QString nombre )
 {
   // Lo agrego a la lista de productos
   this->prods->insert( this->_min, nombre );
+  //qDebug( QString("Insertado %1 en pos %2" ).arg( nombre ).arg( this->_min ).toLocal8Bit() );
   // aumento el minimo
+  int ret = this->_min;
   this->_min--;
   // Actualizo la lista de productos
   emit cambioListaProductos( this );
+  // Devuelvo el valor insertado
+  return ret;
 }

@@ -1962,9 +1962,20 @@
     <filename>gestotux_8cpp</filename>
   </compound>
   <compound kind="file">
+    <name>gestotux.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/movil/</path>
+    <filename>movil_2gestotux_8cpp</filename>
+  </compound>
+  <compound kind="file">
     <name>gestotux.h</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>gestotux_8h</filename>
+    <class kind="class">gestotux</class>
+  </compound>
+  <compound kind="file">
+    <name>gestotux.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/movil/</path>
+    <filename>movil_2gestotux_8h</filename>
     <class kind="class">gestotux</class>
   </compound>
   <compound kind="file">
@@ -1977,6 +1988,17 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>mclientes_8h</filename>
     <class kind="class">MClientes</class>
+  </compound>
+  <compound kind="file">
+    <name>FormPantallInicialMovil.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/src/movil/</path>
+    <filename>FormPantallInicialMovil_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>FormPantallInicialMovil.h</name>
+    <path>/home/Esteban/Programas/gestotux/src/movil/</path>
+    <filename>FormPantallInicialMovil_8h</filename>
+    <class kind="class">FormPantallInicialMovil</class>
   </compound>
   <compound kind="file">
     <name>reloj.cpp</name>
@@ -4367,6 +4389,27 @@
       <name>instancia</name>
       <anchorfile>classEAyuda.html</anchorfile>
       <anchor>abfa8947eba38ffce637412280b9980c7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>errorEngine</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>aebf6be7af9eaee9b5f3ce01299b208a4</anchor>
+      <arglist>(const QString &amp;mensaje)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>finConstruccion</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>ac37f691e972ba5d6d101136f2f85ee39</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>inicioConstruccion</name>
+      <anchorfile>classEAyuda.html</anchorfile>
+      <anchor>a9509a5622fe54969c0d81bec9ea89a58</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -8105,7 +8148,7 @@
       <type>void</type>
       <name>facturar</name>
       <anchorfile>classFormFacturarServicio.html</anchorfile>
-      <anchor>a08f67fd2ec2dbf1ea95cc0b6fce210c8</anchor>
+      <anchor>a1129bc17de6039a96cf8c86427515580</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -8647,6 +8690,24 @@
       <anchorfile>classEVentana.html</anchorfile>
       <anchor>af85d5a05aa128f2a798b21e4f6843bed</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FormPantallInicialMovil</name>
+    <filename>classFormPantallInicialMovil.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FormPantallInicialMovil</name>
+      <anchorfile>classFormPantallInicialMovil.html</anchorfile>
+      <anchor>a20eef36225774f73af225b51b4c43535</anchor>
+      <arglist>(QWidget *parent=0)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>changeEvent</name>
+      <anchorfile>classFormPantallInicialMovil.html</anchorfile>
+      <anchor>a8f5a6cfd7f08c0cdf6f01cacb390c6c9</anchor>
+      <arglist>(QEvent *e)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -9998,6 +10059,20 @@
     </member>
     <member kind="slot">
       <type>void</type>
+      <name>agregarDock</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>afecd09d3602488ec62258fa4832ae02e</anchor>
+      <arglist>(Qt::DockWidgetArea area, QDockWidget *ventana)</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>verBackup</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>abf3246e2445aff76cd2c84174e13ec07</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
       <name>verBackup</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>abf3246e2445aff76cd2c84174e13ec07</anchor>
@@ -10012,9 +10087,30 @@
     </member>
     <member kind="slot">
       <type>void</type>
+      <name>verClientes</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a09777d865607b1d81f7a8ea8b8b8c466</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
       <name>verPreferencias</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>a2347afded298ae545eec08d443b34cb9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>verPreferencias</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a2347afded298ae545eec08d443b34cb9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>saliendoGestotux</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a35dc83ad1a61e741108811658be373f4</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="signal">
@@ -10032,10 +10128,31 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>gestotux</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a83d89670628c98663ed98b75c59557ea</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>inicializar</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>a541eaa9e4ea124c06bc4b4e6dcb552ff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>inicializar</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a541eaa9e4ea124c06bc4b4e6dcb552ff</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~gestotux</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>aa27c507a84c7a284125246ed1c980a97</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -10053,6 +10170,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
+      <type>static QToolBar *</type>
+      <name>barraAcciones</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a0a122d08bbd5986bc1d58ee156c06647</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static FormularioCentral *</type>
+      <name>formCen</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>ae64ae6a7485b55aa0a70b9e769c116da</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
       <type>static FormularioCentral *</type>
       <name>formCen</name>
       <anchorfile>classgestotux.html</anchorfile>
@@ -10063,14 +10194,14 @@
       <type>static QToolBar *</type>
       <name>_barraAcciones</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a5db55f401c9279481bd38d8b1907bdd5</anchor>
+      <anchor>a48d089d95c4334874464a2b49e4a70cf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static FormularioCentral *</type>
       <name>formCentral</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a55cff51284505dd4bc38befc076fc1db</anchor>
+      <anchor>abb0f39523efa6110a998b70a03e30e64</anchor>
       <arglist></arglist>
     </member>
     <member kind="slot" protection="protected">
@@ -10078,6 +10209,20 @@
       <name>acerca</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>ada204b21b574824b0cf9e8d2dc9c860b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>acerca</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>ada204b21b574824b0cf9e8d2dc9c860b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>ayuda</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a2cb3763332245a0dbe30bab3269c89a8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected">
@@ -10096,10 +10241,31 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
+      <name>salir</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>ac1f6d71336d02b9e3e4b3f1416b9d3af</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
       <name>verActualizacion</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>a22c359adc1b67d5bcbe0faa540dc7b09</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>verActualizacion</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a22c359adc1b67d5bcbe0faa540dc7b09</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>closeEvent</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a5fd274cb1320587959f4f8561e2998b9</anchor>
+      <arglist>(QCloseEvent *event)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -10115,6 +10281,20 @@
       <anchor>a785dfb1167bfb3084d888e0a9430ed77</anchor>
       <arglist>(QKeyEvent *event)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>keyPressEvent</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a785dfb1167bfb3084d888e0a9430ed77</anchor>
+      <arglist>(QKeyEvent *event)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>ocultar_mostrar</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>aad0f7261d93e0a03c8f5c4e3a8f48e34</anchor>
+      <arglist>(QSystemTrayIcon::ActivationReason razon=QSystemTrayIcon::Trigger)</arglist>
+    </member>
     <member kind="slot" protection="private">
       <type>void</type>
       <name>ocultar_mostrar</name>
@@ -10127,6 +10307,20 @@
       <name>bandeja_sistema</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>acf15c2878206493f76f70b0c2a07e5d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>bandeja_sistema</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>acf15c2878206493f76f70b0c2a07e5d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>crearBarraLateral</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>aa5933e36a14947cf038281073470f76a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -10145,9 +10339,30 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
+      <name>crearPantallaInicio</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>ac94c50351db5f8d7ade53ac4dafe9f9a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
       <name>crearReloj</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>afe0adee497aed0f1c6667635b54ef71f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>crearReloj</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>afe0adee497aed0f1c6667635b54ef71f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createActions</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a12480168684aad90d4ad34580e365d0b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -10166,9 +10381,30 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
+      <name>createMenus</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a45b3e1454d967f97672715facee101da</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
       <name>createStatusBar</name>
       <anchorfile>classgestotux.html</anchorfile>
       <anchor>a64fca01ddef0b34b98503fa9aa1b5bc4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createStatusBar</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a64fca01ddef0b34b98503fa9aa1b5bc4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>createToolBar</name>
+      <anchorfile>classgestotux.html</anchorfile>
+      <anchor>a530b21922de6fbb10224be663c388562</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -10182,119 +10418,119 @@
       <type>QAction *</type>
       <name>acercade</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>abf1119a9fecc758a87826139cada926c</anchor>
+      <anchor>a2049582c318269ab3db933e9bf7fd54a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActActualizar</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>ac38491bc1d7cbfcaf9e213bd59505072</anchor>
+      <anchor>a2bb5ce5153ae2eda888e5ab0d4367a4e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActAyuda</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a631660f238f69eba31208790a369682e</anchor>
+      <anchor>a7c6f67108b6394739771376b8fe6ff51</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActBackup</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a400caf96a84ce8307eca67236ce61f28</anchor>
+      <anchor>a681e9a2764359768af9f21b34670a9d6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActCerrar</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a3a98699a3d1869f3546442e58b6755e7</anchor>
+      <anchor>a85b510d937233739def0a60f734a8ce1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActClientes</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>ac6029edf9917d735ac12c2401a7eca90</anchor>
+      <anchor>a99b549482fa7aa1eb2da7301d42bfb16</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActPreferencias</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a015bc4573de3d5673ff732eec314cdd9</anchor>
+      <anchor>a31d3df685f4289a624939b01ca02f8d5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>ActRestaurar</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a10e41e4e578223eb4a625837140f5412</anchor>
+      <anchor>aaccaf7933f8fe7bdfeff314998646545</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>barraLateral *</type>
       <name>barra</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a947442f4a206b7ffab94649dd7302446</anchor>
+      <anchor>a2fb451bb21a89acda7eaecad1ecc7e13</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>barraAbajo *</type>
       <name>barraA</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>ab41c80bc2ac6961c96507480930215d6</anchor>
+      <anchor>ad8b3565f2439a0c7c845dc655d44eda4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
       <name>exitAct</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>ab25cf4f33b70cb146c83e8283d128877</anchor>
+      <anchor>a04896156a9351585c31cc26fb90205f8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QMenu *</type>
       <name>fileMenu</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a64a04a431ede0e4c86c1c4c9fd91f8a1</anchor>
+      <anchor>a8f2315b117cb73bef8a7839f3ea1a982</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QSystemTrayIcon *</type>
       <name>iconoBandeja</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a205c7f7356e37ee454972fcaeb02d2cd</anchor>
+      <anchor>ac05ef1c653f3aee9208ba7f598bba3a2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QMenu *</type>
       <name>menuAyuda</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a8fd5ac0e730da4be954b3bca40e78c1d</anchor>
+      <anchor>a69ddd7b2b1ff5defa41916c1011cbedf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QMenu *</type>
       <name>menuHer</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>ab016f003cd85783b144463cda6ae7311</anchor>
+      <anchor>aa8aac09e5b009eaae9d6eb5fa46780b5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QMenu *</type>
       <name>menuVer</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>a1268f241da1b4a90a094f51d693b3571</anchor>
+      <anchor>a594ae345c7c3ca7ce56b25e9f9bd9c7e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QToolBar *</type>
       <name>tb</name>
       <anchorfile>classgestotux.html</anchorfile>
-      <anchor>ad1a03359fa739e615ec9e13275835b6b</anchor>
+      <anchor>abf6ce2e44c5e0784429ab8e2498b4336</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -20890,6 +21126,15 @@
     <file>misc.h</file>
   </compound>
   <compound kind="dir">
+    <name>src/movil/</name>
+    <path>/home/Esteban/Programas/gestotux/src/movil/</path>
+    <filename>dir_0dcfe1b1b0d972af6bd8b5052b517d96.html</filename>
+    <file>FormPantallInicialMovil.cpp</file>
+    <file>FormPantallInicialMovil.h</file>
+    <file>gestotux.cpp</file>
+    <file>gestotux.h</file>
+  </compound>
+  <compound kind="dir">
     <name>plugins/pagos/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/pagos/</path>
     <filename>dir_1b9f29eea308e5570e75be72e1eab1ac.html</filename>
@@ -21056,6 +21301,7 @@
     <name>src/</name>
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>dir_a6a96f4101e30ef9cb693fc53f8c1212.html</filename>
+    <dir>src/movil/</dir>
     <file>barralateral.cpp</file>
     <file>barralateral.h</file>
     <file>botoneslaterales.cpp</file>

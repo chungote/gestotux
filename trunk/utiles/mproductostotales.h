@@ -49,20 +49,47 @@ public:
     bool buscaPrecios();
     void buscarPrecios( bool activado = true );
     QMap<int, QString> *listaProductos() { return this->prods; }
+    /*!
+     * Contiene el listado de ids relacionados con los nombres de los productos
+     */
     QMap<int, QString> *prods;
-    void agregarNuevoProducto( const QString nombre );
+    int agregarNuevoProducto( const QString nombre );
 
 signals:
     void cambioListaProductos( MProductosTotales * );
 
 private:
+        /*!
+         * Contiene el listado de subtotales por definicion de fila
+         */
         QHash<int, double> *subtotales;
+        /*!
+         * Contiene el listado de cantidades por definicion de fila
+         */
         QHash<int, double> *cantidades;
+        /*!
+         * Contiene el listado de precios unitarios por definicion de fila
+         */
         QHash<int, double> *precio_unitario;
+        /*!
+         * Contiene el mapeo de posicion de fila a id de productos
+         */
         QHash<int, int> *productos;
+        /*!
+         * Contiene el total de la factura calculado
+         */
         double Total;
+        /*!
+         * Define si se calculará el total
+         */
         bool _calcularTotal;
+        /*!
+         * Define si se hará la busqueda de precio del producto
+         */
         bool _buscarPrecio;
+        /*!
+         * Indice para indicar el nuevo ingreso
+         */
         int _min;
         double buscarPrecioVenta( int id_producto );
 };

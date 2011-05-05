@@ -64,7 +64,7 @@ QVariant MCobroServicio::data(const QModelIndex& item, int role) const
 bool MCobroServicio::agregarCobro( const int id_servicio, const int id_cliente, const int id_factura, const int periodo, const int ano )
 {
  QSqlQuery cola;
- cola.prepare( "INSERT INTO cobro_servicio VALUES( :id_servicio, :id_cliente, :factura, :periodo, :ano )" );
+ cola.prepare( "INSERT INTO cobro_servicio( id_servicio, id_cliente, factura, periodo, ano ) VALUES( :id_servicio, :id_cliente, :factura, :periodo, :ano )" );
  cola.bindValue( ":id_servicio", id_servicio );
  cola.bindValue( ":id_cliente", id_cliente );
  cola.bindValue( ":factura", id_factura );
@@ -99,7 +99,7 @@ CREATE TABLE `gestotux`.`cobro_servicio` (
  FOREIGN KEY ( id_servicio, id_cliente )
  REFERENCES `servicios_clientes`( id_servicio, id_cliente ),
  PRIMARY KEY ( id_cobro_servicio ),
- FOREIGN KEY ( factura ) REFERENCES ventas( id ),
+ FOREIGN KEY ( factura ) REFERENCES ventas( id_factura ),
  FOREIGN KEY ( recibo ) REFERENCES recibos( id_recibo )
 ) ENGINE = InnoDB;
 */
