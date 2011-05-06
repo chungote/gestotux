@@ -45,6 +45,22 @@ void MPresupuesto::relacionar()
   setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
 }
 
+/*
+CREATE TABLE IF NOT EXISTS `presupuestos` (
+  `id_presupuesto` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_cliente` bigint(20) DEFAULT NULL,
+  `destinatario` text COLLATE utf8_spanish_ci,
+  `direccion` text COLLATE utf8_spanish_ci,
+  `fecha` date NOT NULL,
+  `total` decimal(10,4) NOT NULL,
+  `serie` bigint(20) NOT NULL,
+  `numero` bigint(20) NOT NULL,
+  PRIMARY KEY (`id_presupuesto`),
+  UNIQUE KEY `presupuesto-serie-numero` (`serie`,`numero`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+*/
+
+
 QVariant MPresupuesto::data(const QModelIndex& idx, int role) const
 {
  switch( role )
@@ -173,7 +189,7 @@ bool MPresupuesto::setData(const QModelIndex& index, const QVariant& value, int 
 #include <QSqlQuery>
 #include <QSqlRecord>
 
-NumeroComprobante MPresupuesto::proximoComprobante() {
+NumeroComprobante &MPresupuesto::proximoComprobante() {
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT MAX( serie ) FROM presupuestos" ) ) ) {
       if( cola.next() ) {
@@ -181,9 +197,9 @@ NumeroComprobante MPresupuesto::proximoComprobante() {
           if( cola.exec( QString( "SELECT MAX( numero ) FROM presupuestos WHERE serie = %1" ).arg( serie ) ) ) {
               if( cola.next() ) {
                   int numero = cola.record().value(0).toInt();
-                  NumeroComprobante num( 0, serie, numero );
-                  num.siguienteNumero();
-                  return num;
+                  NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
+                  num->siguienteNumero();
+                  return *num;
               } else {
                   qDebug( "Error de cola al hacer next al obtener el numero de prespuesto maximo");
               }
@@ -194,11 +210,49 @@ NumeroComprobante MPresupuesto::proximoComprobante() {
           qDebug( "Error de cola al hacer next al obtener el numero de serie de presupuesto maximo -  Se inicio una nueva numeracion" );
       }
   } else {
-      NumeroComprobante num( 0, 0, 1 );
-      num.siguienteNumero();
+      NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+      num->siguienteNumero();
       qDebug( "Error de cola al hacer exec al obtener el numero de serie de presupuesto maximo - Se inicio una nueva numeracion" );
-      return num;
+      return *num;
   }
-  NumeroComprobante invalido( 0, -1, -1 );
-  return invalido;
+  NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+  return *invalido;
+}
+
+/*!
+ * \fn MPresupuesto::agregarPresupuesto()
+    Agrega un presupuesto con los datos pasados de parametros y devuelve el id del registro recien insertado para utilizar con los items
+    @param id_cliente Identificador de cliente
+    @param texto_cliente Nombre del cliente si id-cliente no es valido
+    @param direccion Direccion del cliente o destinatario si el id-cliente no es valido
+    @param fechahora Fecha y hroa del presupeusto
+    @returns ID de insercion o -1 si hubo un error
+ */
+int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora ) {
+    QSqlQuery cola;
+    cola.prepare( "INSERT INTO presupuestos( id_cliente, nombre, direccion, fecha, serie, numero ) VALUES ( :id_cliente, :nombre, :direccion, :fecha, :serie, :numero )");
+    if( id_cliente < 0 ) {
+        cola.bindValue( ":id_cliente", QVariant() );
+        cola.bindValue( ":nombre", texto_cliente );
+        cola.bindValue( ":direccion", direccion );
+    } else {
+        cola.bindValue( ":id_cliente", id_cliente );
+        cola.bindValue( ":nombre", QVariant() );
+        cola.bindValue(":direccion", QVariant() );
+    }
+    cola.bindValue( ":fecha", fechahora );
+    // busco el proximo numero de serie
+    NumeroComprobante num = this->proximoComprobante();
+    cola.bindValue( ":serie", num.serie() );
+    cola.bindValue( ":numero", num.numero() );
+    if( cola.exec() ) {
+        // busco el ultimo id insetado
+        QVariant ret = cola.lastInsertId();
+        if( ret.isValid()){
+            return ret.toInt();
+        } else { return -1; }
+    } else {
+        qDebug( "Error al hacer exec para insertar un nuevo presupeusto.");
+        return -1;
+    }
 }

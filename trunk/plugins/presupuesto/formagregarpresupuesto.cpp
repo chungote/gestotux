@@ -136,30 +136,28 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      return;
  }
  QMessageBox::critical( this, "No implementado", "Todavía no se implemento esto!" );
+ return;
  // Inicio la transacción
- /*QSqlDatabase::database().transaction();
+ QSqlDatabase::database().transaction();
  MPresupuesto *mod = new MPresupuesto( this );
 
  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt();
 
- int id_presupuesto = -1;
+ int id_presupuesto = mod->agregarPresupuesto( id_cliente,
+                                               CBCliente->currentText(),
+                                               LEDireccion->text(),
+                                               dEFecha->dateTime() );
 
- if( mod->agregarPrespuesto(
-             id_cliente,
-             CBCliente->currentText(),
-             LEDireccion->text(),
-             dEFecha->dateTime() ) ) {
-     // Guardo el id del presupuesto recién agregado para los datos
-     id_presupuesto = mod->ultimoIdInsertado();
- } else {
+ if( id_presupuesto == -1 ) {
      qDebug( "Error al intentar agregar un prespuesto." );
-     QMessageBox::Information( this, "Error", "No se pudo agregar el presupuesto. No se guardo nada" );
+     QMessageBox::information( this, "Error", "No se pudo agregar el presupuesto. No se guardo nada" );
      return;
  }
+ // tengo el id del presupuesto y procedo a guardar los datos de los items
  if( cerrar )
  {
   this->close();
- }*/
+ }
 }
 
 
