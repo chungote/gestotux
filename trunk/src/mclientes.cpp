@@ -64,7 +64,7 @@ CREATE TABLE clientes (
  setHeaderData( 14, Qt::Horizontal, "Fax" );
  setHeaderData( 15, Qt::Horizontal, "Em@il" );
  setHeaderData( 16, Qt::Horizontal, "EnviarComprobantexEmail" );
- setHeaderData( 17, Qt::Horizontal, "�CtaCte?" );
+ setHeaderData( 17, Qt::Horizontal, "¿CtaCte?" );
  setHeaderData( 18, Qt::Horizontal, "CUIT/CUIL" );
 }
 
@@ -73,3 +73,44 @@ MClientes::~MClientes()
 {
 }
 
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
+QString MClientes::direccionEntera(int id_cliente) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT calle, numero, piso, depto, ciudad, codigo_postal, provincia FROM clientes WHERE id = %1 ").arg( id_cliente ) ) ) {
+        if( cola.next() ) {
+            QString ret;
+            if( !cola.record().value(0).isNull() ) {
+                ret.append( cola.record().value(0).toString() );
+            }
+            if( !cola.record().value(1).isNull() ) {
+                ret.append( " " + cola.record().value(1).toString() );
+            }
+            if( !cola.record().value(2).isNull()) {
+                ret.append( " P " + cola.record().value(2).toString() );
+            }
+            if( !cola.record().value(3).isNull()) {
+                ret.append( " dept " + cola.record().value(3).toString() );
+            }
+            if( !cola.record().value(4).isNull()) {
+                ret.append( " - " + cola.record().value(4).toString() );
+            }
+            if( !cola.record().value(5).isNull()) {
+                ret.append( " - CP " + cola.record().value(5).toString() );
+            }
+            if( !cola.record().value(6).isNull()) {
+                ret.append( " - " + cola.record().value(6).toString() );
+            }
+            return ret;
+        } else {
+            qDebug( "Error haciendo next en la cola para obtener la direcicon de un cliente");
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            return "Desconocido";
+        }
+    } else {
+        qDebug( "Error haciendo exec en la cola para obtener la direcci´on de un cliente");
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        return "Desconocido";
+    }
+}

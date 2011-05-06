@@ -226,3 +226,15 @@ void FormAgregarPresupuesto::borrarTodoProducto()
  }
 }
 
+#include <mclientes.h>
+/*!
+  \fn FormAgregarPresupuesto::cambioCliente( int id_combo )
+  Slot llamado cada vez que el usuario cambia el contenido del combo de cliente o destinatario
+  @param id_combo ID del combobox
+ */
+void FormAgregarPresupuesto::cambioCliente( int id_combo ) {
+   /// @todo agregar cambio de direccion
+    int id_cliente = CBCliente->model()->data( CBCliente->model()->index( id_combo, 0 ), Qt::EditRole ).toInt();
+    LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
+}
+
