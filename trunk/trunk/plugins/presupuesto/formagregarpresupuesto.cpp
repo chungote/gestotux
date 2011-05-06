@@ -237,4 +237,3 @@ void FormAgregarPresupuesto::cambioCliente( int id_combo ) {
     int id_cliente = CBCliente->model()->data( CBCliente->model()->index( id_combo, 0 ), Qt::EditRole ).toInt();
     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
 }
-

@@ -81,18 +81,18 @@ QString NumeroComprobante::aCadena() {
 }
 
 QString NumeroComprobante::numeroLleno() {
-  int llenar = CANT_DIGITOS - cuentaRecursivo( _dato.first );
+  int llenar = CANT_DIGITOS - cuentaRecursivo( _dato.second );
   QString r;
   for( int i =0; i<llenar; i++ ) { r.append("0"); }
-  r.append( QString::number( _dato.first ) );
+  r.append( QString::number( _dato.second ) );
   return r;
 }
 
 QString NumeroComprobante::serieLleno() {
-    int llenar = CANT_DIGITOS - cuentaRecursivo( _dato.second );
+    int llenar = CANT_DIGITOS - cuentaRecursivo( _dato.first );
     QString r;
     for( int i =0; i<llenar; i++ ) { r.append("0"); }
-    r.append( QString::number( _dato.second ) );
+    r.append( QString::number( _dato.first ) );
     return r;
 }
 
@@ -126,12 +126,14 @@ void NumeroComprobante::siguienteNumero() {
   }
 
   if( _dato.first <= 99999 ) {
-      if( ( _dato.second + 1 ) <= 99999 ) {
+      if( ( _dato.second + 1 ) <= 99999 ) { // Si el numero no llego al final aumento el numero
           this->_dato.second++;
+          return;
       } else {
-          if( ( _dato.first + 1 ) <= 99999 ) {
+          if( ( _dato.first + 1 ) <= 99999 ) {  // si la serie no se va de mambo, aumento el serie y reinicio la numeracion
             _dato.first++;
             _dato.second = 1;
+            return;
           } else {
               qCritical( "Error de desbordamiento de numero de comprobante!" );
               return;

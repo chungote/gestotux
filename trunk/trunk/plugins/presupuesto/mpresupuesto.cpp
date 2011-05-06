@@ -175,7 +175,7 @@ bool MPresupuesto::setData(const QModelIndex& index, const QVariant& value, int 
 
 NumeroComprobante MPresupuesto::proximoComprobante() {
   QSqlQuery cola;
-  if( cola.exec( QString( "SELECT MAX( serie ) FROM prespuestos" ) ) ) {
+  if( cola.exec( QString( "SELECT MAX( serie ) FROM presupuestos" ) ) ) {
       if( cola.next() ) {
           int serie = cola.record().value(0).toInt();
           if( cola.exec( QString( "SELECT MAX( numero ) FROM presupuestos WHERE serie = %1" ).arg( serie ) ) ) {
@@ -191,10 +191,13 @@ NumeroComprobante MPresupuesto::proximoComprobante() {
               qDebug( "Error de cola al hacer exec al obtener el numero de prespuesto maximo" );
           }
       } else {
-          qDebug( "Error de cola al hacer next al obtener el numero de serie de presupuesto maximo" );
+          qDebug( "Error de cola al hacer next al obtener el numero de serie de presupuesto maximo -  Se inicio una nueva numeracion" );
       }
   } else {
-      qDebug( "Error de cola al hacer exec al obtener el numero de serie de presupuesto maximo" );
+      NumeroComprobante num( 0, 0, 1 );
+      num.siguienteNumero();
+      qDebug( "Error de cola al hacer exec al obtener el numero de serie de presupuesto maximo - Se inicio una nueva numeracion" );
+      return num;
   }
   NumeroComprobante invalido( 0, -1, -1 );
   return invalido;
