@@ -76,7 +76,7 @@ FormActualizacion::~FormActualizacion()
 
 /*!
     \fn FormActualizacion::iniciar()
-        Conecta las señales, inicia la comunicacion ftp y coloca el primer comando
+        Conecta las se?ales, inicia la comunicacion ftp y coloca el primer comando
  */
 void FormActualizacion::iniciar()
 {
@@ -345,7 +345,7 @@ void FormActualizacion::analizarGeneral()
                         QString nombre = nodoA.toElement().attribute( "nombre" );
                         if( ERegistroPlugins::pluginsHash()->find( nombre ) == ERegistroPlugins::pluginsHash()->end() )
                         {
-                                qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara ni actualizará" ).arg( nombre ).toLocal8Bit() );
+                                qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara ni actualizar?" ).arg( nombre ).toLocal8Bit() );
                                 docElem.removeChild( nodoA );
                                 continue;
                         }

@@ -31,6 +31,8 @@ class MClientes : public QSqlRelationalTableModel
 public:
     MClientes( QObject *parent = 0);
     ~MClientes();
+
+    static QString direccionEntera( int id_cliente );
 };
 
 #endif
