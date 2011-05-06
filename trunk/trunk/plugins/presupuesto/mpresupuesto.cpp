@@ -182,8 +182,6 @@ NumeroComprobante MPresupuesto::proximoComprobante() {
               if( cola.next() ) {
                   int numero = cola.record().value(0).toInt();
                   NumeroComprobante num( 0, serie, numero );
-                  num.setearNumeroSerie( serie );
-                  num.setearNumero( numero );
                   num.siguienteNumero();
                   return num;
               } else {

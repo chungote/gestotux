@@ -24,16 +24,19 @@
 class QVariant;
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+        @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class MTProductosPresupuesto : public QSqlRelationalTableModel
 {
-	Q_OBJECT
+        Q_OBJECT
 public:
     MTProductosPresupuesto( QObject * parent = 0 );
     ~MTProductosPresupuesto();
 
-    QVariant data ( const QModelIndex & item, int role = Qt::DisplayRole ) const;
+    void inicializar();
+    void relacionar();
+
+/*    QVariant data ( const QModelIndex & item, int role = Qt::DisplayRole ) const;
     Qt::ItemFlags flags( const QModelIndex & index ) const;
     int columnCount( const QModelIndex &parent = QModelIndex() ) const;
     int rowCount( const QModelIndex &parent = QModelIndex() ) const;
@@ -41,8 +44,7 @@ public:
     bool setData( const QModelIndex &item, const QVariant &data, int role = Qt::EditRole );
     QVariant buscarPrecioProducto( const int fila ) const;
     QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const ;
-    bool removeRow ( int row, const QModelIndex & parent = QModelIndex() );
-    double getTotal();
+    bool removeRow ( int row, const QModelIndex & parent = QModelIndex() );*/
 
 private slots:
     void seteaPresupuesto( QSqlRecord &registro );

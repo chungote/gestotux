@@ -27,18 +27,38 @@
 MTProductosPresupuesto::MTProductosPresupuesto( QObject * parent )
  : QSqlRelationalTableModel( parent )
 {
- setTable( "presupuestos_productos" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "#Presupuesto" );
- setHeaderData( 2, Qt::Horizontal, "Producto" );
-   setRelation( 2, QSqlRelation( "producto", "id", "nombre" ) );
- setHeaderData( 3, Qt::Horizontal, "Cantidad" );
- setHeaderData( 4, Qt::Horizontal, "Precio Unitario" );
- setHeaderData( 5, Qt::Horizontal, "Sub-Total" );
- setEditStrategy( QSqlTableModel::OnManualSubmit );
- connect( this, SIGNAL( beforeInsert( QSqlRecord & ) ), this, SLOT( seteaPresupuesto( QSqlRecord & ) ) );
+    inicializar();
+    relacionar();
+    setEditStrategy( QSqlTableModel::OnManualSubmit );
+    connect( this, SIGNAL( beforeInsert( QSqlRecord & ) ), this, SLOT( seteaPresupuesto( QSqlRecord & ) ) );
 }
 
+void MTProductosPresupuesto::inicializar() {
+    setTable( "presupuestos_productos" );
+    setHeaderData( 0, Qt::Horizontal, "#ID" );
+    setHeaderData( 1, Qt::Horizontal, "#Presupuesto" );
+    setHeaderData( 2, Qt::Horizontal, "Cantidad" );
+    setHeaderData( 3, Qt::Horizontal, "Producto/Item" );
+    setHeaderData( 4, Qt::Horizontal, "Precio Unitario" );
+    setHeaderData( 5, Qt::Horizontal, "#ID Producto" );
+}
+
+void MTProductosPresupuesto::relacionar() {}
+
+/*
+CREATE TABLE IF NOT EXISTS `presupuesto_productos` (
+  `id_presupuesto_producto` bigint NOT NULL,
+  `id_presupuesto` bigint,
+  `cantidad` double NOT NULL,
+  `texto` text NOT NULL,
+  `precio_unitario` double NOT NULL,
+  `id_producto` bigint NULL,
+  PRIMARY KEY (`id_presupuesto_producto`, `id_presupuesto` )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+Recordar: id_presupuesto_producto define el orden en que se mostraran los items.
+Junto con id_presupuesto generan la clave primaria de la tabla.
+*/
 
 MTProductosPresupuesto::~MTProductosPresupuesto()
 {
@@ -46,7 +66,7 @@ MTProductosPresupuesto::~MTProductosPresupuesto()
 
 /*!
     \fn MTProductosPresupuesto::data ( const QModelIndex & item, int role ) const
- */
+
 QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) const
 {
  if( item.row() >= QSqlRelationalTableModel::rowCount() )
@@ -185,10 +205,7 @@ QVariant MTProductosPresupuesto::data( const QModelIndex & item, int role ) cons
  }
 }
 
-
-/*!
     \fn MTProductosPresupuesto::flags ( const QModelIndex & index ) const
- */
 Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
 {
  if( index.row() == QSqlTableModel::rowCount() + 1 )
@@ -205,26 +222,21 @@ Qt::ItemFlags MTProductosPresupuesto::flags ( const QModelIndex & index ) const
  }
 }
 
-
-/*!
     \fn MTProductosPresupuesto::columnCount( const QModelIndex &parent ) const
- */
-int MTProductosPresupuesto::columnCount( const QModelIndex &/*parent*/ ) const
+int MTProductosPresupuesto::columnCount( const QModelIndex  ) const
 {
   int conteo = QSqlRelationalTableModel::columnCount() + 2;
   return conteo;
 }
 
-int MTProductosPresupuesto::rowCount( const QModelIndex &/*parent*/ ) const
+int MTProductosPresupuesto::rowCount( const QModelIndex  ) const
 {
   int conteo = QSqlRelationalTableModel::rowCount() + 1;
   return conteo;
 }
 
 #include <QSqlError>
-/*!
     \fn MTProductosPresupuesto::guardar( const int id_presupuesto )
- */
 bool MTProductosPresupuesto::guardar( const int id_presupuesto )
 {
  QSqlQuery cola;
@@ -288,10 +300,7 @@ bool MTProductosPresupuesto::setData( const QModelIndex &item, const QVariant &v
  }
 }
 
-
-/*!
     \fn MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
- */
 QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
 {
  // Busco el id del producto
@@ -317,9 +326,7 @@ QVariant MTProductosPresupuesto::buscarPrecioProducto( const int fila ) const
 }
 
 
-/*!
     \fn MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const
- */
 QModelIndex MTProductosPresupuesto::index ( int row, int column, const QModelIndex & parent ) const
 {
  if( row >= QSqlRelationalTableModel::rowCount() )
@@ -332,10 +339,7 @@ QModelIndex MTProductosPresupuesto::index ( int row, int column, const QModelInd
  }
 }
 
-
-/*!
     \fn MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
- */
 bool MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
 {
  if( row >= QSqlRelationalTableModel::rowCount() )
@@ -348,27 +352,9 @@ bool MTProductosPresupuesto::removeRow ( int row, const QModelIndex & parent )
  }
 }
 
-
-/*!
     \fn MTProductosPresupuesto::seteaPresupuesto( QSqlRecord &registro )
- */
 void MTProductosPresupuesto::seteaPresupuesto( QSqlRecord &registro )
 {
  registro.setValue( "id_presupuesto", -1 );
 }
-
-
-/*!
-    \fn MTProductosPresupuesto::getTotal()
- */
-double MTProductosPresupuesto::getTotal()
-{
- double total = 0;
- for( int i = 0; i< QSqlRelationalTableModel::rowCount(); i++ )
- {
-        double temp = data( index( i, 5 ), Qt::EditRole ).toDouble();
-        if( temp > 0 )
-        { total += temp; }
- }
- return total;
-}
+*/
