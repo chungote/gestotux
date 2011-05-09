@@ -99,8 +99,9 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                         // Cantidad
                         case 0:
                         {
-                                // Veo si tengo que verificar el maximo posible
-                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
+                                // Veo si tengo que verificar el maximo posible y el producto es valido
+                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() &&
+                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 )
                                 {
                                         // Busco si el stock actual menos la cantidad es <= 0
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
@@ -127,6 +128,16 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 if( !prods->contains( value.toInt() ) ) {
                                     qDebug( "Indice no encontrado en la lista de productos" );
                                     return false;
+                                }
+                                // Veo si tengo que verificar el maximo posible en stock
+                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
+                                {
+                                        // Busco si el stock actual menos la cantidad es <= 0
+                                        if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
+                                        {
+                                                qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+                                                return false;
+                                        }
                                 }
                                 productos->insert( index.row(), value.toInt() );
                                 //qDebug( QString( "Valor insertado en productos %1!").arg( value.toInt() ).toLocal8Bit() );
@@ -217,7 +228,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 if( role == Qt::DisplayRole )
                 {
-                    return "Cant:";
+                    return "Cantidad total:";
                 } else if( role == Qt::TextAlignmentRole ) {
                     return int( Qt::AlignRight | Qt::AlignVCenter );
                 } else {
@@ -292,7 +303,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                                     return prods->value( productos->value( idx.row() ) );
                                 } else {
                                     //qDebug( QString( "No se encontro el articulo en el data. Row=%1, indice=%2 " ).arg( idx.row() ).arg( productos->value( idx.row()) ).toLocal8Bit() );
-                                    return false;
+                                    return " ";
                                 }
                                 break;
                         }
@@ -349,6 +360,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                         {
                                 // tengo que devolver el Id de producto de la lista de general
                                 return productos->value( idx.row() );
+                                // Si el item no existe, devuelve cero.... :)
                                 break;
                         }
                         // precio unitario
