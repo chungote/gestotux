@@ -130,10 +130,10 @@ void FormFacturarServicio::cargar_datos_servicio()
  * \fn FormFacturarServicio::facturar()
  * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
  */
-/*void FormFacturarServicio::facturar()
+void FormFacturarServicio::facturar()
 {
     // Deshabilito los elementos editables
-    this->GBClientes->setEnabled( false );
+ /*   this->GBClientes->setEnabled( false );
     this->GBRecargos->setEnabled( false );
     // Genero una barra de progreso y sus botones y demas
     this->GBProgreso->setVisible( true );
@@ -288,5 +288,5 @@ void FormFacturarServicio::cargar_datos_servicio()
     mr = 0;
     // Cierro el formulario
     this->close();
-    return;
-}*/
+    return;*/
+}

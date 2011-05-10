@@ -29,8 +29,6 @@
 #include "definiciones.h"
 #include "eactcerrar.h"
 #include "eactguardar.h"
-#include "mventa.h"
-#include "mventaproducto.h"
 #include "eregistroplugins.h"
 #include "../CtaCte/mcuentacorriente.h"
 #include "../CtaCte/mitemcuentacorriente.h"
@@ -107,7 +105,7 @@ FormAgregarVenta::~FormAgregarVenta()
  */
 void FormAgregarVenta::agregarProducto()
 {
- // Verificación previa
+ // VerificaciÃ³n previa
  if( DSBCant->value() == 0 )
  { QMessageBox::information( this, "Error de dato", "La cantidad a agregar debe ser mayor que cero" ); return; }
  // Inserto la fila
@@ -205,7 +203,7 @@ void FormAgregarVenta::guardar()
   return;
  }
  double total_calculado = mcp->total();
- //Inicio una transacción
+ //Inicio una transacciÃ³n
  QSqlDatabase::database().transaction();
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
@@ -224,7 +222,7 @@ void FormAgregarVenta::guardar()
  {
      id_forma_pago = VENTA_CUOTAS;
  }
- QString num_comprobante = LENumComp->text();
+ /*QString num_comprobante = LENumComp->text();
  // Genero la compra
  MVenta *compra = new MVenta( this, false );
  if( compra->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago, num_comprobante ) == false )
@@ -321,6 +319,7 @@ void FormAgregarVenta::guardar()
    QMessageBox::information( this, "Incorrecto" , "La venta no se pudo guardar correctamente" );
    return;
   }
+  */
 }
 
 /*!

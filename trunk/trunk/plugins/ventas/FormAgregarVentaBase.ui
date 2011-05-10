@@ -76,9 +76,6 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLineEdit" name="LENumComp"/>
-          </item>
          </layout>
         </item>
        </layout>

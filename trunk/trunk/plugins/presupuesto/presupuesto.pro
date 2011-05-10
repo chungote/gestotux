@@ -9,14 +9,12 @@ HEADERS += prespuesto.h \
            formagregarpresupuesto.h \
            mpresupuesto.h \
            presupuesto.h \
-           mtproductospresupuesto.h \
            vpresupuesto.h \
            ../../src/mclientes.cpp
 SOURCES += prespuesto.cpp \
            formagregarpresupuesto.cpp \
            mpresupuesto.cpp \
            presupuesto.cpp \
-           mtproductospresupuesto.cpp \
            vpresupuesto.cpp \
            ../../src/mclientes.cpp
 
