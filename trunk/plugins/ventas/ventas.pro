@@ -3,25 +3,25 @@ CONFIG += dll \
 plugin \
 help
 
-SOURCES += mventa.cpp \
+SOURCES += \
 ventas.cpp \
  vventas.cpp \
  formagregarventa.cpp \
- mventaproducto.cpp \
  ../CtaCte/mcuentacorriente.cpp \
  ../CtaCte/mitemcuentacorriente.cpp \
     ../productos/mproductos.cpp \
-    formprefventa.cpp
+    formprefventa.cpp \
+    MFactura.cpp
 
-HEADERS += mventa.h \
+HEADERS += \
 ventas.h \
  vventas.h \
  formagregarventa.h \
- mventaproducto.h \
  ../CtaCte/mcuentacorriente.h \
  ../CtaCte/mitemcuentacorriente.h \
     ../productos/mproductos.h \
-    formprefventa.h
+    formprefventa.h \
+    MFactura.h
 
 TRANSLATIONS = ventas.ts
 

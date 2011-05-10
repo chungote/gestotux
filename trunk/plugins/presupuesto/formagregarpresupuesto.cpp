@@ -154,6 +154,9 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      return;
  }
  // tengo el id del presupuesto y procedo a guardar los datos de los items
+ //////////////////////////////////////////////////////////////////////////
+ // Guardo los items del presupuesto
+ /*MItemPresupuesto *items = new MItemPresupuesto( this );*/
  if( cerrar )
  {
   this->close();

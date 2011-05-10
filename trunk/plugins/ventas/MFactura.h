@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,25 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef MVENTA_H
-#define MVENTA_H
+
+#ifndef MFACTURA_H
+#define MFACTURA_H
 
 #include <QSqlRelationalTableModel>
+class NumeroComprobante;
 
-/**
-Modelo para mantener los datos de ventas del programa
-
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
-class MVenta : public QSqlRelationalTableModel
+class MFactura : public QSqlRelationalTableModel
 {
-Q_OBJECT
+    Q_OBJECT
+
 public:
-    MVenta( QObject *parent = 0, bool relaciones = true );
-    ~MVenta();
-    bool agregarVenta( QDate fecha, int id_cliente, int id_forma_pago, QString num_comprobante );
-    int ultimoId();
+    enum FormaPago {
+        Contado = 1,
+        CuentaCorriente = 2,
+        Cuotas = 3
+    };
+    explicit MFactura(QObject *parent = 0);
+    int agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago );
+    NumeroComprobante &proximoComprobante();
+
+private:
+    void inicializar();
+    void relacionar();
 
 };
 
-#endif
+#endif // MFACTURA_H
