@@ -27,8 +27,7 @@
 #include "NumeroComprobante.h"
 
 MFactura::MFactura(QObject *parent) :
-QSqlRelationalTableModel(parent)
-{
+QSqlRelationalTableModel(parent) {
     inicializar();
     relacionar();
 }
@@ -66,27 +65,24 @@ CREATE TABLE IF NOT EXISTS `factura` (
  */
 int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago )
 {
- this->clear();
- this->inicializar();
- QSqlRecord regVenta = record();
- regVenta.remove( regVenta.indexOf( "id_factura" ) );
- regVenta.setValue( "fecha", fecha );
- regVenta.setValue( "id_cliente", id_cliente );
- regVenta.setValue( "id_forma_pago", id_forma_pago );
+ QSqlQuery cola;
+ cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
+ cola.bindValue(":fecha", fecha );
+ cola.bindValue( "id_cliente", id_cliente );
+ cola.bindValue( "id_forma_pago", id_forma_pago );
  NumeroComprobante num = this->proximoComprobante();
- regVenta.setValue( "serie", num.serie() );
- regVenta.setValue( "numero", num.numero() );
+ cola.bindValue( "serie", num.serie() );
+ cola.bindValue( "numero", num.numero() );
  //regVenta.setValue( "num_comprobante", num_comprobante );
- if( !insertRecord( -1, regVenta ) )
+ if( cola.exec() )
  {
   qDebug( "Error de insercion de registro de venta" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
   return -1;
  }
  else
  {
-  this->relacionar();
-  return this->query().lastInsertId().toInt();
+  return cola.lastInsertId().toInt();
  }
 }
 

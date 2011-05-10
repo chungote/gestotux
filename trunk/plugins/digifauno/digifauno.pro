@@ -39,7 +39,8 @@ CONFIG += warn_on \
           dll \
           plugin
 
-QT += sql
+QT += sql \
+      help
 
 RESOURCES = embebido.qrc
 
