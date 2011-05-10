@@ -35,6 +35,7 @@
 #include "../productos/mproductos.h"
 #include "preferencias.h"
 #include "EReporte.h"
+#include "MFactura.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -209,27 +210,31 @@ void FormAgregarVenta::guardar()
  mcp->calcularTotales( false );
  // veo el id del proveedor
  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
-  int id_forma_pago = -1;
+ MFactura::FormaPago id_forma_pago;
  if( RBCtaCte->isChecked() )
  {
-   id_forma_pago = VENTA_CTACTE;
+   id_forma_pago = MFactura::CuentaCorriente;
  }
  else if( RBContado->isChecked() )
  {
-   id_forma_pago = VENTA_CONTADO;
+   id_forma_pago = MFactura::Contado;
  }
  else if( RBCuotas->isChecked() )
  {
-     id_forma_pago = VENTA_CUOTAS;
+     id_forma_pago = MFactura::Cuotas;
  }
- /*QString num_comprobante = LENumComp->text();
- // Genero la compra
- MVenta *compra = new MVenta( this, false );
- if( compra->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago, num_comprobante ) == false )
- { QSqlDatabase::database().rollback(); return; }
- // Busco el ultimo id de compra
- int id_venta = compra->ultimoId();
- // recorro el modelo y guardo los datos
+
+ // Genero la venta
+ MFactura *venta = new MFactura( this );
+ int ret = venta->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago );
+ if( ret == -1 ) {
+    QMessageBox::information( this, "Error", "No se pudo agregar la venta" );
+    QSqlDatabase::database().rollback();
+    return;
+ }
+ /*
+  // recorro el modelo y guardo los datos
+
  MVentaProducto *m = new MVentaProducto( this );
  for( int i= 0; i<mcp->rowCount(); i++ )
  {
