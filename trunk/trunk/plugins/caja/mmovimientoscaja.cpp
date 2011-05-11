@@ -39,7 +39,7 @@ MMovimientosCaja::MMovimientosCaja( QObject *parent, bool relaciones ) :
     setHeaderData( 4, Qt::Horizontal, "Egreso" );
     setHeaderData( 5, Qt::Horizontal, "Razon" );
     setHeaderData( 6, Qt::Horizontal, "Responsable" );
-    setHeaderData( 7, Qt::Horizontal, "¿Cierre?" );
+    setHeaderData( 7, Qt::Horizontal, "Â¿Cierre?" );
     if( relaciones ) {
      setRelation( 1, QSqlRelation( "caja", "id_caja", "nombre" ) );
     }
@@ -91,7 +91,7 @@ QVariant MMovimientosCaja::data(const QModelIndex& item, int role) const
 
 /*!
  * @fn MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString responsable, double ingreso, double egreso, bool agregando_caja )
- * Almacena una operación de caja. ingreso y egreso son mutuamente excluentes y no pueden ser los 2 iguales a 0
+ * Almacena una operaciÃ³n de caja. ingreso y egreso son mutuamente excluentes y no pueden ser los 2 iguales a 0
  * @param id_caja ID de caja para la operacion
  * @param razon Texto para incluir ( luego sale en el resumen de caja )
  * @param responsable Persona responsable del movimiento ( usuario de la db o persona )
@@ -116,7 +116,7 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
   rec.setValue( "fecha_hora", QDateTime::currentDateTime() );
   if( agregando_caja == true ) {
       rec.setValue( "cierre", true );
-      // Es necesario que la apertura de la caja este como un cierre para evitar problemas de busquedas fallidas del 1º cierre
+      // Es necesario que la apertura de la caja este como un cierre para evitar problemas de busquedas fallidas del 1Âº cierre
   } else {
       rec.setValue( "cierre", false );
   }
@@ -146,7 +146,7 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
 /*!
  * @fn MMovimientosCaja::recalcularSaldo( const int id_caja )
  * Recalcula el saldo actual de la caja revisando todas las operaciones guardadas
- * @param id_caja #ID de caja
+ * @param id_caja ID de caja
  * @return saldo calculado
  */
 double MMovimientosCaja::recalcularSaldo( const int id_caja )

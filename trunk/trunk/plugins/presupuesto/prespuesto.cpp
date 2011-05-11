@@ -131,8 +131,8 @@ bool prespuesto::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "presupuestos" ) )
  { qWarning( "Presupuesto::Error al buscar la tabla presupuestos" ); return false; }
- if( !tablas.contains( "producto" ) )
- { qWarning( "Presupuesto::Error al buscar la tabla producto" ); return false; }
+ if( !tablas.contains( "item_presupuesto" ) )
+ { qWarning( "Presupuesto::Error al buscar la tabla item_presupuesto" ); return false; }
  return true;
 }
 

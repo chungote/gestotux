@@ -188,6 +188,7 @@ bool MPresupuesto::setData(const QModelIndex& index, const QVariant& value, int 
 
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QSqlError>
 
 NumeroComprobante &MPresupuesto::proximoComprobante() {
   QSqlQuery cola;
@@ -202,17 +203,21 @@ NumeroComprobante &MPresupuesto::proximoComprobante() {
                   return *num;
               } else {
                   qDebug( "Error de cola al hacer next al obtener el numero de prespuesto maximo");
+                  qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
               }
           } else {
               qDebug( "Error de cola al hacer exec al obtener el numero de prespuesto maximo" );
+              qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
           }
       } else {
-          qDebug( "Error de cola al hacer next al obtener el numero de serie de presupuesto maximo -  Se inicio una nueva numeracion" );
+          qDebug( "Error de cola al hacer next al obtener el numero de serie de presupuesto maximo" );
+          qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
       }
   } else {
       NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
       num->siguienteNumero();
       qDebug( "Error de cola al hacer exec al obtener el numero de serie de presupuesto maximo - Se inicio una nueva numeracion" );
+      qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
       return *num;
   }
   NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
@@ -225,7 +230,7 @@ NumeroComprobante &MPresupuesto::proximoComprobante() {
     @param id_cliente Identificador de cliente
     @param texto_cliente Nombre del cliente si id-cliente no es valido
     @param direccion Direccion del cliente o destinatario si el id-cliente no es valido
-    @param fechahora Fecha y hroa del presupeusto
+    @param fechahora Fecha y hora del presupeusto
     @returns ID de insercion o -1 si hubo un error
  */
 int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora ) {
@@ -253,6 +258,7 @@ int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QStr
         } else { return -1; }
     } else {
         qDebug( "Error al hacer exec para insertar un nuevo presupeusto.");
+        qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
         return -1;
     }
 }
