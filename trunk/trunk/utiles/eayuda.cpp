@@ -35,6 +35,7 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
                 qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
         } else {
             qDebug( QString( "Documentacion cargada desde %1. OK!" ).arg( engine->collectionFile() ).toLocal8Bit() );
+            engine->registerDocumentation( "documentacion.qch" );
         }
         connect( engine, SIGNAL( warning( const QString & ) ), this, SLOT( errorEngine( const QString & ) ) );
         PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
@@ -81,7 +82,7 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
 void EAyuda::mostrarAyuda( QString nombreObjecto )
 {
  // Estamos seguros que hay datos para este objeto
- QByteArray helpData = engine->fileData(engine->linksForIdentifier( nombreObjecto ).constBegin().value());
+ QByteArray helpData = engine->fileData( engine->linksForIdentifier( nombreObjecto ).constBegin().value() );
  // Muestro la documentación al usuario
  if ( !helpData.isEmpty() )
  {

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-     <QtHelpProject version="1.0">
-         <namespace>tranfuga.gestotux.0.4</namespace>
+<?xml version="1.0" encoding="utf-8"?>
+<QtHelpProject version="1.0">
+         <namespace>tranfuga.gestotux.0.5</namespace>
          <virtualFolder>doc</virtualFolder>
          <filterSection>
              <toc>
@@ -21,7 +21,6 @@
 		<keyword name="actualizar" id="actualizar" ref="actualizar.html"/>
 		<keyword name="backup" id="backup" ref="backups.html"/>
 		<keyword name="servicios" id="servicios" ref="servicios.html"/>
-		<!--<keyword id="crearBackup::ChBBaseDatos" ref="backups.html#base"/>-->
              </keywords>
              <files>
                 <file>index.html</file>
@@ -41,5 +40,5 @@
 		<file>imagenes/botonpuntos.png</file>
 		<file>imagenes/caja.png</file>
              </files>
-         </filterSection>
-     </QtHelpProject>
+     </filterSection>
+</QtHelpProject>
