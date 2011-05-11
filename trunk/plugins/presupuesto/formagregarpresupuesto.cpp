@@ -23,12 +23,13 @@
 #include <QDate>
 #include <QSqlError>
 #include <QHeaderView>
-#include "eeditor.h"
 #include "presupuesto.h"
 #include "mproductostotales.h"
 #include "dproductostotales.h"
 #include "NumeroComprobante.h"
 #include "mpresupuesto.h"
+#include "MItemPresupuesto.h"
+#include "EReporte.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -135,11 +136,11 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      QMessageBox::information( this, "Error de destinatario", "El cliente no es valido o no existe un destinatario ingresado. Por favor coloque uno." );
      return;
  }
- QMessageBox::critical( this, "No implementado", "Todavía no se implemento esto!" );
- return;
+ /*QMessageBox::critical( this, "No implementado", "Todavía no se implemento esto!" );
+ return;*/
  // Inicio la transacción
  QSqlDatabase::database().transaction();
- MPresupuesto *mod = new MPresupuesto( this );
+ MPresupuesto *mod = new MPresupuesto();
 
  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt();
 
@@ -156,7 +157,36 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  // tengo el id del presupuesto y procedo a guardar los datos de los items
  //////////////////////////////////////////////////////////////////////////
  // Guardo los items del presupuesto
- /*MItemPresupuesto *items = new MItemPresupuesto( this );*/
+ // elimino la fila de total
+ m->calcularTotales( false );
+ MItemPresupuesto *items = new MItemPresupuesto();
+ for( int fila = 0; fila< TVContenido->model()->rowCount(); fila++ ) {
+     if( !items->agregarItemPresupuesto( id_presupuesto,
+                                         m->data( m->index( fila, 0 ), Qt::EditRole ).toDouble(), // Cantidad
+                                         m->data( m->index( fila, 1 ), Qt::EditRole ).toString(), // Texto
+                                         m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()  // Precio unitario
+                                       ) ) {
+         qDebug( QString( "No se pudo agregar el item %1 del presupuesto a la base de datos" ).arg( fila ).toLocal8Bit() );
+         QSqlDatabase::database().rollback();
+         return;
+     }
+ }
+ // Si llego hasta aca, termine de guardar todos los datos y ninguno fallo
+ QSqlDatabase::database().commit();
+ delete items;
+ delete mod;
+ // Imprimo el presupuesto
+ ParameterList lista;
+ lista.append( Parameter( "id_presupuesto", id_presupuesto ) );
+ orReport *rep = new orReport( "presupuesto", lista );
+ if( rep->isValid() ) {
+     rep->print();
+     rep->exportToPDF( "/home/Esteban/test-presupuesto.pdf" );
+ } else {
+     qDebug( "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
+     QMessageBox::information( this, "Error de reporte", "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
+     return;
+ }
  if( cerrar )
  {
   this->close();

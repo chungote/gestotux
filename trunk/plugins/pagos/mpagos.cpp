@@ -200,7 +200,7 @@ QDate MPagos::buscarFechaUltimoRecibo() const
   \fn MPagos::agregarRecibo( const int id_cliente, const QDate fecha, const QString contenido, const double total, const bool efectivo, const bool pagado )
   Agrega un nuevo recibo con los datos pasados como parametro y devuelve el numero de recibo insertado o -1 si ocurrio un error
   @param id_cliente ID de la tabla cliente del cliente en cuestion
-  @param fecha Fecha de emisi髇 del recibo
+  @param fecha Fecha de emisi贸n del recibo
   @param contenido Texto o contenido html que ira en el recibo
   @param total Total pagado en este recibo
   @param pagado Coloca como pagado el recibo
@@ -224,7 +224,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
             }
         }
     }
-    // Elimino la asociaci髇 si existe
+    // Elimino la asociaci贸n si existe
     int ret = -1;
     this->clear();
     this->inicializar();
@@ -234,7 +234,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "fecha_pago", fecha );
     rec.setValue( "texto", contenido );
     rec.setValue( "precio", total );
-    rec.setValue( "pagado", pagado ); ///@todo Ver si esto andar韆 bien con el formulario de pago retrasado
+    rec.setValue( "pagado", pagado ); ///@todo Ver si esto andar铆a bien con el formulario de pago retrasado
     if( efectivo && pagado )  {
         rec.setValue( "forma_pago", MPagos::Efectivo );
         rec.setValue( "id_caja", id_caja );
@@ -264,7 +264,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
         if( id_recibo > 0 ) {
             ret = id_recibo;
         } else {
-            // 縩o se lleno el campo ?
+            // 驴no se lleno el campo ?
             qDebug( "MPagos::agregarRecibo::No se pudo llenar el id del recibo?" );
         }
     } else {
@@ -298,6 +298,7 @@ int MPagos::numeroSerieActual()
 /*!
  * \fn MPagos::numeroReciboActual()
  * Devuelve el numero de recibo de ultima emision
+ * \param serie Numero de serie
  * \return Numero de recibo actual o -1 si hay error
  */
 int MPagos::numeroReciboActual( const int serie )
@@ -317,7 +318,7 @@ int MPagos::numeroReciboActual( const int serie )
 #include <QMessageBox>
 /*!
  * \fn MPagos::proximoSerieNumeroRecibo()
- * Devuelve un par de numeros indicando la serie y numero de recibo que se deber韆 guardar al agregar un recibo.
+ * Devuelve un par de numeros indicando la serie y numero de recibo que se deber铆a guardar al agregar un recibo.
  * \return NumeroRecibo indicando <serie, numero> o <-1,-1> si hubo un error
  */
 MPagos::NumeroRecibo MPagos::proximoSerieNumeroRecibo()
@@ -380,9 +381,9 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                                      QString( "Pago mediante recibo %1" ).arg( t ),
                                      precio ) )
             {
-                qDebug( "Operaci髇 de cuenta corriente guardada correctamente" );
+                qDebug( "Operaci贸n de cuenta corriente guardada correctamente" );
             } else {
-                qDebug( "Error al intentar agregar la operaci髇 de cuenta corriente cuando poniendo como pagado un recibo." );
+                qDebug( "Error al intentar agregar la operaci贸n de cuenta corriente cuando poniendo como pagado un recibo." );
                 QSqlDatabase::database().rollback();
                 return false;
             }
@@ -397,7 +398,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                                       QString(),
                                       precio ) )
             {
-                qDebug( "Operaci髇 de movimiento de caja agregado correctamente" );
+                qDebug( "Operaci贸n de movimiento de caja agregado correctamente" );
             } else {
                 qDebug( "Error al intentar registrar el movimiento de caja al pagar un recibo ya emitido." );
                 QSqlDatabase::database().rollback();
@@ -481,7 +482,7 @@ bool MPagos::buscarSiPagado(const int serie, const int numero)
 /*!
  * \fn MPagos::buscarSiPagado( const NumeroRecibo num )
  * Sobrecarga
- * \param Numero y serie del recibo buscado
+ * \param num Numero y serie del recibo buscado
  * \returns pagado o no
  */
 bool MPagos::buscarSiPagado( const MPagos::NumeroRecibo num )
@@ -490,7 +491,8 @@ bool MPagos::buscarSiPagado( const MPagos::NumeroRecibo num )
 /*!
  * \fn MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
  * Devuelve el identificador de base de datos para una serie y numero de recibo
- * \param Numero y serie del recibo buscado
+ * \param serie Serie del recibo buscado.
+ * \param numero Numero del recibo buscado
  * \returns ID en la base de datos
  */
 int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
@@ -513,7 +515,7 @@ int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
 /*!
  * \fn MPagos::buscarIdPorSerieNumero( const NumeroRecibo num )
  * Sobrecarga para tomar el parametro NumeroRecibo
- * \param Numero y serie del recibo buscado
+ * \param num Numero y serie del recibo buscado
  * \returns ID en la base de datos
  */
 int MPagos::buscarIdPorSerieNumero( const MPagos::NumeroRecibo num )

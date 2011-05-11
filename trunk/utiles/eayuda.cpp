@@ -74,9 +74,9 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
 
 
 /*!
-    \fn EAyuda::mostrarAyuda( QString nombreObjecto )
+    \fn EAyuda::mostrarAyuda( QString nombreObjeto )
     Abre la ventana de ayuda mostrando el contenido de la ayuda traida para el identificador pasado como parametro.
-    @param nombreObjeto
+    @param nombreObjeto Objeto de referencia del cual se desea mostrar la ayuda
  */
 void EAyuda::mostrarAyuda( QString nombreObjecto )
 {

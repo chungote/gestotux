@@ -28,12 +28,15 @@ DESTDIR = ../../bin/plugins
 
 RESOURCES += presupuesto.qrc
 
-LIBS += ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
 
-PRE_TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a \
+                  ../../bin/libreporte.a
 
 INCLUDEPATH += ../../src \
-              ../../utiles
+               ../../utiles \
+               ../../reporte
 
 OTHER_FILES += presupuesto.QSQLITE.sql \
                presupuesto.QMYSQL.sql

@@ -19,11 +19,14 @@
  ***************************************************************************/
 
 #include "MItemPresupuesto.h"
+#include <QSqlQuery>
+#include <QSqlError>
 
 MItemPresupuesto::MItemPresupuesto(QObject *parent) :
     QSqlRelationalTableModel(parent) {
     inicializar();
     relacionar();
+    _orden = 1;
 }
 
 
@@ -38,6 +41,33 @@ void MItemPresupuesto::inicializar() {
 
 }
 
-void MItemPresupuesto::relacionar() {
+void MItemPresupuesto::relacionar() {}
+
+/*!
+ * \fn MItemPresupuesto::agregarItemPresupuesto(  const int id_presupuesto, const dobule cantidad, const QString texto, const double precio_unitario )
+ * Agrega un item de presupuesto con el presupuesto relacionado pasado como parametro
+ * @param id_presupuesto Identificador del Presupuesto
+ * @param cantidad Cantidad del item
+ * @param texto Texto del item
+ * @param precio Precio unitario del item
+ * @returns Verdadero si se pudo guardar correctamente
+ */
+bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario ) {
+ QSqlQuery cola;
+ cola.prepare( "INSERT INTO item_presupuesto( id_item_presupuesto, id_presupuesto, cantidad, texto, precio ) VALUES ( :orden, :id_presupuesto, :cantidad, :texto, :precio_unitario );" );
+ ///@todo Si Sqlite verificar que existe presupuesto
+ cola.bindValue( ":id_presupuesto", id_presupuesto );
+ cola.bindValue( ":cantidad", cantidad );
+ cola.bindValue( ":texto", texto );
+ cola.bindValue( ":precio_unitario", precio_unitario );
+ cola.bindValue( ":orden", _orden );
+ if( cola.exec() ) {
+     _orden++;
+     return true;
+ } else {
+     qDebug( "Error al intentar insertad valor de item de presupuesto" );
+     qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+     return false;
+ }
 
 }

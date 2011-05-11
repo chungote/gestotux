@@ -54,7 +54,7 @@ NumeroComprobante::NumeroComprobante( NumeroComprobante &original ) : QObject() 
  */
 void NumeroComprobante::setearNumero( int numero ) { _dato.second = numero; }
 /*!
- * \fn NumeroComprobante::setearSerie( int serie )
+ * \fn NumeroComprobante::setearNumeroSerie( int serie )
  * Setea el numero de serie del comprobante
  * @param Numero del comprobante
  */
