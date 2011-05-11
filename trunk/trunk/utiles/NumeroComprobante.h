@@ -43,8 +43,8 @@ public:
 private:
     QPair<int,int> _dato;
     int cuentaRecursivo( const int dato );
-    QString numeroLleno();
-    QString serieLleno();
+    /*QString numeroLleno();
+    QString serieLleno();*/
 };
 
 #endif // NUMEROCOMPROBANTE_H

@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2010 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -314,6 +314,10 @@ bool parseReportFont(const QDomElement & elemSource, QFont & fontTarget)
               qDebug("Text not Parsed at <font>:%s\n", elemThis.text().toLatin1().data());
           }
         }
+		else if (elemThis.tagName() == "italic")
+		{
+			fontTarget.setItalic(TRUE);
+		}
         else
         {
           // we have encountered a tag that we don't understand.

@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2010 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,7 @@
 
 #include "orutils.h"
 
-#include "MetaSQL/metasql.h"
+#include "../../MetaSQL/metasql.h"
 
 //
 // Class orQuery implementations
@@ -165,11 +165,11 @@ const QString &orData::getValue()
 
 const QVariant orData::getVariant() const
 {
-        QVariant v;
-        if (_valid)
-                v = qryThis->getQuery()->value(qstrField);
+	QVariant v;
+	if (_valid)
+		v = qryThis->getQuery()->value(qstrField);
 
-        return v;
+	return v;
 }
 
 

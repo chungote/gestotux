@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2007 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,9 @@
 #ifndef RESULTSOUTPUT_H
 #define RESULTSOUTPUT_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
+
+class QMenu;
 
 #include "ui_resultsoutput.h"
 
@@ -30,11 +32,19 @@ class ResultsOutput : public QDialog, public Ui::ResultsOutput
     Q_OBJECT
 
   public:
-    ResultsOutput(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WFlags fl = 0);
+    ResultsOutput(QWidget* parent = 0, Qt::WindowFlags fl = 0);
     ~ResultsOutput();
+
+  public slots:
+    virtual void copy();
+    virtual void createContextMenu(const QPoint &p);
 
   protected slots:
     virtual void languageChange();
+
+  private:
+    QMenu *_menu;
+    QAction *_copyAction;
 
 };
 

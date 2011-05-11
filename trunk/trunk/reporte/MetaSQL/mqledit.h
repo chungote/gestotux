@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2007 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,56 +21,94 @@
 #ifndef MQLEDIT_H
 #define MQLEDIT_H
 
-class ParameterEdit;
 class LogOutput;
+class ParameterEdit;
 class ResultsOutput;
+class QTextDocument;
 
-#include <QMainWindow>
+#include <QWidget>
+#include <QTimer>
 
 #include "ui_mqledit.h"
 
-class MQLEdit : public QMainWindow, public Ui::MQLEdit
+#include "metasqlhighlighter.h"
+#include "selectmql.h"
+
+class MQLEdit : public QWidget, public Ui::MQLEdit
 {
     Q_OBJECT
 
   public:
-    MQLEdit(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = Qt::WType_TopLevel);
+    MQLEdit(QWidget* parent = 0, Qt::WindowFlags fl = 0);
     ~MQLEdit();
 
+                static QString       name();
+    Q_INVOKABLE        QString       getMetaSQLText();
+    Q_INVOKABLE        ParameterEdit*getParameterEdit();
+    Q_INVOKABLE        QStringList   getParamsFromMetaSQLText();
+    Q_INVOKABLE static QStringList   getParamsFromMetaSQLText(const QString p);
+
   public slots:
-    virtual void fileNew();
-    virtual void fileOpen();
-    virtual void fileSave();
-    virtual void fileSaveAs();
-    virtual void filePrint();
-    virtual void fileExit();
+    virtual void clear();
     virtual void editFind();
-    virtual void helpIndex();
-    virtual void helpContents();
-    virtual void helpAbout();
+    virtual void execQuery();
     virtual void fileDatabaseConnect();
     virtual void fileDatabaseDisconnect();
+    virtual void fileDatabaseOpen();
+    virtual void fileDatabaseOpen(const int id);
+    virtual bool fileDatabaseSaveAs();
+    virtual void fileExit();
+    virtual void fileNew();
+    virtual void fileOpen();
+    virtual void filePrint();
+    virtual bool fileSave();
+    virtual void fileSaveAs();
+    virtual void forceTestMode(bool p);
+    virtual void helpAbout();
+    virtual void helpContents();
+    virtual void helpIndex();
+    virtual bool isReadOnly();
     virtual void parseQuery();
-    virtual void execQuery();
+    virtual void populateParameterEdit();
+    virtual void sMQLSelected(int id);
+    virtual void setReadOnly(bool ro);
+    virtual void showExecutedSQL();
     virtual void showLog();
     virtual void showResults();
-    virtual void showExecutedSQL();
 
   protected:
-    ResultsOutput * _results;
-    QString _fileName;
-    ParameterEdit * _pEdit;
-    LogOutput * _log;
-    LogOutput * _sql;
+    enum DestType { MQLUnknown, MQLFile, MQLDatabase }; // Report, Widget, ???
+
+    ResultsOutput *_results;
+    QString        _fileName;
+    int            _mqlGrade;
+    QString        _mqlGroup;
+    QString        _mqlName;
+    QString        _mqlNotes;
+    QString        _mqlSchema;
+    SelectMQL     *_mqlSelector;
+    ParameterEdit *_pEdit;
+    LogOutput     *_log;
+    LogOutput     *_sql;
+    QTimer         _tick;
 
     virtual bool askSaveIfModified();
+    virtual bool databaseSave();
+    virtual QString getTitleString(DestType type);
     virtual bool save();
     virtual bool saveAs();
+    virtual void sTick();
+    virtual void setDestType(DestType type);
 
   protected slots:
     virtual void languageChange();
 
     virtual void showParamList();
+
+  private:
+    QTextDocument      *_document;
+    MetaSQLHighlighter *_highlighter;
+    DestType            _dest;
 };
 
 #endif // MQLEDIT_H
