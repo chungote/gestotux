@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2010 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -39,6 +39,8 @@
 #include <pagesizeinfo.h>
 #include <labelsizeinfo.h>
 #include <quuencode.h>
+
+#define CLIPMARGIN 10
 
 //
 // ORPreRenderPrivate
@@ -649,7 +651,7 @@ qreal ORPreRenderPrivate::renderSectionSize(const ORSectionData & sectionData, b
         QImage prnt(1, 1, QImage::Format_RGB32);
         QFontMetrics fm(f, &prnt);
 
-        int   intRectWidth    = (int)(trf.width() * prnt.logicalDpiX()) - 10;
+        int intRectWidth = (int)(trf.width() * prnt.logicalDpiX()) - CLIPMARGIN;
 
         while(qstrValue.length())
         {
@@ -1102,6 +1104,9 @@ qreal ORPreRenderPrivate::renderSection(const ORSectionData & sectionData)
         if (qstrValue.length())
         {
           QRectF rect = trf;
+#ifdef Q_WS_MAC // bug 13284
+          rect.setRight(rect.right() + CLIPMARGIN / 100.0);
+#endif
 
           int pos = 0;
           int idx;
@@ -1113,7 +1118,7 @@ qreal ORPreRenderPrivate::renderSection(const ORSectionData & sectionData)
 
           QFontMetrics fm(f, &prnt);
 
-          int   intRectWidth    = (int)(trf.width() * prnt.logicalDpiX()) - 10;
+          int intRectWidth = (int)(trf.width() * prnt.logicalDpiX()) - CLIPMARGIN;
           int l = (_detailQuery ? _detailQuery->at() : 0);
           int qs = (_detailQuery ? _detailQuery->size() : 1);
           int sizeLimit = _maxHeight - _bottomMargin;

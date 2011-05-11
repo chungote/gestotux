@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2007 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,34 +20,67 @@
 
 #include "resultsoutput.h"
 
-/*
- *  Constructs a ResultsOutput as a child of 'parent', with the
- *  name 'name' and widget flags set to 'f'.
- *
- *  The dialog will by default be modeless, unless you set 'modal' to
- *  true to construct a modal dialog.
- */
-ResultsOutput::ResultsOutput(QWidget* parent, const char* name, bool modal, Qt::WFlags fl)
-    : QDialog(parent, name, modal, fl)
-{
-    setupUi(this);
+#include <QClipboard>
+#include <QMenu>
+#include <QTableWidgetItem>
 
+#define DEBUG false
+
+ResultsOutput::ResultsOutput(QWidget* parent, Qt::WindowFlags fl)
+    : QDialog(parent, fl)
+{
+  setupUi(this);
+
+  connect(_table, SIGNAL(customContextMenuRequested(const QPoint &)), SLOT(createContextMenu(const QPoint &)));
+
+  _menu = new QMenu(this);
+  _copyAction = _menu->addAction(tr("Copy All"), this, SLOT(copy()));
 }
 
-/*
- *  Destroys the object and frees any allocated resources
- */
 ResultsOutput::~ResultsOutput()
 {
     // no need to delete child widgets, Qt does it all for us
 }
 
-/*
- *  Sets the strings of the subwidgets using the current
- *  language.
- */
 void ResultsOutput::languageChange()
 {
     retranslateUi(this);
 }
 
+void ResultsOutput::copy()
+{
+  if (DEBUG)
+    qDebug("ResultsOutput::copy() entered");
+
+  QClipboard *clipboard = QApplication::clipboard();
+  QAbstractItemModel *model = _table->model();
+  QByteArray  bytes;
+  for (int i = 0; i < model->rowCount(); i++)
+  {
+    for (int j = 0; j < model->columnCount(); j++)
+    {
+      if (j)
+        bytes += ",";
+      bytes += "\"" +
+              model->data(model->index(i, j)).toString().replace("\"", "\"\"") +
+              "\"";
+    }
+    bytes += "\n";
+  }
+  clipboard->setText(bytes);
+
+  if (DEBUG)
+    qDebug("ResultsOutput::copy() returning with bytes %s", bytes.data());
+}
+
+void ResultsOutput::createContextMenu(const QPoint & p)
+{
+  if (DEBUG)
+    qDebug("ResultsOutput::createContextMenu(%d, %d)", p.x(), p.y());
+  _copyAction->setEnabled(! _table->selectedItems().isEmpty());
+  if (DEBUG)
+    qDebug("_menu = %p\t_copyAction->enabled == %d",
+           _menu, _copyAction->isEnabled());
+
+  _menu->popup(mapToGlobal(p));
+}

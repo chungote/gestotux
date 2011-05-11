@@ -117,10 +117,18 @@ static const char* __SqlTable[][3] = {
                                         " WHERE (report_id=:report_id)"},
 // fmt16
   {"fmt16",      "QPSQL",          "ALTER TABLE metasql DISABLE TRIGGER metasqlaltertrigger;"},
+  {"fmt16",      "QSQLITE",        "SELECT '1' AS result;"},
+  {"fmt16",      "QSQLITE2",       "SELECT '1' AS result;"},
 // fmt17
   {"fmt17",      "QPSQL",          "SELECT saveMetasql(:group, :name, :notes, :query, :system, :schema) AS result;"},
+  {"fmt17",      "QSQLITE",        "INSERT INTO metasql (metasql_group, metasql_name, metasql_notes, metasql_query, metasql_grade, metasql_lastuser)"
+                                   " VALUES(:group, :name, :notes, :query, :system, :schema);" },
+  {"fmt17",      "QSQLITE2",       "INSERT INTO metasql (metasql_group, metasql_name, metasql_notes, metasql_query, metasql_grade, metasql_lastuser)"
+                                   " VALUES(:group, :name, :notes, :query, :system, :schema);" },
 // fmt18
   {"fmt18",      "QPSQL",          "ALTER TABLE metasql ENABLE TRIGGER metasqlaltertrigger;"},
+  {"fmt18",      "QSQLITE",        "SELECT '1' AS result;"},
+  {"fmt18",      "QSQLITE2",       "SELECT '1' AS result;"},
 
   // get the available schemas
   {"fmt19",      "QPSQL",          "SELECT nspname,"
@@ -130,6 +138,11 @@ static const char* __SqlTable[][3] = {
                                    " WHERE ((pg_namespace.oid=relnamespace)"
                                    "   AND  (relname in ('metasql', 'pkgmetasql'))) "
                                    "ORDER BY sort, nspname;" },
+  {"fmt19",      "QSQLITE",        "SELECT 'default' AS nspname;" },
+  {"fmt19",      "QSQLITE2",       "SELECT 'default' AS nspname;" },
+  {"fmt19",      "QODBC",          "SELECT 'default' AS nspname;" },
+  {"fmt19",      "QMYSQL",         "SELECT 'default' AS nspname;" },
+
 
 // crt00
   {"crt00",      "QODBC",          "Just fur fun"},			// Used only to validate the ODBC driver, the creation is depending on the server encapsulated by the ODBC itself

@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2010 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -82,10 +82,10 @@ class OROPage
     OROPage(ORODocument * = 0);
     virtual ~OROPage();
 
-    ORODocument* document() const { return _document; }
+    ORODocument* document() const { return _document; };
     int page() const; // returns this pages current page number
 
-    int primitives() const { return _primitives.count(); }
+    int primitives() const { return _primitives.count(); };
     OROPrimitive* primitive(int);
     void addPrimitive(OROPrimitive*);
 
@@ -93,9 +93,9 @@ class OROPage
     void setWatermarkFont(const QFont &);
     void setWatermarkOpacity(unsigned char); // 0..255 : default 25
 
-    QString watermarkText() const { return _wmText; }
-    QFont watermarkFont() const { return _wmFont; }
-    unsigned char watermarkOpacity() const { return _wmOpacity; }
+    QString watermarkText() const { return _wmText; };
+    QFont watermarkFont() const { return _wmFont; };
+    unsigned char watermarkOpacity() const { return _wmOpacity; };
 
     void setBackgroundImage(const QImage &);
     void setBackgroundPosition(const QPointF &);
@@ -105,13 +105,13 @@ class OROPage
     void setBackgroundAlign(int);
     void setBackgroundOpacity(unsigned char);
 
-    QImage backgroundImage() const { return _bgImage; }
-    QPointF backgroundPosition() const { return _bgPos; }
-    QSizeF backgroundSize() const { return _bgSize; }
-    bool backgroundScale() const { return _bgScale; }
-    Qt::AspectRatioMode backgroundScaleMode() const { return _bgScaleMode; }
-    int backgroundAlign() const { return _bgAlign; }
-    unsigned char backgroundOpacity() const { return _bgOpacity; }
+    QImage backgroundImage() const { return _bgImage; };
+    QPointF backgroundPosition() const { return _bgPos; };
+    QSizeF backgroundSize() const { return _bgSize; };
+    bool backgroundScale() const { return _bgScale; };
+    Qt::AspectRatioMode backgroundScaleMode() const { return _bgScaleMode; };
+    int backgroundAlign() const { return _bgAlign; };
+    unsigned char backgroundOpacity() const { return _bgOpacity; };
 
   protected:
     ORODocument * _document;
@@ -145,10 +145,10 @@ class OROPrimitive
 
     // Returns the type of the primitive which should be
     // set by the subclass
-    int type() const { return _type; }
-    OROPage * page() const { return _page; }
+    int type() const { return _type; };
+    OROPage * page() const { return _page; };
 
-    QPointF position() const { return _position; }
+    QPointF position() const { return _position; };
     void setPosition(const QPointF &);
 
     QPen pen() const {return _pen;}
@@ -157,10 +157,10 @@ class OROPrimitive
     QBrush brush() const {return _brush;}
     void setBrush(QBrush b) {_brush = b;}
 
-        qreal rotation() const { return _rotation; }
-        void setRotation(qreal angle) { _rotation = angle;}
-        QPointF rotationAxis() const { return _rotationAxis;}
-        void setRotationAxis(const QPointF p);
+	qreal rotation() const { return _rotation; }
+	void setRotation(qreal angle) { _rotation = angle;}
+	QPointF rotationAxis() const { return _rotationAxis;}
+	void setRotationAxis(const QPointF p);
 
   protected:
     OROPrimitive(ORObject *o, int);
@@ -171,8 +171,8 @@ class OROPrimitive
     QPointF _position;
     QPen    _pen;
     QBrush  _brush;
-        qreal	_rotation;
-        QPointF _rotationAxis;
+	qreal	_rotation;
+	QPointF _rotationAxis;
 };
 
 //
@@ -187,16 +187,16 @@ class OROTextBox : public OROPrimitive
     OROTextBox(ORObject *o);
     virtual ~OROTextBox();
 
-    QSizeF size() const { return _size; }
+    QSizeF size() const { return _size; };
     void setSize(const QSizeF &);
 
-    QString text() const { return _text; }
+    QString text() const { return _text; };
     void setText(const QString &);
 
-    QFont font() const { return _font; }
+    QFont font() const { return _font; };
     void setFont(const QFont &);
 
-    int flags() const { return _flags; }
+    int flags() const { return _flags; };
     void setFlags(int);
 
     static const int TextBox;
@@ -218,13 +218,13 @@ class OROLine : public OROPrimitive
     OROLine(ORObject *o);
     virtual ~OROLine();
 
-    QPointF startPoint() const { return position(); }
+    QPointF startPoint() const { return position(); };
     void setStartPoint(const QPointF &);
 
-    QPointF endPoint() const { return _endPoint; }
+    QPointF endPoint() const { return _endPoint; };
     void setEndPoint(const QPointF &);
 
-    qreal weight() const { return _weight; }
+    qreal weight() const { return _weight; };
     void setWeight(qreal);
 
     static const int Line;
@@ -244,19 +244,19 @@ class OROImage: public OROPrimitive
     OROImage(ORObject *o);
     virtual ~OROImage();
 
-    QImage image() const { return _image; }
+    QImage image() const { return _image; };
     void setImage(const QImage &);
 
-    QSizeF size() const { return _size; }
+    QSizeF size() const { return _size; };
     void setSize(const QSizeF &);
 
-    bool scaled() const { return _scaled; }
+    bool scaled() const { return _scaled; };
     void setScaled(bool);
 
-    int transformationMode() const { return _transformFlags; }
+    int transformationMode() const { return _transformFlags; };
     void setTransformationMode(int);
 
-    int aspectRatioMode() const { return _aspectFlags; }
+    int aspectRatioMode() const { return _aspectFlags; };
     void setAspectRatioMode(int);
 
     static const int Image;
@@ -282,10 +282,10 @@ class ORORect: public OROPrimitive
     QSizeF size() const { return _size; }
     void setSize(const QSizeF &);
 
-    QRectF rect() const { return QRectF(position(), _size); }
+    QRectF rect() const { return QRectF(position(), _size); };
     void setRect(const QRectF &);
 
-    qreal weight() const { return _weight; }
+    qreal weight() const { return _weight; };
     void setWeight(qreal);
 
     static const int Rect;

@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2007 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@
 #ifndef LOGOUTPUT_H
 #define LOGOUTPUT_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 
 #include "ui_logoutput.h"
 
@@ -30,7 +30,7 @@ class LogOutput : public QDialog, public Ui::LogOutput
     Q_OBJECT
 
   public:
-    LogOutput(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WFlags fl = 0);
+    LogOutput(QWidget* parent = 0, Qt::WindowFlags fl = 0);
     ~LogOutput();
 
   protected slots:

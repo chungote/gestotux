@@ -1,6 +1,6 @@
 /*
  * OpenRPT report writer and rendering engine
- * Copyright (C) 2001-2010 by OpenMFG, LLC
+ * Copyright (C) 2001-2011 by OpenMFG, LLC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -412,6 +412,7 @@ bool ORPrintRender::exportToPDF(ORODocument * pDocument, QString pdfFileName)
     return false;
 
   QPrinter printer(QPrinter::ScreenResolution);
+  printer.setResolution(300);
 
 #ifdef Q_WS_MAC
   printer.setOutputFormat( QPrinter::NativeFormat );
