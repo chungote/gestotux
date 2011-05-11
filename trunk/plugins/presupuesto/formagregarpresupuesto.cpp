@@ -54,7 +54,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         ActCancelar->setShortcut( QKeySequence( "Ctrl+c" ) );
         connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( cancelar() ) );
 
-        QAction *ActGuardarImprimir = new QAction( "Guardar e Imprimir", this );
+        /*QAction *ActGuardarImprimir = new QAction( "Guardar e Imprimir", this );
         ActGuardarImprimir->setIcon( QIcon( ":/imagenes/guardarimprimir.png" ) );
         ActGuardarImprimir->setStatusTip( "Guarda los datos y abre el dialogo de imprimir" );
         connect( ActGuardarImprimir, SIGNAL( triggered() ), this, SLOT( guardarImprimir() ) );
@@ -62,12 +62,12 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         QAction *ActImprimir = new QAction( "Imprimir", this );
         ActImprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
         ActImprimir->setStatusTip( "Imprime el presupuesto actual sin guardarlo" );
-        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );*/
 
         // Agrego las acciones
         addAction( ActGuardar );
-        addAction( ActGuardarImprimir );
-        addAction( ActImprimir );
+        //addAction( ActGuardarImprimir );
+        //addAction( ActImprimir );
         addAction( ActCancelar );
 
         // Seteo la lista de clientes
@@ -132,7 +132,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      return;
  }
  // Algun cliente seleccionado o agregado
- if( !CBCliente->currentIndex() > 0 ) {
+ if( !(CBCliente->currentIndex() >= 0 ) ) {
      QMessageBox::information( this, "Error de destinatario", "El cliente no es valido o no existe un destinatario ingresado. Por favor coloque uno." );
      return;
  }
@@ -147,7 +147,8 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  int id_presupuesto = mod->agregarPresupuesto( id_cliente,
                                                CBCliente->currentText(),
                                                LEDireccion->text(),
-                                               dEFecha->dateTime() );
+                                               dEFecha->dateTime(),
+                                               m->total() );
 
  if( id_presupuesto == -1 ) {
      qDebug( "Error al intentar agregar un prespuesto." );
@@ -158,12 +159,12 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  //////////////////////////////////////////////////////////////////////////
  // Guardo los items del presupuesto
  // elimino la fila de total
- m->calcularTotales( false );
+  m->calcularTotales( false );
  MItemPresupuesto *items = new MItemPresupuesto();
  for( int fila = 0; fila< TVContenido->model()->rowCount(); fila++ ) {
      if( !items->agregarItemPresupuesto( id_presupuesto,
                                          m->data( m->index( fila, 0 ), Qt::EditRole ).toDouble(), // Cantidad
-                                         m->data( m->index( fila, 1 ), Qt::EditRole ).toString(), // Texto
+                                         m->data( m->index( fila, 1 ), Qt::DisplayRole ).toString(), // Texto
                                          m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()  // Precio unitario
                                        ) ) {
          qDebug( QString( "No se pudo agregar el item %1 del presupuesto a la base de datos" ).arg( fila ).toLocal8Bit() );
@@ -181,7 +182,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  orReport *rep = new orReport( "presupuesto", lista );
  if( rep->isValid() ) {
      rep->print();
-     rep->exportToPDF( "/home/Esteban/test-presupuesto.pdf" );
+     //rep->exportToPDF( QApplication::applicationDirPath() + QDir::separator() + "comprobantes" + QDir::separator() + "presupuestos" + QDir::separator() + QString( "%1.pdf" ).arg( MPresupuesto::numeroPresupuestoPorID( id_presupuesto ).aCadena() ) );
  } else {
      qDebug( "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
      QMessageBox::information( this, "Error de reporte", "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
@@ -202,26 +203,12 @@ void FormAgregarPresupuesto::imprimir()
  qWarning( "No implementado todavia" );
 }
 
-
-/*!
-    \fn FormAgregarPresupuesto::guardarImprimir()
- */
-void FormAgregarPresupuesto::guardarImprimir()
-{
- //guardar( false );
- //imprimir();
- qWarning( "No implementado todavia" );
-}
-
-
 /*!
     \fn FormAgregarPresupuesto::guardar()
  */
 void FormAgregarPresupuesto::guardar()
-{
- //guardar( true );
- qWarning( "No implementado todavia" );
-}
+{ guardar( true ); }
+
 
 /*!
     \fn FormAgregarPresupuesto::agregarProducto()

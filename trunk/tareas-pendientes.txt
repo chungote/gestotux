@@ -69,6 +69,10 @@
     - Parametros: fecha_inicio, fecha_fin.
     - Ver como hacer para que tire totales y subtotales x categoría.
 
+-- Presupuestos --
+------------------
+- Ver si colocar el total en cada presupuesto.
+
 ::::::::::::::::::::::::::
 ::: Pruebas para hacer :::
 ::::::::::::::::::::::::::

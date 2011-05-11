@@ -233,19 +233,24 @@ NumeroComprobante &MPresupuesto::proximoComprobante() {
     @param fechahora Fecha y hora del presupeusto
     @returns ID de insercion o -1 si hubo un error
  */
-int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora ) {
+int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total ) {
     QSqlQuery cola;
-    cola.prepare( "INSERT INTO presupuestos( id_cliente, nombre, direccion, fecha, serie, numero ) VALUES ( :id_cliente, :nombre, :direccion, :fecha, :serie, :numero )");
+    if( !cola.prepare( "INSERT INTO presupuestos( id_cliente, destinatario, direccion, fecha, total, serie, numero ) VALUES ( :id_cliente, :nombre, :direccion, :fecha, :total, :serie, :numero )") ) {
+        qDebug( "Error al preparar la cola" );
+        qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+        return -1;
+    }
     if( id_cliente < 0 ) {
-        cola.bindValue( ":id_cliente", QVariant() );
+        cola.bindValue( 0, QVariant( QVariant::Int ) );
         cola.bindValue( ":nombre", texto_cliente );
         cola.bindValue( ":direccion", direccion );
     } else {
-        cola.bindValue( ":id_cliente", id_cliente );
-        cola.bindValue( ":nombre", QVariant() );
-        cola.bindValue(":direccion", QVariant() );
+        cola.bindValue( 0, id_cliente );
+        cola.bindValue( ":nombre", QVariant( QVariant::String ) );
+        cola.bindValue( ":direccion", QVariant( QVariant::String ) );
     }
     cola.bindValue( ":fecha", fechahora );
+    cola.bindValue( ":total", total );
     // busco el proximo numero de serie
     NumeroComprobante num = this->proximoComprobante();
     cola.bindValue( ":serie", num.serie() );

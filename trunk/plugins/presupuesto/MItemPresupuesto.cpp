@@ -54,7 +54,10 @@ void MItemPresupuesto::relacionar() {}
  */
 bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario ) {
  QSqlQuery cola;
- cola.prepare( "INSERT INTO item_presupuesto( id_item_presupuesto, id_presupuesto, cantidad, texto, precio ) VALUES ( :orden, :id_presupuesto, :cantidad, :texto, :precio_unitario );" );
+ if( ! cola.prepare( "INSERT INTO item_presupuesto( id_item_presupuesto, id_presupuesto, cantidad, texto, precio_unitario ) VALUES ( :orden, :id_presupuesto, :cantidad, :texto, :precio_unitario );" ) ) {
+     qDebug( "Error al intentar preparar la cola de inserción" );
+     qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+ }
  ///@todo Si Sqlite verificar que existe presupuesto
  cola.bindValue( ":id_presupuesto", id_presupuesto );
  cola.bindValue( ":cantidad", cantidad );
