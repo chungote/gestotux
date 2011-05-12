@@ -37,10 +37,10 @@ CONFIG += warn_on \
           qt \
           exceptions \
           dll \
-          plugin
+          plugin \
+          help
 
-QT += sql \
-      help
+QT += sql
 
 RESOURCES = embebido.qrc
 

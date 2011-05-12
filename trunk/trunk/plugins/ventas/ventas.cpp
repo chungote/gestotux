@@ -87,10 +87,10 @@ bool Ventas::verificarTablas( QStringList tablas )
  { qWarning( "Ventas::Error al buscar la tabla producto" ); return false; }
  else if( !tablas.contains( "categoria_producto" ) )
  { qWarning( "Ventas::Error al buscar la tabla categorias_producto" ); return false; }
- if( !tablas.contains( "ventas" ) )
+ if( !tablas.contains( "factura" ) )
  { qWarning( "Ventas::Error al buscar la tabla factura" ); return false; }
- /*if( !tablas.contains( "ventas_productos" ) )
- { qWarning( "Ventas::Error al buscar la tabla ventas_productos" ); return false; }*/
+ /*if( !tablas.contains( "item_factura" ) )
+ { qWarning( "Ventas::Error al buscar la tabla item_factura" ); return false; }*/
  return true;
 }
 
@@ -128,13 +128,11 @@ void Ventas::crearMenu( QMenuBar *m )
  */
 double Ventas::version() const
 {
- return 0.11;
+ return 0.12;
 }
 
-void Ventas::crearToolBar( QToolBar *t )
-{
-    (void)t;
-}
+void Ventas::crearToolBar( QToolBar */*t*/ )
+{}
 
 
 #include "formagregarventa.h"

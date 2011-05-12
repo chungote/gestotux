@@ -5,13 +5,13 @@ CONFIG += plugin \
 
 QT += sql
 
-HEADERS += prespuesto.h \
+HEADERS += presupuesto.h \
            formagregarpresupuesto.h \
            mpresupuesto.h \
            vpresupuesto.h \
            MItemPresupuesto.h \
            ../../src/mclientes.cpp
-SOURCES += prespuesto.cpp \
+SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
            mpresupuesto.cpp \
            vpresupuesto.cpp \

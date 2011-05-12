@@ -37,7 +37,7 @@ class QMenuBar;
  *
  *	@author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-class prespuesto : public QObject, EPlugin
+class presupuesto : public QObject, EPlugin
 {
 Q_OBJECT
 Q_INTERFACES(EPlugin)

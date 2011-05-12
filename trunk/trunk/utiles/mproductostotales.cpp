@@ -228,7 +228,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 if( role == Qt::DisplayRole )
                 {
-                    return "Cantidad total:";
+                    return "Cantidad de lineas:";
                 } else if( role == Qt::TextAlignmentRole ) {
                     return int( Qt::AlignRight | Qt::AlignVCenter );
                 } else {
