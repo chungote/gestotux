@@ -8,14 +8,12 @@ QT += sql
 HEADERS += prespuesto.h \
            formagregarpresupuesto.h \
            mpresupuesto.h \
-           presupuesto.h \
            vpresupuesto.h \
            MItemPresupuesto.h \
            ../../src/mclientes.cpp
 SOURCES += prespuesto.cpp \
            formagregarpresupuesto.cpp \
            mpresupuesto.cpp \
-           presupuesto.cpp \
            vpresupuesto.cpp \
            MItemPresupuesto.cpp \
            ../../src/mclientes.cpp
@@ -42,4 +40,3 @@ OTHER_FILES += presupuesto.QSQLITE.sql \
                presupuesto.QMYSQL.sql
 
 TRANSLATIONS += presupuesto.ts
-
