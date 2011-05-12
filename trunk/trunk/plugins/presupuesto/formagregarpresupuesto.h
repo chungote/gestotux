@@ -23,12 +23,8 @@
 
 #include "eventana.h"
 #include "ui_FormPresupuestoBase.h"
-#include "eeditor.h"
 
 class QSqlQueryModel;
-class FormListaProductos;
-class Presupuesto;
-class QTextCursor;
 class MProductosTotales;
 
 class FormAgregarPresupuesto : public EVentana, private Ui::FormPresupuestoBase
@@ -41,7 +37,6 @@ public:
 protected slots:
     void cancelar();
     void guardar( bool cerrar );
-    void guardarImprimir();
     void guardar();
     void imprimir();
     void agregarProducto();
@@ -58,10 +53,6 @@ private:
     * Modelo para mostrar la lista de productos e items
     */
     MProductosTotales *m;
-  /*!
-   * Puntero al presupuesto actual
-   */
-    Presupuesto *pre;
 };
 
 #endif
