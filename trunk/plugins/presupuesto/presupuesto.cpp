@@ -17,7 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "prespuesto.h"
+#include "presupuesto.h"
 
 #include <QSettings>
 #include <QStackedWidget>
@@ -30,11 +30,11 @@
 #include "formagregarpresupuesto.h"
 
 /*!
-    \fn prespuesto::accionesBarra()
+    \fn presupuesto::accionesBarra()
         Devuelve la lista de acciones que deben ir en cada una de las barras laterales en sus repectivos grupos
         @return QList<QActionGroup *> Lista
  */
-QList<QActionGroup *> prespuesto::accionesBarra()
+QList<QActionGroup *> presupuesto::accionesBarra()
 {
   QList<QActionGroup *> lista;
   QActionGroup *presupuestos = new QActionGroup( this );
@@ -49,31 +49,31 @@ QList<QActionGroup *> prespuesto::accionesBarra()
 
 
 /*!
-    \fn prespuesto::nombre() const
+    \fn presupuesto::nombre() const
  */
-QString prespuesto::nombre() const
+QString presupuesto::nombre() const
 {
   return "presupuesto";
 }
 
 
 /*!
-    \fn prespuesto::formsPreferencias()
+    \fn presupuesto::formsPreferencias()
  */
-QWidgetList prespuesto::formsPreferencias()
+QWidgetList presupuesto::formsPreferencias()
 {
   return QWidgetList();
 }
 
 
 /*!
-    \fn prespuesto::inicializar()
+    \fn presupuesto::inicializar()
  */
-bool prespuesto::inicializar()
+bool presupuesto::inicializar()
 {
  Q_INIT_RESOURCE(presupuesto);
  // Genero las acciones y la lista
- ActNuevoPresu = new QAction( "Nuevo Prespuesto", this );
+ ActNuevoPresu = new QAction( "Nuevo presupuesto", this );
  ActNuevoPresu->setIcon( QIcon( ":/imagenes/presupuesto-nuevo.png" ) );
  ActNuevoPresu->setStatusTip( "Genera un nuevo presupuesto" );
  connect( ActNuevoPresu, SIGNAL( triggered() ), this, SLOT( nuevoPresupuesto() ) );
@@ -88,18 +88,18 @@ bool prespuesto::inicializar()
 
 
 /*!
-    \fn prespuesto::tipo() const
+    \fn presupuesto::tipo() const
  */
-int prespuesto::tipo() const
+int presupuesto::tipo() const
 {
   return EPlugin::comun;
 }
 
 
 /*!
-    \fn prespuesto::crearMenu( QMenuBar *m )
+    \fn presupuesto::crearMenu( QMenuBar *m )
  */
-void prespuesto::crearMenu( QMenuBar *m )
+void presupuesto::crearMenu( QMenuBar *m )
 {
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer == 0 )
@@ -116,18 +116,18 @@ void prespuesto::crearMenu( QMenuBar *m )
 
 
 /*!
-    \fn prespuesto::version() const
+    \fn presupuesto::version() const
  */
-double prespuesto::version() const
+double presupuesto::version() const
 {
   return 0.1;
 }
 
 
 /*!
-    \fn prespuesto::verificarTablas()
+    \fn presupuesto::verificarTablas()
  */
-bool prespuesto::verificarTablas( QStringList tablas )
+bool presupuesto::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "presupuestos" ) )
  { qWarning( "Presupuesto::Error al buscar la tabla presupuestos" ); return false; }
@@ -137,35 +137,35 @@ bool prespuesto::verificarTablas( QStringList tablas )
 }
 
 
-Q_EXPORT_PLUGIN2(presupuesto, prespuesto )
+Q_EXPORT_PLUGIN2(presupuesto, presupuesto )
 
 
 /*!
-    \fn prespuesto::nuevoPresupuesto()
+    \fn presupuesto::nuevoPresupuesto()
  */
-void prespuesto::nuevoPresupuesto()
+void presupuesto::nuevoPresupuesto()
 { emit agregarVentana( new FormAgregarPresupuesto() ); }
 
 
 #include "vpresupuesto.h"
 /*!
-    \fn prespuesto::verAnteriores()
+    \fn presupuesto::verAnteriores()
  */
-void prespuesto::verAnteriores()
+void presupuesto::verAnteriores()
 { emit agregarVentana( new VPresupuesto() ); }
 
 
 /*!
-    \fn prespuesto::crearToolBar( QToolBar *t )
+    \fn presupuesto::crearToolBar( QToolBar *t )
  */
-void prespuesto::crearToolBar( QToolBar */*t*/ )
+void presupuesto::crearToolBar( QToolBar */*t*/ )
 {}
 
 
 /*!
-    \fn prespuesto::seCierraGestotux()
+    \fn presupuesto::seCierraGestotux()
  */
-void prespuesto::seCierraGestotux()
+void presupuesto::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(presupuesto);
  return;

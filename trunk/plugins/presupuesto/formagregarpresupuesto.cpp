@@ -23,7 +23,6 @@
 #include <QDate>
 #include <QSqlError>
 #include <QHeaderView>
-#include "presupuesto.h"
 #include "mproductostotales.h"
 #include "dproductostotales.h"
 #include "NumeroComprobante.h"
@@ -35,7 +34,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
 {
         // Inicializo el presupeusto!
-        pre = new Presupuesto( this );
         this->setAttribute( Qt::WA_DeleteOnClose );
         setupUi(this);
         this->setObjectName( "FormAgregarPresupuesto" );
