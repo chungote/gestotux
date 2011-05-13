@@ -11,7 +11,8 @@ ventas.cpp \
  ../CtaCte/mitemcuentacorriente.cpp \
     ../productos/mproductos.cpp \
     formprefventa.cpp \
-    MFactura.cpp
+    MFactura.cpp \
+    mitemfactura.cpp
 
 HEADERS += \
 ventas.h \
@@ -21,7 +22,8 @@ ventas.h \
  ../CtaCte/mitemcuentacorriente.h \
     ../productos/mproductos.h \
     formprefventa.h \
-    MFactura.h
+    MFactura.h \
+    mitemfactura.h
 
 TRANSLATIONS = ventas.ts
 
