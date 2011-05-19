@@ -21,6 +21,7 @@
 #define MITEMCUENTACORRIENTE_H
 
 #include <QSqlRelationalTableModel>
+#include "NumeroComprobante.h"
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -34,12 +35,15 @@ public:
 	  Recibo = 0,
 	  Factura = 1,
 	  NotaCredito = 2,
-	  NotaDebito = 3
+          NotaDebito = 3,
+          CobroServicio = 4,
+          RecargoCobroServicio = 5,
 	 };
 
     MItemCuentaCorriente( QObject *parent = 0, bool saldos = false );
     ~MItemCuentaCorriente();
     static bool agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
+    static bool agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
     QVariant data(const QModelIndex& item, int role) const;
     bool seleccionarNumCuenta( const QString &num_cuenta );
 

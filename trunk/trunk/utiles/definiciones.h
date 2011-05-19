@@ -18,24 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-/**************
- *   Ventas   *
- **************/
-#define VENTA_CTACTE 1
-#define VENTA_CONTADO 2
-#define VENTA_CUOTAS 3
-
-/************************
- *   Cuenta Corriente   *
- ************************/
-#define CTACTE_LIMITE_EXCEDIDO 3
-#define CTACTE_LIMITE_ENLIMITE 4
-#define CTACTE_LIMITE_CORRECTO 5
-
 /*****************
  *   ERRORES     *
  *****************/
-#define E_CTACTE_BUSCAR_LIMITE 6
 #define E_CTACTE_BUSCAR_NUMEROCUENTA "-2"
 #define E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO "-3"
 #define E_CTACTE_BUSCAR_SALDO -1.0

@@ -116,3 +116,32 @@ NumeroComprobante &MFactura::proximoComprobante() {
   NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
   return *invalido;
 }
+
+NumeroComprobante & MFactura::obtenerComprobante() {
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT MAX( serie ) FROM factura" ) ) ) {
+      if( cola.next() ) {
+          int serie = cola.record().value(0).toInt();
+          if( cola.exec( QString( "SELECT MAX( numero ) FROM factura WHERE serie = %1" ).arg( serie ) ) ) {
+              if( cola.next() ) {
+                  int numero = cola.record().value(0).toInt();
+                  NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
+                  return *num;
+              } else {
+                  qDebug( "Error de cola al hacer next al obtener el numero de factura maximo");
+              }
+          } else {
+              qDebug( "Error de cola al hacer exec al obtener el numero de factura maximo" );
+          }
+      } else {
+          qDebug( "Error de cola al hacer next al obtener el numero de serie de factura maximo -  Se inicio una nueva numeracion" );
+      }
+  } else {
+      NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+      num->siguienteNumero();
+      qDebug( "Error de cola al hacer exec al obtener el numero de serie de factura maximo - Se inicio una nueva numeracion" );
+      return *num;
+  }
+  NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+  return *invalido;
+}

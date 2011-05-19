@@ -32,6 +32,15 @@ class MCuentaCorriente : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
+
+    enum EstadoCuenta {
+        LimiteCorrecto = 0,
+        LimiteExcedido = 1,
+        EnLimite = 2,
+        ErrorBuscarLimite = 3,
+    };
+
+
     MCuentaCorriente( QObject *parent = 0, bool relaciones = true );
     ~MCuentaCorriente();
     QVariant data(const QModelIndex& item, int role) const;

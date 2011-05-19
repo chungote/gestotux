@@ -170,17 +170,17 @@ int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplica
   if( cola.record().value(0).toDouble() + aplicar > cola.record().value(1).toDouble() )
   {
         qDebug( "Limite de la cuenta corriente solicitada excedido" );
-        return CTACTE_LIMITE_EXCEDIDO;
+        return MCuentaCorriente::LimiteExcedido;
   }
   else if( cola.record().value(0).toDouble() + aplicar == cola.record().value(1).toDouble() )
   {
         qDebug( "Limite de la cuenta corriente solicitada alcanzado" );
-        return CTACTE_LIMITE_ENLIMITE;
+        return MCuentaCorriente::EnLimite;
   }
   else
   {
         qDebug( "limite de la cuenta corriente solicitada correcto" );
-        return CTACTE_LIMITE_CORRECTO;
+        return MCuentaCorriente::LimiteCorrecto;
   }
  }
  else
@@ -189,7 +189,7 @@ int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplica
   qWarning( "Error al buscar el limite d ela cuenta corriente solicitada" );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.executedQuery() ) );
-  return E_CTACTE_BUSCAR_LIMITE;
+  return MCuentaCorriente::ErrorBuscarLimite;
  }
 }
 

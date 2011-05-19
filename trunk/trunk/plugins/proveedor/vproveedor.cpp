@@ -23,7 +23,7 @@
 #include <QTableView>
 
 VProveedor::VProveedor( QWidget *parent )
- : EVLista( parent, false )
+ : EVLista( parent )
 {
  setObjectName( "ListaProveedores" );
  setWindowTitle( "Proveedores" );
@@ -45,17 +45,11 @@ VProveedor::~VProveedor()
 {
 }
 
-
-
-
 /*!
     \fn VProveedor::antes_de_insertar( int row, QSqlRecord & record )
  */
-void VProveedor::antes_de_insertar( int row, QSqlRecord & record )
-{
- (void)row;(void)record;
- return;
-}
+void VProveedor::antes_de_insertar( int /*row*/, QSqlRecord & /*record*/ )
+{return;}
 
 
 /*!
