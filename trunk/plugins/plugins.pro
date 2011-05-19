@@ -1,16 +1,16 @@
 TEMPLATE = subdirs
 SUBDIRS +=  caja \
             gastos \
-            compras \
+ #           compras \
             ventas \
             proveedor \
             productos \
             CtaCte \
             pagos \
             presupuesto \
-            servicios \
-            digifauno
-#            HiComp
+            servicios #\
+#            digifauno \
+#            HiComp \
 #            email \
 #planificador \
 #aCarCorr \

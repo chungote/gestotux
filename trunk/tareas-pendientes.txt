@@ -6,11 +6,9 @@
 - Terminar de definir el sistema de impresion.
 - Eliminar sistema de lista de precios ( revisar eliminacion )
 - Verificar el diseño de las categorias.
-- Ver como hacer el cliente "Consumidor Final" ( verificar viabilidad )
-- Verificar que los reportes tienen un limite para la base de datos, buscarlo.
 - Agregar inicialización de reportes en la base de datos.
  - Agregar capacidad para actualizar los reportes x internet ( caso db local )?
-- Agregar numero de CUIT/CUIL para los clientes.
+- Agregar numero de CUIT/CUIL para los clientes. ( ingresar mascara! )
 - Ver por la creacion de indices en la base de datos.
 
 -- Caja --
@@ -128,7 +126,7 @@
 ::: Problemas Generales :::
 :::::::::::::::::::::::::::
 
-- Verificar la forma de las actualizaciónes. ( ¿Generar sistema web? )
+- Verificar la forma de las actualizaciones. ( ¿Generar sistema web? )
 - Hacer necesario los backups para continuar con el programa al iniciar.
 - Verificar que el cerrar ventana al estar activado el icono de la bandeja no cierre el programa entero, sino lo minimize.
 - Eliminar warning de variables no usadas comentando el parametro en la definición de la función (cpp)

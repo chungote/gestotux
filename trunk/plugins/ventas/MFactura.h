@@ -37,6 +37,7 @@ public:
     explicit MFactura(QObject *parent = 0);
     int agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago );
     NumeroComprobante &proximoComprobante();
+    NumeroComprobante &obtenerComprobante();
 
 private:
     void inicializar();

@@ -58,7 +58,7 @@ MItemCuentaCorriente::~MItemCuentaCorriente()
         @param numero_cuenta Numero de cuenta corriente a aplicar la operacion
         @param num_comb Numero del comprobante relacionado a la operacion
         @param num_ref ID de clave foranea que tiene la operacion
-        @param tipo Tipo de operación
+        @param tipo Tipo de operaciÃ³n
         @param fecha Fecha de la operacion
         @param descripcion Descripcion de la operacion
         @param aplicar Valor a aplicar a la cuenta. Si es positivo es en favor nuestro -> el cliente nos debe. Si es negativo  es a favor del cliente -> recibimos pago ( ej ).
@@ -227,4 +227,8 @@ bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
   }
   return true;
  ///@todo Verificar que existe la cuenta
+}
+
+bool MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar ) {
+    return agregarOperacion( numero_cuenta, num_comb, num_ref, tipo, fecha, descripcion, aplicar );
 }

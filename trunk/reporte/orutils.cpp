@@ -20,7 +20,7 @@
 
 #include "orutils.h"
 
-#include "../../MetaSQL/metasql.h"
+#include "MetaSQL/metasql.h"
 
 //
 // Class orQuery implementations
