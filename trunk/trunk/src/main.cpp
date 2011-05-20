@@ -170,27 +170,25 @@ int main(int argc, char *argv[])
       // Preferencias Idiomaticas
       QLocale locale( QLocale::Spanish, QLocale::Argentina );
       QLocale::setDefault( locale );
-
-
-      /*splash.showMessage( "Cargando Traduccion" );
+      splash.showMessage( "Cargando Traduccion" );
       // Cargo las traducciones
       QTranslator tran;
       QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
       directorio->cd( "traducciones" );
-      if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
+      /*if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
       {
         app.installTranslator(&tran);
       }
       else
       {
         qDebug( "Fallo al cargar la traduccion" );
-      }
+      }*/
       if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
       { QCoreApplication::instance()->installTranslator(&tran); }
       else
       { qDebug( "Fallo al cargar la traduccion del reporte" ); }
       delete directorio;
-      directorio = 0;*/
+      directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
       // Chequeo la Base de Datos
       bool fallosql = false;
@@ -229,7 +227,7 @@ int main(int argc, char *argv[])
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      else if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) )
+      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) && fallosql == true )
       {
        QFile *base = new QFile( "gestotux.database" );
        if( !base->open( QIODevice::ReadOnly ) )
