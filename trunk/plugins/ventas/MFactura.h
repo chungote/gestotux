@@ -23,6 +23,7 @@
 
 #include <QSqlRelationalTableModel>
 class NumeroComprobante;
+class MProductosTotales;
 
 class MFactura : public QSqlRelationalTableModel
 {
@@ -35,7 +36,7 @@ public:
         Cuotas = 3
     };
     explicit MFactura(QObject *parent = 0);
-    int agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago );
+    int agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp );
     NumeroComprobante &proximoComprobante();
     NumeroComprobante &obtenerComprobante();
 

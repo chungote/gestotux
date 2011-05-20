@@ -25,6 +25,13 @@
 #include <QSqlError>
 #include <QSqlField>
 #include "NumeroComprobante.h"
+#include "mitemfactura.h"
+#include "mproductos.h"
+#include "mproductostotales.h"
+#include <QMessageBox>
+#include "eregistroplugins.h"
+#include "mcuentacorriente.h"
+#include "mitemcuentacorriente.h"
 
 MFactura::MFactura(QObject *parent) :
 QSqlRelationalTableModel(parent) {
@@ -60,10 +67,10 @@ CREATE TABLE IF NOT EXISTS `factura` (
 */
 
 /*!
-    \fn MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, QString num_comprobante )
+    \fn MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, QString num_comprobante, MProductosTotales *mcp )
     Agrega el registro para una factura y devuelve el id o -1 si hubo un error.
  */
-int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago )
+int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
 {
  QSqlQuery cola;
  cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
@@ -82,8 +89,82 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
  }
  else
  {
-  return cola.lastInsertId().toInt();
+  int id_venta = cola.lastInsertId().toInt();
+  // Guardo los datos de el modelo
+
+  // recorro el modelo y guardo los datos
+  MItemFactura *mi = new MItemFactura();
+  for( int i= 0; i<mcp->rowCount(); i++ )
+  {
+   if( mi->agregarItemFactura( id_venta,
+                               mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble(),
+                               mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString(),
+                               mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble()
+                             ) ) {
+        // veo si tengo que disminuir el stock
+        if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() > 0 ) {
+             if( MProductos::modificarStock( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(),
+                                             mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble() ) ) {
+                 qDebug( "Error al disminuir el stock del producto" );
+                 return -1;
+             } else {
+                 qDebug( "Stock del producto disminuido correctamente" );
+             }
+        } else {
+             qDebug( "El item no es un producto" );
+        }
+   } // Fin if agregarItemFactura
+  } // Fin del for items
+  delete mi;
+  mi = 0;
+  double total_calculado = mcp->total();
+  // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
+  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
+  {
+   // Si se ingresa aqui el cliente tiene cuenta corriente
+   QString num_comprobante = this->obtenerComprobante().aCadena();
+   // Busco el numero de cuenta
+   QString num_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+   switch( MCuentaCorriente::verificarSaldo( num_ctacte, total_calculado ) )
+   {
+         case MCuentaCorriente::LimiteExcedido:
+         {
+                 QMessageBox::information( 0, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
+                 QSqlDatabase::database().rollback();
+                 return -1;
+                 break;
+         }
+         case MCuentaCorriente::EnLimite:
+         {
+                 QMessageBox::information( 0, "Limite de Saldo Alcanzado", "El limite de saldo para este cliente ha sido alcanzado." );
+                 break;
+         }
+         case MCuentaCorriente::ErrorBuscarLimite:
+         {
+                 QMessageBox::information( 0, "Error", "No se pudo encontrar la cuenta corriente para el cliente buscado. No se registrará la venta." );
+                 QSqlDatabase::database().rollback();
+                 return -1;
+                 break;
+         }
+         default:
+         {
+                 QMessageBox::information( 0, "Error", "Error desconocido al verificar el saldo. No se registrará la venta." );
+                 return -1;
+                 break;
+         }
+   }
+   if( !MItemCuentaCorriente::agregarOperacion(   num_ctacte,
+                                                  num_comprobante,
+                                                  id_venta,
+                                                  MItemCuentaCorriente::Factura,
+                                                  fecha,
+                                                  "Venta a Cuenta Corriente",
+                                                  total_calculado ) )
+   { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
+  }
+  return id_venta;
  }
+ return -1;
 }
 
 

@@ -204,7 +204,6 @@ void FormAgregarVenta::guardar()
   mcp->calcularTotales( true );
   return;
  }
- double total_calculado = mcp->total();
  //Inicio una transacción
  QSqlDatabase::database().transaction();
  //seteo el modelo para que no calcule totales y subtotales
@@ -231,91 +230,13 @@ void FormAgregarVenta::guardar()
 
  // Genero la venta
  MFactura *venta = new MFactura();
- int id_venta = venta->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago );
+ int id_venta = venta->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago, mcp );
  if( id_venta == -1 ) {
     QMessageBox::information( this, "Error", "No se pudo agregar la venta" );
     QSqlDatabase::database().rollback();
     return;
  }
- // Obtengo el numero de comprobante para la cuenta corriente
- NumeroComprobante num_comprobante = venta->obtenerComprobante();
- // recorro el modelo y guardo los datos
- MItemFactura *mi = new MItemFactura();
- for( int i= 0; i<mcp->rowCount(); i++ )
- {
-  if( mi->agregarItemFactura( id_venta,
-                              mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble(),
-                              mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString(),
-                              mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble()
-                            ) ) {
-       // veo si tengo que disminuir el stock
-       if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() > 0 ) {
-            if( MProductos::modificarStock( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(),
-                                            mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble() ) ) {
-                qDebug( "Error al disminuir el stock del producto" );
-                ///@TODO Cancelar todo
-            } else {
-                qDebug( "Stock del producto disminuido correctamente" );
-            }
-       } else {
-            qDebug( "El item no es un producto" );
-       }
-  } // Fin if agregarItemFactura
- } // Fin del for items
- delete mi;
- mi = 0;
- ///@TODO Revisar inclusión de los items de ctacte en el modelo de venta
-  /////////////////////////////////////////////
-  // !!! Esta parte no me convence !!!       //
-  // Debería de estar todo dentro del modelo //
-  /////////////////////////////////////////////
- // Si la venta es a cuenta corriente actualizo la cuenta corriente
- if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
- {
-  // Si se ingresa aqui el cliente tiene cuenta corriente
-  // Busco el numero de cuenta
-  QString num_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
-  switch( MCuentaCorriente::verificarSaldo( num_ctacte, total_calculado ) )
-  {
-        case MCuentaCorriente::LimiteExcedido:
-        {
-                QMessageBox::information( this, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
-                QSqlDatabase::database().rollback();
-                return;
-                break;
-        }
-        case MCuentaCorriente::EnLimite:
-        {
-                QMessageBox::information( this, "Limite de Saldo Alcanzado", "El limite de saldo para este cliente ha sido alcanzado." );
-                break;
-        }
-        case MCuentaCorriente::ErrorBuscarLimite:
-        {
-                QMessageBox::information( this, "Error", "No se pudo encontrar la cuenta corriente para el cliente buscado. No se registrará la venta." );
-                QSqlDatabase::database().rollback();
-                return;
-                break;
-        }
-        default:
-        {
-                QMessageBox::information( this, "Error", "Error desconocido al verificar el saldo. No se registrará la venta." );
-                return;
-                break;
-        }
-  }
-  if( !MItemCuentaCorriente::agregarOperacion(   num_ctacte,
-                                                 num_comprobante,
-                                                 id_venta,
-                                                 MItemCuentaCorriente::Factura,
-                                                 DEFecha->date(),
-                                                 "Venta a CtaCte",
-                                                 total_calculado ) )
-  { QSqlDatabase::database().rollback(); qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); }
- }
- // Actualizar la cuenta general del programa
- ///@todo Actualizar la cuenta general del programa
- // listo
-  if( QSqlDatabase::database().commit() ) {
+ if( QSqlDatabase::database().commit() ) {
    // Ver si quiere ver la factura o imprimirla
    int respuesta = QMessageBox::question( this, "Correcto", "La venta se ha registrado correctamente. Desea imprimir un comprobante de venta?",
                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
