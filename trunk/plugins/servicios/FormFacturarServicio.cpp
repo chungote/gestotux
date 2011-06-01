@@ -24,6 +24,7 @@
 #include "mrecargos.h"
 #include "MTempClientesFacturarServicio.h"
 #include "dsino.h"
+#include <QPair>
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
@@ -126,6 +127,9 @@ void FormFacturarServicio::cargar_datos_servicio()
 #include "../pagos/mpagos.h"
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../CtaCte/mcuentacorriente.h"
+#include "../ventas/MFactura.h"
+#include "../ventas/mitemfactura.h"
+#include "mcobroservicioclienteservicio.h"
 /*!
  * \fn FormFacturarServicio::facturar()
  * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
@@ -133,7 +137,7 @@ void FormFacturarServicio::cargar_datos_servicio()
 void FormFacturarServicio::facturar()
 {
     // Deshabilito los elementos editables
- /*   this->GBClientes->setEnabled( false );
+    this->GBClientes->setEnabled( false );
     this->GBRecargos->setEnabled( false );
     // Genero una barra de progreso y sus botones y demas
     this->GBProgreso->setVisible( true );
@@ -149,13 +153,12 @@ void FormFacturarServicio::facturar()
     int multiplicador_pasos = 4;
     this->PBProgreso->setRange( 0, cantidad_total * multiplicador_pasos );
 
-    // Inicializo el reporter
-    orReport *reporte_recibo = new orReport( "recibo" );
+
     // Inicializo el modelo  de las facturas
 #ifdef GESTOTUX_HICOMP
     MPagos *mr = new MPagos();
 #else
-    //MFactura *mr = new MFactura();
+    MFactura *mr = new MFactura();
 #endif
     MTempClientesFacturarServicio *mtemp = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model());
 
@@ -163,76 +166,122 @@ void FormFacturarServicio::facturar()
     int id_recibo = -1;
     int id_cliente = -1;
     QString nombre_cliente = "";
-    QHash<int, int> recibos; // Guarda el paso con el id del recibo guardado
+    QHash<int, int> comprobantes; // Guarda el paso con el id del recibo guardado
 
     // Genero la transación en la base de datos ( total )
     QSqlDatabase::database().transaction();
-    // Itero por todos los recibos
+
+    //////////////////////////////////////////////////////////////////////////////
+    // Genero los datos de cuando estoy cobrando
+    int id_cobro_servicio = MCobroServicio::agregarCobroServicio( this->_id_servicio, this->_periodo, QDate::currentDate().year() );
+    if( id_cobro_servicio == -1 ) {
+        // Error intentando guardar el cobro del servicio. Cancelo
+        QSqlDatabase::database().rollback();
+        return;
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // Itero por cada uno de los clientes para este cobro de servicio
     for( int i = 0; i<cantidad_total; i++ ) {
         // Veo si el elemento esta para ser facturado
         if( !mtemp->data( mtemp->index( i, 0 ), Qt::EditRole ).toBool() ) {
             qDebug( QString( "Item %1: No se facturara" ).arg( i ).toLocal8Bit() );
+            // Avanzo la cantidad de pasos que sería por facturarle
+            PBProgreso->setValue( PBProgreso->value() + multiplicador_pasos );
             continue;
         }
 
+        /// Estos serían los datos de "servicios_clientes"
         // Cargo el dato correspondiente a esa fila
         id_cliente = mtemp->data( mtemp->index( i, 2 ), Qt::DisplayRole ).toInt();
         qDebug( QString( "Item %1-ID Cliente: %2." ).arg( i ).arg( id_cliente ).toLocal8Bit() );
         nombre_cliente = mtemp->data( mtemp->index( i, 1 ), Qt::DisplayRole ).toString();
         qDebug( QString( "Item %1-Nombre Cliente: %2." ).arg( i ).arg( nombre_cliente ).toLocal8Bit() );
 
-        // Paso 1
-        // Generar la Factura
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // Paso 1 - Genero la factura con los items actuales mas los anteriores segun corresponda /
+        ///////////////////////////////////////////////////////////////////////////////////////////
         LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( cantidad_actual + 1  ).arg( cantidad_total ) );
+        int id_factura = -1;
+#ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
-                                       QDate::currentDate(),
-                                       QString( "Recibo por el pago del periodo %1" ).arg( this->LPeriodo->text() ),
-                                       this->_precio_base,
-                                       false, // No efectivo y no pagado para que quede para despues
-                                       false ); // Lo pongo en no pagado
-        if( id_recibo <= 0 )
-        {
-                qWarning( QString( "Error al obtener el id del recibo. Item %1" ).arg( i ).toLocal8Bit() );
+                                        QDate::currentDate(),
+                                        QString( "Recibo por el pago del periodo %1 año %2" ).arg( this->LPeriodo->text() ).arg( this->_ano ),
+                                        this->_precio_base,
+                                        false, // No efectivo y no pagado para que quede para despues
+                                        false );
+#elseif
+        id_factura = mr->agregarFactura( id_cliente,
+                                         QDate::currentDate(),
+                                         QString( "Recibo por el pago del periodo %1 año %2" ).arg( this->LPeriodo->text() ).arg( this->_ano ),
+                                         this->_precio_base,
+                                         false, // No efectivo y no pagado para que quede para despues
+                                         false ); // Lo pongo en no pagado
+#endif
+        if( id_factura == -1 ) {
+            QMessageBox::warning( this, "Error", "No se pudo generar la factura para el cliente requerido - se cancelara toda la facturacion del servicio" );
+            qDebug( "Error al generar la factura - id erroneo" );
+            QSqlDatabase::database().rollback();
+            return;
+        } else {
+            // Si se genero correctamente ingreo el id en la cola para impresion luego.
+            comprobantes.insert( i, id_factura );
+            qDebug( "Comprobante guardado correctamente - agregado a la cola para post impresion" );
+            // Genero los items para el comprobante
+            MItemFactura *fact = new MItemFactura();
+            if( !fact->agregarItemFactura( id_factura,
+                                           1,
+                                           QString( "Cobro del servicio %1 para el periodo %2 del año %3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
+                                           this->_precio_base ) ) {
+                qDebug( "Error al intentar agregar el item de factura para el servicio del mes facturado" );
                 QSqlDatabase::database().rollback();
-                abort();
-                break;
-        } else {
-            // Inserto los datos en la tabla correspondiente!
-            recibos.insert( i, id_recibo );
+                return;
+            }
+
+
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
-
-        // Paso 2
-        // Ponerlo en la cuenta corriente
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Paso 2 - Genero la entra en cobro-servicio-cliente-servicio con el id de factura correspondiente /
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        if( !MCobroServicioClienteServicio::agregarCobro( id_cobro_servicio, this->_id_servicio, id_cliente, id_factura ) ) {
+            qDebug( "Error al generar la entrada de cobro para un servicio-cliente-cobro" );
+            QSqlDatabase::database().rollback();
+            return;
+        }
+        PBProgreso->setValue( PBProgreso->value() + 1 );
+        /////////////////////////////////////////////////////////////////
+        // Paso 3 - Genero la entrada en la cuenta corriente del cliente
+        /////////////////////////////////////////////////////////////////
         LIndicador->setText( QString( "Actualizando cuenta corriente del cliente %1  ( %2 de %3 )..." ).arg( nombre_cliente ).arg( cantidad_actual ).arg( i ) );
-        // Busco el id de cuenta corriente
+        // Intento agregar el numero de operación
         QString id_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
-        if( !MItemCuentaCorriente::agregarOperacion( id_ctacte,
-                                                QString( "%L1" ).arg( id_recibo ),
-                                                id_recibo,
-                                                MItemCuentaCorriente::Factura,
-                                                QDate::currentDate(),
-                                                QString( "Cobro del servicio %2 por el periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
-                                                this->_precio_base ) )
-        {
-            // Error al guardar la cuenta corriente
+        int id_op_ctacte = MItemCuentaCorriente::agregarOperacion( id_ctacte,
+                                                                   QString( "%L1" ).arg( id_factura ),
+                                                                   id_factura,
+                                                                   MItemCuentaCorriente::Factura,
+                                                                   QDate::currentDate(),
+                                                                   QString( "Cobro del servicio %2 por el periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
+                                                                   this->_precio_base );
+        if( id_op_ctacte == -1 ) {
+            // Error al guardar el  item de cuenta corriente
             qWarning( "Error al guardar el item de cuenta corriente" );
-            // Cancelo el recibo ?
             QSqlDatabase::database().rollback();
             break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
-
-        // Paso 3 - Guardo el cobro
-        // Se hace ultimo para tener todos los ids de los comprobantes.
-        if( MCobroServicio::agregarCobro( this->_id_servicio, id_cliente, id_recibo, this->_periodo, this->_ano ) )
-        {
-            PBProgreso->setValue( PBProgreso->value() + 1 );
-        } else {
-            qWarning( "Error al intentar agregar el cobro" );
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Paso 4 - Actualizo la entrada en cobro-servicio-cliente-servicio con el  numero de operación de la cuenta corriente /
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if( !MCobroServicioClienteServicio::setearIDCtaCte( id_cobro_servicio, this->_id_servicio, id_cliente, id_op_ctacte ) ) {
+            qDebug( "Error al actualizar el indice de cuenta corriente en el cobro de servicio para el servicio cliente" );
             QSqlDatabase::database().rollback();
-            break;
+            return;
         }
+        PBProgreso->setValue( PBProgreso->value() + 1 );
+        ///////////////////////////////////////
+        // Fin bucle para cada cliente
+        ///////////////////////////////////////
         cantidad_actual++;
         QMessageBox::warning( this, "Atencion!", "bucle terminado" );
     }
@@ -241,16 +290,30 @@ void FormFacturarServicio::facturar()
     QSqlDatabase::database().rollback();
     return;
     //QSqlDatabase::database().commit();
+
+    // Inicializo el reporter
+#ifdef GESTOTUX_HICOMP
+    orReport *reporte = new orReport( "recibo" );
+#else
+    orReport *reporte = new orReport( "factura" );
+#endif
+
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
         // Genero los parametros
         ParameterList lista;
-        lista.append( "id_recibo", recibos.take( i ) );
-        reporte_recibo->setParamList( lista );
+#ifdef GESTOTUX_HICOMP
+        lista.append( "id_recibo", comprobantes.take( i ) );
+        reporte->setParamList( lista );
         LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
+#else
+        lista.append( "id_factura", comprobantes.take( i ) );
+        reporte->setParamList( lista );
+        LIndicador->setText( QString( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
+#endif
         PBProgreso->setValue( PBProgreso->value() + 1 );
-        reporte_recibo->print( 0, true, false );
+        reporte->print( 0, true, false );
         // Actualizo indices y reinicio valores
         cantidad_actual++;
         id_recibo = -1;
@@ -259,7 +322,7 @@ void FormFacturarServicio::facturar()
 
 
     // Pregunto si los recibos se imprimieron bien
-    int ret = QMessageBox::question( this, "Impresion", "¿Se imprimieron correctamente <b>TODOS</b> los recibos?" );
+    int ret = QMessageBox::question( this, "Impresion", "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" );
 
     if( ret == QMessageBox::Rejected ) {
        // Si no, pregunto que numero de recibo falta y lo mando a imprimir
@@ -268,12 +331,18 @@ void FormFacturarServicio::facturar()
 
             // Pregunto el numero del recibo y doy opcion a cancelar cuando se acabaron
             bool ok = false;
-            int ret2 = QInputDialog::getInt( this, "Numero de recibo", "Ingrese el numero del recibo que se imprimio incorrectamente, si no hay mas recibos mal impresos, presione cancelar", 0, 0,2147483647, 1, &ok );
+            int ret2 = QInputDialog::getInt( this, "Numero de recibo", "Ingrese el numero del comprobante que se imprimio incorrectamente, si no hay mas comprobantes mal impresos, presione cancelar", 0, 0,2147483647, 1, &ok );
             if( ok == true ) {
                 // Ingreso un recibo mal impreso, lo reimprimo
                 ParameterList lista;
-                lista.append("id_recibo", ret2 );
-                reporte_recibo->print( 0, false, false );
+#ifdef GESTOTUX_HICOMP
+                lista.append( "id_recibo", ret2 );
+                reporte->setParamList( lista );
+#else
+                lista.append( "id_factura", ret2 );
+                reporte->setParamList( lista );
+#endif
+                reporte->print( 0, false, false );
             } else {
                 // No hay mas recibos fallados
                 ret = false;
@@ -282,11 +351,11 @@ void FormFacturarServicio::facturar()
     }
 
     // Libero modelos
-    delete reporte_recibo;
+    delete reporte;
     delete mr;
-    reporte_recibo = 0;
+    reporte = 0;
     mr = 0;
     // Cierro el formulario
     this->close();
-    return;*/
+    return;
 }

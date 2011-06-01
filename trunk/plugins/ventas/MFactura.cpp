@@ -81,7 +81,7 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
  cola.bindValue( "serie", num.serie() );
  cola.bindValue( "numero", num.numero() );
  //regVenta.setValue( "num_comprobante", num_comprobante );
- if( cola.exec() )
+ if( !cola.exec() )
  {
   qDebug( "Error de insercion de registro de venta" );
   qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
@@ -166,6 +166,36 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
  }
  return -1;
 }
+
+/*!
+ * \fn MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago )
+ * Agrega un registro en la tabla de facturas para las facturas de servicios.
+ * @param id_cliente Identificador de cliente.
+ * @param fecha Fecha de la factura.
+ * @param id_form_pago Forma de pago de la factura
+ * @returns Identificador de la factura o -1 si hubo un error.
+
+int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago  ) {
+    QSqlQuery cola;
+    cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
+    cola.bindValue(":fecha", fecha );
+    cola.bindValue( "id_cliente", id_cliente );
+    cola.bindValue( "id_forma_pago", id_forma_pago );
+    NumeroComprobante num = this->proximoComprobante();
+    cola.bindValue( "serie", num.serie() );
+    cola.bindValue( "numero", num.numero() );
+    if( !cola.exec() )
+    {
+     qDebug( "Error de insercion de registro de venta" );
+     qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+     return -1;
+    }
+    else
+    {
+     int id_venta = cola.lastInsertId().toInt();
+    }
+}
+*/
 
 
 NumeroComprobante &MFactura::proximoComprobante() {

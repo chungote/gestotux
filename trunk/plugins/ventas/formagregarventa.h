@@ -30,7 +30,7 @@ class FormAgregarVenta : public EVentana, private Ui::FormAgregarVentaBase
 Q_OBJECT
 public:
         FormAgregarVenta ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormAgregarVenta();
+
 protected slots:
     void agregarProducto();
     void eliminarProducto();

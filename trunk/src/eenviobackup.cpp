@@ -61,12 +61,9 @@ void EEnvioBackup::run()
   exit(0);
   return;
  }
- ftp = new QFtp();
+ ftp = new QFtp( this );
  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
  ftp->connectToHost( p->value( "ftp/host", "tranfuga.no-ip.org" ).toString(), p->value( "ftp/puerto", 21 ).toInt() );
- ftp->login();
- ftp->cd( ERegistroPlugins::pluginInfo()->directorioBackup() );
- ftp->put( archivo, QDateTime::currentDateTime().toString( "yyyyMMddhhmmsszzz") );
  ftp->close();
  exec();
 }
@@ -75,26 +72,49 @@ void EEnvioBackup::run()
     \fn EEnvioBackup::finComando( int id, bool error )
 	Slot llamado cada vez que un comando ftp es terminado
 	@param id Numero de comando
-	@param error Indica si hubo error en la ejecución del comando
+	@param error Indica si hubo error en la ejecuciÃ³n del comando
  */
 void EEnvioBackup::finComando( int id, bool error )
 {
  if( error )
  {
   qDebug( QString( "Error: %1").arg( ftp->errorString() ).toLocal8Bit() );
-  delete ftp;
+  //delete ftp;
   delete archivo;
   exit(0);
   return;
  }
- if( id == 4 )
- {
-  qDebug( "Fin del Hilo" );
-  preferencias *p = preferencias::getInstancia();
-  p->setValue( "backup/enviado", true );
-  p->sync();
-  delete archivo;
-  delete ftp;
-  exit(0);
- }
+ switch( id ) {
+    case 1:
+    {
+     ftp->login();
+     break;
+    }
+    case 2:
+    {
+     ftp->cd( ERegistroPlugins::pluginInfo()->directorioBackup() );
+     break;
+    }
+    case 3:
+    {
+      ftp->put( archivo, QDateTime::currentDateTime().toString( "yyyyMMddhhmmsszzz") );
+      break;
+    }
+    case 4:
+    {
+         qDebug( "Fin del Hilo" );
+         preferencias *p = preferencias::getInstancia();
+         p->setValue( "backup/enviado", true );
+         p->sync();
+         ftp->close();
+         delete archivo;
+         break;
+    }
+    case 5:
+    {
+         //delete ftp;
+         exit(0);
+         break;
+     }
+  }
 }

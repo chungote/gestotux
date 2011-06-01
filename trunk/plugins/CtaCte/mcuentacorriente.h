@@ -37,7 +37,7 @@ public:
         LimiteCorrecto = 0,
         LimiteExcedido = 1,
         EnLimite = 2,
-        ErrorBuscarLimite = 3,
+        ErrorBuscarLimite = 3
     };
 
 

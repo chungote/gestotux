@@ -52,22 +52,18 @@ QVariant MCobroServicio::data(const QModelIndex& item, int role) const
 }
 
 /*!
- * \fn MCobroServicio::agregarCobro( const int id_servicio, const int id_cliente, const int id_factura, const int periodo, const int ano )
+ * \fn MCobroServicio::agregarCobroServicio( const int id_servicio, const int periodo, const int ano )
  * Agrega el registro de que se realizo el cobro de un servicio identificado mediante la factura en un periodo del servicio.
  * @param id_servicio Identificador del servicio a facturar
- * @param id_cliente Cliente al cual se le esta cobrando el servicio
- * @param id_factura Numero de comprobante que da la deuda al cliente
  * @param periodo Numero de periodo dentro del año
  * @param ano Año del cobro
  * @return Verdadero si se pudo agregar
  */
-bool MCobroServicio::agregarCobro( const int id_servicio, const int id_cliente, const int id_factura, const int periodo, const int ano )
+int MCobroServicio::agregarCobroServicio( const int id_servicio, const int periodo, const int ano )
 {
  QSqlQuery cola;
- cola.prepare( "INSERT INTO cobro_servicio( id_servicio, id_cliente, factura, periodo, ano ) VALUES( :id_servicio, :id_cliente, :factura, :periodo, :ano )" );
+ cola.prepare( "INSERT INTO cobro_servicio( id_servicio, periodo, ano ) VALUES( :id_servicio, :periodo, :ano )" );
  cola.bindValue( ":id_servicio", id_servicio );
- cola.bindValue( ":id_cliente", id_cliente );
- cola.bindValue( ":factura", id_factura );
  cola.bindValue( ":periodo", periodo );
  cola.bindValue( ":ano", ano );
  if( cola.exec() ) {
@@ -79,27 +75,14 @@ bool MCobroServicio::agregarCobro( const int id_servicio, const int id_cliente, 
  }
 
 }
-/*!
-
-  @todo PASAR TODOS LOS INDICES MYSQL A BIGINT SIN NUMERO DE DIGITOS DETERMINADOS
-
-*/
-
 /*
 CREATE TABLE `gestotux`.`cobro_servicio` (
 `id_cobro_servicio` BIGINT NOT NULL AUTO_INCREMENT,
 `id_servicio` BIGINT(1) NOT NULL,
-`id_cliente` BIGINT(1) NOT NULL ,
 `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-`factura` BIGINT NOT NULL ,
-`recibo` BIGINT NOT NULL ,
 `periodo` INT NOT NULL ,
 `ano` YEAR NOT NULL,
- INDEX ( id_servicio, id_cliente ),
- FOREIGN KEY ( id_servicio, id_cliente )
- REFERENCES `servicios_clientes`( id_servicio, id_cliente ),
  PRIMARY KEY ( id_cobro_servicio ),
- FOREIGN KEY ( factura ) REFERENCES ventas( id_factura ),
- FOREIGN KEY ( recibo ) REFERENCES recibos( id_recibo )
+ FOREIGN KEY ( id_servicio ) REFERENCES servicios( id_servicio )
 ) ENGINE = InnoDB;
 */

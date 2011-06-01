@@ -229,6 +229,28 @@ bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
  ///@todo Verificar que existe la cuenta
 }
 
+/*!
+ * \fn MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
+ */
 bool MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar ) {
     return agregarOperacion( numero_cuenta, num_comb, num_ref, tipo, fecha, descripcion, aplicar );
+}
+
+double MItemCuentaCorriente::valorOperacion( const int id_op_ctacte ) {
+    QSqlQuery cola;
+    cola.prepare( "SELECT debe, haber FROM item_ctacte WHERE id_op_ctacte = :id_op_ctacte" );
+    cola.bindValue( ":id_op_ctacte", id_op_ctacte );
+    if( cola.exec() ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDouble() - cola.record().value(1).toDouble();
+        } else {
+            qDebug( "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.");
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            return 0.0; /// \todo ver si esto es 0 o -1
+        }
+    } else {
+        qDebug( "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.");
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        return -1.0;
+    }
 }
