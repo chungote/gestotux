@@ -32,6 +32,8 @@
 #include "eregistroplugins.h"
 #include "mcuentacorriente.h"
 #include "mitemcuentacorriente.h"
+#include "mcajas.h"
+#include "mmovimientoscaja.h"
 
 MFactura::MFactura(QObject *parent) :
 QSqlRelationalTableModel(parent) {
@@ -162,6 +164,16 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
                                                   total_calculado ) )
    { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
   }
+  // Veo si fue en efectivo
+  if( ERegistroPlugins::getInstancia()->existePlugin( "caja " ) && id_forma_pago == MFactura::Contado ) {
+      // Agrego el item de caja
+      MMovimientosCaja *m = new MMovimientosCaja();
+      if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de factura %1", QString(), total_calculado ) ) {
+          qDebug( "Error al agregar el movimiento de caja cuando se pago una factura en contado.");
+          return -1;
+      }
+      delete m;
+  }
   return id_venta;
  }
  return -1;
@@ -174,8 +186,8 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
  * @param fecha Fecha de la factura.
  * @param id_form_pago Forma de pago de la factura
  * @returns Identificador de la factura o -1 si hubo un error.
-
-int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago  ) {
+ */
+int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total  ) {
     QSqlQuery cola;
     cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
     cola.bindValue(":fecha", fecha );
@@ -193,11 +205,68 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
     else
     {
      int id_venta = cola.lastInsertId().toInt();
+     // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
+     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
+     {
+      // Si se ingresa aqui el cliente tiene cuenta corriente
+      QString num_comprobante = this->obtenerComprobante().aCadena();
+      // Busco el numero de cuenta
+      QString num_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+      switch( MCuentaCorriente::verificarSaldo( num_ctacte, total ) )
+      {
+            case MCuentaCorriente::LimiteExcedido:
+            {
+                    QMessageBox::information( 0, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
+                    QSqlDatabase::database().rollback();
+                    return -1;
+                    break;
+            }
+            case MCuentaCorriente::EnLimite:
+            {
+                    QMessageBox::information( 0, "Limite de Saldo Alcanzado", "El limite de saldo para este cliente ha sido alcanzado." );
+                    break;
+            }
+            case MCuentaCorriente::ErrorBuscarLimite:
+            {
+                    QMessageBox::information( 0, "Error", "No se pudo encontrar la cuenta corriente para el cliente buscado. No se registrará la venta." );
+                    QSqlDatabase::database().rollback();
+                    return -1;
+                    break;
+            }
+            default:
+            {
+                    QMessageBox::information( 0, "Error", "Error desconocido al verificar el saldo. No se registrará la venta." );
+                    return -1;
+                    break;
+            }
+      }
+      if( !MItemCuentaCorriente::agregarOperacion(   num_ctacte,
+                                                     num_comprobante,
+                                                     id_venta,
+                                                     MItemCuentaCorriente::Factura,
+                                                     fecha.date(),
+                                                     "Venta a Cuenta Corriente",
+                                                     total ) )
+      { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
+     }
+     // Veo si fue en efectivo
+     if( ERegistroPlugins::getInstancia()->existePlugin( "caja " ) && id_forma_pago == MFactura::Contado ) {
+         // Agrego el item de caja
+         MMovimientosCaja *m = new MMovimientosCaja();
+         if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de factura %1", QString(), total ) ) {
+             qDebug( "Error al agregar el movimiento de caja cuando se pago una factura en contado.");
+             return -1;
+         }
+         delete m;
+     }
+     return id_venta;
     }
 }
-*/
 
-
+/*!
+ * \fn MFactura::proximoComprobante()
+ * Devuelve un objeto NumeroComprobante conteniendo el proximo numero de serie y comprobante que corresponde.
+ */
 NumeroComprobante &MFactura::proximoComprobante() {
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT MAX( serie ) FROM factura" ) ) ) {

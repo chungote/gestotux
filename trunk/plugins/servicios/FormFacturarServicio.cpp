@@ -203,21 +203,19 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////////////////////////////////////////////////////////
         LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( cantidad_actual + 1  ).arg( cantidad_total ) );
         int id_factura = -1;
-#ifdef GESTOTUX_HICOMP
+/*#ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
                                         QString( "Recibo por el pago del periodo %1 año %2" ).arg( this->LPeriodo->text() ).arg( this->_ano ),
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
-#elseif
+#elseif*/
         id_factura = mr->agregarFactura( id_cliente,
-                                         QDate::currentDate(),
-                                         QString( "Recibo por el pago del periodo %1 año %2" ).arg( this->LPeriodo->text() ).arg( this->_ano ),
-                                         this->_precio_base,
-                                         false, // No efectivo y no pagado para que quede para despues
-                                         false ); // Lo pongo en no pagado
-#endif
+                                         QDateTime::currentDateTime(),
+                                         MFactura::CuentaCorriente,
+                                         this->_precio_base );
+//#endif
         if( id_factura == -1 ) {
             QMessageBox::warning( this, "Error", "No se pudo generar la factura para el cliente requerido - se cancelara toda la facturacion del servicio" );
             qDebug( "Error al generar la factura - id erroneo" );
