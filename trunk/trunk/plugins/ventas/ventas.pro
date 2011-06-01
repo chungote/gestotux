@@ -11,6 +11,8 @@ SOURCES +=  ventas.cpp \
             ../productos/mproductos.cpp \
             formprefventa.cpp \
             MFactura.cpp \
+           ../caja/mcajas.cpp \
+           ../caja/mmovimientoscaja.cpp \
             mitemfactura.cpp
 
 HEADERS += ventas.h \
@@ -21,6 +23,8 @@ HEADERS += ventas.h \
            ../productos/mproductos.h \
            formprefventa.h \
            MFactura.h \
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h \
            mitemfactura.h
 
 TRANSLATIONS = ventas.ts
@@ -43,7 +47,8 @@ INCLUDEPATH +=  ../../src \
                 ../../utiles \
                 ../../reporte \
                 ../productos \
-                ../CtaCte
+                ../CtaCte \
+                ../caja
 
 RESOURCES += ventas.qrc
 
