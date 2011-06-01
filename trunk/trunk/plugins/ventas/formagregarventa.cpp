@@ -74,10 +74,13 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         mcp->calcularTotales( true );
         mcp->buscarPrecios( true );
         TVProductos->setModel( mcp );
-        TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
+        DProductosTotales *d = new DProductosTotales( TVProductos );
+        d->setearListaProductos( mcp->listaProductos() );
+        TVProductos->setItemDelegate( d );
         TVProductos->setAlternatingRowColors( true );
         TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVProductos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+
 
         this->addAction( new EActGuardar( this ) );
         this->addAction( new EActCerrar( this ) );
@@ -94,11 +97,9 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
                 RBContado->setChecked( true );
         }
 
+        // Coloco el proximo numero de comprobante
+        LNumeroComprobante->setText( LNumeroComprobante->text().append( "       <b>" ).append( MFactura::proximoComprobante().aCadena() ).append( "</b>" ) );
 
-}
-
-FormAgregarVenta::~FormAgregarVenta()
-{
 }
 
 
@@ -113,16 +114,12 @@ void FormAgregarVenta::agregarProducto()
  // Inserto la fila
  mcp->insertRow( -1 );
  // Pongo el producto
- QModelIndex indice = mcp->index( mcp->rowCount()-2, 0 );
+ QModelIndex indice_cant = mcp->index( mcp->rowCount()-2, 0 );
+ QModelIndex indice_prod = mcp->index( mcp->rowCount()-2, 1 );
  int id_producto = CBProducto->model()->data( CBProducto->model()->index( CBProducto->currentIndex(), 0 ) , Qt::EditRole ).toInt();
- mcp->setData( indice, id_producto, Qt::EditRole );
+ mcp->setData( indice_prod, id_producto, Qt::EditRole );
  // Pongo la cantidad
- indice = mcp->index( mcp->rowCount()-2, 2 );
- mcp->setData( indice, DSBCant->value(), Qt::EditRole );
- // Edito el item que agrege
- //indice = mcp->index( mcp->rowCount()-2 , 1 );
- //TVProductos->setCurrentIndex( indice );
- //TVProductos->edit( indice );
+ mcp->setData( indice_cant, DSBCant->value(), Qt::EditRole );
  // Reseteo los ingresos de producto
  DSBCant->setValue( 1.0 );
  CBProducto->setCurrentIndex( -1 );

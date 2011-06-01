@@ -1,4 +1,42 @@
 CREATE TABLE IF NOT EXISTS `servicios` ( `id_servicio` bigint NOT NULL auto_increment, `nombre` tinytext NOT NULL, `fecha_alta` date NOT NULL,  `fecha_baja` date NULL,  `precio_base` double NOT NULL,  `periodo` int NOT NULL,  `dia_cobro` int NOT NULL,  `forma_incompleto` int NOT NULL,  PRIMARY KEY  (`id_servicio`) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE IF NOT EXISTS `servicios_clientes` ( `id_servicio` bigint REFERENCES servicios(id_servicio), `id_cliente` bigint(1) REFERENCES clientes(id), `fecha_alta` DATETIME NOT NULL, `fecha_baja` DATETIME NULL, PRIMARY KEY  (`id_servicio`, `id_cliente` )) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE IF NOT EXISTS `recargos` ( `id_recargo` bigint NOT NULL AUTO_INCREMENT, `id_servicio` bigint NOT NULL,  `cant_dias` int NOT NULL,  `porcentaje` double(4,2) DEFAULT NULL,  `recargo` double DEFAULT NULL,  PRIMARY KEY (`id_recargo`) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-CREATE TABLE IF NOT EXISTS `cobro_servicio` ( `id_cobro_servicio` BIGINT NOT NULL AUTO_INCREMENT, `id_servicio` BIGINT NOT NULL, `id_cliente` BIGINT NOT NULL , `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `factura` BIGINT NOT NULL , `recibo` BIGINT NOT NULL , `periodo` INT NOT NULL, `ano` YEAR NOT NULL, FOREIGN KEY ( id_servicio, id_cliente ) REFERENCES `servicios_clientes`( id_servicio, id_cliente ), PRIMARY KEY ( id_cobro_servicio ), FOREIGN KEY ( factura ) REFERENCES factura( id_factura ), FOREIGN KEY ( recibo ) REFERENCES recibos( id_recibo ) ) ENGINE = InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE IF NOT EXISTS `cobro_servicio` (
+    `id_cobro_servicio` BIGINT NOT NULL AUTO_INCREMENT,
+    `id_servicio` BIGINT NOT NULL,
+    `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `periodo` INT NOT NULL,
+    `ano` YEAR NOT NULL,
+    FOREIGN KEY ( id_servicio ) REFERENCES `servicios`( id_servicio ),
+    PRIMARY KEY ( id_cobro_servicio )
+) ENGINE = InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE IF NOT EXISTS `cobro_servicio_servicio_cliente` (
+    `id_cobro_servicio` BIGINT NOT NULL,
+    `id_servicio` BIGINT NOT NULL,
+    `id_cliente` BIGINT NOT NULL,
+    `id_factura` BIGINT NOT NULL,
+    `id_recibo` BIGINT DEFAULT NULL,
+    `id_ctacte` BIGINT NOT NULL,
+    FOREIGN KEY ( id_cobro_servicio ) REFERENCES `cobro_servicio`( id_cobro_servicio ),
+    FOREIGN KEY ( id_servicio, id_cliente ) REFERENCES `servicios_clientes`( id_servicio, id_cliente ),
+    FOREIGN KEY ( id_factura ) REFERENCES `factura`( id_factura ),
+    FOREIGN KEY ( id_ctacte ) REFERENCES `item_ctacte`(id_op_ctacte),
+    FOREIGN KEY ( id_recibo ) REFERENCES `recibos`( id_recibo ),
+    PRIMARY KEY ( id_cobro_servicio, id_servicio, id_cliente )
+) ENGINE = InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
+    `id_cobro_servicio` BIGINT NOT NULL,
+    `id_servicio BIGINT NOT NULL,
+    `id_cliente` BIGINT NOT NULL,
+    `id_recargo` BIGINT NOT NULL,
+    `fecha_generado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `texto_detalle` TEXT NOT NULL,
+    `precio` DOUBLE NOT NULL,
+    `id_ctacte` BIGINT NOT NULL,
+    `id_recibo` BIGINT,
+    FOREIGN KEY ( id_cobro_servicio, id_servicio_cliente ) REFERENCES `cobro_servicio`( id_cobro_servicio, id_servicio_cliente ),
+    FOREIGN KEY ( id_recargo ) REFERENCES `recargos`( id_recargo ),
+    FOREIGN KEY ( id_ctacte ) REFERENCES `item_ctacte`( id_op_ctacte ),
+    FOREIGN KEY ( id_recibo ) REFERENCES `recibos`( id_recibo ),
+    PRIMARY KEY ( id_cobro_servicio, id_servicio, id_cliente, id_recargo )
+) ENGINE = InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

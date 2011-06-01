@@ -12595,10 +12595,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static bool</type>
-      <name>agregarCobro</name>
+      <type>static int</type>
+      <name>agregarCobroServicio</name>
       <anchorfile>classMCobroServicio.html</anchorfile>
-      <anchor>abfd061ecf87f9ab88d6986d474fcdee8</anchor>
+      <anchor>ae2dbbd2bb75a6bd1301892ace17be8a2</anchor>
       <arglist>(const int id_servicio, const int id_cliente, const int id_factura, const int periodo, const int ano)</arglist>
     </member>
   </compound>
@@ -12833,8 +12833,8 @@
       <type>int</type>
       <name>agregarVenta</name>
       <anchorfile>classMFactura.html</anchorfile>
-      <anchor>a43e7b4c21cd7b283d73456a29eb4ad88</anchor>
-      <arglist>(QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago)</arglist>
+      <anchor>a59815d2f2fc5b37dd1e697403eac82ff</anchor>
+      <arglist>(QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp)</arglist>
     </member>
     <member kind="function">
       <type></type>

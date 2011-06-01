@@ -36,7 +36,7 @@ public:
     bool setData(const QModelIndex& item, const QVariant& value, int role);
     QVariant data(const QModelIndex& item, int role) const;
 
-    static bool agregarCobro( const int id_servicio, const int id_cliente, const int id_factura, const int periodo, const int ano );
+    static int agregarCobroServicio( const int id_servicio, const int periodo, const int ano );
 
 };
 

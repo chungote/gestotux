@@ -28,7 +28,7 @@
 EVerificaBackup::EVerificaBackup(QWidget *parent)
  : QPushButton(parent)
 {
- this->setToolTip( "Verificación de Backups" );
+ this->setToolTip( "VerificaciÃ³n de Backups" );
  tiempo = new QTimer(this);
  tiempo->setInterval( 10000 );
  connect( tiempo, SIGNAL( timeout() ), this, SLOT( verificar() ) );

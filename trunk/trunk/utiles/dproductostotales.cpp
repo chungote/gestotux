@@ -68,6 +68,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
         {
                 QComboBox *combo = new QComboBox( parent );
                 // Rellenar los items
+                if( !lista ) { qWarning( "Error en la lista original de productos!" );  abort(); }
                 QMapIterator<int, QString> i(*lista);
                 while (i.hasNext()) {
                      i.next();

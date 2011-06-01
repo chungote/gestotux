@@ -13,7 +13,9 @@ DESTDIR = ../../bin/plugins/
 INCLUDEPATH += ../../src \
               ../../reporte \
               ../../utiles \
-              ../CtaCte
+              ../CtaCte \
+              ../ventas \
+              ../productos
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
@@ -39,7 +41,10 @@ HEADERS =   ../caja/mcajas.h \
            MTempClientesFacturarServicio.h \
            ../pagos/mpagos.h \
            ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h
+           ../CtaCte/mitemcuentacorriente.h \
+           ../ventas/MFactura.h \
+           ../ventas/mitemfactura.h \
+           mcobroservicioclienteservicio.h
 
 
 SOURCES = servicios.cpp \
@@ -59,6 +64,9 @@ SOURCES = servicios.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
+           ../ventas/MFactura.cpp \
+           ../ventas/mitemfactura.cpp \
+           mcobroservicioclienteservicio.cpp
 
 RESOURCES += servicios.qrc
 

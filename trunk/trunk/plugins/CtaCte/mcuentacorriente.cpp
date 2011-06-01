@@ -280,3 +280,4 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
         return false;
     }
 }
+
