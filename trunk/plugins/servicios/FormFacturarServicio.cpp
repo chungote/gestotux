@@ -190,7 +190,6 @@ void FormFacturarServicio::facturar()
             PBProgreso->setValue( PBProgreso->value() + multiplicador_pasos );
             continue;
         }
-
         /// Estos serían los datos de "servicios_clientes"
         // Cargo el dato correspondiente a esa fila
         id_cliente = mtemp->data( mtemp->index( i, 2 ), Qt::DisplayRole ).toInt();

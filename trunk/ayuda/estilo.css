@@ -1,11 +1,46 @@
-general {
+body {
+	background-image: url( 'imagenes/borde-superior.png' );
+	background-repeat: repeat-x;
+	background-attachment: fixed;
 }
 
-slogan {
+.logo {
+    float: left;
+    left: -9px;
+    position: relative;
+    top: -4px;
+    margin-right: 8px;
 }
 
-titulo {
+.slogan {
+	text-align:  center;
+	font-family: 'Architects Daughter', arial, serif; 
+	color: blue;
+	font-size: 22px;
 }
+
+.gestotux {
+	margin-top: 20px;
+	font-size: 45px;
+	font-weight: bolder;
+	color: blue;
+	font-family: 'Slackey', Arial;
+	text-align: center;
+}
+
+.titulo {
+    color: white;
+    font-size: 23px;
+    font-weight: bolder;
+    margin-top: 2px;
+}
+
+.subtitulo {
+	 font-weight: bold;
+    margin-left: 240px;
+    margin-top: 12px;
+}
+
 
 h1 {
 	text-align:center;
