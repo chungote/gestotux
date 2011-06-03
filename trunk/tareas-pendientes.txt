@@ -80,31 +80,33 @@
    - SQLite
         - Gastos: OK.
         - Compras: ?
-        - Ventas: ?
+        - Ventas: OK.
         - Servicios: ?
         - Digifauno: ?
         - Presupuestos: ?
-        - Productos: ?
-        - Proveedores: ?
-        - Clientes: ?
-        - Reportes: ?
-        - Ventas?: ?
+        - Productos: OK.
+        - Proveedores: OK.
+        - Clientes: OK.
+        - Reportes: ¿Lo usamos x tabla o por archivo?
+        - Ventas: OK.
         - Recibos: ?
-        - Caja: ?
+        - Caja: OK.
+        - CtaCte: OK.
    - MySql
-        - Gastos: ?
+        - Gastos: OK.
         - Compras: ?
-        - Ventas: ?
+        - Ventas: OK.
         - Servicios: ?
         - Digifauno: ?
         - Presupuestos: ?
-        - Productos: ?
-        - Proveedores: ?
-        - Clientes: ?
-        - Reportes: ?
-        - Ventas?: ?
+        - Productos: OK.
+        - Proveedores: OK.
+        - Clientes: OK.
+        - Reportes: OK.
+        - Ventas: OK.
         - Recibos: ?
-        - Caja: ?
+        - Caja: OK.
+        - CtaCte: OK
 - Verificar el correcto funcionamiento del nuevo formulario de clientes.
 - Probar cierre de caja cuando no hay operaciones mas que el ultimo cierre.
 - Probar agregar gastos y verificar si se guardan en el listado de caja.
