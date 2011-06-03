@@ -65,3 +65,16 @@ ul,li {
 	font-size: 11px;
 	margin-left: 4px;
 }
+
+.contenido {
+	margin-left: 210px;
+	}
+	
+.pie {
+		text-align: right;
+		font-size: 10px;
+}
+
+a.titulo {
+	color: white;
+}
