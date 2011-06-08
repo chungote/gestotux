@@ -89,8 +89,8 @@ bool Ventas::verificarTablas( QStringList tablas )
  { qWarning( "Ventas::Error al buscar la tabla categorias_producto" ); return false; }
  if( !tablas.contains( "factura" ) )
  { qWarning( "Ventas::Error al buscar la tabla factura" ); return false; }
- /*if( !tablas.contains( "item_factura" ) )
- { qWarning( "Ventas::Error al buscar la tabla item_factura" ); return false; }*/
+ if( !tablas.contains( "item_factura" ) )
+ { qWarning( "Ventas::Error al buscar la tabla item_factura" ); return false; }
  return true;
 }
 

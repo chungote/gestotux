@@ -1517,15 +1517,26 @@
     <class kind="class">MClientesServicios</class>
   </compound>
   <compound kind="file">
-    <name>mcobroservicio.cpp</name>
+    <name>mcobroservicioclienteservicio.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
-    <filename>mcobroservicio_8cpp</filename>
+    <filename>mcobroservicioclienteservicio_8cpp</filename>
   </compound>
   <compound kind="file">
-    <name>mcobroservicio.h</name>
+    <name>mcobroservicioclienteservicio.h</name>
     <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
-    <filename>mcobroservicio_8h</filename>
-    <class kind="class">MCobroServicio</class>
+    <filename>mcobroservicioclienteservicio_8h</filename>
+    <class kind="class">MCobroServicioClienteServicio</class>
+  </compound>
+  <compound kind="file">
+    <name>mperiodoservicio.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
+    <filename>mperiodoservicio_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>mperiodoservicio.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/servicios/</path>
+    <filename>mperiodoservicio_8h</filename>
+    <class kind="class">MPeriodoServicio</class>
   </compound>
   <compound kind="file">
     <name>mrecargos.cpp</name>
@@ -7522,13 +7533,6 @@
       <anchor>a94a2561311435d26a02570ba065f355f</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags fl=0)</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormAgregarVenta</name>
-      <anchorfile>classFormAgregarVenta.html</anchorfile>
-      <anchor>add3fb2a4f86cd6e4c2b9657e5e8036c4</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="slot" protection="protected">
       <type>void</type>
       <name>agregarProducto</name>
@@ -12564,42 +12568,35 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>MCobroServicio</name>
-    <filename>classMCobroServicio.html</filename>
-    <member kind="function">
-      <type>QVariant</type>
-      <name>data</name>
-      <anchorfile>classMCobroServicio.html</anchorfile>
-      <anchor>a3cb968a9fd138029e8faed166512efcd</anchor>
-      <arglist>(const QModelIndex &amp;item, int role) const </arglist>
-    </member>
+    <name>MCobroServicioClienteServicio</name>
+    <filename>classMCobroServicioClienteServicio.html</filename>
     <member kind="function">
       <type></type>
-      <name>MCobroServicio</name>
-      <anchorfile>classMCobroServicio.html</anchorfile>
-      <anchor>a10ddc3bd74fc96a8772021266040181a</anchor>
+      <name>MCobroServicioClienteServicio</name>
+      <anchorfile>classMCobroServicioClienteServicio.html</anchorfile>
+      <anchor>a26b3b17adb2e81c6f96c7131fb7d6d63</anchor>
       <arglist>(QObject *parent=0)</arglist>
     </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>setData</name>
-      <anchorfile>classMCobroServicio.html</anchorfile>
-      <anchor>a99895fdf6f63e193d66b4a89828c60c7</anchor>
-      <arglist>(const QModelIndex &amp;item, const QVariant &amp;value, int role)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~MCobroServicio</name>
-      <anchorfile>classMCobroServicio.html</anchorfile>
-      <anchor>a1ab53f8172666e1146ffc16ca3f8bebb</anchor>
-      <arglist>()</arglist>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>agregarCobro</name>
+      <anchorfile>classMCobroServicioClienteServicio.html</anchorfile>
+      <anchor>a4b2154fbda3b453af4d0185cdd53562e</anchor>
+      <arglist>(const int id_cobro_servicio, const int id_servicio, const int id_cliente, const int id_factura)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static int</type>
-      <name>agregarCobroServicio</name>
-      <anchorfile>classMCobroServicio.html</anchorfile>
-      <anchor>ae2dbbd2bb75a6bd1301892ace17be8a2</anchor>
-      <arglist>(const int id_servicio, const int id_cliente, const int id_factura, const int periodo, const int ano)</arglist>
+      <type>static double</type>
+      <name>buscarNoPagados</name>
+      <anchorfile>classMCobroServicioClienteServicio.html</anchorfile>
+      <anchor>a2f011bf16083d41be400d863db38db8e</anchor>
+      <arglist>(const int id_cliente, const int id_servicio, const int id_cobro_servicio)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>setearIDCtaCte</name>
+      <anchorfile>classMCobroServicioClienteServicio.html</anchorfile>
+      <anchor>abe9d55dce55f2cf0e2f7acd80d12ce81</anchor>
+      <arglist>(const int id_cobro_servicio, const int id_servicio, const int id_cliente, const int id_op_ctacte)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -12831,6 +12828,13 @@
     </member>
     <member kind="function">
       <type>int</type>
+      <name>agregarFactura</name>
+      <anchorfile>classMFactura.html</anchorfile>
+      <anchor>a830f2ae63d9f376e9e065e017512a94e</anchor>
+      <arglist>(const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
       <name>agregarVenta</name>
       <anchorfile>classMFactura.html</anchorfile>
       <anchor>a59815d2f2fc5b37dd1e697403eac82ff</anchor>
@@ -12850,8 +12854,8 @@
       <anchor>acee37942c566ec19da4cc0a6644e62cb</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>NumeroComprobante &amp;</type>
+    <member kind="function" static="yes">
+      <type>static NumeroComprobante &amp;</type>
       <name>proximoComprobante</name>
       <anchorfile>classMFactura.html</anchorfile>
       <anchor>ad3b12231cdfe35bc4c14996fa60123e3</anchor>
@@ -13050,6 +13054,13 @@
       <anchorfile>classMItemCuentaCorriente.html</anchorfile>
       <anchor>a37198eeaf85d6a45eab8d98c0af52bed</anchor>
       <arglist>(const QString &amp;numero_cuenta, const NumeroComprobante &amp;num_comb, const int &amp;num_ref, const TipoOperacionCtaCte tipo, const QDate &amp;fecha, const QString &amp;descripcion, const double &amp;aplicar)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>valorOperacion</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>ad7a55f4ccbe29c9eb18f670c3431b917</anchor>
+      <arglist>(const int id_op_ctacte)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QString</type>
@@ -13525,6 +13536,80 @@
       <anchorfile>classMPeluqueria.html</anchorfile>
       <anchor>a465fd0f96bbaf3c47d74c8fa4b229226</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MPeriodoServicio</name>
+    <filename>classMPeriodoServicio.html</filename>
+    <member kind="function">
+      <type>int</type>
+      <name>getAnoActual</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>a4eeb22e9ede9ea5177125f9326259788</anchor>
+      <arglist>(const int id_servicio)</arglist>
+    </member>
+    <member kind="function">
+      <type>QDate</type>
+      <name>getFechaInicioPeriodoActual</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>a597c1631f1cd4c0f66fecb715440de51</anchor>
+      <arglist>(const int id_servicio)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getPeriodoActual</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>ae066a37a86e31c17a4c76914c6026b95</anchor>
+      <arglist>(const int id_servicio)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>inicializar</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>ac5e36ab57b22e4abf868610f45a8323b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MPeriodoServicio</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>a9c2552f106eb432653bf0703eb988284</anchor>
+      <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>relacionar</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>a7d375525868ac5933a98437c6d358ece</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static int</type>
+      <name>agregarPeriodoServicio</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>a15ec75e4d0521971f571c2e4150740bb</anchor>
+      <arglist>(const int id_servicio, const int periodo, const int ano)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QDate</type>
+      <name>obtenerFechaFinPeriodo</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>a5877ac30d89e90c01075c300e061c5ac</anchor>
+      <arglist>(const int id_servicio, const QDate fecha_inicio)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QDate</type>
+      <name>ultimaFechaDeServicio</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>afae21f3c44b6cd0f546d66f28d6e666e</anchor>
+      <arglist>(const int id_servicio)</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static int</type>
+      <name>diasEnPeriodo</name>
+      <anchorfile>classMPeriodoServicio.html</anchorfile>
+      <anchor>aecdfb648f7e9a2bf1fa0a3451a190dd5</anchor>
+      <arglist>(const int id_servicio, const QDate fecha_inicio)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14082,6 +14167,12 @@
       <anchor>a0812bdff80a43ecdbf27a577d47c3ed9ae9062230341024ea019c03299d3ddcae</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>Invalido</name>
+      <anchorfile>classMServicios.html</anchorfile>
+      <anchor>a0812bdff80a43ecdbf27a577d47c3ed9afc2c4753226f4edefc943922bccb2fe3</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>bool</type>
       <name>agregarServicio</name>
@@ -14118,6 +14209,13 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
+      <type>static QDate</type>
+      <name>getFechaAlta</name>
+      <anchorfile>classMServicios.html</anchorfile>
+      <anchor>ab17a65dd333e507f3651d88a69097069</anchor>
+      <arglist>(const int id_servicio)</arglist>
+    </member>
+    <member kind="function" static="yes">
       <type>static QString</type>
       <name>getNombreServicio</name>
       <anchorfile>classMServicios.html</anchorfile>
@@ -14125,11 +14223,11 @@
       <arglist>(int id_servicio)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static QPair&lt; QPair&lt; int, int &gt;, QString &gt;</type>
-      <name>getPeriodoActual</name>
+      <type>static MServicios::Periodo</type>
+      <name>obtenerPeriodo</name>
       <anchorfile>classMServicios.html</anchorfile>
-      <anchor>a0fb8ffefb791e05b2d11a2fa8b674e3a</anchor>
-      <arglist>(int id_servicio)</arglist>
+      <anchor>ab55ffcc34d3051a3e68edd154163283d</anchor>
+      <arglist>(const int id_servicio)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static double</type>
@@ -14137,27 +14235,6 @@
       <anchorfile>classMServicios.html</anchorfile>
       <anchor>a1231c7860ccda86a72a492e54e573b28</anchor>
       <arglist>(int id_servicio)</arglist>
-    </member>
-    <member kind="function" protection="private" static="yes">
-      <type>static int</type>
-      <name>getCantidadDiasPeriodo</name>
-      <anchorfile>classMServicios.html</anchorfile>
-      <anchor>a83f06174137d58e2d821a3d6e5b9f93e</anchor>
-      <arglist>(const int id_servicio, const QDate fecha_calculo)</arglist>
-    </member>
-    <member kind="function" protection="private" static="yes">
-      <type>static int</type>
-      <name>getDiasEnPeriodo</name>
-      <anchorfile>classMServicios.html</anchorfile>
-      <anchor>ae3806812831144c85dea92090f188c55</anchor>
-      <arglist>(int tipo_periodo, const QDate fecha_calculo)</arglist>
-    </member>
-    <member kind="function" protection="private" static="yes">
-      <type>static QDate</type>
-      <name>getFechaAlta</name>
-      <anchorfile>classMServicios.html</anchorfile>
-      <anchor>ab17a65dd333e507f3651d88a69097069</anchor>
-      <arglist>(const int id_servicio)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -20902,8 +20979,10 @@
     <file>main.cpp</file>
     <file>MClientesServicios.cpp</file>
     <file>MClientesServicios.h</file>
-    <file>mcobroservicio.cpp</file>
-    <file>mcobroservicio.h</file>
+    <file>mcobroservicioclienteservicio.cpp</file>
+    <file>mcobroservicioclienteservicio.h</file>
+    <file>mperiodoservicio.cpp</file>
+    <file>mperiodoservicio.h</file>
     <file>mrecargos.cpp</file>
     <file>mrecargos.h</file>
     <file>mrecargoshechos.cpp</file>
