@@ -26,13 +26,14 @@
 #include "dsino.h"
 #include <QPair>
 #include "mperiodoservicio.h"
+#include <QLocale>
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
 
     setupUi(this);
 
-    this->setWindowTitle( "Facturación de un servicio" );
+    this->setWindowTitle( "Facturacion de un servicio" );
     //this->setWindowIcon( QIcon( ":/imagenes/" ) );
     this->setObjectName( "facturaservicios" );
 
@@ -95,12 +96,13 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->_periodo = mp->getPeriodoActual( this->_id_servicio );
     this->_ano = mp->getAnoActual( this->_id_servicio );
     QDate fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio );
+    if( fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( fecha_inicio.toString() ).toLocal8Bit() ); }
     this->LPeriodo->setText(
         QString( " %1/%2 desde %3 hasta %4 " )
                 .arg( this->_periodo )
                 .arg( this->_ano )
-                .arg( fecha_inicio.toString() )
-                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, fecha_inicio ).toString() )
+                .arg( fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
+                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) )
     );
     // Cargo los clientes del servicio
     MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
