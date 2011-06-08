@@ -27,6 +27,7 @@ public:
 
 private:
     static int diasEnPeriodo( const int id_servicio, const QDate fecha_inicio );
+    static int diasEnPeriodoServicio( const int id_servicio, QDate fecha_calculo );
 };
 
 #endif // MPERIODOSERVICIO_H
