@@ -95,8 +95,8 @@ void FormActualizacion::iniciar()
   // Busco los datos desde el registro para el host y puerto
   QSettings *p = preferencias::getInstancia();
   //QString host = p->value( "actualizaciones/host", "tranfuga.no-ip.org" ).toString();
-  QString host = p->value( "actualizaciones/host", "localhost" ).toString();
-  quint16 puerto = p->value( "actualizaciones/puerto", 21 ).toInt();
+  QString host = p->value( "Preferencias/Actualizaciones/servidor", "trafu.no-ip.org" ).toString();
+  quint16 puerto = p->value( "Preferencias/Actualizaciones/puerto", 21 ).toInt();
   ftp->connectToHost( host, puerto );
 }
 
@@ -207,7 +207,13 @@ void FormActualizacion::terminado( int comando, bool  error )
    {
         if( !error )
         {
+            if( ! preferencias::getInstancia()->value( "Preferencias/Actualizaciones/anonimo" ).toBool() ) {
+                QString usuario = preferencias::getInstancia()->value( "Preferencias/Actualizaciones/usuario", "" ).toString();
+                QString contra = preferencias::getInstancia()->value( "Preferencias/Actualizaciones/contra", "" ).toString();
+                ftp->login( usuario, contra );
+            } else {
                 ftp->login();
+            }
         }
         break;
    }
@@ -216,7 +222,8 @@ void FormActualizacion::terminado( int comando, bool  error )
    {
         if( !error )
         {
-          ftp->cd( "actualizaciones" );
+          QString ruta = preferencias::getInstancia()->value( "Preferencias/Actualizaciones/ruta", "actualizaciones" ).toString();
+          ftp->cd( ruta );
         }
         break;
    }
