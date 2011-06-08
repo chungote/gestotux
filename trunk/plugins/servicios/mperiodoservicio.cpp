@@ -147,7 +147,7 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
         {
             // Mensual
             // Verificar el mes del periodo y devolver la cantidad de días
-            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
+            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth() - 1;
             // Eso se encarga automaticamnete de los años bisiestos
         }
         case MServicios::BiMensual:
@@ -157,7 +157,7 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
             QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
             QDate f2 = f1.addMonths(1);
             QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
-            return f1.daysTo( f3 );
+            return f1.daysTo( f3 ) - 1;
         }
         case MServicios::Trimestral:
         {
