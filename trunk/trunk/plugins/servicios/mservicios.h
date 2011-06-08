@@ -56,21 +56,17 @@ public:
         Trimestral = 5, /**< Tres meses */
         Cuatrimestral = 6, /**< Cuatro meses */
         Seximestral = 7, /**< Seis meses */
-        Anual = 8 /**< 12 meses - 365 dias */
+        Anual = 8, /**< 12 meses - 365 dias */
+        Invalido = -1 /** Invalido - Para casos de error */
     };
 
     bool asociarCliente( int id_cliente, int id_servicio, QDateTime fecha = QDateTime::currentDateTime() );
     bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto );
 
     static double precioBase( int id_servicio );
+    static MServicios::Periodo obtenerPeriodo( const int id_servicio );
     static QString getNombreServicio( int id_servicio );
-    static QPair<QPair<int,int>, QString> getPeriodoActual( int id_servicio );
-
-private:
-    static int getDiasEnPeriodo( int tipo_periodo, const QDate fecha_calculo );
     static QDate getFechaAlta( const int id_servicio );
-    static int getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo );
-
 
 };
 

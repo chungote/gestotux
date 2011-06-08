@@ -25,6 +25,7 @@
 #include "MTempClientesFacturarServicio.h"
 #include "dsino.h"
 #include <QPair>
+#include "mperiodoservicio.h"
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
@@ -90,10 +91,17 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->LNombreServicio->setText( m->getNombreServicio( this->_id_servicio ) );
     this->_precio_base = m->precioBase( this->_id_servicio );
     this->LPrecioBase->setText( QString( "$ %L1" ).arg( this->_precio_base  ) );
-    QPair<QPair<int,int>,QString> ret = m->getPeriodoActual( this->_id_servicio );
-    this->_periodo = ret.first.first;
-    this->_ano = ret.first.first;
-    this->LPeriodo->setText( ret.second );
+    MPeriodoServicio *mp = new MPeriodoServicio();
+    this->_periodo = mp->getPeriodoActual( this->_id_servicio );
+    this->_ano = mp->getAnoActual( this->_id_servicio );
+    QDate fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio );
+    this->LPeriodo->setText(
+        QString( " %1/%2 desde %3 hasta %4 " )
+                .arg( this->_periodo )
+                .arg( this->_ano )
+                .arg( fecha_inicio.toString() )
+                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, fecha_inicio ).toString() )
+    );
     // Cargo los clientes del servicio
     MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
     // Cargo los clientes
@@ -123,7 +131,6 @@ void FormFacturarServicio::cargar_datos_servicio()
 #include <QSqlDatabase>
 #include <QHash>
 #include "EReporte.h"
-#include "mcobroservicio.h"
 #include "../pagos/mpagos.h"
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../CtaCte/mcuentacorriente.h"
@@ -168,17 +175,19 @@ void FormFacturarServicio::facturar()
     QString nombre_cliente = "";
     QHash<int, int> comprobantes; // Guarda el paso con el id del recibo guardado
 
+    return;
     // Genero la transación en la base de datos ( total )
     QSqlDatabase::database().transaction();
 
     //////////////////////////////////////////////////////////////////////////////
     // Genero los datos de cuando estoy cobrando
-    int id_cobro_servicio = MCobroServicio::agregarCobroServicio( this->_id_servicio, this->_periodo, QDate::currentDate().year() );
+    int id_cobro_servicio = -1;
+    /*int id_cobro_servicio = MCobroServicio::agregarCobroServicio( this->_id_servicio, this->_periodo, QDate::currentDate().year() );
     if( id_cobro_servicio == -1 ) {
         // Error intentando guardar el cobro del servicio. Cancelo
         QSqlDatabase::database().rollback();
         return;
-    }
+    }*/
 
     //////////////////////////////////////////////////////////////////////
     // Itero por cada uno de los clientes para este cobro de servicio

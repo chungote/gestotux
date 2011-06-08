@@ -30,7 +30,6 @@ HEADERS =   ../caja/mcajas.h \
            mservicios.h \
            vservicios.h \
            mrecargos.h \
-           mcobroservicio.h \
            mrecargoshechos.h \
            formasociarserviciocliente.h \
            formservicio.h \
@@ -45,14 +44,14 @@ HEADERS =   ../caja/mcajas.h \
            ../CtaCte/mitemcuentacorriente.h \
            ../ventas/MFactura.h \
            ../ventas/mitemfactura.h \
-           mcobroservicioclienteservicio.h
+           mcobroservicioclienteservicio.h \
+    mperiodoservicio.h
 
 
 SOURCES = servicios.cpp \
            mservicios.cpp \
            vservicios.cpp \
            mrecargos.cpp \
-           mcobroservicio.cpp \
            mrecargoshechos.cpp \
            formasociarserviciocliente.cpp \
            formservicio.cpp \
@@ -67,7 +66,8 @@ SOURCES = servicios.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
            ../ventas/MFactura.cpp \
            ../ventas/mitemfactura.cpp \
-           mcobroservicioclienteservicio.cpp
+           mcobroservicioclienteservicio.cpp \
+    mperiodoservicio.cpp
 
 RESOURCES += servicios.qrc
 
