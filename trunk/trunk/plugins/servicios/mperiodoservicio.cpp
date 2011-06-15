@@ -7,11 +7,11 @@
 #include "math.h"
 
 MPeriodoServicio::MPeriodoServicio(QObject *parent) :
-    QSqlRelationalTableModel(parent) {
-    inicializar();
+    QObject(parent) {
+    //inicializar();
 }
 
-
+/*
 void MPeriodoServicio::inicializar() {
     setTable( "periodo_servicio" );
     setHeaderData( 0, Qt::Horizontal, "#ID" );
@@ -27,32 +27,30 @@ void MPeriodoServicio::relacionar() {
     setRelation( 1, QSqlRelation( "id_servicio", "servicios", "nombre" ) );
 }
 
+*/
+
 /*!
  * \fn MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano )
  * Agrega el registro de que se realizo el cobro de un servicio identificado mediante la factura en un periodo del servicio.
  * @param id_servicio Identificador del servicio a facturar
  * @param periodo Numero de periodo dentro del año
  * @param ano Año del cobro
- * @return Verdadero si se pudo agregar
+ * @param fecha_inicio Fecha de inicio del periodo
+ * @param fecha_fin Fecha de fin del periodo
+ * @return Identificador de id_periodo_servicio o -1 si hubo un error.
  */
-int MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano )
+int MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin )
 {
  QSqlQuery cola;
  cola.prepare( "INSERT INTO periodo_servicio( id_servicio, periodo, ano, fecha_inicio, fecha_fin ) VALUES( :id_servicio, :periodo, :ano, :fecha_inicio, :fecha_fin )" );
  cola.bindValue( ":id_servicio", id_servicio );
  cola.bindValue( ":periodo", periodo );
  cola.bindValue( ":ano", ano );
- // Calculo las fechas
- QDate fecha_inicio = ultimaFechaDeServicio( id_servicio );
- if( !fecha_inicio.isValid() ) {
-     return -1;
- }
- QDate fecha_fin = obtenerFechaFinPeriodo( id_servicio, fecha_inicio );
  cola.bindValue( ":fecha_inicio", fecha_inicio );
  cola.bindValue( ":fecha_fin", fecha_fin );
  //cola.bindValue( ":fecha", fecha_generado ); Este lo genera solo la base de datos mysql
  if( cola.exec() ) {
-     return true;
+     return cola.lastInsertId().toInt();
  } else {
      qDebug( "Servicios::MPeriodoServicio::agregarPeriodoServicio - Error al intentar agregar el periodo de un servicio ( exec )" );
      qDebug( QString( cola.lastError().text() ).toLocal8Bit() );
@@ -243,7 +241,7 @@ int MPeriodoServicio::getAnoActual( const int id_servicio ) {
             return cola.record().value(0).toInt();
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
-            //qDebug( "Devolviendo el año actual - Ningun registro anterior" );
+            qDebug( "Devolviendo el año actual - Ningun registro anterior" );
             return QDate::currentDate().year();
         }
     } else {
@@ -299,25 +297,149 @@ QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio ) {
 }
 
 /*!
- * \fn MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo )
- * Devuelve la cantidad de días en el periodo del servicio solicitado. Utilitaria.
- * @param id_servicio Identificador del servicio al cual se le quiere saber la cantidad de días.
- * @param fecha_calculo utilizado para referencia en @MSercicios::getCantidadDiasEnPeriodo
- * @return Cantidad de días en el periodo del servicio
+ * \fn MPeriodoServicio::agregarPeriodoAFacturarNuevo( const int id_servicio )
+ * Agrega un nuevo periodo a la lista de periodos de un servicio contolando que los datos sean correctos.
+ * @param id_servicio Identificador del servicio que se desea
+ * @returns Identificador del periodo del servicio o -1 si hubo un error
  */
-/*
-int MServicios::getCantidadDiasPeriodo( const int id_servicio, const QDate fecha_calculo )
-{
-    QSqlQuery cola( QString( "SELECT periodo FROM servicios WHERE id_servicio = %2" ).arg( id_servicio ) );
-    if( cola.exec() ) {
-        if( cola.next() ) {
-            return getDiasEnPeriodo( cola.record().value(0).toInt(), fecha_calculo );
-        } else {
-            qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo y su periodo -> next" );
+int MPeriodoServicio::agregarPeriodoAFacturarNuevo( const int id_servicio ) {
+    // Busca el proximo periodo a facturar y lo agrega devolviendo el id agregado
+    // Busco si existe un periodo anterior
+    int periodo = this->getPeriodoActual( id_servicio );
+    int ano = this->getAnoActual( id_servicio );
+    QDate fecha_inicio = this->getFechaInicioPeriodo( id_servicio, periodo, ano );
+    QDate fecha_fin = this->obtenerFechaFinPeriodo( id_servicio, fecha_inicio );
+    // Verifico
+    QDate fecha_ultimo_periodo = this->getUltimaFecha( id_servicio );
+    if( fecha_ultimo_periodo.isValid() ) {
+        if( fecha_ultimo_periodo >= fecha_inicio ) {
+            qDebug( "Error - La fecha de inicio del periodo es anterior a la fecha de fin del periodo anterior." );
             return -1;
         }
     } else {
-        qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo y su periodo  -> exec" );
+        qDebug( "Atencion - La ulima fecha de inicio del periodo no existe - se utilizara la generica." );
+    }
+    int ultimo_periodo = this->getUltimoPeriodo( id_servicio );
+    if( ultimo_periodo != -1 && ultimo_periodo >= periodo ) {
+        qDebug( "Error- El numero de periodo es invalido o igual que el periodo que se facturara." );
         return -1;
     }
-}*/
+    return this->agregarPeriodoServicio( id_servicio, periodo, ano, fecha_inicio, fecha_fin );
+}
+
+
+/*!
+ * \fn MPeriodoServicio::getFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano )
+ * Devuelve la fecha de inicio del periodo solicitado
+ * @param id_servico ID del servicio elegido
+ * @param periodo Periodo elegido a solicitar la fecha
+ * @param ano Año solicitado
+ * @returns Fecha de inicio del periodo solicitado o una fecha invalida si hubo un error.
+ */
+QDate MPeriodoServicio::getFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano ) {
+    // Busco si existe en la base de datos
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha_inicio FROM periodo_servicio WHERE id_servicio = %1 AND periodo = %2 AND ano = %3" ).arg( id_servicio ).arg( periodo ).arg( ano ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDate();
+        } else {
+            // Genero la fecha ya que no existe en la base de datos
+            return generarFechaInicioPeriodo( id_servicio, periodo, ano );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de fecha de inicio de un periodo para un servicio" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return QDate();
+    }
+    return QDate();
+}
+
+/*!
+ * \fn MPeriodoServicio::getUltimaFecha( const int id_servicio )
+ * Devuelve la ultima fecha de fin del servicio solicitado
+ * @param id_servico ID del servicio elegido
+ * @returns Ultima fecha o una fecha invalida si no existe o hubo un error.
+ */
+QDate MPeriodoServicio::getUltimaFecha( const int id_servicio ) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha_fin, periodo, ano FROM periodo_servicio WHERE id_servicio = %1 ORDER BY ano DESC, periodo DESC LIMIT 1" ).arg( id_servicio ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDate();
+        } else {
+            // No existe una fecha
+            qDebug( "No existe una fecha de ultimo periodo de servicio elegido." );
+            return QDate();
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de fecha de inicio de un periodo para un servicio" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return QDate();
+    }
+    return QDate();
+}
+
+/*!
+ * \fn MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano )
+ * Devuelve la fecha teorica del inicio del periodo segun el servicio solicitado
+ * @param id_servico ID del servicio elegido
+ * @param periodo numero de periodo del servicio en el año elegido
+ * @param ano Año elegido
+ * @returns Fecha de inicio o fecha invalida si hubo un error.
+ */
+QDate MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano ) {
+    QDate fecha = QDate();
+    switch( MServicios::obtenerPeriodo( id_servicio ) ) {
+        case MServicios::Semanal:
+        case MServicios::Quincenal:
+        case MServicios::Mensual:
+        case MServicios::BiMensual:
+        case MServicios::Trimestral:
+        case MServicios::Cuatrimestral:
+        case MServicios::Seximestral:
+        {
+            fecha = QDate( ano, 1, 1 ).addDays( periodo * diasEnPeriodo( id_servicio, QDate::currentDate() ) );
+            break;
+        }
+        case MServicios::Anual:
+        {
+            if( periodo > 1 ) { qDebug( "Periodo > 1 para tipo de periodo anual. Erroneo. Corregido." ); }
+            fecha = QDate( ano, QDate::currentDate().month(), 1 ); break;
+        }
+        default: { qDebug( "Tipo de Periodo invalido" ); return QDate(); break; }
+    }
+    // Chequeo que la fecha de inicio del servicio sea menor que la buscada
+    QDate fecha_inicio_servicio = MServicios::getFechaAlta( id_servicio );
+    if( fecha_inicio_servicio > fecha ) {
+        qDebug( "Error - la fecha de inicio buscada es menor a la del servicio." );
+        fecha = fecha_inicio_servicio;
+    }
+    return fecha;
+}
+
+
+/*!
+ * \fn MPeriodoServicio::getUltimoPeriodo( const int id_servicio )
+ * Busca el ultimo periodo facturado para el servicio solicitado
+ * \param id_servicio Identificador del servicio
+ * \returns Numero de periodo o -1 si hubo error o no existe.
+ */
+int MPeriodoServicio::getUltimoPeriodo(const int id_servicio) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha_fin, periodo, ano FROM periodo_servicio WHERE id_servicio = %1 ORDER BY ano DESC, periodo DESC LIMIT 1" ).arg( id_servicio ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(1).toInt();
+        } else {
+            // No existe una fecha
+            qDebug( "No existe un ultimo numero de periodo del servicio elegido." );
+            return -1;
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de ultimo periodo para un servicio" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return -1;
+    }
+    return -1;
+}

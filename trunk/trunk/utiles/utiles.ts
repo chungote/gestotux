@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>ColorAction</name>
     <message>
@@ -65,7 +67,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alineaci&#xf3;n izquierda</source>
+        <source>Alineación izquierda</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -73,7 +75,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alineaci&#xf3;n derecha</source>
+        <source>Alineación derecha</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

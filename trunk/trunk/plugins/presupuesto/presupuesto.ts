@@ -1,7 +1,6 @@
-<!DOCTYPE TS><TS>
-<context>
-    <name>FormListaProductosBase</name>
-</context>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>FormPresupuestoBase</name>
     <message>
@@ -17,27 +16,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Destinatario</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cliente</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Otro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Titulo Personalizado</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PRESUPUESTO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contenido</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numero:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Dirección:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Agregar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Eliminar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Borrar Todo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -12,13 +12,13 @@ CREATE TABLE IF NOT EXISTS `periodo_servicio` (
     FOREIGN KEY ( id_servicio ) REFERENCES `servicios`( id_servicio ),
     PRIMARY KEY ( id_cobro_servicio )
 ) ENGINE = InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-CREATE TABLE IF NOT EXISTS `cobro_servicio_servicio_cliente` (
+CREATE TABLE IF NOT EXISTS `cobro_servicio_cliente_periodo` (
     `id_periodo_servicio` BIGINT NOT NULL,
     `id_servicio` BIGINT NOT NULL,
     `id_cliente` BIGINT NOT NULL,
     `id_factura` BIGINT NOT NULL,
     `id_recibo` BIGINT DEFAULT NULL,
-    `id_ctacte` BIGINT NOT NULL,
+    `id_ctacte` BIGINT DEFAULT NULL,
     FOREIGN KEY ( id_periodo_servicio ) REFERENCES `periodo_servicio`( id_periodo_servicio ),
     FOREIGN KEY ( id_servicio, id_cliente ) REFERENCES `servicios_clientes`( id_servicio, id_cliente ),
     FOREIGN KEY ( id_factura ) REFERENCES `factura`( id_factura ),

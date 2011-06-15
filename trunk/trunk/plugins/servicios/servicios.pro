@@ -44,8 +44,8 @@ HEADERS =   ../caja/mcajas.h \
            ../CtaCte/mitemcuentacorriente.h \
            ../ventas/MFactura.h \
            ../ventas/mitemfactura.h \
-           mcobroservicioclienteservicio.h \
-    mperiodoservicio.h
+    mperiodoservicio.h \
+    mcobroservicioclienteperiodo.h
 
 
 SOURCES = servicios.cpp \
@@ -66,8 +66,8 @@ SOURCES = servicios.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
            ../ventas/MFactura.cpp \
            ../ventas/mitemfactura.cpp \
-           mcobroservicioclienteservicio.cpp \
-    mperiodoservicio.cpp
+    mperiodoservicio.cpp \
+    mcobroservicioclienteperiodo.cpp
 
 RESOURCES += servicios.qrc
 
