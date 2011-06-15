@@ -138,7 +138,8 @@ void FormFacturarServicio::cargar_datos_servicio()
 #include "../CtaCte/mcuentacorriente.h"
 #include "../ventas/MFactura.h"
 #include "../ventas/mitemfactura.h"
-#include "mcobroservicioclienteservicio.h"
+#include "mcobroservicioclienteperiodo.h"
+#include "mperiodoservicio.h"
 /*!
  * \fn FormFacturarServicio::facturar()
  * Realiza la facturación efectiva del servicio. El usuario ya acepto el facturar y los datos.
@@ -177,19 +178,18 @@ void FormFacturarServicio::facturar()
     QString nombre_cliente = "";
     QHash<int, int> comprobantes; // Guarda el paso con el id del recibo guardado
 
-    return;
     // Genero la transación en la base de datos ( total )
     QSqlDatabase::database().transaction();
 
     //////////////////////////////////////////////////////////////////////////////
     // Genero los datos de cuando estoy cobrando
-    int id_cobro_servicio = -1;
-    /*int id_cobro_servicio = MCobroServicio::agregarCobroServicio( this->_id_servicio, this->_periodo, QDate::currentDate().year() );
-    if( id_cobro_servicio == -1 ) {
-        // Error intentando guardar el cobro del servicio. Cancelo
+    MPeriodoServicio *mp = new MPeriodoServicio();
+    int id_periodo_servicio = mp->agregarPeriodoAFacturarNuevo( this->_id_servicio );
+    if( id_periodo_servicio == -1 ) {
+        qDebug( "El metodo de agregar periodo a facturar nuevo devolvio error." );
         QSqlDatabase::database().rollback();
         return;
-    }*/
+    }
 
     //////////////////////////////////////////////////////////////////////
     // Itero por cada uno de los clientes para este cobro de servicio
@@ -252,7 +252,7 @@ void FormFacturarServicio::facturar()
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         // Paso 2 - Genero la entra en cobro-servicio-cliente-servicio con el id de factura correspondiente /
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-        if( !MCobroServicioClienteServicio::agregarCobro( id_cobro_servicio, this->_id_servicio, id_cliente, id_factura ) ) {
+        if( !MCobroServicioClientePeriodo::agregarCobro( id_periodo_servicio, this->_id_servicio, id_cliente, id_factura ) ) {
             qDebug( "Error al generar la entrada de cobro para un servicio-cliente-cobro" );
             QSqlDatabase::database().rollback();
             return;
@@ -261,6 +261,9 @@ void FormFacturarServicio::facturar()
         /////////////////////////////////////////////////////////////////
         // Paso 3 - Genero la entrada en la cuenta corriente del cliente
         /////////////////////////////////////////////////////////////////
+        return;
+
+        //// @ todo Modificar el metodo de agregar operación para que devuelva el id
         LIndicador->setText( QString( "Actualizando cuenta corriente del cliente %1  ( %2 de %3 )..." ).arg( nombre_cliente ).arg( cantidad_actual ).arg( i ) );
         // Intento agregar el numero de operación
         QString id_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
@@ -281,7 +284,7 @@ void FormFacturarServicio::facturar()
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Paso 4 - Actualizo la entrada en cobro-servicio-cliente-servicio con el  numero de operación de la cuenta corriente /
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if( !MCobroServicioClienteServicio::setearIDCtaCte( id_cobro_servicio, this->_id_servicio, id_cliente, id_op_ctacte ) ) {
+        if( !MCobroServicioClientePeriodo::setearIDCtaCte( id_periodo_servicio, this->_id_servicio, id_cliente, id_op_ctacte ) ) {
             qDebug( "Error al actualizar el indice de cuenta corriente en el cobro de servicio para el servicio cliente" );
             QSqlDatabase::database().rollback();
             return;

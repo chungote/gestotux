@@ -1,4 +1,17 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
+<context>
+    <name>EAyudaBase</name>
+    <message>
+        <source>Form1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cerrar Ayuda</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>EMysqlBase</name>
     <message>
@@ -9,7 +22,7 @@
         <source>Usuario:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Contraseña:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -92,6 +105,34 @@ p, li { white-space: pre-wrap; }
         <source>SobreEstilo:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Actualizaciones</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Servidor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Puerto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ruta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Usuario:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Contraseña:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anonimo</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FormAcercaDe</name>
@@ -140,7 +181,7 @@ p, li { white-space: pre-wrap; }
         <source>Base de Datos</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Configuración del programa</source>
         <translation type="unfinished"></translation>
     </message>
@@ -188,14 +229,10 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Segundos Nombres:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Apellidos:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Dirección</source>
         <translation type="unfinished"></translation>
     </message>
@@ -260,11 +297,125 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Lista de Precio</source>
+        <source>CUIT/CUIL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context encoding="UTF-8">
+<context>
+    <name>FormPantallaInicial</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Operaciones</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Presupuestos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Facturas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recibos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compras</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notas de
+Credito y 
+ Debito</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gastos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empresa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Productos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caja</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Servicios</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proveedores</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copias de 
+Seguridad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferencias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clientes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cuentas
+Corrientes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resumenes de
+Cuenta</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FormPlugins</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Lista de Componentes Actuales&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Predeterminado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nombre</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ultima Actualizacion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buscar Actualizaciones</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FormPrefDbBase</name>
     <message>
         <source>Form</source>
@@ -298,7 +449,7 @@ p, li { white-space: pre-wrap; }
         <source>Puerto</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Recordar Contraseña:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -318,19 +469,19 @@ p, li { white-space: pre-wrap; }
         <source>Backups</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Frecuencia de Verificación:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>1 día</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>2 días</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>5 días</source>
         <translation type="unfinished"></translation>
     </message>

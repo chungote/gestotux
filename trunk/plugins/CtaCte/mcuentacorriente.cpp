@@ -164,33 +164,42 @@ QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
 int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplicar )
 {
  // Busco el saldo del cliente
- QSqlQuery cola( QString( "SELECT saldo, limite FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) );
- if( cola.next() )
- {
-  if( cola.record().value(0).toDouble() + aplicar > cola.record().value(1).toDouble() )
-  {
-        qDebug( "Limite de la cuenta corriente solicitada excedido" );
-        return MCuentaCorriente::LimiteExcedido;
-  }
-  else if( cola.record().value(0).toDouble() + aplicar == cola.record().value(1).toDouble() )
-  {
-        qDebug( "Limite de la cuenta corriente solicitada alcanzado" );
-        return MCuentaCorriente::EnLimite;
-  }
-  else
-  {
-        qDebug( "limite de la cuenta corriente solicitada correcto" );
-        return MCuentaCorriente::LimiteCorrecto;
-  }
+ QSqlQuery cola;
+ if( cola.exec(QString( "SELECT saldo, limite FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) ) ) {
+     if( cola.next() )
+     {
+      if( cola.record().value(0).toDouble() + aplicar > cola.record().value(1).toDouble() )
+      {
+            qDebug( "Limite de la cuenta corriente solicitada excedido" );
+            return MCuentaCorriente::LimiteExcedido;
+      }
+      else if( cola.record().value(0).toDouble() + aplicar == cola.record().value(1).toDouble() )
+      {
+            qDebug( "Limite de la cuenta corriente solicitada alcanzado" );
+            return MCuentaCorriente::EnLimite;
+      }
+      else
+      {
+            qDebug( "limite de la cuenta corriente solicitada correcto" );
+            return MCuentaCorriente::LimiteCorrecto;
+      }
+     }
+     else
+     {
+      // Error al buscar
+      qWarning( "Error al buscar el limite de la cuenta corriente solicitada ( next )" );
+      qDebug( qPrintable( cola.lastError().text() ) );
+      qDebug( qPrintable( cola.executedQuery() ) );
+      return MCuentaCorriente::ErrorBuscarLimite;
+     }
+ } else {
+     // Error al buscar
+     qWarning( "Error al buscar el limite de la cuenta corriente solicitada ( exec )" );
+     qDebug( qPrintable( cola.lastError().text() ) );
+     qDebug( qPrintable( cola.executedQuery() ) );
+     return MCuentaCorriente::ErrorBuscarLimite;
  }
- else
- {
-  // Error al buscar
-  qWarning( "Error al buscar el limite d ela cuenta corriente solicitada" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
-  return MCuentaCorriente::ErrorBuscarLimite;
- }
+ return -10;
 }
 
 
