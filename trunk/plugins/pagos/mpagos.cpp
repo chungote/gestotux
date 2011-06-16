@@ -379,7 +379,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                                      MItemCuentaCorriente::Recibo,
                                      QDate::currentDate(),
                                      QString( "Pago mediante recibo %1" ).arg( t ),
-                                     precio ) )
+                                     precio ) != -1 )
             {
                 qDebug( "Operación de cuenta corriente guardada correctamente" );
             } else {

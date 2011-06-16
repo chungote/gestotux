@@ -37,9 +37,10 @@ public:
     };
     explicit MFactura(QObject *parent = 0);
     int agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp );
-    int agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total );
+    int agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total, bool registrar_operacion = true );
     static NumeroComprobante &proximoComprobante();
     NumeroComprobante &obtenerComprobante();
+    static NumeroComprobante &obtenerComprobante( const int id_factura );
 
 private:
     void inicializar();

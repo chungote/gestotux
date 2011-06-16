@@ -158,7 +158,6 @@ void FormFacturarServicio::facturar()
 
     // Cuento la cantidad de recibos a realizar
     int cantidad_total = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model())->rowCount();
-    int cantidad_actual = 0;
     // usar para calcular cantidad de operaciones mostradas x recibo
     int multiplicador_pasos = 4;
     this->PBProgreso->setRange( 0, cantidad_total * multiplicador_pasos );
@@ -211,21 +210,22 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////////////////////////////////////////////////////////
         // Paso 1 - Genero la factura con los items actuales mas los anteriores segun corresponda /
         ///////////////////////////////////////////////////////////////////////////////////////////
-        LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( cantidad_actual + 1  ).arg( cantidad_total ) );
+        LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
         int id_factura = -1;
-/*#ifdef GESTOTUX_HICOMP
+#ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
                                         QString( "Recibo por el pago del periodo %1 año %2" ).arg( this->LPeriodo->text() ).arg( this->_ano ),
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
-#elseif*/
+#elseif
         id_factura = mr->agregarFactura( id_cliente,
                                          QDateTime::currentDateTime(),
                                          MFactura::CuentaCorriente,
-                                         this->_precio_base );
-//#endif
+                                         this->_precio_base,
+                                         false ); // Con este ultimo parametro no registra la operación de cuenta corriente, porque lo hago manualmente mas tarde.
+#endif
         if( id_factura == -1 ) {
             QMessageBox::warning( this, "Error", "No se pudo generar la factura para el cliente requerido - se cancelara toda la facturacion del servicio" );
             qDebug( "Error al generar la factura - id erroneo" );
@@ -239,7 +239,7 @@ void FormFacturarServicio::facturar()
             MItemFactura *fact = new MItemFactura();
             if( !fact->agregarItemFactura( id_factura,
                                            1,
-                                           QString( "Cobro del servicio %1 para el periodo %2 del año %3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
+                                           QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
                                            this->_precio_base ) ) {
                 qDebug( "Error al intentar agregar el item de factura para el servicio del mes facturado" );
                 QSqlDatabase::database().rollback();
@@ -261,14 +261,11 @@ void FormFacturarServicio::facturar()
         /////////////////////////////////////////////////////////////////
         // Paso 3 - Genero la entrada en la cuenta corriente del cliente
         /////////////////////////////////////////////////////////////////
-        return;
-
-        //// @ todo Modificar el metodo de agregar operación para que devuelva el id
-        LIndicador->setText( QString( "Actualizando cuenta corriente del cliente %1  ( %2 de %3 )..." ).arg( nombre_cliente ).arg( cantidad_actual ).arg( i ) );
+        LIndicador->setText( QString( "Actualizando cuenta corriente del cliente %1  ( %2 de %3 )..." ).arg( nombre_cliente ).arg( i + 1 ).arg( cantidad_total ) );
         // Intento agregar el numero de operación
         QString id_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
         int id_op_ctacte = MItemCuentaCorriente::agregarOperacion( id_ctacte,
-                                                                   QString( "%L1" ).arg( id_factura ),
+                                                                   MFactura::obtenerComprobante( id_factura ),
                                                                    id_factura,
                                                                    MItemCuentaCorriente::Factura,
                                                                    QDate::currentDate(),
@@ -293,14 +290,10 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////
         // Fin bucle para cada cliente
         ///////////////////////////////////////
-        cantidad_actual++;
-        QMessageBox::warning( this, "Atencion!", "bucle terminado" );
+        qDebug( "------------------------------> fin bucle " );
     }
     // Guardo todos los datos
-    QMessageBox::warning( this, "Atencion!", "Luego de este cartel se hara un rollback!" );
-    QSqlDatabase::database().rollback();
-    return;
-    //QSqlDatabase::database().commit();
+    QSqlDatabase::database().commit();
 
     // Inicializo el reporter
 #ifdef GESTOTUX_HICOMP
@@ -317,16 +310,16 @@ void FormFacturarServicio::facturar()
 #ifdef GESTOTUX_HICOMP
         lista.append( "id_recibo", comprobantes.take( i ) );
         reporte->setParamList( lista );
-        LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
+        LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
 #else
         lista.append( "id_factura", comprobantes.take( i ) );
         reporte->setParamList( lista );
-        LIndicador->setText( QString( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( cantidad_actual ).arg( i ) );
+        LIndicador->setText( QString( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
 #endif
         PBProgreso->setValue( PBProgreso->value() + 1 );
         reporte->print( 0, true, false );
+        reporte->exportToPDF( QString( "/home/Esteban/comp-%1" ).arg( i ) );
         // Actualizo indices y reinicio valores
-        cantidad_actual++;
         id_recibo = -1;
         nombre_cliente = "";
     } // Fin for recibos
