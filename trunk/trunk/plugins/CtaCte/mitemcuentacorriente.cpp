@@ -22,6 +22,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QVariant>
 
 #include "mcuentacorriente.h"
 
@@ -62,38 +63,54 @@ MItemCuentaCorriente::~MItemCuentaCorriente()
         @param fecha Fecha de la operacion
         @param descripcion Descripcion de la operacion
         @param aplicar Valor a aplicar a la cuenta. Si es positivo es en favor nuestro -> el cliente nos debe. Si es negativo  es a favor del cliente -> recibimos pago ( ej ).
-        @return Operacion satisfactoria o no.
+        @return ID de la nueva operación o -1 si hubo un error.
  */
-bool MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
+int MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
 {
- MItemCuentaCorriente modelo;
- QSqlRecord reg = modelo.record();
- reg.setValue( "id_ctacte", numero_cuenta );
- reg.setValue( "fecha", fecha );
- reg.setValue( "num_comb", num_comb );
- reg.setValue( "id_referencia", num_ref );
- reg.setValue( "tipo_op", tipo );
- reg.setValue( "descripcion", descripcion );
+ QSqlQuery cola;
+ cola.prepare( "INSERT INTO item_ctacte"
+               "( id_ctacte, fecha, numero_comprobante, id_referencia, tipo_op, descripcion, debe, haber ) VALUES "
+               "( :id_ctacte, :fecha, :num_comb, :id_referencia, :tipo_op, :descripcion, :debe, :haber )"
+             );
+ cola.bindValue( ":id_ctacte", numero_cuenta );
+ cola.bindValue( ":fecha", fecha );
+ cola.bindValue( ":num_comb", num_comb );
+ cola.bindValue( ":id_referencia", num_ref );
+ cola.bindValue( ":tipo_op", tipo );
+ cola.bindValue( ":descripcion", descripcion );
  if( aplicar > 0.0 )
  {
-  reg.setValue( "debe", aplicar );
-  reg.setValue( "haber", 0.0 );
+  cola.bindValue( ":debe", aplicar );
+  cola.bindValue( ":haber", 0.0 );
  }
  else
  {
-  reg.setValue( "debe", 0.0 );
-  reg.setValue( "haber", aplicar );
+  cola.bindValue( ":debe", 0.0 );
+  cola.bindValue( ":haber", aplicar );
  }
- if( modelo.insertRecord( -1, reg ) )
+
+ if( cola.exec() )
  {
   // Actualizo el saldo
-   return MCuentaCorriente::actualizarSaldo( numero_cuenta, aplicar );
+  bool act = MCuentaCorriente::actualizarSaldo( numero_cuenta, aplicar );
+  QVariant id = cola.lastInsertId();
+  if( act ){
+      if( id.isValid() ) {
+        return id.toInt();
+      } else {
+          qDebug( "ID de operación retornado invalido" );
+          return -1;
+      }
+  } else {
+      qDebug( "Error al actualizar el saldo en la cuenta corriente" );
+      return -1;
+  }
  }
  else
  {
   qWarning( "Error al intentar guardar la operacion de item de cuenta corriente" );
-  qDebug( qPrintable( modelo.lastError().text() ) );
-  qDebug( qPrintable( modelo.query().lastQuery() ) );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.lastQuery() ) );
   return false;
  }
 
@@ -232,7 +249,7 @@ bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
 /*!
  * \fn MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
  */
-bool MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar ) {
+int MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar ) {
     return agregarOperacion( numero_cuenta, num_comb, num_ref, tipo, fecha, descripcion, aplicar );
 }
 

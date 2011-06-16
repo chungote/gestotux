@@ -155,13 +155,13 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
                  break;
          }
    }
-   if( !MItemCuentaCorriente::agregarOperacion(   num_ctacte,
+   if( MItemCuentaCorriente::agregarOperacion(   num_ctacte,
                                                   num_comprobante,
                                                   id_venta,
                                                   MItemCuentaCorriente::Factura,
                                                   fecha,
                                                   "Venta a Cuenta Corriente",
-                                                  total_calculado ) )
+                                                  total_calculado ) == -1 )
    { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
   }
   // Veo si fue en efectivo
@@ -187,16 +187,17 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
  * @param id_form_pago Forma de pago de la factura
  * @returns Identificador de la factura o -1 si hubo un error.
  */
-int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total  ) {
+int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total, bool registrar_operacion ) {
     if( total <= 0.0 ) { qDebug( "El total no puede ser <= 0" ); return -1; }
     QSqlQuery cola;
-    cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
+    cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero, total ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero, :total )" );
     cola.bindValue(":fecha", fecha );
     cola.bindValue( "id_cliente", id_cliente );
     cola.bindValue( "id_forma_pago", id_forma_pago );
     NumeroComprobante num = this->proximoComprobante();
     cola.bindValue( "serie", num.serie() );
     cola.bindValue( "numero", num.numero() );
+    cola.bindValue( "total", total );
     if( !cola.exec() )
     {
      qDebug( "Error de insercion de registro de venta" );
@@ -208,7 +209,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
      qDebug( "Registro de factura agregado correctamente" );
      int id_venta = cola.lastInsertId().toInt();
      // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
-     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
+     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente && registrar_operacion )
      {
       // Si se ingresa aqui el cliente tiene cuenta corriente
       QString num_comprobante = this->obtenerComprobante().aCadena();
@@ -248,17 +249,17 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
                     break;
             }
       }
-      if( !MItemCuentaCorriente::agregarOperacion(   num_ctacte,
+      if( MItemCuentaCorriente::agregarOperacion(   num_ctacte,
                                                      num_comprobante,
                                                      id_venta,
                                                      MItemCuentaCorriente::Factura,
                                                      fecha.date(),
                                                      "Venta a Cuenta Corriente",
-                                                     total ) )
+                                                     total ) == -1 )
       { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
 
       // Veo si fue en efectivo
-     } else if( ERegistroPlugins::getInstancia()->existePlugin( "caja " ) && id_forma_pago == MFactura::Contado ) {
+     } else if( ERegistroPlugins::getInstancia()->existePlugin( "caja " ) && id_forma_pago == MFactura::Contado && registrar_operacion ) {
          // Agrego el item de caja
          MMovimientosCaja *m = new MMovimientosCaja();
          if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de factura %1", QString(), total ) ) {
@@ -330,6 +331,24 @@ NumeroComprobante & MFactura::obtenerComprobante() {
       qDebug( "Error de cola al hacer exec al obtener el numero de serie de factura maximo - Se inicio una nueva numeracion" );
       return *num;
   }
+  NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+  return *invalido;
+}
+
+NumeroComprobante & MFactura::obtenerComprobante( const int id_factura ) {
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT serie, numero FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+    if( cola.next() ) {
+        int serie = cola.record().value(0).toInt();
+        int numero = cola.record().value(1).toInt();
+        NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
+        return *num;
+    } else {
+        qDebug( "Error de cola al hacer next para obtener el numero de comprobante de factura");
+    }
+  } else {
+    qDebug( "Error de cola al hacer exec para obtener el numero de comprobante maximo" );
+ }
   NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
   return *invalido;
 }
