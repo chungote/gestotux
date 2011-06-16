@@ -193,6 +193,7 @@ void FormFacturarServicio::facturar()
     //////////////////////////////////////////////////////////////////////
     // Itero por cada uno de los clientes para este cobro de servicio
     for( int i = 0; i<cantidad_total; i++ ) {
+        qDebug( "<----" );
         // Veo si el elemento esta para ser facturado
         if( !mtemp->data( mtemp->index( i, 0 ), Qt::EditRole ).toBool() ) {
             qDebug( QString( "Item %1: No se facturara" ).arg( i ).toLocal8Bit() );
@@ -215,7 +216,7 @@ void FormFacturarServicio::facturar()
 #ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
-                                        QString( "Recibo por el pago del periodo %1 año %2" ).arg( this->LPeriodo->text() ).arg( this->_ano ),
+                                        ( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
@@ -318,7 +319,7 @@ void FormFacturarServicio::facturar()
 #endif
         PBProgreso->setValue( PBProgreso->value() + 1 );
         reporte->print( 0, true, false );
-        reporte->exportToPDF( QString( "/home/Esteban/comp-%1" ).arg( i ) );
+        reporte->exportToPDF( QString( "/home/Esteban/comp-%1.pdf" ).arg( i ) );
         // Actualizo indices y reinicio valores
         id_recibo = -1;
         nombre_cliente = "";
@@ -326,7 +327,7 @@ void FormFacturarServicio::facturar()
 
 
     // Pregunto si los recibos se imprimieron bien
-    int ret = QMessageBox::question( this, "Impresion", "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" );
+    int ret = QMessageBox::question( this, "Impresion", QString::fromLatin1( "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" ) );
 
     if( ret == QMessageBox::Rejected ) {
        // Si no, pregunto que numero de recibo falta y lo mando a imprimir
