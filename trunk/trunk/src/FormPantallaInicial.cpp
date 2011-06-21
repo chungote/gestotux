@@ -136,8 +136,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     // Dibujo las flechas
     /*f1->setearOrigen( TBPresupuestos );
     f1->setearDestino( TBFacturas );
-    f1->setearTamFlecha( 2 );*/
-    f1->setVisible( false );
+    f1->setearTamFlecha( 2 );
+    f1->setVisible( false );*/
 }
 
 void FormPantallaInicial::changeEvent(QEvent *e)

@@ -250,7 +250,8 @@ bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
  * \fn MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
  */
 int MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar ) {
-    return agregarOperacion( numero_cuenta, num_comb, num_ref, tipo, fecha, descripcion, aplicar );
+    NumeroComprobante *c = new NumeroComprobante( num_comb );
+    return agregarOperacion( numero_cuenta, c->aCadena(), num_ref, tipo, fecha, descripcion, aplicar );
 }
 
 double MItemCuentaCorriente::valorOperacion( const int id_op_ctacte ) {

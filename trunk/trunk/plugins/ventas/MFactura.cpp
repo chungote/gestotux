@@ -198,6 +198,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
     cola.bindValue( "serie", num.serie() );
     cola.bindValue( "numero", num.numero() );
     cola.bindValue( "total", total );
+    qDebug( "Enviando consulta" );
     if( !cola.exec() )
     {
      qDebug( "Error de insercion de registro de venta" );
@@ -208,6 +209,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
     {
      qDebug( "Registro de factura agregado correctamente" );
      int id_venta = cola.lastInsertId().toInt();
+     qDebug( "ID obtenido" );
      // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
      if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente && registrar_operacion )
      {
