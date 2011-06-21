@@ -93,7 +93,7 @@ QDate MPeriodoServicio::ultimaFechaDeServicio( const int id_servicio ) {
 QDate MPeriodoServicio::obtenerFechaFinPeriodo( const int id_servicio, const QDate fecha_inicio ) {
     MServicios::Periodo p = MServicios::obtenerPeriodo( id_servicio );
     if( p != MServicios::Invalido ) {
-        return fecha_inicio.addDays( diasEnPeriodo( p, fecha_inicio ) );
+        return fecha_inicio.addDays( diasEnPeriodo( p, fecha_inicio ) - 1 );
     }
     return QDate();
 }
@@ -132,13 +132,13 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
         case MServicios::Semanal:
         {
             // Semanal -> La semana siempre tiene 7 dias independientemente del día del mes
-            // Corte anual ¿Considerarlo? ( cuando la semana no esta completa un año )
+            /// \todo Corte anual ¿Considerarlo? ( cuando la semana no esta completa un año )
             return 7;
         }
         case MServicios::Quincenal:
         {
             // Quincenal -> se considera como "medio mes"
-            // Verificar caso de febrero y meses con 30 o 31 días
+            /// \todo Verificar caso de febrero y meses con 30 o 31 días
             return 14;
         }
         case MServicios::Mensual:
@@ -164,7 +164,7 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
             QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
             QDate f2 = f1.addMonths(2);
             QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
-            return f1.daysTo( f3 );
+            return f1.daysTo( f3 ) - 1;
         }
         case MServicios::Cuatrimestral:
         {
@@ -173,7 +173,7 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
             QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
             QDate f2 = f1.addMonths(3);
             QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
-            return f1.daysTo( f3 );
+            return f1.daysTo( f3 ) -1 ;
         }
         case MServicios::Seximestral:
         {
@@ -182,12 +182,12 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
             QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
             QDate f2 = f1.addMonths(5);
             QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
-            return f1.daysTo( f3 );
+            return f1.daysTo( f3 ) - 1 ;
         }
         case MServicios::Anual:
         {
             // Como consideramos los servicios con base en 1 año, siempre es periodo 1
-            return fecha_calculo.daysInYear();
+            return fecha_calculo.daysInYear() -1 ;
         }
         default:
         { return 0; }
@@ -208,16 +208,11 @@ int MPeriodoServicio::getPeriodoActual( const int id_servicio ) {
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
             QDate fecha_alta_servicio = MServicios::getFechaAlta( id_servicio );
-            qDebug( QString( "Fecha alta Servicio: %1 " ).arg( fecha_alta_servicio.toString() ).toLocal8Bit() );
             QDate hoy = QDate::currentDate();
-            qDebug( QString( "Fecha hoy: %1 " ).arg( hoy.toString() ).toLocal8Bit() );
             int cant_dias_periodo = diasEnPeriodoServicio( id_servicio, hoy );
-            qDebug( QString( "cantidad días periodo: %1 " ).arg( cant_dias_periodo ).toLocal8Bit() );
             // Calculo
             int t = fecha_alta_servicio.daysTo( hoy );
-            qDebug( QString( "t: %1 " ).arg( t ).toLocal8Bit() );
             double u = t/cant_dias_periodo;
-            qDebug( QString( "u: %1 " ).arg( u ).toLocal8Bit() );
             return floor( u );
         }
     } else {
@@ -241,7 +236,7 @@ int MPeriodoServicio::getAnoActual( const int id_servicio ) {
             return cola.record().value(0).toInt();
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
-            qDebug( "Devolviendo el año actual - Ningun registro anterior" );
+            //qDebug( "Devolviendo el año actual - Ningun registro anterior" );
             return QDate::currentDate().year();
         }
     } else {
@@ -265,28 +260,7 @@ QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio ) {
             return cola.record().value(0).toDate();
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
-            switch( MServicios::obtenerPeriodo( id_servicio ) ) {
-                case MServicios::Semanal: {
-                    return QDate::currentDate().addDays( - (QDate::currentDate().dayOfWeek() - 1 ) );
-                    break;
-                }
-                case MServicios::Quincenal: {
-                    return QDate::currentDate().addDays( - ( QDate::currentDate().dayOfWeek() - 1) ).addDays( diasEnPeriodo( id_servicio, QDate::currentDate() ) );
-                    break;
-                }
-                case MServicios::Mensual:
-                case MServicios::BiMensual:
-                case MServicios::Trimestral:
-                case MServicios::Cuatrimestral:
-                case MServicios::Seximestral:
-                case MServicios::Anual:
-                {
-                    return QDate( QDate::currentDate().year(), QDate::currentDate().month(), 1 ); break;
-                }
-                default: { qDebug( "Periodo invalido" ); return QDate(); break; }
-            }
-            qDebug( "Periodo Invalido" );
-            return QDate();
+            return MPeriodoServicio::generarFechaInicioPeriodo( id_servicio, MPeriodoServicio::getPeriodoActual( id_servicio ), QDate::currentDate().year() );
         }
     } else {
         qDebug( "Servicios::MPeriodoServicio::getFechaInicioPeriodoActual: Error en el exec de la cola actual" );
@@ -392,14 +366,47 @@ QDate MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const 
     QDate fecha = QDate();
     switch( MServicios::obtenerPeriodo( id_servicio ) ) {
         case MServicios::Semanal:
+        {
+            fecha = QDate( ano, 1, 1 ).addMonths( floor( ( periodo - 1 ) / 4 ) );
+            int dias_mes = fecha.daysInMonth();
+            if( ( ( periodo - 1 ) % 4 ) !=  0 ) {
+                fecha.addDays( -1 * floor( dias_mes / 4 ) );
+            }
+            break;
+        }
         case MServicios::Quincenal:
+        {
+
+            fecha = QDate( ano, 1, 1 ).addMonths( floor( ( periodo - 1 ) / 2 ) );
+            int dias_mes = fecha.daysInMonth();
+            if( ( ( periodo - 1 ) % 2 ) !=  0 ) {
+                fecha.addDays( -1 * floor( dias_mes / 2 ) );
+            }
+            break;
+        }
         case MServicios::Mensual:
+        {
+            fecha = QDate( ano, 1, 1 ).addMonths( ( periodo - 1 ) );
+            break;
+        }
         case MServicios::BiMensual:
+        {
+            fecha = QDate( ano, 1, 1 ).addMonths( ( periodo - 1 ) * 2 );
+            break;
+        }
         case MServicios::Trimestral:
+        {
+            fecha = QDate( ano, 1, 1 ).addMonths( ( periodo - 1 ) * 3 );
+            break;
+        }
         case MServicios::Cuatrimestral:
+        {
+            fecha = QDate( ano, 1, 1 ).addMonths( ( periodo - 1 ) * 4 );
+            break;
+        }
         case MServicios::Seximestral:
         {
-            fecha = QDate( ano, 1, 1 ).addDays( periodo * diasEnPeriodo( id_servicio, QDate::currentDate() ) );
+            fecha = QDate( ano, 1, 1 ).addMonths( ( periodo - 1 ) * 6 );
             break;
         }
         case MServicios::Anual:
