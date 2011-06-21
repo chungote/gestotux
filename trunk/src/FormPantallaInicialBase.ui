@@ -296,9 +296,6 @@ Credito y
         </property>
        </spacer>
       </item>
-      <item row="1" column="1">
-       <widget class="EFlecha" name="f1" native="true"/>
-      </item>
       <item row="1" column="3">
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
@@ -308,6 +305,19 @@ Credito y
          <size>
           <width>136</width>
           <height>51</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
          </size>
         </property>
        </spacer>
@@ -668,14 +678,6 @@ Cuenta</string>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>EFlecha</class>
-   <extends>QWidget</extends>
-   <header location="global">EFlecha.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="../plugins/default/default.qrc"/>
  </resources>

@@ -213,23 +213,24 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////////////////////////////////////////////////////////
         LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
         int id_factura = -1;
-#ifdef GESTOTUX_HICOMP
+/*#ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
                                         ( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
-#elseif
+#elseif*/
         id_factura = mr->agregarFactura( id_cliente,
                                          QDateTime::currentDateTime(),
                                          MFactura::CuentaCorriente,
                                          this->_precio_base,
                                          false ); // Con este ultimo parametro no registra la operación de cuenta corriente, porque lo hago manualmente mas tarde.
-#endif
+//#endif
         if( id_factura == -1 ) {
             QMessageBox::warning( this, "Error", "No se pudo generar la factura para el cliente requerido - se cancelara toda la facturacion del servicio" );
             qDebug( "Error al generar la factura - id erroneo" );
+            qDebug( QString( "ID=%1" ).arg(id_factura ).toLocal8Bit() );
             QSqlDatabase::database().rollback();
             return;
         } else {
@@ -270,7 +271,7 @@ void FormFacturarServicio::facturar()
                                                                    id_factura,
                                                                    MItemCuentaCorriente::Factura,
                                                                    QDate::currentDate(),
-                                                                   QString( "Cobro del servicio %2 por el periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
+                                                                   QString( "%2 periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
                                                                    this->_precio_base );
         if( id_op_ctacte == -1 ) {
             // Error al guardar el  item de cuenta corriente
@@ -297,11 +298,11 @@ void FormFacturarServicio::facturar()
     QSqlDatabase::database().commit();
 
     // Inicializo el reporter
-#ifdef GESTOTUX_HICOMP
+/*#ifdef GESTOTUX_HICOMP
     orReport *reporte = new orReport( "recibo" );
-#else
+#else*/
     orReport *reporte = new orReport( "factura" );
-#endif
+//#endif
 
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
