@@ -3,7 +3,12 @@ TEMPLATE = lib
 CONFIG += dll \
           plugin
 
-INCLUDEPATH += ../../src
+QT += sql \
+      xml
+
+INCLUDEPATH += ../../src \
+               ../../utiles \
+               ../../reporte
 
 HEADERS += gestotuxdefault.h
 

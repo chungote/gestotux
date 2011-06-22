@@ -21,9 +21,47 @@
 #ifndef EREPORTE_H
 #define EREPORTE_H
 
-/* Incluye todas las cosas necesarias para facilitar las cabeceras del openRPT */
-
 #include "openreports.h"
 #include "common/parameter.h"
+#include "eplugin.h"
+#include "einfoprogramainterface.h"
+
+/*!
+ * \brief Clase Wrapper para generación de reportes.
+ *
+ *
+ */
+class EReporte : public QObject {
+
+    Q_OBJECT
+
+  public:
+    enum Tipo {
+        Invalido = -1,
+        Presupuesto = 1,
+        Factura = 2,
+        Recibo = 3,
+        Especial = 4
+    };
+    explicit EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros );
+    explicit EReporte( QObject *padre );
+
+    void presupuesto();
+    void factura();
+    void recibo();
+    bool especial( const QString nombre, ParameterList parametros );
+
+    bool hacer( ParameterList parametros, bool previsualizar = false );
+    bool hacer() { return hacer( _parametros, false ); }
+
+
+    private:
+        Tipo _tipo;
+        orReport *_rep;
+        QString _nombre;
+        ParameterList _parametros;
+
+        bool cargar( const QString nombre );
+};
 
 #endif // EREPORTE_H

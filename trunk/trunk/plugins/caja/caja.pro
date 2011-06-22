@@ -9,7 +9,8 @@ TARGET = caja
 DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
-               ../../utiles
+               ../../utiles \
+               ../../reporte
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a

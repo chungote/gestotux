@@ -52,6 +52,8 @@ public:
     void crearMenu(QMenuBar* m);
     void crearToolBar(QToolBar* t);
     QAction *botonPantallaInicial();
+    QString reporte( int tipo );
+    void reporteParametros( int tipo, QString &nombre, ParameterList &parametros );
 
 signals:
     void agregarVentana(QWidget* v);

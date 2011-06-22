@@ -46,7 +46,8 @@ SOURCES += eactcerrar.cpp \
            edsbprecio.cpp \
            dsino.cpp \
            ../plugins/productos/mproductos.cpp \
-    NumeroComprobante.cpp
+    NumeroComprobante.cpp \
+    EReporte.cpp
 
 QT += sql
 
