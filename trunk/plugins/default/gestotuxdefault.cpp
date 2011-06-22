@@ -68,15 +68,11 @@ QString GestotuxDefault::nombre() const
 QWidgetList GestotuxDefault::formsPreferencias()
 { return QWidgetList();}
 
-void GestotuxDefault::crearMenu(QMenuBar* m)
-{
-    (void)m;
-}
+void GestotuxDefault::crearMenu(QMenuBar* /*m*/)
+{}
 
-void GestotuxDefault::crearToolBar(QToolBar* t)
-{
-    (void)t;
-}
+void GestotuxDefault::crearToolBar(QToolBar* /*t*/)
+{}
 
 void GestotuxDefault::seCierraGestotux()
 {
@@ -87,5 +83,21 @@ void GestotuxDefault::seCierraGestotux()
 
 QAction *GestotuxDefault::botonPantallaInicial()
 { return 0; }
+
+QString GestotuxDefault::reporte( int tipo ) {
+    // Lista de reportes por default
+    switch( tipo ) {
+        case EReporte::Presupuesto:
+        { return "Presupuesto"; }
+        case EReporte::Factura:
+        { return "Presupuesto"; }
+        case EReporte::Recibo:
+        { return "Presupuesto"; }
+        default:
+        { return QString(); }
+    }
+}
+
+void GestotuxDefault::reporteParametros( int /*tipo*/, QString &/*nombre*/, ParameterList &/*lista*/ ) { return; }
 
 Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );

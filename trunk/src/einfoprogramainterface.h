@@ -24,6 +24,7 @@
 #include <QString>
 #include <QIcon>
 #include <QImage>
+#include "EReporte.h"
 /*!
  *  \brief Interfaz de informacion del programa
  *
@@ -43,9 +44,11 @@ public:
     virtual QString empresa() const = 0;
     virtual QString companeros() = 0;
     virtual bool publicidad() = 0;
+    virtual QString reporte( int ) = 0;
+    virtual void reporteParametros( int, QString &, ParameterList & ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.2" );
+                     "tranfuga.EInfoPrograma/1.3" )
 
 #endif

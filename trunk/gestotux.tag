@@ -1744,13 +1744,6 @@
     <path>/home/Esteban/Programas/gestotux/src/</path>
     <filename>einfoprogramainterface_8h</filename>
     <class kind="class">EInfoProgramaInterface</class>
-    <member kind="function">
-      <type></type>
-      <name>Q_DECLARE_INTERFACE</name>
-      <anchorfile>einfoprogramainterface_8h.html</anchorfile>
-      <anchor>ac14d019370e4705f59e54c16ed25d3d9</anchor>
-      <arglist>(EInfoProgramaInterface,&quot;tranfuga.EInfoPrograma/1.2&quot;)</arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>einterfazemail.h</name>
@@ -2199,9 +2192,15 @@
     <class kind="class">ERegistroPlugins</class>
   </compound>
   <compound kind="file">
+    <name>EReporte.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/utiles/</path>
+    <filename>EReporte_8cpp</filename>
+  </compound>
+  <compound kind="file">
     <name>EReporte.h</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>EReporte_8h</filename>
+    <class kind="class">EReporte</class>
   </compound>
   <compound kind="file">
     <name>drawcomplexcontrol.cpp</name>
@@ -3717,6 +3716,20 @@
       <anchor>a2e004345920c183a37a89bdddaefc931</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>reporte</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>a0266a1082262293cc6a77345039c5883</anchor>
+      <arglist>(int)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>af3230fcc5ef445e4b118d01bb5ecca87</anchor>
+      <arglist>(int, QString &amp;, ParameterList &amp;)=0</arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>tipo</name>
@@ -5079,6 +5092,20 @@
       <arglist>()=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>reporte</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>a0266a1082262293cc6a77345039c5883</anchor>
+      <arglist>(int)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>af3230fcc5ef445e4b118d01bb5ecca87</anchor>
+      <arglist>(int, QString &amp;, ParameterList &amp;)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
       <type>virtual double</type>
       <name>version</name>
       <anchorfile>classEInfoProgramaInterface.html</anchorfile>
@@ -5784,6 +5811,137 @@
       <name>instance</name>
       <anchorfile>classERegistroPlugins.html</anchorfile>
       <anchor>aaf18d822893eb9dbc191ce592f8bb60c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>EReporte</name>
+    <filename>classEReporte.html</filename>
+    <member kind="enumeration">
+      <name>Tipo</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a5d1e8de9a9f7b8a28e3f0343238e57e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Invalido</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a5d1e8de9a9f7b8a28e3f0343238e57e2a39908c18ecde80df219e23eae9ffcfb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Presupuesto</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a5d1e8de9a9f7b8a28e3f0343238e57e2aa402dd243d1e7a888f1560e4c885fe63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Factura</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a5d1e8de9a9f7b8a28e3f0343238e57e2a825913db42a49cf0a5d51f9106cd342c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Recibo</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a5d1e8de9a9f7b8a28e3f0343238e57e2ac1f4ddda812309d926d51e491d6932c9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Especial</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a5d1e8de9a9f7b8a28e3f0343238e57e2a9eb1ee4a8668a75708232461956dba8e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EReporte</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a2dfd1210732482ead4152928703f138b</anchor>
+      <arglist>(QObject *padre, QString nombre_reporte, ParameterList parametros)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>EReporte</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>afd133c16c6696ad41472eb366b42c190</anchor>
+      <arglist>(QObject *padre)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>especial</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a4cb3570deb93a8183434617916fd160e</anchor>
+      <arglist>(const QString nombre, ParameterList parametros)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>factura</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a99ff74a44c67887ef784740e6299f5a8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hacer</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a95bf19e07a51a6c1f06771796c7c1157</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hacer</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>afb9497ecfb810619c39c471c44d28945</anchor>
+      <arglist>(ParameterList parametros)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>presupuesto</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a0ed711d47543214ab440b1af1611b8be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>recibo</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>acc6afe49711ab0193807916fff26f0ef</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>cargar</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a58f5f1baa216fefdeb3f924206536ac8</anchor>
+      <arglist>(const QString nombre)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>_nombre</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>aab62b44f450f4a734c98fca59b363f76</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ParameterList</type>
+      <name>_parametros</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a401b57edf7fd522f86060bcb3bba67cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>orReport *</type>
+      <name>_rep</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>ae90e8ab6c3898f919d41f9072c32be00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Tipo</type>
+      <name>_tipo</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a1114a66420b053b91930ec645ec4b563</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -10599,6 +10757,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>QString</type>
+      <name>reporte</name>
+      <anchorfile>classGestotuxDefault.html</anchorfile>
+      <anchor>a94b7141e6f6a7b34a4408166f436dfc8</anchor>
+      <arglist>(int tipo)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classGestotuxDefault.html</anchorfile>
+      <anchor>af87d3fb207a1b8a59fe3698bea797d66</anchor>
+      <arglist>(int tipo, QString &amp;nombre, ParameterList &amp;parametros)</arglist>
+    </member>
+    <member kind="function">
       <type>int</type>
       <name>tipo</name>
       <anchorfile>classGestotuxDefault.html</anchorfile>
@@ -10808,6 +10980,20 @@
       <anchorfile>classEPlugin.html</anchorfile>
       <anchor>a7de686acce916756068da63931c21586a2ce30b82b08d0776ea13ac5857a5694c</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>reporte</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>a0266a1082262293cc6a77345039c5883</anchor>
+      <arglist>(int)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>af3230fcc5ef445e4b118d01bb5ecca87</anchor>
+      <arglist>(int, QString &amp;, ParameterList &amp;)=0</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
@@ -12830,8 +13016,8 @@
       <type>int</type>
       <name>agregarFactura</name>
       <anchorfile>classMFactura.html</anchorfile>
-      <anchor>a830f2ae63d9f376e9e065e017512a94e</anchor>
-      <arglist>(const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total)</arglist>
+      <anchor>aa3c3cd05f0462765eadc0937905e8513</anchor>
+      <arglist>(const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total, bool registrar_operacion=true)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -12853,6 +13039,13 @@
       <anchorfile>classMFactura.html</anchorfile>
       <anchor>acee37942c566ec19da4cc0a6644e62cb</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static NumeroComprobante &amp;</type>
+      <name>obtenerComprobante</name>
+      <anchorfile>classMFactura.html</anchorfile>
+      <anchor>a4368e2bcfc1491812de683704b501ee6</anchor>
+      <arglist>(const int id_factura)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static NumeroComprobante &amp;</type>
@@ -13042,17 +13235,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static bool</type>
+      <type>static int</type>
       <name>agregarOperacion</name>
       <anchorfile>classMItemCuentaCorriente.html</anchorfile>
-      <anchor>a4df1c6fe2ffeb171d5a9c66f166cda8e</anchor>
+      <anchor>a33900060214c70f45d50af390fb4c059</anchor>
       <arglist>(const QString &amp;numero_cuenta, const QString &amp;num_comb, const int &amp;num_ref, const TipoOperacionCtaCte tipo, const QDate &amp;fecha, const QString &amp;descripcion, const double &amp;aplicar)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static bool</type>
+      <type>static int</type>
       <name>agregarOperacion</name>
       <anchorfile>classMItemCuentaCorriente.html</anchorfile>
-      <anchor>a37198eeaf85d6a45eab8d98c0af52bed</anchor>
+      <anchor>afc9fedea472843270bc57311777fc95b</anchor>
       <arglist>(const QString &amp;numero_cuenta, const NumeroComprobante &amp;num_comb, const int &amp;num_ref, const TipoOperacionCtaCte tipo, const QDate &amp;fecha, const QString &amp;descripcion, const double &amp;aplicar)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -14843,6 +15036,20 @@
       <anchorfile>classEInfoProgramaInterface.html</anchorfile>
       <anchor>a1c2851130b91ef374852181ba3de58b2</anchor>
       <arglist>() const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual QString</type>
+      <name>reporte</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>a0266a1082262293cc6a77345039c5883</anchor>
+      <arglist>(int)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
+      <anchor>af3230fcc5ef445e4b118d01bb5ecca87</anchor>
+      <arglist>(int, QString &amp;, ParameterList &amp;)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -21115,6 +21322,7 @@
     <file>emcliente.h</file>
     <file>eregistroplugins.cpp</file>
     <file>eregistroplugins.h</file>
+    <file>EReporte.cpp</file>
     <file>EReporte.h</file>
     <file>eventana.cpp</file>
     <file>eventana.h</file>

@@ -103,7 +103,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         connect( PBEliminarTodo, SIGNAL( clicked() ), this, SLOT( borrarTodoProducto() ) );
 
         // Busco el siguiente numero de comprobante valido para un presupuesto
-        LNumeroComprobante->setText( LNumeroComprobante->text() + ":    " + MPresupuesto::proximoComprobante().aCadena() );
+        LNumeroComprobante->setText( LNumeroComprobante->text() + "   <b>" + MPresupuesto::proximoComprobante().aCadena() + "</b>" );
 }
 
 /*!
@@ -111,14 +111,14 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         Elimina datos temporales y cierra el formulario
  */
 void FormAgregarPresupuesto::cancelar()
-{
-    this->close();
-}
+{ this->close(); }
 
 
 #include <QMessageBox>
 #include <QSqlDatabase>
+#include <QDir>
 #include "mpresupuesto.h"
+#include "EReporte.h"
 /*!
     \fn FormAgregarPresupuesto::guardar( bool cerrar )
  */
@@ -134,8 +134,6 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      QMessageBox::information( this, "Error de destinatario", "El cliente no es valido o no existe un destinatario ingresado. Por favor coloque uno." );
      return;
  }
- /*QMessageBox::critical( this, "No implementado", "Todavía no se implemento esto!" );
- return;*/
  // Inicio la transacción
  QSqlDatabase::database().transaction();
  MPresupuesto *mod = new MPresupuesto();
@@ -177,7 +175,20 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  // Imprimo el presupuesto
  ParameterList lista;
  lista.append( Parameter( "id_presupuesto", id_presupuesto ) );
- orReport *rep = new orReport( "presupuesto", lista );
+ if( id_cliente < 0 ) {
+     lista.append( Parameter( "cliente_existe", false ) );
+ } else {
+     lista.append( Parameter( "cliente_existe", true ) );
+ }
+ EReporte *rep = new EReporte( this );
+ rep->presupuesto();
+ if( rep->hacer( lista ) ) {
+     QMessageBox::warning( this, "reporte", "reporte echo normalmente" );
+ } else {
+     QMessageBox::warning( this, "Error", "No se pudo hacer el reporte" );
+ }
+ /*
+ orReport *rep = new orReport( "Presupuesto", lista );
  if( rep->isValid() ) {
      rep->print();
      //rep->exportToPDF( QApplication::applicationDirPath() + QDir::separator() + "comprobantes" + QDir::separator() + "presupuestos" + QDir::separator() + QString( "%1.pdf" ).arg( MPresupuesto::numeroPresupuestoPorID( id_presupuesto ).aCadena() ) );
@@ -186,10 +197,9 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      QMessageBox::information( this, "Error de reporte", "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
      return;
  }
+ */
  if( cerrar )
- {
-  this->close();
- }
+ { this->close(); }
 }
 
 
@@ -197,9 +207,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
     \fn FormAgregarPresupuesto::imprimir()
  */
 void FormAgregarPresupuesto::imprimir()
-{
- qWarning( "No implementado todavia" );
-}
+{ qWarning( "No implementado todavia" ); }
 
 /*!
     \fn FormAgregarPresupuesto::guardar()
@@ -212,7 +220,12 @@ void FormAgregarPresupuesto::guardar()
     \fn FormAgregarPresupuesto::agregarProducto()
  */
 void FormAgregarPresupuesto::agregarProducto()
-{  m->insertRow( -1 ); }
+{
+    m->insertRow( -1 );
+    QModelIndex item = m->index( m->rowCount() - 2 , 0 );
+    TVContenido->setCurrentIndex( item );
+    TVContenido->edit( item );
+}
 
 /*!
     \fn FormAgregarPresupuesto::eliminarProducto()
@@ -246,10 +259,9 @@ void FormAgregarPresupuesto::borrarTodoProducto()
 /*!
   \fn FormAgregarPresupuesto::cambioCliente( int id_combo )
   Slot llamado cada vez que el usuario cambia el contenido del combo de cliente o destinatario
-  @param id_combo ID del combobox
+  \param id_combo ID del combobox
  */
 void FormAgregarPresupuesto::cambioCliente( int id_combo ) {
-   /// @todo agregar cambio de direccion
     int id_cliente = CBCliente->model()->data( CBCliente->model()->index( id_combo, 0 ), Qt::EditRole ).toInt();
     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
 }
