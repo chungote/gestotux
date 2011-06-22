@@ -8,12 +8,10 @@ SUBDIRS +=  caja \
             CtaCte \
             pagos \
             presupuesto \
-            servicios #\
+            servicios \
+            bscomputacion
 #            digifauno \
 #            HiComp \
 #            email \
 #planificador \
 #aCarCorr \
-#HiComp \
-#informes \
-#informes/informa.pro \
