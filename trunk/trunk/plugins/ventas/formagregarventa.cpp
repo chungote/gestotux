@@ -194,6 +194,12 @@ void FormAgregarVenta::guardar()
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      return;
  }
+ // Verifico que no se le venda a cuenta corriente a un cliente consumidor final
+ if( RBCtaCte->isChecked() && CBCliente->currentIndex() <=  0 ) {
+     QMessageBox::warning( this, "Error", "No se puede vender a consumidor final en cuenta corriente. Se eligirá pago a contado" );
+     RBCtaCte->setChecked( false );
+     RBContado->setChecked( true );
+ }
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {
