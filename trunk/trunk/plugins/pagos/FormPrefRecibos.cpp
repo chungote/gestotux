@@ -29,11 +29,10 @@ FormPrefRecibos::FormPrefRecibos( QWidget *parent ) :
     connect( PBRenumerar, SIGNAL( clicked() ), this, SLOT( renumerar() ) );
 
     // Coloco los numeros minimos
-    QPair<int,int> numero = MPagos::proximoSerieNumeroRecibo();
-    // Calculo el maximo seg�n la cantidad de cifras
-    SBSerie->setRange( numero.first, numero.first + 1  );
-    SBNumero->setRange( numero.second, numero.first + 1 );
-    abort();
+    NumeroComprobante numero = MPagos::proximoSerieNumeroRecibo();
+    // Calculo el maximo según la cantidad de cifras
+    SBSerie->setRange( numero.serie(), 99999  );
+    SBNumero->setRange( numero.numero(), 99999 );
 }
 
 void FormPrefRecibos::changeEvent(QEvent *e)
@@ -48,7 +47,9 @@ void FormPrefRecibos::changeEvent(QEvent *e)
     }
 }
 
+#include <QMessageBox>
 void FormPrefRecibos::renumerar()
 {
   // Verifico que el numero sea mayor que el que esta actualmente
+    QMessageBox::warning( this, "!Error!", "No implmentado todav´ia" );
 }

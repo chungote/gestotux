@@ -54,6 +54,7 @@ class EReporte : public QObject {
     bool hacer( ParameterList parametros, bool previsualizar = false );
     bool hacer() { return hacer( _parametros, false ); }
 
+    void mostrarError( QWidget *ventana );
 
     private:
         Tipo _tipo;

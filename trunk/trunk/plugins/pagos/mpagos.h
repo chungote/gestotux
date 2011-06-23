@@ -21,25 +21,20 @@
 #define MPAGOS_H
 
 #include <QSqlRelationalTableModel>
+#include "NumeroComprobante.h"
 
 /**
-\brief Modelo de los pagos
-
-Modelo que administra los pagos realizados en el programa.
-
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo de los pagos
+ *
+ * Modelo que administra los pagos realizados en el programa.
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MPagos : public QSqlRelationalTableModel
 {
     Q_OBJECT
 
 public:
-   /*!
-    * \typedef NumeroRecibo
-    * Definido como QPair<int,int> con par.first = serie y par.second = numero
-    */
-    typedef QPair<int,int> NumeroRecibo;
-
     enum FormaPago {
         SinPagar = 0,
         Efectivo = 1,
@@ -56,15 +51,15 @@ public:
     QDate buscarFechaUltimoRecibo() const;
     bool setearComoPagado( const int id_recibo, const bool efectivo );
     bool buscarSiPagado( const int serie, const int numero );
-    bool buscarSiPagado( const NumeroRecibo num );
-    int buscarIdPorSerieNumero( const NumeroRecibo num );
+    bool buscarSiPagado( const NumeroComprobante num );
+    int buscarIdPorSerieNumero( const NumeroComprobante num );
     int buscarIdPorSerieNumero( const int serie, const int numero );
-    double buscarImporte( NumeroRecibo num );
+    double buscarImporte( NumeroComprobante num );
 
-    static NumeroRecibo buscarMenorSerieNumeroPagado();
+    static NumeroComprobante &buscarMenorSerieNumeroPagado();
     static int numeroSerieActual();
     static int numeroReciboActual( const int serie );
-    static NumeroRecibo proximoSerieNumeroRecibo();
+    static NumeroComprobante &proximoSerieNumeroRecibo();
 
 private:
     void inicializar();

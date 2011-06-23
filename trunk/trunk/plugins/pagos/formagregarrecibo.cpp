@@ -29,9 +29,6 @@
 
 #include <QMessageBox>
 
-#include "openreports.h"
-#include "common/parameter.h"
-
 FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormReciboBase()
 {
@@ -61,7 +58,7 @@ FormAgregarRecibo::~FormAgregarRecibo()
 {
 }
 
-
+#include "NumeroComprobante.h"
 /*!
   \fn FormAgregarRecibo::setearModelo( MPagos *m )
   Setea el modelo que se utilizará para agregar los datos  que se actualize en la vista
@@ -75,8 +72,8 @@ void FormAgregarRecibo::setearModelo( MPagos *m )
         this->_modelo = new MPagos( this );
     }
     // Busco el ultimo numero de recibo
-    QPair<int,int> numero = this->_modelo->proximoSerieNumeroRecibo();
-    this->LENumero->setText( QString( "%1-%2" ).arg( numero.first ).arg( numero.second ) );
+    NumeroComprobante numero = this->_modelo->proximoSerieNumeroRecibo();
+    this->LNumero->setText( this->LNumero->text().append( " <b>" ).append( numero.aCadena() ).append( "</b>" ) );
 }
 
 /*!
@@ -103,6 +100,11 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
  // Si es un cliente existente veo si tiene saldo
  if( preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada" ).toBool() && ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
+  if( id_combo == 0 ) {
+     // El numero indica Consumidor Final
+     qDebug( "FormAgregarRecibo::cambioCliente::Se eligio consumidor final" );
+     return;
+  }
   QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->model()->data( this->CBCliente->model()->index( id_combo, 0), Qt::EditRole ).toInt() );
   if( numero_cuenta == E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO )
   {
@@ -128,6 +130,7 @@ void FormAgregarRecibo::cambioPagado( double /*valor*/ )
  recalcularTotal();
 }
 
+#include "EReporte.h"
 /*!
   \fn FormAgregarRecibo::guardar()
  */
@@ -138,10 +141,10 @@ void FormAgregarRecibo::guardar()
         this->setearModelo( 0 );
     }
     // Verificaciónes iniciales
-    if( this->LENumero->text().isEmpty() ) {
+    /*if( this->LENumero->text().isEmpty() ) {
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que exista el numero de recibo" );
         return;
-    }
+    }*/
     if( this->CBCliente->currentIndex() == -1 ) {
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que un cliente este elegido" );
         return;
@@ -195,12 +198,10 @@ void FormAgregarRecibo::guardar()
     /// Imprimo el recibo
     ParameterList lista;
     lista.append( "id_recibo", num_recibo );
-    orReport *rep = new orReport( "recibo", lista );
-    if( rep->isValid() ) {
-        rep->print( 0, true, true );
-        rep->exportToPDF( "/home/Esteban/test.pdf" );
-    } else {
-        rep->reportError( this );
+    EReporte *rep = new EReporte( this );
+    rep->recibo();
+    if( !rep->hacer( lista ) ) {
+        rep->mostrarError( this );
         QMessageBox::information( this, "Error", QString( "No se pudo encontrar la definicion del informe. Contactese con el administrador." ) );
     }
     this->close();

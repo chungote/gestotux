@@ -176,3 +176,9 @@ bool EReporte::cargar( const QString nombre ) {
     return true;
 }
 
+
+void EReporte::mostrarError( QWidget *ventana) {
+    if( _rep != 0 ) {
+        _rep->reportError( ventana );
+    }
+}
