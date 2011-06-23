@@ -139,7 +139,7 @@ QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
 {
  if( id_cliente <= 0 )
  {
-        qDebug( "Error, el numero de cliente es invalido" );
+        qDebug( "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error, el numero de cliente es invalido" );
         return E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO;
  }
  QSqlQuery cola( QString( "SELECT numero_cuenta FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) );

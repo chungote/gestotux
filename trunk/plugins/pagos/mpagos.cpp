@@ -247,11 +247,11 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
             rec.setNull( "id_caja" );
         }
     }
-    QPair<int,int> proximo = this->proximoSerieNumeroRecibo();
+    NumeroComprobante proximo = this->proximoSerieNumeroRecibo();
     // Ver por el tema de numero de caja
-    if( proximo.first == -1 ) { qDebug( "Error de numeracion!" );  return -1; }
-    rec.setValue( "serie", proximo.first );
-    rec.setValue( "numero",proximo.second );
+    if( proximo.serie() == -1 ) { qDebug( "Error de numeracion!" );  return -1; }
+    rec.setValue( "serie", proximo.serie() );
+    rec.setValue( "numero",proximo.numero() );
     rec.setValue( "cancelado", false );
     /*for( int i=0; i<rec.count(); ++i ) {
         qDebug( QString( "Campo %1 es %2: %3 " ).arg( i ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
@@ -275,6 +275,10 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     this->relacionar();
     return ret;
 }
+
+
+
+
 
 /*!
  * \fn MPagos::numeroSerieActual()
@@ -321,33 +325,40 @@ int MPagos::numeroReciboActual( const int serie )
  * Devuelve un par de numeros indicando la serie y numero de recibo que se debería guardar al agregar un recibo.
  * \return NumeroRecibo indicando <serie, numero> o <-1,-1> si hubo un error
  */
-MPagos::NumeroRecibo MPagos::proximoSerieNumeroRecibo()
+NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
 {
- QSqlQuery cola;
- if( cola.exec( "SELECT serie, numero FROM recibos ORDER BY serie DESC, numero DESC LIMIT 1" ) )
- {
-     if( cola.next() )
-     {
-         int serie = cola.record().value(0).toInt();
-         qDebug( QString( "Numero serie actual: %1 ").arg( serie ).toLocal8Bit() );
-         int numero = cola.record().value(1).toInt();
-         qDebug( QString( "Numero actual: %1 ").arg( numero ).toLocal8Bit() );
-         if( numero == 999999 ) {
-             if( serie == 999999) {
-                 qCritical( "Numero de serie terminado! :S?" );
-                 abort();
-             }
-             serie++;
-             numero = 0;
-         } else { numero ++; }
-         qDebug( QString( "Devuelto: %1-%2").arg( serie ).arg( numero ).toLocal8Bit() );
-         return MPagos::NumeroRecibo( serie, numero );
-     } else {
-         return MPagos::NumeroRecibo( -1, -1 );
-     }
- } else {
-     return MPagos::NumeroRecibo( -1, -1 );
- }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT MAX( serie ) FROM recibos" ) ) ) {
+        if( cola.next() ) {
+            int serie = cola.record().value(0).toInt();
+            if( cola.exec( QString( "SELECT MAX( numero ) FROM recibos WHERE serie = %1" ).arg( serie ) ) ) {
+                if( cola.next() ) {
+                    int numero = cola.record().value(0).toInt();
+                    NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
+                    num->siguienteNumero();
+                    return *num;
+                } else {
+                    qDebug( "Error de cola al hacer next al obtener el numero de recibo maximo");
+                    qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+                }
+            } else {
+                qDebug( "Error de cola al hacer exec al obtener el numero de recibo maximo" );
+                qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+            }
+        } else {
+            qDebug( "Error de cola al hacer next al obtener el numero de serie de recibo maximo" );
+            qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+        }
+    } else {
+        NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+        num->siguienteNumero();
+        qDebug( "Error de cola al hacer exec al obtener el numero de serie de recibo maximo - Se inicio una nueva numeracion" );
+        qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+        return *num;
+    }
+    NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+    qDebug( "Devolviendo numero de Comprobante invalido" );
+    return *invalido;
 }
 
 #include "../CtaCte/mitemcuentacorriente.h"
@@ -434,23 +445,38 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
 /*!
  * \fn MPagos::buscarMenorSerieNumeroPagado()
  * Devuelve el par serie-numero del menor recibo pagado de la base de datos
- * \return NumeroRecibo indicando <serie,numero> o <0,0> si se produjo un error
+ * \return NumeroComprobante indicando <serie,numero> o <0,0> si se produjo un error
  */
-MPagos::NumeroRecibo MPagos::buscarMenorSerieNumeroPagado()
+NumeroComprobante &MPagos::buscarMenorSerieNumeroPagado()
 {
- QSqlQuery cola;
- if( cola.exec( QString( "SELECT serie, numero FROM recibos WHERE pagado = 0 ORDER BY serie ASC, numero ASC LIMIT 1" ) ) )
- {
-     if( cola.next() ) {
-         return QPair<int,int>( cola.record().value( 0 ).toInt(), cola.record().value( 1 ).toInt() );
-     } else {
-         qDebug( "Error en cola.next al obtener el minimo de serie y numero de un recibo" );
-         return QPair<int,int>( 0, 0 );
-     }
- } else {
-     qDebug( "Error en cola.exec al obtener el minimo de serie y numero de un recibo" );
-     return QPair<int,int>( 0, 0 );
- }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT MAX( serie ) FROM presupuestos WHERE pagado = 0" ) ) ) {
+        if( cola.next() ) {
+            int serie = cola.record().value(0).toInt();
+            if( cola.exec( QString( "SELECT MAX( numero ) FROM presupuestos WHERE serie = %1 AND pagado = 0" ).arg( serie ) ) ) {
+                if( cola.next() ) {
+                    int numero = cola.record().value(0).toInt();
+                    NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
+                    num->siguienteNumero();
+                    return *num;
+                } else {
+                    qDebug( "Error de cola al hacer next al obtener el numero de recibo maximo pagado");
+                    qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+                }
+            } else {
+                qDebug( "Error de cola al hacer exec al obtener el numero de recibo maximo pagado" );
+                qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+            }
+        } else {
+            qDebug( "Error de cola al hacer next al obtener el numero de serie de recibo maximo pagado" );
+            qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error de cola al hacer exec al obtener el numero de serie de recibo maximo pagado" );
+        qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+    }
+    NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+    return *invalido;
 }
 
 /*!
@@ -485,8 +511,8 @@ bool MPagos::buscarSiPagado(const int serie, const int numero)
  * \param num Numero y serie del recibo buscado
  * \returns pagado o no
  */
-bool MPagos::buscarSiPagado( const MPagos::NumeroRecibo num )
-{ return buscarSiPagado( num.first, num.second ); }
+bool MPagos::buscarSiPagado( const NumeroComprobante num )
+{ return buscarSiPagado( num.serie(), num.numero() ); }
 
 /*!
  * \fn MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
@@ -518,14 +544,14 @@ int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
  * \param num Numero y serie del recibo buscado
  * \returns ID en la base de datos
  */
-int MPagos::buscarIdPorSerieNumero( const MPagos::NumeroRecibo num )
-{ return buscarIdPorSerieNumero( num.first, num.second ); }
+int MPagos::buscarIdPorSerieNumero( const NumeroComprobante num )
+{ return buscarIdPorSerieNumero( num.serie(), num.numero() ); }
 
-double MPagos::buscarImporte( MPagos::NumeroRecibo num )
+double MPagos::buscarImporte( NumeroComprobante num )
 {
-  if( this->query().exec( QString( "SELECT precio FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.first ).arg( num.second ) ) ) {
+    if( this->query().exec( QString( "SELECT precio FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
     if( this->query().next() ) {
-       if( this->query().record().value(1).toBool() ) {
+       if( this->query().record().value(0).toDouble() ) {
          return true;
        } else {
          return false;

@@ -107,7 +107,9 @@ void PagosPlugin::verPagos()
 */
 void PagosPlugin::agregarRecibo()
 {
-    emit agregarVentana( new FormAgregarRecibo() );
+    FormAgregarRecibo *f = new FormAgregarRecibo();
+    f->setearModelo(0);
+    emit agregarVentana( f );
 }
 
 Q_EXPORT_PLUGIN2( pagos, PagosPlugin );
