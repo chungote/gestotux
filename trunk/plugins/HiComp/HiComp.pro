@@ -29,7 +29,8 @@ INCLUDEPATH += ../../utiles \
                ../pagos \
                ../../src \
                ../CtaCte \
-               ../caja
+               ../caja \
+               ../../reporte
 
 LIBS += ../../bin/libutiles.a
 

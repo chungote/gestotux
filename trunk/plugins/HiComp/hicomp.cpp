@@ -109,15 +109,8 @@ int HiComp::tipo() const
 void HiComp::crearMenu( QMenuBar *m )
 {
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHer == 0 )
- {
-  qDebug( "HiComp::Error en las baras de menu" );
- }
- else
- {
-  menuHer->addSeparator();
-  menuHer->addAction( ActPagarRecibo );
- }
+ menuHer->addSeparator();
+ menuHer->addAction( ActPagarRecibo );
 }
 
 bool HiComp::verificarTablas( QStringList )
@@ -182,6 +175,23 @@ void HiComp::pagarRecibosEmitidos()
   DPagarRecibo d;
   d.exec();
   return;
+}
+
+QString HiComp::reporte( int tipo ) {
+    switch( tipo ) {
+        case EReporte::Presupuesto:
+        { return "Presupuesto"; break; }
+        case EReporte::Factura:
+        { return "Factura"; break; }
+        case EReporte::Recibo:
+        { return "Recibo"; break; }
+        default:
+        { return ""; break; }
+    }
+}
+
+void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parametros ) {
+
 }
 
 Q_EXPORT_PLUGIN2(hicomp, HiComp )

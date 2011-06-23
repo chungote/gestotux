@@ -249,8 +249,9 @@ void FormAgregarVenta::guardar()
     {
      ParameterList lista;
      lista.append( "id_factura", id_venta );
-     orReport *rep = new orReport( "factura", lista );
-     rep->print();
+     EReporte *rep = new EReporte( this );
+     rep->factura();
+     rep->hacer( lista );
      break;
     }
     case QMessageBox::No:

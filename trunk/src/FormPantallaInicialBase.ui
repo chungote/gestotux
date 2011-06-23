@@ -303,8 +303,8 @@ Credito y
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>136</width>
-          <height>51</height>
+          <width>40</width>
+          <height>20</height>
          </size>
         </property>
        </spacer>

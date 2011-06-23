@@ -35,7 +35,7 @@
 FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormReciboBase()
 {
-        setupUi ( this );
+        setupUi( this );
 
         setObjectName( "agregar_recibo" );
         setWindowTitle( "Nuevo recibo" );
@@ -64,7 +64,7 @@ FormAgregarRecibo::~FormAgregarRecibo()
 
 /*!
   \fn FormAgregarRecibo::setearModelo( MPagos *m )
-  Setea el modelo que se utilizará para agregar los datos  que se actualize en la vista
+  Setea el modelo que se utilizarÃ¡ para agregar los datos  que se actualize en la vista
   @param m Modelo de pagos ( clase #MPagos )
  */
 void FormAgregarRecibo::setearModelo( MPagos *m )
@@ -96,7 +96,7 @@ void FormAgregarRecibo::recalcularTotal()
 
 /*!
     \fn FormAgregarRecibo::cambioCliente( int id_combo )
-    Slot llamado cuando se cambia o seleccióna un nuevo cliente.
+    Slot llamado cuando se cambia o selecciÃ³na un nuevo cliente.
  */
 void FormAgregarRecibo::cambioCliente( int id_combo )
 {
@@ -137,7 +137,7 @@ void FormAgregarRecibo::guardar()
     if( this->_modelo ) {
         this->setearModelo( 0 );
     }
-    // Verificaciónes iniciales
+    // VerificaciÃ³nes iniciales
     if( this->LENumero->text().isEmpty() ) {
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que exista el numero de recibo" );
         return;
@@ -146,7 +146,7 @@ void FormAgregarRecibo::guardar()
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que un cliente este elegido" );
         return;
     }
-    if( this->TETexto->contenido( Qt::PlainText ).isEmpty() ) {
+    if( this->TETexto->toPlainText().isEmpty() ) {
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que el texto del recibo no este vacio" );
         return;
     }
@@ -168,7 +168,7 @@ void FormAgregarRecibo::guardar()
     int id_cliente = this->CBCliente->model()->data( this->CBCliente->model()->index( this->CBCliente->currentIndex(), 0 ), Qt::UserRole ).toInt();
     //qDebug( QString( "IDCliente=%1").arg(id_cliente).toLocal8Bit());
     QDate fecha = this->DEFecha->date();
-    QString contenido = this->TETexto->contenido( Qt::AutoText );
+    QString contenido = this->TETexto->toPlainText();
     double total = this->dSBPagado->value();
     bool pagado = false;
     bool contado = false;
@@ -178,7 +178,7 @@ void FormAgregarRecibo::guardar()
     } else if( this->RBotro->isChecked() ) {
         pagado = true;
     } // Si esta como luego, pongo los dos parametros como estan false, false
-    // Genero la transacción
+    // Genero la transacciÃ³n
     QSqlDatabase::database().transaction();
     this->_modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
     int num_recibo = this->_modelo->agregarRecibo( id_cliente, fecha, contenido, total, pagado, contado );
@@ -191,7 +191,7 @@ void FormAgregarRecibo::guardar()
     this->_modelo->submitAll();
     QSqlDatabase::database().commit();
     // Imprimir el recibo
-    QMessageBox::information( this, "Correcto", QString( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( /*num_recibo*/-1 ) );
+    QMessageBox::information( this, "Correcto", QString( "El recibo nÂº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( /*num_recibo*/-1 ) );
     /// Imprimo el recibo
     ParameterList lista;
     lista.append( "id_recibo", num_recibo );

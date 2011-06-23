@@ -9,9 +9,9 @@ SUBDIRS +=  caja \
             pagos \
             presupuesto \
             servicios \
-            bscomputacion
+            bscomputacion \
 #            digifauno \
-#            HiComp \
+            HiComp
 #            email \
 #planificador \
 #aCarCorr \
