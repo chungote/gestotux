@@ -140,15 +140,15 @@ QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
  if( id_cliente <= 0 )
  {
         qDebug( "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error, el numero de cliente es invalido" );
-        return E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO;
+        return QString::number( MCuentaCorriente::ErrorClienteInvalido );
  }
  QSqlQuery cola( QString( "SELECT numero_cuenta FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) );
  if( cola.next() )
  { return cola.record().value(0).toString(); }
  else
  {
-        qDebug( "Error al buscar el numero de cuenta para el cliente solicitado" );
-        return E_CTACTE_BUSCAR_NUMEROCUENTA;
+        qDebug( "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error al buscar el numero de cuenta para el cliente solicitado - posiblemente no tenga cuenta corriente habilitada" );
+        return QString::number( MCuentaCorriente::ErrorNumeroCuenta );
  }
 }
 
@@ -252,10 +252,10 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
  }
  else
  {
-  qWarning( "Error al intentar buscar el saldo de la cuenta corriente solicitada" );
+  qWarning( "MCuentaCorriente::saldo::Error al intentar buscar el saldo de la cuenta corriente solicitada" );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.executedQuery() ) );
-  return E_CTACTE_BUSCAR_SALDO;
+  return MCuentaCorriente::ErrorBuscarSaldo;
  }
 }
 

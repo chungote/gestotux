@@ -54,10 +54,6 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         RBContado->setEnabled( false );
 }
 
-FormAgregarRecibo::~FormAgregarRecibo()
-{
-}
-
 #include "NumeroComprobante.h"
 /*!
   \fn FormAgregarRecibo::setearModelo( MPagos *m )
@@ -106,9 +102,9 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
      return;
   }
   QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->model()->data( this->CBCliente->model()->index( id_combo, 0), Qt::EditRole ).toInt() );
-  if( numero_cuenta == E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO )
+  if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) )
   {
-   qDebug( "Numero de cuenta invalido" );
+   qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
    return;
   }
   else

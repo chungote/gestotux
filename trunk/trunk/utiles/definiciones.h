@@ -17,10 +17,3 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
-/*****************
- *   ERRORES     *
- *****************/
-#define E_CTACTE_BUSCAR_NUMEROCUENTA "-2"
-#define E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO "-3"
-#define E_CTACTE_BUSCAR_SALDO -1.0

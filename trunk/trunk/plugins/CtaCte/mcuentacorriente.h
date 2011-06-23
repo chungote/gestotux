@@ -40,6 +40,12 @@ public:
         ErrorBuscarLimite = 3
     };
 
+    enum Error {
+        ErrorNumeroCuenta = -2,
+        ErrorClienteInvalido = -3,
+        ErrorBuscarSaldo = -1
+    };
+
 
     MCuentaCorriente( QObject *parent = 0, bool relaciones = true );
     ~MCuentaCorriente();

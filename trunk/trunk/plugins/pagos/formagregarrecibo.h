@@ -36,20 +36,19 @@ Q_OBJECT
 
 public:
         FormAgregarRecibo ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormAgregarRecibo();
         void setearModelo( MPagos *m );
 
 public slots:
-    void guardar();
+        void guardar();
 
 protected slots:
-    void cambioPagado( double valor );
-    void cambioCliente( int id_combo );
+        void cambioPagado( double valor );
+        void cambioCliente( int id_combo );
 
 private:
-    void recalcularTotal();
+        void recalcularTotal();
 
-    MPagos *_modelo;
+        MPagos *_modelo;
 };
 
 #endif
