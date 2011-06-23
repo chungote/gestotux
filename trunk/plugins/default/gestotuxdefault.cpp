@@ -90,9 +90,9 @@ QString GestotuxDefault::reporte( int tipo ) {
         case EReporte::Presupuesto:
         { return "Presupuesto"; }
         case EReporte::Factura:
-        { return "Presupuesto"; }
+        { return "Factura"; }
         case EReporte::Recibo:
-        { return "Presupuesto"; }
+        { return "Recibo"; }
         default:
         { return QString(); }
     }
@@ -100,4 +100,4 @@ QString GestotuxDefault::reporte( int tipo ) {
 
 void GestotuxDefault::reporteParametros( int /*tipo*/, QString &/*nombre*/, ParameterList &/*lista*/ ) { return; }
 
-Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault );
+Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault )

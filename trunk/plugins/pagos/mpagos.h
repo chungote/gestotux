@@ -55,6 +55,7 @@ public:
     int buscarIdPorSerieNumero( const NumeroComprobante num );
     int buscarIdPorSerieNumero( const int serie, const int numero );
     double buscarImporte( NumeroComprobante num );
+    NumeroComprobante &buscarNumeroComprobantePorId( const int id_recibo );
 
     static NumeroComprobante &buscarMenorSerieNumeroPagado();
     static int numeroSerieActual();

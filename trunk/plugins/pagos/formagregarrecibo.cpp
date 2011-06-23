@@ -51,7 +51,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
         // Por ahora elimino el contado por no estar programado
-        RBContado->setEnabled( false );
+        //RBContado->setEnabled( false );
 }
 
 #include "NumeroComprobante.h"
@@ -102,7 +102,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
      return;
   }
   QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->model()->data( this->CBCliente->model()->index( id_combo, 0), Qt::EditRole ).toInt() );
-  if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) )
+  if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) )
   {
    qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
    return;
@@ -190,7 +190,7 @@ void FormAgregarRecibo::guardar()
     this->_modelo->submitAll();
     QSqlDatabase::database().commit();
     // Imprimir el recibo
-    QMessageBox::information( this, "Correcto", QString( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( /*num_recibo*/-1 ) );
+    QMessageBox::information( this, "Correcto", QString::fromUtf8( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( this->_modelo->buscarNumeroComprobantePorId( num_recibo ).aCadena() ) );
     /// Imprimo el recibo
     ParameterList lista;
     lista.append( "id_recibo", num_recibo );

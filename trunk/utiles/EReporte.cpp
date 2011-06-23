@@ -137,9 +137,9 @@ void EReporte::factura() {
 void EReporte::recibo() {
     _tipo = EReporte::Recibo;
     // Busco el tipo de presupuesto que se desea
-    QString nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+    _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
     // Cargo el reporte
-    cargar( nombre );
+    cargar( _nombre );
 }
 
 /*!
