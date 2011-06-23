@@ -55,9 +55,12 @@ public:
     bool publicidad() { return false; }
     QImage imagenPrograma() const;
     QAction *botonPantallaInicial();
+    QString reporte( int );
+    void reporteParametros(int, QString &, ParameterList &);
 
 private:
     QAction *ActPagarRecibo;
+
 public slots:
     void pagarRecibosEmitidos();
     void seCierraGestotux();
