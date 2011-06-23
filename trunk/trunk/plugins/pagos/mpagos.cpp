@@ -234,7 +234,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "fecha_pago", fecha );
     rec.setValue( "texto", contenido );
     rec.setValue( "precio", total );
-    rec.setValue( "pagado", pagado ); ///@todo Ver si esto andaría bien con el formulario de pago retrasado
+    rec.setValue( "pagado", pagado ); /// @todo Ver si esto andaría bien con el formulario de pago retrasado
     if( efectivo && pagado )  {
         rec.setValue( "forma_pago", MPagos::Efectivo );
         rec.setValue( "id_caja", id_caja );
@@ -253,18 +253,13 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "serie", proximo.serie() );
     rec.setValue( "numero",proximo.numero() );
     rec.setValue( "cancelado", false );
-    /*for( int i=0; i<rec.count(); ++i ) {
-        qDebug( QString( "Campo %1 es %2: %3 " ).arg( i ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
-    }*/
     if( this->insertRecord( -1, rec ) ) {
         this->submitAll();
         int id_recibo = query().lastInsertId().toInt();
-        qDebug( QString( "ultimo id query=%1" ).arg( id_recibo ).toLocal8Bit() );
-        qDebug( query().lastQuery().toLocal8Bit() );
         if( id_recibo > 0 ) {
             ret = id_recibo;
         } else {
-            // ¿no se lleno el campo ?
+            // ¿no se lleno el campo ? - seguramente la base de datos no lo soporta
             qDebug( "MPagos::agregarRecibo::No se pudo llenar el id del recibo?" );
         }
     } else {
@@ -273,6 +268,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
         qDebug( this->lastError().text().toLocal8Bit() );
     }
     this->relacionar();
+
     return ret;
 }
 
@@ -564,4 +560,21 @@ double MPagos::buscarImporte( NumeroComprobante num )
     qDebug( "error al hacer exec de cola de importe de recibo" );
     return false;
   }
+}
+
+NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT serie, numero FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
+        if( cola.next() ) {
+            NumeroComprobante *num = new NumeroComprobante( 0, cola.record().value(0).toInt(), cola.record().value(1).toInt() );
+            return *num;
+        } else {
+            qDebug( "MPagos::buscarNumeroComprobantePorId::Error al hacer next en la busqueda de los datos" );
+        }
+    } else {
+        qDebug( "MPagos::buscarNumeroComprobantePorId::Error al hacer el exce en la busaqueda de los datos" );
+    }
+    NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+    return *invalido;
 }
