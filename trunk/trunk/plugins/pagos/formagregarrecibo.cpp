@@ -163,8 +163,7 @@ void FormAgregarRecibo::guardar()
         QMessageBox::warning( this, "Faltan datos", QString( "Por favor verifique que haya ingresado una fecha mayor o igual a %1" ).arg( fecha_ultima_factura.toString() ) );
         return;
     }
-    ///@todo Ver porque no toma el id del modelo esto
-    int id_cliente = this->CBCliente->model()->data( this->CBCliente->model()->index( this->CBCliente->currentIndex(), 0 ), Qt::UserRole ).toInt();
+    int id_cliente = this->CBCliente->model()->data( this->CBCliente->model()->index( this->CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt();
     //qDebug( QString( "IDCliente=%1").arg(id_cliente).toLocal8Bit());
     QDate fecha = this->DEFecha->date();
     QString contenido = this->TETexto->toPlainText();

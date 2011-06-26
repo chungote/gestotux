@@ -26,6 +26,8 @@
 #include "eregistroplugins.h"
 #include "../caja/mmovimientoscaja.h"
 #include "../caja/mcajas.h"
+#include "../CtaCte/mcuentacorriente.h"
+#include "../CtaCte/mitemcuentacorriente.h"
 
 /*
 DROP TABLE `recibos`;
@@ -258,6 +260,33 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
         int id_recibo = query().lastInsertId().toInt();
         if( id_recibo > 0 ) {
             ret = id_recibo;
+            // Veo si es necesario actualizar la cuenta corriente.
+            // Solo será necesario si fue fue pagado efectivamente
+            if( efectivo || pagado ) {
+                QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+                if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
+                    // no posee cuenta corriente
+
+                } else if( cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
+                    // Error de numero de cliente
+                    qDebug( "Id de cliente erroneo" );
+                } else {
+                    // Actualizo la cuenta corriente
+                    if( MItemCuentaCorriente::agregarOperacion( cuenta,
+                                                                proximo.aCadena(),
+                                                                ret,
+                                                                MItemCuentaCorriente::Recibo,
+                                                                fecha,
+                                                                QString( "Pago de recibo %1" ).arg( proximo.aCadena() ),
+                                                                total ) ) {
+                        qDebug( "Item de cuenta corriente agregado correctamente." );
+                    } else {
+                        qWarning( "No se pudo agregar el item de la cuenta corriente" );
+                    }
+                }
+            } else {
+                qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
+            }
         } else {
             // ¿no se lleno el campo ? - seguramente la base de datos no lo soporta
             qDebug( "MPagos::agregarRecibo::No se pudo llenar el id del recibo?" );

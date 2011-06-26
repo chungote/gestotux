@@ -17,4 +17,4 @@ LIBS += ../../gestotux-build-desktop/bin/plugins/libcaja.so \
         ../../gestotux-build-desktop/bin/libreporte.a \
         ../../gestotux-build-desktop/bin/libutiles.a
 
-system( echo -n "// Forzando recompilacion " >> verificarLinkeo.cpp )
+QMAKE_MAKEFILE += -B

@@ -187,17 +187,6 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  } else {
      QMessageBox::warning( this, "Error", "No se pudo hacer el reporte" );
  }
- /*
- orReport *rep = new orReport( "Presupuesto", lista );
- if( rep->isValid() ) {
-     rep->print();
-     //rep->exportToPDF( QApplication::applicationDirPath() + QDir::separator() + "comprobantes" + QDir::separator() + "presupuestos" + QDir::separator() + QString( "%1.pdf" ).arg( MPresupuesto::numeroPresupuestoPorID( id_presupuesto ).aCadena() ) );
- } else {
-     qDebug( "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
-     QMessageBox::information( this, "Error de reporte", "Error al parsear el reporte - No se pudo imprimir pero se guardo correctamente" );
-     return;
- }
- */
  if( cerrar )
  { this->close(); }
 }
