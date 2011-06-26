@@ -22,7 +22,6 @@
 #include "emcliente.h"
 #include "mservicios.h"
 #include "mcuentacorriente.h"
-#include "definiciones.h"
 #include <QMessageBox>
 #include <QSqlQuery>
 
@@ -113,7 +112,7 @@ void FormAsociarServicioCliente::accept()
   return;
  }
  // Busco si el cliente tiene cuenta corriente
- if( MCuentaCorriente::obtenerNumeroCuentaCorriente( _id_cliente ) == E_CTACTE_BUSCAR_NUMEROCUENTA ) {
+ if( MCuentaCorriente::obtenerNumeroCuentaCorriente( _id_cliente ) == QString::number( MCuentaCorriente::ErrorNumeroCuenta) ) {
      QMessageBox::information( this, "Creando nueva cuenta corriente", "El cliente no posee cuenta corriente, se le creara una automaticamente." );
      MCuentaCorriente::agregarCuentaCorrientePredeterminada( _id_cliente, DEFechaAlta->dateTime() );
  }

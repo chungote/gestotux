@@ -125,7 +125,6 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
 }
 
 
-#include "definiciones.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 

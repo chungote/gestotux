@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "DPagarRecibo.h"
+#include "mpagos.h"
 
 DPagarRecibo::DPagarRecibo(QWidget *parent) :
     QDialog(parent)
@@ -30,15 +31,15 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
     this->adjustSize();
 
     // Guardo la serie y numero de recibo para referencia futura
-    this->_num_recibo = MPagos::buscarMenorSerieNumeroPagado();
+    /*this->_num_recibo = MPagos::buscarMenorSerieNumeroPagado();*/
 
     // Busco el minimo numero de recibo que tiene el pagado puesto y lo coloco como minimo
-    this->SBNumeroRecibo->setMinimum( this->_num_recibo.second );
+    this->SBNumeroRecibo->setMinimum( this->_num_recibo.numero() );
 
-    // Conecto la se�al para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
+    // Conecto la señal para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
     connect( this->SBNumeroRecibo, SIGNAL( valueChanged( int ) ), this, SLOT( cambioNumeroRecibo( int ) ) );
 
-    // Conecto la se�al para que al poner la cantidad pagada o cambiarla se actualize el saldo
+    // Conecto la señal para que al poner la cantidad pagada o cambiarla se actualize el saldo
     connect( this->DSBPagar, SIGNAL( valueChanged( double ) ), this, SLOT( cambioAPagar( double ) ) );
 
 }
@@ -61,7 +62,7 @@ void DPagarRecibo::changeEvent(QEvent *e)
 #include "mcuentacorriente.h"
 /*!
  * \fn DPagarRecibo::accept()
- * Función llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
+ * FunciÃ³n llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
  */
 void DPagarRecibo::accept()
 {

@@ -6,7 +6,7 @@ CONFIG += plugin \
 TARGET = hicomp
 
 HEADERS += hicomp.h \
-           DPagarRecibo.h\
+         #  DPagarRecibo.h\
            ../pagos/mpagos.h \
            ../CtaCte/mitemcuentacorriente.h \
            ../CtaCte/mcuentacorriente.h \
@@ -14,7 +14,7 @@ HEADERS += hicomp.h \
            ../caja/mmovimientoscaja.h
 
 SOURCES += hicomp.cpp \
-           DPagarRecibo.cpp \
+          # DPagarRecibo.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
            ../CtaCte/mcuentacorriente.cpp \

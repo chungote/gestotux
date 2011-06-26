@@ -22,7 +22,7 @@
 #define DPAGARRECIBO_H
 
 #include "ui_DPagarReciboBase.h"
-#include "mpagos.h"
+#include "NumeroComprobante.h"
 
 class DPagarRecibo : public QDialog, private Ui::DPagarRecibo
 {
@@ -40,7 +40,7 @@ protected slots:
     void cambioAPagar( double cantidad );
 
 private:
-    MPagos::NumeroRecibo _num_recibo;
+    NumeroComprobante _num_recibo;
 
 };
 
