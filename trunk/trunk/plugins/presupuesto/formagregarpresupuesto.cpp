@@ -182,7 +182,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  }
  EReporte *rep = new EReporte( this );
  rep->presupuesto();
- if( rep->hacer( lista ) ) {
+ if( rep->hacer( lista, false ) ) {
      QMessageBox::warning( this, "reporte", "reporte echo normalmente" );
  } else {
      QMessageBox::warning( this, "Error", "No se pudo hacer el reporte" );
