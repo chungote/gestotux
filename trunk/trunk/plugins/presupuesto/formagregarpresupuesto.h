@@ -38,7 +38,6 @@ protected slots:
     void cancelar();
     void guardar( bool cerrar );
     void guardar();
-    void imprimir();
     void agregarProducto();
     void eliminarProducto();
     void borrarTodoProducto();

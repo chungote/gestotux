@@ -52,21 +52,9 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         ActCancelar->setShortcut( QKeySequence( "Ctrl+c" ) );
         connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( cancelar() ) );
 
-        /*QAction *ActGuardarImprimir = new QAction( "Guardar e Imprimir", this );
-        ActGuardarImprimir->setIcon( QIcon( ":/imagenes/guardarimprimir.png" ) );
-        ActGuardarImprimir->setStatusTip( "Guarda los datos y abre el dialogo de imprimir" );
-        connect( ActGuardarImprimir, SIGNAL( triggered() ), this, SLOT( guardarImprimir() ) );
-
-        QAction *ActImprimir = new QAction( "Imprimir", this );
-        ActImprimir->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
-        ActImprimir->setStatusTip( "Imprime el presupuesto actual sin guardarlo" );
-        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );*/
-
-        // Agrego las acciones
+         // Agrego las acciones
         addAction( ActGuardar );
-        //addAction( ActGuardarImprimir );
-        //addAction( ActImprimir );
-        addAction( ActCancelar );
+         addAction( ActCancelar );
 
         // Seteo la lista de clientes
         CBCliente->setModel( new EMCliente( CBCliente ) );
@@ -191,12 +179,6 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  { this->close(); }
 }
 
-
-/*!
-    \fn FormAgregarPresupuesto::imprimir()
- */
-void FormAgregarPresupuesto::imprimir()
-{ qWarning( "No implementado todavia" ); }
 
 /*!
     \fn FormAgregarPresupuesto::guardar()
