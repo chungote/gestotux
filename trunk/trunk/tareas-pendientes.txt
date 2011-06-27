@@ -11,7 +11,6 @@
  - ¿ Descarga inicial por internet? ¿ Importación inicial desde archivos ?
  - Agregar capacidad para actualizar los reportes x internet ( caso db local )?
  - Utilizando DB SQLite, no usar tabla de reportes sino archivos locales.
-- Agregar numero de CUIT/CUIL para los clientes. ( ingresar mascara y/o verificación! )
 - Ver por la creacion de indices en la base de datos Mysql.
 
 -- Caja --
@@ -29,8 +28,6 @@
 
 -- Recibos --
 -------------
-- Hacer que al elegir la opción de pago contado, genere la entrada de caja.
-- Diseñar para que se pueda hacer el pago diferido de la impresion.
 
 -- General --
 -------------
@@ -51,7 +48,7 @@
 -- Servicios --
 ---------------
 - Diseñar sistema de preimpresion de recibos.
-- Ver como hacer el automatico de los sitemas de cobro
+- Ver como hacer el automatico de los sistemas de cobro
 
 -- Compras --
 -------------

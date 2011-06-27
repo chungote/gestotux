@@ -113,7 +113,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="LECUITCUIL"/>
+      <widget class="QLineEdit" name="LECUITCUIL">
+       <property name="inputMask">
+        <string>9-99999999-9; </string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
