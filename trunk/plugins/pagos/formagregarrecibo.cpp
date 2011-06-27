@@ -20,7 +20,6 @@
 #include "formagregarrecibo.h"
 #include "emcliente.h"
 #include "preferencias.h"
-#include "definiciones.h"
 #include "eregistroplugins.h"
 #include "../CtaCte/mcuentacorriente.h"
 #include "eactcerrar.h"
@@ -50,8 +49,6 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
-        // Por ahora elimino el contado por no estar programado
-        //RBContado->setEnabled( false );
 }
 
 #include "NumeroComprobante.h"
