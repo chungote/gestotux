@@ -47,6 +47,7 @@ private slots:
         void rehaceRazonSocial( const QString &texto );
 
 private:
+        bool verificarCuitCuil( QString texto );
         QSqlRelationalTableModel *modelo;
 };
 

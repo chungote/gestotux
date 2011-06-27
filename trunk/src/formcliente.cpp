@@ -64,6 +64,14 @@ void FormCliente::guardar()
   QMessageBox::warning( this, "Faltan Datos", "Por favor ingrese minimamente una razon social para el cliente" );
   return;
  }
+ // Si existe un cuit-cuil verifico que de la suma
+ // http://www.taringa.net/posts/apuntes-y-monografias/2766561/Algoritmo-C_U_I_T_-_-C_U_I_L_-Argentino.html
+ if( !LECUITCUIL->text().isEmpty() ) {
+     if( !verificarCuitCuil( LECUITCUIL->text() ) ) {
+         QMessageBox::warning( this, "Error Cuit/Cuil", "La verificación del cuit/cuil del cliente es incorrecta. Verifique el numero ingresado" );
+         return;
+     }
+ }
  QSqlRecord rc = modelo->record();
  rc.setValue( "razon_social", LERazonSocial->text() );
  if( LERazonSocial->text().isEmpty() )
@@ -204,4 +212,41 @@ void FormCliente::rehaceRazonSocial( const QString &texto )
   LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() );
  }
  return;
+}
+
+
+bool FormCliente::verificarCuitCuil( QString texto ) {
+    // Separo el codigo de verificación
+    QStringList partes = texto.split( "-" );
+    // 1 -  primera cifra
+    // 2 -  numero de doc o ref
+    // 3 -  verificacion
+    int verf = partes.at( 2 ).toInt();
+    QString seg = partes.at( 0 );
+    seg.append( partes.at( 1 ) );
+    int a[10] = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+    int res = 0;
+    for( int i = 0; i<seg.size(); i++ ) {
+        res += seg.at(i).digitValue() * a[i];
+    }
+    int resto = res % 11;
+    if( resto == 0 ) {
+        if( verf == resto ) {
+            return true;
+        } else {
+            return false;
+        }
+    } else  if( resto == 1 ) {
+        if( verf == 9 ) {
+            return true;
+        } else {
+            return false;
+        }
+    } else  if( ( 11 - resto ) == verf ) {
+        return true;
+    } else {
+        return false;
+    }
+
+
 }
