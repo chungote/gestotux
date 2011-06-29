@@ -158,8 +158,7 @@ void FormAgregarVenta::eliminarProducto()
   }
  }
  //Hacer dialogo de confirmacion..
- int ret;
- ret = QMessageBox::warning( this, "Esta seguro?",
+ int ret = QMessageBox::warning( this, "Esta seguro?",
                    QString( "Esta seguro de eliminar %1 item?").arg( indices.size() ),
                    "Si", "No" );
  if ( ret == 0 )
@@ -248,17 +247,20 @@ void FormAgregarVenta::guardar()
     case QMessageBox::Yes:
     {
      ParameterList lista;
+     if( id_cliente == 0 ) { lista.append(  Parameter( "cliente_existe", true ) ); } else { lista.append(  Parameter( "cliente_existe", false ) ); }
      lista.append( "id_factura", id_venta );
+
      EReporte *rep = new EReporte( this );
      rep->factura();
-     rep->hacer( lista );
+     if( !rep->hacer( lista ) ) {
+         QMessageBox::critical( this, "Error", "No se pudo imprimir el reporte. Consulte con el administrador del sistema" );
+         return;
+     }
      break;
     }
     case QMessageBox::No:
     case QMessageBox::Cancel:
-    {
-     break;
-    }
+    { qDebug( "Respondio no o cancelar" );  break; }
    }
    this->close();
    return;
@@ -274,9 +276,8 @@ void FormAgregarVenta::guardar()
         Slot llamado cada vez que cambia el cliente para verificar si tiene cuenta corriente habilitada
         @param id_combo Indice en la lista de combobox que indica el cliente
  */
-void FormAgregarVenta::cambioCliente( int id_combo )
+void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
 {
- (void)id_combo;
  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
   int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
