@@ -4,8 +4,6 @@
 - Pasar toda la base de datos a utf8_spanish_ci.
   - Terminar de verificar todas las tablas en creación para que esten en utf8.
 - Terminar diseños de entidad relación para el conjunto general y cada plugin.
-- Terminar de definir el sistema de impresion.
-  - Definir mappeador en las preferencias para ver que reporte imprimir en cada caso.
 - Verificar el diseño de las categorias.
 - Agregar inicialización de reportes en la base de datos Mysql
  - ¿ Descarga inicial por internet? ¿ Importación inicial desde archivos ?
@@ -114,36 +112,35 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 - Verificar correcta inizialización de todas las tablas de todos los plugins:
    - SQLite
         - Gastos: OK.
-        - Compras: ?
         - Ventas: OK.
-        - Servicios: ?
-        - Digifauno: ?
-        - Presupuestos: ?
+        - Servicios: OK.
+        - Presupuestos: Ok.
         - Productos: OK.
         - Proveedores: OK.
         - Clientes: OK.
-        - Reportes: ¿Lo usamos x tabla o por archivo?
         - Ventas: OK.
-        - Recibos: ?
+        - Recibos: Ok.
         - Caja: OK.
         - CtaCte: OK.
         - Email: ?
+        - Digifauno: ?
+        - Compras: ?
    - MySql
         - Gastos: OK.
-        - Compras: ?
         - Ventas: OK.
-        - Servicios: ?
-        - Digifauno: ?
-        - Presupuestos: ?
+        - Servicios: OK.
+        - Presupuestos: OK.
         - Productos: OK.
         - Proveedores: OK.
         - Clientes: OK.
         - Reportes: OK.
         - Ventas: OK.
-        - Recibos: ?
+        - Recibos: OK.
         - Caja: OK.
         - CtaCte: OK.
         - Email: ?
+        - Digifauno: ?
+        - Compras: ?
 - Verificar el correcto funcionamiento del nuevo formulario de clientes.
 - Probar cierre de caja cuando no hay operaciones mas que el ultimo cierre.
 - Probar agregar gastos y verificar si se guardan en el listado de caja.

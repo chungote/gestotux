@@ -66,6 +66,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
     /// @todo Ver si poner impresora para cada tipo
     if( !( _rep->print( 0, true, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );
+        _rep->reportError( 0 );
         return false;
     }
 
@@ -155,14 +156,18 @@ bool EReporte::cargar( const QString nombre ) {
     if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QSQLITE" ) {
         // Tiene que estar en un archio xml guardado en un directorio
         QDir reporte = QApplication::applicationDirPath();
-        reporte.cd( "reportes" );
+        if( ! reporte.cd( "reportes" ) ) {
+            qDebug( "No se pudo ingresar al directorio de reportes" );
+            return false;
+        }
         // busco el nombre de archivo
         QString ruta = reporte.absoluteFilePath( nombre + ".xml" );
         if( QFile::exists( ruta ) ) {
             // Cargo el archivo como dato
+            qDebug( QString( "Cargando archivo %1" ).arg( ruta ).toLocal8Bit() );
             _rep = new orReport( ruta );
         } else {
-            qDebug( "Error - No se pudo cargar el reporte" );
+            qDebug( QString( "Error - No se pudo cargar el reporte - No existe el archivo %1" ).arg( ruta ).toLocal8Bit() );
             return false;
         }
     } else {
@@ -170,7 +175,8 @@ bool EReporte::cargar( const QString nombre ) {
         _rep = new orReport( nombre );
     }
     if( (!_rep == 0) && !_rep->isValid() ) {
-        qDebug( "Error- el reporte solicitado no es valido" );
+        qDebug( "Error - el reporte solicitado no es valido" );
+        _rep->reportError( 0 );
         return false;
     }
     return true;

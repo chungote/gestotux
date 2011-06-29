@@ -46,7 +46,7 @@ void MItemFactura::relacionar() {
  */
 bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario ) {
     QSqlQuery cola;
-    if( ! cola.prepare( "INSERT INTO item_factura( id_item_factura, id_factura, cantidad, texto, precio_unitario ) VALUES ( :orden, :id_venta, :cantidad, :texto, :precio_unitario );" ) ) {
+    if( ! cola.prepare( "INSERT INTO item_factura( id_factura, cantidad, texto, precio_unitario ) VALUES ( :id_venta, :cantidad, :texto, :precio_unitario );" ) ) {
         qDebug( "Error al intentar preparar la cola de inserción" );
         qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
     }
@@ -55,9 +55,7 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
     cola.bindValue( ":cantidad", cantidad );
     cola.bindValue( ":texto", texto );
     cola.bindValue( ":precio_unitario", precio_unitario );
-    cola.bindValue( ":orden", _orden );
     if( cola.exec() ) {
-        _orden++;
         return true;
     } else {
         qDebug( "Error al intentar insertad valor de item de presupuesto" );
