@@ -180,7 +180,7 @@ bool EReporte::cargar( const QString nombre ) {
             }
             archivo.close();
             _rep = new orReport();
-            if( !_rep->setDom( doc ) ) {
+            if( !_rep->setDom( *doc ) ) {
                 qDebug( "Error al setear el contenido del reporte con el documento DOM" );
                 return false;
             }
