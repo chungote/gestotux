@@ -134,10 +134,20 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     }
     ///////////////////////////////////////////////////////////////////////////////////
     // Dibujo las flechas
-    /*f1->setearOrigen( TBPresupuestos );
+    EFlecha *f1 = new EFlecha( this );
+    f1->setearOrigen( TBPresupuestos );
     f1->setearDestino( TBFacturas );
-    f1->setearTamFlecha( 2 );
-    f1->setVisible( false );*/
+    f1->setearTamFlecha( 5 );
+
+    EFlecha *f2 = new EFlecha( this );
+    f2->setearOrigen( TBFacturas );
+    f2->setearDestino( TBRecibos );
+    f2->setearTamFlecha( 5 );
+
+    EFlecha *f3 = new EFlecha( this );
+    f3->setearOrigen( TBFacturas );
+    f3->setearDestino( TBCaja );
+    f3->setearTamFlecha( 5 );
 }
 
 void FormPantallaInicial::changeEvent(QEvent *e)

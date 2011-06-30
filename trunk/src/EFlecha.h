@@ -34,7 +34,7 @@ class EFlecha : public QWidget, public QLineF
     Q_OBJECT
 public:
     explicit EFlecha( QWidget *parent );
-    explicit EFlecha( QWidget *parent, QWidget *origen, QWidget *destino, int tamFlecha );
+    explicit EFlecha( QWidget *parent, QWidget *origen, QWidget *destino, int tamFlecha = 15 );
     void setearOrigen( QWidget *origen );
     void setearDestino( QWidget *destino );
     void setearTamFlecha( int tam );

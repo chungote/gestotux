@@ -206,11 +206,11 @@ int MMovimientosCaja::buscarUltimoCierre( const int id_caja ) {
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
-            qWarning( "MMovimientosCaja::buscarUltimoCierre::Error al hacer next en la cola de ultimo cierre " );
+            qDebug( "MMovimientosCaja::buscarUltimoCierre::Error al hacer next en la cola de ultimo cierre " );
             return 0;
         }
     } else {
-        qWarning( QString( "MMovimientosCaja::buscarUltimoCierre::Error al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        qDebug( QString( "MMovimientosCaja::buscarUltimoCierre::Error al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
         return -1;
     }
 }

@@ -217,20 +217,20 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////////////////////////////////////////////////////////
         LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
         int id_factura = -1;
-/*#ifdef GESTOTUX_HICOMP
+#ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
                                         ( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
-#elseif*/
+#elseif
         id_factura = mr->agregarFactura( id_cliente,
                                          QDateTime::currentDateTime(),
                                          MFactura::CuentaCorriente,
                                          this->_precio_base,
                                          false ); // Con este ultimo parametro no registra la operación de cuenta corriente, porque lo hago manualmente mas tarde.
-//#endif
+#endif
         if( id_factura == -1 ) {
             QMessageBox::warning( this, "Error", "No se pudo generar la factura para el cliente requerido - se cancelara toda la facturacion del servicio" );
             qDebug( "Error al generar la factura - id erroneo" );
@@ -323,29 +323,29 @@ void FormFacturarServicio::facturar()
     PBProgreso->setValue( 1 );
 
     // Inicializo el reporter
-/*#ifdef GESTOTUX_HICOMP
-    orReport *reporte = new orReport( "recibo" );
-#else*/
-    orReport *reporte = new orReport( "factura" );
-//#endif
+    EReporte *reporte = new EReporte( this );
+#ifdef GESTOTUX_HICOMP
+    reporte->recibo();
+#else
+    reporte->factura();
+#endif
 
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
         // Genero los parametros
         ParameterList lista;
-/*#ifdef GESTOTUX_HICOMP
+#ifdef GESTOTUX_HICOMP
         lista.append( "id_recibo", comprobantes.take( i ) );
-        reporte->setParamList( lista );
         LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
-#else*/
+#else
         lista.append( "id_factura", comprobantes.take( i ) );
-        reporte->setParamList( lista );
         LIndicador->setText( QString( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
-//#endif
+#endif
+        if( !reporte->hacer( lista ) ) {
+            qDebug( QString( "No se pudo hacer el reporte %i" ).arg( i ).toLocal8Bit() );
+        }
         PBProgreso->setValue( PBProgreso->value() + 1 );
-        reporte->print( 0, true, false );
-        reporte->exportToPDF( QString( "/home/Esteban/comp-%1.pdf" ).arg( i ) );
         // Actualizo indices y reinicio valores
         id_recibo = -1;
         nombre_cliente = "";
@@ -366,14 +366,12 @@ void FormFacturarServicio::facturar()
             if( ok == true ) {
                 // Ingreso un recibo mal impreso, lo reimprimo
                 ParameterList lista;
-/*#ifdef GESTOTUX_HICOMP
+#ifdef GESTOTUX_HICOMP
                 lista.append( "id_recibo", ret2 );
-                reporte->setParamList( lista );
-#else*/
+#else
                 lista.append( "id_factura", ret2 );
-                reporte->setParamList( lista );
-//#endif
-                reporte->print( 0, false, false );
+#endif
+                reporte->hacer( lista );
             } else {
                 // No hay mas recibos fallados
                 ret = false;

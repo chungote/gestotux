@@ -37,6 +37,36 @@ QSqlTableModel(parent)
     this->setHeaderData( 3, Qt::Horizontal, "Saldo Actual" );
 }
 
+
+QVariant MCajas::data( const QModelIndex &idx, int role ) const
+{
+    switch( role ) {
+        case Qt::DisplayRole: {
+            switch( idx.column() ) {
+                case 3:
+                { return QString( "$ %1" ).arg( QSqlTableModel::data( idx, Qt::EditRole ).toDouble() ); break; }
+                default:
+                { return QSqlTableModel::data( idx, role ); break; }
+            }
+            break;
+        }
+        case Qt::TextAlignmentRole: {
+            switch( idx.column() ) {
+                case 2:
+                case 3:
+                { return int( Qt::AlignCenter | Qt::AlignHCenter ); break; }
+                default:
+                { return QSqlTableModel::data( idx, role ); break; }
+            }
+            break;
+        }
+        default:
+        {
+            return QSqlTableModel::data( idx, role ); break;
+        }
+    }
+}
+
 Qt::ItemFlags MCajas::flags( const QModelIndex &/*idx*/ ) const
 {
     return Qt::ItemFlags( Qt::ItemIsEnabled | Qt::ItemIsSelectable );
@@ -75,7 +105,7 @@ bool MCajas::agregarCaja( QString nombre, QDate fecha_alta, double saldo_inicial
 /*!
  * @fn MCajas::actualizarSaldo( int id_caja, double cantidad )
  * Funcion que actualiza el sado de una caja especifica
- * @param id_caja Identificador de la caja a la cual se le actualizar· el saldo
+ * @param id_caja Identificador de la caja a la cual se le actualizar√° el saldo
  * @param cantidad Cantidad ( positiva para aumentar, negativa para disminuir ) que se modificara al saldo
  */
 bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
@@ -103,7 +133,7 @@ bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
 /*!
  * @fn MCajas::saldo( const int id_caja )
  * Funcion que devuelve el saldo actual de una caja
- * @param id_caja Identificador de la caja a la cual se le actualizar· el saldo
+ * @param id_caja Identificador de la caja a la cual se le actualizar√° el saldo
  * @return Saldo de la caja
  */
 double MCajas::saldo( const int id_caja )
