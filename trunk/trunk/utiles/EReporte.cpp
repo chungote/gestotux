@@ -26,6 +26,7 @@
 #include "eregistroplugins.h"
 #include <QApplication>
 #include <QFile>
+#include <QDomDocument>
 
 EReporte::EReporte( QObject *padre )
     : QObject() {
@@ -165,7 +166,24 @@ bool EReporte::cargar( const QString nombre ) {
         if( QFile::exists( ruta ) ) {
             // Cargo el archivo como dato
             qDebug( QString( "Cargando archivo %1" ).arg( ruta ).toLocal8Bit() );
-            _rep = new orReport( ruta );
+            // La librería no soporta archivos como parametro
+            QDomDocument *doc = new QDomDocument(_nombre);
+            QFile archivo(ruta);
+            if(!archivo.open(QIODevice::ReadOnly)) {
+                qDebug( "Error al intentar abrir el archivo como solo lectura" );
+                return false;
+            }
+            if( !doc->setContent( &archivo ) ) {
+                archivo.close();
+                qDebug( "Error al insertar el contenido del archivo en el documento DOM" );
+                return false;
+            }
+            archivo.close();
+            _rep = new orReport();
+            if( !_rep->setDom( doc ) ) {
+                qDebug( "Error al setear el contenido del reporte con el documento DOM" );
+                return false;
+            }
         } else {
             qDebug( QString( "Error - No se pudo cargar el reporte - No existe el archivo %1" ).arg( ruta ).toLocal8Bit() );
             return false;
