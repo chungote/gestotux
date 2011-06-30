@@ -24,6 +24,17 @@
     <class kind="class">AutoDestruc</class>
   </compound>
   <compound kind="file">
+    <name>bscomputacion.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/bscomputacion/</path>
+    <filename>bscomputacion_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>bscomputacion.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/bscomputacion/</path>
+    <filename>bscomputacion_8h</filename>
+    <class kind="class">BSComputacion</class>
+  </compound>
+  <compound kind="file">
     <name>actingresocaja.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
     <filename>actingresocaja_8cpp</filename>
@@ -342,13 +353,6 @@
     <name>gestotuxdefault.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/default/</path>
     <filename>gestotuxdefault_8cpp</filename>
-    <member kind="function">
-      <type></type>
-      <name>Q_EXPORT_PLUGIN2</name>
-      <anchorfile>gestotuxdefault_8cpp.html</anchorfile>
-      <anchor>a4aced83a8b729580f95344a3962e007d</anchor>
-      <arglist>(zinfo, GestotuxDefault)</arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>gestotuxdefault.h</name>
@@ -2005,32 +2009,6 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>definiciones.h</name>
-    <path>/home/Esteban/Programas/gestotux/utiles/</path>
-    <filename>definiciones_8h</filename>
-    <member kind="define">
-      <type>#define</type>
-      <name>E_CTACTE_BUSCAR_NUMEROCUENTA</name>
-      <anchorfile>definiciones_8h.html</anchorfile>
-      <anchor>a2d736af5b1623cff4d55f0b32f7aa348</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>E_CTACTE_BUSCAR_NUMEROCUENTA_CLIENTE_INVALIDO</name>
-      <anchorfile>definiciones_8h.html</anchorfile>
-      <anchor>af8973bdeceab2e883f05ba132a87706b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>E_CTACTE_BUSCAR_SALDO</name>
-      <anchorfile>definiciones_8h.html</anchorfile>
-      <anchor>a1fba78e7ffd2174666e2479f46b8fd41</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
     <name>dproductostotales.cpp</name>
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>dproductostotales_8cpp</filename>
@@ -2869,6 +2847,203 @@
       <anchorfile>classBotonesLaterales.html</anchorfile>
       <anchor>afd2e23103bc1d54f96c7b30672b28fba</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>BSComputacion</name>
+    <filename>classBSComputacion.html</filename>
+    <base>EPlugin</base>
+    <base>EInfoProgramaInterface</base>
+    <member kind="enumeration">
+      <name>tipo</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>a7de686acce916756068da63931c21586</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>db</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>a7de686acce916756068da63931c21586a8558946a1acf94f907a5b665eb512dab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>comun</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>a7de686acce916756068da63931c21586a68856030e5ab321fe997ff5f37a1bf9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>info</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>a7de686acce916756068da63931c21586a5f72a491e46cb91eaf54b0c45b4041b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>email</name>
+      <anchorfile>classEPlugin.html</anchorfile>
+      <anchor>a7de686acce916756068da63931c21586a2ce30b82b08d0776ea13ac5857a5694c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="slot">
+      <type>void</type>
+      <name>seCierraGestotux</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>ad892e8167028cabb5e4ce137aa8df729</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarDockWidget</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>ab6d648adb8b9f4efe7ec057806eed7e5</anchor>
+      <arglist>(Qt::DockWidgetArea area, QDockWidget *ventana)</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>agregarVentana</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a94a341a1377c7ab42b7043f1c1c540a7</anchor>
+      <arglist>(QWidget *v)</arglist>
+    </member>
+    <member kind="function">
+      <type>QList&lt; QActionGroup * &gt;</type>
+      <name>accionesBarra</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>ab8db6b338f09fbc278a0e0adfe5ae24c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QAction *</type>
+      <name>botonPantallaInicial</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a1510b44e8b41fd3469e7033937d09bc0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>companeros</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a8775a255cf73b1817047762375253cab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearMenu</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>acee42945c57103367b99bd1ccb22115b</anchor>
+      <arglist>(QMenuBar *m)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>crearToolBar</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>ad75bded697940d5834f9538b646a6734</anchor>
+      <arglist>(QToolBar *t)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>directorioActualizaciones</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a52cc4b962961bc6b62f1a42668602b54</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>directorioBackup</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a4244cdc799f06971c9e9509e8208e19e</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>empresa</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>aa09ee677e93dd015fb1b95e45b286f6c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QWidgetList</type>
+      <name>formsPreferencias</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>ae399155650e37ea9be2818bca0cb38a8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QIcon</type>
+      <name>iconoPrograma</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a5f32e0deb6891d3a82775f5e17c44fed</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QImage</type>
+      <name>imagenPrograma</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>afc2d071eb27c1ad114137d6be191bafb</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>inicializar</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a305698d4e99788495ab8186a33373a23</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombre</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a234cc96b77c42125990b35d5438079fe</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>nombrePrograma</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a27f22b499096ae7f2e3d35d882da3ed2</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>publicidad</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a8086d56ca1e1136f71c822a17e93dbd6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>reporte</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a5310016e91b2a28e5511514d0344cf5a</anchor>
+      <arglist>(int tipo)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>a05b34bf3b31de7b9f49dee174b0ea3cd</anchor>
+      <arglist>(int, QString &amp;, ParameterList &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>tipo</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>af61fcf9637c21dbf772bb45f6fb51854</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>verificarTablas</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>ada36217337b9567e0798dd24141905e5</anchor>
+      <arglist>(QStringList tablas)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>version</name>
+      <anchorfile>classBSComputacion.html</anchorfile>
+      <anchor>aac800973dabddb06f367671d39e3eb92</anchor>
+      <arglist>() const </arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3995,10 +4170,10 @@
       <arglist>(QEvent *e)</arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>MPagos::NumeroRecibo</type>
+      <type>NumeroComprobante</type>
       <name>_num_recibo</name>
       <anchorfile>classDPagarRecibo.html</anchorfile>
-      <anchor>a01d45606404e68fd602f229c898d49e4</anchor>
+      <anchor>a1929995fd499e01b0150ae9ba4a6f747</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -5892,8 +6067,15 @@
       <type>bool</type>
       <name>hacer</name>
       <anchorfile>classEReporte.html</anchorfile>
-      <anchor>afb9497ecfb810619c39c471c44d28945</anchor>
-      <arglist>(ParameterList parametros)</arglist>
+      <anchor>a8c537af39fae69bc38accc090ca61dcf</anchor>
+      <arglist>(ParameterList parametros, bool previsualizar=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mostrarError</name>
+      <anchorfile>classEReporte.html</anchorfile>
+      <anchor>a7eef2211479df6db7344ff4f7970d689</anchor>
+      <arglist>(QWidget *ventana)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -7473,13 +7655,6 @@
       <anchor>af23349f0c0e592f78fc6c8a5c04117f2</anchor>
       <arglist>(bool cerrar)</arglist>
     </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>imprimir</name>
-      <anchorfile>classFormAgregarPresupuesto.html</anchorfile>
-      <anchor>a2c4356927e54bb2fb83bcc24f611c841</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="variable" protection="protected">
       <type>QWidget *</type>
       <name>padre</name>
@@ -7540,13 +7715,6 @@
       <anchorfile>classFormAgregarRecibo.html</anchorfile>
       <anchor>a5d41993013b404f3a46cfdceedf1e3f8</anchor>
       <arglist>(MPagos *m)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormAgregarRecibo</name>
-      <anchorfile>classFormAgregarRecibo.html</anchorfile>
-      <anchor>aa1bc209f0f3cb8cb75967c1d14a66e80</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
@@ -8050,6 +8218,13 @@
       <anchorfile>classFormCliente.html</anchorfile>
       <anchor>a649e98084f8b9a508e74c44ee6af8972</anchor>
       <arglist>(const QString &amp;texto)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>verificarCuitCuil</name>
+      <anchorfile>classFormCliente.html</anchorfile>
+      <anchor>a85aec6e5f141e6d0c049af41eccfd8e5</anchor>
+      <arglist>(QString texto)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QSqlRelationalTableModel *</type>
@@ -10931,6 +11106,20 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>QString</type>
+      <name>reporte</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>a5d0e93ab6c5dd7762bae11653524e4c8</anchor>
+      <arglist>(int)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reporteParametros</name>
+      <anchorfile>classHiComp.html</anchorfile>
+      <anchor>af464ea5afe8a448fe05bd92d656b40a2</anchor>
+      <arglist>(int, QString &amp;, ParameterList &amp;)</arglist>
+    </member>
+    <member kind="function">
       <type>int</type>
       <name>tipo</name>
       <anchorfile>classHiComp.html</anchorfile>
@@ -10980,20 +11169,6 @@
       <anchorfile>classEPlugin.html</anchorfile>
       <anchor>a7de686acce916756068da63931c21586a2ce30b82b08d0776ea13ac5857a5694c</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual QString</type>
-      <name>reporte</name>
-      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
-      <anchor>a0266a1082262293cc6a77345039c5883</anchor>
-      <arglist>(int)=0</arglist>
-    </member>
-    <member kind="function" virtualness="pure">
-      <type>virtual void</type>
-      <name>reporteParametros</name>
-      <anchorfile>classEInfoProgramaInterface.html</anchorfile>
-      <anchor>af3230fcc5ef445e4b118d01bb5ecca87</anchor>
-      <arglist>(int, QString &amp;, ParameterList &amp;)=0</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QAction *</type>
@@ -12853,6 +13028,30 @@
     <name>MCuentaCorriente</name>
     <filename>classMCuentaCorriente.html</filename>
     <member kind="enumeration">
+      <name>Error</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>af4fa588fd1d2fc5425d52cf7e00a2fcc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ErrorNumeroCuenta</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>af4fa588fd1d2fc5425d52cf7e00a2fcca0b94425e2800664f7453864948459940</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ErrorClienteInvalido</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>af4fa588fd1d2fc5425d52cf7e00a2fcca94fcc87501694056c95fd3a984a95dfd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>ErrorBuscarSaldo</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>af4fa588fd1d2fc5425d52cf7e00a2fcca9f9009e3237a40aa0653399c4a0cf789</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
       <name>EstadoCuenta</name>
       <anchorfile>classMCuentaCorriente.html</anchorfile>
       <anchor>a5ee74f74b7f0d7903b73850ed5f00234</anchor>
@@ -13516,13 +13715,6 @@
       <anchor>a010e798ac964df79c6334dab9a3ef55cacc1af875662a2aea4c448b04caae4399</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>QPair&lt; int, int &gt;</type>
-      <name>NumeroRecibo</name>
-      <anchorfile>classMPagos.html</anchorfile>
-      <anchor>ad8e5064e98fe08dcdf809777b20e8033</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type>int</type>
       <name>agregarRecibo</name>
@@ -13541,8 +13733,8 @@
       <type>int</type>
       <name>buscarIdPorSerieNumero</name>
       <anchorfile>classMPagos.html</anchorfile>
-      <anchor>a935a5810dae0c58ba9313617f05b331e</anchor>
-      <arglist>(const NumeroRecibo num)</arglist>
+      <anchor>a9b046ef4ccbd16a5a27bb2330795ee59</anchor>
+      <arglist>(const NumeroComprobante num)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -13555,15 +13747,22 @@
       <type>double</type>
       <name>buscarImporte</name>
       <anchorfile>classMPagos.html</anchorfile>
-      <anchor>a4a4cf8f6424e3d6aa38fd247a9021b6f</anchor>
-      <arglist>(NumeroRecibo num)</arglist>
+      <anchor>a0818d684a746649ad040f5d4d67b05c7</anchor>
+      <arglist>(NumeroComprobante num)</arglist>
+    </member>
+    <member kind="function">
+      <type>NumeroComprobante &amp;</type>
+      <name>buscarNumeroComprobantePorId</name>
+      <anchorfile>classMPagos.html</anchorfile>
+      <anchor>a8181d3800a6cf4d043512fa98b9500f9</anchor>
+      <arglist>(const int id_recibo)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>buscarSiPagado</name>
       <anchorfile>classMPagos.html</anchorfile>
-      <anchor>a4a0eb64226ea6bad3f7ce4bdf1c12254</anchor>
-      <arglist>(const NumeroRecibo num)</arglist>
+      <anchor>a8b755b3446f134bdc38969da856e9fba</anchor>
+      <arglist>(const NumeroComprobante num)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -13601,10 +13800,10 @@
       <arglist>(const int id_recibo, const bool efectivo)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static NumeroRecibo</type>
+      <type>static NumeroComprobante &amp;</type>
       <name>buscarMenorSerieNumeroPagado</name>
       <anchorfile>classMPagos.html</anchorfile>
-      <anchor>aeed8001915a7d9bb5f9e7cdff2d84793</anchor>
+      <anchor>a95227c24742a159e7def843aeb30e99f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
@@ -13622,10 +13821,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static NumeroRecibo</type>
+      <type>static NumeroComprobante &amp;</type>
       <name>proximoSerieNumeroRecibo</name>
       <anchorfile>classMPagos.html</anchorfile>
-      <anchor>a85d8c0f344d37c8c11cf08f04d10fae5</anchor>
+      <anchor>a9c25a65becb679c3ca062102b2a54794</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -20865,6 +21064,13 @@
     <file>autodestruc.h</file>
   </compound>
   <compound kind="dir">
+    <name>plugins/bscomputacion/</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/bscomputacion/</path>
+    <filename>dir_fbcf1901b598f88015ebeb08cea8103f.html</filename>
+    <file>bscomputacion.cpp</file>
+    <file>bscomputacion.h</file>
+  </compound>
+  <compound kind="dir">
     <name>plugins/caja/</name>
     <path>/home/Esteban/Programas/gestotux/plugins/caja/</path>
     <filename>dir_cca8692013ef54ef72e40402eaac83fe.html</filename>
@@ -21098,6 +21304,7 @@
     <path>/home/Esteban/Programas/gestotux/plugins/</path>
     <filename>dir_2241d903d8b552fecd54d40d9c6f6ba2.html</filename>
     <dir>plugins/autodestruc/</dir>
+    <dir>plugins/bscomputacion/</dir>
     <dir>plugins/caja/</dir>
     <dir>plugins/compras/</dir>
     <dir>plugins/CtaCte/</dir>
@@ -21293,7 +21500,6 @@
     <path>/home/Esteban/Programas/gestotux/utiles/</path>
     <filename>dir_96dd5dfec6529fa71a74b9d6ee5ac519.html</filename>
     <dir>utiles/estilos/</dir>
-    <file>definiciones.h</file>
     <file>dproductostotales.cpp</file>
     <file>dproductostotales.h</file>
     <file>dsino.cpp</file>

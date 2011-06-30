@@ -48,10 +48,17 @@ class orReport {
     static QPainter* multiPainter;
 
   public:
+   /*!
+    * \fn orReport::orReport()
+    * Creates an empty orReport object that can have the report and parameters set by calling the setDom() and setParamList() methods.
+    */
     orReport(QSqlDatabase = QSqlDatabase());
     orReport(const QString &, QSqlDatabase = QSqlDatabase());
     orReport(const QString &, const QStringList &, QSqlDatabase = QSqlDatabase());
     orReport(const char *, const ParameterList &, QSqlDatabase = QSqlDatabase());
+   /*!
+    * Creates an orReport object that will load and set the report definition by the name of `name' and set the query parameter list to `params'. If successfull a call to the method isValid() will return true.
+    */
     orReport(const QString &, const ParameterList &, QSqlDatabase = QSqlDatabase());
     ~orReport();
 
