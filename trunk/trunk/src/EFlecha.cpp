@@ -46,9 +46,7 @@ QWidget(parent), QLineF()
     this->p1().setY( origen->y() );
     this->p2().setX( destino->x() );
     this->p2().setY( destino->y() );
-    // Seteo los puntos de la linea segun los widgets
-    // busco que lado del rect esta mas cerca del otro widget
-    //int difArAb = origen->rect().top().y() -
+    calcularDistanciaMinima();
 }
 
 QSize EFlecha::sizeHint() const
@@ -70,20 +68,21 @@ void EFlecha::setearDestino( QWidget *destino ) {
   this->destino = destino;
   this->p2().setX( destino->x() );
   this->p2().setY( destino->y() );
+  calcularDistanciaMinima();
+}
+
+void EFlecha::calcularDistanciaMinima() {
   // Busco los lados del widget destino-origen mas cercanos
-  /*int d1 = origen->rect().top().y() - destino->rect().bottom().y();
-  int d2 = origen->rect().topLeft() - destino->rect().bottomRight();
-  int d3 = origen->rect().topLeft().x() - destino->rect().bottomRight().x();
-  int d4 = origen->rect().bottomLeft() - destino->rect().topRight();
+  int d1 = abs( origen->rect().top() - destino->rect().bottom() );
+  int d2 = sqrt( pow( origen->rect().topLeft().y(), 2 ) + pow( destino->rect().bottomRight().y(), 2 ) );
+  int d3 = abs( origen->rect().topLeft().x() - destino->rect().bottomRight().x() );
+  /*int d4 = origen->rect().bottomLeft() - destino->rect().topRight();
   int d5 = origen->rect().bottomRight().y() - destino->rect().top().y();
   int d6 = origen->rect().bottomRight() - destino->rect().topLeft();
   int d7 = origen->rect().x() - destino->rect().topLeft().x();
   int d8 = origen->rect() - destino->rect().bottomRight();*/
 
   // Busco los menores
-
-
-
 
 }
 
