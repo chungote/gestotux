@@ -29,7 +29,7 @@
 
 -- General --
 -------------
-- Ver porque no se dibujan las flechas en la pantalla inicial.
+- Hacer calculos de ubicación de las flechas de la pantalla inicial.
 - Agregar a todos los modelos el metodo estatico siguienteNumero() para obtener el siguiente numero de comprobante.
 
 -- Cuentas corrientes --
@@ -40,8 +40,8 @@
 ---------------
 - Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos ).
 - Ver como integrar el sistema de codigo de barras en el programa.
-- Ver como hacer los tickets de precios.
-- Ver agregado de productos. ( verificar editor personalizado )
+- Ver como hacer los tickets de precios. Ofrecerlos luego de agregar un producto.
+- Verificar editor personalizado cuando se utlizan todas las combinaciones de propiedades.
 
 -- Servicios --
 ---------------

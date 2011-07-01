@@ -55,10 +55,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>99999-9999999; </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Forma de Pago</source>
         <translation type="unfinished"></translation>
     </message>
