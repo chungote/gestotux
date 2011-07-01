@@ -17,7 +17,8 @@ SOURCES += mcategorias.cpp \
            productos.cpp \
            dproductos.cpp \
            dcategoria.cpp \
-           formprefproductos.cpp
+           formprefproductos.cpp \
+    formagregarproducto.cpp
 HEADERS += mcategorias.h \
            mproductos.h \
            vcategorias.h \
@@ -25,7 +26,8 @@ HEADERS += mcategorias.h \
            productos.h \
            dproductos.h \
            dcategoria.h \
-           formprefproductos.h
+           formprefproductos.h \
+    formagregarproducto.h
 
 LIBS += ../../bin/libutiles.a
 
@@ -40,7 +42,8 @@ DISTFILES += productos.SQLITE.sql \
 TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc
 
-FORMS += FormPrefProductosBase.ui
+FORMS += FormPrefProductosBase.ui \
+    formproductobase.ui
 
 OTHER_FILES += productos.QMYSQL.sql \
                productos.QSQLITE.sql

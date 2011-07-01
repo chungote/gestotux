@@ -29,12 +29,9 @@
 #include "vcategorias.h"
 #include "preferencias.h"
 #include <QSqlRelationalDelegate>
-#include <QSqlQuery>
-#include <QSqlField>
 #include "dsino.h"
-#include <QInputDialog>
 #include <QMessageBox>
-#include <QSqlError>
+#include "formagregarproducto.h"
 
 VProductos::VProductos(QWidget *parent)
  : EVLista(parent)
@@ -125,9 +122,8 @@ void VProductos::verCategorias()
 /*!
     \fn VProductos::agregar( bool autoeliminarid )
  */
-void VProductos::agregar( bool autoeliminarid )
+void VProductos::agregar( bool /*autoeliminarid*/ )
 {
- (void)autoeliminarid;
  // Ver si existe alguna categoria primero
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
@@ -141,83 +137,6 @@ void VProductos::agregar( bool autoeliminarid )
          }
          delete m;
  }
- bool ok;
- QString nombre = QInputDialog::getText(this,tr("Nombre"), tr("Ingrese un nombre para el producto"), QLineEdit::Normal, QString(), &ok);
- if (!ok || nombre.isEmpty() )
- { return; }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Solicito la categoria del producto si esta habilitado
- if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
- {
-   //vista->hideColumn( rmodelo->fieldIndex( "id_categoria" ) );
- }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Solicito la descripcion si esta habilitado
- QString descripcion = ""; ok = false;
- if( preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
- {
-   descripcion = QInputDialog::getText( this, "Descripcion:", "Ingrese una descripcion", QLineEdit::Normal, "", &ok );
-   if( !ok ) { return; }
- }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Solicito la marca del producto si esta habilitado
- QString marca = ""; ok = false;
- if( preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
- {
-   marca = QInputDialog::getText( this, "Marca:", "Ingrese una marca", QLineEdit::Normal, marca, &ok );
-   if( !ok ) { return; }
- }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Solicito el stock del producto si esta habilitado
- ok = false; double stock = -100.0;
- if( preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() ) {
-    stock = QInputDialog::getDouble( this, "Stock:", "Ingrese el stock inicial", 0.0, 0.0, 2147483647, 3, &ok );
-    if( !ok ) { return; }
- }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Solicito el precio de costo del producto
- ok = false;double precio_costo = 0.0;
- precio_costo = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de costo", 0.0, 0.0, 2147483647, 3, &ok );
- if( !ok ) { return; }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Solicito el precio de venta del producto
- ok = false;double precio_venta = 0.0;
- double recargo = preferencias::getInstancia()->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble();
- precio_venta = precio_costo * ( 1 + ( recargo / 100 ) );
- precio_venta = QInputDialog::getDouble( this, "Precio:", "Ingrese el precio de venta que desea", precio_venta, precio_costo, 2147483647, 3, &ok );
- if( !ok ) { return; }
- ////////////////////////////////////////////////////////////////////////////////////////////////////
- // Agrego el producto
- QSqlRecord rec = rmodelo->record();
- rec.setValue( "nombre", nombre );
- if( descripcion == "" )
- { rec.setNull( "descripcion" ); }
- else
- { rec.setValue( "descripcion", descripcion ); }
- if( marca == "" )
- { rec.setNull( "marca" ); }
- else
- { rec.setValue( "marca", marca ); }
- if( stock == -100.0 ) {
-     rec.setNull( "stock" );
- } else {
-     rec.setValue( "stock", stock );
- }
- rec.setValue( "precio_costo", precio_costo );
- rec.setValue( "precio_venta", precio_venta );
- rec.setValue( "habilitado", true );
- rec.remove( rmodelo->fieldIndex( "id_categoria" ) );
- rec.remove( rmodelo->fieldIndex( "id" ) );
- /* for( int i = 0; i < rec.count(); i++ ) { qDebug( qPrintable( QString( "campo: %1 - %2" ).arg( i ).arg( rec.fieldName(i) ) ) ); } */
- if( rmodelo->insertRecord( -1, rec ) )
- {
-  QMessageBox::information( this, "Correcto", "El producto fue agregado correctamente" );
-  return;
- }
- else
- {
-  qWarning( "Error al intentar insertar el producto." );
-  qDebug( "visorProductos::Salida debug modelo relacional:" );
-  qDebug( rmodelo->lastError().text().toLocal8Bit() );
- }
+ // Muestro el formulario
+ emit agregarVentana( new FormAgregarProducto() );
 }

@@ -210,3 +210,42 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
   return false;
  }
 }
+
+bool MProductos::agregarProducto(const QString codigo, const QString nombre, const double costo, const double venta, int stock, int categoria, QString descripcion, QString marca, QString modelo) {
+    QSqlQuery cola;
+    cola.prepare( "INSERT INTO producto ( codigo, nombre, precio_costo, precio_venta, stock, categoria, descripcion, marca, modelo, habilitado ) VALUES( :codigo, :nombre, :precio_costo, :precio_venta, :stock, :categoria, :descripcion, :marca, :modelo, :habilitado )" );
+    cola.bindValue( ":codigo", codigo );
+    cola.bindValue( ":nombre", nombre );
+    if( descripcion == "" )
+    { cola.bindValue( ":descripcion", QVariant() ); }
+    else
+    { cola.bindValue( ":descripcion", descripcion ); }
+    if( marca == "" )
+    { cola.bindValue( ":marca", QVariant() ); }
+    else
+    { cola.bindValue( ":marca", marca ); }
+    if( modelo == "" )
+    { cola.bindValue( ":modelo", QVariant() ); }
+    else
+    { cola.bindValue( ":modelo", modelo); }
+    if( categoria == -1 )
+    { cola.bindValue( ":categoria", QVariant() ); }
+    else
+    { cola.bindValue( ":categoria", categoria ); }
+    if( stock ==  0 ) {
+        cola.bindValue( ":stock", QVariant() );
+    } else {
+        cola.bindValue( ":stock", stock );
+    }
+    cola.bindValue( ":precio_costo", costo );
+    cola.bindValue( ":precio_venta", venta );
+    cola.bindValue( ":habilitado", true );
+    if( cola.exec() ) {
+        qDebug( "Producto agregado correctamente" );
+     return true;
+    } else {
+      qWarning( "Error al intentar insertar el producto." );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      return false;
+    }
+}

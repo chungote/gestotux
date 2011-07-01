@@ -106,10 +106,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Actualizaciones</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Servidor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -131,6 +127,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Anonimo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Servidor de Actualizaciones</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -298,6 +298,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>CUIT/CUIL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>99-99999999-9; </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

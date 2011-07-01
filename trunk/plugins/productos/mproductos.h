@@ -34,6 +34,7 @@ public:
     QVariant data(const QModelIndex& item, int role) const;
     static double stock( const int id_producto );
     static bool modificarStock( const int id_producto, const double cantidad );
+    static bool agregarProducto( const QString codigo, const QString nombre, const double costo, const double venta, int stock = 0, int categoria = -1, QString descripcion = QString(), QString marca = QString(), QString modelo = QString() );
 };
 
 #endif
