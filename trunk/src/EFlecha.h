@@ -49,6 +49,7 @@ protected:
     void paintEvent( QPaintEvent *evento );
 
 private:
+    void calcularDistanciaMinima();
     QWidget *origen;
     QWidget *destino;
     float tamFlecha;
