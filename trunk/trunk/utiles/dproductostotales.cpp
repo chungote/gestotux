@@ -142,6 +142,7 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
                 if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
                 {
                     // Lo agrego en el modelo para que recarge despues
+                    if( combo->itemText( combo->currentIndex() ).isEmpty() ) { return; }
                     //qDebug( QString( "Agregando producto no existente: %1").arg( combo->currentText() ).toLocal8Bit() );
                     int valor_indice_nuevo = qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( combo->itemText( combo->currentIndex() ) );
                     model->setData( index, valor_indice_nuevo );

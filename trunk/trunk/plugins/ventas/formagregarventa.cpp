@@ -48,6 +48,10 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
         PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBAgregarProducto->setText( "Agregar Producto" );
+        PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        PBEliminar->setText( "Eliminar seleccion" );
+        PBEliminarTodo->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        PBEliminarTodo->setText( "Eliminar todo");
 
         connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
 
@@ -86,6 +90,9 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         this->addAction( new EActCerrar( this ) );
 
         connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
+
+        connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
+        connect( PBEliminarTodo, SIGNAL( clicked() ), this, SLOT( eliminarTodo() ) );
 
         DSBCant->setValue( 1.0 );
         DSBCant->setPrefix( "" );
@@ -173,6 +180,26 @@ void FormAgregarVenta::eliminarProducto()
  return;
 }
 
+/*!
+    \fn FormAgregarVenta::eliminarProducto()
+ */
+void FormAgregarVenta::eliminarTodo()
+{
+ //Preguntar al usuario si esta seguro
+ //Hacer dialogo de confirmacion..
+ int ret = QMessageBox::warning( this, "Esta seguro?",
+                   QString( "Esta seguro de eliminar todos los items?"),
+                   "Si", "No" );
+ if ( ret == 0 )
+ {
+  TVProductos->model()->removeRows( 0, TVProductos->model()->rowCount() );
+ }
+ return;
+}
+
+
+
+
 
 /*!
     \fn FormAgregarVenta::guardar()
@@ -229,7 +256,6 @@ void FormAgregarVenta::guardar()
      mcp->calcularTotales( true );
      return;
  }
-
  // Genero la venta
  MFactura *venta = new MFactura();
  int id_venta = venta->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago, mcp );

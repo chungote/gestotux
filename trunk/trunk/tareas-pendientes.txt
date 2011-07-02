@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 ------------
 - Verificar la generación de la entrada de caja cuando se paga al contado.
 - Diseñar sistema para que soporte automaticamente el sistema de cuotas.
+- Poder eliminar un elemento que se esta facturando.
 
 -- Gastos --
 ------------
