@@ -51,6 +51,7 @@ public:
     static ERegistroPlugins *getInstancia();
     void setPluginEmail( EInterfazEmail *obj );
     bool existePlugin( const QString &nombre );
+    bool pluginInfoSeteado();
 
 private:
 	static QHash<QString, EPlugin *> *_plugins;
