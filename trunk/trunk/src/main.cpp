@@ -327,7 +327,7 @@ int main(int argc, char *argv[])
                         QObject *obj = loader.instance();
                         EPlugin *plug = qobject_cast<EPlugin *>( obj );
                         // veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
-                        if( plug->tipo() == EPlugin::info )
+                        if( plug->tipo() == EPlugin::info && !ERegistroPlugins::getInstancia()->pluginInfoSeteado() )
                         {
                                 ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
                                 preferencias::getInstancia()->inicio();

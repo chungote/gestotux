@@ -107,6 +107,7 @@ EPlugin* ERegistroPlugins::plugin( const QString &nombre )
  */
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
+ qDebug( QString( "Seteando plugin de Info cliente: %1" ).arg( obj->nombrePrograma() ).toLocal8Bit() );
  _pluginInfo = obj;
 }
 
@@ -126,4 +127,11 @@ void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
 bool ERegistroPlugins::existePlugin( const QString &nombre )
 {
  return _plugins->contains( nombre );
+}
+
+/*!
+  \fn ERegistroPlugins::pluginInfoSeteado()
+ */
+bool ERegistroPlugins::pluginInfoSeteado() {
+    if( _pluginInfo == 0 ) { return false; } else { return true; }
 }
