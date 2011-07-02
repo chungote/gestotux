@@ -115,6 +115,9 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
         } else {
              qDebug( "El item no es un producto" );
         }
+   } else {
+       qDebug( "Error - No se pudo agregar un item." );
+       return -1;
    } // Fin if agregarItemFactura
   } // Fin del for items
   delete mi;
