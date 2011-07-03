@@ -96,9 +96,7 @@ void CuentaCorrientePlugin::crearToolBar(QToolBar* /*t*/)
 }
 
 void CuentaCorrientePlugin::seCierraGestotux()
-{
- qDebug( "Cerrado plugin CtaCte" );
-}
+{}
 
 Q_EXPORT_PLUGIN2( ctacte, CuentaCorrientePlugin );
 

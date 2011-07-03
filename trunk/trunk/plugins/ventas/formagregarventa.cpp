@@ -174,9 +174,10 @@ void FormAgregarVenta::eliminarProducto()
         foreach( indice, indices )
         {
                 if( indice.isValid() )
-                { TVProductos->model()->removeRow( indice.row() ); }
+                { mcp->removeRow( indice.row() ); } else { qDebug( " Indice no valido! - " ); }
         }
  }
+ TVProductos->update();
  return;
 }
 
@@ -192,13 +193,13 @@ void FormAgregarVenta::eliminarTodo()
                    "Si", "No" );
  if ( ret == 0 )
  {
-  TVProductos->model()->removeRows( 0, TVProductos->model()->rowCount() );
+     mcp->calcularTotales( false );
+     while( mcp->rowCount() > 0 ) { mcp->removeRow( 0 ); }
+     mcp->calcularTotales( true );
  }
+ TVProductos->update();
  return;
 }
-
-
-
 
 
 /*!

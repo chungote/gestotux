@@ -171,8 +171,4 @@ void productos::categorias()
     \fn productos::seCierraGestotux()
  */
 void productos::seCierraGestotux()
-{
- Q_CLEANUP_RESOURCE(productos);
- qDebug( "Productos::Cerrando" );
- return;
-}
+{ Q_CLEANUP_RESOURCE(productos); return; }

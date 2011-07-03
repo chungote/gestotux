@@ -115,7 +115,7 @@ void Gastos::agregarGasto()
         emit agregarVentana( new FormAgregarGasto() );
         return;
     } else {
-        QMessageBox::information( 0, "Faltan datos", "No existe ninguna categoría de gastos definida. \n Ingrese a la lista de gastos para agregar una nueva categoría" );
+        QMessageBox::information( 0, "Faltan datos", "No existe ninguna categorÃ­a de gastos definida. \n Ingrese a la lista de gastos para agregar una nueva categorÃ­a" );
         return;
     }
 }
@@ -134,8 +134,4 @@ void Gastos::ver_gastos()
     \fn Gastos::seCierraGestotux()
  */
 void Gastos::seCierraGestotux()
-{
- Q_CLEANUP_RESOURCE(gastos);
- qDebug( "Cerrado plugin gastos" );
- return;
-}
+{ Q_CLEANUP_RESOURCE(gastos); return; }
