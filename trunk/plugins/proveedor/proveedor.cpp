@@ -66,21 +66,11 @@ QWidgetList proveedor::formsPreferencias()
 void proveedor::crearMenu(QMenuBar* m)
 {
  QMenu *menuCompras = m->findChild<QMenu *>( "menuCompras" );
- if( menuCompras == 0 )
- {
-  qDebug( "Error en las baras de menu" );
- }
- else
- {
+ if( menuCompras != 0 ) {
   menuCompras->addAction( ActProveedores );
  }
  QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHerramientas == 0 )
- {
-  qDebug( "Error en las baras de menu" );
- }
- else
- {
+ if( menuHerramientas != 0 ) {
   menuHerramientas->addAction( ActProveedores );
  }
 }
@@ -108,9 +98,4 @@ Q_EXPORT_PLUGIN2( proveedor, proveedor )
     \fn proveedor::seCierraGestotux()
  */
 void proveedor::seCierraGestotux()
-{
- // Algo que desinicializar
-  Q_CLEANUP_RESOURCE(proveedor);
-  qDebug( "Cerrado plugin proveedor" );
-  return;
-}
+{ Q_CLEANUP_RESOURCE(proveedor); return; }

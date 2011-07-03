@@ -58,7 +58,6 @@ QWidgetList Ventas::formsPreferencias()
     QWidgetList lista;
     lista.append( new FormPrefVenta() );
     return lista;
-    /*return QWidgetList();*/
 }
 
 
@@ -150,6 +149,5 @@ void Ventas::agregarVenta()
 void Ventas::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(ventas);
- qDebug( "Cerrado plugin ventas" );
  return;
 }

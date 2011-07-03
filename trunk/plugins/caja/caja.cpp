@@ -157,11 +157,7 @@ void Caja::crearToolBar( QToolBar *t )
     \fn Caja::seCierraGestotux()
  */
 void Caja::seCierraGestotux()
-{
- Q_CLEANUP_RESOURCE(caja);
- qDebug( "Cerrado plugin Caja" );
- return;
-}
+{ Q_CLEANUP_RESOURCE(caja); return; }
 
 #include "vcajas.h"
 /*!

@@ -24,25 +24,11 @@
 bool BSComputacion::inicializar()
 {
  Q_INIT_RESOURCE(bscomputacion);
- /*ActPagos = new QAction( "Pagos", this );
- ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
- ActPagos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
- connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
-
- ActAgregarRecibo = new QAction( "Agregar Recibo", this );
- ActAgregarRecibo->setIcon( QIcon( ":/imagenes/recibo-nuevo.png" ) );
- ActAgregarRecibo->setStatusTip( "Ingresa un nuevo registro de recibo al sistema y lo imprime automaticamente" );
- connect( ActAgregarRecibo, SIGNAL( triggered() ), this, SLOT( agregarRecibo() ) );*/
-
  return true;
 }
 
 bool BSComputacion::verificarTablas( QStringList /*tablas*/ )
-{
- /*if( !tablas.contains( "recibos" ) )
- { qWarning( "Recibos::Error al buscar la tabla recibos" ); return false; }*/
- return true;
-}
+{ return true; }
 
 double BSComputacion::version() const
 { return 0.1; }
@@ -62,55 +48,33 @@ QWidgetList BSComputacion::formsPreferencias()
 { return QWidgetList(); }
 
 void BSComputacion::crearMenu( QMenuBar* /*m*/ )
-{
- /*QMenu *mVentas = m->findChild<QMenu *>( "menuVentas" );
- if( mVentas == 0 )
- {
-  mVentas = m->addMenu( "Ventas" );
-  mVentas->setObjectName( "menuVentas" );
- }
- mVentas->addAction( ActPagos );
- mVentas->addAction( ActAgregarRecibo );*/
-}
+{}
 
 void BSComputacion::crearToolBar(QToolBar* /*t*/)
 {}
 
 void BSComputacion::seCierraGestotux()
-{
-    Q_CLEANUP_RESOURCE(bscomputacion);
-}
+{ Q_CLEANUP_RESOURCE(bscomputacion); }
 
 QImage BSComputacion::imagenPrograma() const
-{
-    return QImage( ":/imagenes/logoBS.png" );
-}
+{ return QImage( ":/imagenes/logoBS.png" ); }
 
 QString BSComputacion::nombrePrograma() const { return "BSComputacion"; }
 
-QIcon BSComputacion::iconoPrograma() const {
-    return QIcon( ":/imagenes/iconoBS.png" );
-}
+QIcon BSComputacion::iconoPrograma() const
+{ return QIcon( ":/imagenes/iconoBS.png" ); }
 
 QString BSComputacion::directorioBackup() const
-{
-    return "bscomputacion";
-}
+{ return "bscomputacion"; }
 
 QString BSComputacion::directorioActualizaciones() const
-{
-    return "bscomputacion";
-}
+{ return "bscomputacion"; }
 
 QString BSComputacion::empresa() const
-{
-    return "BSComputacion";
-}
+{ return "BSComputacion"; }
 
 QString BSComputacion::companeros()
-{
-    return "";
-}
+{ return ""; }
 
 
 bool BSComputacion::publicidad()
@@ -118,7 +82,15 @@ bool BSComputacion::publicidad()
 
 QString BSComputacion::reporte( int tipo )
 {
-    return "";
+    switch( tipo ) {
+        case EReporte::Factura:
+        { return "Factura"; break; }
+        case EReporte::Recibo:
+        { return "Recibo"; break; }
+        case EReporte::Presupuesto:
+        { return "Presupuesto"; break; }
+        default: { return ""; break; }
+    }
 }
 
 

@@ -70,8 +70,9 @@ bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
  return true;
 }
 
-bool MProductosTotales::removeRow(int row, const QModelIndex& parent)
+bool MProductosTotales::removeRow(int row, const QModelIndex& parent )
 {
+  qDebug( QString( "Eliminando fila: %1" ).arg( row ).toLocal8Bit() );
   beginRemoveRows( parent, row, row );
   productos->remove( row );
   precio_unitario->remove( row );
@@ -79,7 +80,10 @@ bool MProductosTotales::removeRow(int row, const QModelIndex& parent)
   subtotales->remove( row );
   recalcularTotal();
   endRemoveRows();
-  emit dataChanged( this->index( this->rowCount(), 1 ), this->index( this->rowCount(), 3 ) );
+  while( row <= this->rowCount() ) {
+    emit dataChanged( this->index( row, 0 ), this->index( row, 4 ) );
+    row++;
+  }
   return true;
 }
 

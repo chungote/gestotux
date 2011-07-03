@@ -152,10 +152,7 @@ void gestotux::createMenus()
  menuHer->addAction( ActClientes );
 
  foreach( EPlugin *plug , ERegistroPlugins::plugins() )
- {
-  qDebug( QString("Creando menu de %1" ).arg( plug->nombre() ).toLocal8Bit() );
-  plug->crearMenu( menuBar() );
- }
+ { plug->crearMenu( menuBar() ); }
 
  menuVer = menuBar()->addMenu( "&Ver");
  if( !this->findChildren<QDockWidget*>().isEmpty() )
@@ -264,13 +261,8 @@ void gestotux::createToolBar()
 QToolBar* gestotux::barraAcciones()
 {
  if( _barraAcciones != 0 )
- {
-  return _barraAcciones;
- }
- else
- {
-  return 0;
- }
+ { return _barraAcciones; }
+ else { return 0; }
 }
 
 /*!
