@@ -26,9 +26,8 @@ EInfoProgramaInterface *ERegistroPlugins::_pluginInfo = 0;
 QHash<QString, EPlugin *> *ERegistroPlugins::_plugins = 0;
 EInterfazEmail *ERegistroPlugins::_pluginEmail = 0;
 
-ERegistroPlugins::ERegistroPlugins(QWidget *parent)
+ERegistroPlugins::ERegistroPlugins( QWidget */*parent*/ )
 {
- (void)parent; // Elimina el mensaje de warning
  _plugins = new QHash<QString, EPlugin *>();
 }
 
