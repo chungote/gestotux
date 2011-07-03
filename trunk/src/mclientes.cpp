@@ -64,7 +64,7 @@ CREATE TABLE clientes (
  setHeaderData( 14, Qt::Horizontal, "Fax" );
  setHeaderData( 15, Qt::Horizontal, "Em@il" );
  setHeaderData( 16, Qt::Horizontal, "EnviarComprobantexEmail" );
- setHeaderData( 17, Qt::Horizontal, "¿CtaCte?" );
+ setHeaderData( 17, Qt::Horizontal, QString::fromUtf8("¿CtaCte?" ) );
  setHeaderData( 18, Qt::Horizontal, "CUIT/CUIL" );
 }
 

@@ -72,7 +72,7 @@ bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
 
 bool MProductosTotales::removeRow(int row, const QModelIndex& parent )
 {
-  qDebug( QString( "Eliminando fila: %1" ).arg( row ).toLocal8Bit() );
+  //qDebug( QString( "Eliminando fila: %1" ).arg( row ).toLocal8Bit() );
   beginRemoveRows( parent, row, row );
   productos->remove( row );
   precio_unitario->remove( row );
