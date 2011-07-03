@@ -29,6 +29,7 @@
 #include "mpresupuesto.h"
 #include "MItemPresupuesto.h"
 #include "EReporte.h"
+#include "mclientes.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -54,7 +55,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
          // Agrego las acciones
         addAction( ActGuardar );
-         addAction( ActCancelar );
+        addAction( ActCancelar );
 
         // Seteo la lista de clientes
         CBCliente->setModel( new EMCliente( CBCliente ) );
@@ -167,6 +168,9 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      lista.append( Parameter( "cliente_existe", false ) );
  } else {
      lista.append( Parameter( "cliente_existe", true ) );
+ }
+ if( id_cliente > 0 ) {
+   lista.append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
  }
  EReporte *rep = new EReporte( this );
  rep->presupuesto();
