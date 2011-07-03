@@ -34,8 +34,6 @@ private:
     void inicializar();
     void relacionar();
 
-    int _orden;
-
 };
 
 #endif // MITEMPRESUPUESTO_H

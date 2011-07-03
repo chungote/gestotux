@@ -26,7 +26,6 @@ MItemPresupuesto::MItemPresupuesto(QObject *parent) :
     QSqlRelationalTableModel(parent) {
     inicializar();
     relacionar();
-    _orden = 1;
 }
 
 
@@ -54,7 +53,7 @@ void MItemPresupuesto::relacionar() {}
  */
 bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario ) {
  QSqlQuery cola;
- if( ! cola.prepare( "INSERT INTO item_presupuesto( id_item_presupuesto, id_presupuesto, cantidad, texto, precio_unitario ) VALUES ( :orden, :id_presupuesto, :cantidad, :texto, :precio_unitario );" ) ) {
+ if( ! cola.prepare( "INSERT INTO item_presupuesto( id_presupuesto, cantidad, texto, precio_unitario ) VALUES ( :id_presupuesto, :cantidad, :texto, :precio_unitario );" ) ) {
      qDebug( "Error al intentar preparar la cola de inserción" );
      qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
  }
@@ -63,9 +62,7 @@ bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const d
  cola.bindValue( ":cantidad", cantidad );
  cola.bindValue( ":texto", texto );
  cola.bindValue( ":precio_unitario", precio_unitario );
- cola.bindValue( ":orden", _orden );
  if( cola.exec() ) {
-     _orden++;
      return true;
  } else {
      qDebug( "Error al intentar insertad valor de item de presupuesto" );

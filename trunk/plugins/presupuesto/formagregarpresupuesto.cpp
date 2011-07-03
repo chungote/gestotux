@@ -23,6 +23,8 @@
 #include <QDate>
 #include <QSqlError>
 #include <QHeaderView>
+#include <QCompleter>
+#include <QSqlQuery>
 #include "mproductostotales.h"
 #include "dproductostotales.h"
 #include "NumeroComprobante.h"
@@ -34,9 +36,9 @@
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
 {
-        // Inicializo el presupeusto!
-        this->setAttribute( Qt::WA_DeleteOnClose );
+
         setupUi(this);
+        this->setAttribute( Qt::WA_DeleteOnClose );
         this->setObjectName( "FormAgregarPresupuesto" );
         this->setWindowTitle( "Agregar Presupuesto" );
         this->setWindowIcon( QIcon( ":/imagenes/presupuesto-nuevo.png" ) );
@@ -82,6 +84,16 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         TVContenido->setItemDelegateForColumn( 1, d );
         TVContenido->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
+        // Rellenar los items de productos
+        QSqlQueryModel *cola = new QSqlQueryModel( this );
+        cola->setQuery( "SELECT id, nombre FROM producto" );
+        CBProductos->setModel( cola );
+        CBProductos->setModelColumn( 1 );
+        CBProductos->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
+        CBProductos->setEditable( true );
+        CBProductos->completer()->setCompletionMode( QCompleter::PopupCompletion );
+        CBProductos->setCurrentIndex( -1 );
+
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
@@ -93,6 +105,9 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Busco el siguiente numero de comprobante valido para un presupuesto
         LNumeroComprobante->setText( LNumeroComprobante->text() + "   <b>" + MPresupuesto::proximoComprobante().aCadena() + "</b>" );
+
+        DSBCant->setValue( 1.0 );
+        DSBCant->setPrefix( "" );
 }
 
 /*!
@@ -175,7 +190,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  EReporte *rep = new EReporte( this );
  rep->presupuesto();
  if( rep->hacer( lista, false ) ) {
-     QMessageBox::warning( this, "reporte", "reporte echo normalmente" );
+     QMessageBox::warning( this, "reporte", "Presupuesto impreso correctamente" );
  } else {
      QMessageBox::warning( this, "Error", "No se pudo hacer el reporte" );
  }
@@ -196,10 +211,23 @@ void FormAgregarPresupuesto::guardar()
  */
 void FormAgregarPresupuesto::agregarProducto()
 {
+    // Verificación previa
+    if( DSBCant->value() == 0 )
+    { QMessageBox::information( this, "Error de dato", "La cantidad a agregar debe ser mayor que cero" ); return; }
+    // Inserto la fila
     m->insertRow( -1 );
-    QModelIndex item = m->index( m->rowCount() - 2 , 0 );
-    TVContenido->setCurrentIndex( item );
-    TVContenido->edit( item );
+    // Pongo el producto
+    QModelIndex indice_cant = m->index( m->rowCount()-2, 0 );
+    QModelIndex indice_prod = m->index( m->rowCount()-2, 1 );
+    int id_producto = CBProductos->model()->data( CBProductos->model()->index( CBProductos->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+    m->setData( indice_prod, id_producto, Qt::EditRole );
+    // Pongo la cantidad
+    m->setData( indice_cant, DSBCant->value(), Qt::EditRole );
+    // Reseteo los ingresos de producto
+    DSBCant->setValue( 1.0 );
+    CBProductos->setCurrentIndex( -1 );
+    // Seteo el foco
+    DSBCant->setFocus();
 }
 
 /*!
@@ -208,7 +236,13 @@ void FormAgregarPresupuesto::agregarProducto()
 void FormAgregarPresupuesto::eliminarProducto()
 {
  QModelIndexList lista = TVContenido->selectionModel()->selectedRows();
- int ret = QMessageBox::question( this, "¿Seguro?",QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ) );
+ if( lista.size() < 1 ) {
+     QMessageBox::warning( this, "Seleccione un item",
+                     "Por favor, seleccione un item para eliminar",
+                     QMessageBox::Ok );
+     return;
+ }
+ int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ),QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ) );
  if( ret == QMessageBox::Accepted ) {
      foreach( QModelIndex item, lista )
      {
@@ -224,7 +258,7 @@ void FormAgregarPresupuesto::eliminarProducto()
  */
 void FormAgregarPresupuesto::borrarTodoProducto()
 {
- int ret = QMessageBox::question( this, "¿Seguro?", "Esta seguro que desea eliminar todos los elementos del prespuesto?" );
+ int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), "Esta seguro que desea eliminar todos los elementos del prespuesto?" );
  if( ret == QMessageBox::Accepted ) {
          TVContenido->model()->removeRows( 0, TVContenido->model()->rowCount() );
  }
