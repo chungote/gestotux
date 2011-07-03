@@ -13,9 +13,10 @@
 
 -- Caja --
 ----------
-- Agregar comprobación de que no se intente cerrar la caja despues de un cierre.
-- Verificar que al eliminar una caja no sea la predeterminada.
-- Verificar eliminación de caja. Utilizar eliminación lógica.
+- Eliminacion de cajas.
+  - Verificar que no sea la caja predeterminada.
+  - ¿Que hacemos con los movimientos de esa caja?
+  - ¿Utilizar eliminación lógica?
 
 -- Cuotas --
 ------------
@@ -39,7 +40,6 @@
 -- Productos --
 ---------------
 - Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos ).
-- Ver como integrar el sistema de codigo de barras en el programa.
 - Ver como hacer los tickets de precios. Ofrecerlos luego de agregar un producto.
 - Verificar editor personalizado cuando se utlizan todas las combinaciones de propiedades.
 
@@ -82,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 
 -- Presupuestos --
 ------------------
-- Verificar generación correcta del presupuesto con el OpenReport.
 - Generar integración para pasar un presupuesto a factura automaticamente.
 
 -- Email --

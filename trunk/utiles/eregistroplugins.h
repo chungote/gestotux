@@ -39,7 +39,6 @@ class ERegistroPlugins : public QObject
 {
 Q_OBJECT
 public:
-    ERegistroPlugins(QWidget *parent = 0);
     static EInfoProgramaInterface *pluginInfo();
     static QList<EPlugin *> plugins();
     static EInterfazEmail *pluginEmail();
@@ -54,10 +53,12 @@ public:
     bool pluginInfoSeteado();
 
 private:
+        ERegistroPlugins(QWidget *parent = 0);
 	static QHash<QString, EPlugin *> *_plugins;
 	static EInfoProgramaInterface *_pluginInfo;
 	static EInterfazEmail *_pluginEmail;
 	static ERegistroPlugins *instance;
+
 };
 
 #endif

@@ -115,7 +115,11 @@ bool EReporte::especial( const QString nombre, ParameterList parametros ) {
 void EReporte::presupuesto() {
     _tipo = EReporte::Presupuesto;
     // Busco el tipo de presupuesto que se desea
+#ifdef Q_OS_LINUX
     _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+#else
+    _nombre = "Presupuesto";
+#endif
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -127,7 +131,11 @@ void EReporte::presupuesto() {
 void EReporte::factura() {
     _tipo = EReporte::Factura;
     // Busco el tipo de presupuesto que se desea
+#ifdef Q_OS_LINUX
     _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+#else
+    _nombre = "Factura";
+#endif
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -139,7 +147,11 @@ void EReporte::factura() {
 void EReporte::recibo() {
     _tipo = EReporte::Recibo;
     // Busco el tipo de presupuesto que se desea
+#ifdef Q_OS_LINUX
     _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+#else
+    _nombre = "Recibo";
+#endif
     // Cargo el reporte
     cargar( _nombre );
 }
