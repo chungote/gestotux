@@ -70,8 +70,7 @@ CREATE TABLE clientes (
 
 
 MClientes::~MClientes()
-{
-}
+{}
 
 #include <QSqlQuery>
 #include <QSqlRecord>

@@ -282,6 +282,7 @@ int main(int argc, char *argv[])
        {
                 // Es la primera vez que se arranca el programa
                 qDebug( "No existen tablas en la base de datos." );
+                hacerTablas( "tablas" );
                 // Cada plugin debe inicializar sus propias tablas
        }
        else
