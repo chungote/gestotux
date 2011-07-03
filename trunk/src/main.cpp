@@ -175,14 +175,14 @@ int main(int argc, char *argv[])
       QTranslator tran;
       QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
       directorio->cd( "traducciones" );
-      /*if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
+      if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
       {
         app.installTranslator(&tran);
       }
       else
       {
         qDebug( "Fallo al cargar la traduccion" );
-      }*/
+      }
       if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
       { QCoreApplication::instance()->installTranslator(&tran); }
       else
@@ -326,19 +326,6 @@ int main(int argc, char *argv[])
                  {
                         QObject *obj = loader.instance();
                         EPlugin *plug = qobject_cast<EPlugin *>( obj );
-                        // veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
-                        if( plug->tipo() == EPlugin::info && !ERegistroPlugins::getInstancia()->pluginInfoSeteado() )
-                        {
-                                ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
-                                preferencias::getInstancia()->inicio();
-                                preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
-                        }
-                        else if ( plug->tipo() == EPlugin::email )
-                        {
-                                ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
-                                preferencias::getInstancia()->inicio();
-                                preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
-                        }
                         if( plug->inicializar() )
                         {
                                 QObject::connect( obj, SIGNAL( agregarVentana( QWidget * ) ), mw->formCen(), SLOT( agregarForm( QWidget * ) ) );
@@ -369,6 +356,19 @@ int main(int argc, char *argv[])
                                 {  qDebug( qPrintable( "Error al cargar la traduccion de " + plug->nombre()  ) ); }
                                 else {  QCoreApplication::instance()->installTranslator( &tran ); }*/
                                 qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
+                                // veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
+                                if( plug->tipo() == EPlugin::info && !ERegistroPlugins::getInstancia()->pluginInfoSeteado() )
+                                {
+                                        ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
+                                        preferencias::getInstancia()->inicio();
+                                        preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
+                                }
+                                else if ( plug->tipo() == EPlugin::email )
+                                {
+                                        ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
+                                        preferencias::getInstancia()->inicio();
+                                        preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
+                                }
                         }
                         else
                         {
