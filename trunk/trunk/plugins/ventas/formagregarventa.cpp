@@ -201,7 +201,7 @@ void FormAgregarVenta::eliminarTodo()
  return;
 }
 
-
+#include "mclientes.h"
 /*!
     \fn FormAgregarVenta::guardar()
  */
@@ -274,7 +274,12 @@ void FormAgregarVenta::guardar()
     case QMessageBox::Yes:
     {
      ParameterList lista;
-     if( id_cliente == 0 ) { lista.append(  Parameter( "cliente_existe", true ) ); } else { lista.append(  Parameter( "cliente_existe", false ) ); }
+     if( id_cliente != 0 ) {
+         lista.append( Parameter( "cliente_existe", true ) );
+         lista.append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
+     } else {
+         lista.append(  Parameter( "cliente_existe", false ) );
+     }
      lista.append( "id_factura", id_venta );
 
      EReporte *rep = new EReporte( this );
