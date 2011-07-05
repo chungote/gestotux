@@ -154,6 +154,8 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 - Recargos
 - Listado de gastos
 - CajaTransferir.png
+- PagarFactura.png
+- AnularFactura.png
 
 :::::::::::::::::::::::::::
 ::: Problemas Generales :::

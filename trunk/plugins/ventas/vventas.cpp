@@ -24,6 +24,7 @@
 #include <QIcon>
 #include <QTableView>
 #include "MVFacturas.h"
+#include <QMessageBox>
 
 
 VVentas::VVentas(QWidget *parent)
@@ -42,15 +43,19 @@ VVentas::VVentas(QWidget *parent)
 
     QAction *ActPagar = new QAction( this );
     ActPagar->setText( "Pagar" );
+    ActPagar->setIcon( QIcon( ":/imagenes/pagarfactura.png" ) );
     ActPagar->setStatusTip( "Genera un recibo por las facturas seleccionadas." );
     connect( ActPagar, SIGNAL( triggered() ), this, SLOT( pagar() ) );
 
     QAction *ActAnular = new QAction( this );
     ActAnular->setText( "Anular" );
+    ActAnular->setIcon( QIcon( ":/imagenes/anularfactura.png" ) );
     ActAnular->setStatusTip( "Anula las facturas seleccionadas" );
     connect( ActAnular, SIGNAL( triggered() ), this, SLOT( anular() ) );
 
-    //this->addAction( ActAgregar );
+    ActAgregar->setIcon( QIcon( ":/imagenes/facturanueva.png" ) );
+
+    this->addAction( ActAgregar );
     this->addAction( ActPagar );
     this->addAction( ActAnular );
     this->addAction( new EActCerrar( this ) );
@@ -74,7 +79,27 @@ void VVentas::modificar()
 { return; }
 
 void VVentas::anular()
-{ return; }
+{
+    // Busco todos los IDs a anular
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    if( lista.size() < 1 ) {
+        QMessageBox::warning( this, "Seleccione un item",
+                        "Por favor, seleccione al menos un item para anular",
+                        QMessageBox::Ok );
+        return;
+    }
+    return;
+}
 
 void VVentas::pagar()
-{ return; }
+{
+    // Busco todos los IDs a pagar
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    if( lista.size() < 1 ) {
+        QMessageBox::warning( this, "Seleccione un item",
+                        "Por favor, seleccione al menos un item para pagar.",
+                        QMessageBox::Ok );
+        return;
+    }
+    return;
+}

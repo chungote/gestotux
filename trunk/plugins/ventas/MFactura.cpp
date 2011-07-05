@@ -75,19 +75,19 @@ CREATE TABLE IF NOT EXISTS `factura` (
 int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
 {
  QSqlQuery cola;
- cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
+ cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero, total ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero, :total )" );
  cola.bindValue(":fecha", fecha );
- cola.bindValue( "id_cliente", id_cliente );
- cola.bindValue( "id_forma_pago", id_forma_pago );
+ cola.bindValue( ":id_cliente", id_cliente );
+ cola.bindValue( ":id_forma_pago", id_forma_pago );
  NumeroComprobante num = this->proximoComprobante();
- cola.bindValue( "serie", num.serie() );
- cola.bindValue( "numero", num.numero() );
- cola.bindValue( "total", mcp->total() );
- //regVenta.setValue( "num_comprobante", num_comprobante );
+ cola.bindValue( ":serie", num.serie() );
+ cola.bindValue( ":numero", num.numero() );
+ cola.bindValue( ":total", mcp->total() );
  if( !cola.exec() )
  {
   qDebug( "Error de insercion de registro de venta" );
   qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+  qDebug( cola.lastQuery().toLocal8Bit() );
   return -1;
  }
  else
@@ -196,13 +196,12 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
     QSqlQuery cola;
     cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero, total ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero, :total )" );
     cola.bindValue(":fecha", fecha );
-    cola.bindValue( "id_cliente", id_cliente );
-    cola.bindValue( "id_forma_pago", id_forma_pago );
+    cola.bindValue( ":id_cliente", id_cliente );
+    cola.bindValue( ":id_forma_pago", id_forma_pago );
     NumeroComprobante num = this->proximoComprobante();
-    cola.bindValue( "serie", num.serie() );
-    cola.bindValue( "numero", num.numero() );
-    cola.bindValue( "total", total );
-    qDebug( "Enviando consulta" );
+    cola.bindValue( ":serie", num.serie() );
+    cola.bindValue( ":numero", num.numero() );
+    cola.bindValue( ":total", total );
     if( !cola.exec() )
     {
      qDebug( "Error de insercion de registro de venta" );
