@@ -19,30 +19,62 @@
  ***************************************************************************/
 #include "vventas.h"
 
+#include "eactcerrar.h"
+#include "MFactura.h"
+#include <QIcon>
+#include <QTableView>
+#include "MVFacturas.h"
+
+
 VVentas::VVentas(QWidget *parent)
  : EVLista(parent)
-{}
+{
+    this->setObjectName( "ListaFacturas" );
+    this->setWindowTitle( "Lista de Facturas" );
+    this->setWindowIcon( QIcon( ":/imagenes/factura.png" ) );
+
+    this->modelo = new MVFacturas( this->vista );
+    this->vista->setModel( this->modelo );
+
+    this->vista->hideColumn( 0 );
+    this->vista->setAlternatingRowColors( true );
+    this->modelo->select();
+
+    QAction *ActPagar = new QAction( this );
+    ActPagar->setText( "Pagar" );
+    ActPagar->setStatusTip( "Genera un recibo por las facturas seleccionadas." );
+    connect( ActPagar, SIGNAL( triggered() ), this, SLOT( pagar() ) );
+
+    QAction *ActAnular = new QAction( this );
+    ActAnular->setText( "Anular" );
+    ActAnular->setStatusTip( "Anula las facturas seleccionadas" );
+    connect( ActAnular, SIGNAL( triggered() ), this, SLOT( anular() ) );
+
+    //this->addAction( ActAgregar );
+    this->addAction( ActPagar );
+    this->addAction( ActAnular );
+    this->addAction( new EActCerrar( this ) );
+}
 
 
-VVentas::~VVentas()
-{}
-
-
+#include "formagregarventa.h"
 void VVentas::agregar()
-{}
-
-void VVentas::antes_de_insertar(int /*row*/, QSqlRecord& /*record*/)
-{}
+{ emit agregarVentana( new FormAgregarVenta() ); }
 
 void VVentas::buscar()
 {}
 
 void VVentas::eliminar()
-{}
+{ return; }
 
 void VVentas::imprimir()
-{}
+{ return; }
 
 void VVentas::modificar()
-{}
+{ return; }
 
+void VVentas::anular()
+{ return; }
+
+void VVentas::pagar()
+{ return; }

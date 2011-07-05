@@ -49,9 +49,11 @@ private:
     QList<QAction *> _acciones;
     QAction *ActAgregarVentas;
     QAction *ActVentas;
+    QAction *ActVerFacturas;
 
 private slots:
     void agregarVenta();
+    void verFacturas();
 
 signals:
     void agregarVentana( QWidget * );

@@ -21,7 +21,7 @@
 
 #include <QSqlDatabase>
 
-Q_EXPORT_PLUGIN2( ventas, Ventas );
+Q_EXPORT_PLUGIN2( ventas, Ventas )
 
 /*!
     \fn Ventas::accionesBarra()
@@ -73,6 +73,10 @@ bool Ventas::inicializar()
  ActAgregarVentas->setIcon( QIcon( ":/imagenes/factura-nueva.png" ) );
  connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
 
+ ActVerFacturas = new QAction( "Ver Facturas", this );
+ ActVerFacturas->setStatusTip( "Permite ver las facturas emitidas y anularlas." );
+ connect( ActVerFacturas, SIGNAL( triggered() ), this, SLOT( verFacturas() ) );
+
  return true;
 }
 
@@ -116,6 +120,7 @@ void Ventas::crearMenu( QMenuBar *m )
  }
  QList<QAction*> lista;
  lista.append( ActAgregarVentas );
+ lista.append( ActVerFacturas );
  QAction *sep = new QAction( mVentas );
  sep->setSeparator( true );
  mVentas->insertActions( mVentas->actions().first(), lista );
@@ -141,7 +146,13 @@ void Ventas::crearToolBar( QToolBar */*t*/ )
 void Ventas::agregarVenta()
 { emit agregarVentana( new FormAgregarVenta() ); }
 
-
+#include "vventas.h"
+/*!
+ * \fn Ventas::verFacturas()
+ * Muestra el listado de facturas y permite cancelar o anular las que sean necesarias
+ */
+void Ventas::verFacturas()
+{ emit agregarVentana( new VVentas() ); }
 
 /*!
     \fn Ventas::seCierraGestotux()
