@@ -60,10 +60,31 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
     if( !parametros.isEmpty() ) {
         _parametros = parametros;
     }
+#ifdef Q_OS_LINUX
     ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
+#endif
+
+
+    // Seteo si esta con el original o el duplicado o triplicado, etc...
+    /*ParameterList _original = _parametros;
+    _original.append( Parameter( "copia", "Original" ) );
+    // Imprimo el reporte
+    _rep->setParamList( _original );
+
+
+    /// @todo Ver si poner impresora para cada tipo
+    if( !( _rep->print( 0, true, previsualizar ) ) ) {
+        qDebug( "Error al intentar imprimir el reporte o se cancelo" );
+        _rep->reportError( 0 );
+        return false;
+    }
+
+    ParameterList _duplicado = _parametros;
+    _duplicado.append( Parameter( "copia", "Duplicado" ) );
+    _rep->setParamList( _duplicado );*/
 
     _rep->setParamList( _parametros );
-    // Imprimo el reporte
+
     /// @todo Ver si poner impresora para cada tipo
     if( !( _rep->print( 0, true, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );

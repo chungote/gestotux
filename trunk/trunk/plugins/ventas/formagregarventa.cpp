@@ -259,7 +259,7 @@ void FormAgregarVenta::guardar()
  }
  // Genero la venta
  MFactura *venta = new MFactura();
- int id_venta = venta->agregarVenta( DEFecha->date(), id_cliente, id_forma_pago, mcp );
+ int id_venta = venta->agregarVenta( DEFecha->dateTime(), id_cliente, id_forma_pago, mcp );
  if( id_venta == -1 ) {
     QMessageBox::information( this, "Error", "No se pudo agregar la venta" );
     QSqlDatabase::database().rollback();

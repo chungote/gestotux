@@ -196,5 +196,5 @@ void VServicios::generarFacturacion()
  FormFacturarServicio *f  = new FormFacturarServicio();
  f->setearServicio( id_servicio );
  emit agregarVentana( f );
- /// @todo Generar algoritmia para la facturación de el servicio
+ /// @todo Generar algoritmia para la facturaciÃ³n de el servicio
 }

@@ -69,10 +69,10 @@ CREATE TABLE IF NOT EXISTS `factura` (
 */
 
 /*!
-    \fn MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, QString num_comprobante, MProductosTotales *mcp )
+    \fn MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, QString num_comprobante, MProductosTotales *mcp )
     Agrega el registro para una factura y devuelve el id o -1 si hubo un error.
  */
-int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
+int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
 {
  QSqlQuery cola;
  cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero )" );
@@ -82,6 +82,7 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
  NumeroComprobante num = this->proximoComprobante();
  cola.bindValue( "serie", num.serie() );
  cola.bindValue( "numero", num.numero() );
+ cola.bindValue( "total", mcp->total() );
  //regVenta.setValue( "num_comprobante", num_comprobante );
  if( !cola.exec() )
  {
@@ -162,7 +163,7 @@ int MFactura::agregarVenta( QDate fecha, int id_cliente, MFactura::FormaPago id_
                                                   num_comprobante,
                                                   id_venta,
                                                   MItemCuentaCorriente::Factura,
-                                                  fecha,
+                                                  fecha.date(),
                                                   "Venta a Cuenta Corriente",
                                                   total_calculado ) == -1 )
    { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }

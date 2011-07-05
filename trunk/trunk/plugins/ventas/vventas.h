@@ -28,18 +28,18 @@
 class VVentas : public EVLista
 {
 Q_OBJECT
-public:
-    VVentas(QWidget *parent = 0);
 
-    ~VVentas();
+public:
+    VVentas( QWidget *parent = 0 );
 
 protected slots:
     virtual void agregar();
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
     virtual void buscar();
     virtual void eliminar();
     virtual void imprimir();
     virtual void modificar();
+    void anular();
+    void pagar();
 
 };
 
