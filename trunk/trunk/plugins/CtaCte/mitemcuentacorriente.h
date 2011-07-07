@@ -38,7 +38,8 @@ public:
 	  NotaCredito = 2,
           NotaDebito = 3,
           CobroServicio = 4,
-          RecargoCobroServicio = 5
+          RecargoCobroServicio = 5,
+          AnulacionFactura = 6
 	 };
 
     MItemCuentaCorriente( QObject *parent = 0, bool saldos = false );

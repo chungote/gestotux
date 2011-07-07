@@ -24,6 +24,7 @@
 #include <QSqlRelationalTableModel>
 class NumeroComprobante;
 class MProductosTotales;
+#include <QDateTime>
 
 class MFactura : public QSqlRelationalTableModel
 {
@@ -41,6 +42,7 @@ public:
     static NumeroComprobante &proximoComprobante();
     NumeroComprobante &obtenerComprobante();
     static NumeroComprobante &obtenerComprobante( const int id_factura );
+    static bool anularFactura( const int id_factura, QString razon = QString(), QDateTime fechahora = QDateTime::currentDateTime() );
 
 private:
     void inicializar();

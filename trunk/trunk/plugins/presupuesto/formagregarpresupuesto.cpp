@@ -82,6 +82,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         d->setearListaProductos( m->listaProductos() );
         connect( m, SIGNAL( cambioListaProductos( MProductosTotales* ) ), d, SLOT( neceistoActualizarListaSlots( MProductosTotales* ) ) );
         TVContenido->setItemDelegateForColumn( 1, d );
+        TVContenido->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVContenido->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
         // Rellenar los items de productos
@@ -96,6 +97,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+        PBAgregar->setText( "Agregar" );
         PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
         PBEliminarTodo->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
 
@@ -239,11 +241,11 @@ void FormAgregarPresupuesto::eliminarProducto()
  if( lista.size() < 1 ) {
      QMessageBox::warning( this, "Seleccione un item",
                      "Por favor, seleccione un item para eliminar",
-                     QMessageBox::Ok );
+                     QMessageBox::Ok, QMessageBox::Cancel );
      return;
  }
- int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ),QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ) );
- if( ret == QMessageBox::Accepted ) {
+ int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), QString( "Esta seguro que desea eliminar %1 elemento(s)?" ).arg( lista.size() ), QMessageBox::Ok, QMessageBox::Cancel );
+ if( ret == QMessageBox::Ok ) {
      foreach( QModelIndex item, lista )
      {
         if( item.isValid() ) {
@@ -258,8 +260,8 @@ void FormAgregarPresupuesto::eliminarProducto()
  */
 void FormAgregarPresupuesto::borrarTodoProducto()
 {
- int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), "Esta seguro que desea eliminar todos los elementos del prespuesto?" );
- if( ret == QMessageBox::Accepted ) {
+ int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), "Esta seguro que desea eliminar todos los elementos del prespuesto?", QMessageBox::Ok, QMessageBox::Cancel );
+ if( ret == QMessageBox::Ok ) {
          TVContenido->model()->removeRows( 0, TVContenido->model()->rowCount() );
  }
 }
