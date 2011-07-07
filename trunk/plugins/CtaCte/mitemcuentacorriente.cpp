@@ -141,6 +141,12 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                                         { return "NC"; break; }
                                         case NotaDebito:
                                         { return "ND"; break; }
+                                        case CobroServicio:
+                                        { return "CS"; break; }
+                                        case RecargoCobroServicio:
+                                        { return "RCS"; break; }
+                                        case AnulacionFactura:
+                                        { return "FA"; break; }
                                         default:
                                         { return "";  break; }
                                 }

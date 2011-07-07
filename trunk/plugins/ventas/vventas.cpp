@@ -25,6 +25,7 @@
 #include <QTableView>
 #include "MVFacturas.h"
 #include <QMessageBox>
+#include <QInputDialog>
 
 
 VVentas::VVentas(QWidget *parent)
@@ -88,6 +89,19 @@ void VVentas::anular()
                         QMessageBox::Ok );
         return;
     }
+    foreach( QModelIndex indice, lista ) {
+        bool ok = false;
+        QString numero = this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString();
+        QString razon = "";/*QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), ok );*/
+        if( ok && !razon.isEmpty() ) {
+            if( MFactura::anularFactura( this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt(), razon, QDateTime::currentDateTime() ) ) {
+                QMessageBox::information( this, "Correcto", QString( "La Factura %1 ha sido anulada correctamente" ).arg( numero ) );
+            } else {
+                QMessageBox::warning( this, "Error", "Hubo un error la intentar anular la factura. No se anulo" );
+            }
+        }
+
+    }
     return;
 }
 
@@ -101,5 +115,20 @@ void VVentas::pagar()
                         QMessageBox::Ok );
         return;
     }
+    // Busco los datos de las facturas
+    double total = 0;
+    QString texto_recibo = "Pago de las factura";
+    if( lista.size() > 1 ) { texto_recibo.append( "s" ); }
+    foreach( QModelIndex indice, lista ) {
+        total += this->modelo->data( this->modelo->index( indice.row(), 5 ) ).toDouble();
+        texto_recibo.append( "#" );
+        texto_recibo.append( this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString() );
+        texto_recibo.append( '\n' );
+    }
+    // Abro la ventana del recibo
+    /*FormAgregarRecibo *f = new FormAgregarRecibo();
+    f->TETexto->setText( texto_recibo );
+    f->dSBPagado->setValue( total );
+    emit agregarVentana( f );*/
     return;
 }
