@@ -162,3 +162,13 @@ void Ventas::seCierraGestotux()
  Q_CLEANUP_RESOURCE(ventas);
  return;
 }
+
+/*!
+ * \fn Ventas::facturarPresupuesto( const int id_presupuesto )
+ */
+void Ventas::facturarPresupuesto( const int id_presupuesto )
+{
+    FormAgregarVenta *f = new FormAgregarVenta();
+    //f->desdePresupuesto( id_presupuesto );
+    emit agregarVentana( f );
+}

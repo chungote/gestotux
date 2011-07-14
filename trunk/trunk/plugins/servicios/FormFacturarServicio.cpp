@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include <QDate>
 #include "FormFacturarServicio.h"
 #include "eactcerrar.h"
 #include "mservicios.h"
@@ -95,14 +96,14 @@ void FormFacturarServicio::cargar_datos_servicio()
     MPeriodoServicio *mp = new MPeriodoServicio();
     this->_periodo = mp->getPeriodoActual( this->_id_servicio );
     this->_ano = mp->getAnoActual( this->_id_servicio );
-    QDate fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio );
-    if( fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( fecha_inicio.toString() ).toLocal8Bit() ); }
+    this->_fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio );
+    if( _fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( _fecha_inicio.toString() ).toLocal8Bit() ); }
     this->LPeriodo->setText(
         QString( " %1/%2 desde %3 hasta %4 " )
                 .arg( this->_periodo )
                 .arg( this->_ano )
-                .arg( fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
-                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) )
+                .arg( _fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
+                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, _fecha_inicio ).toString( Qt::SystemLocaleShortDate) )
     );
     // Cargo los clientes del servicio
     MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
@@ -146,6 +147,11 @@ void FormFacturarServicio::cargar_datos_servicio()
  */
 void FormFacturarServicio::facturar()
 {
+    // Verifico que haya algun cliente
+    if( TVClientes->model()->rowCount() <= 0 ) {
+        QMessageBox::information( this, "Sin clientes", "No existen clientes para este servicio. No se factuará nada.", QMessageBox::Ok );
+        return;
+    }
     // Deshabilito los elementos editables
     this->GBClientes->setEnabled( false );
     this->GBRecargos->setEnabled( false );
@@ -224,7 +230,7 @@ void FormFacturarServicio::facturar()
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
-#elseif
+#else
         id_factura = mr->agregarFactura( id_cliente,
                                          QDateTime::currentDateTime(),
                                          MFactura::CuentaCorriente,
@@ -335,6 +341,8 @@ void FormFacturarServicio::facturar()
         // Imprimir recibo
         // Genero los parametros
         ParameterList lista;
+        lista.append( "fecha_inicio", this->_fecha_inicio );
+        lista.append( "precio_base", this->_precio_base );
 #ifdef GESTOTUX_HICOMP
         lista.append( "id_recibo", comprobantes.take( i ) );
         LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );

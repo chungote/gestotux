@@ -132,6 +132,7 @@ void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
  ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
  connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( verRecargos() ) );
 
+ ActAgregar->setText( "Agregar Servicio");
  menu->addAction( ActAgregar );
  menu->addAction( ActNuevoCliente );
  menu->addAction( ActVerClientes );

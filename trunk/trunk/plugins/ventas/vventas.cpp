@@ -26,6 +26,7 @@
 #include "MVFacturas.h"
 #include <QMessageBox>
 #include <QInputDialog>
+#include "EReporte.h"
 
 
 VVentas::VVentas(QWidget *parent)
@@ -92,10 +93,20 @@ void VVentas::anular()
     foreach( QModelIndex indice, lista ) {
         bool ok = false;
         QString numero = this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString();
-        QString razon = "";/*QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), ok );*/
+        QString razon = QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), &ok );
         if( ok && !razon.isEmpty() ) {
             if( MFactura::anularFactura( this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt(), razon, QDateTime::currentDateTime() ) ) {
-                QMessageBox::information( this, "Correcto", QString( "La Factura %1 ha sido anulada correctamente" ).arg( numero ) );
+                int ret = QMessageBox::question( this, "Correcto", QString( "La Factura %1 ha sido anulada correctamente. <br /> ¿Desea imprimir la anulaciòn?" ).arg( numero ), QMessageBox::Ok, QMessageBox::Cancel );
+                if( ret == QMessageBox::Ok ) {
+                    EReporte *rep= new EReporte( this );
+                    rep->anulacionFactura();
+                    ParameterList lista;
+                    lista.append( Parameter( "razon", razon ) );
+                    lista.append( Parameter( "fechahora", QDateTime::currentDateTime() ) );
+                    if( !rep->hacer( lista ) ) {
+                        qWarning( "Error al hacer la anulación. Ingresela a mano." );
+                    }
+                }
             } else {
                 QMessageBox::warning( this, "Error", "Hubo un error la intentar anular la factura. No se anulo" );
             }
@@ -107,6 +118,7 @@ void VVentas::anular()
 
 void VVentas::pagar()
 {
+    return;
     // Busco todos los IDs a pagar
     QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {

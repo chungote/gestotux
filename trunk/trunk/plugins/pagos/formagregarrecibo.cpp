@@ -134,10 +134,6 @@ void FormAgregarRecibo::guardar()
         this->setearModelo( 0 );
     }
     // Verificaciónes iniciales
-    /*if( this->LENumero->text().isEmpty() ) {
-        QMessageBox::warning( this, "Faltan datos", "Por favor verifique que exista el numero de recibo" );
-        return;
-    }*/
     if( this->CBCliente->currentIndex() == -1 ) {
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que un cliente este elegido" );
         return;
@@ -161,7 +157,6 @@ void FormAgregarRecibo::guardar()
         return;
     }
     int id_cliente = this->CBCliente->model()->data( this->CBCliente->model()->index( this->CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt();
-    //qDebug( QString( "IDCliente=%1").arg(id_cliente).toLocal8Bit());
     QDate fecha = this->DEFecha->date();
     QString contenido = this->TETexto->toPlainText();
     double total = this->dSBPagado->value();

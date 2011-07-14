@@ -25,6 +25,7 @@
 #include "eventana.h"
 class QAction;
 class EActCerrar;
+#include <QDate>
 
 class FormFacturarServicio : public EVentana, private Ui::FormFacturarServicio
 {
@@ -47,6 +48,7 @@ private:
     int _periodo;
     int _ano;
     double _precio_base;
+    QDate _fecha_inicio;
     EActCerrar *ActCerrar;
     QAction *ActFacturar;
 

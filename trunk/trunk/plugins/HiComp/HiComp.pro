@@ -6,20 +6,22 @@ CONFIG += plugin \
 TARGET = hicomp
 
 HEADERS += hicomp.h \
-         #  DPagarRecibo.h\
+           DPagarRecibo.h\
            ../pagos/mpagos.h \
            ../CtaCte/mitemcuentacorriente.h \
            ../CtaCte/mcuentacorriente.h \
            ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h
+           ../caja/mmovimientoscaja.h \
+           ../../reporte/common/parameter.h
 
 SOURCES += hicomp.cpp \
-          # DPagarRecibo.cpp \
+           DPagarRecibo.cpp \
            ../pagos/mpagos.cpp \
            ../CtaCte/mitemcuentacorriente.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp
+           ../caja/mmovimientoscaja.cpp \
+           ../../reporte/common/parameter.cpp
 
 DESTDIR = ../../bin/plugins
 

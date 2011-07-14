@@ -41,7 +41,8 @@ class EReporte : public QObject {
         Presupuesto = 1,
         Factura = 2,
         Recibo = 3,
-        Especial = 4
+        AnulacionFactura = 4,
+        Especial = 5
     };
     explicit EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros );
     explicit EReporte( QObject *padre );
@@ -49,6 +50,7 @@ class EReporte : public QObject {
     void presupuesto();
     void factura();
     void recibo();
+    void anulacionFactura();
     bool especial( const QString nombre, ParameterList parametros );
 
     bool hacer( ParameterList parametros, bool previsualizar = false );

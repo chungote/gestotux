@@ -47,6 +47,13 @@ NumeroComprobante::NumeroComprobante( NumeroComprobante &original ) : QObject() 
     _dato.second = original.numero();
 }
 
+NumeroComprobante & NumeroComprobante::operator=( const NumeroComprobante &t ) {
+    NumeroComprobante *n = new NumeroComprobante( t.parent(), -1, -1 );
+    n->setearNumero( t.numero() );
+    n->setearNumeroSerie( t.serie() );
+    return *n;
+}
+
 /*!
  * \fn NumeroComprobante::setearNumero( int numero )
  * Setea el numero de comprobante
@@ -79,22 +86,6 @@ int NumeroComprobante::numero() const { return _dato.second; }
 QString NumeroComprobante::aCadena() {
   return QString( "%1-%2").arg( QString::number( _dato.first ), CANT_DIGITOS, '0' ).arg( QString::number( _dato.second ), CANT_DIGITOS, '0' );
 }
-
-/*QString NumeroComprobante::numeroLleno() {
-  int llenar = CANT_DIGITOS - cuentaRecursivo( _dato.second );
-  QString r;
-  for( int i =0; i<llenar; i++ ) { r.append("0"); }
-  r.append( QString::number( _dato.second ) );
-  return r;
-}
-
-QString NumeroComprobante::serieLleno() {
-    int llenar = CANT_DIGITOS - cuentaRecursivo( _dato.first );
-    QString r;
-    for( int i =0; i<llenar; i++ ) { r.append("0"); }
-    r.append( QString::number( _dato.first ) );
-    return r;
-} */
 
 int NumeroComprobante::cuentaRecursivo( int dato ) {
     double temp = dato / 10.0;

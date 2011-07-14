@@ -27,7 +27,7 @@ MRecargos::MRecargos( QObject *parent, bool relaciones )
 {
  setTable( "recargos" );
  setHeaderData( 0, Qt::Horizontal, tr( "#ID" ) );
- setHeaderData( 1, Qt::Horizontal, tr( "Serivicio" ) );
+ setHeaderData( 1, Qt::Horizontal, tr( "Servicio" ) );
  setHeaderData( 2, Qt::Horizontal, tr( "Dias pasados" ) );
  setHeaderData( 3, Qt::Horizontal, tr( "Porcentaje" ) );
  setHeaderData( 4, Qt::Horizontal, tr( "Recargo" ) );
@@ -35,11 +35,6 @@ MRecargos::MRecargos( QObject *parent, bool relaciones )
  if( relaciones ) {
      setRelation  ( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
  }
-}
-
-
-MRecargos::~MRecargos()
-{
 }
 
 
@@ -71,6 +66,7 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
   {
    switch( idx.column() )
    {
+    case 0:
     case 2:
     { return QSqlRelationalTableModel::data( idx, role ).toInt(); break; }
     case 3:
@@ -121,31 +117,42 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
 
 /*!
     \fn MRecargos::agregarRecargo()
-    Agrega un tipo de recargo a la lista de recargos para un servicio
+    Agrega un tipo de recargo a la lista de recargos para un servicio.
  */
 void MRecargos::agregarRecargo()
 {
+ if( _servicio_actual <= 0 ) {
+   qDebug( "Error, no hay un id de servicio seteado ( id <= 0 )" );
+   return;
+ } else { qDebug( QString( "id_servicio = %1" ).arg( _servicio_actual ).toLocal8Bit() ); }
  QSqlRecord registro = this->record();
  registro.remove( 0 );
  registro.setValue( "id_servicio", _servicio_actual );
- registro.setGenerated( 2, true );
+ registro.setValue( "cant_dias", 1 );
  registro.setGenerated( 3, true );
- registro.setGenerated( 4, true );
- this->insertRecord( -1, registro );
+ for( int i = 0; i < registro.count(); i++ ) {
+     qDebug( QString( "%1: %2 - %3" ).arg( i ).arg( registro.fieldName( i ) ).arg( registro.value( i ).toString() ).toLocal8Bit() );
+ }
+ if( !this->insertRecord( -1, registro ) ) {
+     qDebug( "No se pudo agregar el registro" );
+ }
 }
 
 
 /*!
     \fn MRecargos::setearServicio( int id_servicio )
+    Metodo para setear el filtro de los recargos actuales segun el ID.
+    El ID debe ser mayor que cero.
+    @param ID del servicio a filtrar.
  */
 void MRecargos::setearServicio( int id_servicio )
 {
     if( id_servicio > 0 ) {
         this->_servicio_actual = id_servicio;
-        this->setFilter( QString( "recargos.id_servicio = %1" ).arg( id_servicio ) );
+        this->setFilter( QString( "id_servicio = %1" ).arg( id_servicio ) );
         // Busco el precio base
         this->_precio_base = MServicios::precioBase( _servicio_actual );
-        //qDebug( QString( "Precio base: %1" ).arg( this->_precio_base ).toLocal8Bit() );
+        this->select();
     } else {
         qDebug( QString( "MRecargos::setearServicio::id de servicio erroneo: %1" ).arg( id_servicio ).toLocal8Bit() );
     }
@@ -154,15 +161,19 @@ void MRecargos::setearServicio( int id_servicio )
 
 /*!
     \fn MRecargos::setearPrecioBase( double precio )
+    Setea el precio base para el servicio seleccionado en la clase para calcular los precios.
+    @param precio Precio a setear
  */
 void MRecargos::setearPrecioBase( double precio )
 {
- _precio_base = precio;
+    _precio_base = precio;
+    emit dataChanged( index( 0, 5 ), index( rowCount(), 5 ) );
 }
 
 
 /*!
     \fn MRecargos::columnCount( const QModelIndex & index ) const
+    Sobre carga para indicar de que existe una columna mas que calcula el sobrecargo.
  */
 int MRecargos::columnCount( const QModelIndex &/*index*/ ) const
 {
