@@ -363,10 +363,10 @@ NumeroComprobante & MFactura::obtenerComprobante( const int id_factura ) {
  *
  */
 bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fechahora ) {
-    return false;
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
     QSqlQuery cola;
     // Busco los datos de la factura.
-    if( cola.exec( QString( "SELECT if_forma_pago, total, serie, numero, id_cliente FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+    if( cola.exec( QString( "SELECT id_forma_pago, total, serie, numero, id_cliente FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
         if( cola.next() ) {
             int forma_pago = cola.record().value(0).toInt();
             double total = cola.record().value(1).toDouble();
@@ -384,45 +384,56 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                                                 total ) ) {
                         qDebug( "MFactura::anularFactura::No se pudo agregar el movimiento de caja" );
                         delete n;
+                        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                         return false;
                     }
                     delete n;
                 }
                 case MFactura::CuentaCorriente: {
                     // Genero la entrada para contraarrestar
-                    if( ! MItemCuentaCorriente::agregarOperacion( MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente ),
-                                                                  num.aCadena(),
-                                                                  id_factura,
-                                                                  MItemCuentaCorriente::AnulacionFactura,
-                                                                  fechahora.date(),
-                                                                  QString( "Anulación de la factura %1" ).arg( num.aCadena() ),
-                                                                  total ) ) {
-                        qDebug( "MFactura::anularFactura::No se pudo agregar el movimientod e cuenta corriente" );
+                    QString num_cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+                    if( num_cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
+                        qDebug( "Error, el cliente es invalido" );
+                        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                         return false;
+                    } else if( num_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
+                        qDebug( "El cliente no posee cuenta corriente" );
+                    } else {
+                        if( ! MItemCuentaCorriente::agregarOperacion( num_cuenta,
+                                                                      num.aCadena(),
+                                                                      id_factura,
+                                                                      MItemCuentaCorriente::AnulacionFactura,
+                                                                      fechahora.date(),
+                                                                      QString( "Anulación de la factura %1" ).arg( num.aCadena() ),
+                                                                      total ) ) {
+                            qDebug( "MFactura::anularFactura::No se pudo agregar el movimientod e cuenta corriente" );
+                            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                            return false;
+                        }
                     }
                 }
             }
             // cancelo la factura
-            cola.prepare( QString( "UPDATE factura SET cancelado = :anulada, razon = :razon, fecha_cancelada = :fechahora WHERE id_factura = %1 " ).arg( id_factura ) );
+            cola.prepare( QString( "UPDATE factura SET anulada = :anulada, razon = :razon, fecha_cancelada = :fechahora WHERE id_factura = %1 " ).arg( id_factura ) );
             cola.bindValue( ":anulada", true );
             cola.bindValue( ":razon", razon );
             cola.bindValue( ":fechahora", fechahora );
             if( cola.exec()) {
                 qDebug( "Factura cancelada correctamente" );
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
                 return true;
             } else {
                 qDebug( "MFactura::anularFactura::Error al ejecutar la cola de anulación de la factura seleccionada." );
                 qDebug( cola.lastError().text().toLocal8Bit() );
-                return false;
             }
         } else {
             qDebug( "MFactura::anularFactura::Error al hacer next al buscar informacion de la factura" );
             qDebug( cola.lastError().text().toLocal8Bit() );
-            return false;
         }
     } else {
         qDebug( "MFactura::anularFactura::Error al hacer next al buscar informacion de la factura" );
         qDebug( cola.lastError().text().toLocal8Bit() );
-        return false;
     }
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+    return false;
 }
