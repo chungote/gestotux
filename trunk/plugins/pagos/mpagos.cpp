@@ -266,7 +266,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
                 QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
                 if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
                     // no posee cuenta corriente
-
+                    qDebug( "El cliente no posee cuenta corriente, se salteara la actualizaciòn de cuentas corrientes" );
                 } else if( cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
                     // Error de numero de cliente
                     qDebug( "Id de cliente erroneo" );

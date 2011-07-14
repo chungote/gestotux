@@ -42,7 +42,6 @@ protected slots:
     void cambioServicio( int servicio );
     void agregarRecargo();
     void eliminarRecargo();
-    void guardarTodo();
 
 private:
     QAction *ActAgregar;

@@ -177,6 +177,21 @@ void EReporte::recibo() {
     cargar( _nombre );
 }
 
+
+/*!
+ * \fn Ereporte::anulacionFactura()
+ * Carga el reporte de anulación de la factura
+ */
+void EReporte::anulacionFactura() {
+    _tipo = EReporte::AnulacionFactura;
+#ifdef Q_OS_LINUX
+    _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+#else
+    _nombre = "AnulacionFactura";
+#endif
+    cargar( _nombre );
+}
+
 /*!
  * \fn EReporte::cargar( const QString nombre )
  * Carga el reporte que es pasado como parametro.

@@ -184,14 +184,54 @@ QString HiComp::reporte( int tipo ) {
         case EReporte::Factura:
         { return "Factura"; break; }
         case EReporte::Recibo:
-        { return "Recibo"; break; }
+        { return "Recibo-hicomp"; break; }
         default:
         { return ""; break; }
     }
 }
 
-void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parametros ) {
+#include <QDate>
+#include <QSqlQuery>
+#include <QSqlError>
 
+
+void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parametros ) {
+    switch( tipo ) {
+        case EReporte::Recibo:
+        {
+            qDebug( "Generando parametros para servicio" );
+            // Busco los parametros para realizar los recargos
+            int id_servicio = parametros.value( "id_servicio" ).toInt();
+            // Busco los datos del servicio
+            double precio_base = parametros.value( "precio_base" ).toDouble();
+            QDate fecha_inicio = parametros.value( "fecha_inicio" ).toDate();
+            // el precio
+            QSqlQuery cola;
+            if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
+                int i = 1;
+                while( cola.next() ) {
+                    if( cola.record().isNull( "recargo" ) ) {
+                        parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value("porcentaje").toInt() );
+                        parametros.append( QString( "total%1" ).arg( i ), precio_base * ( 1 + ( cola.record().value("pocentaje" ).toInt() / 100 ) ));
+                    } else {
+                        parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value("recargo" ).toInt() );
+                        parametros.append( QString( "total%1" ).arg( i ), precio_base + cola.record().value("recargo" ).toDouble() );
+                    }
+                    parametros.append( QString( "fecha%1" ).arg( i ), fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ) );
+                    i++;
+                }
+            } else {
+                qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                return;
+            }
+
+            break;
+        }
+        default:
+        { break; }
+    }
+    return;
 }
 
 Q_EXPORT_PLUGIN2(hicomp, HiComp )

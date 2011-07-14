@@ -61,6 +61,7 @@ signals:
 
 public slots:
     void seCierraGestotux();
+    void facturarPresupuesto( const int id_presupuesto );
 
 };
 

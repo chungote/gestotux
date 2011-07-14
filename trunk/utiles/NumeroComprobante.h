@@ -32,6 +32,7 @@ public:
     explicit NumeroComprobante( const NumeroComprobante &original );
     NumeroComprobante( NumeroComprobante &original );
     explicit NumeroComprobante( QObject *padre = 0, int serie = 0, int numero = 0 );
+    NumeroComprobante & operator=( const NumeroComprobante &t );
     void setearNumeroSerie( int serie );
     void setearNumero( int numero );
     int serie() const;
@@ -43,8 +44,7 @@ public:
 private:
     QPair<int,int> _dato;
     int cuentaRecursivo( const int dato );
-    /*QString numeroLleno();
-    QString serieLleno();*/
+
 };
 
 #endif // NUMEROCOMPROBANTE_H

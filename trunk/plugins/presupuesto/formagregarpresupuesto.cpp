@@ -215,7 +215,9 @@ void FormAgregarPresupuesto::agregarProducto()
 {
     // Verificación previa
     if( DSBCant->value() == 0 )
-    { QMessageBox::information( this, "Error de dato", "La cantidad a agregar debe ser mayor que cero" ); return; }
+    { QMessageBox::information( this, "Error de dato", "La cantidad a agregar debe ser mayor que cero", QMessageBox::Ok ); return; }
+    if( CBProductos->currentText().isEmpty() )
+    { QMessageBox::information( this, "Error de datos", "Ingrese un producto a agregar", QMessageBox::Ok ); return; }
     // Inserto la fila
     m->insertRow( -1 );
     // Pongo el producto

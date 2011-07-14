@@ -60,53 +60,53 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     // Conexiones para los botones
     connect( ActAgregar , SIGNAL( triggered() ), this, SLOT( agregarRecargo() ) );
     connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminarRecargo()) );
-    connect( ActCerrar  , SIGNAL( triggered() ), this, SLOT( guardarTodo()    ) );
 
     // Inizializo el modelo de los recargos
-    mrecargos = new MRecargos( this );
-    mrecargos->setEditStrategy( QSqlTableModel::OnManualSubmit );
+    mrecargos = new MRecargos( this, false );
+    //mrecargos->setEditStrategy( QSqlTableModel::OnManualSubmit );
     TVRecargos->setModel( mrecargos );
     TVRecargos->hideColumn( 0 );
     TVRecargos->hideColumn( 1 );
     TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-    this->cambioServicio( CBServicios->currentIndex() );
-    mrecargos->select();
 }
 
-void FormRecargos::cambioServicio( int servicio )
+void FormRecargos::cambioServicio( int /*servicio*/ )
 {
   // Busco los datos de los recargos del servicio seleccionado
-  int id_servicio = mservicios->data( mservicios->index( servicio, 0 ), Qt::EditRole ).toInt();
+  int id_servicio = mservicios->data( mservicios->index( CBServicios->currentIndex(), 0 ), Qt::EditRole ).toInt();
   mrecargos->setearServicio( id_servicio );
-  mrecargos->select();
 }
 
 void FormRecargos::agregarRecargo()
 {
- // Agrega un nuevo recargo a la lista del servicio seleccionado
-    mrecargos->setearServicio( mservicios->data( mservicios->index( CBServicios->currentIndex(), 0 ), Qt::EditRole ).toInt() );
-    mrecargos->agregarRecargo();
+  // Agrega un nuevo recargo a la lista del servicio seleccionado
+  mrecargos->agregarRecargo();
 }
 
 void FormRecargos::eliminarRecargo()
 {
  QMessageBox::information( this, "this", "Todavia no implementado!" );
-}
-
-void FormRecargos::guardarTodo()
-{
-  if( QMessageBox::question( this, "Guardar cambios", "�Desea guardar los cambios realizados?", QMessageBox::Ok, QMessageBox::Cancel ) ==  QMessageBox::Ok )
-  {
-      if( mrecargos->submitAll() ) {
-                QMessageBox::information( this, "Correcto", "Cambios guardados correctamente" );
-                this->close();
-                return;
-            } else {
-                QMessageBox::critical( this, "Erroneo", "No se pudieron guardar los cambios realizados" );
-                qDebug( "FormRecargos::guardarTodo::ErrorGuardado::infodb:" );
-                qDebug( mrecargos->lastError().text().toLocal8Bit() );
-            }
-  }
+ // Busco que recargo est´a seleccionado
+ QModelIndexList lista = TVRecargos->selectionModel()->selectedIndexes();
+ if( lista.size() <= 0 ) {
+     QMessageBox::information( this, "Error", "Por favor seleccione un recargo para eliminar", QMessageBox::Ok );
+     return;
+ }
+ // Selecciono las filas unicas
+ int fila = -1;
+ foreach( QModelIndex ind, lista ) {
+     if( fila == ind.row() ) {
+         lista.removeOne( ind );
+     } else {
+         fila = ind.row();
+     }
+ }
+ // Pregunto si esta seguro
+ if( QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), QString::fromUtf8( "¿Esta seguro que desea eliminar los items seleccionados?" ), QMessageBox::Yes, QMessageBox::No ) == QMessageBox::Yes ) {
+     foreach( QModelIndex idx, lista ) {
+         mrecargos->removeRow( idx.row() );
+     }
+ }
 }
 
 void FormRecargos::changeEvent(QEvent *e)
@@ -120,5 +120,10 @@ void FormRecargos::changeEvent(QEvent *e)
     }
 }
 
-void FormRecargos::setearId(const int id)
-{ this->cambioServicio( id ); }
+void FormRecargos::setearId( const int id )
+{
+    mrecargos->setearServicio( id );
+    //actualizo el combo box
+    /// @todo Ver como hacer para poner en el combobox el servicio que corersponde
+    //this->CBServicios->setCurrentIndex(  );
+}

@@ -22,19 +22,20 @@
 #include "mpagos.h"
 
 DPagarRecibo::DPagarRecibo(QWidget *parent) :
-    QDialog(parent)
+    QDialog(parent), _num_recibo( 0, -1, -1 )
 {
     setupUi(this);
     this->setObjectName( "DPagarRecibo" );
-    //this->setIcon( QIcon( ":/imagenes/pagorecibo.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/pagorecibo.png" ) );
 
     this->adjustSize();
 
     // Guardo la serie y numero de recibo para referencia futura
-    /*this->_num_recibo = MPagos::buscarMenorSerieNumeroPagado();*/
+    this->_num_recibo = MPagos::buscarMenorSerieNumeroPagado();
 
     // Busco el minimo numero de recibo que tiene el pagado puesto y lo coloco como minimo
     this->SBNumeroRecibo->setMinimum( this->_num_recibo.numero() );
+    this->LNumero->setText( this->LNumero->text().append( QString::number( this->_num_recibo.serie() ) ) );
 
     // Conecto la señal para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
     connect( this->SBNumeroRecibo, SIGNAL( valueChanged( int ) ), this, SLOT( cambioNumeroRecibo( int ) ) );
@@ -70,8 +71,8 @@ void DPagarRecibo::accept()
     abort();
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
-    if( m->buscarSiPagado( this->_num_recibo.first, this->SBNumeroRecibo->value() ) ) {
-        QMessageBox::warning( this, "Ya pagado", QString( "El recibo %1-%2 ya esta como pagado en la base de datos." ).arg( this->_num_recibo.first ).arg( this->_num_recibo.second ) );
+    if( m->buscarSiPagado( this->_num_recibo.serie(), this->SBNumeroRecibo->value() ) ) {
+        QMessageBox::warning( this, "Ya pagado", QString( "El recibo %1 ya esta como pagado en la base de datos." ).arg( this->_num_recibo.aCadena() ) );
         delete m;
         return;
     }
@@ -79,7 +80,7 @@ void DPagarRecibo::accept()
     if( m->setearComoPagado( m->buscarIdPorSerieNumero( this->_num_recibo ), CkBEfectivo->isChecked() ) ) {
         QMessageBox::warning( this, "Error", "Verificar si es un recibo de un servicio para conocer los recargos!!!" );
         abort();
-        QMessageBox::information( this, "Correcto", QString( "El recibo %1-%2 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.first ).arg( this->_num_recibo.second ) );
+        QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.aCadena() ) );
     } else {
         QMessageBox::warning( this, "Error", "No se pudo poner como pagado. Verifique debug.txt" );
         delete m;
@@ -97,7 +98,7 @@ void DPagarRecibo::cambioNumeroRecibo( int /*id_recibo*/ )
 {
   // Busco todos los datos y los pongo en los lugares correspondientes
   MPagos *m = new MPagos();
-  if( m->buscarSiPagado( this->_num_recibo.first, this->SBNumeroRecibo->value() ) ) {
+  if( m->buscarSiPagado( this->_num_recibo.serie(), this->SBNumeroRecibo->value() ) ) {
         delete m;
         return;
   }

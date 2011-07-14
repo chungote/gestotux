@@ -121,7 +121,9 @@ bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
             return false;
         }
     } else {
-        qWarning( QString( "Error al buscar el saldo anterior haciendo next." ).toLocal8Bit() );
+        qWarning( QString( "Error al buscar el saldo anterior haciendo next. Posiblemente la caja predeterminada este mal guardada." ).toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
         return false;
     }
  } else {
