@@ -32,6 +32,7 @@ static const char* __SqlTable[][3] = {
 // fmt01
   {"fmt01",      "QPSQL",          "SELECT text('0') AS \"0\""},
   {"fmt01",      "QOCI",          "SELECT '0' AS \"0\" from dual"},
+  {"fmt01",      "QMYSQL",        "SELECT '0' AS \"0\" "},
 
 // fmt02
   {"fmt02",      "QPSQL",          "SELECT %s(%f)"},

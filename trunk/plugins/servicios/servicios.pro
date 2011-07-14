@@ -84,3 +84,5 @@ OTHER_FILES += servicios.QMYSQL.sql \
 
 SOURCES += ../caja/mcajas.cpp \
            ../caja/mmovimientoscaja.cpp
+
+DEFINES += GESTOTUX_HICOMP

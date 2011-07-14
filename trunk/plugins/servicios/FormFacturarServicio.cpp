@@ -226,7 +226,7 @@ void FormFacturarServicio::facturar()
 #ifdef GESTOTUX_HICOMP
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
-                                        ( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
+                                        QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
                                         this->_precio_base,
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
@@ -250,6 +250,7 @@ void FormFacturarServicio::facturar()
             // Si se genero correctamente ingreo el id en la cola para impresion luego.
             comprobantes.insert( i, id_factura );
             //qDebug( "Comprobante guardado correctamente - agregado a la cola para post impresion" );
+#ifndef GESTOTUX_HICOMP
             // Genero los items para el comprobante
             MItemFactura *fact = new MItemFactura();
             if( !fact->agregarItemFactura( id_factura,
@@ -264,7 +265,7 @@ void FormFacturarServicio::facturar()
                 QSqlDatabase::database().rollback();
                 return;
             }
-
+#endif
 
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -341,6 +342,7 @@ void FormFacturarServicio::facturar()
         // Imprimir recibo
         // Genero los parametros
         ParameterList lista;
+        lista.append( "id_servicio", this->_id_servicio );
         lista.append( "fecha_inicio", this->_fecha_inicio );
         lista.append( "precio_base", this->_precio_base );
 #ifdef GESTOTUX_HICOMP

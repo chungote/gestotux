@@ -63,7 +63,6 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
 
     // Inizializo el modelo de los recargos
     mrecargos = new MRecargos( this, false );
-    //mrecargos->setEditStrategy( QSqlTableModel::OnManualSubmit );
     TVRecargos->setModel( mrecargos );
     TVRecargos->hideColumn( 0 );
     TVRecargos->hideColumn( 1 );

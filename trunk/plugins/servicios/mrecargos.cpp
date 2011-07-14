@@ -130,9 +130,9 @@ void MRecargos::agregarRecargo()
  registro.setValue( "id_servicio", _servicio_actual );
  registro.setValue( "cant_dias", 1 );
  registro.setGenerated( 3, true );
- for( int i = 0; i < registro.count(); i++ ) {
+ /*for( int i = 0; i < registro.count(); i++ ) {
      qDebug( QString( "%1: %2 - %3" ).arg( i ).arg( registro.fieldName( i ) ).arg( registro.value( i ).toString() ).toLocal8Bit() );
- }
+ }*/
  if( !this->insertRecord( -1, registro ) ) {
      qDebug( "No se pudo agregar el registro" );
  }

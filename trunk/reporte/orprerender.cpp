@@ -1406,6 +1406,9 @@ ORODocument* ORPreRender::generate()
         tQuery += QString().sprintf(", text('%s') AS \"%s\"", val.toLatin1().data(), p.name().toLatin1().data());
     }
   }
+  if( _internal->_database.driverName() == "QMYSQL" ) {
+      tQuery += " FROM dual;";
+  }
   _internal->_lstQueries.append(new orQuery("Parameter Query", tQuery, ParameterList(), true, _internal->_database));
   
   QuerySource * qs = 0;
