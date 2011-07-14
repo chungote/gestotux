@@ -210,15 +210,22 @@ void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parame
             if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
                 int i = 1;
                 while( cola.next() ) {
-                    if( cola.record().isNull( "recargo" ) ) {
-                        parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value("porcentaje").toInt() );
-                        parametros.append( QString( "total%1" ).arg( i ), precio_base * ( 1 + ( cola.record().value("pocentaje" ).toInt() / 100 ) ));
+                    if( cola.record().isNull( 1 ) ) {
+                        parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value(2).toDouble() );
+                        parametros.append( QString( "total%1" ).arg( i ), precio_base * ( 1 + ( cola.record().value(2).toDouble() / 100 ) ));
                     } else {
-                        parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value("recargo" ).toInt() );
-                        parametros.append( QString( "total%1" ).arg( i ), precio_base + cola.record().value("recargo" ).toDouble() );
+                        parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value(1).toDouble() );
+                        parametros.append( QString( "total%1" ).arg( i ), precio_base + cola.record().value(1).toDouble() );
                     }
-                    parametros.append( QString( "fecha%1" ).arg( i ), fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ) );
+                    parametros.append( QString( "fecha%1" ).arg( i ), fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ).toString( "dd/MM/yyyy" ) );
                     i++;
+                }
+                if( i < 4 ) {
+                    for( int j = i; j <= 4; j++ ) {
+                        parametros.append( QString( "recargo%1" ).arg( j ), 0 );
+                        parametros.append( QString( "total%1" ).arg( j ), 0.0 );
+                        parametros.append( QString( "fecha%1" ).arg( j ), "" );
+                    }
                 }
             } else {
                 qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
