@@ -40,6 +40,7 @@ protected slots:
     virtual void modificar();
     void anular();
     void pagar();
+    void cambioVerAnuladas( bool parametro );
 
 };
 

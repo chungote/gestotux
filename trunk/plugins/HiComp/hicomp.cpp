@@ -222,8 +222,8 @@ void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parame
                 }
                 if( i < 4 ) {
                     for( int j = i; j <= 4; j++ ) {
-                        parametros.append( QString( "recargo%1" ).arg( j ), 0 );
-                        parametros.append( QString( "total%1" ).arg( j ), 0.0 );
+                        parametros.append( QString( "recargo%1" ).arg( j ), "" );
+                        parametros.append( QString( "total%1" ).arg( j ), "" );
                         parametros.append( QString( "fecha%1" ).arg( j ), "" );
                     }
                 }

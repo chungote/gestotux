@@ -11,6 +11,7 @@ MVFacturas::MVFacturas(QObject *parent) :
     this->setHeaderData( 3, Qt::Horizontal, QString::fromUtf8("Fecha de Emisión" ) );
     this->setHeaderData( 4, Qt::Horizontal, "Forma de pago" );
     this->setHeaderData( 5, Qt::Horizontal, "Total" );
+    this->setHeaderData( 6, Qt::Horizontal, "Anulada" );
 }
 
 /*!
@@ -59,7 +60,27 @@ QVariant MVFacturas::data( const QModelIndex& item, int role ) const {
                 }
             }
         }
+        case Qt::BackgroundColorRole:
+        {
+            if( this->data( this->index( item.row(), 6 ), Qt::EditRole ).toBool() ) {
+                return Qt::gray;
+            } else {
+                return QSqlTableModel::data( item, role );
+            }
+            break;
+        }
         default:
         { return QSqlTableModel::data( item, role ); }
+    }
+}
+
+void MVFacturas::verAnuladas( bool sino )
+{
+    if( sino ) {
+        this->setFilter( "anulada != 1" );
+        this->select();
+    } else {
+        this->setFilter( "" );
+        this->select();
     }
 }
