@@ -36,6 +36,7 @@ public:
 
 protected slots:
     void agregar( bool autoeliminarid = true);
+    void listadoClientes();
 
 private:
     MClientes *mc;

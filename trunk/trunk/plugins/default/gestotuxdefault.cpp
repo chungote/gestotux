@@ -88,11 +88,13 @@ QString GestotuxDefault::reporte( int tipo ) {
     // Lista de reportes por default
     switch( tipo ) {
         case EReporte::Presupuesto:
-        { return "Presupuesto"; }
+        { return "Presupuesto"; break; }
         case EReporte::Factura:
-        { return "Factura"; }
+        { return "Factura"; break; }
         case EReporte::Recibo:
-        { return "Recibo"; }
+        { return "Recibo"; break; }
+        case EReporte::AnulacionFactura:
+        { return "AnulacionFactura"; break; }
         default:
         { return QString(); }
     }

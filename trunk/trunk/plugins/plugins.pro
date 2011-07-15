@@ -9,7 +9,7 @@ SUBDIRS +=  caja \
             pagos \
             presupuesto \
             servicios \
-#            bscomputacion \
+            bscomputacion \
 #            digifauno \
             HiComp
 #            email \
