@@ -3,10 +3,6 @@
  <title>Cancelacion de Comprobante</title>
  <name>AnulacionFactura</name>
  <description>Anulacion de un comprobante</description>
- <watermark>
-  <text>Anulado</text>
-  <opacity>215</opacity>
- </watermark>
  <grid>
   <x>0.05</x>
   <y>0.05</y>

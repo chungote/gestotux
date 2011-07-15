@@ -301,10 +301,6 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     return ret;
 }
 
-
-
-
-
 /*!
  * \fn MPagos::numeroSerieActual()
  * Devuelve el numero de serie actual para el recibo
@@ -325,7 +321,7 @@ int MPagos::numeroSerieActual()
 }
 
 /*!
- * \fn MPagos::numeroReciboActual()
+ * \fn MPagos::numeroReciboActual( const int serie )
  * Devuelve el numero de recibo de ultima emision
  * \param serie Numero de serie
  * \return Numero de recibo actual o -1 si hay error
@@ -511,7 +507,7 @@ NumeroComprobante &MPagos::buscarMenorSerieNumeroPagado()
  * \param numero Numero del recibo buscado
  * \returns pagado o no
  */
-bool MPagos::buscarSiPagado(const int serie, const int numero)
+bool MPagos::buscarSiPagado( const int serie, const int numero )
 {
  if( this->query().exec( QString( "SELECT pagado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) ) {
      if( this->query().next() ) {
@@ -531,13 +527,22 @@ bool MPagos::buscarSiPagado(const int serie, const int numero)
 }
 
 /*!
- * \fn MPagos::buscarSiPagado( const NumeroRecibo num )
+ * \fn MPagos::buscarSiPagado( const NumeroComrpobante num )
  * Sobrecarga
  * \param num Numero y serie del recibo buscado
  * \returns pagado o no
  */
 bool MPagos::buscarSiPagado( const NumeroComprobante num )
 { return buscarSiPagado( num.serie(), num.numero() ); }
+
+/*!
+ * \fn MPagos::buscarSiPagado( const NumeroComprobante *num )
+ * Sobrecarga
+ * \param num Numero y serie del recibo buscado
+ * \returns pagado o no
+ */
+bool MPagos::buscarSiPagado( const NumeroComprobante *num )
+{ return buscarSiPagado( num->serie(), num->numero() ); }
 
 /*!
  * \fn MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
@@ -564,7 +569,7 @@ int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
 }
 
 /*!
- * \fn MPagos::buscarIdPorSerieNumero( const NumeroRecibo num )
+ * \fn MPagos::buscarIdPorSerieNumero( const NumeroComprobante num )
  * Sobrecarga para tomar el parametro NumeroRecibo
  * \param num Numero y serie del recibo buscado
  * \returns ID en la base de datos
@@ -572,25 +577,34 @@ int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
 int MPagos::buscarIdPorSerieNumero( const NumeroComprobante num )
 { return buscarIdPorSerieNumero( num.serie(), num.numero() ); }
 
+
+/*!
+ * \fn MPagos::buscarImporte( NumeroComprobante num )
+ * Devuelve el importe de un recibo ya emitido segun el numero de comprobante
+ * \param num Numero de Comprobante buscado
+ * \returns Importe buscado o -1.1
+ */
 double MPagos::buscarImporte( NumeroComprobante num )
 {
     if( this->query().exec( QString( "SELECT precio FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
     if( this->query().next() ) {
-       if( this->query().record().value(0).toDouble() ) {
-         return true;
-       } else {
-         return false;
-       }
+       return this->query().record().value(0).toDouble();
     } else {
        qDebug( "Error al hacer next en cola de importe de recibo" );
-       return false;
+       return -1.1;
     }
   } else {
     qDebug( "error al hacer exec de cola de importe de recibo" );
-    return false;
+    return -1.1;
   }
 }
 
+/*!
+ * \fn MPagos::buscarNumeroComprobantePorID( const int id_recibo )
+ * Devuelve un numero de comprobante para el ID de recibo pasado. Si el ID no existe o hubo error, devuelve un numero de comprobante erroneo.
+ * \param id_recibo ID del recibo buscado
+ * \returns NumeroComprobante buscado o invalido si hubo error o no existe el ID.
+ */
 NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
 {
     QSqlQuery cola;

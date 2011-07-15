@@ -34,8 +34,6 @@ class VProductos : public EVLista
 Q_OBJECT
 public:
     VProductos(QWidget *parent = 0);
-    ~VProductos();
-    void closeEvent( QCloseEvent * event );
 
 private slots:
     void antes_de_insertar(  int row, QSqlRecord &registro );

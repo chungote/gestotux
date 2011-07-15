@@ -21,6 +21,8 @@
 #include "mproveedor.h"
 #include "dproveedor.h"
 #include <QTableView>
+#include <QAction>
+#include "EReporte.h"
 
 VProveedor::VProveedor( QWidget *parent )
  : EVLista( parent )
@@ -35,8 +37,16 @@ VProveedor::VProveedor( QWidget *parent )
  modelo->sort( 2, Qt::AscendingOrder );
  modelo->select();
  vista->setSortingEnabled( true );
+
+ QAction *ActListado = new QAction( this );
+ ActListado->setText( "Listado" );
+ ActListado->setStatusTip( "Imprime la lista de todos los proveedores" );
+ ActListado->setIcon( QIcon( ":/imagenes/listadoproveedores.png" ) );
+ connect( ActListado, SIGNAL(triggered() ), this, SLOT( listado() ) );
+
  addAction( ActAgregar );
  addAction( ActEliminar );
+ addAction( ActListado );
  addAction( ActCerrar );
 }
 
@@ -59,4 +69,18 @@ void VProveedor::eliminar()
 {
  qWarning( "Error, el eliminar un proveedor puede causar perdida de datos" );
  return;
+}
+
+/*!
+ * \fn VProveedor::listado()
+ * Muestra el listado de proveedores
+ */
+void VProveedor::listado()
+{
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ListadoProveedores", ParameterList() );
+    if( !rep->hacer( ParameterList(), true ) ) {
+        qDebug( "Hubo un error al intentar hacer el reporte" );
+    }
+    delete rep;
 }

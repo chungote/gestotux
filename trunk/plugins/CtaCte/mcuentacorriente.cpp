@@ -136,10 +136,13 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
  */
 QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
 {
- if( id_cliente <= 0 )
+ if( id_cliente < 0 )
  {
         qDebug( "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error, el numero de cliente es invalido" );
         return QString::number( MCuentaCorriente::ErrorClienteInvalido );
+ } else if ( id_cliente == 0 ) {
+     qDebug( "Cliente .:Consumidor final:. no posee cuenta corriente." );
+     return QString::number( MCuentaCorriente::ErrorNumeroCuenta );
  }
  QSqlQuery cola( QString( "SELECT numero_cuenta FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) );
  if( cola.next() )

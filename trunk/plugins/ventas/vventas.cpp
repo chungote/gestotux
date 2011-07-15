@@ -61,15 +61,20 @@ VVentas::VVentas(QWidget *parent)
     ActVerAnuladas->setStatusTip( "Muestra o oculta las facturas anuladas" );
     ActVerAnuladas->setIcon( QIcon( ":/imagenes/verfacturaanuladas.png" ) );
     ActVerAnuladas->setCheckable( true );
+    ActVerAnuladas->setChecked( true );
     connect( ActVerAnuladas, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerAnuladas( bool ) ) );
 
     ActAgregar->setIcon( QIcon( ":/imagenes/facturanueva.png" ) );
 
+    QAction *ActSep = new QAction( this );
+    ActSep->setSeparator( true );
+
     this->addAction( ActAgregar );
     //this->addAction( ActPagar );
     this->addAction( ActAnular );
-    this->addAction( ActVerAnuladas );
     this->addAction( new EActCerrar( this ) );
+    this->addAction( ActSep );
+    this->addAction( ActVerAnuladas );
 }
 
 
@@ -105,16 +110,16 @@ void VVentas::anular()
         QString razon = QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), &ok );
         if( ok && !razon.isEmpty() ) {
             if( MFactura::anularFactura( this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt(), razon, QDateTime::currentDateTime() ) ) {
-                int ret = QMessageBox::question( this, "Correcto", QString( "La Factura %1 ha sido anulada correctamente. <br /> ¿Desea imprimir la anulaciòn?" ).arg( numero ), QMessageBox::Yes, QMessageBox::No );
-                if( ret == QMessageBox::Ok ) {
+                int ret = QMessageBox::question( this, "Correcto", QString::fromUtf8( "La Factura %1 ha sido anulada correctamente. <br /> ¿Desea imprimir la anulaciòn?" ).arg( numero ), QMessageBox::Yes, QMessageBox::No );
+                if( ret == QMessageBox::Yes ) {
                     QMessageBox::information( this, "Esperando", QString::fromUtf8( "Por favor, ingrese la factura en la impresora para imprimir la anulaciòn. <br /> Presione OK para enviar a imprimir la anulacion" ), QMessageBox::Ok );
                     EReporte *rep = new EReporte( this );
                     rep->anulacionFactura();
                     ParameterList lista;
                     lista.append( Parameter( "razon", razon ) );
                     lista.append( Parameter( "fechahora", QDateTime::currentDateTime().toString( "dd/MM/yyyy") ) );
-                    if( !rep->hacer( lista ) ) {
-                        QMessageBox::information( this, "Error de impresion", "Error al hacer la anulación. Ingresela a mano.", QMessageBox::Ok );
+                    if( !rep->hacer( lista, true ) ) {
+                        QMessageBox::information( this, "Error de impresion", QString::fromUtf8( "Error al hacer la anulación. Ingresela a mano." ), QMessageBox::Ok );
                     }
                 }
             } else {
@@ -157,5 +162,5 @@ void VVentas::pagar()
 
 void VVentas::cambioVerAnuladas( bool parametro )
 {
-    qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( parametro );
+    qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro );
 }

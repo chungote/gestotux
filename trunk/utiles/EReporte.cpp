@@ -48,7 +48,8 @@ EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parame
  * Se solicitará al plugin de el cliente que coloque los parametros que considere necesarios.
  * Luego se enviará a imprimir el reporte.
  * Si es un presupuesto o un recibo, se lo intentará guardar en el deposito de documentos.
- * \param parametros Objeto del tipo "ParameterList" con los parametros para el reporte
+ * \param parametros Objeto del tipo "ParameterList" con los parametros para el reporte.
+ * \param previsualizar Fuerza el mostrado de la ventana de previsualizaciòn antes de imprimir.
  * \returns Verdadero si se pudo imprimir. Falso si hubo un error de configuración o al imprimir.
  */
 bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
@@ -182,16 +183,16 @@ void EReporte::recibo() {
 
 
 /*!
- * \fn Ereporte::anulacionFactura()
+ * \fn EReporte::anulacionFactura()
  * Carga el reporte de anulación de la factura
  */
 void EReporte::anulacionFactura() {
     _tipo = EReporte::AnulacionFactura;
-#ifdef Q_OS_LINUX
+/*#ifdef Q_OS_LINUX
     _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
-#else
+#else */
     _nombre = "AnulacionFactura";
-#endif
+//#endif
     cargar( _nombre );
 }
 

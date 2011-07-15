@@ -69,8 +69,13 @@ CREATE TABLE IF NOT EXISTS `factura` (
 */
 
 /*!
-    \fn MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, QString num_comprobante, MProductosTotales *mcp )
+    \fn MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
     Agrega el registro para una factura y devuelve el id o -1 si hubo un error.
+    \param fecha Fecha en que se registrará la venta
+    \param id_cliente ID del cliente al cual se le hace la venta
+    \param id_forma_pago Identificativo de la forma de pago
+    \param mcp Modelo de productos o items a facturar
+    \returns ID de la operaciòn o -1 si hubo un error.
  */
 int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
 {
@@ -184,12 +189,14 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
 }
 
 /*!
- * \fn MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago )
+ * \fn MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total, bool registrar_operacion )
  * Agrega un registro en la tabla de facturas para las facturas de servicios.
- * @param id_cliente Identificador de cliente.
- * @param fecha Fecha de la factura.
- * @param id_form_pago Forma de pago de la factura
- * @returns Identificador de la factura o -1 si hubo un error.
+ * \param id_cliente Identificador de cliente.
+ * \param fecha Fecha de la factura.
+ * \param id_forma_pago Forma de pago de la factura
+ * \param total Total a facturar
+ * \param registrar_operacion muestra si se debe registrar o no la operacion ( util si no se desea actualiza ral cuenta corriente )
+ * \returns Identificador de la factura o -1 si hubo un error.
  */
 int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total, bool registrar_operacion ) {
     if( total <= 0.0 ) { qDebug( "El total no puede ser <= 0" ); return -1; }
@@ -388,6 +395,7 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                         return false;
                     }
                     delete n;
+                    break;
                 }
                 case MFactura::CuentaCorriente: {
                     // Genero la entrada para contraarrestar
@@ -411,6 +419,7 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                             return false;
                         }
                     }
+                    break;
                 }
             }
             // cancelo la factura
