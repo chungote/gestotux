@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
       splash.show();
       splash.showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual
-      app.setDesktopSettingsAware( true );
+      //app.setDesktopSettingsAware( true );
       preferencias *p = preferencias::getInstancia();
       p->beginGroup( "Preferencias" );
       p->beginGroup( "General" );
@@ -176,17 +176,9 @@ int main(int argc, char *argv[])
       QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
       directorio->cd( "traducciones" );
       if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
-      {
-        app.installTranslator(&tran);
-      }
-      else
-      {
-        qDebug( "Fallo al cargar la traduccion" );
-      }
+      { app.installTranslator(&tran); } else  { qDebug( "Fallo al cargar la traduccion" ); }
       if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
-      { QCoreApplication::instance()->installTranslator(&tran); }
-      else
-      { qDebug( "Fallo al cargar la traduccion del reporte" ); }
+      { QCoreApplication::instance()->installTranslator(&tran); } else { qDebug( "Fallo al cargar la traduccion del reporte" ); }
       delete directorio;
       directorio = 0;
       splash.showMessage( "Cargando Base de datos" );

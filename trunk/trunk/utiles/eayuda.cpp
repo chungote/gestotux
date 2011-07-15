@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eayuda.h"
-#include <QHelpEngineCore>
+#include <QHelpEngine>
 
 EAyuda *EAyuda::yo = 0;
 
@@ -27,15 +27,15 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 {
         setupUi(this);
         qDebug( QString( "Cargando Documentacion desde: %1").arg(QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch").toLocal8Bit());
-        engine = new QHelpEngineCore( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch", parent );
+        engine = new QHelpEngine( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch", parent );
         connect( engine, SIGNAL( setupStarted() ), this, SLOT( inicioConstruccion() ) );
         connect( engine, SIGNAL( setupFinished() ), this, SLOT( finConstruccion() ) );
         if( !engine->setupData() )
         {
                 qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
+                return;
         } else {
             qDebug( QString( "Documentacion cargada desde %1. OK!" ).arg( engine->collectionFile() ).toLocal8Bit() );
-            engine->registerDocumentation( "documentacion.qch" );
         }
         connect( engine, SIGNAL( warning( const QString & ) ), this, SLOT( errorEngine( const QString & ) ) );
         PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
@@ -61,14 +61,14 @@ EAyuda::~EAyuda()
  */
 bool EAyuda::hayAyuda( QString nombreObjeto )
 {
- qWarning( QString( "Pedida documentacion para: %1" ).arg( nombreObjeto ).toLocal8Bit().constData() );
- if( engine->linksForIdentifier( nombreObjeto ).count() > 0 )
+ qDebug( QString( "Pedida documentacion para: %1" ).arg( nombreObjeto ).toLocal8Bit().constData() );
+ if( engine->indexModel()->linksForKeyword( nombreObjeto ).count() > 0 )
  {
         return true;
  }
  else
  {
-        qWarning( qPrintable( "Documentacion no encontrada: " + nombreObjeto + ": " + QString::number( engine->linksForIdentifier( nombreObjeto ).count() ) ) );
+        qWarning( qPrintable( "Documentacion no encontrada: " + nombreObjeto + ": " + QString::number( engine->indexModel()->linksForKeyword( nombreObjeto ).count() ) ) );
         return false;
  }
 }
@@ -82,7 +82,7 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
 void EAyuda::mostrarAyuda( QString nombreObjecto )
 {
  // Estamos seguros que hay datos para este objeto
- QByteArray helpData = engine->fileData( engine->linksForIdentifier( nombreObjecto ).constBegin().value() );
+ QByteArray helpData = engine->fileData( engine->indexModel()->linksForKeyword( nombreObjecto ).constBegin().value() );
  // Muestro la documentación al usuario
  if ( !helpData.isEmpty() )
  {

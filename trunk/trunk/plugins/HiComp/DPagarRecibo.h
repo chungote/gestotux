@@ -36,7 +36,7 @@ protected:
 
 protected slots:
     void accept();
-    void cambioNumeroRecibo( int id_recibo );
+    void cambioNumeroRecibo();
     void cambioAPagar( double cantidad );
 
 private:

@@ -52,6 +52,7 @@ public:
     bool setearComoPagado( const int id_recibo, const bool efectivo );
     bool buscarSiPagado( const int serie, const int numero );
     bool buscarSiPagado( const NumeroComprobante num );
+    bool buscarSiPagado( const NumeroComprobante *num );
     int buscarIdPorSerieNumero( const NumeroComprobante num );
     int buscarIdPorSerieNumero( const int serie, const int numero );
     double buscarImporte( NumeroComprobante num );

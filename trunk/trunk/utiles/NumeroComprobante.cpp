@@ -133,3 +133,19 @@ void NumeroComprobante::siguienteNumero() {
   }
   return;
 }
+
+#include <QStringList>
+/*!
+ * \fn NumeroComprobante::desdeString( const QString original )
+ */
+NumeroComprobante * NumeroComprobante::desdeString( const QString original) {
+    // Verificaciones
+    if( original.isNull() || original.isEmpty() ) {
+        return new NumeroComprobante( 0, -1, -1 );
+    }
+    QStringList lista = original.split( "-" );
+    if( lista.isEmpty() ) {
+        return new NumeroComprobante( 0, -1, -1 );
+    }
+    return new NumeroComprobante( 0, lista.first().toInt(), lista.last().toInt() );
+}

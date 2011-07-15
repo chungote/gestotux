@@ -31,14 +31,14 @@ void MPeriodoServicio::relacionar() {
 */
 
 /*!
- * \fn MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano )
+ * \fn MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin )
  * Agrega el registro de que se realizo el cobro de un servicio identificado mediante la factura en un periodo del servicio.
- * @param id_servicio Identificador del servicio a facturar
- * @param periodo Numero de periodo dentro del año
- * @param ano Año del cobro
- * @param fecha_inicio Fecha de inicio del periodo
- * @param fecha_fin Fecha de fin del periodo
- * @return Identificador de id_periodo_servicio o -1 si hubo un error.
+ * \param id_servicio Identificador del servicio a facturar
+ * \param periodo Numero de periodo dentro del año
+ * \param ano Año del cobro
+ * \param fecha_inicio Fecha de inicio del periodo
+ * \param fecha_fin Fecha de fin del periodo
+ * \return Identificador de id_periodo_servicio o -1 si hubo un error.
  */
 int MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin )
 {
@@ -85,7 +85,7 @@ QDate MPeriodoServicio::ultimaFechaDeServicio( const int id_servicio ) {
 }
 
 /*!
- * \fn MPeriodoSerivicio::obtenerFechaFinPeriodo( const int id_servicio, const QDate fecha_inicio )
+ * \fn MPeriodoServicio::obtenerFechaFinPeriodo( const int id_servicio, const QDate fecha_inicio )
  * Obtiene la fecha de fin del periodo dado un serivicio determinado y la fecha de inicio pasada como parametro
  * \param id_servicio Servicio en cuestion
  * \param fecha_inicio Fecha desde la cual calcular el periodo
@@ -116,14 +116,14 @@ int MPeriodoServicio::diasEnPeriodoServicio( const int id_servicio, QDate fecha_
 
 
 /*!
- * \fn MPeriodoServicio::diasEnPeriodo( const int id_periodo, QDate fecha_calculo )
+ * \fn MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
  * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
  * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
  * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
  * En el caso de que sea trimestra, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tienen los 2 meses siguientes.
- * @param id_periodo Tipo de periodo que estamos considerando
- * @param fecha_calculo Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
- * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
+ * \param tipo_periodo Tipo de periodo que estamos considerando
+ * \param fecha_calculo Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
+ * \return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
  */
 int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
 {

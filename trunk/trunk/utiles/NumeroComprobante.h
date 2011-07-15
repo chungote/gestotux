@@ -28,10 +28,10 @@ class NumeroComprobante : public QObject
 {
     Q_OBJECT
 public:
-    explicit NumeroComprobante( QObject *parent = 0 );
-    explicit NumeroComprobante( const NumeroComprobante &original );
+    NumeroComprobante( QObject *parent = 0 );
+    NumeroComprobante( const NumeroComprobante &original );
     NumeroComprobante( NumeroComprobante &original );
-    explicit NumeroComprobante( QObject *padre = 0, int serie = 0, int numero = 0 );
+    NumeroComprobante( QObject *padre = 0, int serie = 0, int numero = 0 );
     NumeroComprobante & operator=( const NumeroComprobante &t );
     void setearNumeroSerie( int serie );
     void setearNumero( int numero );
@@ -40,6 +40,7 @@ public:
     QString aCadena();
     bool esValido() const;
     void siguienteNumero();
+    static NumeroComprobante * desdeString( const QString original );
 
 private:
     QPair<int,int> _dato;

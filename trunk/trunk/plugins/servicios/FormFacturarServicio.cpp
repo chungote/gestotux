@@ -97,7 +97,7 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->_periodo = mp->getPeriodoActual( this->_id_servicio );
     this->_ano = mp->getAnoActual( this->_id_servicio );
     this->_fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio );
-    if( _fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( _fecha_inicio.toString() ).toLocal8Bit() ); }
+    //if( _fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( _fecha_inicio.toString() ).toLocal8Bit() ); }
     this->LPeriodo->setText(
         QString( " %1/%2 desde %3 hasta %4 " )
                 .arg( this->_periodo )
@@ -221,9 +221,9 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////////////////////////////////////////////////////////
         // Paso 1 - Genero la factura con los items actuales mas los anteriores segun corresponda /
         ///////////////////////////////////////////////////////////////////////////////////////////
-        LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
         int id_factura = -1;
 #ifdef GESTOTUX_HICOMP
+        LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
         id_factura = mr->agregarRecibo( id_cliente,
                                         QDate::currentDate(),
                                         QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
@@ -231,6 +231,7 @@ void FormFacturarServicio::facturar()
                                         false, // No efectivo y no pagado para que quede para despues
                                         false );
 #else
+        LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
         id_factura = mr->agregarFactura( id_cliente,
                                          QDateTime::currentDateTime(),
                                          MFactura::CuentaCorriente,
@@ -243,7 +244,7 @@ void FormFacturarServicio::facturar()
             LIndicador->setText( QString( "Error - No se pudo agregar la factura  %1 para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
-                    QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
+            QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database().rollback();
             return;
         } else {
@@ -261,7 +262,7 @@ void FormFacturarServicio::facturar()
                 LIndicador->setText( QString( "Error - No se pudo agregar el item de la factura %1 para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
                 PBProgreso->setRange( 0, 1 );
                 PBProgreso->setValue( 1 );
-                        QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
+                QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
                 QSqlDatabase::database().rollback();
                 return;
             }
@@ -277,7 +278,7 @@ void FormFacturarServicio::facturar()
             LIndicador->setText( QString( "Error: No se pudo agregar la entrada servicio<->cliente<->cobro nº %1 para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
-                    QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
+            QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database().rollback();
             return;
         }
@@ -300,7 +301,7 @@ void FormFacturarServicio::facturar()
             LIndicador->setText( QString( "Error: No se pudo actualizar la cuenta corriente para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
-                    QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
+            QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database().rollback();
             break;
         }
@@ -313,7 +314,7 @@ void FormFacturarServicio::facturar()
             LIndicador->setText( QString( "Error: No se pudo guardar el identificador de ctacte para el cobro %1, cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
-                    QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
+            QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database().rollback();
             return;
         }
@@ -325,7 +326,7 @@ void FormFacturarServicio::facturar()
     }
     // Guardo todos los datos
     QSqlDatabase::database().commit();
-    LIndicador->setText( "Correcto! - Iniciando impresión de comprobantes" );
+    LIndicador->setText( QString::fromUtf8( "Correcto! - Iniciando impresión de comprobantes" ) );
     PBProgreso->setRange( 0, 1 );
     PBProgreso->setValue( 1 );
 
@@ -347,10 +348,10 @@ void FormFacturarServicio::facturar()
         lista.append( "precio_base", this->_precio_base );
 #ifdef GESTOTUX_HICOMP
         lista.append( "id_recibo", comprobantes.take( i ) );
-        LIndicador->setText( QString( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
+        LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
 #else
         lista.append( "id_factura", comprobantes.take( i ) );
-        LIndicador->setText( QString( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
+        LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
 #endif
         if( !reporte->hacer( lista ) ) {
             qDebug( QString( "No se pudo hacer el reporte %i" ).arg( i ).toLocal8Bit() );

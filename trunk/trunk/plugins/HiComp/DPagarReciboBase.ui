@@ -30,18 +30,18 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="SBNumeroRecibo">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <widget class="QLineEdit" name="LENumeroRecibo">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="inputMask">
+        <string>99999-99999; </string>
+       </property>
+       <property name="frame">
+        <bool>false</bool>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-       <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::PlusMinus</enum>
        </property>
       </widget>
      </item>
@@ -77,7 +77,7 @@
            <bool>true</bool>
           </property>
           <property name="buttonSymbols">
-           <enum>QAbstractSpinBox::PlusMinus</enum>
+           <enum>QAbstractSpinBox::NoButtons</enum>
           </property>
           <property name="prefix">
            <string>$ </string>
@@ -140,7 +140,7 @@
            <bool>true</bool>
           </property>
           <property name="buttonSymbols">
-           <enum>QAbstractSpinBox::PlusMinus</enum>
+           <enum>QAbstractSpinBox::NoButtons</enum>
           </property>
           <property name="prefix">
            <string>$ </string>
@@ -181,12 +181,12 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>SBNumeroRecibo</tabstop>
+  <tabstop>LENumeroRecibo</tabstop>
   <tabstop>DSBPagar</tabstop>
   <tabstop>CkBEfectivo</tabstop>
   <tabstop>buttonBox</tabstop>
-  <tabstop>DSBImporte</tabstop>
   <tabstop>DSBSaldo</tabstop>
+  <tabstop>DSBImporte</tabstop>
  </tabstops>
  <resources/>
  <connections>

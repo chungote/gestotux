@@ -45,11 +45,11 @@ void MItemPresupuesto::relacionar() {}
 /*!
  * \fn MItemPresupuesto::agregarItemPresupuesto(  const int id_presupuesto, const dobule cantidad, const QString texto, const double precio_unitario )
  * Agrega un item de presupuesto con el presupuesto relacionado pasado como parametro
- * @param id_presupuesto Identificador del Presupuesto
- * @param cantidad Cantidad del item
- * @param texto Texto del item
- * @param precio Precio unitario del item
- * @returns Verdadero si se pudo guardar correctamente
+ * \param id_presupuesto Identificador del Presupuesto
+ * \param cantidad Cantidad del item
+ * \param texto Texto del item
+ * \param precio_unitario Precio unitario del item
+ * \returns Verdadero si se pudo guardar correctamente
  */
 bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario ) {
  QSqlQuery cola;

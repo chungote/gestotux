@@ -46,7 +46,7 @@ public:
 private:
   EAyuda(QWidget* parent = 0, Qt::WFlags fl = 0 );
   ~EAyuda();
-  QHelpEngineCore *engine;
+  QHelpEngine *engine;
   static EAyuda *yo;
 
 private slots:

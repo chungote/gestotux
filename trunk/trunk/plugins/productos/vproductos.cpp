@@ -80,36 +80,17 @@ VProductos::VProductos(QWidget *parent)
  addAction( ActCerrar );
 }
 
-
-VProductos::~VProductos()
-{
-}
-
-
-
 /*!
     \fn VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
         Funcion que coloca en el valor predeterminado los valores del registro. Esto evita la falla al insertar el registro.
         @param row Numero de fila a insertar
         @param registro Registro a insertar
  */
-void VProductos::antes_de_insertar(  int row, QSqlRecord &registro )
+void VProductos::antes_de_insertar(  int /* row */, QSqlRecord &registro )
 {
- (void)row;
  registro.setValue( "descripcion", "" );
  registro.setValue( "marca", "" );
 }
-
-
-/*!
-    \fn VProductos::closeEvent( QCloseEvent * event )
-        Metodo llamado cuando se cierra la ventana
- */
-void VProductos::closeEvent( QCloseEvent * event )
-{
- EVLista::closeEvent( event );
-}
-
 
 /*!
     \fn VProductos::verCategorias()
