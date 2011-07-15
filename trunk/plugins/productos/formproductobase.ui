@@ -125,6 +125,12 @@
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>99999999.998999997973442</double>
+          </property>
          </widget>
         </item>
        </layout>
@@ -143,6 +149,9 @@
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
+          <property name="maximum">
+           <double>100000000.000000000000000</double>
+          </property>
          </widget>
         </item>
        </layout>
@@ -160,6 +169,9 @@
          <widget class="QSpinBox" name="SBStock">
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="maximum">
+           <number>999999999</number>
           </property>
          </widget>
         </item>

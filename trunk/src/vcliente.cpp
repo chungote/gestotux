@@ -60,11 +60,17 @@ VCliente::VCliente( QWidget *parent )
  vista->setAlternatingRowColors( true );
  mc->select();
 
+ QAction *ActLista = new QAction( this );
+ ActLista->setText( "Listado" );
+ ActLista->setStatusTip( "Listado de clientes" );
+ ActLista->setIcon( QIcon( ":/imagenes/listaclientes.png" ) );
+ connect( ActLista, SIGNAL( triggered() ), this, SLOT( listadoClientes() ) );
 
  ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
  ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
  addAction( ActAgregar );
  addAction( ActEliminar );
+ addAction( ActLista );
  addAction( ActCerrar );
 }
 
@@ -80,3 +86,12 @@ VCliente::~VCliente()
 void VCliente::agregar( bool /*autoeliminarid*/ )
 { emit agregarVentana( new FormCliente( this, mc ) ); }
 
+#include "EReporte.h"
+void VCliente::listadoClientes() {
+  // Hago el listado de clientes
+    EReporte *rep = new EReporte( this );
+    rep->especial( "ListadoClientes", ParameterList() );
+    if( !rep->hacer() ) {
+        QMessageBox::warning( this, "Error", "No se pudo realizar el reporte" );
+    }
+}
