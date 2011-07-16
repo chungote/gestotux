@@ -16,6 +16,7 @@ LIBS += ../../gestotux-build-desktop/bin/plugins/libcaja.so \
 #        ../../gestotux-build-desktop/bin/plugins/libdigifauno.so \
         ../../gestotux-build-desktop/bin/libreporte.a \
         ../../gestotux-build-desktop/bin/libutiles.a \
-        ../../gestotux-build-desktop/bin/plugins/libbscomputacion.so
+        #../../gestotux-build-desktop/bin/plugins/libbscomputacion.so
+        ../../gestotux-build-desktop/bin/plugins/libhicomp.so
 
 QMAKE_MAKEFILE += -B

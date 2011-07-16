@@ -33,10 +33,6 @@ class MPresupuesto : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MPresupuesto(QObject *parent = 0 );
-
-    QVariant data(const QModelIndex& idx, int role) const;
-    bool setData(const QModelIndex& index, const QVariant& value, int role);
-
     static NumeroComprobante &proximoComprobante();
     int agregarPresupuesto( int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total );
 

@@ -18,9 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "vpresupuesto.h"
-#include "mpresupuesto.h"
+#include "mvpresupuestos.h"
 #include <QTableView>
 #include "formagregarpresupuesto.h"
+#include "EReporte.h"
+#include <QModelIndex>
+#include <QModelIndexList>
+#include <QMessageBox>
 
 VPresupuesto::VPresupuesto(QWidget *parent)
  : EVLista(parent)
@@ -28,7 +32,7 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  setObjectName( "visorPresupuestos" );
  setWindowTitle( "Presupuestos Anteriores" );
  setWindowIcon( QIcon( ":/imagenes/anteriores.png" ) );
- modelo = new MPresupuesto( this );
+ modelo = new MVPresupuestos( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
  vista->hideColumn( 5 );
@@ -41,12 +45,6 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  addAction( ActCerrar );
 }
 
-
-VPresupuesto::~VPresupuesto()
-{
-}
-
-
 void VPresupuesto::agregar()
 {
  emit agregarVentana( new FormAgregarPresupuesto() );
@@ -57,28 +55,32 @@ void VPresupuesto::antes_de_insertar(int /*row*/, QSqlRecord& /*record*/)
 {
 }
 
-void VPresupuesto::buscar()
-{
-   // EVLista::buscar();
-}
-
 void VPresupuesto::cerrar()
 {
     EVLista::cerrar();
 }
 
-void VPresupuesto::eliminar()
-{
-    //EVLista::eliminar();
-}
-
 void VPresupuesto::imprimir()
 {
-    //EVLista::imprimir();
-}
+  // Veo que ID quiere reimprimir.
+  QModelIndexList lista = vista->selectionModel()->selectedRows();
+  if( lista.isEmpty() ) {
+      QMessageBox::information( this, "Error", "Por favor, seleccione uno o mas presupuestos para reimprimir", QMessageBox::Ok );
+      return;
+  }
+  EReporte *rep = new EReporte( 0 );
+  rep->presupuesto();
+  ParameterList *parametros = new ParameterList();
+  foreach( QModelIndex idx, lista ) {
+      parametros->clear();
+      parametros->append( Parameter( "id_presupuesto", modelo->data( modelo->index( idx.row(), 0 ), Qt::EditRole ).toInt() ) );
+      if( !rep->hacer( *parametros ) ) {
+          qDebug( "Error la intentar imprimir el reporte" );
+      }
+  }
+  delete parametros;
+  parametros = 0;
+  delete rep;
+  rep = 0;
 
-void VPresupuesto::modificar()
-{
-   // EVLista::modificar();
 }
-
