@@ -30,16 +30,12 @@ class VPresupuesto : public EVLista
 Q_OBJECT
 public:
     VPresupuesto(QWidget *parent = 0);
-    ~VPresupuesto();
 
 protected slots:
     void agregar();
     void antes_de_insertar(int row, QSqlRecord& record);
-    void buscar();
     void cerrar();
-    void eliminar();
     void imprimir();
-    void modificar();
 
 };
 
