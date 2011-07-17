@@ -172,17 +172,17 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
                                                   "Venta a Cuenta Corriente",
                                                   total_calculado ) == -1 )
    { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
-  }
+  } else { qDebug( "La factura no fue a ctacte o no existe el plugin de ctacte cargado" ); }
   // Veo si fue en efectivo
-  if( ERegistroPlugins::getInstancia()->existePlugin( "caja " ) && id_forma_pago == MFactura::Contado ) {
+  if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) && id_forma_pago == MFactura::Contado ) {
       // Agrego el item de caja
       MMovimientosCaja *m = new MMovimientosCaja();
-      if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de factura %1", QString(), total_calculado ) ) {
+      if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), QString( "Pago de factura %1" ).arg( num.aCadena() ), QString(), total_calculado ) ) {
           qDebug( "Error al agregar el movimiento de caja cuando se pago una factura en contado.");
           return -1;
       }
       delete m;
-  }
+  } else { qDebug( "La factura no fue al contado o no existe el plugin de caja cargado" ); }
   return id_venta;
  }
  return -1;

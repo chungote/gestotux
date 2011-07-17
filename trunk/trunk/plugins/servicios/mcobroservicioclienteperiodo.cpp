@@ -9,7 +9,14 @@ MCobroServicioClientePeriodo::MCobroServicioClientePeriodo(QObject *parent) :
 }
 
 /*!
- * \fn MCobroServicioClientePeriodo::agregarCobro( const int id_periodo_servicio, const int id_servicio, const int id_cliente )
+ * \fn MCobroServicioClientePeriodo::agregarCobro( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_factura )
+ * Genera una nueva entrada en cobro de un serivicio a un cliente con la factura correspondiente.
+ * Si esta activo el plugin HiComp utilizarà un recibo
+ * \param id_periodo_servicio Identificador del periodo del servicio
+ * \param id_servicio Identificador del servicio
+ * \param id_cliente Identificador del cliente
+ * \param id_factura Identificador del comprobante
+ * \returns Verdadero si se pudo agregar, falso en caso contrario.
  */
 bool MCobroServicioClientePeriodo::agregarCobro( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_factura ) {
     QSqlQuery cola;
@@ -31,6 +38,12 @@ bool MCobroServicioClientePeriodo::agregarCobro( const int id_periodo_servicio, 
 
 /*!
  * \fn MCobroServicioClientePeriodo::setearIDCtaCte( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_op_ctacte )
+ * Setea el ID de el registro de cuenta corriente para un cobro de un servicio a un cliente en un periodo determinado.
+ * \param id_periodo_servicio Identificador del periodo del servicio
+ * \param id_servicio Identificador del servicio
+ * \param id_cliente Identificador del cliente
+ * \param id_op_ctacte Identificador del movimiento de cuenta corriente.
+ * \returns Verdadero si se pudo setear, falso en caso contrario.
  */
 bool MCobroServicioClientePeriodo::setearIDCtaCte( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_op_ctacte ) {
     QSqlQuery cola;
@@ -50,7 +63,14 @@ bool MCobroServicioClientePeriodo::setearIDCtaCte( const int id_periodo_servicio
 #include "mitemcuentacorriente.h"
 #include <QSqlRecord>
 #include <QSqlError>
-
+/*!
+ * \fn MCobroServicioClientePeriodo::buscarNoPagados( const int id_cliente, const int id_servicio, const int id_periodo_servicio )
+ * Busca el total de todo lo no pagado para el cliente respecto a un servicio en un periodo.
+ * \param id_cliente Identificador del cliente.
+ * \param id_servicio identificador del servicio
+ * \param id_periodo_servicio Identificador del periodo del servicio.
+ * \return Sumatoria de todos los registros encontrados respectoa los parametros pasados.
+ */
 double MCobroServicioClientePeriodo::buscarNoPagados( const int id_cliente, const int id_servicio, const int id_periodo_servicio ) {
     double ret = 0;
     QSqlQuery cola;
@@ -66,9 +86,43 @@ double MCobroServicioClientePeriodo::buscarNoPagados( const int id_cliente, cons
         return ret;
     } else {
         qDebug( "Servicios::MCobroServicioClienteServicio::buscarNoPagados - Error al intentar buscar los ids de operaciones en ctacte de los items no pagados" );
-        qDebug( QString( cola.lastError().text() ).toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
         return -1;
     }
+
+}
+
+/*!
+ * \fn MCobroServicioClientePeriodo::verificarIdFactura( const int id_factura )
+ * Verifica si existe algun id_factura que corresponda con el parametro pasado. Si la factura corresponde a un servicio devuelve true.
+ * \param id_factura Identificador de factura
+ * \returns verdadero si corresponde a un cobro de servicio.
+ */
+bool MCobroServicioClientePeriodo::verificarIdFactura( const int id_factura ) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( id_factura ) FROM cobro_servicio_cliente_periodo WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        } else {
+            qDebug( "MCobroServicioClientePeriodo::verificarIdFactura::Error de next en la cola" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "MCobroServicioClientePeriodo::verificarIdFactura::Error de exec en la cola" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+    }
+    return false;
+}
+
+/*!
+ * \fn MCobroServicioClientePeriodo::colocarComoPago( const int id_factura )
+ * Coloca como pagado el registro de cobro de servicio correspondiente a la factura pasada como parametro.
+ * \param id_factura Identificador de factura.
+ * \returns verdadero si se pudo realizar el cambio.
+ */
+bool MCobroServicioClientePeriodo::colocarComoPagado( const int id_factura ) {
 
 }
 
@@ -82,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `cobro_servicio_cliente_periodo` (
     `id_ctacte` BIGINT NOT NULL,
     FOREIGN KEY ( id_periodo_servicio ) REFERENCES `periodo_servicio`( id_periodo_servicio ),
     FOREIGN KEY ( id_servicio, id_cliente ) REFERENCES `servicios_clientes`( id_servicio, id_cliente ),
-    FOREIGN KEY ( id_factura ) REFERENCES `factura`( id_factura ),
+    FOREIGN KEY ( id_factura ) REFERENCES `factura`( id_factura ), // Eso no se hace cuando esta presente el plugin de HiComp
     FOREIGN KEY ( id_ctacte ) REFERENCES `item_ctacte`(id_op_ctacte),
     FOREIGN KEY ( id_recibo ) REFERENCES `recibos`( id_recibo ),
     PRIMARY KEY ( id_periodo_servicio, id_servicio, id_cliente )

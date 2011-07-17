@@ -12,6 +12,7 @@ HEADERS += hicomp.h \
            ../CtaCte/mcuentacorriente.h \
            ../caja/mcajas.h \
            ../caja/mmovimientoscaja.h \
+           ../servicios/mcobroservicioclienteperiodo.h \
            ../../reporte/common/parameter.h
 
 SOURCES += hicomp.cpp \
@@ -21,6 +22,7 @@ SOURCES += hicomp.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../caja/mcajas.cpp \
            ../caja/mmovimientoscaja.cpp \
+           ../servicios/mcobroservicioclienteperiodo.cpp \
            ../../reporte/common/parameter.cpp
 
 DESTDIR = ../../bin/plugins
@@ -32,6 +34,7 @@ INCLUDEPATH += ../../utiles \
                ../../src \
                ../CtaCte \
                ../caja \
+               ../servicios \
                ../../reporte
 
 LIBS += ../../bin/libutiles.a
