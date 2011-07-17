@@ -62,11 +62,12 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         this->addAction( ActEmail );
         connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );
 
-        modeloItem = new MItemCuentaCorriente( TVItems, false );
+        modeloItem = new MItemCuentaCorriente( TVItems, true );
         TVItems->setModel( modeloItem );
         TVItems->hideColumn( 0 );
         TVItems->hideColumn( 2 );
         TVItems->hideColumn( 7 );
+        TVItems->hideColumn( 8 );
         TVItems->setSelectionMode( QAbstractItemView::SingleSelection );
         TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVItems->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
@@ -246,12 +247,8 @@ void FormResumenCtaCte::verFactura()
  */
 void FormResumenCtaCte::verRecibo()
 {
- Recibo *re = new Recibo( this );
- re->setIDPago( 0  ); /// @todo Poner id del recibo
- EVisorInformes *visor = new EVisorInformes( new QPrinter(), this );
-// re->hacerRecibo();
- //connect( visor, SIGNAL( paintRequested( QPrinter* ) ), re, SLOT( previsualizar( QPrinter * ) ) );
- //agregarVentana( visor );
+/* Recibo *re = new Recibo( this );
+ re->setIDPago( 0  ); */ /// @todo Poner id del recibo
 }
 
 

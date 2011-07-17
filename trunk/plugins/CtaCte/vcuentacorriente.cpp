@@ -43,16 +43,21 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActAgregar->setText( "Agregar Nueva CtaCte" );
  ActAgregar->setIcon( QIcon( ":/imagenes/ctacte_nueva.png" ) );
 
+ QAction *ActSep = new QAction( this );
+ ActSep->setSeparator(true );
+
+ QAction *ActVerDeudoras = new QAction( this );
+ ActVerDeudoras->setStatusTip( "Muestra solo las cuentas corrientes que tienen registrados movimientos mas altos que su limite." );
+ ActVerDeudoras->setText( "Solo Sobrepasadas" );
+ ActVerDeudoras->setCheckable( true );
+ connect( ActVerDeudoras, SIGNAL( toggled( bool ) ), this, SLOT( mostrarDeudoras( bool ) ) );
+
  addAction( ActAgregar );
  addAction( ActResumen );
  addAction( ActCerrar );
+ addAction( ActSep );
+ addAction( ActVerDeudoras );
 }
-
-
-VCuentaCorriente::~VCuentaCorriente()
-{
-}
-
 
 #include "formnuevactacte.h"
 /*!
@@ -120,7 +125,7 @@ void VCuentaCorriente::darBaja()
 {
  // busco el item
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
- int ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea deshabilitar esta cuenta corriente?", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
+ int ret = QMessageBox::question( this, "Â¿Esta seguro?", "Esta seguro que desea deshabilitar esta cuenta corriente?", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
  if( ret == QMessageBox::Ok )
  {
   rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "fecha_baja" ) ), QDate::currentDate(), Qt::EditRole );
@@ -136,11 +141,23 @@ void VCuentaCorriente::darBaja()
 void VCuentaCorriente::verResumen()
 {
  if( vista->selectionModel()->selectedRows().isEmpty() )
- { qWarning( "Elija una cuenta corriente para ver su resumen" ); return; } ///@todo Cambiar por un cuadro de dialogo
+ {
+     QMessageBox::warning( this, "Error", "Elija una cuenta corriente para ver su resumen", QMessageBox::Ok );
+     return;
+ }
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
  //Obtengo el numero de cuenta
  int numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toInt();
  FormResumenCtaCte *form = new FormResumenCtaCte( this );
  form->setNumeroCuenta( numero_cuenta );
  emit agregarVentana( form );
+}
+
+/*!
+ * \fn VCuentaCorriente::mostrarDeudoras( bool estado )
+ * Setea para que se vean solo las cuentas deudoras o no.
+ */
+void VCuentaCorriente::mostrarDeudoras( bool estado ) {
+    qobject_cast<MCuentaCorriente *>(this->rmodelo)->filtrarSoloDeudoras( estado );
+    this->rmodelo->select();
 }

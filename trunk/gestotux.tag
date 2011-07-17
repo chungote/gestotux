@@ -1307,6 +1307,17 @@
     <class kind="class">MPresupuesto</class>
   </compound>
   <compound kind="file">
+    <name>mvpresupuestos.cpp</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>mvpresupuestos_8cpp</filename>
+  </compound>
+  <compound kind="file">
+    <name>mvpresupuestos.h</name>
+    <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
+    <filename>mvpresupuestos_8h</filename>
+    <class kind="class">MVPresupuestos</class>
+  </compound>
+  <compound kind="file">
     <name>presupuesto.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/presupuesto/</path>
     <filename>presupuesto_8cpp</filename>
@@ -12971,10 +12982,24 @@
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
+      <name>colocarComoPagado</name>
+      <anchorfile>classMCobroServicioClientePeriodo.html</anchorfile>
+      <anchor>a76f4e6419fe9ceaea274e50c277238ff</anchor>
+      <arglist>(const int id_factura)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
       <name>setearIDCtaCte</name>
       <anchorfile>classMCobroServicioClientePeriodo.html</anchorfile>
       <anchor>a6cf9c589239006cd85d6d4697a062afc</anchor>
       <arglist>(const int id_cobro_servicio, const int id_servicio, const int id_cliente, const int id_op_ctacte)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>verificarIdFactura</name>
+      <anchorfile>classMCobroServicioClientePeriodo.html</anchorfile>
+      <anchor>ad7fed1f5796d9e4d6218266cb5d99a02</anchor>
+      <arglist>(const int id_factura)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -14073,25 +14098,11 @@
       <arglist>(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total)</arglist>
     </member>
     <member kind="function">
-      <type>QVariant</type>
-      <name>data</name>
-      <anchorfile>classMPresupuesto.html</anchorfile>
-      <anchor>a4774529c82d23d46695c1bdada60c71b</anchor>
-      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
-    </member>
-    <member kind="function">
       <type></type>
       <name>MPresupuesto</name>
       <anchorfile>classMPresupuesto.html</anchorfile>
       <anchor>ae2f37e94492bece229de6a817e57c4b7</anchor>
       <arglist>(QObject *parent=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>setData</name>
-      <anchorfile>classMPresupuesto.html</anchorfile>
-      <anchor>ab79b9b3e6ac2835ca38926c51c027e71</anchor>
-      <arglist>(const QModelIndex &amp;index, const QVariant &amp;value, int role)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static NumeroComprobante &amp;</type>
@@ -14805,6 +14816,24 @@
       <anchorfile>classMVFacturas.html</anchorfile>
       <anchor>aa5c7598d3cffa13cfb6a22b2e1621297</anchor>
       <arglist>(bool sino)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MVPresupuestos</name>
+    <filename>classMVPresupuestos.html</filename>
+    <member kind="function">
+      <type>QVariant</type>
+      <name>data</name>
+      <anchorfile>classMVPresupuestos.html</anchorfile>
+      <anchor>a29ceae565eaa59d2c42ff72e309b36aa</anchor>
+      <arglist>(const QModelIndex &amp;idx, int role) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MVPresupuestos</name>
+      <anchorfile>classMVPresupuestos.html</anchorfile>
+      <anchor>accd30cc34779cbc3c9eb108dab622201</anchor>
+      <arglist>(QObject *parent=0)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -19725,13 +19754,6 @@
       <anchor>ab757e80b0fe693b6f6b4b817d614e263</anchor>
       <arglist>(QWidget *parent=0)</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>~VPresupuesto</name>
-      <anchorfile>classVPresupuesto.html</anchorfile>
-      <anchor>a5ac5dfc4773b6575462f83c01c0d200a</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="variable">
       <type>QAction *</type>
       <name>ActAgregar</name>
@@ -19823,11 +19845,11 @@
       <anchor>a20d9e22fe341d49e9b604b893b02d27b</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
       <name>buscar</name>
-      <anchorfile>classVPresupuesto.html</anchorfile>
-      <anchor>a2e3aa3af92d328b462ceac1672e5c2fe</anchor>
+      <anchorfile>classEVLista.html</anchorfile>
+      <anchor>ab62a1688ad08a59faf93dff2a53f9e94</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected">
@@ -19837,11 +19859,11 @@
       <anchor>ab646f22a54a6773b39d74ee084829b08</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
       <name>eliminar</name>
-      <anchorfile>classVPresupuesto.html</anchorfile>
-      <anchor>a7f208d9d9e46619e5903547b421a0fc2</anchor>
+      <anchorfile>classEVLista.html</anchorfile>
+      <anchor>a3c0768fc13ee8f868a7e24242029ae2f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected" virtualness="virtual">
@@ -19872,11 +19894,11 @@
       <anchor>ade7dbb43d618d89ed327797d853d745c</anchor>
       <arglist>(const QModelIndex &amp;indice, QMenu *menu)</arglist>
     </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
+    <member kind="slot" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
       <name>modificar</name>
-      <anchorfile>classVPresupuesto.html</anchorfile>
-      <anchor>a6609d93a355935f91658c93c3b00e0be</anchor>
+      <anchorfile>classEVLista.html</anchorfile>
+      <anchor>ab108c259f82cc0e92f0202125b739158</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -21479,6 +21501,8 @@
     <file>MItemPresupuesto.h</file>
     <file>mpresupuesto.cpp</file>
     <file>mpresupuesto.h</file>
+    <file>mvpresupuestos.cpp</file>
+    <file>mvpresupuestos.h</file>
     <file>presupuesto.cpp</file>
     <file>presupuesto.h</file>
     <file>vpresupuesto.cpp</file>

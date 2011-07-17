@@ -163,8 +163,9 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                                 return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::DefaultLocaleShortDate );
                                 break;
                         }
-                        case 8:
+                        case 9:
                         {
+                                // Genero el saldo si no esta generado.
                                 if( _saldo && !saldos->keys().contains( item.row() ) )
                                 {
                                         // Calcular el saldo
@@ -176,8 +177,12 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                                                 saldos->insert( item.row(), saldoNuevo );*/
                                                 saldos->insert( item.row(),
                                                         saldos->value(item.row()-1) -
-                                                        this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble() +
-                                                        this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble() );
+                                                        this->data( this->index( item.row(), 6 ), Qt::EditRole ).toDouble() +
+                                                        this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() );
+                                        } else {
+                                            saldos->insert( item.row(),
+                                                    0 - this->data( this->index( item.row(), 6 ), Qt::EditRole ).toDouble() +
+                                                    this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() );
                                         }
                                 }
                                 return QString( "$ %L1" ).arg( saldos->value( item.row() ) );
@@ -200,13 +205,13 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 2:
                         case 3:
                         case 4:
-                        case 8:
-                        {
-                                return Qt::AlignCenter;
-                                break;
-                        }
                         case 5:
                         case 6:
+                        case 9:
+                        {
+                                return int( Qt::AlignCenter | Qt::AlignHCenter );
+                                break;
+                        }
                         default:
                         {
                                 return QSqlRelationalTableModel::data(item, role);
@@ -276,5 +281,14 @@ double MItemCuentaCorriente::valorOperacion( const int id_op_ctacte ) {
         qDebug( "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.");
         qDebug( cola.lastError().text().toLocal8Bit() );
         return -1.0;
+    }
+}
+
+int MItemCuentaCorriente::columnCount(const QModelIndex& /*parent*/) const
+{
+    if( _saldo ) {
+        return QSqlRelationalTableModel::columnCount()+1;
+    } else {
+        return QSqlRelationalTableModel::columnCount();
     }
 }

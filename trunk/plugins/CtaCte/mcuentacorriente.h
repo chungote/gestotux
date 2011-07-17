@@ -48,8 +48,8 @@ public:
 
 
     MCuentaCorriente( QObject *parent = 0, bool relaciones = true );
-    ~MCuentaCorriente();
     QVariant data(const QModelIndex& item, int role) const;
+    void filtrarSoloDeudoras( bool sino );
     static QString obtenerNumeroCuentaCorriente( const int id_cliente );
     static int verificarSaldo( const QString numero_cuenta, double aplicar );
     static bool actualizarSaldo( const QString numero_cuenta, const double aplicar );
