@@ -83,11 +83,11 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
         QAction *ActDarBaja = new QAction( "Dar de Baja", this );
         connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
         menu->addAction( ActDarBaja );
-
-        QAction *ActModificarLimite = new QAction( "Modificar Limite", this );
-        connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
-        menu->addAction( ActModificarLimite );
  }
+
+ QAction *ActModificarLimite = new QAction( "Modificar Limite", this );
+ connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
+ menu->addAction( ActModificarLimite );
 
  menu->addAction( ActResumen );
 
