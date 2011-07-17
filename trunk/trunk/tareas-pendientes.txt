@@ -33,12 +33,16 @@
 - Hacer calculos de ubicación de las flechas de la pantalla inicial.
 - Agregar a todos los modelos el metodo estatico siguienteNumero() para obtener el siguiente numero de comprobante.
 
+- Ver si realizar un reporte con todos los datos de un mes/año/semana con todos los datos y movimientos registrados.
+
 -- Cuentas corrientes --
 ------------------------
 - Ver integración con los otros plugins.
 
 -- Productos --
 ---------------
+- Generar sistema de autolocalizaciòn de productos cuando ingresamos su codigo de barra.
+  - Verificar que al ingresar un codigo de barra en los combobox se busque por numero no por texto del producto.
 - Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos ).
 - Ver como hacer los tickets de precios. Ofrecerlos luego de agregar un producto.
 - Verificar editor personalizado cuando se utlizan todas las combinaciones de propiedades.
@@ -70,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 -- Ventas --
 ------------
 - Diseñar sistema para que soporte automaticamente el sistema de cuotas.
-- Agregar posibilidad de pagar facturas automaticamente.
+- Agregar posibilidad de pagar facturas automaticamente desde la vista de facturas emitidas.
 
 -- Gastos --
 ------------
@@ -98,7 +102,8 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 
 -- HiComp --
 ------------
-- Generar sistema de autopago de recibos no pagados por ingreso de codigo de recibo. ( tanto manual como codigo de barras ).
+- verificar sistema de autopago de recibos no pagados por ingreso de codigo de recibo. ( tanto manual como codigo de barras ).
+- Ver integraciòn de pagos de recibos con recargos de servicios.
 
 ::::::::::::::::::::::::::
 ::: Pruebas para hacer :::
@@ -167,6 +172,9 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 ::: Otros :::
 :::::::::::::
 - Averiguar integración con lectores de codigo de barra.
+Los lectores funcionan como teclados, asi que no deberìan de ser problema si se utilizan con el focus colocado en el lugar correcto.
+Verificar que en los lugares que se desee utilizar sea posible la busqueda mediante codigo.
+
 
 :::::::::::::::::::
 :: Documentacion ::

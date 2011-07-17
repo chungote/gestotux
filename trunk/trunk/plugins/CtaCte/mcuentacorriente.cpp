@@ -39,11 +39,6 @@ MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
 }
 
 
-MCuentaCorriente::~MCuentaCorriente()
-{
-}
-
-
 QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
 {
  switch( role )
@@ -292,3 +287,11 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
     }
 }
 
+void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
+{
+    if( sino ) {
+        this->setFilter( "saldo >= limite" );
+    } else {
+        this->setFilter( "" );
+    }
+}

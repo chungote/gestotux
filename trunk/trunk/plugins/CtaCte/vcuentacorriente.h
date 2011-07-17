@@ -30,7 +30,6 @@ class VCuentaCorriente : public EVLista
 Q_OBJECT
 public:
     VCuentaCorriente(QWidget *parent = 0);
-    ~VCuentaCorriente();
 
 public slots:
     void agregar( bool autoeliminarid );
@@ -38,7 +37,7 @@ public slots:
 protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
    /*!
-    * Acción que muestra el resumen de una cuenta corriente especifica
+    * AcciÃ³n que muestra el resumen de una cuenta corriente especifica
     */
     QAction *ActResumen;
 
@@ -46,6 +45,7 @@ protected slots:
     void modificarLimite();
     void darBaja();
     void verResumen();
+    void mostrarDeudoras( bool estado );
 };
 
 #endif
