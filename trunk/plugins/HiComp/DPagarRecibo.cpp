@@ -21,6 +21,7 @@
 #include "DPagarRecibo.h"
 #include "mpagos.h"
 #include "NumeroComprobante.h"
+#include <QSqlDatabase>
 
 DPagarRecibo::DPagarRecibo(QWidget *parent) :
     QDialog(parent), _num_recibo( 0, -1, -1 )
@@ -62,6 +63,7 @@ void DPagarRecibo::changeEvent(QEvent *e)
 #include "eregistroplugins.h"
 #include "mcajas.h"
 #include "mcuentacorriente.h"
+#include "mcobroservicioclienteperiodo.h"
 /*!
  * \fn DPagarRecibo::accept()
  * Funciòn llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
@@ -69,25 +71,35 @@ void DPagarRecibo::changeEvent(QEvent *e)
 void DPagarRecibo::accept()
 {
     QMessageBox::critical( this, "error", "No implementado" );
-    /*abort();
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
-    if( m->buscarSiPagado( this->_num_recibo.serie(), this->SBNumeroRecibo->value() ) ) {
+    if( m->buscarSiPagado( this->_num_recibo ) ) {
         QMessageBox::warning( this, "Ya pagado", QString( "El recibo %1 ya esta como pagado en la base de datos." ).arg( this->_num_recibo.aCadena() ) );
         delete m;
         return;
     }
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
+    // busco si corresponde a un recibo de servicio.
+    int id_recibo = m->buscarIdPorSerieNumero( this->_num_recibo );
+    MCobroServicioClientePeriodo *c = new MCobroServicioClientePeriodo();
+    if( c->verificarIdFactura( id_recibo ) ) {
+        c->colocarComoPagado( id_recibo );
+    }
     // El recibo no esta pagado. Lo intento poner como pagado.
-    if( m->setearComoPagado( m->buscarIdPorSerieNumero( this->_num_recibo ), CkBEfectivo->isChecked() ) ) {
-        QMessageBox::warning( this, "Error", "Verificar si es un recibo de un servicio para conocer los recargos!!!" );
+    if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked() ) ) {
+        QMessageBox::warning( this, "Error", "recargos!!!" );
         abort();
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
         QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.aCadena() ) );
     } else {
         QMessageBox::warning( this, "Error", "No se pudo poner como pagado. Verifique debug.txt" );
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        delete c;
         delete m;
         return;
     }
-    delete m;*/
+    delete c;
+    delete m;
     QDialog::accept();
 }
 
@@ -107,6 +119,8 @@ void DPagarRecibo::cambioNumeroRecibo()
   }
   // Como no esta pagado, pongo el importe
   DSBImporte->setValue( m->buscarImporte( this->_num_recibo ) );
+  // Buscar los recargos
+
   // Coloco automaticamente el importe en a pagar
   DSBPagar->setValue( DSBImporte->value() );
 }
