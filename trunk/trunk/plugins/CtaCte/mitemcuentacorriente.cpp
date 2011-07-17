@@ -86,7 +86,7 @@ int MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const 
  else
  {
   cola.bindValue( ":debe", 0.0 );
-  cola.bindValue( ":haber", aplicar );
+  cola.bindValue( ":haber", (-1) * aplicar );
  }
 
  if( cola.exec() )

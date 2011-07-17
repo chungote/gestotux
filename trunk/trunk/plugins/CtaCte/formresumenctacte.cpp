@@ -130,12 +130,23 @@ void FormResumenCtaCte::cambioCtaCte( int /*numero_cuenta*/ )
 }
 
 
+#include "EReporte.h"
+#include <QMessageBox>
 /*!
     \fn FormResumenCtaCte::imprimir()
  */
 void FormResumenCtaCte::imprimir()
 {
-    /// @todo implement me
+    // Busco la cuenta?
+    ParameterList lista;
+    lista.append( Parameter( "ctacte", CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toString() ) );
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ResumenCtaCte", lista );
+    if( ! rep->hacer() ) {
+        QMessageBox::warning( this, "Error", "No se pudo imprimir el resumen de cuenta corriente" );
+    }
+    delete rep;
+    rep = 0;
 }
 
 

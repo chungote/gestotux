@@ -271,14 +271,14 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
                     // Error de numero de cliente
                     qDebug( "Id de cliente erroneo" );
                 } else {
-                    // Actualizo la cuenta corriente
+                    // Actualizo la cuenta corriente - El total es negativo para que vaya al haber
                     if( MItemCuentaCorriente::agregarOperacion( cuenta,
                                                                 proximo.aCadena(),
                                                                 ret,
                                                                 MItemCuentaCorriente::Recibo,
                                                                 fecha,
                                                                 QString( "Pago de recibo %1" ).arg( proximo.aCadena() ),
-                                                                total ) ) {
+                                                                total * (-1) ) ) {
                         qDebug( "Item de cuenta corriente agregado correctamente." );
                     } else {
                         qWarning( "No se pudo agregar el item de la cuenta corriente" );
