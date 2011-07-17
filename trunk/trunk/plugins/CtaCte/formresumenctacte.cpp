@@ -40,7 +40,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         this->setWindowTitle( "Resumen de Cta Cte" );
 
         // Relleno el combobox
-        QSqlQuery cola( "SELECT cc.numero_cuenta, c.razon_social FROM ctacte AS cc, clientes AS c WHERE cc.id_cliente = c.id AND fecha_baja IS NOT NULL" );
+        QSqlQuery cola( "SELECT cc.numero_cuenta, c.razon_social FROM ctacte AS cc, clientes AS c WHERE cc.id_cliente = c.id AND fecha_baja IS NULL" );
         while( cola.next() )
         {
                 CBClienteCtaCte->addItem(     "#" + cola.record().value(0).toString() + " - " + cola.record().value(1).toString(),
@@ -70,7 +70,9 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         TVItems->hideColumn( 8 );
         TVItems->setSelectionMode( QAbstractItemView::SingleSelection );
         TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
-        TVItems->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+        TVItems->horizontalHeader()->setResizeMode( 1, QHeaderView::ResizeToContents );
+        TVItems->horizontalHeader()->setResizeMode( 3, QHeaderView::ResizeToContents );
+        TVItems->horizontalHeader()->setResizeMode( 4, QHeaderView::ResizeToContents );
         TVItems->setTextElideMode( Qt::ElideRight );
         /// Menu contextual para cada operacion de la cuenta corriente
         connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );

@@ -33,7 +33,7 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool /*s */)
  setHeaderData( 0, Qt::Horizontal, "IdOperacion" );
  setHeaderData( 1, Qt::Horizontal, "Fecha" );
  setHeaderData( 2, Qt::Horizontal, "Ref Id" );
- setHeaderData( 3, Qt::Horizontal, "Tipo Operacion" );
+ setHeaderData( 3, Qt::Horizontal, "Tipo" );
  setHeaderData( 4, Qt::Horizontal, "Descripcion" );
  setHeaderData( 5, Qt::Horizontal, "Debe" );
  setHeaderData( 6, Qt::Horizontal, "Haber" );
@@ -169,12 +169,8 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                                 if( _saldo && !saldos->keys().contains( item.row() ) )
                                 {
                                         // Calcular el saldo
-                                        if( item.row() > 1 )
+                                        if( item.row() >= 1 )
                                         {
-                                                /*double saldoNuevo = saldos->value( item.row()-1 );
-                                                saldoNuevo -= this->data( this->index( item.row(), 5 ), Qt::DisplayRole ).toDouble();
-                                                saldoNuevo += this->data( this->index( item.row(), 6 ), Qt::DisplayRole ).toDouble();
-                                                saldos->insert( item.row(), saldoNuevo );*/
                                                 saldos->insert( item.row(),
                                                         saldos->value(item.row()-1) -
                                                         this->data( this->index( item.row(), 6 ), Qt::EditRole ).toDouble() +
@@ -204,7 +200,6 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 1:
                         case 2:
                         case 3:
-                        case 4:
                         case 5:
                         case 6:
                         case 9:
@@ -226,6 +221,13 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                 {
                         case 3:
                         { return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+                        case 9:
+                        {
+                            if( !saldos->keys().contains( item.row() ) )
+                            { return 0.0; }
+                            else
+                            { return saldos->value( item.row() ); }
+                        }
                         default:
                         { return QSqlRelationalTableModel::data( item, role ); break; }
                 }
