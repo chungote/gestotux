@@ -44,6 +44,10 @@ VProductos::VProductos(QWidget *parent)
  rmodelo = new MProductos( vista );
 
  vista->setModel( rmodelo );
+
+ //vista->setItemDelegate( new DProductos( vista ) );
+ vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
+
  vista->hideColumn( 0 );
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "id_categoria" ) ); }
@@ -53,9 +57,8 @@ VProductos::VProductos(QWidget *parent)
  { vista->hideColumn( rmodelo->fieldIndex( "marca" ) ); }
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "stock" ) ); }
-
- vista->setItemDelegate( new DProductos( vista ) );
- vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
+ if( !preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() )
+ { vista->hideColumn( rmodelo->fieldIndex( "modelo" ) ); }
 
  rmodelo->select();
  vista->resizeColumnsToContents();
