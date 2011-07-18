@@ -138,11 +138,12 @@ int main(int argc, char *argv[])
 {
       // Inicializa imagenes y archivos internos
       Q_INIT_RESOURCE(gestotux);
+      QApplication app(argc, argv);
       // Maneja la salida del programa
-        debug = fopen( "debug.txt", "w" );
+        debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
         fseek( debug, 0, 0 );
         qInstallMsgHandler(myMessageOutput);
-      QApplication app(argc, argv);
+
       // Muestro el splash
       ESplash splash;
       splash.show();
@@ -221,14 +222,14 @@ int main(int argc, char *argv[])
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) && fallosql == true )
       {
-       QFile *base = new QFile( "gestotux.database" );
+       QFile *base = new QFile( QApplication::applicationDirPath().append( QDir::separator() ).append( "gestotux.database" ).toLocal8Bit() );
        if( !base->open( QIODevice::ReadOnly ) )
        {
          qDebug( "-------------------------------------------------" );
          qDebug( "El archivo de Base de datos no existe!");
          qDebug( "-------------------------------------------------" );
                 QSqlDatabase DB = QSqlDatabase::addDatabase("QSQLITE");
-                DB.setDatabaseName( "gestotux.database" );
+                DB.setDatabaseName( QApplication::applicationDirPath().append( QDir::separator() ).append( "gestotux.database" ) );
                 if( !DB.open() )
                 {
                         qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
@@ -245,7 +246,7 @@ int main(int argc, char *argv[])
         }
         delete base;
         QSqlDatabase DB = QSqlDatabase::addDatabase("QSQLITE");
-        DB.setDatabaseName("gestotux.database");
+        DB.setDatabaseName( QApplication::applicationDirPath().append( QDir::separator() ).append( "gestotux.database" ) );
         if( !DB.open() )
         {
                 qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
@@ -327,7 +328,7 @@ int main(int argc, char *argv[])
                                 //Verifico sus tablas
                                 if( plug->verificarTablas( tablas ) != true )
                                 {
-                                        // estan cargados los archivo resource cuando cargo el plugin?
+                                        // recordar inicailizar los resources en la funcion inicializar para qe esten disponibles los archivos sql.
                                         if( hacerTablas( plug->nombre() ) )
                                         {
                                                 // todo ok

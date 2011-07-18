@@ -88,7 +88,11 @@ void VCliente::agregar( bool /*autoeliminarid*/ )
 
 #include "EReporte.h"
 void VCliente::listadoClientes() {
-  // Hago el listado de clientes
+    if( this->mc->rowCount() <= 0 ) {
+        QMessageBox::warning( this, "Error", "No existe ningun cliente para imprimir un listado. No se imprimira nada" );
+        return;
+    }
+    // Hago el listado de clientes
     EReporte *rep = new EReporte( this );
     rep->especial( "ListadoClientes", ParameterList() );
     if( !rep->hacer() ) {

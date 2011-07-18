@@ -82,20 +82,15 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 
 }
 
-FormResumenCtaCte::~FormResumenCtaCte()
-{
-}
-
-
 /*!
-    \fn FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
+    \fn FormResumenCtaCte::setNumeroCuenta( const QString &numero_cuenta )
         Setea todas las condiciones del formulario para mostrar los datos de la cuenta corriente seleccionada por el parametro
         @param numero_cuenta Numero de cuenta al que se desea ver el resumen
  */
-void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
+void FormResumenCtaCte::setNumeroCuenta( const QString &numero_cuenta )
 {
  // Seteo el numero de cuenta
- CBClienteCtaCte->setCurrentIndex( CBClienteCtaCte->findText( QString::number( numero_cuenta ), Qt::MatchContains ) );
+ CBClienteCtaCte->setCurrentIndex( CBClienteCtaCte->findText( numero_cuenta, Qt::MatchContains ) );
  //Busco los datos
  QSqlQuery cola( QString( "SELECT fecha_alta, saldo, limite FROM ctacte WHERE numero_cuenta = '%1'" ).arg( numero_cuenta ) );
  if( cola.next() )
@@ -112,7 +107,7 @@ void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
   LSaldoActual->setText( "" );
   LLimiteCredito->setText( "" );
   qWarning( "Error al obtener los datos de la cuenta corriente" );
-  qDebug( qPrintable( "Numero cuenta: " + QString::number( numero_cuenta ) ) );
+  qDebug( qPrintable( "Numero cuenta: " + numero_cuenta ) );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.executedQuery() ) );
  }
@@ -126,7 +121,7 @@ void FormResumenCtaCte::setNumeroCuenta( const int &numero_cuenta )
  */
 void FormResumenCtaCte::cambioCtaCte( int /*numero_cuenta*/ )
 {
- setNumeroCuenta( CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toInt() );
+ setNumeroCuenta( CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toString() );
 }
 
 
@@ -137,6 +132,10 @@ void FormResumenCtaCte::cambioCtaCte( int /*numero_cuenta*/ )
  */
 void FormResumenCtaCte::imprimir()
 {
+    if( modeloItem->rowCount() <= 0 ) {
+        QMessageBox::warning( this, "Error", "No hay ningun movimiento para la cuenta corriente. No se imprimira nada" );
+        return;
+    }
     // Busco la cuenta?
     ParameterList lista;
     lista.append( Parameter( "ctacte", CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toString() ) );

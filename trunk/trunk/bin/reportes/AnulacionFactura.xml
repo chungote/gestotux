@@ -13,11 +13,15 @@
  <bottommargin>100</bottommargin>
  <rightmargin>100</rightmargin>
  <leftmargin>100</leftmargin>
+ <querysource>
+  <name>dump</name>
+  <sql>SELECT 1 AS 1 FROM dual;</sql>
+ </querysource>
  <section>
   <name>Sin nombre</name>
   <detail>
    <key>
-    <query></query>
+    <query>dump</query>
    </key>
    <height>512</height>
    <rect>

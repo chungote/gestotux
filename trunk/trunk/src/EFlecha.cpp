@@ -76,14 +76,30 @@ void EFlecha::calcularDistanciaMinima() {
   int d1 = abs( origen->rect().top() - destino->rect().bottom() );
   int d2 = sqrt( pow( origen->rect().topLeft().y(), 2 ) + pow( destino->rect().bottomRight().y(), 2 ) );
   int d3 = abs( origen->rect().topLeft().x() - destino->rect().bottomRight().x() );
-  /*int d4 = origen->rect().bottomLeft() - destino->rect().topRight();
-  int d5 = origen->rect().bottomRight().y() - destino->rect().top().y();
-  int d6 = origen->rect().bottomRight() - destino->rect().topLeft();
-  int d7 = origen->rect().x() - destino->rect().topLeft().x();
-  int d8 = origen->rect() - destino->rect().bottomRight();*/
-
+  int d4 = abs( origen->rect().bottomLeft().x() - destino->rect().topRight().x() );
+  int d5 = abs( origen->rect().bottomRight().y() - destino->rect().top() );
+  int d6 = abs( origen->rect().bottomRight().x() - destino->rect().topLeft().x() );
+  int d7 = abs( origen->rect().x() - destino->rect().topLeft().x() );
+  int d8 = abs( origen->rect().x() - destino->rect().bottomRight().x() );
   // Busco los menores
-
+  int min = qMin( qMin( qMin( qMin( d1, d2 ), qMin( d3, d4 ) ), qMin( d5, d6 ) ), qMin( d7, d8 ) );
+  /*switch( min ) {
+    case d1:
+    {
+        break;
+    }
+    case d2:
+    {
+          break;
+    }
+    case d3:
+    case d4:
+    case d5:
+    case d6:
+    case d7:
+    case d8:
+    default:
+  }*/
 }
 
 void EFlecha::setearTamFlecha( int tam )

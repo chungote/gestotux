@@ -49,11 +49,11 @@ bool Servicios::inicializar()
 bool Servicios::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "servicios" ) )
-    { qWarning( "Servicios::Error al buscar la tabla de servicios" ); return false; }
+    { qDebug( "Servicios::Error al buscar la tabla de servicios" ); return false; }
  if( !tablas.contains( "servicios_clientes" ) )
- { qWarning( "Servicios::Error al buscar la tabla de servicios_clientes" ); return false; }
+ { qDebug( "Servicios::Error al buscar la tabla de servicios_clientes" ); return false; }
  if( !tablas.contains( "recargos" ) )
- { qWarning( "Servicios::Error al buscar la tabla de recargos" ); return false; }
+ { qDebug( "Servicios::Error al buscar la tabla de recargos" ); return false; }
  return true;
 }
 

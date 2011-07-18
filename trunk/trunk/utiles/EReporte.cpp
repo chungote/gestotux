@@ -96,7 +96,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
         return false;
     }
 
-    if( _tipo == EReporte::Presupuesto || _tipo == EReporte::Recibo ) {
+    /*if( _tipo == EReporte::Presupuesto || _tipo == EReporte::Recibo ) {
         // Guardo el documento en la carpeta si corresponde
         QDir dir = QApplication::applicationDirPath();
         dir.cd( "reportes" );
@@ -106,10 +106,10 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
             }
         }
         dir.cd( "deposito" );
-        if( ! _rep->exportToPDF( "recibo" ) ) {
+        if( ! _rep->exportToPDF( dir.absoluteFilePath( _rep-> ) ) {
             qDebug( "Error al guardar el reporte en el directorio." );
         }
-    }
+    }*/
     return true;
 
 }
@@ -210,7 +210,7 @@ bool EReporte::cargar( const QString nombre ) {
         // Tiene que estar en un archio xml guardado en un directorio
         QDir reporte = QApplication::applicationDirPath();
         if( ! reporte.cd( "reportes" ) ) {
-            qDebug( "No se pudo ingresar al directorio de reportes" );
+            qWarning( "No se pudo ingresar al directorio de reportes -  Consulte el servicio tecnico" );
             return false;
         }
         // busco el nombre de archivo
@@ -237,7 +237,7 @@ bool EReporte::cargar( const QString nombre ) {
                 return false;
             }
         } else {
-            qDebug( QString( "Error - No se pudo cargar el reporte - No existe el archivo %1" ).arg( ruta ).toLocal8Bit() );
+            qWarning( QString( "Error - No se pudo cargar el reporte - No existe el archivo %1" ).arg( ruta ).toLocal8Bit() );
             return false;
         }
     } else {

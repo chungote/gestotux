@@ -147,7 +147,7 @@ void VCuentaCorriente::verResumen()
  }
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
  //Obtengo el numero de cuenta
- int numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toInt();
+ QString numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
  FormResumenCtaCte *form = new FormResumenCtaCte( this );
  form->setNumeroCuenta( numero_cuenta );
  emit agregarVentana( form );
