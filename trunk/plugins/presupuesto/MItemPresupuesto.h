@@ -28,7 +28,7 @@ class MItemPresupuesto : public QSqlRelationalTableModel
     Q_OBJECT
 public:
     explicit MItemPresupuesto(QObject *parent = 0);
-    bool agregarItemPresupuesto( const int id_presupeusto, const double cantidad, const QString texto, const double precio_unitario );
+    bool agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario );
 
 private:
     void inicializar();

@@ -9827,15 +9827,8 @@
       <type>void</type>
       <name>setNumeroCuenta</name>
       <anchorfile>classFormResumenCtaCte.html</anchorfile>
-      <anchor>afe57bc6cf6375edaa77b81010f64e171</anchor>
-      <arglist>(const int &amp;numero_cuenta)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~FormResumenCtaCte</name>
-      <anchorfile>classFormResumenCtaCte.html</anchorfile>
-      <anchor>a464ce9946818cd1c5d7aa2e661d60dfb</anchor>
-      <arglist>()</arglist>
+      <anchor>a7b98551c2d59d8efda96d3f369d00852</anchor>
+      <arglist>(const QString &amp;numero_cuenta)</arglist>
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
@@ -12984,8 +12977,8 @@
       <type>static bool</type>
       <name>colocarComoPagado</name>
       <anchorfile>classMCobroServicioClientePeriodo.html</anchorfile>
-      <anchor>a76f4e6419fe9ceaea274e50c277238ff</anchor>
-      <arglist>(const int id_factura)</arglist>
+      <anchor>aa460eab9299bebebbb2a1744de1f184f</anchor>
+      <arglist>(const int id_factura, const int id_recibo)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
@@ -13131,18 +13124,18 @@
       <arglist>(const QModelIndex &amp;item, int role) const </arglist>
     </member>
     <member kind="function">
+      <type>void</type>
+      <name>filtrarSoloDeudoras</name>
+      <anchorfile>classMCuentaCorriente.html</anchorfile>
+      <anchor>ac20b6d90ddf236bf73babfa169a432b5</anchor>
+      <arglist>(bool sino)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>MCuentaCorriente</name>
       <anchorfile>classMCuentaCorriente.html</anchorfile>
       <anchor>a3a56f3972f8f13c0f0668f51d07ab628</anchor>
       <arglist>(QObject *parent=0, bool relaciones=true)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~MCuentaCorriente</name>
-      <anchorfile>classMCuentaCorriente.html</anchorfile>
-      <anchor>ae437b599a449a9d280b6e59beb33949f</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
@@ -13461,6 +13454,13 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>int</type>
+      <name>columnCount</name>
+      <anchorfile>classMItemCuentaCorriente.html</anchorfile>
+      <anchor>aeea8891c1fd19327d3b47acc4ac18fe4</anchor>
+      <arglist>(const QModelIndex &amp;parent) const </arglist>
+    </member>
+    <member kind="function">
       <type>QVariant</type>
       <name>data</name>
       <anchorfile>classMItemCuentaCorriente.html</anchorfile>
@@ -13577,8 +13577,8 @@
       <type>bool</type>
       <name>agregarItemPresupuesto</name>
       <anchorfile>classMItemPresupuesto.html</anchorfile>
-      <anchor>a5f0bbbe51a2560a79eb6e9d9bedcee96</anchor>
-      <arglist>(const int id_presupeusto, const double cantidad, const QString texto, const double precio_unitario)</arglist>
+      <anchor>a50c69f9850be3f9b5e960dbd047a49e8</anchor>
+      <arglist>(const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario)</arglist>
     </member>
     <member kind="function">
       <type></type>
@@ -14083,8 +14083,8 @@
       <type>static int</type>
       <name>diasEnPeriodoServicio</name>
       <anchorfile>classMPeriodoServicio.html</anchorfile>
-      <anchor>ad3c8f26018f21513fa7c9720ab7406d2</anchor>
-      <arglist>(const int id_servicio, QDate fecha_calculo)</arglist>
+      <anchor>a6b33ec250dafb87bd1b0bff07f6e5ba6</anchor>
+      <arglist>(const int tipo_periodo, QDate fecha_calculo)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -18367,13 +18367,6 @@
       <anchor>af0e1a209048d28e1da6def28d289a950</anchor>
       <arglist>(QWidget *parent=0)</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>~VCuentaCorriente</name>
-      <anchorfile>classVCuentaCorriente.html</anchorfile>
-      <anchor>a184440a8462a38fb1d1c43c856223b90</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="variable">
       <type>QAction *</type>
       <name>ActAgregar</name>
@@ -18513,6 +18506,13 @@
       <anchorfile>classVCuentaCorriente.html</anchorfile>
       <anchor>aeedbc59f842ad4a41afe6081f091f4a2</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>mostrarDeudoras</name>
+      <anchorfile>classVCuentaCorriente.html</anchorfile>
+      <anchor>aefaa5261c22eb7697321c613021b7c3a</anchor>
+      <arglist>(bool estado)</arglist>
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>

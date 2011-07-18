@@ -104,6 +104,7 @@ NumeroComprobante &MPresupuesto::proximoComprobante() {
     @param texto_cliente Nombre del cliente si id-cliente no es valido
     @param direccion Direccion del cliente o destinatario si el id-cliente no es valido
     @param fechahora Fecha y hora del presupeusto
+    @param total Total del presupuesto
     @returns ID de insercion o -1 si hubo un error
  */
 int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total ) {

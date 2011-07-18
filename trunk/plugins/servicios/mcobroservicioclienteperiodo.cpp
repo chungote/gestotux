@@ -117,13 +117,22 @@ bool MCobroServicioClientePeriodo::verificarIdFactura( const int id_factura ) {
 }
 
 /*!
- * \fn MCobroServicioClientePeriodo::colocarComoPago( const int id_factura )
- * Coloca como pagado el registro de cobro de servicio correspondiente a la factura pasada como parametro.
+ * \fn MCobroServicioClientePeriodo::colocarComoPagado( const int id_factura, const int id_recibo )
+ * Coloca como pagado el registro de cobro de servicio correspondiente a la factura pasada como parametro con el recibo pasado como parametro
  * \param id_factura Identificador de factura.
+ * \param id_recibo Identificador del recibo que paga esta factura
  * \returns verdadero si se pudo realizar el cambio.
  */
-bool MCobroServicioClientePeriodo::colocarComoPagado( const int id_factura ) {
-
+bool MCobroServicioClientePeriodo::colocarComoPagado( const int id_factura, const int id_recibo ) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "UPDATE FROM cobro_servicio_cliente_periodo SET id_recibo = %1 WHERE id_factura = %2 LIMIT 1" ).arg( id_recibo ).arg( id_factura ) ) ) {
+        return true;
+    } else {
+        qDebug( "MCobroServicioClientePeriodo::colocarComoPagado::Error al intentar colocar como pagado un cobro de servicio. Error de exec." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    }
 }
 
 /*

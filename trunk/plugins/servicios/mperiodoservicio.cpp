@@ -100,7 +100,7 @@ QDate MPeriodoServicio::obtenerFechaFinPeriodo( const int id_servicio, const QDa
 }
 
 /*!
- * \fn MPeriodoServicio::diasEnPeriodoServicio( const int id_periodo, QDate fecha_calculo )
+ * \fn MPeriodoServicio::diasEnPeriodoServicio( const int id_servicio, QDate fecha_calculo )
  * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo del servicio seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
  * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
  * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
@@ -307,7 +307,7 @@ int MPeriodoServicio::agregarPeriodoAFacturarNuevo( const int id_servicio ) {
 /*!
  * \fn MPeriodoServicio::getFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano )
  * Devuelve la fecha de inicio del periodo solicitado
- * @param id_servico ID del servicio elegido
+ * @param id_servicio ID del servicio elegido
  * @param periodo Periodo elegido a solicitar la fecha
  * @param ano Año solicitado
  * @returns Fecha de inicio del periodo solicitado o una fecha invalida si hubo un error.
@@ -334,7 +334,7 @@ QDate MPeriodoServicio::getFechaInicioPeriodo( const int id_servicio, const int 
 /*!
  * \fn MPeriodoServicio::getUltimaFecha( const int id_servicio )
  * Devuelve la ultima fecha de fin del servicio solicitado
- * @param id_servico ID del servicio elegido
+ * @param id_servicio ID del servicio elegido
  * @returns Ultima fecha o una fecha invalida si no existe o hubo un error.
  */
 QDate MPeriodoServicio::getUltimaFecha( const int id_servicio ) {
@@ -359,7 +359,7 @@ QDate MPeriodoServicio::getUltimaFecha( const int id_servicio ) {
 /*!
  * \fn MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano )
  * Devuelve la fecha teorica del inicio del periodo segun el servicio solicitado
- * @param id_servico ID del servicio elegido
+ * @param id_servicio ID del servicio elegido
  * @param periodo numero de periodo del servicio en el año elegido
  * @param ano Año elegido
  * @returns Fecha de inicio o fecha invalida si hubo un error.
