@@ -31,8 +31,7 @@ Q_OBJECT
 
 public:
 	FormResumenCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-	~FormResumenCtaCte();
-	void setNumeroCuenta( const int &numero_cuenta );
+        void setNumeroCuenta( const QString &numero_cuenta );
 
 protected slots:
     void cambioCtaCte( int numero_cuenta );

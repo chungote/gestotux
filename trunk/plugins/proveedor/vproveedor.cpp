@@ -23,6 +23,7 @@
 #include <QTableView>
 #include <QAction>
 #include "EReporte.h"
+#include <QMessageBox>
 
 VProveedor::VProveedor( QWidget *parent )
  : EVLista( parent )
@@ -77,6 +78,10 @@ void VProveedor::eliminar()
  */
 void VProveedor::listado()
 {
+    if( this->modelo->rowCount() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("No existe ningun proveedor para listar. No se imprimirá ningun listado" ) );
+        return;
+    }
     EReporte *rep = new EReporte( 0 );
     rep->especial( "ListadoProveedores", ParameterList() );
     if( !rep->hacer( ParameterList(), true ) ) {

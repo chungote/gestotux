@@ -128,6 +128,7 @@ void VVentas::anular()
         }
 
     }
+    this->modelo->select();
     return;
 }
 
