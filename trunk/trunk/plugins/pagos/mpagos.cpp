@@ -527,7 +527,7 @@ bool MPagos::buscarSiPagado( const int serie, const int numero )
 }
 
 /*!
- * \fn MPagos::buscarSiPagado( const NumeroComrpobante num )
+ * \fn MPagos::buscarSiPagado( const NumeroComprobante num )
  * Sobrecarga
  * \param num Numero y serie del recibo buscado
  * \returns pagado o no
@@ -600,7 +600,7 @@ double MPagos::buscarImporte( NumeroComprobante num )
 }
 
 /*!
- * \fn MPagos::buscarNumeroComprobantePorID( const int id_recibo )
+ * \fn MPagos::buscarNumeroComprobantePorId( const int id_recibo )
  * Devuelve un numero de comprobante para el ID de recibo pasado. Si el ID no existe o hubo error, devuelve un numero de comprobante erroneo.
  * \param id_recibo ID del recibo buscado
  * \returns NumeroComprobante buscado o invalido si hubo error o no existe el ID.

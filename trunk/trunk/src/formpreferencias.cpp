@@ -47,15 +47,16 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     contentsWidget->setMaximumWidth( 128 );
     contentsWidget->setSpacing( 12 );
     contentsWidget->sizePolicy().setVerticalPolicy( QSizePolicy::MinimumExpanding );
-    //contentsWidget->setSortingEnabled( true );
+    contentsWidget->setResizeMode( QListView::Adjust );
+    contentsWidget->setGridSize( QSize( 128, 64 ) );
 
     pagesWidget = new QStackedWidget;
     QListWidgetItem *configButton = new QListWidgetItem( contentsWidget );
     configButton->setIcon( QIcon( ":/imagenes/general.png" ) );
-    configButton->setText( "Estilo" );
+    configButton->setText( "General" );
     configButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
     configButton->setTextAlignment( Qt::AlignBottom | Qt::AlignHCenter );
-    //configButton->setSizeHint( QSize( 128, 128 ) );
+    configButton->setSizeHint( QSize( 128, 128 ) );
      ////////////////////////////////////////////////////////////////////
      /// Agregar aqui los widgets de configuracion
      FPrefGeneral *formGeneral = new FPrefGeneral( this );
@@ -102,7 +103,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
                 }
         }
      }
-    // seteo el tamaño de los iconos
+    // seteo el tamaÃ±o de los iconos
     contentsWidget->setIconSize( QSize( 128, 128 ) );
 
     ActCerrar  = new QAction( "Cerrar", this );

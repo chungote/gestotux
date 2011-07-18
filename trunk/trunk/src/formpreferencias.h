@@ -30,7 +30,7 @@ class QPushButton;
 
 /**
  * @brief Formulario base para todas ventanas de preferencias
- * Genera el formulario donde se colocan todas las preferencias de la aplicación
+ * Genera el formulario donde se colocan todas las preferencias de la aplicaciÃ³n
  * @author Esteban Zeller <juiraze@yahoo.com.ar>
  */
 class FormPreferencias : public EVentana

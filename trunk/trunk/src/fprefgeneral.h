@@ -36,13 +36,15 @@
 class FPrefGeneral : public EVentana, public FormPrefHijo, private Ui::FPrefGeneralBase
 {
   Q_OBJECT
+
 public:
   FPrefGeneral( QWidget* parent = 0 );
-  ~FPrefGeneral();
+
 public slots:
     void cargar();
     void guardar();
     void aplicar();
+
 protected slots:
     void cambioSobreEstilo( bool estado );
     void cambioSobreEstilo( const QString &estilo );

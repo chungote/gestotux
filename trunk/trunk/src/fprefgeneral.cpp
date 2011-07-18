@@ -48,12 +48,6 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 	}
 }
 
-FPrefGeneral::~FPrefGeneral()
-{
-}
-
-
-
 /*!
     \fn FPrefGeneral::cargar()
  */

@@ -29,7 +29,7 @@ public:
 
 private:
     static int diasEnPeriodo( const int id_servicio, const QDate fecha_inicio );
-    static int diasEnPeriodoServicio( const int id_servicio, QDate fecha_calculo );
+    static int diasEnPeriodoServicio( const int tipo_periodo, QDate fecha_calculo );
     QDate getFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano );
     QDate getUltimaFecha( const int id_servicio );
     int getUltimoPeriodo( const int id_servicio );
