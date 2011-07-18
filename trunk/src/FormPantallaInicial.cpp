@@ -43,6 +43,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
 
     this->TBNotas->setVisible( false );
+    this->TBResumenCtaCte->setVisible( false );
+    this->horizontalSpacer_7->invalidate();
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     // Plugins
@@ -84,8 +86,6 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
         if( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() )
         { connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
           TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
-          TBResumenCtaCte->setIcon( QIcon( ":/imagenes/resumen_cuenta.png" ) );
-          //connect( TBResumenCtaCte, SIGNAL(clicked()), )
         } else { qWarning( "Error de accion de cuenta corriente") ; }
     } else {
         TBCuentasCorrientes->setVisible( false );

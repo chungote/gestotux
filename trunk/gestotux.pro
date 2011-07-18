@@ -3,8 +3,7 @@ SUBDIRS += utiles \
  src/src.pro \
  plugins/default/default.pro \
  plugins/plugins.pro \
- utiles/estilos/estilos.pro \
- VerfVal/verlink.pro
+ utiles/estilos/estilos.pro
 
 TEMPLATE = subdirs
 CONFIG += warn_on \

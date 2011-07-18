@@ -37,8 +37,8 @@ MProductos::MProductos(QObject *parent)
  setHeaderData( 4, Qt::Horizontal, "Precio de venta" );
  setHeaderData( 5, Qt::Horizontal, "Descripcion" );
  setHeaderData( 6, Qt::Horizontal, "Marca" );
- setHeaderData( 7, Qt::Horizontal, "Habilitado" );
- setHeaderData( 8, Qt::Horizontal, "Stock" );
+ setHeaderData( 7, Qt::Horizontal, "Stock" );
+ setHeaderData( 8, Qt::Horizontal, "Habilitado" );
  setSort( 0, Qt::AscendingOrder );
 }
 
@@ -66,13 +66,18 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                                 return QSqlRelationalTableModel::data(item, role).toString().prepend( "$" );
                                 break;
                         }
-                        case 6:
+                        case 8:
                         {
                                 if( QSqlRelationalTableModel::data( item, role ).toBool() )
                                 { return "Si"; }
                                 else
                                 { return "No"; }
                                 break;
+                        }
+                        case 7:
+                        {
+                            return QSqlRelationalTableModel::data( item, role ).toDouble();
+                            break;
                         }
                         default:
                         {
