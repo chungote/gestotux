@@ -24,10 +24,6 @@ CONFIG  += staticlib \
 DEFINES += MAKELIB
 
 DESTDIR = ../bin
-MOC_DIR = tmp
-OBJECTS_DIR = tmp
-UI_DIR = tmp
-
 
 HEADERS = openreports.h \
           barcodes.h \

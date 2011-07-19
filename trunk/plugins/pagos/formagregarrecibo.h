@@ -24,7 +24,7 @@
 #include "eventana.h"
 #include "ui_FormReciboBase.h"
 
-class MPagos;
+#include "mpagos.h"
 /*!
  * \brief Formulario para agregar Recibo
  *

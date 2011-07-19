@@ -19,13 +19,13 @@
  ***************************************************************************/
 #include "vpagos.h"
 
-#include "mpagos.h"
+#include "mvpagos.h"
 #include "formagregarrecibo.h"
 #include <QTableView>
 #include <QIcon>
 #include <QMessageBox>
-#include "openreports.h"
-#include "common/parameter.h"
+#include "EReporte.h"
+#include "dsino.h"
 
 VPagos::VPagos(QWidget *parent)
  : EVLista(parent)
@@ -34,23 +34,18 @@ VPagos::VPagos(QWidget *parent)
  this->setWindowTitle( "Visor de Pagos" );
  this->setWindowIcon( QIcon( ":/imagenes/recibo.png" ) );
 
- modelo = new MPagos( this, true );
+ modelo = new MVPagos( this );
  vista->setModel( modelo );
  vista->hideColumn( 0 );
- vista->hideColumn( 3 );
- vista->hideColumn( 9 );
  vista->setSortingEnabled( true );
  vista->setAlternatingRowColors( true );
+ vista->setItemDelegateForColumn( 6, new DSiNo( vista ) );
+ vista->setItemDelegateForColumn( 7, new DSiNo( vista ) );
  modelo->select();
 
  addAction( ActAgregar );
  addAction( ActImprimir );
  addAction( ActCerrar );
-}
-
-
-VPagos::~VPagos()
-{
 }
 
 /*!
@@ -60,7 +55,7 @@ VPagos::~VPagos()
 void VPagos::agregar( bool /*a*/)
 {
  FormAgregarRecibo *f = new FormAgregarRecibo( this );
- f->setearModelo( qobject_cast<MPagos *>(this->modelo) );
+ //f->setearModelo( qobject_cast<MPagos *>(this->modelo) );
  emit agregarVentana( f );
 }
 
@@ -83,28 +78,26 @@ void VPagos::imprimir()
     //Hacer dialogo de confirmacion..
     int ret;
     ret = QMessageBox::warning( this, "Esta seguro?",
-                      QString( "Esta seguro de reimprimir %1 recibo(s)?\n Se conservará el mismo numero de recibo que cuando fue emitido").arg( indices.size() ),
+                      QString( "Esta seguro de reimprimir %1 recibo(s)?\n Se conservarÃ¡ el mismo numero de recibo que cuando fue emitido").arg( indices.size() ),
                       "Si", "No" );
     if ( ret == 0 )
     {
            QModelIndex indice;
-           orReport *rep = new orReport( "recibo" );
+           EReporte *rep = new EReporte( 0 );
+           rep->recibo();
+           ParameterList lista;
            foreach( indice, indices )
            {
                    if( indice.isValid() )
                    {
                            QModelIndex r = indice.model()->index( indice.row(), 0 );
                            QModelIndex c = indice.model()->index( indice.row(), 1 );
-                           ParameterList lista;
                            lista.append( "id_recibo", r.data( Qt::EditRole ).toInt() );
-                           rep->setParamList( lista );
-                           rep->print();
-                           //rep->exportToPDF( "/home/Esteban/recibo-" + r.data( Qt::DisplayRole ).toInt() );
+                           rep->hacer( lista );
+                           lista.clear();
                    }
            }
            delete rep;
     }
     return;
-
-
 }

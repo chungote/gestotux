@@ -22,7 +22,8 @@ HEADERS += pagosplugin.h \
            ../caja/mcajas.h \
            vpagos.h \
            recibo.h \
-           FormPrefRecibos.h
+           FormPrefRecibos.h \
+           mvpagos.h
 
 SOURCES += pagosplugin.cpp \
            mpagos.cpp \
@@ -33,7 +34,8 @@ SOURCES += pagosplugin.cpp \
            ../caja/mcajas.cpp \
            vpagos.cpp \
            recibo.cpp \
-           FormPrefRecibos.cpp
+           FormPrefRecibos.cpp \
+           mvpagos.cpp
 
 FORMS += FormReciboBase.ui \
          FormPrefRecibos.ui
