@@ -32,10 +32,11 @@ class VPagos : public EVLista
 Q_OBJECT
 public:
     VPagos(QWidget *parent = 0);
-    ~VPagos();
+
 public slots:
     void agregar( bool autoeliminarid );
     void imprimir();
+
 };
 
 #endif

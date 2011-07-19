@@ -100,6 +100,7 @@ void VProductos::antes_de_insertar(  int /* row */, QSqlRecord &registro )
 {
  registro.setValue( "descripcion", "" );
  registro.setValue( "marca", "" );
+ registro.setValue( "modelo", "" );
 }
 
 /*!
