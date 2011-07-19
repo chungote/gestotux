@@ -18,8 +18,3 @@ LIBS += ../bin/plugins/libcaja.so \
         ../bin/libutiles.a \
         #../bin/plugins/libbscomputacion.so
         ../bin/plugins/libhicomp.so
-
-QMAKE_MAKEFILE = "-B " + QMAKE_MAKEFILE
-
-OTHER_FILES += \
-    verfval.pro

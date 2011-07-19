@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>227</width>
-    <height>159</height>
+    <height>174</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,7 +51,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBCantidad"/>
+         <widget class="QDoubleSpinBox" name="DSBCantidad">
+          <property name="maximum">
+           <double>999999999.990000009536743</double>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
