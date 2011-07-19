@@ -48,6 +48,13 @@ FormAgregarProducto::FormAgregarProducto(QWidget *parent) :
        this->SBStock->setVisible( false );
         _stock = false;
     } else { _stock = false; }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Solicito el modelo si esta habilitado
+    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() ) {
+        this->LModelo->setVisible( false );
+        this->LEModelo->setVisible( false );
+        _modelo = false;
+    } else { _modelo = true; }
     /// Cargo el recargo para hacer los calculos sin tener que consultarlo todas las veces
     _recargo = preferencias::getInstancia()->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble();
 }

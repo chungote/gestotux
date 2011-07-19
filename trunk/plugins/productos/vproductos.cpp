@@ -80,6 +80,13 @@ VProductos::VProductos(QWidget *parent)
          addAction( ActCategorias );
  }
 
+ QAction *ActListadoVenta = new QAction( this );
+ ActListadoVenta->setText( "Lista para Venta" );
+ ActListadoVenta->setStatusTip( "Muestra el listado de productos con su precio de venta" );
+ ActListadoVenta->setIcon( QIcon( ":/imagenes/listaventa.png" ) );
+ connect( ActListadoVenta, SIGNAL( triggered() ), this, SLOT( listaVenta() ) );
+
+ addAction( ActListadoVenta );
  addAction( ActCerrar );
 }
 
@@ -123,4 +130,24 @@ void VProductos::agregar( bool /*autoeliminarid*/ )
  }
  // Muestro el formulario
  emit agregarVentana( new FormAgregarProducto() );
+}
+
+#include <QMessageBox>
+#include "EReporte.h"
+/*!
+ * \fn VProductos::listaVenta()
+ * Muestra el listado de productos con sus codigos y precio de venta
+ */
+void VProductos::listaVenta()
+{
+    if( this->rmodelo->rowCount() <= 0 ) {
+        QMessageBox::information( this, "Error", "No hay ningun producto declarado para dar un listado" );
+        return;
+    }
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ListadoProductosPrecio", ParameterList() );
+    if( ! rep->hacer() ) {
+        QMessageBox::information( this, "Error", "No se pudo imprimir el reporte de precios" );
+    }
+    delete rep;
 }
