@@ -44,7 +44,6 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
 
     this->TBNotas->setVisible( false );
     this->TBResumenCtaCte->setVisible( false );
-    this->horizontalSpacer_7->invalidate();
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     // Plugins

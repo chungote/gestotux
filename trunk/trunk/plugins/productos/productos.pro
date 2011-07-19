@@ -18,7 +18,7 @@ SOURCES += mcategorias.cpp \
            dproductos.cpp \
            dcategoria.cpp \
            formprefproductos.cpp \
-    formagregarproducto.cpp
+           formagregarproducto.cpp
 HEADERS += mcategorias.h \
            mproductos.h \
            vcategorias.h \
@@ -27,14 +27,17 @@ HEADERS += mcategorias.h \
            dproductos.h \
            dcategoria.h \
            formprefproductos.h \
-    formagregarproducto.h
+           formagregarproducto.h
 
-LIBS += ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
 
-PRE_TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a \
+                  ../../bin/libreporte.a
 
 INCLUDEPATH += ../../src \
-               ../../utiles
+               ../../utiles \
+               ../../reporte
 
 DISTFILES += productos.SQLITE.sql \
              productos.QMYSQL.sql
@@ -43,7 +46,7 @@ TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc
 
 FORMS += FormPrefProductosBase.ui \
-    formproductobase.ui
+         formproductobase.ui
 
 OTHER_FILES += productos.QMYSQL.sql \
                productos.QSQLITE.sql

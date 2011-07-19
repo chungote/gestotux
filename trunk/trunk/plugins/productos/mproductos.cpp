@@ -39,6 +39,7 @@ MProductos::MProductos(QObject *parent)
  setHeaderData( 6, Qt::Horizontal, "Marca" );
  setHeaderData( 7, Qt::Horizontal, "Stock" );
  setHeaderData( 8, Qt::Horizontal, "Habilitado" );
+ setHeaderData( 9, Qt::Horizontal, QString::fromUtf8( "#Código" ) );
  setSort( 0, Qt::AscendingOrder );
 }
 
@@ -63,7 +64,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                         case 3:
                         case 4:
                         {
-                                return QSqlRelationalTableModel::data(item, role).toString().prepend( "$" );
+                                return QString( "$ %1" ).arg( QString::number( QSqlRelationalTableModel::data(item, role).toDouble(), 'f', 3 ) );
                                 break;
                         }
                         case 8:
@@ -76,7 +77,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                         }
                         case 7:
                         {
-                            return QSqlRelationalTableModel::data( item, role ).toDouble();
+                            return QString::number( QSqlRelationalTableModel::data( item, role ).toDouble(), 'f', 2 );
                             break;
                         }
                         default:

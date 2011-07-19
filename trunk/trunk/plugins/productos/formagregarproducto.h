@@ -22,6 +22,10 @@ class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
         bool _marcas;
         bool _descripcion;
         bool _stock;
+        bool _modelo;
+
+    signals:
+        void agregarVentana( QWidget * );
 };
 
 #endif // FORMAGREGARPRODUCTO_H
