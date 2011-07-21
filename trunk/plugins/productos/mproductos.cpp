@@ -44,10 +44,6 @@ MProductos::MProductos(QObject *parent)
 }
 
 
-MProductos::~MProductos()
-{
-}
-
 QVariant MProductos::data(const QModelIndex& item, int role) const
 {
  if( !item.isValid() )
@@ -219,7 +215,10 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
 
 bool MProductos::agregarProducto(const QString codigo, const QString nombre, const double costo, const double venta, int stock, int categoria, QString descripcion, QString marca, QString modelo) {
     QSqlQuery cola;
-    cola.prepare( "INSERT INTO producto ( codigo, nombre, precio_costo, precio_venta, stock, categoria, descripcion, marca, modelo, habilitado ) VALUES( :codigo, :nombre, :precio_costo, :precio_venta, :stock, :categoria, :descripcion, :marca, :modelo, :habilitado )" );
+    if( !cola.prepare( "INSERT INTO producto ( codigo, nombre, precio_costo, precio_venta, stock, id_categoria, descripcion, marca, modelo, habilitado ) VALUES( :codigo, :nombre, :precio_costo, :precio_venta, :stock, :categoria, :descripcion, :marca, :modelo, :habilitado )" ) ) {
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        return false;
+    }
     cola.bindValue( ":codigo", codigo );
     cola.bindValue( ":nombre", nombre );
     if( descripcion == "" )
@@ -252,6 +251,7 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
     } else {
       qWarning( "Error al intentar insertar el producto." );
       qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
       return false;
     }
 }

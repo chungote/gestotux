@@ -42,6 +42,7 @@ protected slots:
     void verCategorias();
     void agregar(  bool autoeliminarid = true );
     void listaVenta();
+    void actualizar();
 };
 
 #endif
