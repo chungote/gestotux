@@ -7,6 +7,7 @@ FormAgregarProducto::FormAgregarProducto(QWidget *parent) :
   QDialog( parent ), Ui::FormProductoBase()
 {
     setupUi( this );
+    setAttribute( Qt::WA_DeleteOnClose );
     setObjectName( "FormAgregarProducto" );
     setWindowTitle( "Agregar nuevo producto" );
 
@@ -60,7 +61,7 @@ FormAgregarProducto::FormAgregarProducto(QWidget *parent) :
 }
 
 void FormAgregarProducto::cambioPrecioCosto( double precio ) {
-    this->DSBVenta->setValue( ( 1.00 + _recargo ) * precio );
+    this->DSBVenta->setValue( ( 1.00 + ( _recargo / 100 ) ) * precio );
 }
 
 void FormAgregarProducto::accept() {
@@ -78,7 +79,7 @@ void FormAgregarProducto::accept() {
         return;
     }
     if( this->LEMarca->text().isEmpty() && _descripcion ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8("El código del producto no puede ser nulo. Por favor, ingrese un código para el producto" ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El código del producto no puede ser nulo. Por favor, ingrese un código para el producto" ) );
         return;
     }*/
     if( this->CBCategoria->currentIndex() == 0 && _categorias ) {
@@ -95,7 +96,7 @@ void FormAgregarProducto::accept() {
     }
     // Dar de alta con stock cero?
     if( this->SBStock->value() == 0 && _stock ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8("El stock inicial del producto no puede ser nulo. Por favor, ingrese un stock inicial para el producto" ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El stock inicial del producto no puede ser nulo. Por favor, ingrese un stock inicial para el producto" ) );
         return;
     }
     // Todos los datos pasaron bien luego de este punto
@@ -109,8 +110,8 @@ void FormAgregarProducto::accept() {
                 this->LEDescripcion->text(),
                 this->LEMarca->text(),
                 this->LEModelo->text() ) ) {
-        QMessageBox::information( this, "Correcto", "El producto se agregó correctamente" );
-        this->close();
+        QMessageBox::information( this, "Correcto",QString::fromUtf8("El producto se agregó correctamente" ) );
+        QDialog::accept();
         return;
     } else {
         QMessageBox::warning( this, "Erroneo", "No se pudo agregar el producto." );

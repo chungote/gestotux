@@ -130,6 +130,8 @@ void VProductos::agregar( bool /*autoeliminarid*/ )
          delete m;
  }
  // Muestro el formulario
+ FormAgregarProducto *f = new FormAgregarProducto();
+ connect( f, SIGNAL( accepted() ), this, SLOT( actualizar() ) );
  emit agregarVentana( new FormAgregarProducto() );
 }
 
@@ -151,4 +153,8 @@ void VProductos::listaVenta()
         QMessageBox::information( this, "Error", "No se pudo imprimir el reporte de precios" );
     }
     delete rep;
+}
+
+void VProductos::actualizar() {
+    this->rmodelo->select();
 }
