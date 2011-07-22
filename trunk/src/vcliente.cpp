@@ -46,8 +46,8 @@ VCliente::VCliente( QWidget *parent )
  rmodelo = 0;
  vista->setModel( mc );
  vista->hideColumn( mc->fieldIndex( "id" ) );
- /*vista->hideColumn( mc->fieldIndex( "nombre" ) );
- vista->hideColumn( mc->fieldIndex( "apellido" ) );*/
+ vista->hideColumn( mc->fieldIndex( "nombre" ) );
+ vista->hideColumn( mc->fieldIndex( "apellido" ) );
  vista->hideColumn( mc->fieldIndex( "piso" ) );
  vista->hideColumn( mc->fieldIndex( "depto" ) );
  vista->hideColumn( mc->fieldIndex( "provincia" ) );
@@ -57,6 +57,7 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "email" ) );
  vista->hideColumn( mc->fieldIndex( "comprobante_email" ) );
  vista->hideColumn( mc->fieldIndex( "ctacte" ) );
+ vista->hideColumn( mc->fieldIndex( "id_estado_fiscal" ) );
  vista->setAlternatingRowColors( true );
  mc->select();
 
@@ -69,6 +70,7 @@ VCliente::VCliente( QWidget *parent )
  ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
  ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
  addAction( ActAgregar );
+ addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActLista );
  addAction( ActCerrar );
@@ -84,7 +86,23 @@ VCliente::~VCliente()
     \fn VCliente::agregar( bool autoeliminarid )
  */
 void VCliente::agregar( bool /*autoeliminarid*/ )
-{ emit agregarVentana( new FormCliente( this, mc ) ); }
+{
+    FormCliente *f = new FormCliente( this, mc );
+    f->agregar();
+    emit agregarVentana( f );
+}
+
+
+/*!
+  \fn VCliente::modificar()
+ */
+void VCliente::modificar()
+{
+    FormCliente *f = new FormCliente( this, mc );
+    f->setearCliente( this->vista->selectionModel()->selectedRows().first() );
+    emit agregarVentana( f );
+}
+
 
 #include "EReporte.h"
 void VCliente::listadoClientes() {

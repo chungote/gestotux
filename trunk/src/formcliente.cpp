@@ -27,19 +27,56 @@
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mclientes.h"
+#include "mestadofiscal.h"
 
 FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Qt::WFlags fl )
-: EVentana ( parent, fl ), Ui::FormClienteBase()
+: EVentana( parent, fl ), Ui::FormClienteBase()
 {
         setupUi ( this );
         setObjectName( "visorCliente" );
         setWindowTitle( "Visor de Cliente" );
         setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
+
         this->modelo = modelo;
-        modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
+
+        mapa = new QDataWidgetMapper( this );
+        mapa->setOrientation( Qt::Horizontal );
+        mapa->setModel( modelo );
+        mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
+
+        // Coloco los mappeos
+        mapa->addMapping( LENumCliente, modelo->fieldIndex( "id" ) );
+        mapa->addMapping( LERazonSocial, modelo->fieldIndex( "razon_social"  ) );
+        mapa->addMapping( LENombre, modelo->fieldIndex( "nombre" ) );
+        mapa->addMapping( LEApellido, modelo->fieldIndex( "apellido" ) );
+
+        mapa->addMapping( LECalle, modelo->fieldIndex( "calle" ) );
+        mapa->addMapping( LENumero, modelo->fieldIndex( "numero" ) );
+        mapa->addMapping( LEPiso, modelo->fieldIndex( "piso" ) );
+        mapa->addMapping( LEDepto, modelo->fieldIndex( "depto" ) );
+        mapa->addMapping( LECiudad, modelo->fieldIndex( "ciudad" ) );
+        mapa->addMapping( LECodPostal, modelo->fieldIndex( "codigo_postal" ) );
+        mapa->addMapping( LEProvincia, modelo->fieldIndex( "provincia" ) );
+        mapa->addMapping( LEPais, modelo->fieldIndex( "pais" ) );
+
+        mapa->addMapping( LECUITCUIL, modelo->fieldIndex( "CUIT/CUIL" ) );
+        mapa->addMapping( CBEstadoFiscal, modelo->fieldIndex( "id_estado_fiscal" ) );
+
+        mapa->addMapping( LETelFijo, modelo->fieldIndex( "tel_fijo" ) );
+        mapa->addMapping( LETelCel, modelo->fieldIndex( "tel_celular" ) );
+        mapa->addMapping( LEFax, modelo->fieldIndex( "fax" ) );
+
+        mapa->addMapping( LEEmail, modelo->fieldIndex( "email" ) );
+        mapa->addMapping( CkBComprobanteEmail, modelo->fieldIndex( "comprobante_email" ) );
 
         connect( LENombre       , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
         connect( LEApellido     , SIGNAL( textChanged( const QString & ) ), this, SLOT( rehaceRazonSocial( const QString & ) ) );
+
+        // Cargo los estados fiscales
+        _mestadofiscal = new MEstadoFiscal( CBEstadoFiscal );
+        CBEstadoFiscal->setModel( _mestadofiscal );
+        CBEstadoFiscal->setModelColumn( 1 );
+        _mestadofiscal->select();
 
         //Acciones predefinidas
         EActGuardar *ActGuardar = new EActGuardar( this );
@@ -50,7 +87,9 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
 }
 
 FormCliente::~FormCliente()
-{}
+{
+
+}
 
 
 /*!
@@ -72,6 +111,14 @@ void FormCliente::guardar()
          return;
      }
  }
+ if( mapa->submit() ) {
+     QMessageBox::information( this, "Correcto", "Datos guardados correctamente" );
+     return;
+ } else {
+     qDebug( "Error, no se pudo hacer submit del mapa" );
+     qDebug( this->modelo->lastError().text().toLocal8Bit() );
+ }
+ /*
  QSqlRecord rc = modelo->record();
  rc.setValue( "razon_social", LERazonSocial->text() );
  if( LERazonSocial->text().isEmpty() )
@@ -161,6 +208,12 @@ void FormCliente::guardar()
  else
  { rc.setValue( "CUIT/CUIL", LECUITCUIL->text() ); }
  ////////////////////////////////////////////////////////////////////////
+ if( CBEstadoFiscal->currentIndex() == 0 ) {
+     rc.setNull( "id_estado_fiscal" );
+ } else {
+     rc.setValue( "id_estado_fiscal", CBEstadoFiscal->model()->data( CBEstadoFiscal->model()->index( CBEstadoFiscal->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+ }
+ ////////////////////////////////////////////////////////////////////////
  // Inserto los datos
  if( modelo->insertRecord( -1, rc ) )
  {
@@ -186,16 +239,25 @@ void FormCliente::guardar()
    qWarning( qPrintable( modelo->query().lastQuery() ) );
    return;
  }
+ */
 }
 
+/*!
+  \fn FormCliente::agregar()
+ */
+void FormCliente::agregar() {
+    this->modelo->insertRow( -1 );
+    this->mapa->toLast();
+}
 
 /*!
     \fn FormCliente::setearCliente( QModelIndex &indice )
  */
-void FormCliente::setearCliente( QModelIndex &/*indice*/ )
+void FormCliente::setearCliente( QModelIndex &indice )
 {
-    //! \todo implement me
-}
+    // Cargo todos los datos del cliente.
+    mapa->setCurrentIndex( indice.row() );
+ }
 
 
 /*!
@@ -207,10 +269,11 @@ void FormCliente::rehaceRazonSocial( const QString &texto )
  if( texto.isEmpty() )
  { return; }
  QString anterior = texto; anterior.remove( texto.length()-1, 1 );
- if( LERazonSocial->text().contains( anterior ) || LERazonSocial->text().isEmpty() )
+ if( LERazonSocial->text().contains( anterior, Qt::CaseInsensitive ) || LERazonSocial->text().isEmpty() )
  {
   LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() );
  }
+ /// \todo Arreglar esto
  return;
 }
 
@@ -247,6 +310,4 @@ bool FormCliente::verificarCuitCuil( QString texto ) {
     } else {
         return false;
     }
-
-
 }

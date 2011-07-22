@@ -45,7 +45,8 @@ CREATE TABLE clientes (
     "email" TEXT,
     "comprobante_email" INTEGER,
     "ctacte" INTEGER,
-    "CUIT/CUIL" TEXT )
+    "CUIT/CUIL" TEXT,
+    "estado_fiscal" INTEGER )
 */
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Razon Social" );
@@ -66,6 +67,8 @@ CREATE TABLE clientes (
  setHeaderData( 16, Qt::Horizontal, "EnviarComprobantexEmail" );
  setHeaderData( 17, Qt::Horizontal, QString::fromUtf8("¿CtaCte?" ) );
  setHeaderData( 18, Qt::Horizontal, "CUIT/CUIL" );
+ setHeaderData( 19, Qt::Horizontal, "Estado Fiscal" );
+ //setRelation( 19, QSqlRelation( "estado_fiscal", "id_estado_fiscal", "titulo" ) );
 }
 
 

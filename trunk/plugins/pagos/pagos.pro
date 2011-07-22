@@ -46,8 +46,8 @@ INCLUDEPATH += ../../src \
                ../caja \
                ../CtaCte
 
-LIBS += ../../bin/libreporte.a \
-        ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
 
 TRANSLATIONS += pagos.ts
 
