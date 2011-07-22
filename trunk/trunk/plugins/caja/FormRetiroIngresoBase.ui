@@ -52,6 +52,12 @@
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="DSBCantidad">
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="prefix">
+           <string>$ </string>
+          </property>
           <property name="maximum">
            <double>999999999.990000009536743</double>
           </property>

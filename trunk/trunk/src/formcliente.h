@@ -21,9 +21,11 @@
 #ifndef FORMCLIENTE_H
 #define FORMCLIENTE_H
 
-#include "eventana.h"
 #include <QSqlRelationalTableModel>
+#include <QDataWidgetMapper>
 #include "ui_FormClienteBase.h"
+#include "eventana.h"
+class MEstadoFiscal;
 
 /*!
  * \brief Formulario de edicion de clientes
@@ -32,23 +34,26 @@
 class FormCliente : public EVentana, private Ui::FormClienteBase
 {
   Q_OBJECT
-public:
+    public:
         FormCliente ( QWidget* parent = 0, QSqlRelationalTableModel *modelo = 0,  Qt::WFlags fl = 0 );
         ~FormCliente();
     void setearCliente( QModelIndex &indice );
+    void agregar();
 
-  signals:
+    signals:
         void agregarVentana( QWidget * );
 
-public slots:
+    public slots:
         void guardar();
 
-private slots:
+    private slots:
         void rehaceRazonSocial( const QString &texto );
 
-private:
+    private:
         bool verificarCuitCuil( QString texto );
         QSqlRelationalTableModel *modelo;
+        MEstadoFiscal *_mestadofiscal;
+        QDataWidgetMapper *mapa;
 };
 
 #endif

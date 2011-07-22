@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>527</height>
+    <height>236</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,6 +81,12 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QDoubleSpinBox" name="DSBCantidad">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="prefix">
+        <string>$ </string>
+       </property>
        <property name="maximum">
         <double>999999999.990000009536743</double>
        </property>
