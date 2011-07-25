@@ -36,9 +36,8 @@ class FormCliente : public EVentana, private Ui::FormClienteBase
   Q_OBJECT
     public:
         FormCliente ( QWidget* parent = 0, QSqlRelationalTableModel *modelo = 0,  Qt::WFlags fl = 0 );
-        ~FormCliente();
-    void setearCliente( QModelIndex &indice );
-    void agregar();
+        void setearCliente( QModelIndex &indice );
+        void agregar();
 
     signals:
         void agregarVentana( QWidget * );

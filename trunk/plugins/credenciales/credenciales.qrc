@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/sql">
+        <file>credenciales.QMYSQL.sql</file>
+    </qresource>
+</RCC>

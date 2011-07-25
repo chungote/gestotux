@@ -183,6 +183,10 @@ int main(int argc, char *argv[])
       delete directorio;
       directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
+      for (int i = 0; i < QSqlDatabase::drivers().size(); ++i)
+      {
+              qDebug( QSqlDatabase::drivers().at(i).toLocal8Bit() );
+      }
       // Chequeo la Base de Datos
       bool fallosql = false;
       if( ( QSqlDatabase::isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
@@ -251,7 +255,7 @@ int main(int argc, char *argv[])
         {
                 qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
                 abort();
-        }
+        } else { qDebug( "Base de datos SQLite abierta correctamente" ); }
         /// FIN SQLITE
        }
        else if( fallosql == true || !QSqlDatabase::database().isValid() )
@@ -277,10 +281,6 @@ int main(int argc, char *argv[])
                 qDebug( "No existen tablas en la base de datos." );
                 hacerTablas( "tablas" );
                 // Cada plugin debe inicializar sus propias tablas
-       }
-       else
-       {
-                qDebug( "Base de datos abierta" );
        }
        // Fin de arranque de la base de datos
         splash.showMessage( "Base de datos Abierta correctamente" );
