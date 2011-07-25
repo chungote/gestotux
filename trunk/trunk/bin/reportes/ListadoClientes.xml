@@ -2,7 +2,7 @@
 <report>
  <title>Listado normal de Clientes</title>
  <name>ListadoClientes</name>
- <description></description>
+ <description>Listado normal de clientes</description>
  <grid>
   <x>0.05</x>
   <y>0.05</y>
@@ -172,7 +172,7 @@ end
    </font>
    <left/>
    <vcenter/>
-   <string>Realizado con gestotux 0.5 beta - Listado provisorio, puede cambiar sin aviso previo o notificaciòn. Usese de base para los listados personalizados</string>
+   <string>Realizado con gestotux 0.5 beta - Listado provisorio, puede cambiar sin aviso previo o notificaciÃ²n. Usese de base para los listados personalizados</string>
   </label>
   <line>
    <xstart>65.8748</xstart>
@@ -452,7 +452,7 @@ end
     <vcenter/>
     <data>
      <query>clientes</query>
-     <column>tel_cel</column>
+     <column>tel_celular</column>
     </data>
    </field>
    <line>

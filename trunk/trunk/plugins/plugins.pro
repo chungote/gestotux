@@ -1,4 +1,5 @@
 TEMPLATE = subdirs
+#SUBDIRS = credenciales
 SUBDIRS +=  caja \
             gastos \
  #           compras \
@@ -11,7 +12,8 @@ SUBDIRS +=  caja \
             servicios \
             bscomputacion \
 #            digifauno \
-            HiComp
+            HiComp \
+    credenciales
 #            email \
 #planificador \
 #aCarCorr \

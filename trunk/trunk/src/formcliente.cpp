@@ -86,12 +86,6 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
 
 }
 
-FormCliente::~FormCliente()
-{
-
-}
-
-
 /*!
     \fn FormCliente::guardar()
  */
@@ -113,6 +107,7 @@ void FormCliente::guardar()
  }
  if( mapa->submit() ) {
      QMessageBox::information( this, "Correcto", "Datos guardados correctamente" );
+     this->close();
      return;
  } else {
      qDebug( "Error, no se pudo hacer submit del mapa" );
@@ -246,8 +241,14 @@ void FormCliente::guardar()
   \fn FormCliente::agregar()
  */
 void FormCliente::agregar() {
-    this->modelo->insertRow( -1 );
-    this->mapa->toLast();
+    this->modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
+    if( this->modelo->insertRecord( -1, this->modelo->record() ) ) {
+        qDebug( "Registro insertado correctamente" );
+        this->mapa->toLast();
+    } else {
+        qDebug( "Error al insertar el registro" );
+        this->mapa->setCurrentIndex( -1 );
+    }
 }
 
 /*!

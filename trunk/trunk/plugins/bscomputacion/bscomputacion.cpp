@@ -88,7 +88,7 @@ QString BSComputacion::reporte( int tipo )
         case EReporte::Recibo:
         { return "Recibo"; break; }
         case EReporte::Presupuesto:
-        { return "Presupuesto"; break; }
+        { return "Presupuesto-BS"; break; }
         case EReporte::AnulacionFactura:
         { return "AnulacionFactura"; break; }
         default: { return ""; break; }

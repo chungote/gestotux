@@ -25,28 +25,28 @@ MClientes::MClientes( QObject *parent )
  setTable( "clientes" );
 /*
 -- Describe CLIENTES
-CREATE TABLE clientes (
-    "id" INTEGER,
-    "razon_social" TEXT NOT NULL,
-    "nombre" TEXT NOT NULL,
-    "segundo" TEXT,
-    "apellido" TEXT,
-    "calle" TEXT,
-    "numero" INTEGER,
-    "piso" INTEGER,
-    "depto" INTEGER,
-    "ciudad" TEXT,
-    "codigo_postal" TEXT,
-    "provincia" TEXT,
-    "pais" TEXT,
-    "tel_fijo" TEXT,
-    "tel_celular" TEXT,
-    "fax" TEXT,
-    "email" TEXT,
-    "comprobante_email" INTEGER,
-    "ctacte" INTEGER,
-    "CUIT/CUIL" TEXT,
-    "estado_fiscal" INTEGER )
+CREATE TABLE IF NOT EXISTS `clientes` (
+    `id` bigint(10) NOT NULL auto_increment,
+    `razon_social` tinytext NOT NULL,
+    `nombre` tinytext,
+    `apellido` tinytext,
+    `calle` tinytext,
+    `numero` int(2) default NULL,
+    `piso` int(2) default NULL,
+    `depto` tinytext,
+    `ciudad` tinytext,
+    `codigo_postal` tinytext,
+    `provincia` tinytext,
+    `pais` tinytext,
+    `tel_fijo` tinytext,
+    `tel_celular` tinytext,
+    `fax` tinytext,
+    `email` tinytext,
+    `comprobante_email` tinyint(1) default '1',
+    `ctacte` tinyint(1) default NULL,
+    `CUIT/CUIL` tinytext default null,
+    `id_estado_fiscal` INT NULL
+);
 */
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Razon Social" );
@@ -68,12 +68,7 @@ CREATE TABLE clientes (
  setHeaderData( 17, Qt::Horizontal, QString::fromUtf8("¿CtaCte?" ) );
  setHeaderData( 18, Qt::Horizontal, "CUIT/CUIL" );
  setHeaderData( 19, Qt::Horizontal, "Estado Fiscal" );
- //setRelation( 19, QSqlRelation( "estado_fiscal", "id_estado_fiscal", "titulo" ) );
 }
-
-
-MClientes::~MClientes()
-{}
 
 #include <QSqlQuery>
 #include <QSqlRecord>
