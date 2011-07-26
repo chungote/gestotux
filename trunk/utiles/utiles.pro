@@ -21,10 +21,9 @@ HEADERS += eactcerrar.h \
            dproductostotales.h \
            edsbprecio.h \
            dsino.h \
-           definiciones.h \
            EReporte.h \
            ../plugins/productos/mproductos.h \
-    NumeroComprobante.h
+           NumeroComprobante.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -46,8 +45,8 @@ SOURCES += eactcerrar.cpp \
            edsbprecio.cpp \
            dsino.cpp \
            ../plugins/productos/mproductos.cpp \
-    NumeroComprobante.cpp \
-    EReporte.cpp
+           NumeroComprobante.cpp \
+           EReporte.cpp
 
 QT += sql
 
