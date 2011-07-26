@@ -17,8 +17,9 @@ INCLUDEPATH += ../../src \
                ../../reporte \
                ../../utiles \
 
-LIBS += ../../bin/libreporte.a \
-        ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
+
 
 HEADERS += DCredencial.h \
     credencialesplugin.h \

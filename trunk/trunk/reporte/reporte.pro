@@ -78,4 +78,6 @@ OTHER_FILES += openreports.txt \
 INCLUDEPATH += common
 
 #The following line was inserted by qt3to4
-QT += xml  sql qt3support
+QT += xml \
+      sql \
+      qt3support

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/sql">
         <file>credenciales.QMYSQL.sql</file>
+        <file>credenciales.QSQLITE.sql</file>
     </qresource>
 </RCC>
