@@ -21,6 +21,7 @@ DCredencial::DCredencial(QWidget *parent) :
     this->modelo = new MCredenciales( this );
 }
 
+#include <QSqlQuery>
 void DCredencial::accept()
 {
     if( this->equipo.isEmpty() || this->id_equipo == -1 ) {
@@ -45,7 +46,7 @@ void DCredencial::accept()
     }
     // Guardo el registro
     QSqlRecord rec = this->modelo->record();
-    rec.remove( 0 );
+    //rec.remove( 0 );
     rec.setValue( "equipo_id", this->id_equipo );
     rec.setValue( "nombre", this->LENombre->text() );
     rec.setValue( "dni", this->LEDNI->text() );
@@ -56,16 +57,13 @@ void DCredencial::accept()
     rec.setValue( "acc4", this->CkBAcc4->isChecked() );
     rec.setValue( "acc5", this->CkBAcc5->isChecked() );
     rec.setValue( "acc6", this->CkBAcc6->isChecked() );
-    /*for( int i = 0; i<rec.count(); i++ ) {
-        qDebug( QString( "%1: %2 - %3").arg( i ).arg( rec.fieldName( i ) ).arg( rec.value( i ).toString() ).toLocal8Bit() );
-    }*/
     if( this->modelo->insertRecord( -1, rec ) ) {
-        qDebug( "Registro insertado" );
+        int id_rec = this->modelo->query().lastInsertId().toInt();
         // imprimo la tarjeta
         ParameterList lista;
-        lista.append( Parameter( "id", rec.value( "id_credencial" ) ) );
+        lista.append( Parameter( "id", id_rec ) );
         if( this->reporte->hacer( lista ) ) {
-            QMessageBox::information( this, "listo", "Credencial #%1 creada e impresa correctamente" );
+            QMessageBox::information( this, "listo", QString("Credencial #%1 creada e impresa correctamente" ).arg( QString::number( id_rec, 'g', 6 ) ) );
             this->limpiarDatos();
         } else {
             qDebug( "No se pudo realizar el reporte" );

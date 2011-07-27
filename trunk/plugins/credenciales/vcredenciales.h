@@ -10,6 +10,9 @@ class VCredenciales : public EVLista
 public:
     explicit VCredenciales(QWidget *parent = 0);
 
+public slots:
+    void imprimir();
+
 private:
     MCredenciales *rmodel;
 };
