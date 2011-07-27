@@ -3,6 +3,9 @@
  <title>Credencial de periodista de Club Atletico Union</title>
  <name>credencial-union</name>
  <description>descripcion</description>
+ <parameter default="1" active="true" listtype="static" type="integer" name="id_credencial">
+  <description></description>
+ </parameter>
  <grid>
   <x>0.05</x>
   <y>0.05</y>
@@ -29,7 +32,7 @@
        CASE WHEN c.acc5="true" THEN "P(SO)" ELSE " " END AS a5,
        CASE WHEN c.acc6="true" THEN "P(SE)" ELSE " " END AS a6
 FROM credenciales AS c, equipos AS e
-WHERE c.equipo_id = e.id_equipo;</sql>
+WHERE c.equipo_id = e.id_equipo AND id_credencial = &lt;? value("id_credencial") ?>;</sql>
  </querysource>
  <section>
   <name>Sin nombre</name>
@@ -291,10 +294,10 @@ WHERE c.equipo_id = e.id_equipo;</sql>
    </label>
    <field>
     <rect>
-     <x>2</x>
+     <x>7</x>
      <y>170</y>
      <width>100</width>
-     <height>25</height>
+     <height>19</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -304,7 +307,7 @@ WHERE c.equipo_id = e.id_equipo;</sql>
     <left/>
     <top/>
     <data>
-     <query>Context Query</query>
+     <query>general</query>
      <column>medio</column>
     </data>
    </field>

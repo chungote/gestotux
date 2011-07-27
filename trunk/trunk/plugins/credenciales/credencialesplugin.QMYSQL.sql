@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `equipos` (
   PRIMARY KEY (`id_equipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE IF NOT EXISTS `credenciales` (
-  `numero_credencial` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_credencial` bigint(20) NOT NULL AUTO_INCREMENT,
   `equipo_id` int(11) NOT NULL,
   `nombre` text COLLATE utf8_spanish_ci NOT NULL,
   `dni` int(11) NOT NULL,
