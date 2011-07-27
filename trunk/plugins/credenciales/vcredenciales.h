@@ -12,6 +12,7 @@ public:
 
 public slots:
     void imprimir();
+    void agregar( bool autoeliminarid );
 
 private:
     MCredenciales *rmodel;

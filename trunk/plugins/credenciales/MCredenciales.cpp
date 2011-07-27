@@ -26,10 +26,10 @@ MCredenciales::MCredenciales(QObject *parent) :
     setHeaderData( 2, Qt::Horizontal, "Nombre" );
     setHeaderData( 3, Qt::Horizontal, "DNI" );
     setHeaderData( 4, Qt::Horizontal, "Medio" );
-    setHeaderData( 5, Qt::Horizontal, "Acc 1" );
-    setHeaderData( 6, Qt::Horizontal, "Acc 2" );
-    setHeaderData( 7, Qt::Horizontal, "Acc 3" );
-    setHeaderData( 8, Qt::Horizontal, "Acc 4" );
-    setHeaderData( 9, Qt::Horizontal, "Acc 5" );
-    setHeaderData( 10, Qt::Horizontal, "Acc 6" );
+    setHeaderData( 5, Qt::Horizontal, "Vest" );
+    setHeaderData( 6, Qt::Horizontal, "Conf Pren" );
+    setHeaderData( 7, Qt::Horizontal, "Cab" );
+    setHeaderData( 8, Qt::Horizontal, "Tech" );
+    setHeaderData( 9, Qt::Horizontal, "Plat SO" );
+    setHeaderData( 10, Qt::Horizontal, "Plat SE" );
 }
