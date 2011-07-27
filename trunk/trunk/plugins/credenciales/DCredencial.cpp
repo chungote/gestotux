@@ -61,7 +61,7 @@ void DCredencial::accept()
         int id_rec = this->modelo->query().lastInsertId().toInt();
         // imprimo la tarjeta
         ParameterList lista;
-        lista.append( Parameter( "id", id_rec ) );
+        lista.append( Parameter( "id_credencial", id_rec ) );
         if( this->reporte->hacer( lista ) ) {
             QMessageBox::information( this, "listo", QString("Credencial #%1 creada e impresa correctamente" ).arg( QString::number( id_rec, 'g', 6 ) ) );
             this->limpiarDatos();

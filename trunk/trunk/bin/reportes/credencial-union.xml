@@ -32,7 +32,7 @@
        CASE WHEN c.acc5="true" THEN "P(SO)" ELSE " " END AS a5,
        CASE WHEN c.acc6="true" THEN "P(SE)" ELSE " " END AS a6
 FROM credenciales AS c, equipos AS e
-WHERE c.equipo_id = e.id_equipo AND id_credencial = &lt;? value("id_credencial") ?>;</sql>
+WHERE c.equipo_id = e.id_equipo AND c.id_credencial = &lt;? value("id_credencial") ?>;</sql>
  </querysource>
  <section>
   <name>Sin nombre</name>

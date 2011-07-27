@@ -26,6 +26,7 @@ VCredenciales::VCredenciales(QWidget *parent) :
     this->rmodel->select();
 
     addAction( ActAgregar );
+    addAction( ActBuscar );
     addAction( ActImprimir );
     addAction( ActCerrar );
 }
@@ -55,4 +56,9 @@ void VCredenciales::imprimir()
         param.clear();
     }
     delete rep;
+}
+
+void VCredenciales::buscar()
+{
+    qWarning( "No implementado todavía" );
 }

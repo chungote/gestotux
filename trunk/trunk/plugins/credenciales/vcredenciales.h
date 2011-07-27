@@ -12,6 +12,7 @@ public:
 
 public slots:
     void imprimir();
+    void buscar();
     void agregar( bool autoeliminarid );
 
 private:
