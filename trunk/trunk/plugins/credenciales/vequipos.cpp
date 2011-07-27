@@ -12,6 +12,7 @@ VEquipos::VEquipos(QWidget *parent) :
     this->vista->setModel( this->modelo );
     this->vista->hideColumn( 0 );
     this->vista->hideColumn( 2 );
+    this->vista->setAlternatingRowColors( true );
     this->modelo->select();
 
     /// agregar accion de eliminar
