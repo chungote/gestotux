@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QtHelpProject version="1.0">
+         <namespace>tranfuga.gestotux.0.5</namespace>
+         <virtualFolder>doc</virtualFolder>
+         <filterSection>
+             <toc>
+                 <section id="indice" title="Manual de Gestotux" ref="index.html">
+			<section title="Generar y restaurar backups del sistema" ref="backups.html"/>
+			<section title="Actualizar el programa" ref="actualizar.html"/>
+			<section title="Salir del programa" ref="salir.html"/>
+                 </section>
+		<section title="Manejo de Plugins" ref="plugins.html">
+			<section title="Servicios" ref="servicios.html" />
+			<section title="Gastos" ref="gastos.html" />
+			<section title="Compras" ref="compras.html" />
+		</section>
+             </toc>
+             <keywords>
+		<keyword name="indice" id="indice" ref="index.html"/>
+		<keyword name="salir" id="salir" ref="salir.html"/>
+		<keyword name="actualizar" id="actualizar" ref="actualizar.html"/>
+		<keyword name="backup" id="backup" ref="backups.html"/>
+		<keyword name="servicios" id="servicios" ref="servicios.html"/>
+             </keywords>
+             <files>
+                <file>index.html</file>
+		<file>estilo.css</file>
+		<file>imagenes/salir.png</file>
+		<file>imagenes/actualizar.png</file>
+		<file>imagenes/next.png</file>
+		<file>salir.html</file>
+		<file>actualizar.html</file>
+		<file>backups.html</file>
+		<file>compras.html</file>
+		<file>servicios.html</file>
+		<file>gastos.html</file>
+		<file>imagenes/backup.png</file>
+		<file>imagenes/backup1.png</file>
+		<file>imagenes/backup2.png</file>
+		<file>imagenes/botonpuntos.png</file>
+		<file>imagenes/caja.png</file>
+             </files>
+     </filterSection>
+</QtHelpProject>
