@@ -47,7 +47,7 @@ void VCredenciales::imprimir()
     EReporte *rep = new EReporte( 0 );
     ParameterList param;
     foreach( QModelIndex idx, lista ) {
-        int id = this->modelo->data( this->modelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+        int id = this->rmodelo->data( this->rmodelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
         param.append( Parameter( "id_credencial", id ) );
         rep->especial( "credencial-union", param );
         if( ! rep->hacer() ) {
@@ -58,7 +58,10 @@ void VCredenciales::imprimir()
     delete rep;
 }
 
+#include "dbusquedacredencial.h"
 void VCredenciales::buscar()
 {
-    qWarning( "No implementado todavía" );
+    DBusquedaCredencial *d = new DBusquedaCredencial( this );
+    d->setearModelo( qobject_cast<MCredenciales *>(this->rmodelo) );
+    d->exec();
 }
