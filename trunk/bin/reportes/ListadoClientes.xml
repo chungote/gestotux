@@ -15,7 +15,7 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>clientes</name>
-  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, CONCAT( CONCAT( `calle`, ' ' ), `numero` ) AS direccion  FROM `clientes`</sql>
+  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, `tel_celular`, CONCAT( CONCAT( `calle`, ' ' ), `numero` ) AS direccion  FROM `clientes`</sql>
  </querysource>
  <rpthead>
   <height>81.5916</height>
@@ -172,7 +172,7 @@ end
    </font>
    <left/>
    <vcenter/>
-   <string>Realizado con gestotux 0.5 beta - Listado provisorio, puede cambiar sin aviso previo o notificaciÃÂ²n. Usese de base para los listados personalizados</string>
+   <string>Realizado con gestotux 0.5 beta - Listado provisorio, puede cambiar sin aviso previo o notificacion. Usese de base para los listados personalizados</string>
   </label>
   <line>
    <xstart>65.8748</xstart>
