@@ -19,9 +19,9 @@
  ***************************************************************************/
 
 #include "FormPantallaInicial.h"
-#include "EFlecha.h"
 #include "eregistroplugins.h"
 #include <QPaintEngine>
+#include "credencialesplugin.h"
 
 FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     EVentana(parent)
@@ -33,120 +33,16 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
 
     // Seteo los iconos
     // Generales
-    TBBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
+/*    TBBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
     connect( TBBackup, SIGNAL( clicked() ), this, SLOT( backup() ) );
 
     TBPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
-    connect( TBPreferencias, SIGNAL( clicked() ), this, SLOT( preferencias() ) );
+    connect( TBPreferencias, SIGNAL( clicked() ), this, SLOT( preferencias() ) );*/
 
-    TBClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
-    connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
+    connect( TBCredenciales, SIGNAL(clicked()), this, SLOT(verCredenciales()));
+    connect( TBNuevaCredencial, SIGNAL(clicked()), this, SLOT(crearcredencial()));
+    connect( TBEquipos, SIGNAL(clicked()), this, SLOT(verEquipos()));
 
-    this->TBNotas->setVisible( false );
-    this->TBResumenCtaCte->setVisible( false );
-
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    // Plugins
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    //  Presupuestos
-    if( ERegistroPlugins::getInstancia()->existePlugin( "presupuesto" ) ) {
-        connect( TBPresupuestos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("presupuesto")->botonPantallaInicial(), SIGNAL(triggered()) );
-        TBPresupuestos->setIcon(ERegistroPlugins::getInstancia()->plugin("presupuesto")->botonPantallaInicial()->icon() );
-    } else {
-        TBPresupuestos->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Caja
-    if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
-        connect( TBCaja, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("caja")->botonPantallaInicial(), SIGNAL(triggered()) );
-        TBCaja->setIcon(ERegistroPlugins::getInstancia()->plugin("caja")->botonPantallaInicial()->icon() );
-    } else {
-        TBCaja->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Compras
-    if( ERegistroPlugins::getInstancia()->existePlugin( "compras" ) ) {
-        connect( TBCompras, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("compras")->botonPantallaInicial(), SIGNAL(triggered()) );
-        TBCompras->setIcon(ERegistroPlugins::getInstancia()->plugin("compras")->botonPantallaInicial()->icon() );
-    } else {
-        TBCompras->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Productos
-    if( ERegistroPlugins::getInstancia()->existePlugin( "productos" ) ) {
-        connect( TBProductos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("productos")->botonPantallaInicial(), SIGNAL(triggered()) );
-        TBProductos->setIcon( ERegistroPlugins::getInstancia()->plugin("productos")->botonPantallaInicial()->icon() );
-    } else {
-        TBProductos->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Cuentas Corrientes
-    if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) ) {
-        if( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() )
-        { connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
-          TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
-        } else { qWarning( "Error de accion de cuenta corriente") ; }
-    } else {
-        TBCuentasCorrientes->setVisible( false );
-        TBResumenCtaCte->setVisible( false );
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////
-    // Proveedores
-    if( ERegistroPlugins::getInstancia()->existePlugin( "proveedor" ) ) {
-        TBProveedores->setIcon( ERegistroPlugins::getInstancia()->plugin("proveedor")->botonPantallaInicial()->icon() );
-        connect( TBProveedores, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("proveedor")->botonPantallaInicial(), SIGNAL(triggered()) );
-    } else {
-        TBProveedores->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Servicios
-    if( ERegistroPlugins::getInstancia()->existePlugin( "servicios" ) ) {
-        TBServicios->setIcon( ERegistroPlugins::getInstancia()->plugin("servicios")->botonPantallaInicial()->icon() );
-        connect( TBServicios, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("servicios")->botonPantallaInicial(), SIGNAL(triggered()) );
-    } else {
-        TBServicios->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Gastos
-    if( ERegistroPlugins::getInstancia()->existePlugin( "gastos" ) ) {
-        TBGastos->setIcon( ERegistroPlugins::getInstancia()->plugin("gastos")->botonPantallaInicial()->icon() );
-        connect( TBGastos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("gastos")->botonPantallaInicial(), SIGNAL(triggered()) );
-    } else {
-        TBGastos->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Pagos / Recibos
-    if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) ) {
-        TBRecibos->setIcon( ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial()->icon() );
-        connect( TBRecibos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial(), SIGNAL(triggered()) );
-    } else {
-        TBRecibos->setVisible( false );
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Ventas / Facturas
-    if( ERegistroPlugins::getInstancia()->existePlugin( "ventas" ) ) {
-        TBFacturas->setIcon( ERegistroPlugins::getInstancia()->plugin("ventas")->botonPantallaInicial()->icon() );
-        connect( TBFacturas, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ventas")->botonPantallaInicial(), SIGNAL(triggered()) );
-    } else {
-        TBFacturas->setVisible( false );
-    }
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Dibujo las flechas
-   /* EFlecha *f1 = new EFlecha( this );
-    f1->setearOrigen( TBPresupuestos );
-    f1->setearDestino( TBFacturas );
-    f1->setearTamFlecha( 5 );
-
-    EFlecha *f2 = new EFlecha( this );
-    f2->setearOrigen( TBFacturas );
-    f2->setearDestino( TBRecibos );
-    f2->setearTamFlecha( 5 );
-
-    EFlecha *f3 = new EFlecha( this );
-    f3->setearOrigen( TBFacturas );
-    f3->setearDestino( TBCaja );
-    f3->setearTamFlecha( 5 ); */
 }
 
 void FormPantallaInicial::changeEvent(QEvent *e)
@@ -161,14 +57,34 @@ void FormPantallaInicial::changeEvent(QEvent *e)
     }
 }
 
-#include "ebackup.h"
-void FormPantallaInicial::backup()
-{ emit agregarVentana( new Ebackup( this ) ); }
 
-#include "formpreferencias.h"
-void FormPantallaInicial::preferencias()
-{ emit agregarVentana( new FormPreferencias( ) ); }
+#include "DCredencial.h"
+#include <QInputDialog>
+#include <QSqlRecord>
+#include "mequipos.h"
+void FormPantallaInicial::crearcredencial()
+{
+    QStringList lista; QList<int> ids;
+    MEquipos *m = new MEquipos();
+    m->select();
+    for( int i = 0; i<m->rowCount(); i++ ) {
+        lista.append( m->record(i).value(1).toString() );
+        ids.append( m->record(i).value(0).toInt() );
+    }
+    delete m;
+    bool ok = false;
+    QString equipo = QInputDialog::getItem( 0, "Elija el equipo contrario", "Equipo", lista, 0, false, &ok );
+    if( ok ) {
+        DCredencial *d = new DCredencial();
+        emit agregarVentana( d );
+        d->setearEquipo( ids.at( lista.indexOf( equipo ) ), equipo );
+    }
+}
 
-#include "vcliente.h"
-void FormPantallaInicial::clientes()
-{ emit agregarVentana( new VCliente()); }
+#include "vequipos.h"
+void FormPantallaInicial::verEquipos()
+{ emit agregarVentana( new VEquipos() ); }
+
+#include "vcredenciales.h"
+void FormPantallaInicial::verCredenciales()
+{ emit agregarVentana( new VCredenciales() ); }

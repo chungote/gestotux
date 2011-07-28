@@ -20,7 +20,14 @@ SOURCES += gestotux.cpp \
            formplugins.cpp \
            FormPantallaInicial.cpp \
            EFlecha.cpp \
-    mestadofiscal.cpp
+    mestadofiscal.cpp \
+    ../plugins/credenciales/vequipos.cpp \
+    ../plugins/credenciales/DCredencial.cpp \
+    ../plugins/credenciales/MCredenciales.cpp \
+    ../plugins/credenciales/mequipos.cpp \
+    ../plugins/credenciales/vcredenciales.cpp \
+    ../plugins/credenciales/dbusquedacredencial.cpp \
+    ../plugins/credenciales/credencialesplugin.cpp
 
 HEADERS += gestotux.h \
            ebackup.h \
@@ -47,7 +54,14 @@ HEADERS += gestotux.h \
            formplugins.h \
            FormPantallaInicial.h \
            EFlecha.h \
-    mestadofiscal.h
+    mestadofiscal.h \
+    ../plugins/credenciales/vequipos.h \
+    ../plugins/credenciales/DCredencial.h \
+    ../plugins/credenciales/MCredenciales.h \
+    ../plugins/credenciales/mequipos.h \
+    ../plugins/credenciales/vcredenciales.h \
+    ../plugins/credenciales/dbusquedacredencial.h \
+    ../plugins/credenciales/credencialesplugin.h
 
 TEMPLATE = app
 
@@ -69,7 +83,9 @@ FORMS += FormAcercaDeBase.ui \
          FormClienteBase.ui \
          formplugins.ui \
          ../utiles/EAyudaBase.ui \
-         FormPantallaInicialBase.ui
+         FormPantallaInicialBase.ui \
+    ../plugins/credenciales/dbusquedacredencial.ui \
+    ../plugins/credenciales/DCredencial.ui
 
 TARGET = gestotux
 
@@ -77,7 +93,8 @@ DESTDIR = ../bin
 
 DISTFILES += qt_es.qm
 
-RESOURCES += gestotux.qrc
+RESOURCES += gestotux.qrc \
+    ../plugins/credenciales/credenciales.qrc
 
 TRANSLATIONS += gestotux.ts
 
@@ -88,7 +105,8 @@ DEFINES += GESTOTUX_DESARROLLO
 
 INCLUDEPATH += ../reporte \
                ../utiles \
-               ../utiles/email
+               ../utiles/email \
+               ../plugins/credenciales
 
 LIBS += ../bin/libutiles.a \
         ../bin/libreporte.a

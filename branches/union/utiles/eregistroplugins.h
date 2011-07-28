@@ -28,6 +28,7 @@
 
 class EInfoProgramaInterface;
 class EInterfazEmail;
+class credencialesplugin;
 
 /**
  * \brief Registrador de plugins cargados
@@ -51,6 +52,8 @@ public:
     void setPluginEmail( EInterfazEmail *obj );
     bool existePlugin( const QString &nombre );
     bool pluginInfoSeteado();
+    static credencialesplugin *plugincredencial();
+    void setearPluginCredencial( credencialesplugin *p );
 
 private:
         ERegistroPlugins(QWidget *parent = 0);
@@ -58,6 +61,7 @@ private:
 	static EInfoProgramaInterface *_pluginInfo;
 	static EInterfazEmail *_pluginEmail;
 	static ERegistroPlugins *instance;
+        static credencialesplugin *_plugcredencial;
 
 };
 

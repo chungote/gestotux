@@ -34,7 +34,7 @@ double credencialesplugin::version() const
 
 int credencialesplugin::tipo() const
 {
- return EPlugin::info;
+ return EPlugin::credencial;
 }
 
 QList< QActionGroup * > credencialesplugin::accionesBarra()

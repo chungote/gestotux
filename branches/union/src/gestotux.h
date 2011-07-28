@@ -63,7 +63,6 @@ protected:
       void keyPressEvent( QKeyEvent *event );
 
 public slots:
-      void verClientes();
       void verPreferencias();
       void verBackup();
 
@@ -99,7 +98,7 @@ private:
       QMenu *menuVer;
       QMenu *menuAyuda;
 
-      QAction *ActClientes;
+      //QAction *ActClientes;
       QAction *exitAct;
       QAction *acercade;
       QAction *ActCerrar;
@@ -108,7 +107,7 @@ private:
       QAction *ActPreferencias;
       QAction *ActBackup;
       //QAction *ActProductos;
-      QAction *ActActualizar;
+      //QAction *ActActualizar;
       QAction *ActAyuda;
       QAction *ActRestaurar;
 

@@ -63,4 +63,5 @@ FORMS += EAyudaBase.ui
 TRANSLATIONS += utiles.ts
 
 INCLUDEPATH += ../src \
-               ../reporte
+               ../reporte \
+               ../plugins/credenciales

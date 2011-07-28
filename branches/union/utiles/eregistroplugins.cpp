@@ -20,11 +20,13 @@
 #include "eregistroplugins.h"
 #include "einterfazemail.h"
 #include "einfoprogramainterface.h"
+#include "credencialesplugin.h"
 
 ERegistroPlugins *ERegistroPlugins::instance = 0;
 EInfoProgramaInterface *ERegistroPlugins::_pluginInfo = 0;
 QHash<QString, EPlugin *> *ERegistroPlugins::_plugins = 0;
 EInterfazEmail *ERegistroPlugins::_pluginEmail = 0;
+credencialesplugin *ERegistroPlugins::_plugcredencial = 0;
 
 ERegistroPlugins::ERegistroPlugins( QWidget */*parent*/ )
 {
@@ -133,4 +135,12 @@ bool ERegistroPlugins::existePlugin( const QString &nombre )
  */
 bool ERegistroPlugins::pluginInfoSeteado() {
     if( _pluginInfo == 0 ) { return false; } else { return true; }
+}
+
+credencialesplugin * ERegistroPlugins::plugincredencial() {
+    return _plugcredencial;
+}
+
+void ERegistroPlugins::setearPluginCredencial( credencialesplugin *p ) {
+    _plugcredencial = p;
 }

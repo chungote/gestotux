@@ -43,6 +43,7 @@
 #include <QPluginLoader>
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
+#include "credencialesplugin.h"
 
 #define NOMBRE_CONEXION "gestotux"
 
@@ -362,6 +363,11 @@ int main(int argc, char *argv[])
                                         ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
                                         preferencias::getInstancia()->inicio();
                                         preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
+                                }
+                                else if( plug->tipo() == EPlugin::credencial )
+                                {
+                                    ERegistroPlugins::getInstancia()->setearPluginCredencial( qobject_cast<credencialesplugin *>(obj) );
+                                    ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
                                 }
                         }
                         else
