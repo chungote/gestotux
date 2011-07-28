@@ -32,14 +32,14 @@ MProductos::MProductos(QObject *parent)
  {
   setRelation( 1, QSqlRelation( "categoria_producto", "id", "nombre" ) );
  }
- setHeaderData( 2, Qt::Horizontal, "Nombre" );
- setHeaderData( 3, Qt::Horizontal, "Precio de Costo" );
- setHeaderData( 4, Qt::Horizontal, "Precio de venta" );
- setHeaderData( 5, Qt::Horizontal, "Descripcion" );
- setHeaderData( 6, Qt::Horizontal, "Marca" );
- setHeaderData( 7, Qt::Horizontal, "Stock" );
- setHeaderData( 8, Qt::Horizontal, "Habilitado" );
- setHeaderData( 9, Qt::Horizontal, QString::fromUtf8( "#Código" ) );
+ setHeaderData( 2, Qt::Horizontal, QString::fromUtf8( "#Código" ) );
+ setHeaderData( 3, Qt::Horizontal, "Nombre" );
+ setHeaderData( 4, Qt::Horizontal, "Precio de Costo" );
+ setHeaderData( 5, Qt::Horizontal, "Precio de venta" );
+ setHeaderData( 6, Qt::Horizontal, "Descripcion" );
+ setHeaderData( 7, Qt::Horizontal, "Marca" );
+ setHeaderData( 8, Qt::Horizontal, "Stock" );
+ setHeaderData( 9, Qt::Horizontal, "Habilitado" );
  setSort( 0, Qt::AscendingOrder );
 }
 
@@ -57,13 +57,13 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
         {
                 switch( item.column() )
                 {
-                        case 3:
                         case 4:
+                        case 5:
                         {
                                 return QString( "$ %1" ).arg( QString::number( QSqlRelationalTableModel::data(item, role).toDouble(), 'f', 3 ) );
                                 break;
                         }
-                        case 8:
+                        case 9:
                         {
                                 if( QSqlRelationalTableModel::data( item, role ).toBool() )
                                 { return "Si"; }
@@ -88,7 +88,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
         {
                 switch ( item.column() )
                 {
-                        case 3:
+                        case 5:
                         case 4:
                         {
                                 return QColor(Qt::blue);
@@ -106,7 +106,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
         {
                 switch( item.column() )
                 {
-                        case 3:
+                        case 5:
                         case 4:
                         {
                                 return QSqlRelationalTableModel::data( item, role ).toDouble();
@@ -124,10 +124,11 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
         {
                 switch( item.column() )
                 {
-                        case 3:
+                        case 5:
                         case 4:
                         case 6:
                         case 7:
+                        case 8:
                         {
                                 return int( Qt::AlignHCenter | Qt::AlignVCenter );
                                 break;

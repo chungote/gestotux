@@ -61,30 +61,16 @@ RESOURCES += aCarCorr.qrc
 FORMS += FormMovimientoBase.ui \
  FormPrefCaravanas.ui
 
-win32 {
-    MOC_DIR = win/moc
-    UI_DIR = win/ui
-    OBJECTS_DIR = win/objeto
-}
-linux-g++ {
-    UI_DIR = ui
-    MOC_DIR = moc
-    OBJECTS_DIR = obj
-}
+INCLUDEPATH += ../../utiles \
+               ../../reporte \
+               ../../src
 
-QMAKE_CXXFLAGS_DEBUG += -ggdb \
-  -g3
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
 
-INCLUDEPATH += ../../utiles
-
-LIBS += ../../bin/libutiles.a
-
-TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a
 
 DISTFILES += admincaravanascorrientes.SQLITE.sql \
  admincaravanascorrientes.QMYSQL.sql
 
-TRANSLATIONS += admincaravanascorrientes.tsCONFIG -= release
-
-CONFIG -= release
-
+TRANSLATIONS += admincaravanascorrientes.ts

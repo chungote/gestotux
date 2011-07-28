@@ -82,6 +82,7 @@ VProductos::VProductos(QWidget *parent)
 
  QAction *ActListadoVenta = new QAction( this );
  ActListadoVenta->setText( "Lista para Venta" );
+ ActListadoVenta->setIcon( QIcon( ":/imagenes/listado.png" ) );
  ActListadoVenta->setStatusTip( "Muestra el listado de productos con su precio de venta" );
  ActListadoVenta->setIcon( QIcon( ":/imagenes/listaventa.png" ) );
  connect( ActListadoVenta, SIGNAL( triggered() ), this, SLOT( listaVenta() ) );
