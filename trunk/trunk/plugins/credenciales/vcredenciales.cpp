@@ -46,15 +46,15 @@ void VCredenciales::imprimir()
     // Busca el id
     EReporte *rep = new EReporte( 0 );
     ParameterList param;
-    foreach( QModelIndex idx, lista ) {
-        int id = this->rmodelo->data( this->rmodelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    foreach( QModelIndex indx, lista ) {
+        int id = this->rmodel->data( this->rmodel->index( indx.row(), 0 ), Qt::EditRole ).toInt();
         param.append( Parameter( "id_credencial", id ) );
         rep->especial( "credencial-union", param );
         if( ! rep->hacer() ) {
             qWarning( "Error al imprimir" );
         }
         param.clear();
-    }
+     }
     delete rep;
 }
 
@@ -62,6 +62,6 @@ void VCredenciales::imprimir()
 void VCredenciales::buscar()
 {
     DBusquedaCredencial *d = new DBusquedaCredencial( this );
-    d->setearModelo( qobject_cast<MCredenciales *>(this->rmodelo) );
+    d->setearModelo( qobject_cast<MCredenciales *>(this->rmodel) );
     d->exec();
 }
