@@ -31,16 +31,16 @@ void DBusquedaCredencial::accept() {
     }
     if( !LENombre->text().isEmpty() ) {
         if( necesita_and ) { filtro.append( " AND " ); }
-        filtro.append( QString( "nombre LIKE %1" ).arg( LENombre->text() ) );
+        filtro.append( QString( " nombre LIKE \"%1\"" ).arg( LENombre->text() ).toLocal8Bit() );
         necesita_and = true;
     }
     if( !LEMedio->text().isEmpty() ) {
         if( necesita_and ) { filtro.append( " AND " ); }
-        filtro.append( QString( " medio LIKE %1" ).arg( LEMedio->text() ) );
+        filtro.append( QString( " medio  LIKE \"%1\"" ).arg( LEMedio->text() ) );
         necesita_and = true;
     }
     // Agregar Accesos
-
+    qDebug( QString( " cola: %1" ).arg( filtro ).toLocal8Bit() );
     this->modelo->setFilter( filtro );
     this->modelo->select();
 }
