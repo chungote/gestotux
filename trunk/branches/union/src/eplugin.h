@@ -47,7 +47,8 @@ public:
       db = 0,
       comun = 1,
       info = 2,
-      email = 3
+      email = 3,
+      credencial = 4
     };
     virtual ~EPlugin() {}
     virtual QList<QActionGroup *> accionesBarra() = 0;

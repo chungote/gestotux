@@ -108,10 +108,10 @@ void gestotux::createActions()
       acercade->setStatusTip( "Muestra informacion del programa" );
       connect( acercade, SIGNAL( triggered() ), this, SLOT( acerca() ) );
 
-      ActClientes = new QAction( "Ver Clientes... ", this );
+      /*ActClientes = new QAction( "Ver Clientes... ", this );
       ActClientes->setStatusTip( "Muestra la lista de clientes" );
       ActClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
-      connect( ActClientes, SIGNAL( triggered() ), this, SLOT( verClientes() ) );
+      connect( ActClientes, SIGNAL( triggered() ), this, SLOT( verClientes() ) );*/
 
       ActPreferencias = new QAction ( "Configuracion" , this );
       ActPreferencias->setStatusTip( "Modifica las preferencias de la aplicacion" );
@@ -123,10 +123,10 @@ void gestotux::createActions()
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
-      ActActualizar = new QAction( "Actualizar", this );
+      /*ActActualizar = new QAction( "Actualizar", this );
       ActActualizar->setIcon( QIcon( ":/imagenes/actualizar.png" ) );
       ActActualizar->setStatusTip( "Actualiza la aplicacion " );
-      connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
+      connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );*/
 
       ActRestaurar = new QAction( "Restaurar", this );
       connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
@@ -142,14 +142,14 @@ void gestotux::createMenus()
  fileMenu->setObjectName( "menuArchivo" );
  fileMenu->addAction( ActBackup );
  fileMenu->addAction( ActPreferencias );
- fileMenu->addSeparator();
- fileMenu->addAction( ActActualizar );
+ /*fileMenu->addSeparator();
+ fileMenu->addAction( ActActualizar );*/
  fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 
  menuHer = menuBar()->addMenu( "&Herramientas" );
  menuHer->setObjectName( "menuHerramientas" );
- menuHer->addAction( ActClientes );
+ //menuHer->addAction( ActClientes );
 
  foreach( EPlugin *plug , ERegistroPlugins::plugins() )
  { plug->crearMenu( menuBar() ); }
@@ -226,14 +226,6 @@ void gestotux::acerca()
  f->show();
 }
 
-
-/*!
-    \fn gestotux::verClientes()
-    Muestra la ventana de clientes
- */
-void gestotux::verClientes()
-{ formCen()->agregarForm( new VCliente( this ) ); }
-
 /*!
  * @fn gestotux::createToolBar()
  * Genera la barra de herramientas del programa y llama a las funciones de cada plugin para que devuelvan las barra de herramientas suyas
@@ -248,7 +240,7 @@ void gestotux::createToolBar()
  {
   plug->crearToolBar( tb );
  }
- tb->addAction( ActClientes );
+ //tb->addAction( ActClientes );
 
  _barraAcciones = new QToolBar( "Acciones", this );
  _barraAcciones->setObjectName( "BarraAcciones" );

@@ -36,9 +36,10 @@ protected:
     void changeEvent( QEvent *e );
 
 protected slots:
-    void backup();
-    void preferencias();
-    void clientes();
+    void crearcredencial();
+    void verEquipos();
+    void verCredenciales();
+
 };
 
 #endif // FORMPANTALLAINICIAL_H
