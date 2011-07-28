@@ -26,16 +26,19 @@ HEADERS += DCredencial.h \
     MCredenciales.h \
     mequipos.h \
     vequipos.h \
-    vcredenciales.h
+    vcredenciales.h \
+    dbusquedacredencial.h
 
 SOURCES += DCredencial.cpp \
     credencialesplugin.cpp \
     MCredenciales.cpp \
     mequipos.cpp \
     vequipos.cpp \
-    vcredenciales.cpp
+    vcredenciales.cpp \
+    dbusquedacredencial.cpp
 
-FORMS += DCredencial.ui
+FORMS += DCredencial.ui \
+    dbusquedacredencial.ui
 
 OTHER_FILES += \
     credencialesplugin.QMYSQL.sql \
