@@ -3,4 +3,8 @@
         <file>credencialesplugin.QMYSQL.sql</file>
         <file>credencialesplugin.QSQLITE.sql</file>
     </qresource>
+    <qresource prefix="/">
+        <file>imagenes/splash.png</file>
+        <file>imagenes/icono.png</file>
+    </qresource>
 </RCC>

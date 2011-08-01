@@ -63,12 +63,19 @@ void credencialesplugin::seCierraGestotux()
 }
 
 QImage credencialesplugin::imagenPrograma() const
-{ return QImage( ":/imagenes/logoBS.png" ); }
+{
+    return QImage( ":/imagenes/icono.png" );
+}
 
-QString credencialesplugin::nombrePrograma() const { return "credencialesplugin"; }
+QString credencialesplugin::nombrePrograma() const
+{
+    return "Credenciales :: Club Atletico Union";
+}
 
 QIcon credencialesplugin::iconoPrograma() const
-{ return QIcon( ":/imagenes/iconoBS.png" ); }
+{
+    return QIcon( ":/imagenes/icono.png" );
+}
 
 QString credencialesplugin::directorioBackup() const
 { return "credencialesplugin"; }
@@ -77,7 +84,9 @@ QString credencialesplugin::directorioActualizaciones() const
 { return "credencialesplugin"; }
 
 QString credencialesplugin::empresa() const
-{ return "credencialesplugin"; }
+{
+    return "Club Atletico Union de Santa Fe";
+}
 
 QString credencialesplugin::companeros()
 { return ""; }

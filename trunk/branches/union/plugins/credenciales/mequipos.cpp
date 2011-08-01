@@ -8,3 +8,4 @@ MEquipos::MEquipos(QObject *parent) :
     setHeaderData( 1, Qt::Horizontal, "Nombre" );
     setHeaderData( 2, Qt::Horizontal, "Activo" );
 }
+
