@@ -40,8 +40,4 @@ SOURCES += DCredencial.cpp \
 FORMS += DCredencial.ui \
     dbusquedacredencial.ui
 
-OTHER_FILES += \
-    credencialesplugin.QMYSQL.sql \
-    credencialesplugin.QSQLITE.sql
-
-RESOURCES += credenciales.qrc
+OTHER_FILES +=  credencialesplugin.QSQLITE.sql

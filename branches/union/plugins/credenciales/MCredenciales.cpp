@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS `credenciales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 */
 
-MCredenciales::MCredenciales(QObject *parent) :
+MCredenciales::MCredenciales(QObject *parent, bool relaciones ) :
     QSqlRelationalTableModel(parent)
 {
     setTable( "credenciales" );
     setHeaderData( 0, Qt::Horizontal, "#Credencial" );
     setHeaderData( 1, Qt::Horizontal, "Equipo" );
-    setRelation( 1, QSqlRelation( "equipos", "id_equipo", "nombre" ) );
+    if( relaciones ) { setRelation( 1, QSqlRelation( "equipos", "id_equipo", "nombre" ) ); }
     setHeaderData( 2, Qt::Horizontal, "Nombre" );
     setHeaderData( 3, Qt::Horizontal, "DNI" );
     setHeaderData( 4, Qt::Horizontal, "Medio" );

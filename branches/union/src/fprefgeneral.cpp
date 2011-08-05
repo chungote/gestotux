@@ -46,6 +46,8 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 		// inserto los directorios de estilo
 		CBSobreEstilo->insertItems( -1, dir.entryList( QDir::Dirs | QDir::NoDotAndDotDot ) );
 	}
+
+        this->GBActualizaciones->hide();
 }
 
 /*!
