@@ -86,8 +86,6 @@ TRANSLATIONS += gestotux.ts
 PRE_TARGETDEPS += ../bin/libreporte.a \
                    ../bin/libutiles.a
 
-DEFINES += GESTOTUX_DESARROLLO
-
 INCLUDEPATH += ../reporte \
                ../utiles \
                ../utiles/email \

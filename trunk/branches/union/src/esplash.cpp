@@ -29,9 +29,9 @@ ESplash::ESplash(QWidget *parent)
  : QSplashScreen( parent )
 {
  //setAttribute( Qt::WA_DeleteOnClose );
-    this->setAttribute( Qt::WA_OpaquePaintEvent );
+    /*this->setAttribute( Qt::WA_OpaquePaintEvent );
     this->setAttribute( Qt::WA_NoSystemBackground );
-    this->setAutoFillBackground( false );
+    this->setAutoFillBackground( false );*/
     if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.png" ) )
     {
       this->setPixmap( QApplication::applicationDirPath() + QDir::separator() + "splash.png" );
