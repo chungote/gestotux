@@ -18,7 +18,7 @@ DCredencial::DCredencial(QWidget *parent) :
     this->id_equipo = -1;
     this->reporte = new EReporte( this );
     this->reporte->especial( "credencial-union", ParameterList() );
-    this->modelo = new MCredenciales( this );
+    this->modelo = new MCredenciales( this, false );
 }
 
 #include <QSqlQuery>
@@ -47,7 +47,7 @@ void DCredencial::accept()
     // Guardo el registro
     QSqlRecord rec = this->modelo->record();
     //rec.remove( 0 );
-    rec.setValue( "equipo_id", this->id_equipo );
+    rec.setValue( 1, this->id_equipo );
     rec.setValue( "nombre", this->LENombre->text() );
     rec.setValue( "dni", this->LEDNI->text() );
     rec.setValue( "medio", this->LEMedio->text() );
@@ -57,6 +57,9 @@ void DCredencial::accept()
     rec.setValue( "acc4", this->CkBAcc4->isChecked() );
     rec.setValue( "acc5", this->CkBAcc5->isChecked() );
     rec.setValue( "acc6", this->CkBAcc6->isChecked() );
+    for( int i = 0; i< rec.count(); i++ ) {
+        qDebug( QString( "%1: %2 - %3" ).arg( i ).arg( rec.fieldName( i ) ).arg( rec.value( i ).toString() ).toLocal8Bit() );
+    }
     if( this->modelo->insertRecord( -1, rec ) ) {
         int id_rec = this->modelo->query().lastInsertId().toInt();
         // imprimo la tarjeta
@@ -91,4 +94,5 @@ void DCredencial::limpiarDatos() {
     this->CkBAcc4->setChecked( false );
     this->CkBAcc5->setChecked( false );
     this->CkBAcc6->setChecked( false );
+    qDebug( QString( "Union vs. %1 - luego de limpieza").arg( id_equipo ).toLocal8Bit() );
 }

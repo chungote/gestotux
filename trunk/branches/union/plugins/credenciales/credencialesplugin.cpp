@@ -1,18 +1,20 @@
 #include "credencialesplugin.h"
 bool credencialesplugin::inicializar()
 {
- Q_INIT_RESOURCE(credenciales);
 
     ActNuevaCredencial = new QAction( this );
     ActNuevaCredencial->setText( "Nueva credencial" );
+    ActNuevaCredencial->setIcon( QIcon( ":/imagenes/icono3.png" ) );
     connect( ActNuevaCredencial, SIGNAL( triggered() ), this, SLOT( crearcredencial() ) );
 
     ActEquipos = new QAction( this );
     ActEquipos->setText( "Equipos" );
+    ActEquipos->setIcon( QIcon( ":/imagenes/icono.png" ) );
     connect( ActEquipos, SIGNAL( triggered() ), this, SLOT( verEquipos() ) );
 
     ActCredenciales = new QAction( this );
     ActCredenciales->setText( "Credenciales" );
+    ActCredenciales->setIcon( QIcon( ":/imagenes/icono2.png" ) );
     connect( ActCredenciales, SIGNAL( triggered() ), this, SLOT( verCredenciales() ) );
 
  return true;
@@ -59,7 +61,6 @@ void credencialesplugin::crearToolBar(QToolBar* /*t*/)
 
 void credencialesplugin::seCierraGestotux()
 {
-    Q_CLEANUP_RESOURCE(credenciales);
 }
 
 QImage credencialesplugin::imagenPrograma() const
@@ -117,11 +118,17 @@ void credencialesplugin::reporteParametros(int, QString &, ParameterList &)
 #include <QInputDialog>
 #include <QSqlRecord>
 #include "mequipos.h"
+#include <QMessageBox>
 void credencialesplugin::crearcredencial()
 {
     QStringList lista; QList<int> ids;
     MEquipos *m = new MEquipos();
     m->select();
+    if( m->rowCount() == 0 ) {
+        QMessageBox::warning( 0, "Error", "No hay equipos declarados. Por favor, agregelos" );
+        delete m;
+        return;
+    }
     for( int i = 0; i<m->rowCount(); i++ ) {
         lista.append( m->record(i).value(1).toString() );
         ids.append( m->record(i).value(0).toInt() );

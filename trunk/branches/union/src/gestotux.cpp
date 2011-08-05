@@ -33,7 +33,6 @@
 
 #include "reloj.h"
 #include "formacercade.h"
-#include "vcliente.h"
 #include "preferencias.h"
 #include "formulariocentral.h"
 #include "formpreferencias.h"
@@ -70,12 +69,6 @@ void gestotux::inicializar()
  bandeja_sistema();
  createMenus();
  crearPantallaInicio();
-
- if( ERegistroPlugins::getInstancia()->pluginEmail() != 0 )
- {
-  statusBar()->addPermanentWidget( ERegistroPlugins::getInstancia()->pluginEmail()->statusBarWidget(), -1 );
-  EEmail::instancia()->testear();
- }
 
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
@@ -359,13 +352,6 @@ void gestotux::ocultar_mostrar( QSystemTrayIcon::ActivationReason razon )
 }
 
 
-/*!
-    \fn gestotux::verActualizacion()
-    Slot llamado para mostrar la ventana de actualizaciones.
- */
-void gestotux::verActualizacion()
-{ formCen()->agregarForm( new FormActualizacion( formCen() ) ); }
-
 #include "eayuda.h"
 /*!
  * @fn gestotux::keyPressEvent( QKeyEvent *event )
@@ -393,17 +379,6 @@ void gestotux::ayuda()
 {
  EAyuda *a = EAyuda::instancia();
  a->mostrarIndice();
-}
-
-#include "barralateral.h"
-/*!
-    \fn gestotux::crearBarraLateral()
-    Funcion que crea la barra lateral que contiene los iconos de acceso directo a acciones mas usadas
- */
-void gestotux::crearBarraLateral()
-{
- BarraLateral *r = new BarraLateral( "Barra Lateral", this );
- addDockWidget( Qt::LeftDockWidgetArea, r );
 }
 
 

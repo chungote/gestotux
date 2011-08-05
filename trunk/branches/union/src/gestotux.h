@@ -30,12 +30,10 @@
 class QAction;
 class QMenu;
 class barraAbajo;
-class barraLateral;
 class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
 class FormularioCentral;
-class EInterfazEmail;
 
 /**
  * \brief Ventana principal del programa
@@ -69,7 +67,6 @@ public slots:
 protected slots:
       void salir();
       void acerca();
-      void verActualizacion();
       void ayuda();
 
 private slots:
@@ -88,7 +85,6 @@ private:
       void bandeja_sistema();
       void crearBarraLateral();
 
-      barraLateral *barra;
       barraAbajo *barraA;
 
       QToolBar *tb;
@@ -98,16 +94,11 @@ private:
       QMenu *menuVer;
       QMenu *menuAyuda;
 
-      //QAction *ActClientes;
       QAction *exitAct;
       QAction *acercade;
       QAction *ActCerrar;
-      //QAction *ActPdf;
-      //QAction *ActImprimir;
       QAction *ActPreferencias;
       QAction *ActBackup;
-      //QAction *ActProductos;
-      //QAction *ActActualizar;
       QAction *ActAyuda;
       QAction *ActRestaurar;
 

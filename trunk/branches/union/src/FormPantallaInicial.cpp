@@ -31,17 +31,13 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     this->setWindowTitle( "Inicio" );
     this->setWindowIcon( QIcon( ":/imagenes/inicio.png" ) );
 
-    // Seteo los iconos
-    // Generales
-/*    TBBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
-    connect( TBBackup, SIGNAL( clicked() ), this, SLOT( backup() ) );
-
-    TBPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
-    connect( TBPreferencias, SIGNAL( clicked() ), this, SLOT( preferencias() ) );*/
-
     connect( TBCredenciales, SIGNAL(clicked()), this, SLOT(verCredenciales()));
     connect( TBNuevaCredencial, SIGNAL(clicked()), this, SLOT(crearcredencial()));
     connect( TBEquipos, SIGNAL(clicked()), this, SLOT(verEquipos()));
+
+    TBCredenciales->setIcon( QIcon( ":/imagenes/icono2.png" ) );
+    TBNuevaCredencial->setIcon( QIcon( ":/imagenes/icono3.png" ) );
+    TBEquipos->setIcon( QIcon( ":/imagenes/icono.png"  ) );
 
 }
 
@@ -61,12 +57,18 @@ void FormPantallaInicial::changeEvent(QEvent *e)
 #include "DCredencial.h"
 #include <QInputDialog>
 #include <QSqlRecord>
+#include <QMessageBox>
 #include "mequipos.h"
 void FormPantallaInicial::crearcredencial()
 {
     QStringList lista; QList<int> ids;
     MEquipos *m = new MEquipos();
     m->select();
+    if( m->rowCount() == 0 ) {
+        QMessageBox::warning( 0, "Error", "No hay equipos declarados. Por favor, agregelos" );
+        delete m;
+        return;
+    }
     for( int i = 0; i<m->rowCount(); i++ ) {
         lista.append( m->record(i).value(1).toString() );
         ids.append( m->record(i).value(0).toInt() );

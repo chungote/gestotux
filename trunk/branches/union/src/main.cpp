@@ -33,7 +33,6 @@
 #include <QMessageBox>
 #include "gestotux.h"
 #include "preferencias.h"
-#include "eenviobackup.h"
 #include "esplash.h"
 #include "emysql.h"
 #include "eemail.h"
@@ -44,8 +43,6 @@
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
 #include "credencialesplugin.h"
-
-#define NOMBRE_CONEXION "gestotux"
 
 FILE *debug;
 /*!
@@ -172,60 +169,11 @@ int main(int argc, char *argv[])
       // Preferencias Idiomaticas
       QLocale locale( QLocale::Spanish, QLocale::Argentina );
       QLocale::setDefault( locale );
-      splash.showMessage( "Cargando Traduccion" );
-      // Cargo las traducciones
-      QTranslator tran;
-      QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
-      directorio->cd( "traducciones" );
-      if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
-      { app.installTranslator(&tran); } else  { qDebug( "Fallo al cargar la traduccion" ); }
-      if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
-      { QCoreApplication::instance()->installTranslator(&tran); } else { qDebug( "Fallo al cargar la traduccion del reporte" ); }
-      delete directorio;
-      directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
-      for (int i = 0; i < QSqlDatabase::drivers().size(); ++i)
-      {
-              qDebug( QSqlDatabase::drivers().at(i).toLocal8Bit() );
-      }
-      // Chequeo la Base de Datos
-      bool fallosql = false;
-      if( ( QSqlDatabase::isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
-      {
-         //qWarning( "Usando mysql" );
-         EMysql dialogo;
-         int ret = dialogo.exec();
-         switch( ret )
-         {
-                case EMysql::Conectado:
-                {
-                        qDebug( "Base de datos abierta correctamente" );
-                        fallosql = false;
-                        break;
-                }
-                case EMysql::Cancelado:
-                {
-                        qWarning( "No se puede continuar sin la base de datos. Se saldra del programa" );
-                        exit(0);
-                        break;
-                }
-                case EMysql::Interna:
-                {
-                        fallosql = true;
-                        break;
-                }
-                default:
-                {
-                        qWarning( qPrintable( "Retorno desconocido: " + QString::number( ret ) ) );
-                        abort();
-                        break;
-                }
-        }
-      } else { fallosql = true; }
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Cargo el driver que este disponible, usando db interna y no se fuerza a usar mysql
       /////////////////////////////////////////////////////////////////////////////////////////////////////////
-      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) && fallosql == true )
+      if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) )
       {
        QFile *base = new QFile( QApplication::applicationDirPath().append( QDir::separator() ).append( "gestotux.database" ).toLocal8Bit() );
        if( !base->open( QIODevice::ReadOnly ) )
@@ -259,7 +207,7 @@ int main(int argc, char *argv[])
         } else { qDebug( "Base de datos SQLite abierta correctamente" ); }
         /// FIN SQLITE
        }
-       else if( fallosql == true || !QSqlDatabase::database().isValid() )
+       else if( !QSqlDatabase::database().isValid() )
        {
         // No se puede usar sqlite para el programa
         qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
@@ -390,10 +338,6 @@ int main(int argc, char *argv[])
         // Salir del programa cuando se cierren todas las ventanas
         app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
         splash.showMessage( "Listo." );
-        // Inicio el hilo de envio del backup
-        /*EEnvioBackup envios( &app );
-        envios.start( QThread::IdlePriority );
-        QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );*/
         mw->inicializar();
         if( p->value( "maximizado", true ).toBool() )
         { mw->showMaximized(); }

@@ -49,9 +49,9 @@ ESplash::~ESplash()
 
 void ESplash::drawContents( QPainter *painter )
 {
-  painter->setPen( this->color );
+  painter->setPen( Qt::white );
   QRect pos = rect();
-  pos.setRect( pos.x() + 200, pos.y() + 150, pos.width(), pos.height() );
+  pos.setRect( pos.x() + 10, pos.y() + 165, pos.width(), pos.height() );
   painter->drawText( pos, this->alineacion, this->texto );
 }
 
