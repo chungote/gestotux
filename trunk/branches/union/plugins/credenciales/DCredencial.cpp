@@ -40,7 +40,7 @@ void DCredencial::accept()
         QMessageBox::warning( this, "Error", "Por favor ingrese un DNI para esta credencial" );
         return;
     }
-    if( !this->CkBAcc1->isChecked() && !this->CkBAcc2->isChecked() && !this->CkBAcc3->isChecked() && !this->CkBAcc4->isChecked() && !this->CkBAcc5->isChecked() ) {
+    if( !this->CkBAcc1->isChecked() && !this->CkBAcc2->isChecked() && !this->CkBAcc3->isChecked() && !this->CkBAcc4->isChecked() && !this->CkBAcc5->isChecked() && !this->CkBAcc6->isChecked()) {
         QMessageBox::warning( this, "Error", "Por favor, elija un nivel de acceso para esta credencial" );
         return;
     }
