@@ -82,6 +82,12 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  ActBuscar->setToolTip( "Buscar items ( Ctrl + b )" );
  connect( ActBuscar, SIGNAL( triggered() ), this, SLOT( buscar() ) );
 
+ ActVerTodos = new QAction( "Ver todos", this );
+ ActVerTodos->setIcon( QIcon( ":/imagenes/vertodos.png" ) );
+ ActVerTodos->setShortcut( QKeySequence( "Ctrl+t" ) );
+ ActVerTodos->setToolTip( "Mostrar todo ( Ctrl + t)" );
+ connect( ActVerTodos, SIGNAL( triggered() ), this, SLOT( mostrarTodos() ) );
+
  ActEmail = new EActEmail( this );
 
  ActPdf = new EActPdf( this );
@@ -94,6 +100,7 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  /////////////////////////////////////
  connect( vista, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( hacerMenuContextual( const QModelIndex & ) ) );
 
+ //Inicializo los punteros
  rmodelo = 0;
  modelo = 0;
 }
@@ -236,6 +243,16 @@ void EVLista::aPdf()
 void EVLista::antes_de_insertar( int /*row*/, QSqlRecord & /*record*/ )
 {}
 
+
+void EVLista::mostrarTodos()
+{
+    if( this->modelo != 0 ) {
+        this->modelo->select();
+    }
+    if( this->rmodelo != 0 ) {
+        this->rmodelo->select();
+    }
+}
 
 /*!
     \fn EVLista::menuContextual( const QModelIndex &indice, QMenu *menu )

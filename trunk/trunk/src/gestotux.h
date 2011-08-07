@@ -55,9 +55,6 @@ public:
       static QToolBar *barraAcciones();
       static QToolBar *_barraAcciones;
 
-  public slots:
-      void agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana );
-
 protected:
       void closeEvent(QCloseEvent *event);
       void keyPressEvent( QKeyEvent *event );
@@ -66,6 +63,7 @@ public slots:
       void verClientes();
       void verPreferencias();
       void verBackup();
+      void agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana );
 
 protected slots:
       void salir();
@@ -103,11 +101,8 @@ private:
       QAction *exitAct;
       QAction *acercade;
       QAction *ActCerrar;
-      //QAction *ActPdf;
-      //QAction *ActImprimir;
       QAction *ActPreferencias;
       QAction *ActBackup;
-      //QAction *ActProductos;
       QAction *ActActualizar;
       QAction *ActAyuda;
       QAction *ActRestaurar;

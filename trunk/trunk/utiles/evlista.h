@@ -82,6 +82,11 @@ public:
     * Accion generica para guardar a pdf
     */
     QAction *ActPdf;
+    /*!
+     * Accion generica para mostrar todos los registros
+     */
+     QAction *ActVerTodos;
+
 
 protected:
   /**
@@ -102,6 +107,7 @@ protected slots:
     virtual void aPdf();
     virtual void menuContextual( const QModelIndex &indice, QMenu *menu );
     virtual void hacerMenuContextual( const QModelIndex &indice );
+    virtual void mostrarTodos();
 };
 
 #endif

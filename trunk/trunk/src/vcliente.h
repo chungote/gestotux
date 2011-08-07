@@ -22,6 +22,7 @@
 
 #include <evlista.h>
 class MClientes;
+class BuscarCliente;
 
 /**
  * @brief Vista de la lista de Clientes
@@ -32,15 +33,18 @@ class VCliente : public EVLista
   Q_OBJECT
 public:
     VCliente( QWidget *parent = 0 );
-    ~VCliente();
 
 protected slots:
     void agregar( bool autoeliminarid = true);
     void modificar();
+    void buscar();
+    void eliminar();
     void listadoClientes();
+    void mostrarTodos();
 
 private:
     MClientes *mc;
+    BuscarCliente *b;
 
 };
 

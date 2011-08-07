@@ -51,14 +51,22 @@ void FormularioCentral::cambioWidget( int id )
  if( this->widget( id )->objectName() == "inicio" ) {
      this->cornerWidget()->setVisible(false);
  } else { this->cornerWidget()->setVisible(true); }
+ if( mapaDocks.contains( id ) ) {
+     mapaDocks.value( id ).second->setVisible( true );
+
+ }
 }
 
 
 void FormularioCentral::cerrarActivo()
 {
- currentWidget()->close();
- removeTab( currentIndex() );
- cambioWidget( currentIndex() );
+    if( mapaDocks.contains( currentIndex() ) ) {
+        mapaDocks.value( currentIndex() ).second->hide();
+        mapaDocks.remove( currentIndex() );
+    }
+    currentWidget()->close();
+    removeTab( currentIndex() );
+    cambioWidget( currentIndex() );
 }
 
 
@@ -75,6 +83,7 @@ void FormularioCentral::agregarForm( QWidget *ventana )
  if( !existeVentana( ventana->objectName() ) )
  {
   connect( ventana, SIGNAL( agregarVentana( QWidget * ) ), this, SLOT( agregarForm( QWidget * ) ) );
+  connect( ventana, SIGNAL( agregarDockWidget( Qt::DockWidgetArea, QDockWidget * ) ), this, SLOT( agregarDock( Qt::DockWidgetArea, QDockWidget * ) ) );
   this->setCurrentIndex( this->addTab( ventana, ventana->windowIcon(), ventana->windowTitle() ) );
   this->tabBar()->setTabData( currentIndex(), ventana->objectName() );
   this->currentWidget()->setFocus( Qt::ActiveWindowFocusReason );
@@ -101,4 +110,22 @@ bool FormularioCentral::existeVentana( QString nombre )
   { return true; }
  }
  return false;
+}
+
+
+/*
+  \fn FormularioCentral::agregarDock( Qt::DockWidgetArea pos, QDockWidget *obj )
+  Pasarela para que la ventana principal agrege una ventana tipo dockwidget.
+  Si el objeto no tiene un padre que pertenezca a las ventanas actuales, no se ocultará al cambiar de pestaña
+  \param pos Posición donde se desea colocar el widget
+  \param obj DockWidget que se desea colocar
+ */
+void FormularioCentral::agregarDock( Qt::DockWidgetArea pos, QDockWidget *obj )
+{
+    // agregar mappeo para que al cambiar de pestaña se oculten o muestren
+    if( this->indexOf( obj->parentWidget() ) == -1 ) {
+        qDebug( "Intentando insertar un dockwidget que no tiene padre, no se ocultará cuando se cambie de pestaña" );
+    }
+    mapaDocks.insertMulti( this->indexOf( obj->parentWidget() ), QPair<Qt::DockWidgetArea, QDockWidget *>( pos, obj ) );
+    qobject_cast<gestotux *>(this->parent())->agregarDock( pos, obj );
 }

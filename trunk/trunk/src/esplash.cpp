@@ -28,30 +28,29 @@
 ESplash::ESplash(QWidget *parent)
  : QSplashScreen( parent )
 {
- //setAttribute( Qt::WA_DeleteOnClose );
-    this->setAttribute( Qt::WA_OpaquePaintEvent );
-    this->setAttribute( Qt::WA_NoSystemBackground );
-    this->setAutoFillBackground( false );
+    //setAttribute( Qt::WA_DeleteOnClose );
+    //this->setAttribute( Qt::WA_OpaquePaintEvent );
+    //this->setAttribute( Qt::WA_NoSystemBackground );
+    //this->setAutoFillBackground( false );
+    this->setWindowOpacity(0);
     if( QFile::exists( QApplication::applicationDirPath() + QDir::separator() + "splash.png" ) )
     {
       this->setPixmap( QApplication::applicationDirPath() + QDir::separator() + "splash.png" );
+      this->setMask( QBitmap( QApplication::applicationDirPath() + QDir::separator() + "splashmask.png" ) );
     }
     else
     {
-      this->setPixmap( QPixmap( ":/imagenes/splash.png" ) );
+      QPixmap pix( ":/images/splash.png" );
+      this->setPixmap( pix );
+      this->setMask( pix.mask() );
     }
-}
-
-
-ESplash::~ESplash()
-{
 }
 
 void ESplash::drawContents( QPainter *painter )
 {
   painter->setPen( this->color );
   QRect pos = rect();
-  pos.setRect( pos.x() + 200, pos.y() + 150, pos.width(), pos.height() );
+  pos.setRect( pos.x() + 200, pos.y() + 140, pos.width(), pos.height() );
   painter->drawText( pos, this->alineacion, this->texto );
 }
 
@@ -63,3 +62,11 @@ void ESplash::showMessage(const QString &message, int alignment, const QColor &c
   emit messageChanged( this->texto );
   repaint();
 }
+
+/*void ESplash::paintEvent(QPaintEvent *)
+{
+    QColor backgroundColor = palette().light().color();
+    backgroundColor.setAlpha(0);
+    QPainter customPainter(this);
+    customPainter.fillRect(rect(),backgroundColor);
+}*/

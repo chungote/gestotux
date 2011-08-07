@@ -36,12 +36,12 @@ class ESplash : public QSplashScreen
 {
 public:
     ESplash(QWidget *parent = 0);
-    ~ESplash();
     void showMessage(const QString &message, int alignment = Qt::AlignLeft, const QColor &color = Qt::black );
 
 
 protected:
     void drawContents(QPainter *painter);
+    /*void paintEvent(QPaintEvent *);*/
 
     QString texto;
     int alineacion;

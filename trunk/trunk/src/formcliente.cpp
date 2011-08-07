@@ -105,150 +105,144 @@ void FormCliente::guardar()
          return;
      }
  }
- if( mapa->submit() ) {
-     QMessageBox::information( this, "Correcto", "Datos guardados correctamente" );
-     this->close();
-     return;
+ if( !this->_agregando ) {
+     // Veo si hay modificaciones
+     if( mapa->submit() ) {
+        QMessageBox::information( this, "Correcto", "Datos guardados correctamente" );
+        this->close();
+        return;
+     } else {
+        qDebug( "Error, no se pudo hacer submit del mapa" );
+        qDebug( this->modelo->lastError().text().toLocal8Bit() );
+     }
  } else {
-     qDebug( "Error, no se pudo hacer submit del mapa" );
-     qDebug( this->modelo->lastError().text().toLocal8Bit() );
- }
- /*
- QSqlRecord rc = modelo->record();
- rc.setValue( "razon_social", LERazonSocial->text() );
- if( LERazonSocial->text().isEmpty() )
- { rc.setNull( "razon_social" ); }
- else
- { rc.setValue( "razon_social", LERazonSocial->text() ); }
- ///////////////////////////////////////////////////////////////////////
- if( LENombre->text().isEmpty() )
- { rc.setNull( "nombre" ); }
- else
- { rc.setValue( "nombre", LENombre->text() ); }
- ///////////////////////////////////////////////////////////////////////
- if( LEApellido->text().isEmpty() )
- { rc.setNull( "apellido" ); }
- else
- { rc.setValue( "apellido", LEApellido->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LECalle->text().isEmpty() )
- { rc.setNull( "calle" ); }
- else
- { rc.setValue( "calle", LECalle->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LENumero->text().isEmpty() )
- { rc.setNull( "numero" ); }
- else
- { rc.setValue( "numero", LENumero->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEPiso->text().isEmpty() )
- { rc.setNull( "piso" ); }
- else
- { rc.setValue( "piso", LEPiso->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEDepto->text().isEmpty() )
- { rc.setNull( "depto" ); }
- else
- { rc.setValue( "depto", LEDepto->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LECiudad->text().isEmpty() )
- { rc.setNull( "ciudad" ); }
- else
- { rc.setValue( "ciudad", LECiudad->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LECodPostal->text().isEmpty() )
- { rc.setNull( "codigo_postal" ); }
- else
- { rc.setValue( "codigo_postal", LECodPostal->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEProvincia->text().isEmpty() )
- { rc.setNull( "provincia" ); }
- else
- { rc.setValue( "provincia", LEProvincia->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEProvincia->text().isEmpty() )
- { rc.setNull( "provincia" ); }
- else
- { rc.setValue( "provincia", LEProvincia->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEPais->text().isEmpty() )
- { rc.setNull( "pais" ); }
- else
- { rc.setValue( "pais", LEPais->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LETelFijo->text().isEmpty() )
- { rc.setNull( "tel_fijo" ); }
- else
- { rc.setValue( "tel_fijo", LETelFijo->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LETelCel->text().isEmpty() )
- { rc.setNull( "tel_celular" ); }
- else
- { rc.setValue( "tel_celular", LETelCel->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEFax->text().isEmpty() )
- { rc.setNull( "fax" ); }
- else
- { rc.setValue( "fax", LEFax->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( LEEmail->text().isEmpty() )
- { rc.setNull( "email" ); }
- else
- { rc.setValue( "email", LEEmail->text() ); }
- ////////////////////////////////////////////////////////////////////////
- rc.setValue( "comprobante_email", CkBComprobanteEmail->isChecked() );
- ////////////////////////////////////////////////////////////////////////
- if( LECUITCUIL->text().isEmpty() )
- { rc.setNull("CUIT/CUIL"); }
- else
- { rc.setValue( "CUIT/CUIL", LECUITCUIL->text() ); }
- ////////////////////////////////////////////////////////////////////////
- if( CBEstadoFiscal->currentIndex() == 0 ) {
-     rc.setNull( "id_estado_fiscal" );
- } else {
-     rc.setValue( "id_estado_fiscal", CBEstadoFiscal->model()->data( CBEstadoFiscal->model()->index( CBEstadoFiscal->currentIndex(), 0 ), Qt::EditRole ).toInt() );
- }
- ////////////////////////////////////////////////////////////////////////
- // Inserto los datos
- if( modelo->insertRecord( -1, rc ) )
- {
-  if( modelo->submitAll() )
-  {
-   QMessageBox::information( this, "Correcto", "El cliente se guardo correctamente" );
-   close();
-   return;
-  }
-  else
-  {
-   qWarning( "Error al hacer submit del modelo de datos de cliente" );
-   qWarning( qPrintable( modelo->lastError().text() ) );
-   qWarning( qPrintable( modelo->query().lastQuery() ) );
+     QSqlRecord rc = modelo->record();
+     rc.setValue( "razon_social", LERazonSocial->text() );
+     ///////////////////////////////////////////////////////////////////////
+     if( LENombre->text().isEmpty() )
+     { rc.setNull( "nombre" ); }
+     else
+     { rc.setValue( "nombre", LENombre->text() ); }
+     ///////////////////////////////////////////////////////////////////////
+     if( LEApellido->text().isEmpty() )
+     { rc.setNull( "apellido" ); }
+     else
+     { rc.setValue( "apellido", LEApellido->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LECalle->text().isEmpty() )
+     { rc.setNull( "calle" ); }
+     else
+     { rc.setValue( "calle", LECalle->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LENumero->text().isEmpty() )
+     { rc.setNull( "numero" ); }
+     else
+     { rc.setValue( "numero", LENumero->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEPiso->text().isEmpty() )
+     { rc.setNull( "piso" ); }
+     else
+     { rc.setValue( "piso", LEPiso->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEDepto->text().isEmpty() )
+     { rc.setNull( "depto" ); }
+     else
+     { rc.setValue( "depto", LEDepto->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LECiudad->text().isEmpty() )
+     { rc.setNull( "ciudad" ); }
+     else
+     { rc.setValue( "ciudad", LECiudad->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LECodPostal->text().isEmpty() )
+     { rc.setNull( "codigo_postal" ); }
+     else
+     { rc.setValue( "codigo_postal", LECodPostal->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEProvincia->text().isEmpty() )
+     { rc.setNull( "provincia" ); }
+     else
+     { rc.setValue( "provincia", LEProvincia->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEProvincia->text().isEmpty() )
+     { rc.setNull( "provincia" ); }
+     else
+     { rc.setValue( "provincia", LEProvincia->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEPais->text().isEmpty() )
+     { rc.setNull( "pais" ); }
+     else
+     { rc.setValue( "pais", LEPais->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LETelFijo->text().isEmpty() )
+     { rc.setNull( "tel_fijo" ); }
+     else
+     { rc.setValue( "tel_fijo", LETelFijo->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LETelCel->text().isEmpty() )
+     { rc.setNull( "tel_celular" ); }
+     else
+     { rc.setValue( "tel_celular", LETelCel->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEFax->text().isEmpty() )
+     { rc.setNull( "fax" ); }
+     else
+     { rc.setValue( "fax", LEFax->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( LEEmail->text().isEmpty() )
+     { rc.setNull( "email" ); }
+     else
+     { rc.setValue( "email", LEEmail->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     rc.setValue( "comprobante_email", CkBComprobanteEmail->isChecked() );
+     ////////////////////////////////////////////////////////////////////////
+     if( LECUITCUIL->text().isEmpty() )
+     { rc.setNull("CUIT/CUIL"); }
+     else
+     { rc.setValue( "CUIT/CUIL", LECUITCUIL->text() ); }
+     ////////////////////////////////////////////////////////////////////////
+     if( CBEstadoFiscal->currentIndex() == 0 ) {
+         rc.setNull( "id_estado_fiscal" );
+     } else {
+         rc.setValue( "id_estado_fiscal", CBEstadoFiscal->model()->data( CBEstadoFiscal->model()->index( CBEstadoFiscal->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+     }
+     ////////////////////////////////////////////////////////////////////////
+     // Inserto los datos
+     if( modelo->insertRecord( -1, rc ) )
+     {
+      if( modelo->submitAll() )
+      {
+       QMessageBox::information( this, "Correcto", QString( "El cliente %1 se guardo correctamente" ).arg( rc.value( "id" ).toInt() ) );
+       close();
+       return;
+      }
+      else
+      {
+       qWarning( "Error al hacer submit del modelo de datos de cliente" );
+       qWarning( qPrintable( modelo->lastError().text() ) );
+       qWarning( qPrintable( modelo->query().lastQuery() ) );
 
-   return;
-  }
- }
- else
- {
-   qWarning( "Error al insertar el registro de datos de cliente" );
-   qWarning( qPrintable( modelo->lastError().text() ) );
-   qWarning( qPrintable( modelo->query().lastQuery() ) );
-   return;
- }
- */
+       return;
+      }
+     }
+     else
+     {
+       qWarning( "Error al insertar el registro de datos de cliente" );
+       qWarning( qPrintable( modelo->lastError().text() ) );
+       qWarning( qPrintable( modelo->query().lastQuery() ) );
+       return;
+     }
+ } // Fin agregando
 }
 
 /*!
   \fn FormCliente::agregar()
+    Setea el formulario para agregar un registro
  */
 void FormCliente::agregar() {
-    this->modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
-    if( this->modelo->insertRecord( -1, this->modelo->record() ) ) {
-        qDebug( "Registro insertado correctamente" );
-        this->mapa->toLast();
-    } else {
-        qDebug( "Error al insertar el registro" );
-        this->mapa->setCurrentIndex( -1 );
-    }
+    // busco el proximo ID ??
+
+    this->_agregando = true;
 }
 
 /*!
@@ -258,6 +252,7 @@ void FormCliente::setearCliente( QModelIndex &indice )
 {
     // Cargo todos los datos del cliente.
     mapa->setCurrentIndex( indice.row() );
+    _agregando = false;
  }
 
 
