@@ -96,7 +96,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
         return false;
     }
 
-    /*if( _tipo == EReporte::Presupuesto || _tipo == EReporte::Recibo ) {
+    if( _tipo == EReporte::Presupuesto || _tipo == EReporte::Recibo ) {
         // Guardo el documento en la carpeta si corresponde
         QDir dir = QApplication::applicationDirPath();
         dir.cd( "reportes" );
@@ -106,10 +106,10 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
             }
         }
         dir.cd( "deposito" );
-        if( ! _rep->exportToPDF( dir.absoluteFilePath( _rep-> ) ) {
+        /*if( ! _rep->exportToPDF( dir.absoluteFilePath( _rep-> ) ) ) {
             qDebug( "Error al guardar el reporte en el directorio." );
-        }
-    }*/
+        }*/
+    }
     return true;
 
 }
@@ -241,7 +241,7 @@ bool EReporte::cargar( const QString nombre ) {
             return false;
         }
     } else {
-        // Para otros tipos de base de datos podemos accederlo en la base de datos
+        // Para otros tipos de base de datos los accedemos en la base de datos
         _rep = new orReport( nombre );
     }
     if( (!_rep == 0) && !_rep->isValid() ) {

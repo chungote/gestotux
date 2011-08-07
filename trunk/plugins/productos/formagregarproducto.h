@@ -3,6 +3,7 @@
 
 #include "ui_formproductobase.h"
 #include <QDialog>
+#include <QDockWidget>
 
 class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
 {
@@ -26,6 +27,7 @@ class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
 
     signals:
         void agregarVentana( QWidget * );
+        void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
 };
 
 #endif // FORMAGREGARPRODUCTO_H
