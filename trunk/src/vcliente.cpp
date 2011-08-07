@@ -29,6 +29,7 @@
 #include <QTableView>
 #include <QHeaderView>
 #include <QSqlRecord>
+#include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
 
@@ -45,6 +46,7 @@ VCliente::VCliente( QWidget *parent )
  modelo = 0;
  rmodelo = 0;
  vista->setModel( mc );
+ mc->query().setForwardOnly( true );
  vista->hideColumn( mc->fieldIndex( "id" ) );
  vista->hideColumn( mc->fieldIndex( "nombre" ) );
  vista->hideColumn( mc->fieldIndex( "apellido" ) );
@@ -59,7 +61,6 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->hideColumn( mc->fieldIndex( "id_estado_fiscal" ) );
  vista->setAlternatingRowColors( true );
- mc->select();
 
  QAction *ActLista = new QAction( this );
  ActLista->setText( "Listado" );
@@ -69,16 +70,16 @@ VCliente::VCliente( QWidget *parent )
 
  ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
  ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
+
+ ActBuscar->setCheckable( true );
+
  addAction( ActAgregar );
  addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActLista );
+ addAction( ActBuscar );
+ addAction( ActVerTodos );
  addAction( ActCerrar );
-}
-
-
-VCliente::~VCliente()
-{
 }
 
 #include "formcliente.h"
@@ -116,4 +117,26 @@ void VCliente::listadoClientes() {
     if( !rep->hacer() ) {
         QMessageBox::warning( this, "Error", "No se pudo realizar el reporte" );
     }
+}
+
+#include "buscarcliente.h"
+void VCliente::buscar()
+{
+    if( ActBuscar->isChecked() ) {
+        this->b = new BuscarCliente( this, this->mc );
+        emit agregarDockWidget( Qt::BottomDockWidgetArea, b );
+    } else {
+        if( this->b != 0 ) { this->b->hide(); }
+    }
+}
+
+void VCliente::eliminar()
+{
+    QMessageBox::warning( this, "Error", "Eliminar clientes causa perdida de datos. Todavía no implementado" );
+    return;
+}
+
+void VCliente::mostrarTodos()
+{
+    this->mc->select();
 }

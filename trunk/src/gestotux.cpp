@@ -154,7 +154,7 @@ void gestotux::createMenus()
  foreach( EPlugin *plug , ERegistroPlugins::plugins() )
  { plug->crearMenu( menuBar() ); }
 
- menuVer = menuBar()->addMenu( "&Ver");
+ /*menuVer = menuBar()->addMenu( "&Ver");
  if( !this->findChildren<QDockWidget*>().isEmpty() )
  {
   QList<QDockWidget*> lista = this->findChildren<QDockWidget*>();
@@ -163,7 +163,7 @@ void gestotux::createMenus()
   {
    menuVer->addAction( dock->toggleViewAction() ); ///\todo Revisar actualizacion de este menu
   }
- }
+ }*/
 
  menuAyuda = menuBar()->addMenu( "A&yuda" );
  menuAyuda->setObjectName( "menuAyuda" );

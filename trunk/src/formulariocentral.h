@@ -21,6 +21,9 @@
 #define FORMULARIOCENTRAL_H
 
 #include <QTabWidget>
+#include <QDockWidget>
+#include <QMap>
+#include <QPair>
 class QPushButton;
 /**
  * \brief Formulario Central
@@ -41,10 +44,12 @@ protected slots:
 
 public slots:
     void agregarForm( QWidget *ventana );
+    void agregarDock( Qt::DockWidgetArea, QDockWidget * );
 
 private:
-	QPushButton *PBCerrar;
+    QPushButton *PBCerrar;
     bool existeVentana( QString nombre );
+    QMap<int, QPair< Qt::DockWidgetArea, QDockWidget *> > mapaDocks;
 };
 
 #endif

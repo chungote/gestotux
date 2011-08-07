@@ -12,9 +12,9 @@ SUBDIRS +=  caja \
             servicios \
             bscomputacion \
 #            digifauno \
-            HiComp \
+            HiComp
 #            aCarCorr \
-    credenciales
+#    credenciales
 #            email \
 #planificador \
 

@@ -22,6 +22,7 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include <QDockWidget>
 
 /*!
  * 	\brief Ventana base de todas las ventanas
@@ -48,6 +49,7 @@ private:
 
 signals:
 	void agregarVentana( QWidget * );
+        void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
 };
 
 #endif

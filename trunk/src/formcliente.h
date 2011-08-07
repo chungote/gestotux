@@ -53,6 +53,7 @@ class FormCliente : public EVentana, private Ui::FormClienteBase
         QSqlRelationalTableModel *modelo;
         MEstadoFiscal *_mestadofiscal;
         QDataWidgetMapper *mapa;
+        bool _agregando;
 };
 
 #endif
