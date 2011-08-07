@@ -43,6 +43,7 @@ protected slots:
     void agregar(  bool autoeliminarid = true );
     void listaVenta();
     void actualizar();
+    void modificar();
 };
 
 #endif

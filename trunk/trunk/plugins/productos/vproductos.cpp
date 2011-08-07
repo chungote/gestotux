@@ -60,13 +60,13 @@ VProductos::VProductos(QWidget *parent)
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "modelo" ) ); }
 
- rmodelo->select();
- vista->resizeColumnsToContents();
+  vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
  vista->setAlternatingRowColors( true );
  vista->setSortingEnabled( true );
 
  addAction( ActAgregar );
+ addAction( ActModificar );
  addAction( ActEliminar );
 
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
@@ -88,6 +88,7 @@ VProductos::VProductos(QWidget *parent)
  connect( ActListadoVenta, SIGNAL( triggered() ), this, SLOT( listaVenta() ) );
 
  addAction( ActListadoVenta );
+ addAction( ActVerTodos );
  addAction( ActCerrar );
 }
 
@@ -133,7 +134,7 @@ void VProductos::agregar( bool /*autoeliminarid*/ )
  // Muestro el formulario
  FormAgregarProducto *f = new FormAgregarProducto();
  connect( f, SIGNAL( accepted() ), this, SLOT( actualizar() ) );
- emit agregarVentana( new FormAgregarProducto() );
+ emit agregarVentana( f );
 }
 
 #include <QMessageBox>
@@ -150,12 +151,30 @@ void VProductos::listaVenta()
     }
     EReporte *rep = new EReporte( 0 );
     rep->especial( "ListadoProductosPrecio", ParameterList() );
-    if( ! rep->hacer() ) {
-        QMessageBox::information( this, "Error", "No se pudo imprimir el reporte de precios" );
-    }
+    rep->hacer();
     delete rep;
 }
 
 void VProductos::actualizar() {
     this->rmodelo->select();
+}
+
+#include "formmodificarproducto.h"
+void VProductos::modificar()
+{
+    // busco el que esta seleccionado
+    QItemSelectionModel *selectionModel = vista->selectionModel();
+    QModelIndexList indices = selectionModel->selectedRows();
+    if( indices.size() < 1 )
+    {
+      QMessageBox::warning( this, "Seleccione un item",
+                      "Por favor, seleccione un item para modificar",
+                      QMessageBox::Ok );
+      return;
+    }
+    int fila = indices.first().row();
+    FormModificarProducto *f = new FormModificarProducto( qobject_cast<MProductos *>( this->rmodelo ) );
+    f->setearProducto( fila );
+    connect( f, SIGNAL( accepted() ), this, SLOT( actualizar() ) );
+    f->exec();
 }

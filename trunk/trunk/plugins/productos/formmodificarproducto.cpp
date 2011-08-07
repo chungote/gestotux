@@ -1,0 +1,136 @@
+#include "formmodificarproducto.h"
+
+#include "preferencias.h"
+#include <QMessageBox>
+#include <QSqlError>
+
+FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) :
+    QDialog(parent), Ui::FormProductoBase()
+{
+    setupUi( this );
+    setAttribute( Qt::WA_DeleteOnClose );
+    setObjectName( "FormModificarProducto" );
+    setWindowTitle( "Modificando Producto" );
+
+    connect( DSBCosto, SIGNAL( valueChanged( double ) ), this, SLOT( cambioPrecioCosto( double ) ) );
+
+    this->modelo = mod;
+    this->modelo->select();
+
+    mapa = new QDataWidgetMapper( this );
+    mapa->setModel( modelo );
+    mapa->addMapping( this->LECodigo     , modelo->fieldIndex( "codigo"       ) );
+    mapa->addMapping( this->LENombre     , modelo->fieldIndex( "nombre"       ) );
+    mapa->addMapping( this->LEDescripcion, modelo->fieldIndex( "descripcion"  ) );
+    mapa->addMapping( this->LEModelo     , modelo->fieldIndex( "modelo"       ) );
+    mapa->addMapping( this->LEMarca      , modelo->fieldIndex( "marca"        ) );
+    mapa->addMapping( this->SBStock      , modelo->fieldIndex( "stock"        ) );
+    mapa->addMapping( this->DSBCosto     , modelo->fieldIndex( "precio_costo" ) );
+    mapa->addMapping( this->DSBVenta     , modelo->fieldIndex( "precio_venta" ) );
+    mapa->addMapping( this->CBCategoria  , modelo->fieldIndex( "id_categoria" ) );
+    mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
+
+    this->GBContenedor->setTitle( "Modificar Producto" );
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Solicito la categoria del producto si esta habilitado
+    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+    {
+      this->LCategoria->setVisible( false );
+      this->CBCategoria->setVisible( false );
+        _categorias = false;
+    } else {
+        // Cargo las cateogrías que haya
+        _categorias = true;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Solicito la descripcion si esta habilitado
+    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
+    {
+        this->LDescripcion->setVisible( false );
+        this->LEDescripcion->setVisible( false );
+        _descripcion = false;
+    } else { _descripcion = true; }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Solicito la marca del producto si esta habilitado
+    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
+    {
+        this->LMarca->setVisible( false );
+        this->LEMarca->setVisible( false );
+        _marcas = false;
+    } else {
+        // cargo el autocompletado de las marcas
+        _marcas = true;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Solicito el stock del producto si esta habilitado
+    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() ) {
+       this->LStock->setVisible( false );
+       this->SBStock->setVisible( false );
+        _stock = false;
+    } else { _stock = false; }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Solicito el modelo si esta habilitado
+    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() ) {
+        this->LModelo->setVisible( false );
+        this->LEModelo->setVisible( false );
+        _modelo = false;
+    } else { _modelo = true; }
+    /// Cargo el recargo para hacer los calculos sin tener que consultarlo todas las veces
+    _recargo = preferencias::getInstancia()->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble();
+}
+
+void FormModificarProducto::cambioPrecioCosto( double precio ) {
+    this->DSBVenta->setValue( ( 1.00 + ( _recargo / 100 ) ) * precio );
+}
+
+void FormModificarProducto::accept() {
+    // Verificaciones de estado correcto
+    if( this->LECodigo->text().isEmpty() ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("El código del producto no puede ser nulo. Por favor, ingrese un código para el producto" ) );
+        return;
+    }
+    if( this->LENombre->text().isEmpty() ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("El nombre del producto no puede ser nulo. Por favor, ingrese un nombre para el producto" ) );
+        return;
+    }
+/*    if( this->LEDescripcion->text().isEmpty() && _descripcion ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("La descripción del producto no puede ser nula. Por favor, ingrese una descripción para el producto" ) );
+        return;
+    }
+    if( this->LEMarca->text().isEmpty() && _marca ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El código del producto no puede ser nulo. Por favor, ingrese un código para el producto" ) );
+        return;
+    }*/
+    if( this->CBCategoria->currentIndex() == 0 && _categorias ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("La categoría del producto no puede ser nula. Por favor, seleccióne una categoría para el producto" ) );
+        return;
+    }
+    if( this->DSBCosto->value() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El precio de costo del producto no puede ser cero. Por favor, ingrese un precio de costo para el producto" ) );
+        return;
+    }
+    if( this->DSBVenta->value() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("El precio de venta del producto no puede ser nulo. Por favor, ingrese un precio de venta para el producto" ) );
+        return;
+    }
+    // Dar de alta con stock cero?
+    if( this->SBStock->value() == 0 && _stock ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El stock inicial del producto no puede ser nulo. Por favor, ingrese un stock inicial para el producto" ) );
+        return;
+    }
+
+    if( mapa->submit() ) {
+        QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
+        QDialog::accept();
+        return;
+    } else {
+        QMessageBox::information( this, "Erroneo", "No se pudo hacer el submit de los datos" );
+        qDebug( this->modelo->lastError().text().toLocal8Bit() );
+        return;
+    }
+}
+
+
+void FormModificarProducto::setearProducto( const int row )
+{ if( row >= 0 ) { mapa->setCurrentIndex( row ); } }
