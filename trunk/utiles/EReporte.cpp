@@ -53,7 +53,7 @@ EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parame
  * \returns Verdadero si se pudo imprimir. Falso si hubo un error de configuración o al imprimir.
  */
 bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
-    if( _rep == 0 || ( !_rep->isValid() ) || _tipo == Invalido || _nombre.isNull() ) {
+    if( _rep == 0 || !_rep->isValid() || _tipo == Invalido || _nombre.isNull() ) {
         qDebug( "Error - Reporte no inicializado o erroneo" );
         return false;
     }
@@ -211,6 +211,7 @@ bool EReporte::cargar( const QString nombre ) {
         QDir reporte = QApplication::applicationDirPath();
         if( ! reporte.cd( "reportes" ) ) {
             qWarning( "No se pudo ingresar al directorio de reportes -  Consulte el servicio tecnico" );
+            _tipo = Invalido;
             return false;
         }
         // busco el nombre de archivo
@@ -223,21 +224,25 @@ bool EReporte::cargar( const QString nombre ) {
             QFile archivo(ruta);
             if(!archivo.open(QIODevice::ReadOnly)) {
                 qDebug( "Error al intentar abrir el archivo como solo lectura" );
+                _tipo = Invalido;
                 return false;
             }
             if( !doc->setContent( &archivo ) ) {
                 archivo.close();
                 qDebug( "Error al insertar el contenido del archivo en el documento DOM" );
+                _tipo = Invalido;
                 return false;
             }
             archivo.close();
             _rep = new orReport();
             if( !_rep->setDom( *doc ) ) {
                 qDebug( "Error al setear el contenido del reporte con el documento DOM" );
+                _tipo = Invalido;
                 return false;
             }
         } else {
             qWarning( QString( "Error - No se pudo cargar el reporte - No existe el archivo %1" ).arg( ruta ).toLocal8Bit() );
+            _tipo = Invalido;
             return false;
         }
     } else {
@@ -247,13 +252,14 @@ bool EReporte::cargar( const QString nombre ) {
     if( (!_rep == 0) && !_rep->isValid() ) {
         qDebug( "Error - el reporte solicitado no es valido" );
         _rep->reportError( 0 );
+        _tipo = Invalido;
         return false;
     }
     return true;
 }
 
 
-void EReporte::mostrarError( QWidget *ventana) {
+void EReporte::mostrarError( QWidget *ventana ) {
     if( _rep != 0 ) {
         _rep->reportError( ventana );
     }

@@ -52,7 +52,8 @@ QT += sql
 
 CONFIG +=   staticlib \
             help \
-            exceptions
+            exceptions \
+            debug
 
 RESOURCES += utiles.qrc
 

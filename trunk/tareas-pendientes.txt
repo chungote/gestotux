@@ -43,9 +43,14 @@
 ---------------
 - Generar sistema de autolocalizaciòn de productos cuando ingresamos su codigo de barra.
   - Verificar que al ingresar un codigo de barra en los combobox se busque por numero no por texto del producto.
-- Verificar sistema para controlar categorias ( no usar tabla categorias sino categorias_productos ).
 - Ver como hacer los tickets de precios. Ofrecerlos luego de agregar un producto.
 - Verificar editor personalizado cuando se utlizan todas las combinaciones de propiedades.
+- Generar casos de prueba o probar ingreso y modificación de productos con las distintas combinaciones posibles.
+  - Con cateogiras habilitadas.
+  - Con marcas habilitadas.
+  - Con modelos habilitados.
+  - Con stock habilitado.
+  - Con descripción habilitada.
 
 -- Servicios --
 ---------------

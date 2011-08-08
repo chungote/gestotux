@@ -45,7 +45,6 @@ VProductos::VProductos(QWidget *parent)
 
  vista->setModel( rmodelo );
 
- //vista->setItemDelegate( new DProductos( vista ) );
  vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
 
  vista->hideColumn( 0 );
@@ -67,7 +66,7 @@ VProductos::VProductos(QWidget *parent)
 
  addAction( ActAgregar );
  addAction( ActModificar );
- addAction( ActEliminar );
+ //addAction( ActEliminar );
 
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {

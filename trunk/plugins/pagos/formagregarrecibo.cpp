@@ -119,9 +119,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
     Slot llamado cuando se cambia la cantidad ingresada en pagado
  */
 void FormAgregarRecibo::cambioPagado( double /*valor*/ )
-{
- recalcularTotal();
-}
+{ recalcularTotal(); }
 
 #include "EReporte.h"
 /*!

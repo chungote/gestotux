@@ -54,7 +54,7 @@ class EReporte : public QObject {
     bool especial( const QString nombre, ParameterList parametros );
 
     bool hacer( ParameterList parametros, bool previsualizar = false );
-    bool hacer() { return hacer( _parametros, false ); }
+    bool  hacer() { return hacer( _parametros, false ); }
 
     void mostrarError( QWidget *ventana );
 

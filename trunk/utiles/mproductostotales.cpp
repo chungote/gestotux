@@ -105,9 +105,11 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 )
                                 {
                                         // Busco si el stock actual menos la cantidad es <= 0
+                                        qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
                                         {
                                                 qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+                                                qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                                 return false;
                                         }
                                 }
@@ -137,6 +139,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
                                         {
                                                 qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+                                                qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                                 return false;
                                         }
                                 }
