@@ -151,6 +151,9 @@
             <property name="prefix">
              <string>$ </string>
             </property>
+            <property name="maximum">
+             <double>999999999.990000009536743</double>
+            </property>
            </widget>
           </item>
          </layout>
@@ -175,6 +178,9 @@
             <property name="prefix">
              <string>$ </string>
             </property>
+            <property name="maximum">
+             <double>999999999.990000009536743</double>
+            </property>
            </widget>
           </item>
          </layout>
@@ -198,6 +204,9 @@
             </property>
             <property name="prefix">
              <string>$ </string>
+            </property>
+            <property name="maximum">
+             <double>999999999.990000009536743</double>
             </property>
            </widget>
           </item>

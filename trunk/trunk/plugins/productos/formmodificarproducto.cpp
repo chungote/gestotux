@@ -15,7 +15,6 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
     connect( DSBCosto, SIGNAL( valueChanged( double ) ), this, SLOT( cambioPrecioCosto( double ) ) );
 
     this->modelo = mod;
-    this->modelo->select();
 
     mapa = new QDataWidgetMapper( this );
     mapa->setModel( modelo );
