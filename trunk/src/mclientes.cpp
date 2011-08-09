@@ -111,3 +111,8 @@ QString MClientes::direccionEntera(int id_cliente) {
         return "Desconocido";
     }
 }
+
+Qt::ItemFlags MClientes::flags( const QModelIndex &index ) const
+{
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+}

@@ -25,11 +25,15 @@ TRANSLATIONS += proveedor.ts
 SOURCES += dproveedor.cpp \
            mproveedor.cpp \
            vproveedor.cpp \
-           proveedor.cpp
+           proveedor.cpp \
+    formagregarproveedor.cpp \
+    formmodificarproveedor.cpp
 HEADERS += dproveedor.h \
            mproveedor.h \
            vproveedor.h \
-           proveedor.h
+           proveedor.h \
+    formagregarproveedor.h \
+    formmodificarproveedor.h
 
 RESOURCES += proveedor.qrc
 
@@ -38,3 +42,6 @@ OTHER_FILES += proveedor.ts \
                proveedor.QSQLITE.sql
 
 DISTFILES += ../../bin/reportes/ListadoProveedores.xml
+
+FORMS += \
+    FormProveedorBase.ui

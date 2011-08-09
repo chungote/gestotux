@@ -36,16 +36,21 @@ public slots:
 
 protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
-   /*!
-    * Acción que muestra el resumen de una cuenta corriente especifica
-    */
-    QAction *ActResumen;
+
 
 protected slots:
     void modificarLimite();
     void darBaja();
     void verResumen();
     void mostrarDeudoras( bool estado );
+
+private:
+    QAction *ActModificarLimite;
+    QAction *ActVerDeudoras;
+    /*!
+     * Acción que muestra el resumen de una cuenta corriente especifica
+     */
+     QAction *ActResumen;
 };
 
 #endif

@@ -34,11 +34,11 @@ class VCategorias : public EVLista
 Q_OBJECT
 public:
     VCategorias(QWidget *parent = 0);
-    ~VCategorias();
 
 public slots:
     void antes_de_insertar( int row, QSqlRecord & record );
     void eliminar();
+    void agregar( bool autoeliminarid );
 
 };
 

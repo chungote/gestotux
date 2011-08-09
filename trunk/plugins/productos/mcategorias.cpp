@@ -21,6 +21,9 @@
 
 #include <QSqlIndex>
 #include <QSqlDatabase>
+#include <QSqlRecord>
+#include <QSqlError>
+#include <QSqlQuery>
 
 MCategorias::MCategorias(QObject *parent)
  : QSqlTableModel(parent)
@@ -29,72 +32,37 @@ MCategorias::MCategorias(QObject *parent)
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Nombre" );
  setHeaderData( 2, Qt::Horizontal, "Descripcion" );
- setHeaderData( 3, Qt::Horizontal, "Tipo" ); // 1 = salida, 0 = entradas
  setSort( 1, Qt::AscendingOrder );
  setEditStrategy( QSqlTableModel::OnRowChange );
  select();
 }
 
-
-MCategorias::~MCategorias()
-{
-}
-
-
-
-
 /*!
-    \fn MCategorias::data( const QModelIndex& item, int role ) const
+  \fn MCategorias::buscarRepetido( const QString nombre )
+  Busca si existe alguna categoria con el mismo nombre
  */
-QVariant MCategorias::data( const QModelIndex& item, int role ) const
+bool MCategorias::buscarRepetido(const QString nombre)
 {
-if( !item.isValid() )
- {
-  return QVariant();
- }
- else
- {
-  switch(role)
-  {
-        case Qt::DisplayRole:
-        {
-                switch( item.column() )
-                {
-                        case 3:
-                        {
-                                switch( QSqlTableModel::data( item, role ).toInt() )
-                                {
-                                        case 1:
-                                        {
-                                                return "Compras";
-                                                break;
-                                        }
-                                        case 2:
-                                        {
-                                                return "Gastos";
-                                                break;
-                                        }
-                                        default:
-                                        {
-                                                return "Ventas";
-                                                break;
-                                        }
-                                }
-                                break;
-                        }
-                        default:
-                        {
-                                return QSqlTableModel::data( item, role );
-                                break;
-                        }
-                }
-                break;
-        }
-        default:
-        {
-                return QSqlTableModel::data( item, role );
-                break;
-        }
+  return false;
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT count(nombre) FROM categoria_producto WHERE nombre LIKE '%1'" ).arg( nombre ) ) ) {
+      if( cola.next() ) {
+          if( cola.record().value(0).toInt() > 1 ) {
+              return false;
+          } else {
+              return true;
+          }
+      } else {
+          qWarning( "Error al hacer next" );
+          qDebug( "Error al hacer next en la cola de averiguación de si existe una categoría ya." );
+          qDebug( cola.lastError().text().toLocal8Bit() );
+          return false;
+      }
+  } else {
+      qWarning( "Error de ejecucion de cola" );
+      qDebug( "Error al hacer exec en la cola de averiguacion de si existe una cateogria ya." );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      return false;
   }
- }
+  return false;
 }
