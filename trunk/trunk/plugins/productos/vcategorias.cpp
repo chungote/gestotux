@@ -35,7 +35,7 @@ VCategorias::VCategorias( QWidget *parent )
 : EVLista( parent )
 {
  setObjectName( "ListaCategorias" );
- setWindowTitle( "Categorias" );
+ setWindowTitle( "Categorias de Productos" );
  setWindowIcon( QIcon( ":/imagenes/categorias.png" ) );
 
  modelo = new MCategorias( this );
@@ -54,20 +54,6 @@ VCategorias::VCategorias( QWidget *parent )
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCerrar );
-}
-
-
-VCategorias::~VCategorias()
-{
-}
-
-/*!
-    \fn VCategorias::antes_de_insertar( int row, QSqlRecord & record )
- */
-void VCategorias::antes_de_insertar( int row, QSqlRecord & record )
-{
-    (void)record;(void)row;
- record.setValue( "nombre", "" );
 }
 
 
@@ -138,4 +124,37 @@ void VCategorias::eliminar()
   return;
  }
 
+}
+
+#include <QInputDialog>
+void VCategorias::agregar( bool /*autoeliminarid*/ )
+{
+    bool ok = false;
+    QString nombre = QInputDialog::getText( this, "Agregar categoria de producto", "Nombre", QLineEdit::Normal, QString(), &ok );
+    if( ok ) {
+        // Verifico que no exista
+        if( MCategorias::buscarRepetido( nombre ) ) {
+            QMessageBox::critical( this, "Ya existe", "Una categoría con este nombre ya existe" );
+            return;
+        }
+        bool ok2;
+        QString descripcion = QInputDialog::getText( this, "Agregar categoria de producto", " Descripcion ( puede estar vacia)", QLineEdit::Normal, QString(), &ok2 );
+        if( ! nombre.isEmpty() ) {
+            QSqlRecord rec = modelo->record();
+            rec.setValue( "nombre", nombre );
+            if( descripcion.isEmpty() ) {
+                rec.setNull( "descripcion" );
+            } else {
+                rec.setValue( "descripcion", descripcion );
+            }
+            if( modelo->insertRecord( -1, rec ) ) {
+                QMessageBox::information( this, "Correcto", "La categoria se cargo correctamente" );
+                return;
+            } else {
+                QMessageBox::warning( this, "error", "No se pudo agregar la categoria" );
+                qDebug( modelo->lastError().text().toLocal8Bit() );
+                return;
+            }
+        }
+    }
 }

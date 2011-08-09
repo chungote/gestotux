@@ -26,16 +26,25 @@
 MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
  : QSqlRelationalTableModel( parent )
 {
- setTable( "ctacte" ),
+ setTable( "ctacte" );
+ inicializar();
+ if( relaciones ) { relacionar(); }
+}
+
+void MCuentaCorriente::inicializar()
+{
  setHeaderData( 0, Qt::Horizontal, "Numero de cuenta" );
  setHeaderData( 1, Qt::Horizontal, "Cliente" );
  setHeaderData( 2, Qt::Horizontal, "Fecha Alta" );
  setHeaderData( 3, Qt::Horizontal, "Fecha Baja" );
  setHeaderData( 4, Qt::Horizontal, "Saldo" );
  setHeaderData( 5, Qt::Horizontal, "Limite" );
- if( relaciones ) {
-      setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
- }
+ setHeaderData( 6, Qt::Horizontal, "Suspendida" );
+}
+
+void MCuentaCorriente::relacionar()
+{
+ setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
 }
 
 
@@ -57,6 +66,14 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
                         {
                                 return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item,role).toDouble() );
                                 break;
+                        }
+                        case 6:
+                        {
+                                if( QSqlRelationalTableModel::data( item, role ).toBool() ) {
+                                    return "Si";
+                                } else {
+                                    return "No";
+                                }
                         }
                         default:
                         {

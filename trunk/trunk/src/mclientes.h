@@ -32,6 +32,7 @@ public:
     MClientes( QObject *parent = 0);
 
     static QString direccionEntera( int id_cliente );
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 };
 
 #endif

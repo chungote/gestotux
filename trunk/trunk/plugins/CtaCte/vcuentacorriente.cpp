@@ -25,6 +25,7 @@
 #include <QMenu>
 #include <QInputDialog>
 #include <QMessageBox>
+#include "dsino.h"
 
 VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  : EVLista(parent)
@@ -34,8 +35,8 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
 
  rmodelo = new MCuentaCorriente( this );
  vista->setModel( rmodelo );
+ vista->setItemDelegateForColumn( 6, new DSiNo( this->vista ) );
  modelo = 0;
- rmodelo->select();
 
  ActResumen = new QAction( "Ver Resumen de Cuenta", this );
  connect( ActResumen, SIGNAL( triggered() ), this, SLOT( verResumen() ) );
@@ -46,13 +47,18 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  QAction *ActSep = new QAction( this );
  ActSep->setSeparator(true );
 
- QAction *ActVerDeudoras = new QAction( this );
+ ActVerDeudoras = new QAction( this );
  ActVerDeudoras->setStatusTip( "Muestra solo las cuentas corrientes que tienen registrados movimientos mas altos que su limite." );
  ActVerDeudoras->setText( "Solo Sobrepasadas" );
  ActVerDeudoras->setCheckable( true );
  connect( ActVerDeudoras, SIGNAL( toggled( bool ) ), this, SLOT( mostrarDeudoras( bool ) ) );
 
+ ActModificarLimite = new QAction( "Modificar Limite", this );
+ connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
+
  addAction( ActAgregar );
+ addAction( ActModificarLimite );
+ addAction( ActVerTodos );
  addAction( ActResumen );
  addAction( ActCerrar );
  addAction( ActSep );
@@ -66,7 +72,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
 void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
 {
  FormNuevaCtaCte d;
- d.setModelo( rmodelo );
+ d.setModelo( qobject_cast<MCuentaCorriente *>( rmodelo ) );
  d.exec();
 }
 
@@ -85,10 +91,8 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
         menu->addAction( ActDarBaja );
  }
 
- QAction *ActModificarLimite = new QAction( "Modificar Limite", this );
- connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
- menu->addAction( ActModificarLimite );
 
+ menu->addAction( ActModificarLimite );
  menu->addAction( ActResumen );
 
 }
@@ -101,16 +105,16 @@ void VCuentaCorriente::modificarLimite()
 {
  // Busco el item
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
- double limite_anterior = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "limite" ) ) ).toDouble();
- bool ok;
- double limite_nuevo = QInputDialog::getDouble( this, "Limite maximo de credito:", "Ingrese el limite maximo", limite_anterior, 0.0, 1000000.0, 3, &ok );
+ double limite_anterior = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), Qt::EditRole ).toDouble();
+ bool ok = false;
+ double limite_nuevo = QInputDialog::getDouble( this, QString::fromUtf8("Límite máximo de credito:"), "Ingrese el limite maximo", limite_anterior, 0.0, 1000000.0, 3, &ok );
  if( ok )
  {
   //Verifico que no sean el mismo
   if( limite_anterior == limite_nuevo )
   { return; }
-   rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), limite_nuevo, Qt::EditRole );
-   rmodelo->submitAll();
+  rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), limite_nuevo, Qt::EditRole );
+  rmodelo->submitAll();
  }
  else
  { return; }

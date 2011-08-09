@@ -67,13 +67,14 @@ void FormNuevaCtaCte::accept()
  { return; }
  // Datos teoricamente correctos
  int id_cliente = CBCliente->itemData( CBCliente->currentIndex() ).toInt();
- qDebug( qPrintable( QString(  "id_cliente: %1" ).arg( id_cliente ) ) );
  modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
+ modelo->clear();
+ modelo->setTable( "ctacte" );
+ modelo->inicializar();
+ modelo->setFilter( " 1=1 LIMIT 1 ");
+ modelo->select();
  QSqlRecord rec = modelo->record();
- for( int i = 0; i<rec.count(); i++ )
- {
-  qDebug( qPrintable( QString::number( i ) + ": " + rec.field(i).name() ) );
- }
+ if( rec.isEmpty() ) { qWarning( "Registro vacío" ); abort(); }
  rec.setValue( "id_cliente", id_cliente );
  rec.setValue( "numero_cuenta", LENumeroCuenta->text() );
  rec.setValue( "fecha_alta", DEFechaAlta->date() );
@@ -86,11 +87,18 @@ void FormNuevaCtaCte::accept()
  else
  { rec.setNull( "limite" ); }
  rec.setValue( "saldo", 0.0 );
+ for( int i = 0; i<rec.count(); i++ )
+ {
+     qDebug( qPrintable( QString::number( i ) + ": " + rec.field(i).name() + " - " + rec.value( i ).toString() ) );
+ }
  if( modelo->insertRecord( -1, rec ) )
  {
   if( modelo->submitAll() )
   {
    QMessageBox::information( this, "Listo", "Cuenta corriente agregada correctamente" );
+   this->modelo->relacionar();
+   this->modelo->setFilter( QString() );
+   this->modelo->select();
    this->close();
    return;
   }
@@ -113,9 +121,9 @@ void FormNuevaCtaCte::accept()
 
 
 /*!
-    \fn FormNuevaCtaCte::setModelo( QSqlRelationalTableModel *m )
+    \fn FormNuevaCtaCte::setModelo( MCuentaCorriente *m )
  */
-void FormNuevaCtaCte::setModelo( QSqlRelationalTableModel *m )
+void FormNuevaCtaCte::setModelo( MCuentaCorriente *m )
 {
  if( m != 0 )
  { modelo = m; }
