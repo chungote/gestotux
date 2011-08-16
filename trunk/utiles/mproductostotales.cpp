@@ -109,7 +109,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
                                         {
                                                 qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-                                                qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                                qDebug( QString( "Stock del producto (cantidad): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                                 return false;
                                         }
                                 }
@@ -133,13 +133,13 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                     return false;
                                 }
                                 // Veo si tengo que verificar el maximo posible en stock
-                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() )
+                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool()  && this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 )
                                 {
                                         // Busco si el stock actual menos la cantidad es <= 0
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
                                         {
                                                 qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-                                                qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                                qDebug( QString( "Stock del producto(producto): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                                 return false;
                                         }
                                 }
@@ -364,7 +364,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                         {
                                 // tengo que devolver el Id de producto de la lista de general
                                 return productos->value( idx.row() );
-                                // Si el item no existe, devuelve cero.... :)
+                                // Si el item no existe, devuelve cero....esto proboca que no se verifique el stock si esta habilitado
                                 break;
                         }
                         // precio unitario
@@ -436,9 +436,7 @@ void MProductosTotales::recalcularTotal()
     \fn MProductosTotales::total()
  */
 double MProductosTotales::total()
-{
- return Total;
-}
+{ return Total; }
 
 
 /*!
@@ -497,7 +495,7 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
 {
  if( id_producto > 0 ) {
      QSqlQuery cola;
-     if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+     if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) ) )
      {
       cola.next();
       return cola.record().value(0).toDouble();
@@ -513,16 +511,74 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
   }
 }
 
-int MProductosTotales::agregarNuevoProducto( QString nombre )
+
+#include <QInputDialog>
+void MProductosTotales::agregarNuevoProducto( int cantidad, QString nombre )
 {
-  // Lo agrego a la lista de productos
-  this->prods->insert( this->_min, nombre );
-  //qDebug( QString("Insertado %1 en pos %2" ).arg( nombre ).arg( this->_min ).toLocal8Bit() );
-  // aumento el minimo
-  int ret = this->_min;
-  this->_min--;
-  // Actualizo la lista de productos
-  emit cambioListaProductos( this );
+  // Veo si existe y lo agrego a la lista si no existe....
+  bool ok = false;
+  int ret = 0;
+  double precio_unitario = -1.1;
+  //qDebug( QString( "Buscando %1" ).arg( nombre ).toLocal8Bit() );
+  //qDebug( QString( "Clave: %1" ).arg( this->prods->key( nombre ) ).toLocal8Bit() );
+  if( this->prods->key( nombre )  == 0  ) {
+    // Lo agrego a la lista de productos
+    this->prods->insert( this->_min, nombre );
+    //qDebug( QString("Insertado %1 en pos %2" ).arg( nombre ).arg( this->_min ).toLocal8Bit() );
+    // aumento el minimo
+    ret = this->_min;
+    this->_min--;
+    // Actualizo la lista de productos
+    emit cambioListaProductos( this );
+    // Como el producto es nuevo, busco el precio unitario
+    precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
+  } else {
+    ret = this->prods->key( nombre );
+    if( this->_buscarPrecio ) {
+        precio_unitario = buscarPrecioVenta( ret );
+        ok = true;
+    } else {
+        // Como no busca el precio, inserto el dialogo
+        precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
+    }
+    // Verifico el stock porque luego no se realiza la verificacion
+    // Es un producto valido
+    if( ( MProductos::stock( ret ) - cantidad ) < 0 ) {
+        qDebug( "-> Error, stock negativo" );
+        qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
+        return;
+    }
+  }
+  // Inserto el dato con la cantidad si fue buscado el precio o insertado
+  if( ok ) {
+    if( this->insertRow( -1 ) ) {
+
+        int id_fila = this->rowCount()-1;
+
+        if( _calcularTotal )
+            id_fila--;
+
+        this->cantidades->insert( id_fila, cantidad );
+        this->productos->insert( id_fila, ret );
+        this->precio_unitario->insert( id_fila, precio_unitario );
+        this->subtotales->insert( id_fila, precio_unitario * cantidad );
+        recalcularTotal();
+
+        emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
+
+        if( _calcularTotal )
+            emit dataChanged( this->index( this->rowCount(),0 ), this->index( this->rowCount(), this->columnCount() )  );
+
+    } else {
+        // error al insertar el articulo
+        qDebug( "Error al insertar la fila al ingresar un producto nuevo" );
+        return;
+    }
+  } else {
+        // No quiso ingresar un precio unitario
+      qDebug( "No quiso ingresar el precio unitario. No ingreso el producto" );
+      return;
+  }
   // Devuelvo el valor insertado
-  return ret;
+  return;
 }

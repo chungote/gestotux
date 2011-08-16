@@ -9,6 +9,7 @@ class ELECuitCuil : public QLineEdit
 public:
     explicit ELECuitCuil(QWidget *parent = 0);
     bool verificar();
+    QString text() const;
 
 };
 

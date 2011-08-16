@@ -35,7 +35,6 @@ Q_OBJECT
 public:
     DProductosTotales(QWidget *parent = 0);
 
-    ~DProductosTotales();
     void setearListaProductos( QMap<int, QString> *l );
 
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;

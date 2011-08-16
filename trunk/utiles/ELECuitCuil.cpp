@@ -49,3 +49,10 @@ bool ELECuitCuil::verificar()
         return false;
     }
 }
+
+QString ELECuitCuil::text() const
+{
+    if( this->text() == "--" ) {
+        return QString();
+    } else { return this->text(); }
+}

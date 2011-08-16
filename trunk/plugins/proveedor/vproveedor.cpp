@@ -58,7 +58,7 @@ VProveedor::VProveedor( QWidget *parent )
 void VProveedor::eliminar()
 {
  /// @todo Ver como verificar si el proveedor tiene algun dato relacionado
- qWarning( "Error, el eliminar un proveedor puede causar perdida de datos. No se eliminará ningun proveedor." );
+ qWarning( QString::fromUtf8( "Error, el eliminar un proveedor puede causar perdida de datos. No se eliminará ningun proveedor." ).toLocal8Bit() );
  return;
 }
 
@@ -99,6 +99,10 @@ void VProveedor::agregar( bool /*autoeliminarid*/ )
  */
 void VProveedor::modificar()
 {
+    if( this->modelo->rowCount() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("No existe ningun proveedor." ) );
+        return;
+    }
     //Busco el primer proveedor
     if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
         QMessageBox::warning( this,"No hay seleccion", "Por favor, elija un registro de proveedor para modificar" );
