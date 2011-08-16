@@ -23,20 +23,22 @@
 
 #include "eventana.h"
 #include "ui_formServicioBase.h"
+class MServicios;
 
 class FormServicio : public EVentana, private Ui::FormServicioBase
 {
 Q_OBJECT
 
 public:
-        FormServicio ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormServicio();
+    FormServicio( MServicios *m, QWidget* parent = 0, Qt::WFlags fl = 0 );
 
 protected slots:
     void guardar();
     void agregarRecargo();
     void cambiarBaja( bool estado );
 
+private:
+    MServicios *modelo;
 };
 
 #endif

@@ -50,50 +50,10 @@ VServicios::VServicios(QWidget *parent)
  addAction( ActCerrar );
 }
 
-
-VServicios::~VServicios()
-{
-}
-
-
 void VServicios::agregar( bool /*autoeliminarid*/ )
 {
-  emit agregarVentana( new FormServicio );
-}
-
-void VServicios::antes_de_insertar(int row, QSqlRecord& record)
-{
-    EVLista::antes_de_insertar(row, record);
-}
-
-void VServicios::aPdf()
-{
-    EVLista::aPdf();
-}
-
-void VServicios::buscar()
-{
-    EVLista::buscar();
-}
-
-void VServicios::eliminar()
-{
-    EVLista::eliminar();
-}
-
-void VServicios::email()
-{
-    EVLista::email();
-}
-
-void VServicios::imprimir()
-{
-    EVLista::imprimir();
-}
-
-void VServicios::modificar()
-{
-    EVLista::modificar();
+  FormServicio *f = new FormServicio( qobject_cast<MServicios *>( this->modelo ) );
+  emit agregarVentana( f );
 }
 
 /*!
