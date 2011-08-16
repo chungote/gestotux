@@ -36,7 +36,6 @@ public:
     VCategorias(QWidget *parent = 0);
 
 public slots:
-    void antes_de_insertar( int row, QSqlRecord & record );
     void eliminar();
     void agregar( bool autoeliminarid );
 

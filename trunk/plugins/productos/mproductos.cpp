@@ -60,7 +60,7 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
                         case 4:
                         case 5:
                         {
-                                return QString( "$ %1" ).arg( QString::number( QSqlRelationalTableModel::data(item, role).toDouble(), 'f', 3 ) );
+                                return QString( "$ %1" ).arg( QString::number( QSqlRelationalTableModel::data(item, role).toDouble(), 'f', 2 ) );
                                 break;
                         }
                         case 9:
@@ -167,7 +167,11 @@ double MProductos::stock( const int id_producto )
 {
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
  { return 10000000; }
- QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) );
+ if( id_producto <= 0 ) {
+     qDebug( "Id de producto erroneo" );
+     return -1.0;
+ }
+ QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) );
  if( !cola.next() )
  {
   return cola.record().value(0).toDouble();
@@ -177,7 +181,7 @@ double MProductos::stock( const int id_producto )
   qWarning( "Error al intentar obtener el stock del producto" );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.executedQuery() ) );
-  return 0;
+  return -1.0;
  }
 }
 

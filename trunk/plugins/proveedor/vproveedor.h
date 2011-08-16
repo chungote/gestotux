@@ -31,15 +31,15 @@ class VProveedor : public EVLista
 {
 Q_OBJECT
 public:
-    VProveedor( QWidget *parent = 0 );
-    ~VProveedor();
+        VProveedor( QWidget *parent = 0 );
 
 protected slots:
-    void antes_de_insertar( int row, QSqlRecord & record );
     void listado();
 
 public slots:
     void eliminar();
+    void agregar(bool autoeliminarid);
+    void modificar();
 };
 
 #endif

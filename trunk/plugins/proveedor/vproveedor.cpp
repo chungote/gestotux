@@ -46,29 +46,19 @@ VProveedor::VProveedor( QWidget *parent )
  connect( ActListado, SIGNAL(triggered() ), this, SLOT( listado() ) );
 
  addAction( ActAgregar );
+ addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActListado );
  addAction( ActCerrar );
 }
-
-
-VProveedor::~VProveedor()
-{
-}
-
-/*!
-    \fn VProveedor::antes_de_insertar( int row, QSqlRecord & record )
- */
-void VProveedor::antes_de_insertar( int /*row*/, QSqlRecord & /*record*/ )
-{return;}
-
 
 /*!
     \fn VProveedor::eliminar()
  */
 void VProveedor::eliminar()
 {
- qWarning( "Error, el eliminar un proveedor puede causar perdida de datos" );
+ /// @todo Ver como verificar si el proveedor tiene algun dato relacionado
+ qWarning( "Error, el eliminar un proveedor puede causar perdida de datos. No se eliminará ningun proveedor." );
  return;
 }
 
@@ -88,4 +78,34 @@ void VProveedor::listado()
         qDebug( "Hubo un error al intentar hacer el reporte" );
     }
     delete rep;
+}
+
+#include "formagregarproveedor.h"
+/*!
+ * \fn VProveedor::agregar( bool autoeliminarid )
+ * Muestra la pantalla de agregado
+ */
+void VProveedor::agregar( bool /*autoeliminarid*/ )
+{
+    FormAgregarProveedor *f = new FormAgregarProveedor( qobject_cast<MProveedor*>(this->modelo), this );
+    emit agregarVentana( f );
+}
+
+
+#include "formmodificarproveedor.h"
+/*!
+ * \fn VProveedor::modificar()
+ * Muestra la pantalla de edicion de un proveedor
+ */
+void VProveedor::modificar()
+{
+    //Busco el primer proveedor
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this,"No hay seleccion", "Por favor, elija un registro de proveedor para modificar" );
+        return;
+    }
+    QModelIndex indice = this->vista->selectionModel()->selectedRows().first();
+    FormModificarProveedor *f = new FormModificarProveedor( qobject_cast<MProveedor*>(this->modelo), this );
+    emit agregarVentana( f );
+    f->setearItem( indice.row() );
 }
