@@ -53,7 +53,7 @@ public:
      * Contiene el listado de ids relacionados con los nombres de los productos
      */
     QMap<int, QString> *prods;
-    int agregarNuevoProducto( const QString nombre );
+    void agregarNuevoProducto( const int cantidad, const QString nombre );
 
 signals:
     void cambioListaProductos( MProductosTotales * );

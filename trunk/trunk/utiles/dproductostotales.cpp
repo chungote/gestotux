@@ -37,14 +37,7 @@ DProductosTotales::DProductosTotales(QWidget *parent)
 }
 
 void DProductosTotales::setearListaProductos( QMap<int, QString> *l )
-{
-    lista = l;
-}
-
-
-DProductosTotales::~DProductosTotales()
-{
-}
+{  lista = l;  }
 
 QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
@@ -54,7 +47,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
         case 0:
         {
            EDSBPrecio *e = new EDSBPrecio( parent );
-           e->setRange( 0.0, 99999.9 );
+           e->setRange( 0.0, 99999999.999 );
            e->setPrefix("");
            if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar", false ).toBool() )
            {
@@ -68,7 +61,10 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
         {
                 QComboBox *combo = new QComboBox( parent );
                 // Rellenar los items
-                if( !lista ) { qWarning( "Error en la lista original de productos!" );  abort(); }
+                if( !lista ) {
+                    qWarning( "Error en la lista original de productos!" );
+                    abort();
+                }
                 QMapIterator<int, QString> i(*lista);
                 while (i.hasNext()) {
                      i.next();
@@ -86,7 +82,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
                 EDSBPrecio *e = new EDSBPrecio( parent );
                 e->setPrefix( "$" );
                 e->setSingleStep( 1 );
-                e->setRange( 0.00, 9999.00 );
+                e->setRange( 0.00, 99999999.99 );
                 return e;
                 break;
 
@@ -138,14 +134,16 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
         {
                 QComboBox *combo = qobject_cast<QComboBox *>(editor);
                 // Veo si tiene el dato de ser un producto, sino, lo agrego
-                //qDebug( "Verificando existencia real del producto!");
+                qDebug( "Verificando existencia real del producto!");
                 if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
                 {
                     // Lo agrego en el modelo para que recarge despues
                     if( combo->itemText( combo->currentIndex() ).isEmpty() ) { return; }
-                    //qDebug( QString( "Agregando producto no existente: %1").arg( combo->currentText() ).toLocal8Bit() );
-                    int valor_indice_nuevo = qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( combo->itemText( combo->currentIndex() ) );
-                    model->setData( index, valor_indice_nuevo );
+                    qDebug( QString( "Agregando producto no existente: %1").arg( combo->currentText() ).toLocal8Bit() );
+                    // Cuando se coloca algun nuevo producto que no estaba antes, se coloca con 1 en cantidad.
+                    qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( 1, combo->itemText( combo->currentIndex() ) );
+                    // No hago el set data ya que se hace automaticamente
+                    //model->setData( index, valor_indice_nuevo );
                 } else {
                     model->setData( index, combo->itemData( combo->currentIndex() ) );
                 }

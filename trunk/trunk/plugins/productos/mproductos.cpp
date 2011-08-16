@@ -172,7 +172,7 @@ double MProductos::stock( const int id_producto )
      return -1.0;
  }
  QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) );
- if( !cola.next() )
+ if( cola.next() )
  {
   return cola.record().value(0).toDouble();
  }
