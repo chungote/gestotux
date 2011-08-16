@@ -134,7 +134,7 @@ void VCategorias::agregar( bool /*autoeliminarid*/ )
     if( ok ) {
         // Verifico que no exista
         if( MCategorias::buscarRepetido( nombre ) ) {
-            QMessageBox::critical( this, "Ya existe", "Una categoría con este nombre ya existe" );
+            QMessageBox::critical( this, "Ya existe", QString::fromUtf8( "Una categoría con este nombre ya existe" ) );
             return;
         }
         bool ok2;

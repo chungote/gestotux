@@ -14,8 +14,8 @@ ELECuitCuil::ELECuitCuil(QWidget *parent) :
  */
 bool ELECuitCuil::verificar()
 {
-    if( this->text().isEmpty() )
-        return false;
+    if( this->text().isEmpty() || this->text() == "--" )
+        return true;
     QString texto = this->text();
     // Separo el codigo de verificación
     QStringList partes = texto.split( "-" );
@@ -52,7 +52,7 @@ bool ELECuitCuil::verificar()
 
 QString ELECuitCuil::text() const
 {
-    if( this->text() == "--" ) {
+    if( QLineEdit::text() == "--" ) {
         return QString();
-    } else { return this->text(); }
+    } else { return QLineEdit::text(); }
 }

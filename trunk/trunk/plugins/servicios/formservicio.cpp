@@ -29,12 +29,14 @@
 #include "edrecargos.h"
 #include "mservicios.h"
 
-FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
-: EVentana( parent, fl ), Ui::FormServicioBase()
+FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
+: EVentana( parent, fl ), Ui::FormServicioBase(), modelo(0)
 {
         setupUi ( this );
         this->setWindowTitle( "Agregar nuevo servicio" );
         this->setWindowIcon( QIcon( ":/imagenes/add.png" ) );
+
+        this->modelo = m;
 
         // Pongo la fecha de alta en hoy
         DEFechaAlta->setDate( QDate::currentDate() );
@@ -56,22 +58,12 @@ FormServicio::FormServicio ( QWidget* parent, Qt::WFlags fl )
         CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes", MServicios::DiasFaltantes );
         CBMetodoIncompleto->insertItem( -1, "Mes Completo", MServicios::MesCompleto );
 
-        EActGuardar *ActGuardar = new EActGuardar( this );
-        connect( ActGuardar, SIGNAL( triggered() ), this, SLOT( guardar() ) );
-        addAction( ActGuardar );
-
-        EActCerrar *ActCerrar = new EActCerrar( this );
-        connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
-        addAction( ActCerrar );
+        addAction( new EActGuardar( this ) );
+        addAction( new EActCerrar( this ) );
 
         connect( CkBBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambiarBaja( bool ) ) );
         DEFechaBaja->setEnabled( CkBBaja->checkState() );
 }
-
-FormServicio::~FormServicio()
-{
-}
-
 
 /*!
     \fn FormServicio::guardar()
@@ -85,7 +77,6 @@ void FormServicio::guardar()
  { return; }
  if( dSBPrecioBase->value() <= 0 )
  { return; }
- MServicios *modelo = new MServicios( this );
  if( modelo->agregarServicio( LENombre->text(),
                               TEDescripcion->toPlainText(),
                               DEFechaAlta->date(),
@@ -120,4 +111,5 @@ void FormServicio::cambiarBaja( bool estado )
 
 void FormServicio::agregarRecargo()
 {
+    qWarning( "No implementado todavía" );
 }

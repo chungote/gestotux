@@ -32,18 +32,10 @@ class VServicios : public EVLista
 Q_OBJECT
 
 public:
-    VServicios(QWidget *parent = 0);
-    ~VServicios();
+    VServicios( QWidget *parent = 0 );
 
 protected slots:
-    virtual void agregar( bool autoeliminarid );
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
-    virtual void aPdf();
-    virtual void buscar();
-    virtual void eliminar();
-    virtual void email();
-    virtual void imprimir();
-    virtual void modificar();
+    void agregar( bool autoeliminarid );
     void verClientesAdheridos();
     void verRecargos();
     void generarFacturacion();
