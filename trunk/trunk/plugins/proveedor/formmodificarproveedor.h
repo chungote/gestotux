@@ -11,6 +11,7 @@ class FormModificarProveedor : public EVentana, private Ui::FormProveedorBase
     Q_OBJECT
 public:
     explicit FormModificarProveedor( MProveedor *m, QWidget *parent = 0);
+    void setearItem( const int id );
 
 public slots:
     void guardar();

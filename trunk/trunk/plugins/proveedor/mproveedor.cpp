@@ -28,7 +28,7 @@ MProveedor::MProveedor(QObject *parent)
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Nombre" );
  setHeaderData( 2, Qt::Horizontal, "Direccion" );
- setHeaderData( 3, Qt::Horizontal, "e-mail" );
+ setHeaderData( 3, Qt::Horizontal, "Em@il" );
  setHeaderData( 4, Qt::Horizontal, "Fax" );
  setHeaderData( 5, Qt::Horizontal, "Telefono Celular" );
  setHeaderData( 6, Qt::Horizontal,  "Telefono Linea" );
@@ -44,7 +44,7 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
 {
  if( !idx.isValid() )
  {
-   qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
+   qDebug( QString( "Indice invalido DueÃ±os: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
    return( QVariant() );
  }
  switch( role )

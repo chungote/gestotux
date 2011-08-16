@@ -77,6 +77,7 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
         CBEstadoFiscal->setModel( _mestadofiscal );
         CBEstadoFiscal->setModelColumn( 1 );
         _mestadofiscal->select();
+        CBEstadoFiscal->setCurrentIndex( -1 );
 
         //Acciones predefinidas
         EActGuardar *ActGuardar = new EActGuardar( this );
@@ -98,12 +99,16 @@ void FormCliente::guardar()
   return;
  }
  // Si existe un cuit-cuil verifico que de la suma
- // http://www.taringa.net/posts/apuntes-y-monografias/2766561/Algoritmo-C_U_I_T_-_-C_U_I_L_-Argentino.html
+
  if( !LECUITCUIL->text().isEmpty() ) {
-     if( !verificarCuitCuil( LECUITCUIL->text() ) ) {
+     if( !LECUITCUIL->verificar() ) {
          QMessageBox::warning( this, "Error Cuit/Cuil", "La verificación del cuit/cuil del cliente es incorrecta. Verifique el numero ingresado" );
          return;
      }
+ }
+ if( CBEstadoFiscal->currentIndex() == -1 ) {
+     QMessageBox::warning( this, "Error estado fiscal", "Por favor, seleccione un estado fiscal para el cliente." );
+     return;
  }
  if( !this->_agregando ) {
      // Veo si hay modificaciones
@@ -116,6 +121,8 @@ void FormCliente::guardar()
         qDebug( this->modelo->lastError().text().toLocal8Bit() );
      }
  } else {
+     QSqlTableModel::EditStrategy _anterior = modelo->editStrategy();
+     modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
      QSqlRecord rc = modelo->record();
      rc.setValue( "razon_social", LERazonSocial->text() );
      ///////////////////////////////////////////////////////////////////////
@@ -201,7 +208,7 @@ void FormCliente::guardar()
      else
      { rc.setValue( "CUIT/CUIL", LECUITCUIL->text() ); }
      ////////////////////////////////////////////////////////////////////////
-     if( CBEstadoFiscal->currentIndex() == 0 ) {
+     if( CBEstadoFiscal->currentIndex() == -1 ) {
          rc.setNull( "id_estado_fiscal" );
      } else {
          rc.setValue( "id_estado_fiscal", CBEstadoFiscal->model()->data( CBEstadoFiscal->model()->index( CBEstadoFiscal->currentIndex(), 0 ), Qt::EditRole ).toInt() );
@@ -212,7 +219,8 @@ void FormCliente::guardar()
      {
       if( modelo->submitAll() )
       {
-       QMessageBox::information( this, "Correcto", QString( "El cliente %1 se guardo correctamente" ).arg( rc.value( "id" ).toInt() ) );
+       QMessageBox::information( this, "Correcto", QString( "El cliente %1 se guardo correctamente" ).arg( modelo->query().lastInsertId().toInt() ) );
+       modelo->setEditStrategy( _anterior );
        close();
        return;
       }
@@ -221,8 +229,6 @@ void FormCliente::guardar()
        qWarning( "Error al hacer submit del modelo de datos de cliente" );
        qWarning( qPrintable( modelo->lastError().text() ) );
        qWarning( qPrintable( modelo->query().lastQuery() ) );
-
-       return;
       }
      }
      else
@@ -230,8 +236,8 @@ void FormCliente::guardar()
        qWarning( "Error al insertar el registro de datos de cliente" );
        qWarning( qPrintable( modelo->lastError().text() ) );
        qWarning( qPrintable( modelo->query().lastQuery() ) );
-       return;
      }
+     modelo->setEditStrategy( _anterior );
  } // Fin agregando
 }
 
@@ -239,11 +245,7 @@ void FormCliente::guardar()
   \fn FormCliente::agregar()
     Setea el formulario para agregar un registro
  */
-void FormCliente::agregar() {
-    // busco el proximo ID ??
-
-    this->_agregando = true;
-}
+void FormCliente::agregar() { this->_agregando = true; }
 
 /*!
     \fn FormCliente::setearCliente( QModelIndex &indice )

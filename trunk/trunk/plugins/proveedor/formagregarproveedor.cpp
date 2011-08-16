@@ -9,20 +9,12 @@ FormAgregarProveedor::FormAgregarProveedor( MProveedor *m, QWidget *parent) :
     setObjectName( "agregarproveedor" );
     setWindowTitle( "Agregar Proveedor" );
 
-    addAction( new EActGuardar( this ) );
-    addAction( new EActCerrar( this ) );
-
     this->modelo = m;
 
-    /*mapa = new QDataWidgetMapper( this );
-    mapa->addMapping( LERazonSocial, modelo->fieldIndex( "nombre" ) );
-    mapa->addMapping( TEDireccion, modelo->fieldIndex( "direccion" ) );
-    mapa->addMapping( LECUIT, modelo->fieldIndex( "cuit_cuil" ) );
-    mapa->addMapping( LETelFijo, modelo->fieldIndex( "telefono_linea" ) );
-    mapa->addMapping( LETelCel, modelo->fieldIndex( "telefono_celular" ) );
-    mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );*/
-
     this->GBTitulo->setTitle( "Agregar nuevo proveedor" );
+
+    addAction( new EActGuardar( this ) );
+    addAction( new EActCerrar( this ) );
 }
 
 void FormAgregarProveedor::changeEvent(QEvent *e)
@@ -38,9 +30,16 @@ void FormAgregarProveedor::changeEvent(QEvent *e)
 
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QSqlQuery>
+#include "ELECuitCuil.h"
 void FormAgregarProveedor::guardar() {
     if( LERazonSocial->text().isEmpty() ) {
         QMessageBox::information( this, "Error", "Por favor, ingrese una razon social para el proveedor" );
+        return;
+    }
+    // Verifico el Cuit
+    if( !LECUIT->verificar() ) {
+        QMessageBox::information( this, "Error", "Por favor, ingrese una razon CUIT/CUIL valido para el proveedor" );
         return;
     }
     QSqlRecord rec = this->modelo->record();
@@ -49,8 +48,10 @@ void FormAgregarProveedor::guardar() {
     rec.setValue( "cuit_cuil", LECUIT->text() );
     rec.setValue( "telefono_linea", LETelFijo->text() );
     rec.setValue( "telefono_celular", LETelCel->text() );
+    rec.setValue( "fax", LEFax->text() );
+    rec.setValue( "email", LEEmail->text() );
     if( this->modelo->insertRecord( -1, rec ) ) {
-        QMessageBox::information( this, "Correcto", QString( "El proveedor %1 se inserto correctamente" ).arg( rec.value( "id" ).toInt() ) );
+        QMessageBox::information( this, "Correcto", QString( "El proveedor %1 se inserto correctamente" ).arg( this->modelo->query().lastInsertId().toInt() ) );
         this->close();
         return;
     } else {

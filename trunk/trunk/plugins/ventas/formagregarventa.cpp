@@ -121,14 +121,7 @@ void FormAgregarVenta::agregarProducto()
  if( CBProducto->currentText().isEmpty() )
  { QMessageBox::information( this, "Error de datos", "Por favor, ingrese un producto", QMessageBox::Ok ); return; }
  // Inserto la fila
- mcp->insertRow( -1 );
- // Pongo el producto
- QModelIndex indice_cant = mcp->index( mcp->rowCount()-2, 0 );
- QModelIndex indice_prod = mcp->index( mcp->rowCount()-2, 1 );
- int id_producto = CBProducto->model()->data( CBProducto->model()->index( CBProducto->currentIndex(), 0 ) , Qt::EditRole ).toInt();
- mcp->setData( indice_prod, id_producto, Qt::EditRole );
- // Pongo la cantidad
- mcp->setData( indice_cant, DSBCant->value(), Qt::EditRole );
+ mcp->agregarNuevoProducto( DSBCant->value(), CBProducto->currentText() );
  // Reseteo los ingresos de producto
  DSBCant->setValue( 1.0 );
  CBProducto->setCurrentIndex( -1 );
