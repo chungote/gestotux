@@ -62,7 +62,7 @@ FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
         addAction( new EActCerrar( this ) );
 
         connect( CkBBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambiarBaja( bool ) ) );
-        DEFechaBaja->setEnabled( CkBBaja->checkState() );
+        DEFechaBaja->setEnabled( CkBBaja->isChecked() );
 }
 
 /*!
@@ -87,13 +87,11 @@ void FormServicio::guardar()
    ) )
  {
      QMessageBox::information( this, "Correcto", "El servicio fue dado de alta correctamente" );
-     delete modelo;
      this->close();
      return;
  } else {
      QMessageBox::information( this, "Incorrecto", "El servicio <b>NO</b> pudo ser dado de alta" );
      qDebug( QString( "Error de modelo: %1").arg( modelo->lastError().text() ).toLocal8Bit() );
-     delete modelo;
      return;
  }
 }

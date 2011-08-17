@@ -262,9 +262,11 @@ void FormAgregarPresupuesto::eliminarProducto()
  */
 void FormAgregarPresupuesto::borrarTodoProducto()
 {
- int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), "Esta seguro que desea eliminar todos los elementos del prespuesto?", QMessageBox::Ok, QMessageBox::Cancel );
+ int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), QString::fromUtf8( "¿Esta seguro que desea eliminar todos los elementos del prespuesto?" ), QMessageBox::Ok, QMessageBox::Cancel );
  if( ret == QMessageBox::Ok ) {
-         TVContenido->model()->removeRows( 0, TVContenido->model()->rowCount() );
+     int fin = m->rowCount() - 1;
+     for( int i = 0; i <= fin; i++ ) { m->removeRow( i );  }
+     TVContenido->update();
  }
 }
 

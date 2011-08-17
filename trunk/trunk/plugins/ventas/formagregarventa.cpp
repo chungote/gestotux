@@ -177,7 +177,8 @@ void FormAgregarVenta::eliminarProducto()
 }
 
 /*!
-    \fn FormAgregarVenta::eliminarProducto()
+    \fn FormAgregarVenta::eliminarTodo()
+    Elimina todos los productos de la factura
  */
 void FormAgregarVenta::eliminarTodo()
 {
@@ -188,9 +189,8 @@ void FormAgregarVenta::eliminarTodo()
                    "Si", "No" );
  if ( ret == 0 )
  {
-     mcp->calcularTotales( false );
-     while( mcp->rowCount() > 0 ) { mcp->removeRow( 0 ); }
-     mcp->calcularTotales( true );
+     int fin = mcp->rowCount() - 1;
+     for( int i = 0; i <= fin; i++ ) { mcp->removeRow( i ); }
  }
  TVProductos->update();
  return;
@@ -216,11 +216,9 @@ void FormAgregarVenta::guardar()
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      return;
  }
- // Verifico que no se le venda a cuenta corriente a un cliente consumidor final
- if( RBCtaCte->isChecked() && CBCliente->currentIndex() <=  0 ) {
-     QMessageBox::warning( this, "Error", "No se puede vender a consumidor final en cuenta corriente. Se eligirá pago a contado" );
-     RBCtaCte->setChecked( false );
-     RBContado->setChecked( true );
+ if( CBCliente->currentIndex() == 0 && LEDireccion->text().isEmpty() ) {
+     QMessageBox::warning( this, "Error", "No ingreso una dirección para el cliente" );
+     return;
  }
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
@@ -228,6 +226,12 @@ void FormAgregarVenta::guardar()
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos vendidos distinta de cero para esta venta" );
   mcp->calcularTotales( true );
   return;
+ }
+ // Verifico que no se le venda a cuenta corriente a un cliente consumidor final
+ if( RBCtaCte->isChecked() && CBCliente->currentIndex() <=  0 ) {
+     QMessageBox::warning( this, "Error", "No se puede vender a consumidor final en cuenta corriente. Se eligirá pago a contado" );
+     RBCtaCte->setChecked( false );
+     RBContado->setChecked( true );
  }
  //Inicio una transacción
  QSqlDatabase::database().transaction();
@@ -269,12 +273,8 @@ void FormAgregarVenta::guardar()
     case QMessageBox::Yes:
     {
      ParameterList lista;
-     if( id_cliente != 0 ) {
-         lista.append( Parameter( "cliente_existe", true ) );
-         lista.append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
-     } else {
-         lista.append(  Parameter( "cliente_existe", false ) );
-     }
+     lista.append( "cliente", CBCliente->currentText());
+     lista.append( "direccion", LEDireccion->text() );
      lista.append( "id_factura", id_venta );
 
      EReporte *rep = new EReporte( this );
@@ -326,5 +326,10 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
    RBCtaCte->setEnabled( false );
    return;
   }
+ }
+ // Busco la dirección
+ if( CBCliente->currentIndex() != 0 ) {
+     int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
  }
 }

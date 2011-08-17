@@ -414,7 +414,7 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                                                                       fechahora.date(),
                                                                       QString( "Anulación de la factura %1" ).arg( num.aCadena() ),
                                                                       total ) ) {
-                            qDebug( "MFactura::anularFactura::No se pudo agregar el movimientod e cuenta corriente" );
+                            qDebug( "MFactura::anularFactura::No se pudo agregar el movimiento de cuenta corriente" );
                             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                             return false;
                         }
@@ -434,14 +434,17 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
             } else {
                 qDebug( "MFactura::anularFactura::Error al ejecutar la cola de anulación de la factura seleccionada." );
                 qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
             }
         } else {
             qDebug( "MFactura::anularFactura::Error al hacer next al buscar informacion de la factura" );
             qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
         }
     } else {
         qDebug( "MFactura::anularFactura::Error al hacer next al buscar informacion de la factura" );
         qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
     }
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;

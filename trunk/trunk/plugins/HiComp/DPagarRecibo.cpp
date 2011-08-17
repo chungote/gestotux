@@ -28,6 +28,7 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
 {
     setupUi(this);
     this->setObjectName( "DPagarRecibo" );
+    this->setWindowTitle( "Pago de recibo diferido" );
     this->setWindowIcon( QIcon( ":/imagenes/pagorecibo.png" ) );
 
     this->adjustSize();
@@ -71,6 +72,7 @@ void DPagarRecibo::changeEvent(QEvent *e)
 void DPagarRecibo::accept()
 {
     QMessageBox::critical( this, "error", "No implementado" );
+    return;
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
     if( m->buscarSiPagado( this->_num_recibo ) ) {

@@ -36,6 +36,7 @@ public:
 
 protected slots:
     void agregar( bool autoeliminarid );
+    void eliminar();
     void verClientesAdheridos();
     void verRecargos();
     void generarFacturacion();
