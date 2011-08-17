@@ -83,7 +83,7 @@ void VVentas::agregar()
 { emit agregarVentana( new FormAgregarVenta() ); }
 
 void VVentas::buscar()
-{}
+{ return; }
 
 void VVentas::eliminar()
 { return; }
@@ -162,6 +162,4 @@ void VVentas::pagar()
 }
 
 void VVentas::cambioVerAnuladas( bool parametro )
-{
-    qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro );
-}
+{ qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro ); }

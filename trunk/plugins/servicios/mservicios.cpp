@@ -288,6 +288,51 @@ MServicios::Periodo MServicios::obtenerPeriodo( const int id_servicio ) {
     return MServicios::Invalido;
 }
 
+/*!
+ * \fn MServicios::verificarSiPuedeEliminar( const int id_servicio )
+ * Verifica si existe algun dato relacionado con el servicio que se intenta eliminar para definir si es posible eliminarlo o no.
+ * \param id_servicio Identificador del servicio buscado
+ * \return verdadero si no existe ningun dato asociado al servicio
+ */
+bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
+{
+    qWarning( "Error, no implementado todavía" );
+    return false;
+    QSqlQuery cola;
+    bool retorno = true;
+    // Asociacion cliente-servicio
+    if( cola.exec( QString( "SELECT COUNT(id_servicio) FROM servicios_clientes WHERE id_servicio = %1"  ).arg( id_servicio ) ) ) {
+        if( cola.next() )  {
+            if( cola.record().value(0).toInt() > 0 ) { return false; }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+    // Asociacion recargo-servicio
+    if( cola.exec( QString( "SELECT COUNT(id_servicio) FROM recargos WHERE id_servicio = %1"  ).arg( id_servicio ) ) ) {
+        if( cola.next() )  {
+            if( cola.record().value(0).toInt() > 0 ) { return false; }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+    // Asociación servicio-periodo
+    if( cola.exec( QString( "SELECT COUNT(id_servicio) FROM periodo_servicio WHERE id_servicio = %1"  ).arg( id_servicio ) ) ) {
+        if( cola.next() )  {
+            if( cola.record().value(0).toInt() > 0 ) { return false; }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+    return retorno;
+}
+
 
 /*
 "id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL

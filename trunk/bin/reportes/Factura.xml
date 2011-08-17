@@ -6,6 +6,9 @@
  <parameter default="1" active="true" listtype="static" type="bool" name="cliente_existe">
   <description>Identifica si el cliente existe en la base de datos. id_cliente != null.</description>
  </parameter>
+ <parameter default="" active="true" listtype="static" type="string" name="direccion">
+  <description></description>
+ </parameter>
  <parameter default="2" active="true" listtype="static" type="integer" name="id_presupuesto">
   <description>Identificador del presupuesto en la tabla presupuestos</description>
  </parameter>
@@ -21,23 +24,11 @@
  <leftmargin>25</leftmargin>
  <querysource>
   <name>factura</name>
-  <sql>&lt;? if value("cliente_existe")?>
-SELECT c.razon_social AS destinatario,
-       c.calle AS direccion,
-       DATE_FORMAT( f.fecha, '%d/%m/%Y' ) AS fecha,
+  <sql>SELECT DATE_FORMAT( f.fecha, '%d/%m/%Y' ) AS fecha,
        f.total As total,
        CONCAT( CONCAT( LPAD( f.serie, 5, 0 ), '-' ), LPAD( f.numero, 5, 0 ) ) AS NumSerie
-FROM facturas AS f, clientes AS c
-WHERE f.id_cliente = c.id AND f.id_factura = &lt;? value( "id_factura" ) ?>;
-&lt;? else ?>
-SELECT f.destinatario AS destinatario,
-       f.direccion AS direccion,
-       DATE_FORMAT( f.fecha, '%d/%m/%Y' ) AS fecha,
-       f.total As total,
-       CONCAT( CONCAT( LPAD( f.serie, 5, 0 ), '-' ), LPAD( f.numero, 5, 0 ) ) AS NumSerie
-FROM factura AS f
-WHERE p.id_factura = &lt;? value( "id_factura" ) ?>;
-&lt;? endif ?></sql>
+FROM factura AS f, clientes AS c
+WHERE f.id_cliente = c.id AND f.id_factura = &lt;? value( "id_factura" ) ?>;</sql>
  </querysource>
  <querysource>
   <name>items</name>
@@ -264,8 +255,8 @@ end
   </label>
   <field>
    <rect>
-    <x>92.729</x>
-    <y>76.4579</y>
+    <x>95.7</x>
+    <y>76.5</y>
     <width>674</width>
     <height>23</height>
    </rect>
@@ -277,14 +268,14 @@ end
    <left/>
    <vcenter/>
    <data>
-    <query>factura</query>
+    <query>Parameter Query</query>
     <column>destinatario</column>
    </data>
   </field>
   <field>
    <rect>
     <x>96</x>
-    <y>103.271</y>
+    <y>103</y>
     <width>672</width>
     <height>19</height>
    </rect>
@@ -296,7 +287,7 @@ end
    <left/>
    <vcenter/>
    <data>
-    <query>factura</query>
+    <query>Parameter Query</query>
     <column>direccion</column>
    </data>
   </field>

@@ -46,6 +46,7 @@ VServicios::VServicios(QWidget *parent)
  connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
  addAction( ActAgregar );
+ //addAction( ActModificar );
  //addAction( ActEliminar );
  addAction( ActCerrar );
 }
@@ -62,7 +63,36 @@ void VServicios::agregar( bool /*autoeliminarid*/ )
 void VServicios::modificar( const QModelIndex &/*idx*/ )
 {
  // modifico el indice actual
+    qWarning( "Todavía no implementado" );
  return;
+}
+
+#include <QMessageBox>
+#include <QSqlError>
+/*!
+ * \fn VServicios::eliminar()
+ * Implementación de slot de eliminar con verificacion de si se puede o no
+ */
+void VServicios::eliminar()
+{
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Seleccione un servicio para intentar eliminarlo" );
+        return;
+    }
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    int id_servicio = this->vista->model()->data( this->vista->model()->index( idx.row(), 0 ) ).toInt();
+    if( ! MServicios::verificarSiPuedeEliminar( id_servicio ) ) {
+        QMessageBox::warning( this, "Error", "Existen datos asociados con este servicio que esta intentando eliminar. No se podrá eliminar." );
+        return;
+    }
+    if( this->vista->model()->removeRow( idx.row() ) ) {
+        QMessageBox::information( this, "Correcto", "Servicio eliminado correctamente" );
+        return;
+    } else {
+        qDebug( "Error al eliminar el servicio" );
+        qDebug( qobject_cast<QSqlTableModel *>(this->vista->model() )->lastError().text().toLocal8Bit() );
+        return;
+    }
 }
 
 

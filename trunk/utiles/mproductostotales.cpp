@@ -558,16 +558,16 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, QString nombre )
         if( _calcularTotal )
             id_fila--;
 
-        this->cantidades->insert( id_fila, cantidad );
-        this->productos->insert( id_fila, ret );
-        this->precio_unitario->insert( id_fila, precio_unitario );
-        this->subtotales->insert( id_fila, precio_unitario * cantidad );
+        this->cantidades->insert     ( id_fila, cantidad                   );
+        this->productos->insert      ( id_fila, ret                        );
+        this->precio_unitario->insert( id_fila, precio_unitario            );
+        this->subtotales->insert     ( id_fila, precio_unitario * cantidad );
         recalcularTotal();
 
         emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
 
         if( _calcularTotal )
-            emit dataChanged( this->index( this->rowCount(),0 ), this->index( this->rowCount(), this->columnCount() )  );
+            emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() )  );
 
     } else {
         // error al insertar el articulo

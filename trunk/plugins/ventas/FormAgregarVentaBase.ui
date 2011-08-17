@@ -79,6 +79,20 @@
         </item>
        </layout>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Direccion:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEDireccion"/>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
    </item>
