@@ -60,7 +60,7 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
         mapa->addMapping( LEPais, modelo->fieldIndex( "pais" ) );
 
         mapa->addMapping( LECUITCUIL, modelo->fieldIndex( "CUIT/CUIL" ) );
-        mapa->addMapping( CBEstadoFiscal, modelo->fieldIndex( "id_estado_fiscal" ) );
+        mapa->addMapping( CBEstadoFiscal, modelo->fieldIndex( "id_estado_fiscal" ), "currentIndex" );
 
         mapa->addMapping( LETelFijo, modelo->fieldIndex( "tel_fijo" ) );
         mapa->addMapping( LETelCel, modelo->fieldIndex( "tel_celular" ) );

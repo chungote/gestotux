@@ -3,3 +3,4 @@ CREATE TABLE IF NOT EXISTS estado_fiscal ( "id_estado_fiscal" INTEGER PRIMARY KE
 INSERT INTO sqlite_sequence VALUES ( 'clientes', '1' );
 INSERT INTO sqlite_sequence VALUES ( 'estado_fiscal', '1' );
 INSERT INTO `clientes` (`id`, `razon_social`, `nombre`, `comprobante_email` ) VALUES ( 0, 'Consumidor Final','Consumidor Final', 1 );
+INSERT INTO `estado_fiscal` (`id_estado_fiscal`, `titulo`) VALUES (1, 'Responsable Inscripto'), (2, 'Responsable Monotributista'), (3, 'No Responable Inscripto'), (4, 'Exento'), (5, 'Consumidor Final'), (6, 'Monotributista Social'), (7, 'Pequeño Contribuidor Eventual'), (8, 'Pequeño Contribuyente Eventual Social');
