@@ -31,13 +31,8 @@ MProveedor::MProveedor(QObject *parent)
  setHeaderData( 3, Qt::Horizontal, "Em@il" );
  setHeaderData( 4, Qt::Horizontal, "Fax" );
  setHeaderData( 5, Qt::Horizontal, "Telefono Celular" );
- setHeaderData( 6, Qt::Horizontal,  "Telefono Linea" );
+ setHeaderData( 6, Qt::Horizontal, "Telefono Linea" );
  setHeaderData( 7, Qt::Horizontal, "CUIT/CUIL" );
-}
-
-
-MProveedor::~MProveedor()
-{
 }
 
 QVariant MProveedor::data(const QModelIndex& idx, int role) const
@@ -103,4 +98,11 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
 		break;
 	}
  }
+}
+
+
+bool MProveedor::tieneDatosRelacionados( const int id_proveedor )
+{
+    /// @todo Realizar verificación
+    return true;
 }

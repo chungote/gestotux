@@ -21,6 +21,7 @@
 #include "MItemPresupuesto.h"
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlRecord>
 
 MItemPresupuesto::MItemPresupuesto(QObject *parent) :
     QSqlRelationalTableModel(parent) {
@@ -53,11 +54,26 @@ void MItemPresupuesto::relacionar() {}
  */
 bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario ) {
  QSqlQuery cola;
- if( ! cola.prepare( "INSERT INTO item_presupuesto( id_presupuesto, cantidad, texto, precio_unitario ) VALUES ( :id_presupuesto, :cantidad, :texto, :precio_unitario );" ) ) {
+ if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QSQLITE" ) {
+     if( cola.exec( QString( "SELECT COUNT(id_presupuesto) FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+         if( cola.next() ) {
+             if( cola.record().value(0).toInt() <= 0 ) {
+                 qDebug( "Conteo de cantidad de presupuestos con el identificador pasado fue menor o igual que uno" );
+                 return false;
+             }
+         } else {
+             qDebug( "Error al intentar hacer next de la cola de verificación de si existe el presupuesto" );
+             return false;
+         }
+     } else {
+          qDebug( "Error de exec al intentar ejecutar la cola de verificación de si existe el presupeusto" );
+          return false;
+     }
+ }
+ if( !cola.prepare( "INSERT INTO item_presupuesto( id_presupuesto, cantidad, texto, precio_unitario ) VALUES ( :id_presupuesto, :cantidad, :texto, :precio_unitario );" ) ) {
      qDebug( "Error al intentar preparar la cola de inserción" );
      qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
  }
- ///@todo Si Sqlite verificar que existe presupuesto
  cola.bindValue( ":id_presupuesto", id_presupuesto );
  cola.bindValue( ":cantidad", cantidad );
  cola.bindValue( ":texto", texto );
@@ -65,7 +81,7 @@ bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const d
  if( cola.exec() ) {
      return true;
  } else {
-     qDebug( "Error al intentar insertad valor de item de presupuesto" );
+     qDebug( "Error al intentar insertar valor de item de presupuesto" );
      qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
      return false;
  }

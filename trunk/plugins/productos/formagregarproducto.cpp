@@ -106,7 +106,7 @@ void FormAgregarProducto::accept() {
                 this->DSBCosto->value(),
                 this->DSBVenta->value(),
                 this->SBStock->value(),
-                this->CBCategoria->currentIndex(), /// @todo revisar esto
+                this->CBCategoria->model()->data( this->CBCategoria->model()->index( this->CBCategoria->currentIndex(), 0 ), Qt::EditRole ).toInt(),
                 this->LEDescripcion->text(),
                 this->LEMarca->text(),
                 this->LEModelo->text() ) ) {

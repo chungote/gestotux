@@ -253,10 +253,14 @@ bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
   }
   else
   {
-   this->setFilter( QString( "num_cuenta = %1" ).arg( _num_cuenta ) );
+      if( MCuentaCorriente::existeCuenta( num_cuenta ) ) {
+        this->setFilter( QString( "num_cuenta = %1" ).arg( _num_cuenta ) );
+      } else {
+          qWarning( "El numero de cuenta corriente no existe" );
+          return false;
+      }
   }
   return true;
- ///@todo Verificar que existe la cuenta
 }
 
 /*!

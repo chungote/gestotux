@@ -32,8 +32,8 @@ class MProveedor : public QSqlTableModel
 Q_OBJECT
 public:
     MProveedor( QObject *parent = 0 );
-    ~MProveedor();
     QVariant data(const QModelIndex& idx, int role) const;
+    static bool tieneDatosRelacionados( const int id_proveedor );
 };
 
 #endif

@@ -449,3 +449,14 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;
 }
+
+/*!
+ * \fn MFactura::idFacturaPorComprobante( const QString numero )
+ * Devuleve el id de la factura que corresponde al numero pasado como parametro o -1 si hubo un error o no existe.
+ * \param numero Numero de factura de la forma 99999-99999
+ * \return -1 en caso de error, id en caso correcto
+ */
+int MFactura::idFacturaPorComprobante( const QString numero )
+{
+ return -1;
+}

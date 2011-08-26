@@ -72,8 +72,6 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
     // Imprimo el reporte
     _rep->setParamList( _original );
 
-
-    /// @todo Ver si poner impresora para cada tipo
     if( !( _rep->print( 0, true, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );
         _rep->reportError( 0 );

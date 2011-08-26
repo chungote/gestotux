@@ -97,6 +97,24 @@ void VVentas::modificar()
 void VVentas::anular()
 {
     // Busco todos los IDs a anular
+    if( this->modelo->rowCount() == 0 ) {
+        // error, nada seleccionado....
+        qWarning( "No implementado todavía" );
+        // Solicito el numero de recibo
+        bool ok = false;
+        QString numero = QInputDialog::getText( this, "Ingrese numero", "Numero de Factura:", QLineEdit::Normal, QString(), &ok );
+        if( ok ) {
+            int id_factura = MFactura::idFacturaPorComprobante( numero );
+            if( id_factura != -1 ) {
+                ok = false;
+                QString razon = QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), &ok );
+                if( ok ) {
+                    this->imprimirAnulacion( id_factura, razon, numero );
+                }
+            }
+        }
+        return;
+    }
     QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
         QMessageBox::warning( this, "Seleccione un item",
@@ -108,23 +126,9 @@ void VVentas::anular()
         bool ok = false;
         QString numero = this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString();
         QString razon = QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), &ok );
+        int id_factura = this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt();
         if( ok && !razon.isEmpty() ) {
-            if( MFactura::anularFactura( this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt(), razon, QDateTime::currentDateTime() ) ) {
-                int ret = QMessageBox::question( this, "Correcto", QString::fromUtf8( "La Factura %1 ha sido anulada correctamente. <br /> ¿Desea imprimir la anulaciòn?" ).arg( numero ), QMessageBox::Yes, QMessageBox::No );
-                if( ret == QMessageBox::Yes ) {
-                    QMessageBox::information( this, "Esperando", QString::fromUtf8( "Por favor, ingrese la factura en la impresora para imprimir la anulaciòn. <br /> Presione OK para enviar a imprimir la anulacion" ), QMessageBox::Ok );
-                    EReporte *rep = new EReporte( this );
-                    rep->anulacionFactura();
-                    ParameterList lista;
-                    lista.append( Parameter( "razon", razon ) );
-                    lista.append( Parameter( "fechahora", QDateTime::currentDateTime().toString( "dd/MM/yyyy") ) );
-                    if( !rep->hacer( lista, true ) ) {
-                        QMessageBox::information( this, "Error de impresion", QString::fromUtf8( "Error al hacer la anulación. Ingresela a mano." ), QMessageBox::Ok );
-                    }
-                }
-            } else {
-                QMessageBox::warning( this, "Error", "Hubo un error la intentar anular la factura. No se anulo" );
-            }
+            this->imprimirAnulacion( id_factura, razon, numero );
         }
 
     }
@@ -163,3 +167,24 @@ void VVentas::pagar()
 
 void VVentas::cambioVerAnuladas( bool parametro )
 { qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro ); }
+
+
+void VVentas::imprimirAnulacion( const int id_factura, const QString razon, const QString numero )
+{
+    if( MFactura::anularFactura( id_factura, razon, QDateTime::currentDateTime() ) ) {
+        int ret = QMessageBox::question( this, "Correcto", QString::fromUtf8( "La Factura %1 ha sido anulada correctamente. <br /> ¿Desea imprimir la anulaciòn?" ).arg( numero ), QMessageBox::Yes, QMessageBox::No );
+        if( ret == QMessageBox::Yes ) {
+            QMessageBox::information( this, "Esperando", QString::fromUtf8( "Por favor, ingrese la factura en la impresora para imprimir la anulaciòn. <br /> Presione OK para enviar a imprimir la anulacion" ), QMessageBox::Ok );
+            EReporte *rep = new EReporte( this );
+            rep->anulacionFactura();
+            ParameterList lista;
+            lista.append( Parameter( "razon", razon ) );
+            lista.append( Parameter( "fechahora", QDateTime::currentDateTime().toString( "dd/MM/yyyy") ) );
+            if( !rep->hacer( lista, true ) ) {
+                QMessageBox::information( this, "Error de impresion", QString::fromUtf8( "Error al imprimir la anulación. Ingresela a mano." ), QMessageBox::Ok );
+            }
+        }
+    } else {
+        QMessageBox::warning( this, "Error", "Hubo un error la intentar anular la factura. No se anulo" );
+    }
+}

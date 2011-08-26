@@ -116,3 +116,14 @@ Qt::ItemFlags MClientes::flags( const QModelIndex &index ) const
 {
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
+
+/*!
+ * \fn MClientes:tieneDatosRelacionados( const int id_cliente )
+ * Verifica si existe alguna asociacion en alguna tabla que corresponda con el cliente pasado como paraemtro
+ * \param ID de cliente
+ * \return Verdadero si hay alguna asociación
+ */
+bool MClientes::tieneDatosRelacionados( const int id_cliente )
+{
+ return true;
+}

@@ -57,9 +57,24 @@ VProveedor::VProveedor( QWidget *parent )
  */
 void VProveedor::eliminar()
 {
- /// @todo Ver como verificar si el proveedor tiene algun dato relacionado
- qWarning( QString::fromUtf8( "Error, el eliminar un proveedor puede causar perdida de datos. No se eliminará ningun proveedor." ).toLocal8Bit() );
- return;
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor seleccione un proveedor para eliminar" );
+        return;
+    }
+    QModelIndexList filas = this->vista->selectionModel()->selectedRows();
+    foreach( QModelIndex indice, filas ) {
+        int id_proveedor = this->modelo->data( this->modelo->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+        if( MProveedor::tieneDatosRelacionados( id_proveedor ) ) {
+            QMessageBox::warning( this, "Error", "El proveedor que ha seleccionado contiene datos relacionados que podrían quedar en estado inconsistente si lo elimina.\n No se eliminará el proveedor" );
+        } else {
+            if( this->modelo->removeRow( indice.row() ) ) {
+                QMessageBox::information( this, "Correcto", "El proveedor se eliminó correctamente" );
+            } else {
+                QMessageBox::information( this, "Error", "Existió un error al intentar eliminar la fila seleccionada" );
+            }
+        }
+    }
+    return;
 }
 
 /*!

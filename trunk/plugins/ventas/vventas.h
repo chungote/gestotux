@@ -41,6 +41,8 @@ protected slots:
     void anular();
     void pagar();
     void cambioVerAnuladas( bool parametro );
+private:
+    void imprimirAnulacion( const int id_factura, const QString razon, const QString numero );
 
 };
 
