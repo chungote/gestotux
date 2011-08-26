@@ -269,7 +269,7 @@ end
    <vcenter/>
    <data>
     <query>Parameter Query</query>
-    <column>destinatario</column>
+    <column>cliente</column>
    </data>
   </field>
   <field>

@@ -7,7 +7,7 @@ FormModificarProveedor::FormModificarProveedor( MProveedor *m, QWidget *parent) 
     EVentana(parent), Ui::FormProveedorBase()
 {
     setupUi(this);
-    setObjectName( "agregarproveedor" );
+    setObjectName( "ModificarProveedor" );
     setWindowTitle( "Modificar Proveedor" );
 
     addAction( new EActGuardar( this ) );
@@ -19,7 +19,7 @@ FormModificarProveedor::FormModificarProveedor( MProveedor *m, QWidget *parent) 
     mapa->setModel( this->modelo );
     mapa->setOrientation( Qt::Horizontal );
     mapa->addMapping( LERazonSocial, modelo->fieldIndex( "nombre" ) );
-    mapa->addMapping( TEDireccion, modelo->fieldIndex( "direccion" ) );
+    mapa->addMapping( TEDireccion, modelo->fieldIndex( "direccion" ), "plainText" );
     mapa->addMapping( LECUIT, modelo->fieldIndex( "cuit_cuil" ) );
     mapa->addMapping( LETelFijo, modelo->fieldIndex( "telefono_linea" ) );
     mapa->addMapping( LETelCel, modelo->fieldIndex( "telefono_celular" ) );
@@ -57,7 +57,5 @@ void FormModificarProveedor::guardar()
 void FormModificarProveedor::setearItem( const int id )
 {
     if( id >= 0 )
-    {  this->mapa->setCurrentIndex( id ); qDebug( QString( "%1" ).arg( id ).toLocal8Bit() );   }
-    else
-    { qDebug( QString( "%1" ).arg( id ).toLocal8Bit() ); }
+    { this->mapa->setCurrentIndex( id ); }
 }

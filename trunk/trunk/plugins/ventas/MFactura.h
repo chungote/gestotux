@@ -43,6 +43,7 @@ public:
     NumeroComprobante &obtenerComprobante();
     static NumeroComprobante &obtenerComprobante( const int id_factura );
     static bool anularFactura( const int id_factura, QString razon = QString(), QDateTime fechahora = QDateTime::currentDateTime() );
+    static int idFacturaPorComprobante( const QString numero );
 
 private:
     void inicializar();

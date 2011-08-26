@@ -55,6 +55,7 @@ public:
     static bool actualizarSaldo( const QString numero_cuenta, const double aplicar );
     static double saldo( const QString numero_cuenta );
     static bool agregarCuentaCorrientePredeterminada( const int id_cliente, const QDateTime fecha_alta = QDateTime::currentDateTime() );
+    static bool existeCuenta( const QString num_cuenta );
     void inicializar();
     void relacionar();
 

@@ -312,3 +312,22 @@ void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
         this->setFilter( "" );
     }
 }
+
+bool MCuentaCorriente::existeCuenta( const QString num_cuenta )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(num_cuenta) FROM ctacte WHERE num_cuenta = %1" ).arg( num_cuenta )  ) )
+    {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() <= 0 ) { return false; } else { return true; }
+        } else {
+            qDebug( "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta" );
+            return false;
+        }
+    } else {
+        qDebug( "Error al hacer next en la cola para averiguar si existe el numero de cuenta" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    }
+}

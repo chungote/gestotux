@@ -46,11 +46,13 @@ void MItemFactura::relacionar() {
  */
 bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario ) {
     QSqlQuery cola;
+    if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "SQLITE" ) {
+        /// @todo Agregar verificación de que existe realmente la factura
+    }
     if( ! cola.prepare( "INSERT INTO item_factura( id_factura, cantidad, texto, precio_unitario ) VALUES ( :id_venta, :cantidad, :texto, :precio_unitario );" ) ) {
         qDebug( "Error al intentar preparar la cola de inserción" );
         qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
     }
-    ///@todo Si Sqlite verificar que existe presupuesto
     cola.bindValue( ":id_venta", id_venta );
     cola.bindValue( ":cantidad", cantidad );
     cola.bindValue( ":texto", texto );
