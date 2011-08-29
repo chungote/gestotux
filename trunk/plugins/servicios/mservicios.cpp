@@ -172,14 +172,14 @@ bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDateTime fech
 
 /*!
     \fn MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
-        Agrega un nuevo servicio a la base de datos con los datos pasados como parametro
-        \param nombre Nombre del servicio
-        \param detalle Explicacion mas detallada del servicio
-        \param fecha_alta Fecha desde cuando empieza a funcionar el servicio
-        \param precio_base Precio base sobre el cual se calculan los recargos
-        \param periodo Periodo de cobro del servicio #MServicios::Periodo
-        \param dia_cobro Dia del periodo en que se inicia el cobro del servicio
-        \param forma_incompleto Forma de cobro cuando se da de alta un cliente fuera del inicio del periodo #MServicios::FormaIncompleto
+    Agrega un nuevo servicio a la base de datos con los datos pasados como parametro
+    \param nombre Nombre del servicio
+    \param detalle Explicacion mas detallada del servicio
+    \param fecha_alta Fecha desde cuando empieza a funcionar el servicio
+    \param precio_base Precio base sobre el cual se calculan los recargos
+    \param periodo Periodo de cobro del servicio #MServicios::Periodo
+    \param dia_cobro Dia del periodo en que se inicia el cobro del servicio
+    \param forma_incompleto Forma de cobro cuando se da de alta un cliente fuera del inicio del periodo #MServicios::FormaIncompleto
  */
 bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto )
 {
@@ -263,14 +263,14 @@ MServicios::Periodo MServicios::obtenerPeriodo( const int id_servicio ) {
     if( cola.exec( QString( "SELECT periodo FROM servicios WHERE id_servicio = %1" ).arg( id_servicio )  ) ) {
         if( cola.next() ) {
             switch( cola.record().value(0).toInt() ) {
-                case MServicios::Semanal:       { return MServicios::Semanal; break; }
-                case MServicios::Quincenal:     { return MServicios::Quincenal; break; }
-                case MServicios::Mensual:       { return MServicios::Mensual; break; }
-                case MServicios::BiMensual:     { return MServicios::BiMensual; break; }
-                case MServicios::Trimestral:    { return MServicios::Trimestral; break; }
+                case MServicios::Semanal:       { return MServicios::Semanal;       break; }
+                case MServicios::Quincenal:     { return MServicios::Quincenal;     break; }
+                case MServicios::Mensual:       { return MServicios::Mensual;       break; }
+                case MServicios::BiMensual:     { return MServicios::BiMensual;     break; }
+                case MServicios::Trimestral:    { return MServicios::Trimestral;    break; }
                 case MServicios::Cuatrimestral: { return MServicios::Cuatrimestral; break; }
-                case MServicios::Seximestral:   { return MServicios::Seximestral; break; }
-                case MServicios::Anual:         { return MServicios::Anual; break; }
+                case MServicios::Seximestral:   { return MServicios::Seximestral;   break; }
+                case MServicios::Anual:         { return MServicios::Anual;         break; }
                 default: { return MServicios::Invalido; break; }
             }
         } else {
@@ -296,8 +296,6 @@ MServicios::Periodo MServicios::obtenerPeriodo( const int id_servicio ) {
  */
 bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
 {
-    qWarning( "Error, no implementado todavía" );
-    return false;
     QSqlQuery cola;
     bool retorno = true;
     // Asociacion cliente-servicio
@@ -305,9 +303,11 @@ bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
         if( cola.next() )  {
             if( cola.record().value(0).toInt() > 0 ) { return false; }
         } else {
+            qDebug( "MServicios::verificarSiPuedeEliminar::Error next 1 verificacion -  servicios_clientes" );
             return false;
         }
     } else {
+        qDebug( "MServicios::verificarSiPuedeEliminar::Error exec 1 verificacion -  servicios_clientes" );
         return false;
     }
     // Asociacion recargo-servicio
@@ -315,9 +315,11 @@ bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
         if( cola.next() )  {
             if( cola.record().value(0).toInt() > 0 ) { return false; }
         } else {
+            qDebug( "MServicios::verificarSiPuedeEliminar::Error next 2 verificacion -  recargos" );
             return false;
         }
     } else {
+        qDebug( "MServicios::verificarSiPuedeEliminar::Error exec 2 verificacion -  recargos" );
         return false;
     }
     // Asociación servicio-periodo
@@ -325,9 +327,11 @@ bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
         if( cola.next() )  {
             if( cola.record().value(0).toInt() > 0 ) { return false; }
         } else {
+            qDebug( "MServicios::verificarSiPuedeEliminar::Error next 3 verificacion - periodo_servicio" );
             return false;
         }
     } else {
+        qDebug( "MServicios::verificarSiPuedeEliminar::Error exec 3 verificacion - periodo_servicio" );
         return false;
     }
     return retorno;

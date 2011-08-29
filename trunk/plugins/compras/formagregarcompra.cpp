@@ -32,7 +32,7 @@
 #include <QtSql>
 #include "mcompraproducto.h"
 
-FormAgregarCompra::FormAgregarCompra( QWidget* parent )
+FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarCompraBase()
 {
 	setupUi(this);
@@ -41,6 +41,10 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 
 	this->addAction( new EActCerrar( this ) );
 	this->addAction( new EActGuardar( this ) );
+
+        if( m == 0 ) {
+            this->modelo = new MCompra( this, false );
+        } else {  this->modelo = m; }
 
         modeloProveedor = new MProveedor( CBProveedor );
         CBProveedor->setModel( modeloProveedor );
@@ -75,15 +79,12 @@ FormAgregarCompra::FormAgregarCompra( QWidget* parent )
 	TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 }
 
-FormAgregarCompra::~FormAgregarCompra()
-{
-}
-
 /*!
     \fn FormAgregarCompra::guardar()
  */
 void FormAgregarCompra::guardar()
 {
+ return;
  if( CBProveedor->currentIndex() == -1 )
  {
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un proveedor para esta compra" );
@@ -97,12 +98,12 @@ void FormAgregarCompra::guardar()
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {
-  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos comprados distinta de cero para esta compra" );
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese productos para esta compra" );
   mcp->calcularTotales( true );
   return;
  }
- //Inicio una transacción
- QSqlDatabase::database().transaction();
+ //Inicio una transacciÃ³n
+ QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
  // veo el id del proveedor
@@ -157,7 +158,7 @@ void FormAgregarCompra::guardar()
  }
  m->submit();
  // listo
-  if( QSqlDatabase::database().commit() )
+  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() )
   {
    QMessageBox::information( this, "Correcto" , "La compra se ha registrado correctamente" );
    this->close();

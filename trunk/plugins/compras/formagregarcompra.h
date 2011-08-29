@@ -24,7 +24,7 @@
 #include "eventana.h"
 #include "ui_FormAgregarCompraBase.h"
 class MProveedor;
-//class MCompraProductos;
+class MCompra;
 class MProductosTotales;
 
 /*!
@@ -35,12 +35,11 @@ class FormAgregarCompra : public EVentana, private Ui::FormAgregarCompraBase
   Q_OBJECT
 
 public:
-  FormAgregarCompra( QWidget* parent = 0  );
-  ~FormAgregarCompra();
+  FormAgregarCompra( MCompra *m = 0, QWidget* parent = 0  );
 
 private:
   MProveedor *modeloProveedor;
-  //MCompraProductos *mcp;
+  MCompra *modelo;
   MProductosTotales *mcp;
 
 protected slots:

@@ -167,17 +167,17 @@ void FormAgregarRecibo::guardar()
         pagado = true;
     } // Si esta como luego, pongo los dos parametros como estan false, false
     // Genero la transacción
-    QSqlDatabase::database().transaction();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
     this->_modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
     int num_recibo = this->_modelo->agregarRecibo( id_cliente, fecha, contenido, total, pagado, contado );
     if( num_recibo == -1 ) {
         this->_modelo->revertAll();
-        QSqlDatabase::database().rollback();
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         QMessageBox::warning( this, "Error", QString( "Ocurrio un error al intentar guardar el recibo" ) );
         return;
     }
     this->_modelo->submitAll();
-    QSqlDatabase::database().commit();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
     // Imprimir el recibo
     QMessageBox::information( this, "Correcto", QString::fromUtf8( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( this->_modelo->buscarNumeroComprobantePorId( num_recibo ).aCadena() ) );
     /// Imprimo el recibo

@@ -234,7 +234,7 @@ void FormAgregarVenta::guardar()
      RBContado->setChecked( true );
  }
  //Inicio una transacción
- QSqlDatabase::database().transaction();
+ QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
  // veo el id del proveedor
@@ -261,10 +261,10 @@ void FormAgregarVenta::guardar()
  int id_venta = venta->agregarVenta( DEFecha->dateTime(), id_cliente, id_forma_pago, mcp );
  if( id_venta == -1 ) {
     QMessageBox::information( this, "Error", "No se pudo agregar la venta" );
-    QSqlDatabase::database().rollback();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return;
  }
- if( QSqlDatabase::database().commit() ) {
+ if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
    // Ver si quiere ver la factura o imprimirla
    int respuesta = QMessageBox::question( this, "Correcto", "La venta se ha registrado correctamente. Desea imprimir un comprobante de venta?",
                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );

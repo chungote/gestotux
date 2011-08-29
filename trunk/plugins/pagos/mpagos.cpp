@@ -398,7 +398,7 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
  */
 bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
 {
- QSqlDatabase::database().transaction();
+ QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  if( this->query().exec( QString( "UPDATE recibos SET pagado = 1 WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
     if( this->query().exec( QString( "SELECT id_cliente, precio, serie, numero FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) )
     {
@@ -419,7 +419,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                 qDebug( "Operación de cuenta corriente guardada correctamente" );
             } else {
                 qDebug( "Error al intentar agregar la operación de cuenta corriente cuando poniendo como pagado un recibo." );
-                QSqlDatabase::database().rollback();
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return false;
             }
             delete m;
@@ -436,7 +436,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                 qDebug( "Operación de movimiento de caja agregado correctamente" );
             } else {
                 qDebug( "Error al intentar registrar el movimiento de caja al pagar un recibo ya emitido." );
-                QSqlDatabase::database().rollback();
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return false;
             }
             delete m;
@@ -446,17 +446,17 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                 // Todos los pasos guardados correctamente
             } else {
                 qDebug( "Error al intentar poner la forma de pago en otro al poner como pagado un recibo ya emitido" )   ;
-                QSqlDatabase::database().rollback();
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return false;
             }
         }
     }
  } else {
     qDebug( "Error al intentar colocar el recibo como pagado" );
-    QSqlDatabase::database().rollback();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;
  }
- if( !QSqlDatabase::database().commit() ) {
+ if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
      qCritical( "Error al hacer commit de la base de datos!" );
      abort();
  } else {

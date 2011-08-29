@@ -35,28 +35,18 @@ VCompras::VCompras(QWidget *parent)
  vista->hideColumn( 0 );
  vista->resizeColumnsToContents();
  addAction( ActAgregar );
- addAction( ActModificar );
- addAction( ActEliminar );
+ //addAction( ActModificar );
+ //addAction( ActEliminar );
  addAction( ActCerrar );
 }
-
-
-VCompras::~VCompras()
-{
-}
-
-
-void VCompras::antes_de_insertar(int row, QSqlRecord& record)
-{
-    (void)record;
-    (void)row;
-}
-
 
 #include "formagregarcompra.h"
 
 /*!
-    \fn VCompras::agregar()
+    \fn VCompras::agregar( bool autoeliminarid )
  */
-void VCompras::agregar()
-{ emit agregarVentana( new FormAgregarCompra() ); }
+void VCompras::agregar( bool /*autoeliminarid*/ )
+{
+    FormAgregarCompra *f = new FormAgregarCompra( qobject_cast<MCompra *>( this->rmodelo ) );
+    emit agregarVentana( f );
+}

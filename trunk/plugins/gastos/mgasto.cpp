@@ -71,6 +71,11 @@ QVariant MGasto::data(const QModelIndex& item, int role) const
                                 return QSqlRelationalTableModel::data(item, role).toString().prepend("$");
                                 break;
                         }
+                        case 4:
+                        {
+                                return QSqlRelationalTableModel::data(item, role).toDate().toString( Qt::LocaleDate );
+                                break;
+                        }
                         default:
                         {
                                 return QSqlRelationalTableModel::data(item, role);
@@ -208,7 +213,7 @@ bool MGasto::eliminarFila( const int fila ) {
     qDebug( "Eliminando fila de caja" );
     QSqlRecord rf = this->record(fila);
     if( !rf.field( "id_caja" ).isNull() ) {
-        // Elimino la acción de caja
+        // Elimino la acciÃ³n de caja
         qDebug( "Campo de caja no nulo, intentando eliminarlo.");
         if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) == true ) {
             MMovimientosCaja *m = new MMovimientosCaja();

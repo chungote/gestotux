@@ -102,9 +102,7 @@ void FormServicio::guardar()
         Slot llamado para habilitar y deshabilitar el selector de fecha de cuando fue dado de baja
  */
 void FormServicio::cambiarBaja( bool estado )
-{
-    DEFechaBaja->setEnabled( estado );
-}
+{  DEFechaBaja->setEnabled( estado ); }
 
 
 void FormServicio::agregarRecargo()

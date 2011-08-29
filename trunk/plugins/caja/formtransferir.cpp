@@ -117,19 +117,19 @@ void FormTransferir::transferir()
     int id_destino = CBDestino->model()->data( CBDestino->model()->index( CBDestino->currentIndex(), 0 ), Qt::EditRole ).toInt();
     int id_origen = CBOrigen->model()->data( CBOrigen->model()->index( CBOrigen->currentIndex(), 0 ), Qt::EditRole ).toInt();
     /// Registro el movimiento
-    QSqlDatabase::database().transaction();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
     MMovimientosCaja *mv = new MMovimientosCaja();
     if( !mv->agregarMovimiento( id_origen, "Transferencia entre cajas", QString(), 0.0, DSBCantidad->value() ) ) {
         QMessageBox::critical( this, "Error", "No se puede registrar el movimiento de salida en la caja de origen" );
-        QSqlDatabase::database().rollback();
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return;
     }
     if( !mv->agregarMovimiento( id_destino, "Transferencia entre cajas", QString(), DSBCantidad->value(), 0.0 ) ) {
         QMessageBox::critical( this, "Error", "No se pudo registrar el movimiento de entrada en la caja de destino" );
-        QSqlDatabase::database().rollback();
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return;
     }
-    QSqlDatabase::database().commit();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false  ).commit();
     QMessageBox::information( this, "Correcto", "La transferencia fue registrada correctamente" );
     this->close();
 }

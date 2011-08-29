@@ -184,7 +184,7 @@ void FormFacturarServicio::facturar()
     QHash<int, int> comprobantes; // Guarda el paso con el id del recibo guardado
 
     // Genero la transación en la base de datos ( total )
-    QSqlDatabase::database().transaction();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
 
     //////////////////////////////////////////////////////////////////////////////
     // Genero los datos de cuando estoy cobrando
@@ -196,7 +196,7 @@ void FormFacturarServicio::facturar()
         PBProgreso->setRange( 0, 1 );
         PBProgreso->setValue( 1 );
         QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
-        QSqlDatabase::database().rollback();
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return;
     }
 
@@ -245,7 +245,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
-            QSqlDatabase::database().rollback();
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
             return;
         } else {
             // Si se genero correctamente ingreo el id en la cola para impresion luego.
@@ -263,7 +263,7 @@ void FormFacturarServicio::facturar()
                 PBProgreso->setRange( 0, 1 );
                 PBProgreso->setValue( 1 );
                 QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
-                QSqlDatabase::database().rollback();
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return;
             }
 #endif
@@ -279,7 +279,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
-            QSqlDatabase::database().rollback();
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
             return;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -302,7 +302,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
-            QSqlDatabase::database().rollback();
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
             break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -315,7 +315,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setRange( 0, 1 );
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
-            QSqlDatabase::database().rollback();
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
             return;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -325,7 +325,7 @@ void FormFacturarServicio::facturar()
         //qDebug( "------------------------------> fin bucle " );
     }
     // Guardo todos los datos
-    QSqlDatabase::database().commit();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
     LIndicador->setText( QString::fromUtf8( "Correcto! - Iniciando impresión de comprobantes" ) );
     PBProgreso->setRange( 0, 1 );
     PBProgreso->setValue( 1 );

@@ -47,7 +47,7 @@ VServicios::VServicios(QWidget *parent)
 
  addAction( ActAgregar );
  //addAction( ActModificar );
- //addAction( ActEliminar );
+ addAction( ActEliminar );
  addAction( ActCerrar );
 }
 

@@ -141,7 +141,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
          case MCuentaCorriente::LimiteExcedido:
          {
                  QMessageBox::information( 0, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
-                 QSqlDatabase::database().rollback();
+                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                  return -1;
                  break;
          }
@@ -153,7 +153,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
          case MCuentaCorriente::ErrorBuscarLimite:
          {
                  QMessageBox::information( 0, "Error", "No se pudo encontrar la cuenta corriente para el cliente buscado. No se registrará la venta." );
-                 QSqlDatabase::database().rollback();
+                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                  return -1;
                  break;
          }
@@ -237,7 +237,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
             case MCuentaCorriente::LimiteExcedido:
             {
                     QMessageBox::information( 0, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
-                    QSqlDatabase::database().rollback();
+                    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                     return -1;
                     break;
             }
@@ -249,7 +249,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
             case MCuentaCorriente::ErrorBuscarLimite:
             {
                     QMessageBox::information( 0, "Error", "No se pudo encontrar la cuenta corriente para el cliente buscado. No se registrará la venta." );
-                    QSqlDatabase::database().rollback();
+                    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                     return -1;
                     break;
             }

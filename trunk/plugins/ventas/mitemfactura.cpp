@@ -1,6 +1,7 @@
 #include "mitemfactura.h"
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlRecord>
 
 MItemFactura::MItemFactura(QObject *parent) :
     QSqlRelationalTableModel(parent) {
@@ -47,7 +48,24 @@ void MItemFactura::relacionar() {
 bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario ) {
     QSqlQuery cola;
     if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "SQLITE" ) {
-        /// @todo Agregar verificación de que existe realmente la factura
+        if( cola.exec( QString( "SELECT COUNT(id_factura) FROM factura WHERE id_factura = %1").arg( id_venta ) ) ) {
+            if( cola.next() ) {
+                if( cola.record().value(0).toInt() < 1 ) {
+                    qDebug( "No existe la factura que se paso como parametro para el item de factura" );
+                    return false;
+                }
+            } else {
+                qDebug( "Error al hacer next en la verificacion de que existe la factura para el item de factura" );
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
+                return false;
+            }
+        } else {
+            qDebug( "Error al hacer exec en la verificacion de que existe la factura para el item de factura" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            return false;
+        }
     }
     if( ! cola.prepare( "INSERT INTO item_factura( id_factura, cantidad, texto, precio_unitario ) VALUES ( :id_venta, :cantidad, :texto, :precio_unitario );" ) ) {
         qDebug( "Error al intentar preparar la cola de inserción" );
