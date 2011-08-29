@@ -123,6 +123,6 @@ void FormRecargos::setearId( const int id )
 {
     mrecargos->setearServicio( id );
     //actualizo el combo box
-    /// @todo Ver como hacer para poner en el combobox el servicio que corersponde
-    //this->CBServicios->setCurrentIndex(  );
+    /// @todo Ver como hacer para poner en el combobox el servicio que corresponde... ¿funca?
+    this->CBServicios->setCurrentIndex( this->CBServicios->findData( id )  );
 }

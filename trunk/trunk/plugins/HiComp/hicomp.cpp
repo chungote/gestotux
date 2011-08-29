@@ -115,9 +115,9 @@ void HiComp::crearMenu( QMenuBar *m )
 
 bool HiComp::verificarTablas( QStringList )
 {
- /*if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "recibos" ) )
+ /*if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ).contains( "recibos" ) )
  {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "clientes" ) )
+ if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ).contains( "clientes" ) )
  {qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }*/
  return true;
 }

@@ -50,6 +50,10 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool /*s */)
 
 MItemCuentaCorriente::~MItemCuentaCorriente()
 {
+    if( saldos != 0 ) {
+        delete saldos;
+        saldos = 0;
+    }
 }
 
 

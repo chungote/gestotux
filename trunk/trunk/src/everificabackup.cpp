@@ -49,7 +49,7 @@ EVerificaBackup::~EVerificaBackup()
  */
 void EVerificaBackup::verificar()
 {
- if( QSqlDatabase::database().driverName() != "QSQLITE" )
+ if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() != "QSQLITE" )
  { tiempo->stop(); delete tiempo; return; }
  preferencias *p = preferencias::getInstancia();
  int cant_dias = 0;

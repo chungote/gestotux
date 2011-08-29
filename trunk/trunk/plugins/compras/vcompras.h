@@ -32,10 +32,9 @@ class VCompras : public EVLista
   Q_OBJECT
 public:
     VCompras(QWidget *parent = 0);
-    ~VCompras();
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
-private slots:
-    void agregar();
+
+protected slots:
+    void agregar(bool autoeliminarid);
 };
 
 #endif

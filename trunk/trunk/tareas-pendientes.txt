@@ -75,6 +75,8 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 -- Compras --
 -------------
 - Verificar si es posible hacer autoagregado de productos dandolos de alta al agregarlos en una factura de compras.
+- Mejorar codigo de modelos y ventanas de agregado y modificacion.
+- ¿Eliminar compras?
 
 -- Ventas --
 ------------
@@ -109,6 +111,14 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 ------------
 - verificar sistema de autopago de recibos no pagados por ingreso de codigo de recibo. ( tanto manual como codigo de barras ).
 - Ver integraciòn de pagos de recibos con recargos de servicios.
+
+-- BSComputacion --
+-------------------
+
+- Generar integracion con gitextranet
+- Autopedido de compras?
+- Busqueda de precios con el proveedor.
+  - Definir forma de colocar recargo.
 
 ::::::::::::::::::::::::::
 ::: Pruebas para hacer :::

@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 #SUBDIRS = credenciales
 SUBDIRS +=  caja \
             gastos \
- #           compras \
+            compras \
             ventas \
             proveedor \
             productos \

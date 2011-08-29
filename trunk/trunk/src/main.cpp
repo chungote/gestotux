@@ -90,9 +90,9 @@ FILE *debug;
  */
 bool hacerTablas( QString nombrePlug )
 {
- if( QFile::exists( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) )
+ if( QFile::exists( ":/sql/"+nombrePlug+"."+QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName()+".sql" ) )
  {
-        QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" );
+        QFile archivo( ":/sql/"+nombrePlug+"."+QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName()+".sql" );
         if( archivo.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
                 QStringList cadenas = QString( archivo.readAll() ).split( ";" );
@@ -123,7 +123,7 @@ bool hacerTablas( QString nombrePlug )
  }
  else
  {
-  qWarning( qPrintable( "No se pudo generar las tablas del plugin " + nombrePlug + ". No se encontro el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+  qWarning( qPrintable( "No se pudo generar las tablas del plugin " + nombrePlug + ". No se encontro el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName()+".sql" ) );
   return false;
  }
 }
@@ -274,7 +274,7 @@ int main(int argc, char *argv[])
        // Inicia codigo general
        ////////////////////////////////////////////////////////////////////////////////////////////////////
        // Chequeo si existen las tablas, llegado este punto la base de datos debe estar abierta
-       QStringList tablas = QSqlDatabase::database().tables( QSql::Tables );
+       QStringList tablas = QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables );
        if( tablas.isEmpty() )
        {
                 // Es la primera vez que se arranca el programa
@@ -334,7 +334,7 @@ int main(int argc, char *argv[])
                                                 // todo ok
                                                 qDebug( "Tablas creadas correctamente" );
                                                 // Actualizo la lista de tablas para que incluya las ultimas agregadas
-                                                tablas = QSqlDatabase::database().tables();
+                                                tablas = QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables();
                                         }
                                         else
                                         {

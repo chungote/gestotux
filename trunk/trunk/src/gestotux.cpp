@@ -188,7 +188,7 @@ void gestotux::createStatusBar()
 gestotux::~gestotux()
 {
     // Cierro la base de datos
-    QSqlDatabase::database().close();
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).close();
 }
 
 /*!

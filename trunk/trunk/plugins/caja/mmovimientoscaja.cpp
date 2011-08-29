@@ -310,7 +310,7 @@ void MMovimientosCaja::ultimosMovimientosCaja( const int id_caja )
  */
 QString MMovimientosCaja::usuarioActual()
 {
-   if( QSqlDatabase::database().driverName() == "QMYSQL" ) {
+   if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QMYSQL" ) {
        QSqlQuery cola;
        if( cola.exec( "SELECT SUBSTRING_INDEX( USER(), '@', 1 );" ) )
        { cola.next(); return cola.record().value(0).toString(); } else { return "default"; }

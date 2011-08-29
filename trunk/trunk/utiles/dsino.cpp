@@ -90,7 +90,7 @@ void DSiNo::paint( QPainter *painter, const QStyleOptionViewItem &option, const 
     painter->translate( option.rect.x() + xOffset, option.rect.y() + yOffset);
     painter->scale( PaintingScaleFactor, PaintingScaleFactor);
 
-    if ( index.data(Qt::DisplayRole).toBool() ) {
+    if ( index.data(Qt::EditRole).toBool() ) {
             painter->drawPolygon( tickPolygon, Qt::WindingFill );
         } else {
             painter->drawPolygon( crossPolygon, Qt::WindingFill );

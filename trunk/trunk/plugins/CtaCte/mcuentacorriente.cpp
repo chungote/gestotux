@@ -129,6 +129,23 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
                 }
                 break;
         }
+        case Qt::EditRole:
+        {
+                switch( item.column() )
+                {
+                        case 6:
+                        {
+                                return QSqlRelationalTableModel::data( item, role ).toBool();
+                                break;
+                        }
+                        default:
+                        {
+                                return QSqlRelationalTableModel::data( item, role );
+                                break;
+                        }
+                }
+                break;
+        }
         default:
         {
                 return QSqlRelationalTableModel::data(item, role);

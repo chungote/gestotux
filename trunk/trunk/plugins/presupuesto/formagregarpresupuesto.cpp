@@ -141,7 +141,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      return;
  }
  // Inicio la transacción
- QSqlDatabase::database().transaction();
+ QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  MPresupuesto *mod = new MPresupuesto();
 
  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt();
@@ -170,12 +170,12 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
                                          m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()  // Precio unitario
                                        ) ) {
          qDebug( QString( "No se pudo agregar el item %1 del presupuesto a la base de datos" ).arg( fila ).toLocal8Bit() );
-         QSqlDatabase::database().rollback();
+         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
          return;
      }
  }
  // Si llego hasta aca, termine de guardar todos los datos y ninguno fallo
- QSqlDatabase::database().commit();
+ QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
  delete items;
  delete mod;
  // Imprimo el presupuesto
