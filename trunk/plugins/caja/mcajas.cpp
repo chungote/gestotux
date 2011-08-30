@@ -206,7 +206,9 @@ int MCajas::cajaPredeterminada()
     p->inicio();
     p->beginGroup( "Preferencias");
     p->beginGroup( "Caja" );
-    int id = p->value( "caja-predeterminada", -1 ).toInt();
+    p->beginGroup( "caja-predeterminada" );
+    int id = p->value( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName(), -1 ).toInt();
+    p->endGroup();
     p->endGroup();
     p->endGroup();
     p = 0;

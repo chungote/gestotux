@@ -27,7 +27,7 @@ class QSqlRecord;
 class QAction;
 class QTableView;
 class QMenu;
-class QModelIndex;
+#include <QModelIndex>
 
 /**
  * 	\brief Clase base para todas las ventanas de tipo lista

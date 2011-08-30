@@ -73,35 +73,33 @@ void DPagarRecibo::accept()
 {
     QMessageBox::critical( this, "error", "No implementado" );
     return;
+    bool ok = false;
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
     if( m->buscarSiPagado( this->_num_recibo ) ) {
         QMessageBox::warning( this, "Ya pagado", QString( "El recibo %1 ya esta como pagado en la base de datos." ).arg( this->_num_recibo.aCadena() ) );
-        delete m;
-        return;
-    }
-    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
-    // busco si corresponde a un recibo de servicio.
-    int id_recibo = m->buscarIdPorSerieNumero( this->_num_recibo );
-    MCobroServicioClientePeriodo *c = new MCobroServicioClientePeriodo();
-    if( c->verificarIdFactura( id_recibo ) ) {
-        c->colocarComoPagado( id_recibo, id_recibo );
-    }
-    // El recibo no esta pagado. Lo intento poner como pagado.
-    if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked() ) ) {
-        QMessageBox::warning( this, "¡Advertencia!", "Este sistema no esta considerando los recargos!!!" );
-        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
-        QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.aCadena() ) );
     } else {
-        QMessageBox::warning( this, "Error", "No se pudo poner como pagado. Verifique debug.txt" );
-        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
+        // busco si corresponde a un recibo de servicio.
+        int id_recibo = m->buscarIdPorSerieNumero( this->_num_recibo );
+        MCobroServicioClientePeriodo *c = new MCobroServicioClientePeriodo();
+        if( c->verificarIdFactura( id_recibo ) ) {
+            c->colocarComoPagado( id_recibo, id_recibo );
+        }
+        // El recibo no esta pagado. Lo intento poner como pagado.
+        if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked() ) ) {
+            QMessageBox::warning( this, "¡Advertencia!", "Este sistema no esta considerando los recargos!!!" );
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
+            QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.aCadena() ) );
+            ok = true;
+        } else {
+            QMessageBox::warning( this, "Error", "No se pudo poner como pagado. Verifique debug.txt" );
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        }
         delete c;
-        delete m;
-        return;
     }
-    delete c;
     delete m;
-    QDialog::accept();
+    if( ok ) { QDialog::accept(); } else { return; }
 }
 
 /*!

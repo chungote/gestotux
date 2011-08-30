@@ -42,7 +42,6 @@ VVentas::VVentas(QWidget *parent)
     this->vista->hideColumn( 0 );
     this->vista->hideColumn( 6 );
     this->vista->setAlternatingRowColors( true );
-    this->modelo->select();
 
     QAction *ActPagar = new QAction( this );
     ActPagar->setText( "Pagar" );
@@ -72,9 +71,11 @@ VVentas::VVentas(QWidget *parent)
     this->addAction( ActAgregar );
     //this->addAction( ActPagar );
     this->addAction( ActAnular );
-    this->addAction( new EActCerrar( this ) );
     this->addAction( ActSep );
     this->addAction( ActVerAnuladas );
+    this->addAction( ActVerTodos );
+    this->addAction( ActCerrar );
+
 }
 
 
@@ -99,8 +100,7 @@ void VVentas::anular()
     // Busco todos los IDs a anular
     if( this->modelo->rowCount() == 0 ) {
         // error, nada seleccionado....
-        qWarning( "No implementado todavía" );
-        // Solicito el numero de recibo
+        // Solicito el numero de factura
         bool ok = false;
         QString numero = QInputDialog::getText( this, "Ingrese numero", "Numero de Factura:", QLineEdit::Normal, QString(), &ok );
         if( ok ) {
@@ -168,7 +168,13 @@ void VVentas::pagar()
 void VVentas::cambioVerAnuladas( bool parametro )
 { qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro ); }
 
-
+/*!
+ * \fn VVentas::imprimirAnulacion( const int id_factura, const QString razon, const QString numero )
+ * Anula la factura e imprime el reporte correspondiente
+ * \param id_factura ID de la factura a anular
+ * \param razon Razon por la cual se anula
+ * \param numero Identificador de comprobante que se pasa para el cuadro de dialogo
+ */
 void VVentas::imprimirAnulacion( const int id_factura, const QString razon, const QString numero )
 {
     if( MFactura::anularFactura( id_factura, razon, QDateTime::currentDateTime() ) ) {

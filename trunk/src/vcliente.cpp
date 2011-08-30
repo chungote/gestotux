@@ -32,6 +32,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QModelIndex>
 
 
 VCliente::VCliente( QWidget *parent )
@@ -61,6 +62,8 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->hideColumn( mc->fieldIndex( "id_estado_fiscal" ) );
  vista->setAlternatingRowColors( true );
+
+ connect( vista, SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( modificarIndice( QModelIndex ) ) );
 
  QAction *ActLista = new QAction( this );
  ActLista->setText( "Listado" );
@@ -104,6 +107,17 @@ void VCliente::modificar()
     emit agregarVentana( f );
 }
 
+
+
+/*!
+  \fn VCliente::modificarIndice( QModelIndex m)
+ */
+void VCliente::modificarIndice( QModelIndex m )
+{
+    FormCliente *f = new FormCliente( this, mc );
+    f->setearCliente( m );
+    emit agregarVentana( f );
+}
 
 #include "EReporte.h"
 void VCliente::listadoClientes() {

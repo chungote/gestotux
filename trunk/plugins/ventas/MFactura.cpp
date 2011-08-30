@@ -458,5 +458,32 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
  */
 int MFactura::idFacturaPorComprobante( const QString numero )
 {
+ QSqlQuery cola;
+ NumeroComprobante *n = new NumeroComprobante( 0, -1, -1 );
+ n->desdeString( numero );
+ if( !n->esValido() )  {
+     qDebug( "El numero de comprobante es invalido" );
+     delete n;
+     return -1;
+ }
+ // Numero de comprobante valido
+ if( cola.exec( QString( "SELECT id_factura FROM factura WHERE serie = %1 AND numero = %1" ).arg( n->serie() ).arg( n->numero() ) ) ) {
+     if( cola.next() ) {
+         int valor = cola.record().value(0).toInt();
+         if( valor > 0 ) {
+             delete n;
+             return valor;
+         } else {
+             qDebug( "Error de numero de id al buscar factura por numero de comprobante" );
+         }
+     } else {
+         qDebug( "Error al hacer next en el id de factura según comprobante" );
+     }
+ } else {
+     qDebug( "Error al hacer exec en el id de factura según comprobante" );
+     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+ }
+ delete n;
  return -1;
 }
