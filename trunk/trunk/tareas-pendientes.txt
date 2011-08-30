@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 
 -- HiComp --
 ------------
-- verificar sistema de autopago de recibos no pagados por ingreso de codigo de recibo. ( tanto manual como codigo de barras ).
+- Verificar sistema de autopago de recibos no pagados por ingreso de codigo de recibo. ( tanto manual como codigo de barras ).
 - Ver integraciòn de pagos de recibos con recargos de servicios.
 
 -- BSComputacion --

@@ -23,6 +23,7 @@
 #include <evlista.h>
 class MClientes;
 class BuscarCliente;
+class QModelIndex;
 
 /**
  * @brief Vista de la lista de Clientes
@@ -41,6 +42,9 @@ protected slots:
     void eliminar();
     void listadoClientes();
     void mostrarTodos();
+
+private slots:
+    void modificarIndice( QModelIndex m );
 
 private:
     MClientes *mc;

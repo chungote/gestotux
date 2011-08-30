@@ -72,7 +72,9 @@ void FormPrefCaja::cargar()
     ui->CkBFirma->setChecked( p->value( "firma", true ).toBool() );
     ui->CkBLogo->setChecked( p->value( "logo", true ).toBool() );
     ui->CkBResponsable->setChecked( p->value( "responsable", true ).toBool() );
-    ui->CBCaja->setCurrentIndex( p->value( "caja-predeterminada", -1 ).toInt() );
+    p->beginGroup( "caja-predeterminada" );
+    ui->CBCaja->setCurrentIndex( p->value( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName(), -1 ).toInt() );
+    p->endGroup();
     p->endGroup();
     p->endGroup();
 }
@@ -89,7 +91,10 @@ void FormPrefCaja::guardar()
     p->setValue( "firma", ui->CkBFirma->isChecked() );
     p->setValue( "logo", ui->CkBLogo->isChecked() );
     p->setValue( "responsable", ui->CkBResponsable->isChecked() );
-    p->setValue( "caja-predeterminada", ui->CBCaja->model()->data( ui->CBCaja->model()->index( ui->CBCaja->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    p->beginGroup( "caja-predeterminada" );
+    p->setValue( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName(),
+                 ui->CBCaja->model()->data( ui->CBCaja->model()->index( ui->CBCaja->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    p->endGroup();
     p->endGroup();
     p->endGroup();
 }

@@ -15,7 +15,7 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>clientes</name>
-  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, `tel_celular`, CONCAT( CONCAT( `calle`, ' ' ), `numero` ) AS direccion  FROM `clientes`</sql>
+  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, `tel_celular`, `calle` + ' ' + `numero` AS direccion  FROM `clientes`</sql>
  </querysource>
  <rpthead>
   <height>81.5916</height>
