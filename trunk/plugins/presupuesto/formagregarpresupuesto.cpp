@@ -183,11 +183,12 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  lista.append( Parameter( "id_presupuesto", id_presupuesto ) );
  if( id_cliente < 0 ) {
      lista.append( Parameter( "cliente_existe", false ) );
- } else {
+     lista.append( Parameter( "direccion", LEDireccion->text() ) );
+ } else if( id_cliente >= 0 ){
      lista.append( Parameter( "cliente_existe", true ) );
- }
- if( id_cliente > 0 ) {
-   lista.append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
+     lista.append( Parameter( "direccion", LEDireccion->text() ) );
+     if( id_cliente > 0 )
+         lista.append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
  }
  EReporte *rep = new EReporte( this );
  rep->presupuesto();
