@@ -25,6 +25,7 @@
 #include "eplugin.h"
 #include <QList>
 #include <QHash>
+#include <qglobal.h>
 
 class EInfoProgramaInterface;
 class EInterfazEmail;
@@ -39,6 +40,7 @@ class ERegistroPlugins : public QObject
 {
 Q_OBJECT
 public:
+
     static EInfoProgramaInterface *pluginInfo();
     static QList<EPlugin *> plugins();
     static EInterfazEmail *pluginEmail();
@@ -53,7 +55,10 @@ public:
     bool pluginInfoSeteado();
 
 private:
-        ERegistroPlugins(QWidget *parent = 0);
+   ERegistroPlugins(QObject *parent = 0);
+   ERegistroPlugins( const ERegistroPlugins & ); // oculto constructor de copia
+   ERegistroPlugins &operator=(const ERegistroPlugins & ); // oculto operador de asignacion
+
 	static QHash<QString, EPlugin *> *_plugins;
 	static EInfoProgramaInterface *_pluginInfo;
 	static EInterfazEmail *_pluginEmail;

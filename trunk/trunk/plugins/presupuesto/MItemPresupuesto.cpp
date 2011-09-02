@@ -55,18 +55,20 @@ void MItemPresupuesto::relacionar() {}
 bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario ) {
  QSqlQuery cola;
  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QSQLITE" ) {
-     if( cola.exec( QString( "SELECT COUNT(id_presupuesto) FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+     if( cola.exec( QString( "SELECT COUNT(id_presupuesto) FROM presupuestos WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
          if( cola.next() ) {
              if( cola.record().value(0).toInt() <= 0 ) {
                  qDebug( "Conteo de cantidad de presupuestos con el identificador pasado fue menor o igual que uno" );
                  return false;
              }
          } else {
-             qDebug( "Error al intentar hacer next de la cola de verificación de si existe el presupuesto" );
+             qDebug( "Error al intentar hacer next de la cola de verificacion de si existe el presupuesto" );
              return false;
          }
      } else {
-          qDebug( "Error de exec al intentar ejecutar la cola de verificación de si existe el presupeusto" );
+          qDebug( "Error de exec al intentar ejecutar la cola de verificacion de si existe el presupeusto" );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug( cola.lastError().text().toLocal8Bit() );
           return false;
      }
  }

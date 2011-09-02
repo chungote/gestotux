@@ -23,18 +23,16 @@
   <name>presupuesto</name>
   <sql>&lt;? if value("cliente_existe")?>
 SELECT c.razon_social AS destinatario,
-       c.calle AS direccion,
-       DATE_FORMAT( p.fecha, '%d/%m/%Y' ) AS fecha,
+       strftime('%d/%m/%Y', p.fecha) AS fecha,
        p.total As total,
-       CONCAT( CONCAT( LPAD( p.serie, 5, 0 ), '-' ), LPAD( p.numero, 5, 0 ) ) AS NumSerie
+       substr( '0000000000' || p.serie, -10, 10) + '-' + substr( '0000000000' ||p.numero, -10, 10) AS NumSerie
 FROM presupuestos AS p, clientes AS c
 WHERE p.id_cliente = c.id AND p.id_presupuesto = &lt;? value( "id_presupuesto" ) ?>;
 &lt;? else ?>
 SELECT p.destinatario AS destinatario,
-       p.direccion AS direccion,
-       DATE_FORMAT( p.fecha, '%d/%m/%Y' ) AS fecha,
+       strftime('%d/%m/%Y', p.fecha) AS fecha,
        p.total As total,
-       CONCAT( CONCAT( LPAD( p.serie, 5, 0 ), '-' ), LPAD( p.numero, 5, 0 ) ) AS NumSerie
+       substr( '0000000000' || p.serie, -10, 10) + '-' + substr( '0000000000' ||p.numero, -10, 10) AS NumSerie
 FROM presupuestos AS p
 WHERE p.id_presupuesto = &lt;? value( "id_presupuesto" ) ?>;
 &lt;? endif ?></sql>
@@ -296,7 +294,7 @@ end
    <left/>
    <vcenter/>
    <data>
-    <query>presupuesto</query>
+    <query>Parameter Query</query>
     <column>direccion</column>
    </data>
   </field>
@@ -518,7 +516,7 @@ end
    </font>
    <hcenter/>
    <vcenter/>
-   <string>Documento no valido como factura - La validez de este presupuesto esta limitada a 15 diÂ­as.</string>
+   <string>Documento no valido como factura - La validez de este presupuesto esta limitada a 15 di­as.</string>
   </label>
   <line>
    <xstart>31</xstart>
