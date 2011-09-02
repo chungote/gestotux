@@ -233,6 +233,17 @@ END
 
 Procedimiento utilizado para actualizar todos los nombres de clientes de una version de tabla de datos de clientes a otra.
 
+Como realizar la conversion lpda(mysql) -> sqlite
+
+-- the statement below is almost the same as
+-- select lpad(mycolumn,'0',10) from mytable
+
+select substr('0000000000' || mycolumn, -10, 10) from mytable
+
+-- the statement below is almost the same as
+-- select rpad(mycolumn,'0',10) from mytable
+
+select substr(mycolumn || '0000000000', 1, 10) from mytable
 
 Temas de Jazz:
 ===== == =====

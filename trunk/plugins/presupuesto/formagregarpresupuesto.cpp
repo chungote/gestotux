@@ -219,15 +219,17 @@ void FormAgregarPresupuesto::agregarProducto()
     { QMessageBox::information( this, "Error de dato", "La cantidad a agregar debe ser mayor que cero", QMessageBox::Ok ); return; }
     if( CBProductos->currentText().isEmpty() )
     { QMessageBox::information( this, "Error de datos", "Ingrese un producto a agregar", QMessageBox::Ok ); return; }
-    // Inserto la fila
-    m->insertRow( -1 );
+    // Inserto el producto
+    m->agregarNuevoProducto( DSBCant->value(), CBProductos->currentText() );
+
+    /*m->insertRow( -1 );
     // Pongo el producto
     QModelIndex indice_cant = m->index( m->rowCount()-2, 0 );
     QModelIndex indice_prod = m->index( m->rowCount()-2, 1 );
     int id_producto = CBProductos->model()->data( CBProductos->model()->index( CBProductos->currentIndex(), 0 ) , Qt::EditRole ).toInt();
     m->setData( indice_prod, id_producto, Qt::EditRole );
     // Pongo la cantidad
-    m->setData( indice_cant, DSBCant->value(), Qt::EditRole );
+    m->setData( indice_cant, DSBCant->value(), Qt::EditRole );*/
     // Reseteo los ingresos de producto
     DSBCant->setValue( 1.0 );
     CBProductos->setCurrentIndex( -1 );

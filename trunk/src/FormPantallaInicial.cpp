@@ -46,7 +46,7 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     this->TBResumenCtaCte->setVisible( false );
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-    // Plugins
+    // ERegistroPlugins::getInstancia
     ////////////////////////////////////////////////////////////////////////////////////////////
     //  Presupuestos
     if( ERegistroPlugins::getInstancia()->existePlugin( "presupuesto" ) ) {

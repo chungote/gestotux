@@ -38,6 +38,8 @@ public:
 
 private:
     preferencias();
+    preferencias( preferencias & );
+    preferencias( const preferencias & );
     /*!
      * Puntero que guarda una referencia estatica a si mismo
      * De esa manera se mantiene las mismas preferencias a pesar de ser llamado muchas veces
