@@ -69,6 +69,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         CBProducto->setEditable( true );
         CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
         CBProducto->setCurrentIndex( -1 );
+        CBProducto->setInsertPolicy( QComboBox::NoInsert );
 
         DEFecha->setMaximumDate( QDate::currentDate() );
         DEFecha->setDate( QDate::currentDate() );
