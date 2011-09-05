@@ -100,9 +100,29 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
  }
 }
 
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QSqlRecord>
 
+/*!
+ * \fn MProveedor::tieneDatosRelacionados( const int id_proveedor )
+ * Devuelve verdadero si el ID del proveedor posee algun dato relacionado
+ * \param id_proveedor Identificador del proveedor
+ * \returns Verdadero si existe algun dato relacionado - Falso en caso contrario ( es posible su eliminacion )
+ */
 bool MProveedor::tieneDatosRelacionados( const int id_proveedor )
 {
-    /// @todo Realizar verificación
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id_proveedor) FROM compras WHERE id_proveedor = %1" ).arg( id_proveedor ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() <= 0 ) {
+                return false;
+            }
+        }
+    } else {
+        qDebug( "error de cola" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
     return true;
 }
