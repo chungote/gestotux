@@ -55,6 +55,10 @@ MPagos::MPagos(QObject *parent, bool relaciones )
  if( relaciones ) { relacionar(); }
 }
 
+/*!
+ * \fn MPagos::inicializar()
+ * Inicializa el modelo
+ */
 void MPagos::inicializar()
 {
     setTable( "recibos" );
@@ -71,6 +75,10 @@ void MPagos::inicializar()
     setHeaderData( 10, Qt::Horizontal, "ID mov caja" );
 }
 
+/*!
+ * \fn MPagos::relacionar()
+ * Inicializa las relaciones del  modelo
+ */
 void MPagos::relacionar()
 {
     setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );

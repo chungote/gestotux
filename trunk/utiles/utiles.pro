@@ -24,7 +24,8 @@ HEADERS += eactcerrar.h \
            EReporte.h \
            ../plugins/productos/mproductos.h \
            NumeroComprobante.h \
-    ELECuitCuil.h
+           ELECuitCuil.h \
+           ecbproductos.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -48,14 +49,14 @@ SOURCES += eactcerrar.cpp \
            ../plugins/productos/mproductos.cpp \
            NumeroComprobante.cpp \
            EReporte.cpp \
-    ELECuitCuil.cpp
+           ELECuitCuil.cpp \
+           ecbproductos.cpp
 
 QT += sql
 
 CONFIG +=   staticlib \
             help \
-            exceptions \
-            debug
+            exceptions
 
 RESOURCES += utiles.qrc
 
@@ -67,3 +68,5 @@ TRANSLATIONS += utiles.ts
 
 INCLUDEPATH += ../src \
                ../reporte
+
+

@@ -31,6 +31,10 @@ MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
  if( relaciones ) { relacionar(); }
 }
 
+/*!
+ * \fn MCuentaCorriente::inicializar()
+ * Inicializa el modelo
+ */
 void MCuentaCorriente::inicializar()
 {
  setHeaderData( 0, Qt::Horizontal, "Numero de cuenta" );
@@ -42,6 +46,10 @@ void MCuentaCorriente::inicializar()
  setHeaderData( 6, Qt::Horizontal, "Suspendida" );
 }
 
+/*!
+ * \fn MCuentaCorriente::relacionar()
+ * Crea las relaciones para el modelo
+ */
 void MCuentaCorriente::relacionar()
 {
  setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
@@ -273,6 +281,9 @@ bool MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const doubl
 
 /*!
     \fn MCuentaCorriente::saldo( const QString numero_cuenta )
+    Devuelve el saldo de una cuenta corriente
+    \param numero_cuenta Numero de la cuenta corriente
+    \return El saldo o MCuentaCorriente::ErrorBuscarSaldo
  */
 double MCuentaCorriente::saldo( const QString numero_cuenta )
 {
@@ -321,6 +332,11 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
     }
 }
 
+/*!
+ * \fn MCuentaCorriente::filtrarSoloDeudoras( bool sino )
+ * Setea el filtro del modelo para que solo tenga las cuentas tales que el saldo es >= que el limite
+ * \param sino Habilitado el filtro o no
+ */
 void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
 {
     if( sino ) {
@@ -330,6 +346,12 @@ void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
     }
 }
 
+/*!
+ * \fn MCuentaCorriente::existeCuenta( cost QString num_cuenta )
+ * Realiza la busqueda de si existe la cuenta corriente o no
+ * \param num_cuenta Numero de cuenta corriente
+ * \return Verdadero si existe, falso si no existe o hubo un error
+ */
 bool MCuentaCorriente::existeCuenta( const QString num_cuenta )
 {
     QSqlQuery cola;
