@@ -37,6 +37,10 @@ ERegistroPlugins::~ERegistroPlugins()
 {
 }
 
+/*!
+ * \fn ERegistroPlugins::getInstancia()
+ * Devuelve una instancia unica de este objeto
+ */
 ERegistroPlugins* ERegistroPlugins::getInstancia()
 {
  if (instance==0)
@@ -46,6 +50,10 @@ ERegistroPlugins* ERegistroPlugins::getInstancia()
  return instance;
 }
 
+/*!
+ * \fn ERegistroPlugins::pluginInfo()
+ * Devuelve un puntero al plugin de EInfoProgramaInterface que esta activo.
+ */
 EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
 {
  if( _pluginInfo != 0 )
@@ -61,7 +69,8 @@ EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
 
 
 /*!
-    \fn ERegistroPlugins::plugins()
+ * \fn ERegistroPlugins::plugins()
+ * Devuelve el listado de punteros a los plugins que se encuentran cargados como un QList
  */
 QList<EPlugin *> ERegistroPlugins::plugins()
 {
@@ -69,21 +78,25 @@ QList<EPlugin *> ERegistroPlugins::plugins()
 }
 
 /*!
-    \fn ERegistroPlugins::pluginsHash()
+ *   \fn ERegistroPlugins::pluginsHash()
+ * Devuelve un listado de los plugins que estan cargados con un Hash <nombre, puntero>
  */
 QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
 { return _plugins; }
 
-
+/*!
+ * \fn ERegistroPlugins::pluginEmail()
+ * Devuelve el puntero al plugin de email activo
+ */
 EInterfazEmail *ERegistroPlugins::pluginEmail()
 {
  return _pluginEmail;
 }
 
 
-
 /*!
-    \fn ERegistroPlugins::agregarPlugin( EPlugin *obj )
+ * \fn ERegistroPlugins::agregarPlugin( EPlugin *obj )
+ * Agrega el plugin pasado como parametro a la lista interna
  */
 void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 {
@@ -92,8 +105,8 @@ void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 
 
 /*!
-    \fn ERegistroPlugins::plugin( const QString &nombre )
-        Devuelve el objeto referenciante al plugin con ese nombre
+ * \fn ERegistroPlugins::plugin( const QString &nombre )
+ * Devuelve el objeto referenciante al plugin con ese nombre
  */
 EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 {
@@ -102,8 +115,8 @@ EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 
 
 /*!
-    \fn ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
-        Setea el objeto de plugin de informacion
+ * \fn ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
+ * Setea el objeto de plugin de informacion
  */
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
@@ -113,16 +126,17 @@ void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 
 
 /*!
-    \fn ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
+ * \fn ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
+ * Setea el objeto de plugin de email
  */
 void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
-{
-  _pluginEmail = obj;
-}
+{  _pluginEmail = obj; }
 
 
 /*!
-    \fn ERegistroPlugins::existePlugin( const QString &nombre )
+ * \fn ERegistroPlugins::existePlugin( const QString &nombre )
+ * Verifica la existencia de un plugin especifico en los plugins cargados
+ * \return Verdadero si existe, Falso en caso contrario.
  */
 bool ERegistroPlugins::existePlugin( const QString &nombre )
 {
@@ -130,7 +144,8 @@ bool ERegistroPlugins::existePlugin( const QString &nombre )
 }
 
 /*!
-  \fn ERegistroPlugins::pluginInfoSeteado()
+ * \fn ERegistroPlugins::pluginInfoSeteado()
+ * Devuelve si esta seteado el plugin de informacion del programa
  */
 bool ERegistroPlugins::pluginInfoSeteado() {
     if( _pluginInfo == 0 ) { return false; } else { return true; }

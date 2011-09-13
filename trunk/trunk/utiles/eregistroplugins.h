@@ -32,10 +32,10 @@ class EInterfazEmail;
 
 /**
  * \brief Registrador de plugins cargados
-Clase que mantiene la lista de plugins y los muestra en un formulario de preferencias
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * Clase que mantiene la lista de plugins y los muestra en un formulario de preferencias
+ *
+ *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class ERegistroPlugins : public QObject
 {
 Q_OBJECT
@@ -45,12 +45,14 @@ public:
     static QList<EPlugin *> plugins();
     static EInterfazEmail *pluginEmail();
     static QHash<QString, EPlugin *> *pluginsHash();
-    ~ERegistroPlugins();
-    void agregarPlugin( EPlugin *obj );
-    EPlugin *plugin( const QString &nombre );
-    void setPluginInfo( EInfoProgramaInterface *obj );
     static ERegistroPlugins *getInstancia();
+
+    EPlugin *plugin( const QString &nombre );
+
+    void setPluginInfo( EInfoProgramaInterface *obj );
+    void agregarPlugin( EPlugin *obj );
     void setPluginEmail( EInterfazEmail *obj );
+
     bool existePlugin( const QString &nombre );
     bool pluginInfoSeteado();
 
@@ -59,10 +61,12 @@ private:
    ERegistroPlugins( const ERegistroPlugins & ); // oculto constructor de copia
    ERegistroPlugins &operator=(const ERegistroPlugins & ); // oculto operador de asignacion
 
-	static QHash<QString, EPlugin *> *_plugins;
-	static EInfoProgramaInterface *_pluginInfo;
-	static EInterfazEmail *_pluginEmail;
-	static ERegistroPlugins *instance;
+   ~ERegistroPlugins();
+
+   static QHash<QString, EPlugin *> *_plugins;
+   static EInfoProgramaInterface *_pluginInfo;
+   static EInterfazEmail *_pluginEmail;
+   static ERegistroPlugins *instance;
 
 };
 

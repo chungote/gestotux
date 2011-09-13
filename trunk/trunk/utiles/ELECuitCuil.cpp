@@ -19,6 +19,8 @@ bool ELECuitCuil::verificar()
     QString texto = this->text();
     // Separo el codigo de verificación
     QStringList partes = texto.split( "-" );
+    if( partes.count() < 2 )
+        return false;
     // 1 -  primera cifra
     // 2 -  numero de doc o ref
     // 3 -  verificacion
