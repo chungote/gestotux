@@ -306,6 +306,14 @@ void FormAgregarVenta::guardar()
  */
 void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
 {
+ // Busco la dirección
+ if( CBCliente->currentIndex() != 0 ) {
+     int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
+ } else {
+     qDebug( "Cliente consumidor final - Sin direccion" );
+ }
+ // Veo si esta habilitado el cliente
  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
   int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
@@ -327,10 +335,5 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
    RBCtaCte->setEnabled( false );
    return;
   }
- }
- // Busco la dirección
- if( CBCliente->currentIndex() != 0 ) {
-     int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
-     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
  }
 }

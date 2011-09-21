@@ -93,12 +93,12 @@ QString MClientes::direccionEntera(int id_cliente) {
             if( !cola.record().value(4).isNull()) {
                 ret.append( " - " + cola.record().value(4).toString() );
             }
-            if( !cola.record().value(5).isNull()) {
+            /*if( !cola.record().value(5).isNull()) {
                 ret.append( " - CP " + cola.record().value(5).toString() );
             }
             if( !cola.record().value(6).isNull()) {
                 ret.append( " - " + cola.record().value(6).toString() );
-            }
+            }*/
             return ret;
         } else {
             qDebug( "Error haciendo next en la cola para obtener la direcicon de un cliente");
