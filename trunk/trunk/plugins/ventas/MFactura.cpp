@@ -102,6 +102,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
 
   // recorro el modelo y guardo los datos
   MItemFactura *mi = new MItemFactura();
+  // Tengo que utilizar siempre el mismo objeto para evitar errores de indice de id_item_factura
   for( int i= 0; i<mcp->rowCount(); i++ )
   {
    if( mi->agregarItemFactura( id_venta,
