@@ -32,7 +32,6 @@ public:
     QString companeros();
     bool publicidad();
     QString reporte( int tipo );
-    void reporteParametros(int, QString &, ParameterList &);
     QImage imagenPrograma() const;
 
 

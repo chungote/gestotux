@@ -353,15 +353,18 @@ int main(int argc, char *argv[])
                                 // veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
                                 if( plug->tipo() == EPlugin::info && !ERegistroPlugins::getInstancia()->pluginInfoSeteado() )
                                 {
-                                        ERegistroPlugins::getInstancia()->setPluginInfo( qobject_cast<EInfoProgramaInterface *>(obj) );
-                                        preferencias::getInstancia()->inicio();
-                                        preferencias::getInstancia()->setValue( "pluginInfo", plug->nombre() );
+                                        EInfoProgramaInterface *e = qobject_cast<EInfoProgramaInterface *>(obj);
+                                        ERegistroPlugins::getInstancia()->setPluginInfo( e );
+                                        preferencias::getInstancia()->setValue( "Preferencias/pluginInfo", plug->nombre() );
+                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/Recibos", e->reporte( EReporte::Recibo ) );
+                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/Factura", e->reporte( EReporte::Factura ) );
+                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/Presupuesto", e->reporte( EReporte::Presupuesto ) );
+                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/AnulacionFactura", e->reporte( EReporte::AnulacionFactura ) );
                                 }
                                 else if ( plug->tipo() == EPlugin::email )
                                 {
                                         ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
-                                        preferencias::getInstancia()->inicio();
-                                        preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
+                                        preferencias::getInstancia()->setValue( "Preferencias/pluginEmail", plug->nombre() );
                                 }
                         }
                         else
