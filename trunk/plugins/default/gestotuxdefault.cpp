@@ -100,6 +100,4 @@ QString GestotuxDefault::reporte( int tipo ) {
     }
 }
 
-void GestotuxDefault::reporteParametros( int /*tipo*/, QString &/*nombre*/, ParameterList &/*lista*/ ) { return; }
-
 Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault )

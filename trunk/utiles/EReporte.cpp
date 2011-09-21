@@ -23,10 +23,10 @@
 #include <QFile>
 #include <QSqlDatabase>
 #include <QSqlDriver>
-#include "eregistroplugins.h"
 #include <QApplication>
 #include <QFile>
 #include <QDomDocument>
+#include "preferencias.h"
 
 EReporte::EReporte( QObject *padre )
     : QObject() {
@@ -61,8 +61,6 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
     if( !parametros.isEmpty() ) {
         _parametros = parametros;
     }
-
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 
     // Seteo si esta con el original o el duplicado o triplicado, etc...
     /*ParameterList _original = _parametros;
@@ -136,7 +134,9 @@ bool EReporte::especial( const QString nombre, ParameterList parametros ) {
 void EReporte::presupuesto() {
     _tipo = EReporte::Presupuesto;
     // Busco el tipo de presupuesto que se desea
-    _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Presupuesto" ).toString();
+    if( _nombre.isEmpty() )
+        _nombre = "Presupuesto";
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -148,7 +148,9 @@ void EReporte::presupuesto() {
 void EReporte::factura() {
     _tipo = EReporte::Factura;
     // Busco el tipo de presupuesto que se desea
-    _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Factura" ).toString();
+    if( _nombre.isEmpty() )
+        _nombre = "Factura";
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -160,7 +162,9 @@ void EReporte::factura() {
 void EReporte::recibo() {
     _tipo = EReporte::Recibo;
     // Busco el tipo de presupuesto que se desea
-    _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );
+    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Recibo" ).toString();
+    if( _nombre.isEmpty() )
+        _nombre = "Recibo";
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -172,9 +176,9 @@ void EReporte::recibo() {
  */
 void EReporte::anulacionFactura() {
     _tipo = EReporte::AnulacionFactura;
-/*
-    _nombre = ERegistroPlugins::getInstancia()->pluginInfo()->reporte( _tipo );*/
-    _nombre = "AnulacionFactura";
+    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/AnulacionFactura" ).toString();
+    if( _nombre.isEmpty() )
+        _nombre = "AnulacionFactura";
     cargar( _nombre );
 }
 

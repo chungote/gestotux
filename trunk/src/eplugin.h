@@ -61,9 +61,9 @@ public:
     virtual void crearToolBar( QToolBar *t ) = 0;
     // Slot para desinicializar los plugins
     virtual void seCierraGestotux() = 0;
-    // Señal que debe implementarse
+    // SeÃ±al que debe implementarse
     virtual void agregarVentana( QWidget *v ) = 0;
-    // Señal para agregar Dockwidgets
+    // SeÃ±al para agregar Dockwidgets
     virtual void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana ) = 0;
     // Funcion para el boton de la pantalla inicial
     virtual QAction *botonPantallaInicial() = 0;

@@ -95,10 +95,4 @@ QString BSComputacion::reporte( int tipo )
     }
 }
 
-
-void BSComputacion::reporteParametros(int, QString &, ParameterList &)
-{
-    return;
-}
-
 Q_EXPORT_PLUGIN2( bscomputacion, BSComputacion )
