@@ -23,7 +23,6 @@
 #include "preferencias.h"
 #include <QSqlDatabase>
 
-Q_EXPORT_PLUGIN2( productos, productos );
 
 
 /*!
@@ -81,7 +80,7 @@ bool productos::inicializar()
  ////////////////////////////////
  // Muestra las categorias
  ////////////////////////////////
- ActCategorias = new QAction( "Categorias", this );
+ ActCategorias = new QAction( "Categorias de Productos", this );
  ActCategorias->setStatusTip( "Muestra las categorias de productos que hay" );
  ActCategorias->setIcon( QIcon( ":/imagenes/categorias.jpg" ) );
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( categorias() ) );
@@ -110,9 +109,7 @@ bool productos::verificarTablas( QStringList tablas )
     \fn productos::tipo() const
  */
 int productos::tipo() const
-{
- return EPlugin::comun;
-}
+{  return EPlugin::comun; }
 
 
 /*!
@@ -121,14 +118,12 @@ int productos::tipo() const
 void productos::crearMenu( QMenuBar *m )
 {
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHer == 0 )
- {
-     qDebug( "Productos::Error en las baras de menu" );
- }
- else
- {
-  menuHer->addAction( ActProductos );
-  menuHer->addAction( ActCategorias );
+ if( menuHer != 0 ) {
+     QMenu *menuProductos = menuHer->addMenu( "Productos" );
+     menuProductos->setObjectName( "menuProductos" );
+     menuProductos->addAction( ActProductos );
+     if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+     { menuProductos->addAction( ActCategorias ); }
  }
 }
 
@@ -138,9 +133,7 @@ void productos::crearMenu( QMenuBar *m )
         Devuelve la version del plugin
  */
 double productos::version() const
-{
- return 0.12;
-}
+{ return 0.12; }
 
 /*!
     \fn productos::verProductos()
@@ -153,11 +146,8 @@ void productos::verProductos()
 /*!
     \fn productos::crearToolBar( QToolBar *t )
  */
-void productos::crearToolBar( QToolBar *t )
-{
-    (void)t;
- return;
-}
+void productos::crearToolBar( QToolBar */*t*/ )
+{}
 
 /*!
     \fn productos::categorias()
@@ -172,3 +162,6 @@ void productos::categorias()
  */
 void productos::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(productos); return; }
+
+
+Q_EXPORT_PLUGIN2( productos, productos )

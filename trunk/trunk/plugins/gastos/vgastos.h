@@ -30,10 +30,8 @@ class VGastos : public EVLista
 Q_OBJECT
 public:
     VGastos( QWidget* parent = 0 );
-    ~VGastos();
 
 protected slots:
-    virtual void antes_de_insertar(int row, QSqlRecord& record);
     void eliminar();
 
 private slots:

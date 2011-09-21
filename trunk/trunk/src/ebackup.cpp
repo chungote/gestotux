@@ -70,12 +70,12 @@ Ebackup::Ebackup( QWidget* parent )
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActIniciar = new QAction( "Iniciar", this );
- ActIniciar->setStatusTip( "Inincia la generación de los backups" );
+ ActIniciar->setStatusTip( "Inincia la generaciÃ³n de los backups" );
  ActIniciar->setIcon( QIcon( ":/imagenes/next.png" ) );
  connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( iniciar() ) );
 
  ActDetener = new QAction( "Detener", this );
- ActDetener->setStatusTip( "Detiene la ejecución actual del backup" );
+ ActDetener->setStatusTip( "Detiene la ejecuciÃ³n actual del backup" );
  ActDetener->setIcon( QIcon( ":/imagenes/stop.png" ) );
  connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( detener() ) );
  connect( this, SIGNAL( cambiarDetener( bool ) ), ActDetener, SLOT( setEnabled( bool ) ) );
@@ -95,6 +95,8 @@ Ebackup::Ebackup( QWidget* parent )
  Pestanas->widget( 0 )->setObjectName( "crearBackup" );
  Pestanas->widget( 1 )->setObjectName( "restaurarBackup" );
  Pestanas->setCurrentIndex(0);
+ /// @todo Oculto la pestaña de restaurar backup hasta que lo tenga implementado y probado
+ Pestanas->setTabEnabled( 1, false );
 }
 
 
@@ -110,7 +112,7 @@ Ebackup::~Ebackup()
  */
 void Ebackup::iniciar()
 {
- // Ver en que pesta�a esta
+ // Ver en que pestaï¿½a esta
  if( Pestanas->currentIndex() == 0 )
  {
   generarBackup();
@@ -122,7 +124,7 @@ void Ebackup::iniciar()
  }
  else
  {
-  qWarning( "Pestaña desconocida" );
+  qWarning( "PestaÃ±a desconocida" );
  }
 }
 
@@ -506,7 +508,7 @@ void Ebackup::restaurarBackup()
   regenerarPreferencias( pref.string() );
   contenido.remove( 0, posfinal + QString( "<-preferencias<-|").size() );
  }
- // fin de la recuperaci�n
+ // fin de la recuperación
  return;
 }
 
@@ -532,7 +534,7 @@ void Ebackup::abrirArchivoBackup()
 /*!
     \fn Ebackup::ejecutarColas( QStringList colas )
     Metodo utilizado para ejecutar las consultas SQl definidas en @param colas en la base de datos.
-    Todas las consultas se realizan dentro de una transacci�n, y de fallar cualquiera de las consultas, se realiza un rollback.
+    Todas las consultas se realizan dentro de una transacción, y de fallar cualquiera de las consultas, se realiza un rollback.
     @param colas Lista de QString con las consultas SQL dentro.
     @return Verdadero si todas las consultas fueron ejecutadas correctamente.
  */

@@ -61,17 +61,6 @@ VGastos::VGastos( QWidget* parent )
  addAction( ActCerrar );
 }
 
-
-VGastos::~VGastos()
-{
-}
-
-void VGastos::antes_de_insertar(int row, QSqlRecord& record)
-{
-    (void)row;(void)record;
-    return;
-}
-
 #include "formagregargasto.h"
 #include "mcategoriasgastos.h"
 #include <QMessageBox>

@@ -44,6 +44,7 @@ VCliente::VCliente( QWidget *parent )
  setWindowIcon( QIcon( ":/imagenes/clientes.png" ) );
 
  mc = new MClientes( vista );
+ mc->setFilter( "id != 0" );
  modelo = 0;
  rmodelo = 0;
  vista->setModel( mc );
@@ -161,6 +162,4 @@ void VCliente::eliminar()
 }
 
 void VCliente::mostrarTodos()
-{
-    this->mc->select();
-}
+{ this->mc->select(); }
