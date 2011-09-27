@@ -217,10 +217,11 @@ void FormAgregarVenta::guardar()
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      return;
  }
- if( CBCliente->currentIndex() == 0 && LEDireccion->text().isEmpty() ) {
-     QMessageBox::warning( this, "Error", "No ingreso una dirección para el cliente" );
+ /// @todo ver si esta restriccion tiene sentido
+ /*if( CBCliente->currentIndex() == 0 && LEDireccion->text().isEmpty() ) {
+     QMessageBox::warning( this, "Error", QString::fromUtf8("No ingreso una dirección para el cliente" ) );
      return;
- }
+ }*/
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {

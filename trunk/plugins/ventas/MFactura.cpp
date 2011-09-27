@@ -108,7 +108,8 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
    if( mi->agregarItemFactura( id_venta,
                                mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble(),
                                mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString(),
-                               mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble()
+                               mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble(),
+                               mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() // Intento de que funcione el "id_producto"
                              ) ) {
         // veo si tengo que disminuir el stock
         if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() > 0 ) {

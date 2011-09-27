@@ -45,7 +45,7 @@ void MItemFactura::relacionar() {
  * @param precio_unitario Precio unitario del item de la factura.
  * @returns Verdadero si se pudo agregar correctamente.
  */
-bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario ) {
+bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario, const int id_producto ) {
     QSqlQuery cola;
     if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "SQLITE" ) {
         if( cola.exec( QString( "SELECT COUNT(id_factura) FROM factura WHERE id_factura = %1").arg( id_venta ) ) ) {
@@ -67,7 +67,7 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
             return false;
         }
     }
-    if( ! cola.prepare( "INSERT INTO item_factura( id_item_factura, id_factura, cantidad, texto, precio_unitario ) VALUES ( :id_item_factura, :id_venta, :cantidad, :texto, :precio_unitario );" ) ) {
+    if( ! cola.prepare( "INSERT INTO item_factura( id_item_factura, id_factura, cantidad, texto, precio_unitario, id_producto ) VALUES ( :id_item_factura, :id_venta, :cantidad, :texto, :precio_unitario, :id_producto );" ) ) {
         qDebug( "Error al intentar preparar la cola de inserción" );
         qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
     }
@@ -76,6 +76,11 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
     cola.bindValue( ":cantidad", cantidad );
     cola.bindValue( ":texto", texto );
     cola.bindValue( ":precio_unitario", precio_unitario );
+    if( id_producto <= 0 ) {
+        cola.bindValue( ":id_producto", QString() );
+    } else {
+        cola.bindValue( ":id_producto", id_producto );
+    }
     if( cola.exec() ) {
         _orden++;
         return true;
