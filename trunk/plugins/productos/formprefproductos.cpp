@@ -31,12 +31,6 @@ FormPrefProductos::FormPrefProductos ( QWidget* parent, Qt::WFlags fl )
  this->setWindowFlags( fl );
 }
 
-FormPrefProductos::~FormPrefProductos()
-{
-}
-
-
-
 
 /*!
     \fn FormPrefProductos::cargar()
@@ -53,6 +47,7 @@ void FormPrefProductos::cargar()
  CkBAvisosStock->setChecked( p->value( "Preferencias/Productos/Stock/avisos", false ).toBool() );
  DSBLimiteMinimo->setValue( p->value( "Preferencias/Productos/Stock/limiteMinimo", 0.0 ).toDouble() );
  DsBGanancia->setValue( p->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble() );
+ p = 0;
 }
 
 
@@ -79,4 +74,5 @@ void FormPrefProductos::guardar()
  p->setValue( "Preferencias/Productos/Stock/avisos", CkBAvisosStock->isChecked() );
  p->setValue( "Preferencias/Productos/Stock/limiteMinimo", DSBLimiteMinimo->value() );
  p->setValue( "Preferencias/Productos/ganancia", DsBGanancia->value() );
+ p = 0;
 }

@@ -39,6 +39,8 @@ QVariant MVFacturas::data( const QModelIndex& item, int role ) const {
                 }
                 case 5:
                 { return QString( "$ %L1" ).arg( QSqlTableModel::data( item, role ).toDouble() ); }
+                case 3:
+                { return QSqlTableModel::data( item, role ).toDate().toString( Qt::SystemLocaleShortDate ); }
                 default:
                 { return QSqlTableModel::data( item, role ); }
             }

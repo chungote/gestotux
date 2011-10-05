@@ -27,12 +27,6 @@ EDRecargos::EDRecargos(QObject *parent)
 {
 }
 
-
-EDRecargos::~EDRecargos()
-{
-}
-
-
 /*!
     \fn EDRecargos::createEditor( QWidget* parent, const QStyleOptionViewItem & option, const QModelIndex &index ) const
  */
