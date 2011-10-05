@@ -9,8 +9,8 @@ SUBDIRS +=  caja \
             CtaCte \
             pagos \
             presupuesto \
-            servicios \
-            bscomputacion
+            servicios #\
+#            bscomputacion
 #            digifauno \
 #            HiComp
 #            aCarCorr \

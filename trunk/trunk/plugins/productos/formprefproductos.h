@@ -30,8 +30,6 @@ class FormPrefProductos : public QWidget, public FormPrefHijo, private Ui::FormP
 Q_OBJECT
 public:
 	FormPrefProductos ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-	~FormPrefProductos();
-
 
 public slots:
     void cargar();

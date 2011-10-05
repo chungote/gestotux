@@ -83,7 +83,10 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         connect( m, SIGNAL( cambioListaProductos( MProductosTotales* ) ), d, SLOT( neceistoActualizarListaSlots( MProductosTotales* ) ) );
         TVContenido->setItemDelegateForColumn( 1, d );
         TVContenido->setSelectionBehavior( QAbstractItemView::SelectRows );
-        TVContenido->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+        TVContenido->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+        TVContenido->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
+        TVContenido->horizontalHeader()->setMinimumSectionSize( 140 );
+        TVContenido->setSortingEnabled( false );
 
         // Rellenar los items de productos
         QSqlQueryModel *cola = new QSqlQueryModel( this );

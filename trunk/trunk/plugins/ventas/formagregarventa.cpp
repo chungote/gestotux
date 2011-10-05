@@ -84,7 +84,10 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         TVProductos->setItemDelegate( d );
         TVProductos->setAlternatingRowColors( true );
         TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
-        TVProductos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+        TVProductos->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+        TVProductos->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
+        TVProductos->horizontalHeader()->setMinimumSectionSize( 140 );
+        TVProductos->setSortingEnabled( false );
 
 
         this->addAction( new EActGuardar( this ) );

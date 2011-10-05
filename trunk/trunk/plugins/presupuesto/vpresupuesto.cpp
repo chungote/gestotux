@@ -60,6 +60,7 @@ void VPresupuesto::cerrar()
     EVLista::cerrar();
 }
 
+#include "mclientes.h"
 void VPresupuesto::imprimir()
 {
   // Veo que ID quiere reimprimir.
@@ -74,6 +75,16 @@ void VPresupuesto::imprimir()
   foreach( QModelIndex idx, lista ) {
       parametros->clear();
       parametros->append( Parameter( "id_presupuesto", modelo->data( modelo->index( idx.row(), 0 ), Qt::EditRole ).toInt() ) );
+      int id_cliente = modelo->data( modelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+      if( id_cliente < 0 ) {
+          parametros->append( Parameter( "cliente_existe", false ) );
+          //lista.append( Parameter( "direccion", LEDireccion->text() ) );
+      } else if( id_cliente >= 0 ){
+          parametros->append( Parameter( "cliente_existe", true ) );
+          //lista.append( Parameter( "direccion", LEDireccion->text() ) );
+          if( id_cliente > 0 )
+              parametros->append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
+      }
       if( !rep->hacer( *parametros ) ) {
           qDebug( "Error la intentar imprimir el reporte" );
       }
