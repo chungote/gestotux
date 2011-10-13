@@ -98,6 +98,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         CBProductos->completer()->setCompletionMode( QCompleter::PopupCompletion );
         CBProductos->setCurrentIndex( -1 );
         CBProductos->setInsertPolicy( QComboBox::NoInsert );
+        connect( CBProductos->lineEdit(), SIGNAL( returnPressed() ), PBAgregar, SIGNAL( clicked() ) );
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
