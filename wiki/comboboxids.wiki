@@ -1,0 +1,24 @@
+#labels Phase-Implementation
+Esta pagina explica como hacer el mappeo para que los QComboBox tengan los ID's de los datos cargados.
+
+= Introduccion =
+
+Generalmente cuando colocamos los datos de un campo especifico dentro de un combo box donde el usuario tiene que seleccionar solo una opción, no poseemos el mappeo pos->id del item que esta seleccionando. 
+
+= Detalles =
+
+Para solucionar esto, luego de revisar un poco la documentacion, vi que cada item de un QComboBox, posee un *itemData* en el cual se puede almacenar cualquier valor necesario.
+Para poder utilizarlo debemos hacer que el modelo del cual estamos sacando los datos implemente el *Qt::UserRole* y que este devuelva el identificador o campo primario para cada columna que consideremos necesario.
+Así, cuando implementamos el modelo agregamos
+{{{
+case Qt::UserRole:
+{
+    return QSqlRelationalTableModel::data( index( idx.row(), 0), Qt::EditRole );
+    break;
+}
+}}}
+
+De esta forma, podemos obtener el ID del item del combo box a travez de la funcion
+{{{ 
+CombBox->itemData( ComboBox->currentIndex() ); 
+}}}
