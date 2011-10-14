@@ -126,6 +126,11 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                 }
             }
         }
+        case Qt::UserRole:
+        {
+            return QSqlTableModel::data( index( item.row(), 0 ), Qt::EditRole );
+            break;
+        }
         default:
         { return QSqlTableModel::data( item, role ); }
     }

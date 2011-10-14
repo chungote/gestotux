@@ -87,6 +87,7 @@ void FormRecargos::agregarRecargo()
 void FormRecargos::eliminarRecargo()
 {
  QMessageBox::information( this, "this", "Todavia no implementado!" );
+ return;
  // Busco que recargo esta seleccionado
  QModelIndexList lista = TVRecargos->selectionModel()->selectedIndexes();
  if( lista.size() <= 0 ) {
@@ -103,7 +104,7 @@ void FormRecargos::eliminarRecargo()
      }
  }
  // Pregunto si esta seguro
- if( QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), QString::fromUtf8( "Esta seguro que desea eliminar los items seleccionados?" ), QMessageBox::Yes, QMessageBox::No ) == QMessageBox::Yes ) {
+ if( QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), QString::fromUtf8( "¿Esta seguro que desea eliminar los items seleccionados?" ), QMessageBox::Yes, QMessageBox::No ) == QMessageBox::Yes ) {
      foreach( QModelIndex idx, lista ) {
          mrecargos->removeRow( idx.row() );
      }
@@ -125,6 +126,6 @@ void FormRecargos::setearId( const int id )
 {
     mrecargos->setearServicio( id );
     //actualizo el combo box
-    /// @todo Ver como hacer para poner en el combobox el servicio que corresponde... ¿funca?
+    // Para que esto funcione el Qt::UserRole tiene que devolver el ID
     this->CBServicios->setCurrentIndex( this->CBServicios->findData( id )  );
 }
