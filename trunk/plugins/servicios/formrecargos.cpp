@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QItemDelegate>
+#include "edrecargos.h"
 
 #include "eactcerrar.h"
 
@@ -66,6 +67,7 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     TVRecargos->setModel( mrecargos );
     TVRecargos->hideColumn( 0 );
     TVRecargos->hideColumn( 1 );
+    TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
     TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 }
 
@@ -85,7 +87,7 @@ void FormRecargos::agregarRecargo()
 void FormRecargos::eliminarRecargo()
 {
  QMessageBox::information( this, "this", "Todavia no implementado!" );
- // Busco que recargo est´a seleccionado
+ // Busco que recargo esta seleccionado
  QModelIndexList lista = TVRecargos->selectionModel()->selectedIndexes();
  if( lista.size() <= 0 ) {
      QMessageBox::information( this, "Error", "Por favor seleccione un recargo para eliminar", QMessageBox::Ok );
@@ -101,7 +103,7 @@ void FormRecargos::eliminarRecargo()
      }
  }
  // Pregunto si esta seguro
- if( QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), QString::fromUtf8( "¿Esta seguro que desea eliminar los items seleccionados?" ), QMessageBox::Yes, QMessageBox::No ) == QMessageBox::Yes ) {
+ if( QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), QString::fromUtf8( "Esta seguro que desea eliminar los items seleccionados?" ), QMessageBox::Yes, QMessageBox::No ) == QMessageBox::Yes ) {
      foreach( QModelIndex idx, lista ) {
          mrecargos->removeRow( idx.row() );
      }
