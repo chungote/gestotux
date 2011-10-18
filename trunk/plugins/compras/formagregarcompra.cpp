@@ -30,6 +30,7 @@
 #include <QCompleter>
 #include <QDate>
 #include <QtSql>
+#include <QLineEdit>
 #include "mcompraproducto.h"
 
 FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
@@ -38,9 +39,6 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 	setupUi(this);
 	setObjectName( "agregar_compra" );
 	setWindowTitle( "Agregar nueva compra" );
-
-	this->addAction( new EActCerrar( this ) );
-	this->addAction( new EActGuardar( this ) );
 
         if( m == 0 ) {
             this->modelo = new MCompra( this, false );
@@ -60,23 +58,33 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
 	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
-	// Rellenar los items de productos
-	QSqlQueryModel *cola = new QSqlQueryModel( this );
-	cola->setQuery( "SELECT id, nombre FROM producto WHERE habilitado = 1" );
-	CBProducto->setModel( cola );
-	CBProducto->setModelColumn( 1 );
-	CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
-	CBProducto->setEditable( true );
-	CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
-	CBProducto->setCurrentIndex( -1 );
+        // Rellenar los items de productos
+        QSqlQueryModel *cola = new QSqlQueryModel( this );
+        cola->setQuery( "SELECT id, nombre FROM producto" );
+        CBProducto->setModel( cola );
+        CBProducto->setModelColumn( 1 );
+        CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
+        CBProducto->setEditable( true );
+        CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
+        CBProducto->setCurrentIndex( -1 );
+        CBProducto->setInsertPolicy( QComboBox::NoInsert );
+        connect( CBProducto->lineEdit(), SIGNAL( returnPressed() ), PBAgregarProducto, SIGNAL( clicked() ) );
 
 	mcp = new MProductosTotales( this );
 	mcp->calcularTotales( true );
-	TVLista->setModel( mcp );
+        mcp->buscarPrecios( false );
+        TVLista->setModel( mcp );
+        DProductosTotales *d = new DProductosTotales( TVLista );
+        d->setearListaProductos( mcp->listaProductos() );
+        connect( m, SIGNAL( cambioListaProductos( MProductosTotales* ) ), d, SLOT( neceistoActualizarListaSlots( MProductosTotales* ) ) );
 	TVLista->setAlternatingRowColors( true );
-	TVLista->setItemDelegate( new DProductosTotales( TVLista ) );
+        TVLista->setItemDelegateForColumn( 1, d );
 	TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
 	TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+
+        this->addAction( new EActGuardar( this ) );
+        this->addAction( new EActCerrar( this ) );
+
 }
 
 /*!
@@ -84,7 +92,6 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
  */
 void FormAgregarCompra::guardar()
 {
- return;
  if( CBProveedor->currentIndex() == -1 )
  {
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un proveedor para esta compra" );
@@ -102,6 +109,7 @@ void FormAgregarCompra::guardar()
   mcp->calcularTotales( true );
   return;
  }
+ return;
  //Inicio una transacción
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
@@ -177,12 +185,8 @@ void FormAgregarCompra::guardar()
  */
 void FormAgregarCompra::agregarProducto()
 {
- mcp->insertRow( -1 );
- QModelIndex indice = mcp->index( mcp->rowCount()-2 , 0 );
- mcp->setData( indice, CBProducto->model()->data( CBProducto->model()->index( CBProducto->currentIndex(), 0 ) , Qt::EditRole ).toInt(), Qt::EditRole );
- indice = mcp->index( mcp->rowCount()-2 , 1 );
- TVLista->setCurrentIndex( indice );
- TVLista->edit( indice );
+ mcp->agregarNuevoProducto( SBCant->value(), CBProducto->currentText() );
+ SBCant->setFocus();
 }
 
 

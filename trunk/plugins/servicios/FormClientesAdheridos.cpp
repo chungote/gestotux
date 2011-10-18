@@ -24,6 +24,8 @@
 #include <QTableView>
 #include "MClientesServicios.h"
 #include "eactcerrar.h"
+#include <QMessageBox>
+#include <QInputDialog>
 
 FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     EVentana(parent) {
@@ -72,6 +74,8 @@ void FormClientesAdheridos::setServicioInicial( int id_servicio )
 {
     modelo->filtrarPorServicio( id_servicio );
     modelo->select();
+    // Coloco el combo box en la posicion correcta
+    CBServicios->setCurrentIndex( CBServicios->findData( id_servicio ) );
 }
 
 void FormClientesAdheridos::cambioServicio( int /*id_combo*/ )
@@ -85,4 +89,17 @@ void FormClientesAdheridos::cambioServicio( int /*id_combo*/ )
 void FormClientesAdheridos::darDeBaja()
 {
  // Busco el ID que quiere dar de baja
+ QModelIndexList lista = TVAdheridos->selectionModel()->selectedRows();
+ if( lista.isEmpty() ) {
+     QMessageBox::information( this, "Error", "Por favor, seleccione algun cliente adherido para darlo de baja" );
+     return;
+ }
+  int id_servicio = CBServicios->model()->data( CBServicios->model()->index( CBServicios->currentIndex(), 0), Qt::UserRole ).toInt();
+  foreach( QModelIndex item, lista ) {
+      int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+      bool ok = false;
+      QString razon = QInputDialog::getText( this, "Razon de baja", "Ingrese la razon de baja:", QLineEdit::Normal, QString(), &ok );
+      if( ok )
+        modelo->darDeBaja( id_cliente, id_servicio, razon );
+  }
 }

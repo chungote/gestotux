@@ -29,8 +29,7 @@ class MCompraProducto : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MCompraProducto(QObject *parent = 0);
-    ~MCompraProducto();
+    MCompraProducto( QObject *parent = 0 );
     bool insertRecord ( int row, const QSqlRecord & record );
 
 };

@@ -1,8 +1,8 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-help
+          plugin \
+          help
 
 QT += sql
 
@@ -11,11 +11,11 @@ TARGET = compras
 DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
-  ../../utiles
+               ../../utiles
 
 LIBS += ../../bin/libutiles.a
 
-POST_TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a
 
 TRANSLATIONS += compras.ts
 
@@ -28,15 +28,14 @@ SOURCES += mcompra.cpp \
            formagregarcompra.cpp \
            compras.cpp \
            mcompraproducto.cpp \
-    ../proveedor/mproveedor.cpp
+           ../proveedor/mproveedor.cpp
 
 HEADERS += formagregarcompra.h \
            mcompra.h \
            vcompras.h \
            compras.h \
            mcompraproducto.h \
-    ../proveedor/mproveedor.h
+           ../proveedor/mproveedor.h
 
-OTHER_FILES += \
-    compras.QMYSQL.sql \
-    compras.QSQLITE.sql
+OTHER_FILES += compras.QMYSQL.sql \
+               compras.QSQLITE.sql
