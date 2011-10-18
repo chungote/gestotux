@@ -26,25 +26,28 @@
 MCompra::MCompra(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
 {
- setTable( "compras" );
- setHeaderData( 0, Qt::Horizontal, "#ID" );
- setHeaderData( 1, Qt::Horizontal, "Proveedor" );
- setHeaderData( 2, Qt::Horizontal, "Fecha" );
- setHeaderData( 3, Qt::Horizontal, "Costo" );
- if( relaciones )
- {
-   setRelation( 1, QSqlRelation( "proveedor", "id", "nombre" ) );
- }
+    inicializar();
+    if( relaciones )
+        relacionar();
 }
 
-
-MCompra::~MCompra()
+void MCompra::inicializar()
 {
+    setTable( "compras" );
+    setHeaderData( 0, Qt::Horizontal, "#ID" );
+    setHeaderData( 1, Qt::Horizontal, "Proveedor" );
+    setHeaderData( 2, Qt::Horizontal, "Fecha" );
+    setHeaderData( 3, Qt::Horizontal, "Costo" );
+}
+
+void MCompra::relacionar()
+{
+    setRelation( 1, QSqlRelation( "proveedor", "id", "nombre" ) );
 }
 
 /*!
     \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
-	Función que agrega un registro de compra directamente
+	FunciÃ³n que agrega un registro de compra directamente
 	@param fecha QDate con la fecha de la compra
 	@param proveedor Id del proveedor
 	@return Verdadero o falso si fue exitoso o no
@@ -62,9 +65,7 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
   return false;
  }
  else
- {
-  return true;
- }
+ { return true; }
 }
 
 
@@ -147,6 +148,4 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
     \fn MCompra::ultimoId()
  */
 int MCompra::ultimoId()
-{
- return this->query().lastInsertId().toInt();
-}
+{ return this->query().lastInsertId().toInt(); }

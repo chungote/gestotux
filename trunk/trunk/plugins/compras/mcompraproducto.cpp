@@ -26,11 +26,6 @@ MCompraProducto::MCompraProducto(QObject *parent)
  setTable( "compras_productos" );
 }
 
-
-MCompraProducto::~MCompraProducto()
-{
-}
-
 #include <QSqlError>
 /*!
     \fn MCompraProducto::insertRecord ( int row, const QSqlRecord & record )

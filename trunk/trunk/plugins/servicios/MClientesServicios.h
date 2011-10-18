@@ -28,11 +28,16 @@ class MClientesServicios : public QSqlRelationalTableModel
     Q_OBJECT
 public:
     explicit MClientesServicios(QObject *parent = 0);
+
     void filtrarPorServicio( const int id_servicio );
     void filtrarPorCliente( const int id_cliente );
+    bool darDeBaja( int id_cliente, int id_servicio, QString razon = QString() );
 
     QVariant data(const QModelIndex &item, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
+
+    void inicializar();
+    void relacionar();
 
 };
 

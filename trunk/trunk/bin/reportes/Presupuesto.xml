@@ -25,14 +25,14 @@
 SELECT c.razon_social AS destinatario,
        strftime('%d/%m/%Y', p.fecha) AS fecha,
        p.total As total,
-       substr( '0000000000' || p.serie, -10, 10) + '-' + substr( '0000000000' ||p.numero, -10, 10) AS NumSerie
+       substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' || p.numero, -5, 5 ) AS NumSerie
 FROM presupuestos AS p, clientes AS c
 WHERE p.id_cliente = c.id AND p.id_presupuesto = &lt;? value( "id_presupuesto" ) ?>;
 &lt;? else ?>
 SELECT p.destinatario AS destinatario,
        strftime('%d/%m/%Y', p.fecha) AS fecha,
        p.total As total,
-       substr( '0000000000' || p.serie, -10, 10) + '-' + substr( '0000000000' ||p.numero, -10, 10) AS NumSerie
+       substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' ||p.numero, -5, 5 ) AS NumSerie
 FROM presupuestos AS p
 WHERE p.id_presupuesto = &lt;? value( "id_presupuesto" ) ?>;
 &lt;? endif ?></sql>
@@ -112,8 +112,8 @@ end
   </image>
   <label>
    <rect>
-    <x>380</x>
-    <y>3</y>
+    <x>376</x>
+    <y>0</y>
     <width>100</width>
     <height>67</height>
    </rect>
@@ -208,8 +208,8 @@ end
   </label>
   <field>
    <rect>
-    <x>614</x>
-    <y>13</y>
+    <x>609</x>
+    <y>14</y>
     <width>198</width>
     <height>25</height>
    </rect>
@@ -227,7 +227,7 @@ end
   </field>
   <field>
    <rect>
-    <x>611</x>
+    <x>609</x>
     <y>44.9</y>
     <width>198</width>
     <height>21</height>
@@ -424,8 +424,8 @@ end
    </field>
    <field>
     <rect>
-     <x>593</x>
-     <y>2</y>
+     <x>595</x>
+     <y>4</y>
      <width>104</width>
      <height>25</height>
     </rect>
@@ -468,8 +468,8 @@ end
   <height>57</height>
   <label>
    <rect>
-    <x>539.284</x>
-    <y>7.21876</y>
+    <x>574.284</x>
+    <y>2.21876</y>
     <width>100</width>
     <height>25</height>
    </rect>
@@ -484,9 +484,9 @@ end
   </label>
   <field>
    <rect>
-    <x>646</x>
-    <y>11.86</y>
-    <width>173</width>
+    <x>679</x>
+    <y>7.86</y>
+    <width>143</width>
     <height>25</height>
    </rect>
    <font>
@@ -525,5 +525,21 @@ end
    <yend>5</yend>
    <weight>1</weight>
   </line>
+  <barcode>
+   <rect>
+    <x>15</x>
+    <y>7</y>
+    <width>112</width>
+    <height>47</height>
+   </rect>
+   <format>ean13</format>
+   <maxlength>99</maxlength>
+   <center/>
+   <narrowBarWidth>0.01</narrowBarWidth>
+   <data>
+    <query>Parameter Query</query>
+    <column>id_presupuesto</column>
+   </data>
+  </barcode>
  </rptfoot>
 </report>

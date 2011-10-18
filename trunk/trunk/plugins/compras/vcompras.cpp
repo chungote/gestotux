@@ -31,12 +31,12 @@ VCompras::VCompras(QWidget *parent)
  setWindowIcon( QIcon(":/imagenes/compras.jpg" ) );
  rmodelo = new MCompra( this, true );
  vista->setModel( rmodelo );
- rmodelo->select();
  vista->hideColumn( 0 );
  vista->resizeColumnsToContents();
  addAction( ActAgregar );
  //addAction( ActModificar );
  //addAction( ActEliminar );
+ addAction( ActVerTodos );
  addAction( ActCerrar );
 }
 

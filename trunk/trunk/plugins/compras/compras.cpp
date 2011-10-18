@@ -24,12 +24,13 @@
 bool Compras::inicializar()
 {
  Q_INIT_RESOURCE(compras);
+
  ActAgregarCompra = new QAction( "Agregar Nueva Compra", this );
  ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
  connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
 
  ActCompras = new QAction( "Compras", this );
-//  ActVentas->setIcon( QIcon( ":/imagenes/nose.png" ) );
+ //ActVentas->setIcon( QIcon( ":/imagenes/nose.png" ) );
  ActCompras->setStatusTip( "Muestra el historial de compras" );
  connect( ActCompras, SIGNAL( triggered() ), this, SLOT( ver_compras() ) );
 
@@ -78,12 +79,8 @@ void Compras::crearMenu(QMenuBar* m)
  mCompras->addAction( ActCompras );
 }
 
-void Compras::crearToolBar(QToolBar* t)
-{
-    (void)t;
-}
-
-Q_EXPORT_PLUGIN2( compras, Compras )
+void Compras::crearToolBar(QToolBar*/* t */)
+{}
 
 #include "formagregarcompra.h"
 /*!
@@ -100,8 +97,6 @@ void Compras::agregarCompra()
 void Compras::ver_compras()
 { emit agregarVentana( new VCompras() ); }
 
-
-
 /*!
     \fn Compras::seCierraGestotux()
  */
@@ -111,3 +106,5 @@ void Compras::seCierraGestotux()
  qDebug( "Cerrado plugin compras" );
  return;
 }
+
+Q_EXPORT_PLUGIN2( compras, Compras )
