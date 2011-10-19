@@ -135,6 +135,32 @@ bool MCobroServicioClientePeriodo::colocarComoPagado( const int id_factura, cons
     }
 }
 
+/*!
+ * \fn MCobroServicioClientePeriodo::esDeudor( const int id_cliente, const int id_servicio )
+ * Devuelve verdadero si existe alguna cuota que no haya sido pagada
+ * \param id_cliente Identificador del cliente.
+ * \param id_servicio Identificador del servicio.
+ * \returns Verdaderos si hay cuotas inpagas
+ */
+bool MCobroServicioClientePeriodo::esDeudor(const int id_cliente, const int id_servicio)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( " SELECT COUNT (id_recibo) FROM cobro_servicio_cliente_periodo WHERE id_cliente = %1 AND id_servicio = %2 AND id_recibo IS NOT NULL").arg( id_cliente ).arg( id_servicio ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() == 0 )
+                return false;
+        } else {
+            qDebug( "Error al hacer next al averiguar la cantidad de entradas de cobro de servicio que no han sido pagadas." );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola para averiguar la cnatidad de entradas de cobro servicio que no han sido pagadas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}
+
 /*
 CREATE TABLE IF NOT EXISTS `cobro_servicio_cliente_periodo` (
     `id_periodo_servicio` BIGINT NOT NULL,

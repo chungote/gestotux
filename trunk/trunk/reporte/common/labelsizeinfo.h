@@ -50,8 +50,14 @@ class LabelSizeInfo
 
     static const LabelSizeInfo & getByName(const QString &);
     static QStringList getLabelNames();
+    static bool areLabelsEditable();
 
   protected:
+    // To maintain backwards compatibility, these functions return
+    // the original, hard-coded label defs w/o connecting to db.
+    static const LabelSizeInfo & getByNameNoDatabase(const QString &);
+    static QStringList getLabelNamesNoDatabase();
+
     QString _name;
     QString _paper;
 

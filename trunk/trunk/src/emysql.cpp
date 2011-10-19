@@ -93,13 +93,13 @@ void EMysql::accept()
    {
         case QSqlError::ConnectionError:
         {
-                QMessageBox::information( this, "Error de conexión", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" );
+                QMessageBox::information( this, "Error de conexiÃ³n", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseÃ±a sean correctas" );
                 _db.removeDatabase( _db.connectionName() );
                 break;
         }
         default:
         {
-                qDebug( "Error de conección" );
+                qDebug( "Error de conecciÃ³n" );
                 qWarning( qPrintable( "Ultimo error: -> " + QString::number( _db.lastError().number() ) + "<- - " + _db.lastError().text() ) );
                  _db.removeDatabase( _db.connectionName() );
         }
