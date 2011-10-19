@@ -95,6 +95,15 @@ const PageSizeInfo & PageSizeInfo::findNearest(int w, int h)
   return __pages[p];
 }
 
+// Added this function to obtain the entire list of page size names
+QStringList PageSizeInfo::getPageNames()
+{
+  QStringList l;
+  for (int i = 0; !__pages[i].isNull(); i++)
+    l.append(__pages[i]._name);
+  return l;
+}
+
 PageSizeInfo::PageSizeInfo(const QString & n, int qpv, int w, int h)
 {
   _name = n;

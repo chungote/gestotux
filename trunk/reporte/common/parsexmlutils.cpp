@@ -487,6 +487,12 @@ bool parseReportField(const QDomElement & elemSource, ORFieldData & fieldTarget)
   fieldTarget.sub_total = FALSE;
   fieldTarget.builtinFormat = FALSE;
   fieldTarget.format = QString::null;
+  fieldTarget.lines = 1;
+  fieldTarget.columns = 1;
+  fieldTarget.xSpacing = 0;
+  fieldTarget.ySpacing = 0;
+  fieldTarget.triggerPageBreak = false;
+  fieldTarget.leftToRight = false;
 
   for (int paramCounter = 0; paramCounter < params.count(); paramCounter++)
   {
@@ -509,7 +515,19 @@ bool parseReportField(const QDomElement & elemSource, ORFieldData & fieldTarget)
     else if (elemParam.tagName() == "bottom")
       fieldTarget.align |= Qt::AlignBottom;
 	else if (elemParam.tagName() == "wordwrap")
-		fieldTarget.align |= Qt::TextWordWrap;
+      fieldTarget.align |= Qt::TextWordWrap;
+    else if (elemParam.tagName() == "lines")
+      fieldTarget.lines = elemParam.text().toInt();
+    else if (elemParam.tagName() == "columns")
+      fieldTarget.columns = elemParam.text().toInt();
+    else if (elemParam.tagName() == "xSpacing")
+      fieldTarget.xSpacing = elemParam.text().toDouble();
+    else if (elemParam.tagName() == "ySpacing")
+      fieldTarget.ySpacing = elemParam.text().toDouble();
+    else if (elemParam.tagName() == "triggerPageBreak")
+      fieldTarget.triggerPageBreak = true;
+    else if (elemParam.tagName() == "leftToRight")
+      fieldTarget.leftToRight = true;
     else if (elemParam.tagName() == "data")
       valid_data = parseReportData(elemParam, fieldTarget.data);
 	else if (elemParam.tagName() == "format")

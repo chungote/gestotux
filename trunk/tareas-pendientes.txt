@@ -32,7 +32,7 @@
 -------------
 - Hacer calculos de ubicación de las flechas de la pantalla inicial.
 - Agregar a todos los modelos el metodo estatico siguienteNumero() para obtener el siguiente numero de comprobante.
-
+- Verificar por que no funciona el sistema de reportes con los parametros como parte de la cola.
 - Ver si realizar un reporte con todos los datos de un mes/año/semana con todos los datos y movimientos registrados.
 
 -- Cuentas corrientes --
@@ -54,6 +54,8 @@
 
 -- Servicios --
 ---------------
+- Probar sistema de baja de servicios.
+- Generar reporte de baja.
 - Ver como hacer el automatico de los sistemas de cobro
 CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
     `id_periodo_servicio` BIGINT NOT NULL,

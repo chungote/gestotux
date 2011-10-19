@@ -116,6 +116,7 @@ class ORPreRenderPrivate {
 
     void renderDetailSection(ORDetailSectionData &);
     qreal renderSection(const ORSectionData &);
+    QString evaluateField(ORFieldData* f);
     qreal renderSectionSize(const ORSectionData &, bool = false);
 
     // Calculate the remaining space on the page after printing the footers and applying the margins
@@ -191,13 +192,17 @@ bool ORPreRenderPrivate::populateData(const ORDataData & dataSource, orData &dat
 
 orQuery* ORPreRenderPrivate::getQuerySource(const QString & qstrQueryName)
 {
+  static orQuery emptyQuery;
+
   for(int queryCursor = 0; queryCursor < _lstQueries.count(); queryCursor++)
   {
     if (_lstQueries.at(queryCursor)->getName() == qstrQueryName)
       return _lstQueries.at(queryCursor);
   }
-  qDebug() << "No Query Source with name " << qstrQueryName;
-  return 0;
+
+  QString docName = _reportData ? _reportData->name : "";
+  qWarning() << "No Query Source with name" << qstrQueryName << "in" << docName;
+  return &emptyQuery;
 }
 
 void ORPreRenderPrivate::renderBackground(OROPage * p)
@@ -430,7 +435,7 @@ void ORPreRenderPrivate::renderDetailSection(ORDetailSectionData & detailData)
 
     _subtotContextDetail = &detailData;
 
-    if ((orqThis != 0) && ((query = orqThis->getQuery())->size()))
+    if (orqThis->getQuery() && ((query = orqThis->getQuery())->size()))
     {
       _detailQuery = query;
       QStringList keys;
@@ -461,8 +466,10 @@ void ORPreRenderPrivate::renderDetailSection(ORDetailSectionData & detailData)
         _subtotContextMap = 0;
       }
 
+      int rowCnt = 0;
       do
       {
+        rowCnt++;
         // Do we need to go to the next page for this section
         int l = query->at();
         if ( renderSectionSize(*(detailData.detail), true) + finishCurPageSize((l+1 == query->size())) + _bottomMargin + _yOffset >= _maxHeight)
@@ -566,6 +573,12 @@ void ORPreRenderPrivate::renderDetailSection(ORDetailSectionData & detailData)
 	  if(query->at()==QSql::AfterLastRow)
 	  {
 		query->prev(); // move back to a valid record -- this keeps the records accessible and the (sub)totals still valid as well
+              if(!query->isValid())
+              {
+                  query->first();
+                  for(int i = 1; i < rowCnt; i++)
+                      query->next();
+              }
 	  }
 
       if(keys.size() > 0 && query->isValid ())
@@ -710,6 +723,8 @@ qreal ORPreRenderPrivate::renderSection(const ORSectionData & sectionData)
 
   ORObject * elemThis;
   bool foundTextArea = false;
+  bool newPageRequested = false;
+
   for(int it = 0; it < sectionData.objects.size(); ++it)
   {
     elemThis = sectionData.objects.at(it);
@@ -733,89 +748,80 @@ qreal ORPreRenderPrivate::renderSection(const ORSectionData & sectionData)
     }
     else if (elemThis->isField())
     {
-      orData       dataThis;
-      ORFieldData* f = elemThis->toField();
+        ORFieldData *f = elemThis->toField();
 
-      QPointF pos = f->rect.topLeft();
-      QSizeF size = f->rect.size();
-      pos /= 100.0;
-      pos += QPointF(_leftMargin, _yOffset);
-      size /= 100.0;
+        int nbOfLines = f->lines;
+        int nbOfCol = f->columns;
+        qreal xSpacing = f->xSpacing;
+        qreal ySpacing = f->ySpacing;
+        bool triggerPageBreak = f->triggerPageBreak;
+        bool leftToRight = f->leftToRight;
 
-      OROTextBox * tb = new OROTextBox(elemThis);
-      tb->setPosition(pos);
-      tb->setSize(size);
-      tb->setFont(f->font);
-      tb->setFlags(f->align);
+        QPointF pos = f->rect.topLeft();
+        QSizeF size = f->rect.size();
+        pos /= 100.0;
+        pos += QPointF(_leftMargin, _yOffset);
+        size /= 100.0;
 
-      QString str = QString::null;
-	  double d_val = 0;
-	  bool isFloat = false;
+        bool hasNext = false;
+        qreal startX = pos.x();
+        qreal startY = pos.y();
 
-	  if(f->trackTotal) {
-		  XSqlQuery * xqry = getQuerySource(f->data.query)->getQuery();
-		  if(xqry)
-		  {
-			  isFloat = true;
-			  d_val = xqry->getFieldTotal(f->data.column);
-			  if(f->sub_total)
-				  d_val -= getNearestSubTotalCheckPoint(f->data);
-		  }
-		  str = QString("%1").arg(d_val);
-	  }
-      else
-      {
-        if(f->data.query == "Context Query" && f->data.column == "page_number")
-          str = QString("%1").arg(_pageCounter);
-        else if(f->data.query == "Context Query" && f->data.column == "page_count")
-        {
-          str = "page_count";
-          _postProcText.append(tb);
+        QList < QPair<int,int> > cellLst;
+
+        if(leftToRight) {
+          for (int col = 0; col < nbOfCol; col++) {
+            for (int line = 0; line < nbOfLines; line++) {
+              cellLst.append(qMakePair(col,line));
+            }
+          }
         }
-        else if(f->data.query == "Context Query" && f->data.column == "report_name")
-          str = _reportData->name;
-        else if(f->data.query == "Context Query" && f->data.column == "report_title")
-          str = _reportData->title;
-        else if(f->data.query == "Context Query" && f->data.column == "report_description")
-          str = _reportData->description;
-        else
-        {
-          populateData(f->data, dataThis);
-          str = dataThis.getValue();
-          QVariant v = dataThis.getVariant();
-          d_val = v.toDouble(&isFloat);
-        }
-      }
-
-      // formatting
-      if(f->format.length()>0)
-      {
-        if(!f->builtinFormat)
-        {
-          str = isFloat ? QString().sprintf(f->format.toLatin1().data(), d_val)
-                        : QString().sprintf(f->format.toLatin1().data(), str.toLatin1().data());
-        }
-        else
-        {
-          if ((_database.driverName() != "QOCI8") && (_database.driverName() != "QOCI"))
-            str = QString().sprintf(getSqlFromTag("fmt02",_database.driverName()).toLatin1().data(),getFunctionFromTag(f->format).toLatin1().data(), d_val);
-          else
-            str = QString().sprintf(getSqlFromTag("fmt02",_database.driverName()).toLatin1().data(), d_val);
+        else {
+          for (int line = 0; line < nbOfLines; line++) {
+            for (int col = 0; col < nbOfCol; col++) {
+              cellLst.append(qMakePair(col,line));
+            }
+          }
         }
 
-        if(f->builtinFormat) 
-        {
-          XSqlQuery q(str, _database);
-          if(q.first())
-            str = q.value(0).toString();
-          else
-            str = QString::null;
-        }
-      }
+        QPair<int,int> cell;
 
-      tb->setText(str);
-	  tb->setRotation(f->rotation());
-      _page->addPrimitive(tb);
+        foreach(cell, cellLst) {
+
+          OROTextBox * tb = new OROTextBox(elemThis);
+
+          qreal x = startX +  cell.first*(size.width() + xSpacing);
+          qreal y = startY + cell.second*(size.height() + ySpacing);
+          tb->setPosition(QPointF(x, y));
+          tb->setSize(size);
+          tb->setFont(f->font);
+          tb->setFlags(f->align);
+
+          QString  str = evaluateField(elemThis->toField());
+          tb->setText(str);
+
+          if(str == "page_count") {
+            _postProcText.append(tb);
+          }
+
+          _page->addPrimitive(tb);
+
+          if(nbOfCol > 1 || nbOfLines > 1 || triggerPageBreak) {
+            XSqlQuery * xqry = getQuerySource(f->data.query)->getQuery();
+            if(xqry) {
+              hasNext = xqry->next();
+            }
+          }
+
+          if(!hasNext) {
+            break;
+          }
+        }
+
+        if(!newPageRequested) {
+          newPageRequested = hasNext && triggerPageBreak;
+        }
+
     }
     else if (elemThis->isText())
     {
@@ -1211,8 +1217,81 @@ qreal ORPreRenderPrivate::renderSection(const ORSectionData & sectionData)
 
   _yOffset += intHeight;
 
+  if(newPageRequested) {
+    createNewPage();
+  }
+
   return intHeight;
 }
+
+
+QString ORPreRenderPrivate::evaluateField(ORFieldData* f)
+{
+    orData       dataThis;
+
+    QString str = QString::null;
+    double d_val = 0;
+    bool isFloat = false;
+
+    if(f->trackTotal) {
+        XSqlQuery * xqry = getQuerySource(f->data.query)->getQuery();
+        if(xqry)
+        {
+            isFloat = true;
+            d_val = xqry->getFieldTotal(f->data.column);
+            if(f->sub_total)
+                d_val -= getNearestSubTotalCheckPoint(f->data);
+        }
+        str = QString("%1").arg(d_val);
+    }
+    else
+    {
+        if(f->data.query == "Context Query" && f->data.column == "page_number")
+            str = QString("%1").arg(_pageCounter);
+        else if(f->data.query == "Context Query" && f->data.column == "report_name")
+            str = _reportData->name;
+        else if(f->data.query == "Context Query" && f->data.column == "report_title")
+            str = _reportData->title;
+        else if(f->data.query == "Context Query" && f->data.column == "report_description")
+            str = _reportData->description;
+        else if(f->data.query == "Context Query")
+            str = f->data.column;
+        else
+            populateData(f->data, dataThis);
+            str = dataThis.getValue();
+            QVariant v = dataThis.getVariant();
+            d_val = v.toDouble(&isFloat);
+    }
+
+    // formatting
+    if(f->format.length()>0)
+    {
+        if(!f->builtinFormat)
+        {
+            str = isFloat ? QString().sprintf(f->format.toLatin1().data(), d_val)
+                          : QString().sprintf(f->format.toLatin1().data(), str.toLatin1().data());
+        }
+        else
+        {
+            if ((_database.driverName() != "QOCI8") && (_database.driverName() != "QOCI"))
+                str = QString().sprintf(getSqlFromTag("fmt02",_database.driverName()).toLatin1().data(),getFunctionFromTag(f->format).toLatin1().data(), d_val);
+            else
+                str = QString().sprintf(getSqlFromTag("fmt02",_database.driverName()).toLatin1().data(), d_val);
+        }
+
+        if(f->builtinFormat)
+        {
+            XSqlQuery q(str, _database);
+            if(q.first())
+                str = q.value(0).toString();
+            else
+                str = QString::null;
+        }
+    }
+
+    return str;
+}
+
 
 double ORPreRenderPrivate::getNearestSubTotalCheckPoint(const ORDataData & d)
 {
@@ -1393,21 +1472,21 @@ ORODocument* ORPreRender::generate()
     Parameter p = _internal->_lstParameters[t];
     val = p.value().toString();
     val = val.replace(re, "''");
-    if (_internal->_database.driverName() == "QMYSQL" )
+    if (_internal->_database.driverName() == "QMYSQL" || _internal->_database.driverName() == "QSQLITE" )
       tQuery += QString().sprintf(", \"%s\" AS \"%d\"", val.toLatin1().data(), t + 1);
     else
       tQuery += QString().sprintf(", text('%s') AS \"%d\"", val.toLatin1().data(), t + 1);
 
     if(!p.name().isEmpty())
     {
-      if (_internal->_database.driverName() == "QMYSQL" )
+      if (_internal->_database.driverName() == "QMYSQL" || _internal->_database.driverName() == "QSQLITE" )
         tQuery += QString().sprintf(", \"%s\" AS \"%s\"", val.toLatin1().data(), p.name().toLatin1().data());
       else
         tQuery += QString().sprintf(", text('%s') AS \"%s\"", val.toLatin1().data(), p.name().toLatin1().data());
     }
   }
   if( _internal->_database.driverName() == "QMYSQL" ) {
-      tQuery += " FROM dual;";
+    tQuery += " FROM dual;";
   }
   _internal->_lstQueries.append(new orQuery("Parameter Query", tQuery, ParameterList(), true, _internal->_database));
   
@@ -1415,6 +1494,10 @@ ORODocument* ORPreRender::generate()
   for(unsigned int i = 0; i < _internal->_reportData->queries.size(); i++) {
       qs = _internal->_reportData->queries.get(i);
       _internal->_lstQueries.append(new orQuery(qs->name(), qs->query(_internal->_database), _internal->_lstParameters, true, _internal->_database));
+  }
+
+  foreach( orQuery *q, _internal->_lstQueries ) {
+      qDebug( QString( "Cola: %1 \n %2" ).arg( q->getName() ).arg( q->getSql() ).toLocal8Bit() );
   }
 
   _internal->_subtotPageCheckPoints.clear();
@@ -1469,7 +1552,7 @@ ORODocument* ORPreRender::generate()
           orQuery *orqThis = _internal->getQuerySource(detailData->key.query);
           XSqlQuery *query;
 
-          if((orqThis != 0) && ((query = orqThis->getQuery())->size()))
+          if((orqThis->getQuery() != 0) && ((query = orqThis->getQuery())->size()))
           {
             query->first();
             do

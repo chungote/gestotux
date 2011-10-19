@@ -22,6 +22,7 @@
 #define __PAGESIZEINFO_H__
 
 #include <qstring.h>
+#include <qstringlist.h>
 
 class PageSizeInfo
 {
@@ -41,6 +42,7 @@ class PageSizeInfo
     static const PageSizeInfo & getByName(const QString &);
     static const PageSizeInfo & getByValue(int);
     static const PageSizeInfo & findNearest(int, int);
+    static QStringList getPageNames();
 
   protected:
     QString _name;

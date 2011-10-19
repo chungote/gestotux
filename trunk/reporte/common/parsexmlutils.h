@@ -265,6 +265,13 @@ class ORFieldData : public ORObject
     bool builtinFormat;
     QString format;
 
+    int lines;
+    int columns;
+    qreal xSpacing;
+    qreal ySpacing;
+    bool triggerPageBreak;
+    bool leftToRight;
+
     virtual bool isField();
     virtual ORFieldData * toField();
 };

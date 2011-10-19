@@ -106,7 +106,7 @@ class tGraph {
 
         void setReferenceLabel(int, const QString&);
         void setSetValue(int, int, double);
-        void setSetColor(int, const QColor*);
+        void setSetColor(int, const QColor&);
         void setSetStyle(int, const ORStyleData &);
 
         void setDrawBars(bool);
@@ -401,12 +401,13 @@ void tGraph::setSetStyle(int set, const ORStyleData & s) {
     _setStyle[set] = s;
 }
 
-void tGraph::setSetColor(int set, const QColor * color) {
-    if(color) {
-        _setColors[set] = *color;
-    } else {
-        _setColors.remove(set);
-    }
+void tGraph::setSetColor(int set, const QColor & color) {
+    // The remove portion was not being used and the implmentation was causing warning/errors
+    //if(color) {
+        _setColors[set] = color;
+    //} else {
+    //    _setColors.remove(set);
+    //}
 }
 
 QColor tGraph::getSetColor(int snum) {
@@ -777,7 +778,7 @@ void renderGraph(QPainter & paint, const QRect & rect, ORGraphData & gData, XSql
     for(snum = 0; snum < gData.series.count(); snum++) {
         sd = gData.series.at(snum);
         if(sd) {
-            graph.setSetColor(snum, &_colorMap[sd->color]);
+            graph.setSetColor(snum, _colorMap[sd->color]);
             graph.setSetStyle(snum, sd->style);
         }
     }

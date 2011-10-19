@@ -83,8 +83,18 @@ Qt::ItemFlags MClientesServicios::flags(const QModelIndex& index) const
 #include <QSqlError>
 #include <EReporte.h>
 #include <QDate>
+#include "mcobroservicioclienteperiodo.h"
+#include <QMessageBox>
 /*!
  * @fn MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString razon )
+ * Da de baja al cliente seleccionado segun la razon espcificada
+ * Si no se especifica una razon, se coloca una predeterminada.
+ * La fecha de baja es cuando se realiza la operación.
+ * Si la baja se realizo correctamente, se imprime el comprobante de baja. El no imprimirlo, no modifica el resultado.
+ * \param id_cliente Identificador del cliente.
+ * \param id_servicio Identificador del servicio.
+ * \param razon Texto de por que da de baja el servicio.
+ * \return Verdadero se pudo realizar la baja.
  */
 bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString razon ) {
     // Verificar existencia de la asociacion
@@ -105,12 +115,12 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
             }
         }
     } // Existe
-    qWarning( "Todavia no implementado" );
-    return false;
     // verificar deudas existentes respecto a servicios
-
-    // verificar fecha respecto al periodo del servicio y facturar lo que falte
-
+    if( MCobroServicioClientePeriodo::esDeudor( id_cliente, id_servicio ) ) {
+        QMessageBox::warning( 0, "Saldo incompleto", "El cliente todavía tiene cuotas pendientes de pago. <br/> No se podrá realizar la baja hasta que se paguen las deudas pendientes" );
+        return false;
+    }
+    // verificar fecha respecto al periodo del servicio y facturar lo que falte ? ( ya esta echo por el punto anterior )
     // Verificar la razon
     if( razon.isEmpty() ) {
         qDebug( "Razon de baja de adhesion desconocida. Colocando la default." );

@@ -19,6 +19,12 @@
  */
 
 #include "labelsizeinfo.h"
+#include <QMessageBox>
+#include <QSqlError>
+#include <xsqlquery.h>
+#include <parameter.h>
+
+static LabelSizeInfo __label;
 
 static LabelSizeInfo __labels[] = {
 //"LABEL_NAME","Paper Size","COLUMNS","ROWS","WIDTH","HEIGHT","STARTXOFFSET","STARTYOFFSET","HORIZONTALGAP","VERTICALGAP"
@@ -29,7 +35,7 @@ static LabelSizeInfo __labels[] = {
   LabelSizeInfo()               // Null Label Size
 };
 
-const LabelSizeInfo & LabelSizeInfo::getByName(const QString & name)
+const LabelSizeInfo & LabelSizeInfo::getByNameNoDatabase(const QString & name)
 {
   int i = 0;
   while (!__labels[i].isNull() && __labels[i]._name != name)
@@ -37,12 +43,75 @@ const LabelSizeInfo & LabelSizeInfo::getByName(const QString & name)
   return __labels[i];
 }
 
-QStringList LabelSizeInfo::getLabelNames()
+QStringList LabelSizeInfo::getLabelNamesNoDatabase()
 {
   QStringList l;
   for (int i = 0; !__labels[i].isNull(); i++)
     l.append(__labels[i]._name);
   return l;
+}
+
+const LabelSizeInfo & LabelSizeInfo::getByName(const QString & name)
+{
+  XSqlQuery xqry;
+  xqry.prepare("SELECT * FROM labeldef WHERE labeldef_name=:labelName");
+  xqry.bindValue(":labelName", name);
+  xqry.exec();
+
+  if (xqry.first())
+  {
+    __label._null = FALSE;
+    __label._name    = xqry.value("labeldef_name").toString();
+    __label._paper   = xqry.value("labeldef_papersize").toString();
+    __label._columns = xqry.value("labeldef_columns").toInt();
+    __label._rows    = xqry.value("labeldef_rows").toInt();
+    __label._width   = xqry.value("labeldef_width").toInt();
+    __label._height  = xqry.value("labeldef_height").toInt();
+    __label._startx  = xqry.value("labeldef_start_offset_x").toInt();
+    __label._starty  = xqry.value("labeldef_start_offset_y").toInt();
+    __label._xgap    = xqry.value("labeldef_horizontal_gap").toInt();
+    __label._ygap    = xqry.value("labeldef_vertical_gap").toInt();
+  }
+  else
+  {
+    __label = LabelSizeInfo::getByNameNoDatabase(name);
+  }
+
+  return __label;
+}
+
+QStringList LabelSizeInfo::getLabelNames()
+{
+  QStringList l;
+  XSqlQuery xqry("SELECT labeldef_name FROM labeldef ORDER BY labeldef_name");
+
+  xqry.exec();
+
+  if (xqry.lastError().type() != QSqlError::NoError)
+  {
+    l = LabelSizeInfo::getLabelNamesNoDatabase();
+  }
+  else
+  {
+    while (xqry.next())
+    {
+      l.append(xqry.value("labeldef_name").toString());
+    }
+  }
+  return l;
+}
+
+bool LabelSizeInfo::areLabelsEditable()
+{
+  bool editable = FALSE;
+  XSqlQuery xqry("SELECT labeldef_id FROM labeldef LIMIT 1");
+  xqry.exec();
+
+  if (xqry.lastError().type() == QSqlError::NoError)
+  {
+    editable = TRUE;
+  }
+  return editable;
 }
 
 LabelSizeInfo::LabelSizeInfo(const QString & n, const QString & p, int c,

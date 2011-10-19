@@ -16,5 +16,5 @@ LIBS += ../bin/plugins/libcaja.so \
 #        ../bin/plugins/libdigifauno.so \
         ../bin/libreporte.a \
         ../bin/libutiles.a \
-        ../bin/plugins/libbscomputacion.so
+#        ../bin/plugins/libbscomputacion.so
         #../bin/plugins/libhicomp.so
