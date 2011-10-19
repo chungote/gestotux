@@ -45,10 +45,10 @@ static const char* __SqlTable[][3] = {
   {"fmt03",      "QOCI",          "SELECT to_char(sysdate,'YYYY/MM/DD') AS report_date,"
                                          " to_char(sysdate,'HH24:MI:SS') AS report_time"
                                     " from dual"},
-  {"fmt03",       "QMYSQL",       "SELECT DATE_FORMAT( CURRENT_DATE, \"%d/%m/%Y\" ) AS report_date,"
-                                         "DATE_FORMAT( CURRENT_TIMESTAMP,\"%H:%i:%S\") AS report_time"
+  {"fmt03",       "QMYSQL",       "SELECT DATE_FORMAT( CURRENT_DATE, \"%%d/%m/%Y\" ) AS report_date,"
+                                         "DATE_FORMAT( CURRENT_TIMESTAMP,\"%H:%%i:%S\") AS report_time"
                                         " FROM dual;" },
-  {"fmt03",       "QSQLITE",       "SELECT strftime( \"%d/%m/%Y\", CURRENT_DATE ) AS report_date," // Revisar esto
+  {"fmt03",       "QSQLITE",       "SELECT strftime( \"%%d/%m/%Y\", CURRENT_DATE ) AS report_date,"
                                           "strftime( \"%H:%M:%S\", CURRENT_TIMESTAMP ) AS report_time" },
 
 // fmt04
