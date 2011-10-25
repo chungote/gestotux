@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>594</width>
-    <height>479</height>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -118,7 +118,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="CBProducto">
+         <widget class="ECBProductos" name="CBProducto">
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -232,6 +232,11 @@
    <class>EDSBPrecio</class>
    <extends>QDoubleSpinBox</extends>
    <header location="global">edsbprecio.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBProductos</class>
+   <extends>QComboBox</extends>
+   <header location="global">ecbproductos.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

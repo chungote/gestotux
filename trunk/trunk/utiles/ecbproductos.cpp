@@ -4,7 +4,7 @@
 #include <QTimer>
 #include <QLineEdit>
 
-ECBProductos::ECBProductos(QWidget *parent) :
+ECBProductos::ECBProductos( QWidget *parent ) :
  QComboBox(parent)
 {
     this->setObjectName( "SelectorProductos" );
@@ -20,8 +20,9 @@ ECBProductos::ECBProductos(QWidget *parent) :
     this->lineEdit()->setText( "Cargando datos..." );
     this->setEnabled( false );
 
-    _mapa_pos_ids = new QMap<int, int>();
-    _mapa_pos_codigo = new QMap<QString, int>();
+    _mapa_ids_pos = new QMap<int, int>();
+    _mapa_codigo_pos = new QMap<QString, int>();
+    _mod_prod = 0;
 
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
@@ -30,10 +31,12 @@ ECBProductos::ECBProductos(QWidget *parent) :
 
 ECBProductos::~ECBProductos()
 {
-    delete _mapa_pos_ids;
-    delete _mapa_pos_codigo;
-    _mapa_pos_ids = 0;
-    _mapa_pos_codigo = 0;
+    delete _mapa_ids_pos;
+    delete _mapa_codigo_pos;
+    if(!_mod_prod )
+        delete _mod_prod;
+    _mapa_ids_pos = 0;
+    _mapa_codigo_pos = 0;
 }
 
 #include <QSqlQuery>
@@ -47,15 +50,15 @@ void ECBProductos::inicializar()
 {
     // Cargo los datos del modelo
     QSqlQuery cola;
-    if( cola.exec( "SELECT id, codigo, nombre FROM producto" ) ) {
+    if( cola.exec( "SELECT id, codigo, nombre FROM producto ORDER BY nombre ASC" ) ) {
         int pos = 0;
         while( cola.next() ) {
             // Pos = currentIndex();
             // id_producto = _mapa_pos_ids
             // codigo = _mapa_pos_codigo
             this->insertItem( pos, cola.record().value(2).toString(), cola.record().value(0).toInt() );
-            this->_mapa_pos_codigo->insert( cola.record().value(1).toString(), pos );
-            this->_mapa_pos_ids->insert   ( cola.record().value(0).toInt(), pos    );
+            this->_mapa_codigo_pos->insert( cola.record().value(1).toString(), pos );
+            this->_mapa_ids_pos->insert   ( cola.record().value(0).toInt(), pos    );
             pos++;
         }
         if( pos == 0 ) {
@@ -63,6 +66,7 @@ void ECBProductos::inicializar()
             this->lineEdit()->setText( "No hay productos cargados..." );
         }
         this->setEnabled( true );
+        this->setCurrentIndex( -1 );
     } else {
         qWarning( "Error al intentar ejecutar la cola para cargar los productos" );
         qDebug( cola.lastError().text().toLocal8Bit() );
@@ -77,14 +81,22 @@ void ECBProductos::enterApretado()
     int b = this->findText( buscar );
     if( b != -1 ) {
         this->setCurrentIndex( b );
-        emit agregarProducto();
-        return;
+    } else {
+        QMap<QString, int>::const_iterator i =  this->_mapa_codigo_pos->find( buscar );
+        if( i != this->_mapa_codigo_pos->end() ) {
+            this->setCurrentIndex( i.value() );
+        }
     }
-    QMap<QString, int>::const_iterator i =  this->_mapa_pos_codigo->find( buscar );
-    if( i != this->_mapa_pos_codigo->end() ) {
-        this->setCurrentIndex( i.value() );
-        emit agregarProducto();
-        return;
-    }
+    emit agregarProducto();
     return;
+}
+
+QMap<int, QString> *ECBProductos::listadoProductos()
+{
+    if( _mod_prod != 0 ) {
+        for( int i = 0; i < count(); i++ ) {
+            _mod_prod->insert( itemData( i ).toInt(), itemText( i ) );
+        }
+    }
+    return _mod_prod;
 }
