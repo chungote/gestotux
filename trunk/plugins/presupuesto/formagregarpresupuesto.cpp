@@ -74,7 +74,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         dEFecha->setDate( QDate::currentDate() );
 
         // Pongo el sistema de relleno
-        m = new MProductosTotales( this );
+        m = new MProductosTotales( this, CBProductos->listadoProductos() );
         m->calcularTotales( true );
         m->buscarPrecios( true );
         TVContenido->setModel( m );

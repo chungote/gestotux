@@ -37,6 +37,7 @@
 #include "MFactura.h"
 #include "mitemfactura.h"
 #include "NumeroComprobante.h"
+#include "ecbproductos.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -66,7 +67,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         DEFecha->setDate( QDate::currentDate() );
 
         // Modelo del tableview
-        mcp = new MProductosTotales( TVProductos );
+        mcp = new MProductosTotales( TVProductos, CBProducto->listadoProductos() );
         mcp->calcularTotales( true );
         mcp->buscarPrecios( true );
         TVProductos->setModel( mcp );
