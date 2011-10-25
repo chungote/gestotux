@@ -35,7 +35,7 @@ EVentana(parent), _id_servicio(0)  {
     setupUi(this);
 
     this->setWindowTitle( "Facturacion de un servicio" );
-    //this->setWindowIcon( QIcon( ":/imagenes/" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
     this->setObjectName( "facturaservicios" );
 
     ActCerrar = new EActCerrar( this );
@@ -43,7 +43,7 @@ EVentana(parent), _id_servicio(0)  {
     ActFacturar = new QAction( this );
     ActFacturar->setText( "Facturar" );
     ActFacturar->setStatusTip( "Factura el servicio con los clientes seleccionados" );
-    ActFacturar->setIcon( QIcon( ":/imagenes/" ) );
+    ActFacturar->setIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
     connect( ActFacturar, SIGNAL( triggered() ), this, SLOT( facturar() ) );
 
     this->addAction( ActFacturar );
@@ -112,7 +112,9 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->TVClientes->hideColumn( 2 );
     mc->cargarClientesDelServicio( this->_id_servicio );
     this->TVClientes->setItemDelegateForColumn( 0, new DSiNo( this->TVClientes ) );
-    this->TVClientes->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    this->TVClientes->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    this->TVClientes->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
+    this->TVClientes->horizontalHeader()->setMinimumSectionSize( 40 );
     // Cargo los recargos del servicio
     MRecargos *mr = new MRecargos( this, false );
     mr->setFilter( QString( "id_servicio = %1 " ).arg( this->_id_servicio ) );

@@ -135,6 +135,11 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      QMessageBox::information( this, "Error de destinatario", "El cliente no es valido o no existe un destinatario ingresado. Por favor coloque uno." );
      return;
  }
+ // Cuento que tenga al menos un item
+ if( m->rowCount() <= 1 ) {
+     QMessageBox::information( this, "Error de items", "Por favor, ingrese al menos un item en el detalle del presupuesto." );
+     return;
+ }
  // Inicio la transacción
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  MPresupuesto *mod = new MPresupuesto();

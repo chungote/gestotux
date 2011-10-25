@@ -121,6 +121,7 @@ void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
 
  QAction *ActGenerarFacturacion = new QAction( menu );
  ActGenerarFacturacion->setText( "Generar Facturacion" );
+ ActGenerarFacturacion->setIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
  ActGenerarFacturacion->setStatusTip( "Genera todas las facturas para el periodo que se desea cobrar automaticamente" );
  connect( ActGenerarFacturacion, SIGNAL( triggered() ), this, SLOT( generarFacturacion() ) );
 
@@ -129,7 +130,7 @@ void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
  ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
  connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( verRecargos() ) );
 
- ActAgregar->setText( "Agregar Servicio");
+ ActAgregar->setText( "Agregar");
  menu->addAction( ActAgregar );
  menu->addAction( ActNuevoCliente );
  menu->addAction( ActVerClientes );
