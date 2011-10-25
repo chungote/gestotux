@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>imagenes/servicios.png</file>
+        <file>imagenes/facturar_servicio.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>servicios.QMYSQL.sql</file>

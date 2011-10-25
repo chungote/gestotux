@@ -59,6 +59,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
         // Producto
         case 1:
         {
+                /// @todo Agregar combobox que soporte codigos aqui tambien
                 QComboBox *combo = new QComboBox( parent );
                 // Rellenar los items
                 if( !lista ) {
