@@ -9,9 +9,20 @@ class ECBProductos : public QComboBox
 
 public:
     ECBProductos( QWidget *parent = 0 );
+    ~ECBProductos();
+
+protected slots:
     void inicializar();
 
+signals:
+    void agregarProducto();
 
+private slots:
+    void enterApretado();
+
+private:
+    QMap<int, int> *_mapa_pos_ids;
+    QMap<QString, int> *_mapa_pos_codigo;
 };
 
 #endif // ECBPRODUCTOS_H

@@ -60,17 +60,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         CBCliente->setModelColumn( 1 );
         CBCliente->setEditable( true );
 
-        // Rellenar los items de productos
-        QSqlQueryModel *cola = new QSqlQueryModel( this );
-        cola->setQuery( "SELECT id, nombre FROM producto" );
-        CBProducto->setModel( cola );
-        CBProducto->setModelColumn( 1 );
-        CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
-        CBProducto->setEditable( true );
-        CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
-        CBProducto->setCurrentIndex( -1 );
-        CBProducto->setInsertPolicy( QComboBox::NoInsert );
-        connect( CBProducto->lineEdit(), SIGNAL( returnPressed() ), PBAgregarProducto, SIGNAL( clicked() ) );
+        connect( CBProducto, SIGNAL( agregarProducto() ), this, SLOT( agregarProducto() ) );
 
         DEFecha->setMaximumDate( QDate::currentDate() );
         DEFecha->setDate( QDate::currentDate() );

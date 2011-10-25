@@ -27,16 +27,26 @@ MCompraProducto::MCompraProducto(QObject *parent)
 }
 
 #include <QSqlError>
+#include <QSqlQuery>
 /*!
-    \fn MCompraProducto::insertRecord ( int row, const QSqlRecord & record )
+ * \fn MCompraProducto::agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad )
+ * Agrega la compra de un producto para una ceirta compra.
+ * \param id_compra Identificador de compra
+ * \param id_producto Identificador del producto
+ * \param precio_compra Precio al cual se lo compro
+ * \param cantidad Cantidad comprada
+ * \return Verdader si se pudo registrar
  */
-bool MCompraProducto::insertRecord ( int row, const QSqlRecord & record )
+bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad )
 {
-  if( QSqlRelationalTableModel::insertRecord( row, record ) )
-  { return true; }
-  else
-  {
-   qDebug( qPrintable( this->lastError().text() ) );
-   return false;
-  }
+    if( id_compra <= 0 )
+        return false;
+    if( id_producto <= 0 )
+        return false;
+    if( cantidad <= 0 )
+        return false;
+    if( precio_compra <= 0 )
+        return false;
+
+    return false;
 }

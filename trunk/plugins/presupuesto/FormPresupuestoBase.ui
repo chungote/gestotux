@@ -115,7 +115,7 @@
          <widget class="QDoubleSpinBox" name="DSBCant"/>
         </item>
         <item>
-         <widget class="QComboBox" name="CBProductos">
+         <widget class="ECBProductos" name="CBProductos">
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
             <horstretch>0</horstretch>
@@ -172,6 +172,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ECBProductos</class>
+   <extends>QComboBox</extends>
+   <header>ecbproductos.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

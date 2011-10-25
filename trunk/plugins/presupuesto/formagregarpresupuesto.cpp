@@ -88,17 +88,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         TVContenido->horizontalHeader()->setMinimumSectionSize( 140 );
         TVContenido->setSortingEnabled( false );
 
-        // Rellenar los items de productos
-        QSqlQueryModel *cola = new QSqlQueryModel( this );
-        cola->setQuery( "SELECT id, nombre FROM producto" );
-        CBProductos->setModel( cola );
-        CBProductos->setModelColumn( 1 );
-        CBProductos->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
-        CBProductos->setEditable( true );
-        CBProductos->completer()->setCompletionMode( QCompleter::PopupCompletion );
-        CBProductos->setCurrentIndex( -1 );
-        CBProductos->setInsertPolicy( QComboBox::NoInsert );
-        connect( CBProductos->lineEdit(), SIGNAL( returnPressed() ), PBAgregar, SIGNAL( clicked() ) );
+        connect( CBProductos, SIGNAL( agregarProducto() ), this, SLOT( agregarProducto() ) );
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
@@ -229,14 +219,6 @@ void FormAgregarPresupuesto::agregarProducto()
     // Inserto el producto
     m->agregarNuevoProducto( DSBCant->value(), CBProductos->currentText() );
 
-    /*m->insertRow( -1 );
-    // Pongo el producto
-    QModelIndex indice_cant = m->index( m->rowCount()-2, 0 );
-    QModelIndex indice_prod = m->index( m->rowCount()-2, 1 );
-    int id_producto = CBProductos->model()->data( CBProductos->model()->index( CBProductos->currentIndex(), 0 ) , Qt::EditRole ).toInt();
-    m->setData( indice_prod, id_producto, Qt::EditRole );
-    // Pongo la cantidad
-    m->setData( indice_cant, DSBCant->value(), Qt::EditRole );*/
     // Reseteo los ingresos de producto
     DSBCant->setValue( 1.0 );
     CBProductos->setCurrentIndex( -1 );
