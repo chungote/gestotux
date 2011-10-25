@@ -37,6 +37,8 @@ FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
         this->setWindowIcon( QIcon( ":/imagenes/add.png" ) );
 
         this->modelo = m;
+        _modificando = false;
+        _id_servicio = -1;
 
         // Pongo la fecha de alta en hoy
         DEFechaAlta->setDate( QDate::currentDate() );
@@ -105,7 +107,25 @@ void FormServicio::cambiarBaja( bool estado )
 {  DEFechaBaja->setEnabled( estado ); }
 
 
+/*!
+    \fn FormServicio::agregarRecargo()
+    Abre la ventana para agregar un recargo
+ */
 void FormServicio::agregarRecargo()
 {
+    /// @todo Agregar este metodo
     qWarning( "No implementado todavía" );
+    return;
+}
+
+/*!
+ * \fn FormServicio::setearId( const int id_servicio )
+ * Coloca el formulario en modo de edicion y carga los datos para que sean modificados.
+ */
+void FormServicio::setearId( const int id_servicio )
+{
+    /// @todo Agregar este metodo
+    qWarning( "Esta parte todavía no ha sido programada. \n Se mostrará el formulario pero no podrá hacer nada con el" );
+    disconnect( this, SLOT( guardar() ) );
+    return;
 }

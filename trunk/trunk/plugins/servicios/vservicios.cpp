@@ -60,11 +60,18 @@ void VServicios::agregar( bool /*autoeliminarid*/ )
 /*!
     \fn VServicios::modificar( const QModelIndex &idx )
  */
-void VServicios::modificar( const QModelIndex &/*idx*/ )
+void VServicios::modificar( const QModelIndex &idx )
 {
- // modifico el indice actual
-    qWarning( "Todavía no implementado" );
- return;
+    // modifico el indice actual ( existe uno actual? )
+    // Obtengo el id actual
+    int id_servicio = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    if( id_servicio <= 0 ) {
+        qWarning( "El identificador del servicio encontrado es invalido" );
+        return;
+    }
+    FormServicio *f = new FormServicio( qobject_cast<MServicios *>(this->modelo ) );
+    f->setearId( id_servicio );
+    emit agregarVentana( f );
 }
 
 #include <QMessageBox>
@@ -90,7 +97,7 @@ void VServicios::eliminar()
         return;
     } else {
         qDebug( "Error al eliminar el servicio" );
-        qDebug( qobject_cast<QSqlTableModel *>(this->vista->model() )->lastError().text().toLocal8Bit() );
+        qDebug( qobject_cast<QSqlTableModel *>( this->vista->model() )->lastError().text().toLocal8Bit() );
         return;
     }
 }

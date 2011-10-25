@@ -30,8 +30,7 @@ class MCompraProducto : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MCompraProducto( QObject *parent = 0 );
-    bool insertRecord ( int row, const QSqlRecord & record );
-
+    bool agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad );
 };
 
 #endif

@@ -31,6 +31,7 @@ Q_OBJECT
 
 public:
     FormServicio( MServicios *m, QWidget* parent = 0, Qt::WFlags fl = 0 );
+    void setearId( const int id_servicio );
 
 protected slots:
     void guardar();
@@ -39,6 +40,8 @@ protected slots:
 
 private:
     MServicios *modelo;
+    bool _modificando;
+    int _id_servicio;
 };
 
 #endif

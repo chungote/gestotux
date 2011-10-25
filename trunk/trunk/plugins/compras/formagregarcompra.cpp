@@ -110,6 +110,9 @@ void FormAgregarCompra::guardar()
   return;
  }
  return;
+ // Verifico aca los productos que todavía no existen?
+
+
  //Inicio una transacción
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
@@ -119,7 +122,10 @@ void FormAgregarCompra::guardar()
  // Genero la compra
  MCompra *compra = new MCompra( this, false );
  if( compra->agregarCompra( DEFecha->date(), id_proveedor ) == false )
- { QSqlDatabase::database().rollback(); return; }
+ {
+     QSqlDatabase::database().rollback();
+     return;
+ }
  // Busco el ultimo id de compra
  int id_compra = compra->ultimoId();
  qDebug( qPrintable( QString( "idCompra: %1" ).arg( id_compra ) ) );
@@ -127,45 +133,43 @@ void FormAgregarCompra::guardar()
  MCompraProducto *m = new MCompraProducto( this );
  for( int i= 0; i<mcp->rowCount(); i++ )
  {
-  QSqlRecord registro = m->record();
-  registro.setValue( "id_compra", id_compra );
-  registro.setValue( "id_producto", mcp->data( mcp->index( i, 0 ), Qt::EditRole ) );
-  registro.setValue( "precio_compra", mcp->data( mcp->index( i, 1 ), Qt::EditRole ) );
-  registro.setValue( "cantidad", mcp->data( mcp->index( i, 2 ), Qt::EditRole ) );
-  if( m->insertRecord( -1, registro ) == false )
-  {
-   qDebug( "Error al insertar Registro" );
+  if( m->agregarCompraProducto( id_compra,
+                                mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), // id_producto
+                                mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble(), // precio compra
+                                mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() ) ) { // cantidad
+
   }
-  else
-  {
    // Actualizo el stock
-   int id_producto = mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt();
-   QSqlQuery cola( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) );
-   if( cola.next() )
+   int id_producto = mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt();
+
+   QSqlQuery cola;
+   if( cola.exec( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) ) )
    {
-    double cantidad = cola.record().value(0).toDouble();
-    cantidad += mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble();
-    if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) )
-    {
-     qDebug( "Stock actualizado correctamente" );
-    }
-    else
-    {
-     qWarning( "Error al actualizar el stcok" );
-     qDebug( qPrintable( cola.lastError().text() ) );
-     qDebug( qPrintable( cola.lastQuery() ) );
-    }
+       if( cola.next() )
+       {
+            double cantidad = cola.record().value(0).toDouble();
+            cantidad += mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble();
+            if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) )
+            {
+                qDebug( "Stock actualizado correctamente" );
+            }
+            else
+            {
+                qWarning( "Error al actualizar el stcok" );
+                qDebug( qPrintable( cola.lastError().text() ) );
+                qDebug( qPrintable( cola.lastQuery() ) );
+            }
+       }
+       else
+       {
+            qWarning( "Error al intentar buscar el stock del producto" );
+            qDebug( qPrintable( cola.lastError().text() ) );
+            qDebug( qPrintable( cola.lastQuery() ) );
+       }
    }
-   else
-   {
-    qWarning( "Error al intentar buscar el stock del producto" );
-    qDebug( qPrintable( cola.lastError().text() ) );
-    qDebug( qPrintable( cola.lastQuery() ) );
-   }
-  }
- }
- m->submit();
- // listo
+  } // fin del for
+  // Si llegue hasta aca sin problema, hago el submit
+  // listo
   if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() )
   {
    QMessageBox::information( this, "Correcto" , "La compra se ha registrado correctamente" );
