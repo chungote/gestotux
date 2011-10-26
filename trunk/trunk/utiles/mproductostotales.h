@@ -32,7 +32,11 @@ class MProductosTotales : public QAbstractTableModel
 {
 Q_OBJECT
 public:
+<<<<<<< .mine
+    MProductosTotales( QObject *parent = 0, QMap<int, QString> *_mapa = 0 );
+=======
     MProductosTotales( QObject *parent = 0, QMap<int, QString> *mapa = 0 );
+>>>>>>> .r445
     ~MProductosTotales();
 
     bool insertRow(int row, const QModelIndex& parent = QModelIndex() );
@@ -42,21 +46,16 @@ public:
     int rowCount(const QModelIndex& parent = QModelIndex() ) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
     QVariant data(const QModelIndex& idx, int role) const;
+    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+
     void recalcularTotal();
     double total();
-    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
     void calcularTotales( bool sino = true );
+
     bool buscaPrecios();
     void buscarPrecios( bool activado = true );
-    QMap<int, QString> *listaProductos() { return this->prods; }
-    /*!
-     * Contiene el listado de ids relacionados con los nombres de los productos
-     */
-    QMap<int, QString> *prods;
-    void agregarNuevoProducto( const int cantidad, const QString nombre );
 
-signals:
-    void cambioListaProductos( MProductosTotales * );
+    void agregarNuevoProducto( const int cantidad, const int Id );
 
 private:
         /*!
@@ -76,6 +75,10 @@ private:
          */
         QHash<int, int> *productos;
         /*!
+         * Contiene el listado de ids relacionados con los nombres de los productos
+         */
+        QMap<int, QString> *prods;
+        /*!
          * Contiene el total de la factura calculado
          */
         double Total;
@@ -87,10 +90,7 @@ private:
          * Define si se hará la busqueda de precio del producto
          */
         bool _buscarPrecio;
-        /*!
-         * Indice para indicar el nuevo ingreso
-         */
-        int _min;
+
         double buscarPrecioVenta( int id_producto );
 };
 
