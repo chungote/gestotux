@@ -71,9 +71,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         mcp->calcularTotales( true );
         mcp->buscarPrecios( true );
         TVProductos->setModel( mcp );
-        DProductosTotales *d = new DProductosTotales( TVProductos );
-        d->setearListaProductos( mcp->listaProductos() );
-        TVProductos->setItemDelegate( d );
+        TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
         TVProductos->setAlternatingRowColors( true );
         TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVProductos->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
@@ -117,7 +115,7 @@ void FormAgregarVenta::agregarProducto()
  if( CBProducto->currentText().isEmpty() )
  { QMessageBox::information( this, "Error de datos", "Por favor, ingrese un producto", QMessageBox::Ok ); return; }
  // Inserto la fila
- mcp->agregarNuevoProducto( DSBCant->value(), CBProducto->currentText() );
+ mcp->agregarNuevoProducto( DSBCant->value(), CBProducto->idActual() );
  // Reseteo los ingresos de producto
  DSBCant->setValue( 1.0 );
  CBProducto->setCurrentIndex( -1 );

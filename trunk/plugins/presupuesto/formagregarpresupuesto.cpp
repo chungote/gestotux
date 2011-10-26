@@ -78,10 +78,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         m->calcularTotales( true );
         m->buscarPrecios( true );
         TVContenido->setModel( m );
-        DProductosTotales *d = new DProductosTotales( TVContenido );
-        d->setearListaProductos( m->listaProductos() );
-        connect( m, SIGNAL( cambioListaProductos( MProductosTotales* ) ), d, SLOT( neceistoActualizarListaSlots( MProductosTotales* ) ) );
-        TVContenido->setItemDelegateForColumn( 1, d );
+        TVContenido->setItemDelegateForColumn( 1, new DProductosTotales( TVContenido ) );
         TVContenido->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVContenido->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
         TVContenido->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
@@ -222,7 +219,7 @@ void FormAgregarPresupuesto::agregarProducto()
     if( CBProductos->currentText().isEmpty() )
     { QMessageBox::information( this, "Error de datos", "Ingrese un producto a agregar", QMessageBox::Ok ); return; }
     // Inserto el producto
-    m->agregarNuevoProducto( DSBCant->value(), CBProductos->currentText() );
+    m->agregarNuevoProducto( DSBCant->value(), CBProductos->idActual() );
 
     // Reseteo los ingresos de producto
     DSBCant->setValue( 1.0 );

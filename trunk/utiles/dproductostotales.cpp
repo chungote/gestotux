@@ -28,16 +28,13 @@
 #include "edsbprecio.h"
 #include "../plugins/productos/mproductos.h"
 #include "preferencias.h"
+#include "ecbproductos.h"
 
-DProductosTotales::DProductosTotales(QWidget *parent)
+DProductosTotales::DProductosTotales( QWidget *parent )
  : QItemDelegate(parent)
 {
  setClipping( false );
- lista = 0;
 }
-
-void DProductosTotales::setearListaProductos( QMap<int, QString> *l )
-{  lista = l;  }
 
 QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
@@ -59,6 +56,9 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
         // Producto
         case 1:
         {
+<<<<<<< .mine
+                ECBProductos *combo = new ECBProductos( parent ); // Copio al padre que ya existe
+=======
                 /// @todo Agregar combobox que soporte codigos aqui tambien
                 QComboBox *combo = new QComboBox( parent );
                 // Rellenar los items
@@ -74,6 +74,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
                 combo->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
                 combo->setEditable( true );
                 combo->completer()->setCompletionMode( QCompleter::PopupCompletion );
+>>>>>>> .r445
                 return combo;
                 break;
         }
@@ -133,21 +134,9 @@ void DProductosTotales::setModelData(QWidget* editor, QAbstractItemModel* model,
         // Producto
         case 1:
         {
-                QComboBox *combo = qobject_cast<QComboBox *>(editor);
-                // Veo si tiene el dato de ser un producto, sino, lo agrego
-                qDebug( "Verificando existencia real del producto!");
-                if( combo->itemData( combo->currentIndex() ) == QVariant::Invalid )
-                {
-                    // Lo agrego en el modelo para que recarge despues
-                    if( combo->itemText( combo->currentIndex() ).isEmpty() ) { return; }
-                    qDebug( QString( "Agregando producto no existente: %1").arg( combo->currentText() ).toLocal8Bit() );
-                    // Cuando se coloca algun nuevo producto que no estaba antes, se coloca con 1 en cantidad.
-                    qobject_cast<MProductosTotales *>(model)->agregarNuevoProducto( 1, combo->itemText( combo->currentIndex() ) );
-                    // No hago el set data ya que se hace automaticamente
-                    //model->setData( index, valor_indice_nuevo );
-                } else {
-                    model->setData( index, combo->itemData( combo->currentIndex() ) );
-                }
+                ECBProductos *combo = qobject_cast<ECBProductos *>(editor);
+                // No necesito preocuparme si ingresa cualquier banana porque el cb administra la lista
+                model->setData( index, combo->idActual() );
                 break;
         }
         // Precio Unitario
@@ -173,5 +162,3 @@ void DProductosTotales::updateEditorGeometry(QWidget* editor, const QStyleOption
     QItemDelegate::updateEditorGeometry(editor, option, index);
 }
 
-void DProductosTotales::neceistoActualizarListaSlots( MProductosTotales *m )
-{ lista = m->listaProductos(); }
