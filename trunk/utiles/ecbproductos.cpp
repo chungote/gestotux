@@ -20,13 +20,7 @@ ECBProductos::ECBProductos( QWidget *parent ) :
     this->lineEdit()->setText( "Cargando datos..." );
     this->setEnabled( false );
 
-<<<<<<< .mine
     _mapa_pos_codigo = new QMap<QString, int>();
-=======
-    _mapa_ids_pos = new QMap<int, int>();
-    _mapa_codigo_pos = new QMap<QString, int>();
-    _mod_prod = 0;
->>>>>>> .r445
     _mapa_id_nombre = new QMap<int, QString>();
 
     this->_min = -1;
@@ -37,17 +31,8 @@ ECBProductos::ECBProductos( QWidget *parent ) :
 
 ECBProductos::~ECBProductos()
 {
-<<<<<<< .mine
     delete _mapa_pos_codigo;
     _mapa_pos_codigo = 0;
-=======
-    delete _mapa_ids_pos;
-    delete _mapa_codigo_pos;
-    if(!_mod_prod )
-        delete _mod_prod;
-    _mapa_ids_pos = 0;
-    _mapa_codigo_pos = 0;
->>>>>>> .r445
     delete _mapa_id_nombre;
     _mapa_id_nombre = 0;
 }
@@ -70,13 +55,8 @@ void ECBProductos::inicializar()
             // id_producto = item cb itemData
             // codigo = _mapa_pos_codigo
             this->insertItem( pos, cola.record().value(2).toString(), cola.record().value(0).toInt() );
-<<<<<<< .mine
             this->_mapa_pos_codigo->insert( cola.record().value(1).toString(), pos );
             this->_mapa_id_nombre->insert ( cola.record().value(0).toInt()   , cola.record().value(2).toString() );
-=======
-            this->_mapa_codigo_pos->insert( cola.record().value(1).toString(), pos );
-            this->_mapa_ids_pos->insert   ( cola.record().value(0).toInt(), pos    );
->>>>>>> .r445
             pos++;
         }
         if( pos == 0 ) {
@@ -99,7 +79,6 @@ void ECBProductos::enterApretado()
     int b = this->findText( buscar );
     if( b != -1 ) {
         this->setCurrentIndex( b );
-<<<<<<< .mine
     } else {
         QMap<QString, int>::const_iterator i =  this->_mapa_pos_codigo->find( buscar );
         if( i != this->_mapa_pos_codigo->end() ) {
@@ -115,32 +94,13 @@ void ECBProductos::enterApretado()
             this->setCurrentIndex( pos_nueva );
             this->_min--;
         }
-=======
-    } else {
-        QMap<QString, int>::const_iterator i =  this->_mapa_codigo_pos->find( buscar );
-        if( i != this->_mapa_codigo_pos->end() ) {
-            this->setCurrentIndex( i.value() );
-        }
->>>>>>> .r445
     }
     emit agregarProducto();
     return;
 }
-<<<<<<< .mine
 
 QMap<int, QString> *ECBProductos::listadoProductos()
 { return this->_mapa_id_nombre; }
 
 int ECBProductos::idActual() const
-{ return this->itemData( this->currentIndex() ).toInt(); }=======
-
-QMap<int, QString> *ECBProductos::listadoProductos()
-{
-    if( _mod_prod != 0 ) {
-        for( int i = 0; i < count(); i++ ) {
-            _mod_prod->insert( itemData( i ).toInt(), itemText( i ) );
-        }
-    }
-    return _mod_prod;
-}
->>>>>>> .r445
+{ return this->itemData( this->currentIndex() ).toInt(); }
