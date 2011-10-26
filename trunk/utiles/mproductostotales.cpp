@@ -28,18 +28,25 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 
+<<<<<<< .mine
+MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa_id_prod )
+=======
 MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *mapa )
+>>>>>>> .r445
  : QAbstractTableModel(parent)
 {
  // Inicializo los sistemas
  Total = 0;
- _min = -1;
  _calcularTotal = false;
  _buscarPrecio = false;
  cantidades = new QHash<int, double>();
  precio_unitario = new QHash<int, double>();
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
+<<<<<<< .mine
+ if( _mapa_id_prod != 0 )
+    prods = _mapa_id_prod;
+=======
  /*prods = new QMap<int, QString>();
  QSqlQuery cola( "SELECT nombre, id FROM producto" );
  while( cola.next() )
@@ -47,11 +54,25 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *mapa 
         prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );
  }*/
  prods = mapa;
+>>>>>>> .r445
  cantidades->clear();
 }
 
 
 MProductosTotales::~MProductosTotales()
+<<<<<<< .mine
+{
+    delete cantidades;
+    delete precio_unitario;
+    delete subtotales;
+    delete productos;
+    cantidades = 0;
+    precio_unitario = 0;
+    subtotales = 0;
+    productos = 0;
+    prods = 0;
+}
+=======
 {
     delete cantidades;
     delete precio_unitario;
@@ -64,6 +85,7 @@ MProductosTotales::~MProductosTotales()
     productos = 0;
     prods = 0;
 }
+>>>>>>> .r445
 
 
 bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
@@ -116,7 +138,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() &&
                                         this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 )
                                 {
-                                        // Busco si el stock actual menos la cantidad es <= 0
+                                        // Busco si elv stock actual menos la cantidad es <= 0
                                         qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
                                         {
@@ -221,7 +243,7 @@ Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
  }
  else
  {
-  if( index.column() == 3 )
+  if( index.column() == 3  || index.column() == 1 )
   { return QFlags<Qt::ItemFlag>(!Qt::ItemIsEditable |  Qt::ItemIsSelectable ); }
   else
   { return QAbstractTableModel::flags( index ) | Qt::ItemIsEditable; }
@@ -525,26 +547,34 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
 
 
 #include <QInputDialog>
-void MProductosTotales::agregarNuevoProducto( int cantidad, QString nombre )
+void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
 {
   // Veo si existe y lo agrego a la lista si no existe....
   bool ok = false;
-  int ret = 0;
   double precio_unitario = -1.1;
-  //qDebug( QString( "Buscando %1" ).arg( nombre ).toLocal8Bit() );
-  //qDebug( QString( "Clave: %1" ).arg( this->prods->key( nombre ) ).toLocal8Bit() );
-  if( this->prods->key( nombre )  == 0  ) {
-    // Lo agrego a la lista de productos
-    this->prods->insert( this->_min, nombre );
-    //qDebug( QString("Insertado %1 en pos %2" ).arg( nombre ).arg( this->_min ).toLocal8Bit() );
-    // aumento el minimo
-    ret = this->_min;
-    this->_min--;
-    // Actualizo la lista de productos
-    emit cambioListaProductos( this );
-    // Como el producto es nuevo, busco el precio unitario
-    precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
+
+  if( Id <= -1 ) {
+      // Pido el precio si fue agregado especificamente
+      precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
   } else {
+<<<<<<< .mine
+
+      if( this->_buscarPrecio ) {
+          precio_unitario = buscarPrecioVenta( Id );
+          ok = true;
+      } else {
+          // Como no busca el precio, inserto el dialogo
+          precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
+      }
+
+      // Es un producto valido
+      if( ( MProductos::stock( Id ) - cantidad ) < 0 ) {
+          qDebug( "-> Error, stock negativo" );
+          qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
+          return;
+      }
+
+=======
     ret = this->prods->key( nombre );
     if( this->_buscarPrecio ) {
         precio_unitario = buscarPrecioVenta( ret );
@@ -560,7 +590,9 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, QString nombre )
         qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
         return;
     }
+>>>>>>> .r445
   }
+
   // Inserto el dato con la cantidad si fue buscado el precio o insertado
   if( ok ) {
     if( this->insertRow( -1 ) ) {
@@ -571,9 +603,10 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, QString nombre )
             id_fila--;
 
         this->cantidades->insert     ( id_fila, cantidad                   );
-        this->productos->insert      ( id_fila, ret                        );
+        this->productos->insert      ( id_fila, Id                         );
         this->precio_unitario->insert( id_fila, precio_unitario            );
         this->subtotales->insert     ( id_fila, precio_unitario * cantidad );
+
         recalcularTotal();
 
         emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
