@@ -56,26 +56,7 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
         // Producto
         case 1:
         {
-<<<<<<< .mine
-                ECBProductos *combo = new ECBProductos( parent ); // Copio al padre que ya existe
-=======
-                /// @todo Agregar combobox que soporte codigos aqui tambien
-                QComboBox *combo = new QComboBox( parent );
-                // Rellenar los items
-                if( !lista ) {
-                    qWarning( "Error en la lista original de productos!" );
-                    abort();
-                }
-                QMapIterator<int, QString> i(*lista);
-                while (i.hasNext()) {
-                     i.next();
-                     combo->addItem( i.value(), i.key() );
-                }
-                combo->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
-                combo->setEditable( true );
-                combo->completer()->setCompletionMode( QCompleter::PopupCompletion );
->>>>>>> .r445
-                return combo;
+                return 0;
                 break;
         }
         // Precio Unitario

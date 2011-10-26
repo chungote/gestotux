@@ -32,11 +32,7 @@ class MProductosTotales : public QAbstractTableModel
 {
 Q_OBJECT
 public:
-<<<<<<< .mine
     MProductosTotales( QObject *parent = 0, QMap<int, QString> *_mapa = 0 );
-=======
-    MProductosTotales( QObject *parent = 0, QMap<int, QString> *mapa = 0 );
->>>>>>> .r445
     ~MProductosTotales();
 
     bool insertRow(int row, const QModelIndex& parent = QModelIndex() );

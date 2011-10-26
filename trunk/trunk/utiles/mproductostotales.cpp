@@ -28,11 +28,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 
-<<<<<<< .mine
 MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa_id_prod )
-=======
-MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *mapa )
->>>>>>> .r445
  : QAbstractTableModel(parent)
 {
  // Inicializo los sistemas
@@ -43,24 +39,13 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *mapa 
  precio_unitario = new QHash<int, double>();
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
-<<<<<<< .mine
  if( _mapa_id_prod != 0 )
     prods = _mapa_id_prod;
-=======
- /*prods = new QMap<int, QString>();
- QSqlQuery cola( "SELECT nombre, id FROM producto" );
- while( cola.next() )
- {
-        prods->insert( cola.record().value( "id" ).toInt(), cola.record().value("nombre").toString() );
- }*/
- prods = mapa;
->>>>>>> .r445
  cantidades->clear();
 }
 
 
 MProductosTotales::~MProductosTotales()
-<<<<<<< .mine
 {
     delete cantidades;
     delete precio_unitario;
@@ -72,21 +57,6 @@ MProductosTotales::~MProductosTotales()
     productos = 0;
     prods = 0;
 }
-=======
-{
-    delete cantidades;
-    delete precio_unitario;
-    delete subtotales;
-    delete productos;
-    delete prods;
-    cantidades = 0;
-    precio_unitario = 0;
-    subtotales = 0;
-    productos = 0;
-    prods = 0;
-}
->>>>>>> .r445
-
 
 bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
 {
@@ -557,7 +527,6 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
       // Pido el precio si fue agregado especificamente
       precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
   } else {
-<<<<<<< .mine
 
       if( this->_buscarPrecio ) {
           precio_unitario = buscarPrecioVenta( Id );
@@ -573,24 +542,6 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
           qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
           return;
       }
-
-=======
-    ret = this->prods->key( nombre );
-    if( this->_buscarPrecio ) {
-        precio_unitario = buscarPrecioVenta( ret );
-        ok = true;
-    } else {
-        // Como no busca el precio, inserto el dialogo
-        precio_unitario = QInputDialog::getDouble( 0, "Falta precio", "Ingrese el precio unitario", 0.0, 0.0, 2147483647, 2, &ok );
-    }
-    // Verifico el stock porque luego no se realiza la verificacion
-    // Es un producto valido y la preferencia se verifica en el modelo
-    if( ( MProductos::stock( ret ) - cantidad ) < 0 ) {
-        qDebug( "-> Error, stock negativo" );
-        qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
-        return;
-    }
->>>>>>> .r445
   }
 
   // Inserto el dato con la cantidad si fue buscado el precio o insertado
