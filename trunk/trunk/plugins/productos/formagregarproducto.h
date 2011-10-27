@@ -10,6 +10,9 @@ class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
     Q_OBJECT
     public:
         FormAgregarProducto( QWidget *parent = 0 );
+        void setearPrecioCosto( const double precio );
+        void setearNombre( const QString nombre );
+        void setearStockInicial( const int cantidad );
 
     public slots:
         void accept();

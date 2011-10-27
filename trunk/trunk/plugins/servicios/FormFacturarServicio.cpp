@@ -53,6 +53,12 @@ EVentana(parent), _id_servicio(0)  {
     this->GBProgreso->setVisible( false );
     this->PBCancelar->setText( "Cancelar" );
 
+    this->setDisabled( true );
+
+    this->LNombreServicio->setText( "Cargando..." );
+    this->LPeriodo->setText( "Cargando..." );
+    this->LPrecioBase->setText( "Cargando..." );
+
 }
 
 void FormFacturarServicio::changeEvent(QEvent *e)
@@ -67,6 +73,7 @@ void FormFacturarServicio::changeEvent(QEvent *e)
     }
 }
 
+#include <QTimer>
 /*!
  * \fn FormFacturarServicio::setearServicio( const int id_servicio )
  *  Setea el id de servicio que se desea realizar la facturación
@@ -76,7 +83,7 @@ void FormFacturarServicio::setearServicio(const int id_servicio)
 {
     if( id_servicio > 0 ) {
         this->_id_servicio = id_servicio;
-        this->cargar_datos_servicio();
+        QTimer::singleShot( 400, this, SLOT( cargar_datos_servicio() ) );
     } else {
         qWarning( "Servicios:FormFacturarServicio: Seteando un servicio < o = 0");
         return;
@@ -125,6 +132,8 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     // Arreglar problema con el item de si o no tamaño.
     mr->select();
+
+    this->setEnabled( true );
 }
 
 #include <QLabel>

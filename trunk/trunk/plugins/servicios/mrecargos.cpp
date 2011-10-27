@@ -29,9 +29,9 @@ MRecargos::MRecargos( QObject *parent, bool relaciones )
  setHeaderData( 0, Qt::Horizontal, tr( "#ID" ) );
  setHeaderData( 1, Qt::Horizontal, tr( "Servicio" ) );
  setHeaderData( 2, Qt::Horizontal, tr( "Dias pasados" ) );
- setHeaderData( 3, Qt::Horizontal, tr( "Porcentaje" ) );
+ setHeaderData( 3, Qt::Horizontal, tr( "Porcentaje del precio base" ) );
  setHeaderData( 4, Qt::Horizontal, tr( "Recargo Fijo" ) );
- setHeaderData( 5, Qt::Horizontal, tr( "Precio recargado" ) );
+ setHeaderData( 5, Qt::Horizontal, tr( "Precio recargado final" ) );
  if( relaciones ) {
      setRelation  ( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
  }

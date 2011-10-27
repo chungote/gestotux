@@ -118,3 +118,27 @@ void FormAgregarProducto::accept() {
         return;
     }
 }
+
+/*!
+ * \fn FormAgregarProducto::setearNombre( const QString nombre )
+ * Coloca como predeterminado el nombre del producto
+ * \param nombre Nombre del producto a agregar
+ */
+void FormAgregarProducto::setearNombre(const QString nombre)
+{ this->LENombre->setText( nombre ); }
+
+/*!
+ * \fn FormAgregarProducto::setearStockInicial( const int cantidad )
+ * Coloca como predeterminado la cantidad de stock inicial del producto
+ * \param cantidad stock inicial del producto a agregar
+ */
+void FormAgregarProducto::setearStockInicial( const int cantidad )
+{ this->SBStock->setValue( cantidad ); }
+
+/*!
+ * \fn FormAgregarProducto::setearPrecioCosto( const double cantidad )
+ * Coloca como predeterminado el precio de costo del producto
+ * \param cantidad precio de compra del producto a agregar
+ */
+void FormAgregarProducto::setearPrecioCosto(const double precio)
+{ this->DSBCosto->setValue( precio ); }

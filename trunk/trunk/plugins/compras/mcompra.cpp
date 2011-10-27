@@ -50,14 +50,16 @@ void MCompra::relacionar()
 	Función que agrega un registro de compra directamente
 	@param fecha QDate con la fecha de la compra
 	@param proveedor Id del proveedor
+        @param total Total de la compra
 	@return Verdadero o falso si fue exitoso o no
  */
-bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
+bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total )
 {
  QSqlRecord regCompra = record();
  regCompra.remove( 0 );
  regCompra.setValue( "fecha"       , fecha );
  regCompra.setValue( "id_proveedor", proveedor );
+ regCompra.setValue( "total", total );
  if( !insertRecord( -1, regCompra ) )
  {
   qDebug( "Error de insercion de registro de compra" );

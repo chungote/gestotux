@@ -41,12 +41,14 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                         CBCliente->setModel( new EMCliente( CBCliente ) );
                         qobject_cast<EMCliente *>( CBCliente->model())->setQuery( "SELECT id, razon_social FROM clientes WHERE id != 0" );
                         CBCliente->setModelColumn( 1 );
+                        this->setWindowTitle( "Adherir cliente" );
                         break;
                 }
                 case Servicio:
                 {
                         CBCliente->setVisible( false );
                         LCliente->setVisible( false );
+                        this->setWindowTitle( "Adherir cliente a un servicio" );
                         break;
                 }
                 case SoloFecha:
@@ -58,6 +60,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                         CBCliente->setModel( new EMCliente( CBCliente ) );
                         qobject_cast<EMCliente *>( CBCliente->model())->setQuery( "SELECT id, razon_social FROM clientes WHERE id != 0" );
                         CBCliente->setModelColumn( 1 );
+                        this->setWindowTitle( "Fecha de adhesion" );
                         break;
                 }
                 default:
@@ -205,14 +208,14 @@ int FormAsociarServicioCliente::exec()
         {
                 // Tengo que eliminar todos los clientes que ya estan adheridos a este servicio
                 QSqlQueryModel *modelo = new QSqlQueryModel( CBCliente );
-                modelo->setQuery( QString( "SELECT id, razon_social FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM servicios_clientes WHERE id_servicio = %1 )" ).arg( _id_servicio ) );
+                modelo->setQuery( QString( "SELECT id, razon_social FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM servicios_clientes WHERE id_servicio = %1 ) AND id != 0" ).arg( _id_servicio ) );
                 CBCliente->setModel( modelo );
                 CBCliente->setModelColumn( 1 );
                 break;
         }
         case Servicio:
         {
-            qWarning( "Todavía no esta implementado el filtrado de servicios a los que esta adherido el cliente" );
+            //qWarning( "Todavía no esta implementado el filtrado de servicios a los que esta adherido el cliente" );
             // Tengo que eliminar todos los servicios a los que el cliente ya esta adherido
             QSqlQueryModel *modelo = new QSqlQueryModel( CBServicio );
             modelo->setQuery( QString( "SELECT id_servicio, nombre FROM servicios WHERE id_servicio NOT IN ( SELECT id_servicio FROM servicios_clientes WHERE id_cliente = %1 AND fecha_baja NOT NULL )" ).arg( _id_cliente ) );

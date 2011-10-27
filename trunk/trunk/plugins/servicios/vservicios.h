@@ -50,6 +50,10 @@ protected:
 
 private:
     QModelIndex indiceMenu;
+    QAction *ActRecargos;
+    QAction *ActGenerarFacturacion;
+    QAction *ActVerClientes;
+    QAction *ActNuevoCliente;
 
 };
 

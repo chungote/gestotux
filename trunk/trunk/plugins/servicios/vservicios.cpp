@@ -45,9 +45,42 @@ VServicios::VServicios(QWidget *parent)
 
  connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
+ ActNuevoCliente = new QAction( this );
+ ActNuevoCliente->setText( "Adherir Cliente" );
+ ActNuevoCliente->setStatusTip( "Adhiere un cliente al servicio seleccionado en la lista" );
+ connect( ActNuevoCliente, SIGNAL( triggered() ), this, SLOT( darAltaServicioCliente() ) );
+
+ ActVerClientes = new QAction( this );
+ ActVerClientes->setText( "Ver Clientes adheridos" );
+ ActVerClientes->setStatusTip( "Muestra la lista de clientes adheridos a este servicio" );
+ connect( ActVerClientes, SIGNAL( triggered() ), this, SLOT( verClientesAdheridos() ) );
+
+ ActGenerarFacturacion = new QAction( this );
+ ActGenerarFacturacion->setText( "Generar Facturacion" );
+ ActGenerarFacturacion->setIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
+ ActGenerarFacturacion->setStatusTip( "Genera todas las facturas para el periodo que se desea cobrar automaticamente" );
+ connect( ActGenerarFacturacion, SIGNAL( triggered() ), this, SLOT( generarFacturacion() ) );
+
+ ActRecargos = new QAction( this );
+ ActRecargos->setText( "Administrar Recargos" );
+ ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
+ connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( verRecargos() ) );
+
+ QAction *ActSep = new QAction( this );
+ ActSep->setSeparator( true );
+
+ QAction *ActSep2 = new QAction( this );
+ ActSep2->setSeparator( true );
+
  addAction( ActAgregar );
  //addAction( ActModificar );
- addAction( ActEliminar );
+ //addAction( ActEliminar );
+ addAction( ActSep );
+ addAction( ActNuevoCliente );
+ addAction( ActVerClientes );
+ addAction( ActGenerarFacturacion );
+ addAction( ActRecargos );
+ addAction( ActSep2 );
  addAction( ActCerrar );
 }
 
@@ -109,28 +142,6 @@ void VServicios::eliminar()
 void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
  // Agrego las acciones que quiero que aparezcan en el menu
- QAction *ActNuevoCliente = new QAction( menu );
- ActNuevoCliente->setText( "Adherir Cliente" );
- ActNuevoCliente->setStatusTip( "Adhiere un cliente al servicio seleccionado en la lista" );
- connect( ActNuevoCliente, SIGNAL( triggered() ), this, SLOT( darAltaServicioCliente() ) );
-
- QAction *ActVerClientes = new QAction( menu );
- ActVerClientes->setText( "Ver Clientes adheridos" );
- ActVerClientes->setStatusTip( "Muestra la lista de clientes adheridos a este servicio" );
- connect( ActVerClientes, SIGNAL( triggered() ), this, SLOT( verClientesAdheridos() ) );
-
- QAction *ActGenerarFacturacion = new QAction( menu );
- ActGenerarFacturacion->setText( "Generar Facturacion" );
- ActGenerarFacturacion->setIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
- ActGenerarFacturacion->setStatusTip( "Genera todas las facturas para el periodo que se desea cobrar automaticamente" );
- connect( ActGenerarFacturacion, SIGNAL( triggered() ), this, SLOT( generarFacturacion() ) );
-
- QAction *ActRecargos = new QAction( menu );
- ActRecargos->setText( "Administrar Recargos" );
- ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
- connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( verRecargos() ) );
-
- ActAgregar->setText( "Agregar");
  menu->addAction( ActAgregar );
  menu->addAction( ActNuevoCliente );
  menu->addAction( ActVerClientes );
