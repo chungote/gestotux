@@ -20,14 +20,15 @@
 
 #include "formrecargos.h"
 
-#include "mservicios.h"
-#include "mrecargos.h"
 #include <QMessageBox>
 #include <QSqlError>
 #include <QItemDelegate>
 #include "edrecargos.h"
 
 #include "eactcerrar.h"
+#include "mservicios.h"
+#include "mrecargos.h"
+#include "edrecargos.h"
 
 FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
         EVentana( parent, fl ), Ui::FormRecargoBase()
@@ -69,6 +70,7 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     TVRecargos->hideColumn( 1 );
     TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
     TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    //TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
 }
 
 void FormRecargos::cambioServicio( int /*servicio*/ )

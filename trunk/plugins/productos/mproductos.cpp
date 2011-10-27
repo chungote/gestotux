@@ -226,23 +226,23 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
     }
     cola.bindValue( ":codigo", codigo );
     cola.bindValue( ":nombre", nombre );
-    if( descripcion == "" )
+    if( descripcion == "" || preferencias::getInstancia()->value( "Preferencias/Productos/descripcion", false ).toBool()  )
     { cola.bindValue( ":descripcion", QVariant() ); }
     else
     { cola.bindValue( ":descripcion", descripcion ); }
-    if( marca == "" )
+    if( marca == "" || preferencias::getInstancia()->value( "Preferencias/Productos/marcas", false ).toBool()  )
     { cola.bindValue( ":marca", QVariant() ); }
     else
     { cola.bindValue( ":marca", marca ); }
-    if( modelo == "" )
+    if( modelo == "" || preferencias::getInstancia()->value( "Preferencias/Productos/modelo", false ).toBool()  )
     { cola.bindValue( ":modelo", QVariant() ); }
     else
     { cola.bindValue( ":modelo", modelo); }
-    if( categoria == -1 )
+    if( categoria == -1 || preferencias::getInstancia()->value( "Preferencias/Productos/categorias", false ).toBool() )
     { cola.bindValue( ":categoria", QVariant() ); }
     else
     { cola.bindValue( ":categoria", categoria ); }
-    if( stock ==  0 ) {
+    if( stock ==  0 || preferencias::getInstancia()->value( "Preferencias/Productos/stock", false ).toBool()  ) {
         cola.bindValue( ":stock", QVariant() );
     } else {
         cola.bindValue( ":stock", stock );
@@ -259,4 +259,23 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
       qDebug( cola.lastQuery().toLocal8Bit() );
       return false;
     }
+}
+
+/*!
+    \fn MProductos::actualizarPrecioCompra( const int id_producto, const double precio )
+ */
+bool MProductos::actualizarPrecioCompra( const int id_producto, const double precio )
+{
+ QSqlQuery cola;
+ if( cola.exec( QString( "UPDATE producto SET precio_compra = %1 WHERE id = %2" ).arg( precio ).arg( id_producto ) ) )
+ {
+        qDebug( "Precio de compra actualizado correctamente" ); return true;
+ }
+ else
+ {
+  qWarning( "Error al intentar actualizar el precio de compra del producto solicitado" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.executedQuery() ) );
+  return false;
+ }
 }

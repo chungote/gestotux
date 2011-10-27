@@ -24,10 +24,27 @@ MCompraProducto::MCompraProducto(QObject *parent)
  : QSqlRelationalTableModel(parent)
 {
  setTable( "compras_productos" );
+ setHeaderData( 0, Qt::Horizontal, "ID item" );
+ setHeaderData( 1, Qt::Horizontal, "ID Compra" );
+ setHeaderData( 2, Qt::Horizontal, "ID Producto" );
+ setHeaderData( 3, Qt::Horizontal, "Precio Compra" );
+ setHeaderData( 4, Qt::Horizontal, "Cantidad" );
 }
 
+/*
+  CREATE TABLE `compras_productos` (
+    `id` int(1) NOT NULL auto_increment,
+    `id_compra` int(1) NOT NULL,
+    `id_producto` int(1) NOT NULL,
+    `precio_compra` decimal(4,0) NOT NULL,
+    `cantidad` decimal(4,0) NOT NULL,
+    PRIMARY KEY  (`id`)
+ ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+ */
 #include <QSqlError>
 #include <QSqlQuery>
+#include "mproductos.h"
+#include "preferencias.h"
 /*!
  * \fn MCompraProducto::agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad )
  * Agrega la compra de un producto para una ceirta compra.
@@ -48,5 +65,41 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
     if( precio_compra <= 0 )
         return false;
 
+    // Veo si existe el producto ( recordar que viene del mproductostotales )
+    if( id_producto <= -1 ) {
+        // El producto no existe
+        // ¿Lo agrego?
+
+    } else {
+        // El producto existe -  Ajusto el stock
+        if( !MProductos::modificarStock( id_producto, cantidad )  ) {
+            qWarning( "Existió un error al intentar ajustar el stock del producto" );
+            return false;
+        }
+        // Actualizo el precio de compra
+        if( !MProductos::actualizarPrecioCompra( id_producto, cantidad ) ) {
+            qWarning( "Existió un error al intentar ajustar el precio de compra del producto" );
+            return false;
+        }
+        // Registro la compra
+        QSqlQuery cola;
+        if( !cola.prepare( "INSERT INTO compras_productos( id_compra, id_producto, precio_compra, cantidad ) VALUES ( :id_compra, :id_producto, :precio_compra, :cantidad" ) ) {
+            qWarning( "Error al preparar la cola de inserción del registro de compra de un producto especifico" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            return false;
+        }
+        cola.bindValue( ":id_compra", id_compra );
+        cola.bindValue( ":id_producto", id_producto );
+        cola.bindValue( ":precio_compra", precio_compra );
+        cola.bindValue( ":cantidad", cantidad );
+        if( !cola.exec() )  {
+            qWarning( "Error al insertar los datos de la compra de un producto" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            return false;
+        }
+        return true;
+    }
     return false;
 }

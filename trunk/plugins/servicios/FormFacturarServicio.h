@@ -54,6 +54,8 @@ private:
 
     bool _cancelar;
 
+private slots:
+
     void cargar_datos_servicio();
 
 };

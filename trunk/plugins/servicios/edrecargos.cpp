@@ -78,7 +78,7 @@ void EDRecargos::setModelData( QWidget *editor, QAbstractItemModel *model, const
   case 2:
   {
    QComboBox *edit = qobject_cast<QComboBox *>(editor);
-   model->setData( index, edit->currentIndex() );
+   model->setData( index, edit->itemData( edit->currentIndex() ).toInt() );
    break;
   }
   case 3:

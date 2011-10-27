@@ -59,26 +59,14 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
         // Rellenar los items de productos
-        QSqlQueryModel *cola = new QSqlQueryModel( this );
-        cola->setQuery( "SELECT id, nombre FROM producto" );
-        CBProducto->setModel( cola );
-        CBProducto->setModelColumn( 1 );
-        CBProducto->setSizeAdjustPolicy( QComboBox::AdjustToContentsOnFirstShow );
-        CBProducto->setEditable( true );
-        CBProducto->completer()->setCompletionMode( QCompleter::PopupCompletion );
-        CBProducto->setCurrentIndex( -1 );
-        CBProducto->setInsertPolicy( QComboBox::NoInsert );
-        connect( CBProducto->lineEdit(), SIGNAL( returnPressed() ), PBAgregarProducto, SIGNAL( clicked() ) );
+        connect( CBProducto, SIGNAL( agregarProducto() ), PBAgregarProducto, SIGNAL( clicked() ) );
 
-	mcp = new MProductosTotales( this );
+        mcp = new MProductosTotales( this, CBProducto->listadoProductos() );
 	mcp->calcularTotales( true );
         mcp->buscarPrecios( false );
         TVLista->setModel( mcp );
-        DProductosTotales *d = new DProductosTotales( TVLista );
-        d->setearListaProductos( mcp->listaProductos() );
-        connect( m, SIGNAL( cambioListaProductos( MProductosTotales* ) ), d, SLOT( neceistoActualizarListaSlots( MProductosTotales* ) ) );
 	TVLista->setAlternatingRowColors( true );
-        TVLista->setItemDelegateForColumn( 1, d );
+        TVLista->setItemDelegateForColumn( 1, new DProductosTotales( TVLista ) );
 	TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
 	TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
@@ -87,6 +75,9 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 
 }
 
+#include <QInputDialog>
+#include "mproductos.h"
+#include "formagregarproducto.h"
 /*!
     \fn FormAgregarCompra::guardar()
  */
@@ -121,7 +112,7 @@ void FormAgregarCompra::guardar()
  int id_proveedor = CBProveedor->model()->data( CBProveedor->model()->index( CBProveedor->currentIndex(), 0 ) , Qt::EditRole ).toInt();
  // Genero la compra
  MCompra *compra = new MCompra( this, false );
- if( compra->agregarCompra( DEFecha->date(), id_proveedor ) == false )
+ if( compra->agregarCompra( DEFecha->date(), id_proveedor, mcp->total() ) == false )
  {
      QSqlDatabase::database().rollback();
      return;
@@ -131,42 +122,63 @@ void FormAgregarCompra::guardar()
  qDebug( qPrintable( QString( "idCompra: %1" ).arg( id_compra ) ) );
  // recorro el modelo y guardo los datos
  MCompraProducto *m = new MCompraProducto( this );
+ bool siATodo = false;
+ bool noATodo = false;
  for( int i= 0; i<mcp->rowCount(); i++ )
  {
-  if( m->agregarCompraProducto( id_compra,
-                                mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), // id_producto
-                                mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble(), // precio compra
-                                mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() ) ) { // cantidad
-
-  }
-   // Actualizo el stock
-   int id_producto = mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt();
-
-   QSqlQuery cola;
-   if( cola.exec( QString( "SELECT stock FROM producto WHERE id = %1" ).arg( id_producto ) ) )
-   {
-       if( cola.next() )
-       {
-            double cantidad = cola.record().value(0).toDouble();
-            cantidad += mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble();
-            if( cola.exec( QString( "UPDATE producto SET stock = %1 WHERE id = %2" ).arg( cantidad ).arg( id_producto ) ) )
-            {
-                qDebug( "Stock actualizado correctamente" );
-            }
+     if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() <= -1 ) {
+         // El producto no existe
+         // Pregunto si lo quiere agregar
+         int ret = -1;
+         if( noATodo )
+             // No quiere agregar ningun producto, siempre salto al siguiente
+             continue;
+         if( siATodo )
+                 ret = QMessageBox::Yes;
             else
+                 ret = QMessageBox::question( this, "¿Agregar?", "Desea agregar el producto?", QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll, QMessageBox::Yes );
+         switch( ret ) {
+            case QMessageBox::YesToAll:
             {
-                qWarning( "Error al actualizar el stcok" );
-                qDebug( qPrintable( cola.lastError().text() ) );
-                qDebug( qPrintable( cola.lastQuery() ) );
+                siATodo = true;
+                // No pongo break para que agrege el producto
             }
-       }
-       else
-       {
-            qWarning( "Error al intentar buscar el stock del producto" );
-            qDebug( qPrintable( cola.lastError().text() ) );
-            qDebug( qPrintable( cola.lastQuery() ) );
-       }
-   }
+            case QMessageBox::Yes:
+            {
+                 // Agrego el producto
+                qWarning( "todavía no implementado" );
+                continue;
+                FormAgregarProducto *f = new FormAgregarProducto();
+                f->setearNombre( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() );
+                f->setearStockInicial(mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() );
+                f->setearPrecioCosto( mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
+                emit agregarVentana( f );
+                break;
+            }
+            case QMessageBox::NoToAll:
+            {
+                noATodo = true;
+            }
+            case QMessageBox::No:
+            default:
+            {
+                // Desconocido, salteo al siguiente producto
+                continue;
+                break;
+            }
+
+         }
+     }
+     if( !m->agregarCompraProducto( id_compra,
+                                   mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), // id_producto
+                                   mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble(), // precio compra
+                                   mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() ) ) { // cantidad
+
+         qWarning( "No se pudo agregar el producto a la compra" );
+         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+         return;
+     }
+
   } // fin del for
   // Si llegue hasta aca sin problema, hago el submit
   // listo
@@ -189,7 +201,9 @@ void FormAgregarCompra::guardar()
  */
 void FormAgregarCompra::agregarProducto()
 {
- mcp->agregarNuevoProducto( SBCant->value(), CBProducto->currentText() );
+ mcp->agregarNuevoProducto( SBCant->value(), CBProducto->idActual() );
+ SBCant->setValue( 1.0 );
+ CBProducto->setCurrentIndex( -1 );
  SBCant->setFocus();
 }
 
