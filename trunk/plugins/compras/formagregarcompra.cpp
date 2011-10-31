@@ -198,6 +198,7 @@ void FormAgregarCompra::guardar()
  */
 void FormAgregarCompra::agregarProducto()
 {
+ CBProducto->verificarExiste();
  mcp->agregarNuevoProducto( SBCant->value(), CBProducto->idActual() );
  SBCant->setValue( 1.0 );
  CBProducto->setCurrentIndex( -1 );

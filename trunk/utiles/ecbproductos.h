@@ -12,6 +12,7 @@ public:
     ~ECBProductos();
     QMap<int, QString> *listadoProductos();
     int idActual() const;
+    void verificarExiste();
 
 protected slots:
     void inicializar();
