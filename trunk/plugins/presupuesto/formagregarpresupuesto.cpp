@@ -137,6 +137,9 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
      QMessageBox::information( this, "Error de items", "Por favor, ingrese al menos un item en el detalle del presupuesto." );
      return;
  }
+ // Remuevo el texto que dice "Observaciones:"
+ QString observacion = PTEObservaciones->toPlainText();
+ observacion.remove( "Observaciones: " );
  // Inicio la transacción
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  MPresupuesto *mod = new MPresupuesto();
@@ -147,7 +150,8 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
                                                CBCliente->currentText(),
                                                LEDireccion->text(),
                                                dEFecha->dateTime(),
-                                               m->total() );
+                                               m->total(),
+                                               observacion );
 
  if( id_presupuesto == -1 ) {
      qDebug( "Error al intentar agregar un prespuesto." );

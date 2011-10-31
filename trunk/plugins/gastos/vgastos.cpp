@@ -40,8 +40,6 @@ VGastos::VGastos( QWidget* parent )
  connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregarGasto() ) );
 
  modelo = new MGasto( this, true );
- modelo->select();
- while( modelo->canFetchMore() ) { modelo->fetchMore(); }
 
  vista->setModel( modelo );
  vista->hideColumn( 0 );
@@ -58,6 +56,7 @@ VGastos::VGastos( QWidget* parent )
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCategorias );
+ addAction( ActVerTodos );
  addAction( ActCerrar );
 }
 
@@ -72,7 +71,7 @@ void VGastos::agregarGasto()
 {
     MCategoriasGastos *mc = new MCategoriasGastos();
     if( mc->vacio() ) {
-        QMessageBox::warning( this, "Faltan datos", QString::fromUtf8("No existe ninguna categoría de gastos definida. Por favor cree una." ) );
+        QMessageBox::warning( this, "Faltan datos", QString::fromUtf8( "No existe ninguna categoría de gastos definida. Por favor cree una. \n Se abrira la ventana de categorías de gastos para que pueda realizar la accion solicitada." ) );
         mostrarCategorias();
         delete mc;
         return;

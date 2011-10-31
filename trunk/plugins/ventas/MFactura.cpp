@@ -75,12 +75,13 @@ CREATE TABLE IF NOT EXISTS `factura` (
     \param id_cliente ID del cliente al cual se le hace la venta
     \param id_forma_pago Identificativo de la forma de pago
     \param mcp Modelo de productos o items a facturar
+    \param observaciones Observaciones para agregar a la factura
     \returns ID de la operaciòn o -1 si hubo un error.
  */
-int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
+int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp, QString observaciones )
 {
  QSqlQuery cola;
- cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero, total ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero, :total )" );
+ cola.prepare( "INSERT INTO factura( fecha, id_cliente, id_forma_pago, serie, numero, total, observaciones ) VALUES ( :fecha, :id_cliente, :id_forma_pago, :serie, :numero, :total, :observaciones  )" );
  cola.bindValue(":fecha", fecha );
  cola.bindValue( ":id_cliente", id_cliente );
  cola.bindValue( ":id_forma_pago", id_forma_pago );
@@ -88,6 +89,11 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
  cola.bindValue( ":serie", num.serie() );
  cola.bindValue( ":numero", num.numero() );
  cola.bindValue( ":total", mcp->total() );
+ if( observaciones.isNull() ) {
+     cola.bindValue( ":observaciones", QVariant( QVariant::String ) );
+ } else {
+     cola.bindValue( ":observaciones", observaciones );
+ }
  if( !cola.exec() )
  {
   qDebug( "Error de insercion de registro de venta" );

@@ -267,15 +267,17 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
 bool MProductos::actualizarPrecioCompra( const int id_producto, const double precio )
 {
  QSqlQuery cola;
- if( cola.exec( QString( "UPDATE producto SET precio_compra = %1 WHERE id = %2" ).arg( precio ).arg( id_producto ) ) )
+ if( cola.exec( QString( "UPDATE producto SET precio_costo = %1 WHERE id = %2" ).arg( precio ).arg( id_producto ) ) )
  {
-        qDebug( "Precio de compra actualizado correctamente" ); return true;
+        qDebug( "Precio de compra actualizado correctamente" );
+        /// @todo Actualizo el precio de venta? o creo una tabla con los ids de productos de precio desactualizado?
+        return true;
  }
  else
  {
   qWarning( "Error al intentar actualizar el precio de compra del producto solicitado" );
   qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
+  qDebug( qPrintable( cola.lastQuery() ) );
   return false;
  }
 }

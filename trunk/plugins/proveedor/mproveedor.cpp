@@ -126,3 +126,28 @@ bool MProveedor::tieneDatosRelacionados( const int id_proveedor )
     }
     return true;
 }
+
+/*!
+ * \fn MProveedor::existenProveedores()
+ * Devuelve verdadero si existe al menos un proveedor declarado en la base de datos
+ */
+bool MProveedor::existenProveedores()
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT count(id) FROM proveedor" ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        } else {
+            qDebug( "Error al hacer next en la cola de averiguación de cantidad de proveedores." );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al hacer exec en la cola de averiguación de cantidad de proveedores." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}

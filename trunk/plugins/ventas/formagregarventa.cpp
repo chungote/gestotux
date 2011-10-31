@@ -228,6 +228,9 @@ void FormAgregarVenta::guardar()
      RBCtaCte->setChecked( false );
      RBContado->setChecked( true );
  }
+ // Remuevo el texto que dice "Observaciones:"
+ QString observacion = PTEObservaciones->toPlainText();
+ observacion.remove( "Observaciones: " );
  //Inicio una transacción
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
@@ -253,7 +256,7 @@ void FormAgregarVenta::guardar()
  }
  // Genero la venta
  MFactura *venta = new MFactura();
- int id_venta = venta->agregarVenta( DEFecha->dateTime(), id_cliente, id_forma_pago, mcp );
+ int id_venta = venta->agregarVenta( DEFecha->dateTime(), id_cliente, id_forma_pago, mcp, observacion );
  if( id_venta == -1 ) {
     QMessageBox::information( this, "Error", "No se pudo agregar la venta" );
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
