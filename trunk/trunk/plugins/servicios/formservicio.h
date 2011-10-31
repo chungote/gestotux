@@ -24,6 +24,7 @@
 #include "eventana.h"
 #include "ui_formServicioBase.h"
 class MServicios;
+class QDataWidgetMapper;
 
 class FormServicio : public EVentana, private Ui::FormServicioBase
 {
@@ -31,7 +32,7 @@ Q_OBJECT
 
 public:
     FormServicio( MServicios *m, QWidget* parent = 0, Qt::WFlags fl = 0 );
-    void setearId( const int id_servicio );
+    void setearId( const int id_servicio, const QModelIndex indice = QModelIndex() );
 
 protected slots:
     void guardar();
@@ -42,6 +43,7 @@ private:
     MServicios *modelo;
     bool _modificando;
     int _id_servicio;
+    QDataWidgetMapper *_mapa;
 };
 
 #endif

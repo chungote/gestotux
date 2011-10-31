@@ -59,7 +59,7 @@ VProductos::VProductos(QWidget *parent)
  if( !preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "modelo" ) ); }
 
-  vista->resizeColumnsToContents();
+ vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
  vista->setAlternatingRowColors( true );
  vista->setSortingEnabled( true );
@@ -80,7 +80,7 @@ VProductos::VProductos(QWidget *parent)
  }
 
  QAction *ActListadoVenta = new QAction( this );
- ActListadoVenta->setText( "Lista para Venta" );
+ ActListadoVenta->setText( "Listado de venta" );
  ActListadoVenta->setIcon( QIcon( ":/imagenes/listado.png" ) );
  ActListadoVenta->setStatusTip( "Muestra el listado de productos con su precio de venta" );
  ActListadoVenta->setIcon( QIcon( ":/imagenes/listaventa.png" ) );
@@ -122,13 +122,13 @@ void VProductos::agregar( bool /*autoeliminarid*/ )
  {
          qDebug( "Verificando que existan categorias" );
          MCategorias *m = new MCategorias();
-         if( m->rowCount() <= 0 )
+         int cantidad_categorias = m->rowCount();
+         delete m;
+         if( cantidad_categorias <= 0 )
          {
           qWarning( "Por favor, primero ingrese al menos una categoria de productos" );
-          delete m;
           return;
          }
-         delete m;
  }
  // Muestro el formulario
  FormAgregarProducto *f = new FormAgregarProducto();
@@ -145,7 +145,7 @@ void VProductos::agregar( bool /*autoeliminarid*/ )
 void VProductos::listaVenta()
 {
     if( this->rmodelo->rowCount() <= 0 ) {
-        QMessageBox::information( this, "Error", "No hay ningun producto declarado para dar un listado" );
+        QMessageBox::information( this, "Error", "No hay ningun producto declarado como para  dar un listado." );
         return;
     }
     EReporte *rep = new EReporte( 0 );

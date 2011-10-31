@@ -52,7 +52,6 @@
         <file>imagenes/email.png</file>
         <file>imagenes/inicio.png</file>
         <file>imagenes/listaclientes.png</file>
-        <file>imagenes/splashmask.bmp</file>
     </qresource>
     <qresource prefix="/sql">
         <file>tablas.QSQLITE.sql</file>

@@ -22,6 +22,7 @@
 #include <QDate>
 #include <QMessageBox>
 #include <QSqlError>
+#include <QDataWidgetMapper>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -60,11 +61,17 @@ FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
         CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes", MServicios::DiasFaltantes );
         CBMetodoIncompleto->insertItem( -1, "Mes Completo", MServicios::MesCompleto );
 
+        QAction *ActRecargos = new QAction( this );
+        ActRecargos->setText( "Recargos" );
+        connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( agregarRecargo() ) );
+
         addAction( new EActGuardar( this ) );
+        addAction( ActRecargos );
         addAction( new EActCerrar( this ) );
 
         connect( CkBBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambiarBaja( bool ) ) );
         DEFechaBaja->setEnabled( CkBBaja->isChecked() );
+
 }
 
 /*!
@@ -79,22 +86,37 @@ void FormServicio::guardar()
  { return; }
  if( dSBPrecioBase->value() <= 0 )
  { return; }
- if( modelo->agregarServicio( LENombre->text(),
-                              TEDescripcion->toPlainText(),
-                              DEFechaAlta->date(),
-                              dSBPrecioBase->value(),
-                              CBPeriodo->itemData( CBPeriodo->currentIndex() ).toInt(),
-                              CBInicioCobro->itemData( CBInicioCobro->currentIndex() ).toInt(),
-                              CBMetodoIncompleto->itemData( CBMetodoIncompleto->currentIndex() ).toInt()
-   ) )
- {
-     QMessageBox::information( this, "Correcto", "El servicio fue dado de alta correctamente" );
-     this->close();
-     return;
+ if( _modificando ) {
+     if( CkBBaja->isChecked() ) {
+         _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );
+     }
+     if( _mapa->submit() ) {
+         QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
+         // Veo la modificacion del precio?
+         this->close();
+         return;
+     } else {
+         qDebug( "Error, no se pudo hacer submit del mapa" );
+         qDebug( this->modelo->lastError().text().toLocal8Bit() );
+     }
  } else {
-     QMessageBox::information( this, "Incorrecto", "El servicio <b>NO</b> pudo ser dado de alta" );
-     qDebug( QString( "Error de modelo: %1").arg( modelo->lastError().text() ).toLocal8Bit() );
-     return;
+         if( modelo->agregarServicio( LENombre->text(),
+                                      TEDescripcion->toPlainText(),
+                                      DEFechaAlta->date(),
+                                      dSBPrecioBase->value(),
+                                      CBPeriodo->itemData( CBPeriodo->currentIndex() ).toInt(),
+                                      CBInicioCobro->itemData( CBInicioCobro->currentIndex() ).toInt(),
+                                      CBMetodoIncompleto->itemData( CBMetodoIncompleto->currentIndex() ).toInt()
+           ) )
+         {
+             QMessageBox::information( this, "Correcto", "El servicio fue dado de alta correctamente" );
+             this->close();
+             return;
+         } else {
+             QMessageBox::information( this, "Incorrecto", "El servicio <b>NO</b> pudo ser dado de alta" );
+             qDebug( QString( "Error de modelo: %1").arg( modelo->lastError().text() ).toLocal8Bit() );
+             return;
+         }
  }
 }
 
@@ -107,25 +129,58 @@ void FormServicio::cambiarBaja( bool estado )
 {  DEFechaBaja->setEnabled( estado ); }
 
 
+#include "formrecargos.h"
 /*!
     \fn FormServicio::agregarRecargo()
     Abre la ventana para agregar un recargo
  */
 void FormServicio::agregarRecargo()
 {
-    /// @todo Agregar este metodo
-    qWarning( "No implementado todavía" );
-    return;
+    if ( _modificando ) {
+        FormRecargos *f = new FormRecargos( this );
+        f->setearId( this->_id_servicio );
+        emit agregarVentana( f );
+        return;
+    } else {
+        QMessageBox::information( this, "No se puede", "No se puede agregar un recargo ya que todavía no ha sido dado de alta el servicio. \n Esto es necesario para mantener la consistencia de los datos" );
+        return;
+    }
+
 }
 
 /*!
  * \fn FormServicio::setearId( const int id_servicio )
  * Coloca el formulario en modo de edicion y carga los datos para que sean modificados.
+ * \param id_servicio Identificador del servicio a cargar
  */
-void FormServicio::setearId( const int id_servicio )
+void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
 {
     /// @todo Agregar este metodo
     qWarning( "Esta parte todavía no ha sido programada. \n Se mostrará el formulario pero no podrá hacer nada con el" );
     disconnect( this, SLOT( guardar() ) );
     return;
+    this->_modificando = true;
+
+    _mapa = new QDataWidgetMapper();
+    _mapa->setOrientation( Qt::Horizontal );
+    _mapa->setModel( this->modelo );
+    _mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
+
+
+    // Busco el indice
+    this->_id_servicio = id_servicio;
+    if( indice.isValid() )
+        _mapa->setCurrentModelIndex( indice );
+    else
+        /// @todo Ver accion cuando no se pasa un indice pero si un id al modificar un servicio
+        abort();
+
+    _mapa->addMapping( LENombre, modelo->fieldIndex( "nombre" ) );
+    _mapa->addMapping( TEDescripcion, modelo->fieldIndex( "descripcion" ) );
+    _mapa->addMapping( DEFechaAlta, modelo->fieldIndex( "fecha_alta" ) );
+    _mapa->addMapping( dSBPrecioBase, modelo->fieldIndex( "precio_base" ) );
+    _mapa->addMapping( CBPeriodo, modelo->fieldIndex( "periodo" ), "itemData" );
+    _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ), "itemData" );
+    _mapa->addMapping( CBInicioCobro, modelo->fieldIndex( "inicio_cobro" ), "itemData");
+
 }

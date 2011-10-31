@@ -100,10 +100,7 @@ void FormAgregarCompra::guardar()
   mcp->calcularTotales( true );
   return;
  }
- return;
- // Verifico aca los productos que todavía no existen?
-
-
+ //return;
  //Inicio una transacción
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
@@ -119,7 +116,7 @@ void FormAgregarCompra::guardar()
  }
  // Busco el ultimo id de compra
  int id_compra = compra->ultimoId();
- qDebug( qPrintable( QString( "idCompra: %1" ).arg( id_compra ) ) );
+ //qDebug( qPrintable( QString( "idCompra: %1" ).arg( id_compra ) ) );
  // recorro el modelo y guardo los datos
  MCompraProducto *m = new MCompraProducto( this );
  bool siATodo = false;

@@ -34,6 +34,7 @@ public:
     MProveedor( QObject *parent = 0 );
     QVariant data(const QModelIndex& idx, int role) const;
     static bool tieneDatosRelacionados( const int id_proveedor );
+    static bool existenProveedores();
 };
 
 #endif

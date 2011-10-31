@@ -169,7 +169,7 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
     \fn MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
         Funcion que obtiene el numero de cuenta corriente para el id de cliente seleccionado.
         @param id_cliente Identificador de cliente
-        @return "Invalido" si el @param id_cliente no es correcto. "Error" si no se pudo conseguir, o finalmente el valor buscado.
+        @return MCuentaCorriente::Invalido si el @param id_cliente no es correcto. "Error" si no se pudo conseguir, o finalmente el valor buscado.
  */
 QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
 {

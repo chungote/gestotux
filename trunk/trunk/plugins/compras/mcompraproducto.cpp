@@ -24,9 +24,9 @@ MCompraProducto::MCompraProducto(QObject *parent)
  : QSqlRelationalTableModel(parent)
 {
  setTable( "compras_productos" );
- setHeaderData( 0, Qt::Horizontal, "ID item" );
- setHeaderData( 1, Qt::Horizontal, "ID Compra" );
- setHeaderData( 2, Qt::Horizontal, "ID Producto" );
+ setHeaderData( 0, Qt::Horizontal, "#item" );
+ setHeaderData( 1, Qt::Horizontal, "#Compra" );
+ setHeaderData( 2, Qt::Horizontal, "#Producto" );
  setHeaderData( 3, Qt::Horizontal, "Precio Compra" );
  setHeaderData( 4, Qt::Horizontal, "Cantidad" );
 }
@@ -66,11 +66,7 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
         return false;
 
     // Veo si existe el producto ( recordar que viene del mproductostotales )
-    if( id_producto <= -1 ) {
-        // El producto no existe
-        // ¿Lo agrego?
-
-    } else {
+    if( id_producto > 0 ) {
         // El producto existe -  Ajusto el stock
         if( !MProductos::modificarStock( id_producto, cantidad )  ) {
             qWarning( "Existió un error al intentar ajustar el stock del producto" );
@@ -83,7 +79,7 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
         }
         // Registro la compra
         QSqlQuery cola;
-        if( !cola.prepare( "INSERT INTO compras_productos( id_compra, id_producto, precio_compra, cantidad ) VALUES ( :id_compra, :id_producto, :precio_compra, :cantidad" ) ) {
+        if( !cola.prepare( "INSERT INTO compras_productos( id_compra, id_producto, precio_compra, cantidad ) VALUES ( :id_compra, :id_producto, :precio_compra, :cantidad )" ) ) {
             qWarning( "Error al preparar la cola de inserción del registro de compra de un producto especifico" );
             qDebug( cola.lastError().text().toLocal8Bit() );
             qDebug( cola.lastQuery().toLocal8Bit() );

@@ -103,7 +103,7 @@ void VServicios::modificar( const QModelIndex &idx )
         return;
     }
     FormServicio *f = new FormServicio( qobject_cast<MServicios *>(this->modelo ) );
-    f->setearId( id_servicio );
+    f->setearId( id_servicio, idx.model()->index( idx.row(), 0 ) );
     emit agregarVentana( f );
 }
 
@@ -159,6 +159,10 @@ void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
 void VServicios::darAltaServicioCliente()
 {
  // El item actual seleccionado es en el cual se pidio el menu
+ if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+   QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para asociarle un cliente" );
+   return;
+ }
  // Obtengo el numero de servicio de la vista...
  int id_servicio = vista->model()->data( vista->model()->index( vista->currentIndex().row(), 0 ), Qt::EditRole ).toInt();
  FormAsociarServicioCliente *f = new FormAsociarServicioCliente( this, FormAsociarServicioCliente::Cliente );
@@ -173,6 +177,10 @@ void VServicios::darAltaServicioCliente()
  */
 void VServicios::verClientesAdheridos()
 {
+ if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+   QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para ver sus clientes adheridos" );
+   return;
+ }
  // Obtengo el numero de servicio de la vista...
  int id_servicio = vista->model()->data( vista->model()->index( vista->currentIndex().row(), 0 ), Qt::EditRole ).toInt();
  FormClientesAdheridos *f = new FormClientesAdheridos( this );
@@ -187,6 +195,10 @@ void VServicios::verClientesAdheridos()
  */
 void VServicios::verRecargos()
 {
+ if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+    QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para administrar sus recargos" );
+    return;
+ }
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
  // Muestro el formulario de recargos con el id seteado
@@ -200,6 +212,10 @@ void VServicios::verRecargos()
  */
 void VServicios::generarFacturacion()
 {
+ if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+   QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para generar su facturacion" );
+   return;
+ }
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
  // Muestro el formulario de recargos con el id seteado
