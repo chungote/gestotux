@@ -74,6 +74,19 @@ void ECBProductos::inicializar()
 
 void ECBProductos::enterApretado()
 {
+    verificarExiste();
+    emit agregarProducto();
+    return;
+}
+
+QMap<int, QString> *ECBProductos::listadoProductos()
+{ return this->_mapa_id_nombre; }
+
+int ECBProductos::idActual() const
+{ return this->itemData( this->currentIndex() ).toInt(); }
+
+void ECBProductos::verificarExiste()
+{
     // Veo que tipo de entrada es
     QString buscar = this->lineEdit()->text();
     int b = this->findText( buscar );
@@ -95,12 +108,4 @@ void ECBProductos::enterApretado()
             this->_min--;
         }
     }
-    emit agregarProducto();
-    return;
 }
-
-QMap<int, QString> *ECBProductos::listadoProductos()
-{ return this->_mapa_id_nombre; }
-
-int ECBProductos::idActual() const
-{ return this->itemData( this->currentIndex() ).toInt(); }
