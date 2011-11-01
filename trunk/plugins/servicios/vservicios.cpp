@@ -27,6 +27,8 @@
 #include <QTableView>
 #include <QAction>
 #include <QMenu>
+#include <QMessageBox>
+#include <QSqlError>
 
 VServicios::VServicios(QWidget *parent)
  : EVLista(parent)
@@ -66,6 +68,10 @@ VServicios::VServicios(QWidget *parent)
  ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
  connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( verRecargos() ) );
 
+ ActDarDeBaja = new QAction( this );
+ ActDarDeBaja->setText( "Dar de baja" );
+ connect( ActDarDeBaja, SIGNAL( triggered() ), this, SLOT( darDeBaja() ) );
+
  QAction *ActSep = new QAction( this );
  ActSep->setSeparator( true );
 
@@ -73,13 +79,14 @@ VServicios::VServicios(QWidget *parent)
  ActSep2->setSeparator( true );
 
  addAction( ActAgregar );
- //addAction( ActModificar );
+ addAction( ActModificar );
  //addAction( ActEliminar );
  addAction( ActSep );
  addAction( ActNuevoCliente );
  addAction( ActVerClientes );
  addAction( ActGenerarFacturacion );
  addAction( ActRecargos );
+ addAction( ActDarDeBaja );
  addAction( ActSep2 );
  addAction( ActCerrar );
 }
@@ -96,10 +103,16 @@ void VServicios::agregar( bool /*autoeliminarid*/ )
 void VServicios::modificar( const QModelIndex &idx )
 {
     // modifico el indice actual ( existe uno actual? )
+    if( !idx.isValid() )
+        return;
     // Obtengo el id actual
     int id_servicio = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
     if( id_servicio <= 0 ) {
         qWarning( "El identificador del servicio encontrado es invalido" );
+        return;
+    }
+    if( MServicios::dadoDeBaja( id_servicio ) ) {
+        QMessageBox::information( this, "Incorrecto", "No se puede facturar el servicio ya que fue dado de baja" );
         return;
     }
     FormServicio *f = new FormServicio( qobject_cast<MServicios *>(this->modelo ) );
@@ -107,8 +120,7 @@ void VServicios::modificar( const QModelIndex &idx )
     emit agregarVentana( f );
 }
 
-#include <QMessageBox>
-#include <QSqlError>
+
 /*!
  * \fn VServicios::eliminar()
  * Implementación de slot de eliminar con verificacion de si se puede o no
@@ -163,8 +175,14 @@ void VServicios::darAltaServicioCliente()
    QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para asociarle un cliente" );
    return;
  }
+
  // Obtengo el numero de servicio de la vista...
  int id_servicio = vista->model()->data( vista->model()->index( vista->currentIndex().row(), 0 ), Qt::EditRole ).toInt();
+
+ if( MServicios::dadoDeBaja( id_servicio ) ) {
+     QMessageBox::information( this, "Incorrecto", "No se puede facturar el servicio ya que fue dado de baja" );
+     return;
+ }
  FormAsociarServicioCliente *f = new FormAsociarServicioCliente( this, FormAsociarServicioCliente::Cliente );
  f->setIdServicio( id_servicio );
  f->exec();
@@ -218,8 +236,30 @@ void VServicios::generarFacturacion()
  }
  // Obtengo el numero de servicio de la vista...
  int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+ if( MServicios::dadoDeBaja( id_servicio ) ) {
+     QMessageBox::information( this, "Incorrecto", "No se puede facturar el servicio ya que fue dado de baja" );
+     return;
+ }
  // Muestro el formulario de recargos con el id seteado
  FormFacturarServicio *f  = new FormFacturarServicio();
  f->setearServicio( id_servicio );
  emit agregarVentana( f );
+}
+
+void VServicios::darDeBaja()
+{
+    qWarning( "No implementado" );
+    return;
+    if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+      QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para darlo de baja" );
+      return;
+    }
+    int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+    if( MServicios::darDeBaja( id_servicio ) ) {
+        QMessageBox::information( this, "Correcto", "Servicio dado de baja correctamente. \n No se podrá facturar ni asociar clientes a el de ahora en adelante." );
+        return;
+    } else {
+        QMessageBox::warning( this, "Incorrecto", "No se dio de baja el servicio" );
+        return;
+    }
 }

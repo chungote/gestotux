@@ -136,6 +136,10 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
     }
 }
 
+Qt::ItemFlags MServicios::flags( const QModelIndex &/*index*/ ) const
+{
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+}
 
 /*!
     \fn MServicios::asociarCliente( int id_cliente, int id_servicio, QDateTime fecha )
@@ -342,6 +346,51 @@ bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
     return retorno;
 }
 
+/*!
+ * \fn MServicios::dadoDeBaja( const int id_servicio )
+ * Devuelve verdadero si el servicio fue dado de baja
+ * \param id_servicio Identificador del servicio
+ */
+bool MServicios::dadoDeBaja( const int id_servicio)
+{
+    QSqlQuery cola;
+    if( !cola.exec( QString( "SELECT COUNT(id_servicio) FROM servicios WHERE id_servicio = %1 AND fecha_baja IS NULL").arg( id_servicio ) ) ) {
+        qDebug( "Error al ejecutar la cola de obtención de dato de si el servicio esta dado de baja" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    } else {
+        if( cola.next() )  {
+            if ( cola.record().value(0).toInt() <= 0 ) {
+                return true;
+            }
+        } else {
+            qDebug( "Error al hacer next al ejecutar la cola de obtencion de si el servicio esta dado de baja" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    }
+    return false;
+}
+
+/*!
+ * \fn MServicios::darDeBaja( const int id_servicio, const QDate fecha )
+ * Da de baja el servicio especificado
+ */
+bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
+{
+    QSqlQuery cola;
+    cola.prepare( "UPDATE servicios SET fecha_baja = :fecha WHERE id_servicio = :id_servicio" );
+    cola.bindValue( ":id_servicio", id_servicio );
+    cola.bindValue( ":fecha", fecha );
+    if( !cola.exec() ) {
+        qDebug( "Error al ejecutar la cola de dar de baja el servicio especificado" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    }
+    qDebug( "Servicio dado de baja correctamente" );
+    return true;
+}
 
 /*
 "id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL

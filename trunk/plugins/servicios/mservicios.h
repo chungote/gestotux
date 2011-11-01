@@ -36,6 +36,7 @@ public:
     ~MServicios();
 
     QVariant data(const QModelIndex& item, int role) const;
+    Qt::ItemFlags flags( const QModelIndex &index ) const;
 
     /*! \enum FormaIncompleto
       *  Define la manera en que se cobran los dias cuando un cliente se adihere a un serivicio fuera del inicio del periodo.
@@ -68,6 +69,8 @@ public:
     static QString getNombreServicio( int id_servicio );
     static QDate getFechaAlta( const int id_servicio );
     static bool verificarSiPuedeEliminar( const int id_servicio );
+    static bool dadoDeBaja( const int id_servicio );
+    static bool darDeBaja( const int id_servicio, const QDate fecha = QDate::currentDate() );
 
 };
 
