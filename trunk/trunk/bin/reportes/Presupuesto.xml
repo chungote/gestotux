@@ -25,14 +25,16 @@
 SELECT c.razon_social AS destinatario,
        strftime('%d/%m/%Y', p.fecha) AS fecha,
        p.total As total,
-       substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' || p.numero, -5, 5 ) AS NumSerie
+       substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' || p.numero, -5, 5 ) AS NumSerie,
+       p.observaciones as observaciones
 FROM presupuestos AS p, clientes AS c
 WHERE p.id_cliente = c.id AND p.id_presupuesto = &lt;? value( "id_presupuesto" ) ?>;
 &lt;? else ?>
 SELECT p.destinatario AS destinatario,
        strftime('%d/%m/%Y', p.fecha) AS fecha,
        p.total As total,
-       substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' ||p.numero, -5, 5 ) AS NumSerie
+       substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' ||p.numero, -5, 5 ) AS NumSerie,
+       p.observaciones as observaciones
 FROM presupuestos AS p
 WHERE p.id_presupuesto = &lt;? value( "id_presupuesto" ) ?>;
 &lt;? endif ?></sql>
@@ -465,7 +467,7 @@ end
   </detail>
  </section>
  <rptfoot>
-  <height>57</height>
+  <height>88</height>
   <label>
    <rect>
     <x>574.284</x>
@@ -502,22 +504,6 @@ end
    </data>
    <format>$ %10.2f</format>
   </field>
-  <label>
-   <rect>
-    <x>17</x>
-    <y>32</y>
-    <width>804</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Sans Serif</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>Documento no valido como factura - La validez de este presupuesto esta limitada a 15 di­as.</string>
-  </label>
   <line>
    <xstart>31</xstart>
    <ystart>5</ystart>
@@ -541,5 +527,25 @@ end
     <column>id_presupuesto</column>
    </data>
   </barcode>
+  <field>
+   <rect>
+    <x>24</x>
+    <y>54</y>
+    <width>787</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <wordwrap/>
+   <left/>
+   <top/>
+   <data>
+    <query>presupuesto</query>
+    <column>observaciones</column>
+   </data>
+  </field>
  </rptfoot>
 </report>

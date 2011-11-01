@@ -26,7 +26,8 @@
   <name>factura</name>
   <sql>SELECT DATE_FORMAT( f.fecha, '%d/%m/%Y' ) AS fecha,
        f.total As total,
-       CONCAT( CONCAT( LPAD( f.serie, 5, 0 ), '-' ), LPAD( f.numero, 5, 0 ) ) AS NumSerie
+       CONCAT( CONCAT( LPAD( f.serie, 5, 0 ), '-' ), LPAD( f.numero, 5, 0 ) ) AS NumSerie,
+       f.observaciones as observaciones
 FROM factura AS f, clientes AS c
 WHERE f.id_cliente = c.id AND f.id_factura = &lt;? value( "id_factura" ) ?>;</sql>
  </querysource>
@@ -474,7 +475,7 @@ end
   </detail>
  </section>
  <rptfoot>
-  <height>30</height>
+  <height>88</height>
   <label>
    <rect>
     <x>510.564</x>
@@ -518,5 +519,25 @@ end
    <yend>3</yend>
    <weight>1</weight>
   </line>
+  <field>
+   <rect>
+    <x>22</x>
+    <y>52</y>
+    <width>746</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <wordwrap/>
+   <left/>
+   <top/>
+   <data>
+    <query>factura</query>
+    <column>observaciones</column>
+   </data>
+  </field>
  </rptfoot>
 </report>

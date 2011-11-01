@@ -1,15 +1,22 @@
 ::::::::::::::
 ::: Diseño :::
 ::::::::::::::
-- Pasar toda la base de datos a utf8_spanish_ci.
-  - Terminar de verificar todas las tablas en creación para que esten en utf8.
 - Terminar diseños de entidad relación para el conjunto general y cada plugin.
 - Verificar el diseño de las categorias.
 - Agregar inicialización de reportes en la base de datos Mysql
  - ¿ Descarga inicial por internet? ¿ Importación inicial desde archivos ?
  - Agregar capacidad para actualizar los reportes x internet ( caso db local )?
- - Utilizando DB SQLite, no usar tabla de reportes sino archivos locales.
-- Ver por la creacion de indices en la base de datos Mysql.
+ - Ver por la creacion de indices en la base de datos Mysql.
+- Ver como agregar descuentos en los presupuestos y facturas ( mproductos totales )
+- terminar de ajustar todos los formularios predeterminados.
+- Ver iconografia en todo el programa.
+
+-- MProductosTotales --
+-----------------------
+- Agregar metodo para que coloque la cantidad correcta cuando se agrega un producto a la lista que ya fue dado de alta.
+- Terminar reporte de baja de adhhesion de servicio
+- Modificar sistema de mproductostotales para que permita especificar el precio de compra o venta como parametro.
+- Arreglar problema de fk en mysql con las categorías de los productos cuando las categorías no estan habilitadas.
 
 -- Caja --
 ----------
@@ -17,6 +24,7 @@
   - Verificar que no sea la caja predeterminada.
   - ¿Que hacemos con los movimientos de esa caja?
   - ¿Utilizar eliminación lógica?
+ - Mejorar cartel de caja predeterminada o mostrar lista que permita elegir una y de paso colocarla como predeterminada.
 
 -- Cuotas --
 ------------
@@ -41,8 +49,6 @@
 
 -- Productos --
 ---------------
-- Generar sistema de autolocalizaciòn de productos cuando ingresamos su codigo de barra.
-  - Verificar que al ingresar un codigo de barra en los combobox se busque por numero no por texto del producto.
 - Ver como hacer los tickets de precios. Ofrecerlos luego de agregar un producto.
 - Verificar editor personalizado cuando se utlizan todas las combinaciones de propiedades.
 - Generar casos de prueba o probar ingreso y modificación de productos con las distintas combinaciones posibles.
@@ -55,7 +61,7 @@
 -- Servicios --
 ---------------
 - Probar sistema de baja de servicios.
-- Generar reporte de baja.
+
 - Ver como hacer el automatico de los sistemas de cobro
 CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
     `id_periodo_servicio` BIGINT NOT NULL,
@@ -76,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 
 -- Compras --
 -------------
-- Verificar si es posible hacer autoagregado de productos dandolos de alta al agregarlos en una factura de compras.
 - Mejorar codigo de modelos y ventanas de agregado y modificacion.
 - ¿Eliminar compras?
 
@@ -129,33 +134,10 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 - Verificar correcta restauración de un backup. ( no anda ). :(
 - Verificar correcta inizialización de todas las tablas de todos los plugins:
    - SQLite
-        - Gastos: OK.
-        - Ventas: OK.
-        - Servicios: OK.
-        - Presupuestos: Ok.
-        - Productos: OK.
-        - Proveedores: OK.
-        - Clientes: OK.
-        - Ventas: OK.
-        - Recibos: Ok.
-        - Caja: OK.
-        - CtaCte: OK.
         - Email: ?
         - Digifauno: ?
         - Compras: ?
    - MySql
-        - Gastos: OK.
-        - Ventas: OK.
-        - Servicios: OK.
-        - Presupuestos: OK.
-        - Productos: OK.
-        - Proveedores: OK.
-        - Clientes: OK.
-        - Reportes: OK.
-        - Ventas: OK.
-        - Recibos: OK.
-        - Caja: OK.
-        - CtaCte: OK.
         - Email: ?
         - Digifauno: ?
         - Compras: ?
@@ -168,6 +150,8 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 - Verificar sistema de ingreso de categoría de gastos.
 - Verificar que cuando se intente eliminar una caja ponga el cartel correspondiente.
 - Verificar la eliminación "Cascade" en la base de datos cuando se elimina una caja ( o hacer eliminacion logica? ).
+- Agregar mascara en los delegates de cuit-cuil
+- Agregar mascara de solo numeros en los delegates de cuit-cuil.
 
 :::::::::::::::::::::::::
 ::: Iconos necesarios :::
@@ -175,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 - Recargos
 - Listado de gastos
 - PagarFactura.png
+- VerTodo.png
 
 :::::::::::::::::::::::::::
 ::: Problemas Generales :::

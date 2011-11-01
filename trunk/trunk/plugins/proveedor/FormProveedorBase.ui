@@ -44,7 +44,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTextEdit" name="TEDireccion"/>
+         <widget class="QPlainTextEdit" name="TEDireccion"/>
         </item>
        </layout>
       </item>
