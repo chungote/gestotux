@@ -29,7 +29,7 @@ class MCompra : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MCompra(QObject *parent = 0, bool relaciones = false );
+    MCompra( QObject *parent = 0, bool relaciones = false );
     void inicializar();
     void relacionar();
     bool agregarCompra( QVariant fecha, QVariant proveedor, double total );

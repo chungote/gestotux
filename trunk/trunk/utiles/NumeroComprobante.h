@@ -40,7 +40,7 @@ public:
     QString aCadena();
     bool esValido() const;
     void siguienteNumero();
-    static NumeroComprobante * desdeString( const QString original );
+    bool desdeString( const QString original );
 
 private:
     QPair<int,int> _dato;

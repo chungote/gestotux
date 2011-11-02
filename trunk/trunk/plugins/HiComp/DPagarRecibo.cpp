@@ -22,6 +22,7 @@
 #include "mpagos.h"
 #include "NumeroComprobante.h"
 #include <QSqlDatabase>
+#include <QPushButton>
 
 DPagarRecibo::DPagarRecibo(QWidget *parent) :
     QDialog(parent), _num_recibo( 0, -1, -1 )
@@ -33,12 +34,7 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
 
     this->adjustSize();
 
-    // Guardo la serie y numero de recibo para referencia futura
-    this->_num_recibo = MPagos::buscarMenorSerieNumeroPagado();
-
-    // Busco el minimo numero de recibo que tiene el pagado puesto y lo coloco como minimo
-    //this->SBNumeroRecibo->setMinimum( this->_num_recibo.numero() );
-    //this->LNumero->setText( this->LNumero->text().append( QString::number( this->_num_recibo.serie() ) ) );
+    this->buttonBox->button( QDialogButtonBox::Ok )->setDefault( false );
 
     // Conecto la señal para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
     connect( LENumeroRecibo, SIGNAL( returnPressed() ), this, SLOT( cambioNumeroRecibo() ) );
@@ -71,12 +67,13 @@ void DPagarRecibo::changeEvent(QEvent *e)
  */
 void DPagarRecibo::accept()
 {
-    QMessageBox::critical( this, "error", "No implementado" );
-    return;
-    bool ok = false;
+    if( !_num_recibo.esValido() ) {
+        return;
+    }
+        bool ok = false;
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
-    if( m->buscarSiPagado( this->_num_recibo ) ) {
+    if( m->buscarSiPagado( _num_recibo.serie(), _num_recibo.numero() ) ) {
         QMessageBox::warning( this, "Ya pagado", QString( "El recibo %1 ya esta como pagado en la base de datos." ).arg( this->_num_recibo.aCadena() ) );
     } else {
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
@@ -110,8 +107,17 @@ void DPagarRecibo::cambioNumeroRecibo()
 {
   // Busco todos los datos y los pongo en los lugares correspondientes
   MPagos *m = new MPagos();
-  NumeroComprobante *num = NumeroComprobante::desdeString( LENumeroRecibo->text() );
-  if( m->buscarSiPagado( num ) ) {
+  this->_num_recibo.desdeString( LENumeroRecibo->text() );
+  if( !_num_recibo.esValido() ) {
+      qWarning( "Numero de recibo invalido" );
+      return;
+  }
+  if( !m->existe( _num_recibo ) ) {
+      QMessageBox::warning( this, "Error", "El recibo ingresado no esta registrado o no ha sido emitido." );
+      delete m;
+      return;
+  }
+  if( m->buscarSiPagado( _num_recibo.serie(), _num_recibo.numero() ) ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El recibo ya se encuentra pagado!" ) );
         delete m;
         return;
@@ -120,6 +126,7 @@ void DPagarRecibo::cambioNumeroRecibo()
   DSBImporte->setValue( m->buscarImporte( this->_num_recibo ) );
   // Buscar los recargos
 
+  //DSBRecargos->setValue(  );
   // Coloco automaticamente el importe en a pagar
   DSBPagar->setValue( DSBImporte->value() );
 }
@@ -129,4 +136,4 @@ void DPagarRecibo::cambioNumeroRecibo()
  * slot llamado cuando se cambia la cantidad a pagar
  */
 void DPagarRecibo::cambioAPagar( double /*cantidad*/ )
-{ DSBSaldo->setValue( DSBImporte->value() - DSBPagar->value() ); }
+{ DSBSaldo->setValue( DSBImporte->value() + DSBRecargos->value() - DSBPagar->value() ); }

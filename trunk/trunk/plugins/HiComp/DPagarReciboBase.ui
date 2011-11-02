@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="LNumero">
@@ -27,10 +27,19 @@
        <property name="text">
         <string>Número de Recibo:</string>
        </property>
+       <property name="buddy">
+        <cstring>LENumeroRecibo</cstring>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="LENumeroRecibo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
@@ -38,16 +47,16 @@
         <string>99999-99999; </string>
        </property>
        <property name="frame">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item>
+   <item row="1" column="0">
     <widget class="QGroupBox" name="GBDatos">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -66,10 +75,67 @@
           <property name="text">
            <string>Importe:</string>
           </property>
+          <property name="buddy">
+           <cstring>DSBImporte</cstring>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="DSBImporte">
+          <property name="frame">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::NoButtons</enum>
+          </property>
+          <property name="keyboardTracking">
+           <bool>false</bool>
+          </property>
+          <property name="prefix">
+           <string>$ </string>
+          </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>99999.990000000005239</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Recargos:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="DSBRecargos">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="frame">
+           <bool>false</bool>
+          </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
@@ -86,7 +152,7 @@
            <number>3</number>
           </property>
           <property name="maximum">
-           <double>99999.990000000005239</double>
+           <double>999999999.990000009536743</double>
           </property>
          </widget>
         </item>
@@ -99,10 +165,19 @@
           <property name="text">
            <string>Importe a pagar:</string>
           </property>
+          <property name="buddy">
+           <cstring>DSBPagar</cstring>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="DSBPagar">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
@@ -116,7 +191,7 @@
            <number>3</number>
           </property>
           <property name="maximum">
-           <double>99999.990000000005239</double>
+           <double>999999999.990000009536743</double>
           </property>
          </widget>
         </item>
@@ -129,10 +204,22 @@
           <property name="text">
            <string>Saldo:</string>
           </property>
+          <property name="buddy">
+           <cstring>DSBSaldo</cstring>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="DSBSaldo">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frame">
+           <bool>false</bool>
+          </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
@@ -168,7 +255,7 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

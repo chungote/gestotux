@@ -38,10 +38,7 @@ MProveedor::MProveedor(QObject *parent)
 QVariant MProveedor::data(const QModelIndex& idx, int role) const
 {
  if( !idx.isValid() )
- {
-   qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
-   return( QVariant() );
- }
+ { return QVariant(); }
  switch( role )
  {
 	case Qt::TextColorRole:
@@ -120,7 +117,7 @@ bool MProveedor::tieneDatosRelacionados( const int id_proveedor )
             }
         }
     } else {
-        qDebug( "error de cola" );
+        qWarning( "Existio un error al intentar obtener los datos relacionados con este proveedor. No se podrá eliminarlo." );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
@@ -145,6 +142,7 @@ bool MProveedor::existenProveedores()
             qDebug( cola.lastQuery().toLocal8Bit() );
         }
     } else {
+        qWarning( "Existió un error al intentar ejecutar la consulta de la cantidad de proveedores" );
         qDebug( "Error al hacer exec en la cola de averiguación de cantidad de proveedores." );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );

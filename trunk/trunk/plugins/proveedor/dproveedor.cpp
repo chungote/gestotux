@@ -22,14 +22,10 @@
 #include <QLineEdit>
 #include <QModelIndex>
 #include <QMessageBox>
+#include "ELECuitCuil.h"
 
 DProveedor::DProveedor(QObject *parent)
  : QItemDelegate(parent)
-{
-}
-
-
-DProveedor::~DProveedor()
 {
 }
 
@@ -38,6 +34,12 @@ QWidget* DProveedor::createEditor(QWidget* parent, const QStyleOptionViewItem& o
 {
  switch( index.column() )
  {
+        // CUIT/CUIL
+        case 7:
+        {
+            ELECuitCuil *editor = new ELECuitCuil( parent );
+            return editor;
+        }
 	// E-Mail
 	case 3:
 	{
@@ -55,6 +57,7 @@ QWidget* DProveedor::createEditor(QWidget* parent, const QStyleOptionViewItem& o
  		editor->setValidator( new QRegExpValidator( QRegExp( "[0-9_- ]+" ), editor ) );
 		editor->setAlignment( Qt::AlignRight );
 		return editor;
+                break;
 	}
 	default:
 	{
@@ -90,6 +93,17 @@ void DProveedor::setModelData(QWidget* editor, QAbstractItemModel* model, const 
 			return;
 		}
 	}
+        case 7:
+        {
+                ELECuitCuil *ed = qobject_cast<ELECuitCuil *>(editor);
+                if( ed->verificar() )  {
+                    QItemDelegate::setModelData( editor, model, index );
+                } else {
+                    QMessageBox::warning( editor, "Error de ingreso", "El dato ingresado es incorrecto. Por favor, ingrese un cuit/cuil correcto" );
+                    return;
+                }
+                break;
+        }
 	default:
 	{
 		QItemDelegate::setModelData(editor, model, index);

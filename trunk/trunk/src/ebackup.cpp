@@ -94,9 +94,7 @@ Ebackup::Ebackup( QWidget* parent )
  Pestanas->setTabIcon( 1, QIcon( ":/imagenes/backup2.png" ) );
  Pestanas->widget( 0 )->setObjectName( "crearBackup" );
  Pestanas->widget( 1 )->setObjectName( "restaurarBackup" );
- Pestanas->setCurrentIndex(0);
- /// @todo Oculto la pestaña de restaurar backup hasta que lo tenga implementado y probado
- Pestanas->setTabEnabled( 1, false );
+ Pestanas->setCurrentIndex( 0 );
 }
 
 
@@ -112,7 +110,7 @@ Ebackup::~Ebackup()
  */
 void Ebackup::iniciar()
 {
- // Ver en que pestaï¿½a esta
+ // Ver en que pestaña esta
  if( Pestanas->currentIndex() == 0 )
  {
   generarBackup();
@@ -124,7 +122,7 @@ void Ebackup::iniciar()
  }
  else
  {
-  qWarning( "PestaÃ±a desconocida" );
+  qWarning( "Pestaña desconocida" );
  }
 }
 
@@ -292,10 +290,6 @@ bool Ebackup::generar_db( bool estructura )
  foreach( tabla, tablas )
  {
   PBProgreso->setValue( PBProgreso->value() + 1 );
-        // Genero la cola de creacion de la tabla si es necesario
-        /*if( estructura )
-        {
-        }*/
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
         while( cola.next() )
         {
@@ -469,9 +463,10 @@ void Ebackup::restaurarBackup()
  }
 
  QString contenido = archivo.readAll();
+ archivo.close();
  if( contenido.isEmpty() )
  {
-  qWarning( "Error al leer el archivo. teoricamente esta vacio." );
+  qWarning( "El archivo esta vacio. \n Seleccione otro archivo para restaurar" );
   emit cambiarDetener( false );
   return;
  }
@@ -483,9 +478,9 @@ void Ebackup::restaurarBackup()
   contenido.remove( 0, QString( "|->basedatossql->formato= " ).size() );
   // ahora tiene que estar el formato
   QString formato = contenido.section( ";", 0, 0 );
-  if( formato != QSqlDatabase::database().driverName() )
+  if( formato != QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() )
   {
-   qWarning( QString( "Este backup no es para este tipo de base de datos. Formato: " + formato ).toLocal8Bit() );
+   qWarning( QString( "Este backup que intenta restaurar no posee los datos para la base de datos que está utilizando actualmente. Formato: " + formato ).toLocal8Bit() );
    return;
   }
   // saco esa subcadena

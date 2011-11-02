@@ -121,7 +121,7 @@ QVariant MPagos::data(const QModelIndex& item, int role) const
              if( QSqlRelationalTableModel::data( item, role ).toBool() ) {
                 return "Si";
              } else {
-                 return "No";
+                return "No";
              }
              break;
      }
@@ -482,10 +482,10 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
 NumeroComprobante &MPagos::buscarMenorSerieNumeroPagado()
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT MAX( serie ) FROM presupuestos WHERE pagado = 0" ) ) ) {
+    if( cola.exec( QString( "SELECT MAX( serie ) FROM recibos WHERE pagado = 0" ) ) ) {
         if( cola.next() ) {
             int serie = cola.record().value(0).toInt();
-            if( cola.exec( QString( "SELECT MAX( numero ) FROM presupuestos WHERE serie = %1 AND pagado = 0" ).arg( serie ) ) ) {
+            if( cola.exec( QString( "SELECT MAX( numero ) FROM recibos WHERE serie = %1 AND pagado = 0" ).arg( serie ) ) ) {
                 if( cola.next() ) {
                     int numero = cola.record().value(0).toInt();
                     NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
@@ -520,40 +520,32 @@ NumeroComprobante &MPagos::buscarMenorSerieNumeroPagado()
  */
 bool MPagos::buscarSiPagado( const int serie, const int numero )
 {
- if( this->query().exec( QString( "SELECT pagado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) ) {
-     if( this->query().next() ) {
-         if( this->query().record().value(1).toBool() ) {
+    if( serie < 0 && numero <= 0 ) {
+        qDebug( "Numeros de comprobante invalido" );
+        qDebug( QString( "%1-%2" ).arg( serie ).arg( numero ).toLocal8Bit() );
+        return true;
+    }
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT pagado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) ) {
+     if( cola.next() ) {
+         if( cola.record().value(0).toBool() ) {
              return true;
          } else {
              return false;
          }
      } else {
          qDebug( "Error al hacer next en cola de si pagado serie-numero" );
+         qDebug( cola.lastQuery().toLocal8Bit() );
+         qDebug( cola.lastError().text().toLocal8Bit() );
          return false;
      }
  } else {
      qDebug( "error al hacer exec de cola de si pagado serie-numero" );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug( cola.lastError().text().toLocal8Bit() );
      return false;
  }
 }
-
-/*!
- * \fn MPagos::buscarSiPagado( const NumeroComprobante num )
- * Sobrecarga
- * \param num Numero y serie del recibo buscado
- * \returns pagado o no
- */
-bool MPagos::buscarSiPagado( const NumeroComprobante num )
-{ return buscarSiPagado( num.serie(), num.numero() ); }
-
-/*!
- * \fn MPagos::buscarSiPagado( const NumeroComprobante *num )
- * Sobrecarga
- * \param num Numero y serie del recibo buscado
- * \returns pagado o no
- */
-bool MPagos::buscarSiPagado( const NumeroComprobante *num )
-{ return buscarSiPagado( num->serie(), num->numero() ); }
 
 /*!
  * \fn MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
@@ -597,9 +589,11 @@ int MPagos::buscarIdPorSerieNumero( const NumeroComprobante num )
  */
 double MPagos::buscarImporte( NumeroComprobante num )
 {
-    if( this->query().exec( QString( "SELECT precio FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
-    if( this->query().next() ) {
-       return this->query().record().value(0).toDouble();
+    if( !num.esValido() ) { return -1.1; }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT precio FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
+    if( cola.next() ) {
+       return cola.record().value(0).toDouble();
     } else {
        qDebug( "Error al hacer next en cola de importe de recibo" );
        return -1.1;
@@ -631,4 +625,22 @@ NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
     }
     NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
     return *invalido;
+}
+
+bool MPagos::existe( NumeroComprobante num ) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( id_recibo ) FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        } else {
+            qDebug( "MPagos::existe: Error al hacer next en buscar si existe un recibo" );
+        }
+    } else {
+        qDebug( "Mpagos::existe: Error al hacer exec en buscar si existe un recibo" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+    }
+    return false;
 }
