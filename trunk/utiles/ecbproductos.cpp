@@ -102,8 +102,8 @@ void ECBProductos::verificarExiste()
             int pos_nueva = this->count();
             this->_mapa_pos_codigo->insert( QString::number( _min ), pos_nueva );
             //this->_mapa_pos_ids->insert( _min, this->count() );
-            this->_mapa_id_nombre->insert( _min, this->currentText() );
-            this->insertItem( pos_nueva, this->currentText(), _min );
+            this->_mapa_id_nombre->insert( _min, this->lineEdit()->text() );
+            this->insertItem( pos_nueva, this->lineEdit()->text(), _min );
             this->setCurrentIndex( pos_nueva );
             this->_min--;
         }

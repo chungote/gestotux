@@ -223,10 +223,7 @@ Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
 QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 {
   if( !idx.isValid() )
-  {
-   //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
-   return( QVariant() );
-  }
+  { return( QVariant() ); }
  if( idx.row() == this->productos->size() && _calcularTotal )
  {
   //qDebug( qPrintable( QString::number( this->productos->size() ) ) );
@@ -307,7 +304,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                         case 1:
                         {
                                 // Devuelvo el mapeo idfila->productos->prods
-                                if( prods->contains( productos->value( idx.row()) ) ) {
+                                if( prods->contains( productos->value( idx.row() ) ) ) {
                                     return prods->value( productos->value( idx.row() ) );
                                 } else {
                                     qDebug( QString( "No se encontro el articulo en el data. Row=%1, indice=%2 " ).arg( idx.row() ).arg( productos->value( idx.row()) ).toLocal8Bit() );

@@ -29,10 +29,11 @@ VCompras::VCompras(QWidget *parent)
  setObjectName( "lista_compras" );
  setWindowTitle( "Lista de compras realizadas" );
  setWindowIcon( QIcon(":/imagenes/compras.jpg" ) );
+
  rmodelo = new MCompra( this, true );
  vista->setModel( rmodelo );
  vista->hideColumn( 0 );
- vista->resizeColumnsToContents();
+
  addAction( ActAgregar );
  //addAction( ActModificar );
  //addAction( ActEliminar );

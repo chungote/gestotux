@@ -198,11 +198,21 @@ void FormAgregarCompra::guardar()
  */
 void FormAgregarCompra::agregarProducto()
 {
+
+ if( SBCant->value() == 0 )
+ { QMessageBox::information( this, "Error de datos", "La cantidad a agregar debe ser mayor que cero", QMessageBox::Ok ); return; }
+
+ if( CBProducto->currentText().isEmpty() )
+ { QMessageBox::information( this, "Error de datos", "Ingrese un producto a agregar", QMessageBox::Ok ); return; }
+
  CBProducto->verificarExiste();
+
  mcp->agregarNuevoProducto( SBCant->value(), CBProducto->idActual() );
+
  SBCant->setValue( 1.0 );
  CBProducto->setCurrentIndex( -1 );
  SBCant->setFocus();
+
 }
 
 

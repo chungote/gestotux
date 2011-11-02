@@ -138,14 +138,23 @@ void NumeroComprobante::siguienteNumero() {
 /*!
  * \fn NumeroComprobante::desdeString( const QString original )
  */
-NumeroComprobante * NumeroComprobante::desdeString( const QString original) {
+bool NumeroComprobante::desdeString( const QString original) {
     // Verificaciones
     if( original.isNull() || original.isEmpty() ) {
-        return new NumeroComprobante( 0, -1, -1 );
+        qDebug( "NumeroComprobante::desdeString: original vacio o nulo" );
+        _dato.first = -1;
+        _dato.second = -1;
+        return false;
     }
     QStringList lista = original.split( "-" );
     if( lista.isEmpty() ) {
-        return new NumeroComprobante( 0, -1, -1 );
+        qDebug( "NumeroComprobante::desdeString: no se pudo dividir la cadena por -");
+        _dato.first = -1;
+        _dato.second = -1;
+        return false;
     }
-    return new NumeroComprobante( 0, lista.first().toInt(), lista.last().toInt() );
+    qDebug( QString( "NumeroComprobante: %1-%2" ).arg( lista.first().toInt() ).arg( lista.last().toInt() ).toLocal8Bit() );
+    _dato.first = lista.first().toInt();
+    _dato.second = lista.last().toInt();
+    return true;
 }

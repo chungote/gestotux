@@ -28,20 +28,17 @@
  * Delegate que permite personalizar la edicion de los campos del formulario de Proveedores.\n
  * Cuando se editan numeros de telefono, restringe las entradas a numeros unicamente.\n
  * Cuando se editan direccionde de email, se restringe la entrada para que contenga efectivamente una direccion valida.
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ * Tambien se verifica que se utilice un cuit/cuil correcto.
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
 class DProveedor : public QItemDelegate
 {
 Q_OBJECT
 public:
     DProveedor(QObject *parent = 0);
-
-    ~DProveedor();
-
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
-
 };
 
 #endif

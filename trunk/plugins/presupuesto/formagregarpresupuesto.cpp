@@ -225,6 +225,7 @@ void FormAgregarPresupuesto::agregarProducto()
 
     // Llamo este metodo por si no fue agregado por un enter
     CBProductos->verificarExiste();
+
     // Inserto el producto
     m->agregarNuevoProducto( DSBCant->value(), CBProductos->idActual() );
 
