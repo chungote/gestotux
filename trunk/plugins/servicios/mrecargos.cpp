@@ -143,7 +143,7 @@ void MRecargos::agregarRecargo()
     \fn MRecargos::setearServicio( int id_servicio )
     Metodo para setear el filtro de los recargos actuales segun el ID.
     El ID debe ser mayor que cero.
-    @param ID del servicio a filtrar.
+    @param id_servicio ID del servicio a filtrar.
  */
 void MRecargos::setearServicio( int id_servicio )
 {

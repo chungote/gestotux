@@ -37,12 +37,13 @@ void MItemFactura::relacionar() {
 }
 
 /*!
- * \fn MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario )
+ * \fn MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario, const int id_producto )
  * Agrega un item de factura para la venta indicada.
  * @param id_venta Clave foranea en la tabla factura.
  * @param cantidad Cantidad del item.
  * @param texto Texto que va a aparecer en el item de la factura.
  * @param precio_unitario Precio unitario del item de la factura.
+ * @param id_producto Identificador del producto.
  * @returns Verdadero si se pudo agregar correctamente.
  */
 bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario, const int id_producto ) {

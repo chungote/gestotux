@@ -44,7 +44,7 @@ void MItemPresupuesto::inicializar() {
 void MItemPresupuesto::relacionar() {}
 
 /*!
- * \fn MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const dobule cantidad, const QString texto, const double precio_unitario )
+ * \fn MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario )
  * Agrega un item de presupuesto con el presupuesto relacionado pasado como parametro
  * \param id_presupuesto Identificador del Presupuesto
  * \param cantidad Cantidad del item

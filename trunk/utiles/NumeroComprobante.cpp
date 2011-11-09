@@ -79,7 +79,7 @@ int NumeroComprobante::serie() const { return _dato.first; }
  */
 int NumeroComprobante::numero() const { return _dato.second; }
 /*!
- * \fn NumeroComprobante::aCadena() const
+ * \fn NumeroComprobante::aCadena()
  * Devuelve una cadena con <serie>-<numero> del comprobante
  * @return
  */

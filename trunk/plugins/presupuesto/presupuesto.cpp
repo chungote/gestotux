@@ -120,7 +120,8 @@ double presupuesto::version() const
 
 
 /*!
-    \fn presupuesto::verificarTablas()
+    \fn presupuesto::verificarTablas( QStringList tablas )
+    Verifica que existan las tablas necesarias para el plugin
  */
 bool presupuesto::verificarTablas( QStringList tablas )
 {

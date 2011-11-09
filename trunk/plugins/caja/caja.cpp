@@ -99,7 +99,7 @@ bool Caja::inicializar()
 /*!
     \fn Caja::verificarTablas( QStringList tablas )
     Verifica que existan las tablas del plugin de cajas
-    \param listado de tablas
+    \param tablas listado de tablas
     \return Falso si falta alguna.
  */
 bool Caja::verificarTablas( QStringList tablas )

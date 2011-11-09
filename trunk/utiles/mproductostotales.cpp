@@ -42,6 +42,7 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa
  if( _mapa_id_prod != 0 )
     prods = _mapa_id_prod;
  cantidades->clear();
+ _tipoPrecio = MProductosTotales::Venta;
 }
 
 
@@ -152,7 +153,13 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 if( _buscarPrecio && value.toInt() > 0 )
                                 {
                                         // Busco el precio de venta este producto
-                                        this->setData( this->index( index.row(), 2 ), QVariant::fromValue( buscarPrecioVenta( value.toInt() ) ), Qt::EditRole );
+                                        double precio = 0.0;
+                                        if( this->_tipoPrecio ==  MProductosTotales::Costo ) {
+                                                precio = buscarPrecioVenta( value.toInt() );
+                                        } else if( this->_tipoPrecio == MProductosTotales::Venta ){
+                                                precio = buscarPrecioCompra( value.toInt() );
+                                        }
+                                        this->setData( this->index( index.row(), 2 ), QVariant::fromValue( precio ), Qt::EditRole );
                                         //qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );
                                 }
                                 return true;
@@ -503,7 +510,7 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
      }
      else
      {
-      qDebug( "No se encontro el precio" );
+      qDebug( "No se encontro el precio de compra" );
       return 0.0;
      }
   } else {
@@ -512,6 +519,28 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
   }
 }
 
+/*!
+    \fn MProductosTotales::buscarPrecioVenta( int id_producto )
+ */
+double MProductosTotales::buscarPrecioCompra( int id_producto )
+{
+ if( id_producto > 0 ) {
+     QSqlQuery cola;
+     if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) ) )
+     {
+      cola.next();
+      return cola.record().value(0).toDouble();
+     }
+     else
+     {
+      qDebug( "No se encontro el precio de compra" );
+      return 0.0;
+     }
+  } else {
+      // El precio se va a ingresar a mano, porque no esta en la base de datos de productos
+     return 0.0;
+  }
+}
 
 #include <QInputDialog>
 void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
@@ -574,3 +603,16 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
   }
   return;
 }
+
+void MProductosTotales::setearTipoPrecioBuscar( int t)
+{
+    if( t == MProductosTotales::Costo ) {
+        this->_tipoPrecio = MProductosTotales::Costo;
+    } else if( t == MProductosTotales::Venta ) {
+        this->_tipoPrecio = MProductosTotales::Venta;
+    }
+}
+
+int  MProductosTotales::tipoPrecioBuscar()
+{ return this->_tipoPrecio; }
+

@@ -13,9 +13,7 @@
 
 -- MProductosTotales --
 -----------------------
-- Agregar metodo para que coloque la cantidad correcta cuando se agrega un producto a la lista que ya fue dado de alta.
 - Terminar reporte de baja de adhhesion de servicio
-- Modificar sistema de mproductostotales para que permita especificar el precio de compra o venta como parametro.
 - Arreglar problema de fk en mysql con las categorías de los productos cuando las categorías no estan habilitadas.
 
 -- Caja --

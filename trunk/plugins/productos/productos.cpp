@@ -93,7 +93,7 @@ bool productos::inicializar()
 
 
 /*!
-    \fn productos::verificarTablas()
+    \fn productos::verificarTablas( QStringList tablas )
  */
 bool productos::verificarTablas( QStringList tablas )
 {

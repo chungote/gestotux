@@ -149,16 +149,15 @@ void FormServicio::agregarRecargo()
 }
 
 /*!
- * \fn FormServicio::setearId( const int id_servicio )
+ * \fn FormServicio::setearId( const int id_servicio, const QModelIndex indice )
  * Coloca el formulario en modo de edicion y carga los datos para que sean modificados.
  * \param id_servicio Identificador del servicio a cargar
+ * \param indice Indice de la vista para pasar al mapa
  */
 void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
 {
-    /// @todo Agregar este metodo
-    qWarning( "Esta parte todavía no ha sido programada. \n Se mostrará el formulario pero no podrá hacer nada con el" );
+    qWarning( "Esta parte todavia no ha sido programada. \n Se mostrara el formulario pero no podra hacer nada con el." );
     disconnect( this, SLOT( guardar() ) );
-    return;
     this->_modificando = true;
 
     _mapa = new QDataWidgetMapper();
@@ -166,21 +165,20 @@ void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
     _mapa->setModel( this->modelo );
     _mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
 
-
-    // Busco el indice
-    this->_id_servicio = id_servicio;
-    if( indice.isValid() )
-        _mapa->setCurrentModelIndex( indice );
-    else
-        /// @todo Ver accion cuando no se pasa un indice pero si un id al modificar un servicio
-        abort();
-
     _mapa->addMapping( LENombre, modelo->fieldIndex( "nombre" ) );
     _mapa->addMapping( TEDescripcion, modelo->fieldIndex( "descripcion" ) );
     _mapa->addMapping( DEFechaAlta, modelo->fieldIndex( "fecha_alta" ) );
     _mapa->addMapping( dSBPrecioBase, modelo->fieldIndex( "precio_base" ) );
-    _mapa->addMapping( CBPeriodo, modelo->fieldIndex( "periodo" ), "itemData" );
-    _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ), "itemData" );
-    _mapa->addMapping( CBInicioCobro, modelo->fieldIndex( "inicio_cobro" ), "itemData");
+    _mapa->addMapping( CBPeriodo, modelo->fieldIndex( "periodo" ), "itemData" ); /// @todo Probar que estas propiedades anden
+    _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ), "itemData" ); /// @todo Probar que estas propiedades anden
+    _mapa->addMapping( CBInicioCobro, modelo->fieldIndex( "inicio_cobro" ), "itemData"); /// @todo Probar que estas propiedades anden
 
+    // Busco el indice
+    this->_id_servicio = id_servicio;
+    if( indice.isValid() ) {
+        _mapa->setCurrentModelIndex( indice );
+    } else {
+        qWarning( "El indice pasado es invalido!" );
+        abort();
+    }
 }

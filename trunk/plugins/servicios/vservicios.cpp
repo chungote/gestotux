@@ -103,21 +103,28 @@ void VServicios::agregar( bool /*autoeliminarid*/ )
 void VServicios::modificar( const QModelIndex &idx )
 {
     // modifico el indice actual ( existe uno actual? )
-    if( !idx.isValid() )
+    if( !idx.isValid() ) {
+        qDebug( "indice invalido" );
         return;
+    }
     // Obtengo el id actual
     int id_servicio = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
     if( id_servicio <= 0 ) {
         qWarning( "El identificador del servicio encontrado es invalido" );
         return;
     }
-    if( MServicios::dadoDeBaja( id_servicio ) ) {
-        QMessageBox::information( this, "Incorrecto", "No se puede facturar el servicio ya que fue dado de baja" );
-        return;
-    }
     FormServicio *f = new FormServicio( qobject_cast<MServicios *>(this->modelo ) );
     f->setearId( id_servicio, idx.model()->index( idx.row(), 0 ) );
     emit agregarVentana( f );
+}
+
+void VServicios::modificar()
+{
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione un servicio para modificar" );
+        return;
+    }
+    this->modificar( this->vista->selectionModel()->selectedRows().first() );
 }
 
 
@@ -180,7 +187,7 @@ void VServicios::darAltaServicioCliente()
  int id_servicio = vista->model()->data( vista->model()->index( vista->currentIndex().row(), 0 ), Qt::EditRole ).toInt();
 
  if( MServicios::dadoDeBaja( id_servicio ) ) {
-     QMessageBox::information( this, "Incorrecto", "No se puede facturar el servicio ya que fue dado de baja" );
+     QMessageBox::information( this, "Incorrecto", "No se puede adherir un cliente al servicio ya que fue dado de baja" );
      return;
  }
  FormAsociarServicioCliente *f = new FormAsociarServicioCliente( this, FormAsociarServicioCliente::Cliente );
@@ -248,8 +255,6 @@ void VServicios::generarFacturacion()
 
 void VServicios::darDeBaja()
 {
-    qWarning( "No implementado" );
-    return;
     if( vista->selectionModel()->selectedRows().count() <= 0 ) {
       QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para darlo de baja" );
       return;
