@@ -124,7 +124,7 @@ void EAyuda::mostrarIndice()
 
 
 /*!
-  \fn EAyuda::errorEngine( const QString mensaje )
+  \fn EAyuda::errorEngine( const QString &mensaje )
   Muestra el mensaje que tira el engine de la ayuda por salida normal
 */
 void EAyuda::errorEngine( const QString &mensaje )

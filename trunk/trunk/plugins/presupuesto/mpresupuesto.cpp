@@ -98,13 +98,14 @@ NumeroComprobante &MPresupuesto::proximoComprobante() {
 }
 
 /*!
- * \fn MPresupuesto::agregarPresupuesto()
+ * \fn MPresupuesto::agregarPresupuesto( int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones )
     Agrega un presupuesto con los datos pasados de parametros y devuelve el id del registro recien insertado para utilizar con los items
     @param id_cliente Identificador de cliente
     @param texto_cliente Nombre del cliente si id-cliente no es valido
     @param direccion Direccion del cliente o destinatario si el id-cliente no es valido
     @param fechahora Fecha y hora del presupeusto
     @param total Total del presupuesto
+    @param observaciones Observaciones agregadas al presupuesto ( no include "Observaciones:" )
     @returns ID de insercion o -1 si hubo un error
  */
 int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones ) {

@@ -82,8 +82,13 @@ void FormRecargos::cambioServicio( int /*servicio*/ )
 
 void FormRecargos::agregarRecargo()
 {
-  // Agrega un nuevo recargo a la lista del servicio seleccionado
-  mrecargos->agregarRecargo();
+ int id_servicio = CBServicios->itemData( CBServicios->currentIndex() ).toInt();
+ if( MServicios::dadoDeBaja( id_servicio ) ) {
+     QMessageBox::information( this, "No se puede", "No se puede agregar un nuevo recargo a un servicio que fue dado de baja" );
+     return;
+ }
+ // Agrega un nuevo recargo a la lista del servicio seleccionado
+ mrecargos->agregarRecargo();
 }
 
 void FormRecargos::eliminarRecargo()

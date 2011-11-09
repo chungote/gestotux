@@ -375,6 +375,9 @@ bool MServicios::dadoDeBaja( const int id_servicio)
 /*!
  * \fn MServicios::darDeBaja( const int id_servicio, const QDate fecha )
  * Da de baja el servicio especificado
+ * \param id_servicio Identificador del servicio
+ * \param fecha Fecha en que se da de baja
+ * \return Verdadero si pudo se dado de baja
  */
 bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
 {

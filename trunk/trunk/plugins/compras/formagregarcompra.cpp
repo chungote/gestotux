@@ -63,7 +63,8 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 
         mcp = new MProductosTotales( this, CBProducto->listadoProductos() );
 	mcp->calcularTotales( true );
-        mcp->buscarPrecios( false );
+        mcp->buscarPrecios( true );
+        mcp->setearTipoPrecioBuscar( MProductosTotales::Costo );
         TVLista->setModel( mcp );
 	TVLista->setAlternatingRowColors( true );
         TVLista->setItemDelegateForColumn( 1, new DProductosTotales( TVLista ) );

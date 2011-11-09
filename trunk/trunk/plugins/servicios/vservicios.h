@@ -49,6 +49,9 @@ private slots:
 protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
 
+protected slots:
+    void modificar();
+
 private:
     QModelIndex indiceMenu;
     QAction *ActRecargos;

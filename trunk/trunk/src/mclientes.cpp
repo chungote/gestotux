@@ -118,9 +118,9 @@ Qt::ItemFlags MClientes::flags( const QModelIndex &index ) const
 }
 
 /*!
- * \fn MClientes:tieneDatosRelacionados( const int id_cliente )
+ * \fn MClientes::tieneDatosRelacionados( const int id_cliente )
  * Verifica si existe alguna asociacion en alguna tabla que corresponda con el cliente pasado como paraemtro
- * \param ID de cliente
+ * \param id_cliente ID de cliente
  * \return Verdadero si hay alguna asociación
  */
 bool MClientes::tieneDatosRelacionados( const int id_cliente )

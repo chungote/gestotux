@@ -398,7 +398,7 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
 #include "../caja/mcajas.h"
 #include "../caja/mmovimientoscaja.h"
 /*!
- * \fn MPagos::setearComoPagado( const in id_recibo, const bool efectivo )
+ * \fn MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
  * Setea como pago el recibo que se pasa como id. Si ya esta como pagado, no hace nada y devuelve true.
  * \param id_recibo ID del recibo
  * \param efectivo Define si la forma de pago es MPagos::Efectivo ( si el parametro es true ) o MPagos::Otro ( si es false )

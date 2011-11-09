@@ -53,6 +53,13 @@ public:
 
     void agregarNuevoProducto( const int cantidad, const int Id );
 
+    enum TipoPrecio {
+        Costo = 0,
+        Venta = 1
+    };
+    void setearTipoPrecioBuscar( int t );
+    int tipoPrecioBuscar();
+
 private:
         /*!
          * Contiene el listado de subtotales por definicion de fila
@@ -86,8 +93,13 @@ private:
          * Define si se hará la busqueda de precio del producto
          */
         bool _buscarPrecio;
+        /*!
+         * Define que tipo de precio Costo o Venta se buscará
+         */
+        TipoPrecio _tipoPrecio;
 
         double buscarPrecioVenta( int id_producto );
+        double buscarPrecioCompra( int id_producto );
 };
 
 #endif

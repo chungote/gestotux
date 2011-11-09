@@ -82,7 +82,7 @@ bool Ventas::inicializar()
 
 
 /*!
-    \fn Ventas::verificarTablas()
+    \fn Ventas::verificarTablas( QStringList tablas )
  */
 bool Ventas::verificarTablas( QStringList tablas )
 {
