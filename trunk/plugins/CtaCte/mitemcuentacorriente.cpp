@@ -115,7 +115,7 @@ int MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const 
   qWarning( "Error al intentar guardar la operacion de item de cuenta corriente" );
   qDebug( qPrintable( cola.lastError().text() ) );
   qDebug( qPrintable( cola.lastQuery() ) );
-  return false;
+  return -1;
  }
 
 }

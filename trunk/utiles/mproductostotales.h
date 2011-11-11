@@ -60,6 +60,9 @@ public:
     void setearTipoPrecioBuscar( int t );
     int tipoPrecioBuscar();
 
+    bool aceptaDuplicados() { return _admite_duplicados; }
+    void setearAceptaDuplicados( bool param ) { _admite_duplicados = param; }
+
 private:
         /*!
          * Contiene el listado de subtotales por definicion de fila
@@ -93,6 +96,10 @@ private:
          * Define si se hará la busqueda de precio del producto
          */
         bool _buscarPrecio;
+        /*!
+         * Define si permite que existan duplicados de los items dentro del producto
+         */
+        bool _admite_duplicados;
         /*!
          * Define que tipo de precio Costo o Venta se buscará
          */

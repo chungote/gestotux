@@ -39,6 +39,8 @@ public:
     void setearServicio( int id_servicio = -1 );
     int columnCount( const QModelIndex & index = QModelIndex() ) const;
 
+    static double calcularRecargo( const int id_recargo );
+
 public slots:
     void setearPrecioBase( double precio );
 

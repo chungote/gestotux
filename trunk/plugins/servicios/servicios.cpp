@@ -43,13 +43,17 @@ bool Servicios::inicializar()
  ActFacturarServicio->setText( "Facturar Servico" );
  connect( ActFacturarServicio, SIGNAL( triggered() ), this, SLOT( facturarServicio() ) );
 
+ ActVerfRecargos = new QAction( this );
+ ActVerfRecargos->setText( "Verificar recargos" );
+ connect( ActVerfRecargos, SIGNAL( triggered() ), this, SLOT( verificarRecargos() ) );
+
  return true;
 }
 
 bool Servicios::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "servicios" ) )
-    { qDebug( "Servicios::Error al buscar la tabla de servicios" ); return false; }
+ { qDebug( "Servicios::Error al buscar la tabla de servicios" ); return false; }
  if( !tablas.contains( "servicios_clientes" ) )
  { qDebug( "Servicios::Error al buscar la tabla de servicios_clientes" ); return false; }
  if( !tablas.contains( "recargos" ) )
@@ -87,6 +91,7 @@ void Servicios::crearMenu(QMenuBar* m)
  QMenu *serv = m->addMenu( "Servicios" );
  serv->addAction( ActServicios );
  serv->addAction( ActRecargos );
+ serv->addAction( ActVerfRecargos );
  return;
 }
 
@@ -109,18 +114,29 @@ void Servicios::mostrarServicios()
 
 /*!
     @fn Servicios::mostrarRecargos()
+    Muestra el listado de recargos
  */
 void Servicios::mostrarRecargos()
 {
    emit agregarVentana( new FormRecargos() );
 }
 
+/*!
+ * \fn void Servicios::facturarServicio()
+ * Abre la ventana para realizar la facturacion de un servicio especifico
+ */
 void Servicios::facturarServicio()
 {
+    // Selecciono un servicio de la lista
+    /// @todo realizar este metodo
     return;
 }
 
 QAction *Servicios::botonPantallaInicial()
 { return ActServicios; }
 
-Q_EXPORT_PLUGIN2( servicios, Servicios );
+#include "FormVerificarRecargos.h"
+void Servicios::verificarRecargos()
+{  emit agregarVentana( new FormVerificarRecargos() ); }
+
+Q_EXPORT_PLUGIN2( servicios, Servicios )
