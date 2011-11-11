@@ -21,6 +21,7 @@
 #define MRECARGOSHECHOS_H
 
 #include <QSqlRelationalTableModel>
+#include <QDateTime>
 
 /**
 	@author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -30,11 +31,13 @@ class MRecargosHechos : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MRecargosHechos(QObject *parent = 0);
-
-    ~MRecargosHechos();
+    void inicializar();
+    void relacionar();
 
     bool setData(const QModelIndex& item, const QVariant& value, int role);
     QVariant data(const QModelIndex& item, int role) const;
+
+    static bool agregarRecargo( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_recargo, const QDateTime fecha = QDateTime::currentDateTime(), const QString detalle = QString(), const double costo = 0.0 );
 
 };
 

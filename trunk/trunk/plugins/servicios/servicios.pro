@@ -46,7 +46,8 @@ HEADERS =   ../caja/mcajas.h \
            ../ventas/mitemfactura.h \
     mperiodoservicio.h \
     mcobroservicioclienteperiodo.h \
-    formmodificarservicio.h
+    formmodificarservicio.h \
+    FormVerificarRecargos.h
 
 
 SOURCES = servicios.cpp \
@@ -69,7 +70,8 @@ SOURCES = servicios.cpp \
            ../ventas/mitemfactura.cpp \
     mperiodoservicio.cpp \
     mcobroservicioclienteperiodo.cpp \
-    formmodificarservicio.cpp
+    formmodificarservicio.cpp \
+    FormVerificarRecargos.cpp
 
 RESOURCES += servicios.qrc
 
@@ -79,7 +81,8 @@ FORMS += FormAsociarBase.ui \
          formServicioBase.ui \
          FormRecargoBase.ui \
          FormClientesAdheridosBase.ui \
-         FormFacturarServicioBase.ui
+         FormFacturarServicioBase.ui \
+    FormVerificarRecargos.ui
 
 OTHER_FILES += servicios.QMYSQL.sql \
                servicios.QSQLITE.sql
@@ -88,3 +91,8 @@ SOURCES += ../caja/mcajas.cpp \
            ../caja/mmovimientoscaja.cpp
 
 DEFINES += GESTOTUX_HICOMP
+
+
+
+
+

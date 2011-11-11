@@ -43,6 +43,7 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa
     prods = _mapa_id_prod;
  cantidades->clear();
  _tipoPrecio = MProductosTotales::Venta;
+ _admite_duplicados = false;
 }
 
 
@@ -495,15 +496,14 @@ bool MProductosTotales::buscaPrecios()
 void MProductosTotales::buscarPrecios( bool activado )
 { _buscarPrecio = activado; /*qDebug( "busqueda de precios activada" );*/ }
 
-
 /*!
     \fn MProductosTotales::buscarPrecioVenta( int id_producto )
  */
-double MProductosTotales::buscarPrecioVenta( int id_producto )
+double MProductosTotales::buscarPrecioCompra( int id_producto )
 {
  if( id_producto > 0 ) {
      QSqlQuery cola;
-     if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) ) )
+     if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) ) )
      {
       cola.next();
       return cola.record().value(0).toDouble();
@@ -522,11 +522,11 @@ double MProductosTotales::buscarPrecioVenta( int id_producto )
 /*!
     \fn MProductosTotales::buscarPrecioVenta( int id_producto )
  */
-double MProductosTotales::buscarPrecioCompra( int id_producto )
+double MProductosTotales::buscarPrecioVenta( int id_producto )
 {
  if( id_producto > 0 ) {
      QSqlQuery cola;
-     if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) ) )
+     if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1 LIMIT 1" ).arg( id_producto ) ) )
      {
       cola.next();
       return cola.record().value(0).toDouble();
@@ -572,6 +572,28 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
 
   // Inserto el dato con la cantidad si fue buscado el precio o insertado
   if( ok ) {
+     // Verifico si no existe ya el producto
+      if( !_admite_duplicados ) {
+        //qWarning( "Buscando productos iguales" );
+        // Busco si existe en la lista
+          int pos = this->productos->values().indexOf( Id );
+          if( pos != -1 ) {
+              // El producto ya existe.... Solo actualizo la cantidad
+              // Segun la documentacion this->productos->values() y this->productos->keys() tienen el mismo orden
+              int id_fila = this->productos->keys().at( pos );
+              double cant = this->cantidades->value( id_fila );
+              this->cantidades->insert( id_fila, cant + cantidad );
+
+              recalcularTotal();
+
+              emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
+
+              if( _calcularTotal )
+                  emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() )  );
+
+              return;
+          }
+      }
     if( this->insertRow( -1 ) ) {
 
         int id_fila = this->rowCount()-1;

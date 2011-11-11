@@ -21,6 +21,8 @@
 
 #include <QSqlRecord>
 #include "mservicios.h"
+#include <QSqlError>
+#include <QSqlQuery>
 
 MRecargos::MRecargos( QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent), _precio_base(0.0)
@@ -180,3 +182,50 @@ int MRecargos::columnCount( const QModelIndex &/*index*/ ) const
  return QSqlRelationalTableModel::columnCount() + 1;
 }
 
+#include "mperiodoservicio.h"
+/*!
+ * \fn double MRecargos::calcularRecargo( const int id_recargo )
+ * Devuelve la cantidad a aplicar de recargo ( precio del servicio * porcentaje o recargo fijo. No incluye el precio del servicio.
+ * \param id_recargo Identificador del recargo
+ * \returns cantidad a recargar
+ */
+double MRecargos::calcularRecargo( const int id_recargo )
+{
+    QSqlQuery cola;
+    // busco el tipo de recargo
+    cola.prepare( "SELECT porcentaje, recargo, id_servicio FROM recargos WHERE id_recargo = :id_recargo" );
+    cola.bindValue( ":id_recargo", id_recargo );
+    if( !cola.exec() ) {
+        qDebug( "Error al ejecutar la cola de averiguacionde los datos del recargo" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return -1.0;
+    }
+    double porcentaje = cola.record().value(0).toDouble();
+    double recargo = cola.record().value(1).toDouble();
+    double aplicar = 0.0;
+    if( recargo <= 0.0 ) {
+        // Uso el recargo
+        double precio = MServicios::precioBase( cola.record().value(2).toInt() );
+        if( precio != 0.0 ) {
+            aplicar = precio * porcentaje;
+        } else {
+            qDebug( "Existio un error al intentar buscar el precio base del servicio buscando el recargo" );
+            return -1.0;
+        }
+    } else {
+        aplicar = recargo;
+    }
+    return aplicar;
+}
+
+/*
+  CREATE TABLE IF NOT EXISTS `recargos` (
+    `id_recargo` bigint NOT NULL AUTO_INCREMENT,
+    `id_servicio` bigint NOT NULL,
+    `cant_dias` int NOT NULL,
+    `porcentaje` double(4,2) DEFAULT NULL,
+    `recargo` double DEFAULT NULL,
+    PRIMARY KEY (`id_recargo`)
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  */

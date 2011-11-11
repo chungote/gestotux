@@ -26,8 +26,12 @@
 #include <QObject>
 
 /**
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Clase base del plugin
+ *
+ * Clase base del plugin de servicios
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class Servicios : public QObject, public EPlugin
 {
 Q_OBJECT
@@ -37,19 +41,20 @@ public:
     bool verificarTablas( QStringList tablas );
     double version() const;
     int tipo() const;
-    QList< QActionGroup * > accionesBarra();
+    QList<QActionGroup *> accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+    void crearMenu( QMenuBar* m );
+    void crearToolBar( QToolBar* t );
     QAction *botonPantallaInicial();
 
 signals:
-    void agregarVentana(QWidget* v);
+    void agregarVentana( QWidget* v );
     void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
 
 public slots:
     void seCierraGestotux();
+    void verificarRecargos();
 
 private:
        /*!
@@ -61,9 +66,13 @@ private:
         */
         QAction *ActRecargos;
        /*!
-        * Accion para realizar una facturación de un servicio
+        * Accion para realizar una facturaciÃ³n de un servicio
         */
         QAction *ActFacturarServicio;
+       /*!
+        * Accion para verificar los recargos de un servicio
+        */
+        QAction *ActVerfRecargos;
 
 protected slots:
     void mostrarServicios();

@@ -10,9 +10,6 @@
 - Ver como agregar descuentos en los presupuestos y facturas ( mproductos totales )
 - terminar de ajustar todos los formularios predeterminados.
 - Ver iconografia en todo el programa.
-
--- MProductosTotales --
------------------------
 - Terminar reporte de baja de adhhesion de servicio
 - Arreglar problema de fk en mysql con las categorías de los productos cuando las categorías no estan habilitadas.
 
@@ -38,7 +35,6 @@
 -------------
 - Hacer calculos de ubicación de las flechas de la pantalla inicial.
 - Agregar a todos los modelos el metodo estatico siguienteNumero() para obtener el siguiente numero de comprobante.
-- Verificar por que no funciona el sistema de reportes con los parametros como parte de la cola.
 - Ver si realizar un reporte con todos los datos de un mes/año/semana con todos los datos y movimientos registrados.
 
 -- Cuentas corrientes --
