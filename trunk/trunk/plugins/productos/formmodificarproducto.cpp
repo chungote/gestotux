@@ -118,7 +118,8 @@ void FormModificarProducto::accept() {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El stock inicial del producto no puede ser nulo. Por favor, ingrese un stock inicial para el producto" ) );
         return;
     }
-
+    /// @todo Ver como hacer la comprobacion de que el codigo no exista ya pero cuando sea distinto al anterior
+    qWarning( "No estamos verificando que el codigo no sea conflictivo" );
     if( mapa->submit() ) {
         QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
         QDialog::accept();

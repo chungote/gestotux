@@ -99,6 +99,11 @@ void FormAgregarProducto::accept() {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El stock inicial del producto no puede ser nulo. Por favor, ingrese un stock inicial para el producto" ) );
         return;
     }
+    // Verifico que exista el codigo
+    if( MProductos::existeCodigo( this->LECodigo->text() ) ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El producto con codigo %1 ya ha sido dado de alta" ).arg( this->LECodigo->text() ) );
+        return;
+    }
     // Todos los datos pasaron bien luego de este punto
     if( MProductos::agregarProducto(
                 this->LECodigo->text(),

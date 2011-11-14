@@ -281,3 +281,23 @@ bool MProductos::actualizarPrecioCompra( const int id_producto, const double pre
   return false;
  }
 }
+
+/*!
+ \fn MProductos::existeCodigo( const QString codigo )
+ */
+bool MProductos::existeCodigo( const QString codigo )
+{
+    if( codigo.isNull() || codigo.isEmpty() ) {  return false;  }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id) FROM producto WHERE codigo = %1" ).arg( codigo ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        }
+    } else {
+        qDebug( "Error de ejecucion de la cola de averiguacion de codigo de producto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit()  );
+    }
+    return false;
+}
