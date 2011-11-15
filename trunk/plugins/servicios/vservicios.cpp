@@ -49,11 +49,13 @@ VServicios::VServicios(QWidget *parent)
 
  ActNuevoCliente = new QAction( this );
  ActNuevoCliente->setText( "Adherir Cliente" );
+ ActNuevoCliente->setIcon( QIcon( ":/imagenes/adherir_cliente.png" ) );
  ActNuevoCliente->setStatusTip( "Adhiere un cliente al servicio seleccionado en la lista" );
  connect( ActNuevoCliente, SIGNAL( triggered() ), this, SLOT( darAltaServicioCliente() ) );
 
  ActVerClientes = new QAction( this );
  ActVerClientes->setText( "Ver Clientes adheridos" );
+ ActVerClientes->setIcon( QIcon( ":/imagenes/clientes_adheridos.png" ) );
  ActVerClientes->setStatusTip( "Muestra la lista de clientes adheridos a este servicio" );
  connect( ActVerClientes, SIGNAL( triggered() ), this, SLOT( verClientesAdheridos() ) );
 

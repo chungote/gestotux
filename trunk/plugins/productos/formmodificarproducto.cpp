@@ -124,7 +124,6 @@ void FormModificarProducto::accept() {
             return;
         }
     }
-    qWarning( "No estamos verificando que el codigo no sea conflictivo" );
     if( mapa->submit() ) {
         QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
         QDialog::accept();
