@@ -118,7 +118,12 @@ void FormModificarProducto::accept() {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El stock inicial del producto no puede ser nulo. Por favor, ingrese un stock inicial para el producto" ) );
         return;
     }
-    /// @todo Ver como hacer la comprobacion de que el codigo no exista ya pero cuando sea distinto al anterior
+    if( this->LECodigo->text() != this->_codigo_anterior ) {
+        if( MProductos::existeCodigo( this->LECodigo->text() ) ) {
+            QMessageBox::warning( this, "Error", QString::fromUtf8( "El codigo ingresado %1 ya esta dado de alta" ).arg( this->LECodigo->text() ) );
+            return;
+        }
+    }
     qWarning( "No estamos verificando que el codigo no sea conflictivo" );
     if( mapa->submit() ) {
         QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
@@ -133,4 +138,9 @@ void FormModificarProducto::accept() {
 
 
 void FormModificarProducto::setearProducto( const int row )
-{ if( row >= 0 ) { mapa->setCurrentIndex( row ); } }
+{
+    if( row >= 0 ) {
+        mapa->setCurrentIndex( row );
+        this->_codigo_anterior = this->LECodigo->text();
+    }
+}
