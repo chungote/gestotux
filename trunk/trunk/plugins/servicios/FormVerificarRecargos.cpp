@@ -13,8 +13,8 @@
 FormVerificarRecargos::FormVerificarRecargos(QWidget *parent) :
  EVentana( parent )
 {
-    setupUi(this);
     setObjectName( "verificarRecargos" );
+    setupUi(this);
     setWindowTitle( "Verificar Recargos" );
 
     // Reseteo las barras y demases
@@ -83,7 +83,7 @@ void FormVerificarRecargos::iniciar()
  // Busco la cantidad de servicios y los servicios
  QSqlQuery cola;
  l("Buscando cantidad de servicios" );
- if( cola.exec( "SELECT COUNT(id_servicio) FROM servicios WHERE fecha_baja IS NOT NULL" ) ) {
+ if( cola.exec( "SELECT COUNT(id_servicio) FROM servicios WHERE fecha_baja IS NULL" ) ) {
      if( cola.next() ) {
          cant_servicios = cola.record().value(0).toInt();
      } else {
@@ -112,7 +112,7 @@ void FormVerificarRecargos::iniciar()
 
  // Coloco los servicios en una lista
  lista_servicios.empty();
- if( cola.exec( "SELECT id_servicio FROM servicios WHERE fecha_baja IS NOT NULL" ) ) {
+ if( cola.exec( "SELECT id_servicio FROM servicios WHERE fecha_baja IS NULL" ) ) {
      while( cola.next() ) {
          lista_servicios.append( cola.record().value(0).toInt() );
      }
@@ -140,7 +140,15 @@ void FormVerificarRecargos::iniciar()
     double precio_base = MServicios::precioBase( id_servicio );
     LPrecioBase->setText( QString( "$ %L1" ).arg( precio_base ) );
     int id_periodo_servicio = mps->getPeriodoActual( id_servicio );
-    //LPeriodo->setText(  mps->get );
+    int ano = mps->getAnoActual( id_servicio );
+    QDate fecha_inicio = mps->getFechaInicioPeriodoActual( id_servicio );
+    this->LPeriodo->setText(
+        QString( " %1/%2 desde %3 hasta %4 " )
+                .arg( id_periodo_servicio )
+                .arg( ano )
+                .arg( fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
+                .arg( mps->obtenerFechaFinPeriodo( id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) )
+    );
 
     // Busco la cantidad de recargos que tiene el servicio
     int cant_recargos = 0;
@@ -160,6 +168,10 @@ void FormVerificarRecargos::iniciar()
      if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
     if( cant_recargos == 0 ) {
         l( "No se encontraron recargos activos para el servicio" );
+        PrBRecargos->setRange( 0, 1 );
+        PrBRecargos->setValue( 1 );
+        PrBClientes->setRange( 0, 1 );
+        PrBClientes->setValue( 1 );
     } else {
         PrBRecargos->setRange( 0, cant_recargos );
         PrBRecargos->setValue( 0 );
@@ -194,6 +206,8 @@ void FormVerificarRecargos::iniciar()
                     int cantidad_clientes = cola.record().value(0).toInt();
                     if( cantidad_clientes == 0 ) {
                         l( "Ningun cliente deudor" );
+                        PrBClientes->setRange( 0, 1 );
+                        PrBClientes->setValue( 1 );
                         continue;
                     } else {
                         LNTotal->display( cantidad_clientes );
@@ -261,5 +275,5 @@ void FormVerificarRecargos::detener()
 
 void FormVerificarRecargos::l( QString cadena )
 {
-    PTELog->appendPlainText( cadena + "\n" );
+    PTELog->appendPlainText( cadena );
 }
