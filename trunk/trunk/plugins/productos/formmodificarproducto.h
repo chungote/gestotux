@@ -31,6 +31,7 @@ private:
     bool _descripcion;
     bool _stock;
     bool _modelo;
+    QString _codigo_anterior;
     MProductos *modelo;
     QDataWidgetMapper *mapa;
 
