@@ -30,7 +30,7 @@ FormPrefVenta::FormPrefVenta( QWidget* parent, Qt::WFlags fl ) :
     this->setParent( parent );
     setupUi(this);
     this->setWindowTitle( "Ventas" );
-    //this->setWindowIcon( QIcon( ":/imagenes/" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/factura.png" ) );
 }
 
 

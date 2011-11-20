@@ -627,6 +627,11 @@ NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
     return *invalido;
 }
 
+/*!
+ * \fn MPagos::existe( NumeroComprobante num )
+ * Devuelve verdadero si el numero de comprobante existe
+ * \param num Numero de comprobante buscando
+ */
 bool MPagos::existe( NumeroComprobante num ) {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT COUNT( id_recibo ) FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
@@ -642,5 +647,67 @@ bool MPagos::existe( NumeroComprobante num ) {
         qDebug( cola.lastQuery().toLocal8Bit() );
         qDebug( cola.lastError().text().toLocal8Bit() );
     }
+    return false;
+}
+
+/*!
+ * \fn MPagos::buscarIdCliente( NumeroComprobante num )
+ * Devuelve el ID del cliente del recibo especificado.
+ */
+int MPagos::buscarIdCliente( NumeroComprobante num )
+{
+    if( !num.esValido() ) { return -1; }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_cliente FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
+        if( cola.next() ) {
+             return cola.record().value(0).toInt();
+        } else {
+            qDebug( "MPagos::existe: Error al hacer next en buscar id de cliente de un recibo" );
+        }
+    } else {
+        qDebug( "Mpagos::existe: Error al hacer exec en buscar id de cliente de un recibo" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+    }
+    return -1;
+}
+
+/*!
+ * \fn MPagos::cancelarRecibo( const int id_recibo, QString razon, QDateTime fechahora )
+ * Cancela el recibo pasado como parametro, registra la cancelacion en la fecha hora pasada como parametro y con la razon correspondiente.
+ * Ademas coloca todos los datos relacionados con este recibo en el estado que sea necesario para comprobar su cancelacion.
+ * \param id_recibo ID del recibo
+ * \param razon Razon de cancelacion del recibo
+ * \param fechahora Fecha y hora de la cancelacion
+ * \return Verdadero si todas las operaciones pudieron ser realizadas correctametne
+ */
+bool MPagos::cancelarRecibo( const int id_recibo, QString razon, QDateTime fechahora )
+{
+    // Inicio una transaccion
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
+    // Me fijo si esta en algun item de cuenta corriente.
+    int id_ctacte = MItemCuentaCorriente::buscarIDPorComprobante( MItemCuentaCorriente::Recibo, id_recibo );
+    if( id_ctacte != -1 ) {
+        if( !MItemCuentaCorriente::cancelarOperacion( id_ctacte, razon, fechahora ) ) {
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+            return false;
+        }
+    }
+    QSqlQuery cola;
+    if( cola.prepare( "UPDATE recibos SET cancelado = :cancelado, razon_cancelacion = :razon, fechahora_cancelacion = :fechahora WHERE id_recibo = :id_recibo" ) ) {
+        cola.bindValue( ":cancelado", true );
+        cola.bindValue( ":id_recibo", id_recibo );
+        cola.bindValue( ":fechahora", fechahora );
+        cola.bindValue( ":razon", razon );
+        if( cola.exec() ) {
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
+            return true;
+        } else {
+            qDebug( "Error al intentar ejecutar la cola de cancelacion de recibo" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    }
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;
 }

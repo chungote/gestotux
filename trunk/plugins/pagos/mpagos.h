@@ -54,13 +54,16 @@ public:
     bool existe( NumeroComprobante num );
     int buscarIdPorSerieNumero( const NumeroComprobante num );
     int buscarIdPorSerieNumero( const int serie, const int numero );
+    int buscarIdCliente( NumeroComprobante num );
     double buscarImporte( NumeroComprobante num );
     NumeroComprobante &buscarNumeroComprobantePorId( const int id_recibo );
+    bool cancelarRecibo( const int id_recibo, QString razon, QDateTime fechahora );
 
     static NumeroComprobante &buscarMenorSerieNumeroPagado();
     static int numeroSerieActual();
     static int numeroReciboActual( const int serie );
     static NumeroComprobante &proximoSerieNumeroRecibo();
+
 
 private:
     void inicializar();

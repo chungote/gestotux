@@ -20,19 +20,23 @@
 #include "vcompras.h"
 
 #include "mcompra.h"
+
 #include <QTableView>
 #include <QPushButton>
+#include <QAction>
 
 VCompras::VCompras(QWidget *parent)
  : EVLista( parent )
 {
  setObjectName( "lista_compras" );
  setWindowTitle( "Lista de compras realizadas" );
- setWindowIcon( QIcon(":/imagenes/compras.jpg" ) );
+ setWindowIcon( QIcon(":/imagenes/compras.png" ) );
 
  rmodelo = new MCompra( this, true );
  vista->setModel( rmodelo );
  vista->hideColumn( 0 );
+
+ ActAgregar->setIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
 
  addAction( ActAgregar );
  //addAction( ActModificar );

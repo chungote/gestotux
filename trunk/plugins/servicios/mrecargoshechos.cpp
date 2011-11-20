@@ -161,3 +161,32 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
     }
     return false;
 }
+
+/*!
+ * \fn MRecargosHechos::buscarRecargoPorPeriodoServicio( const int id_periodo_servicio, const int id_cliente )
+ * Devuelve la suma de los recargos que se hayan realizado para el periodo de servicio para el cliente especificado
+ * \param id_periodo_servicio Periodo del servicio que corresponda
+ * \param id_cliente Identificador del cliente
+ * \returns Sumatoria ( puede ser cero ) y cero en caso de error
+ */
+double MRecargosHechos::buscarRecargoPorPeriodoServicio( const int id_periodo_servicio, const int id_cliente )
+{
+    // Busco el ID de periodoservicio en los recargos realizados que coincidan
+    if( id_periodo_servicio <= 0  ) {
+        qDebug( "Id de periodo servicio incorrecto al buscar recargos echos" );
+        return 0.0;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT SUM( precio ) FROM recargos_hechos WHERE id_periodo_servicio = %1 AND id_cliente = %2" ).arg( id_periodo_servicio ).arg( id_cliente ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDouble();
+        } else {
+            qDebug( "MRecargosHechos::buscarRecargoPorPeriodoServicio: Error al hacer next en buscar recargos" );
+        }
+    } else {
+        qDebug( "MRecargosHechos::buscarRecargoPorPeriodoServicio: Error al hacer exec" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+    }
+    return 0.0;
+}

@@ -31,6 +31,9 @@
 -- Recibos --
 -------------
 
+- verificar comprobante predetermindado
+- Generar comprobante para hicomp.
+
 -- General --
 -------------
 - Hacer calculos de ubicación de las flechas de la pantalla inicial.
@@ -39,7 +42,7 @@
 
 -- Cuentas corrientes --
 ------------------------
-- Ver integración con los otros plugins.
+- Implementar metodo de cancelación de operación.
 
 -- Productos --
 ---------------
@@ -76,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 
 -- Compras --
 -------------
-- Mejorar codigo de modelos y ventanas de agregado y modificacion.
+- Mejorar codigo de modelos y ventanas de modificacion.
 - ¿Eliminar compras?
 
 -- Ventas --

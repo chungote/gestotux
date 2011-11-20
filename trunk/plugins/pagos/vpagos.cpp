@@ -19,11 +19,13 @@
  ***************************************************************************/
 #include "vpagos.h"
 
-#include "mvpagos.h"
-#include "formagregarrecibo.h"
 #include <QTableView>
 #include <QIcon>
 #include <QMessageBox>
+#include <QInputDialog>
+
+#include "mvpagos.h"
+#include "formagregarrecibo.h"
 #include "EReporte.h"
 #include "dsino.h"
 
@@ -41,9 +43,14 @@ VPagos::VPagos(QWidget *parent)
  vista->setAlternatingRowColors( true );
  vista->setItemDelegateForColumn( 6, new DSiNo( vista ) );
  vista->setItemDelegateForColumn( 7, new DSiNo( vista ) );
- modelo->select();
+
+ ActCancelarRecibo = new QAction( this );
+ ActCancelarRecibo->setText( "Cancelar" );
+ connect( ActCancelarRecibo, SIGNAL( triggered() ), this, SLOT( cancelarPago() ) );
 
  addAction( ActAgregar );
+ addAction( ActCancelarRecibo );
+ addAction( ActVerTodos );
  addAction( ActImprimir );
  addAction( ActCerrar );
 }
@@ -100,4 +107,66 @@ void VPagos::imprimir()
            delete rep;
     }
     return;
+}
+
+/*!
+ * \fn VPagos::cancelarPago()
+ * Cancela un recibo seleccionado
+ */
+void VPagos::cancelarPago()
+{
+    /*
+    // Cancela el recibo que se encuentre seleccionado
+    QItemSelectionModel *selectionModel = vista->selectionModel();
+    QModelIndexList indices = selectionModel->selectedRows();
+    if( indices.size() < 1 )
+    {
+      QMessageBox::warning( this, "Seleccione un item",
+                      "Por favor, seleccione un item para cancelar",
+                      QMessageBox::Ok );
+      return;
+    }
+    //Hacer dialogo de confirmacion..
+    int ret;
+    ret = QMessageBox::warning( this, "Esta seguro?",
+                      QString( "Esta seguro de cancelar %1 recibo(s)?\n Se eliminaran las operaciones asociadas con este recibo").arg( indices.size() ),
+                      "Si", "No" );
+    if ( ret == 0 )
+    {
+           MPagos *mp = new MPagos();
+           foreach( QModelIndex indice, indices )
+           {
+                   if( indice.isValid() )
+                   {
+                       bool ok;
+                       int id_recibo = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+                       QString razon = QInputDialog::getText( this, "Razon", "Razon de cancelacion:", QLineEdit::Normal, QString(), &ok );
+                       NumeroComprobante num = mp->buscarNumeroComprobantePorId( id_recibo );
+                       if( mp->cancelarRecibo( id_recibo, razon, QDateTime::currentDateTime() ) ) {
+                           QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue cancelado correctamente" ).arg( num.aCadena() ) );
+                       } else {
+                           QMessageBox::warning( this, "Error", QString( "El recibo  %1 <b>no</b> pudo ser cancelado" ).arg( num.aCadena() ) );
+                       }
+                   }
+           }
+           delete mp;
+           mp = 0;
+    }
+    */
+    qWarning( "Faltan implementar metodos de esta parte. COMPLETALOS ESTEBAN!");
+    return;
+}
+
+/*!
+    \fn VPagos::menuContextual( const QModelIndex &indice, QMenu *menu )
+ */
+void VPagos::menuContextual( const QModelIndex &indice, QMenu *menu )
+{
+ // Agrego las acciones que quiero que aparezcan en el menu
+ menu->addAction( ActCancelarRecibo );
+ menu->addAction( ActImprimir );
+ menu->addSeparator();
+ menu->addAction( ActAgregar );
+ indiceMenu = indice;
+ return;
 }

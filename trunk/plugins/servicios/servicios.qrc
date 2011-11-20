@@ -4,6 +4,7 @@
         <file>imagenes/facturar_servicio.png</file>
         <file>imagenes/adherir_cliente.png</file>
         <file>imagenes/clientes_adheridos.png</file>
+        <file>imagenes/baja_servicio.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>servicios.QMYSQL.sql</file>

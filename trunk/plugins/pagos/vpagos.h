@@ -37,6 +37,16 @@ public slots:
     void agregar( bool autoeliminarid );
     void imprimir();
 
+protected:
+    void menuContextual( const QModelIndex &indice, QMenu *menu );
+
+protected slots:
+    void cancelarPago();
+
+private:
+    QAction *ActCancelarRecibo;
+    QModelIndex indiceMenu;
+
 };
 
 #endif

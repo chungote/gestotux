@@ -72,6 +72,7 @@ VServicios::VServicios(QWidget *parent)
 
  ActDarDeBaja = new QAction( this );
  ActDarDeBaja->setText( "Dar de baja" );
+ ActDarDeBaja->setIcon( QIcon( ":/imagenes/baja_servicio.png" ) );
  connect( ActDarDeBaja, SIGNAL( triggered() ), this, SLOT( darDeBaja() ) );
 
  QAction *ActSep = new QAction( this );
