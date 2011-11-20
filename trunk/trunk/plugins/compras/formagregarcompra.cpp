@@ -25,13 +25,15 @@
 #include "mcompra.h"
 #include "mproductostotales.h"
 #include "dproductostotales.h"
+#include "mcompraproducto.h"
+
 #include <QMessageBox>
 #include <QTableView>
 #include <QCompleter>
 #include <QDate>
 #include <QtSql>
 #include <QLineEdit>
-#include "mcompraproducto.h"
+
 
 FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 : EVentana( parent ), Ui::FormAgregarCompraBase()
@@ -39,6 +41,7 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 	setupUi(this);
 	setObjectName( "agregar_compra" );
 	setWindowTitle( "Agregar nueva compra" );
+        setWindowIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
 
         if( m == 0 ) {
             this->modelo = new MCompra( this, false );

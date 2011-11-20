@@ -81,18 +81,27 @@ void FormServicio::guardar()
 {
  //Verificacion de si los campos son vacios
  if( LENombre->text().isEmpty() )
- { return; }
+ {
+     QMessageBox::information( this, "Error", "Por favor, ingrese un nombre para el servicio" );
+     return;
+ }
  if( !DEFechaAlta->date().isValid() )
- { return; }
+ {
+     QMessageBox::information( this, "Error", "Por favor, ingrese una fecha de alta valida para el inicio del servicio" );
+     return;
+ }
  if( dSBPrecioBase->value() <= 0 )
- { return; }
+ {
+     QMessageBox::information( this, "Error", "Por favor, ingrese un valor del servicio valido" );
+     return;
+ }
  if( _modificando ) {
      if( CkBBaja->isChecked() ) {
          _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );
      }
-     if( _mapa->submit() ) {
+     if( !_mapa->submit() && modelo->submitAll() ) {
          QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
-         // Veo la modificacion del precio?
+         /// @todo Veo la modificacion del precio para ofrecer sistema de aviso
          this->close();
          return;
      } else {
@@ -156,11 +165,10 @@ void FormServicio::agregarRecargo()
  */
 void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
 {
-    qWarning( "Esta parte todavia no ha sido programada. \n Se mostrara el formulario pero no podra hacer nada con el." );
-    disconnect( this, SLOT( guardar() ) );
+    this->modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
     this->_modificando = true;
 
-    _mapa = new QDataWidgetMapper();
+    _mapa = new QDataWidgetMapper( this );
     _mapa->setOrientation( Qt::Horizontal );
     _mapa->setModel( this->modelo );
     _mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );

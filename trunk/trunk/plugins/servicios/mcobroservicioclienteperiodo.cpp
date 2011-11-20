@@ -161,6 +161,28 @@ bool MCobroServicioClientePeriodo::esDeudor(const int id_cliente, const int id_s
     return false;
 }
 
+/*!
+ * \fn MCobroServicioClientePeriodo::buscarIdPeriodoServicio( const int id_recibo )
+ * Devuelve el valor del id_periodo_servicio del recibo indicado
+ * \param id_recibo Identificador del recibo.
+ */
+int MCobroServicioClientePeriodo::buscarIdPeriodoServicio( const int id_recibo )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( " SELECT id_periodo_servicio FROM cobro_servicio_cliente_periodo WHERE id_recibo = %1").arg( id_recibo ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug( "Error al hacer next al averiguar la cantidad de entradas de cobro de servicio que no han sido pagadas." );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola para averiguar la cnatidad de entradas de cobro servicio que no han sido pagadas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return -1;
+}
 /*
 CREATE TABLE IF NOT EXISTS `cobro_servicio_cliente_periodo` (
     `id_periodo_servicio` BIGINT NOT NULL,

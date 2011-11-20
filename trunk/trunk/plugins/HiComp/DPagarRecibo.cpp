@@ -21,6 +21,7 @@
 #include "DPagarRecibo.h"
 #include "mpagos.h"
 #include "NumeroComprobante.h"
+#include "mrecargoshechos.h"
 #include <QSqlDatabase>
 #include <QPushButton>
 
@@ -106,12 +107,12 @@ void DPagarRecibo::accept()
 void DPagarRecibo::cambioNumeroRecibo()
 {
   // Busco todos los datos y los pongo en los lugares correspondientes
-  MPagos *m = new MPagos();
   this->_num_recibo.desdeString( LENumeroRecibo->text() );
   if( !_num_recibo.esValido() ) {
       qWarning( "Numero de recibo invalido" );
       return;
   }
+  MPagos *m = new MPagos();
   if( !m->existe( _num_recibo ) ) {
       QMessageBox::warning( this, "Error", "El recibo ingresado no esta registrado o no ha sido emitido." );
       delete m;
@@ -125,10 +126,14 @@ void DPagarRecibo::cambioNumeroRecibo()
   // Como no esta pagado, pongo el importe
   DSBImporte->setValue( m->buscarImporte( this->_num_recibo ) );
   // Buscar los recargos
-
-  //DSBRecargos->setValue(  );
+  int id_recibo = m->buscarIdPorSerieNumero( this->_num_recibo );
+  int id_periodo_servicio = MCobroServicioClientePeriodo::buscarIdPeriodoServicio( id_recibo );
+  int id_cliente = m->buscarIdCliente( this->_num_recibo );
+  DSBRecargos->setValue( MRecargosHechos::buscarRecargoPorPeriodoServicio( id_periodo_servicio, id_cliente ) );
   // Coloco automaticamente el importe en a pagar
-  DSBPagar->setValue( DSBImporte->value() );
+  DSBPagar->setValue( DSBImporte->value() + DSBRecargos->value() );
+  delete m;
+  m = 0;
 }
 
 /*!

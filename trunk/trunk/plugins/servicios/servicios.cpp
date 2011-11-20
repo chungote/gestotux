@@ -53,11 +53,17 @@ bool Servicios::inicializar()
 bool Servicios::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "servicios" ) )
- { qDebug( "Servicios::Error al buscar la tabla de servicios" ); return false; }
+ { qDebug( "Servicios::Error al buscar la tabla servicios" ); return false; }
  if( !tablas.contains( "servicios_clientes" ) )
- { qDebug( "Servicios::Error al buscar la tabla de servicios_clientes" ); return false; }
+ { qDebug( "Servicios::Error al buscar la tabla servicios_clientes" ); return false; }
  if( !tablas.contains( "recargos" ) )
- { qDebug( "Servicios::Error al buscar la tabla de recargos" ); return false; }
+ { qDebug( "Servicios::Error al buscar la tabla recargos" ); return false; }
+ if( !tablas.contains( "periodo_servicio" ) )
+ { qDebug( "Servicios::Error al buscar la tabla periodo_servicio" ); return false; }
+ if( !tablas.contains( "cobro_servicio_cliente_periodo" ) )
+ { qDebug( "Servicios::Error al buscar la tabla cobro_servicio_cliente_periodo" ); return false; }
+ if( !tablas.contains( "recargo_cobro_servicio_servicio_cliente" ) )
+ { qDebug( "Servicios::Error al buscar la tabla recargo_cobro_servicio_servicio_cliente" ); return false; }
  return true;
 }
 

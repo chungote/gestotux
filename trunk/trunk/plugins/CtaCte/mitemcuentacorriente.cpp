@@ -302,3 +302,74 @@ int MItemCuentaCorriente::columnCount(const QModelIndex& /*parent*/) const
         return QSqlRelationalTableModel::columnCount();
     }
 }
+
+/*!
+ * \fn MItemCuentaCorriente::buscarIDPorComprobante( TipoOperacionCtaCte tipo, int id )
+ * Busca el identificador del movimiento de cuenta corriente repectivo al tipo de comprobante y id pasado como parametro.
+ * Devuelve -1 en caso de no encontrarlo o que exista algun error.
+ * \param tipo Tipo de Comprobante
+ * \param id Identificador unico del comprobante.
+ * \returns -1 en error o no encontrado
+ */
+int MItemCuentaCorriente::buscarIDPorComprobante( TipoOperacionCtaCte tipo, int id )
+{
+    if( id <= 0 ) {
+        return -1;
+    }
+    QSqlQuery cola;
+    if( cola.exec(
+                QString( "SELECT id_op_ctacte FROM item_ctacte WHERE tipo_op = %1 AND id_referencia = %2" ).arg( tipo ).arg( id )
+                ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug( "no se encontro el id de operacion de ctacte por tipo/id de comprobante" );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de busqueda de id de operacion de ctacte por tipo/id comprobante" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return -1;
+}
+
+/*!
+ * \fn MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( const int id_op_ctacte )
+ *
+ */
+QString MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( const int id_op_ctacte )
+{
+    if( id_op_ctacte <= 0 ) {
+        return QString();
+    }
+    QSqlQuery cola;
+    if( cola.exec(
+                QString( "SELECT id_ctacte FROM item_ctacte WHERE id_op_ctacte = %1" ).arg( id_op_ctacte )
+                ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toString();
+        } else {
+            qDebug( "no se encontro el id de cuentacte por id de operacion" );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de busqueda de id de ctacte por id de operacion" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QString();
+}
+
+/*!
+ * \fn MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte, QString razon, QDateTime fechahora )
+ *
+ */
+bool MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte, QString razon, QDateTime fechahora )
+{
+    /// @todo IMPLEMENTAR!
+    // Busco la cuenta corriente que le corresponde a la operacion y actualizo su saldo
+    /*if( !MCuentaCorriente::recalcularSaldo( MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( id_op_ctacte ) ) ) {
+        qDebug( "Error al actualizar el saldo de la cuenta corriente" );
+        return false;
+    }*/
+    return false;
+}

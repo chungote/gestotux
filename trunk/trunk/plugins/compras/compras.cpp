@@ -26,11 +26,11 @@ bool Compras::inicializar()
  Q_INIT_RESOURCE(compras);
 
  ActAgregarCompra = new QAction( "Agregar Nueva Compra", this );
- ActAgregarCompra->setIcon( QIcon( ":/imagenes/add.png" ) );
+ ActAgregarCompra->setIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
  connect( ActAgregarCompra, SIGNAL( triggered() ), this, SLOT( agregarCompra() ) );
 
  ActCompras = new QAction( "Compras", this );
- //ActVentas->setIcon( QIcon( ":/imagenes/nose.png" ) );
+ ActCompras->setIcon( QIcon( ":/imagenes/compras.png" ) );
  ActCompras->setStatusTip( "Muestra el historial de compras" );
  connect( ActCompras, SIGNAL( triggered() ), this, SLOT( ver_compras() ) );
 
@@ -57,7 +57,7 @@ QList< QActionGroup * > Compras::accionesBarra()
  QList<QActionGroup *> lista;
  QActionGroup *compras = new QActionGroup( this );
  compras->setObjectName( "compras" );
- compras->setProperty( "icono", ":/imagenes/compras.jpg" );
+ compras->setProperty( "icono", ":/imagenes/compras.png" );
  compras->setProperty( "titulo", "Compras y Gastos" );
  compras->addAction( ActAgregarCompra );
  lista.append( compras );
@@ -103,7 +103,6 @@ void Compras::ver_compras()
 void Compras::seCierraGestotux()
 {
  Q_CLEANUP_RESOURCE(compras);
- qDebug( "Cerrado plugin compras" );
  return;
 }
 
