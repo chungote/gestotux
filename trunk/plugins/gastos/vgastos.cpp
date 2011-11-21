@@ -47,15 +47,23 @@ VGastos::VGastos( QWidget* parent )
  vista->setItemDelegate( new DGastos( vista ) );
 
  vista->resizeColumnsToContents();
+
  QAction *ActCategorias = new QAction( this );
  ActCategorias->setText( "Categorias" );
  ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
  ActCategorias->setStatusTip( "Muestra las distintas categorias de gastos disponibles" );
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( mostrarCategorias() ) );
 
+ QAction *ActListar = new QAction( this );
+ ActListar->setText( "Listado" );
+ ActListar->setIcon( QIcon( ":/imagenes/listado-categorias.png" ) );
+ ActListar->setStatusTip( "Genera un listado de los gastos" );
+ connect( ActListar, SIGNAL( triggered() ), this, SLOT( listarGastos() ) );
+
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCategorias );
+ addAction( ActListar );
  addAction( ActVerTodos );
  addAction( ActCerrar );
 }
@@ -126,5 +134,12 @@ void VGastos::eliminar() {
                    }
            }
     }
+    return;
+}
+
+
+void VGastos::listarGastos()
+{
+    qWarning( "No implementado! HACER!" );
     return;
 }

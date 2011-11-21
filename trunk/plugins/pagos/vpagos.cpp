@@ -85,7 +85,7 @@ void VPagos::imprimir()
     //Hacer dialogo de confirmacion..
     int ret;
     ret = QMessageBox::warning( this, "Esta seguro?",
-                      QString( "Esta seguro de reimprimir %1 recibo(s)?\n Se conservará el mismo numero de recibo que cuando fue emitido").arg( indices.size() ),
+                      QString::fromUtf8( "Esta seguro de reimprimir %1 recibo(s)?\n Se conservará el mismo numero de recibo que cuando fue emitido").arg( indices.size() ),
                       "Si", "No" );
     if ( ret == 0 )
     {
@@ -140,7 +140,7 @@ void VPagos::cancelarPago()
                    {
                        bool ok;
                        int id_recibo = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
-                       QString razon = QInputDialog::getText( this, "Razon", "Razon de cancelacion:", QLineEdit::Normal, QString(), &ok );
+                       QString razon = QInputDialog::getText( this, "Razón", QString::fromUtf8( "Razón de cancelación:" ), QLineEdit::Normal, QString(), &ok );
                        NumeroComprobante num = mp->buscarNumeroComprobantePorId( id_recibo );
                        if( mp->cancelarRecibo( id_recibo, razon, QDateTime::currentDateTime() ) ) {
                            QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue cancelado correctamente" ).arg( num.aCadena() ) );

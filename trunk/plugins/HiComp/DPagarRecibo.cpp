@@ -22,6 +22,7 @@
 #include "mpagos.h"
 #include "NumeroComprobante.h"
 #include "mrecargoshechos.h"
+
 #include <QSqlDatabase>
 #include <QPushButton>
 
@@ -35,26 +36,15 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
 
     this->adjustSize();
 
-    this->buttonBox->button( QDialogButtonBox::Ok )->setDefault( false );
-
     // Conecto la señal para que al colocar el numero de recibo se pueda buscar si esta pagado o no, y actualizar los datos
     connect( LENumeroRecibo, SIGNAL( returnPressed() ), this, SLOT( cambioNumeroRecibo() ) );
 
     // Conecto la señal para que al poner la cantidad pagada o cambiarla se actualize el saldo
-    connect( this->DSBPagar, SIGNAL( valueChanged( double ) ), this, SLOT( cambioAPagar( double ) ) );
+    connect( DSBPagar, SIGNAL( valueChanged( double ) ), this, SLOT( cambioAPagar( double ) ) );
 
-}
+    connect( PBPagar, SIGNAL( clicked() ), this, SLOT( accept() ) );
+    connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( reject() ) );
 
-void DPagarRecibo::changeEvent(QEvent *e)
-{
-    QDialog::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        retranslateUi(this);
-        break;
-    default:
-        break;
-    }
 }
 
 #include <QMessageBox>
@@ -74,8 +64,15 @@ void DPagarRecibo::accept()
         bool ok = false;
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
+    if( !m->existe( _num_recibo ) ) {
+        QMessageBox::warning( this, "Error", "El recibo ingresado no esta registrado o no ha sido emitido." );
+        LENumeroRecibo->clear();
+        delete m;
+        return;
+    }
     if( m->buscarSiPagado( _num_recibo.serie(), _num_recibo.numero() ) ) {
         QMessageBox::warning( this, "Ya pagado", QString( "El recibo %1 ya esta como pagado en la base de datos." ).arg( this->_num_recibo.aCadena() ) );
+        LENumeroRecibo->clear();
     } else {
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
         // busco si corresponde a un recibo de servicio.
@@ -115,11 +112,13 @@ void DPagarRecibo::cambioNumeroRecibo()
   MPagos *m = new MPagos();
   if( !m->existe( _num_recibo ) ) {
       QMessageBox::warning( this, "Error", "El recibo ingresado no esta registrado o no ha sido emitido." );
+      LENumeroRecibo->clear();
       delete m;
       return;
   }
-  if( m->buscarSiPagado( _num_recibo.serie(), _num_recibo.numero() ) ) {
+  if( m->buscarSiPagado( _num_recibo.serie(), _num_recibo.numero() ) ) {      
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El recibo ya se encuentra pagado!" ) );
+        LENumeroRecibo->clear();
         delete m;
         return;
   }
@@ -129,7 +128,8 @@ void DPagarRecibo::cambioNumeroRecibo()
   int id_recibo = m->buscarIdPorSerieNumero( this->_num_recibo );
   int id_periodo_servicio = MCobroServicioClientePeriodo::buscarIdPeriodoServicio( id_recibo );
   int id_cliente = m->buscarIdCliente( this->_num_recibo );
-  DSBRecargos->setValue( MRecargosHechos::buscarRecargoPorPeriodoServicio( id_periodo_servicio, id_cliente ) );
+  double recargo = MRecargosHechos::buscarRecargoPorPeriodoServicio( id_periodo_servicio, id_cliente );
+  DSBRecargos->setValue( recargo );
   // Coloco automaticamente el importe en a pagar
   DSBPagar->setValue( DSBImporte->value() + DSBRecargos->value() );
   delete m;

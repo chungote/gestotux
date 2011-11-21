@@ -35,7 +35,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 
         setObjectName( "agregar_recibo" );
         setWindowTitle( "Nuevo recibo" );
-        setWindowIcon( QIcon( ":/imagenes/recibos.png" ) );
+        setWindowIcon( QIcon( ":/imagenes/recibo-nuevo.png" ) );
 
         CBCliente->setModel( new EMCliente( CBCliente ) );
         CBCliente->setModelColumn( 1 );
@@ -49,6 +49,11 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
+
+        if( preferencias::getInstancia()->value( "Preferencias/pluginInfo" ).toString() != "hicomp" ) {
+            RBLuego->setChecked( false );
+            RBLuego->setVisible( false );
+        }
 }
 
 #include "NumeroComprobante.h"
@@ -66,7 +71,7 @@ void FormAgregarRecibo::setearModelo( MPagos *m )
     }
     // Busco el ultimo numero de recibo
     NumeroComprobante numero = this->_modelo->proximoSerieNumeroRecibo();
-    this->LNumero->setText( this->LNumero->text().append( " <b>" ).append( numero.aCadena() ).append( "</b>" ) );
+    this->LNumero->setText( QString::fromUtf8( "Número de Recibo <b>" ).append( numero.aCadena() ).append( "</b>" ) );
 }
 
 /*!
