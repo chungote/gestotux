@@ -31,6 +31,7 @@ public:
 
 protected slots:
     void agregar( bool autoeliminarid );
+    void eliminar();
 
 };
 

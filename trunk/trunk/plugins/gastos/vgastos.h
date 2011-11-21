@@ -38,6 +38,7 @@ private slots:
     void agregarGasto();
     void mostrarCategorias();
     void actualizarVista();
+    void listarGastos();
 
 signals:
     void agregarVentana( QWidget *ventana );

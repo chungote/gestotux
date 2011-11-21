@@ -24,15 +24,17 @@
 #include "ui_DPagarReciboBase.h"
 #include "NumeroComprobante.h"
 
+/*!
+ * \brief Clase para ingresar recibos a pagar
+ *
+ * Clase para el dialogo que permite ingresar un recibo emitido pero no pagado para marcarlo como pagado
+ */
 class DPagarRecibo : public QDialog, private Ui::DPagarRecibo
 {
     Q_OBJECT
 
 public:
     explicit DPagarRecibo( QWidget *parent = 0 );
-
-protected:
-    void changeEvent(QEvent *e);
 
 protected slots:
     void accept();

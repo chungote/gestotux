@@ -35,7 +35,7 @@ QVariant MVPresupuestos::data(const QModelIndex& idx, int role) const
                         }
                         case 4:
                         {
-                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( idx, role ).toDouble() );
+                                return QString::number( QSqlRelationalTableModel::data( idx, role ).toDouble(), 'f', 2 ).prepend("$  ").append("  ");
                                 break;
                         }
                         default:
