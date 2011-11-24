@@ -83,7 +83,6 @@ void DPagarRecibo::accept()
         }
         // El recibo no esta pagado. Lo intento poner como pagado.
         if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked() ) ) {
-            QMessageBox::warning( this, "¡Advertencia!", "Este sistema no esta considerando los recargos!!!" );
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
             QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.aCadena() ) );
             ok = true;
@@ -126,10 +125,22 @@ void DPagarRecibo::cambioNumeroRecibo()
   DSBImporte->setValue( m->buscarImporte( this->_num_recibo ) );
   // Buscar los recargos
   int id_recibo = m->buscarIdPorSerieNumero( this->_num_recibo );
+  if( id_recibo == -1 ) {
+      qWarning( "No se pudo encontrar el id para el recibo buscado" );
+      return;
+  }
   int id_periodo_servicio = MCobroServicioClientePeriodo::buscarIdPeriodoServicio( id_recibo );
-  int id_cliente = m->buscarIdCliente( this->_num_recibo );
-  double recargo = MRecargosHechos::buscarRecargoPorPeriodoServicio( id_periodo_servicio, id_cliente );
-  DSBRecargos->setValue( recargo );
+  if( id_periodo_servicio == -2 ) {
+      qWarning( "Error al recibo en cobros echos." );
+      return;
+  }
+  if( id_periodo_servicio == -1 ) {
+      qDebug( "No corresponde a ningun servicio. No buscando recargos." );
+  } else {
+    int id_cliente = m->buscarIdCliente( this->_num_recibo );
+    double recargo = MRecargosHechos::buscarRecargoPorPeriodoServicio( id_periodo_servicio, id_cliente );
+    DSBRecargos->setValue( recargo );
+  }
   // Coloco automaticamente el importe en a pagar
   DSBPagar->setValue( DSBImporte->value() + DSBRecargos->value() );
   delete m;

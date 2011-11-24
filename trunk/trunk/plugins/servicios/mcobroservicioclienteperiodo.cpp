@@ -173,15 +173,17 @@ int MCobroServicioClientePeriodo::buscarIdPeriodoServicio( const int id_recibo )
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
-            qDebug( "Error al hacer next al averiguar la cantidad de entradas de cobro de servicio que no han sido pagadas." );
+            qDebug( "Error al hacer next al averiguar la id del periodo de servicio respecto a un recibo." );
             qDebug( cola.lastQuery().toLocal8Bit() );
+            return -1;
         }
     } else {
-        qDebug( "Error al ejecutar la cola para averiguar la cnatidad de entradas de cobro servicio que no han sido pagadas" );
+        qDebug( "Error al ejecutar la cola para averiguar la id del periodo de servicio respecto a un recibo." );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
+        return -2;
     }
-    return -1;
+
 }
 /*
 CREATE TABLE IF NOT EXISTS `cobro_servicio_cliente_periodo` (

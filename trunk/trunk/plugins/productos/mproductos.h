@@ -23,19 +23,39 @@
 #include <QSqlRelationalTableModel>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo de productos
+ *
+ * Clase que maneja el modelo de productos
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MProductos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
     MProductos(QObject *parent = 0);
     QVariant data(const QModelIndex& item, int role) const;
+
+    static bool agregarProducto( const QString codigo, const QString nombre, const double costo, const double venta, int stock = 0, int categoria = -1, QString descripcion = QString(), QString marca = QString(), QString modelo = QString() );
+
     static double stock( const int id_producto );
     static bool modificarStock( const int id_producto, const double cantidad );
+
     static bool actualizarPrecioCompra( const int id_producto, const double precio );
-    static bool agregarProducto( const QString codigo, const QString nombre, const double costo, const double venta, int stock = 0, int categoria = -1, QString descripcion = QString(), QString marca = QString(), QString modelo = QString() );
+
     static bool existeCodigo( const QString codigo );
+
+    static bool habilitado( const int id_producto );
+    static bool habilitar( const int id_producto );
+    static bool deshabilitar( const int id_producto );
+
+    bool habilitar( const QModelIndex idx );
+    bool deshabilitar( const QModelIndex idx );
+
+private:
+    static bool cambiarHabilitado( const int id_producto, bool estado );
+    bool cambiarHabilitado( const QModelIndex idx, bool estado );
+
 };
 
 #endif

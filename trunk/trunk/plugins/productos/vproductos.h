@@ -44,6 +44,15 @@ protected slots:
     void listaVenta();
     void actualizar();
     void modificar();
+    void habilitarProducto();
+    void deshabilitarProducto();
+
+private:
+    QAction *ActHabilitar;
+    QAction *ActDeshabilitar;
+    QAction *ActCategorias;
+    QAction *ActListadoVenta;
+
 };
 
 #endif
