@@ -18,11 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mpagos.h"
+
 #include <QDate>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlField>
 #include <QSqlError>
+
 #include "eregistroplugins.h"
 #include "../caja/mmovimientoscaja.h"
 #include "../caja/mcajas.h"
@@ -406,13 +408,14 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
  */
 bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
 {
+ QSqlQuery cola;
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
- if( this->query().exec( QString( "UPDATE recibos SET pagado = 1 WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
-    if( this->query().exec( QString( "SELECT id_cliente, precio, serie, numero FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) )
+ if( cola.exec( QString( "UPDATE recibos SET pagado = 1 WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
+    if( cola.exec( QString( "SELECT id_cliente, precio, serie, numero FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) )
     {
-        int id_cliente = this->query().value(0).toInt();
-        double precio = this->query().value(1).toDouble();
-        QString t = QString( "%1-%2" ).arg( this->query().value(2).toInt() ).arg( this->query().value(3).toInt() );
+        int id_cliente = cola.value(0).toInt();
+        double precio = cola.value(1).toDouble();
+        QString t = QString( "%1-%2" ).arg( cola.value(2).toInt() ).arg( cola.value(3).toInt() );
         // Coloco el recibo en la cuenta corriente del cliente si no es el consumidor final
         if( id_cliente > 0 ) {
             MItemCuentaCorriente *m = new MItemCuentaCorriente();
@@ -450,7 +453,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
             delete m;
         } else {
             // El metodo de pago es otro ( desconocido )
-            if( this->query().exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Otro ).arg( id_recibo ) ) ) {
+            if( cola.exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Otro ).arg( id_recibo ) ) ) {
                 // Todos los pasos guardados correctamente
             } else {
                 qDebug( "Error al intentar poner la forma de pago en otro al poner como pagado un recibo ya emitido" )   ;
@@ -472,8 +475,6 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
  }
 }
 
-#include <QSqlQuery>
-#include <QSqlRecord>
 /*!
  * \fn MPagos::buscarMenorSerieNumeroPagado()
  * Devuelve el par serie-numero del menor recibo pagado de la base de datos
@@ -556,11 +557,12 @@ bool MPagos::buscarSiPagado( const int serie, const int numero )
  */
 int MPagos::buscarIdPorSerieNumero( const int serie, const int numero )
 {
- if( this->query().exec( QString( "SELECT id_recibo FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) )
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT id_recibo FROM recibos WHERE serie = %1 AND numero = %2" ).arg( serie ).arg( numero ) ) )
  {
-     if( this->query().next() )
+     if( cola.next() )
      {
-         return this->query().record().value(0).toInt();
+         return cola.record().value(0).toInt();
      } else {
          qDebug( "Error al hacer next en la cola de buscar id recibo x num y serie" );
          return -1;

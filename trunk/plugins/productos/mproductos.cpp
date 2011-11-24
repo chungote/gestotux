@@ -301,3 +301,91 @@ bool MProductos::existeCodigo( const QString codigo )
     }
     return false;
 }
+
+/*!
+ * \fn MProductos::cambiarHabilitado( const int id_producto, bool estado )
+ *
+ */
+bool MProductos::cambiarHabilitado( int id_producto, bool estado )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "UPDATE producto SET habilitado = %2 WHERE id = %1" ).arg( id_producto ).arg( estado ) ) ) {
+        return true;
+    } else {
+        qDebug( "Error de ejecucion de la cola de cambio de estado de habilitacion del producto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit()  );
+    }
+    return false;
+}
+
+/*!
+ * \fn MProductos::habilitar( int id_producto )
+ * Habilita el producto pasado como parametro
+ * \param id_producto Identificador del producto
+ * \returns Verdaderos si se pudo habilitar
+ */
+bool MProductos::habilitar( int id_producto )
+{  return cambiarHabilitado( id_producto, true ); }
+
+/*!
+ * \fn MProductos::deshabilitar( int id_producto )
+ * Deshabilita el producto pasado como parametro
+ * \param id_producto Identificador del producto
+ * \returns Verdaderos si se pudo deshabilitar
+ */
+bool MProductos::deshabilitar( int id_producto )
+{  return cambiarHabilitado( id_producto, false ); }
+
+/*!
+ * \fn MProductos::habilitado( int id_producto )
+ * Devuelve el estado de habilitacion del producto pasado como parametro
+ * \param id_producto Identificador del producto
+ * \returns Verdaderos si se encuentra habilitado
+ */
+bool MProductos::habilitado( int id_producto )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT habilitado FROM producto WHERE id = %1" ).arg( id_producto ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toBool();
+        } else {
+            qDebug( "Error de next de la cola de averiguacion de habilitacion de producto" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit()  );
+        }
+    } else {
+        qDebug( "Error de ejecucion de la cola de averiguacion de habilitacion de producto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit()  );
+    }
+    return false;
+}
+
+/*!
+ * \fn MProductos::cambiarHabilitado( const QModelIndex idx, bool estado )
+ *
+ */
+bool MProductos::cambiarHabilitado( QModelIndex idx, bool estado )
+{
+    setData( index( idx.row(), fieldIndex( "habilitado" ) ), estado );
+    return submit();
+}
+
+/*!
+ * \fn MProductos::habilitar( QModelIndex idx )
+ * Habilita el producto pasado como parametro
+ * \param idx Identificador del producto
+ * \returns Verdaderos si se pudo habilitar
+ */
+bool MProductos::habilitar( QModelIndex idx )
+{  return cambiarHabilitado( idx, true ); }
+
+/*!
+ * \fn MProductos::deshabilitar( QModelIndex idx )
+ * Deshabilita el producto pasado como parametro
+ * \param idx Identificador del producto
+ * \returns Verdaderos si se pudo deshabilitar
+ */
+bool MProductos::deshabilitar( QModelIndex idx )
+{  return cambiarHabilitado( idx, false ); }

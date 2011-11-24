@@ -13,6 +13,7 @@ HEADERS += hicomp.h \
            ../caja/mcajas.h \
            ../caja/mmovimientoscaja.h \
            ../servicios/mcobroservicioclienteperiodo.h \
+           ../servicios/mrecargoshechos.h \
            ../../reporte/common/parameter.h
 
 SOURCES += hicomp.cpp \
@@ -23,6 +24,7 @@ SOURCES += hicomp.cpp \
            ../caja/mcajas.cpp \
            ../caja/mmovimientoscaja.cpp \
            ../servicios/mcobroservicioclienteperiodo.cpp \
+           ../servicios/mrecargoshechos.cpp \
            ../../reporte/common/parameter.cpp
 
 DESTDIR = ../../bin/plugins

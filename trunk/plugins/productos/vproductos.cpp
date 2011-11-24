@@ -18,19 +18,21 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "vproductos.h"
-#include "mproductos.h"
-#include "dproductos.h"
+
 #include <QTableView>
 #include <QSqlRecord>
 #include <QHeaderView>
 #include <QAction>
+#include <QMessageBox>
+#include <QSqlRelationalDelegate>
+
 #include "productos.h"
 #include "mcategorias.h"
 #include "vcategorias.h"
 #include "preferencias.h"
-#include <QSqlRelationalDelegate>
+#include "mproductos.h"
+#include "dproductos.h"
 #include "dsino.h"
-#include <QMessageBox>
 #include "formagregarproducto.h"
 
 VProductos::VProductos(QWidget *parent)
@@ -68,9 +70,25 @@ VProductos::VProductos(QWidget *parent)
  addAction( ActModificar );
  //addAction( ActEliminar );
 
+ ActHabilitar = new QAction( this );
+ ActHabilitar->setText( "Habilitar" );
+ ActHabilitar->setIcon( QIcon( ":/imagenes/producto-habilitar.png" ) );
+ connect( ActHabilitar, SIGNAL( triggered() ), this, SLOT( habilitarProducto() ) );
+ addAction( ActHabilitar );
+
+ ActDeshabilitar = new QAction( this );
+ ActDeshabilitar->setText( "Deshabilitar" );
+ ActDeshabilitar->setIcon( QIcon( ":/imagenes/producto-habilitar.png" ) );
+ connect( ActDeshabilitar, SIGNAL( triggered() ), this, SLOT( deshabilitarProducto() ) );
+ addAction( ActDeshabilitar );
+
+ QAction *ActSep = new QAction( this );
+ ActSep->setSeparator( true );
+ addAction( ActSep );
+
  if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
  {
-         QAction *ActCategorias = new QAction( "Categorias" , this );
+         ActCategorias = new QAction( "Categorias" , this );
          ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
          ActCategorias->setStatusTip( "Ver y administrar las categorias de productos" );
          ActCategorias->setShortcut( QKeySequence( "Ctrl + c" ) );
@@ -79,7 +97,7 @@ VProductos::VProductos(QWidget *parent)
          addAction( ActCategorias );
  }
 
- QAction *ActListadoVenta = new QAction( this );
+ ActListadoVenta = new QAction( this );
  ActListadoVenta->setText( "Listado de venta" );
  ActListadoVenta->setIcon( QIcon( ":/imagenes/listado.png" ) );
  ActListadoVenta->setStatusTip( "Muestra el listado de productos con su precio de venta" );
@@ -176,4 +194,45 @@ void VProductos::modificar()
     f->setearProducto( fila );
     connect( f, SIGNAL( accepted() ), this, SLOT( actualizar() ) );
     f->exec();
+}
+
+void VProductos::habilitarProducto()
+{
+  // Busco el item
+  QModelIndex indice = this->vista->selectionModel()->selectedRows().first();
+  int id_producto = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+  if( qobject_cast<MProductos *>(rmodelo)->habilitado( id_producto ) ) {
+      QMessageBox::information( this, "Habilitacion", "El producto ya se encuentra habilitado" );
+      return;
+  }
+  int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), QString::fromUtf8("¿Está seguro que desea habilitar este producto?" ), QMessageBox::Yes, QMessageBox::No );
+  if( ret == QMessageBox::Yes ) {
+      if( qobject_cast<MProductos *>(rmodelo)->habilitar( indice ) ) {
+          // Actualizar los datos
+          QMessageBox::information( this, "Correcto", "El producto fue habilitado correctamente" );
+      } else {
+          QMessageBox::warning( this, "Incorrecto", "Existio un error al intentar habilitar el producto" );
+      }
+  }
+  return;
+}
+
+void VProductos::deshabilitarProducto()
+{
+    // Busco el item
+    QModelIndex indice = this->vista->selectionModel()->selectedRows().first();
+    int id_producto = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+    if( !qobject_cast<MProductos *>(rmodelo)->habilitado( id_producto ) ) {
+        QMessageBox::information( this, "Deshabilitacion", "El producto ya se encuentra deshabilitado" );
+        return;
+    }
+    int ret = QMessageBox::question( this, QString::fromUtf8( "¿Seguro?" ), QString::fromUtf8("¿Está seguro que desea deshabilitar este producto? \n No se podrán realizar mas ventas de este producto si se lo deshabilita." ), QMessageBox::Yes, QMessageBox::No );
+    if( ret == QMessageBox::Yes ) {
+        if( qobject_cast<MProductos *>(rmodelo)->deshabilitar( indice ) ) {
+            QMessageBox::information( this, "Correcto", "El producto fue deshabilitado correctamente" );
+        } else {
+            QMessageBox::warning( this, "Incorrecto", "Existio un error al intentar deshabilitar el producto" );
+        }
+    }
+    return;
 }
