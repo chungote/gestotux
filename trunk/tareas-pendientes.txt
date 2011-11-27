@@ -30,9 +30,9 @@
 
 -- Recibos --
 -------------
-
 - verificar comprobante predetermindado
 - Generar comprobante para hicomp.
+
 
 -- General --
 -------------
@@ -58,24 +58,7 @@
 -- Servicios --
 ---------------
 - Probar sistema de baja de servicios.
-
-- Ver como hacer el automatico de los sistemas de cobro
-CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
-    `id_periodo_servicio` BIGINT NOT NULL,
-    `id_servicio BIGINT NOT NULL,
-    `id_cliente` BIGINT NOT NULL,
-    `id_recargo` BIGINT NOT NULL,
-    `fecha_generado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `texto_detalle` TEXT NOT NULL,
-    `precio` DOUBLE NOT NULL,
-    `id_ctacte` BIGINT NOT NULL,
-    `id_recibo` BIGINT,
-    FOREIGN KEY ( id_periodo_servicio, id_servicio_cliente ) REFERENCES `periodo_servicio`( id_periodo_servicio, id_servicio_cliente ),
-    FOREIGN KEY ( id_recargo ) REFERENCES `recargos`( id_recargo ),
-    FOREIGN KEY ( id_ctacte ) REFERENCES `item_ctacte`( id_op_ctacte ),
-    FOREIGN KEY ( id_recibo ) REFERENCES `recibos`( id_recibo ),
-    PRIMARY KEY ( id_cobro_servicio, id_servicio, id_cliente, id_recargo )
-) ENGINE = InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+- Colocar el control de recargos en el sistema de chequeo automatico en el inicio.
 
 -- Compras --
 -------------
@@ -110,11 +93,6 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
   - Generar FK.
 - Reformular sistema de generación de reportes.
 - Generar integración de autofacturación al registrar un corte.
-
--- HiComp --
-------------
-- Verificar sistema de autopago de recibos no pagados por ingreso de codigo de recibo. ( tanto manual como codigo de barras ).
-- Ver integraciòn de pagos de recibos con recargos de servicios.
 
 -- BSComputacion --
 -------------------
@@ -157,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `recargo_cobro_servicio_servicio_cliente` (
 - Listado de gastos
 - PagarFactura.png
 - VerTodo.png
+- habilitar/deshabilitar producto.
 
 :::::::::::::::::::::::::::
 ::: Problemas Generales :::

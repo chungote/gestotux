@@ -377,19 +377,22 @@ bool MMovimientosCaja::eliminarMovimiento( const int id_movimiento ) {
                 id_caja = cola.record().value(0).toInt();
             } else {
                 qWarning( "No se pudo hace next de la cola de obtener la caja correspondiente al movimiento de caja a eliminar" );
-                qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+                qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
+                qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
                 return false;
             }
         } else {
             qWarning( "No se pudo ejecutar la cola de obtencion de caja correspondiente al movimiento de caja a eliminar" );
-            qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+            qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
+            qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
             return false;
         }
-        if( cola.exec( QString( "DELETE FROM movimiento_caja WHERE id_movimiento = %1 LIMIT 1" ).arg( id_movimiento ) ) ) {
+        if( cola.exec( QString( "DELETE FROM movimiento_caja WHERE id_movimiento = %1" ).arg( id_movimiento ) ) ) {
             // Una vez eliminado el movimiento si recalculo el saldo
             if( !this->recalcularSaldo( id_caja ) ) {
                 qWarning( "No se pudo actualizar el saldo de la caja cuyo movimiento estamos eliminado" );
-                qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+                qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
+                qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
                 return false;
             } else {
                 qDebug( "MMovimientosCaja::eliminarMovimiento::Saldo actualizado correctamente." );
@@ -397,12 +400,12 @@ bool MMovimientosCaja::eliminarMovimiento( const int id_movimiento ) {
             }
         } else {
             qWarning( "No se pudo ejecutar la cola de eliminacion de movimiento de caja" );
-            qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+            qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
+            qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
             return false;
         }
     } else {
         qWarning( "No se pudo ejecutar la cola de eiminacion de movimiento porque el id es invalido" );
-        qWarning( QString( "Error: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
         return false;
     }
 }

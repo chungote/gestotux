@@ -46,6 +46,25 @@ void MRecargosHechos::inicializar()
     setHeaderData( 8, Qt::Horizontal, tr( "#ID Recibo" ) );
 }
 
+/*
+CREATE TABLE `recargo_cobro_servicio_servicio_cliente` (
+      `id_periodo_servicio` BIGINT NOT NULL,
+      `id_servicio` BIGINT NOT NULL,
+      `id_cliente` BIGINT NOT NULL,
+      `id_recargo` BIGINT NOT NULL,
+      `fecha_generado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      `texto_detalle` TEXT NOT NULL,
+      `precio` DOUBLE NOT NULL,
+      `id_ctacte` BIGINT NOT NULL,
+      `id_recibo` BIGINT,
+      FOREIGN KEY ( id_periodo_servicio, id_servicio, id_cliente ) REFERENCES `cobro_servicio_cliente_periodo`( id_periodo_servicio, id_servicio, id_cliente ),
+      FOREIGN KEY ( id_recargo ) REFERENCES `recargos`( id_recargo ),
+      FOREIGN KEY ( id_ctacte ) REFERENCES `item_ctacte`( id_op_ctacte ),
+      FOREIGN KEY ( id_recibo ) REFERENCES `recibos`( id_recibo ),
+      PRIMARY KEY ( id_periodo_servicio, id_servicio, id_cliente, id_recargo )
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+*/
+
 void MRecargosHechos::relacionar()
 {
     setRelation( 2, QSqlRelation( "clientes", "id", "razon_social" ) );
@@ -107,7 +126,7 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
 {
     // Verifico los defaults
     if( detalle.isEmpty() ) {
-        detalle.append("Recargor por pago fuera de termino");
+        detalle.append( "Recargo por pago fuera de termino" );
     }
     if( costo ) {
         costo = MRecargos::calcularRecargo( id_recargo );
@@ -151,6 +170,7 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
     cola.bindValue( ":detalle", detalle );
     cola.bindValue( ":precio", costo );
     cola.bindValue( ":id_ctacte", id_ctacte );
+    // id_recibo es colocado cuando es pagado
     if( cola.exec() ) {
         qDebug( "Registro de recargo insertado correctamente" );
         return true;
