@@ -36,11 +36,6 @@ FormularioCentral::FormularioCentral( QWidget *parent )
 }
 
 
-FormularioCentral::~FormularioCentral()
-{
-}
-
-
 void FormularioCentral::cambioWidget( int id )
 {
  gestotux::barraAcciones()->clear();
@@ -126,6 +121,25 @@ void FormularioCentral::agregarDock( Qt::DockWidgetArea pos, QDockWidget *obj )
     if( this->indexOf( obj->parentWidget() ) == -1 ) {
         qDebug( "Intentando insertar un dockwidget que no tiene padre, no se ocultará cuando se cambie de pestaña" );
     }
+    connect( obj->parentWidget(), SIGNAL( destroyed( QObject * ) ), this, SLOT( cerraronDockPadre( QObject * ) ) );
+    qobject_cast<QWidget *>(obj)->setAttribute( Qt::WA_DeleteOnClose );
     mapaDocks.insertMulti( this->indexOf( obj->parentWidget() ), QPair<Qt::DockWidgetArea, QDockWidget *>( pos, obj ) );
     qobject_cast<gestotux *>(this->parent())->agregarDock( pos, obj );
+}
+
+void FormularioCentral::cerraronDockPadre( QObject *obj )
+{
+    // obj es el padre de algun dockwidget
+    // Busco el id del padre
+    int indice = this->indexOf( qobject_cast<QWidget *>( obj ) );
+    if( indice == -1 ) {
+        qDebug( "Señal implementada para un padre que no esta en la lista" );
+        return;
+    }
+    if( mapaDocks.contains( indice ) ) {
+        // tengo que cerrar ese elemento
+        qobject_cast<QDockWidget *>(mapaDocks.value( indice ).second)->close();
+        mapaDocks.remove( indice );
+    }
+
 }

@@ -74,6 +74,7 @@ bool Ventas::inicializar()
  connect( ActAgregarVentas, SIGNAL( triggered() ), this, SLOT( agregarVenta() ) );
 
  ActVerFacturas = new QAction( "Ver Facturas", this );
+ ActVerFacturas->setIcon( QIcon( ":/imagenes/factura.png" ) );
  ActVerFacturas->setStatusTip( "Permite ver las facturas emitidas y anularlas." );
  connect( ActVerFacturas, SIGNAL( triggered() ), this, SLOT( verFacturas() ) );
 
@@ -166,7 +167,7 @@ void Ventas::seCierraGestotux()
 /*!
  * \fn Ventas::facturarPresupuesto( const int id_presupuesto )
  */
-void Ventas::facturarPresupuesto( const int id_presupuesto )
+void Ventas::facturarPresupuesto( const int /*id_presupuesto*/ )
 {
     FormAgregarVenta *f = new FormAgregarVenta();
     //f->desdePresupuesto( id_presupuesto );
