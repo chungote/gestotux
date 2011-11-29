@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>imagenes/compras.png</file>
         <file>imagenes/agregar_compras.png</file>
+        <file>imagenes/eliminar_compras.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>compras.QMYSQL.sql</file>

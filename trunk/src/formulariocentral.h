@@ -36,11 +36,11 @@ class FormularioCentral : public QTabWidget
 Q_OBJECT
 public:
     FormularioCentral( QWidget *parent = 0 );
-    ~FormularioCentral();
 
 protected slots:
     void cambioWidget( int id );
     void cerrarActivo();
+    void cerraronDockPadre( QObject *obj );
 
 public slots:
     void agregarForm( QWidget *ventana );

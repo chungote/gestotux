@@ -62,7 +62,7 @@ bool Servicios::verificarTablas( QStringList tablas )
  { qDebug( "Servicios::Error al buscar la tabla periodo_servicio" ); return false; }
  if( !tablas.contains( "cobro_servicio_cliente_periodo" ) )
  { qDebug( "Servicios::Error al buscar la tabla cobro_servicio_cliente_periodo" ); return false; }
- if( !tablas.contains( "recargo_cobro_servicio_servicio_cliente" ) )
+ if( !tablas.contains( "recargo_cobro_servicio_cliente" ) )
  { qDebug( "Servicios::Error al buscar la tabla recargo_cobro_servicio_servicio_cliente" ); return false; }
  return true;
 }
