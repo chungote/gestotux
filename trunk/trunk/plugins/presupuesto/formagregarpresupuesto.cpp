@@ -32,6 +32,7 @@
 #include "MItemPresupuesto.h"
 #include "EReporte.h"
 #include "mclientes.h"
+#include "ecbclientes.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -144,7 +145,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  MPresupuesto *mod = new MPresupuesto();
 
- int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex() ,0 ) ).toInt();
+ int id_cliente = CBCliente->idClienteActual();
 
  int id_presupuesto = mod->agregarPresupuesto( id_cliente,
                                                CBCliente->currentText(),

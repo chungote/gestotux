@@ -69,7 +69,8 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         // Modelo del tableview
         mcp = new MProductosTotales( TVProductos, CBProducto->listadoProductos() );
         mcp->calcularTotales( true );
-        mcp->buscarPrecios( true );
+        if( preferencias::getInstancia()->value( "Preferencias/Ventas/buscarPrecio", true ).toBool() )
+            mcp->buscarPrecios( true );
         TVProductos->setModel( mcp );
         TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
         TVProductos->setAlternatingRowColors( true );
@@ -239,7 +240,7 @@ void FormAgregarVenta::guardar()
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
  // veo el id del proveedor
- int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+ int id_cliente = CBCliente->idClienteActual();
  MFactura::FormaPago id_forma_pago;
  if( RBCtaCte->isChecked() && RBCtaCte->isEnabled() )
  {

@@ -41,6 +41,16 @@ EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parame
     _parametros = parametros;
 }
 
+EReporte::~EReporte()
+{
+    if( _rep != 0 ) {
+        _tipo = EReporte::Invalido;
+        _nombre = "";
+        _parametros.clear();
+        delete _rep;
+    }
+}
+
 /*!
  * \fn EReporte::hacer( ParameterList parametros, bool previsualizar )
  * Realiza el reporte configurado.

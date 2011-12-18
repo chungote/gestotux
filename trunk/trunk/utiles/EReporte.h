@@ -29,23 +29,31 @@
 /*!
  * \brief Clase Wrapper para generación de reportes.
  *
- *
+ * Envoltorio para generar reportes y cargar los datos predeterminados de los tipos de reportes especificados.
+ * \author Esteban Zeller tranfuga_25s@gmail.com
  */
 class EReporte : public QObject {
 
     Q_OBJECT
 
   public:
+
+     /*! \enum Tipo
+      *  Define el reporte que se cargará en la funcion hacer.
+      *  Cada tipo posee un nombre predeterminado o puede especificado por el plugin del cliente.
+      *  Si se desea utilizar un reporte no incluido en la lista, utilice el @Especial.
+      */
     enum Tipo {
-        Invalido = -1,
-        Presupuesto = 1,
-        Factura = 2,
-        Recibo = 3,
-        AnulacionFactura = 4,
-        Especial = 5
+        Invalido = -1, /** Tipo invalido, cuando esta recien creado el objeto y no se cargo la definicion, o hubo un error cargando el reporte */
+        Presupuesto = 1, /** Tipo Presupuesto */
+        Factura = 2, /** Tipo Factura */
+        Recibo = 3, /** Tipo Recibo */
+        AnulacionFactura = 4, /** Tipo Anulacion de una factura */
+        Especial = 5 /** Tipo Especial, se deberá incluir el nombre del reporte en un parametro adicional */
     };
     explicit EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros );
     explicit EReporte( QObject *padre );
+    ~EReporte();
 
     void presupuesto();
     void factura();
@@ -54,14 +62,26 @@ class EReporte : public QObject {
     bool especial( const QString nombre, ParameterList parametros );
 
     bool hacer( ParameterList parametros, bool previsualizar = false );
-    bool  hacer() { return hacer( _parametros, false ); }
+    bool hacer() { return hacer( _parametros, false ); }
 
     void mostrarError( QWidget *ventana );
 
     private:
+       /*!
+        * Tipo de reporte cargado actualmente
+        */
         Tipo _tipo;
+       /*!
+        * Puntero interno al sistema que genera los reportes
+        */
         orReport *_rep;
+       /*!
+        * Nombre del reporte a cargar o cargado.
+        */
         QString _nombre;
+       /*!
+        * Lista de parametros actual
+        */
         ParameterList _parametros;
 
         bool cargar( const QString nombre );

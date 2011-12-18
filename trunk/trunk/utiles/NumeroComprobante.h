@@ -43,6 +43,9 @@ public:
     bool desdeString( const QString original );
 
 private:
+   /*!
+    * Contenedor de los datos del comprobante
+    */
     QPair<int,int> _dato;
     int cuentaRecursivo( const int dato );
 

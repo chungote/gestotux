@@ -35,15 +35,19 @@ class MPagos : public QSqlRelationalTableModel
     Q_OBJECT
 
 public:
+   /*!
+    * \enum FormaPago
+    * Define el estado de pago que tiene el recibo
+    */
     enum FormaPago {
-        SinPagar = 0,
-        Efectivo = 1,
-        Otro = 2
+        SinPagar = 0, /** Definido para cuando el recibo va a ser impreso pero no pagado ( solo HiComp ) */
+        Efectivo = 1, /** Pago en efectivo */
+        Otro = 2 /** Otro tipo de pago */
     };
 
-    MPagos(QObject *parent = 0, bool relaciones = false );
+    MPagos (QObject *parent = 0, bool relaciones = false );
 
-    QVariant data(const QModelIndex& item, int role) const;
+    QVariant data( const QModelIndex& item, int role) const;
 
     int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
 

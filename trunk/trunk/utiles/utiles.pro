@@ -25,7 +25,8 @@ HEADERS += eactcerrar.h \
            ../plugins/productos/mproductos.h \
            NumeroComprobante.h \
            ELECuitCuil.h \
-           ecbproductos.h
+           ecbproductos.h \
+    ecbclientes.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -50,7 +51,8 @@ SOURCES += eactcerrar.cpp \
            NumeroComprobante.cpp \
            EReporte.cpp \
            ELECuitCuil.cpp \
-           ecbproductos.cpp
+           ecbproductos.cpp \
+    ecbclientes.cpp
 
 QT += sql
 
@@ -68,5 +70,7 @@ TRANSLATIONS += utiles.ts
 
 INCLUDEPATH += ../src \
                ../reporte
+
+
 
 

@@ -27,13 +27,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QCheckBox" name="CkBLimitarAStock">
-        <property name="text">
-         <string>Limitar cantidad de venta al stock del producto</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>

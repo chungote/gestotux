@@ -30,7 +30,7 @@ class FormPrefVenta : public QWidget, public FormPrefHijo, private Ui::FormPrefV
 {
     Q_OBJECT
 public:
-    FormPrefVenta( QWidget* parent = 0, Qt::WFlags fl = 0 );
+    FormPrefVenta( QWidget* parent = 0 );
 
 public slots:
     void cargar();

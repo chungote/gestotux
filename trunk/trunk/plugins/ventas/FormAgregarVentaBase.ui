@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>594</width>
-    <height>515</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,7 +68,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="CBCliente">
+         <widget class="ECBClientes" name="CBCliente">
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -254,6 +254,11 @@
    <class>ECBProductos</class>
    <extends>QComboBox</extends>
    <header>ecbproductos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBClientes</class>
+   <extends>QComboBox</extends>
+   <header>ecbclientes.h</header>
   </customwidget>
   <customwidget>
    <class>EDSBPrecio</class>

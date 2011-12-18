@@ -30,7 +30,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="CBCliente"/>
+      <widget class="ECBClientes" name="CBCliente"/>
      </item>
     </layout>
    </item>
@@ -84,6 +84,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ECBClientes</class>
+   <extends>QComboBox</extends>
+   <header>ecbclientes.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
