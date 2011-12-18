@@ -48,7 +48,7 @@ void ECBProductos::inicializar()
 {
     // Cargo los datos del modelo
     QSqlQuery cola;
-    if( cola.exec( "SELECT id, codigo, nombre FROM producto WHERE habilitado = 1 ORDER BY nombre ASC" ) ) {
+    if( cola.exec( "SELECT id, codigo, nombre FROM producto WHERE habilitado IN ( 1, 'true' ) ORDER BY nombre ASC" ) ) {
         int pos = 0;
         while( cola.next() ) {
             // Pos = currentIndex();

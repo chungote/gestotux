@@ -125,7 +125,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         subtotales->insert( index.row(), precio_unitario->value( index.row() ) * value.toDouble() );
                                         recalcularTotal();
                                 }
-                                emit dataChanged( index , this->index( index.row(), 3) );
+                                emit dataChanged( index , this->index( index.row(), 3 ) );
                                 return true;
                                 break;
                         }
@@ -278,7 +278,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         case 3:
         {
                 if( role == Qt::DisplayRole ) {
-                        return QString( "$ %L1" ).arg( Total );
+                    return QString( "$ %L1" ).arg( Total, 10, 'f', 2 );
                 } else if( role == Qt::TextAlignmentRole ) {
                     return int( Qt::AlignRight | Qt::AlignVCenter );
                 } else {
@@ -323,14 +323,14 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                         // precio unitario
                         case 2:
                         {
-                                return QString( "$ %L1" ).arg( precio_unitario->value( idx.row() ) );
+                                return QString( "$ %L1" ).arg( precio_unitario->value( idx.row() ), 10, 'f', 2 );
                                 break;
                         }
 
                         // Subtotal
                         case 3:
                         {
-                                return QString( "$ %L1" ).arg( subtotales->value( idx.row() ) );
+                                return QString( "$ %L1" ).arg( subtotales->value( idx.row() ), 10, 'f', 2 );
                                 break;
                         }
                         default:
@@ -582,13 +582,15 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
               // Segun la documentacion this->productos->values() y this->productos->keys() tienen el mismo orden
               int id_fila = this->productos->keys().at( pos );
               double cant = this->cantidades->value( id_fila );
-              this->cantidades->insert( id_fila, cant + cantidad );
+              double ncant = cant + cantidad;
+              this->cantidades->insert( id_fila, ncant );
+              this->subtotales->insert( id_fila, ncant * precio_unitario );
 
-              recalcularTotal();
-
+              // Actualizo el subtotal
               emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
 
               if( _calcularTotal )
+                  recalcularTotal();
                   emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() )  );
 
               return;
