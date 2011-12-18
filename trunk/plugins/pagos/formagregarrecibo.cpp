@@ -159,7 +159,7 @@ void FormAgregarRecibo::guardar()
         QMessageBox::warning( this, "Faltan datos", QString( "Por favor verifique que haya ingresado una fecha mayor o igual a %1" ).arg( fecha_ultima_factura.toString() ) );
         return;
     }
-    int id_cliente = this->CBCliente->model()->data( this->CBCliente->model()->index( this->CBCliente->currentIndex(), 0 ), Qt::EditRole ).toInt();
+    int id_cliente = this->CBCliente->idClienteActual();
     QDate fecha = this->DEFecha->date();
     QString contenido = this->TETexto->toPlainText();
     double total = this->dSBPagado->value();

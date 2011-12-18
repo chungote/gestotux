@@ -24,7 +24,7 @@
 #include <QCheckBox>
 #include <QDoubleSpinBox>
 
-FormPrefVenta::FormPrefVenta( QWidget* parent, Qt::WFlags fl ) :
+FormPrefVenta::FormPrefVenta( QWidget* parent ) :
  FormPrefHijo(), Ui::FormPrefVentaBase()
 {
     this->setParent( parent );
@@ -41,7 +41,6 @@ void FormPrefVenta::cargar()
 {
  preferencias *p = preferencias::getInstancia();
  this->CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
- this->CkBLimitarAStock->setChecked( p->value( "Preferencias/Ventas/limitarastock", false ).toBool() );
 }
 
 
@@ -59,5 +58,4 @@ void FormPrefVenta::guardar()
 {
  preferencias *p = preferencias::getInstancia();
  p->setValue( "Preferencias/Ventas/buscarPrecio", this->CkBBusquedaPrecio->isChecked() );
- p->setValue( "Preferencias/Ventas/limitarastock", this->CkBLimitarAStock->isChecked() );
 }

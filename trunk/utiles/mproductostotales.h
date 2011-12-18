@@ -52,10 +52,13 @@ public:
     void buscarPrecios( bool activado = true );
 
     void agregarNuevoProducto( const int cantidad, const int Id );
-
+   /*!
+    * \enum TipoPrecio
+    * Indica que tipo de precio se buscara cuando se realize una busqueda
+    */
     enum TipoPrecio {
-        Costo = 0,
-        Venta = 1
+        Costo = 0, /** Busqueda del precio de costo del producto */
+        Venta = 1  /** Busqueda del precio de venta del producto */
     };
     void setearTipoPrecioBuscar( int t );
     int tipoPrecioBuscar();

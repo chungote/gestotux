@@ -45,7 +45,13 @@ public slots:
     void setearPrecioBase( double precio );
 
 private:
+       /*!
+        * Precio base del servicio indicado por @_servicio_actual
+        */
         double _precio_base;
+       /*!
+        * Identificador del servicio sobre el cual se esta trabajando los recargos
+        */
         int _servicio_actual;
 };
 
