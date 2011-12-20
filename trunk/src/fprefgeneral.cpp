@@ -56,7 +56,6 @@ FPrefGeneral::FPrefGeneral( QWidget* parent )
 void FPrefGeneral::cargar()
 {
  preferencias *p = preferencias::getInstancia();
- p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
  ChBMaximizado->setChecked( p->value( "maximizado" , false ).toBool() );
@@ -95,7 +94,6 @@ void FPrefGeneral::cargar()
 void FPrefGeneral::guardar()
 {
  preferencias *p = preferencias::getInstancia();
- p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
  p->setValue( "maximizado", ChBMaximizado->isChecked() );

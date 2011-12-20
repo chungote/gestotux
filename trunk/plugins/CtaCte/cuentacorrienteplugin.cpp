@@ -32,10 +32,17 @@ bool CuentaCorrientePlugin::inicializar()
  ActCuentasCorrientes->setToolTip( "Muestra la lista de cuentas corrientes" );
  connect( ActCuentasCorrientes, SIGNAL( triggered() ), this, SLOT( verCuentasCorrientes() ) );
 
- if( preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada", true ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "CtaCte" );
+
+ if( p->value( "habilitada", true ).toBool() )
  { QApplication::instance()->setProperty( "habilitada-ctacte", true ); }
  else
- { QApplication::instance()->setProperty( "habilitada-ctacte", false ); return true; }
+ { QApplication::instance()->setProperty( "habilitada-ctacte", false ); }
+
+ p->endGroup();
+ p->endGroup();
 
  return true;
 }

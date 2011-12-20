@@ -23,7 +23,7 @@
 #include <QSqlDatabase>
 #include "formprefcaja.h"
 
-Q_EXPORT_PLUGIN2( Caja, Caja );
+Q_EXPORT_PLUGIN2( Caja, Caja )
 
 /*!
     \fn Caja::accionesBarra()
@@ -36,7 +36,13 @@ QList<QActionGroup *> Caja::accionesBarra()
  ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
  ventas->setProperty( "titulo", "Ventas" );
  ventas->addAction( ActProductos );
- if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Productos" );
+ bool categorias = p->value( "categorias" ).toBool();
+ p->endGroup();
+ p->endGroup();
+ if( categorias )
  { ventas->addAction( ActCategorias ); }
  lista.append( ventas );
  return lista;*/

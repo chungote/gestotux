@@ -50,16 +50,20 @@ VProductos::VProductos(QWidget *parent)
  vista->setItemDelegateForColumn( rmodelo->fieldIndex( "habilitado" ), new DSiNo( vista ) );
 
  vista->hideColumn( 0 );
- if( !preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Productos" );
+ if( !p->value( "categorias" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "id_categoria" ) ); }
- if( !preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
+ if( !p->value( "descripcion" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "descripcion" ) ); }
- if( !preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
+ if( !p->value( "marcas" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "marca" ) ); }
- if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
+ if( !p->value( "stock" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "stock" ) ); }
- if( !preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() )
+ if( !p->value( "modelo" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "modelo" ) ); }
+
 
  vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
@@ -86,7 +90,7 @@ VProductos::VProductos(QWidget *parent)
  ActSep->setSeparator( true );
  addAction( ActSep );
 
- if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ if( p->value( "categorias" ).toBool() )
  {
          ActCategorias = new QAction( "Categorias" , this );
          ActCategorias->setIcon( QIcon( ":/imagenes/categorias.png" ) );
@@ -96,6 +100,7 @@ VProductos::VProductos(QWidget *parent)
 
          addAction( ActCategorias );
  }
+ p->endGroup();p->endGroup(); p=0;
 
  ActListadoVenta = new QAction( this );
  ActListadoVenta->setText( "Listado de venta" );

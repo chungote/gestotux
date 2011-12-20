@@ -33,7 +33,10 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Solicito la categoria del producto si esta habilitado
-    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Productos" );
+    if( ! p->value( "categorias" ).toBool() )
     {
       this->LCategoria->setVisible( false );
       this->CBCategoria->setVisible( false );
@@ -44,7 +47,7 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Solicito la descripcion si esta habilitado
-    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/descripcion" ).toBool() )
+    if( ! p->value( "descripcion" ).toBool() )
     {
         this->LDescripcion->setVisible( false );
         this->LEDescripcion->setVisible( false );
@@ -52,7 +55,7 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
     } else { _descripcion = true; }
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Solicito la marca del producto si esta habilitado
-    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/marcas" ).toBool() )
+    if( ! p->value( "marcas" ).toBool() )
     {
         this->LMarca->setVisible( false );
         this->LEMarca->setVisible( false );
@@ -63,20 +66,23 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Solicito el stock del producto si esta habilitado
-    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() ) {
+    if( ! p->value( "stock" ).toBool() ) {
        this->LStock->setVisible( false );
        this->SBStock->setVisible( false );
         _stock = false;
     } else { _stock = false; }
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // Solicito el modelo si esta habilitado
-    if( ! preferencias::getInstancia()->value( "Preferencias/Productos/modelo" ).toBool() ) {
+    if( ! p->value( "modelo" ).toBool() ) {
         this->LModelo->setVisible( false );
         this->LEModelo->setVisible( false );
         _modelo = false;
     } else { _modelo = true; }
     /// Cargo el recargo para hacer los calculos sin tener que consultarlo todas las veces
-    _recargo = preferencias::getInstancia()->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble();
+    _recargo = p->value( "ganancia", 10.0 ).toDouble();
+    p->endGroup();
+    p->endGroup();
+    p=0;
 }
 
 void FormModificarProducto::cambioPrecioCosto( double precio ) {

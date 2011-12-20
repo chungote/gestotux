@@ -52,8 +52,10 @@ void EVerificaBackup::verificar()
  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() != "QSQLITE" )
  { tiempo->stop(); delete tiempo; return; }
  preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "General" );
  int cant_dias = 0;
- switch( p->value( "Preferencias/General/frecuenciaBackup", 1 ).toInt() )
+ switch( p->value( "frecuenciaBackup", 1 ).toInt() )
  {
 	// 1 dia
 	case 1:
@@ -80,6 +82,7 @@ void EVerificaBackup::verificar()
 	default:
 	{ cant_dias = 15; break; }
  }
+ p->endGroup();
  p->beginGroup( "backup" );
  QDate fecha = p->value( "fecha", QDate( 1900, 1, 1 ) ).toDate();
  //qDebug( qPrintable( "Fecha ultimo backup =" +  fecha.toString("dd/MM/yyyy" ) ) );
@@ -98,6 +101,8 @@ void EVerificaBackup::verificar()
  {
   hide();
  }
+ p->endGroup();
+ p=0;
 }
 
 

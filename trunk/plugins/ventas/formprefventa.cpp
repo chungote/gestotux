@@ -40,7 +40,12 @@ FormPrefVenta::FormPrefVenta( QWidget* parent ) :
 void FormPrefVenta::cargar()
 {
  preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Ventas" );
  this->CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
+ p->endGroup();
+ p->endGroup();
+ p=0;
 }
 
 
@@ -57,5 +62,10 @@ void FormPrefVenta::aplicar()
 void FormPrefVenta::guardar()
 {
  preferencias *p = preferencias::getInstancia();
- p->setValue( "Preferencias/Ventas/buscarPrecio", this->CkBBusquedaPrecio->isChecked() );
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Ventas" );
+ p->setValue( "buscarPrecio", this->CkBBusquedaPrecio->isChecked() );
+ p->endGroup();
+ p->endGroup();
+ p=0;
 }

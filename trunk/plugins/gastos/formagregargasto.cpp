@@ -100,7 +100,12 @@ void FormAgregarGasto::guardar()
  else
  {
   if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
-      if( preferencias::getInstancia()->value("Preferencias/Caja/gastos-sinfondo").toBool() && this->CkBSacarCaja->isChecked() )
+      preferencias *p = preferencias::getInstancia();
+      p->beginGroup( "Preferencias" );
+      p->beginGroup( "Caja" );
+      bool gastossinfondos = p->value( "gastos-sinfondos" ).toBool();
+      p->endGroup();p->endGroup();p=0;
+      if( gastossinfondos && this->CkBSacarCaja->isChecked() )
       {
           int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
           if( MCajas::saldo( id_caja ) < dSBCosto->value() ) {

@@ -435,10 +435,13 @@ void Ebackup::generarBackup()
   {
    QMessageBox::information( this, "Informacion", "El archivo de backup se ha guardado correctamente" );
    preferencias *p = preferencias::getInstancia();
-   p->setValue( "backup/archivo", fileName );
-   p->setValue( "backup/enviado", false );
-   p->setValue( "backup/fecha", QDate::currentDate() );
+   p->beginGroup( "backup" );
+   p->setValue( "archivo", fileName );
+   p->setValue( "enviado", false );
+   p->setValue( "fecha", QDate::currentDate() );
    p->sync();
+   p->endGroup();
+   p=0;
    close();
   }
  }

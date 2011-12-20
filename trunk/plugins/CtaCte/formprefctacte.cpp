@@ -39,9 +39,13 @@ FormPrefCtaCte::~FormPrefCtaCte()
 void FormPrefCtaCte::guardar()
 {
  preferencias * p = preferencias::getInstancia();
- p->setValue( "Preferencias/CtaCte/habilitada", GBHabilitar->isChecked() );
- p->setValue( "Preferencias/CtaCte/limite", DSBLimite->value() );
- p->setValue( "Preferencias/CtaCte/saldo-inicial", DSBSaldoInicial->value() );
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "CtaCte" );
+ p->setValue( "habilitada", GBHabilitar->isChecked() );
+ p->setValue( "limite", DSBLimite->value() );
+ p->setValue( "saldo-inicial", DSBSaldoInicial->value() );
+ p->endGroup();
+ p->endGroup();
  p=0;
  delete p;
 }
@@ -62,9 +66,13 @@ void FormPrefCtaCte::aplicar()
 void FormPrefCtaCte::cargar()
 {
  preferencias *p = preferencias::getInstancia();
- GBHabilitar->setChecked( p->value( "Preferencias/CtaCte/habilitada", false ).toBool() );
- DSBLimite->setValue( p->value( "Preferencias/CtaCte/limite", 1000 ).toDouble() );
- DSBSaldoInicial->setValue( p->value( "Preferencias/CtaCte/saldo-inicial", 0 ).toDouble() );
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "CtaCte" );
+ GBHabilitar->setChecked( p->value( "habilitada", false ).toBool() );
+ DSBLimite->setValue( p->value( "limite", 1000 ).toDouble() );
+ DSBSaldoInicial->setValue( p->value( "saldo-inicial", 0 ).toDouble() );
+ p->endGroup();
+ p->endGroup();
  p=0;
  delete p;
 }

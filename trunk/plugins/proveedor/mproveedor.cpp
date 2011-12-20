@@ -48,7 +48,10 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
 			case 4:
 			{
 			        preferencias *p = preferencias::getInstancia();
-			        return QColor( p->value( "General/color_mail", "#0000FF" ).toString() );
+                                p->beginGroup( "General" );
+                                QString color = p->value( "color_mail", "#0000FF" ).toString();
+                                p->endGroup(); p=0;
+                                return QColor( color );
         			break;
 			}
 			default:

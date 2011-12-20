@@ -25,6 +25,7 @@ FormPrefRecibos::FormPrefRecibos( QWidget *parent ) :
  QWidget( parent ), Ui::FormPrefRecibos() {
 
     setupUi( this );
+    this->setAttribute( Qt::WA_DeleteOnClose );
 
     connect( PBRenumerar, SIGNAL( clicked() ), this, SLOT( renumerar() ) );
 

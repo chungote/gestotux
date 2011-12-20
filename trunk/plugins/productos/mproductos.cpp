@@ -28,10 +28,16 @@ MProductos::MProductos(QObject *parent)
  setTable( "producto" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Categoria" );
- if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Productos" );
+ if( p->value( "categorias" ).toBool() )
  {
   setRelation( 1, QSqlRelation( "categoria_producto", "id", "nombre" ) );
  }
+ p->endGroup();
+ p->endGroup();
+ p=0;
  setHeaderData( 2, Qt::Horizontal, QString::fromUtf8( "#Código" ) );
  setHeaderData( 3, Qt::Horizontal, "Nombre" );
  setHeaderData( 4, Qt::Horizontal, "Precio de Costo" );
@@ -165,7 +171,12 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
  */
 double MProductos::stock( const int id_producto )
 {
- if( !preferencias::getInstancia()->value( "Preferencias/Productos/stock" ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Productos" );
+ bool stock = p->value( "stock" ).toBool();
+ p->endGroup();p->endGroup();p=0;
+ if( !stock )
  { return 10000000; }
  if( id_producto <= 0 ) {
      qDebug( "Id de producto erroneo" );
@@ -224,25 +235,34 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
         qDebug( cola.lastError().text().toLocal8Bit() );
         return false;
     }
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Productos" );
+    bool pdescripcion = p->value( "descripcion", false ).toBool();
+    bool pmarcas = p->value( "marcas", false ).toBool();
+    bool pmodelo = p->value( "modelo", false ).toBool();
+    bool pcategorias = p->value( "categorias", false ).toBool();
+    bool pstock = p->value( "stock", false ).toBool();
+    p->endGroup(); p->endGroup(); p=0;
     cola.bindValue( ":codigo", codigo );
     cola.bindValue( ":nombre", nombre );
-    if( descripcion == "" || preferencias::getInstancia()->value( "Preferencias/Productos/descripcion", false ).toBool()  )
+    if( descripcion == "" || pdescripcion  )
     { cola.bindValue( ":descripcion", QVariant() ); }
     else
     { cola.bindValue( ":descripcion", descripcion ); }
-    if( marca == "" || preferencias::getInstancia()->value( "Preferencias/Productos/marcas", false ).toBool()  )
+    if( marca == "" || pmarcas  )
     { cola.bindValue( ":marca", QVariant() ); }
     else
     { cola.bindValue( ":marca", marca ); }
-    if( modelo == "" || preferencias::getInstancia()->value( "Preferencias/Productos/modelo", false ).toBool()  )
+    if( modelo == "" || pmodelo )
     { cola.bindValue( ":modelo", QVariant() ); }
     else
     { cola.bindValue( ":modelo", modelo); }
-    if( categoria == -1 || preferencias::getInstancia()->value( "Preferencias/Productos/categorias", false ).toBool() )
+    if( categoria == -1 || pcategorias )
     { cola.bindValue( ":categoria", QVariant() ); }
     else
     { cola.bindValue( ":categoria", categoria ); }
-    if( stock ==  0 || preferencias::getInstancia()->value( "Preferencias/Productos/stock", false ).toBool()  ) {
+    if( stock ==  0 || pstock ) {
         cola.bindValue( ":stock", QVariant() );
     } else {
         cola.bindValue( ":stock", stock );
