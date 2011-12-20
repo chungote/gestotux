@@ -268,6 +268,9 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "serie", proximo.serie() );
     rec.setValue( "numero",proximo.numero() );
     rec.setValue( "cancelado", false );
+    for( int i = 0; i < rec.count(); i++ ) {
+        qDebug( QString( "%1: %2" ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
+    }
     if( this->insertRecord( -1, rec ) ) {
         this->submitAll();
         int id_recibo = query().lastInsertId().toInt();
@@ -384,7 +387,8 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
             qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
         }
     } else {
-        NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+        // por ley se empieza desde el numero de serie 1
+        NumeroComprobante *num = new NumeroComprobante( 0, 1, 0 );
         num->siguienteNumero();
         qDebug( "Error de cola al hacer exec al obtener el numero de serie de recibo maximo - Se inicio una nueva numeracion" );
         qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
