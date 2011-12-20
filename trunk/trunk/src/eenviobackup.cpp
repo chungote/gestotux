@@ -46,14 +46,15 @@ EEnvioBackup::~EEnvioBackup()
 void EEnvioBackup::run()
 {
  preferencias *p = preferencias::getInstancia();
- if( p->value( "backup/enviado", false ).toBool() == true  )
+ p->beginGroup( "backup" );
+ if( p->value( "enviado", false ).toBool() == true  )
  {
   qDebug( "El backup ya ha sido enviado... saliendo del hilo" );
   exit(0);
   return;
  }
  setTerminationEnabled();
- archivo = new QFile( p->value( "backup/archivo", QDate::currentDate().toString() ).toString() );
+ archivo = new QFile( p->value( "archivo", QDate::currentDate().toString() ).toString() );
  if( !archivo->open( QIODevice::ReadOnly ) )
  {
   qDebug( QString( "Error al abrir el archivo de backup: %1" ).arg( p->value( "backup/archivo" ).toString() ).toLocal8Bit() );
@@ -63,7 +64,9 @@ void EEnvioBackup::run()
  }
  ftp = new QFtp( this );
  connect( ftp, SIGNAL( commandFinished( int, bool ) ), this, SLOT( finComando( int, bool ) ) );
- ftp->connectToHost( p->value( "ftp/host", "tranfuga.no-ip.org" ).toString(), p->value( "ftp/puerto", 21 ).toInt() );
+ p->beginGroup( "ftp" );
+ ftp->connectToHost( p->value( "host", "tranfuga.no-ip.org" ).toString(), p->value( "puerto", 21 ).toInt() );
+ p->endGroup();p->endGroup();p=0;
  ftp->close();
  exec();
 }
@@ -104,8 +107,11 @@ void EEnvioBackup::finComando( int id, bool error )
     {
          qDebug( "Fin del Hilo" );
          preferencias *p = preferencias::getInstancia();
-         p->setValue( "backup/enviado", true );
+         p->beginGroup( "backup" );
+         p->setValue( "enviado", true );
+         p->endGroup();
          p->sync();
+         p=0;
          ftp->close();
          delete archivo;
          break;

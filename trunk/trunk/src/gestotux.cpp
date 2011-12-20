@@ -80,10 +80,20 @@ void gestotux::inicializar()
  setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
 
- this->restoreState( preferencias::getInstancia()->value( "Ventanas/Principal/estado" ).toByteArray() );
- this->restoreGeometry( preferencias::getInstancia()->value( "Ventanas/Principal/geometry" ).toByteArray() );
- if( preferencias::getInstancia()->value( "Preferencias/General/maximizado" ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Ventanas" );
+ p->beginGroup( "Principal" );
+ this->restoreState( p->value( "estado" ).toByteArray() );
+ this->restoreGeometry( p->value( "geometry" ).toByteArray() );
+ p->endGroup();
+ p->endGroup();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "General" );
+ if( p->value( "maximizado" ).toBool() )
  { this->showMaximized(); }
+ p->endGroup();
+ p->endGroup();
+ p = 0;
 }
 
 void gestotux::closeEvent( QCloseEvent *event )
@@ -199,10 +209,16 @@ void gestotux::salir()
 {
  // Envio señal de que salgo para los plugins que estan escuchando
  emit saliendoGestotux();
- preferencias::getInstancia()->setValue( "Ventanas/Principal/estado", this->saveState( 1 ) );
- preferencias::getInstancia()->setValue( "Ventanas/Principal/geometry", this->geometry() );
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Ventanas" );
+ p->beginGroup( "Principal" );
+ p->setValue( "estado", this->saveState( 1 ) );
+ p->setValue( "geometry", this->geometry() );
  // Guardo el estado de la ventana principal y sincronizo las preferencias para que queden guardas efectivamente
- preferencias::getInstancia()->sync();
+ p->endGroup();
+ p->endGroup();
+ p->sync();
+ p=0;
 }
 
 FormularioCentral *gestotux::formCen()
@@ -271,8 +287,10 @@ QToolBar* gestotux::barraAcciones()
  */
 void gestotux::crearReloj()
 {
- //preferencias::getInstancia()->inicio();
- if( preferencias::getInstancia()->value( "Preferencias/General/reloj", false ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "General" );
+ if( p->value( "reloj", false ).toBool() )
  {
          QDockWidget *dw = new QDockWidget( "Reloj" , this );
          dw->setObjectName( "reloj" );
@@ -281,6 +299,9 @@ void gestotux::crearReloj()
          Reloj *r = new Reloj( dw );
          dw->setWidget( r );
  }
+ p->endGroup();
+ p->endGroup();
+ p = 0;
 }
 
 /*!
@@ -304,7 +325,10 @@ void gestotux::verBackup()
 */
 void gestotux::bandeja_sistema()
 {
- if( preferencias::getInstancia()->value( "Preferencias/General/icono_bandeja", false ).toBool() )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "General" );
+ if( p->value( "icono_bandeja", false ).toBool() )
  {
    if( QSystemTrayIcon::isSystemTrayAvailable() )
    {
@@ -336,6 +360,9 @@ void gestotux::bandeja_sistema()
   //qDebug( "No quiso tener mensaje en la bandeja" );
   return;
  }
+ p->endGroup();
+ p->endGroup();
+ p=0;
 }
 
 /*!

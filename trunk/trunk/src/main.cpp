@@ -286,6 +286,8 @@ int main(int argc, char *argv[])
         splash.showMessage( "Base de datos Abierta correctamente" );
         /////////////////////////////////////////////////////////////////////////////////////////////////
         // Cargo los plugins aca
+        // Salgo de la preferencia General, porque no quiero ahi datos de la carga de los plugins
+        p->endGroup();
         /////////////////////////////////////////////////////////////////////////////////////////////////
         // Necesito el formulario principal para algunas cosas
         splash.showMessage( "Cargando Ventana Principal" );
@@ -355,16 +357,19 @@ int main(int argc, char *argv[])
                                 {
                                         EInfoProgramaInterface *e = qobject_cast<EInfoProgramaInterface *>(obj);
                                         ERegistroPlugins::getInstancia()->setPluginInfo( e );
-                                        preferencias::getInstancia()->setValue( "Preferencias/pluginInfo", plug->nombre() );
-                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/Recibos", e->reporte( EReporte::Recibo ) );
-                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/Factura", e->reporte( EReporte::Factura ) );
-                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/Presupuesto", e->reporte( EReporte::Presupuesto ) );
-                                        preferencias::getInstancia()->setValue( "Preferencias/Reportes/AnulacionFactura", e->reporte( EReporte::AnulacionFactura ) );
+                                        preferencias *p = preferencias::getInstancia();
+                                        p->setValue( "pluginInfo", plug->nombre() );
+                                        p->beginGroup( "Reportes" );
+                                        p->setValue( "Recibos", e->reporte( EReporte::Recibo ) );
+                                        p->setValue( "Factura", e->reporte( EReporte::Factura ) );
+                                        p->setValue( "Presupuesto", e->reporte( EReporte::Presupuesto ) );
+                                        p->setValue( "AnulacionFactura", e->reporte( EReporte::AnulacionFactura ) );
+                                        p->endGroup();
                                 }
                                 else if ( plug->tipo() == EPlugin::email )
                                 {
                                         ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
-                                        preferencias::getInstancia()->setValue( "Preferencias/pluginEmail", plug->nombre() );
+                                        preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
                                 }
                         }
                         else
@@ -378,11 +383,15 @@ int main(int argc, char *argv[])
                         qWarning( loader.errorString().toLocal8Bit() );
                  }
              }
-
-
         /////////////////////////////////////////////////////////////////////////////////////////////////
+        p->beginGroup( "General" );
         if ( !p->value( "splash", false ).toBool() )
         { splash.finish( mw ); }
+        bool maximizar = p->value( "maximizado", true ).toBool();
+        p->endGroup();
+        p->endGroup();
+        p = 0;
+        // Con esto las preferencias quedan en la raiz
         mw->show();
         // Salir del programa cuando se cierren todas las ventanas
         app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
@@ -392,8 +401,7 @@ int main(int argc, char *argv[])
         envios.start( QThread::IdlePriority );
         QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );*/
         mw->inicializar();
-        if( p->value( "maximizado", true ).toBool() )
-        { mw->showMaximized(); }
+        if( maximizar ) { mw->showMaximized(); }
         int ret = app.exec();
         QSqlDatabase::removeDatabase( "qt_sql_default_connection" );
         return ret;

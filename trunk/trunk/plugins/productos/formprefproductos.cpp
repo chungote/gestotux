@@ -29,6 +29,7 @@ FormPrefProductos::FormPrefProductos ( QWidget* parent, Qt::WFlags fl )
  this->setWindowTitle( "Productos" );
  this->setWindowIcon( QIcon( ":/imagenes/productos.png" ) );
  this->setWindowFlags( fl );
+ this->setAttribute( Qt::WA_DeleteOnClose );
 }
 
 
@@ -38,15 +39,21 @@ FormPrefProductos::FormPrefProductos ( QWidget* parent, Qt::WFlags fl )
 void FormPrefProductos::cargar()
 {
  preferencias *p = preferencias::getInstancia();
- CkBCategorias->setChecked( p->value( "Preferencias/Productos/categorias", false ).toBool() );
- CkBMarcas->setChecked( p->value( "Preferencias/Productos/marcas", false ).toBool() );
- CkBDescripcion->setChecked( p->value( "Preferencias/Productos/descripcion", false ).toBool() );
- GBStock->setChecked( p->value( "Preferencias/Productos/stock", false ).toBool() );
- CkBPermitir->setChecked( p->value( "Preferencias/Productos/Stock/permitir", false ).toBool() );
- CkBLimitarVenta->setChecked( p->value( "Preferencias/Productos/Stock/limitar", false ).toBool() );
- CkBAvisosStock->setChecked( p->value( "Preferencias/Productos/Stock/avisos", false ).toBool() );
- DSBLimiteMinimo->setValue( p->value( "Preferencias/Productos/Stock/limiteMinimo", 0.0 ).toDouble() );
- DsBGanancia->setValue( p->value( "Preferencias/Productos/ganancia", 10.0 ).toDouble() );
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Productos");
+ CkBCategorias->setChecked( p->value( "categorias", false ).toBool() );
+ CkBMarcas->setChecked( p->value( "marcas", false ).toBool() );
+ CkBDescripcion->setChecked( p->value( "descripcion", false ).toBool() );
+ GBStock->setChecked( p->value( "stock", false ).toBool() );
+ p->beginGroup( "Stock" );
+ CkBPermitir->setChecked( p->value( "permitir", false ).toBool() );
+ CkBLimitarVenta->setChecked( p->value( "limitar", false ).toBool() );
+ CkBAvisosStock->setChecked( p->value( "avisos", false ).toBool() );
+ DSBLimiteMinimo->setValue( p->value( "limiteMinimo", 0.0 ).toDouble() );
+ p->endGroup();
+ DsBGanancia->setValue( p->value( "ganancia", 10.0 ).toDouble() );
+ p->endGroup();
+ p->endGroup();
  p = 0;
 }
 
@@ -65,14 +72,20 @@ void FormPrefProductos::guardar()
 {
 
  preferencias *p = preferencias::getInstancia();
- p->setValue( "Preferencias/Productos/categorias",CkBCategorias->isChecked() );
- p->setValue( "Preferencias/Productos/marcas", CkBMarcas->isChecked() );
- p->setValue( "Preferencias/Productos/descripcion",CkBDescripcion->isChecked() );
- p->setValue( "Preferencias/Productos/stock", GBStock->isChecked() );
- p->setValue( "Preferencias/Productos/Stock/permitir", CkBPermitir->isChecked() );
- p->setValue( "Preferencias/Productos/Stock/limitar", CkBLimitarVenta->isChecked() );
- p->setValue( "Preferencias/Productos/Stock/avisos", CkBAvisosStock->isChecked() );
- p->setValue( "Preferencias/Productos/Stock/limiteMinimo", DSBLimiteMinimo->value() );
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Productos" );
+ p->setValue( "categorias",CkBCategorias->isChecked() );
+ p->setValue( "marcas", CkBMarcas->isChecked() );
+ p->setValue( "descripcion",CkBDescripcion->isChecked() );
+ p->setValue( "stock", GBStock->isChecked() );
+ p->beginGroup( "Stock" );
+ p->setValue( "permitir", CkBPermitir->isChecked() );
+ p->setValue( "limitar", CkBLimitarVenta->isChecked() );
+ p->setValue( "avisos", CkBAvisosStock->isChecked() );
+ p->setValue( "limiteMinimo", DSBLimiteMinimo->value() );
+ p->endGroup();
  p->setValue( "Preferencias/Productos/ganancia", DsBGanancia->value() );
+ p->endGroup();
+ p->endGroup();
  p = 0;
 }

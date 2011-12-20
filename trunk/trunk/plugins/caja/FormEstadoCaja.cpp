@@ -29,8 +29,10 @@ FormEstadoCaja::FormEstadoCaja(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle( "Estado de caja" );
+    this->setAttribute( Qt::WA_DeleteOnClose );
 
-    ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );
+    modelo = new MCajas( ui->CBCaja );
+    ui->CBCaja->setModel( modelo );
     ui->CBCaja->setModelColumn( 1 );
     connect( ui->CBCaja, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCaja( int ) ) );
     qobject_cast<QSqlTableModel *>(ui->CBCaja->model())->select();
@@ -40,6 +42,8 @@ FormEstadoCaja::FormEstadoCaja(QWidget *parent) :
 FormEstadoCaja::~FormEstadoCaja()
 {
     delete ui;
+    if( modelo != 0 )
+        delete modelo;
 }
 
 void FormEstadoCaja::changeEvent(QEvent *e)

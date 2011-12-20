@@ -65,7 +65,10 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      connect( this, SIGNAL( guardar() ), formGeneral, SLOT( guardar() ) );
      pagesWidget->addWidget( formGeneral );
      preferencias *p = preferencias::getInstancia();
-     if( p->value( "Preferencias/General/mostrardb", true ).toBool() )
+     p->inicio();
+     p->beginGroup( "Preferencias" );
+     p->beginGroup( "General" );
+     if( p->value( "mostrardb", true ).toBool() )
      {
         QListWidgetItem *db = new QListWidgetItem( contentsWidget );
         db->setIcon( QIcon( ":/imagenes/dbconfig.png" ) );
@@ -78,6 +81,8 @@ FormPreferencias::FormPreferencias(QWidget *parent)
         connect( this, SIGNAL( guardar() ), formDb, SLOT( guardar() ) );
         pagesWidget->addWidget( formDb );
      }
+     p->endGroup();
+     p->endGroup();
      /// \todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
      foreach( plugin, ERegistroPlugins::plugins() )
@@ -104,7 +109,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
         }
      }
     // seteo el tamaño de los iconos
-    contentsWidget->setIconSize( QSize( 128, 128 ) );
+    contentsWidget->setIconSize( QSize( 42, 42 ) );
 
     ActCerrar  = new QAction( "Cerrar", this );
     ActCerrar->setShortcut( QKeySequence( "Ctrl+c" ) );
@@ -153,7 +158,11 @@ FormPreferencias::FormPreferencias(QWidget *parent)
         connect( this, SIGNAL( guardar() ), this, SIGNAL( aplicar() ) );
 
         // Cargo la ultima pos de el spliter
-        Splitter->restoreState( p->value( "Ventanas/Preferencias/spliter", QByteArray() ).toByteArray() );
+        p->beginGroup( "Ventanas" );
+        p->beginGroup( "Preferencias" );
+        Splitter->restoreState( p->value( "spliter", QByteArray() ).toByteArray() );
+        p->endGroup();
+        p->endGroup();
 
         // Cargo las preferencias
         emit cargar();

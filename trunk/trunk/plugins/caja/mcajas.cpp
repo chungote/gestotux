@@ -203,7 +203,6 @@ QString MCajas::nombreCaja( const int id_caja )
 int MCajas::cajaPredeterminada()
 {
     preferencias *p = preferencias::getInstancia();
-    p->inicio();
     p->beginGroup( "Preferencias");
     p->beginGroup( "Caja" );
     p->beginGroup( "caja-predeterminada" );

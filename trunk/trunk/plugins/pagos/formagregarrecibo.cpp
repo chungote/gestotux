@@ -50,10 +50,13 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         // Seteo la fecha a la de hoy
         this->DEFecha->setDate( QDate::currentDate() );
 
-        if( preferencias::getInstancia()->value( "Preferencias/pluginInfo" ).toString() != "hicomp" ) {
+        preferencias *p = preferencias::getInstancia();
+        p->beginGroup( "Preferencias" );
+        if( p->value( "pluginInfo" ).toString() != "hicomp" ) {
             RBLuego->setChecked( false );
             RBLuego->setVisible( false );
         }
+        p->endGroup(); p = 0;
 }
 
 #include "NumeroComprobante.h"
@@ -96,7 +99,12 @@ void FormAgregarRecibo::recalcularTotal()
 void FormAgregarRecibo::cambioCliente( int id_combo )
 {
  // Si es un cliente existente veo si tiene saldo
- if( preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada" ).toBool() && ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "CtaCte" );
+ bool habilitada = p->value( "habilitada" ).toBool();
+ p->endGroup(); p->endGroup(); p = 0;
+ if( habilitada && ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
   if( id_combo == 0 ) {
      // El numero indica Consumidor Final

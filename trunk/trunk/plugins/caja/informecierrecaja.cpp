@@ -89,7 +89,14 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     // Inicio el renderizado
     QTextCursor cursor( documento );
     int cantidadCol = 6;
-    if( preferencias::getInstancia()->value( "Preferencias/Caja/responsable", true ).toBool() ) { cantidadCol++; }
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Caja" );
+    bool responsable = p->value( "responsable" ).toBool();
+    bool firma = p->value( "firma", true ).toBool();
+    bool logo = p->value( "logo" ).toBool();
+    p->endGroup();p->endGroup();delete p; p = 0;
+    if( responsable ) { cantidadCol++; }
     /////////////////////////////////////
     /// Hago la cabecera de la tabla
     QTextTable *tabla = cursor.insertTable( 1, cantidadCol );
@@ -103,7 +110,7 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     tabla->cellAt( 0,3 ).firstCursorPosition().insertHtml( " Ingreso " );
     tabla->cellAt( 0,4 ).firstCursorPosition().insertHtml( " Egreso " );
     tabla->cellAt( 0,5 ).firstCursorPosition().insertHtml( " Saldo " );
-    if( preferencias::getInstancia()->value( "Preferencias/Caja/responsable", true ).toBool() ) {
+    if( responsable ) {
         tabla->cellAt( 0, 6 ).firstCursorPosition().insertHtml( " Responsable " );
     }
     // Averiguo el saldo hasta el momento del cierre anterior
@@ -138,7 +145,7 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     cursor.insertBlock();
     cursor.insertHtml( QString( "<b>Saldo Final:</b>   $  %L1" ).arg( saldo_anterior ) );
     cursor.insertBlock();
-    if( preferencias::getInstancia()->value( "Preferencias/Caja/firma", true ).toBool() ) {
+    if( firma ) {
         cursor.insertBlock();
         cursor.insertText( "Controlado por: ________________________" );
         cursor.insertBlock();
@@ -148,7 +155,7 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     // Termino el resumen
     cursor.movePosition( QTextCursor::Start );
     cursor.insertBlock();
-    if( preferencias::getInstancia()->value( "Preferencias/Caja/logo" ).toBool() ) {
+    if( logo ) {
         cursor.insertImage( ERegistroPlugins::getInstancia()->pluginInfo()->imagenPrograma() );
         cursor.insertImage( ":/imagenes/gestotux32.png" );
     }

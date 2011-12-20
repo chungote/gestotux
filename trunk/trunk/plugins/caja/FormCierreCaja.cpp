@@ -90,7 +90,13 @@ void FormCierreCaja::cambioCaja( int num )
 void FormCierreCaja::hacerCierre()
 {
     // Verifico que concuerden los saldos
-    if( ( ui->dSBComputado->value() != ui->dSBSumado->value() ) && ( preferencias::getInstancia()->value( "Preferencias/Caja/no-cierre-dif", false ).toBool() ) )
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Caja" );
+    bool nocierredif = p->value( "no-cierre-dif", false ).toBool();
+    bool siempreresumen = p->value( "siempre-resumen", false ).toBool();
+    p->endGroup();p->endGroup();p=0; delete p;
+    if( ( ui->dSBComputado->value() != ui->dSBSumado->value() ) && nocierredif )
     {
         QMessageBox::critical( this, "Error", "Los Saldos no coinciden" );
         return;
@@ -99,7 +105,7 @@ void FormCierreCaja::hacerCierre()
     int id_caja = ui->CBCaja->model()->data( ui->CBCaja->model()->index( ui->CBCaja->currentIndex(), 0 ), Qt::DisplayRole ).toInt();
     if( caja->hacerCierre( id_caja, QDateTime::currentDateTime(), ui->dSBComputado->value() ) ) {
         QMessageBox::information( this, "Correcto", "El cierre se realizo correctamente" );
-        if( ( ui->CkBResumen->checkState() == Qt::Checked ) || ( preferencias::getInstancia()->value( "Preferencias/Caja/siempre-resumen", false ).toBool() ) ) {
+        if( ( ui->CkBResumen->checkState() == Qt::Checked ) || siempreresumen ) {
             EVisorInformes *visor = new EVisorInformes();
             InformeCierreCaja *informe = new InformeCierreCaja( visor );
             informe->hacerResumen( id_caja, true );

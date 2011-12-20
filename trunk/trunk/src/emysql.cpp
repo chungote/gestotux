@@ -33,10 +33,11 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
         this->setModal( false );
         id_timer = -1;
         preferencias *p = preferencias::getInstancia();
-        LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
-        if( p->contains( "mysql/contra" ) )
+        p->beginGroup( "mysql" );
+        LEUsuario->setText( p->value( "usuario" ).toString() );
+        if( p->contains( "contra" ) )
         {
-                LEContra->setText( p->value( "mysql/contra" ).toString() );
+                LEContra->setText( p->value( "contra" ).toString() );
         }
         adjustSize();
         this->setWindowTitle( "Conexion a gestotux");
@@ -45,7 +46,7 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
         connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
         connect( PBConectar, SIGNAL( clicked() ), this, SLOT( accept() ) );
         PBConectar->setDefault( true );
-        if( p->value( "mysql/automatico" ).toBool() && p->contains( "mysql/contra" ) )
+        if( p->value( "automatico" ).toBool() && p->contains( "contra" ) )
         {
                 id_timer = this->startTimer( 100 );
                 if( id_timer == 0 )
@@ -53,6 +54,8 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
                         qDebug( "Error al iniciar el timer" );
                 }
         }
+        p->endGroup();
+        p = 0;
 }
 
 EMysql::~EMysql()
@@ -76,12 +79,15 @@ void EMysql::accept()
 {
   // intento conectar
   preferencias *p = preferencias::getInstancia();
+  p->beginGroup( "mysql" );
   QSqlDatabase _db = QSqlDatabase::addDatabase( "QMYSQL" );
-  _db.setHostName( p->value( "mysql/host", "localhost" ).toString() );
-  _db.setPort( p->value( "mysql/puerto", 3306).toInt() );
-  _db.setDatabaseName( p->value( "mysql/base", "gestotux" ).toString() );
+  _db.setHostName( p->value( "host", "localhost" ).toString() );
+  _db.setPort( p->value( "puerto", 3306).toInt() );
+  _db.setDatabaseName( p->value( "base", "gestotux" ).toString() );
   _db.setUserName( LEUsuario->text() );
   _db.setPassword( LEContra->text() );
+  p->endGroup();
+  p = 0;
   if( _db.open() )
   {
    qDebug( "Conectado con mysql" );

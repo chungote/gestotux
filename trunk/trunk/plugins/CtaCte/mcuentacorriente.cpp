@@ -313,8 +313,15 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
 {
     QSqlQuery cola;
     // Datos predeterminados
-    double saldo = preferencias::getInstancia()->value( "Preferencias/CtaCte/saldo-inicial", 0.0 ).toDouble();
-    double limite = preferencias::getInstancia()->value( "Preferencias/CtaCte/limite", 1000.0 ).toDouble();
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "CtaCte" );
+    double saldo = preferencias::getInstancia()->value( "saldo-inicial", 0.0 ).toDouble();
+    double limite = preferencias::getInstancia()->value( "limite", 1000.0 ).toDouble();
+    p->endGroup();
+    p->endGroup();
+    p=0;
+    delete p;
     // Numero de cuenta
     cola.prepare( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite ) VALUES( :num_cuenta, :id_cliente, :fecha_alta, :saldo, :limite )" );
     QString num_cuenta = QString( "%L1" ).arg( id_cliente );

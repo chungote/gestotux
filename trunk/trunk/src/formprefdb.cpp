@@ -38,28 +38,30 @@ FormPrefDb::~FormPrefDb()
 void FormPrefDb::cargar()
 {
  preferencias *p = preferencias::getInstancia();
- p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
  RBInterna->setChecked( p->value( "dbInterna", true ).toBool() );
  RBExterna->setChecked( p->value( "dbExterna", false ).toBool() );
- LEHost->setText( p->value( "mysql/host" ).toString() );
- if( p->contains( "mysql/puerto" ) )
+ p->beginGroup( "mysql" );
+ LEHost->setText( p->value( "host" ).toString() );
+ if( p->contains( "puerto" ) )
  {
-  SBPuerto->setValue( p->value( "mysql/puerto", 3306 ).toInt() );
+  SBPuerto->setValue( p->value( "puerto", 3306 ).toInt() );
   CkBPuerto->setChecked( true );
  }
- LEUsuario->setText( p->value( "mysql/usuario" ).toString() );
- if( p->contains( "mysql/contra" ) )
+ LEUsuario->setText( p->value( "usuario" ).toString() );
+ if( p->contains( "contra" ) )
  {
   CkBPass->setChecked( true );
-  LEPass->setText( p->value( "mysql/contra", "desconocido" ).toString() );
+  LEPass->setText( p->value( "contra", "desconocido" ).toString() );
  }
- LEBaseDatos->setText( p->value( "mysql/base", "gestotux" ).toString() );
- CkBAutomatico->setChecked( p->value( "mysql/automatico", false ).toBool() );
+ LEBaseDatos->setText( p->value( "base", "gestotux" ).toString() );
+ CkBAutomatico->setChecked( p->value( "automatico", false ).toBool() );
+ p->endGroup();
  CBFrecuencia->setCurrentIndex( p->value( "frecuenciaBackup", 1 ).toInt() );
  p->endGroup();
  p->endGroup();
+ p = 0;
 }
 
 
@@ -69,23 +71,24 @@ void FormPrefDb::cargar()
 void FormPrefDb::guardar()
 {
  preferencias *p = preferencias::getInstancia();
- p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
  p->setValue( "dbInterna", RBInterna->isChecked() );
  p->setValue( "dbExterna", RBExterna->isChecked() );
- p->setValue( "mysql/base", LEBaseDatos->text() );
- p->setValue( "mysql/usuario", LEUsuario->text() );
- p->setValue( "mysql/host", LEHost->text() );
+ p->beginGroup( "mysql" );
+ p->setValue( "base", LEBaseDatos->text() );
+ p->setValue( "usuario", LEUsuario->text() );
+ p->setValue( "host", LEHost->text() );
  if( CkBPuerto->isChecked() )
  {
-  p->setValue( "mysql/puerto", SBPuerto->value() );
+  p->setValue( "puerto", SBPuerto->value() );
  }
  if( CkBPass->isChecked() )
  {
-  p->setValue( "mysql/contra", LEPass->text() );
+  p->setValue( "contra", LEPass->text() );
  }
- p->setValue( "mysql/automatico", CkBAutomatico->isChecked() );
+ p->setValue( "automatico", CkBAutomatico->isChecked() );
+ p->endGroup();
  if( !RBExterna->isChecked() )
  {
   p->setValue( "frecuenciaBackup", CBFrecuencia->currentIndex() );

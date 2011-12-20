@@ -27,6 +27,8 @@ namespace Ui {
     class FormEstadoCaja;
 }
 
+class MCajas;
+
 /*!
  * @brief Formulario para verificar el saldo de las cajas en el sistema
  */
@@ -46,6 +48,7 @@ private slots:
 
 private:
     Ui::FormEstadoCaja *ui;
+    MCajas *modelo;
 };
 
 #endif // FORMESTADOCAJA_H
