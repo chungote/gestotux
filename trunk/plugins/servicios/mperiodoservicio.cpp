@@ -43,13 +43,13 @@ void MPeriodoServicio::relacionar() {
 int MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin )
 {
  QSqlQuery cola;
- cola.prepare( "INSERT INTO periodo_servicio( id_servicio, periodo, ano, fecha_inicio, fecha_fin ) VALUES( :id_servicio, :periodo, :ano, :fecha_inicio, :fecha_fin )" );
+ cola.prepare( "INSERT INTO periodo_servicio( id_servicio, periodo, ano, fecha_inicio, fecha_fin, fecha ) VALUES( :id_servicio, :periodo, :ano, :fecha_inicio, :fecha_fin, :fecha )" );
  cola.bindValue( ":id_servicio", id_servicio );
  cola.bindValue( ":periodo", periodo );
  cola.bindValue( ":ano", ano );
  cola.bindValue( ":fecha_inicio", fecha_inicio );
  cola.bindValue( ":fecha_fin", fecha_fin );
- //cola.bindValue( ":fecha", fecha_generado ); Este lo genera solo la base de datos mysql
+ cola.bindValue( ":fecha", QDateTime::currentDateTime() );
  if( cola.exec() ) {
      return cola.lastInsertId().toInt();
  } else {

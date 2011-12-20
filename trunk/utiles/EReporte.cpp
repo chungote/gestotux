@@ -100,7 +100,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
         return false;
     }
 
-    if( _tipo == EReporte::Presupuesto || _tipo == EReporte::Recibo ) {
+    /*if( _tipo == EReporte::Presupuesto || _tipo == EReporte::Recibo ) {
         // Guardo el documento en la carpeta si corresponde
         QDir dir = QApplication::applicationDirPath();
         dir.cd( "reportes" );
@@ -110,10 +110,10 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
             }
         }
         dir.cd( "deposito" );
-        /*if( ! _rep->exportToPDF( dir.absoluteFilePath( _rep-> ) ) ) {
+        if( ! _rep->exportToPDF( dir.absoluteFilePath( _rep-> ) ) ) {
             qDebug( "Error al guardar el reporte en el directorio." );
-        }*/
-    }
+        }
+    }*/
     return true;
 
 }
@@ -144,7 +144,11 @@ bool EReporte::especial( const QString nombre, ParameterList parametros ) {
 void EReporte::presupuesto() {
     _tipo = EReporte::Presupuesto;
     // Busco el tipo de presupuesto que se desea
-    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Presupuesto" ).toString();
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Reportes" );
+    _nombre = p->value( "Presupuesto" ).toString();
+    p->endGroup(); p->endGroup(); p=0;
     if( _nombre.isEmpty() )
         _nombre = "Presupuesto";
     // Cargo el reporte
@@ -158,7 +162,11 @@ void EReporte::presupuesto() {
 void EReporte::factura() {
     _tipo = EReporte::Factura;
     // Busco el tipo de presupuesto que se desea
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Factura" ).toString();
+    p->endGroup(); p->endGroup(); p=0;
     if( _nombre.isEmpty() )
         _nombre = "Factura";
     // Cargo el reporte
@@ -172,7 +180,11 @@ void EReporte::factura() {
 void EReporte::recibo() {
     _tipo = EReporte::Recibo;
     // Busco el tipo de presupuesto que se desea
-    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Recibo" ).toString();
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Reportes" );
+    _nombre = preferencias::getInstancia()->value( "Recibos" ).toString();
+    p->endGroup(); p->endGroup(); p=0;
     if( _nombre.isEmpty() )
         _nombre = "Recibo";
     // Cargo el reporte
@@ -186,7 +198,11 @@ void EReporte::recibo() {
  */
 void EReporte::anulacionFactura() {
     _tipo = EReporte::AnulacionFactura;
-    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/AnulacionFactura" ).toString();
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Reportes" );
+    _nombre = preferencias::getInstancia()->value( "AnulacionFactura" ).toString();
+    p->endGroup(); p->endGroup(); p=0;
     if( _nombre.isEmpty() )
         _nombre = "AnulacionFactura";
     cargar( _nombre );

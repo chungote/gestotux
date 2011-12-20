@@ -87,7 +87,7 @@ NumeroComprobante &MPresupuesto::proximoComprobante() {
           qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
       }
   } else {
-      NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+      NumeroComprobante *num = new NumeroComprobante( 0, 1, 0 );
       num->siguienteNumero();
       qDebug( "Error de cola al hacer exec al obtener el numero de serie de presupuesto maximo - Se inicio una nueva numeracion" );
       qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );

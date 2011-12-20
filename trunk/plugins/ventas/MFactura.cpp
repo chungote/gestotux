@@ -317,7 +317,7 @@ NumeroComprobante &MFactura::proximoComprobante() {
           qDebug( "Error de cola al hacer next al obtener el numero de serie de factura maximo -  Se inicio una nueva numeracion" );
       }
   } else {
-      NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+      NumeroComprobante *num = new NumeroComprobante( 0, 1, 0 );
       num->siguienteNumero();
       qDebug( "Error de cola al hacer exec al obtener el numero de serie de factura maximo - Se inicio una nueva numeracion" );
       return *num;
