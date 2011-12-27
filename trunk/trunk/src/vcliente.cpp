@@ -137,7 +137,7 @@ void VCliente::listadoClientes() {
 #include "buscarcliente.h"
 void VCliente::buscar()
 {
-    if( ActBuscar->isChecked() ) {
+    if( !ActBuscar->isChecked() ) {
         this->b = new BuscarCliente( this, this->mc );
         emit agregarDockWidget( Qt::BottomDockWidgetArea, b );
     } else {

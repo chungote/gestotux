@@ -113,30 +113,44 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     if( responsable ) {
         tabla->cellAt( 0, 6 ).firstCursorPosition().insertHtml( " Responsable " );
     }
+    QTextBlockFormat bfizq = tabla->cellAt( 0, 5 ).firstCursorPosition().blockFormat();
+    bfizq.setAlignment( Qt::AlignRight );
     // Averiguo el saldo hasta el momento del cierre anterior
     double saldo_anterior = m->saldoEnMovimientoAnteriorA( id_caja, id_cierre );
     while( resultados.next() ) {
         int pos = tabla->rows();
         tabla->insertRows( pos, 1 );
-        tabla->cellAt( pos, 0 ).firstCursorPosition().insertHtml( QString( " # %1 " ).arg( resultados.record().value("id_movimiento" ).toInt() ) );
+        tabla->cellAt( pos, 0 ).firstCursorPosition().insertHtml( QString( "# %1 " ).arg( resultados.record().value("id_movimiento" ).toInt(), 4 ) );
         tabla->cellAt( pos, 1 ).firstCursorPosition().insertHtml( resultados.record().value("fecha_hora" ).toDateTime().toString( Qt::SystemLocaleDate ) );
         tabla->cellAt( pos, 2 ).firstCursorPosition().insertHtml( resultados.record().value("razon" ).toString() );
         if( resultados.record().value( "cierre" ).toBool() == false ) {
             // Ingreso
             double haber = resultados.record().value( "ingreso" ).toDouble();
             saldo_anterior += haber;
-            tabla->cellAt( pos, 3 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( haber ) );
+            if( haber != 0 ) {
+                tabla->cellAt( pos, 3 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( haber, 10, 'f', 2  ) );
+            } else {
+                tabla->cellAt( pos, 3 ).firstCursorPosition().insertHtml( "" );
+            }
+            tabla->cellAt( pos, 3 ).firstCursorPosition().setBlockFormat( bfizq );
             // Egreso
             double debe = resultados.record().value( "egreso" ).toDouble();
             saldo_anterior -= debe;
-            tabla->cellAt( pos, 4 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( debe ) );
+            if( debe != 0 ) {
+                tabla->cellAt( pos, 4 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( debe, 10, 'f', 2  ) );
+            } else {
+                tabla->cellAt( pos, 4 ).firstCursorPosition().insertHtml( "" );
+            }
+            tabla->cellAt( pos, 4 ).firstCursorPosition().setBlockFormat( bfizq );
             // Subtotal hasta el momento
-            tabla->cellAt( pos, 5 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( saldo_anterior ) );
+            tabla->cellAt( pos, 5 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( saldo_anterior, 10, 'f', 2  ) );
+            tabla->cellAt( pos, 5 ).firstCursorPosition().setBlockFormat( bfizq );
         } else {
-            saldo_anterior += resultados.record().value( "ingreso" ).toDouble();
-            tabla->cellAt( pos, 5 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( saldo_anterior ) );
+            //saldo_anterior += resultados.record().value( "ingreso" ).toDouble();
+            tabla->cellAt( pos, 5 ).firstCursorPosition().insertHtml( QString( " $ %L1" ).arg( saldo_anterior, 10, 'f', 2 ) );
+            tabla->cellAt( pos, 5 ).firstCursorPosition().setBlockFormat( bfizq );
         }
-        if( preferencias::getInstancia()->value( "Preferencias/Caja/responsable", true ).toBool() ) {
+        if( responsable ) {
             tabla->cellAt( pos, 6 ).firstCursorPosition().insertHtml( resultados.record().value( "responsable" ).toString() );
         }
     }
@@ -157,7 +171,7 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     cursor.insertBlock();
     if( logo ) {
         cursor.insertImage( ERegistroPlugins::getInstancia()->pluginInfo()->imagenPrograma() );
-        cursor.insertImage( ":/imagenes/gestotux32.png" );
+        //cursor.insertImage( ":/imagenes/gestotux32.png" );
     }
     cursor.insertHtml( "<h1>Cierre de Caja</h1>" );
     cursor.insertBlock();

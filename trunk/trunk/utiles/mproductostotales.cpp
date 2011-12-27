@@ -106,11 +106,11 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                         // Cantidad
                         case 0:
                         {
-                                // Veo si tengo que verificar el maximo posible y el producto es valido
+                                // Veo si tengo que verificar el maximo posible y el producto es valido y no estamos en buscar precio de compra ( ingresando compra no controla stock )
                                 if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() &&
-                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 )
+                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 && _tipoPrecio != MProductosTotales::Costo )
                                 {
-                                        // Busco si elv stock actual menos la cantidad es <= 0
+                                        // Busco si el stock actual menos la cantidad es <= 0
                                         qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
                                         {
@@ -138,8 +138,8 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                     qDebug( "Indice no encontrado en la lista de productos" );
                                     return false;
                                 }
-                                // Veo si tengo que verificar el maximo posible en stock
-                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool()  && this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 )
+                                // Veo si tengo que verificar el maximo posible en stock, el producto es valido o estamos en modo compra
+                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool()  && this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 && _tipoPrecio != MProductosTotales::Costo)
                                 {
                                         // Busco si el stock actual menos la cantidad es <= 0
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
@@ -563,10 +563,12 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
       }
 
       // Es un producto valido
-      if( ( MProductos::stock( Id ) - cantidad ) < 0 ) {
-          qDebug( "-> Error, stock negativo" );
-          qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
-          return;
+      if( _tipoPrecio != MProductosTotales::Costo ) {
+        if( ( MProductos::stock( Id ) - cantidad ) < 0 ) {
+              qDebug( "-> Error, stock negativo" );
+              qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
+              return;
+        }
       }
   }
 

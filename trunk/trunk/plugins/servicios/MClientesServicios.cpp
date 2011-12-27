@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "MClientesServicios.h"
+#include <QDate>
 
 MClientesServicios::MClientesServicios(QObject *parent) :
     QSqlRelationalTableModel(parent)
@@ -61,6 +62,8 @@ QVariant MClientesServicios::data(const QModelIndex &item, int role) const
     case 3:
     {
      switch( role ) {
+        case Qt::DisplayRole:
+        {  return QDate( QSqlRelationalTableModel::data( item, role ).toDate() ).toString( Qt::SystemLocaleShortDate ); }
         case Qt::TextAlignmentRole:
         {  return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
         default:
