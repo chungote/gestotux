@@ -5,25 +5,23 @@ h1 {
   }
 
 table {
-    border-style: dotted;
-    border-width: 1px;
-    border-color: black;
-    padding: 2px;
+    padding: 1px;
     margin: 2px;
+    border-style: none;
   }
-
-th {
-    background: #c7c7c7;
-    font-weight: bold;
-}
 
 p {
     font-size: small;
  }
 
 thead {
-    background: #c7c7c7;
+    background-color: #c7c7c7;
     font-style: italic;
+    font-weight: bold;
     align: center;
+    valign: middle;
+    border-style: dotted;
+    border-width: 1px;
+    border-color: black;
   }
 
