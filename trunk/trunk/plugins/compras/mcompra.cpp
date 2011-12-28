@@ -151,3 +151,8 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
  */
 int MCompra::ultimoId()
 { return this->query().lastInsertId().toInt(); }
+
+Qt::ItemFlags MCompra::flags(const QModelIndex& index) const
+{
+ return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}

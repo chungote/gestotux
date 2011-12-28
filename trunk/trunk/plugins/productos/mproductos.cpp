@@ -161,6 +161,10 @@ QVariant MProductos::data(const QModelIndex& item, int role) const
  }
 }
 
+Qt::ItemFlags MProductos::flags(const QModelIndex &/*index*/) const
+{
+    return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}
 
 #include <QSqlQuery>
 #include <QSqlRecord>
@@ -283,6 +287,11 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
 
 /*!
     \fn MProductos::actualizarPrecioCompra( const int id_producto, const double precio )
+    Actualiza el precio de costo del producto indicado.
+    ATENCION: ¡ No actualiza el precio de venta !
+    \param id_producto identificador del producto.
+    \param precio Precio de costo a aplicar.
+    \return Verdadero si se pudo actualizar, falso en caso contrario.
  */
 bool MProductos::actualizarPrecioCompra( const int id_producto, const double precio )
 {
@@ -290,7 +299,6 @@ bool MProductos::actualizarPrecioCompra( const int id_producto, const double pre
  if( cola.exec( QString( "UPDATE producto SET precio_costo = %1 WHERE id = %2" ).arg( precio ).arg( id_producto ) ) )
  {
         qDebug( "Precio de compra actualizado correctamente" );
-        /// @todo Actualizo el precio de venta? o creo una tabla con los ids de productos de precio desactualizado?
         return true;
  }
  else
@@ -300,6 +308,86 @@ bool MProductos::actualizarPrecioCompra( const int id_producto, const double pre
   qDebug( qPrintable( cola.lastQuery() ) );
   return false;
  }
+}
+
+/*!
+    \fn MProductos::actualizarPrecioVenta( const int id_producto, const double precio )
+    Actualiza el precio de venta del producto indicado.
+    \param id_producto identificador del producto.
+    \param precio Precio de venta a aplicar.
+    \return Verdadero si se pudo actualizar, falso en caso contrario.
+ */
+bool MProductos::actualizarPrecioVenta( const int id_producto, const double precio )
+{
+ QSqlQuery cola;
+ if( cola.exec( QString( "UPDATE producto SET precio_venta = %1 WHERE id = %2" ).arg( precio ).arg( id_producto ) ) )
+ {
+        qDebug( "Precio de venta actualizado correctamente" );
+        return true;
+ }
+ else
+ {
+  qWarning( "Error al intentar actualizar el precio de venta del producto solicitado" );
+  qDebug( qPrintable( cola.lastError().text() ) );
+  qDebug( qPrintable( cola.lastQuery() ) );
+  return false;
+ }
+}
+
+/*!
+    \fn MProductos::buscarPrecioVenta( const int id_producto )
+    Busca el precio de compra del producto dado por id.
+    \param id_producto Identificador del producto.
+    \returns Precio de venta del producto o -1 si hubo error.
+ */
+double MProductos::buscarPrecioCompra( const int id_producto )
+{
+ QSqlQuery cola;
+ if( cola.exec( QString( "SELECT precio_compra FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+ {
+     if( cola.next() ) {
+         return cola.record().value(0).toDouble();
+     } else {
+         qWarning( "Error al hacer next la cola de busqueda del precio de venta del producto solicitado" );
+     }
+ }
+ else
+ {
+  qWarning( "Error al ejecutar la cola de busqueda del precio de venta del producto solicitado" );
+ }
+ qDebug( qPrintable( cola.lastError().text() ) );
+ qDebug( qPrintable( cola.lastQuery() ) );
+ return -1.0;
+}
+
+/*!
+    \fn MProductos::buscarPrecioVenta( const QString codigo )
+    Busca el precio de compra del producto dado por codigo del producto.
+    \param codigo Codigo del producto.
+    \returns Precio de venta del producto o -1 si hubo error o el codigo no existe.
+ */
+double MProductos::buscarPrecioCompra( const QString codigo )
+{
+    if( !MProductos::existeCodigo( codigo ) ) {
+        return -1.0;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT precio_compra FROM producto WHERE codigo = %1" ).arg( codigo ) ) )
+    {
+        if( cola.next() ) {
+            return cola.record().value(0).toDouble();
+        } else {
+            qWarning( "Error al hacer next la cola de busqueda del precio de venta del producto solicitado - codigo" );
+        }
+    }
+    else
+    {
+     qWarning( "Error al ejecutar la cola de busqueda del precio de venta del producto solicitado - codigo" );
+    }
+    qDebug( qPrintable( cola.lastError().text() ) );
+    qDebug( qPrintable( cola.lastQuery() ) );
+    return -1.0;
+
 }
 
 /*!

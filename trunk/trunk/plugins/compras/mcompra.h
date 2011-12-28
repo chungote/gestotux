@@ -35,6 +35,7 @@ public:
     bool agregarCompra( QVariant fecha, QVariant proveedor, double total );
     QVariant data(const QModelIndex &index, int role ) const;
     int ultimoId();
+    Qt::ItemFlags flags(const QModelIndex& index) const;
 
 };
 
