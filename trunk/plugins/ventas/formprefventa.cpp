@@ -42,7 +42,7 @@ void FormPrefVenta::cargar()
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "Ventas" );
- this->CkBBusquedaPrecio->setChecked( p->value( "Preferencias/Ventas/buscarPrecio", false ).toBool() );
+ this->CkBBusquedaPrecio->setChecked( p->value( "buscarPrecio", false ).toBool() );
  p->endGroup();
  p->endGroup();
  p=0;

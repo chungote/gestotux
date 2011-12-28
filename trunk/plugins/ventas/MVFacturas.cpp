@@ -86,3 +86,8 @@ void MVFacturas::verAnuladas( bool sino )
         this->select();
     }
 }
+
+Qt::ItemFlags MVFacturas::flags(const QModelIndex &/*index*/) const
+{
+    return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}

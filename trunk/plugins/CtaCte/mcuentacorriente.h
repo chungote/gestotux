@@ -50,6 +50,8 @@ public:
     MCuentaCorriente( QObject *parent = 0, bool relaciones = true );
 
     QVariant data(const QModelIndex& item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+
     void filtrarSoloDeudoras( bool sino );
 
     static QString obtenerNumeroCuentaCorriente( const int id_cliente );

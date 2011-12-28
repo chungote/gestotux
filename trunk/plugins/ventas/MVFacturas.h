@@ -9,6 +9,8 @@ class MVFacturas : public QSqlTableModel
 public:
     explicit MVFacturas(QObject *parent = 0);
     QVariant data( const QModelIndex& item, int role ) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+
     void verAnuladas( bool sino );
 
 };

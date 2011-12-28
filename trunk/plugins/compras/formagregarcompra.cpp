@@ -82,6 +82,7 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 #include <QInputDialog>
 #include "mproductos.h"
 #include "formagregarproducto.h"
+#include "preferencias.h"
 /*!
     \fn FormAgregarCompra::guardar()
  */
@@ -137,7 +138,11 @@ void FormAgregarCompra::guardar()
          if( siATodo )
                  ret = QMessageBox::Yes;
             else
-                 ret = QMessageBox::question( this, "¿Agregar?", "Desea agregar el producto?", QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll, QMessageBox::Yes );
+                ret = QMessageBox::question( this,
+                                             "¿Agregar?",
+                                             QString( "Desea agregar el producto %1?" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ),
+                                             QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll,
+                                             QMessageBox::Yes );
          switch( ret ) {
             case QMessageBox::YesToAll:
             {
@@ -147,8 +152,6 @@ void FormAgregarCompra::guardar()
             case QMessageBox::Yes:
             {
                  // Agrego el producto
-                qWarning( "todavía no implementado" );
-                continue;
                 FormAgregarProducto *f = new FormAgregarProducto();
                 f->setearNombre( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() );
                 f->setearStockInicial(mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() );
@@ -168,6 +171,27 @@ void FormAgregarCompra::guardar()
                 break;
             }
 
+         }
+     } else {
+         // El sistema ajusta automaticamente el precio de compra pero no el de venta.
+         double precio_anterior = MProductos::buscarPrecioCompra( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() );
+         if( ( precio_anterior - mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() ) != 0 ) {
+             // Actualizo el precio de venta
+             preferencias *p = preferencias::getInstancia();
+             p->beginGroup( "Preferencias" );
+             p->beginGroup( "Productos" );
+             double ganancia = p->value( "ganancia", 0.10 ).toDouble();
+             p->endGroup();p->endGroup(); p = 0;
+             double precio_calculado = precio_anterior * ( 1 + ganancia );
+             bool ok = false;
+             double precio_venta = QInputDialog::getDouble( this,
+                                                            "Nuevo precio de venta",
+                                                            QString( "Ingrese el nuevo precio de venta para %1:" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ),
+                                                            precio_calculado,
+                                                            0.01, 2147483647, 2, &ok );
+             if( !MProductos::actualizarPrecioVenta( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), precio_venta ) ) {
+                 qWarning( QString( "No se pudo actualizar el precio de venta del producto %1" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ).toLocal8Bit() );
+             }
          }
      }
      if( !m->agregarCompraProducto( id_compra,

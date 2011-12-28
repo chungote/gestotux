@@ -55,6 +55,25 @@ void MCuentaCorriente::relacionar()
  setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
 }
 
+Qt::ItemFlags MCuentaCorriente::flags(const QModelIndex& index) const
+{
+    switch( index.column() )
+    {
+        // Campos editables de la vista
+        case 4:
+        case 5:
+        case 3:
+        {
+            return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+            break;
+        }
+        default:
+        {
+            return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+            break;
+        }
+    }
+}
 
 QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
 {
