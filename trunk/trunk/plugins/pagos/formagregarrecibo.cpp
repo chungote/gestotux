@@ -115,6 +115,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
   if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) )
   {
    qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
+   qDebug( numero_cuenta.toLocal8Bit() );
    return;
   }
   else

@@ -104,21 +104,25 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
 void VCuentaCorriente::modificarLimite()
 {
  // Busco el item
+ if( vista->selectionModel()->selectedRows().isEmpty() ) {
+     QMessageBox::warning( this, "Error", QString::fromUtf8( "Por favor, seleccione una cuenta corriente para cambiarle el límite." ) );
+     return;
+ }
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
  double limite_anterior = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), Qt::EditRole ).toDouble();
+ QString id_ctacte = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
  bool ok = false;
- double limite_nuevo = QInputDialog::getDouble( this, QString::fromUtf8("Límite máximo de credito:"), "Ingrese el limite maximo", limite_anterior, 0.0, 1000000.0, 3, &ok );
+ double limite_nuevo = QInputDialog::getDouble( this, "Ingrese el limite maximo", QString::fromUtf8("Límite máximo de credito:"), limite_anterior, 0.0, 1000000.0, 3, &ok );
  if( ok )
  {
   //Verifico que no sean el mismo
   if( limite_anterior == limite_nuevo )
   { return; }
-  rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), limite_nuevo, Qt::EditRole );
-  rmodelo->submitAll();
+  if( qobject_cast<MCuentaCorriente *>(rmodelo)->modificarLimite( id_ctacte, limite_nuevo, rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ) ) ) {
+      QMessageBox::information( this, "Correcto", "El nuevo límite ha sido colocado correctamente" );
+      return;
+  } // El error lo reportará el metodo de existir
  }
- else
- { return; }
-
 }
 
 

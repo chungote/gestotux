@@ -24,6 +24,7 @@
 #include <QTableView>
 #include <QPushButton>
 #include <QAction>
+#include <QMessageBox>
 
 VCompras::VCompras(QWidget *parent)
  : EVLista( parent )
@@ -87,5 +88,9 @@ void VCompras::verLista( const QModelIndex &indice )
 void VCompras::verLista()
 {
  // Busco el primer indice seleccionado.
+ if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::information( this, "Falta seleccion", "Por favor, seleccióne una compra para ver sus productos." );
+        return;
+ }
  verLista( this->vista->selectionModel()->selectedRows().first() );
 }

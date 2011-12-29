@@ -40,7 +40,10 @@ void ECBClientes::inicializar()
     if( cola.exec( "SELECT id, razon_social FROM clientes ORDER BY razon_social ASC" ) ) {
         int pos = 0;
         while( cola.next() ) {
-            this->insertItem( pos, cola.record().value(1).toString(), cola.record().value(0).toInt() );
+            this->insertItem( pos, cola.record().value(1).toString() );
+            this->setItemData( pos , cola.record().value(0) );
+/*            if( this->itemData( pos, Qt::UserRole ).isValid() )
+                qDebug( this->itemData( pos, Qt::UserRole ).toString().toLocal8Bit() );*/
             pos++;
         }
         if( pos == 0 ) {
@@ -54,10 +57,16 @@ void ECBClientes::inicializar()
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
+/*    for( int i = 0; i < this->count(); i ++ ) {
+        qDebug( QString( "pos: %1 - %2 - ID: %3 " ).arg( i ).arg( this->itemText( i ) ).arg( itemData( i ).toString() ).toLocal8Bit() );
+    }*/
 }
 
 int ECBClientes::idClienteActual()
 {
+/*    for( int i = 0; i < this->count(); i ++ ) {
+        qDebug( QString( "pos: %1, - %2 - ID: %3 " ).arg( i ).arg( this->itemText( i ) ).arg( itemData( i ).toString() ).toLocal8Bit() );
+    }*/
     return this->itemData( this->currentIndex() ).toInt();
 }
 

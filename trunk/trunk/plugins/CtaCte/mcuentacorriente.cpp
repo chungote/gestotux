@@ -91,7 +91,7 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 4:
                         case 5:
                         {
-                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item,role).toDouble() );
+                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item,role).toDouble(), 10, 'f', 2 );
                                 break;
                         }
                         case 6:
@@ -381,18 +381,111 @@ void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
 bool MCuentaCorriente::existeCuenta( const QString num_cuenta )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT COUNT(num_cuenta) FROM ctacte WHERE num_cuenta = %1" ).arg( num_cuenta )  ) )
+    if( cola.exec( QString( "SELECT COUNT(numero_cuenta) FROM ctacte WHERE num_cuenta = %1" ).arg( num_cuenta )  ) )
     {
         if( cola.next() ) {
             if( cola.record().value(0).toInt() <= 0 ) { return false; } else { return true; }
         } else {
             qDebug( "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta" );
-            return false;
         }
     } else {
         qDebug( "Error al hacer next en la cola para averiguar si existe el numero de cuenta" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    qDebug( cola.lastError().text().toLocal8Bit() );
+    qDebug( cola.lastQuery().toLocal8Bit() );
+    return false;
+}
+
+/*!
+ * \fn MCuentaCorriente::existeCuentaCliente( cost int id_cliente )
+ * Realiza la busqueda de si existe la cuenta corriente o no del cliente pasado como parametro
+ * \param num_cuenta Numero de cuenta corriente
+ * \return Verdadero si existe, falso si no existe o hubo un error
+ */
+bool MCuentaCorriente::existeCuentaCliente( const int id_cliente )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(numero_cuenta) FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente )  ) )
+    {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() <= 0 ) { return false; } else { return true; }
+        } else {
+            qDebug( "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta de un cliente" );
+        }
+    } else {
+        qDebug( "Error al hacer next en la cola para averiguar si existe el numero de cuenta de un cliente" );
+    }
+    qDebug( cola.lastError().text().toLocal8Bit() );
+    qDebug( cola.lastQuery().toLocal8Bit() );
+    return false;
+}
+
+/*!
+ * \fn MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice )
+ * Modifica el límite de la cuenta corriente con el nuevo valor si es valido y emite una actualización del indice para refrescar la vista.
+ * \param numero_cuenta Numero de cuenta a actualizar
+ * \param nuevo_limite Nuevo limite a aplicar
+ * \returns Verdadero si el limite se modifico correctamente.
+ */
+bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite )
+{
+    if( numero_cuenta.isEmpty() || numero_cuenta.isNull() || nuevo_limite < 0 ) {
         return false;
     }
+    QSqlQuery cola;
+    if( cola.exec( QString( "UPDATE ctacte SET limite = %2 WHERE num_cuenta = %1" ).arg( numero_cuenta ).arg( nuevo_limite ) ) ) {
+        qDebug( "Limite de cuenta corriente modificado correctamente." );
+        return true;
+    } else {
+        qWarning( "Error al intentar actualizar el limite para una cuena corriente." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
 }
+
+/*!
+ * \fn MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice )
+ * Modifica el límite de la cuenta corriente con el nuevo valor si es valido y emite una actualización del indice para refrescar la vista.
+ * \param numero_cuenta Numero de cuenta a actualizar
+ * \param nuevo_limite Nuevo limite a aplicar
+ * \param indice Indice con el cual se hara un emit dataChanged()
+ * \returns Verdadero si el limite se modifico correctamente.
+ */
+bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice )
+{
+    if( !indice.isValid() ) { return false; }
+    if( modificarLimite( numero_cuenta, nuevo_limite ) ) {
+        emit dataChanged( indice, indice );
+        return true;
+    }
+    return false;
+}
+
+/*!
+ * \fn MCuentaCorriente::limite( const QString numero_cuenta )
+ * Devuelve el limite actual de la cuenta corriente.
+ * \param numero_cuenta Numero de cuenta para devolver el limite.
+ * \returns Limite, 0 si la cuenta esta suspendida o -1 si hubo un error.
+ */
+double MCuentaCorriente::limite( const QString numero_cuenta )
+{
+    if( numero_cuenta.isEmpty() ) {
+        qDebug( "Numero de cuenta invalido" );
+        return -1;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT limite FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDouble();
+        } else {
+            qDebug( "Error al hacer next en la cola de obtención del limite de ctacte" );
+        }
+    } else {
+        qDebug( "Error al hacer exec en la cola de obtención del limite de ctacte" );
+    }
+    qDebug( cola.lastError().text().toLocal8Bit() );
+    qDebug( cola.lastQuery().toLocal8Bit() );
+    return false;
+}
+

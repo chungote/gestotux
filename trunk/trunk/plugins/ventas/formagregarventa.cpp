@@ -99,6 +99,9 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
                 RBContado->setChecked( true );
         }
 
+        // deshabilito el item de cuotas por no estar programado
+        RBCuotas->setVisible( false );
+
         // Coloco el proximo numero de comprobante
         LNumeroComprobante->setText( LNumeroComprobante->text().append( "       <b>" ).append( MFactura::proximoComprobante().aCadena() ).append( "</b>" ) );
 
@@ -313,28 +316,29 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
      LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
  } else {
      qDebug( "Cliente consumidor final - Sin direccion" );
+     return;
  }
- // Veo si esta habilitado el cliente
+ // Veo si esta habilitado el cliente con cueta corriente y el plugin esta cargado
  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
  {
   int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
   if( id_cliente == 0 ) {
       // Es el Consumidor Final
+      qDebug( "Id cliente es consumidor final" );
       RBContado->setChecked( true );
       GBFormaPago->setEnabled( false );
       return;
   }
-  QString num_cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
-  if( num_cuenta.toInt() > 0 )
+  if( MCuentaCorriente::existeCuentaCliente( id_cliente ) )
   {
    RBCtaCte->setEnabled( true );
-   return;
+   GBFormaPago->setEnabled( true );
   }
   else
   {
    RBContado->setChecked( true );
    RBCtaCte->setEnabled( false );
-   return;
   }
  }
+ return;
 }

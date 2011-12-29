@@ -36,7 +36,7 @@
 
 
 VCliente::VCliente( QWidget *parent )
- : EVLista( parent )
+    : EVLista( parent ), b(0)
 {
  setObjectName( "lista_clientes" );
  this->setAttribute( Qt::WA_DeleteOnClose );
@@ -79,7 +79,7 @@ VCliente::VCliente( QWidget *parent )
 
  addAction( ActAgregar );
  addAction( ActModificar );
- addAction( ActEliminar );
+ //addAction( ActEliminar );
  addAction( ActLista );
  addAction( ActBuscar );
  addAction( ActVerTodos );
@@ -137,9 +137,13 @@ void VCliente::listadoClientes() {
 #include "buscarcliente.h"
 void VCliente::buscar()
 {
-    if( !ActBuscar->isChecked() ) {
-        this->b = new BuscarCliente( this, this->mc );
-        emit agregarDockWidget( Qt::BottomDockWidgetArea, b );
+    if( ActBuscar->isChecked() ) {
+        if( b == 0 ) {
+            this->b = new BuscarCliente( this, this->mc );
+            emit agregarDockWidget( Qt::BottomDockWidgetArea, b );
+        } else {
+            this->b->show();
+        }
     } else {
         if( this->b != 0 ) { this->b->hide(); }
     }
