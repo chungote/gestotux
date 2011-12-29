@@ -61,8 +61,13 @@ public:
     static bool actualizarSaldo( const QString numero_cuenta, const double aplicar );
     static bool agregarCuentaCorrientePredeterminada( const int id_cliente, const QDateTime fecha_alta = QDateTime::currentDateTime() );
     static bool existeCuenta( const QString num_cuenta );
+    static bool existeCuentaCliente( const int id_cliente );
 
     static double saldo( const QString numero_cuenta );
+
+    bool modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice );
+    static bool modificarLimite( const QString numero_cuenta, const double nuevo_limite );
+    static double limite( const QString numero_cuenta );
 
     void inicializar();
     void relacionar();

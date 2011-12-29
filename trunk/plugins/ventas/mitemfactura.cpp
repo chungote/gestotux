@@ -68,11 +68,8 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
             return false;
         }
     }
-    if( ! cola.prepare( "INSERT INTO item_factura( id_item_factura, id_factura, cantidad, texto, precio_unitario, id_producto ) VALUES ( :id_item_factura, :id_venta, :cantidad, :texto, :precio_unitario, :id_producto );" ) ) {
-        qDebug( "Error al intentar preparar la cola de inserción" );
-        qDebug( QString( "Error: %1 - %2" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
-    }
-    cola.bindValue( ":id_item_factura", _orden );
+    cola.prepare( "INSERT INTO item_factura( id_factura, cantidad, texto, precio_unitario, id_producto ) VALUES ( :id_venta, :cantidad, :texto, :precio_unitario, :id_producto );" );
+    //cola.bindValue( ":id_item_factura", _orden );
     cola.bindValue( ":id_venta", id_venta );
     cola.bindValue( ":cantidad", cantidad );
     cola.bindValue( ":texto", texto );
@@ -86,7 +83,7 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
         _orden++;
         return true;
     } else {
-        qDebug( "Error al intentar insertad valor de item de presupuesto" );
+        qDebug( "Error al intentar insertar valor de item de factura" );
         qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
         return false;
     }
