@@ -35,6 +35,9 @@ public:
 
 protected slots:
     void agregar(bool autoeliminarid);
+    void verLista( const QModelIndex& indice );
+    void verLista();
+
 };
 
 #endif

@@ -56,6 +56,11 @@ MItemCuentaCorriente::~MItemCuentaCorriente()
     }
 }
 
+Qt::ItemFlags MItemCuentaCorriente::flags(const QModelIndex& /*index*/) const
+{
+ return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}
+
 
 /*!
     \fn MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar )
@@ -366,6 +371,40 @@ QString MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( const i
 bool MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte, QString razon, QDateTime fechahora )
 {
     /// @todo IMPLEMENTAR!
+    // Busco el tipo de operación que fue
+    /*QSqlQuery cola;
+    MItemCuentaCorriente::TipoOperacionCtaCte tipo = MItemCuentaCorriente::Invalido;
+    if( cola.exec( QString( "SELECT tipo_operacion FROM item_ctacte WHERE id_op_ctacte = %1" ).arg( id_op_ctacte ) ) ) {
+        if( cola.next() ) {
+            switch( cola.record().value(0).toInt() )
+            {
+                case MItemCuentaCorriente::Factura:
+                { tipo = MItemCuentaCorriente::Factura; break; }
+                case MItemCuentaCorriente::Recibo:
+                { tipo = MItemCuentaCorriente::Recibo; break; }
+                case MItemCuentaCorriente::CobroServicio:
+                { tipo = MItemCuentaCorriente::CobroServicio; break; }
+                case MItemCuentaCorriente::RecargoCobroServicio:
+                { tipo = MItemCuentaCorriente::RecargoCobroServicio; break; }
+                case MItemCuentaCorriente::NotaDebito:
+                { tipo = MItemCuentaCorriente::NotaDebito; break; }
+                case MItemCuentaCorriente::NotaCredito:
+                { tipo = MItemCuentaCorriente::NotaCredito; break; }
+                case MItemCuentaCorriente::AnulacionFactura:
+                case MItemCuentaCorriente::AnulacionRecibo:
+                {
+                    qWarning( "No se puede anular una anulación de un comprobante" );
+                    return false;
+                    break;
+                }
+                case MItemCuentaCorriente::Invalido:
+                default:
+                { tipo = MItemCuentaCorriente::Invalido; break; }
+            }
+
+        }
+    }
+    */
     // Busco la cuenta corriente que le corresponde a la operacion y actualizo su saldo
     /*if( !MCuentaCorriente::recalcularSaldo( MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( id_op_ctacte ) ) ) {
         qDebug( "Error al actualizar el saldo de la cuenta corriente" );

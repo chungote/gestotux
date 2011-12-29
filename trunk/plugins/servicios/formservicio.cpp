@@ -51,7 +51,7 @@ FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
         CBPeriodo->addItem( "Bi-Mensual", MServicios::BiMensual );
         CBPeriodo->addItem( "Trimestral", MServicios::Trimestral );
         CBPeriodo->addItem( "Cuatrimestral", MServicios::Cuatrimestral );
-        CBPeriodo->addItem( "Seximestral", MServicios::Seximestral );
+        CBPeriodo->addItem( "Semestral", MServicios::Seximestral );
         CBPeriodo->addItem( "Anual", MServicios::Anual );
 
         // Dias en el mes que se hace el batch de calcular los nuevos importes 1->31 ( cuidado con los meses  28 y 30 )
@@ -59,7 +59,7 @@ FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
         { CBInicioCobro->addItem( QString::number( i ), QString::number( i ) ); }
 
         CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes", MServicios::DiasFaltantes );
-        CBMetodoIncompleto->insertItem( -1, "Mes Completo", MServicios::MesCompleto );
+        CBMetodoIncompleto->insertItem( -1, "Periodo Completo", MServicios::MesCompleto );
 
         QAction *ActRecargos = new QAction( this );
         ActRecargos->setText( "Recargos" );
