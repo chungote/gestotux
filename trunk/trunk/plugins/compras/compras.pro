@@ -32,7 +32,8 @@ SOURCES += mcompra.cpp \
            compras.cpp \
            mcompraproducto.cpp \
            ../proveedor/mproveedor.cpp \
-           FormActualizarPrecios.cpp
+           FormActualizarPrecios.cpp \
+    vlistacompra.cpp
 
 HEADERS += formagregarcompra.h \
            mcompra.h \
@@ -40,10 +41,21 @@ HEADERS += formagregarcompra.h \
            compras.h \
            mcompraproducto.h \
            ../proveedor/mproveedor.h \
-           FormActualizarPrecios.h
+           FormActualizarPrecios.h \
+    vlistacompra.h
 
 OTHER_FILES += compras.QMYSQL.sql \
                compras.QSQLITE.sql
+
+
+
+
+
+
+
+
+
+
 
 
 

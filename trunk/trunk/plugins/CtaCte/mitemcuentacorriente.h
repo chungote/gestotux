@@ -33,18 +33,22 @@ Q_OBJECT
 
 public:
 	enum TipoOperacionCtaCte {
-	  Recibo = 0,
-	  Factura = 1,
-	  NotaCredito = 2,
-          NotaDebito = 3,
-          CobroServicio = 4,
-          RecargoCobroServicio = 5,
-          AnulacionFactura = 6
+          Invalido = -1, /** Tipo invalido, dato mal cargado o error de busqueda */
+          Recibo = 0, /** Recibo */
+          Factura = 1, /** Factura */
+          NotaCredito = 2, /** Nota de Credito */
+          NotaDebito = 3, /** Nota de Debito */
+          CobroServicio = 4, /** Instancia de cobro de servicio en un periodo */
+          RecargoCobroServicio = 5, /** Instancia de cobro de un recargo de un cobro de un servicio en un periodo */
+          AnulacionFactura = 6, /** Anulación de una factura */
+          AnulacionRecibo = 7 /** Anulación de un recibo emitido */
 	 };
 
     MItemCuentaCorriente( QObject *parent = 0, bool saldos = false );
     ~MItemCuentaCorriente();
+
     QVariant data(const QModelIndex& item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex& index) const;
 
     static int agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
     static int agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );

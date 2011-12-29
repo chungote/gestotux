@@ -22,7 +22,7 @@
 
 #include <QPrintPreviewWidget>
 #include <QPrinterInfo>
-
+#include <QDockWidget>
 /**
  * \brief Visor de informes en vista de impresion
  *
@@ -38,6 +38,8 @@ public:
     ~EVisorInformes();
 signals:
 	void agregarVentana( QWidget * );
+        void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
+
 protected slots:
     void primerPagina();
     void anterior();
@@ -45,6 +47,7 @@ protected slots:
     void siguiente();
     void imprimir();
     void aPdf();
+
 private:
 	QPrinter *impresora;
 };
