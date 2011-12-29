@@ -38,6 +38,7 @@ void MCompra::inicializar()
     setHeaderData( 1, Qt::Horizontal, "Proveedor" );
     setHeaderData( 2, Qt::Horizontal, "Fecha" );
     setHeaderData( 3, Qt::Horizontal, "Costo" );
+    setHeaderData( 4, Qt::Horizontal, "#ID caja" );
 }
 
 void MCompra::relacionar()
@@ -45,6 +46,9 @@ void MCompra::relacionar()
     setRelation( 1, QSqlRelation( "proveedor", "id", "nombre" ) );
 }
 
+#include "mmovimientoscaja.h"
+#include "mcajas.h"
+#include "eregistroplugins.h"
 /*!
     \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
 	Función que agrega un registro de compra directamente
@@ -53,13 +57,31 @@ void MCompra::relacionar()
         @param total Total de la compra
 	@return Verdadero o falso si fue exitoso o no
  */
-bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total )
+bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, bool contado )
 {
+ int id_caja = 0;
+ if( contado ) {
+     if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+         // Agrego el movimiento en la caja predeterminada
+         MMovimientosCaja *m = new MMovimientosCaja();
+         if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de compra", QString(), 0.0, total ) ) {
+             qDebug( "Error al agregar el movimiento de caja cuando se pago una compra en contado.");
+             return false;
+         }
+         id_caja = m->ultimoIdInsertado();
+         delete m;
+     }
+ }
  QSqlRecord regCompra = record();
  regCompra.remove( 0 );
  regCompra.setValue( "fecha"       , fecha );
  regCompra.setValue( "id_proveedor", proveedor );
  regCompra.setValue( "total", total );
+ if( contado ) {
+     regCompra.setValue( "id_caja", id_caja );
+ } else {
+     regCompra.setNull( "id_caja" );
+ }
  if( !insertRecord( -1, regCompra ) )
  {
   qDebug( "Error de insercion de registro de compra" );

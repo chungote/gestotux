@@ -26,6 +26,7 @@
 #include "mproductostotales.h"
 #include "dproductostotales.h"
 #include "mcompraproducto.h"
+#include "eregistroplugins.h"
 
 #include <QMessageBox>
 #include <QTableView>
@@ -77,6 +78,10 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
         this->addAction( new EActGuardar( this ) );
         this->addAction( new EActCerrar( this ) );
 
+        if( !ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+            RBContado->setEnabled( false );
+            RBOtro->setChecked( true );
+        }
 }
 
 #include <QInputDialog>
@@ -98,6 +103,10 @@ void FormAgregarCompra::guardar()
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta compra" );
   return;
  }
+ if( !RBContado->isChecked() && !RBOtro->isChecked() ) {
+     QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese una forma de pago para la compra" );
+     return;
+ }
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {
@@ -114,7 +123,7 @@ void FormAgregarCompra::guardar()
  int id_proveedor = CBProveedor->model()->data( CBProveedor->model()->index( CBProveedor->currentIndex(), 0 ) , Qt::EditRole ).toInt();
  // Genero la compra
  MCompra *compra = new MCompra( this, false );
- if( compra->agregarCompra( DEFecha->date(), id_proveedor, mcp->total() ) == false )
+ if( compra->agregarCompra( DEFecha->date(), id_proveedor, mcp->total(), RBContado->isChecked() ) == false )
  {
      QSqlDatabase::database().rollback();
      return;

@@ -52,7 +52,7 @@ EReporte::~EReporte()
 }
 
 /*!
- * \fn EReporte::hacer( ParameterList parametros, bool previsualizar )
+ * \fn EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrarDialogoImpresion )
  * Realiza el reporte configurado.
  * Si no se definieron parametros, se tomarán los parametros definidos en el objeto.
  * Se solicitará al plugin de el cliente que coloque los parametros que considere necesarios.
@@ -60,9 +60,10 @@ EReporte::~EReporte()
  * Si es un presupuesto o un recibo, se lo intentará guardar en el deposito de documentos.
  * \param parametros Objeto del tipo "ParameterList" con los parametros para el reporte.
  * \param previsualizar Fuerza el mostrado de la ventana de previsualizaciòn antes de imprimir.
+ * \param mostrarDialogoImpresion Fuerza a mostrar el dialogo de impresión.
  * \returns Verdadero si se pudo imprimir. Falso si hubo un error de configuración o al imprimir.
  */
-bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
+bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrarDialogoImpresion ) {
     if( _rep == 0 || !_rep->isValid() || _tipo == Invalido || _nombre.isNull() ) {
         qDebug( "Error - Reporte no inicializado o erroneo" );
         return false;
@@ -94,7 +95,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar ) {
     }*/
 
     /// @todo Ver si poner impresora para cada tipo
-    if( !( _rep->print( 0, true, previsualizar ) ) ) {
+    if( !( _rep->print( 0, mostrarDialogoImpresion, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );
         _rep->reportError( 0 );
         return false;
@@ -205,6 +206,22 @@ void EReporte::anulacionFactura() {
     p->endGroup(); p->endGroup(); p=0;
     if( _nombre.isEmpty() )
         _nombre = "AnulacionFactura";
+    cargar( _nombre );
+}
+
+/*!
+ * \fn EReporte::anulacionRecibo()
+ * Carga el reporte de anulación de el recibo
+ */
+void EReporte::anulacionRecibo() {
+    _tipo = EReporte::AnulacionRecibo;
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Reportes" );
+    _nombre = preferencias::getInstancia()->value( "AnulacionRecibo" ).toString();
+    p->endGroup(); p->endGroup(); p=0;
+    if( _nombre.isEmpty() )
+        _nombre = "AnulacionRecibo";
     cargar( _nombre );
 }
 
