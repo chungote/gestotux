@@ -49,7 +49,8 @@ class EReporte : public QObject {
         Factura = 2, /** Tipo Factura */
         Recibo = 3, /** Tipo Recibo */
         AnulacionFactura = 4, /** Tipo Anulacion de una factura */
-        Especial = 5 /** Tipo Especial, se deberá incluir el nombre del reporte en un parametro adicional */
+        Especial = 5, /** Tipo Especial, se deberá incluir el nombre del reporte en un parametro adicional */
+        AnulacionRecibo = 6
     };
     explicit EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros );
     explicit EReporte( QObject *padre );
@@ -59,10 +60,11 @@ class EReporte : public QObject {
     void factura();
     void recibo();
     void anulacionFactura();
+    void anulacionRecibo();
     bool especial( const QString nombre, ParameterList parametros );
 
-    bool hacer( ParameterList parametros, bool previsualizar = false );
-    bool hacer() { return hacer( _parametros, false ); }
+    bool hacer( ParameterList parametros, bool previsualizar = false, bool mostrarDialogoImpresora = true );
+    bool hacer() { return hacer( _parametros, false, true ); }
 
     void mostrarError( QWidget *ventana );
 

@@ -12,7 +12,8 @@ DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
                ../../utiles \
-               ../productos
+               ../productos \
+               ../caja
 
 LIBS += ../../bin/libutiles.a
 
@@ -32,8 +33,10 @@ SOURCES += mcompra.cpp \
            compras.cpp \
            mcompraproducto.cpp \
            ../proveedor/mproveedor.cpp \
+           ../caja/mmovimientoscaja.cpp \
+           ../caja/mcajas.cpp \
            FormActualizarPrecios.cpp \
-    vlistacompra.cpp
+           vlistacompra.cpp
 
 HEADERS += formagregarcompra.h \
            mcompra.h \
@@ -41,8 +44,10 @@ HEADERS += formagregarcompra.h \
            compras.h \
            mcompraproducto.h \
            ../proveedor/mproveedor.h \
+           ../caja/mmovimientoscaja.h \
+           ../caja/mcajas.h \
            FormActualizarPrecios.h \
-    vlistacompra.h
+           vlistacompra.h
 
 OTHER_FILES += compras.QMYSQL.sql \
                compras.QSQLITE.sql

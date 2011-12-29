@@ -394,7 +394,7 @@ void FormFacturarServicio::facturar()
         lista.append( "id_factura", comprobantes.take( i ) );
         LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
 #endif
-        if( !reporte->hacer( lista ) ) {
+        if( !reporte->hacer( lista, false, false ) ) {
             qDebug( QString( "No se pudo hacer el reporte %i" ).arg( i ).toLocal8Bit() );
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );

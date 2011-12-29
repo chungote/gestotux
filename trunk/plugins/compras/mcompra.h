@@ -23,8 +23,11 @@
 #include <QSqlRelationalTableModel>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo de compra
+ *
+ * Clase que maneja el modelo de las compras
+ *  \author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MCompra : public QSqlRelationalTableModel
 {
 Q_OBJECT
@@ -32,7 +35,7 @@ public:
     MCompra( QObject *parent = 0, bool relaciones = false );
     void inicializar();
     void relacionar();
-    bool agregarCompra( QVariant fecha, QVariant proveedor, double total );
+    bool agregarCompra( QVariant fecha, QVariant proveedor, double total, bool contado );
     QVariant data(const QModelIndex &index, int role ) const;
     int ultimoId();
     Qt::ItemFlags flags(const QModelIndex& index) const;

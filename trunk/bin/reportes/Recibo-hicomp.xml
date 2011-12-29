@@ -19,8 +19,11 @@
   <x>0.05</x>
   <y>0.05</y>
  </grid>
- <size>A4</size>
- <landscape/>
+ <size>
+  <width>579</width>
+  <height>830</height>
+ </size>
+ <portrait/>
  <topmargin>0</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
@@ -124,44 +127,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
      <column>fecha</column>
     </data>
    </text>
-   <field>
-    <rect>
-     <x>718</x>
-     <y>184</y>
-     <width>405</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>direccion</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>689</x>
-     <y>144</y>
-     <width>439</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>14</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>cliente</column>
-    </data>
-   </field>
    <text>
     <rect>
      <x>1012</x>
@@ -218,22 +183,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
      <column>NumSerie</column>
     </data>
    </barcode>
-   <barcode>
-    <rect>
-     <x>954</x>
-     <y>95.9</y>
-     <width>176</width>
-     <height>34.9</height>
-    </rect>
-    <format>128</format>
-    <maxlength>35</maxlength>
-    <center/>
-    <narrowBarWidth>0.01</narrowBarWidth>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>NumSerie</column>
-    </data>
-   </barcode>
   </detail>
  </section>
  <section>
@@ -242,33 +191,13 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>422.727</height>
+   <height>454.545</height>
    <field>
     <rect>
      <x>27.3</x>
      <y>3.68</y>
      <width>524</width>
      <height>408</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <wordwrap/>
-    <left/>
-    <top/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>contenido</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>606</x>
-     <y>1.95</y>
-     <width>529</width>
-     <height>410</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -292,223 +221,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <query>recibo-hicomp</query>
    </key>
    <height>84.0909</height>
-   <field>
-    <rect>
-     <x>104</x>
-     <y>22</y>
-     <width>95.8</width>
-     <height>15.3</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha1</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>105</x>
-     <y>40</y>
-     <width>95.8</width>
-     <height>18.1</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo1</column>
-    </data>
-    <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
-     <x>278</x>
-     <y>63.2</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total2</column>
-    </data>
-    <format>$%5.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>280</x>
-     <y>19</y>
-     <width>95.8</width>
-     <height>17.7</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha2</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>278</x>
-     <y>41</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo2</column>
-    </data>
-    <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
-     <x>104</x>
-     <y>61.9</y>
-     <width>95.8</width>
-     <height>18.1</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total1</column>
-    </data>
-    <format>$%0.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>455</x>
-     <y>63.082</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total3</column>
-    </data>
-    <format>$%5.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>454</x>
-     <y>22.9</y>
-     <width>95.8</width>
-     <height>15.4</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha3</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>453.909</x>
-     <y>39.0819</y>
-     <width>95.8</width>
-     <height>19.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo3</column>
-    </data>
-    <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
-     <x>680.161</x>
-     <y>57.8512</y>
-     <width>95.8</width>
-     <height>18.0543</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total1</column>
-    </data>
-    <format>$%0.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>855.464</x>
-     <y>58.3726</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total2</column>
-    </data>
-    <format>$%5.2f</format>
-   </field>
    <field>
     <rect>
      <x>1031.46</x>
@@ -567,84 +279,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
      <column>recargo3</column>
     </data>
     <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
-     <x>681.04</x>
-     <y>38.2783</y>
-     <width>95.8</width>
-     <height>18.0914</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo1</column>
-    </data>
-    <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
-     <x>856.464</x>
-     <y>17.2726</y>
-     <width>95.8</width>
-     <height>17.7</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha2</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>854</x>
-     <y>34.9</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo2</column>
-    </data>
-    <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
-     <x>680.616</x>
-     <y>20.2726</y>
-     <width>95.8</width>
-     <height>15.3</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha1</column>
-    </data>
    </field>
   </detail>
  </section>
