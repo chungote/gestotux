@@ -343,17 +343,17 @@ bool MProductos::actualizarPrecioVenta( const int id_producto, const double prec
 double MProductos::buscarPrecioCompra( const int id_producto )
 {
  QSqlQuery cola;
- if( cola.exec( QString( "SELECT precio_compra FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+ if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE id = %1" ).arg( id_producto ) ) )
  {
      if( cola.next() ) {
          return cola.record().value(0).toDouble();
      } else {
-         qWarning( "Error al hacer next la cola de busqueda del precio de venta del producto solicitado" );
+         qWarning( "Error al hacer next la cola de busqueda del precio de compra del producto solicitado" );
      }
  }
  else
  {
-  qWarning( "Error al ejecutar la cola de busqueda del precio de venta del producto solicitado" );
+  qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado" );
  }
  qDebug( qPrintable( cola.lastError().text() ) );
  qDebug( qPrintable( cola.lastQuery() ) );
@@ -372,17 +372,17 @@ double MProductos::buscarPrecioCompra( const QString codigo )
         return -1.0;
     }
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT precio_compra FROM producto WHERE codigo = %1" ).arg( codigo ) ) )
+    if( cola.exec( QString( "SELECT precio_costo FROM producto WHERE codigo = %1" ).arg( codigo ) ) )
     {
         if( cola.next() ) {
             return cola.record().value(0).toDouble();
         } else {
-            qWarning( "Error al hacer next la cola de busqueda del precio de venta del producto solicitado - codigo" );
+            qWarning( "Error al hacer next la cola de busqueda del precio de compra del producto solicitado - codigo" );
         }
     }
     else
     {
-     qWarning( "Error al ejecutar la cola de busqueda del precio de venta del producto solicitado - codigo" );
+     qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado - codigo" );
     }
     qDebug( qPrintable( cola.lastError().text() ) );
     qDebug( qPrintable( cola.lastQuery() ) );
