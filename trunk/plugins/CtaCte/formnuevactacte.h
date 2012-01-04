@@ -31,8 +31,11 @@ class FormNuevaCtaCte : public QDialog, private Ui::FormCtaCteBase
 Q_OBJECT
 public:
         FormNuevaCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        ~FormNuevaCtaCte();
         void setModelo( MCuentaCorriente *m );
+
+protected slots:
+        void cambioCliente( int id_combo );
+
 protected:
         MCuentaCorriente *modelo;
         void accept();

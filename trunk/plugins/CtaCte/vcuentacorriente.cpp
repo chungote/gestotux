@@ -119,9 +119,9 @@ void VCuentaCorriente::modificarLimite()
   if( limite_anterior == limite_nuevo )
   { return; }
   if( qobject_cast<MCuentaCorriente *>(rmodelo)->modificarLimite( id_ctacte, limite_nuevo, rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ) ) ) {
-      QMessageBox::information( this, "Correcto", "El nuevo límite ha sido colocado correctamente" );
+      QMessageBox::information( this, "Correcto", QString::fromUtf8( "El nuevo límite ha sido colocado correctamente" ) );
       return;
-  } // El error lo reportará el metodo de existir
+  } // El error lo reportara el metodo de existir
  }
 }
 

@@ -25,30 +25,39 @@
 #include <QSqlField>
 #include <QSqlRelationalTableModel>
 #include "mcuentacorriente.h"
+#include "preferencias.h"
 
 FormNuevaCtaCte::FormNuevaCtaCte ( QWidget* parent, Qt::WFlags fl )
  : QDialog( parent, fl ), Ui::FormCtaCteBase()
 {
  setupUi ( this );
  this->setWindowTitle( "Agregar nueva cuenta corriente" );
+ this->setWindowIcon( QIcon( ":/imagenes/ctacte_nueva.png" ) );
+ //this->setAttribute( Qt::WA_DeleteOnClose );
 
  DEFechaAlta->setDate( QDate::currentDate() );
 
- // lleno el combo de los clientes sin cuenta corriente
- QSqlQuery cola( "SELECT id, razon_social FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM ctacte )" );
- while( cola.next() )
- {
-   CBCliente->insertItem( cola.record().value(0).toInt(), cola.record().value(1).toString(), cola.record().value(0) );
- }
- CBCliente->setSizeAdjustPolicy( QComboBox::AdjustToMinimumContentsLengthWithIcon );
- CBCliente->setCurrentIndex(-1);
+  // lleno el combo de los clientes sin cuenta corriente
+ CBCliente->setearFiltro( "WHERE id NOT IN ( SELECT id_cliente FROM ctacte )" );
+ connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 
  DEFechaBaja->setEnabled( CkBBaja->isChecked() );
  DSBLimiteMaximo->setEnabled( CkBBaja->isChecked() );
+
+ DEFechaBaja->setDate( QDate() );
 }
 
-FormNuevaCtaCte::~FormNuevaCtaCte()
+void FormNuevaCtaCte::cambioCliente( int /*id_combo*/ )
 {
+    // Busco la forma de cuenta corriente y la convierto segun sean las preferencias
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "ctacte" );
+    QString formato = p->value( "mascara-ctacte", "%1" ).toString();
+    p->endGroup();p->endGroup();p=0;
+    // Busco el id del cliente y lo paso por la mascara
+    int id_cliente = CBCliente->idClienteActual();
+    LENumeroCuenta->setText( QString( "#" ).append( formato ).arg( id_cliente ) );
 }
 
 /*!
@@ -58,65 +67,49 @@ void FormNuevaCtaCte::accept()
 {
  //verificar los datos
  if( CBCliente->currentIndex() == -1 )
- { return; }
+ {
+     QMessageBox::warning( this, "Error", "Por favor, seleccione un cliente para agregarle su cuenta corriente." );
+     return;
+ }
  if( LENumeroCuenta->text().isEmpty() )
- { return; }
+ {
+     QMessageBox::warning( this, "Error", "Por favor, ingrese un numero de cuenta." );
+     return;
+ }
  if( CkBBaja->isChecked() && DEFechaBaja->date().isValid() && DEFechaBaja->date() <= DEFechaAlta->date() )
- { return; }
+ {
+     QMessageBox::warning( this, "Error", "La fecha de baja de la cuenta corriente es anterior a la fecha de alta!" );
+     return;
+ }
  if( CkBLimiteMaximo->isChecked() && DSBLimiteMaximo->value() <= 0 )
- { return; }
+ {
+     QMessageBox::warning( this, "Error", "El limite de la cuenta es igual o menor que cero. Si desea deshabilitarlo, destilde la casilla que se encuentra al lado del titulo" );
+     return;
+ }
+
  // Datos teoricamente correctos
- int id_cliente = CBCliente->itemData( CBCliente->currentIndex() ).toInt();
- modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
- modelo->clear();
- modelo->setTable( "ctacte" );
- modelo->inicializar();
- modelo->setFilter( " 1=1 LIMIT 1 ");
- modelo->select();
- QSqlRecord rec = modelo->record();
- if( rec.isEmpty() ) { qWarning( "Registro vacío" ); abort(); }
- rec.setValue( "id_cliente", id_cliente );
- rec.setValue( "numero_cuenta", LENumeroCuenta->text() );
- rec.setValue( "fecha_alta", DEFechaAlta->date() );
- if( CkBBaja->isChecked() )
- { rec.setValue( "fecha_baja", DEFechaBaja->date() );}
- else
- { rec.setNull( "fecha_baja" ); }
- if( CkBLimiteMaximo->isChecked() )
- { rec.setValue( "limite", DSBLimiteMaximo->value() ); }
- else
- { rec.setNull( "limite" ); }
- rec.setValue( "saldo", 0.0 );
- for( int i = 0; i<rec.count(); i++ )
- {
-     qDebug( qPrintable( QString::number( i ) + ": " + rec.field(i).name() + " - " + rec.value( i ).toString() ) );
+ int id_cliente = CBCliente->idClienteActual();
+ if( id_cliente <= 0 ) {
+     qWarning( "Error de id de cuenta corriente" );
+     abort();
  }
- if( modelo->insertRecord( -1, rec ) )
- {
-  if( modelo->submitAll() )
-  {
-   QMessageBox::information( this, "Listo", "Cuenta corriente agregada correctamente" );
-   this->modelo->relacionar();
-   this->modelo->setFilter( QString() );
-   this->modelo->select();
-   this->close();
-   return;
+ // Saco el # del numero de cuenta
+ LENumeroCuenta->setText( LENumeroCuenta->text().remove( "#" ) );
+ // Guardo la nueva cuenta corriente
+ if( modelo->agregarCuentaCorriente(
+             id_cliente,
+             DEFechaAlta->dateTime(),
+             DEFechaBaja->dateTime(),
+             DSBLimiteMaximo->value(),
+             LENumeroCuenta->text() ) ) {
+     QMessageBox::information( this, "Correcto", "La cuenta corriente fue agregada correctamente" );
+     modelo->select();
+     this->close();
+     //QDialog::accept();
+  } else {
+     QMessageBox::warning( this, "Error", "No se pudo agregar la cuenta coriente" );
+     QDialog::reject();
   }
-  else
-  {
-   qWarning( "Error al hacer el submit de datos" );
-   qDebug( qPrintable( modelo->lastError().text() ) );
-   qDebug( qPrintable( modelo->query().executedQuery() ) );
-   return;
-  }
- }
- else
- {
-  qWarning( "Error al agregar el registro" );
-  qDebug( qPrintable( modelo->lastError().text() ) );
-  qDebug( qPrintable( modelo->query().executedQuery() ) );
-  return;
- }
 }
 
 

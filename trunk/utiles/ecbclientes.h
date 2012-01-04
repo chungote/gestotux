@@ -10,6 +10,7 @@ class ECBClientes : public QComboBox
 public:
     ECBClientes( QWidget *parent = 0 );
     ~ECBClientes();
+    void setearFiltro( const QString f );
     int idClienteActual();
 
 private slots:
@@ -21,6 +22,10 @@ private:
     * Guarda el ID de cliente segun la posicion del cb
     */
     QList<int> *ids;
+   /*!
+    * Filtro para la consulta de clientes
+    */
+    QString filtro;
 
 };
 
