@@ -94,7 +94,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
 {
  if( !index.isValid() )
  {
-   //qDebug( QString( "Indice invalido DueÃ±os: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
+   //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
    return false;
  }
  switch( role )
@@ -497,7 +497,8 @@ void MProductosTotales::buscarPrecios( bool activado )
 { _buscarPrecio = activado; /*qDebug( "busqueda de precios activada" );*/ }
 
 /*!
-    \fn MProductosTotales::buscarPrecioVenta( int id_producto )
+    \fn MProductosTotales::buscarPrecioCompra( int id_producto )
+    Busca el precio de costo del producto
  */
 double MProductosTotales::buscarPrecioCompra( int id_producto )
 {
@@ -521,6 +522,7 @@ double MProductosTotales::buscarPrecioCompra( int id_producto )
 
 /*!
     \fn MProductosTotales::buscarPrecioVenta( int id_producto )
+    Busca el precio de costo del producto
  */
 double MProductosTotales::buscarPrecioVenta( int id_producto )
 {
@@ -555,7 +557,11 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
   } else {
 
       if( this->_buscarPrecio ) {
-          precio_unitario = buscarPrecioVenta( Id );
+          if( this->_tipoPrecio == MProductosTotales::Costo ) {
+            precio_unitario = buscarPrecioCompra( Id );
+          } else {
+            precio_unitario = buscarPrecioVenta( Id );
+          }
           ok = true;
       } else {
           // Como no busca el precio, inserto el dialogo
@@ -630,7 +636,7 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
   return;
 }
 
-void MProductosTotales::setearTipoPrecioBuscar( int t)
+void MProductosTotales::setearTipoPrecioBuscar( int t )
 {
     if( t == MProductosTotales::Costo ) {
         this->_tipoPrecio = MProductosTotales::Costo;

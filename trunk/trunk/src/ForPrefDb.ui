@@ -56,7 +56,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="LEHost"/>
+         <widget class="QLineEdit" name="LEHost">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QCheckBox" name="CkBPuerto">
@@ -93,7 +100,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="LEUsuario"/>
+         <widget class="QLineEdit" name="LEUsuario">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -108,6 +122,12 @@
         </item>
         <item>
          <widget class="QLineEdit" name="LEPass">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
           </property>
@@ -128,7 +148,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="LEBaseDatos"/>
+         <widget class="QLineEdit" name="LEBaseDatos">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

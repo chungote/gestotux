@@ -42,19 +42,19 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 	setupUi(this);
 	setObjectName( "agregar_compra" );
 	setWindowTitle( "Agregar nueva compra" );
-        setWindowIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
+    setWindowIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
 
-        if( m == 0 ) {
-            this->modelo = new MCompra( this, false );
-        } else {  this->modelo = m; }
+    if( m == 0 ) {
+      this->modelo = new MCompra( this, false );
+    } else {  this->modelo = m; }
 
-        modeloProveedor = new MProveedor( CBProveedor );
-        CBProveedor->setModel( modeloProveedor );
-        CBProveedor->setModelColumn( 1 );
-        modeloProveedor->select();
+    modeloProveedor = new MProveedor( CBProveedor );
+    CBProveedor->setModel( modeloProveedor );
+    CBProveedor->setModelColumn( 1 );
+    modeloProveedor->select();
 
-        DEFecha->setMaximumDate( QDate::currentDate() );
-        DEFecha->setDate( QDate::currentDate() );
+    DEFecha->setMaximumDate( QDate::currentDate() );
+    DEFecha->setDate( QDate::currentDate() );
 
 	PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
 	PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
@@ -62,26 +62,26 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
 	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
 	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
-        // Rellenar los items de productos
-        connect( CBProducto, SIGNAL( agregarProducto() ), PBAgregarProducto, SIGNAL( clicked() ) );
+    // Rellenar los items de productos
+    connect( CBProducto, SIGNAL( agregarProducto() ), PBAgregarProducto, SIGNAL( clicked() ) );
 
-        mcp = new MProductosTotales( this, CBProducto->listadoProductos() );
+    mcp = new MProductosTotales( this, CBProducto->listadoProductos() );
 	mcp->calcularTotales( true );
-        mcp->buscarPrecios( true );
-        mcp->setearTipoPrecioBuscar( MProductosTotales::Costo );
-        TVLista->setModel( mcp );
+    mcp->buscarPrecios( true );
+    mcp->setearTipoPrecioBuscar( MProductosTotales::Costo );
+    TVLista->setModel( mcp );
 	TVLista->setAlternatingRowColors( true );
-        TVLista->setItemDelegateForColumn( 1, new DProductosTotales( TVLista ) );
-	TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
+    TVLista->setItemDelegateForColumn( 1, new DProductosTotales( TVLista ) );
+    TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
 	TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
-        this->addAction( new EActGuardar( this ) );
-        this->addAction( new EActCerrar( this ) );
+    this->addAction( new EActGuardar( this ) );
+    this->addAction( new EActCerrar( this ) );
 
-        if( !ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
-            RBContado->setEnabled( false );
-            RBOtro->setChecked( true );
-        }
+/*    if( !ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
+        RBContado->setEnabled( false );
+        RBOtro->setChecked( true );
+    }*/
 }
 
 #include <QInputDialog>
@@ -148,7 +148,7 @@ void FormAgregarCompra::guardar()
                  ret = QMessageBox::Yes;
             else
                 ret = QMessageBox::question( this,
-                                             "Â¿Agregar?",
+                                             "¿Agregar?",
                                              QString( "Desea agregar el producto %1?" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ),
                                              QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll,
                                              QMessageBox::Yes );

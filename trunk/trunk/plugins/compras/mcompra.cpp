@@ -76,7 +76,7 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, b
  regCompra.remove( 0 );
  regCompra.setValue( "fecha"       , fecha );
  regCompra.setValue( "id_proveedor", proveedor );
- regCompra.setValue( "total", total );
+ regCompra.setValue( "total"       , total );
  if( contado ) {
      regCompra.setValue( "id_caja", id_caja );
  } else {
@@ -174,6 +174,10 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
 int MCompra::ultimoId()
 { return this->query().lastInsertId().toInt(); }
 
+/*!
+    \fn MCompra::flags( const QModelIndex& index ) const
+
+ */
 Qt::ItemFlags MCompra::flags(const QModelIndex& index) const
 {
  return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
