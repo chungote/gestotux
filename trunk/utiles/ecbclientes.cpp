@@ -24,14 +24,21 @@ ECBClientes::ECBClientes(QWidget *parent) :
     this->lineEdit()->setText( "Cargando datos..." );
     this->setEnabled( false );
 
+    ids = new QList<int>();
+
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
 }
 
 
+ECBClientes::~ECBClientes()
+{
+    delete ids;
+}
+
 /*!
  * \fn ECBClientes::inicializar()
- * Función que carga los datos y setea todo como para su uso
+ * Funcion que carga los datos y setea todo como para su uso
  */
 void ECBClientes::inicializar()
 {
@@ -41,8 +48,9 @@ void ECBClientes::inicializar()
         int pos = 0;
         while( cola.next() ) {
             this->insertItem( pos, cola.record().value(1).toString() );
-            this->setItemData( pos , cola.record().value(0) );
-/*            if( this->itemData( pos, Qt::UserRole ).isValid() )
+            ids->insert( pos, cola.record().value(0).toInt() );
+/*            this->setItemData( pos , cola.record().value(0) );
+            if( this->itemData( pos, Qt::UserRole ).isValid() )
                 qDebug( this->itemData( pos, Qt::UserRole ).toString().toLocal8Bit() );*/
             pos++;
         }
@@ -62,12 +70,18 @@ void ECBClientes::inicializar()
     }*/
 }
 
+/*!
+ * \fn ECBClientes::idClienteActual()
+ * Devuelve el id de cliente actual
+ */
 int ECBClientes::idClienteActual()
 {
-/*    for( int i = 0; i < this->count(); i ++ ) {
-        qDebug( QString( "pos: %1, - %2 - ID: %3 " ).arg( i ).arg( this->itemText( i ) ).arg( itemData( i ).toString() ).toLocal8Bit() );
+  /*for( int i = 0; i < this->count(); i ++ ) {
+      qDebug( QString( "pos: %1, - %2 - ID: %3 " ).arg( i ).arg( this->itemText( i ) ).arg( itemData( i ).toString() ).toLocal8Bit() );
     }*/
-    return this->itemData( this->currentIndex() ).toInt();
+    //qDebug( QString::number( ids->value( this->currentIndex() ) ).toLocal8Bit() );
+    //return this->itemData( this->currentIndex() ).toInt();
+    return ids->value( this->currentIndex() );
 }
 
 /*!
@@ -82,7 +96,9 @@ void ECBClientes::verificarExiste()
     if( b != -1 ) {
         this->setCurrentIndex( b );
     } else {
-        int c = this->findData( buscar );
+        // No es un nombre de cliente sino un numero de cliente.
+        //int c =  this->findData( buscar );
+        int c = ids->indexOf( buscar.toInt() );
         if( c != -1 ) {
             this->setCurrentIndex( c );
         } else {

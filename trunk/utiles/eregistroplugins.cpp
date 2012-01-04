@@ -20,6 +20,7 @@
 #include "eregistroplugins.h"
 #include "einterfazemail.h"
 #include "einfoprogramainterface.h"
+#include <QApplication>
 
 ERegistroPlugins *ERegistroPlugins::instance = 0;
 EInfoProgramaInterface *ERegistroPlugins::_pluginInfo = 0;
@@ -29,6 +30,8 @@ EInterfazEmail *ERegistroPlugins::_pluginEmail = 0;
 ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
 {
  _plugins = new QHash<QString, EPlugin *>();
+ QStringList lista;
+ QApplication::instance()->setProperty( "lista", lista );
  qDebug( "Constructor ERegistroPlugins llamado" );
 }
 
@@ -72,9 +75,18 @@ EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
  * \fn ERegistroPlugins::plugins()
  * Devuelve el listado de punteros a los plugins que se encuentran cargados como un QList
  */
-QList<EPlugin *> ERegistroPlugins::plugins()
+QList<EPlugin *> ERegistroPlugins::pluginsPunteros()
 {
   return _plugins->values();
+}
+
+/*!
+ * \fn ERegistroPlugins::plugins()
+ * Devuelve el listado de punteros a los plugins que se encuentran cargados como un QList
+ */
+QStringList ERegistroPlugins::plugins()
+{
+    return QApplication::instance()->property( "lista" ).toStringList();
 }
 
 /*!
@@ -101,6 +113,9 @@ EInterfazEmail *ERegistroPlugins::pluginEmail()
 void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 {
  _plugins->insert( obj->nombre(),obj );
+ QStringList lista = QApplication::instance()->property( "lista" ).toStringList();
+ lista.append( obj->nombre() );
+ QApplication::instance()->setProperty( "lista", lista );
 }
 
 
@@ -130,8 +145,9 @@ void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
  * Setea el objeto de plugin de email
  */
 void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
-{  _pluginEmail = obj; }
-
+{
+    _pluginEmail = obj;
+}
 
 /*!
  * \fn ERegistroPlugins::existePlugin( const QString &nombre )
@@ -144,9 +160,31 @@ bool ERegistroPlugins::existePlugin( const QString &nombre )
 }
 
 /*!
+ * \fn ERegistroPlugins::existePluginExterno( const QString &nombre )
+ * Verifica la existencia de un plugin especifico en los plugins cargados
+ * \return Verdadero si existe, Falso en caso contrario.
+ */
+bool ERegistroPlugins::existePluginExterno( const QString &nombre )
+{
+    QStringList lista = QApplication::instance()->property( "lista" ).toStringList();
+    for( int i = 0; i < lista.count(); i++ ) {
+        qDebug( lista.at(i).toLocal8Bit() );
+    }
+    return lista.contains( nombre );
+}
+
+/*!
  * \fn ERegistroPlugins::pluginInfoSeteado()
  * Devuelve si esta seteado el plugin de informacion del programa
  */
-bool ERegistroPlugins::pluginInfoSeteado() {
-    if( _pluginInfo == 0 ) { return false; } else { return true; }
+bool ERegistroPlugins::pluginInfoSeteado()
+{
+    if( _pluginInfo == 0 )
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }

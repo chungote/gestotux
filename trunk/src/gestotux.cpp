@@ -161,7 +161,7 @@ void gestotux::createMenus()
  menuHer->setObjectName( "menuHerramientas" );
  menuHer->addAction( ActClientes );
 
- foreach( EPlugin *plug , ERegistroPlugins::plugins() )
+ foreach( EPlugin *plug , ERegistroPlugins::pluginsPunteros() )
  { plug->crearMenu( menuBar() ); }
 
  /*menuVer = menuBar()->addMenu( "&Ver");
@@ -260,7 +260,7 @@ void gestotux::createToolBar()
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
  //tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
- foreach( EPlugin *plug , ERegistroPlugins::plugins() )
+ foreach( EPlugin *plug , ERegistroPlugins::pluginsPunteros() )
  {
   plug->crearToolBar( tb );
  }

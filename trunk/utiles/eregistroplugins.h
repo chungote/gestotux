@@ -42,7 +42,8 @@ Q_OBJECT
 public:
 
     static EInfoProgramaInterface *pluginInfo();
-    static QList<EPlugin *> plugins();
+    static QList<EPlugin *> pluginsPunteros();
+    static QStringList plugins();
     static EInterfazEmail *pluginEmail();
     static QHash<QString, EPlugin *> *pluginsHash();
     static ERegistroPlugins *getInstancia();
@@ -54,6 +55,7 @@ public:
     void setPluginEmail( EInterfazEmail *obj );
 
     bool existePlugin( const QString &nombre );
+    bool existePluginExterno( const QString & nombre );
     bool pluginInfoSeteado();
 
 private:
