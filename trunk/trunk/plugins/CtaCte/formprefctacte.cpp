@@ -29,10 +29,6 @@ FormPrefCtaCte::FormPrefCtaCte ( QWidget* parent, Qt::WFlags fl )
         this->setWindowIcon( QIcon( ":/imagenes/ctacte.png" ) );
 }
 
-FormPrefCtaCte::~FormPrefCtaCte()
-{
-}
-
 /*!
     \fn FormPrefCtaCte::guardar()
  */
@@ -44,6 +40,7 @@ void FormPrefCtaCte::guardar()
  p->setValue( "habilitada", GBHabilitar->isChecked() );
  p->setValue( "limite", DSBLimite->value() );
  p->setValue( "saldo-inicial", DSBSaldoInicial->value() );
+ p->setValue( "mascara-ctacte", LEFormato->text() );
  p->endGroup();
  p->endGroup();
  p=0;
@@ -71,6 +68,7 @@ void FormPrefCtaCte::cargar()
  GBHabilitar->setChecked( p->value( "habilitada", false ).toBool() );
  DSBLimite->setValue( p->value( "limite", 1000 ).toDouble() );
  DSBSaldoInicial->setValue( p->value( "saldo-inicial", 0 ).toDouble() );
+ LEFormato->setText( p->value( "mascara-ctacte", "%1" ).toString() );
  p->endGroup();
  p->endGroup();
  p=0;

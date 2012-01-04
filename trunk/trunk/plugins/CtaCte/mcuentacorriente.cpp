@@ -88,6 +88,12 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
                                 return QSqlRelationalTableModel::data(item, role).toString().prepend( "#" );
                                 break;
                         }
+                        case 2:
+                        case 3:
+                        {
+                            return QSqlRelationalTableModel::data( item, role ).toDateTime().toLocalTime();
+                            break;
+                        }
                         case 4:
                         case 5:
                         {
@@ -335,8 +341,8 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "CtaCte" );
-    double saldo = preferencias::getInstancia()->value( "saldo-inicial", 0.0 ).toDouble();
-    double limite = preferencias::getInstancia()->value( "limite", 1000.0 ).toDouble();
+    double saldo = p->value( "saldo-inicial", 0.0 ).toDouble();
+    double limite = p->value( "limite", 1000.0 ).toDouble();
     p->endGroup();
     p->endGroup();
     p=0;
@@ -352,8 +358,61 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
     if( cola.exec() ) {
         return true;
     } else {
-        qDebug( "MCuentaCorriente::Error al intentar insertar una cuenta corriente predeterminada" );
-        qDebug( QString( "%1" ).arg( cola.lastError().text() ).toLocal8Bit() );
+        qDebug( "MCuentaCorriente::agregarCuentaCorrientePredeterminada: Error al intentar insertar una cuenta corriente predeterminada" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        return false;
+    }
+}
+
+/*!
+ * \fn MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDateTime fecha_alta, const QDate fecha_baja, double limite, QString codigo )
+ *  Genera una cuenta corriente nueva para el cliente seleccionado en la fecha de alta elegida con los valores de saldo inicial y limite de credito seleccionados en las preferencias
+ * @param id_cliente Identificador del cliente al cual se le abrirÃ¡ la cuenta corriente.
+ * @param fecha_alta Fecha en que se darÃ¡ de alta la cuenta corriente.
+ * @param fecha_baja Fecha en que se dará de baja la cuenta corriente.
+ * @param limite Limite que tendrá la cuenta corriente.
+ * @param codigo Codigo que tendrá la cuenta corriente.
+ * @return Verdadero si se pudo crear
+ */
+bool MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDateTime fecha_alta, const QDateTime fecha_baja, double limite, QString codigo )
+{
+    QSqlQuery cola;
+    // Datos predeterminados
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "CtaCte" );
+    double saldo = p->value( "saldo-inicial", 0.0 ).toDouble();
+    double limite_p = p->value( "limite", 1000.0 ).toDouble();
+    p->endGroup();
+    p->endGroup();
+    p=0;
+    delete p;
+    // Numero de cuenta
+    cola.prepare( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite, fecha_baja ) VALUES( :num_cuenta, :id_cliente, :fecha_alta, :saldo, :limite, :fecha_baja )" );
+    if( codigo.isNull() ) {
+        cola.bindValue( ":num_cuenta", QString( "%L1" ).arg( id_cliente ) );
+    } else {
+        cola.bindValue( ":num_cuenta", codigo );
+    }
+    cola.bindValue( ":id_cliente", id_cliente );
+    cola.bindValue( ":fecha_alta", fecha_alta );
+    cola.bindValue( ":saldo", saldo );
+    if( limite == 0.0 ) {
+        cola.bindValue( ":limite", limite_p );
+    } else {
+        cola.bindValue( ":limite", limite );
+    }
+    if( fecha_baja.isValid() ) {
+        cola.bindValue( ":fecha_baja", fecha_baja );
+    } else {
+        cola.bindValue( ":fecha_baja", QVariant() ); // Setea el valor a nulo.
+    }
+    if( cola.exec() ) {
+        return true;
+    } else {
+        qDebug( "MCuentaCorriente::agregarCuentaCorriente: Error al intentar insertar una cuenta corriente predeterminada" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
         return false;
     }
 }
@@ -433,7 +492,7 @@ bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const doubl
         return false;
     }
     QSqlQuery cola;
-    if( cola.exec( QString( "UPDATE ctacte SET limite = %2 WHERE num_cuenta = %1" ).arg( numero_cuenta ).arg( nuevo_limite ) ) ) {
+    if( cola.exec( QString( "UPDATE ctacte SET limite = %2 WHERE numero_cuenta = %1" ).arg( numero_cuenta ).arg( nuevo_limite ) ) ) {
         qDebug( "Limite de cuenta corriente modificado correctamente." );
         return true;
     } else {
@@ -456,7 +515,7 @@ bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const doubl
 {
     if( !indice.isValid() ) { return false; }
     if( modificarLimite( numero_cuenta, nuevo_limite ) ) {
-        emit dataChanged( indice, indice );
+        emit dataChanged( index( indice.row(), 0), index( indice.row(), columnCount( ) ) );
         return true;
     }
     return false;

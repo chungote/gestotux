@@ -9,7 +9,7 @@
 #include <QSqlError>
 
 ECBClientes::ECBClientes(QWidget *parent) :
-    QComboBox(parent)
+    QComboBox(parent), filtro()
 {
     this->setObjectName( "SelectorClientes" );
     // Seteo las propiedades del combobox
@@ -30,6 +30,11 @@ ECBClientes::ECBClientes(QWidget *parent) :
     timer.singleShot( 900, this, SLOT( inicializar() ) );
 }
 
+void ECBClientes::setearFiltro( const QString f ) {
+    this->filtro = f;
+    QTimer timer;
+    timer.singleShot( 900, this, SLOT( inicializar() ) );
+}
 
 ECBClientes::~ECBClientes()
 {
@@ -44,7 +49,7 @@ void ECBClientes::inicializar()
 {
     // Cargo los datos del modelo
     QSqlQuery cola;
-    if( cola.exec( "SELECT id, razon_social FROM clientes ORDER BY razon_social ASC" ) ) {
+    if( cola.exec( QString( "SELECT id, razon_social FROM clientes %1 ORDER BY razon_social ASC" ).arg( filtro ) ) ) {
         int pos = 0;
         while( cola.next() ) {
             this->insertItem( pos, cola.record().value(1).toString() );

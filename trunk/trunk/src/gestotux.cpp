@@ -152,8 +152,8 @@ void gestotux::createMenus()
  fileMenu->setObjectName( "menuArchivo" );
  fileMenu->addAction( ActBackup );
  fileMenu->addAction( ActPreferencias );
- fileMenu->addSeparator();
- fileMenu->addAction( ActActualizar );
+ /*fileMenu->addSeparator();
+ fileMenu->addAction( ActActualizar );*/
  fileMenu->addSeparator();
  fileMenu->addAction( exitAct );
 

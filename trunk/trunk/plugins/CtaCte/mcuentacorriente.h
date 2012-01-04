@@ -57,9 +57,10 @@ public:
     static QString obtenerNumeroCuentaCorriente( const int id_cliente );
 
     static int verificarSaldo( const QString numero_cuenta, double aplicar );
-
     static bool actualizarSaldo( const QString numero_cuenta, const double aplicar );
+
     static bool agregarCuentaCorrientePredeterminada( const int id_cliente, const QDateTime fecha_alta = QDateTime::currentDateTime() );
+    static bool agregarCuentaCorriente( const int id_cliente, const QDateTime fecha_alta, const QDateTime fecha_baja, double limite, QString codigo );
     static bool existeCuenta( const QString num_cuenta );
     static bool existeCuentaCliente( const int id_cliente );
 

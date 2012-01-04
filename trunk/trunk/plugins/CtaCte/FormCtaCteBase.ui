@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="CBCliente">
+      <widget class="ECBClientes" name="CBCliente">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -99,7 +99,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="LENumeroCuenta"/>
+      <widget class="QLineEdit" name="LENumeroCuenta">
+       <property name="inputMask">
+        <string>9999999999; </string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -120,6 +124,11 @@
    <class>EDSBPrecio</class>
    <extends>QDoubleSpinBox</extends>
    <header>edsbprecio.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBClientes</class>
+   <extends>QComboBox</extends>
+   <header location="global">ecbclientes.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
