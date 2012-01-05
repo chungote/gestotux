@@ -36,7 +36,7 @@
 
 
 VCliente::VCliente( QWidget *parent )
-    : EVLista( parent ), b(0)
+    : EVLista( parent )
 {
  setObjectName( "lista_clientes" );
  this->setAttribute( Qt::WA_DeleteOnClose );
@@ -47,6 +47,7 @@ VCliente::VCliente( QWidget *parent )
  mc->setFilter( "id != 0" );
  modelo = 0;
  rmodelo = 0;
+ modelo = mc;
  vista->setModel( mc );
  mc->query().setForwardOnly( true );
  vista->hideColumn( mc->fieldIndex( "id" ) );
@@ -75,7 +76,11 @@ VCliente::VCliente( QWidget *parent )
  ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
  ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
 
- ActBuscar->setCheckable( true );
+ agregarFiltroBusqueda( "Cualquiera", " `razon_social` = '%%1%' OR nombre = '%%1%' OR apellido = '%%1%' OR calle = '%%1%' OR numero  = '%%1%' OR piso  = '%%1%' OR depto = '%%1%' OR ciudad = '%%1%' OR `codigo_postal` = '%%1%' OR provincia = '%%1%' OR pais = '%%1%' OR `tel_fijo` = '%%1%' OR `tel_celular` = '%%1%' OR fax = '%%1%' OR email = '%%1%' OR `CUIT/CUIL` = '%%1%'" );
+ agregarFiltroBusqueda( "Razon Social", " `razon_social` = '%%1%'" );
+ agregarFiltroBusqueda( "Numero de Cliente", " id = %1" );
+ agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL` = %1" );
+ habilitarBusqueda();
 
  addAction( ActAgregar );
  addAction( ActModificar );
@@ -131,21 +136,6 @@ void VCliente::listadoClientes() {
     rep->especial( "ListadoClientes", ParameterList() );
     if( !rep->hacer() ) {
         QMessageBox::warning( this, "Error", "No se pudo realizar el reporte" );
-    }
-}
-
-#include "buscarcliente.h"
-void VCliente::buscar()
-{
-    if( ActBuscar->isChecked() ) {
-        if( b == 0 ) {
-            this->b = new BuscarCliente( this, this->mc );
-            emit agregarDockWidget( Qt::BottomDockWidgetArea, b );
-        } else {
-            this->b->show();
-        }
-    } else {
-        if( this->b != 0 ) { this->b->hide(); }
     }
 }
 

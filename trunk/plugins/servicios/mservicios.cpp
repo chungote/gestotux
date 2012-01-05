@@ -57,11 +57,6 @@ MServicios::MServicios(QObject *parent)
  setHeaderData( 8, Qt::Horizontal, tr( "Forma de cobro incompleto" ) );
 }
 
-
-MServicios::~MServicios()
-{
-}
-
 /*!
  * @fn MServicios::data( const QModelIndex& item, int role ) const
  * Implementacion del metodo de datos para que las enumeraciones se vena como texto
@@ -88,7 +83,7 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                             case MServicios::Cuatrimestral:
                             { return "Cuatrimestral"; }
                             case MServicios::Seximestral:
-                            { return "Seximestral"; }
+                            { return "Semestral"; }
                             case MServicios::Anual:
                             { return "Anual"; }
                         }
@@ -264,9 +259,12 @@ QDate MServicios::getFechaAlta( const int id_servicio )
     }
 }
 
-
-
-
+/*!
+ * \fn MServicios::obtenerPeriodo( const int id_servicio )
+ * Devuelve el tipo de periodo para el servicio solicitado
+ * \param id_servicio Servicio al caul se le desea obtener el periodo.
+ * \return MServicios::Periodo o MServicios::Invalido en caso de error.
+ */
 MServicios::Periodo MServicios::obtenerPeriodo( const int id_servicio ) {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT periodo FROM servicios WHERE id_servicio = %1" ).arg( id_servicio )  ) ) {
@@ -284,16 +282,12 @@ MServicios::Periodo MServicios::obtenerPeriodo( const int id_servicio ) {
             }
         } else {
             qDebug( "Error de next en cola de obtencion de periodo en serivicio" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
-            return MServicios::Invalido;
         }
     } else {
         qDebug( "Error de exec en la cola de obtencion de periodo de un servicio" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        return MServicios::Invalido;
     }
+    qDebug( cola.lastError().text().toLocal8Bit() );
+    qDebug( cola.lastQuery().toLocal8Bit() );
     return MServicios::Invalido;
 }
 
@@ -406,3 +400,67 @@ bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
 "dia_cobro" INTEGER NOT NULL
 "forma_incompleto" INTEGER NOT NULL
 */
+#include "mperiodoservicio.h"
+/*!
+ * \fn MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio, QDateTime fechaAlta )
+ * Calcula cuanto se debe cobrar por el alta a partir de l afecha de alta y la del proximi periodo de cobro.
+ * \param id_cliente Cliente al cual se le va a cobrar
+ * \param id_servicio Identificador del servicio.
+ * \param fechaAlta Fecha en que se dio de alta el cliente.
+ * \return Verdadero si se pudo realizar el proceso correctamente.
+ */
+bool MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio, QDateTime fechaAlta )
+{
+ if( id_cliente <= 0 ) { return false; }
+ // Busco la forma de cobro del servicio
+ QSqlQuery cola;
+ int forma = FInvalido;
+ if( cola.exec( QString( " SELECT forma_incompleto FROM servicios WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
+     if( cola.next() ) {
+        forma = cola.record().value(0).toInt();
+     } else {
+         qDebug( "Error al hacer next en busqueda de forma incompleto" );
+     }
+ } else {
+     qDebug( "Error al hacer exec en la busqueda de forma incompleto" );
+ }
+ QString texto;
+ double precio_final = 0.0;
+ MPeriodoServicio *mps = new MPeriodoServicio();
+ int periodoActual = mps->getPeriodoActual( id_servicio );
+ switch( forma )
+ {
+    case DiasFaltantes:
+    {
+        // Busco el inicio del proximo periodo
+        QDate proximo = mps->generarFechaInicioPeriodo( id_servicio, periodoActual + 1, QDate::currentDate().year() );
+        // Calculo la cantidad de días hasta esa fecha
+        int cant_dias = fechaAlta.date().daysTo( proximo );
+        // Calculo el precio x día y precio total
+        double precio_por_dia = precioBase( id_servicio ) / mps->diasEnPeriodo( id_servicio );
+        precio_final = precio_por_dia * cant_dias;
+        texto.append( "Cobro de días faltantes desde %1 hasta %2 por el servicio %3 para el período %4" )
+                .arg( fechaAlta.toString( Qt::SystemLocaleShortDate ) )
+                .arg( proximo.toString( Qt::SystemLocaleShortDate ) )
+                .arg( getNombreServicio( id_servicio ) )
+                .arg( periodoActual );
+        break;
+    }
+    case MesCompleto:
+    {
+        // Cobro todo el mes como un periodo
+        precio_final = precioBase( id_servicio );
+        texto.append( "Cobro del periodo %1 del servicio %2 por alta." )
+                .arg( periodoActual )
+                .arg( getNombreServicio( id_servicio ) );
+        break;
+    }
+    case FInvalido:
+    default:
+    { delete mps; return false; break; }
+ }
+ delete mps;
+ // Genero el comprobante correspondiente
+ /// @todo generar comprobante!!!
+ return false;
+}

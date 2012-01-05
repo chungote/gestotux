@@ -259,28 +259,13 @@ void FormAgregarCompra::agregarProducto()
 void FormAgregarCompra::eliminarProducto()
 {
  //Preguntar al usuario si esta seguro
- QItemSelectionModel *selectionModel = TVLista->selectionModel();
- QModelIndexList indices = selectionModel->selectedIndexes();
+ QModelIndexList indices = TVLista->selectionModel()->selectedRows();
  if( indices.size() < 1 )
  {
    QMessageBox::warning( this, "Seleccione un item",
                    "Por favor, seleccione un item para eliminar",
                    QMessageBox::Ok );
    return;
- }
- // cuento las filas distintas
- QModelIndex indice;
- int ultimo = -1;
- foreach( indice, indices )
- {
-  if( indice.row() == ultimo )
-  {
-   indices.removeOne( indice );
-  }
-  else
-  {
-   ultimo = indice.row();
-  }
  }
  //Hacer dialogo de confirmacion..
  int ret;

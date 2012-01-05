@@ -71,8 +71,8 @@ bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
  productos->insert( row, -1 );
  //qDebug( qPrintable( "Insertada fila: " + QString::number( row ) ) );
  endInsertRows();
- emit dataChanged( this->index( row, 0 ), this->index( row, 3 ) );
- emit dataChanged( this->index( this->rowCount(), 1 ), this->index( this->rowCount(), 3 ) );
+ emit dataChanged( this->index( row, 0 ), this->index( row, this->columnCount() ) );
+ emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
  return true;
 }
 
@@ -80,13 +80,21 @@ bool MProductosTotales::removeRow( int row, const QModelIndex& parent )
 {
   //qDebug( QString( "Eliminando fila: %1" ).arg( row ).toLocal8Bit() );
   beginRemoveRows( parent, row, row );
-  productos->remove( row );
-  precio_unitario->remove( row );
-  cantidades->remove( row );
-  subtotales->remove( row );
+  // Actualizo los indices de todos los que están después de la fila que estamos eliminando.
+  for( int i = row; i < cantidades->count(); i++ ) {
+      productos->      insert( i, productos->      value( i + 1 ) );
+      precio_unitario->insert( i, precio_unitario->value( i + 1 ) );
+      cantidades->     insert( i, cantidades->     value( i + 1 ) );
+      subtotales->     insert( i, subtotales->     value( i + 1 ) );
+  }
+  // Las posiciones estan basadas en indice base 0
+  productos->      remove( productos->size()-1       );
+  precio_unitario->remove( precio_unitario->size()-1 );
+  cantidades->     remove( cantidades->size()-1      );
+  subtotales->     remove( subtotales->size()-1      );
   recalcularTotal();
   endRemoveRows();
-  emit dataChanged( this->index( row, 0 ), this->index( this->rowCount(), 4 ) );
+  emit dataChanged( this->index( row, 0 ), this->index( this->rowCount(), this->columnCount() ) );
   return true;
 }
 
@@ -208,14 +216,14 @@ int MProductosTotales::columnCount(const QModelIndex& /*parent*/) const
 int MProductosTotales::rowCount(const QModelIndex& /*parent*/) const
 {
  if( _calcularTotal )
- { return productos->size() + 1; }
+ { return cantidades->size() + 1; }
  else
- { return productos->size(); }
+ { return cantidades->size(); }
 }
 
 Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
 {
- if( index.row() >= this->productos->size() )
+ if( index.row() >= this->cantidades->size() )
  {
   return QFlags<Qt::ItemFlag>(!Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
  }
@@ -230,9 +238,9 @@ Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
 
 QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 {
-  if( !idx.isValid() )
-  { return( QVariant() ); }
- if( idx.row() == this->productos->size() && _calcularTotal )
+ if( !idx.isValid() )
+ { return( QVariant() ); }
+ if( idx.row() == this->rowCount()-1 && _calcularTotal )
  {
   //qDebug( qPrintable( QString::number( this->productos->size() ) ) );
   switch( idx.column() )
@@ -253,7 +261,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         {
                 if( role == Qt::DisplayRole )
                 {
-                        return QString( "%L1" ).arg( this->productos->size() );
+                        return QString( "%L1" ).arg( this->cantidades->size() );
                 }
                 else if( role == Qt::TextAlignmentRole )
                 {

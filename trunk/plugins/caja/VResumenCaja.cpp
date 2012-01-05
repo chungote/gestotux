@@ -44,6 +44,9 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   vista->hideColumn( 1 );
   vista->hideColumn( 0 );
   vista->hideColumn( modelo->fieldIndex( "cierre" ) );
+  vista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+  vista->horizontalHeader()->setResizeMode( 5, QHeaderView::Stretch );
+  vista->horizontalHeader()->setMinimumSectionSize( 60 );
   CBCajas = new QComboBox( this );
   // Reordena los items para que el combo box este arriba
   QGridLayout *l = qobject_cast<QGridLayout *>(this->layout());

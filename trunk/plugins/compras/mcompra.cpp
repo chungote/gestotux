@@ -54,23 +54,23 @@ void MCompra::relacionar()
 	Función que agrega un registro de compra directamente
 	@param fecha QDate con la fecha de la compra
 	@param proveedor Id del proveedor
-        @param total Total de la compra
+    @param total Total de la compra
 	@return Verdadero o falso si fue exitoso o no
  */
 bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, bool contado )
 {
  int id_caja = 0;
  if( contado ) {
-     if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+     /*if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {*/
          // Agrego el movimiento en la caja predeterminada
          MMovimientosCaja *m = new MMovimientosCaja();
-         if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de compra", QString(), 0.0, total ) ) {
+         if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de compra al contado a proveedor", QString(), 0.0, total ) ) {
              qDebug( "Error al agregar el movimiento de caja cuando se pago una compra en contado.");
              return false;
          }
          id_caja = m->ultimoIdInsertado();
          delete m;
-     }
+     /*}*/
  }
  QSqlRecord regCompra = record();
  regCompra.remove( 0 );
@@ -121,8 +121,8 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
 		switch( index.column() )
 		{
 			case 3:
-			{
-				return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( index, role ).toDouble(), 8, 'f', 2 );
+            {
+                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( index, role ).toDouble(), 10, 'f', 2 );
 				break;
 			}
 			default:

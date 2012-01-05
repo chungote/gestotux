@@ -26,7 +26,8 @@ HEADERS += eactcerrar.h \
            NumeroComprobante.h \
            ELECuitCuil.h \
            ecbproductos.h \
-    ecbclientes.h
+    ecbclientes.h \
+    ebusqueda.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -52,7 +53,8 @@ SOURCES += eactcerrar.cpp \
            EReporte.cpp \
            ELECuitCuil.cpp \
            ecbproductos.cpp \
-    ecbclientes.cpp
+    ecbclientes.cpp \
+    ebusqueda.cpp
 
 QT += sql
 
@@ -64,7 +66,8 @@ RESOURCES += utiles.qrc
 
 DESTDIR = ../bin
 
-FORMS += EAyudaBase.ui
+FORMS += EAyudaBase.ui \
+    EBusquedaBase.ui
 
 TRANSLATIONS += utiles.ts
 

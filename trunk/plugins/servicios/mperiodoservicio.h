@@ -26,14 +26,15 @@ public:
     int getPeriodoActual( const int id_servicio );
     int getAnoActual( const int id_servicio );
     QDate getFechaInicioPeriodoActual( const int id_servicio );
+    QDate generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano );
+    static int diasEnPeriodo( const int id_servicio, const QDate fecha_inicio = QDate::currentDate() );
 
 private:
-    static int diasEnPeriodo( const int id_servicio, const QDate fecha_inicio );
     static int diasEnPeriodoServicio( const int tipo_periodo, QDate fecha_calculo );
     QDate getFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano );
     QDate getUltimaFecha( const int id_servicio );
     int getUltimoPeriodo( const int id_servicio );
-    QDate generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano );
+
 };
 
 #endif // MPERIODOSERVICIO_H
