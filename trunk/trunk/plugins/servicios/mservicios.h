@@ -33,7 +33,6 @@ class MServicios : public QSqlTableModel
 Q_OBJECT
 public:
     MServicios(QObject *parent = 0);
-    ~MServicios();
 
     QVariant data(const QModelIndex& item, int role) const;
     Qt::ItemFlags flags( const QModelIndex &index ) const;
@@ -42,6 +41,7 @@ public:
       *  Define la manera en que se cobran los dias cuando un cliente se adihere a un serivicio fuera del inicio del periodo.
       */
     enum FormaIncompleto {
+        FInvalido = -1, /**< Tipo invalido para inicializaciones y errores */
         DiasFaltantes = 1, /**< Cuenta los dias que faltan hasta el siguiente periodo, divide el valor del servicio por la cantidad de dias en el periodo y calcula el total con estos dos datos */
         MesCompleto = 2 /**< Cobra un periodo completo aunque sea un dia antes del fin del periodo */
     };
@@ -63,6 +63,7 @@ public:
 
     bool asociarCliente( int id_cliente, int id_servicio, QDateTime fecha = QDateTime::currentDateTime() );
     bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto );
+    bool calcularCobroAlta( const int id_cliente, const int id_servicio, QDateTime fechaAlta );
 
     static double precioBase( int id_servicio );
     static MServicios::Periodo obtenerPeriodo( const int id_servicio );

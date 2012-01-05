@@ -73,9 +73,6 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
         _agregado = false;
 }
 
-FormAsociarServicioCliente::~FormAsociarServicioCliente()
-{
-}
 
 /*!
  * \fn FormAsociarServicioCliente::reject()
@@ -122,14 +119,18 @@ void FormAsociarServicioCliente::accept()
  MServicios *mservicios = new MServicios();
  if( mservicios->asociarCliente( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) )
  {
-  delete mservicios;
-  _agregado = true;
-  this->close();
+  // Verifico que se cobre lo que falta del período.
+     if( !mservicios->calcularCobroAlta( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) ){
+         QMessageBox::warning( this, "Error", "No se pudo hacer el cobro del periodo inical. Realicelo a mano." );
+         _agregado = false;
+     } else { _agregado = true; }
+     delete mservicios;
+     this->close();
  }
  else
  {
-  delete mservicios;
-  return;
+     delete mservicios;
+     return;
  }
 }
 

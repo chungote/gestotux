@@ -16,6 +16,7 @@ HEADERS += hicomp.h \
            ../servicios/mrecargoshechos.h \
            ../servicios/mrecargos.h \
            ../servicios/mservicios.h \
+           ../servicios/mperiodoservicio.h \
            ../../reporte/common/parameter.h
 
 SOURCES += hicomp.cpp \
@@ -29,6 +30,7 @@ SOURCES += hicomp.cpp \
            ../servicios/mrecargoshechos.cpp \
            ../servicios/mrecargos.cpp \
            ../servicios/mservicios.cpp \
+           ../servicios/mperiodoservicio.cpp \
            ../../reporte/common/parameter.cpp
 
 DESTDIR = ../../bin/plugins

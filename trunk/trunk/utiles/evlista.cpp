@@ -34,6 +34,8 @@
 #include <QModelIndex>
 #include <QMenu>
 #include <QApplication>
+#include <QPair>
+#include "ebusqueda.h"
 
 EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
 : EVentana( parent, fl )
@@ -80,6 +82,7 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  ActBuscar->setIcon( QIcon( ":/imagenes/buscar.png" ) );
  ActBuscar->setShortcut( QKeySequence( "Ctrl+b" ) );
  ActBuscar->setToolTip( "Buscar items ( Ctrl + b )" );
+ ActBuscar->setCheckable( true );
  connect( ActBuscar, SIGNAL( triggered() ), this, SLOT( buscar() ) );
 
  ActVerTodos = new QAction( "Ver todos", this );
@@ -103,11 +106,17 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  //Inicializo los punteros
  rmodelo = 0;
  modelo = 0;
+ dockBusqueda = 0;
+ _busquedaHabilitada = false;
 }
 
 
 EVLista::~EVLista()
 {
+    if( rmodelo != 0 )
+        delete rmodelo;
+    if( modelo != 0 )
+        delete modelo;
 }
 
 
@@ -187,8 +196,6 @@ void EVLista::eliminar()
  */
 void EVLista::closeEvent( QCloseEvent * c)
 {
- /*if( vista != 0 )
-    delete vista;*/
  /*if( modelo )
  { modelo->submitAll(); }*/
 // delete modelo;
@@ -201,9 +208,44 @@ void EVLista::closeEvent( QCloseEvent * c)
  */
 void EVLista::buscar()
 {
-    /// \todo implement me
+    if( _busquedaHabilitada )
+    {
+        if( filtros.isEmpty() ) {
+            qWarning( "Busqueda habilitada pero no hay filtros declarados" );
+            return;
+        }
+        if( dockBusqueda == 0 ) {
+            if( modelo != 0 )
+            {  dockBusqueda = new EBusqueda( this, this->modelo ); }
+            else if( rmodelo != 0 )
+            {  dockBusqueda = new EBusqueda( this, this->rmodelo ); }
+            else
+            {
+                qWarning( "Ningun modelo disponible" );
+                _busquedaHabilitada = false;
+                return;
+            }
+
+            for( QList< QPair<QString,QString> >::iterator i = filtros.begin(); i != filtros.end(); ++i )
+            {  dockBusqueda->agregarFiltro( (*i).first, (*i).second ); }
+
+            emit agregarDockWidget( Qt::BottomDockWidgetArea, dockBusqueda );
+
+            ActBuscar->setChecked( true );
+        } else {
+            if( ActBuscar->isChecked() ) {
+                dockBusqueda->setVisible( true );
+            } else {
+                dockBusqueda->setVisible( false );
+            }
+        }
+    }
 }
 
+void EVLista::agregarFiltroBusqueda( QString nombre, QString filtro )
+{
+    filtros.append( QPair<QString,QString>( nombre, filtro ) );
+}
 
 /*!
     \fn EVLista::imprimir()

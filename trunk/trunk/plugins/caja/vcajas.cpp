@@ -23,6 +23,8 @@
 #include <QIcon>
 #include <QAction>
 #include <QTableView>
+#include <QHeaderView>
+#include <QMessageBox>
 
 #include "mcajas.h"
 #include "actretirocaja.h"
@@ -43,14 +45,26 @@ VCajas::VCajas(QWidget *parent) :
     vista->setModel( modelo );
     vista->setAlternatingRowColors( true );
     vista->hideColumn(0);
+    vista->setSortingEnabled( true );
     modelo->select();
 
-    //connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
+    connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( resumen( const QModelIndex & ) ) );
+
+    ActIngreso = new ActIngresoCaja( this );
+    ActEgreso = new ActRetiroCaja( this );
+    ActTransferire = new ActTransferir( this );
+
+    ActResumen = new QAction( this );
+    ActResumen->setText( "Resumen" );
+    ActResumen->setIcon( QIcon( ":/imagenes/cajaresumen.png" ) );
+    ActResumen->setToolTip("Muestra el resumen de las operaciones de caja desde el ultimo cierre" );
+    connect( ActResumen, SIGNAL( triggered() ), this, SLOT( resumen() ) );
 
     addAction( ActAgregar );
-    addAction( new ActRetiroCaja( this ) );
-    addAction( new ActIngresoCaja( this ) );
-    addAction( new ActTransferir( this ) );
+    addAction( ActEgreso );
+    addAction( ActIngreso );
+    addAction( ActTransferire );
+    addAction( ActResumen );
     //addAction( ActEliminar );
     addAction( ActCerrar );
 }
@@ -83,4 +97,18 @@ void VCajas::transferir()
    f->adjustSize();
    f->exec();
    modelo->select();
+}
+
+#include "vresumencaja.h"
+void VCajas::resumen()
+{
+    if( vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una caja para ver su resumen" );
+        return;
+    }
+    QModelIndex idx = vista->selectionModel()->selectedRows().first();
+    int id_caja = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    VResumenCaja *vr = new VResumenCaja( this );
+    vr->setearCaja( id_caja );
+    emit agregarVentana( vr );
 }

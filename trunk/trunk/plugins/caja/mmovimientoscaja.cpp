@@ -58,7 +58,14 @@ QVariant MMovimientosCaja::data(const QModelIndex& item, int role) const
      case 4:
      {
          if( role == Qt::DisplayRole )
-         { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble() ); }
+         {
+             double precio = QSqlRelationalTableModel::data( item, role ).toDouble();
+             if( precio == 0.0 ) {
+                 return "";
+             } else {
+                 return QString( "$ %L1" ).arg( precio, 10, 'f', 2 );
+             }
+         }
          else if( role == Qt::TextAlignmentRole )
          { return int( Qt::AlignCenter | Qt::AlignVCenter ); }
          else
@@ -106,6 +113,13 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
   if( ( ingreso != 0 && egreso != 0 ) || ( ingreso > 0 && egreso > 0 ) ) {
        qWarning( QString( "MMovimientosCaja::agregarMovimiento::El movimiento debe ser de entrada o salida, no ambos" ).toLocal8Bit() );
        return false;
+  }
+  // Verificacion de saldo
+  if( egreso != 0 ) {
+      if( MCajas::saldo( id_caja ) - egreso < 0 ) {
+          qWarning( "Error!: El importe que esta intentando sacar de caja supera el saldo que esta posee." );
+          return false;
+      }
   }
   QSqlRecord rec = this->record();
   rec.setValue( "id_caja", id_caja );
@@ -199,7 +213,7 @@ bool MMovimientosCaja::agregarCierre( const int id_caja, QDateTime fechahora, do
         this->agregarMovimiento( id_caja, "Diferencia en el cierre de caja", QString(), 0.0, dif );
         saldo_anterior -= dif;
     }
-    // ATENCION: Se guarda el saldo en los 2 campos igual
+    /// ATENCION: Se guarda el saldo en los 2 campos igual
     rec.setValue( "egreso", saldo_anterior );
     rec.setValue( "ingreso", saldo_anterior );
     if( this->insertRecord( -1, rec ) ) {

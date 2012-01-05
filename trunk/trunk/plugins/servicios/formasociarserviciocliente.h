@@ -30,15 +30,18 @@ class FormAsociarServicioCliente : public QDialog, private Ui::Dialog
   Q_OBJECT
 
 public:
-enum tipoForm {
- Todo, // Muestra todos los campos
- Cliente, // Muestra la lista de clientes para asociar a un servicio
- Servicio, // Muestra el servicio al que se debe asociar un cliente
- SoloFecha
-}_tipo;
+   /*!
+    * \enum Tipo de Forma del dialogo
+    * Muestra las formas en que se puede mostrar el dialogo ante el usuario
+    */
+    enum tipoForm {
+         Todo, /*! Muestra todos los campos */
+         Cliente, /*! Muestra la lista de clientes para asociar a un servicio */
+         Servicio, /*! Muestra el servicio al que se debe asociar un cliente */
+         SoloFecha /*! Muestra solo la fecha de asociacion */
+    }_tipo;
 
-  FormAsociarServicioCliente(QWidget* parent = 0, tipoForm tipo = Todo, Qt::WFlags fl = 0 );
-  ~FormAsociarServicioCliente();
+    FormAsociarServicioCliente( QWidget* parent = 0, tipoForm tipo = Todo, Qt::WFlags fl = 0 );
     int idCliente();
     int idServicio();
     QDate fecha();
@@ -54,10 +57,22 @@ private slots:
     void accept();
 
 private:
-        int _id_cliente;
-        int _id_servicio;
-        QDate _fecha;
-        bool _agregado;
+   /*!
+    * Guarda el identificador del cliente
+    */
+    int _id_cliente;
+   /*!
+    * Guarda el identificador del servicio
+    */
+    int _id_servicio;
+   /*!
+    * Guarda la fecha de asociacion
+    */
+    QDate _fecha;
+   /*!
+    * Determina si se esta agregando una nueva asociación o modificando una existente
+    */
+    bool _agregado;
 
 };
 

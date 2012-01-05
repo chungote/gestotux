@@ -36,6 +36,14 @@ public slots:
 
 protected slots:
     void agregar( bool autoeliminarid  );
+    void resumen();
+    void resumen(  const QModelIndex & ) { resumen(); }
+
+private:
+    QAction *ActTransferire;
+    QAction *ActIngreso;
+    QAction *ActEgreso;
+    QAction *ActResumen;
 
 };
 

@@ -36,6 +36,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  rmodelo = new MCuentaCorriente( this );
  vista->setModel( rmodelo );
  vista->setItemDelegateForColumn( 6, new DSiNo( this->vista ) );
+ vista->setSortingEnabled( true );
  modelo = 0;
 
  ActResumen = new QAction( "Ver Resumen de Cuenta", this );

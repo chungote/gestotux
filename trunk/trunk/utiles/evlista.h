@@ -27,6 +27,7 @@ class QSqlRecord;
 class QAction;
 class QTableView;
 class QMenu;
+class EBusqueda;
 #include <QModelIndex>
 
 /**
@@ -86,6 +87,12 @@ public:
      * Accion generica para mostrar todos los registros
      */
      QAction *ActVerTodos;
+    /*!
+     * \fn EVLista::habilitarBusqueda()
+     * Habilita la aparicion de la accion y la ventana de filtrado y busqueda
+     */
+     void habilitarBusqueda() { _busquedaHabilitada = true; }
+     void agregarFiltroBusqueda( const QString nombre, const QString filtro );
 
 
 protected:
@@ -108,6 +115,21 @@ protected slots:
     virtual void menuContextual( const QModelIndex &indice, QMenu *menu );
     virtual void hacerMenuContextual( const QModelIndex &indice );
     virtual void mostrarTodos();
+
+private:
+  /*!
+   * Determina si esta habilitada o no la busqueda
+   */
+   bool _busquedaHabilitada;
+  /*!
+   * Puntero para la ventana de busqueda
+   */
+   EBusqueda *dockBusqueda;
+  /*!
+   * Lista de filtros de busqueda personalizados
+   */
+   QList< QPair<QString,QString> > filtros;
+
 };
 
 #endif
