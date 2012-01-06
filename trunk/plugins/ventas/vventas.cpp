@@ -68,6 +68,11 @@ VVentas::VVentas(QWidget *parent)
     QAction *ActSep = new QAction( this );
     ActSep->setSeparator( true );
 
+    //agregarFiltroBusqueda( "Numero de Factura", " ``" );
+    agregarFiltroBusqueda( "Numero de Cliente", " `id_cliente` = '%%1%' " );
+    agregarFiltroBusqueda( "Fecha", " `fecha` = '%%1%' ");
+    habilitarBusqueda();
+
     this->addAction( ActAgregar );
     //this->addAction( ActPagar );
     this->addAction( ActAnular );
