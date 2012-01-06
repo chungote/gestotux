@@ -54,7 +54,7 @@ void EBusqueda::agregarFiltro( QString nombre, QString filtro )
     filtros.insert( filtro.size(), filtro );
 }
 
-void EBusqueda::changeEvent(QEvent *e)
+void EBusqueda::changeEvent( QEvent *e )
 {
     QDockWidget::changeEvent(e);
     switch (e->type()) {
