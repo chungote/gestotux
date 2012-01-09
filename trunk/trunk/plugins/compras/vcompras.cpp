@@ -36,6 +36,7 @@ VCompras::VCompras(QWidget *parent)
  rmodelo = new MCompra( this, true );
  vista->setModel( rmodelo );
  vista->hideColumn( 0 );
+ vista->hideColumn( 4 );
 
  ActAgregar->setIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
 

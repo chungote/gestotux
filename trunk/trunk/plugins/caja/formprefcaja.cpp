@@ -73,7 +73,12 @@ void FormPrefCaja::cargar()
     ui->CkBLogo->setChecked( p->value( "logo", true ).toBool() );
     ui->CkBResponsable->setChecked( p->value( "responsable", true ).toBool() );
     p->beginGroup( "caja-predeterminada" );
-    ui->CBCaja->setCurrentIndex( p->value( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName(), -1 ).toInt() );
+    int id_caja = p->value( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName(), -1 ).toInt();
+    int pos = ui->CBCaja->findText( MCajas::nombreCaja( id_caja ) );
+    if( pos != -1 )
+        ui->CBCaja->setCurrentIndex( pos );
+    else
+        ui->CBCaja->setCurrentIndex( -1 );
     p->endGroup();
     p->endGroup();
     p->endGroup();

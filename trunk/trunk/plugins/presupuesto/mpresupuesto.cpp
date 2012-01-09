@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `presupuestos` (
   `destinatario` text COLLATE utf8_spanish_ci,
   `direccion` text COLLATE utf8_spanish_ci,
   `fecha` date NOT NULL,
-  `total` decimal(10,4) NOT NULL,
+  `total` decimal(20,3) NOT NULL,
   `serie` bigint(20) NOT NULL,
   `numero` bigint(20) NOT NULL,
   PRIMARY KEY (`id_presupuesto`),

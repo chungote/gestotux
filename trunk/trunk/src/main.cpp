@@ -369,7 +369,9 @@ int main(int argc, char *argv[])
                                 else if ( plug->tipo() == EPlugin::email )
                                 {
                                         ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
-                                        preferencias::getInstancia()->setValue( "pluginEmail", plug->nombre() );
+                                        preferencias *p = preferencias::getInstancia();
+                                        p->setValue( "pluginEmail", plug->nombre() );
+                                        p=0;
                                 }
                         }
                         else

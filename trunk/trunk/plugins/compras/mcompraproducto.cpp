@@ -36,8 +36,8 @@ MCompraProducto::MCompraProducto(QObject *parent)
     `id` int(1) NOT NULL auto_increment,
     `id_compra` int(1) NOT NULL,
     `id_producto` int(1) NOT NULL,
-    `precio_compra` decimal(4,0) NOT NULL,
-    `cantidad` decimal(4,0) NOT NULL,
+    `precio_compra` decimal(20,3) NOT NULL,
+    `cantidad` decimal(20,3) NOT NULL,
     PRIMARY KEY  (`id`)
  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
  */

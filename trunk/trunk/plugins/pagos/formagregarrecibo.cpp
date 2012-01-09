@@ -37,10 +37,6 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         setWindowTitle( "Nuevo recibo" );
         setWindowIcon( QIcon( ":/imagenes/recibo-nuevo.png" ) );
 
-        CBCliente->setModel( new EMCliente( CBCliente ) );
-        CBCliente->setModelColumn( 1 );
-        CBCliente->setCurrentIndex( -1 );
-
         connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
         connect( dSBPagado, SIGNAL( valueChanged( double ) ), this, SLOT( cambioPagado( double ) ) );
 

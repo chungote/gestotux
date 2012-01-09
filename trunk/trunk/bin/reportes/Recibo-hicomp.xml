@@ -2,17 +2,8 @@
 <report>
  <title>Recibo para Hicomp Computacion</title>
  <name>recibo-hicomp</name>
- <description>Recibo original/duplicado</description>
- <parameter default="12/12/2001" active="true" listtype="static" type="string" name="fecha1">
-  <description></description>
- </parameter>
+ <description>Recibo original para HiComp Computación - Sergio Sack</description>
  <parameter default="13" active="true" listtype="static" type="integer" name="id_recibo">
-  <description></description>
- </parameter>
- <parameter default="10" active="true" listtype="static" type="integer" name="recargo1">
-  <description></description>
- </parameter>
- <parameter default="10" active="true" listtype="static" type="double" name="total1">
   <description></description>
  </parameter>
  <grid>
@@ -31,11 +22,11 @@
  <querysource>
   <name>recibo-hicomp</name>
   <sql>SELECT r.id_recibo AS numero,
-       CONCAT( CONCAT( LPAD( r.serie, 5, 0 ), '-' ), LPAD( r.numero, 5, 0 ) ) AS NumSerie,
-       DATE_FORMAT( r.fecha_pago, '%d  %m  %y' ) AS fecha,
+       substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
+       strftime( '%d  %m  %y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
-       CONCAT( CONCAT( c.calle, CONCAT( ' ', c.numero ) ) ) AS direccion,
+       c.calle || ' ' || c.numero AS direccion,
        c.razon_social AS cliente,
        c.`CUIT/CUIL` AS cuit
 FROM recibos AS r,
@@ -221,65 +212,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <query>recibo-hicomp</query>
    </key>
    <height>84.0909</height>
-   <field>
-    <rect>
-     <x>1031.46</x>
-     <y>59.0726</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total3</column>
-    </data>
-    <format>$%5.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>1031.46</x>
-     <y>16.7726</y>
-     <width>95.8</width>
-     <height>15.4</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha3</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>1030</x>
-     <y>35.2</y>
-     <width>95.8</width>
-     <height>19.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo3</column>
-    </data>
-    <format>%i%%</format>
-   </field>
   </detail>
  </section>
  <section>

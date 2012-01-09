@@ -1496,9 +1496,9 @@ ORODocument* ORPreRender::generate()
       _internal->_lstQueries.append(new orQuery(qs->name(), qs->query(_internal->_database), _internal->_lstParameters, true, _internal->_database));
   }
 
-  foreach( orQuery *q, _internal->_lstQueries ) {
+  /*foreach( orQuery *q, _internal->_lstQueries ) {
       qDebug( QString( "Cola: %1 \n %2" ).arg( q->getName() ).arg( q->getSql() ).toLocal8Bit() );
-  }
+  }*/
 
   _internal->_subtotPageCheckPoints.clear();
   for(int i = 0; i < _internal->_reportData->trackTotal.count(); i++)

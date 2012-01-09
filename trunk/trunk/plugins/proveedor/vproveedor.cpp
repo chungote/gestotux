@@ -45,16 +45,16 @@ VProveedor::VProveedor( QWidget *parent )
  ActListado->setIcon( QIcon( ":/imagenes/listadoproveedores.png" ) );
  connect( ActListado, SIGNAL(triggered() ), this, SLOT( listado() ) );
 
- agregarFiltroBusqueda( "Nombre", " `nombre` = '%%1%' " );
- agregarFiltroBusqueda( "Codigo", " `id` = '%%1%' " );
- agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL` = '%%1%' ");
- //habilitarBusqueda();
+ agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%1%' " );
+ agregarFiltroBusqueda( QString::fromUtf8( "Código" ), " `id` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL`  LIKE '%%1%' ");
+ habilitarBusqueda();
 
  addAction( ActAgregar );
  addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActListado );
- //addAction( ActBuscar );
+ addAction( ActBuscar );
  addAction( ActCerrar );
 }
 

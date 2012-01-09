@@ -31,6 +31,7 @@ class VResumenCaja : public EVLista
     Q_OBJECT
 public:
     VResumenCaja( QWidget *parent = 0 );
+    void setearCaja( int id_caja ) { cambioCaja( id_caja ); }
 
 public slots:
     void cambioCaja( int id_caja );
