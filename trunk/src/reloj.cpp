@@ -29,15 +29,21 @@ Reloj::Reloj(QWidget *parent)
 {
  setSegmentStyle(Filled);
  this->setAttribute( Qt::WA_DeleteOnClose );
- QTimer *timer = new QTimer(this);
+ timer = new QTimer(this);
  connect( timer, SIGNAL( timeout() ), this, SLOT( showTime() ) );
  timer->start(1000);
- this->resize( preferencias::getInstancia()->value( "Ventanas/Reloj", this->size() ).toSize() );
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Ventanas" );
+ QSize tam = p->value( "Reloj", this->size() ).toSize();
+ p->endGroup(); p = 0;
+ this->resize( tam );
 }
 
 
 Reloj::~Reloj()
 {
+    timer->stop();
+    delete timer;
 }
 
 void Reloj::showTime()
@@ -50,7 +56,11 @@ void Reloj::showTime()
 }
 
 void Reloj::closeEvent( QCloseEvent *e ) {
-    // Guardo mi tamaño
-    preferencias::getInstancia()->setValue( "Ventanas/Reloj", this->size() );
+    // Guardo mi tamaÃ±o
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Ventanas" );
+    p->setValue( "Ventanas/Reloj", this->size() );
+    p->endGroup();
+    p = 0;
     e->accept();
 }

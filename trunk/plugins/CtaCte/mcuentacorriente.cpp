@@ -55,24 +55,9 @@ void MCuentaCorriente::relacionar()
  setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
 }
 
-Qt::ItemFlags MCuentaCorriente::flags(const QModelIndex& index) const
+Qt::ItemFlags MCuentaCorriente::flags(const QModelIndex& /*index*/) const
 {
-    switch( index.column() )
-    {
-        // Campos editables de la vista
-        case 4:
-        case 5:
-        case 3:
-        {
-            return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-            break;
-        }
-        default:
-        {
-            return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
-            break;
-        }
-    }
+    return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
 }
 
 QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
@@ -244,7 +229,7 @@ int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplica
       }
       else
       {
-            qDebug( "limite de la cuenta corriente solicitada correcto" );
+            qDebug( "Limite de la cuenta corriente solicitada correcto incluyendo aplicacion" );
             return MCuentaCorriente::LimiteCorrecto;
       }
      }
@@ -330,8 +315,8 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
 /*!
  * \fn MCuentaCorriente::agregarCuentaCorrientePredeterminada( const int id_cliente, const QDateTime fecha_alta )
  *  Genera una cuenta corriente nueva para el cliente seleccionado en la fecha de alta elegida con los valores de saldo inicial y limite de credito seleccionados en las preferencias
- * @param id_cliente Identificador del cliente al cual se le abrirá la cuenta corriente.
- * @param fecha_alta Fecha en que se dará de alta la cuenta corriente
+ * @param id_cliente Identificador del cliente al cual se le abrirÃ¡ la cuenta corriente.
+ * @param fecha_alta Fecha en que se darÃ¡ de alta la cuenta corriente
  * @return Verdadero si se pudo crear
  */
 bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente, const QDateTime fecha_alta )
@@ -367,11 +352,11 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente
 /*!
  * \fn MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDateTime fecha_alta, const QDate fecha_baja, double limite, QString codigo )
  *  Genera una cuenta corriente nueva para el cliente seleccionado en la fecha de alta elegida con los valores de saldo inicial y limite de credito seleccionados en las preferencias
- * @param id_cliente Identificador del cliente al cual se le abrirá la cuenta corriente.
- * @param fecha_alta Fecha en que se dará de alta la cuenta corriente.
- * @param fecha_baja Fecha en que se dar� de baja la cuenta corriente.
- * @param limite Limite que tendr� la cuenta corriente.
- * @param codigo Codigo que tendr� la cuenta corriente.
+ * @param id_cliente Identificador del cliente al cual se le abrirÃ¡ la cuenta corriente.
+ * @param fecha_alta Fecha en que se darÃ¡ de alta la cuenta corriente.
+ * @param fecha_baja Fecha en que se dará de baja la cuenta corriente.
+ * @param limite Limite que tendrá la cuenta corriente.
+ * @param codigo Codigo que tendrá la cuenta corriente.
  * @return Verdadero si se pudo crear
  */
 bool MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDateTime fecha_alta, const QDateTime fecha_baja, double limite, QString codigo )
@@ -481,7 +466,7 @@ bool MCuentaCorriente::existeCuentaCliente( const int id_cliente )
 
 /*!
  * \fn MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice )
- * Modifica el límite de la cuenta corriente con el nuevo valor si es valido y emite una actualización del indice para refrescar la vista.
+ * Modifica el lÃ­mite de la cuenta corriente con el nuevo valor si es valido y emite una actualizaciÃ³n del indice para refrescar la vista.
  * \param numero_cuenta Numero de cuenta a actualizar
  * \param nuevo_limite Nuevo limite a aplicar
  * \returns Verdadero si el limite se modifico correctamente.
@@ -505,7 +490,7 @@ bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const doubl
 
 /*!
  * \fn MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice )
- * Modifica el límite de la cuenta corriente con el nuevo valor si es valido y emite una actualización del indice para refrescar la vista.
+ * Modifica el lÃ­mite de la cuenta corriente con el nuevo valor si es valido y emite una actualizaciÃ³n del indice para refrescar la vista.
  * \param numero_cuenta Numero de cuenta a actualizar
  * \param nuevo_limite Nuevo limite a aplicar
  * \param indice Indice con el cual se hara un emit dataChanged()
@@ -538,10 +523,10 @@ double MCuentaCorriente::limite( const QString numero_cuenta )
         if( cola.next() ) {
             return cola.record().value(0).toDouble();
         } else {
-            qDebug( "Error al hacer next en la cola de obtención del limite de ctacte" );
+            qDebug( "Error al hacer next en la cola de obtenciÃ³n del limite de ctacte" );
         }
     } else {
-        qDebug( "Error al hacer exec en la cola de obtención del limite de ctacte" );
+        qDebug( "Error al hacer exec en la cola de obtenciÃ³n del limite de ctacte" );
     }
     qDebug( cola.lastError().text().toLocal8Bit() );
     qDebug( cola.lastQuery().toLocal8Bit() );

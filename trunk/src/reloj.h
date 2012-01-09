@@ -21,6 +21,7 @@
 #define RELOJ_H
 
 #include <QLCDNumber>
+#include <QTimer>
 
 /**
  * \brief Muestra reloj en el programa
@@ -40,6 +41,9 @@ protected:
 
 private slots:
      void showTime();
+
+private:
+     QTimer *timer;
 
 };
 

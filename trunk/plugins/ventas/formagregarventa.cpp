@@ -57,8 +57,6 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
 
         // Inicio los modelos
-        CBCliente->setModel( new EMCliente( CBCliente ) );
-        CBCliente->setModelColumn( 1 );
         CBCliente->setEditable( true );
 
         connect( CBProducto, SIGNAL( agregarProducto() ), this, SLOT( agregarProducto() ) );
@@ -93,11 +91,16 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         DSBCant->setPrefix( "" );
 
         // Verifico si la venta a cta corriente esta habilitada
-        if( !preferencias::getInstancia()->value( "Preferencias/CtaCte/habilitada" ).toBool() )
+        preferencias *p = preferencias::getInstancia();
+        p->inicio();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "CtaCte" );
+        if( !p->value( "habilitada" ).toBool() )
         {
                 GBFormaPago->setVisible( false );
                 RBContado->setChecked( true );
         }
+        p->endGroup(); p->endGroup(); p=0;
 
         // deshabilito el item de cuotas por no estar programado
         RBCuotas->setVisible( false );
@@ -248,14 +251,17 @@ void FormAgregarVenta::guardar()
  if( RBCtaCte->isChecked() && RBCtaCte->isEnabled() )
  {
    id_forma_pago = MFactura::CuentaCorriente;
+   qDebug( "MFactura::CuentaCorriente" );
  }
  else if( RBContado->isChecked() )
  {
    id_forma_pago = MFactura::Contado;
+   qDebug( "MFactura::Contado" );
  }
  else if( RBCuotas->isChecked() )
  {
      id_forma_pago = MFactura::Cuotas;
+     qDebug( "MFactura::Cuotas" );
  } else {
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      mcp->calcularTotales( true );
@@ -311,34 +317,29 @@ void FormAgregarVenta::guardar()
 void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
 {
  // Busco la dirección
- if( CBCliente->currentIndex() != 0 ) {
-     int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
+ int id_cliente = CBCliente->idClienteActual();
+ if( id_cliente > 0 ) { // 0 => Consumidor final.
      LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
+     // Veo si esta habilitado el cliente con cueta corriente y el plugin esta cargado
+     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
+     {
+         if( MCuentaCorriente::existeCuentaCliente( id_cliente ) )
+         {
+            RBCtaCte->setEnabled( true );
+            GBFormaPago->setEnabled( true );
+         }
+         else
+         {
+            qDebug( "No se encontro una cuenta corriente para el cliente." );
+            RBContado->setChecked( true );
+            RBCtaCte->setEnabled( false );
+         }
+     }
+
  } else {
      qDebug( "Cliente consumidor final - Sin direccion" );
-     return;
- }
- // Veo si esta habilitado el cliente con cueta corriente y el plugin esta cargado
- if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
- {
-  int id_cliente = CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt();
-  if( id_cliente == 0 ) {
-      // Es el Consumidor Final
-      qDebug( "Id cliente es consumidor final" );
-      RBContado->setChecked( true );
-      GBFormaPago->setEnabled( false );
-      return;
-  }
-  if( MCuentaCorriente::existeCuentaCliente( id_cliente ) )
-  {
-   RBCtaCte->setEnabled( true );
-   GBFormaPago->setEnabled( true );
-  }
-  else
-  {
-   RBContado->setChecked( true );
-   RBCtaCte->setEnabled( false );
-  }
+     RBContado->setChecked( true );
+     RBCtaCte->setEnabled( false );
  }
  return;
 }

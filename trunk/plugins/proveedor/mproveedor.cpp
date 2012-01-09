@@ -98,6 +98,7 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
 		break;
 	}
  }
+ return QVariant();
 }
 
 #include <QSqlQuery>

@@ -80,7 +80,7 @@ bool MProductosTotales::removeRow( int row, const QModelIndex& parent )
 {
   //qDebug( QString( "Eliminando fila: %1" ).arg( row ).toLocal8Bit() );
   beginRemoveRows( parent, row, row );
-  // Actualizo los indices de todos los que est�n despu�s de la fila que estamos eliminando.
+  // Actualizo los indices de todos los que están después de la fila que estamos eliminando.
   for( int i = row; i < cantidades->count(); i++ ) {
       productos->      insert( i, productos->      value( i + 1 ) );
       precio_unitario->insert( i, precio_unitario->value( i + 1 ) );
@@ -102,7 +102,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
 {
  if( !index.isValid() )
  {
-   //qDebug( QString( "Indice invalido Due�os: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
+   //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
    return false;
  }
  switch( role )
@@ -115,8 +115,13 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                         case 0:
                         {
                                 // Veo si tengo que verificar el maximo posible y el producto es valido y no estamos en buscar precio de compra ( ingresando compra no controla stock )
-                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool() &&
-                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 && _tipoPrecio != MProductosTotales::Costo )
+                                preferencias *p = preferencias::getInstancia();
+                                p->beginGroup( "Preferencias" );
+                                p->beginGroup( "Productos" );
+                                p->beginGroup( "Stock" );
+                                if( p->value( "limitar" ).toBool() &&
+                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 &&
+                                        _tipoPrecio != MProductosTotales::Costo )
                                 {
                                         // Busco si el stock actual menos la cantidad es <= 0
                                         qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
@@ -127,6 +132,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                                 return false;
                                         }
                                 }
+                                p->endGroup(); p->endGroup(); p->endGroup(); p = 0;
                                 cantidades->insert( index.row(), value.toDouble() );
                                 if( _calcularTotal )
                                 {
@@ -147,7 +153,13 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                     return false;
                                 }
                                 // Veo si tengo que verificar el maximo posible en stock, el producto es valido o estamos en modo compra
-                                if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar" ).toBool()  && this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 && _tipoPrecio != MProductosTotales::Costo)
+                                preferencias *p = preferencias::getInstancia();
+                                p->beginGroup( "Preferencias" );
+                                p->beginGroup( "Productos" );
+                                p->beginGroup( "Stock" );
+                                if( p->value( "limitar" ).toBool()  &&
+                                    this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 &&
+                                    _tipoPrecio != MProductosTotales::Costo )
                                 {
                                         // Busco si el stock actual menos la cantidad es <= 0
                                         if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
@@ -157,6 +169,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                                 return false;
                                         }
                                 }
+                                p->endGroup(); p->endGroup(); p->endGroup(); p = 0;
                                 productos->insert( index.row(), value.toInt() );
                                 //qDebug( QString( "Valor insertado en productos %1!").arg( value.toInt() ).toLocal8Bit() );
                                 if( _buscarPrecio && value.toInt() > 0 )
@@ -444,7 +457,7 @@ void MProductosTotales::recalcularTotal()
  {
   Total += i.value();
  }
- // Emito la señal de que cambio el valor
+ // Emito la seÃ±al de que cambio el valor
  emit dataChanged( this->index( this->cantidades->size(), 0 ), this->index( this->cantidades->size(), 3 ) );
 }
 

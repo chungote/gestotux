@@ -54,9 +54,6 @@ void ECBClientes::inicializar()
         while( cola.next() ) {
             this->insertItem( pos, cola.record().value(1).toString() );
             ids->insert( pos, cola.record().value(0).toInt() );
-/*            this->setItemData( pos , cola.record().value(0) );
-            if( this->itemData( pos, Qt::UserRole ).isValid() )
-                qDebug( this->itemData( pos, Qt::UserRole ).toString().toLocal8Bit() );*/
             pos++;
         }
         if( pos == 0 ) {
@@ -70,9 +67,6 @@ void ECBClientes::inicializar()
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-/*    for( int i = 0; i < this->count(); i ++ ) {
-        qDebug( QString( "pos: %1 - %2 - ID: %3 " ).arg( i ).arg( this->itemText( i ) ).arg( itemData( i ).toString() ).toLocal8Bit() );
-    }*/
 }
 
 /*!
@@ -81,11 +75,7 @@ void ECBClientes::inicializar()
  */
 int ECBClientes::idClienteActual()
 {
-  /*for( int i = 0; i < this->count(); i ++ ) {
-      qDebug( QString( "pos: %1, - %2 - ID: %3 " ).arg( i ).arg( this->itemText( i ) ).arg( itemData( i ).toString() ).toLocal8Bit() );
-    }*/
     //qDebug( QString::number( ids->value( this->currentIndex() ) ).toLocal8Bit() );
-    //return this->itemData( this->currentIndex() ).toInt();
     return ids->value( this->currentIndex() );
 }
 

@@ -70,8 +70,7 @@ VCajas::VCajas(QWidget *parent) :
 }
 
 
-void VCajas::agregar( bool autoeliminarid ) {
-   (void)autoeliminarid;
+void VCajas::agregar( bool /*autoeliminarid*/ ) {
    FormAgregarCaja *f = new FormAgregarCaja( this );
    f->exec();
    modelo->select();
@@ -99,7 +98,7 @@ void VCajas::transferir()
    modelo->select();
 }
 
-#include "vresumencaja.h"
+#include "VResumenCaja.h"
 void VCajas::resumen()
 {
     if( vista->selectionModel()->selectedRows().isEmpty() ) {

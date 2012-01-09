@@ -22,6 +22,7 @@ ECBProductos::ECBProductos( QWidget *parent ) :
 
     _mapa_pos_codigo = new QMap<QString, int>();
     _mapa_id_nombre = new QMap<int, QString>();
+    _mapa_pos_ids = new QMap<int, int>();
 
     this->_min = -1;
 
@@ -35,6 +36,8 @@ ECBProductos::~ECBProductos()
     _mapa_pos_codigo = 0;
     delete _mapa_id_nombre;
     _mapa_id_nombre = 0;
+    delete _mapa_pos_ids;
+    _mapa_pos_ids = 0;
 }
 
 #include <QSqlQuery>
@@ -52,11 +55,12 @@ void ECBProductos::inicializar()
         int pos = 0;
         while( cola.next() ) {
             // Pos = currentIndex();
-            // id_producto = item cb itemData
+            // id_producto = _mapa_pos_ids
             // codigo = _mapa_pos_codigo
             this->insertItem( pos, cola.record().value(2).toString(), cola.record().value(0).toInt() );
             this->_mapa_pos_codigo->insert( cola.record().value(1).toString(), pos );
             this->_mapa_id_nombre->insert ( cola.record().value(0).toInt()   , cola.record().value(2).toString() );
+            this->_mapa_pos_ids->insert   ( pos, cola.record().value(0).toInt() );
             pos++;
         }
         if( pos == 0 ) {
@@ -83,7 +87,9 @@ QMap<int, QString> *ECBProductos::listadoProductos()
 { return this->_mapa_id_nombre; }
 
 int ECBProductos::idActual() const
-{ return this->itemData( this->currentIndex() ).toInt(); }
+{
+    return this->_mapa_pos_ids->value( this->currentIndex() );
+}
 
 void ECBProductos::verificarExiste()
 {
@@ -101,7 +107,7 @@ void ECBProductos::verificarExiste()
             // Agregado al final pero con ID <= -1
             int pos_nueva = this->count();
             this->_mapa_pos_codigo->insert( QString::number( _min ), pos_nueva );
-            //this->_mapa_pos_ids->insert( _min, this->count() );
+            this->_mapa_pos_ids->insert( pos_nueva, _min );
             this->_mapa_id_nombre->insert( _min, this->lineEdit()->text() );
             this->insertItem( pos_nueva, this->lineEdit()->text(), _min );
             this->setCurrentIndex( pos_nueva );

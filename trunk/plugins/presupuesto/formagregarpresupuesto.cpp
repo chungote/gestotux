@@ -60,10 +60,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         addAction( ActGuardar );
         addAction( ActCancelar );
 
-        // Seteo la lista de clientes
-        CBCliente->setModel( new EMCliente( CBCliente ) );
-        CBCliente->setModelColumn( 1 );
-        CBCliente->setCurrentIndex( -1 );
         // Permito la creacion para un no cliente
         CBCliente->setAutoCompletion( true );
         CBCliente->setEditable( true );

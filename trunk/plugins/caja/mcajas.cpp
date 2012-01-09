@@ -211,5 +211,24 @@ int MCajas::cajaPredeterminada()
     p->endGroup();
     p->endGroup();
     p = 0;
+    if( id <= 0 ) {
+        // No hay ninguna caja elegida
+        QSqlQuery cola;
+        if( cola.exec( "SELECT COUNT(id_caja) FROM caja" ) ) {
+            if( cola.next() ) {
+                int cantidad = cola.record().value(0).toInt();
+                if( cantidad == 1 ) {
+                    // Existe una sola caja declarada... la devuelvo
+                    cola.exec( "SELECT id_caja FROM caja LIMIT 1 " );
+                    cola.next();
+                    return cola.record().value(0).toInt();
+                }
+            }
+        } else {
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            return false;
+        }
+    }
     return id;
 }

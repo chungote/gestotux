@@ -54,7 +54,7 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   l->addWidget( CBCajas, 0, 0 );
   l->addItem( i, 1, 0 );
 
-  // Inicializo el modelo de las cajas, lo pongo en el combobox y conecto las señales para cambiar los datos
+  // Inicializo el modelo de las cajas, lo pongo en el combobox y conecto las seÃ±ales para cambiar los datos
   cmodelo = new MCajas( CBCajas );
   CBCajas->setModel( cmodelo );
   CBCajas->setModelColumn( 1 );

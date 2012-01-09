@@ -2,7 +2,7 @@
 #define EBUSQUEDA_H
 
 #include <QDockWidget>
-#include "ui_ebusquedabase.h"
+#include "ui_EBusquedaBase.h"
 #include <QStringList>
 #include <QSqlTableModel>
 

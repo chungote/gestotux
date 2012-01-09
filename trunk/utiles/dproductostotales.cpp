@@ -46,10 +46,15 @@ QWidget* DProductosTotales::createEditor(QWidget* parent, const QStyleOptionView
            EDSBPrecio *e = new EDSBPrecio( parent );
            e->setRange( 0.0, 99999999.999 );
            e->setPrefix("");
-           if( preferencias::getInstancia()->value( "Preferencias/Productos/Stock/limitar", false ).toBool() )
+           preferencias *p = preferencias::getInstancia();
+           p->beginGroup( "Preferencias" );
+           p->beginGroup( "Productos" );
+           p->beginGroup( "Stock" );
+           if( p->value( "limitar", false ).toBool() )
            {
              e->setMaximum( MProductos::stock( index.model()->data( index.model()->index( index.row(), 0 ), Qt::EditRole ).toInt() ) );
            }
+           p->endGroup(); p->endGroup(); p->endGroup(); p = 0;
            return e;
            break;
         }
