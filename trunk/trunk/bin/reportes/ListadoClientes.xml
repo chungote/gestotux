@@ -15,7 +15,7 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>clientes</name>
-  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, `tel_celular`, `calle` + ' ' + `numero` AS direccion  FROM `clientes`</sql>
+  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, `tel_celular`, `calle` + ' ' + `numero` AS direccion  FROM `clientes`ORDER BY razon_social ASC</sql>
  </querysource>
  <rpthead>
   <height>81.5916</height>
@@ -26,7 +26,7 @@
     <width>64</width>
     <height>62</height>
    </rect>
-   <mode>clip</mode>
+   <mode>stretch</mode>
    <map format="png">begin 644 internal
 MB5!.1PT*&amp;@H````-24A$4@```$`````]"`8```%JTE]7````!&amp;=!34$``+&amp;/
 M"_QA!0````9B2T=$`/\`_P#_H+VGDP````EP2%ES```-%P``#1&lt;!F#I2@@``
@@ -468,8 +468,8 @@ end
   <height>26.4467</height>
   <field>
    <rect>
-    <x>4.55896</x>
-    <y>6.33175</y>
+    <x>4.56</x>
+    <y>6.33</y>
     <width>31.6</width>
     <height>14.2</height>
    </rect>
@@ -503,10 +503,10 @@ end
   </label>
   <field>
    <rect>
-    <x>43.7574</x>
-    <y>6.50769</y>
-    <width>37.723</width>
-    <height>13.6001</height>
+    <x>43.8</x>
+    <y>6.51</y>
+    <width>37.7</width>
+    <height>13.6</height>
    </rect>
    <font>
     <face>Times New Roman</face>

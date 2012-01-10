@@ -23,7 +23,7 @@
   <name>recibo-hicomp</name>
   <sql>SELECT r.id_recibo AS numero,
        substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
-       strftime( '%d  %m  %y', r.fecha_pago ) AS fecha,
+       strftime( '%%d  %m  %y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
        c.calle || ' ' || c.numero AS direccion,

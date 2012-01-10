@@ -36,6 +36,7 @@ protected slots:
     void antes_de_insertar(int row, QSqlRecord& record);
     void cerrar();
     void imprimir();
+    void aPdf();
 
 };
 

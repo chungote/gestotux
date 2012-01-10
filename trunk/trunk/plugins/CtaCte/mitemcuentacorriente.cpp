@@ -164,7 +164,7 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 5:
                         case 6:
                         {
-                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item, role).toDouble() );
+                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item, role).toDouble(), 10, 'f', 3 );
                                 break;
                         }
                         case 1:
@@ -190,7 +190,7 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                                                     this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() );
                                         }
                                 }
-                                return QString( "$ %L1" ).arg( saldos->value( item.row() ) );
+                                return QString( "$ %L1" ).arg( saldos->value( item.row() ), 10, 'f', 3 );
                                 break;
                         }
                         default:

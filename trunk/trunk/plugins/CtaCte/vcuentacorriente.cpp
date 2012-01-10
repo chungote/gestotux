@@ -25,6 +25,7 @@
 #include <QMenu>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QHeaderView>
 #include "dsino.h"
 
 VCuentaCorriente::VCuentaCorriente(QWidget *parent)
@@ -37,6 +38,9 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  rmodelo = new MCuentaCorriente( this );
  vista->setModel( rmodelo );
  vista->setItemDelegateForColumn( 6, new DSiNo( this->vista ) );
+ vista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+ vista->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
+ vista->horizontalHeader()->setMinimumSectionSize( 60 );
  vista->setSortingEnabled( true );
  modelo = 0;
 
@@ -92,7 +96,6 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
         connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
         menu->addAction( ActDarBaja );
  }
-
 
  menu->addAction( ActModificarLimite );
  menu->addAction( ActResumen );
