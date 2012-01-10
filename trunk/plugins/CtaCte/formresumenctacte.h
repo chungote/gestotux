@@ -37,7 +37,6 @@ protected slots:
     void cambioCtaCte( int numero_cuenta );
     void imprimir();
     void pdf();
-    void email();
     void menuContextual( const QModelIndex &indice );
     void pagarTodo();
     void verFactura();

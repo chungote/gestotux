@@ -26,6 +26,7 @@
 #include <QApplication>
 #include <QFile>
 #include <QDomDocument>
+#include <QFileDialog>
 #include "preferencias.h"
 
 EReporte::EReporte( QObject *padre )
@@ -115,6 +116,46 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
             qDebug( "Error al guardar el reporte en el directorio." );
         }
     }*/
+    return true;
+
+}
+
+
+/*!
+ * \fn EReporte::hacerPDF( ParameterList parametros, QString ruta )
+ * Realiza el reporte configurado.
+ * Si no se definieron parametros, se tomarán los parametros definidos en el objeto.
+ * \param parametros Objeto del tipo "ParameterList" con los parametros para el reporte.
+ * \param ruta Ruta a donde guardar el reporte, sino se mostrará el dialogo de guardar.
+ * \returns Verdadero si se pudo imprimir. Falso si hubo un error de configuración o al renderizar.
+ */
+bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
+    if( _rep == 0 || !_rep->isValid() || _tipo == Invalido || _nombre.isNull() ) {
+        qDebug( "Error - Reporte no inicializado o erroneo" );
+        return false;
+    }
+    // Busco las modificaciónes que se le quieran hacer a los reportes
+    if( !parametros.isEmpty() ) {
+        _parametros = parametros;
+    }
+
+    _rep->setParamList( _parametros );
+
+    // Muestro el dialogo de a donde guardar
+    ruta = QFileDialog::getSaveFileName( 0,
+                                         "Guardar en",
+                                         ruta,
+                                         "Archivo PDF ( *.pdf *.PDF )" );
+    if( ruta.isEmpty() ) {
+        // No se eligió ningun archivo.
+        return true;
+    }
+
+    if( !( _rep->exportToPDF( ruta ) ) ) {
+        qDebug( "Error al intentar pasar a pdf el reporte o se cancelo" );
+        _rep->reportError( 0 );
+        return false;
+    }
     return true;
 
 }

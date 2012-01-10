@@ -58,9 +58,9 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         this->addAction( ActPdf );
         connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
 
-        EActEmail *ActEmail = new EActEmail( this );
+        /*EActEmail *ActEmail = new EActEmail( this );
         this->addAction( ActEmail );
-        connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );
+        connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );*/
 
         modeloItem = new MItemCuentaCorriente( TVItems, true );
         TVItems->setModel( modeloItem );
@@ -154,18 +154,23 @@ void FormResumenCtaCte::imprimir()
  */
 void FormResumenCtaCte::pdf()
 {
-    /// @todo implement me
+    if( modeloItem->rowCount() <= 0 ) {
+        QMessageBox::warning( this, "Error", "No hay ningun movimiento para la cuenta corriente. No se imprimira nada" );
+        return;
+    }
+    // Parametros para el nombre
+
+    QString nombre = QString( "%1 - Resumen de cuenta corriente.pdf").arg( CBClienteCtaCte->currentText() );
+    ParameterList lista;
+    lista.append( Parameter( "ctacte", CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toString() ) );
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ResumenCtaCte", lista );
+    if( ! rep->hacerPDF( lista, nombre ) ) {
+        QMessageBox::warning( this, "Error", "No se pudo generar como pdf el resumen de cuenta corriente" );
+    }
+    delete rep;
+    rep = 0;
 }
-
-
-/*!
-    \fn FormResumenCtaCte::email()
- */
-void FormResumenCtaCte::email()
-{
-    /// @todo implement me
-}
-
 
 /*!
     \fn FormResumenCtaCte::menuContextual( const QModelIndex &indice )
@@ -241,6 +246,7 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
 void FormResumenCtaCte::pagarTodo()
 {
     /// @todo implement me
+    qWarning( "No implementado todavía" );
 }
 
 
@@ -249,6 +255,7 @@ void FormResumenCtaCte::pagarTodo()
  */
 void FormResumenCtaCte::verFactura()
 {
+    qWarning( "No implementado todavía" );
     /// @todo implement me
 }
 
@@ -259,6 +266,7 @@ void FormResumenCtaCte::verFactura()
  */
 void FormResumenCtaCte::verRecibo()
 {
+    qWarning( "No implementado todavía" );
 /* Recibo *re = new Recibo( this );
  re->setIDPago( 0  ); */ /// @todo Poner id del recibo
 }
@@ -275,5 +283,6 @@ void FormResumenCtaCte::pagarFactura()
 
  // Busco los detalles de la factura
 
+    qWarning( "No implementado todavía" );
 
 }

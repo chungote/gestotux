@@ -66,6 +66,10 @@ class EReporte : public QObject {
     bool hacer( ParameterList parametros, bool previsualizar = false, bool mostrarDialogoImpresora = true );
     bool hacer() { return hacer( _parametros, false, true ); }
 
+    bool hacerPDF( ParameterList parametros, QString ruta = QString() );
+    bool hacerPDF() { return hacerPDF( _parametros ); }
+
+
     void mostrarError( QWidget *ventana );
 
     private:

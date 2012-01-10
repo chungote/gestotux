@@ -17,14 +17,10 @@
  <rightmargin>50</rightmargin>
  <leftmargin>50</leftmargin>
  <querysource>
-  <name>seteo</name>
-  <sql>SET @saldo:=0;</sql>
- </querysource>
- <querysource>
   <name>resumen</name>
-  <sql>SELECT DATE_FORMAT( fecha, "%d/%m/%Y %H:%i" ) AS fecha,
-          descripcion,
-          CASE tipo_op WHEN 0 THEN 'R'
+  <sql>SELECT t1.fecha AS fecha,
+          t1.descripcion,
+          CASE t1.tipo_op WHEN 0 THEN 'R'
 		     WHEN 1 THEN 'F'
 		     WHEN 2 THEN 'NC'
 		     WHEN 3 THEN 'ND'
@@ -32,11 +28,11 @@
 		     WHEN 5 THEN 'RCS'
 		     WHEN 6 THEN 'FA'
 	 END AS Tipo,
-          debe,
-          haber,
-          @saldo:= @saldo + ( debe - haber) AS saldo
-FROM item_ctacte
-WHERE id_ctacte = &lt;? value( "ctacte" ) ?></sql>
+          t1.debe,
+          t1.haber,
+          (select SUM(t2.haber)-SUM(t2.debe) FROM item_ctacte AS t2 WHERE t2.id_ctacte = &lt;? value( "ctacte" ) ?> AND t2.id_item_ctacte &lt;= t1.id_item_ctacte ) AS saldo
+FROM item_ctacte AS t1
+WHERE t1.id_ctacte = &lt;? value( "ctacte" ) ?></sql>
  </querysource>
  <querysource>
   <name>datos</name>

@@ -32,6 +32,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
 {
  this->setObjectName( "visor_ctaCte" );
  this->setWindowTitle( "Cuentas Corrientes" );
+ this->setWindowIcon( QIcon( ":/imagenes/ctacte.png" ) );
 
  rmodelo = new MCuentaCorriente( this );
  vista->setModel( rmodelo );
