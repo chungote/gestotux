@@ -98,7 +98,7 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                         }
                 }
                 case 5:
-                { return QString( "$ %L1" ).arg( QSqlTableModel::data( item, role ).toDouble() ); }
+                { return QString( "$ %L1" ).arg( QSqlTableModel::data( item, role ).toDouble(), 10,'f', 2 ); }
                 default:
                 { return QSqlTableModel::data( item, role ); }
             }
@@ -208,7 +208,7 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
  * \fn MServicios::precioBase( int id_servicio )
  * Devuelve el precio base de un servicio
  * @param id_servicio Identificador del servicio al cual se le quiere saber el percio base.
- * @return precio base para el servicio solicitado o 0.0 si existió un error.
+ * @return precio base para el servicio solicitado o 0.0 si existiÃ³ un error.
  */
 double MServicios::precioBase( int id_servicio )
 {
@@ -225,7 +225,7 @@ double MServicios::precioBase( int id_servicio )
  * \fn MServicios::getNombreServicio( int id_servicio )
  * Devuelve el nombre de un servicio
  * @param id_servicio Identificador del servicio al cual se le quiere saber el nombre.
- * @return Nombre del servicio o una cadena vacía si existio un error al obtener el nombre
+ * @return Nombre del servicio o una cadena vacÃ­a si existio un error al obtener el nombre
  */
 QString MServicios::getNombreServicio( int id_servicio )
 {
@@ -325,7 +325,7 @@ bool MServicios::verificarSiPuedeEliminar( const int id_servicio )
         qDebug( "MServicios::verificarSiPuedeEliminar::Error exec 2 verificacion -  recargos" );
         return false;
     }
-    // Asociación servicio-periodo
+    // AsociaciÃ³n servicio-periodo
     if( cola.exec( QString( "SELECT COUNT(id_servicio) FROM periodo_servicio WHERE id_servicio = %1"  ).arg( id_servicio ) ) ) {
         if( cola.next() )  {
             if( cola.record().value(0).toInt() > 0 ) { return false; }
@@ -349,7 +349,7 @@ bool MServicios::dadoDeBaja( const int id_servicio)
 {
     QSqlQuery cola;
     if( !cola.exec( QString( "SELECT COUNT(id_servicio) FROM servicios WHERE id_servicio = %1 AND fecha_baja IS NULL").arg( id_servicio ) ) ) {
-        qDebug( "Error al ejecutar la cola de obtención de dato de si el servicio esta dado de baja" );
+        qDebug( "Error al ejecutar la cola de obtenciÃ³n de dato de si el servicio esta dado de baja" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     } else {
@@ -401,6 +401,10 @@ bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
 "forma_incompleto" INTEGER NOT NULL
 */
 #include "mperiodoservicio.h"
+#include "EReporte.h"
+#include "../pagos/mpagos.h"
+#include "../ventas/MFactura.h"
+#include "../ventas/mitemfactura.h"
 /*!
  * \fn MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio, QDateTime fechaAlta )
  * Calcula cuanto se debe cobrar por el alta a partir de l afecha de alta y la del proximi periodo de cobro.
@@ -434,12 +438,12 @@ bool MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio,
     {
         // Busco el inicio del proximo periodo
         QDate proximo = mps->generarFechaInicioPeriodo( id_servicio, periodoActual + 1, QDate::currentDate().year() );
-        // Calculo la cantidad de d�as hasta esa fecha
+        // Calculo la cantidad de días hasta esa fecha
         int cant_dias = fechaAlta.date().daysTo( proximo );
-        // Calculo el precio x d�a y precio total
+        // Calculo el precio x día y precio total
         double precio_por_dia = precioBase( id_servicio ) / mps->diasEnPeriodo( id_servicio );
         precio_final = precio_por_dia * cant_dias;
-        texto.append( "Cobro de d�as faltantes desde %1 hasta %2 por el servicio %3 para el per�odo %4" )
+        texto.append( "Cobro de días faltantes desde %1 hasta %2 por el servicio %3 para el período %4" )
                 .arg( fechaAlta.toString( Qt::SystemLocaleShortDate ) )
                 .arg( proximo.toString( Qt::SystemLocaleShortDate ) )
                 .arg( getNombreServicio( id_servicio ) )
@@ -460,7 +464,55 @@ bool MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio,
     { delete mps; return false; break; }
  }
  delete mps;
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Genero el comprobante correspondiente
- /// @todo generar comprobante!!!
- return false;
+#ifndef GESTOTUX_HICOMP
+ MFactura *mf = new MFactura();
+ int id_factura = mf->agregarFactura( id_cliente,
+                                           QDateTime::currentDateTime(),
+                                           MFactura::CuentaCorriente,
+                                           precio_final );
+ delete mf;
+ if( id_factura <= 0 ) {
+     qWarning( "Error al intentar generar la factura!" );
+     return false;
+ }
+ MItemFactura *mif = new MItemFactura();
+ if( mif->agregarItemFactura( id_factura,
+                                       1,
+                                       texto,
+                                       precio_final,
+                                       -1 ) ) { // pongo menos 1 porque no es un producto
+     qWarning( "No se pudo generar el item de la factura!" );
+     delete mif;
+     return false;
+ }
+ delete mif;
+ EReporte *r = new EReporte( this );
+ r->factura();
+ ParameterList lista;
+ lista.append( "id_factura", id_factura );
+ if( !r->hacer( lista ) ) {
+     qWarning( "No se pudo imprimir el recibo pero quedo emitido" );
+ }
+#else
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Genero el comprobante correspondiente  ------>>>   SOLO HICOMP!!!!
+ MPagos *mp = new MPagos();
+ int id_recibo = mp->agregarRecibo( id_cliente, QDate::currentDate(), texto, precio_final, false, false );
+ delete mp;
+ if( id_recibo <= 0 )
+ {
+     qWarning( "Error al generar el recibo correspondiente" );
+     return false;
+ }
+ EReporte *r = new EReporte( this );
+ r->recibo();
+ ParameterList lista;
+ lista.append( "id_recibo", id_recibo );
+ if( !r->hacer( lista ) ) {
+     qWarning( "No se pudo imprimir el recibo pero quedo emitido" );
+ }
+#endif
+ return true;
 }

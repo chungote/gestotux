@@ -70,9 +70,8 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         TVItems->hideColumn( 8 );
         TVItems->setSelectionMode( QAbstractItemView::SingleSelection );
         TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
-        TVItems->horizontalHeader()->setResizeMode( 1, QHeaderView::ResizeToContents );
-        TVItems->horizontalHeader()->setResizeMode( 3, QHeaderView::ResizeToContents );
-        TVItems->horizontalHeader()->setResizeMode( 4, QHeaderView::ResizeToContents );
+        TVItems->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+        TVItems->horizontalHeader()->setResizeMode( 4, QHeaderView::Stretch );
         TVItems->setTextElideMode( Qt::ElideRight );
         /// Menu contextual para cada operacion de la cuenta corriente
         connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
@@ -96,8 +95,8 @@ void FormResumenCtaCte::setNumeroCuenta( const QString &numero_cuenta )
  if( cola.next() )
  {
    LFechaAlta->setText( cola.record().value(0).toDate().toString( Qt::DefaultLocaleShortDate ) );
-   LSaldoActual->setText( QString( "$ %L1" ).arg( cola.record().value(1).toDouble() ) );
-   LLimiteCredito->setText( QString( "$ %L1" ).arg( cola.record().value(2).toDouble() ) );
+   LSaldoActual->setText( QString( "$ %L1" ).arg( cola.record().value(1).toDouble(), 10, 'f', 3 ) );
+   LLimiteCredito->setText( QString( "$ %L1" ).arg( cola.record().value(2).toDouble(), 10, 'f', 3 ) );
    modeloItem->setFilter( QString( "id_ctacte = '%1'" ).arg( numero_cuenta ) );
    modeloItem->select();
  }
@@ -219,6 +218,10 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
                 }
                 break;
         }
+        case MItemCuentaCorriente::CobroServicio:
+        case MItemCuentaCorriente::RecargoCobroServicio:
+        default:
+        { break; }
  }
  _menuContextual->addSeparator();
 

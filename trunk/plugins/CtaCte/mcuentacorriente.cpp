@@ -37,7 +37,7 @@ MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
  */
 void MCuentaCorriente::inicializar()
 {
- setHeaderData( 0, Qt::Horizontal, "Numero de cuenta" );
+ setHeaderData( 0, Qt::Horizontal, QString::fromUtf8("Nº Cuenta" ) );
  setHeaderData( 1, Qt::Horizontal, "Cliente" );
  setHeaderData( 2, Qt::Horizontal, "Fecha Alta" );
  setHeaderData( 3, Qt::Horizontal, "Fecha Baja" );

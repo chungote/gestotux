@@ -15,10 +15,10 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>productos</name>
-  <sql>SELECT codigo, nombre, precio_venta  FROM producto WHERE habilitado = 1 AND stock > 0</sql>
+  <sql>SELECT codigo, nombre, precio_venta  FROM producto WHERE habilitado = 1 AND stock > 0 ORDER BY nombre</sql>
  </querysource>
  <rpthead>
-  <height>81.5916</height>
+  <height>81.262</height>
   <image>
    <rect>
     <x>2</x>
@@ -271,30 +271,54 @@ end
    <key>
     <query>productos</query>
    </key>
-   <height>19.9974</height>
+   <height>20.6679</height>
+   <line>
+    <xstart>1.32063</xstart>
+    <ystart>17.2645</ystart>
+    <xend>1069.9</xend>
+    <yend>17.2722</yend>
+    <weight>1</weight>
+   </line>
    <field>
     <rect>
-     <x>1.79</x>
-     <y>2.3</y>
-     <width>83.8</width>
-     <height>15.7</height>
+     <x>923</x>
+     <y>1.38</y>
+     <width>136</width>
+     <height>14.2</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <hcenter/>
-    <top/>
+    <left/>
+    <vcenter/>
     <data>
      <query>productos</query>
-     <column>codigo</column>
+     <column>precio_venta</column>
     </data>
+    <format>%0.2f</format>
    </field>
+   <label>
+    <rect>
+     <x>905.73</x>
+     <y>2.83573</y>
+     <width>14.3185</width>
+     <height>15.9212</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
    <field>
     <rect>
-     <x>90.9</x>
-     <y>0.84</y>
+     <x>90.3425</x>
+     <y>1.16709</y>
      <width>810</width>
      <height>14.5</height>
     </rect>
@@ -312,10 +336,29 @@ end
    </field>
    <field>
     <rect>
-     <x>907</x>
-     <y>2.35</y>
-     <width>144</width>
-     <height>14.2</height>
+     <x>10.5986</x>
+     <y>0.924804</y>
+     <width>73.299</width>
+     <height>15.7</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <top/>
+    <data>
+     <query>productos</query>
+     <column>codigo</column>
+    </data>
+   </field>
+   <label>
+    <rect>
+     <x>2.50099</x>
+     <y>1.64178</y>
+     <width>9.12627</width>
+     <height>13.6913</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -324,19 +367,8 @@ end
     </font>
     <left/>
     <vcenter/>
-    <data>
-     <query>productos</query>
-     <column>precio_venta</column>
-    </data>
-    <format>$ %0.2f</format>
-   </field>
-   <line>
-    <xstart>1.32063</xstart>
-    <ystart>17.2645</ystart>
-    <xend>1069.9</xend>
-    <yend>17.2722</yend>
-    <weight>1</weight>
-   </line>
+    <string>#</string>
+   </label>
   </detail>
  </section>
  <pgfoot>

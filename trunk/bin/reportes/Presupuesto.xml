@@ -23,7 +23,7 @@
   <name>presupuesto</name>
   <sql>&lt;? if value("cliente_existe")?>
 SELECT c.razon_social AS destinatario,
-       strftime("%%d/%m/%Y", p.fecha) AS fecha,
+       strftime("%\d/%m/%Y", p.fecha) AS fecha,
        p.total As total,
        substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' || p.numero, -5, 5 ) AS NumSerie
 FROM presupuestos AS p, clientes AS c

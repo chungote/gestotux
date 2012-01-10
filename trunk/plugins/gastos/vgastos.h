@@ -23,8 +23,11 @@
 #include <evlista.h>
 
 /**
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Visor de los gastos
+ *
+ * Vista de los gastos dados de alta en el programa
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VGastos : public EVLista
 {
 Q_OBJECT
@@ -33,12 +36,13 @@ public:
 
 protected slots:
     void eliminar();
+    void imprimir();
+    void aPdf();
 
 private slots:
     void agregarGasto();
     void mostrarCategorias();
     void actualizarVista();
-    void listarGastos();
 
 signals:
     void agregarVentana( QWidget *ventana );

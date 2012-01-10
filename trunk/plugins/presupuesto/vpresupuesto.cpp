@@ -42,6 +42,7 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActImprimir );
+ addAction( ActPdf );
  addAction( ActCerrar );
 }
 
@@ -93,5 +94,39 @@ void VPresupuesto::imprimir()
   parametros = 0;
   delete rep;
   rep = 0;
+}
 
+void VPresupuesto::aPdf()
+{
+    // Veo que ID quiere reimprimir.
+    QModelIndexList lista = vista->selectionModel()->selectedRows();
+    if( lista.isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione uno o mas presupuestos para reimprimir", QMessageBox::Ok );
+        return;
+    }
+    EReporte *rep = new EReporte( 0 );
+    rep->presupuesto();
+    ParameterList *parametros = new ParameterList();
+    foreach( QModelIndex idx, lista ) {
+        parametros->clear();
+        int id_presupuesto = modelo->data( modelo->index( idx.row(), 0 ), Qt::EditRole ).toInt() ;
+        parametros->append( Parameter( "id_presupuesto", id_presupuesto ) );
+        int id_cliente = modelo->data( modelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+        if( id_cliente < 0 ) {
+            parametros->append( Parameter( "cliente_existe", false ) );
+            //lista.append( Parameter( "direccion", LEDireccion->text() ) );
+        } else if( id_cliente >= 0 ){
+            parametros->append( Parameter( "cliente_existe", true ) );
+            //lista.append( Parameter( "direccion", LEDireccion->text() ) );
+            if( id_cliente > 0 )
+                parametros->append( Parameter( "direccion", MClientes::direccionEntera( id_cliente ) ) );
+        }
+        if( !rep->hacerPDF( *parametros, QString( "Presupuesto #%1" ).arg( id_presupuesto ) ) ) {
+            qDebug( "Error la intentar imprimir el reporte" );
+        }
+    }
+    delete parametros;
+    parametros = 0;
+    delete rep;
+    rep = 0;
 }

@@ -11,8 +11,8 @@ SOURCES +=  dgastos.cpp \
             formagregargasto.cpp \
             ../caja/mmovimientoscaja.cpp \
             ../caja/mcajas.cpp \
-    vcategoriasgastos.cpp \
-    mcategoriasgastos.cpp
+            vcategoriasgastos.cpp \
+            mcategoriasgastos.cpp
 
 HEADERS +=  dgastos.h \
             mgasto.h \
@@ -21,19 +21,22 @@ HEADERS +=  dgastos.h \
             formagregargasto.h \
             ../caja/mmovimientoscaja.h \
             ../caja/mcajas.h \
-    vcategoriasgastos.h \
-    mcategoriasgastos.h
+            vcategoriasgastos.h \
+            mcategoriasgastos.h
 
 QT += sql
 
 DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
-  ../../utiles
+               ../../utiles \
+               ../../reporte
 
-LIBS += ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
 
-POST_TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a \
+                  ../../bin/libreporte.a
 
 FORMS += FormAgregarGastoBase.ui
 

@@ -54,16 +54,15 @@ VGastos::VGastos( QWidget* parent )
  ActCategorias->setStatusTip( "Muestra las distintas categorias de gastos disponibles" );
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( mostrarCategorias() ) );
 
- QAction *ActListar = new QAction( this );
- ActListar->setText( "Listado" );
- ActListar->setIcon( QIcon( ":/imagenes/listado-categorias.png" ) );
- ActListar->setStatusTip( "Genera un listado de los gastos" );
- connect( ActListar, SIGNAL( triggered() ), this, SLOT( listarGastos() ) );
+ agregarFiltroBusqueda( QString::fromUtf8( "Descripción" ), " `descripcion` LIKE '%%1%' ");
+ habilitarBusqueda();
 
  addAction( ActAgregar );
  addAction( ActEliminar );
  addAction( ActCategorias );
- addAction( ActListar );
+ addAction( ActImprimir );
+ addAction( ActPdf );
+ addAction( ActBuscar );
  addAction( ActVerTodos );
  addAction( ActCerrar );
 }
@@ -137,9 +136,21 @@ void VGastos::eliminar() {
     return;
 }
 
-
-void VGastos::listarGastos()
+#include "EReporte.h"
+void VGastos::imprimir()
 {
-    qWarning( "No implementado! HACER!" );
-    return;
+    EReporte *rep = new EReporte( this );
+    rep->especial( "ListadoGastos", ParameterList() );
+    if( !rep->hacer() ) {
+        qWarning( "Error al intentar imprimir el listado de gastos" );
+    }
+}
+
+void VGastos::aPdf()
+{
+    EReporte *rep = new EReporte( this );
+    rep->especial( "ListadoGastos", ParameterList() );
+    if( !rep->hacerPDF( ParameterList(), "Listado de Gastos" ) ) {
+        qWarning( "Error al pasar a pdf el listado de gastos" );
+    }
 }
