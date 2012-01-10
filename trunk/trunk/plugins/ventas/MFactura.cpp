@@ -105,7 +105,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
  {
 
   int id_venta = cola.lastInsertId().toInt();
-  qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
+  //qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
   // Guardo los datos de el modelo
 
   // recorro el modelo y guardo los datos
@@ -126,24 +126,24 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
                  qDebug( "Error al disminuir el stock del producto" );
                  return -1;
              } else {
-                 qDebug( "Stock del producto disminuido correctamente" );
+                 //qDebug( "Stock del producto disminuido correctamente" );
              }
         } else {
-             qDebug( "El item no es un producto" );
+             //qDebug( "El item no es un producto" );
         }
    } else {
        qDebug( "Error - No se pudo agregar un item." );
        return -1;
    } // Fin if agregarItemFactura
   } // Fin del for items
-  qDebug( "Items de factura agregados correctamente" );
+  //qDebug( "Items de factura agregados correctamente" );
   delete mi;
   mi = 0;
   double total_calculado = mcp->total();
   // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
   if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
   {
-   qDebug( "Venta a cuenta corriente" );
+   //qDebug( "Venta a cuenta corriente" );
    // Si se ingresa aqui el cliente tiene cuenta corriente
    QString num_comprobante = this->obtenerComprobante().aCadena();
    // Busco el numero de cuenta
@@ -191,7 +191,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
        qWarning( "Error al actualizar la cuenta corriente - inserccion de item" );
        return -1;
    } else  {
-       qDebug( "Se actualizó correctamente la cuenta corriente del cliente" );
+       //qDebug( "Se actualizó correctamente la cuenta corriente del cliente" );
    }
   } else {
       qDebug( "La factura no fue a ctacte o no existe el plugin de ctacte cargado" );
@@ -206,7 +206,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
       }
       delete m;
   } else {
-      qDebug( "La factura no fue al contado o no existe el plugin de caja cargado" );
+      //qDebug( "La factura no fue al contado o no existe el plugin de caja cargado" );
   }
   if( id_forma_pago == MFactura::Cuotas ) {
       qDebug( "La venta en cuotas no fue implementada todavía" );

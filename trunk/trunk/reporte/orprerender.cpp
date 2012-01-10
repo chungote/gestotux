@@ -1242,7 +1242,7 @@ QString ORPreRenderPrivate::evaluateField(ORFieldData* f)
             if(f->sub_total)
                 d_val -= getNearestSubTotalCheckPoint(f->data);
         }
-        str = QString("%1").arg(d_val);
+        str = QString("%L1").arg(d_val);
     }
     else
     {

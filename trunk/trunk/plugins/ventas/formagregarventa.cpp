@@ -173,7 +173,11 @@ void FormAgregarVenta::eliminarProducto()
         foreach( indice, indices )
         {
                 if( indice.isValid() )
-                { mcp->removeRow( indice.row() ); } else { qDebug( " Indice no valido! - " ); }
+                {
+                    mcp->removeRow( indice.row() );
+                } /*else {
+                    qDebug( " Indice no valido! - " );
+                }*/
         }
  }
  TVProductos->update();
@@ -251,17 +255,17 @@ void FormAgregarVenta::guardar()
  if( RBCtaCte->isChecked() && RBCtaCte->isEnabled() )
  {
    id_forma_pago = MFactura::CuentaCorriente;
-   qDebug( "MFactura::CuentaCorriente" );
+   //qDebug( "MFactura::CuentaCorriente" );
  }
  else if( RBContado->isChecked() )
  {
    id_forma_pago = MFactura::Contado;
-   qDebug( "MFactura::Contado" );
+   //qDebug( "MFactura::Contado" );
  }
  else if( RBCuotas->isChecked() )
  {
      id_forma_pago = MFactura::Cuotas;
-     qDebug( "MFactura::Cuotas" );
+     //qDebug( "MFactura::Cuotas" );
  } else {
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      mcp->calcularTotales( true );
@@ -298,7 +302,10 @@ void FormAgregarVenta::guardar()
     }
     case QMessageBox::No:
     case QMessageBox::Cancel:
-    { qDebug( "Respondio no o cancelar" );  break; }
+    {
+           //qDebug( "Respondio no o cancelar" );
+           break;
+    }
    }
    this->close();
    return;
@@ -330,14 +337,14 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
          }
          else
          {
-            qDebug( "No se encontro una cuenta corriente para el cliente." );
+           // qDebug( "No se encontro una cuenta corriente para el cliente." );
             RBContado->setChecked( true );
             RBCtaCte->setEnabled( false );
          }
      }
 
  } else {
-     qDebug( "Cliente consumidor final - Sin direccion" );
+     //qDebug( "Cliente consumidor final - Sin direccion" );
      RBContado->setChecked( true );
      RBCtaCte->setEnabled( false );
  }
