@@ -68,7 +68,7 @@ private:
        /*!
         * Accion para realizar una facturación de un servicio
         */
-        QAction *ActFacturarServicio;
+        QAction *ActFacturarServicios;
        /*!
         * Accion para verificar los recargos de un servicio
         */
@@ -77,7 +77,7 @@ private:
 protected slots:
     void mostrarServicios();
     void mostrarRecargos();
-    void facturarServicio();
+    void facturarServicios();
 
 };
 

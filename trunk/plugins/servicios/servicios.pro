@@ -47,7 +47,8 @@ HEADERS =   ../caja/mcajas.h \
            mperiodoservicio.h \
            mcobroservicioclienteperiodo.h \
            formmodificarservicio.h \
-           FormVerificarRecargos.h
+           FormVerificarRecargos.h \
+    eserviciosdelegate.h
 
 
 SOURCES = servicios.cpp \
@@ -71,7 +72,8 @@ SOURCES = servicios.cpp \
            mperiodoservicio.cpp \
            mcobroservicioclienteperiodo.cpp \
            formmodificarservicio.cpp \
-           FormVerificarRecargos.cpp
+           FormVerificarRecargos.cpp \
+    eserviciosdelegate.cpp
 
 RESOURCES += servicios.qrc
 

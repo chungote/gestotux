@@ -19,15 +19,17 @@
  ***************************************************************************/
 
 #include <QDate>
+#include <QPair>
+#include <QLocale>
+#include <QTimer>
+
+#include "mperiodoservicio.h"
 #include "FormFacturarServicio.h"
 #include "eactcerrar.h"
 #include "mservicios.h"
 #include "mrecargos.h"
 #include "MTempClientesFacturarServicio.h"
 #include "dsino.h"
-#include <QPair>
-#include "mperiodoservicio.h"
-#include <QLocale>
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
@@ -61,6 +63,39 @@ EVentana(parent), _id_servicio(0)  {
 
 }
 
+FormFacturarServicio::FormFacturarServicio( int id_servicio ) :
+EVentana(0), _id_servicio( id_servicio )
+{
+    setupUi(this);
+
+    this->setWindowTitle( "Facturacion de un servicio" );
+    this->setWindowIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
+    this->setObjectName( "facturaservicio" + MServicios::getNombreServicio( _id_servicio ) );
+
+    ActCerrar = new EActCerrar( this );
+
+    ActFacturar = new QAction( this );
+    ActFacturar->setText( "Facturar" );
+    ActFacturar->setStatusTip( "Factura el servicio con los clientes seleccionados" );
+    ActFacturar->setIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
+    connect( ActFacturar, SIGNAL( triggered() ), this, SLOT( facturar() ) );
+
+    this->addAction( ActFacturar );
+    this->addAction( ActCerrar );
+
+    // Escondo el progreso
+    this->GBProgreso->setVisible( false );
+    this->PBCancelar->setText( "Cancelar" );
+
+    this->setDisabled( true );
+
+    this->LNombreServicio->setText( "Cargando..." );
+    this->LPeriodo->setText( "Cargando..." );
+    this->LPrecioBase->setText( "Cargando..." );
+
+    QTimer::singleShot( 400, this, SLOT( cargar_datos_servicio() ) );
+}
+
 void FormFacturarServicio::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
@@ -73,7 +108,6 @@ void FormFacturarServicio::changeEvent(QEvent *e)
     }
 }
 
-#include <QTimer>
 /*!
  * \fn FormFacturarServicio::setearServicio( const int id_servicio )
  *  Setea el id de servicio que se desea realizar la facturación

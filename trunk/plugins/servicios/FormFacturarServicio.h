@@ -32,7 +32,8 @@ class FormFacturarServicio : public EVentana, private Ui::FormFacturarServicio
     Q_OBJECT
 
 public:
-    explicit FormFacturarServicio(QWidget *parent = 0);
+    explicit FormFacturarServicio( QWidget *parent = 0 );
+    explicit FormFacturarServicio( int id_servicio );
     void setearServicio( const int id_servicio = 0 );
 
 protected:

@@ -39,9 +39,9 @@ bool Servicios::inicializar()
  ActRecargos->setStatusTip( "Muestra la lista de recargos posibles que se pueden utilizar en cualquier servicio" );
  connect( ActRecargos, SIGNAL( triggered() ), this, SLOT( mostrarRecargos() ) );
 
- ActFacturarServicio = new QAction( this );
- ActFacturarServicio->setText( "Facturar Servico" );
- connect( ActFacturarServicio, SIGNAL( triggered() ), this, SLOT( facturarServicio() ) );
+ ActFacturarServicios = new QAction( this );
+ ActFacturarServicios->setText( "Facturar Servicios" );
+ connect( ActFacturarServicios, SIGNAL( triggered() ), this, SLOT( facturarServicios() ) );
 
  ActVerfRecargos = new QAction( this );
  ActVerfRecargos->setText( "Verificar recargos" );
@@ -127,14 +127,19 @@ void Servicios::mostrarRecargos()
    emit agregarVentana( new FormRecargos() );
 }
 
+#include "FormFacturarServicio.h"
+#include "mservicios.h"
 /*!
- * \fn void Servicios::facturarServicio()
- * Abre la ventana para realizar la facturacion de un servicio especifico
+ * \fn void Servicios::facturarServicios()
+ * Abre la ventana para realizar la facturacion de los servicios
  */
-void Servicios::facturarServicio()
+void Servicios::facturarServicios()
 {
     // Selecciono un servicio de la lista
-    /// @todo realizar este metodo
+    QList<int> lista_ids = MServicios::listaDeServicios();
+    foreach( int id_servicio, lista_ids ) {
+        emit agregarVentana( new FormFacturarServicio( id_servicio ) );
+    }
     return;
 }
 

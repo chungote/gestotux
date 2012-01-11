@@ -77,7 +77,7 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                             case MServicios::Mensual:
                             { return "Mensual"; }
                             case MServicios::BiMensual:
-                            { return "Bimensual"; }
+                            { return "Bi-Mensual"; }
                             case MServicios::Trimestral:
                             { return "Trimestral"; }
                             case MServicios::Cuatrimestral:
@@ -87,15 +87,19 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                             case MServicios::Anual:
                             { return "Anual"; }
                         }
+                        break;
                 }
                 case 8: // Metodo Incompleto
                 {
                         switch( QSqlTableModel::data( item, role ).toInt() ) {
                             case MServicios::DiasFaltantes:
-                            { return "Dias Faltantes"; }
+                            { return "Dias Faltantes"; break; }
                             case MServicios::MesCompleto:
-                            { return "Mes Completo"; }
+                            { return "Mes Completo"; break; }
+                            default:
+                            { return "Metodo Desconocido"; break;}
                         }
+                        break;
                 }
                 case 5:
                 { return QString( "$ %L1" ).arg( QSqlTableModel::data( item, role ).toDouble(), 10,'f', 2 ); }
@@ -114,10 +118,12 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
                 case 8:
                 {
                     return int( Qt::AlignCenter | Qt::AlignHCenter );
+                    break;
                 }
                 default:
                 {
                     return QSqlTableModel::data( item, role );
+                    break;
                 }
             }
         }
@@ -387,6 +393,18 @@ bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
     }
     qDebug( "Servicio dado de baja correctamente" );
     return true;
+}
+
+QList<int> MServicios::listaDeServicios()
+{
+    QList<int> lista;
+    QSqlQuery cola;
+    if( cola.exec( "SELECT id_servicio FROM servicios" ) ) {
+        while( cola.next() ) {
+            lista.append( cola.record().value(0).toInt() );
+        }
+    }
+    return lista;
 }
 
 /*
