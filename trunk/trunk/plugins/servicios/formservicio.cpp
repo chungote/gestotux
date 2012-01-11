@@ -29,6 +29,7 @@
 #include "mrecargos.h"
 #include "edrecargos.h"
 #include "mservicios.h"
+#include "eserviciosdelegate.h"
 
 FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormServicioBase(), modelo(0)
@@ -45,21 +46,21 @@ FormServicio::FormServicio ( MServicios *m, QWidget* parent, Qt::WFlags fl )
         DEFechaAlta->setDate( QDate::currentDate() );
 
         // Coloco los periodos
-        CBPeriodo->addItem( "Semanal ( 7 dias )", MServicios::Semanal );
-        CBPeriodo->addItem( "Quincenal ( 15 dias )", MServicios::Quincenal );
-        CBPeriodo->addItem( "Mensual", MServicios::Mensual );
-        CBPeriodo->addItem( "Bi-Mensual", MServicios::BiMensual );
-        CBPeriodo->addItem( "Trimestral", MServicios::Trimestral );
-        CBPeriodo->addItem( "Cuatrimestral", MServicios::Cuatrimestral );
-        CBPeriodo->addItem( "Semestral", MServicios::Seximestral );
-        CBPeriodo->addItem( "Anual", MServicios::Anual );
+        CBPeriodo->insertItem( MServicios::Semanal      , "Semanal ( 7 dias )"   , MServicios::Semanal );
+        CBPeriodo->insertItem( MServicios::Quincenal    , "Quincenal ( 15 dias )", MServicios::Quincenal );
+        CBPeriodo->insertItem( MServicios::Mensual      ,  "Mensual"             , MServicios::Mensual );
+        CBPeriodo->insertItem( MServicios::BiMensual    , "Bi-Mensual"           , MServicios::BiMensual );
+        CBPeriodo->insertItem( MServicios::Trimestral   , "Trimestral"           , MServicios::Trimestral );
+        CBPeriodo->insertItem( MServicios::Cuatrimestral, "Cuatrimestral"        , MServicios::Cuatrimestral );
+        CBPeriodo->insertItem( MServicios::Seximestral  , "Semestral"            , MServicios::Seximestral );
+        CBPeriodo->insertItem( MServicios::Anual        , "Anual"                , MServicios::Anual );
 
         // Dias en el mes que se hace el batch de calcular los nuevos importes 1->31 ( cuidado con los meses  28 y 30 )
         for( int i=1; i<=31; i++ )
-        { CBInicioCobro->addItem( QString::number( i ), QString::number( i ) ); }
+        { CBInicioCobro->insertItem( i, QString::number( i ), QString::number( i ) ); }
 
-        CBMetodoIncompleto->insertItem( -1, "Division por dias y cobro de dias restantes", MServicios::DiasFaltantes );
-        CBMetodoIncompleto->insertItem( -1, "Periodo Completo", MServicios::MesCompleto );
+        CBMetodoIncompleto->insertItem( MServicios::DiasFaltantes, "Division por dias y cobro de dias restantes", MServicios::DiasFaltantes );
+        CBMetodoIncompleto->insertItem( MServicios::MesCompleto, "Periodo Completo", MServicios::MesCompleto );
 
         QAction *ActRecargos = new QAction( this );
         ActRecargos->setText( "Recargos" );
@@ -101,7 +102,7 @@ void FormServicio::guardar()
      }
      if( !_mapa->submit() && modelo->submitAll() ) {
          QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
-         /// @todo Veo la modificacion del precio para ofrecer sistema de aviso
+         /// @todo Version 0.6 -> Veo la modificacion del precio para ofrecer sistema de aviso en la proxima factura
          this->close();
          return;
      } else {
@@ -172,14 +173,15 @@ void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
     _mapa->setOrientation( Qt::Horizontal );
     _mapa->setModel( this->modelo );
     _mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
+    _mapa->setItemDelegate( new EServiciosDelegate( _mapa ) );
 
-    _mapa->addMapping( LENombre, modelo->fieldIndex( "nombre" ) );
-    _mapa->addMapping( TEDescripcion, modelo->fieldIndex( "descripcion" ) );
-    _mapa->addMapping( DEFechaAlta, modelo->fieldIndex( "fecha_alta" ) );
-    _mapa->addMapping( dSBPrecioBase, modelo->fieldIndex( "precio_base" ) );
-    _mapa->addMapping( CBPeriodo, modelo->fieldIndex( "periodo" ), "itemData" ); /// @todo Probar que estas propiedades anden
-    _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ), "itemData" ); /// @todo Probar que estas propiedades anden
-    _mapa->addMapping( CBInicioCobro, modelo->fieldIndex( "inicio_cobro" ), "itemData"); /// @todo Probar que estas propiedades anden
+    _mapa->addMapping( LENombre          , modelo->fieldIndex( "nombre" ) );
+    _mapa->addMapping( TEDescripcion     , modelo->fieldIndex( "descripcion" ) );
+    _mapa->addMapping( DEFechaAlta       , modelo->fieldIndex( "fecha_alta" ) );
+    _mapa->addMapping( dSBPrecioBase     , modelo->fieldIndex( "precio_base" ) );
+    _mapa->addMapping( CBPeriodo         , modelo->fieldIndex( "periodo" ) );
+    _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ) );
+    _mapa->addMapping( CBInicioCobro     , modelo->fieldIndex( "inicio_cobro" ) );
 
     // Busco el indice
     this->_id_servicio = id_servicio;
