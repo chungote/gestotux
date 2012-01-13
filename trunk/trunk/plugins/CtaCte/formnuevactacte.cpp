@@ -44,7 +44,7 @@ FormNuevaCtaCte::FormNuevaCtaCte ( QWidget* parent, Qt::WFlags fl )
  DEFechaBaja->setEnabled( CkBBaja->isChecked() );
  DSBLimiteMaximo->setEnabled( CkBBaja->isChecked() );
 
- DEFechaBaja->setDate( QDate() );
+ DEFechaBaja->setDate( QDate::currentDate() );
 }
 
 void FormNuevaCtaCte::cambioCliente( int /*id_combo*/ )

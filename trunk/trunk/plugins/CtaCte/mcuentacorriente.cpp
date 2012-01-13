@@ -76,7 +76,7 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 2:
                         case 3:
                         {
-                            return QSqlRelationalTableModel::data( item, role ).toDateTime().toLocalTime();
+                            return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::SystemLocaleShortDate );
                             break;
                         }
                         case 4:
@@ -214,9 +214,13 @@ int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplica
 {
  // Busco el saldo del cliente
  QSqlQuery cola;
- if( cola.exec(QString( "SELECT saldo, limite FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) ) ) {
+ if( cola.exec(QString( "SELECT saldo, limite, suspendida FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) ) ) {
      if( cola.next() )
      {
+      if( cola.record().value(2).toBool() ) {
+         qWarning( "Esta cuenta corriente se encuentra suspendida" );
+         return MCuentaCorriente::Suspendida;
+      }
       if( cola.record().value(0).toDouble() + aplicar > cola.record().value(1).toDouble() )
       {
             qDebug( "Limite de la cuenta corriente solicitada excedido" );
@@ -533,3 +537,19 @@ double MCuentaCorriente::limite( const QString numero_cuenta )
     return false;
 }
 
+bool MCuentaCorriente::suspendida(const int id_cliente)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT suspendida FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toBool();
+        } else {
+            qDebug( "Error al hacer next en la cola de obtencion del suspencion de ctacte" );
+        }
+    } else {
+        qDebug( "Error al hacer exec en la cola de obtencion del suspencion de ctacte" );
+    }
+    qDebug( cola.lastError().text().toLocal8Bit() );
+    qDebug( cola.lastQuery().toLocal8Bit() );
+    return false;
+}

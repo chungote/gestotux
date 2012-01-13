@@ -41,6 +41,7 @@ bool Servicios::inicializar()
 
  ActFacturarServicios = new QAction( this );
  ActFacturarServicios->setText( "Facturar Servicios" );
+ ActFacturarServicios->setStatusTip( "Factura todos los servicios que no han sido dados de baja" );
  connect( ActFacturarServicios, SIGNAL( triggered() ), this, SLOT( facturarServicios() ) );
 
  ActVerfRecargos = new QAction( this );
@@ -98,6 +99,7 @@ void Servicios::crearMenu(QMenuBar* m)
  serv->addAction( ActServicios );
  serv->addAction( ActRecargos );
  serv->addAction( ActVerfRecargos );
+ serv->addAction( ActFacturarServicios );
  return;
 }
 

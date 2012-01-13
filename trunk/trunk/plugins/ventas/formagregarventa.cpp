@@ -332,8 +332,14 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
      {
          if( MCuentaCorriente::existeCuentaCliente( id_cliente ) )
          {
-            RBCtaCte->setEnabled( true );
-            GBFormaPago->setEnabled( true );
+             if( !MCuentaCorriente::suspendida( id_cliente ) ) {
+                RBCtaCte->setEnabled( true );
+                GBFormaPago->setEnabled( true );
+             } else {
+                 qDebug( "Cuenta corriente suspendida" );
+                 RBContado->setChecked( true );
+                 RBCtaCte->setEnabled( false );
+             }
          }
          else
          {

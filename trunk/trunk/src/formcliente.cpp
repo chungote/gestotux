@@ -85,6 +85,8 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
         EActCerrar *ActCerrar = new EActCerrar( this );
         this->addAction( ActCerrar );
 
+        CkBComprobanteEmail->setVisible( false );
+
 }
 
 /*!

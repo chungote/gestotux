@@ -22,27 +22,16 @@
 
 #include <QObject>
 #include <QMap>
-#include "eplugin.h"
 #include <QList>
 #include <QHash>
 #include <qglobal.h>
 #include <QExplicitlySharedDataPointer>
 #include <QSharedData>
+#include "eplugin.h"
+#include "preferencias.h"
 
 class EInfoProgramaInterface;
 class EInterfazEmail;
-
-class ERegistroPluginsDatos : public QSharedData
-{
-public:
-    ERegistroPluginsDatos();
-
-    QHash<QString, EPlugin *> *_plugins;
-    EInfoProgramaInterface *_pluginInfo;
-    EInterfazEmail *_pluginEmail;
-
-};
-
 /**
  * \brief Registrador de plugins cargados
  * Clase que mantiene la lista de plugins y los muestra en un formulario de preferencias
@@ -78,7 +67,10 @@ private:
 
    ~ERegistroPlugins();
    static ERegistroPlugins *instance;
-   QExplicitlySharedDataPointer<ERegistroPluginsDatos> datos;
+   QHash<QString, EPlugin *> *_plugins;
+   EInfoProgramaInterface *_pluginInfo;
+   EInterfazEmail *_pluginEmail;
+
 };
 
 #endif

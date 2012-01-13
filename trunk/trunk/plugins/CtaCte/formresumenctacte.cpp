@@ -73,6 +73,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         TVItems->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
         TVItems->horizontalHeader()->setResizeMode( 4, QHeaderView::Stretch );
         TVItems->setTextElideMode( Qt::ElideRight );
+        TVItems->setSortingEnabled( true );
         /// Menu contextual para cada operacion de la cuenta corriente
         connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
 
@@ -191,7 +192,7 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
  {
         case MItemCuentaCorriente::Factura:
         {
-                if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+                if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) )
                 {
                         /// @todo Verificar si no esta pagada ya
                         QAction *ActCrearRecibo = new QAction( this );
@@ -208,7 +209,7 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
         }
         case MItemCuentaCorriente::Recibo:
         {
-                if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+                if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) )
                 {
                         QAction *ActVerRecibo = new QAction( this );
                         ActVerRecibo->setText( "Ver Recibo..." );
@@ -225,7 +226,7 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
  }
  _menuContextual->addSeparator();
 
- if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) )
+ if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) )
  {
         QAction *ActPagarTodo = new QAction( this );
         ActPagarTodo->setText( "Pagar todo..." );
@@ -248,8 +249,11 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
  */
 void FormResumenCtaCte::pagarTodo()
 {
-    /// @todo implement me
-    qWarning( "No implementado todavía" );
+    qWarning( "No implementado todavia" );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) ) {
+        // Genero un recibo x el saldo deudor
+
+    }
 }
 
 
@@ -258,8 +262,11 @@ void FormResumenCtaCte::pagarTodo()
  */
 void FormResumenCtaCte::verFactura()
 {
-    qWarning( "No implementado todavía" );
-    /// @todo implement me
+    qWarning( "No implementado todavia" );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "ventas" ) ) {
+        // veo los datos de la factura ??=== falta hacer!
+
+    }
 }
 
 #include "evisorinformes.h"
@@ -286,6 +293,6 @@ void FormResumenCtaCte::pagarFactura()
 
  // Busco los detalles de la factura
 
-    qWarning( "No implementado todavía" );
+    qWarning( "No implementado todavia" );
 
 }
