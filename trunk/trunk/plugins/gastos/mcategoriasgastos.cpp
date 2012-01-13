@@ -97,27 +97,17 @@ bool MCategoriasGastos::tieneGastosAsociados( const int id_categoria )
  * \fn MCategoriasGastos::eliminarCategoria( const int id_categoria )
  * Devuelve verdadero si se pudo eliminar correctamente la categoria
  * \param id_categoria Identificador de la categoría
- * \return Verdadero si  esta vacio o error.
+ * \return Verdadero si esta vacio o error.
  */
 bool MCategoriasGastos::eliminarCategoria( const int id_categoria )
 {
-    qWarning( "MCategoriasGastos::eliminarCategoria: no implementado" );
-    return false;
- /*
  QSqlQuery cola;
- if( cola.exec( "SELECT COUNT(id_categoria_gastos) FROM categoria_gastos" ) ) {
-     if( cola.next() ) {
-         if( cola.record().value(0).toInt() > 0 ) {
-             return false;
-         } else { return true; }
-     } else {
-         qDebug( "Gastos:MCategoriasGastos:Error al hacer next en el conteo de cantidad de items.");
-         return true;
-     }
+ if( cola.exec( QString( "DELETE FROM categoria_gastos WHERE id_categoria_gasto = %1" ).arg( id_categoria ) ) ) {
+     return true;
  } else {
-     qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola" );
+     qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola de eliminacion de categoria." );
      qDebug( QString( "Gastos:MCategoriasGastos:cola=%1").arg( cola.lastQuery() ).toLocal8Bit() );
      qDebug( QString( "Gastos:MCategoriasGastos:error=%1").arg( cola.lastError().text() ).toLocal8Bit() );
-     return true;
- }*/
+ }
+ return false;
 }

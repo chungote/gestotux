@@ -63,12 +63,11 @@ void VCategoriasGastos::agregar(bool autoeliminarid )
 
 void VCategoriasGastos::eliminar()
 {
-    qWarning( "No implementado!" );
     // Busco si tiene algun gasto asociado
     QModelIndex m = this->vista->selectionModel()->selectedRows().first();
     int id_categoria = m.model()->data( m.model()->index( m.row(), 0 ), Qt::EditRole ).toInt();
     if( MCategoriasGastos::tieneGastosAsociados( id_categoria ) ) {
-          QMessageBox::warning( this, "Error", "Esta categoría tiene datos asociados. No se puede eliminar" );
+          QMessageBox::warning( this, "Error", "Esta categoría tiene datos asociados. No se puede eliminar." );
           return;
     } else {
           if( MCategoriasGastos::eliminarCategoria( id_categoria ) ) {

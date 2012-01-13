@@ -93,7 +93,7 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
 void FormCliente::guardar()
 {
  // Chequeo los datos que no pueden ser nulos
- if( LERazonSocial->text().isNull() )
+ if( LERazonSocial->text().isNull() || LERazonSocial->text().isEmpty() )
  {
   QMessageBox::warning( this, "Faltan Datos", "Por favor ingrese minimamente una razon social para el cliente" );
   return;

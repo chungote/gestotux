@@ -350,7 +350,7 @@ void FormActualizacion::analizarGeneral()
                         // Tengo instalado el plugin??
                         qDebug( QString( "Encontrado plugin %1" ).arg( nodoA.toElement().attribute( "nombre" ) ).toLocal8Bit() );
                         QString nombre = nodoA.toElement().attribute( "nombre" );
-                        if( ERegistroPlugins::pluginsHash()->find( nombre ) == ERegistroPlugins::pluginsHash()->end() )
+                        if( ERegistroPlugins::getInstancia()->pluginsHash()->find( nombre ) == ERegistroPlugins::getInstancia()->pluginsHash()->end() )
                         {
                                 qDebug( QString( "El plugin %1 no se encuentra en este sistema, no se descargara ni actualizar?" ).arg( nombre ).toLocal8Bit() );
                                 docElem.removeChild( nodoA );
@@ -369,7 +369,7 @@ void FormActualizacion::analizarGeneral()
                                         //veo que numero de version es
                                         double version  = nodoVersion.toElement().attribute( "numero" ).toDouble();
                                         qDebug( QString( "Encontrada version %1" ).arg( version ).toLocal8Bit() );
-                                        if( version >= ERegistroPlugins::pluginsHash()->value( nombre )->version() )
+                                        if( version >= ERegistroPlugins::getInstancia()->pluginsHash()->value( nombre )->version() )
                                         {
                                                 // Lo ingreso a la lista de actualizaciones de forma ordenanda
                                                 qDebug( "Version agregada" );

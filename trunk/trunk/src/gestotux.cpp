@@ -77,8 +77,8 @@ void gestotux::inicializar()
   EEmail::instancia()->testear();
  }
 
- setWindowIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
- setWindowTitle( ERegistroPlugins::pluginInfo()->nombrePrograma() );
+ setWindowIcon( ERegistroPlugins::getInstancia()->pluginInfo()->iconoPrograma() );
+ setWindowTitle( ERegistroPlugins::getInstancia()->pluginInfo()->nombrePrograma() );
 
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Ventanas" );
@@ -161,7 +161,7 @@ void gestotux::createMenus()
  menuHer->setObjectName( "menuHerramientas" );
  menuHer->addAction( ActClientes );
 
- foreach( EPlugin *plug , ERegistroPlugins::pluginsPunteros() )
+ foreach( EPlugin *plug , ERegistroPlugins::getInstancia()->pluginsPunteros() )
  { plug->crearMenu( menuBar() ); }
 
  /*menuVer = menuBar()->addMenu( "&Ver");
@@ -260,7 +260,7 @@ void gestotux::createToolBar()
  tb->setObjectName( "BarraPrincipal" );
  this->addToolBar( tb );
  //tb->setToolButtonStyle( Qt::ToolButtonTextBesideIcon );
- foreach( EPlugin *plug , ERegistroPlugins::pluginsPunteros() )
+ foreach( EPlugin *plug , ERegistroPlugins::getInstancia()->pluginsPunteros() )
  {
   plug->crearToolBar( tb );
  }
@@ -343,8 +343,8 @@ void gestotux::bandeja_sistema()
     menu->addSeparator();
     menu->addAction( ActRestaurar );
     menu->addAction( exitAct );
-    iconoBandeja->setIcon( ERegistroPlugins::pluginInfo()->iconoPrograma() );
-    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.5b" );
+    iconoBandeja->setIcon( ERegistroPlugins::getInstancia()->pluginInfo()->iconoPrograma() );
+    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.5 Gamma" );
     iconoBandeja->show();
     iconoBandeja->setContextMenu( menu );
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );

@@ -26,9 +26,22 @@
 #include <QList>
 #include <QHash>
 #include <qglobal.h>
+#include <QExplicitlySharedDataPointer>
+#include <QSharedData>
 
 class EInfoProgramaInterface;
 class EInterfazEmail;
+
+class ERegistroPluginsDatos : public QSharedData
+{
+public:
+    ERegistroPluginsDatos();
+
+    QHash<QString, EPlugin *> *_plugins;
+    EInfoProgramaInterface *_pluginInfo;
+    EInterfazEmail *_pluginEmail;
+
+};
 
 /**
  * \brief Registrador de plugins cargados
@@ -41,11 +54,11 @@ class ERegistroPlugins : public QObject
 Q_OBJECT
 public:
 
-    static EInfoProgramaInterface *pluginInfo();
-    static QList<EPlugin *> pluginsPunteros();
-    static QStringList plugins();
-    static EInterfazEmail *pluginEmail();
-    static QHash<QString, EPlugin *> *pluginsHash();
+    EInfoProgramaInterface *pluginInfo();
+    QList<EPlugin *> pluginsPunteros();
+    QStringList plugins();
+    EInterfazEmail *pluginEmail();
+    QHash<QString, EPlugin *> *pluginsHash();
     static ERegistroPlugins *getInstancia();
 
     EPlugin *plugin( const QString &nombre );
@@ -64,12 +77,8 @@ private:
    ERegistroPlugins &operator=(const ERegistroPlugins & ); // oculto operador de asignacion
 
    ~ERegistroPlugins();
-
-   static QHash<QString, EPlugin *> *_plugins;
-   static EInfoProgramaInterface *_pluginInfo;
-   static EInterfazEmail *_pluginEmail;
    static ERegistroPlugins *instance;
-
+   QExplicitlySharedDataPointer<ERegistroPluginsDatos> datos;
 };
 
 #endif

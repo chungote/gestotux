@@ -84,9 +84,9 @@ QString BSComputacion::reporte( int tipo )
 {
     switch( tipo ) {
         case EReporte::Factura:
-        { return "Factura"; break; }
+        { return "Factura-BS"; break; }
         case EReporte::Recibo:
-        { return "Recibo"; break; }
+        { return "Recibo-BS"; break; }
         case EReporte::Presupuesto:
         { return "Presupuesto-BS"; break; }
         case EReporte::AnulacionFactura:
