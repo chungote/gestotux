@@ -63,6 +63,7 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "comprobante_email" ) );
  vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->hideColumn( mc->fieldIndex( "id_estado_fiscal" ) );
+ vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->setAlternatingRowColors( true );
  vista->setSortingEnabled( true );
 

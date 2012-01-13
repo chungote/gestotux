@@ -21,26 +21,31 @@
 #include "einterfazemail.h"
 #include "einfoprogramainterface.h"
 #include <QApplication>
-
-ERegistroPluginsDatos::ERegistroPluginsDatos()
-{
- _plugins = new QHash<QString, EPlugin *>();
- _pluginInfo = 0;
- _pluginEmail = 0;
- qDebug( "Datos de ERegistroPlugin Creados" );
-}
+#include <QStringList>
 
 ERegistroPlugins *ERegistroPlugins::instance = 0;
 
 ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
 {
-    datos = new ERegistroPluginsDatos;
-    qDebug( "ERegistroPlugins construido" );
+    _plugins = new QHash<QString, EPlugin *>();
+    _pluginInfo = 0;
+    _pluginEmail = 0;
+    // Elimino cualquier PID anterior
+    preferencias *p = preferencias::getInstancia();
+    p->inicio();
+    p->beginGroup( "carga" );
+    foreach( QString grupo, p->childGroups() )
+    {
+        p->remove( grupo );
+    }
+    p->endGroup();
+    p=0;
 }
 
 
 ERegistroPlugins::~ERegistroPlugins()
 {
+    delete _plugins;
 }
 
 /*!
@@ -62,10 +67,8 @@ ERegistroPlugins* ERegistroPlugins::getInstancia()
  */
 EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
 {
- if( datos->_pluginInfo != 0 )
- {
-     return datos->_pluginInfo;
- }
+ if( _pluginInfo != 0 )
+ {  return _pluginInfo;  }
  else
  {
   qWarning( "Llamando al pluginInfo antes de cargarlo" );
@@ -80,7 +83,7 @@ EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
  */
 QList<EPlugin *> ERegistroPlugins::pluginsPunteros()
 {
-  return datos->_plugins->values();
+  return _plugins->values();
 }
 
 /*!
@@ -89,7 +92,7 @@ QList<EPlugin *> ERegistroPlugins::pluginsPunteros()
  */
 QStringList ERegistroPlugins::plugins()
 {
-    return datos->_plugins->keys();
+    return _plugins->keys();
 }
 
 /*!
@@ -97,7 +100,7 @@ QStringList ERegistroPlugins::plugins()
  * Devuelve un listado de los plugins que estan cargados con un Hash <nombre, puntero>
  */
 QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
-{ return datos->_plugins; }
+{ return _plugins; }
 
 /*!
  * \fn ERegistroPlugins::pluginEmail()
@@ -105,7 +108,7 @@ QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
  */
 EInterfazEmail *ERegistroPlugins::pluginEmail()
 {
- return datos->_pluginEmail;
+ return _pluginEmail;
 }
 
 
@@ -115,7 +118,17 @@ EInterfazEmail *ERegistroPlugins::pluginEmail()
  */
 void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 {
- datos->_plugins->insert( obj->nombre(),obj );
+ _plugins->insert( obj->nombre(),obj );
+ preferencias *p = preferencias::getInstancia();
+ p->inicio();
+ p->beginGroup( "carga" );
+ p->beginGroup( QString::number( QCoreApplication::applicationPid() ) );
+ QStringList plugins = p->value( "plugins" ).toStringList();
+ plugins.append( obj->nombre() );
+ p->setValue( "plugins", plugins );
+ p->sync();
+ p->endGroup();
+ p=0;
 }
 
 
@@ -125,7 +138,7 @@ void ERegistroPlugins::agregarPlugin( EPlugin *obj )
  */
 EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 {
- return datos->_plugins->value( nombre );
+ return _plugins->value( nombre );
 }
 
 
@@ -136,7 +149,7 @@ EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
  qDebug( QString( "Seteando plugin de Info cliente: %1" ).arg( obj->nombrePrograma() ).toLocal8Bit() );
- datos->_pluginInfo = obj;
+ _pluginInfo = obj;
 }
 
 
@@ -146,7 +159,7 @@ void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
  */
 void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
 {
-    datos->_pluginEmail = obj;
+    _pluginEmail = obj;
 }
 
 /*!
@@ -156,7 +169,7 @@ void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
  */
 bool ERegistroPlugins::existePlugin( const QString &nombre )
 {
- return datos->_plugins->contains( nombre );
+ return _plugins->contains( nombre );
 }
 
 /*!
@@ -166,7 +179,15 @@ bool ERegistroPlugins::existePlugin( const QString &nombre )
  */
 bool ERegistroPlugins::existePluginExterno( const QString &nombre )
 {
-    return datos->_plugins->contains( nombre );
+    preferencias *p = preferencias::getInstancia();
+    p->inicio();
+    p->beginGroup( "carga" );
+    p->beginGroup( QString::number( QCoreApplication::applicationPid() ) );
+    QStringList plug = p->value( "plugins" ).toStringList();
+    p->endGroup();
+    p->endGroup();
+    p=0;
+    return plug.contains( nombre );
 }
 
 /*!
@@ -175,7 +196,7 @@ bool ERegistroPlugins::existePluginExterno( const QString &nombre )
  */
 bool ERegistroPlugins::pluginInfoSeteado()
 {
-    if( datos->_pluginInfo == 0 )
+    if( _pluginInfo == 0 )
     {
         return false;
     }

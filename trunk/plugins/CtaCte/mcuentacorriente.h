@@ -37,7 +37,8 @@ public:
         LimiteCorrecto = 0,
         LimiteExcedido = 1,
         EnLimite = 2,
-        ErrorBuscarLimite = 3
+        ErrorBuscarLimite = 3,
+        Suspendida = 4
     };
 
     enum Error {
@@ -69,6 +70,8 @@ public:
     bool modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice );
     static bool modificarLimite( const QString numero_cuenta, const double nuevo_limite );
     static double limite( const QString numero_cuenta );
+
+    static bool suspendida( const int id_cliente );
 
     void inicializar();
     void relacionar();

@@ -399,7 +399,7 @@ QList<int> MServicios::listaDeServicios()
 {
     QList<int> lista;
     QSqlQuery cola;
-    if( cola.exec( "SELECT id_servicio FROM servicios" ) ) {
+    if( cola.exec( "SELECT id_servicio FROM servicios WHERE fecha_baja IS NULL" ) ) {
         while( cola.next() ) {
             lista.append( cola.record().value(0).toInt() );
         }
