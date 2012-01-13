@@ -38,7 +38,7 @@ FormNuevaCtaCte::FormNuevaCtaCte ( QWidget* parent, Qt::WFlags fl )
  DEFechaAlta->setDate( QDate::currentDate() );
 
   // lleno el combo de los clientes sin cuenta corriente
- CBCliente->setearFiltro( "WHERE id NOT IN ( SELECT id_cliente FROM ctacte )" );
+ CBCliente->setearFiltro( "WHERE id NOT IN ( SELECT id_cliente FROM ctacte ) AND id != 0" );
  connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 
  DEFechaBaja->setEnabled( CkBBaja->isChecked() );

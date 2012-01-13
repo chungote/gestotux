@@ -32,6 +32,7 @@ ECBClientes::ECBClientes(QWidget *parent) :
 
 void ECBClientes::setearFiltro( const QString f ) {
     this->filtro = f;
+    // Hago la carga diferida
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
 }
@@ -49,6 +50,8 @@ void ECBClientes::inicializar()
 {
     // Cargo los datos del modelo
     QSqlQuery cola;
+    // Limpio el combobox para que no cargue datos repetidos
+    this->clear();
     if( cola.exec( QString( "SELECT id, razon_social FROM clientes %1 ORDER BY razon_social ASC" ).arg( filtro ) ) ) {
         int pos = 0;
         while( cola.next() ) {

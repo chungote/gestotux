@@ -47,6 +47,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         this->DEFecha->setDate( QDate::currentDate() );
 
         preferencias *p = preferencias::getInstancia();
+        p->inicio();
         p->beginGroup( "Preferencias" );
         if( p->value( "pluginInfo" ).toString() != "hicomp" ) {
             RBLuego->setChecked( false );

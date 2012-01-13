@@ -85,7 +85,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      p->endGroup();
      /// \todo ATENCION! CAMBIAR ESTO
      EPlugin *plugin;
-     foreach( plugin, ERegistroPlugins::pluginsPunteros() )
+     foreach( plugin, ERegistroPlugins::getInstancia()->pluginsPunteros() )
      {
         qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
         if( !plugin->formsPreferencias().isEmpty() )
@@ -138,7 +138,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
     addAction( ActCerrar );
 
     setObjectName( "Configuracion" );
-    setWindowTitle( "Configuracion de " + ERegistroPlugins::pluginInfo()->nombrePrograma() );
+    setWindowTitle( "Configuracion de " + ERegistroPlugins::getInstancia()->pluginInfo()->nombrePrograma() );
 
     contentsWidget->setCurrentRow(0);
 

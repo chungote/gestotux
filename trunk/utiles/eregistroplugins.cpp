@@ -22,17 +22,20 @@
 #include "einfoprogramainterface.h"
 #include <QApplication>
 
+ERegistroPluginsDatos::ERegistroPluginsDatos()
+{
+ _plugins = new QHash<QString, EPlugin *>();
+ _pluginInfo = 0;
+ _pluginEmail = 0;
+ qDebug( "Datos de ERegistroPlugin Creados" );
+}
+
 ERegistroPlugins *ERegistroPlugins::instance = 0;
-EInfoProgramaInterface *ERegistroPlugins::_pluginInfo = 0;
-QHash<QString, EPlugin *> *ERegistroPlugins::_plugins = 0;
-EInterfazEmail *ERegistroPlugins::_pluginEmail = 0;
 
 ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
 {
- _plugins = new QHash<QString, EPlugin *>();
- QStringList lista;
- QApplication::instance()->setProperty( "lista", lista );
- qDebug( "Constructor ERegistroPlugins llamado" );
+    datos = new ERegistroPluginsDatos;
+    qDebug( "ERegistroPlugins construido" );
 }
 
 
@@ -59,9 +62,9 @@ ERegistroPlugins* ERegistroPlugins::getInstancia()
  */
 EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
 {
- if( _pluginInfo != 0 )
+ if( datos->_pluginInfo != 0 )
  {
-  return _pluginInfo;
+     return datos->_pluginInfo;
  }
  else
  {
@@ -77,7 +80,7 @@ EInfoProgramaInterface *ERegistroPlugins::pluginInfo()
  */
 QList<EPlugin *> ERegistroPlugins::pluginsPunteros()
 {
-  return _plugins->values();
+  return datos->_plugins->values();
 }
 
 /*!
@@ -86,7 +89,7 @@ QList<EPlugin *> ERegistroPlugins::pluginsPunteros()
  */
 QStringList ERegistroPlugins::plugins()
 {
-    return QApplication::instance()->property( "lista" ).toStringList();
+    return datos->_plugins->keys();
 }
 
 /*!
@@ -94,7 +97,7 @@ QStringList ERegistroPlugins::plugins()
  * Devuelve un listado de los plugins que estan cargados con un Hash <nombre, puntero>
  */
 QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
-{ return _plugins; }
+{ return datos->_plugins; }
 
 /*!
  * \fn ERegistroPlugins::pluginEmail()
@@ -102,7 +105,7 @@ QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
  */
 EInterfazEmail *ERegistroPlugins::pluginEmail()
 {
- return _pluginEmail;
+ return datos->_pluginEmail;
 }
 
 
@@ -112,10 +115,7 @@ EInterfazEmail *ERegistroPlugins::pluginEmail()
  */
 void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 {
- _plugins->insert( obj->nombre(),obj );
- QStringList lista = QApplication::instance()->property( "lista" ).toStringList();
- lista.append( obj->nombre() );
- QApplication::instance()->setProperty( "lista", lista );
+ datos->_plugins->insert( obj->nombre(),obj );
 }
 
 
@@ -125,7 +125,7 @@ void ERegistroPlugins::agregarPlugin( EPlugin *obj )
  */
 EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 {
- return _plugins->value(nombre);
+ return datos->_plugins->value( nombre );
 }
 
 
@@ -136,7 +136,7 @@ EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
  qDebug( QString( "Seteando plugin de Info cliente: %1" ).arg( obj->nombrePrograma() ).toLocal8Bit() );
- _pluginInfo = obj;
+ datos->_pluginInfo = obj;
 }
 
 
@@ -146,7 +146,7 @@ void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
  */
 void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
 {
-    _pluginEmail = obj;
+    datos->_pluginEmail = obj;
 }
 
 /*!
@@ -156,7 +156,7 @@ void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
  */
 bool ERegistroPlugins::existePlugin( const QString &nombre )
 {
- return _plugins->contains( nombre );
+ return datos->_plugins->contains( nombre );
 }
 
 /*!
@@ -166,11 +166,7 @@ bool ERegistroPlugins::existePlugin( const QString &nombre )
  */
 bool ERegistroPlugins::existePluginExterno( const QString &nombre )
 {
-    QStringList lista = QApplication::instance()->property( "lista" ).toStringList();
-    for( int i = 0; i < lista.count(); i++ ) {
-        qDebug( lista.at(i).toLocal8Bit() );
-    }
-    return lista.contains( nombre );
+    return datos->_plugins->contains( nombre );
 }
 
 /*!
@@ -179,7 +175,7 @@ bool ERegistroPlugins::existePluginExterno( const QString &nombre )
  */
 bool ERegistroPlugins::pluginInfoSeteado()
 {
-    if( _pluginInfo == 0 )
+    if( datos->_pluginInfo == 0 )
     {
         return false;
     }

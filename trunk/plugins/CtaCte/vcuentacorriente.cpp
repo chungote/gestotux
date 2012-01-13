@@ -28,6 +28,10 @@
 #include <QHeaderView>
 #include "dsino.h"
 
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
+
 VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  : EVLista(parent)
 {
@@ -77,6 +81,24 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  */
 void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
 {
+ // Verifico si existe algún cliente para agregar que no sea el consumidor final
+ QSqlQuery cola;
+ if( cola.exec( "SELECT COUNT(id) FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM ctacte ) AND id != 0" ) ) {
+     if( cola.next() ) {
+         if( cola.record().value(0).toInt() <= 0 ) {
+             QMessageBox::information( this, "No hay clientes", "No existen clientes a los que se les pueda agregar cuenta corriente" );
+             return;
+         }
+     } else {
+         qDebug( "Error de next en la cola de averiguación de cantidad de clientes para la ctacte." );
+         qDebug( cola.lastError().text().toLocal8Bit() );
+         qDebug( cola.lastQuery().toLocal8Bit() );
+     }
+ } else {
+     qWarning( "Error de exec en la cola de averiguación de cantidad de clientes para la ctacte." );
+     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+ }
  FormNuevaCtaCte d;
  d.setModelo( qobject_cast<MCuentaCorriente *>( rmodelo ) );
  d.exec();

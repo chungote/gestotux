@@ -207,7 +207,7 @@ void EReporte::factura() {
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "Reportes" );
-    _nombre = preferencias::getInstancia()->value( "Preferencias/Reportes/Factura" ).toString();
+    _nombre = preferencias::getInstancia()->value( "Factura" ).toString();
     p->endGroup(); p->endGroup(); p=0;
     if( _nombre.isEmpty() )
         _nombre = "Factura";

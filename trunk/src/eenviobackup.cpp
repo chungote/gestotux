@@ -95,7 +95,7 @@ void EEnvioBackup::finComando( int id, bool error )
     }
     case 2:
     {
-     ftp->cd( ERegistroPlugins::pluginInfo()->directorioBackup() );
+     ftp->cd( ERegistroPlugins::getInstancia()->pluginInfo()->directorioBackup() );
      break;
     }
     case 3:

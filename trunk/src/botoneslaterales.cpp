@@ -31,7 +31,7 @@ BotonesLaterales::BotonesLaterales(QWidget* parent, Qt::WindowFlags f )
     setObjectName( QString::fromUtf8( "TBacciones" ) );
 
     // El padre debe ser gestotux
-    QList<EPlugin*> plugins = ERegistroPlugins::pluginsPunteros();
+    QList<EPlugin*> plugins = ERegistroPlugins::getInstancia()->pluginsPunteros();
     EPlugin *plug;
     foreach( plug, plugins )
     {

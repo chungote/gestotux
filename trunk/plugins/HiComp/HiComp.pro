@@ -17,6 +17,9 @@ HEADERS += hicomp.h \
            ../servicios/mrecargos.h \
            ../servicios/mservicios.h \
            ../servicios/mperiodoservicio.h \
+           ../ventas/MFactura.h \
+           ../ventas/mitemfactura.h \
+           ../productos/mproductos.h \
            ../../reporte/common/parameter.h
 
 SOURCES += hicomp.cpp \
@@ -31,6 +34,9 @@ SOURCES += hicomp.cpp \
            ../servicios/mrecargos.cpp \
            ../servicios/mservicios.cpp \
            ../servicios/mperiodoservicio.cpp \
+           ../ventas/MFactura.cpp \
+           ../ventas/mitemfactura.cpp \
+           ../productos/mproductos.cpp \
            ../../reporte/common/parameter.cpp
 
 DESTDIR = ../../bin/plugins
@@ -43,11 +49,14 @@ INCLUDEPATH += ../../utiles \
                ../CtaCte \
                ../caja \
                ../servicios \
+               ../productos \
                ../../reporte
 
-LIBS += ../../bin/libutiles.a
+LIBS += ../../bin/libutiles.a \
+        ../../bin/libreporte.a
 
-PRE_TARGETDEPS += ../../bin/libutiles.a
+PRE_TARGETDEPS += ../../bin/libutiles.a \
+                  ../../bin/libreporte.a
 
 TRANSLATIONS += hicomp.ts
 

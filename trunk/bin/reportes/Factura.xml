@@ -317,9 +317,9 @@ end
     <height>30</height>
     <label>
      <rect>
-      <x>1.36448</x>
-      <y>3.27104</y>
-      <width>45</width>
+      <x>6.34694</x>
+      <y>1.1357</y>
+      <width>37.1704</width>
       <height>24</height>
      </rect>
      <font>
@@ -333,7 +333,7 @@ end
     </label>
     <label>
      <rect>
-      <x>46</x>
+      <x>52.406</x>
       <y>2</y>
       <width>499</width>
       <height>25</height>
@@ -386,64 +386,6 @@ end
      <yend>23.729</yend>
      <weight>1</weight>
     </line>
-    <field>
-     <rect>
-      <x>5.17759</x>
-      <y>27.6355</y>
-      <width>35</width>
-      <height>29.4486</height>
-     </rect>
-     <font>
-      <face>Sans Serif</face>
-      <size>12</size>
-      <weight>normal</weight>
-     </font>
-     <hcenter/>
-     <vcenter/>
-     <data>
-      <query>items</query>
-      <column>cantidad</column>
-     </data>
-    </field>
-    <field>
-     <rect>
-      <x>45.3645</x>
-      <y>30.271</y>
-      <width>497</width>
-      <height>26.7197</height>
-     </rect>
-     <font>
-      <face>Sans Serif</face>
-      <size>12</size>
-      <weight>normal</weight>
-     </font>
-     <left/>
-     <vcenter/>
-     <data>
-      <query>items</query>
-      <column>texto</column>
-     </data>
-    </field>
-    <field>
-     <rect>
-      <x>556</x>
-      <y>30.9</y>
-      <width>104</width>
-      <height>25</height>
-     </rect>
-     <font>
-      <face>Sans Serif</face>
-      <size>12</size>
-      <weight>normal</weight>
-     </font>
-     <right/>
-     <vcenter/>
-     <data>
-      <query>items</query>
-      <column>precio_unitario</column>
-     </data>
-     <format>$ %10.2f</format>
-    </field>
    </head>
   </group>
   <detail>
@@ -453,10 +395,68 @@ end
    <height>28</height>
    <field>
     <rect>
-     <x>672.635</x>
-     <y>1</y>
+     <x>46.3645</x>
+     <y>3.271</y>
+     <width>497</width>
+     <height>22.7197</height>
+    </rect>
+    <font>
+     <face>Sans Serif</face>
+     <size>12</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>items</query>
+     <column>texto</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>4.17759</x>
+     <y>3.6355</y>
+     <width>35</width>
+     <height>24.4486</height>
+    </rect>
+    <font>
+     <face>Sans Serif</face>
+     <size>12</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>items</query>
+     <column>cantidad</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>555</x>
+     <y>2.9</y>
+     <width>104</width>
+     <height>22</height>
+    </rect>
+    <font>
+     <face>Sans Serif</face>
+     <size>12</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>items</query>
+     <column>precio_unitario</column>
+    </data>
+    <format>$ %10.2f</format>
+   </field>
+   <field>
+    <rect>
+     <x>672</x>
+     <y>2.298</y>
      <width>100</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
     <font>
      <face>Sans Serif</face>
@@ -471,6 +471,38 @@ end
     </data>
     <format>$ %10.2f</format>
    </field>
+   <label>
+    <rect>
+     <x>661.73</x>
+     <y>6.25</y>
+     <width>14.886</width>
+     <height>20.4606</height>
+    </rect>
+    <font>
+     <face>Helvetica</face>
+     <size>12</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
+   <label>
+    <rect>
+     <x>546.166</x>
+     <y>5.30602</y>
+     <width>14.886</width>
+     <height>21.028</height>
+    </rect>
+    <font>
+     <face>Helvetica</face>
+     <size>12</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
   </detail>
  </section>
  <rptfoot>
