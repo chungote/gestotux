@@ -89,3 +89,8 @@ bool MItemPresupuesto::agregarItemPresupuesto( const int id_presupuesto, const d
  }
 
 }
+
+void MItemPresupuesto::setearId(const int id_presupuesto)
+{
+    this->setFilter( QString( " id_presupuesto = %1 " ).arg( id_presupuesto ) );
+}

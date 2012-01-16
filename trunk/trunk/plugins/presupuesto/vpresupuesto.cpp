@@ -36,29 +36,31 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  vista->setModel( modelo );
  vista->hideColumn( 0 );
  vista->hideColumn( 5 );
+ vista->setSortingEnabled( true );
  modelo->select();
 
+ agregarFiltroBusqueda( "Destinatario", " `destinatario` LIKE '%%1%' " );
+ habilitarBusqueda();
+
+ ActVerContenido = new QAction( this );
+ ActVerContenido->setText( "Ver items" );
+ ActVerContenido->setStatusTip( "Muestra los items que componen el presupuesto" );
+ connect( ActVerContenido, SIGNAL( triggered() ), this, SLOT( verContenido() ) );
+
  addAction( ActAgregar );
- addAction( ActModificar );
+ //addAction( ActModificar );
+ addAction( ActVerContenido );
  addAction( ActEliminar );
  addAction( ActImprimir );
  addAction( ActPdf );
+ addAction( ActBuscar );
  addAction( ActCerrar );
 }
 
-void VPresupuesto::agregar()
+void VPresupuesto::agregar( bool /*autocompletar*/ )
 {
  emit agregarVentana( new FormAgregarPresupuesto() );
  this->close();
-}
-
-void VPresupuesto::antes_de_insertar(int /*row*/, QSqlRecord& /*record*/)
-{
-}
-
-void VPresupuesto::cerrar()
-{
-    EVLista::cerrar();
 }
 
 #include "mclientes.h"
@@ -129,4 +131,39 @@ void VPresupuesto::aPdf()
     parametros = 0;
     delete rep;
     rep = 0;
+}
+
+/*!
+    \fn VPresupuesto::menuContextual( const QModelIndex &indice, QMenu *menu )
+ */
+void VPresupuesto::menuContextual( const QModelIndex &indice, QMenu *menu )
+{
+ // Agrego las acciones que quiero que aparezcan en el menu
+ menu->addAction( ActVerContenido );
+ menu->addAction( ActImprimir );
+ menu->addAction( ActPdf );
+ menu->addSeparator();
+ menu->addAction( ActAgregar );
+ indiceMenu = indice;
+ return;
+}
+
+#include "vlistapresupuesto.h"
+/*!
+ * \fn VPresupuesto::verContenido()
+ * Muestra la lista de contenido del presupuesto
+ */
+void VPresupuesto::verContenido()
+{
+    // Veo que ID quiere reimprimir.
+    QModelIndexList lista = vista->selectionModel()->selectedRows();
+    if( lista.isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione uno o mas presupuestos para reimprimir", QMessageBox::Ok );
+        return;
+    }
+    QModelIndex indice = lista.first();
+    int id_presupuesto = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+    VListaPresupuesto *f = new VListaPresupuesto();
+    f->setearIdPresupuesto( id_presupuesto );
+    agregarVentana( f );
 }

@@ -23,8 +23,11 @@
 #include <evlista.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Listado de facturas emitidas
+ *
+ * Vista de la lista de facturas emitidas
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VVentas : public EVLista
 {
 Q_OBJECT
@@ -33,16 +36,19 @@ public:
     VVentas( QWidget *parent = 0 );
 
 protected slots:
-    virtual void agregar();
-    virtual void buscar();
-    virtual void eliminar();
-    virtual void imprimir();
-    virtual void modificar();
+    void agregar();
+    void eliminar();
+    void imprimir();
+    void modificar();
     void anular();
     void pagar();
     void cambioVerAnuladas( bool parametro );
+    void verItems();
+
 private:
     void imprimirAnulacion( const int id_factura, const QString razon, const QString numero );
+
+    QAction *ActVerItems;
 
 };
 

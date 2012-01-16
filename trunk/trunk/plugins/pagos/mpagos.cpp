@@ -694,7 +694,7 @@ bool MPagos::cancelarRecibo( const int id_recibo, QString razon, QDateTime fecha
     // Me fijo si esta en algun item de cuenta corriente.
     int id_ctacte = MItemCuentaCorriente::buscarIDPorComprobante( MItemCuentaCorriente::Recibo, id_recibo );
     if( id_ctacte != -1 ) {
-        if( !MItemCuentaCorriente::cancelarOperacion( id_ctacte, razon, fechahora ) ) {
+        if( !MItemCuentaCorriente::cancelarOperacion( id_ctacte ) ) {
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
             return false;
         }

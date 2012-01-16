@@ -11,14 +11,16 @@ HEADERS += presupuesto.h \
            vpresupuesto.h \
            MItemPresupuesto.h \
            ../../src/mclientes.cpp \
-    mvpresupuestos.h
+    mvpresupuestos.h \
+    vlistapresupuesto.h
 SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
            mpresupuesto.cpp \
            vpresupuesto.cpp \
            MItemPresupuesto.cpp \
            ../../src/mclientes.cpp \
-    mvpresupuestos.cpp
+    mvpresupuestos.cpp \
+    vlistapresupuesto.cpp
 
 FORMS += FormPresupuestoBase.ui
 

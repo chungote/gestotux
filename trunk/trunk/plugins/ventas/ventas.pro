@@ -15,7 +15,8 @@ SOURCES +=  ventas.cpp \
            ../caja/mmovimientoscaja.cpp \
             mitemfactura.cpp \
            ../../src/mclientes.cpp \
-    MVFacturas.cpp
+    MVFacturas.cpp \
+    vitemfactura.cpp
 
 HEADERS += ventas.h \
            vventas.h \
@@ -29,7 +30,8 @@ HEADERS += ventas.h \
            ../caja/mmovimientoscaja.h \
            mitemfactura.h \
            ../../src/mclientes.h \
-    MVFacturas.h
+    MVFacturas.h \
+    vitemfactura.h
 
 TRANSLATIONS = ventas.ts
 

@@ -54,7 +54,7 @@ public:
     static int agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
     static double valorOperacion( const int id_op_ctacte );
     static int buscarIDPorComprobante( TipoOperacionCtaCte tipo, int id );
-    static bool cancelarOperacion( const int id_op_ctacte, QString razon, QDateTime fechahora );
+    static bool cancelarOperacion( const int id_op_ctacte );
     static QString buscarNumeroCuentaCorrientePorIdOperacion( const int id_op_ctacte );
 
 

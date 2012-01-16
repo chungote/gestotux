@@ -44,6 +44,8 @@ public:
     QVariant data(const QModelIndex& idx, int role) const;
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 
+    void agregarItem( const int cant, const QString texto, double pu );
+
     void recalcularTotal();
     double total();
     void calcularTotales( bool sino = true );
@@ -65,6 +67,8 @@ public:
 
     bool aceptaDuplicados() { return _admite_duplicados; }
     void setearAceptaDuplicados( bool param ) { _admite_duplicados = param; }
+
+    void setearSoloLectura( bool param ) { _solo_lectura = param; }
 
 private:
         /*!
@@ -103,6 +107,8 @@ private:
          * Define si permite que existan duplicados de los items dentro del producto
          */
         bool _admite_duplicados;
+
+        bool _solo_lectura;
         /*!
          * Define que tipo de precio Costo o Venta se buscará
          */

@@ -23,10 +23,11 @@
 #include <evlista.h>
 
 /**
-Visor de los ultimos recibos pasados/echos
-
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Visor de recibos emitidos
+ *
+ * Visor de los ultimos recibos pasados/echos y sus acciones correspondientes
+ * \author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VPagos : public EVLista
 {
 Q_OBJECT
@@ -36,11 +37,8 @@ public:
 public slots:
     void agregar( bool autoeliminarid );
     void imprimir();
-
-protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
-
-protected slots:
+    void aPdf();
     void cancelarPago();
 
 private:
