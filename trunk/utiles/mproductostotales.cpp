@@ -41,6 +41,8 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa
  productos = new QHash<int, int>();
  if( _mapa_id_prod != 0 )
     prods = _mapa_id_prod;
+ else
+     prods = new QMap<int, QString>();
  cantidades->clear();
  _tipoPrecio = MProductosTotales::Venta;
  _admite_duplicados = false;
@@ -236,6 +238,9 @@ int MProductosTotales::rowCount(const QModelIndex& /*parent*/) const
 
 Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
 {
+    if( _solo_lectura ) {
+        return QFlags<Qt::ItemFlag>( Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
+    }
  if( index.row() >= this->cantidades->size() )
  {
   return QFlags<Qt::ItemFlag>(!Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
@@ -494,6 +499,35 @@ QVariant MProductosTotales::headerData ( int section, Qt::Orientation orientatio
  {
   return QAbstractTableModel::headerData( section, orientation, role );
  }
+}
+
+/*!
+ * \fn MProductosTotales::agregarItem( const int cant, const QString texto, const double precio_unitario )
+ * Funcion especial que ingresara los elementos sin hacer las verificaciones normales como si fuera un agregado desde la lista de ventas.
+ * Util para mostrar elementos con subtotales y totales en listas estaticas para mostrar por ejemplo elementos de compras.
+ * \param cant Cantidad del item.
+ * \param texto Texto del item.
+ * \param precio_unitario Precio unitario del item
+ */
+void MProductosTotales::agregarItem( const int cant, const QString texto, double pu )
+{
+    int pos = this->cantidades->size();
+    this->insertRow( -1 );
+
+    this->cantidades->insert( pos, cant );
+    this->precio_unitario->insert( pos, pu );
+    this->subtotales->insert( pos, cant * pu );
+
+    // inserto el texto en la lista de nombre de productos
+    int pos2 = this->prods->insert( pos, texto ).key();
+    // inserto el indice de lo anterior en el mapa de productos
+    this->productos->insert( pos, pos2 );
+
+    if( _calcularTotal )
+        recalcularTotal();
+
+    emit dataChanged( this->index( pos, 0 ), this->index( pos, this->columnCount() ) );
+    emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
 }
 
 

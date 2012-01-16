@@ -366,49 +366,30 @@ QString MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( const i
 
 /*!
  * \fn MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte, QString razon, QDateTime fechahora )
- *
+ * ATENCION! Este metodo solo elimina la entrada de la operación de cuenta corriente, no realiza ninguna otra operación que no sea recalculo del saldo de cuenta corriente.
+ * \param id_op_ctacte Identificador de la operacion de cuenta corriente.
+ * \return Verdadero si pudo ser eliminado correctamente.
  */
-bool MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte, QString razon, QDateTime fechahora )
+bool MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte )
 {
-    /// @todo IMPLEMENTAR!
-    // Busco el tipo de operación que fue
-    /*QSqlQuery cola;
-    MItemCuentaCorriente::TipoOperacionCtaCte tipo = MItemCuentaCorriente::Invalido;
-    if( cola.exec( QString( "SELECT tipo_operacion FROM item_ctacte WHERE id_op_ctacte = %1" ).arg( id_op_ctacte ) ) ) {
-        if( cola.next() ) {
-            switch( cola.record().value(0).toInt() )
-            {
-                case MItemCuentaCorriente::Factura:
-                { tipo = MItemCuentaCorriente::Factura; break; }
-                case MItemCuentaCorriente::Recibo:
-                { tipo = MItemCuentaCorriente::Recibo; break; }
-                case MItemCuentaCorriente::CobroServicio:
-                { tipo = MItemCuentaCorriente::CobroServicio; break; }
-                case MItemCuentaCorriente::RecargoCobroServicio:
-                { tipo = MItemCuentaCorriente::RecargoCobroServicio; break; }
-                case MItemCuentaCorriente::NotaDebito:
-                { tipo = MItemCuentaCorriente::NotaDebito; break; }
-                case MItemCuentaCorriente::NotaCredito:
-                { tipo = MItemCuentaCorriente::NotaCredito; break; }
-                case MItemCuentaCorriente::AnulacionFactura:
-                case MItemCuentaCorriente::AnulacionRecibo:
-                {
-                    qWarning( "No se puede anular una anulación de un comprobante" );
-                    return false;
-                    break;
-                }
-                case MItemCuentaCorriente::Invalido:
-                default:
-                { tipo = MItemCuentaCorriente::Invalido; break; }
-            }
-
-        }
+    QSqlQuery cola;
+    // Saco el numero de cuenta para recalcular su saldo
+    QString numero_cuenta = MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( id_op_ctacte );
+    if( numero_cuenta.isNull() || numero_cuenta.isEmpty() ) {
+        qWarning( "Error al buscar el identificador de cuenta corriente cuando se intenta eliminar una entrada de su cuenta corriente." );
+        return false;
     }
-    */
+    // Elimino el registro de la operacion
+    if( !cola.exec( QString( "DELETE FROM item_ctacte WHERE id_op_ctacte = %1 LIMIT 1" ).arg( id_op_ctacte ) ) ) {
+        qWarning( "No se puede eliminar la operacion guardada en la cuenta corriente" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    }
     // Busco la cuenta corriente que le corresponde a la operacion y actualizo su saldo
-    /*if( !MCuentaCorriente::recalcularSaldo( MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( id_op_ctacte ) ) ) {
+    if( !MCuentaCorriente::recalcularSaldo( numero_cuenta ) ) {
         qDebug( "Error al actualizar el saldo de la cuenta corriente" );
         return false;
-    }*/
-    return false;
+    }
+    return true;
 }

@@ -68,28 +68,31 @@ VVentas::VVentas(QWidget *parent)
     QAction *ActSep = new QAction( this );
     ActSep->setSeparator( true );
 
+    ActVerItems = new QAction( this );
+    ActVerItems->setText( "Ver items" );
+    ActVerItems->setStatusTip( "Muestra el listado de items de la factura" );
+    connect( ActVerItems, SIGNAL( triggered() ), this, SLOT( verItems() ) );
+
     //agregarFiltroBusqueda( "Numero de Factura", " ``" );
     agregarFiltroBusqueda( "Numero de Cliente", " `id_cliente` = '%%1%' " );
     agregarFiltroBusqueda( "Fecha", " `fecha` = '%%1%' ");
     habilitarBusqueda();
 
     this->addAction( ActAgregar );
+    this->addAction( ActVerItems );
     //this->addAction( ActPagar );
     this->addAction( ActAnular );
     this->addAction( ActSep );
     this->addAction( ActVerAnuladas );
+    this->addAction( ActBuscar );
     this->addAction( ActVerTodos );
     this->addAction( ActCerrar );
 
 }
 
-
 #include "formagregarventa.h"
 void VVentas::agregar()
 { emit agregarVentana( new FormAgregarVenta() ); }
-
-void VVentas::buscar()
-{ return; }
 
 void VVentas::eliminar()
 { return; }
@@ -114,7 +117,7 @@ void VVentas::anular()
                 ok = false;
                 QString razon = QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), &ok );
                 if( ok ) {
-                    this->imprimirAnulacion( id_factura, razon, numero );
+                    this->imprimirAnulacion( id_factura, razon, numero ); // Este metodo tiene el mfactura::anular factura
                 }
             }
         }
@@ -133,7 +136,7 @@ void VVentas::anular()
         QString razon = QInputDialog::getText( this, "Ingrese razon", QString::fromUtf8( "Ingrese razon de anulación" ), QLineEdit::Normal, QString(), &ok );
         int id_factura = this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt();
         if( ok && !razon.isEmpty() ) {
-            this->imprimirAnulacion( id_factura, razon, numero );
+            this->imprimirAnulacion( id_factura, razon, numero ); // Este metodo tiene el mfactura::anular factura
         }
 
     }
@@ -172,6 +175,23 @@ void VVentas::pagar()
 
 void VVentas::cambioVerAnuladas( bool parametro )
 { qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro ); }
+
+#include "vitemfactura.h"
+void VVentas::verItems()
+{
+    // Busco todos los IDs a pagar
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    if( lista.size() < 1 ) {
+        QMessageBox::warning( this, "Seleccione un item",
+                        "Por favor, seleccione al menos un item para ver sus items.",
+                        QMessageBox::Ok );
+        return;
+    }
+    QModelIndex indice = lista.first();
+    VItemFactura *f = new VItemFactura();
+    f->setearIdFactura( indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt() );
+    emit agregarVentana( f );
+}
 
 /*!
  * \fn VVentas::imprimirAnulacion( const int id_factura, const QString razon, const QString numero )

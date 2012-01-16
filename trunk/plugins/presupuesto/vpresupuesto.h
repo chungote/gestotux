@@ -23,8 +23,11 @@
 #include <evlista.h>
 
 /**
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Listado de presupuestos emitidos
+ *
+ * Vista para los presupuestos emitidos y sus correspondientes acciones
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VPresupuesto : public EVLista
 {
 Q_OBJECT
@@ -32,11 +35,15 @@ public:
     VPresupuesto(QWidget *parent = 0);
 
 protected slots:
-    void agregar();
-    void antes_de_insertar(int row, QSqlRecord& record);
-    void cerrar();
+    void agregar( bool autocompletar );
     void imprimir();
     void aPdf();
+    void verContenido();
+    void menuContextual( const QModelIndex &indice, QMenu *menu );
+
+private:
+    QModelIndex indiceMenu;
+    QAction *ActVerContenido;
 
 };
 

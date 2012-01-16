@@ -292,6 +292,47 @@ bool MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const doubl
  }
 }
 
+/*!
+ * \fn MCuentaCorriente::recalcularSaldo( const QString numero_cuenta )
+ * Recalcula el saldo de la cuenta corriente indicada y lo guarda.
+ * \param numero_cuenta Numero de cuenta
+ */
+bool MCuentaCorriente::recalcularSaldo( const QString numero_cuenta )
+{
+    QSqlQuery cola;
+    if( cola.exec(QString( "SELECT SUM(debe), SUM(haber) FROM item_ctacte WHERE id_cuenta = %1" ).arg( numero_cuenta ) ) ) {
+        if( cola.next() )
+        {
+            double saldo = cola.record().value(0).toDouble() - cola.record().value(0).toDouble();
+            if(  cola.exec( QString( "UPDATE ctacte SET saldo = %1 WHERE numero_cuenta = %2" ).arg( saldo ).arg( numero_cuenta ) ) )
+            {
+                    qDebug( "Saldo actualizado correctamente - recalculado" );
+                    return true;
+            }
+            else
+            {
+                    qWarning( "Error al buscar el saldo de la cuenta corriente solicitada al intentar recalcular el saldo" );
+                    qDebug( qPrintable( cola.lastError().text() ) );
+                    qDebug( qPrintable( cola.executedQuery() ) );
+                    return false;
+            }
+        }
+        else
+        {
+         // Error al buscar
+         qWarning( "Error al calcular el saldo de la cuenta corriente solicitada ( next )" );
+         qDebug( qPrintable( cola.lastError().text() ) );
+         qDebug( qPrintable( cola.executedQuery() ) );
+        }
+    } else {
+        // Error al buscar
+        qWarning( "Error al calcular el saldo de la cuenta corriente solicitada ( exec )" );
+        qDebug( qPrintable( cola.lastError().text() ) );
+        qDebug( qPrintable( cola.executedQuery() ) );
+    }
+    return false;
+}
+
 
 /*!
     \fn MCuentaCorriente::saldo( const QString numero_cuenta )

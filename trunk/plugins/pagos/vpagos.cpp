@@ -52,6 +52,7 @@ VPagos::VPagos(QWidget *parent)
  addAction( ActCancelarRecibo );
  addAction( ActVerTodos );
  addAction( ActImprimir );
+ addAction( ActPdf );
  addAction( ActCerrar );
 }
 
@@ -110,12 +111,46 @@ void VPagos::imprimir()
 }
 
 /*!
+  \fn VPagos::aPdf()
+  Imprime en pdf el recibo que se encuentre seleccionado en la vista actual
+ */
+void VPagos::aPdf()
+{
+    // Imprime el recibo que se encuentre seleccionado
+    QItemSelectionModel *selectionModel = vista->selectionModel();
+    QModelIndexList indices = selectionModel->selectedRows();
+    if( indices.size() < 1 )
+    {
+      QMessageBox::warning( this, "Seleccione un item",
+                      "Por favor, seleccione un item para exportar a pdf",
+                      QMessageBox::Ok );
+      return;
+    }
+    QModelIndex indice;
+    EReporte *rep = new EReporte( 0 );
+    rep->recibo();
+    ParameterList lista;
+    foreach( indice, indices )
+    {
+        if( indice.isValid() )
+        {
+            QModelIndex r = indice.model()->index( indice.row(), 0 );
+            //QModelIndex c = indice.model()->index( indice.row(), 1 );
+            lista.append( "id_recibo", r.data( Qt::EditRole ).toInt() );
+            rep->hacer( lista );
+            lista.clear();
+        }
+        delete rep;
+    }
+    return;
+}
+
+/*!
  * \fn VPagos::cancelarPago()
  * Cancela un recibo seleccionado
  */
 void VPagos::cancelarPago()
 {
-    /*
     // Cancela el recibo que se encuentre seleccionado
     QItemSelectionModel *selectionModel = vista->selectionModel();
     QModelIndexList indices = selectionModel->selectedRows();
@@ -129,7 +164,7 @@ void VPagos::cancelarPago()
     //Hacer dialogo de confirmacion..
     int ret;
     ret = QMessageBox::warning( this, "Esta seguro?",
-                      QString( "Esta seguro de cancelar %1 recibo(s)?\n Se eliminaran las operaciones asociadas con este recibo").arg( indices.size() ),
+                      QString( "Esta seguro de cancelar %1 recibo(s)?\n Se eliminaran las operaciones asociadas con este recibo.").arg( indices.size() ),
                       "Si", "No" );
     if ( ret == 0 )
     {
@@ -152,8 +187,6 @@ void VPagos::cancelarPago()
            delete mp;
            mp = 0;
     }
-    */
-    qWarning( "Faltan implementar metodos de esta parte. COMPLETALOS ESTEBAN!");
     return;
 }
 
@@ -165,6 +198,7 @@ void VPagos::menuContextual( const QModelIndex &indice, QMenu *menu )
  // Agrego las acciones que quiero que aparezcan en el menu
  menu->addAction( ActCancelarRecibo );
  menu->addAction( ActImprimir );
+ menu->addAction( ActPdf );
  menu->addSeparator();
  menu->addAction( ActAgregar );
  indiceMenu = indice;
