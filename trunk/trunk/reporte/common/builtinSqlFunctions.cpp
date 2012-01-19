@@ -29,17 +29,18 @@ static const int __fieldCount = 3;
 
 static const char* __SqlTable[][3] = {
 //{"tag",        "Driver",         "Sql Statement"}
-// fmt01
+// fmt01 - Formato para colocar el inicio de los parametros de las consulta de parametros
   {"fmt01",      "QPSQL",          "SELECT text('0') AS \"0\""},
   {"fmt01",      "QOCI",           "SELECT '0' AS \"0\" from dual"},
   {"fmt01",      "QSQLITE",        "SELECT '0' AS \"0\""},
   {"fmt01",      "QMYSQL",         "SELECT '0' AS \"0\""},
 
-// fmt02
+// fmt02 - Convierte un numero en una cadena formateada
   {"fmt02",      "QPSQL",          "SELECT %s(%f)"},
   {"fmt02",      "QOCI",           "SELECT to_char(%f,'999,999.99') from dual"},
+  {"fmt02",      "QMYSQL",         "SELECT FORMAT( %f, 3 ) from dual"},
 
-// fmt03
+// fmt03 - Formato y fecha de el reporte
   {"fmt03",      "QPSQL",          "SELECT formatDate(CURRENT_DATE) AS report_date,"
                                          " formatTime(CURRENT_TIMESTAMP) AS report_time"},
   {"fmt03",      "QOCI",          "SELECT to_char(sysdate,'YYYY/MM/DD') AS report_date,"
@@ -51,7 +52,7 @@ static const char* __SqlTable[][3] = {
   {"fmt03",       "QSQLITE",       "SELECT strftime( \"%%d/%m/%Y\", CURRENT_DATE ) AS report_date,"
                                           "strftime( \"%H:%M:%S\", CURRENT_TIMESTAMP ) AS report_time" },
 
-// fmt04
+// fmt04 - Seleccionada datos del reporte guardado en la base de datos
   {"fmt04",      "QPSQL",          "SELECT report_grade, report_source "
                                         "  FROM report "
                                         " WHERE (report_name=:report_name)"
@@ -62,10 +63,18 @@ static const char* __SqlTable[][3] = {
                                         " ORDER BY report_grade HAVING ROWCOUNT < 1"},
   {"fmt04",      "QODBC",         "SELECT report_grade, report_source "
                                         "  FROM report "
-                                        " WHERE (report_name=:report_name)"
+                                        " WHERE (report_name=:report_name)" 
                                         " ORDER BY report_grade DESC"},
-// fmt05
-  {"fmt05",      "QPSQL",          "SELECT login()"},
+  {"fmt04",      "QMYSQL",        "SELECT report_grade, report_source "
+                                        "  FROM report "
+                                        " WHERE ( report_name = report_name )"
+                                        " ORDER BY report_grade DESC"},
+  {"fmt04",      "QSQLITE",       "SELECT report_grade, report_source "
+                                        "  FROM report "
+                                        " WHERE ( report_name = report_name )"
+                                        " ORDER BY report_grade DESC"},
+  // fmt05
+  {"fmt05",      "QPSQL",         "SELECT login()"},
   {"fmt05",      "QOCI",          "SELECT 1 from dual"},
 
 // fmt06
@@ -73,9 +82,11 @@ static const char* __SqlTable[][3] = {
                                         "  FROM report"},
   {"fmt06",      "QOCI",          "SELECT report_name, report_grade, report_source "
                                         "  FROM report"},
-// fmt07
+  // fmt07
   {"fmt07",      "QPSQL",          "SELECT CURRENT_DATE"},
-  {"fmt07",      "QOCI",          "SELECT sysdate FROM dual"},
+  {"fmt07",      "QOCI",           "SELECT sysdate FROM dual"},
+  {"fmt07",      "QMYSQL",         "SELECT CURRENT_DATE FROM dual"},
+  {"fmt07",      "QQSQLITE",       "SELECT CURRENT_DATE FROM dual"},
 
 // fmt08
   {"fmt08",      "QPSQL",          "SELECT metric_value, CURRENT_USER AS username "

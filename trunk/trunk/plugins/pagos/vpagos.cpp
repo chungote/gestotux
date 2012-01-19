@@ -28,6 +28,7 @@
 #include "formagregarrecibo.h"
 #include "EReporte.h"
 #include "dsino.h"
+#include "eregistroplugins.h"
 
 VPagos::VPagos(QWidget *parent)
  : EVLista(parent)
@@ -41,8 +42,14 @@ VPagos::VPagos(QWidget *parent)
  vista->hideColumn( 0 );
  vista->setSortingEnabled( true );
  vista->setAlternatingRowColors( true );
- vista->setItemDelegateForColumn( 6, new DSiNo( vista ) );
+
+ if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+     vista->setItemDelegateForColumn( 6, new DSiNo( vista ) );
+ } else {
+     vista->hideColumn( 6 );
+ }
  vista->setItemDelegateForColumn( 7, new DSiNo( vista ) );
+
 
  ActCancelarRecibo = new QAction( this );
  ActCancelarRecibo->setText( "Cancelar" );

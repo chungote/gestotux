@@ -1473,14 +1473,14 @@ ORODocument* ORPreRender::generate()
     val = p.value().toString();
     val = val.replace(re, "''");
     if (_internal->_database.driverName() == "QMYSQL" || _internal->_database.driverName() == "QSQLITE" )
-      tQuery += QString().sprintf(", \"%s\" AS \"%d\"", val.toLatin1().data(), t + 1);
+      tQuery += QString( ", \"%1\" AS \"%2\"" ).arg( val ).arg( t + 1 );
     else
       tQuery += QString().sprintf(", text('%s') AS \"%d\"", val.toLatin1().data(), t + 1);
 
     if(!p.name().isEmpty())
     {
       if (_internal->_database.driverName() == "QMYSQL" || _internal->_database.driverName() == "QSQLITE" )
-        tQuery += QString().sprintf(", \"%s\" AS \"%s\"", val.toLatin1().data(), p.name().toLatin1().data());
+        tQuery += QString( ", \"%1\" AS \"%2\"" ).arg( val ).arg( p.name() );
       else
         tQuery += QString().sprintf(", text('%s') AS \"%s\"", val.toLatin1().data(), p.name().toLatin1().data());
     }
