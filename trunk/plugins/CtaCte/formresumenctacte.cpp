@@ -25,6 +25,7 @@
 #include <QSqlError>
 #include <QAction>
 #include <QMenu>
+
 #include "eactcerrar.h"
 #include "eactimprimir.h"
 #include "eactemail.h"
@@ -39,6 +40,8 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         this->setObjectName( "Resumen_cuenta-cte" );
         this->setWindowTitle( "Resumen de Cta Cte" );
 
+        _filtro = ""; _numero_cuenta = "";
+
         // Relleno el combobox
         QSqlQuery cola( "SELECT cc.numero_cuenta, c.razon_social FROM ctacte AS cc, clientes AS c WHERE cc.id_cliente = c.id AND fecha_baja IS NULL" );
         while( cola.next() )
@@ -49,18 +52,6 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         CBClienteCtaCte->setEditable( true );
         CBClienteCtaCte->setCurrentIndex( -1 );
         connect( CBClienteCtaCte, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCtaCte( int ) ) );
-
-        EActImprimir *ActImprimir = new EActImprimir( this );
-        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
-        this->addAction( ActImprimir );
-
-        EActPdf *ActPdf = new EActPdf( this );
-        this->addAction( ActPdf );
-        connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
-
-        /*EActEmail *ActEmail = new EActEmail( this );
-        this->addAction( ActEmail );
-        connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );*/
 
         modeloItem = new MItemCuentaCorriente( TVItems, true );
         TVItems->setModel( modeloItem );
@@ -77,6 +68,56 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         /// Menu contextual para cada operacion de la cuenta corriente
         connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
 
+        CBTipo->addItem( "Todos", 0 );
+        CBTipo->addItem( "R"    , MItemCuentaCorriente::Recibo               );
+        CBTipo->addItem( "F"    , MItemCuentaCorriente::Factura              );
+        CBTipo->addItem( "NC"   , MItemCuentaCorriente::NotaCredito          );
+        CBTipo->addItem( "ND"   , MItemCuentaCorriente::NotaDebito           );
+        CBTipo->addItem( "CS"   , MItemCuentaCorriente::CobroServicio        );
+        CBTipo->addItem( "RCS"  , MItemCuentaCorriente::RecargoCobroServicio );
+        CBTipo->addItem( "AF"   , MItemCuentaCorriente::AnulacionFactura     );
+        CBTipo->addItem( "AR"   , MItemCuentaCorriente::AnulacionRecibo      );
+
+        EActImprimir *ActImprimir = new EActImprimir( this );
+        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
+
+        EActPdf *ActPdf = new EActPdf( this );
+        connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
+
+        QAction *ActSep = new QAction( this );
+        ActSep->setSeparator( true );
+
+        ActFiltrar = new QAction( this );
+        ActFiltrar->setText( "Filtrar" );
+        ActFiltrar->setStatusTip( "Muestra los filtros para mostrar solo ciertos datos" );
+        ActFiltrar->setIcon( QIcon( ":/imagenes/filtro.png" ) );
+        ActFiltrar->setCheckable( true );
+        connect( ActFiltrar, SIGNAL( toggled( bool ) ), GBFiltro, SLOT( setVisible( bool ) ) );
+
+        connect( GBFiltro, SIGNAL( toggled( bool ) ), this, SLOT( filtrar() ) );
+        connect( CkBDesde, SIGNAL( toggled( bool ) ), this, SLOT( filtrar() ) );
+        connect( CkBHasta, SIGNAL( toggled( bool ) ), this, SLOT( filtrar() ) );
+        connect( DEDesde , SIGNAL( dateChanged( QDate ) ), this, SLOT( filtrar() ) );
+        connect( DEHasta , SIGNAL( dateChanged( QDate ) ), this, SLOT( filtrar() ) );
+
+        connect( CBTipo  , SIGNAL( currentIndexChanged(int) ), this, SLOT( filtrar() ) );
+
+        GBFiltro->setVisible( ActFiltrar->isChecked() );
+        DEDesde->setEnabled( CkBDesde->isChecked() );
+        DEHasta->setEnabled( CkBHasta->isChecked() );
+
+        DEDesde->setDate( QDate::currentDate() );
+        DEHasta->setDate( QDate::currentDate() );
+
+        /*EActEmail *ActEmail = new EActEmail( this );
+        this->addAction( ActEmail );
+        connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );*/
+
+        this->addAction( ActImprimir );
+        this->addAction( ActPdf );
+        this->addAction( ActSep );
+        this->addAction( ActFiltrar );
+        //this->addAction( ActBuscar );
         this->addAction( new EActCerrar( this ) );
 
 
@@ -89,6 +130,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
  */
 void FormResumenCtaCte::setNumeroCuenta( const QString &numero_cuenta )
 {
+  _numero_cuenta = numero_cuenta;
  // Seteo el numero de cuenta
  CBClienteCtaCte->setCurrentIndex( CBClienteCtaCte->findText( numero_cuenta, Qt::MatchContains ) );
  //Busco los datos
@@ -139,6 +181,7 @@ void FormResumenCtaCte::imprimir()
     // Busco la cuenta?
     ParameterList lista;
     lista.append( Parameter( "ctacte", CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toString() ) );
+    lista.append( Parameter( "filtro", this->_filtro ) );
     EReporte *rep = new EReporte( 0 );
     rep->especial( "ResumenCtaCte", lista );
     if( ! rep->hacer() ) {
@@ -163,6 +206,7 @@ void FormResumenCtaCte::pdf()
     QString nombre = QString( "%1 - Resumen de cuenta corriente.pdf").arg( CBClienteCtaCte->currentText() );
     ParameterList lista;
     lista.append( Parameter( "ctacte", CBClienteCtaCte->itemData( CBClienteCtaCte->currentIndex(), Qt::UserRole ).toString() ) );
+    lista.append( Parameter( "filtro", this->_filtro ) );
     EReporte *rep = new EReporte( 0 );
     rep->especial( "ResumenCtaCte", lista );
     if( ! rep->hacerPDF( lista, nombre ) ) {
@@ -295,4 +339,30 @@ void FormResumenCtaCte::pagarFactura()
 
     qWarning( "No implementado todavia" );
 
+}
+
+/*!
+ * \fn FormResumenCtaCte::filtrar()
+ * Slot que permite hacer filtrado de los datos
+ */
+void FormResumenCtaCte::filtrar()
+{
+    if( GBFiltro->isChecked() ) {
+        QString filtro;
+        if( CkBDesde->isChecked() ) {
+            // Comprobato que funciona con mysql y sqlite.
+            filtro.append( QString( " AND fecha >= DATE( '%1' ) " ).arg( DEDesde->date().toString( "yyyy-MM-dd" ) ) );
+        }
+        if( CkBHasta->isChecked() ) {
+            filtro.append( QString(" AND fecha <= DATE( '%1' ) " ).arg( DEHasta->date().toString( "yyyy-MM-dd" ) ) );
+        }
+        if( CBTipo->currentIndex() != 0 ) {
+            filtro.append( QString( " AND tipo_op = %1 " ).arg( CBTipo->currentIndex() ) );
+        }
+        modeloItem->setFilter( QString( "id_ctacte = %1" ).arg( _numero_cuenta ).append( filtro ) );
+        this->_filtro = filtro;
+    } else {
+        modeloItem->setFilter( QString( "id_ctacte = '%1'" ).arg( _numero_cuenta ) );
+    }
+    modeloItem->select();
 }

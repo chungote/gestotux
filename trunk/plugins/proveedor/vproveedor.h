@@ -23,10 +23,11 @@
 #include <evlista.h>
 
 /**
-Lista de Proveedores
-
-	@author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Lista de Proveedores
+ *
+ * Muestra el listado de proveedores que hay declarado en el sistema
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class VProveedor : public EVLista
 {
 Q_OBJECT

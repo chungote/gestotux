@@ -18,7 +18,7 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>resumen</name>
-  <sql>SELECT t1.fecha AS fecha,
+  <sql>SELECT strftime( "%d/%m/%Y", t1.fecha ) AS fecha,
           t1.descripcion,
           CASE t1.tipo_op WHEN 0 THEN 'R'
 		     WHEN 1 THEN 'F'
@@ -38,20 +38,20 @@ WHERE t1.id_ctacte = &lt;? value( "ctacte" ) ?></sql>
   <name>datos</name>
   <sql>SELECT cc.numero_cuenta,
        c.razon_social AS razon_social,
-       cc.fecha_alta AS fecha_alta,
+       strftime( "%d/%m/%Y", cc.fecha_alta ) AS fecha_alta,
        cc.saldo AS saldo,
        cc.limite AS limite
 FROM ctacte AS cc, clientes AS c
 WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sql>
  </querysource>
  <rpthead>
-  <height>101.661</height>
+  <height>100.735</height>
   <label>
    <rect>
-    <x>10</x>
-    <y>1</y>
+    <x>9.63939</x>
+    <y>-6.2122</y>
     <width>1054</width>
-    <height>25</height>
+    <height>40.8668</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -64,10 +64,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>-0.64353</x>
-    <y>41.5579</y>
-    <width>111</width>
-    <height>15</height>
+    <x>-0.00426856</x>
+    <y>35.9257</y>
+    <width>115.377</width>
+    <height>22.4</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -75,15 +75,15 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
     <weight>bold</weight>
    </font>
    <right/>
-   <top/>
+   <vcenter/>
    <string>Numero de cuenta:</string>
   </label>
   <label>
    <rect>
-    <x>11</x>
-    <y>57.5199</y>
-    <width>100</width>
-    <height>14</height>
+    <x>11.5674</x>
+    <y>58.0873</y>
+    <width>98.2977</width>
+    <height>19.6743</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -97,9 +97,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <label>
    <rect>
     <x>274.464</x>
-    <y>42.5066</y>
+    <y>37.3998</y>
     <width>66.0557</width>
-    <height>13</height>
+    <height>19.2417</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -112,9 +112,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>239</x>
-    <y>56.5267</y>
-    <width>100</width>
+    <x>270.776</x>
+    <y>54.7977</y>
+    <width>68.2241</width>
     <height>16</height>
    </rect>
    <font>
@@ -128,10 +128,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>480.987</x>
-    <y>42</y>
+    <x>482.298</x>
+    <y>41.9977</y>
     <width>100</width>
-    <height>15.3475</height>
+    <height>20.4068</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -139,15 +139,15 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
     <weight>bold</weight>
    </font>
    <right/>
-   <vcenter/>
+   <top/>
    <string>Razon Social:</string>
   </label>
   <field>
    <rect>
-    <x>119.843</x>
-    <y>42.5446</y>
-    <width>172</width>
-    <height>13</height>
+    <x>119.27</x>
+    <y>38.0582</y>
+    <width>169.163</width>
+    <height>18.1068</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -163,8 +163,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>120</x>
-    <y>56.5199</y>
+    <x>115.865</x>
+    <y>59.7517</y>
     <width>128</width>
     <height>16</height>
    </rect>
@@ -182,10 +182,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>344</x>
-    <y>42</y>
+    <x>345.135</x>
+    <y>37.4606</y>
     <width>125</width>
-    <height>13</height>
+    <height>19.2417</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -202,10 +202,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>344</x>
-    <y>56.5464</y>
+    <x>344.567</x>
+    <y>55.4115</y>
     <width>156</width>
-    <height>15</height>
+    <height>17.2697</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -222,10 +222,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>584.947</x>
-    <y>42.947</y>
+    <x>585</x>
+    <y>42.9</y>
     <width>467</width>
-    <height>17.4005</height>
+    <height>17.4</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -277,10 +277,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <label>
    <rect>
-    <x>11.444</x>
-    <y>83.7554</y>
+    <x>10.8766</x>
+    <y>77.5137</y>
     <width>72.4929</width>
-    <height>14.5919</height>
+    <height>24.8056</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -293,10 +293,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>96.1772</x>
-    <y>82.8758</y>
-    <width>30.8604</width>
-    <height>16.0788</height>
+    <x>95.0423</x>
+    <y>74.9318</y>
+    <width>35.3998</width>
+    <height>27.9948</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -309,10 +309,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>133.673</x>
-    <y>82.7266</y>
+    <x>138.78</x>
+    <y>77.6198</y>
     <width>629.366</width>
-    <height>16.1</height>
+    <height>20.6394</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -326,9 +326,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <label>
    <rect>
     <x>775</x>
-    <y>82.2</y>
+    <y>76.5257</y>
     <width>94.8</width>
-    <height>16.1</height>
+    <height>21.7743</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -342,9 +342,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <label>
    <rect>
     <x>874</x>
-    <y>81</y>
+    <y>75.3257</y>
     <width>90.3</width>
-    <height>16.1</height>
+    <height>21.7743</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -358,9 +358,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <label>
    <rect>
     <x>969</x>
-    <y>81.8</y>
+    <y>75.5583</y>
     <width>94.8</width>
-    <height>16.1</height>
+    <height>22.3417</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -373,65 +373,65 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <line>
    <xstart>4.00542</xstart>
-   <ystart>82.4035</ystart>
+   <ystart>77.2967</ystart>
    <xend>1062.29</xend>
-   <yend>81.6601</yend>
+   <yend>76.5533</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>1062.46</xstart>
-   <ystart>82.1631</ystart>
+   <ystart>77.1146</ystart>
    <xend>1062.24</xend>
-   <yend>98.9778</yend>
+   <yend>97.5354</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>965.941</xstart>
-   <ystart>81.8268</ystart>
+   <ystart>78.5813</ystart>
    <xend>965.726</xend>
    <yend>98.6415</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>872.451</xstart>
-   <ystart>82.1631</ystart>
-   <xend>872.236</xend>
-   <yend>98.9778</yend>
+   <xstart>872.09</xstart>
+   <ystart>77.8358</ystart>
+   <xend>871.875</xend>
+   <yend>98.6172</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>768.873</xstart>
-   <ystart>82.1631</ystart>
+   <xstart>768.512</xstart>
+   <ystart>78.557</ystart>
    <xend>768.658</xend>
-   <yend>98.9778</yend>
+   <yend>98.6172</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>129.244</xstart>
-   <ystart>83.172</ystart>
-   <xend>129.029</xend>
-   <yend>99.9866</yend>
+   <xstart>133.423</xstart>
+   <ystart>78.4841</ystart>
+   <xend>133.208</xend>
+   <yend>99.626</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>94.648</xstart>
-   <ystart>82.8357</ystart>
-   <xend>94.4328</xend>
+   <xstart>92.8449</xstart>
+   <ystart>78.869</ystart>
+   <xend>92.9904</xend>
    <yend>99.6503</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>3.80686</xstart>
-   <ystart>82.4994</ystart>
+   <ystart>78.8933</ystart>
    <xend>3.59158</xend>
    <yend>99.314</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>4.26506</xstart>
-   <ystart>99.5399</ystart>
+   <ystart>99.9005</ystart>
    <xend>1062.55</xend>
-   <yend>98.7965</yend>
+   <yend>99.1571</yend>
    <weight>2</weight>
   </line>
  </rpthead>
@@ -603,60 +603,6 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    <data>
     <query>Context Query</query>
     <column>report_title</column>
-   </data>
-  </field>
-  <label>
-   <rect>
-    <x>32.7839</x>
-    <y>1.73424</y>
-    <width>16.401</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>/</string>
-  </label>
-  <field>
-   <rect>
-    <x>5.84684</x>
-    <y>6.27951</y>
-    <width>31.6</width>
-    <height>14.2</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <right/>
-   <vcenter/>
-   <data>
-    <query>Context Query</query>
-    <column>page_number</column>
-   </data>
-  </field>
-  <field>
-   <rect>
-    <x>45.3</x>
-    <y>8.00857</y>
-    <width>37.7</width>
-    <height>13.6</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <left/>
-   <bottom/>
-   <data>
-    <query>Context Query</query>
-    <column>page_count</column>
    </data>
   </field>
   <line>

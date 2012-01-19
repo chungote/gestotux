@@ -147,7 +147,7 @@ end
     <x>74</x>
     <y>1</y>
     <width>987</width>
-    <height>40</height>
+    <height>47</height>
    </rect>
    <font>
     <face>Arial</face>
@@ -158,22 +158,6 @@ end
    <top/>
    <string>Listado de Productos y Precios</string>
   </label>
-  <label>
-   <rect>
-    <x>84</x>
-    <y>37</y>
-    <width>971</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <left/>
-   <vcenter/>
-   <string>Realizado con gestotux 0.5 beta - Listado provisorio, puede cambiar sin aviso previo o notificacion. Usese de base para los listados personalizados</string>
-  </label>
   <line>
    <xstart>88.8748</xstart>
    <ystart>61.3266</ystart>
@@ -183,8 +167,8 @@ end
   </line>
   <label>
    <rect>
-    <x>17.09</x>
-    <y>60.8</y>
+    <x>15.0366</x>
+    <y>61.0567</y>
     <width>59.9</width>
     <height>16.6</height>
    </rect>
@@ -200,9 +184,9 @@ end
   <label>
    <rect>
     <x>110.2</x>
-    <y>62.8</y>
-    <width>333</width>
-    <height>13.8</height>
+    <y>60.8</y>
+    <width>776</width>
+    <height>17.8</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -223,9 +207,9 @@ end
   <label>
    <rect>
     <x>903</x>
-    <y>62.9</y>
+    <y>60.9</y>
     <width>156</width>
-    <height>13.9</height>
+    <height>17.9</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -283,15 +267,15 @@ end
     <rect>
      <x>923</x>
      <y>1.38</y>
-     <width>136</width>
-     <height>14.2</height>
+     <width>142</width>
+     <height>19.3</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>productos</query>
@@ -299,28 +283,12 @@ end
     </data>
     <format>%0.2f</format>
    </field>
-   <label>
-    <rect>
-     <x>905.73</x>
-     <y>2.83573</y>
-     <width>14.3185</width>
-     <height>15.9212</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <top/>
-    <string>$</string>
-   </label>
    <field>
     <rect>
      <x>90.3425</x>
-     <y>1.16709</y>
+     <y>0.14039</y>
      <width>810</width>
-     <height>14.5</height>
+     <height>16.8101</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -336,10 +304,10 @@ end
    </field>
    <field>
     <rect>
-     <x>10.5986</x>
-     <y>0.924804</y>
-     <width>73.299</width>
-     <height>15.7</height>
+     <x>7.26182</x>
+     <y>0.411454</y>
+     <width>81.7693</width>
+     <height>16.7267</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -355,10 +323,10 @@ end
    </field>
    <label>
     <rect>
-     <x>2.50099</x>
+     <x>0.960939</x>
      <y>1.64178</y>
-     <width>9.12627</width>
-     <height>13.6913</height>
+     <width>12.7197</width>
+     <height>14.2046</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -369,6 +337,22 @@ end
     <vcenter/>
     <string>#</string>
    </label>
+   <label>
+    <rect>
+     <x>899.61</x>
+     <y>1.29332</y>
+     <width>16.3534</width>
+     <height>17.6967</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <top/>
+    <string>$</string>
+   </label>
   </detail>
  </section>
  <pgfoot>
@@ -376,9 +360,9 @@ end
   <field>
    <rect>
     <x>4.55896</x>
-    <y>6.33175</y>
+    <y>2.7383</y>
     <width>31.6</width>
-    <height>14.2</height>
+    <height>17.7935</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -395,9 +379,9 @@ end
   <label>
    <rect>
     <x>31.496</x>
-    <y>1.78648</y>
+    <y>-0.266921</y>
     <width>16.401</width>
-    <height>25</height>
+    <height>27.0534</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -411,9 +395,9 @@ end
   <field>
    <rect>
     <x>43.7574</x>
-    <y>6.50769</y>
+    <y>3.17091</y>
     <width>37.723</width>
-    <height>13.6001</height>
+    <height>16.9369</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -430,9 +414,9 @@ end
   <field>
    <rect>
     <x>312.229</x>
-    <y>4.68346</y>
+    <y>1.34668</y>
     <width>475.907</width>
-    <height>25</height>
+    <height>28.3368</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -448,10 +432,10 @@ end
   </field>
   <field>
    <rect>
-    <x>943.451</x>
-    <y>4.67572</y>
-    <width>120.319</width>
-    <height>19.1945</height>
+    <x>880.052</x>
+    <y>0.825594</y>
+    <width>183.718</width>
+    <height>23.0446</height>
    </rect>
    <font>
     <face>Times New Roman</face>

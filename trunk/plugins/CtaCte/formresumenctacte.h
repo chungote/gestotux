@@ -46,6 +46,14 @@ protected slots:
 protected:
     MItemCuentaCorriente *modeloItem;
 
+private slots:
+    void filtrar();
+
+private:
+    QAction *ActFiltrar;
+    QString _numero_cuenta;
+    QString _filtro;
+
 };
 
 #endif

@@ -21,12 +21,12 @@
   <height>81.5916</height>
   <image>
    <rect>
-    <x>2</x>
-    <y>1</y>
-    <width>64</width>
-    <height>62</height>
+    <x>7.36277</x>
+    <y>7.10512</y>
+    <width>53.3</width>
+    <height>42.5</height>
    </rect>
-   <mode>clip</mode>
+   <mode>stretch</mode>
    <map format="png">begin 644 internal
 MB5!.1PT*&amp;@H````-24A$4@```$`````]"`8```%JTE]7````!&amp;=!34$``+&amp;/
 M"_QA!0````9B2T=$`/\`_P#_H+VGDP````EP2%ES```-%P``#1&lt;!F#I2@@``
@@ -145,9 +145,9 @@ end
   <label>
    <rect>
     <x>74</x>
-    <y>5</y>
+    <y>-1</y>
     <width>987</width>
-    <height>36</height>
+    <height>50</height>
    </rect>
    <font>
     <face>Arial</face>
@@ -183,10 +183,10 @@ end
   </line>
   <label>
    <rect>
-    <x>2.20773</x>
-    <y>63.0756</y>
-    <width>333</width>
-    <height>13.8</height>
+    <x>3.91332</x>
+    <y>59.4208</y>
+    <width>217.02</width>
+    <height>19.6477</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -207,9 +207,9 @@ end
   <label>
    <rect>
     <x>590.815</x>
-    <y>62.2401</y>
+    <y>59.5599</y>
     <width>163.137</width>
-    <height>13.8806</height>
+    <height>18.9974</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -230,9 +230,9 @@ end
   <label>
    <rect>
     <x>241.651</x>
-    <y>62.1977</y>
+    <y>60.0048</y>
     <width>202.652</width>
-    <height>13.9</height>
+    <height>19.2604</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -246,9 +246,9 @@ end
   <label>
    <rect>
     <x>760.186</x>
-    <y>63.4</y>
+    <y>59.5015</y>
     <width>151.19</width>
-    <height>13.9</height>
+    <height>19.2604</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -275,10 +275,10 @@ end
   </line>
   <label>
    <rect>
-    <x>909.242</x>
-    <y>62.9</y>
-    <width>156.189</width>
-    <height>13.9</height>
+    <x>918.745</x>
+    <y>59.4888</y>
+    <width>146.686</width>
+    <height>19.2604</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -310,6 +310,25 @@ end
    <yend>78.1149</yend>
    <weight>2</weight>
   </line>
+  <field>
+   <rect>
+    <x>916</x>
+    <y>80.5304</y>
+    <width>148</width>
+    <height>17.6112</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <data>
+    <query>proveedores</query>
+    <column>telefono_celular</column>
+   </data>
+  </field>
  </rpthead>
  <section>
   <name>proveedor</name>
@@ -321,9 +340,9 @@ end
    <field>
     <rect>
      <x>4.26</x>
-     <y>1.84</y>
+     <y>-0.596554</y>
      <width>231.189</width>
-     <height>14.5</height>
+     <height>18.6421</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -340,9 +359,9 @@ end
    <field>
     <rect>
      <x>239.679</x>
-     <y>2.30743</y>
+     <y>-0.37278</y>
      <width>342.808</width>
-     <height>14.2</height>
+     <height>19.3168</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -359,9 +378,9 @@ end
    <field>
     <rect>
      <x>593.144</x>
-     <y>1.64743</y>
+     <y>-0.301813</y>
      <width>163</width>
-     <height>15.6</height>
+     <height>19.2548</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -378,9 +397,9 @@ end
    <field>
     <rect>
      <x>763</x>
-     <y>2.66</y>
+     <y>-0.50752</y>
      <width>148</width>
-     <height>14.2</height>
+     <height>18.8295</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -392,25 +411,6 @@ end
     <data>
      <query>proveedores</query>
      <column>telefono_linea</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>916</x>
-     <y>2.35</y>
-     <width>148</width>
-     <height>14.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>proveedores</query>
-     <column>telefono_celular</column>
     </data>
    </field>
    <line>

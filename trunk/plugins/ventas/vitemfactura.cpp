@@ -1,6 +1,7 @@
 #include "vitemfactura.h"
 #include <QSqlQueryModel>
 #include <QTableView>
+#include <QHeaderView>
 
 VItemFactura::VItemFactura(QWidget *parent) :
     EVLista(parent)
@@ -11,25 +12,28 @@ VItemFactura::VItemFactura(QWidget *parent) :
     modelo = new MProductosTotales( this );
 
     vista->setModel( modelo );
+    vista->horizontalHeader()->setAlternatingRowColors( true );
     modelo->setearSoloLectura( true );
-    modelo->calcularTotales( true );
     modelo->buscarPrecios( false );
+    modelo->calcularTotales( true );
+
+    addAction( ActCerrar );
 
 }
 
 void VItemFactura::setearIdFactura( const int id_factura )
 {
-    QSqlQueryModel *m = new QSqlQueryModel();
-    m->setQuery( QString(
-                     "SELECT cantidad, texto, precio_unitario"
+    QSqlQueryModel m;
+    m.setQuery( QString(
+                     "SELECT cantidad, texto, precio_unitario "
                      "FROM item_factura "
-                     "WHERE id_factura = %1"
+                     "WHERE id_factura = %1;"
                      ).arg( id_factura ) );
-    for( int i = 0; i < m->rowCount(); i++ ) {
+    for( int i = 0; i < m.rowCount(); i++ ) {
         modelo->agregarItem(
-                    m->data( m->index( i, 0 ), Qt::EditRole ).toInt(),
-                    m->data( m->index( i, 1 ), Qt::EditRole ).toString(),
-                    m->data( m->index( i, 2 ), Qt::EditRole ).toDouble()
+                    m.data( m.index( i, 0 ), Qt::EditRole ).toInt(),
+                    m.data( m.index( i, 1 ), Qt::EditRole ).toString(),
+                    m.data( m.index( i, 2 ), Qt::EditRole ).toDouble()
                     );
     }
 }
