@@ -18,7 +18,10 @@ HEADERS += cuentacorrienteplugin.h \
            mitemcuentacorriente.h \
            formresumenctacte.h \
            ../pagos/recibo.h \
-           ../pagos/formagregarrecibo.h
+           ../pagos/formagregarrecibo.h \
+           ../pagos/mpagos.h \
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h
 
 SOURCES += cuentacorrienteplugin.cpp \
            formprefctacte.cpp \
@@ -28,7 +31,10 @@ SOURCES += cuentacorrienteplugin.cpp \
            mitemcuentacorriente.cpp \
            formresumenctacte.cpp \
            ../pagos/recibo.cpp \
-           ../pagos/formagregarrecibo.cpp
+           ../pagos/formagregarrecibo.cpp \
+           ../pagos/mpagos.cpp \
+           ../caja/mcajas.cpp \
+           ../caja/mmovimientoscaja.cpp
 
 RESOURCES += CtaCte.qrc
 
@@ -44,6 +50,7 @@ PRE_TARGETDEPS += ../../bin/libreporte.a \
                   ../../bin/libutiles.a
 
 INCLUDEPATH += ../pagos \
+               ../caja \
                ../../src \
                ../../reporte \
                ../../utiles
