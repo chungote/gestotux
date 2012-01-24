@@ -28,7 +28,6 @@
 #include <QInputDialog>
 #include "EReporte.h"
 
-
 VVentas::VVentas(QWidget *parent)
  : EVLista(parent)
 {

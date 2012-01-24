@@ -178,7 +178,7 @@ int MCompra::ultimoId()
     \fn MCompra::flags( const QModelIndex& index ) const
 
  */
-Qt::ItemFlags MCompra::flags(const QModelIndex& index) const
+Qt::ItemFlags MCompra::flags(const QModelIndex& /*index*/) const
 {
  return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
 }

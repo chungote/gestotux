@@ -116,6 +116,12 @@ void FormVerificarRecargos::iniciar()
      while( cola.next() ) {
          lista_servicios.append( cola.record().value(0).toInt() );
      }
+     if( lista_servicios.empty() ) {
+         l( "Lista de servicios vacia!!");
+         _detener = true;
+         ActDetener->setVisible( true );
+         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+     }
  } else {
      l( "Error de ejecucion en la cola de servicios para revisar." );
      l( cola.lastError().text() );
@@ -129,14 +135,15 @@ void FormVerificarRecargos::iniciar()
  // Inicializo este objeto para poder usarlo adentro de los fors
  MPeriodoServicio *mps = new MPeriodoServicio( this );
 
- for( int serv = 0; serv < cant_servicios; serv++ ) {
+ for( QList<int>::iterator serv = lista_servicios.begin(); serv != lista_servicios.end(); serv++ ) {
     // Cargo los datos
-    int id_servicio = lista_servicios.at( serv );
+    int id_servicio = *serv;
 
-     if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+    if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
 
     l( "Cargando datos del servicio" );
-    LNombreServicio->setText( MServicios::getNombreServicio( id_servicio ) );
+    QString nombre_servicio = MServicios::getNombreServicio( id_servicio );
+    LNombreServicio->setText( nombre_servicio );
     double precio_base = MServicios::precioBase( id_servicio );
     LPrecioBase->setText( QString( "$ %L1" ).arg( precio_base ) );
     int id_periodo_servicio = mps->getPeriodoActual( id_servicio );
@@ -147,7 +154,7 @@ void FormVerificarRecargos::iniciar()
                 .arg( id_periodo_servicio )
                 .arg( ano )
                 .arg( fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
-                .arg( mps->obtenerFechaFinPeriodo( id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) )
+                .arg( mps->obtenerFechaFinPeriodo( id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) ) // AREGLLAR ESTO!
     );
 
     // Busco la cantidad de recargos que tiene el servicio
@@ -190,7 +197,6 @@ void FormVerificarRecargos::iniciar()
         }
         if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
         QDate fecha_inicio = mps->getFechaInicioPeriodoActual( id_servicio );
-        QString nombre_servicio = MServicios::getNombreServicio( id_servicio );
         // La lista no puede estar vacia sino el conteo deberia de haber dado 0
         for( QMap<int,int>::iterator recargo = lista_recargos.begin(); recargo != lista_recargos.end(); recargo++ ) {
              if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
@@ -215,7 +221,7 @@ void FormVerificarRecargos::iniciar()
                     }
                 }
                 if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
-                double costo_recargo = MRecargos::calcularRecargo( recargo.key() );
+                double costo_recargo = MRecargos::calcularRecargo( recargo.key(), true );
                 if( cola.exec(
                     QString( "SELECT id_cliente FROM cobro_servicio_cliente_periodo "
                              " WHERE id_servicio = %1 AND id_periodo_servicio = %2 "
@@ -262,7 +268,11 @@ void FormVerificarRecargos::iniciar()
 
  ActDetener->setVisible( false );
  _detener = true;
- l( "Terminado!" );
+ if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
+    l( "Terminado!" );
+ } else {
+     l( "No se pudo hacer el commit de los datos!" );
+ }
  return;
 }
 

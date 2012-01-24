@@ -46,6 +46,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  vista->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
  vista->horizontalHeader()->setMinimumSectionSize( 60 );
  vista->setSortingEnabled( true );
+ connect( rmodelo, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), vista, SLOT( dataChanged( QModelIndex, QModelIndex ) ) );
  modelo = 0;
 
  ActResumen = new QAction( "Ver Resumen de Cuenta", this );
@@ -145,8 +146,9 @@ void VCuentaCorriente::modificarLimite()
   //Verifico que no sean el mismo
   if( limite_anterior == limite_nuevo )
   { return; }
-  if( qobject_cast<MCuentaCorriente *>(rmodelo)->modificarLimite( id_ctacte, limite_nuevo, rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ) ) ) {
+  if( rmodelo->modificarLimite( id_ctacte, limite_nuevo, indice ) ) {
       QMessageBox::information( this, "Correcto", QString::fromUtf8( "El nuevo límite ha sido colocado correctamente" ) );
+      vista->update( rmodelo->index( indice.row(), 5 ) );
       return;
   } // El error lo reportara el metodo de existir
  }
@@ -193,6 +195,6 @@ void VCuentaCorriente::verResumen()
  * Setea para que se vean solo las cuentas deudoras o no.
  */
 void VCuentaCorriente::mostrarDeudoras( bool estado ) {
-    qobject_cast<MCuentaCorriente *>(this->rmodelo)->filtrarSoloDeudoras( estado );
+    this->rmodelo->filtrarSoloDeudoras( estado );
     this->rmodelo->select();
 }

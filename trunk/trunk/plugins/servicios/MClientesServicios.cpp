@@ -76,7 +76,7 @@ QVariant MClientesServicios::data(const QModelIndex &item, int role) const
  }
 }
 
-Qt::ItemFlags MClientesServicios::flags(const QModelIndex& index) const
+Qt::ItemFlags MClientesServicios::flags(const QModelIndex& /*index */ ) const
 {
  return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
 }

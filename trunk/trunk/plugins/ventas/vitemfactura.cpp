@@ -10,12 +10,12 @@ VItemFactura::VItemFactura(QWidget *parent) :
     setWindowTitle( "Lista de items de Factura" );
 
     modelo = new MProductosTotales( this );
-
-    vista->setModel( modelo );
-    vista->horizontalHeader()->setAlternatingRowColors( true );
     modelo->setearSoloLectura( true );
     modelo->buscarPrecios( false );
     modelo->calcularTotales( true );
+    vista->setModel( modelo );
+    vista->horizontalHeader()->setAlternatingRowColors( true );
+
 
     addAction( ActCerrar );
 

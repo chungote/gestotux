@@ -268,9 +268,9 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "serie", proximo.serie() );
     rec.setValue( "numero",proximo.numero() );
     rec.setValue( "cancelado", false );
-    for( int i = 0; i < rec.count(); i++ ) {
+    /*for( int i = 0; i < rec.count(); i++ ) {
         qDebug( QString( "%1: %2" ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
-    }
+    }*/
     if( this->insertRecord( -1, rec ) ) {
         this->submitAll();
         int id_recibo = query().lastInsertId().toInt();
@@ -368,9 +368,11 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
     if( cola.exec( QString( "SELECT MAX( serie ) FROM recibos" ) ) ) {
         if( cola.next() ) {
             int serie = cola.record().value(0).toInt();
+            if( serie == 0 ) { serie = 1; }
             if( cola.exec( QString( "SELECT MAX( numero ) FROM recibos WHERE serie = %1" ).arg( serie ) ) ) {
                 if( cola.next() ) {
                     int numero = cola.record().value(0).toInt();
+                    if( numero == 0 ) { numero = 1; }
                     NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
                     num->siguienteNumero();
                     return *num;

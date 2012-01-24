@@ -41,6 +41,7 @@ protected slots:
     void verRecargos();
     void generarFacturacion();
     void darDeBaja();
+    void verPeriodos();
 
 private slots:
     void modificar( const QModelIndex &indice );
@@ -59,6 +60,7 @@ private:
     QAction *ActVerClientes;
     QAction *ActNuevoCliente;
     QAction *ActDarDeBaja;
+    QAction *ActVerPeriodosFacturados;
 
 };
 

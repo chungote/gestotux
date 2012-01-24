@@ -272,7 +272,7 @@ bool MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const doubl
         anterior += aplicar;
         if(  cola.exec( QString( "UPDATE ctacte SET saldo = %1 WHERE numero_cuenta = %2" ).arg( anterior ).arg( numero_cuenta ) ) )
         {
-                qDebug( "Saldo actualizado correctamente" );
+                //qDebug( "Saldo actualizado correctamente" );
                 return true;
         }
         else
@@ -510,6 +510,29 @@ bool MCuentaCorriente::existeCuentaCliente( const int id_cliente )
 }
 
 /*!
+ * \fn MCuentaCorriente::idClientePorCtaCte( const QString numero_cuenta )
+ * Devuelve el id del cliente que tiene asociado el numero de cuenta pasado como parametro
+ * \param numero_cuenta Identificador de cuenta corriente
+ * \returns -1 en caso de error o no encontrarlo, o el numero si se pudo encontrar
+ */
+int MCuentaCorriente::idClientePorCtaCte(const QString numero_cuenta)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_cliente FROM ctacte WHERE id_ctacte = %1" ).arg( numero_cuenta ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qWarning( "No se encontro el cliente que tiene esta cuenta corriente asociada" );
+        }
+    } else {
+        qWarning( "No se encontro el cliente que tiene esta cuenta corriente asociada" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return -1;
+}
+
+/*!
  * \fn MCuentaCorriente::modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice )
  * Modifica el lÃ­mite de la cuenta corriente con el nuevo valor si es valido y emite una actualizaciÃ³n del indice para refrescar la vista.
  * \param numero_cuenta Numero de cuenta a actualizar
@@ -545,9 +568,10 @@ bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const doubl
 {
     if( !indice.isValid() ) { return false; }
     if( modificarLimite( numero_cuenta, nuevo_limite ) ) {
-        emit dataChanged( index( indice.row(), 0), index( indice.row(), columnCount( ) ) );
+        emit dataChanged( index( indice.row(), 5 ), index( indice.row(), 5 ) );
         return true;
     }
+    this->select();
     return false;
 }
 

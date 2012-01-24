@@ -60,7 +60,7 @@ bool MTempClientesFacturarServicio::setData(const QModelIndex& index, const QVar
 {
     if( !index.isValid() )
     {
-      //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
+      //qDebug( QString( "Indice invalido DueÃ±os: col=%1, row=%2, role=%3").arg( index.column() ).arg( index.row() ).arg( role ).toLocal8Bit() );
       return false;
     }
     switch( role )
@@ -122,7 +122,7 @@ QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) c
 {
     if( !idx.isValid() )
     {
-     //qDebug( QString( "Indice invalido Dueños: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
+     //qDebug( QString( "Indice invalido DueÃ±os: col=%1, row=%2, role=%3").arg( idx.column() ).arg( idx.row() ).arg( role ).toLocal8Bit() );
      return( QVariant() );
     }
     switch( role )
@@ -236,8 +236,8 @@ QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) c
 
 QVariant MTempClientesFacturarServicio::headerData( int section, Qt::Orientation orientation, int role ) const
 {
-  if( orientation == Qt::Horizontal ) {
-      if( section == 0 ) { return "¿Facturar?"; } else { return "Cliente"; }
+  if( orientation == Qt::Horizontal && role == Qt::DisplayRole ) {
+      if( section == 0 ) { return "Â¿Facturar?"; } else { return "Cliente"; }
   } else {
       return section;
   }
