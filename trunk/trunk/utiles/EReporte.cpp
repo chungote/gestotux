@@ -288,7 +288,7 @@ bool EReporte::cargar( const QString nombre ) {
         QString ruta = reporte.absoluteFilePath( nombre + ".xml" );
         if( QFile::exists( ruta ) ) {
             // Cargo el archivo como dato
-            qDebug( QString( "Cargando archivo %1" ).arg( ruta ).toLocal8Bit() );
+            //qDebug( QString( "Cargando archivo %1" ).arg( ruta ).toLocal8Bit() );
             // La librería no soporta archivos como parametro
             QDomDocument *doc = new QDomDocument(_nombre);
             QFile archivo(ruta);
@@ -317,6 +317,7 @@ bool EReporte::cargar( const QString nombre ) {
         }
     } else {
         // Para otros tipos de base de datos los accedemos en la base de datos
+        //qDebug( QString( "Cargando reporte %1" ).arg( nombre ).toLocal8Bit() );
         _rep = new orReport( nombre );
     }
     if( (!_rep == 0) && !_rep->isValid() ) {

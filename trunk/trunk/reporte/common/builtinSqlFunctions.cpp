@@ -67,11 +67,11 @@ static const char* __SqlTable[][3] = {
                                         " ORDER BY report_grade DESC"},
   {"fmt04",      "QMYSQL",        "SELECT report_grade, report_source "
                                         "  FROM report "
-                                        " WHERE ( report_name = report_name )"
+                                        " WHERE ( report_name = :report_name )"
                                         " ORDER BY report_grade DESC"},
   {"fmt04",      "QSQLITE",       "SELECT report_grade, report_source "
                                         "  FROM report "
-                                        " WHERE ( report_name = report_name )"
+                                        " WHERE ( report_name = :report_name )"
                                         " ORDER BY report_grade DESC"},
   // fmt05
   {"fmt05",      "QPSQL",         "SELECT login()"},
