@@ -1,10 +1,15 @@
 TEMPLATE = lib
+
 CONFIG += dll \
           plugin \
           help
+
 QT += sql
+
 TARGET = ctacte
+
 DESTDIR = ../../bin/plugins/
+
 HEADERS += cuentacorrienteplugin.h \
            formprefctacte.h \
            mcuentacorriente.h \
@@ -12,7 +17,9 @@ HEADERS += cuentacorrienteplugin.h \
            formnuevactacte.h \
            mitemcuentacorriente.h \
            formresumenctacte.h \
-           ../pagos/recibo.h
+           ../pagos/recibo.h \
+           ../pagos/formagregarrecibo.h
+
 SOURCES += cuentacorrienteplugin.cpp \
            formprefctacte.cpp \
            mcuentacorriente.cpp \
@@ -20,22 +27,32 @@ SOURCES += cuentacorrienteplugin.cpp \
            formnuevactacte.cpp \
            mitemcuentacorriente.cpp \
            formresumenctacte.cpp \
-           ../pagos/recibo.cpp
+           ../pagos/recibo.cpp \
+           ../pagos/formagregarrecibo.cpp
+
 RESOURCES += CtaCte.qrc
+
 FORMS += FormPrefCtaCteBase.ui \
-    FormCtaCteBase.ui \
-    FormResumenCtaCteBase.ui
+         FormCtaCteBase.ui \
+         FormResumenCtaCteBase.ui \
+         ../pagos/FormReciboBase.ui
+
 DISTFILES += ctacte.QMYSQL.sql \
              ctacte.QSQLITE.sql
-POST_TARGETDEPS += ../../bin/libreporte.a \
-    ../../bin/libutiles.a
+
+PRE_TARGETDEPS += ../../bin/libreporte.a \
+                  ../../bin/libutiles.a
+
 INCLUDEPATH += ../pagos \
                ../../src \
                ../../reporte \
                ../../utiles
+
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
+
 TRANSLATIONS += CtaCte.ts
+
 OTHER_FILES +=  CtaCte.ts \
                 ctacte.QMYSQL.sql \
                 ctacte.QSQLITE.sql

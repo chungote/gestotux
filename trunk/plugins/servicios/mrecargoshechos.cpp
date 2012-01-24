@@ -47,7 +47,7 @@ void MRecargosHechos::inicializar()
 }
 
 /*
-CREATE TABLE `recargo_cobro_servicio_servicio_cliente` (
+CREATE TABLE `recargo_cobro_servicio_cliente` (
       `id_periodo_servicio` BIGINT NOT NULL,
       `id_servicio` BIGINT NOT NULL,
       `id_cliente` BIGINT NOT NULL,
@@ -129,7 +129,7 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
         detalle.append( "Recargo por pago fuera de termino" );
     }
     if( costo ) {
-        costo = MRecargos::calcularRecargo( id_recargo );
+        costo = MRecargos::calcularRecargo( id_recargo, true );
     }
 
     // Veo de actualizar la cuenta corriente del cliente
@@ -157,22 +157,26 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
 
     // Intento generar el registro
     QSqlQuery cola;
-    cola.prepare(
-                "INSERT INTO recargos_hechos"
-                "( id_periodo_servicio, id_servicio, id_cliente, fecha, detalle, precio, id_ctacte ) VALUES"
-                "( :id_periodo_servicio, :id_servicio, :id_cliente, :fecha, :detalle, :precio, :id_ctacte )"
-                );
+    if( !cola.prepare(
+                "INSERT INTO recargo_cobro_servicio_cliente"
+                "(  id_periodo_servicio,  id_servicio,  id_cliente,  id_recargo,  fecha_generado,  texto_detalle,  precio,  id_ctacte ) VALUES"
+                "( :id_periodo_servicio, :id_servicio, :id_cliente, :id_recargo, :fecha_generado, :texto_detalle, :precio, :id_ctacte )"
+                ) ) {
+        qDebug( "Error de prepare" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
     cola.bindValue( ":id_periodo_servicio", id_periodo_servicio );
     cola.bindValue( ":id_servicio", id_servicio );
     cola.bindValue( ":id_cliente", id_cliente );
     cola.bindValue( ":id_recargo", id_recargo );
-    cola.bindValue( ":fecha", fecha );
-    cola.bindValue( ":detalle", detalle );
+    cola.bindValue( ":fecha_generado", fecha );
+    cola.bindValue( ":texto_detalle", detalle );
     cola.bindValue( ":precio", costo );
     cola.bindValue( ":id_ctacte", id_ctacte );
     // id_recibo es colocado cuando es pagado
     if( cola.exec() ) {
-        qDebug( "Registro de recargo insertado correctamente" );
+        //qDebug( "Registro de recargo insertado correctamente" );
         return true;
     } else {
         qDebug( "Cola de insercion de recargo incorrecta" );
@@ -193,11 +197,11 @@ double MRecargosHechos::buscarRecargoPorPeriodoServicio( const int id_periodo_se
 {
     // Busco el ID de periodoservicio en los recargos realizados que coincidan
     if( id_periodo_servicio <= 0  ) {
-        qDebug( "Id de periodo servicio incorrecto al buscar recargos echos" );
+        qDebug( "Id de periodo servicio incorrecto al buscar recargos hechos" );
         return 0.0;
     }
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT SUM( precio ) FROM recargos_hechos WHERE id_periodo_servicio = %1 AND id_cliente = %2" ).arg( id_periodo_servicio ).arg( id_cliente ) ) ) {
+    if( cola.exec( QString( "SELECT SUM( precio ) FROM recargo_cobro_servicio_cliente WHERE id_periodo_servicio = %1 AND id_cliente = %2" ).arg( id_periodo_servicio ).arg( id_cliente ) ) ) {
         if( cola.next() ) {
             return cola.record().value(0).toDouble();
         } else {

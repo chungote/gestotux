@@ -218,13 +218,24 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
  */
 double MServicios::precioBase( int id_servicio )
 {
+  if( id_servicio == 0 ) {
+      return -100.0;
+  }
   QSqlQuery cola( QString( "SELECT precio_base FROM %2 WHERE id_servicio = %1" ).arg( id_servicio ).arg( "servicios" ) );
   if( cola.exec() ) {
     if( cola.next() )
     {
      return cola.record().value(0).toDouble();
-    } else { qDebug( "Error al hacer next en la cola de precio base de servicio" ); return 0.0; }
-  } else { qDebug( "Error al hacer exec en la cola de precio base de servicio" ); return 0.0; }
+    } else {
+        qDebug( "Error al hacer next en la cola de precio base de servicio" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return 0.0;
+    }
+  } else {
+      qDebug( "Error al hacer exec en la cola de precio base de servicio" );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+      return 0.0;
+  }
 }
 
 /*!
@@ -459,22 +470,22 @@ bool MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio,
         // Calculo la cantidad de días hasta esa fecha
         int cant_dias = fechaAlta.date().daysTo( proximo );
         // Calculo el precio x día y precio total
-        double precio_por_dia = precioBase( id_servicio ) / mps->diasEnPeriodo( id_servicio );
+        double precio_por_dia = precioBase( id_servicio ) / mps->diasEnPeriodo( obtenerPeriodo( id_servicio ) );
         precio_final = precio_por_dia * cant_dias;
-        texto.append( "Cobro de días faltantes desde %1 hasta %2 por el servicio %3 para el período %4" )
-                .arg( fechaAlta.toString( Qt::SystemLocaleShortDate ) )
+        texto.append( QString::fromUtf8( "Cobro de días faltantes desde %1 hasta %2 por el servicio %3 para el período %4" )
+                .arg( fechaAlta.date().toString( Qt::SystemLocaleShortDate ) )
                 .arg( proximo.toString( Qt::SystemLocaleShortDate ) )
                 .arg( getNombreServicio( id_servicio ) )
-                .arg( periodoActual );
+                .arg( periodoActual ) );
         break;
     }
     case MesCompleto:
     {
         // Cobro todo el mes como un periodo
         precio_final = precioBase( id_servicio );
-        texto.append( "Cobro del periodo %1 del servicio %2 por alta." )
+        texto.append( QString( "Cobro del periodo %1 del servicio %2 por alta." )
                 .arg( periodoActual )
-                .arg( getNombreServicio( id_servicio ) );
+                .arg( getNombreServicio( id_servicio ) ) );
         break;
     }
     case FInvalido:

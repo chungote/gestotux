@@ -65,6 +65,10 @@ VServicios::VServicios(QWidget *parent)
  ActGenerarFacturacion->setStatusTip( "Genera todas las facturas para el periodo que se desea cobrar automaticamente" );
  connect( ActGenerarFacturacion, SIGNAL( triggered() ), this, SLOT( generarFacturacion() ) );
 
+ ActVerPeriodosFacturados = new QAction( this );
+ ActVerPeriodosFacturados->setText( "Ver facturacion" );
+ connect( ActVerPeriodosFacturados, SIGNAL( triggered() ), this, SLOT( verPeriodos() ) );
+
  ActRecargos = new QAction( this );
  ActRecargos->setText( "Administrar Recargos" );
  ActRecargos->setStatusTip( "Administra los recargos posibles para este servicio" );
@@ -88,6 +92,7 @@ VServicios::VServicios(QWidget *parent)
  addAction( ActNuevoCliente );
  addAction( ActVerClientes );
  addAction( ActGenerarFacturacion );
+ addAction( ActVerPeriodosFacturados );
  addAction( ActRecargos );
  addAction( ActDarDeBaja );
  addAction( ActSep2 );
@@ -270,4 +275,16 @@ void VServicios::darDeBaja()
         QMessageBox::warning( this, "Incorrecto", "No se dio de baja el servicio" );
         return;
     }
+}
+
+#include "vlistaperiodos.h"
+void VServicios::verPeriodos()
+{
+    // Busco el servicio que esta seleccionado
+    if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+      QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para ver sus periodos facturados." );
+      return;
+    }
+    int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+    emit agregarVentana( new VListaPeriodos( id_servicio ) );
 }

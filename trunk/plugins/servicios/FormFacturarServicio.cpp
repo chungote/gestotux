@@ -134,10 +134,11 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->LNombreServicio->setText( m->getNombreServicio( this->_id_servicio ) );
     this->_precio_base = m->precioBase( this->_id_servicio );
     this->LPrecioBase->setText( QString( "$ %L1" ).arg( this->_precio_base  ) );
+    delete m;
     MPeriodoServicio *mp = new MPeriodoServicio();
-    this->_periodo = mp->getPeriodoActual( this->_id_servicio );
-    this->_ano = mp->getAnoActual( this->_id_servicio );
-    this->_fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio );
+    this->_periodo = mp->getPeriodoActual( this->_id_servicio, true );
+    this->_ano = mp->getAnoActual( this->_id_servicio, true );
+    this->_fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio, true );
     //if( _fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( _fecha_inicio.toString() ).toLocal8Bit() ); }
     this->LPeriodo->setText(
         QString( " %1/%2 desde %3 hasta %4 " )
@@ -196,7 +197,7 @@ void FormFacturarServicio::facturar()
 {
     // Verifico que haya algun cliente
     if( TVClientes->model()->rowCount() <= 0 ) {
-        QMessageBox::information( this, "Sin clientes", "No existen clientes para este servicio. No se factuará nada.", QMessageBox::Ok );
+        QMessageBox::information( this, "Sin clientes", QString::fromUtf8( "No existen clientes para este servicio. No se factuará nada." ), QMessageBox::Ok );
         return;
     }
     // Deshabilito los elementos editables
@@ -242,7 +243,7 @@ void FormFacturarServicio::facturar()
         LIndicador->setText( "Error - No se pudo agregar el registro del periodo a facturar" );
         PBProgreso->setRange( 0, 1 );
         PBProgreso->setValue( 1 );
-        QMessageBox::warning( this, "Cancelado", "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." );
+        QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return;
     }

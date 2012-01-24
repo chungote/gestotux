@@ -8,22 +8,62 @@
 #include <QMessageBox>
 
 MPeriodoServicio::MPeriodoServicio(QObject *parent) :
-    QObject(parent) {
+QSqlRelationalTableModel( parent ) {
     //inicializar();
 }
 
-/*
+
 void MPeriodoServicio::inicializar() {
     setTable( "periodo_servicio" );
     setHeaderData( 0, Qt::Horizontal, "#ID" );
     setHeaderData( 1, Qt::Horizontal, "#Servicio" );
-    setHeaderData( 2, Qt::Horizontal, "Fecha" );
+    setHeaderData( 2, Qt::Horizontal, "Fecha de Facturacion" );
     setHeaderData( 3, Qt::Horizontal, "Periodo" );
-    setHeaderData( 4, Qt::Horizontal, "Año" );
+    setHeaderData( 4, Qt::Horizontal, QString::fromUtf8( "Año" ) );
     setHeaderData( 5, Qt::Horizontal, "Fecha de Inicio" );
     setHeaderData( 6, Qt::Horizontal, "Fecha de Fin" );
 }
 
+QVariant MPeriodoServicio::data(const QModelIndex &item, int role) const
+{
+    switch( role ) {
+        case Qt::DisplayRole:
+        {
+            switch( item.column() ) {
+                case 2:
+                case 5:
+                case 6:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::SystemLocaleShortDate );
+                    break;
+                }
+                case 3:
+                case 4:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toInt();
+                    break;
+                }
+                default:
+                {
+                    return QSqlRelationalTableModel::data( item, role );
+                    break;
+                }
+            }
+            break;
+        }
+    /*    case Qt::TextAlignmentRole:
+        {
+
+        }*/
+        default:
+        {
+            return QSqlRelationalTableModel::data( item, role );
+            break;
+        }
+    }
+}
+
+/*
 void MPeriodoServicio::relacionar() {
     setRelation( 1, QSqlRelation( "id_servicio", "servicios", "nombre" ) );
 }
@@ -199,21 +239,46 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
  * \fn MPeriodoServicio::getPeriodoActual( const int id_servicio )
  * Devuelve el numero de periodo correspondiente al servicio a facturar de acuerdo con los ultimos datos dados
  * \param id_servicio Identificador del servicio
+ * \param facturar Calcula los datos para el periodo siguiente al actual.
  * \returns identificador dentro del numero de periodos o -1 si hubo un error.
  */
-int MPeriodoServicio::getPeriodoActual( const int id_servicio ) {
+int MPeriodoServicio::getPeriodoActual( const int id_servicio, bool facturar ) {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT periodo, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin LIMIT 1" ).arg( id_servicio ) ) ) {
         if( cola.next() ) {
-            return cola.record().value(0).toInt();
+            if( facturar ) {
+                int per = cola.record().value(0).toInt();
+                if( (per + 1 ) > cantidadPeriodos( id_servicio ) ) {
+                    per = 1;
+                } else {
+                    per++;
+                }
+                return per;
+            } else {
+                return cola.record().value(0).toInt();
+            }
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
+            // Por lo tanto facturo el periodo en el que estamos no anteriores.
             QDate fecha_alta_servicio = MServicios::getFechaAlta( id_servicio );
-            QDate hoy = QDate::currentDate();
-            int cant_dias_periodo = diasEnPeriodoServicio( id_servicio, hoy );
-            // Calculo
-            int t = fecha_alta_servicio.daysTo( hoy );
-            double u = t/cant_dias_periodo;
+            int cant_dias_periodo = diasEnPeriodoServicio( id_servicio, QDate::currentDate() );
+            QDate inicio_ano = QDate( QDate::currentDate().year(), 1, 1 );
+            int t = 0; double u = 0.0;
+
+            if( fecha_alta_servicio < inicio_ano ) {
+                // Calculo
+                t = inicio_ano.daysTo( QDate::currentDate() );
+            } else {
+                t = fecha_alta_servicio.daysTo( QDate::currentDate() );
+            }
+            //qDebug( QString::number( t ).toLocal8Bit() );
+            if( t >= cant_dias_periodo ) {
+                u = t/cant_dias_periodo;
+            } else {
+                u = 1;
+            }
+            //qDebug( QString::number( cant_dias_periodo ).toLocal8Bit() );
+            //qDebug( QString::number( floor( u ) ).toLocal8Bit() );
             return floor( u );
         }
     } else {
@@ -230,11 +295,19 @@ int MPeriodoServicio::getPeriodoActual( const int id_servicio ) {
  * \param id_servicio Identificador del servicio
  * \returns identificador del año o -1 si hubo un error.
  */
-int MPeriodoServicio::getAnoActual( const int id_servicio ) {
+int MPeriodoServicio::getAnoActual( const int id_servicio, bool facturar ) {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT ano, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin DESC LIMIT 1" ).arg( id_servicio ) ) ) {
+    if( cola.exec( QString( "SELECT periodo, ano, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin DESC LIMIT 1" ).arg( id_servicio ) ) ) {
         if( cola.next() ) {
-            return cola.record().value(0).toInt();
+            if( facturar ) {
+                if( ( cola.record().value(0).toInt() + 1 ) > cantidadPeriodos( id_servicio ) ) {
+                    return cola.record().value(1).toInt() + 1;
+                } else {
+                    return cola.record().value(1).toInt();
+                }
+            } else {
+                return cola.record().value(1).toInt();
+            }
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
             //qDebug( "Devolviendo el año actual - Ningun registro anterior" );
@@ -251,14 +324,19 @@ int MPeriodoServicio::getAnoActual( const int id_servicio ) {
 /*!
  * \fn MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio )
  * Devuelve la fecha de inicio del periodo correspondiente al servicio a facturar de acuerdo con los ultimos datos dados
- * \param id_servicio Identificador del servicio
+ * \param id_servicio Identificador del servicio.
+ * \param facturar Calcula los datos para el periodo siguiente al actual.
  * \returns identificador del año o -1 si hubo un error.
  */
-QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio ) {
+QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio, bool facturar ) {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT fecha_inicio, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin DESC LIMIT 1" ).arg( id_servicio ) ) ) {
+    if( cola.exec( QString( "SELECT periodo, fecha_inicio, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin DESC LIMIT 1" ).arg( id_servicio ) ) ) {
         if( cola.next() ) {
-            return cola.record().value(0).toDate();
+            if( facturar ) {
+                return cola.record().value(2).toDate().addDays(1);
+            } else {
+                return cola.record().value(0).toDate();
+            }
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
             return MPeriodoServicio::generarFechaInicioPeriodo( id_servicio, MPeriodoServicio::getPeriodoActual( id_servicio ), QDate::currentDate().year() );
@@ -280,8 +358,8 @@ QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio ) {
 int MPeriodoServicio::agregarPeriodoAFacturarNuevo( const int id_servicio ) {
     // Busca el proximo periodo a facturar y lo agrega devolviendo el id agregado
     // Busco si existe un periodo anterior
-    int periodo = this->getPeriodoActual( id_servicio );
-    int ano = this->getAnoActual( id_servicio );
+    int periodo = this->getPeriodoActual( id_servicio, true );
+    int ano = this->getAnoActual( id_servicio, true );
     QDate fecha_inicio = this->getFechaInicioPeriodo( id_servicio, periodo, ano );
     QDate fecha_fin = this->obtenerFechaFinPeriodo( id_servicio, fecha_inicio );
     // Verifico
@@ -366,23 +444,25 @@ QDate MPeriodoServicio::getUltimaFecha( const int id_servicio ) {
  */
 QDate MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano ) {
     QDate fecha = QDate();
+    QDate fecha_inicio_servicio = MServicios::getFechaAlta( id_servicio );
     switch( MServicios::obtenerPeriodo( id_servicio ) ) {
         case MServicios::Semanal:
         {
-            fecha = QDate( ano, 1, 1 ).addMonths( floor( ( periodo - 1 ) / 4 ) );
+            fecha = fecha_inicio_servicio;
+            fecha = fecha.addMonths( floor( periodo / 4 ) );
             int dias_mes = fecha.daysInMonth();
-            if( ( ( periodo - 1 ) % 4 ) !=  0 ) {
-                fecha.addDays( -1 * floor( dias_mes / 4 ) );
+            if( ( periodo % 4 ) !=  0 ) {
+                fecha = fecha.addDays( floor( dias_mes / 4 ) );
             }
             break;
         }
         case MServicios::Quincenal:
         {
-
-            fecha = QDate( ano, 1, 1 ).addMonths( floor( ( periodo - 1 ) / 2 ) );
+            fecha = fecha_inicio_servicio;
+            fecha = fecha.addMonths( floor( periodo / 2 ) );
             int dias_mes = fecha.daysInMonth();
-            if( ( ( periodo - 1 ) % 2 ) !=  0 ) {
-                fecha.addDays( -1 * floor( dias_mes / 2 ) );
+            if( ( periodo % 2 ) !=  0 ) {
+                fecha = fecha.addDays( floor( dias_mes / 2 ) );
             }
             break;
         }
@@ -419,11 +499,14 @@ QDate MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const 
         default: { qDebug( "Tipo de Periodo invalido" ); return QDate(); break; }
     }
     // Chequeo que la fecha de inicio del servicio sea menor que la buscada
-    QDate fecha_inicio_servicio = MServicios::getFechaAlta( id_servicio );
-    if( fecha_inicio_servicio > fecha ) {
-        qDebug( "Error - la fecha de inicio buscada es menor a la del servicio." );
+
+    if( fecha_inicio_servicio >= fecha ) {
+        qDebug( "Atencion - la fecha de inicio buscada es menor a la del alta del servicio." );
+        qDebug( fecha_inicio_servicio.toString().toLocal8Bit() );
+        qDebug( fecha.toString().toLocal8Bit() );
         fecha = fecha_inicio_servicio;
     }
+
     return fecha;
 }
 
@@ -451,4 +534,57 @@ int MPeriodoServicio::getUltimoPeriodo(const int id_servicio) {
         return -1;
     }
     return -1;
+}
+
+int MPeriodoServicio::cantidadPeriodos(const int id_servicio)
+{
+    switch( MServicios::obtenerPeriodo( id_servicio ) ) {
+        case MServicios::Semanal:
+        {
+            return 48;
+            break;
+        }
+        case MServicios::Quincenal:
+        {
+
+            return 24;
+            break;
+        }
+        case MServicios::Mensual:
+        {
+            return 12;
+            break;
+        }
+        case MServicios::BiMensual:
+        {
+            return 6;
+            break;
+        }
+        case MServicios::Trimestral:
+        {
+            return 4;
+            break;
+        }
+        case MServicios::Cuatrimestral:
+        {
+            return 3;
+            break;
+        }
+        case MServicios::Seximestral:
+        {
+            return 2;
+            break;
+        }
+        case MServicios::Anual:
+        {
+            return 1;
+            break;
+        }
+        default:
+        {
+            qDebug( "Tipo de Periodo invalido" );
+            return -1;
+            break;
+        }
+    }
 }

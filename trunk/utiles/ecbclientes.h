@@ -12,6 +12,7 @@ public:
     ~ECBClientes();
     void setearFiltro( const QString f );
     int idClienteActual();
+    void setearId( const int id_cliente );
 
 private slots:
     void verificarExiste();

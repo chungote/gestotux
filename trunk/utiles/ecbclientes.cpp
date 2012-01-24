@@ -82,6 +82,17 @@ int ECBClientes::idClienteActual()
     return ids->value( this->currentIndex() );
 }
 
+void ECBClientes::setearId(const int id_cliente)
+{
+    int pos = this->ids->indexOf( id_cliente );
+    if( pos < 0 ) {
+        qDebug( "Error buscando el id de cliente desde cbcliente" );
+        this->setCurrentIndex( -1 );
+    } else {
+        this->setCurrentIndex( pos );
+    }
+}
+
 /*!
  * \fn ECBClientes::verificarExiste()
  * Ve si el numero de cliente o texto buscado existe en la lista. Si existe lo coloca como item actual.

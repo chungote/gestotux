@@ -238,9 +238,9 @@ int MProductosTotales::rowCount(const QModelIndex& /*parent*/) const
 
 Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
 {
-    if( _solo_lectura ) {
-        return QFlags<Qt::ItemFlag>( Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
-    }
+ if( _solo_lectura ) {
+  return QFlags<Qt::ItemFlag>( Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
+ }
  if( index.row() >= this->cantidades->size() )
  {
   return QFlags<Qt::ItemFlag>(!Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
@@ -462,7 +462,7 @@ void MProductosTotales::recalcularTotal()
  {
   Total += i.value();
  }
- // Emito la seÃ±al de que cambio el valor
+ // Emito la senal de que cambio el valor
  emit dataChanged( this->index( this->cantidades->size(), 0 ), this->index( this->cantidades->size(), 3 ) );
 }
 
@@ -533,6 +533,8 @@ void MProductosTotales::agregarItem( const int cant, const QString texto, double
 
 /*!
     \fn MProductosTotales::calcularTotales( bool sino  )
+    Setea la propiedad de que se caclulen o no los totales.
+    Este valor debe de ser seteado antes de asignar el modelo a una vista, ya que modifica la cantidad de columnas.
  */
 void MProductosTotales::calcularTotales( bool sino  )
 { _calcularTotal = sino; }

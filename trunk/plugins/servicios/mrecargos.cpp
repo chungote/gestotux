@@ -189,7 +189,7 @@ int MRecargos::columnCount( const QModelIndex &/*index*/ ) const
  * \param id_recargo Identificador del recargo
  * \returns cantidad a recargar
  */
-double MRecargos::calcularRecargo( const int id_recargo )
+double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )
 {
     QSqlQuery cola;
     // busco el tipo de recargo
@@ -201,20 +201,34 @@ double MRecargos::calcularRecargo( const int id_recargo )
         qDebug( cola.lastQuery().toLocal8Bit() );
         return -1.0;
     }
+    if( !cola.next() ) {
+        qDebug( "El recargo pasado como parametro no exite!" );
+        return -1.0;
+    }
     double porcentaje = cola.record().value(0).toDouble();
     double recargo = cola.record().value(1).toDouble();
+    int id_servicio = cola.record().value(2).toInt();
+    if( id_servicio == 0 ) {
+        qDebug( "Error al averiguarl el id del servicio cuando se busca un recargo" );
+    }
+    double precio = MServicios::precioBase( id_servicio );
+    if( precio <= 0.0 ) {
+        qDebug( "Existio un error al intentar buscar el precio base del servicio buscando el recargo" );
+        return -1.0;
+    }
     double aplicar = 0.0;
     if( recargo <= 0.0 ) {
-        // Uso el recargo
-        double precio = MServicios::precioBase( cola.record().value(2).toInt() );
-        if( precio != 0.0 ) {
-            aplicar = precio * porcentaje;
+        if( precio_final ){
+            aplicar = precio * ( 1 + porcentaje );
         } else {
-            qDebug( "Existio un error al intentar buscar el precio base del servicio buscando el recargo" );
-            return -1.0;
+            aplicar = precio * porcentaje;
         }
     } else {
-        aplicar = recargo;
+        if( precio_final ) {
+            aplicar =  precio + recargo;
+        } else {
+            aplicar = recargo;
+        }
     }
     return aplicar;
 }

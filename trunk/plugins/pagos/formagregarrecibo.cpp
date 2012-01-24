@@ -75,6 +75,21 @@ void FormAgregarRecibo::setearModelo( MPagos *m )
 }
 
 /*!
+ * \fn FormAgregarRecibo::setearDatos( const int id_cliente, const QString texto, const double cantidad )
+ * Coloca en forma un recibo con los datos pasados como parametros
+ * \param id_cliente Identificador del cliente al que queremos hacerle el recibo
+ * \param texto Texto que va a tener el recibo
+ * \param cantidad Cantidad que debe tener el recibo
+ */
+void FormAgregarRecibo::setearDatos( const int id_cliente, const QString texto, const double cantidad )
+{
+    this->setearModelo( 0 );
+    this->TETexto->setText( texto );
+    this->dSBPagado->setValue( cantidad );
+    this->CBCliente->setearId( id_cliente );
+}
+
+/*!
     \fn FormAgregarRecibo::recalcularTotal()
     Recalcula el total debido por el cliente si posee deuda
  */

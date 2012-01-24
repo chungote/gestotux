@@ -32,6 +32,7 @@
 #include "eactpdf.h"
 #include "mitemcuentacorriente.h"
 #include "eregistroplugins.h"
+#include "mcuentacorriente.h"
 
 FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormResumenCtaCteBase()
@@ -288,18 +289,52 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
  _menuContextual->popup( this->mapToGlobal( posicion ) );
 }
 
+#include "formagregarrecibo.h"
 /*!
     \fn FormResumenCtaCte::pagarTodo()
  */
 void FormResumenCtaCte::pagarTodo()
 {
-    qWarning( "No implementado todavia" );
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) ) {
         // Genero un recibo x el saldo deudor
-
+        double saldo = MCuentaCorriente::saldo( _numero_cuenta );
+        if( saldo <= 0.0 ) {
+            QMessageBox::information( this, "Error", "El cliente no posee saldo que se deba pagar." );
+            return;
+        }
+        // Busco que elementos son los que se pagan
+        QString texto = "Pago total del saldo restante en cuenta corriente.";
+        int id_cliente = MCuentaCorriente::idClientePorCtaCte( _numero_cuenta );
+        if( id_cliente == -1 ) {
+            QMessageBox::warning( this, "Error", "No se pudo buscar un dato para hacer el recibo. No se realizará nada");
+            return;
+        }
+        FormAgregarRecibo *f = new FormAgregarRecibo();
+        f->setearDatos( id_cliente, texto, saldo );
+        emit agregarVentana( f );
+    } else {
+        QMessageBox::warning( this, "Error", "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funcion.\n Contacte su administrador de sistema." );
+        return;
     }
+    return;
 }
 
+#include "evisorinformes.h"
+#include "recibo.h"
+/*!
+    \fn FormResumenCtaCte::verRecibo()
+ */
+void FormResumenCtaCte::verRecibo()
+{
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) ) {
+        /// @todo Agregar este metodo
+
+    } else {
+        QMessageBox::warning( this, "Error", "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funcion.\n Contacte su administrador de sistema." );
+        return;
+    }
+    return;
+}
 
 /*!
     \fn FormResumenCtaCte::verFactura()
@@ -313,31 +348,20 @@ void FormResumenCtaCte::verFactura()
     }
 }
 
-#include "evisorinformes.h"
-#include "recibo.h"
-/*!
-    \fn FormResumenCtaCte::verRecibo()
- */
-void FormResumenCtaCte::verRecibo()
-{
-    qWarning( "No implementado todavía" );
-/* Recibo *re = new Recibo( this );
- re->setIDPago( 0  ); */ /// @todo Poner id del recibo
-}
-
 
 /*!
     \fn FormResumenCtaCte::pagarFactura()
  */
 void FormResumenCtaCte::pagarFactura()
 {
- // Verifico que la factura no este pagada
-
- // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
-
- // Busco los detalles de la factura
-
     qWarning( "No implementado todavia" );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "ventas" ) ) {
+        // Verifico que la factura no este pagada
+
+        // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
+
+        // Busco los detalles de la factura
+    }
 
 }
 

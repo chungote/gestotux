@@ -21,6 +21,7 @@
 #define VCUENTACORRIENTE_H
 
 #include <evlista.h>
+#include "mcuentacorriente.h"
 
 /**
         @author Esteban Zeller <juiraze@yahoo.com.ar>
@@ -45,6 +46,7 @@ protected slots:
     void mostrarDeudoras( bool estado );
 
 private:
+    MCuentaCorriente *rmodelo;
     QAction *ActModificarLimite;
     QAction *ActVerDeudoras;
     /*!

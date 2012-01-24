@@ -108,7 +108,7 @@ void FormAsociarServicioCliente::accept()
  _fecha = this->DEFechaAlta->date();
  if( _id_cliente <= 0 || _id_servicio <= 0 || !_fecha.isValid() )
  {
-  qDebug( QString( "Error de comprobación: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );
+  qDebug( QString( "Error de comprobaciÃ³n: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );
   return;
  }
  // Busco si el cliente tiene cuenta corriente
@@ -119,7 +119,7 @@ void FormAsociarServicioCliente::accept()
  MServicios *mservicios = new MServicios();
  if( mservicios->asociarCliente( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) )
  {
-  // Verifico que se cobre lo que falta del per�odo.
+  // Verifico que se cobre lo que falta del período.
      if( !mservicios->calcularCobroAlta( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) ){
          QMessageBox::warning( this, "Error", "No se pudo hacer el cobro del periodo inical. Realicelo a mano." );
          _agregado = false;
@@ -164,8 +164,8 @@ QDate FormAsociarServicioCliente::fecha()
 
 /*!
     \fn FormAsociarServicioCliente::setFecha( QDate fecha )
-        Coloca la fecha de asociación
-        @param fecha QDate con la fecha de asociación
+        Coloca la fecha de asociaciÃ³n
+        @param fecha QDate con la fecha de asociaciÃ³n
  */
 void FormAsociarServicioCliente::setFecha( QDate fecha )
 { this->_fecha = fecha; }
@@ -216,7 +216,7 @@ int FormAsociarServicioCliente::exec()
         }
         case Servicio:
         {
-            //qWarning( "Todavía no esta implementado el filtrado de servicios a los que esta adherido el cliente" );
+            //qWarning( "TodavÃ­a no esta implementado el filtrado de servicios a los que esta adherido el cliente" );
             // Tengo que eliminar todos los servicios a los que el cliente ya esta adherido
             QSqlQueryModel *modelo = new QSqlQueryModel( CBServicio );
             modelo->setQuery( QString( "SELECT id_servicio, nombre FROM servicios WHERE id_servicio NOT IN ( SELECT id_servicio FROM servicios_clientes WHERE id_cliente = %1 AND fecha_baja NOT NULL )" ).arg( _id_cliente ) );

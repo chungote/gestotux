@@ -173,6 +173,7 @@ Versión para SmartPhones:
 Ejemplo de Store Procedure en MySQL:
 ======= == ===== ========= == ======
 
+SET DELIMITER //;
 CREATE PROCEDURE arreglarazonsocial()
 BEGIN
   DECLARE listo INT DEFAULT 0;
@@ -192,6 +193,7 @@ BEGIN
   END LOOP;
   CLOSE cur;
 END
+//
 
 
 Procedimiento utilizado para actualizar todos los nombres de clientes de una version de tabla de datos de clientes a otra.

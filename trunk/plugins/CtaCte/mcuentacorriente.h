@@ -67,6 +67,8 @@ public:
     static bool existeCuenta( const QString num_cuenta );
     static bool existeCuentaCliente( const int id_cliente );
 
+    static int idClientePorCtaCte( const QString numero_cuenta );
+
     static double saldo( const QString numero_cuenta );
 
     bool modificarLimite( const QString numero_cuenta, const double nuevo_limite, QModelIndex indice );

@@ -639,8 +639,8 @@ void FloatStyle::drawControl( ControlElement element, const QStyleOption *o, QPa
                         QRect rect = toolbutton->rect;
                         // Arrow type always overrules and is always shown
                         bool hasArrow = toolbutton->features & QStyleOptionToolButton::Arrow;
-                        if ((!hasArrow && toolbutton->icon.isNull()) && !toolbutton->text.isEmpty()
-                                                   || toolbutton->toolButtonStyle == Qt::ToolButtonTextOnly) {
+                        if ( ( (!hasArrow && toolbutton->icon.isNull() ) && !toolbutton->text.isEmpty() )
+                                                   || toolbutton->toolButtonStyle == Qt::ToolButtonTextOnly ) {
                                 int alignment = Qt::AlignCenter | Qt::TextShowMnemonic;
                                 if (!styleHint(SH_UnderlineShortcut, o, widget))
                                         alignment |= Qt::TextHideMnemonic;

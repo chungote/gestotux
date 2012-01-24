@@ -112,7 +112,7 @@ QString MClientes::direccionEntera(int id_cliente) {
     }
 }
 
-Qt::ItemFlags MClientes::flags( const QModelIndex &index ) const
+Qt::ItemFlags MClientes::flags( const QModelIndex &/*index*/ ) const
 {
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
@@ -125,5 +125,70 @@ Qt::ItemFlags MClientes::flags( const QModelIndex &index ) const
  */
 bool MClientes::tieneDatosRelacionados( const int id_cliente )
 {
- return true;
+ /// Busca si posee relaciones
+ /* Elementos Posibles:
+   - Presupuestos.
+   - Cuentas corrientes.
+   - Facturas.
+   - Recibos.
+   - Servicios Asociados.
+  */
+  QSqlQuery cola;
+  /////////////////////////////////////////////////////
+  // Cuenta corriente
+  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM ctacte WHERE id_cliente = %1").arg( id_cliente ) ) ) {
+      cola.next();
+      if( cola.record().value(0).toInt() == 0 )
+              return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  /////////////////////////////////////////////////////
+  // Presupuestos
+  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM presupuesto WHERE id_cliente = %1").arg( id_cliente ) ) ) {
+      cola.next();
+      if( cola.record().value(0).toInt() == 0 )
+          return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  /////////////////////////////////////////////////////
+  // Factura
+  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM factura WHERE id_cliente = %1").arg( id_cliente ) ) ) {
+      cola.next();
+      if( cola.record().value(0).toInt() == 0 )
+          return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  /////////////////////////////////////////////////////
+  // Recibos
+  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM recibos WHERE id_cliente = %1").arg( id_cliente ) ) ) {
+      cola.next();
+      if( cola.record().value(0).toInt() == 0 )
+          return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  /////////////////////////////////////////////////////
+  // Servicios Asociados
+  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM servicios_clientes WHERE id_cliente = %1").arg( id_cliente ) ) ) {
+      cola.next();
+      if( cola.record().value(0).toInt() != 0 )
+          return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  // Si llego hasta aca no hay datos relacionados
+  return false;
 }

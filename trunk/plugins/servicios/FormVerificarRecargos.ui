@@ -339,6 +339,9 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QDoubleSpinBox" name="DSBDeudas">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
                 <property name="prefix">
                  <string>$ </string>
                 </property>
