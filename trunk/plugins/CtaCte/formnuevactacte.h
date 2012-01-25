@@ -26,6 +26,12 @@
 #include "mcuentacorriente.h"
 class QSqlRelationalTableModel;
 
+/*!
+ * \brief Formulario para agregar una nueva cuenta corriente
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormNuevaCtaCte : public QDialog, private Ui::FormCtaCteBase
 {
 Q_OBJECT

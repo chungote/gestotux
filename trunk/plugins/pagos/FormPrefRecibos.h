@@ -24,6 +24,12 @@
 #include "ui_FormPrefRecibos.h"
 #include "formprefhijo.h"
 
+/*!
+ * \brief Formulario de preferencia de recibos
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormPrefRecibos : public QWidget, public FormPrefHijo, private Ui::FormPrefRecibos
 {
     Q_OBJECT

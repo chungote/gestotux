@@ -26,6 +26,12 @@
 #include "formprefhijo.h"
 #include <QWidget>
 
+/*!
+ * \brief Formulario de preferencia de Ventas
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormPrefVenta : public QWidget, public FormPrefHijo, private Ui::FormPrefVentaBase
 {
     Q_OBJECT

@@ -8,7 +8,12 @@
 #include <QtPlugin>
 #include <QAction>
 
-
+/*!
+ * \brief Plugin de cliente para BSComputacion
+ *
+ * Clase que posee los datos necesarios para configurar el programa para BSComputacion
+ * \author Esteban Zeller <tranfuga25s@gmail.com>
+ */
 class BSComputacion : public QObject, public EPlugin, public EInfoProgramaInterface
 {
     Q_OBJECT

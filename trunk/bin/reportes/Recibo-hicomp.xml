@@ -28,7 +28,9 @@
        r.precio AS total,
        c.calle || ' ' || c.numero AS direccion,
        c.razon_social AS cliente,
-       c.`CUIT/CUIL` AS cuit
+       c.`CUIT/CUIL` AS cuit,
+       CASE r.forma_pago WHEN 1 THEN 'X' ELSE ' ' END AS contado,
+       CASE r.forma_pago WHEN 0 THEN 'X' ELSE ' ' END AS ctacte
 FROM recibos AS r,
      clientes AS c
 WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
@@ -174,6 +176,44 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
      <column>NumSerie</column>
     </data>
    </barcode>
+   <field>
+    <rect>
+     <x>389</x>
+     <y>225</y>
+     <width>66</width>
+     <height>33</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>contado</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>527</x>
+     <y>228</y>
+     <width>35</width>
+     <height>33</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>ctacte</column>
+    </data>
+   </field>
   </detail>
  </section>
  <section>

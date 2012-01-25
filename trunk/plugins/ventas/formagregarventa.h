@@ -25,6 +25,12 @@
 #include "ui_FormAgregarVentaBase.h"
 class MProductosTotales;
 
+/*!
+ * \brief Formulario para agregar una venta
+ *
+ * Clase que permite agregar una nueva venta al sistema
+ * \author Esteban Zeller
+ */
 class FormAgregarVenta : public EVentana, private Ui::FormAgregarVentaBase
 {
 Q_OBJECT

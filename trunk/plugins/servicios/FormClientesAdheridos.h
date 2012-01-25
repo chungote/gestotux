@@ -25,6 +25,12 @@
 #include "eventana.h"
 class MClientesServicios;
 
+/*!
+ * \brief Formulario para ver los clientes adheridos a un servicio
+ *
+ * Formulario para ver los clientes adheridos a un servicio
+ * \author Esteban Zeller
+ */
 class FormClientesAdheridos : public EVentana, private Ui::FormClientesAdheridos
 {
     Q_OBJECT

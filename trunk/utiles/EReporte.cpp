@@ -187,7 +187,7 @@ void EReporte::presupuesto() {
     _tipo = EReporte::Presupuesto;
     // Busco el tipo de presupuesto que se desea
     preferencias *p = preferencias::getInstancia();
-    p->beginGroup( "Preferencias" );
+    p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = p->value( "Presupuesto" ).toString();
     p->endGroup(); p->endGroup(); p=0;
@@ -205,7 +205,7 @@ void EReporte::factura() {
     _tipo = EReporte::Factura;
     // Busco el tipo de presupuesto que se desea
     preferencias *p = preferencias::getInstancia();
-    p->beginGroup( "Preferencias" );
+    p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "Factura" ).toString();
     p->endGroup(); p->endGroup(); p=0;
@@ -223,7 +223,7 @@ void EReporte::recibo() {
     _tipo = EReporte::Recibo;
     // Busco el tipo de presupuesto que se desea
     preferencias *p = preferencias::getInstancia();
-    p->beginGroup( "Preferencias" );
+    p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "Recibos" ).toString();
     p->endGroup(); p->endGroup(); p=0;
@@ -241,7 +241,7 @@ void EReporte::recibo() {
 void EReporte::anulacionFactura() {
     _tipo = EReporte::AnulacionFactura;
     preferencias *p = preferencias::getInstancia();
-    p->beginGroup( "Preferencias" );
+    p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "AnulacionFactura" ).toString();
     p->endGroup(); p->endGroup(); p=0;
@@ -257,7 +257,7 @@ void EReporte::anulacionFactura() {
 void EReporte::anulacionRecibo() {
     _tipo = EReporte::AnulacionRecibo;
     preferencias *p = preferencias::getInstancia();
-    p->beginGroup( "Preferencias" );
+    p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "AnulacionRecibo" ).toString();
     p->endGroup(); p->endGroup(); p=0;

@@ -301,7 +301,31 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
                     }
                 }
             } else {
+#ifdef GESTOTUX_HICOMP
+                QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+                if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
+                    // no posee cuenta corriente
+                    qDebug( "El cliente no posee cuenta corriente, se salteara la actualizaciòn de cuentas corrientes" );
+                } else if( cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
+                    // Error de numero de cliente
+                    qDebug( "Id de cliente erroneo" );
+                } else {
+                    // Actualizo la cuenta corriente - El total es positivo para que vaya al debe
+                    if( MItemCuentaCorriente::agregarOperacion( cuenta,
+                                                                proximo.aCadena(),
+                                                                ret,
+                                                                MItemCuentaCorriente::Recibo,
+                                                                fecha,
+                                                                QString( "Deuda de recibo %1" ).arg( proximo.aCadena() ),
+                                                                total ) ) {
+                        qDebug( "Item de cuenta corriente agregado correctamente." );
+                    } else {
+                        qWarning( "No se pudo agregar el item de la cuenta corriente" );
+                    }
+                }
+#else
                 qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
+#endif
             }
         } else {
             // ¿no se lleno el campo ? - seguramente la base de datos no lo soporta

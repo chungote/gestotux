@@ -9,6 +9,12 @@
 #include "ui_FormProveedorBase.h"
 #include <QDataWidgetMapper>
 
+/*!
+ * \brief Formuario que permite agregar un proveedor
+ *
+ * Clase que permite agregar un nuevo proveedor
+ * \author Esteban Zeller
+ */
 class FormAgregarProveedor : public EVentana, private Ui::FormProveedorBase
 {
     Q_OBJECT

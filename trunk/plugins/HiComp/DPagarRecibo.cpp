@@ -52,6 +52,7 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
 #include "mcajas.h"
 #include "mcuentacorriente.h"
 #include "mcobroservicioclienteperiodo.h"
+#include "mitemcuentacorriente.h"
 /*!
  * \fn DPagarRecibo::accept()
  * Funciòn llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
@@ -80,6 +81,35 @@ void DPagarRecibo::accept()
         MCobroServicioClientePeriodo *c = new MCobroServicioClientePeriodo();
         if( c->verificarIdFactura( id_recibo ) ) {
             c->colocarComoPagado( id_recibo, id_recibo );
+        }
+        // Veo de actualizar la cuenta corriente que corresponda
+        NumeroComprobante proximo = m->buscarNumeroComprobantePorId( id_recibo );
+        int id_cliente = m->buscarIdCliente( proximo );
+        if( id_cliente == -1 ) {
+            qWarning( "No se puede encontrar el cliente al cual se le realizo el recibo. Solo se lo colocará como pagado pero no se actuazliará ninguna cuenta corriente" );
+        } else {
+            QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+            if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
+                // no posee cuenta corriente
+                qDebug( "El cliente no posee cuenta corriente, se salteara la actualizaciòn de cuentas corrientes" );
+            } else if( cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
+                // Error de numero de cliente
+                qDebug( "Id de cliente erroneo" );
+            } else {
+                // Actualizo la cuenta corriente - El total queda en negativo para que vaya al haber
+
+                if( MItemCuentaCorriente::agregarOperacion( cuenta,
+                                                            proximo.aCadena(),
+                                                            id_recibo,
+                                                            MItemCuentaCorriente::Recibo,
+                                                            QDate::currentDate(),
+                                                            QString( "Pago de recibo %1" ).arg( proximo.aCadena() ),
+                                                            DSBPagar->value() * ( -1 ) ) ) {
+                    qDebug( "Item de cuenta corriente agregado correctamente." );
+                } else {
+                    qWarning( "No se pudo agregar el item de la cuenta corriente" );
+                }
+            }
         }
         // El recibo no esta pagado. Lo intento poner como pagado.
         if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked() ) ) {
