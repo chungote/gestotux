@@ -48,7 +48,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
 
         preferencias *p = preferencias::getInstancia();
         p->inicio();
-        p->beginGroup( "Preferencias" );
+        p->beginGroup( "carga" );
         if( p->value( "pluginInfo" ).toString() != "hicomp" ) {
             RBLuego->setChecked( false );
             RBLuego->setVisible( false );

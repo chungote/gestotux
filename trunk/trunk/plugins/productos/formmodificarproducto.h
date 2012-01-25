@@ -7,6 +7,12 @@
 #include <QDataWidgetMapper>
 #include "mproductos.h"
 
+/*!
+ * \brief Formulario para modificar un producto
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormModificarProducto : public QDialog, private Ui::FormProductoBase
 {
     Q_OBJECT

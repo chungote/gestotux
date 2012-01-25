@@ -25,6 +25,12 @@
 #include "formprefhijo.h"
 #include "ui_FormPrefCtaCteBase.h"
 
+/*!
+ * \brief Formulario de preferencias de cuenta corriente
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormPrefCtaCte : public QWidget, private Ui::FormPrefCtaCteBase, public FormPrefHijo
 {
 Q_OBJECT

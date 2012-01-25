@@ -28,6 +28,12 @@ namespace Ui {
     class FormPrefCaja;
 }
 
+/*!
+ * \brief Formulario de preferencias de caja
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormPrefCaja : public QWidget, public FormPrefHijo
 {
     Q_OBJECT

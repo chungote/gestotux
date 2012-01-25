@@ -5,6 +5,12 @@
 #include <QDialog>
 #include <QDockWidget>
 
+/*!
+ * \brief Formulario para agregar un producto
+ *
+ * Clase que permite agregar un nuevo producto
+ * \author Esteban Zeller
+ */
 class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
 {
     Q_OBJECT

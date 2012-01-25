@@ -25,6 +25,12 @@
 #include "ui_FormAsociarBase.h"
 #include <QDate>
 
+/*!
+ * \brief Formulario para asociar un cliente con un servicio
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormAsociarServicioCliente : public QDialog, private Ui::Dialog
 {
   Q_OBJECT
@@ -70,7 +76,7 @@ private:
     */
     QDate _fecha;
    /*!
-    * Determina si se esta agregando una nueva asociación o modificando una existente
+    * Determina si se esta agregando una nueva asociaciÃ³n o modificando una existente
     */
     bool _agregado;
 

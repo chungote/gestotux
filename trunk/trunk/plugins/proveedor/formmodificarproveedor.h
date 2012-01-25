@@ -6,6 +6,12 @@
 #include "mproveedor.h"
 #include <QDataWidgetMapper>
 
+/*!
+ * \brief Formulario para modificar un proveedor.
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormModificarProveedor : public EVentana, private Ui::FormProveedorBase
 {
     Q_OBJECT

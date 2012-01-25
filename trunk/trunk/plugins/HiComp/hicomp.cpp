@@ -180,7 +180,7 @@ void HiComp::pagarRecibosEmitidos()
 QString HiComp::reporte( int tipo ) {
     switch( tipo ) {
         case EReporte::Presupuesto:
-        { return "Presupuesto"; break; }
+        { return "Presupuesto-hicomp"; break; }
         case EReporte::Factura:
         { return "Factura"; break; }
         case EReporte::Recibo:

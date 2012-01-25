@@ -39,6 +39,7 @@ FormPrefProductos::FormPrefProductos ( QWidget* parent, Qt::WFlags fl )
 void FormPrefProductos::cargar()
 {
  preferencias *p = preferencias::getInstancia();
+ p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "Productos");
  CkBCategorias->setChecked( p->value( "categorias", false ).toBool() );
@@ -70,8 +71,8 @@ void FormPrefProductos::aplicar()
  */
 void FormPrefProductos::guardar()
 {
-
  preferencias *p = preferencias::getInstancia();
+ p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "Productos" );
  p->setValue( "categorias",CkBCategorias->isChecked() );
@@ -84,7 +85,7 @@ void FormPrefProductos::guardar()
  p->setValue( "avisos", CkBAvisosStock->isChecked() );
  p->setValue( "limiteMinimo", DSBLimiteMinimo->value() );
  p->endGroup();
- p->setValue( "Preferencias/Productos/ganancia", DsBGanancia->value() );
+ p->setValue( "ganancia", DsBGanancia->value() );
  p->endGroup();
  p->endGroup();
  p = 0;

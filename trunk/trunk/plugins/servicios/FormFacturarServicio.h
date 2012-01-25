@@ -27,6 +27,12 @@ class QAction;
 class EActCerrar;
 #include <QDate>
 
+/*!
+ * \brief Formulario de facturacion de un servicio
+ *
+ * Formulario que carga los datos y permite realizar la facturación de un servicio en un periodo.
+ * \author Esteban Zeller
+ */
 class FormFacturarServicio : public EVentana, private Ui::FormFacturarServicio
 {
     Q_OBJECT

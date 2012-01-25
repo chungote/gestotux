@@ -25,6 +25,12 @@
 #include "formprefhijo.h"
 #include "ui_FormPrefProductosBase.h"
 
+/*!
+ * \brief Formulario de preferencias de productos
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormPrefProductos : public QWidget, public FormPrefHijo, private Ui::FormPrefProductosBase
 {
 Q_OBJECT

@@ -25,6 +25,12 @@
 #include "ui_FormPantallaInicialBase.h"
 #include <QPaintEvent>
 
+/*!
+ * \brief Formulario de pantalla inicial
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormPantallaInicial : public EVentana, private Ui::FormPantallaInicial
 {
     Q_OBJECT

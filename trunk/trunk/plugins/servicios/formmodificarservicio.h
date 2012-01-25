@@ -7,6 +7,12 @@
 #include <QWidget>
 #include "ui_formServicioBase.h"
 
+/*!
+ * \brief Formulario para modificar un servicio
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormModificarServicio : public EVentana, private Ui::FormServicioBase
 {
     Q_OBJECT

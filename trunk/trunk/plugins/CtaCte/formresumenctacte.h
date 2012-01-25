@@ -25,6 +25,12 @@
 #include "ui_FormResumenCtaCteBase.h"
 class MItemCuentaCorriente;
 
+/*!
+ * \brief Formulario de listado de cuenta corriente
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormResumenCtaCte : public EVentana, private Ui::FormResumenCtaCteBase
 {
 Q_OBJECT

@@ -27,6 +27,12 @@
 class QSqlQueryModel;
 class MProductosTotales;
 
+/*!
+ * \brief Formulario para agregar un presupuesto
+ *
+ * Clase que permite agregar un nuevo presupuesto al sistema.
+ * \author Esteban Zeller
+ */
 class FormAgregarPresupuesto : public EVentana, private Ui::FormPresupuestoBase
 {
   Q_OBJECT

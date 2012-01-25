@@ -24,10 +24,11 @@
 #include <QAbstractTableModel>
 
 /**
-Modelo que calcula totales segun modelo de venta, compra y presupuesto
-
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo que calcula totales segun modelo de venta, compra y presupuesto
+ *
+ * Modelo que calcula totales segun modelo de venta, compra y presupuesto
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MProductosTotales : public QAbstractTableModel
 {
 Q_OBJECT

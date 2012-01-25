@@ -27,6 +27,12 @@ class QAction;
 class MServicios;
 class MRecargos;
 
+/*!
+ * \brief Formulario de administracion de recargos de servicios
+ *
+ *
+ * \author Esteban Zeller
+ */
 class FormRecargos : public EVentana, private Ui::FormRecargoBase
 {
     Q_OBJECT
