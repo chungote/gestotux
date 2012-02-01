@@ -36,18 +36,18 @@ void EBusqueda::borrar()
 }
 
 /*!
- * \fn EBusqeuda::agregarFiltro( QString nombre, QString filtro )
- * Funcion que agregará un filtro al sistema de filtrado automatico.
- * Este sistema colocará el nombre como item de la lista desplegable.
- * El parametro filtro deberà ser lo que le sigue al WHERE de una consulta select donde los %1 serán reemplazados por lo ingresado en el cuadro de texto.
+ * \fn EBusqueda::agregarFiltro( QString nombre, QString filtro )
+ * Funcion que agregarÃ¡ un filtro al sistema de filtrado automatico.
+ * Este sistema colocarÃ¡ el nombre como item de la lista desplegable.
+ * El parametro filtro deberÃ  ser lo que le sigue al WHERE de una consulta select donde los %1 serÃ¡n reemplazados por lo ingresado en el cuadro de texto.
  * \param nombre Nombre del filtro tal como aparecera en la lista deplegable.
- * \param filtro Filtro a a plicar a la consulta sql donde %1 será reemplazado por el texto ingresado por el usuario.
+ * \param filtro Filtro a a plicar a la consulta sql donde %1 serÃ¡ reemplazado por el texto ingresado por el usuario.
  */
 void EBusqueda::agregarFiltro( QString nombre, QString filtro )
 {
     if( nombre.isEmpty() || filtro.isEmpty() || nombre.isNull() || filtro.isNull() )
     {
-        qWarning( "EBusqueda: esta intentando insertar un filtro con algún dato vacío." );
+        qWarning( "EBusqueda: esta intentando insertar un filtro con algÃºn dato vacÃ­o." );
         return;
     }
     CBTipo->insertItem( CBTipo->count(), nombre );

@@ -502,12 +502,12 @@ QVariant MProductosTotales::headerData ( int section, Qt::Orientation orientatio
 }
 
 /*!
- * \fn MProductosTotales::agregarItem( const int cant, const QString texto, const double precio_unitario )
+ * \fn MProductosTotales::agregarItem( const int cant, const QString texto, const double pu )
  * Funcion especial que ingresara los elementos sin hacer las verificaciones normales como si fuera un agregado desde la lista de ventas.
  * Util para mostrar elementos con subtotales y totales en listas estaticas para mostrar por ejemplo elementos de compras.
  * \param cant Cantidad del item.
  * \param texto Texto del item.
- * \param precio_unitario Precio unitario del item
+ * \param pu Precio unitario del item
  */
 void MProductosTotales::agregarItem( const int cant, const QString texto, double pu )
 {

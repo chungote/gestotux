@@ -198,6 +198,35 @@ END
 
 Procedimiento utilizado para actualizar todos los nombres de clientes de una version de tabla de datos de clientes a otra.
 
+SET DELIMITER //;
+CREATE PROCEDURE calcularecibos()
+BEGIN
+  DECLARE listo INT DEFAULT 0;
+  DECLARE texto TEXT;
+  DECLARE id INT DEFAULT -1;
+  DECLARE id_cliente INT DEFAULT 0;
+  DECLARE precio DOUBLE DEFAULT 0.0;
+  DECLARE pagado BOOLEAN DEFAULT 0;
+  DECLARE fecha_pago DATETIME;
+  DECLARE cur CURSOR FOR SELECT rt.id_recibo FROM recibos_temp AS rt;
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET listo = 1;
+  OPEN cur;
+  read_loop: LOOP
+     IF listo THEN
+       LEAVE read_loop;
+     END IF;
+     FETCH cur INTO id;
+     SELECT rt.id_cliente, rt.fecha_pago, rt.texto, rt.precio, rt.contado FROM recibos_temp AS rt WHERE rt.id_recibo = id INTO  id_cliente, fecha_pago, texto, precio, pagado;
+      INSERT INTO recibos ( id_recibo, id_cliente, fecha_pago, texto, precio, forma_pago, serie, numero )
+                VALUES( id, id_cliente, fecha_pago, texto, precio, pagado, 1, id );
+  END LOOP;
+  CLOSE cur;
+END
+//
+
+
+
+
 Como realizar la conversion lpda(mysql) -> sqlite
 
 -- the statement below is almost the same as

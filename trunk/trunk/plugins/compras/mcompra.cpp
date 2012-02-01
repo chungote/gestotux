@@ -54,7 +54,8 @@ void MCompra::relacionar()
 	Función que agrega un registro de compra directamente
 	@param fecha QDate con la fecha de la compra
 	@param proveedor Id del proveedor
-    @param total Total de la compra
+        @param total Total de la compra
+        @param contado Indica si la compra se realizo al contado y de ser cierto genera el movimiento de caja correspondiente.
 	@return Verdadero o falso si fue exitoso o no
  */
 bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, bool contado )
