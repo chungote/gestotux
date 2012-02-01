@@ -55,11 +55,20 @@ VPagos::VPagos(QWidget *parent)
  ActCancelarRecibo->setText( "Cancelar" );
  connect( ActCancelarRecibo, SIGNAL( triggered() ), this, SLOT( cancelarPago() ) );
 
+ agregarFiltroBusqueda( "Numero de Comprobante", " `NumSerie` LIKE '%%1%' ");
+ agregarFiltroBusqueda( "Nombre de Cliente", " `razon_social` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Contiene texto", " `id_recibo` IN ( SELECT id_recibo FROM recibos WHERE `texto` LIKE '%%1%' ) " );
+ agregarFiltroBusqueda( "Desde fecha", " DATE(`fecha_pago`) >= '%1' " );
+ agregarFiltroBusqueda( "Importe desde", " `precio` >= %1" );
+ agregarFiltroBusqueda( "Importe hasta", " `precio` <= %1" );
+ habilitarBusqueda();
+
  addAction( ActAgregar );
  addAction( ActCancelarRecibo );
  addAction( ActVerTodos );
  addAction( ActImprimir );
  addAction( ActPdf );
+ addAction( ActBuscar );
  addAction( ActCerrar );
 }
 

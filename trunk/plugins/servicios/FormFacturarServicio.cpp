@@ -380,8 +380,40 @@ void FormFacturarServicio::facturar()
 
     // Inicializo el reporter
     EReporte *reporte = new EReporte( this );
+    // Genero los parametros
+    ParameterList lista;
+    lista.append( "id_servicio", this->_id_servicio );
+    lista.append( "fecha_inicio", this->_fecha_inicio );
+    lista.append( "precio_base", this->_precio_base );
 #ifdef GESTOTUX_HICOMP
     reporte->especial( "Recibo-hicomp-venc", ParameterList() );
+
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( this->_id_servicio ) ) ) {
+        int i = 1;
+        while( cola.next() ) {
+            if( cola.record().isNull( 1 ) ) {
+                lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(2).toDouble() );
+                lista.append( QString( "total%1" ).arg( i ), this->_precio_base * ( 1 + ( cola.record().value(2).toDouble() / 100 ) ));
+            } else {
+                lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(1).toDouble() );
+                lista.append( QString( "total%1" ).arg( i ), this->_precio_base + cola.record().value(1).toDouble() );
+            }
+            lista.append( QString( "fecha%1" ).arg( i ), this->_fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ).toString( "dd/MM/yyyy" ) );
+            i++;
+        }
+        if( i < 4 ) {
+            for( int j = i; j <= 4; j++ ) {
+                lista.append( QString( "recargo%1" ).arg( j ), "" );
+                lista.append( QString( "total%1" ).arg( j ), "" );
+                lista.append( QString( "fecha%1" ).arg( j ), "" );
+            }
+        }
+    } else {
+        qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        return;
+    }
 #else
     reporte->factura();
 #endif
@@ -389,41 +421,8 @@ void FormFacturarServicio::facturar()
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
-        // Genero los parametros
-        ParameterList lista;
-        lista.append( "id_servicio", this->_id_servicio );
-        lista.append( "fecha_inicio", this->_fecha_inicio );
-        lista.append( "precio_base", this->_precio_base );
 #ifdef GESTOTUX_HICOMP
         lista.append( "id_recibo", comprobantes.take( i ) );
-        QSqlQuery cola;
-        if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( this->_id_servicio ) ) ) {
-            int i = 1;
-            while( cola.next() ) {
-                if( cola.record().isNull( 1 ) ) {
-                    lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(2).toDouble() );
-                    lista.append( QString( "total%1" ).arg( i ), this->_precio_base * ( 1 + ( cola.record().value(2).toDouble() / 100 ) ));
-                } else {
-                    lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(1).toDouble() );
-                    lista.append( QString( "total%1" ).arg( i ), this->_precio_base + cola.record().value(1).toDouble() );
-                }
-                lista.append( QString( "fecha%1" ).arg( i ), this->_fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ).toString( "dd/MM/yyyy" ) );
-                i++;
-            }
-            if( i < 4 ) {
-                for( int j = i; j <= 4; j++ ) {
-                    lista.append( QString( "recargo%1" ).arg( j ), "" );
-                    lista.append( QString( "total%1" ).arg( j ), "" );
-                    lista.append( QString( "fecha%1" ).arg( j ), "" );
-                }
-            }
-        } else {
-            qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            return;
-        }
-
-
         LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
 #else
         lista.append( "id_factura", comprobantes.take( i ) );

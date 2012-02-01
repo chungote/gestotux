@@ -184,9 +184,10 @@ int MRecargos::columnCount( const QModelIndex &/*index*/ ) const
 
 #include "mperiodoservicio.h"
 /*!
- * \fn double MRecargos::calcularRecargo( const int id_recargo )
- * Devuelve la cantidad a aplicar de recargo ( precio del servicio * porcentaje o recargo fijo. No incluye el precio del servicio.
+ * \fn double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )
+ * Devuelve la cantidad a aplicar de recargo precio del servicio * porcentaje o recargo fijo, si precio_final es verdadero se agrega el precio base a lo devuleto
  * \param id_recargo Identificador del recargo
+ * \param precio_final Precio final del servicio incluyendo la base si es verdadero, sino retornara solamente el recargo que se le debe aplicar al precio base.
  * \returns cantidad a recargar
  */
 double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )

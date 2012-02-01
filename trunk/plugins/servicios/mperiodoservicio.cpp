@@ -293,6 +293,7 @@ int MPeriodoServicio::getPeriodoActual( const int id_servicio, bool facturar ) {
  * \fn MPeriodoServicio::getAnoActual( const int id_servicio )
  * Devuelve el numero de año correspondiente al servicio a facturar de acuerdo con los ultimos datos dados
  * \param id_servicio Identificador del servicio
+ * \param facturar Permite calcular el periodo siguiente al actual, el cual se debe facturar.
  * \returns identificador del año o -1 si hubo un error.
  */
 int MPeriodoServicio::getAnoActual( const int id_servicio, bool facturar ) {

@@ -488,7 +488,7 @@ bool MCuentaCorriente::existeCuenta( const QString num_cuenta )
 /*!
  * \fn MCuentaCorriente::existeCuentaCliente( cost int id_cliente )
  * Realiza la busqueda de si existe la cuenta corriente o no del cliente pasado como parametro
- * \param num_cuenta Numero de cuenta corriente
+ * \param id_cliente Numero de cliente
  * \return Verdadero si existe, falso si no existe o hubo un error
  */
 bool MCuentaCorriente::existeCuentaCliente( const int id_cliente )

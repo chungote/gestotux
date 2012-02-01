@@ -335,7 +335,7 @@ bool MProductos::actualizarPrecioVenta( const int id_producto, const double prec
 }
 
 /*!
-    \fn MProductos::buscarPrecioVenta( const int id_producto )
+    \fn MProductos::buscarPrecioCompra( const int id_producto )
     Busca el precio de compra del producto dado por id.
     \param id_producto Identificador del producto.
     \returns Precio de venta del producto o -1 si hubo error.
@@ -361,7 +361,7 @@ double MProductos::buscarPrecioCompra( const int id_producto )
 }
 
 /*!
-    \fn MProductos::buscarPrecioVenta( const QString codigo )
+    \fn MProductos::buscarPrecioCompra( const QString codigo )
     Busca el precio de compra del producto dado por codigo del producto.
     \param codigo Codigo del producto.
     \returns Precio de venta del producto o -1 si hubo error o el codigo no existe.
