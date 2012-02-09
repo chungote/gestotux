@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "eayuda.h"
 #include <QHelpEngine>
+#include <QUrl>
 
 EAyuda *EAyuda::yo = 0;
 
@@ -26,8 +27,8 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::EAyudaBase()
 {
         setupUi(this);
-        qDebug( QString( "Cargando Documentacion desde: %1").arg(QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch").toLocal8Bit());
-        engine = new QHelpEngine( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qch", parent );
+        qDebug( QString( "Cargando Documentacion desde: %1").arg(QApplication::applicationDirPath() + QDir::separator() + "documentacion.qhc").toLocal8Bit());
+        engine = new QHelpEngine( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qhc", parent );
         connect( engine, SIGNAL( setupStarted() ), this, SLOT( inicioConstruccion() ) );
         connect( engine, SIGNAL( setupFinished() ), this, SLOT( finConstruccion() ) );
         if( !engine->setupData() )
@@ -38,6 +39,7 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
             qDebug( QString( "Documentacion cargada desde %1. OK!" ).arg( engine->collectionFile() ).toLocal8Bit() );
         }
         connect( engine, SIGNAL( warning( const QString & ) ), this, SLOT( errorEngine( const QString & ) ) );
+        this->textBrowser->setHelpEngine( engine );
         PBCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
         this->setVisible(false);
         connect( PBCerrar, SIGNAL( clicked() ), this, SLOT( hide() ) );
@@ -61,7 +63,6 @@ EAyuda::~EAyuda()
  */
 bool EAyuda::hayAyuda( QString nombreObjeto )
 {
- qDebug( QString( "Pedida documentacion para: %1" ).arg( nombreObjeto ).toLocal8Bit().constData() );
  if( engine->indexModel()->linksForKeyword( nombreObjeto ).count() > 0 )
  {
         return true;
@@ -79,10 +80,11 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
     Abre la ventana de ayuda mostrando el contenido de la ayuda traida para el identificador pasado como parametro.
     @param nombreObjeto Objeto de referencia del cual se desea mostrar la ayuda
  */
-void EAyuda::mostrarAyuda( QString nombreObjecto )
+void EAyuda::mostrarAyuda( QString nombreObjeto )
 {
  // Estamos seguros que hay datos para este objeto
- QByteArray helpData = engine->fileData( engine->indexModel()->linksForKeyword( nombreObjecto ).constBegin().value() );
+ qDebug( QString( "Abriendo ayuda de %1" ).arg( engine->indexModel()->linksForKeyword( nombreObjeto ).constBegin().value().toString() ).toLocal8Bit() );
+ QByteArray helpData = engine->fileData( engine->indexModel()->linksForKeyword( nombreObjeto ).constBegin().value() );
  // Muestro la documentación al usuario
  if ( !helpData.isEmpty() )
  {

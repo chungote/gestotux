@@ -161,7 +161,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="LDeuda">
             <property name="text">
              <string>Deuda Actual:</string>
             </property>
@@ -188,9 +188,9 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QLabel" name="label_6">
+           <widget class="QLabel" name="LSaldo">
             <property name="text">
-             <string>Total:</string>
+             <string>Saldo:</string>
             </property>
            </widget>
           </item>
