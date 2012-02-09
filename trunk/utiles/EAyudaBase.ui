@@ -18,7 +18,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTextBrowser" name="textBrowser">
+    <widget class="ETextBrowser" name="textBrowser">
      <property name="autoFillBackground">
       <bool>true</bool>
      </property>
@@ -81,6 +81,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ETextBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header location="global">etextbrowser.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

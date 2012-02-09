@@ -54,6 +54,11 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
             RBLuego->setVisible( false );
         }
         p->endGroup(); p = 0;
+
+        dSBDeuda->setVisible( false );
+        dSBTotal->setVisible( false );
+        LSaldo->setVisible( false );
+        LDeuda->setVisible( false );
 }
 
 #include "NumeroComprobante.h"
@@ -121,22 +126,29 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
   if( id_combo == 0 ) {
      // El numero indica Consumidor Final
      qDebug( "FormAgregarRecibo::cambioCliente::Se eligio consumidor final" );
-     return;
-  }
-  QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->idClienteActual() );
-  if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) )
-  {
-   qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
-   qDebug( numero_cuenta.toLocal8Bit() );
-   return;
-  }
-  else
-  {
-   dSBDeuda->setValue( MCuentaCorriente::saldo( numero_cuenta ) );
-   recalcularTotal();
-   return;
+  } else {
+    QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->idClienteActual() );
+    if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) )
+    {
+        qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
+        qDebug( numero_cuenta.toLocal8Bit() );
+    }
+    else
+    {
+        dSBDeuda->setValue( MCuentaCorriente::saldo( numero_cuenta ) );
+        dSBDeuda->setVisible( true );
+        LSaldo->setVisible( true );
+        dSBTotal->setVisible( true );
+        LDeuda->setVisible( true );
+        recalcularTotal();
+        return;
+    }
   }
  }
+ dSBDeuda->setVisible( false );
+ LDeuda->setVisible( false );
+ dSBTotal->setVisible( false );
+ LSaldo->setVisible( false );
 }
 
 
