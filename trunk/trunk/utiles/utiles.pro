@@ -28,7 +28,9 @@ HEADERS += eactcerrar.h \
            ecbproductos.h \
     ecbclientes.h \
     ebusqueda.h \
-    etextbrowser.h
+    etextbrowser.h \
+    ecbpaises.h \
+    ecbprovincias.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -56,7 +58,9 @@ SOURCES += eactcerrar.cpp \
            ecbproductos.cpp \
     ecbclientes.cpp \
     ebusqueda.cpp \
-    etextbrowser.cpp
+    etextbrowser.cpp \
+    ecbpaises.cpp \
+    ecbprovincias.cpp
 
 QT += sql
 

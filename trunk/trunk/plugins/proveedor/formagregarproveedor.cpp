@@ -42,6 +42,10 @@ void FormAgregarProveedor::guardar() {
         QMessageBox::information( this, "Error", "Por favor, ingrese una razon CUIT/CUIL valido para el proveedor" );
         return;
     }
+    if( MProveedor::existeProveedor( LERazonSocial->text() ) ) {
+        QMessageBox::information( this, "Error", "El proveedor que esta intentando agregar ya existe." );
+        return;
+    }
     QSqlRecord rec = this->modelo->record();
     rec.setValue( "nombre", LERazonSocial->text() );
     rec.setValue( "direccion", TEDireccion->toPlainText() );

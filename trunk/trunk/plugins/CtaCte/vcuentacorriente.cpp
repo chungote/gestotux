@@ -67,13 +67,24 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActModificarLimite = new QAction( "Modificar Limite", this );
  connect( ActModificarLimite, SIGNAL( triggered() ), this, SLOT( modificarLimite() ) );
 
+ ActSuspender = new QAction( "Suspender", this );
+ connect( ActSuspender, SIGNAL( triggered() ), this, SLOT( suspenderDesuspender() ) );
+
+ ActVerSuspendidas = new QAction( this );
+ ActVerSuspendidas->setStatusTip( "Muestra solo las cuentas corrientes quese encuentren suspendidas." );
+ ActVerSuspendidas->setText( "Solo Suspendidas" );
+ ActVerSuspendidas->setCheckable( true );
+ connect( ActVerSuspendidas, SIGNAL( toggled( bool ) ), this, SLOT( verSuspendidas( bool ) ) );
+
  addAction( ActAgregar );
  addAction( ActModificarLimite );
+ addAction( ActSuspender );
  addAction( ActVerTodos );
  addAction( ActResumen );
  addAction( ActCerrar );
  addAction( ActSep );
  addAction( ActVerDeudoras );
+ addAction( ActVerSuspendidas );
 }
 
 #include "formnuevactacte.h"
@@ -119,6 +130,13 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
         connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
         menu->addAction( ActDarBaja );
  }
+ if( !indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ) ).toBool() ) {
+     QAction *ActSuspender2 = new QAction( "Sacar suspension", this );
+     connect( ActSuspender2, SIGNAL( triggered() ), this, SLOT( suspenderDesuspender() ) );
+     menu->addAction( ActSuspender2 );
+ } else {
+     menu->addAction( ActSuspender );
+ }
 
  menu->addAction( ActModificarLimite );
  menu->addAction( ActResumen );
@@ -146,11 +164,13 @@ void VCuentaCorriente::modificarLimite()
   //Verifico que no sean el mismo
   if( limite_anterior == limite_nuevo )
   { return; }
-  if( rmodelo->modificarLimite( id_ctacte, limite_nuevo, indice ) ) {
-      QMessageBox::information( this, "Correcto", QString::fromUtf8( "El nuevo límite ha sido colocado correctamente" ) );
-      vista->update( rmodelo->index( indice.row(), 5 ) );
-      return;
-  } // El error lo reportara el metodo de existir
+  if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), limite_nuevo ) ) {
+            QMessageBox::information( this, "Correcto", QString::fromUtf8( "El nuevo límite ha sido colocado correctamente." ) );
+            return;
+        } else {
+            QMessageBox::warning( this, "Incorrecto", QString::fromUtf8( "El nuevo límite NO ha sido colocado correctamente." ) );
+            return;
+        }
  }
 }
 
@@ -196,5 +216,50 @@ void VCuentaCorriente::verResumen()
  */
 void VCuentaCorriente::mostrarDeudoras( bool estado ) {
     this->rmodelo->filtrarSoloDeudoras( estado );
+    this->rmodelo->select();
+}
+
+/*!
+ * \fn VCuentaCorriente::suspenderDesuspender()
+ * Slot lamado par suspender o desuspender una cuenta
+ */
+void VCuentaCorriente::suspenderDesuspender()
+{
+    // Busco el item
+    if( vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Por favor, seleccione una cuenta corriente para cambiarle el límite." ) );
+        return;
+    }
+    QModelIndex indice = vista->selectionModel()->selectedRows().first();
+    bool anterior = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ), Qt::EditRole ).toBool();
+    int ret = -1;
+    if( anterior ) {
+        ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea suspender esta cuenta corriente?. \n El cliente que posee esta cuenta corriente no podrá realizar mas operaciónes a cuenta corriente.", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
+    } else {
+        ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea sacar la suspensión de esta cuenta corriente?. \n Esto habilitará a el cliente que posee esta cuenta corriente a realizar operaciónes a cuenta corriente.", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
+    }
+    if( ret == QMessageBox::Ok )
+    {
+     //Verifico que no sean el mismo
+     if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), !anterior ) ) {
+               if( anterior )
+                   QMessageBox::information( this, "Correcto", QString::fromUtf8( "La cuenta ha sido suspendida correctamente." ) );
+               else
+                   QMessageBox::information( this, "Correcto", QString::fromUtf8( "La cuenta ha sido sacada de suspencion correctamente." ) );
+               return;
+           } else {
+               QMessageBox::warning( this, "Incorrecto", QString::fromUtf8( "No se pudo modificar la suspensión de la cuenta corriente." ) );
+               return;
+           }
+    }
+}
+
+/*!
+ * \fn VCuentaCorriente::verSuspendidas( bool estado )
+ * Muestra solo las cuentas suspendidas
+ */
+void VCuentaCorriente::verSuspendidas( bool estado )
+{
+    this->rmodelo->filtrarSoloSuspendidas( estado );
     this->rmodelo->select();
 }

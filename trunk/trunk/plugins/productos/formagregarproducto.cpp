@@ -62,6 +62,7 @@ FormAgregarProducto::FormAgregarProducto(QWidget *parent) :
 
 void FormAgregarProducto::cambioPrecioCosto( double precio ) {
     this->DSBVenta->setValue( ( 1.00 + ( _recargo / 100 ) ) * precio );
+    this->DSBVenta->setMinimum( precio );
 }
 
 void FormAgregarProducto::accept() {
@@ -101,7 +102,12 @@ void FormAgregarProducto::accept() {
     }
     // Verifico que exista el codigo
     if( MProductos::existeCodigo( this->LECodigo->text() ) ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "El producto con codigo %1 ya ha sido dado de alta" ).arg( this->LECodigo->text() ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El producto con codigo %1 ya ha sido dado de alta!" ).arg( this->LECodigo->text() ) );
+        return;
+    }
+    // Verifico que exista el nombre
+    if( MProductos::existeNombre( this->LENombre->text() ) ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El producto con nombre %1 ya ha sido dado de alta!" ).arg( this->LENombre->text() ) );
         return;
     }
     // Todos los datos pasaron bien luego de este punto

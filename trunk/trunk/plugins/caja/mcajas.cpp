@@ -232,3 +232,25 @@ int MCajas::cajaPredeterminada()
     }
     return id;
 }
+
+/*!
+ * \fn MCajas::existeCaja( const QString nombre )
+ * Funcion que devuelve verdadero si existe la caja con el nombre pasado como parametro
+ * \param nombre Nombre a buscar
+ */
+bool MCajas::existeCaja( QString nombre )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(nombre) FROM %1 WHERE nombre = %2" ).arg( "caja" ).arg( nombre )  ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        }
+    } else {
+         qDebug( "Error al ejecutar la cola de conteo de cajas con nombre especificado.Nombre no encontrado" );
+         qDebug( cola.lastError().text().toLocal8Bit() );
+         qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}

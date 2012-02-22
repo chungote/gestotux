@@ -236,13 +236,17 @@
             <property name="text">
              <string>Provincia:</string>
             </property>
-            <property name="buddy">
-             <cstring>LEProvincia</cstring>
-            </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="LEProvincia"/>
+           <widget class="ECBProvincias" name="CBProvincia">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -270,13 +274,17 @@
             <property name="text">
              <string>Pais:</string>
             </property>
-            <property name="buddy">
-             <cstring>LEPais</cstring>
-            </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="LEPais"/>
+           <widget class="ECBPaises" name="CBPaises">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -489,6 +497,16 @@
    <extends>QLineEdit</extends>
    <header location="global">ELECuitCuil.h</header>
   </customwidget>
+  <customwidget>
+   <class>ECBProvincias</class>
+   <extends>QComboBox</extends>
+   <header>ecbprovincias.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBPaises</class>
+   <extends>QComboBox</extends>
+   <header>ecbpaises.h</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>LERazonSocial</tabstop>
@@ -500,8 +518,6 @@
   <tabstop>LEDepto</tabstop>
   <tabstop>LECiudad</tabstop>
   <tabstop>LECodPostal</tabstop>
-  <tabstop>LEProvincia</tabstop>
-  <tabstop>LEPais</tabstop>
   <tabstop>LETelFijo</tabstop>
   <tabstop>LETelCel</tabstop>
   <tabstop>LEFax</tabstop>

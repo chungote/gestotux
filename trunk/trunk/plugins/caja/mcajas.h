@@ -32,11 +32,18 @@ class MCajas : public QSqlTableModel
         MCajas(QObject *parent = 0 );
         virtual Qt::ItemFlags flags( const QModelIndex &idx ) const;
         QVariant data(const QModelIndex &idx, int role = Qt::DisplayRole) const;
+
         bool agregarCaja( QString nombre, QDate fecha_alta = QDate::currentDate(), double saldo_inicial = 0 );
+
         bool hacerCierre( const int id_caja, QDateTime fecha, double saldo );
+
+        bool existeCaja( const QString nombre );
+
         static bool actualizarSaldo( const int id_caja, const double cantidad );
         static double saldo( const int id_caja );
+
         static QString nombreCaja( const int id_caja );
+
         static int cajaPredeterminada();
 };
 

@@ -28,6 +28,7 @@
 #include "eactguardar.h"
 #include "mclientes.h"
 #include "mestadofiscal.h"
+#include "preferencias.h"
 
 FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Qt::WFlags fl )
 : EVentana( parent, fl ), Ui::FormClienteBase()
@@ -56,8 +57,8 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
         mapa->addMapping( LEDepto, modelo->fieldIndex( "depto" ) );
         mapa->addMapping( LECiudad, modelo->fieldIndex( "ciudad" ) );
         mapa->addMapping( LECodPostal, modelo->fieldIndex( "codigo_postal" ) );
-        mapa->addMapping( LEProvincia, modelo->fieldIndex( "provincia" ) );
-        mapa->addMapping( LEPais, modelo->fieldIndex( "pais" ) );
+        mapa->addMapping( CBProvincia, modelo->fieldIndex( "provincia" ) );
+        mapa->addMapping( CBPaises, modelo->fieldIndex( "pais" ) );
 
         mapa->addMapping( LECUITCUIL, modelo->fieldIndex( "CUIT/CUIL" ) );
         mapa->addMapping( CBEstadoFiscal, modelo->fieldIndex( "id_estado_fiscal" ), "currentIndex" );
@@ -86,6 +87,8 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
         this->addAction( ActCerrar );
 
         CkBComprobanteEmail->setVisible( false );
+
+        CBProvincia->setearCBPais( CBPaises );
 
 }
 
@@ -119,10 +122,16 @@ void FormCliente::guardar()
         this->close();
         return;
      } else {
+        qWarning( "No se pudieron guardar los datos" );
         qDebug( "Error, no se pudo hacer submit del mapa" );
         qDebug( this->modelo->lastError().text().toLocal8Bit() );
      }
  } else {
+     // Verifico si existe ya
+     if( MClientes::existe( LERazonSocial->text(), LENombre->text() ) ) {
+         QMessageBox::warning( this, "Error", "Ya existe un cliente que coincide con la razon social y/o el nombre suministrados" );
+         return;
+     }
      QSqlTableModel::EditStrategy _anterior = modelo->editStrategy();
      modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
      QSqlRecord rc = modelo->record();
@@ -168,20 +177,15 @@ void FormCliente::guardar()
      else
      { rc.setValue( "codigo_postal", LECodPostal->text() ); }
      ////////////////////////////////////////////////////////////////////////
-     if( LEProvincia->text().isEmpty() )
+     if( CBProvincia->currentIndex() > 0 )
      { rc.setNull( "provincia" ); }
      else
-     { rc.setValue( "provincia", LEProvincia->text() ); }
+     { rc.setValue( "provincia", CBProvincia->currentText() ); }
      ////////////////////////////////////////////////////////////////////////
-     if( LEProvincia->text().isEmpty() )
-     { rc.setNull( "provincia" ); }
-     else
-     { rc.setValue( "provincia", LEProvincia->text() ); }
-     ////////////////////////////////////////////////////////////////////////
-     if( LEPais->text().isEmpty() )
+     if( CBPaises->currentIndex() > 0  )
      { rc.setNull( "pais" ); }
      else
-     { rc.setValue( "pais", LEPais->text() ); }
+     { rc.setValue( "pais", CBPaises->currentText() ); }
      ////////////////////////////////////////////////////////////////////////
      if( LETelFijo->text().isEmpty() )
      { rc.setNull( "tel_fijo" ); }
@@ -247,7 +251,18 @@ void FormCliente::guardar()
   \fn FormCliente::agregar()
     Setea el formulario para agregar un registro
  */
-void FormCliente::agregar() { this->_agregando = true; }
+void FormCliente::agregar() {
+    this->_agregando = true;
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Clientes" );
+    this->CBEstadoFiscal->setCurrentIndex( p->value( "estado-fiscal", 0 ).toInt() );
+    this->CBPaises->setearId( p->value( "pais", 0 ).toInt() );
+    this->CBProvincia->setearId( p->value( "provincia", 0 ).toInt() );
+    p->endGroup();
+    p->endGroup();
+    p = 0;
+}
 
 /*!
     \fn FormCliente::setearCliente( QModelIndex &indice )
@@ -268,10 +283,15 @@ void FormCliente::rehaceRazonSocial( const QString &texto )
  // Este slot siempre se llama por diferencia de 1 caracter o texto vacio.
  if( texto.isEmpty() )
  { return; }
- QString anterior = texto; anterior.remove( texto.length()-1, 1 );
- if( LERazonSocial->text().contains( anterior, Qt::CaseInsensitive ) || LERazonSocial->text().isEmpty() )
+ QString anterior = texto;
+ anterior.remove( texto.length()-1, 1 );
+ if( LERazonSocial->text().isEmpty() )
  {
-  LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() );
+    LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() );
+ } else {
+     if( LERazonSocial->text().contains( anterior, Qt::CaseInsensitive )  ) {
+         LERazonSocial->setText( LEApellido->text() + ", " + LENombre->text() );
+     }
  }
  /// \todo Arreglar esto
  return;

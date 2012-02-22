@@ -54,6 +54,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     void filtrarSoloDeudoras( bool sino );
+    void filtrarSoloSuspendidas( bool sino );
 
     static QString obtenerNumeroCuentaCorriente( const int id_cliente );
 

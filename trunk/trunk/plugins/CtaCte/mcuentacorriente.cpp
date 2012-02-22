@@ -427,7 +427,7 @@ bool MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDate
     cola.bindValue( ":id_cliente", id_cliente );
     cola.bindValue( ":fecha_alta", fecha_alta );
     cola.bindValue( ":saldo", saldo );
-    if( limite == 0.0 ) {
+    if( limite < 0.0 ) {
         cola.bindValue( ":limite", limite_p );
     } else {
         cola.bindValue( ":limite", limite );
@@ -454,12 +454,41 @@ bool MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDate
  */
 void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
 {
+    QString filtro = this->filter();
     if( sino ) {
-        this->setFilter( "saldo >= limite" );
+        if( !filtro.isEmpty() )
+        { filtro.append( " AND " ); }
+        filtro.append( " saldo >= limite " );
     } else {
-        this->setFilter( "" );
+        if( filtro.contains( " AND  saldo >= limite" ) )
+            filtro.remove( " AND  saldo >= limite" );
+        if( filtro.contains( " saldo >= limite " ) )
+            filtro.remove( " saldo >= limite " );
     }
+    this->setFilter( filtro );
 }
+
+/*!
+ * \fn MCuentaCorriente::filtrarSoloSuspendidas( bool sino )
+ * Setea el filtro del modelo para que solo tenga las cuentas tales que el saldo es >= que el limite
+ * \param sino Habilitado el filtro o no
+ */
+void MCuentaCorriente::filtrarSoloSuspendidas( bool sino )
+{
+    QString filtro = this->filter();
+    if( sino ) {
+        if( !filtro.isEmpty() )
+        { filtro.append( " AND " ); }
+        filtro.append( " suspendida = 0" );
+    } else {
+        if( filtro.contains( " AND  suspendida = 0" ) )
+            filtro.remove( " AND  suspendida = 0" );
+        if( filtro.contains( " suspendida = 0" ) )
+            filtro.remove( " suspendida = 0" );
+    }
+    this->setFilter( filtro );
+}
+
 
 /*!
  * \fn MCuentaCorriente::existeCuenta( cost QString num_cuenta )

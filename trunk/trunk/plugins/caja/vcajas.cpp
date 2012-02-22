@@ -92,6 +92,10 @@ void VCajas::ingreso() {
 
 void VCajas::transferir()
 {
+    if( this->modelo->rowCount() <= 1 ) {
+        QMessageBox::warning( this, "Error", "No hay suficientes cajas como para generar una transferencia entre cajas" );
+        return;
+    }
    FormTransferir *f = new FormTransferir();
    f->adjustSize();
    f->exec();

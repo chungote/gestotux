@@ -110,8 +110,18 @@ VProductos::VProductos(QWidget *parent)
  connect( ActListadoVenta, SIGNAL( triggered() ), this, SLOT( listaVenta() ) );
 
  addAction( ActListadoVenta );
+ addAction( ActBuscar );
  addAction( ActVerTodos );
  addAction( ActCerrar );
+
+ agregarFiltroBusqueda( "Todo", "`codigo` LIKE '%%1%' OR  `nombre` LIKE '%%1%'  OR `descripcion` LIKE '%%1%' OR" );
+ agregarFiltroBusqueda( "Código", " `codigo` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Descripción", " `descripcion` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Stock mayor o igual a ", " `stock` >= %1" );
+ agregarFiltroBusqueda( "Stock menor a ", " `stock` < %1" );
+ habilitarBusqueda();
+
 }
 
 /*!
@@ -163,7 +173,7 @@ void VProductos::agregar( bool /*autoeliminarid*/ )
 #include "EReporte.h"
 /*!
  * \fn VProductos::listaVenta()
- * Muestra el listado de productos con sus codigos y precio de venta
+ * Muestra el listado de productos con sus codigos y precio de venta segun el filtro actual
  */
 void VProductos::listaVenta()
 {
@@ -172,7 +182,9 @@ void VProductos::listaVenta()
         return;
     }
     EReporte *rep = new EReporte( 0 );
-    rep->especial( "ListadoProductosPrecio", ParameterList() );
+    ParameterList lista;
+    lista.append( "filtro", this->rmodelo->filter() );
+    rep->especial( "ListadoProductosPrecio", lista );
     rep->hacer();
     delete rep;
 }
