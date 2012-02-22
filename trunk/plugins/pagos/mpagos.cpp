@@ -192,7 +192,7 @@ int MPagos::buscarUltimoNumeroRecibo() const
 QDate MPagos::buscarFechaUltimoRecibo() const
 {
   // Busco la fecha maxima de los recibos
-  QSqlQuery cola( QString( "SELECT MAX(fecha_pago) FROM %1" ).arg( this->tableName() ) );
+  QSqlQuery cola( QString( "SELECT fecha_pago FROM recibos ORDER BY fecha_pago DESC LIMIT 1" ) );
   if( cola.exec() ) {
       if( cola.next() ) {
           return cola.record().value(0).toDate();

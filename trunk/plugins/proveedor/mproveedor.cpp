@@ -153,3 +153,30 @@ bool MProveedor::existenProveedores()
     }
     return false;
 }
+
+/*!
+ * \fn MProveedor::existeProveedor()
+ * Devuelve verdadero si existe al menos un proveedor declarado con el mismo nombre
+ * \param razon_social Razon social a verificar su existencia
+ */
+bool MProveedor::existeProveedor( QString razon_social )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT count(id) FROM proveedor WHERE razon_social = %1" ).arg( razon_social ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        } else {
+            qDebug( "Error al hacer next en la cola de averiguación de proveedor segun nombre." );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qWarning( "Existió un error al intentar ejecutar la consulta de existencia de proveedor" );
+        qDebug( "Error al hacer exec en la cola de averiguación de existencia de proveedor." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}

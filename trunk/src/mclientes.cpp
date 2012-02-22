@@ -192,3 +192,27 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
   // Si llego hasta aca no hay datos relacionados
   return false;
 }
+
+
+/*!
+ * \fn MClientes::existe( QString razon_social, QString nombre )
+ * Devuelve verdadero si ya se encuentra un cliente con la razon social pasada como parametro
+ * \param razon_social Razon Social a buscar
+ * \param nombre Nombre del cliente
+ * \returns verdadero si existe un cliente, falso en caso de error o que no exista
+ */
+bool MClientes::existe( QString razon_social, QString /*nombre*/ ) {
+    QSqlQuery cola;
+    /////////////////////////////////////////////////////
+    // Cuenta corriente
+    if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM clientes WHERE razon_social = %1" ).arg( razon_social ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() != 0 )
+                return true;
+    } else {
+        qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}

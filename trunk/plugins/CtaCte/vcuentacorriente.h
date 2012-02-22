@@ -44,6 +44,8 @@ protected slots:
     void darBaja();
     void verResumen();
     void mostrarDeudoras( bool estado );
+    void verSuspendidas( bool estado );
+    void suspenderDesuspender();
 
 private:
     MCuentaCorriente *rmodelo;
@@ -53,6 +55,8 @@ private:
      * Acción que muestra el resumen de una cuenta corriente especifica
      */
      QAction *ActResumen;
+     QAction *ActSuspender;
+     QAction *ActVerSuspendidas;
 };
 
 #endif

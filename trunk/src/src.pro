@@ -20,7 +20,8 @@ SOURCES += gestotux.cpp \
            formplugins.cpp \
            FormPantallaInicial.cpp \
            EFlecha.cpp \
-           mestadofiscal.cpp
+           mestadofiscal.cpp \
+    formprefclientes.cpp
 
 HEADERS += gestotux.h \
            ebackup.h \
@@ -47,7 +48,8 @@ HEADERS += gestotux.h \
            formplugins.h \
            FormPantallaInicial.h \
            EFlecha.h \
-           mestadofiscal.h
+           mestadofiscal.h \
+    formprefclientes.h
 
 TEMPLATE = app
 
@@ -69,7 +71,8 @@ FORMS += FormAcercaDeBase.ui \
          FormClienteBase.ui \
          formplugins.ui \
          ../utiles/EAyudaBase.ui \
-         FormPantallaInicialBase.ui
+         FormPantallaInicialBase.ui \
+    formprefclientesbase.ui
 
 TARGET = gestotux
 

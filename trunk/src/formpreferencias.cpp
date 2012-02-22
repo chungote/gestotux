@@ -33,6 +33,7 @@
 #include "formprefdb.h"
 #include "eregistroplugins.h"
 #include "einfoprogramainterface.h"
+#include "formprefclientes.h"
 
 FormPreferencias::FormPreferencias(QWidget *parent)
  : EVentana(parent)
@@ -83,7 +84,18 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      }
      p->endGroup();
      p->endGroup();
-     /// \todo ATENCION! CAMBIAR ESTO
+     // Preferencias de clientes
+     QListWidgetItem *clientes = new QListWidgetItem( contentsWidget );
+     clientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
+     clientes->setText( "Clientes" );
+     clientes->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+     clientes->setTextAlignment( Qt::AlignBottom | Qt::AlignHCenter );
+     FormPrefClientes *formCli = new FormPrefClientes( this );
+     connect( this, SIGNAL( aplicar() ), formCli, SLOT( aplicar() ) );
+     connect( this, SIGNAL( cargar() ), formCli, SLOT( cargar() ) );
+     connect( this, SIGNAL( guardar() ), formCli, SLOT( guardar() ) );
+     pagesWidget->addWidget( formCli );
+     // Cargo las preferencias de los plugins
      EPlugin *plugin;
      foreach( plugin, ERegistroPlugins::getInstancia()->pluginsPunteros() )
      {

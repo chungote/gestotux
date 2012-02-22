@@ -189,7 +189,7 @@ void FormAgregarRecibo::guardar()
     // busco la fecha de la ultima factura y verifico que facturemos con fecha igual o mayor
     QDate fecha_ultima_factura = this->_modelo->buscarFechaUltimoRecibo();
     if( ( fecha_ultima_factura.isValid() ) && ( this->DEFecha->date() < fecha_ultima_factura ) ) {
-        QMessageBox::warning( this, "Faltan datos", QString( "Por favor verifique que haya ingresado una fecha mayor o igual a %1" ).arg( fecha_ultima_factura.toString() ) );
+        QMessageBox::warning( this, "Fallo de datos", QString( "Por favor verifique que haya ingresado una fecha mayor o igual a %1, y que sea mayor o igual a la fecha del ultimo recibo." ).arg( fecha_ultima_factura.toString( Qt::SystemLocaleLongDate) ) );
         return;
     }
     int id_cliente = this->CBCliente->idClienteActual();

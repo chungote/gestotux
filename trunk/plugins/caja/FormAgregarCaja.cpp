@@ -33,6 +33,7 @@ FormAgregarCaja::FormAgregarCaja(QWidget *parent) :
     this->setWindowTitle( "Agregar nueva caja" );
 
     ui->DEFechaAlta->setDate( QDate::currentDate() );
+    ui->DEFechaAlta->setMaximumDate( QDate::currentDate() );
 }
 
 FormAgregarCaja::~FormAgregarCaja()
@@ -65,6 +66,10 @@ void FormAgregarCaja::accept()
     }
     // Guardo los datos
     MCajas *m = new MCajas( this );
+    if( m->existeCaja( ui->LENombre->text() ) ) {
+        QMessageBox::warning( this, "Error", "La caja que intenta ingresar ya existe" );
+        return;
+    }
     if( m->agregarCaja( ui->LENombre->text(), ui->DEFechaAlta->date(), ui->dSBSaldoInicial->value() ) ) {
         QMessageBox::information( this, "Correcto", "Caja agregada correctamente" );
     } else {

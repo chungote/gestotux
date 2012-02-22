@@ -233,6 +233,20 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
  }
 }
 
+/*!
+ * \fn MProductos::agregarProducto( const QString codigo, const QString nombre, const double costo, const double venta, int stock, int categoria, QString descripcion, QString marca, QString modelo )
+ * Agrega un nuevo producto a la base de datos con los parametros pasados.
+ * \param codigo Codigo del producto a agregar
+ * \param nombre Nombre del producto a agregar
+ * \param costo Costo del producto a agregar
+ * \param venta Precio de venta del producto
+ * \param stock Stock inicial del producto
+ * \param categoria Categoría a la que pertenece el producto
+ * \param descripcion Descripción del producto
+ * \param marca Marca del producto
+ * \param modelo Modelo del producto
+ * \returns Verdadero si se pudo ingresar correctamente el producto a la base de datos, falso en caso contrario.
+ */
 bool MProductos::agregarProducto(const QString codigo, const QString nombre, const double costo, const double venta, int stock, int categoria, QString descripcion, QString marca, QString modelo) {
     QSqlQuery cola;
     if( !cola.prepare( "INSERT INTO producto ( codigo, nombre, precio_costo, precio_venta, stock, id_categoria, descripcion, marca, modelo, habilitado ) VALUES( :codigo, :nombre, :precio_costo, :precio_venta, :stock, :categoria, :descripcion, :marca, :modelo, :habilitado )" ) ) {
@@ -391,13 +405,37 @@ double MProductos::buscarPrecioCompra( const QString codigo )
 }
 
 /*!
- \fn MProductos::existeCodigo( const QString codigo )
+ * \fn MProductos::existeCodigo( const QString codigo )
+ * Deuelve verdadero si existe un producto con el codigo pasado como parametro.
+ * \param codigo Codigo a buscar
  */
 bool MProductos::existeCodigo( const QString codigo )
 {
     if( codigo.isNull() || codigo.isEmpty() ) {  return false;  }
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT COUNT(id) FROM producto WHERE codigo = %1" ).arg( codigo ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        }
+    } else {
+        qDebug( "Error de ejecucion de la cola de averiguacion de codigo de producto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit()  );
+    }
+    return false;
+}
+
+/*!
+ * \fn MProductos::existeNombre( const QString nombre )
+ * Devuelve verdadero si existe un producto con el nombre pasado como parametro
+ * \param nombre Nombre del producto a buscar
+ */
+bool MProductos::existeNombre( const QString nombre )
+{
+    if( nombre.isNull() || nombre.isEmpty() ) {  return false;  }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id) FROM producto WHERE nombre = %1" ).arg( nombre ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() > 0 ) {
             return true;

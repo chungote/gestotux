@@ -49,6 +49,7 @@ public:
     static double buscarPrecioCompra( const QString codigo );
 
     static bool existeCodigo( const QString codigo );
+    static bool existeNombre( const QString nombre );
 
     static bool habilitado( const int id_producto );
     static bool habilitar( const int id_producto );

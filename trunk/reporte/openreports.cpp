@@ -252,7 +252,9 @@ bool orReport::print(QPrinter *prtThis, bool boolSetupPrinter, bool showPreview)
           {
             PreviewDialog preview(_internal->_genDoc, prtThis, 0);
             if (preview.exec() == QDialog::Rejected)
-              return false;
+              // Devuelvo verdadero ya que lo imprimimos bien pero el usuario n lo quisto
+              //return false;
+              return true;
           }
 
           QPrintDialog pd(prtThis);

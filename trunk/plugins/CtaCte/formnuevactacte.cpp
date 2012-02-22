@@ -95,12 +95,18 @@ void FormNuevaCtaCte::accept()
  }
  // Saco el # del numero de cuenta
  LENumeroCuenta->setText( LENumeroCuenta->text().remove( "#" ) );
+ QDateTime fecha_baja = QDateTime();
+ if( CkBBaja->isChecked() )
+    fecha_baja = DEFechaBaja->dateTime();
+ double limite = -1;
+ if( CkBLimiteMaximo->isChecked() )
+     limite = DSBLimiteMaximo->value();
  // Guardo la nueva cuenta corriente
  if( modelo->agregarCuentaCorriente(
              id_cliente,
              DEFechaAlta->dateTime(),
-             DEFechaBaja->dateTime(),
-             DSBLimiteMaximo->value(),
+             fecha_baja,
+             limite,
              LENumeroCuenta->text() ) ) {
      QMessageBox::information( this, "Correcto", "La cuenta corriente fue agregada correctamente" );
      modelo->select();
