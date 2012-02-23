@@ -21,7 +21,7 @@ SOURCES += gestotux.cpp \
            FormPantallaInicial.cpp \
            EFlecha.cpp \
            mestadofiscal.cpp \
-    formprefclientes.cpp
+           formprefclientes.cpp
 
 HEADERS += gestotux.h \
            ebackup.h \

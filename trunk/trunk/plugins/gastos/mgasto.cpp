@@ -48,9 +48,9 @@ MGasto::MGasto( QObject *parent, bool relaciones )
  }
 }
 
-
-MGasto::~MGasto()
+Qt::ItemFlags MGasto::flags(const QModelIndex &/*index*/) const
 {
+    return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
 }
 
 QVariant MGasto::data(const QModelIndex& item, int role) const

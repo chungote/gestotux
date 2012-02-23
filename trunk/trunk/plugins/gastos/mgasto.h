@@ -33,8 +33,9 @@ class MGasto : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MGasto(QObject *parent = 0, bool relaciones = false );
-    ~MGasto();
     QVariant data(const QModelIndex& item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+
     bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
     bool setearIdMovimiento( int num_mov, double valor );
     bool eliminarFila( const int fila );

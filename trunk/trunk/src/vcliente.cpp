@@ -61,7 +61,6 @@ VCliente::VCliente( QWidget *parent )
  vista->hideColumn( mc->fieldIndex( "fax" ) );
  vista->hideColumn( mc->fieldIndex( "email" ) );
  vista->hideColumn( mc->fieldIndex( "comprobante_email" ) );
- vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->hideColumn( mc->fieldIndex( "id_estado_fiscal" ) );
  vista->hideColumn( mc->fieldIndex( "ctacte" ) );
  vista->setAlternatingRowColors( true );
@@ -86,7 +85,7 @@ VCliente::VCliente( QWidget *parent )
 
  addAction( ActAgregar );
  addAction( ActModificar );
- //addAction( ActEliminar );
+ addAction( ActEliminar );
  addAction( ActLista );
  addAction( ActBuscar );
  addAction( ActVerTodos );
@@ -146,7 +145,7 @@ void VCliente::eliminar()
     QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
     int id_cliente = this->mc->data( this->mc->index( idx.row(), 0 ), Qt::EditRole ).toInt();
     if( MClientes::tieneDatosRelacionados( id_cliente ) ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8("Eliminar este cliente generará perdida de relacion de datos." ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8("No se pudo eliminar este cliente porque tiene datos relacionados en otras partes del programa y generará perdida de datos." ) );
         return;
     }
     else

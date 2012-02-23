@@ -81,6 +81,12 @@ public:
     void inicializar();
     void relacionar();
 
+private:
+    bool _filtro_suspendidas;
+    bool _filtro_sobrepasadas;
+
+    void regenerarFiltro();
+
 };
 
 #endif

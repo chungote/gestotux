@@ -182,7 +182,7 @@ void VCuentaCorriente::darBaja()
 {
  // busco el item
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
- int ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea deshabilitar esta cuenta corriente?", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
+ int ret = QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), "Esta seguro que desea deshabilitar esta cuenta corriente?", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
  if( ret == QMessageBox::Ok )
  {
   rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "fecha_baja" ) ), QDate::currentDate(), Qt::EditRole );
@@ -227,25 +227,26 @@ void VCuentaCorriente::suspenderDesuspender()
 {
     // Busco el item
     if( vista->selectionModel()->selectedRows().isEmpty() ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "Por favor, seleccione una cuenta corriente para cambiarle el límite." ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Por favor, seleccione una cuenta corriente para suspender/sacar de suspensión." ) );
         return;
     }
     QModelIndex indice = vista->selectionModel()->selectedRows().first();
     bool anterior = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ), Qt::EditRole ).toBool();
     int ret = -1;
-    if( anterior ) {
-        ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea suspender esta cuenta corriente?. \n El cliente que posee esta cuenta corriente no podrá realizar mas operaciónes a cuenta corriente.", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
+    if( !anterior ) {
+        ret = QMessageBox::question( this, QString::fromUtf8("¿Esta seguro?"), QString::fromUtf8("¿Está seguro que desea suspender esta cuenta corriente?. \n El cliente que posee esta cuenta corriente no podrá realizar mas operaciónes a cuenta corriente."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
     } else {
-        ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea sacar la suspensión de esta cuenta corriente?. \n Esto habilitará a el cliente que posee esta cuenta corriente a realizar operaciónes a cuenta corriente.", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
+        ret = QMessageBox::question( this, QString::fromUtf8("¿Esta seguro?"), QString::fromUtf8("¿Está seguro que desea sacar la suspensión de esta cuenta corriente?. \n Esto habilitará a el cliente que posee esta cuenta corriente a realizar operaciónes a cuenta corriente."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
     }
     if( ret == QMessageBox::Ok )
     {
      //Verifico que no sean el mismo
-     if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), !anterior ) ) {
-               if( anterior )
+     if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ), !anterior ) ) {
+               if( !anterior )
                    QMessageBox::information( this, "Correcto", QString::fromUtf8( "La cuenta ha sido suspendida correctamente." ) );
                else
                    QMessageBox::information( this, "Correcto", QString::fromUtf8( "La cuenta ha sido sacada de suspencion correctamente." ) );
+               rmodelo->submit();
                return;
            } else {
                QMessageBox::warning( this, "Incorrecto", QString::fromUtf8( "No se pudo modificar la suspensión de la cuenta corriente." ) );
