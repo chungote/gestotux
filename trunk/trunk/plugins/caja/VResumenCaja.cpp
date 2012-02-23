@@ -23,13 +23,21 @@
 #include <QIcon>
 #include <QTableView>
 #include <QComboBox>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QGroupBox>
+#include <QLabel>
+#include <QDateEdit>
+
 #include "mmovimientoscaja.h"
 #include "mcajas.h"
 #include "actingresocaja.h"
 #include "actretirocaja.h"
+#include "acttransferir.h"
 #include "FormRetiroIngreso.h"
-#include <QGridLayout>
-#include <QHeaderView>
+#include "formtransferir.h"
+
+#include "EReporte.h"
 
 VResumenCaja::VResumenCaja( QWidget *parent )
 : EVLista( parent )
@@ -54,6 +62,37 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   l->addWidget( CBCajas, 0, 0 );
   l->addItem( i, 1, 0 );
 
+  // Genero los items para el filtrado
+  GBFiltrado = new QGroupBox( this );
+  GBFiltrado->setTitle( "Filtrar movimientos de caja" );
+  QGridLayout *lg = new QGridLayout();
+  GBFiltrado->setLayout( lg );
+
+  QLabel *linicio = new QLabel( GBFiltrado );
+  QLabel *lfin = new QLabel( GBFiltrado );
+  linicio->setText( "Desde:" );
+  lfin->setText( " Hasta: " );
+
+  DTEFin = new QDateEdit( GBFiltrado );
+  DTEFin->setMaximumDate( QDate::currentDate() );
+  DTEFin->setDate( QDate::currentDate() );
+
+  DTEInicio = new QDateEdit( GBFiltrado );
+  DTEInicio->setMaximumDate( QDate::currentDate() );
+  /// @todo Buscar fecha del ultimo movimiento
+  /*fecha = MMovimientosCaja::buscarUltimoCierre( id_caja );
+  DTEInicio->setDate( fecha );*/
+
+  connect( DTEFin, SIGNAL( editingFinished() ), this, SLOT( actualizarFiltro() ) );
+  connect( DTEInicio, SIGNAL( editingFinished() ), this, SLOT( actualizarFiltro() ) );
+
+  lg->addWidget( linicio, 0, 0 );
+  lg->addWidget( DTEInicio, 0, 1 );
+  lg->addWidget( lfin, 0, 2 );
+  lg->addWidget( DTEFin, 0, 3 );
+  GBFiltrado->setVisible( false );
+  l->addWidget( GBFiltrado, 2, 0 );
+
   // Inicializo el modelo de las cajas, lo pongo en el combobox y conecto las señales para cambiar los datos
   cmodelo = new MCajas( CBCajas );
   CBCajas->setModel( cmodelo );
@@ -63,9 +102,27 @@ VResumenCaja::VResumenCaja( QWidget *parent )
 
   this->vista->horizontalHeader()->resizeSections( QHeaderView::ResizeToContents );
 
+  ActFiltrar = new QAction( this );
+  ActFiltrar->setText( "Filtrar" );
+  ActFiltrar->setCheckable( true );
+  ActFiltrar->setIcon( QIcon( ":/imagenes/buscar.png" ) );
+  connect( ActFiltrar, SIGNAL( triggered() ), this, SLOT( filtrar() ) );
+
+  QAction *ActSep = new QAction( this );
+  ActSep->setSeparator( true );
+
+  QAction *ActSep2 = new QAction( this );
+  ActSep2->setSeparator( true );
+
   this->addAction( new ActIngresoCaja( this ) );
   this->addAction( new ActRetiroCaja( this ) );
+  this->addAction( new ActTransferir( this ) );
+  this->addAction( ActSep );
+  this->addAction( ActImprimir );
+  this->addAction( ActPdf );
   this->addAction( ActCerrar );
+  this->addAction( ActSep2 );
+  this->addAction( ActFiltrar );
 }
 
 
@@ -87,4 +144,56 @@ void VResumenCaja::retiro() {
     f->setearCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
     f->exec();
     modelo->ultimosMovimientosCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+}
+
+void VResumenCaja::transferir() {
+    int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
+    FormTransferir *ft = new FormTransferir();
+    ft->setearCajaOrigen( id_caja );
+    ft->exec();
+}
+
+void VResumenCaja::imprimir()
+{
+    EReporte *rep = new EReporte( 0 );
+
+    ParameterList parametros;
+    parametros.append( "id_caja", CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+
+    rep->especial( "resumen-caja", parametros );
+    rep->hacer();
+
+    delete rep;
+}
+
+void VResumenCaja::aPdf()
+{
+    EReporte *rep = new EReporte( 0 );
+
+    ParameterList parametros;
+    parametros.append( "id_caja", CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+
+    rep->especial( "resumen-caja", parametros );
+    rep->hacerPDF( parametros, "Resumen de caja " + CBCajas->currentText() );
+
+    delete rep;
+}
+
+void VResumenCaja::filtrar()
+{
+    if( ActFiltrar->isChecked() ) {
+        GBFiltrado->setVisible( true );
+    } else {
+        GBFiltrado->setVisible( false );
+        this->modelo->setFilter( "" );
+    }
+}
+
+void VResumenCaja::actualizarFiltro()
+{
+    this->modelo->setFilter( QString( " strftime( \"%J\", fecha_hora ) >= %1 AND strftime( \"%J\" fecha_hora ) <= %2 AND id_caja = %3" )
+                             .arg( DTEInicio->date().toJulianDay() )
+                             .arg( DTEFin->date().toJulianDay() )
+                             .arg( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() ) );
+    this->modelo->select();
 }

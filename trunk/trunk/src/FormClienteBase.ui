@@ -330,7 +330,7 @@
            </sizepolicy>
           </property>
           <property name="inputMask">
-           <string/>
+           <string>99-99999999-9; </string>
           </property>
          </widget>
         </item>

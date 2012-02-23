@@ -30,6 +30,7 @@ class FormTransferir : public QDialog, private Ui::FormTransferirBase
 
 public:
     explicit FormTransferir(QWidget *parent = 0);
+    void setearCajaOrigen( const int id_caja );
 
 protected slots:
     void transferir();
