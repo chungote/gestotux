@@ -28,7 +28,10 @@ public:
     ~ECBPaises();
     void setearFiltro( const QString f );
     int idActual();
-    void setearId( const int id_cliente );
+    void setearId( int id_pais );
+
+public slots:
+    void setearIdRetrasado();
 
 private slots:
     void verificarExiste();
@@ -43,6 +46,8 @@ private:
     * Filtro para la consulta de clientes
     */
     QString filtro;
+
+    int _id_pais;
     
 };
 

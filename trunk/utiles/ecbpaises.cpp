@@ -18,6 +18,7 @@ ECBPaises::ECBPaises(QWidget *parent) :
 
     ids = new QList<int>();
 
+    _id_pais = -1;
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
 }
@@ -44,7 +45,8 @@ void ECBPaises::inicializar()
     QSqlQuery cola;
     // Limpio el combobox para que no cargue datos repetidos
     this->clear();
-    if( cola.exec( QString( "SELECT id_pais, nombre FROM paises WHERE %1 ORDER BY nombre ASC" ).arg( filtro ) ) ) {
+    //qDebug( QString( "SELECT id_pais, nombre FROM paises %1 ORDER BY nombre ASC" ).arg( filtro ).toLocal8Bit() );
+    if( cola.exec( QString( "SELECT id_pais, nombre FROM paises %1 ORDER BY nombre ASC" ).arg( filtro ) ) ) {
         int pos = 0;
         while( cola.next() ) {
             this->insertItem( pos, cola.record().value(1).toString() );
@@ -54,9 +56,11 @@ void ECBPaises::inicializar()
         if( pos == 0 ) {
             qWarning( "No hay ningun pais para cargar!" );
             this->lineEdit()->setText( "No hay paises cargados..." );
+            this->setEnabled( false );
+            return;
         }
         this->setEnabled( true );
-        this->setCurrentIndex( -1 );
+        this->setCurrentIndex( this->ids->indexOf( _id_pais ) );
     } else {
         qWarning( "Error al intentar ejecutar la cola para cargar los paises" );
         qDebug( cola.lastError().text().toLocal8Bit() );
@@ -75,11 +79,30 @@ int ECBPaises::idActual()
  * \fn ECBPaises::setearId( cons int id_cliente )
  * Setea el identificador del pais
  */
-void ECBPaises::setearId( const int id_cliente )
+void ECBPaises::setearId( int id_pais )
 {
-    int pos = this->ids->indexOf( id_cliente );
+    if( id_pais <= 0 ) { return; }
+    if( this->ids->isEmpty() ) {
+        QTimer timer;
+        this->_id_pais = id_pais;
+        timer.singleShot( 900, this, SLOT( setearIdRetrasado() ) );
+        return;
+    }
+    int pos = this->ids->indexOf( id_pais );
     if( pos < 0 ) {
-        qDebug( "Error buscando el id de paises desde cbpaises" );
+        qDebug( QString( "ECBPaises::setearId: Error buscando el id de paises desde cbpaises: id = %1" ).arg( id_pais ).toLocal8Bit() );
+        this->setCurrentIndex( -1 );
+    } else {
+        this->setCurrentIndex( pos );
+    }
+}
+
+void ECBPaises::setearIdRetrasado()
+{
+    if( _id_pais <= 0 ) { return; }
+    int pos = this->ids->indexOf( _id_pais );
+    if( pos < 0 ) {
+        qDebug( QString( "ECBPaises::setearIdRetrasado: Error buscando el id de paises desde cbpaises: id = %1" ).arg( _id_pais ).toLocal8Bit() );
         this->setCurrentIndex( -1 );
     } else {
         this->setCurrentIndex( pos );

@@ -1,9 +1,16 @@
 #include "formprefclientes.h"
 
+#include "mestadofiscal.h"
+
 FormPrefClientes::FormPrefClientes(QWidget *parent) :
     EVentana( parent ), FormPrefClientesBase()
 {
     setupUi(this);
+    CBProvincia->setearCBPais( CBPais );
+    MEstadoFiscal *mef = new MEstadoFiscal( CBEstadoFiscal );
+    CBEstadoFiscal->setModel( mef );
+    CBEstadoFiscal->setModelColumn(1);
+    mef->select();
 }
 
 void FormPrefClientes::cargar()
