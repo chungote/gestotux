@@ -82,9 +82,8 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   /// @todo Buscar fecha del ultimo movimiento
   /*fecha = MMovimientosCaja::buscarUltimoCierre( id_caja );
   DTEInicio->setDate( fecha );*/
-
-  connect( DTEFin, SIGNAL( editingFinished() ), this, SLOT( actualizarFiltro() ) );
-  connect( DTEInicio, SIGNAL( editingFinished() ), this, SLOT( actualizarFiltro() ) );
+  connect( DTEFin, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
+  connect( DTEInicio, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
 
   lg->addWidget( linicio, 0, 0 );
   lg->addWidget( DTEInicio, 0, 1 );
@@ -191,9 +190,10 @@ void VResumenCaja::filtrar()
 
 void VResumenCaja::actualizarFiltro()
 {
-    this->modelo->setFilter( QString( " strftime( \"%J\", fecha_hora ) >= %1 AND strftime( \"%J\" fecha_hora ) <= %2 AND id_caja = %3" )
-                             .arg( DTEInicio->date().toJulianDay() )
-                             .arg( DTEFin->date().toJulianDay() )
+    this->modelo->setFilter( QString( " fecha_hora >= date( '%1' ) AND fecha_hora <= date( '%2' ) AND id_caja = %3" )
+                             .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
+                             .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
                              .arg( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() ) );
     this->modelo->select();
+    //qDebug( this->modelo->filter().toLocal8Bit() );
 }

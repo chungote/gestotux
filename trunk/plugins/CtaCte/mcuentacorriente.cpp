@@ -29,6 +29,8 @@ MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
  setTable( "ctacte" );
  inicializar();
  if( relaciones ) { relacionar(); }
+ _filtro_suspendidas = false;
+ _filtro_sobrepasadas = false;
 }
 
 /*!
@@ -454,18 +456,24 @@ bool MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDate
  */
 void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
 {
-    QString filtro = this->filter();
-    if( sino ) {
-        if( !filtro.isEmpty() )
-        { filtro.append( " AND " ); }
+    _filtro_sobrepasadas = sino;
+    regenerarFiltro();
+}
+
+void MCuentaCorriente::regenerarFiltro()
+{
+    QString filtro;
+    if( _filtro_sobrepasadas ) {
         filtro.append( " saldo >= limite " );
-    } else {
-        if( filtro.contains( " AND  saldo >= limite" ) )
-            filtro.remove( " AND  saldo >= limite" );
-        if( filtro.contains( " saldo >= limite " ) )
-            filtro.remove( " saldo >= limite " );
+    }
+    if( _filtro_sobrepasadas && _filtro_suspendidas ) {
+        filtro.append( " AND " );
+    }
+    if( _filtro_suspendidas ) {
+        filtro.append(  "suspendida = \"true\"" );
     }
     this->setFilter( filtro );
+    qDebug( this->filter().toLocal8Bit() );
 }
 
 /*!
@@ -475,18 +483,8 @@ void MCuentaCorriente::filtrarSoloDeudoras( bool sino )
  */
 void MCuentaCorriente::filtrarSoloSuspendidas( bool sino )
 {
-    QString filtro = this->filter();
-    if( sino ) {
-        if( !filtro.isEmpty() )
-        { filtro.append( " AND " ); }
-        filtro.append( " suspendida = 0" );
-    } else {
-        if( filtro.contains( " AND  suspendida = 0" ) )
-            filtro.remove( " AND  suspendida = 0" );
-        if( filtro.contains( " suspendida = 0" ) )
-            filtro.remove( " suspendida = 0" );
-    }
-    this->setFilter( filtro );
+    _filtro_suspendidas = sino;
+    regenerarFiltro();
 }
 
 

@@ -15,7 +15,7 @@
   <height>830</height>
  </size>
  <portrait/>
- <topmargin>0</topmargin>
+ <topmargin>29</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
  <leftmargin>0</leftmargin>
@@ -41,11 +41,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>250</height>
+   <height>286.071</height>
    <text>
     <rect>
      <x>435</x>
-     <y>19.8</y>
+     <y>44.8</y>
      <width>116</width>
      <height>31.8</height>
     </rect>
@@ -65,7 +65,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <field>
     <rect>
      <x>108</x>
-     <y>146</y>
+     <y>171</y>
      <width>439</width>
      <height>25</height>
     </rect>
@@ -84,7 +84,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <field>
     <rect>
      <x>137</x>
-     <y>186</y>
+     <y>211</y>
      <width>405</width>
      <height>25</height>
     </rect>
@@ -102,50 +102,10 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <text>
     <rect>
-     <x>433</x>
-     <y>48.8</y>
-     <width>111</width>
+     <x>414</x>
+     <y>73.8</y>
+     <width>137</width>
      <height>31.2</height>
-    </rect>
-    <bottompad>0</bottompad>
-    <font>
-     <face>Arial Black</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <hcenter/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>fecha</column>
-    </data>
-   </text>
-   <text>
-    <rect>
-     <x>1012</x>
-     <y>19</y>
-     <width>116</width>
-     <height>31.8</height>
-    </rect>
-    <bottompad>0</bottompad>
-    <font>
-     <face>Arial Black</face>
-     <size>11</size>
-     <weight>normal</weight>
-    </font>
-    <hcenter/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>NumSerie</column>
-    </data>
-   </text>
-   <text>
-    <rect>
-     <x>1010</x>
-     <y>51.8</y>
-     <width>111</width>
-     <height>31.8</height>
     </rect>
     <bottompad>0</bottompad>
     <font>
@@ -163,7 +123,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <barcode>
     <rect>
      <x>373</x>
-     <y>95.7</y>
+     <y>120.7</y>
      <width>176</width>
      <height>34.9</height>
     </rect>
@@ -179,7 +139,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <field>
     <rect>
      <x>389</x>
-     <y>225</y>
+     <y>250</y>
      <width>66</width>
      <height>33</height>
     </rect>
@@ -197,8 +157,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>527</x>
-     <y>228</y>
+     <x>521</x>
+     <y>249</y>
      <width>35</width>
      <height>33</height>
     </rect>
@@ -225,10 +185,10 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <height>454.545</height>
    <field>
     <rect>
-     <x>27.3</x>
-     <y>3.68</y>
+     <x>34.4429</x>
+     <y>44.5014</y>
      <width>524</width>
-     <height>408</height>
+     <height>381.214</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -251,7 +211,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>84.0909</height>
+   <height>39.205</height>
   </detail>
  </section>
  <section>
@@ -265,26 +225,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <rect>
      <x>424</x>
      <y>5.36</y>
-     <width>127</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Arial Black</face>
-     <size>14</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>total</column>
-    </data>
-    <format>$ %0.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>1000</x>
-     <y>3.63</y>
      <width>127</width>
      <height>25</height>
     </rect>

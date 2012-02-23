@@ -47,7 +47,7 @@ class Caja : public QObject, public EPlugin
         static QStackedWidget *tabs();
         void crearToolBar( QToolBar *t );
         bool publicidad() { return true; }
-        QAction *botonPantallaInicial() { return ActVerEstado; }
+        QAction *botonPantallaInicial() { return ActCajas; }
 
     public slots:
         void seCierraGestotux();
@@ -68,6 +68,7 @@ class Caja : public QObject, public EPlugin
         void verResumenCaja();
         void verEstadoCaja();
         void hacerCierre();
+        void menuPantallaInicial();
 
 };
 

@@ -76,7 +76,7 @@ bool MCategoriasGastos::vacio()
 bool MCategoriasGastos::tieneGastosAsociados( const int id_categoria )
 {
  QSqlQuery cola;
- if( cola.exec( QString( "SELECT COUNT(id_gasto) FROM gastos WHERE id_categoria_gasto = %1" ).arg( id_categoria ) ) ) {
+ if( cola.exec( QString( "SELECT COUNT(id_gasto) FROM gastos WHERE id_categoria = %1" ).arg( id_categoria ) ) ) {
      if( cola.next() ) {
          if( cola.record().value(0).toInt() > 0 ) {
              return true;
@@ -102,7 +102,7 @@ bool MCategoriasGastos::tieneGastosAsociados( const int id_categoria )
 bool MCategoriasGastos::eliminarCategoria( const int id_categoria )
 {
  QSqlQuery cola;
- if( cola.exec( QString( "DELETE FROM categoria_gastos WHERE id_categoria_gasto = %1" ).arg( id_categoria ) ) ) {
+ if( cola.exec( QString( "DELETE FROM categoria_gastos WHERE id_categoria_gastos = %1" ).arg( id_categoria ) ) ) {
      return true;
  } else {
      qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola de eliminacion de categoria." );

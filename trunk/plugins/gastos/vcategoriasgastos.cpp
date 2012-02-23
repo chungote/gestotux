@@ -56,7 +56,7 @@ void VCategoriasGastos::agregar(bool autoeliminarid )
     if( this->modelo->insertRecord( -1, registro ) )  {
         return;
     } else {
-        qWarning( "Error alinsertar el registro" );
+        qWarning( "Error al insertar el registro" );
         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() ).toLocal8Bit() );
     }
 }
@@ -67,14 +67,15 @@ void VCategoriasGastos::eliminar()
     QModelIndex m = this->vista->selectionModel()->selectedRows().first();
     int id_categoria = m.model()->data( m.model()->index( m.row(), 0 ), Qt::EditRole ).toInt();
     if( MCategoriasGastos::tieneGastosAsociados( id_categoria ) ) {
-          QMessageBox::warning( this, "Error", "Esta categoría tiene datos asociados. No se puede eliminar." );
+          QMessageBox::warning( this, "Error", QString::fromUtf8( "Esta categoría tiene datos asociados. No se puede eliminar." ) );
           return;
     } else {
           if( MCategoriasGastos::eliminarCategoria( id_categoria ) ) {
-              QMessageBox::information( this, "Correcto", "La categoría fue eliminada correctamente" );
+              QMessageBox::information( this, "Correcto", QString::fromUtf8("La categoría fue eliminada correctamente" ) );
+              this->modelo->select();
               return;
           } else {
-              QMessageBox::warning( this, "Incorrecto", "Existio un error y no se pudo eliminar la categoría de gastos" );
+              QMessageBox::warning( this, "Incorrecto", QString::fromUtf8( "Existio un error y no se pudo eliminar la categoría de gastos" ) );
               return;
           }
     }
