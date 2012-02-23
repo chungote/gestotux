@@ -54,6 +54,15 @@ FormTransferir::FormTransferir(QWidget *parent) :
 
     connect( CBDestino, SIGNAL( currentIndexChanged( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
     connect( CBOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
+
+    DSBCantidad->setMinimum( 0.0 );
+}
+
+void FormTransferir::setearCajaOrigen( const int id_caja )
+{
+    // como hacer el mappeo inverso?
+    MCOrigen->setFilter( QString( " id_caja = %1" ).arg( id_caja ) );
+    MCOrigen->select();
 }
 
 void FormTransferir::changeEvent(QEvent *e)
@@ -103,7 +112,7 @@ void FormTransferir::cambioCajaOrigen( int indiceOrigen )
 void FormTransferir::transferir()
 {
     // Controlo que la cantidad no sea cero
-    if( DSBCantidad->value() == 0.0 ) {
+    if( DSBCantidad->value() <= 0.0 ) {
         QMessageBox::information( this, "Error", "No se puede realizar una transferencia de cantidad 0.0" );
         return;
     }

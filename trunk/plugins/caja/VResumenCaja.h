@@ -25,6 +25,8 @@
 class QComboBox;
 class MCajas;
 class MMovimientosCaja;
+class QDateEdit;
+class QGroupBox;
 
 class VResumenCaja : public EVLista
 {
@@ -37,11 +39,22 @@ public slots:
     void cambioCaja( int id_caja );
     void retiro();
     void ingreso();
+    void transferir();
+
+protected slots:
+    void imprimir();
+    void aPdf();
+    void filtrar();
+    void actualizarFiltro();
 
 private:
     QComboBox *CBCajas;
     MMovimientosCaja *modelo;
     MCajas *cmodelo;
+    QAction *ActFiltrar;
+    QGroupBox *GBFiltrado;
+    QDateEdit *DTEInicio;
+    QDateEdit *DTEFin;
 };
 
 #endif // VRESUMENCAJA_H

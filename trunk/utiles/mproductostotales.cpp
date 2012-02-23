@@ -265,19 +265,19 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
   {
         case 0:
         {
-                if( role == Qt::DisplayRole )
+                /*if( role == Qt::DisplayRole )
                 {
                     return "Cantidad de lineas:";
                 } else if( role == Qt::TextAlignmentRole ) {
                     return int( Qt::AlignRight | Qt::AlignVCenter );
-                } else {
+                } else { */
                     return QVariant();
-                }
+                //}
                 break;
         }
         case 1:
         {
-                if( role == Qt::DisplayRole )
+                /*if( role == Qt::DisplayRole )
                 {
                         return QString( "%L1" ).arg( this->cantidades->size() );
                 }
@@ -286,7 +286,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                     return int( Qt::AlignVCenter | Qt::AlignHCenter );
                 }
                 else
-                { return QVariant(); }
+                {*/ return QVariant(); //}
                 break;
         }
         case 2:

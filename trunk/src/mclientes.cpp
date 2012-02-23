@@ -205,7 +205,7 @@ bool MClientes::existe( QString razon_social, QString /*nombre*/ ) {
     QSqlQuery cola;
     /////////////////////////////////////////////////////
     // Cuenta corriente
-    if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM clientes WHERE razon_social = %1" ).arg( razon_social ) ) ) {
+    if( cola.exec( QString( "SELECT COUNT(id) FROM clientes WHERE razon_social = %1" ).arg( razon_social ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() != 0 )
                 return true;
