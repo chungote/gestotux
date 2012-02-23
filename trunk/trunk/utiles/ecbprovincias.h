@@ -22,14 +22,15 @@ public:
     ~ECBProvincias();
     void setearFiltro( const QString f );
     int idActual();
+    void setearCBPais( ECBPaises *cb );
     void setearId( const int id_cliente );
     void setearPais( const int id_pais );
-    void setearCBPais( ECBPaises *cb );
 
 private slots:
     void verificarExiste();
     void inicializar();
     void cambioPais( int pos );
+    void setearIdRetrasado();
 
 private:
    /*!
@@ -44,6 +45,10 @@ private:
     * Puntero al cb de paises
     */
     ECBPaises *cbpaises;
+   /*!
+    * Identificador para retrasados
+    */
+    int _id_provincia;
 };
 
 #endif // ECBPROVINCIAS_H
