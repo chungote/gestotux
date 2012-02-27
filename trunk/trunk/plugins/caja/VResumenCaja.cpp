@@ -158,8 +158,10 @@ void VResumenCaja::imprimir()
 
     ParameterList parametros;
     parametros.append( "id_caja", CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
-
-    rep->especial( "resumen-caja", parametros );
+    if( ActFiltrar->isChecked() ) {
+        parametros.append( "filtro", this->modelo->filter() );
+    }
+    rep->especial( "ResumenCaja", parametros );
     rep->hacer();
 
     delete rep;
@@ -171,8 +173,10 @@ void VResumenCaja::aPdf()
 
     ParameterList parametros;
     parametros.append( "id_caja", CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
-
-    rep->especial( "resumen-caja", parametros );
+    if( ActFiltrar->isChecked() ) {
+        parametros.append( "filtro", this->modelo->filter() );
+    }
+    rep->especial( "ResumenCaja", parametros );
     rep->hacerPDF( parametros, "Resumen de caja " + CBCajas->currentText() );
 
     delete rep;
