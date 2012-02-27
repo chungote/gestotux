@@ -68,7 +68,6 @@ class Caja : public QObject, public EPlugin
         void verResumenCaja();
         void verEstadoCaja();
         void hacerCierre();
-        void menuPantallaInicial();
 
 };
 
