@@ -28,6 +28,8 @@ ECBClientes::ECBClientes(QWidget *parent) :
 
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
+
+    connect( this, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 }
 
 void ECBClientes::setearFiltro( const QString f ) {
@@ -90,6 +92,7 @@ void ECBClientes::setearId(const int id_cliente)
         this->setCurrentIndex( -1 );
     } else {
         this->setCurrentIndex( pos );
+        emit cambioIdCliente( idClienteActual() );
     }
 }
 
@@ -104,12 +107,14 @@ void ECBClientes::verificarExiste()
     int b = this->findText( buscar );
     if( b != -1 ) {
         this->setCurrentIndex( b );
+        emit cambioIdCliente( idClienteActual() );
     } else {
         // No es un nombre de cliente sino un numero de cliente.
         //int c =  this->findData( buscar );
         int c = ids->indexOf( buscar.toInt() );
         if( c != -1 ) {
             this->setCurrentIndex( c );
+            emit cambioIdCliente( idClienteActual() );
         } else {
             QMessageBox::information( this, "No encontrado", "El cliente o codigo de cliente buscado no existe." );
         }

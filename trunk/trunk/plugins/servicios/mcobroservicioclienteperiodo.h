@@ -16,6 +16,7 @@ public:
     static bool colocarComoPagado( const int id_factura, const int id_recibo );
     static bool esDeudor( const int id_cliente, const int id_servicio );
     static int buscarIdPeriodoServicio( const int id_recibo );
+    static bool tieneDatosRelacionados( const int id_servicio, const int id_cliente );
 
 };
 

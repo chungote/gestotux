@@ -53,6 +53,11 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     ActDarDeBaja->setText( "Dar de Baja" );
     connect( ActDarDeBaja, SIGNAL( triggered() ), this, SLOT( darDeBaja() ) );
     this->addAction( ActDarDeBaja );
+    //// Eliminar adhesion
+    QAction *ActEliminar = new QAction( this );
+    ActEliminar->setText( "Eliminar" );
+    connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar() ) );
+    this->addAction( ActEliminar );
 
     this->addAction( new EActCerrar( this ) );
 
@@ -102,4 +107,31 @@ void FormClientesAdheridos::darDeBaja()
       if( ok )
         modelo->darDeBaja( id_cliente, id_servicio, razon );
   }
+}
+
+#include "mcobroservicioclienteperiodo.h"
+void FormClientesAdheridos::eliminar() {
+    // Busco el ID que quiere dar de baja
+    QModelIndexList lista = TVAdheridos->selectionModel()->selectedRows();
+    if( lista.isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione algun cliente adherido para darlo de baja" );
+        return;
+    }
+     int id_servicio = CBServicios->model()->data( CBServicios->model()->index( CBServicios->currentIndex(), 0 ), Qt::UserRole ).toInt();
+     foreach( QModelIndex item, lista ) {
+         int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+         QDate fecha_baja = item.model()->data( item.model()->index( item.row(), 3 ), Qt::EditRole ).toDate();
+         if( !fecha_baja.isValid() ) {
+             QMessageBox::information( this, "Error", "El cliente que está intentando eliminar no ha sido dado de baja todavía. Delo de baja antes de eliminar la asociación." );
+         } else {
+             if( MCobroServicioClientePeriodo::tieneDatosRelacionados( id_servicio, id_cliente ) ) {
+                 QMessageBox::warning( this, "Error", "La asociación del servicio que está intentando eliminar posee datos de facturación. No se puede eliminar la asociación para no comprometer la integridad de los datos." );
+             } else {
+                bool ok = false;
+                QString razon = QInputDialog::getText( this, "Razon de baja", "Ingrese la razon de baja:", QLineEdit::Normal, QString(), &ok );
+                if( ok )
+                    modelo->darDeBaja( id_cliente, id_servicio, razon );
+             }
+         }
+     }
 }

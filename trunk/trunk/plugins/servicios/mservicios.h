@@ -73,6 +73,7 @@ public:
     static bool dadoDeBaja( const int id_servicio );
     static bool darDeBaja( const int id_servicio, const QDate fecha = QDate::currentDate() );
     static QList<int> listaDeServicios();
+    static bool existe( const QString nombre );
 
 };
 

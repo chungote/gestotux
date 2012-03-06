@@ -94,3 +94,12 @@ QVariant MVPagos::data(const QModelIndex& item, int role) const
  }
  return QSqlRelationalTableModel::data(item, role);
 }
+
+/*!
+    \fn MVPagos::flags( const QModelIndex& index ) const
+
+ */
+Qt::ItemFlags MVPagos::flags(const QModelIndex& /*index*/) const
+{
+ return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}

@@ -115,7 +115,7 @@ void FormAgregarCompra::guardar()
   return;
  }
  //return;
- //Inicio una transacción
+ //Inicio una transaccion
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
@@ -148,7 +148,7 @@ void FormAgregarCompra::guardar()
                  ret = QMessageBox::Yes;
             else
                 ret = QMessageBox::question( this,
-                                             "�Agregar?",
+                                             "¿Agregar?",
                                              QString( "Desea agregar el producto %1?" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ),
                                              QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll,
                                              QMessageBox::Yes );

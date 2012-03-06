@@ -250,7 +250,7 @@ Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
   if( index.column() == 3  || index.column() == 1 )
   { return QFlags<Qt::ItemFlag>(!Qt::ItemIsEditable |  Qt::ItemIsSelectable ); }
   else
-  { return QAbstractTableModel::flags( index ) | Qt::ItemIsEditable; }
+  { return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled ); }
  }
 }
 

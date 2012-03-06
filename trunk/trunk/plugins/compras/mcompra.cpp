@@ -170,16 +170,113 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
 
 #include <QSqlQuery>
 /*!
-    \fn MCompra::ultimoId()
+ * \fn MCompra::ultimoId()
  */
 int MCompra::ultimoId()
 { return this->query().lastInsertId().toInt(); }
 
 /*!
-    \fn MCompra::flags( const QModelIndex& index ) const
-
+ * \fn MCompra::flags( const QModelIndex& index ) const
+ *
  */
 Qt::ItemFlags MCompra::flags(const QModelIndex& /*index*/) const
 {
  return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}
+
+#include "mcajas.h"
+#include "mmovimientoscaja.h"
+#include "mproductos.h"
+/*!
+ * \fn MCompra::eliminarCompra( int id_compra )
+ * Elimina la compra y reajusta los datos de productos y caja correspondientes
+ * \param id_compra Identificador de compra
+ * \return Verdadero si se pudieron realizar todas las compras
+ */
+bool MCompra::eliminarCompra( int id_compra )
+{
+ return false;
+ /*
+ Ajustar saldo de caja predeterminada
+ Ajustar por cada item el stock de los productos
+ Eliminar los items de la compra
+ Eliminar la compra propiamente dicha
+ */
+ QSqlDatabase::database().transaction();
+ QSqlQuery cola;
+ // Ajusto el movimiento de caja
+ double costo_compra = -1.0;
+ bool contado = false;
+ if( !cola.exec( QString( "SELECT total, contado FROM compras WHERE id_compra = %1" ).arg( id_compra ) ) ) {
+     qWarning( "Error al buscar el importe de la compra seleccionada" );
+     qDebug( "Error al ejecutar la cola de busqueda de importe del registro de compra" );
+     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+     QSqlDatabase::database().rollback();
+     return false;
+ } else {
+     cola.next();
+     costo_compra = cola.record().value(0).toDouble();
+     contado = cola.record().value(1).toBool();
+ }
+ if( costo_compra <= 0.0 ) {
+     qWarning( "Error al buscar el precio <= 0 " );
+     QSqlDatabase::database().rollback();
+     return false;
+ }
+ if( contado ) {
+     // Ajusto el saldo de caja
+     MMovimientosCaja *mc = new MMovimientosCaja();
+     if( !mc->agregarMovimiento(
+                 MCajas::cajaPredeterminada(),
+                 "Eliminacion de compra efectuada en efectivo",
+                 QString(),
+                 costo_compra
+                 ) ) {
+         qWarning( "No se pudo generar el ajuste de caja necesario para la eliminacion de la compra" );
+         qDebug( "Error al intentar guardar el registro de movimiento de caja para ajustar el saldo al eliminar una compra" );
+         QSqlDatabase::database().rollback();
+         delete mc;
+         return false;
+     }
+     delete mc;
+ }
+ // Ajusto el stock
+ if( cola.exec( QString( "SELECT id_producto, cantidad, texto FROM compras_productos WHERE id_compra = %1" ).arg( id_compra ) ) ) {
+     while( cola.next() ) {
+         int id_producto = cola.record().value(0).toInt();
+         int cantidad = cola.record().value(1).toDouble();
+         if( !MProductos::modificarStock( id_producto, (-1) * cantidad ) ) {
+             qDebug( QString( "No se pudo ajustar el stock del producto comprado, id = %1" ).arg( id_producto ).toLocal8Bit() );
+             QSqlDatabase::database().rollback();
+             return false;
+         }
+     }
+ } else {
+     qWarning( "No se pudo consultar los productos de la compra" );
+     qDebug( "Error al ejecutar la cola de consulta de productos de compra" );
+     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+     QSqlDatabase::database().rollback();
+     return false;
+ }
+ // Elimino los items de la compra
+ if( !cola.exec( QString( "DELETE FROM compras_productos WHERE id_compra = %1 LIMIT 1" ).arg( id_compra ) ) ) {
+     qWarning( "No se pudo eliminar los productos de la compra" );
+     qDebug( "Error al ejecutar la cola de eliminación de registros de productos de compra" );
+     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+     QSqlDatabase::database().rollback();
+     return false;
+ }
+ // Elimino la compra propiamente dicha
+ if( !cola.exec( QString( "DELETE FROM compras WHERE id_compra = %1 LIMIT 1" ).arg( id_compra ) ) ) {
+     qWarning( "No se pudo eliminar el registro de la compra" );
+     qDebug( "Error al ejecutar la cola de eliminación de registro de compra" );
+     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug( cola.lastQuery().toLocal8Bit() );
+     QSqlDatabase::database().rollback();
+     return false;
+ }
+ return true;
 }

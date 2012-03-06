@@ -418,6 +418,24 @@ QList<int> MServicios::listaDeServicios()
     return lista;
 }
 
+bool MServicios::existe(const QString nombre)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM servicios WHERE nombre = %1" ).arg( nombre ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de contar la cantidad de servicios con un nombre" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    }
+}
+
 /*
 "id_servicio" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL
 "nombre" TEXT NOT NULL

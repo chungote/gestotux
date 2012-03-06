@@ -65,7 +65,8 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         CBCliente->setEditable( true );
 
         // Habilita el buscador de direccion.
-        connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
+        connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
+        //connect( CBCliente, SIGNAL( currentIndexChanged(int) ), this, SLOT( cambioCliente( int ) ) );
 
         // Pongo la fecha actual
         dEFecha->setDate( QDate::currentDate() );
@@ -274,7 +275,6 @@ void FormAgregarPresupuesto::borrarTodoProducto()
   Slot llamado cada vez que el usuario cambia el contenido del combo de cliente o destinatario
   \param id_combo ID del combobox
  */
-void FormAgregarPresupuesto::cambioCliente( int id_combo ) {
-    int id_cliente = CBCliente->model()->data( CBCliente->model()->index( id_combo, 0 ), Qt::EditRole ).toInt();
+void FormAgregarPresupuesto::cambioCliente( int id_cliente ) {
     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
 }

@@ -13,6 +13,7 @@
  * Para obtener el ID de base de datos del cliente que este seleccionado se utiliza el metodo \ref idClienteActual() , y se puede colocar como seleccionado un cliente mediante el método \ref setearId(). \n
  * La carga de los datos se hará respetando las clausulas de el filtro que exista. De manera predeterminada el filtro esta vacío, pero puede ser cambiado utilizando el método \ref setearFiltro(). \n
  * Cada vez que se cambie el filtro se disparará una recarga de los datos que contiene el combobox.
+ * La señal cambioIdCliente( int id_cliente ) será emitida cada vez que se seleccione un cliente distinto.
  * \author Esteban Zeller
  */
 class ECBClientes : public QComboBox
@@ -25,9 +26,13 @@ public:
     int idClienteActual();
     void setearId( const int id_cliente );
 
+signals:
+    void cambioIdCliente( int id_cliente );
+
 private slots:
     void verificarExiste();
     void inicializar();
+    void cambioCliente( int ) { emit cambioIdCliente( idClienteActual() ); }
 
 private:
    /*!
