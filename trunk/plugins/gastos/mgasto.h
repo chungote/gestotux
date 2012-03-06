@@ -39,6 +39,7 @@ public:
     bool agregarGasto( QString descripcion, double costo, QDate Fecha, int categoria );
     bool setearIdMovimiento( int num_mov, double valor );
     bool eliminarFila( const int fila );
+    bool existe( QString descripcion, double costo, int categoria );
 };
 
 #endif

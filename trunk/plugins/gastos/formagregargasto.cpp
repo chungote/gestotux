@@ -97,6 +97,11 @@ void FormAgregarGasto::guardar()
   QMessageBox::warning( this, "Faltan Datos", "Por favor, ingrese un costo para este gasto" );
   return;
  }
+ MGasto *modeloGastos = new MGasto( this );
+ if( modeloGastos->existe( CBDescripcion->currentText(), dSBCosto->value(), CBTipo->currentIndex() ) ) {
+     QMessageBox::warning( this, "Datos duplicados", "El gasto ingresado ya existe en la base de datos" );
+     return;
+ }
  else
  {
   if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
@@ -114,7 +119,6 @@ void FormAgregarGasto::guardar()
           }
       }
   }
-  MGasto *modeloGastos = new MGasto( this );
   if ( modeloGastos->agregarGasto( CBDescripcion->currentText(),
                                 dSBCosto->value(),
                                 CWFecha->selectedDate(),

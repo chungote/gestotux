@@ -235,3 +235,29 @@ bool MGasto::eliminarFila( const int fila ) {
         return QSqlRelationalTableModel::removeRow( fila );
     }
 }
+
+/*!
+ * \fn MGasto::existe( QString descripcion, double importe, int categoria )
+ * Busca si existe un gasto con los datos pasados como parametro
+ * \param descripcion Descripción del gasto
+ * \param importe Importe del gasto
+ * \param categoria Identificador de la categoría
+ * \return Verdadero si existe uno que cumpla con los datos
+ */
+bool MGasto::existe( QString descripcion, double importe, int categoria )
+{
+    QSqlQuery cola;
+    if( cola.exec(
+        QString("SELECT COUNT(id_gasto) FROM gastos WHERE descripcion = %1 AND costo = %2 AND categoria = %3" )
+                .arg( descripcion )
+                .arg( importe )
+                .arg( categoria )
+    ) ) {
+            cola.next();
+            if( cola.record().value(0).toInt() > 0 ) { return true; } else { return false; }
+    } else {
+            qDebug( "Error al intentar buscar el gasto como repetido" );
+            qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+    }
+    return true;
+}

@@ -67,6 +67,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                 { break; }
         }
         DEFechaAlta->setDate( _fecha );
+        DEFechaAlta->setMaximumDate( QDate::currentDate() );
         this->adjustSize();
         this->connect( buttonBox, SIGNAL( accepted() ), this, SLOT( accept() ) );
         this->connect( buttonBox, SIGNAL( rejected() ), this, SLOT( reject() ) );
@@ -108,7 +109,7 @@ void FormAsociarServicioCliente::accept()
  _fecha = this->DEFechaAlta->date();
  if( _id_cliente <= 0 || _id_servicio <= 0 || !_fecha.isValid() )
  {
-  qDebug( QString( "Error de comprobaciÃ³n: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );
+  qDebug( QString( "Error de comprobación: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );
   return;
  }
  // Busco si el cliente tiene cuenta corriente
@@ -164,8 +165,8 @@ QDate FormAsociarServicioCliente::fecha()
 
 /*!
     \fn FormAsociarServicioCliente::setFecha( QDate fecha )
-        Coloca la fecha de asociaciÃ³n
-        @param fecha QDate con la fecha de asociaciÃ³n
+        Coloca la fecha de asociación
+        @param fecha QDate con la fecha de asociación
  */
 void FormAsociarServicioCliente::setFecha( QDate fecha )
 { this->_fecha = fecha; }
@@ -209,7 +210,7 @@ int FormAsociarServicioCliente::exec()
         {
                 // Tengo que eliminar todos los clientes que ya estan adheridos a este servicio
                 QSqlQueryModel *modelo = new QSqlQueryModel( CBCliente );
-                modelo->setQuery( QString( "SELECT id, razon_social FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM servicios_clientes WHERE id_servicio = %1 ) AND id != 0" ).arg( _id_servicio ) );
+                modelo->setQuery( QString( "SELECT id, razon_social FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM servicios_clientes WHERE id_servicio = %1 ) AND id != 0 ORDER BY razon_social" ).arg( _id_servicio ) );
                 CBCliente->setModel( modelo );
                 CBCliente->setModelColumn( 1 );
                 break;
@@ -219,7 +220,7 @@ int FormAsociarServicioCliente::exec()
             //qWarning( "TodavÃ­a no esta implementado el filtrado de servicios a los que esta adherido el cliente" );
             // Tengo que eliminar todos los servicios a los que el cliente ya esta adherido
             QSqlQueryModel *modelo = new QSqlQueryModel( CBServicio );
-            modelo->setQuery( QString( "SELECT id_servicio, nombre FROM servicios WHERE id_servicio NOT IN ( SELECT id_servicio FROM servicios_clientes WHERE id_cliente = %1 AND fecha_baja NOT NULL )" ).arg( _id_cliente ) );
+            modelo->setQuery( QString( "SELECT id_servicio, nombre FROM servicios WHERE id_servicio NOT IN ( SELECT id_servicio FROM servicios_clientes WHERE id_cliente = %1 AND fecha_baja NOT NULL ) ORDER BY razon_social" ).arg( _id_cliente ) );
             CBServicio->setModel( modelo );
             CBServicio->setModelColumn( 1 );
         }

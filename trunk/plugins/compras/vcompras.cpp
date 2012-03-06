@@ -48,7 +48,7 @@ VCompras::VCompras(QWidget *parent)
 
  addAction( ActAgregar );
  //addAction( ActModificar );
- //addAction( ActEliminar );
+ addAction( ActEliminar );
  addAction( ActVerLista );
  addAction( ActVerTodos );
  addAction( ActCerrar );
@@ -57,7 +57,8 @@ VCompras::VCompras(QWidget *parent)
 #include "formagregarcompra.h"
 
 /*!
-    \fn VCompras::agregar( bool autoeliminarid )
+ * \fn VCompras::agregar( bool autoeliminarid )
+ * Muestra la ventana de agregar una nueva compra
  */
 void VCompras::agregar( bool /*autoeliminarid*/ )
 {
@@ -75,7 +76,7 @@ void VCompras::verLista( const QModelIndex &indice )
 {
     // Busco el id de compra segun el indice
     int id_compra = this->rmodelo->data( this->rmodelo->index( indice.row(), 0 ), Qt::EditRole ).toInt();
-    //Muestro el formulario.
+    //Muestro el formulario
     VListaCompra *f = new VListaCompra( this );
     f->setearIdCompra( id_compra );
     emit agregarVentana( f );
@@ -94,4 +95,31 @@ void VCompras::verLista()
         return;
  }
  verLista( this->vista->selectionModel()->selectedRows().first() );
+}
+
+/*!
+ * \fn VCompras::eliminar()
+ * Muestra el dialogo de confirmación de eliminacion de una compra
+ */
+void VCompras::eliminar()
+{
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::information( this, "Nada seleccionado", "Por favor, seleccione una compra para eliminarla." );
+        return;
+    }
+    int ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea eliminar las compras seleccionadas?\n Se descontará el stock de productos relacionados y se ajustará el saldo de caja.", "Si", "No" );
+    if( ret != QMessageBox::Accepted ) { return; }
+    MCompra *mc = new MCompra();
+    QString mensaje;
+    foreach( QModelIndex indice, this->vista->selectionModel()->selectedRows() ) {
+        // Busco los datos de la compra
+        int id_compra = this->rmodelo->data( this->rmodelo->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+        if( mc->eliminarCompra( id_compra ) ) {
+            mensaje.append( "\n Compra nº" ).append( id_compra ).append( " eliminada." );
+        } else {
+            mensaje.append( "\n <b> no se pudo eliminar la compra " ).append( id_compra ).append( " correctamente." );
+        }
+    }
+    QMessageBox::information( this, "Resultado", "El resultado de la operacion fue: " + mensaje );
+    delete mc;
 }

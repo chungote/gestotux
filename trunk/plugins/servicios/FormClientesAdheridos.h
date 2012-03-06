@@ -45,6 +45,7 @@ protected:
 protected slots:
     void cambioServicio( int id_servicio );
     void darDeBaja();
+    void eliminar();
 
 private:
     MClientesServicios *modelo;

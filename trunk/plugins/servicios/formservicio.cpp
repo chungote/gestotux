@@ -110,6 +110,10 @@ void FormServicio::guardar()
          qDebug( this->modelo->lastError().text().toLocal8Bit() );
      }
  } else {
+         if( modelo->existe( LENombre->text() ) ) {
+             QMessageBox::warning( this, "Error", "Ya existe un servicio con el mismo nombre dado de alta" );
+             return;
+         }
          if( modelo->agregarServicio( LENombre->text(),
                                       TEDescripcion->toPlainText(),
                                       DEFechaAlta->date(),

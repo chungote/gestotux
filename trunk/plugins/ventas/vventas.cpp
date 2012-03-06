@@ -102,6 +102,10 @@ void VVentas::imprimir()
 void VVentas::modificar()
 { return; }
 
+/*!
+ * \fn VVentas::anular()
+ * Anula la factura seleccionada o solicita el numero de factura a anular
+ */
 void VVentas::anular()
 {
     // Busco todos los IDs a anular
@@ -143,6 +147,10 @@ void VVentas::anular()
     return;
 }
 
+/*!
+ * \fn VVentas::pagar()
+ * Intenta generar un recibo con los datos de la factura seleccionada
+ */
 void VVentas::pagar()
 {
     return;
@@ -172,23 +180,36 @@ void VVentas::pagar()
     return;
 }
 
+/*!
+ * \fn VVentas::cambioVerAnuladas( bool parametros )
+ * Muestra o oculta del listado de parametros
+ * \param parametro Parametro si esta o no habilitado el boton.
+ */
 void VVentas::cambioVerAnuladas( bool parametro )
 { qobject_cast<MVFacturas *>(this->modelo)->verAnuladas( !parametro ); }
 
 #include "vitemfactura.h"
+/*!
+ * \fn VVentas::verItems()
+ * Muestra el listado de items de una factura
+ */
 void VVentas::verItems()
 {
     // Busco todos los IDs a pagar
+    int id_factura = -1;
     QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
-        QMessageBox::warning( this, "Seleccione un item",
-                        "Por favor, seleccione al menos un item para ver sus items.",
-                        QMessageBox::Ok );
-        return;
+        bool ok = false;
+        QString numero = QInputDialog::getText( this, "Ingrese numero", "Numero de Factura:", QLineEdit::Normal, QString(), &ok );
+        if( ok ) {
+            id_factura = MFactura::idFacturaPorComprobante( numero );
+        }
+    } else {
+        QModelIndex indice = lista.first();
+        id_factura = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
     }
-    QModelIndex indice = lista.first();
     VItemFactura *f = new VItemFactura();
-    f->setearIdFactura( indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt() );
+    f->setearIdFactura( id_factura );
     emit agregarVentana( f );
 }
 

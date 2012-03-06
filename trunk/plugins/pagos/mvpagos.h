@@ -10,6 +10,7 @@ class MVPagos : public QSqlRelationalTableModel
 public:
     explicit MVPagos(QObject *parent = 0);
     QVariant data(const QModelIndex& item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 };
 
 #endif // MVPAGOS_H

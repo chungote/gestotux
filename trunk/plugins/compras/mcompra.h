@@ -33,12 +33,15 @@ class MCompra : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MCompra( QObject *parent = 0, bool relaciones = false );
+    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QVariant data(const QModelIndex &index, int role ) const;
     void inicializar();
     void relacionar();
+
     bool agregarCompra( QVariant fecha, QVariant proveedor, double total, bool contado );
-    QVariant data(const QModelIndex &index, int role ) const;
     int ultimoId();
-    Qt::ItemFlags flags(const QModelIndex& index) const;
+    bool eliminarCompra( int id_compra );
+
 
 };
 

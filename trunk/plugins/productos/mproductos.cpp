@@ -203,6 +203,12 @@ double MProductos::stock( const int id_producto )
 
 /*!
     \fn MProductos::modificarStock( const int id_producto, const double cantidad )
+    Ajusta el stock del producto segun la cantidad aplicada como parametro.
+    Si la cantidad es negativa se disminuye el stock del producto.
+    Si la cantidad es positiva se aumenta el stock del producto.
+    \param id_producto Identificador del producto
+    \param cantidad Cantidad a aplicar
+    \return Verdadero si se pudo actualizar el stock
  */
 bool MProductos::modificarStock( const int id_producto, const double cantidad )
 {

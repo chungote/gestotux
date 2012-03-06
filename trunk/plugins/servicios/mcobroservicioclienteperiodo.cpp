@@ -185,6 +185,26 @@ int MCobroServicioClientePeriodo::buscarIdPeriodoServicio( const int id_recibo )
     }
 
 }
+
+bool MCobroServicioClientePeriodo::tieneDatosRelacionados(const int id_servicio, const int id_cliente)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM cobro_servicio_cliente_periodo WHERE id_servicio = %1 AND id_cliente = %2 ").arg( id_servicio ).arg( id_cliente ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola para averiguar las relaciones de datos entre un cliente yy un servicio." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    }
+    return false;
+}
+
 /*
 CREATE TABLE IF NOT EXISTS `cobro_servicio_cliente_periodo` (
     `id_periodo_servicio` BIGINT NOT NULL,
