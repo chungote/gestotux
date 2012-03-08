@@ -42,6 +42,7 @@ protected slots:
     void verCategorias();
     void agregar(  bool autoeliminarid = true );
     void listaVenta();
+    void listaStock();
     void actualizar();
     void modificar();
     void habilitarProducto();
@@ -52,6 +53,7 @@ private:
     QAction *ActDeshabilitar;
     QAction *ActCategorias;
     QAction *ActListadoVenta;
+    QAction *ActListadoStock;
 
 };
 

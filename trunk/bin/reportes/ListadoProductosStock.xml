@@ -15,7 +15,7 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>productos</name>
-  <sql>SELECT codigo, nombre, stock  FROM producto WHERE habilitado = 1 AND stock > 0 ORDER BY nombre</sql>
+  <sql>SELECT codigo, nombre, stock  FROM producto WHERE habilitado = 'true' AND stock > 0 ORDER BY nombre</sql>
  </querysource>
  <rpthead>
   <height>81.262</height>
@@ -248,6 +248,22 @@ end
    <yend>78.1149</yend>
    <weight>2</weight>
   </line>
+  <label>
+   <rect>
+    <x>281</x>
+    <y>32</y>
+    <width>599</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>Los productos aqui listados se encuentran en existencia y habilitados</string>
+  </label>
  </rpthead>
  <section>
   <name>productos</name>
@@ -265,8 +281,8 @@ end
    </line>
    <field>
     <rect>
-     <x>923</x>
-     <y>1.38</y>
+     <x>912</x>
+     <y>-0.62</y>
      <width>142</width>
      <height>19.3</height>
     </rect>
@@ -275,7 +291,7 @@ end
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <right/>
+    <hcenter/>
     <vcenter/>
     <data>
      <query>productos</query>
@@ -335,22 +351,6 @@ end
     <left/>
     <vcenter/>
     <string>#</string>
-   </label>
-   <label>
-    <rect>
-     <x>899.61</x>
-     <y>1.29332</y>
-     <width>16.3534</width>
-     <height>17.6967</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <hcenter/>
-    <top/>
-    <string>$</string>
    </label>
   </detail>
  </section>

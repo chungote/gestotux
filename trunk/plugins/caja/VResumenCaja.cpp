@@ -78,7 +78,7 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   DTEFin->setDate( QDate::currentDate() );
 
   DTEInicio = new QDateEdit( GBFiltrado );
-  DTEInicio->setMaximumDate( QDate::currentDate() );
+  DTEInicio->setMaximumDate( QDate::currentDate().addDays( -1 ) );
   /// @todo Buscar fecha del ultimo movimiento
   /*fecha = MMovimientosCaja::buscarUltimoCierre( id_caja );
   DTEInicio->setDate( fecha );*/
@@ -115,7 +115,12 @@ VResumenCaja::VResumenCaja( QWidget *parent )
 
   this->addAction( new ActIngresoCaja( this ) );
   this->addAction( new ActRetiroCaja( this ) );
-  this->addAction( new ActTransferir( this ) );
+  if( cmodelo->rowCount() > 1 ) {
+    this->addAction( new ActTransferir( this ) );
+  } else {
+      CBCajas->setCurrentIndex( 1 );
+      CBCajas->setEnabled( false );
+  }
   this->addAction( ActSep );
   this->addAction( ActImprimir );
   this->addAction( ActPdf );
