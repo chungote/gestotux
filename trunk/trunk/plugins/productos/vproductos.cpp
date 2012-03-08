@@ -106,10 +106,18 @@ VProductos::VProductos(QWidget *parent)
  ActListadoVenta->setText( "Listado de venta" );
  ActListadoVenta->setIcon( QIcon( ":/imagenes/listado.png" ) );
  ActListadoVenta->setStatusTip( "Muestra el listado de productos con su precio de venta" );
- ActListadoVenta->setIcon( QIcon( ":/imagenes/listaventa.png" ) );
+ //ActListadoVenta->setIcon( QIcon( ":/imagenes/listaventa.png" ) );
  connect( ActListadoVenta, SIGNAL( triggered() ), this, SLOT( listaVenta() ) );
 
+ ActListadoStock = new QAction( this );
+ ActListadoStock->setText( "Listado stock" );
+ ActListadoStock->setIcon( QIcon( ":/imagenes/listado.png" ) );
+ ActListadoStock->setStatusTip( "Muestra el listado de productos con su stock actual" );
+ //ActListadoStock->setIcon( QIcon( ":/imagenes/listastock.png" ) );
+ connect( ActListadoStock, SIGNAL( triggered() ), this, SLOT( listaStock() ) );
+
  addAction( ActListadoVenta );
+ addAction( ActListadoStock );
  addAction( ActBuscar );
  addAction( ActVerTodos );
  addAction( ActCerrar );
@@ -185,6 +193,20 @@ void VProductos::listaVenta()
     ParameterList lista;
     lista.append( "filtro", this->rmodelo->filter() );
     rep->especial( "ListadoProductosPrecio", lista );
+    rep->hacer();
+    delete rep;
+}
+
+void VProductos::listaStock()
+{
+    if( this->rmodelo->rowCount() <= 0 ) {
+        QMessageBox::information( this, "Error", "No hay ningun producto declarado como para  dar un listado." );
+        return;
+    }
+    EReporte *rep = new EReporte( 0 );
+    ParameterList lista;
+    lista.append( "filtro", this->rmodelo->filter() );
+    rep->especial( "ListadoProductosStock", lista );
     rep->hacer();
     delete rep;
 }

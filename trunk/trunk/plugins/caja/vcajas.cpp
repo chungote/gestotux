@@ -63,7 +63,9 @@ VCajas::VCajas(QWidget *parent) :
     addAction( ActAgregar );
     addAction( ActEgreso );
     addAction( ActIngreso );
-    addAction( ActTransferire );
+    if( modelo->rowCount() > 1 ) {
+        addAction( ActTransferire );
+    }
     addAction( ActResumen );
     //addAction( ActEliminar );
     addAction( ActCerrar );

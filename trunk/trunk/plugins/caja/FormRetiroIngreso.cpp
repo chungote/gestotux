@@ -47,7 +47,12 @@ FormRetiroIngreso::FormRetiroIngreso( QWidget *parent, Modo modo ) :
     this->CBCaja->setModel( modeloCaja );
     this->CBCaja->setModelColumn( 1 );
     modeloCaja->select();
-    this->CBCaja->setCurrentIndex( -1 );
+    if( modeloCaja->rowCount() == 1 ) {
+        this->CBCaja->setCurrentIndex( 1 );
+    } else {
+        this->CBCaja->setCurrentIndex( -1 );
+    }
+
 }
 
 void FormRetiroIngreso::changeEvent(QEvent *e)
