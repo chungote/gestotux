@@ -67,7 +67,7 @@ VCajas::VCajas(QWidget *parent) :
         addAction( ActTransferire );
     }
     addAction( ActResumen );
-    //addAction( ActEliminar );
+    addAction( ActEliminar );
     addAction( ActCerrar );
 }
 
@@ -116,4 +116,30 @@ void VCajas::resumen()
     VResumenCaja *vr = new VResumenCaja( this );
     vr->setearCaja( id_caja );
     emit agregarVentana( vr );
+}
+
+void VCajas::eliminar()
+{
+    if( vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una caja para intentar eliminarla" );
+        return;
+    }
+    QModelIndex idx = vista->selectionModel()->selectedRows().first();
+    int id_caja = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    MCajas *mc = qobject_cast<MCajas *>(modelo);
+    if( mc->cajaPredeterminada() == id_caja ) {
+        QMessageBox::critical( this, "Error", QString::fromUtf8( "La caja que está intentando eliminar es la caja predeterminada. \n Si desea eliminarla cambie la caja predeterminada desde las preferencias e intente nuevamente." ) );
+        return;
+    }
+    if( mc->tieneDatosRelacionados( id_caja ) ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "La caja tiene datos relacionados. No se podrá eliminar" ) );
+        return;
+    } else {
+        if( mc->eliminarCaja( id_caja ) ) {
+            QMessageBox::information( this, "Correcto", QString::fromUtf8( "La caja se eliminó correctamente." ) );
+        } else {
+            QMessageBox::warning( this, "Error", "Existió un error al intentar eliminar la caja." );
+        }
+    }
+    return;
 }

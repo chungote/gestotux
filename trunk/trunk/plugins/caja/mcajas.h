@@ -39,6 +39,9 @@ class MCajas : public QSqlTableModel
 
         bool existeCaja( const QString nombre );
 
+        bool tieneDatosRelacionados( const int id_caja );
+        bool eliminarCaja( const int id_caja );
+
         static bool actualizarSaldo( const int id_caja, const double cantidad );
         static double saldo( const int id_caja );
 

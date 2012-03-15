@@ -52,10 +52,14 @@ FormTransferir::FormTransferir(QWidget *parent) :
     CBDestino->setModelColumn( 1 );
     MCDestino->select();
 
+    CBDestino->setCurrentIndex( -1 );
+    CBOrigen->setCurrentIndex( -1 );
+
     connect( CBDestino, SIGNAL( currentIndexChanged( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
     connect( CBOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
 
     DSBCantidad->setMinimum( 0.0 );
+
 }
 
 void FormTransferir::setearCajaOrigen( const int id_caja )
@@ -106,6 +110,7 @@ void FormTransferir::cambioCajaOrigen( int indiceOrigen )
         CBOrigen->setCurrentIndex( indiceOrigen );
         connect( CBDestino, SIGNAL( currentIndexChanged( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
         connect( CBOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
+        DSBCantidad->setMaximum( MCajas::saldo( id_origen ) );
 
 }
 
@@ -128,12 +133,12 @@ void FormTransferir::transferir()
     /// Registro el movimiento
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
     MMovimientosCaja *mv = new MMovimientosCaja();
-    if( !mv->agregarMovimiento( id_origen, "Transferencia entre cajas", QString(), 0.0, DSBCantidad->value() ) ) {
+    if( !mv->agregarMovimiento( id_origen, QString( "Transferencia hacia caja %1").arg( MCajas::nombreCaja( id_destino ) ), QString(), 0.0, DSBCantidad->value() ) ) {
         QMessageBox::critical( this, "Error", "No se puede registrar el movimiento de salida en la caja de origen" );
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return;
     }
-    if( !mv->agregarMovimiento( id_destino, "Transferencia entre cajas", QString(), DSBCantidad->value(), 0.0 ) ) {
+    if( !mv->agregarMovimiento( id_destino, QString( "Transferencia desde caja  %1" ).arg( MCajas::nombreCaja( id_origen ) ), QString(), DSBCantidad->value(), 0.0 ) ) {
         QMessageBox::critical( this, "Error", "No se pudo registrar el movimiento de entrada en la caja de destino" );
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return;
