@@ -55,6 +55,8 @@ VGastos::VGastos( QWidget* parent )
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( mostrarCategorias() ) );
 
  agregarFiltroBusqueda( QString::fromUtf8( "Descripción" ), " `descripcion` LIKE '%%1%' ");
+ agregarFiltroBusqueda( "Costo mayor a", " `costo` >= %1" );
+ agregarFiltroBusqueda( "Costo menor a", " `costo` <= %1" );
  habilitarBusqueda();
 
  addAction( ActAgregar );

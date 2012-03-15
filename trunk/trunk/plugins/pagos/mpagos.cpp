@@ -224,7 +224,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     int id_caja = -1;
     if( efectivo && pagado ) {
         // Genero la entrada en la caja
-        if( ERegistroPlugins::getInstancia()->existePlugin("caja") ) {
+        if( ERegistroPlugins::getInstancia()->existePluginExterno("caja") ) {
             int pid_caja = MCajas::cajaPredeterminada();
             MMovimientosCaja *mc = new MMovimientosCaja( this );
             if( mc->agregarMovimiento( pid_caja, "Pago en efectivo de recibo", QString(), total, 0.0 ) )

@@ -141,7 +141,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
   mi = 0;
   double total_calculado = mcp->total();
   // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
-  if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
+  if( ERegistroPlugins::getInstancia()->existePluginExterno( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente )
   {
    //qDebug( "Venta a cuenta corriente" );
    // Si se ingresa aqui el cliente tiene cuenta corriente
