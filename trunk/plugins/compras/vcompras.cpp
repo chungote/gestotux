@@ -21,6 +21,8 @@
 
 #include "mcompra.h"
 
+#include "dsino.h"
+
 #include <QTableView>
 #include <QPushButton>
 #include <QAction>
@@ -37,6 +39,7 @@ VCompras::VCompras(QWidget *parent)
  vista->setModel( rmodelo );
  vista->hideColumn( 0 );
  vista->hideColumn( 4 );
+ vista->setItemDelegateForColumn( 5, new DSiNo( vista ) );
 
  ActAgregar->setIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
 
@@ -46,11 +49,18 @@ VCompras::VCompras(QWidget *parent)
  ActVerLista->setStatusTip( "Muestra el listado de productos que se compró en esa compra" );
  connect( ActVerLista, SIGNAL( triggered() ), this, SLOT( verLista() ) );
 
+ agregarFiltroBusqueda( "A contado", "`contado` = 1" );
+ agregarFiltroBusqueda( "Proveedor", "`nombre` LIKE %%1%" );
+ agregarFiltroBusqueda( "Mayor a ", "`total` >= %1" );
+ agregarFiltroBusqueda( "Menor a", "`total` <= %1" );
+ habilitarBusqueda();
+
  addAction( ActAgregar );
  //addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActVerLista );
  addAction( ActVerTodos );
+ addAction( ActBuscar );
  addAction( ActCerrar );
 }
 

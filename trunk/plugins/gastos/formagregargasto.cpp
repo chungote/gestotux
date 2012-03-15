@@ -54,6 +54,7 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         CBTipo->setCurrentIndex( -1 );
 
         CWFecha->setSelectedDate( QDate::currentDate() );
+        CWFecha->setMaximumDate( QDate::currentDate() );
 
         modeloEdit = new QSqlQueryModel( this );
         modeloEdit->setQuery( "SELECT DISTINCT descripcion FROM gastos" );
