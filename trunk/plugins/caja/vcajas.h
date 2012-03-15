@@ -36,6 +36,7 @@ public slots:
 
 protected slots:
     void agregar( bool autoeliminarid  );
+    void eliminar();
     void resumen();
     void resumen(  const QModelIndex & ) { resumen(); }
 

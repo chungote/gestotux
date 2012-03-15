@@ -59,7 +59,7 @@ void FPrefGeneral::cargar()
  p->beginGroup( "Preferencias" );
  p->beginGroup( "General" );
  ChBMaximizado->setChecked( p->value( "maximizado" , false ).toBool() );
- CBEstilo->setCurrentIndex( p->value( "estilo-int", 5 ).toInt() );
+ CBEstilo->setCurrentIndex( p->value( "estilo-int", 0 ).toInt() );
  ChBSplash->setChecked( p->value( "splash", true ).toBool() );
  ChBIconoBandeja->setChecked( p->value( "icono_bandeja", false ).toBool() );
  CkBSobreEstilo->setChecked( p->value( "sobreestilo", false ).toBool() );
@@ -115,6 +115,8 @@ void FPrefGeneral::guardar()
  p->setValue( "anonimo", CkBAnonimo->isChecked() );
  p->endGroup();
  p->endGroup();
+ p->sync();
+ p = 0;
 }
 
 

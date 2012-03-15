@@ -61,7 +61,7 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         CBDescripcion->setEditable( true );
         CBDescripcion->setCurrentIndex( -1 );
 
-        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
             CBCajas->setModel( new MCajas( this ) );
             CBCajas->setModelColumn( 1 );
             qobject_cast<QSqlTableModel *>(CBCajas->model())->select();
@@ -70,10 +70,6 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
             CkBSacarCaja->setVisible( false );
             CBCajas->setVisible( false );
         }
-}
-
-FormAgregarGasto::~FormAgregarGasto()
-{
 }
 
 #include "../caja/mmovimientoscaja.h"

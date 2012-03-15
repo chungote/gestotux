@@ -37,15 +37,17 @@ class FormAgregarGasto : public EVentana, private Ui::FormAgregarGastoBase
 
 public:
   FormAgregarGasto( QWidget* parent = 0 );
-  ~FormAgregarGasto();
+
 protected slots:
     void guardar();
 
 signals:
     void actualizarVista();
+
 private:
         MCategoriasGastos *modeloCombo;
         QSqlQueryModel *modeloEdit;
+
 };
 
 #endif

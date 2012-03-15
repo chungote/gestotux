@@ -254,3 +254,35 @@ bool MCajas::existeCaja( QString nombre )
     }
     return false;
 }
+
+/*!
+ * \fn MCajas::tieneDatosRelacionados( const int id_caja )
+ * Busca si existe algun dato relacionado con la caja y devuelve verdadero si existe.
+ * \param id_caja Identificador de la caja
+ * \return Verdadero si hay datos. Falso en caso contrario.
+ */
+bool MCajas::tieneDatosRelacionados( const int id_caja )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id_caja) FROM movimientos_caja WHERE id_caja = %1" ).arg( id_caja ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return false;
+        } else {
+            qWarning( "Existen movimientos de caja que hacen referencia a esta caja." );
+        }
+    }
+    return true;
+}
+
+/*!
+ *  \fn MCajas::eliminarCaja( const int id_caja )
+ * Elimina la caja que se pasa como paraemtro
+ * \param id_caja Identificador de caja
+ * \returns Verdadero si se pudo eliminar la caja, falso en caso contrario.
+ */
+bool MCajas::eliminarCaja( const int id_caja )
+{
+    qDebug( "No implementado" );
+    return false;
+}
