@@ -64,6 +64,7 @@ void EBusqueda::changeEvent( QEvent *e )
     case QEvent::Hide:
     case QEvent::Close:
         borrar();
+        emit cerrando();
         break;
     default:
         break;

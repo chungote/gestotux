@@ -8,15 +8,16 @@
  - Agregar capacidad para actualizar los reportes x internet ( caso db local )?
  - Ver por la creacion de indices en la base de datos Mysql.
 - Ver como agregar descuentos en los presupuestos y facturas ( mproductos totales )
-- terminar de ajustar todos los formularios predeterminados.
-- Ver iconografia en todo el programa.
-- Terminar reporte de baja de adhhesion de servicio
+- Terminar de ajustar todos los formularios predeterminados.
+  - Factura
+  - Recibo
+  - Presupuesto
+- Terminar reporte de baja de adhhesion de servicio.
 - Arreglar problema de fk en mysql con las categorías de los productos cuando las categorías no estan habilitadas.
 
 -- Caja --
 ----------
 - Eliminacion de cajas.
-  - Verificar que no sea la caja predeterminada.
   - ¿Que hacemos con los movimientos de esa caja?
   - ¿Utilizar eliminación lógica?
  - Mejorar cartel de caja predeterminada o mostrar lista que permita elegir una y de paso colocarla como predeterminada.

@@ -40,6 +40,8 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  modelo->select();
 
  agregarFiltroBusqueda( "Destinatario", " `destinatario` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Fecha menor a", " DATE( `fecha` ) <= %1" );
+ agregarFiltroBusqueda( "Fecha mayor a ", " DATE( `fecha` ) > %1" );
  habilitarBusqueda();
 
  ActVerContenido = new QAction( this );
@@ -135,6 +137,9 @@ void VPresupuesto::aPdf()
 
 /*!
     \fn VPresupuesto::menuContextual( const QModelIndex &indice, QMenu *menu )
+    Muestra el menu contextual con las acciones que pueden ser realizadas sobre un item de presupuesto.
+    \param indice Indice del cual ver el item
+    \param menu Menu contextual que será mostrado
  */
 void VPresupuesto::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
