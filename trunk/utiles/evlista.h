@@ -24,7 +24,7 @@
 class QSqlRelationalTableModel;
 class QSqlTableModel;
 class QSqlRecord;
-class QAction;
+#include <QAction>
 class QTableView;
 class QMenu;
 class EBusqueda;
@@ -129,6 +129,9 @@ private:
    * Lista de filtros de busqueda personalizados
    */
    QList< QPair<QString,QString> > filtros;
+
+private slots:
+   void cerrandoBusqueda() { ActBuscar->setChecked( false ); }
 
 };
 

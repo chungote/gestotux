@@ -9,9 +9,9 @@
 /*!
  * \brief Ventana de filtrado generica
  *
- * Esta clase sirve como sistema base de filtrado. Se agregar· automaticamente todos los sistemas internos
+ * Esta clase sirve como sistema base de filtrado. Se agregar√° automaticamente todos los sistemas internos
  * para realizar los filtrados en el modelo.
- * Se inicializar· y se deber· agregar los filtros mediante agregar filtro.
+ * Se inicializar√° y se deber√° agregar los filtros mediante agregar filtro.
  * \author Esteban Javier Zeller <ezeller@gmail.com>
  */
 class EBusqueda : public QDockWidget, private Ui::EBusquedaBase
@@ -28,6 +28,9 @@ protected:
 protected slots:
     void borrar();
     void filtrar();
+
+signals:
+    void cerrando();
 
 private:
    /*!

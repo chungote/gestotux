@@ -231,6 +231,8 @@ void EVLista::buscar()
 
             emit agregarDockWidget( Qt::BottomDockWidgetArea, dockBusqueda );
 
+            connect( dockBusqueda, SIGNAL( cerrando() ), this, SLOT( cerroBusqueda() ) );
+
             ActBuscar->setChecked( true );
         } else {
             if( ActBuscar->isChecked() ) {
