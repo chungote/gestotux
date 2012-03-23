@@ -9,10 +9,6 @@
  <parameter default="0" active="true" listtype="static" type="integer" name="id_recibo">
   <description>ID del recibo que deseamos imprimir. </description>
  </parameter>
- <watermark>
-  <text>ÃÂ¡Version Beta!</text>
-  <opacity>25</opacity>
- </watermark>
  <grid>
   <x>0.05</x>
   <y>0.05</y>
@@ -26,11 +22,11 @@
  <querysource>
   <name>recibo</name>
   <sql>SELECT r.id_recibo AS numero,
-       CONCAT( CONCAT( LPAD( r.serie, 5, 0 ), '-' ), LPAD( r.numero, 5, 0 ) ) AS NumSerie,
-       DATE_FORMAT( r.fecha_pago, '%d/%m/%Y' ) AS fecha,
+       substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
+       strftime("%d/%m/%Y", r.fecha_pago) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
-       CONCAT( CONCAT( c.calle, CONCAT( ' ', c.numero ) ) ) AS direccion,
+       c.calle || ' ' || c.numero AS direccion,
        c.razon_social AS cliente,
        c.`CUIT/CUIL` AS cuit
 FROM recibos AS r,
@@ -826,9 +822,9 @@ end
   </field>
   <label>
    <rect>
-    <x>454.509</x>
-    <y>1145.07</y>
-    <width>359.643</width>
+    <x>455</x>
+    <y>1150</y>
+    <width>360</width>
     <height>25</height>
    </rect>
    <font>
@@ -838,7 +834,7 @@ end
    </font>
    <right/>
    <vcenter/>
-   <string>Generado automaticamente por Gestotux 0.5 beta</string>
+   <string>Generado automaticamente por Gestotux 0.5</string>
   </label>
   <field>
    <rect>
@@ -965,9 +961,9 @@ end
    <height>289.949</height>
    <field>
     <rect>
-     <x>11</x>
+     <x>23</x>
      <y>12</y>
-     <width>802</width>
+     <width>790</width>
      <height>273.739</height>
     </rect>
     <font>
@@ -1014,9 +1010,9 @@ end
   </field>
   <label>
    <rect>
-    <x>424.329</x>
+    <x>424</x>
     <y>50</y>
-    <width>392.671</width>
+    <width>393</width>
     <height>25</height>
    </rect>
    <font>
@@ -1026,7 +1022,7 @@ end
    </font>
    <right/>
    <vcenter/>
-   <string>Generado automaticamente por Gestotux 0.5 beta</string>
+   <string>Generado automaticamente por Gestotux 0.5</string>
   </label>
   <barcode>
    <rect>

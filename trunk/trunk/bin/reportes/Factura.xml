@@ -24,9 +24,9 @@
  <leftmargin>25</leftmargin>
  <querysource>
   <name>factura</name>
-  <sql>SELECT DATE_FORMAT( f.fecha, '%d/%m/%Y' ) AS fecha,
+  <sql>SELECT strftime("%d/%m/%Y", f.fecha) AS fecha,
        f.total As total,
-       CONCAT( CONCAT( LPAD( f.serie, 5, 0 ), '-' ), LPAD( f.numero, 5, 0 ) ) AS NumSerie
+       substr( '0000000000' || f.serie, -5, 5 ) || '-' || substr( '0000000000' || f.numero, -5, 5 ) AS NumSerie
 FROM factura AS f, clientes AS c
 WHERE f.id_cliente = c.id AND f.id_factura = &lt;? value( "id_factura" ) ?>;</sql>
  </querysource>
