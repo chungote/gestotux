@@ -64,6 +64,7 @@ public:
     bool asociarCliente( int id_cliente, int id_servicio, QDateTime fecha = QDateTime::currentDateTime() );
     bool agregarServicio( QString nombre, QString detalle, QDate fecha_alta, double precio_base, int periodo, int dia_cobro, int forma_incompleto );
     bool calcularCobroAlta( const int id_cliente, const int id_servicio, QDateTime fechaAlta );
+    bool darDeBaja( const int id_servicio, QModelIndex indice, const QDate fecha = QDate::currentDate() );
 
     static double precioBase( int id_servicio );
     static MServicios::Periodo obtenerPeriodo( const int id_servicio );
@@ -71,7 +72,7 @@ public:
     static QDate getFechaAlta( const int id_servicio );
     static bool verificarSiPuedeEliminar( const int id_servicio );
     static bool dadoDeBaja( const int id_servicio );
-    static bool darDeBaja( const int id_servicio, const QDate fecha = QDate::currentDate() );
+
     static QList<int> listaDeServicios();
     static bool existe( const QString nombre );
 

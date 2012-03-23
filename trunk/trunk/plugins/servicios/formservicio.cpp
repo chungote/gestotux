@@ -187,6 +187,11 @@ void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
     _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ) );
     _mapa->addMapping( CBInicioCobro     , modelo->fieldIndex( "inicio_cobro" ) );
 
+    if( this->modelo->data( this->modelo->index( indice.row(), this->modelo->fieldIndex( "fecha_baja" ) ), Qt::EditRole ).toDate().isValid() ) {
+        _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );
+        CkBBaja->setChecked( true );
+    }
+
     // Busco el indice
     this->_id_servicio = id_servicio;
     if( indice.isValid() ) {
