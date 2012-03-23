@@ -23,7 +23,7 @@
   <name>presupuesto</name>
   <sql>&lt;? if value("cliente_existe")?>
 SELECT c.razon_social AS destinatario,
-       strftime("%\d/%m/%Y", p.fecha) AS fecha,
+       strftime("%d/%m/%Y", p.fecha) AS fecha,
        p.total As total,
        substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' || p.numero, -5, 5 ) AS NumSerie
 FROM presupuestos AS p, clientes AS c
@@ -49,30 +49,30 @@ WHERE id_presupuesto = &lt;? value( "id_presupuesto" ) ?>
 ORDER BY id_item_presupuesto;</sql>
  </querysource>
  <rpthead>
-  <height>126</height>
+  <height>128.584</height>
   <rect>
    <x>349.893</x>
    <y>3.89286</y>
    <width>74</width>
-   <height>53</height>
+   <height>54.801</height>
    <weight>2</weight>
   </rect>
   <rect>
-   <x>627.312</x>
-   <y>12.1168</y>
+   <x>617.406</x>
+   <y>11.2163</y>
    <width>153.83</width>
    <height>25</height>
   </rect>
   <rect>
-   <x>627.527</x>
+   <x>616.721</x>
    <y>39.9249</y>
    <width>153.83</width>
    <height>25</height>
   </rect>
   <image>
    <rect>
-    <x>11</x>
-    <y>9</y>
+    <x>24.5076</x>
+    <y>4.49745</y>
     <width>65.5</width>
     <height>64.1</height>
    </rect>
@@ -4795,7 +4795,7 @@ end
   </label>
   <label>
    <rect>
-    <x>526.969</x>
+    <x>513.461</x>
     <y>12.5353</y>
     <width>100</width>
     <height>25</height>
@@ -4811,7 +4811,7 @@ end
   </label>
   <label>
    <rect>
-    <x>526.969</x>
+    <x>514.362</x>
     <y>40.3807</y>
     <width>100</width>
     <height>25</height>
@@ -4827,9 +4827,9 @@ end
   </label>
   <label>
    <rect>
-    <x>121.117</x>
-    <y>20.9636</y>
-    <width>186</width>
+    <x>107.609</x>
+    <y>20.0631</y>
+    <width>176.676</width>
     <height>25</height>
    </rect>
    <font>
@@ -4875,7 +4875,7 @@ end
   </label>
   <field>
    <rect>
-    <x>629</x>
+    <x>621.796</x>
     <y>13.6</y>
     <width>145</width>
     <height>21.8</height>
@@ -4894,7 +4894,7 @@ end
   </field>
   <field>
    <rect>
-    <x>629.258</x>
+    <x>617.551</x>
     <y>41.4758</y>
     <width>151</width>
     <height>21.9</height>
@@ -4931,7 +4931,7 @@ end
    <rect>
     <x>123</x>
     <y>76.4523</y>
-    <width>694</width>
+    <width>654.378</width>
     <height>23</height>
    </rect>
    <font>
@@ -4950,7 +4950,7 @@ end
    <rect>
     <x>123.166</x>
     <y>101</y>
-    <width>693</width>
+    <width>656.079</width>
     <height>19</height>
    </rect>
    <font>
@@ -5007,8 +5007,8 @@ end
     </label>
     <label>
      <rect>
-      <x>562.774</x>
-      <y>2.82124</y>
+      <x>556.47</x>
+      <y>2.55857</y>
       <width>122</width>
       <height>25</height>
      </rect>
@@ -5030,9 +5030,9 @@ end
     </line>
     <label>
      <rect>
-      <x>696.408</x>
+      <x>683.274</x>
       <y>1.83819</y>
-      <width>79</width>
+      <width>95.0229</width>
       <height>25</height>
      </rect>
      <font>
@@ -5050,7 +5050,7 @@ end
    <key>
     <query>items</query>
    </key>
-   <height>24.8431</height>
+   <height>26.6146</height>
    <field>
     <rect>
      <x>6.77425</x>
@@ -5111,9 +5111,9 @@ end
    </field>
    <field>
     <rect>
-     <x>691</x>
+     <x>688.899</x>
      <y>3.15</y>
-     <width>90</width>
+     <width>94.9908</width>
      <height>18.6</height>
     </rect>
     <font>
@@ -5147,7 +5147,7 @@ end
    </label>
    <label>
     <rect>
-     <x>678.826</x>
+     <x>676.462</x>
      <y>2.61813</y>
      <width>17.7</width>
      <height>19.1195</height>
@@ -5220,14 +5220,14 @@ end
   </field>
   <label>
    <rect>
-    <x>245.929</x>
-    <y>36.4095</y>
-    <width>537.053</width>
+    <x>200.637</x>
+    <y>36.4</y>
+    <width>582.363</width>
     <height>25</height>
    </rect>
    <font>
     <face>Sans Serif</face>
-    <size>9</size>
+    <size>8</size>
     <weight>normal</weight>
    </font>
    <hcenter/>
@@ -5243,8 +5243,8 @@ end
   </line>
   <barcode>
    <rect>
-    <x>1.43</x>
-    <y>27.9</y>
+    <x>11.3356</x>
+    <y>29.701</y>
     <width>134</width>
     <height>42.9</height>
    </rect>

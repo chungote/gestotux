@@ -223,7 +223,13 @@ BEGIN
 END
 //
 
+Como sacar el numero de comprobante en sqlite:
 
+substr( '0000000000' || p.serie, -5, 5 ) || '-' || substr( '0000000000' || p.numero, -5, 5 ) AS NumSerie
+
+Formato de fecha para sqlite:
+
+strftime("%d/%m/%Y", p.fecha) AS fecha
 
 
 Como realizar la conversion lpda(mysql) -> sqlite
