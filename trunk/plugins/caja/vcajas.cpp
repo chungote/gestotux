@@ -60,13 +60,13 @@ VCajas::VCajas(QWidget *parent) :
     ActResumen->setToolTip("Muestra el resumen de las operaciones de caja desde el ultimo cierre" );
     connect( ActResumen, SIGNAL( triggered() ), this, SLOT( resumen() ) );
 
-    addAction( ActAgregar );
     addAction( ActEgreso );
     addAction( ActIngreso );
     if( modelo->rowCount() > 1 ) {
         addAction( ActTransferire );
     }
     addAction( ActResumen );
+    addAction( ActAgregar );
     addAction( ActEliminar );
     addAction( ActCerrar );
 }

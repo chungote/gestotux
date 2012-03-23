@@ -268,8 +268,8 @@ void VServicios::darDeBaja()
       return;
     }
     int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
-    if( MServicios::darDeBaja( id_servicio ) ) {
-        QMessageBox::information( this, "Correcto", "Servicio dado de baja correctamente. \n No se podrá facturar ni asociar clientes a el de ahora en adelante." );
+    if( qobject_cast<MServicios *>(modelo)->darDeBaja( id_servicio, vista->currentIndex() ) ) {
+        QMessageBox::information( this, "Correcto", QString::fromUtf8( "Servicio dado de baja correctamente. \n No se podrá facturar ni asociar clientes a el de ahora en adelante." ) );
         return;
     } else {
         QMessageBox::warning( this, "Incorrecto", "No se dio de baja el servicio" );

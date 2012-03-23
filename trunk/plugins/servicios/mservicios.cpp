@@ -390,7 +390,7 @@ bool MServicios::dadoDeBaja( const int id_servicio)
  * \param fecha Fecha en que se da de baja
  * \return Verdadero si pudo se dado de baja
  */
-bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
+bool MServicios::darDeBaja( const int id_servicio, QModelIndex indice, const QDate fecha )
 {
     QSqlQuery cola;
     cola.prepare( "UPDATE servicios SET fecha_baja = :fecha WHERE id_servicio = :id_servicio" );
@@ -403,6 +403,7 @@ bool MServicios::darDeBaja( const int id_servicio, const QDate fecha )
         return false;
     }
     qDebug( "Servicio dado de baja correctamente" );
+    emit dataChanged( indice, indice );
     return true;
 }
 
@@ -452,6 +453,7 @@ bool MServicios::existe(const QString nombre)
 #include "../pagos/mpagos.h"
 #include "../ventas/MFactura.h"
 #include "../ventas/mitemfactura.h"
+#include "eregistroplugins.h"
 /*!
  * \fn MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio, QDateTime fechaAlta )
  * Calcula cuanto se debe cobrar por el alta a partir de l afecha de alta y la del proximi periodo de cobro.
@@ -513,53 +515,54 @@ bool MServicios::calcularCobroAlta( const int id_cliente, const int id_servicio,
  delete mps;
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Genero el comprobante correspondiente
-#ifndef GESTOTUX_HICOMP
- MFactura *mf = new MFactura();
- int id_factura = mf->agregarFactura( id_cliente,
-                                           QDateTime::currentDateTime(),
-                                           MFactura::CuentaCorriente,
-                                           precio_final );
- delete mf;
- if( id_factura <= 0 ) {
-     qWarning( "Error al intentar generar la factura!" );
-     return false;
- }
- MItemFactura *mif = new MItemFactura();
- if( mif->agregarItemFactura( id_factura,
-                                       1,
-                                       texto,
-                                       precio_final,
-                                       -1 ) ) { // pongo menos 1 porque no es un producto
-     qWarning( "No se pudo generar el item de la factura!" );
+ if( !ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+
+     MFactura *mf = new MFactura();
+     int id_factura = mf->agregarFactura( id_cliente,
+                                               QDateTime::currentDateTime(),
+                                               MFactura::CuentaCorriente,
+                                               precio_final );
+     delete mf;
+     if( id_factura <= 0 ) {
+         qWarning( "Error al intentar generar la factura!" );
+         return false;
+     }
+     MItemFactura *mif = new MItemFactura();
+     if( mif->agregarItemFactura( id_factura,
+                                           1,
+                                           texto,
+                                           precio_final,
+                                           -1 ) ) { // pongo menos 1 porque no es un producto
+         qWarning( "No se pudo generar el item de la factura!" );
+         delete mif;
+         return false;
+     }
      delete mif;
-     return false;
- }
- delete mif;
- EReporte *r = new EReporte( this );
- r->factura();
- ParameterList lista;
- lista.append( "id_factura", id_factura );
- if( !r->hacer( lista ) ) {
-     qWarning( "No se pudo imprimir el recibo pero quedo emitido" );
- }
-#else
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- // Genero el comprobante correspondiente  ------>>>   SOLO HICOMP!!!!
- MPagos *mp = new MPagos();
- int id_recibo = mp->agregarRecibo( id_cliente, QDate::currentDate(), texto, precio_final, false, false );
- delete mp;
- if( id_recibo <= 0 )
- {
-     qWarning( "Error al generar el recibo correspondiente" );
-     return false;
- }
- EReporte *r = new EReporte( this );
- r->recibo();
- ParameterList lista;
- lista.append( "id_recibo", id_recibo );
- if( !r->hacer( lista ) ) {
-     qWarning( "No se pudo imprimir el recibo pero quedo emitido" );
- }
-#endif
+     EReporte *r = new EReporte( this );
+     r->factura();
+     ParameterList lista;
+     lista.append( "id_factura", id_factura );
+     if( !r->hacer( lista ) ) {
+         qWarning( "No se pudo imprimir el recibo pero quedo emitido" );
+     }
+ } else {
+     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     // Genero el comprobante correspondiente  ------>>>   SOLO HICOMP!!!!
+     MPagos *mp = new MPagos();
+     int id_recibo = mp->agregarRecibo( id_cliente, QDate::currentDate(), texto, precio_final, false, false );
+     delete mp;
+     if( id_recibo <= 0 )
+     {
+         qWarning( "Error al generar el recibo correspondiente" );
+         return false;
+     }
+     EReporte *r = new EReporte( this );
+     r->recibo();
+     ParameterList lista;
+     lista.append( "id_recibo", id_recibo );
+     if( !r->hacer( lista ) ) {
+         qWarning( "No se pudo imprimir el recibo pero quedo emitido" );
+     }
+ } // Fin hicomp - no hicomp
  return true;
 }
