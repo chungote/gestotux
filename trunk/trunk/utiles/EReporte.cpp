@@ -231,6 +231,7 @@ void EReporte::recibo() {
         _nombre = "Recibo";
     // Cargo el reporte
     cargar( _nombre );
+        qDebug( _nombre.toLocal8Bit() );
 }
 
 
