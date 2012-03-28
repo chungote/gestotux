@@ -23,7 +23,7 @@
   <name>recibo</name>
   <sql>SELECT r.id_recibo AS numero,
        substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
-       strftime("%d/%m/%Y", r.fecha_pago) AS fecha,
+       strftime( "%d/%m/%Y", r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
        c.calle || ' ' || c.numero AS direccion,
@@ -305,8 +305,8 @@ end
   </label>
   <label>
    <rect>
-    <x>487.872</x>
-    <y>95.5282</y>
+    <x>480.872</x>
+    <y>61.5282</y>
     <width>100</width>
     <height>25</height>
    </rect>
@@ -321,8 +321,8 @@ end
   </label>
   <field>
    <rect>
-    <x>600.947</x>
-    <y>96.633</y>
+    <x>587.947</x>
+    <y>61.633</y>
     <width>179</width>
     <height>25</height>
    </rect>
@@ -340,8 +340,8 @@ end
   </field>
   <label>
    <rect>
-    <x>487</x>
-    <y>57.8</y>
+    <x>484</x>
+    <y>30.8</y>
     <width>100</width>
     <height>25</height>
    </rect>
@@ -352,12 +352,12 @@ end
    </font>
    <right/>
    <vcenter/>
-   <string>Recibo </string>
+   <string>Número:</string>
   </label>
   <field>
    <rect>
-    <x>602</x>
-    <y>57.3</y>
+    <x>587</x>
+    <y>29.3</y>
     <width>177</width>
     <height>25</height>
    </rect>
@@ -702,7 +702,7 @@ end
    </font>
    <right/>
    <vcenter/>
-   <string>Recibo N</string>
+   <string>Número:</string>
   </label>
   <line>
    <xstart>1.73145</xstart>

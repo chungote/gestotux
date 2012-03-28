@@ -443,6 +443,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
  if( cola.exec( QString( "UPDATE recibos SET pagado = 1 WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
     if( cola.exec( QString( "SELECT id_cliente, precio, serie, numero FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) )
     {
+        cola.next();
         int id_cliente = cola.value(0).toInt();
         double precio = cola.value(1).toDouble();
         QString t = QString( "%1-%2" ).arg( cola.value(2).toInt() ).arg( cola.value(3).toInt() );
@@ -481,19 +482,39 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
                 return false;
             }
             delete m;
+            // El metodo de pago es efectivo
+            if( cola.exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Efectivo ).arg( id_recibo ) ) ) {
+                // Todos los pasos guardados correctamente
+            } else {
+                qDebug( "Error al intentar poner la forma de pago en efectivo al poner como pagado un recibo ya emitido" )   ;
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                return false;
+            }
         } else {
             // El metodo de pago es otro ( desconocido )
             if( cola.exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Otro ).arg( id_recibo ) ) ) {
                 // Todos los pasos guardados correctamente
             } else {
                 qDebug( "Error al intentar poner la forma de pago en otro al poner como pagado un recibo ya emitido" )   ;
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return false;
             }
         }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de datos del recibo." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        return false;
     }
  } else {
     qDebug( "Error al intentar colocar el recibo como pagado" );
+    qDebug( cola.lastError().text().toLocal8Bit() );
+    qDebug( cola.lastQuery().toLocal8Bit() );
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;
  }
