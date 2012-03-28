@@ -94,6 +94,8 @@ public:
      void habilitarBusqueda() { _busquedaHabilitada = true; }
      void agregarFiltroBusqueda( const QString nombre, const QString filtro );
 
+public slots:
+     void cerroBusqueda() { ActBuscar->setChecked( false ); }
 
 protected:
   /**
@@ -115,7 +117,6 @@ protected slots:
     virtual void menuContextual( const QModelIndex &indice, QMenu *menu );
     virtual void hacerMenuContextual( const QModelIndex &indice );
     virtual void mostrarTodos();
-   void cerrandoBusqueda() { ActBuscar->setChecked( false ); }
 
 private:
   /*!

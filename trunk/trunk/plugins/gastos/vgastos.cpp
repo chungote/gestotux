@@ -141,6 +141,10 @@ void VGastos::eliminar() {
 #include "EReporte.h"
 void VGastos::imprimir()
 {
+    if( modelo->rowCount() <= 0 ) {
+        QMessageBox::information( this, "Sin datos", QString::fromUtf8( "No existe ningún gasto declarado. No se podrá imprimir el reporte" ) );
+        return;
+    }
     EReporte *rep = new EReporte( this );
     rep->especial( "ListadoGastos", ParameterList() );
     if( !rep->hacer() ) {
@@ -150,6 +154,10 @@ void VGastos::imprimir()
 
 void VGastos::aPdf()
 {
+    if( modelo->rowCount() <= 0 ) {
+        QMessageBox::information( this, "Sin datos", QString::fromUtf8( "No existe ningún gasto declarado. No se podrá imprimir el reporte" ) );
+        return;
+    }
     EReporte *rep = new EReporte( this );
     rep->especial( "ListadoGastos", ParameterList() );
     if( !rep->hacerPDF( ParameterList(), "Listado de Gastos" ) ) {

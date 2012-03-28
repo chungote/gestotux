@@ -21,6 +21,7 @@
 #define VPAGOS_H
 
 #include <evlista.h>
+class MVPagos;
 
 /**
  * \brief Visor de recibos emitidos
@@ -40,10 +41,16 @@ public slots:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
     void aPdf();
     void cancelarPago();
+    void soloCancelados();
+    void soloNoPagados();
 
 private:
     QAction *ActCancelarRecibo;
+    QAction *ActSoloNoPagados;
+    QAction *ActSoloCancelados;
     QModelIndex indiceMenu;
+
+    MVPagos *modelo;
 
 };
 

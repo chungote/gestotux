@@ -13,6 +13,8 @@ MVPagos::MVPagos(QObject *parent) :
     setHeaderData( 5, Qt::Horizontal, "Forma de pago" );
     setHeaderData( 6, Qt::Horizontal, "Pagado" );
     setHeaderData( 7, Qt::Horizontal, "Cancelado" );
+    _no_pagados = false;
+    _cancelados = false;
 }
 
 
@@ -102,4 +104,39 @@ QVariant MVPagos::data(const QModelIndex& item, int role) const
 Qt::ItemFlags MVPagos::flags(const QModelIndex& /*index*/) const
 {
  return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}
+
+/*!
+ * \fn MVPagos::filtrarCancelados( bool estado )
+ * Filtra solo los recibos que han sido cancelados dependiendo del parametro
+ */
+void MVPagos::filtrarCancelados( bool estado )
+{  _cancelados = estado;  filtrar(); }
+
+/*!
+ * \fn MVPagos::filtrarNoPagados( bool estado )
+ * Filtra los recibos que no fueron pagados
+ */
+void MVPagos::filtrarNoPagados( bool estado )
+{  _no_pagados = estado;  filtrar(); }
+
+/*!
+ * \fn MVPagos::filtrar()
+ * Aplica el filtrado según los datos pasados como parametros
+ */
+void MVPagos::filtrar()
+{
+ QString filtro;
+ if( _no_pagados ) {
+     filtro.append( " pagado = 'false' ");
+ }
+ if( _cancelados && _no_pagados ) {
+     filtro.append( " AND " );
+ }
+ if( _cancelados ) {
+     filtro.append( " cancelado = 'false' ");
+ }
+ this->setFilter( filtro );
+ this->select();
+ qDebug( this->filter().toLocal8Bit() );
 }

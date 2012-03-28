@@ -50,10 +50,24 @@ VPagos::VPagos(QWidget *parent)
  }
  vista->setItemDelegateForColumn( 7, new DSiNo( vista ) );
 
-
  ActCancelarRecibo = new QAction( this );
  ActCancelarRecibo->setText( "Cancelar" );
  connect( ActCancelarRecibo, SIGNAL( triggered() ), this, SLOT( cancelarPago() ) );
+
+ QAction *ActSep = new QAction( this );
+ ActSep->setSeparator( true );
+
+ ActSoloNoPagados = new QAction( this );
+ ActSoloNoPagados->setText( "No pagados" );
+ ActSoloNoPagados->setIcon( QIcon( ":/imagenes/buscar.png" ) );
+ ActSoloNoPagados->setCheckable( true );
+ connect( ActSoloNoPagados, SIGNAL( triggered() ), this, SLOT( soloNoPagados() ) );
+
+ ActSoloCancelados = new QAction( this );
+ ActSoloCancelados->setText( "Cancelados" );
+ ActSoloCancelados->setIcon( QIcon( ":/imagenes/.png" ) );
+ ActSoloCancelados->setCheckable( true );
+ connect( ActSoloCancelados, SIGNAL( triggered() ), this, SLOT( soloCancelados() ) );
 
  agregarFiltroBusqueda( "Numero de Comprobante", " `NumSerie` LIKE '%%1%' ");
  agregarFiltroBusqueda( "Nombre de Cliente", " `razon_social` LIKE '%%1%' " );
@@ -70,6 +84,9 @@ VPagos::VPagos(QWidget *parent)
  addAction( ActPdf );
  addAction( ActBuscar );
  addAction( ActCerrar );
+ addAction( ActSep );
+ addAction( ActSoloCancelados );
+ addAction( ActSoloNoPagados );
 }
 
 /*!
@@ -220,3 +237,15 @@ void VPagos::menuContextual( const QModelIndex &indice, QMenu *menu )
  indiceMenu = indice;
  return;
 }
+
+/*!
+    \fn VPagos::soloCancelados()
+ */
+void VPagos::soloCancelados()
+{   this->modelo->filtrarCancelados( ActSoloCancelados->isChecked() ); }
+
+/*!
+    \fn VPagos::soloNoPagados()
+ */
+void VPagos::soloNoPagados()
+{   this->modelo->filtrarNoPagados( ActSoloNoPagados->isChecked() ); }
