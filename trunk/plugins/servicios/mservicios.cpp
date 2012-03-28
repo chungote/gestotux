@@ -422,7 +422,7 @@ QList<int> MServicios::listaDeServicios()
 bool MServicios::existe(const QString nombre)
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM servicios WHERE nombre = %1" ).arg( nombre ) ) ) {
+    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM servicios WHERE nombre = '%1'" ).arg( nombre ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() > 0 ) {
             return true;

@@ -248,7 +248,7 @@ bool MGasto::existe( QString descripcion, double importe, int categoria )
 {
     QSqlQuery cola;
     if( cola.exec(
-        QString("SELECT COUNT(id_gasto) FROM gastos WHERE descripcion = %1 AND costo = %2 AND categoria = %3" )
+        QString("SELECT COUNT(id_gasto) FROM gastos WHERE descripcion = '%1' AND costo = %2 AND id_categoria = %3" )
                 .arg( descripcion )
                 .arg( importe )
                 .arg( categoria )
@@ -258,6 +258,7 @@ bool MGasto::existe( QString descripcion, double importe, int categoria )
     } else {
             qDebug( "Error al intentar buscar el gasto como repetido" );
             qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
     }
     return true;
 }

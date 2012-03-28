@@ -50,7 +50,7 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  connect( ActVerContenido, SIGNAL( triggered() ), this, SLOT( verContenido() ) );
 
  addAction( ActAgregar );
- //addAction( ActModificar );
+ addAction( ActModificar );
  addAction( ActVerContenido );
  addAction( ActEliminar );
  addAction( ActImprimir );
@@ -169,6 +169,26 @@ void VPresupuesto::verContenido()
     QModelIndex indice = lista.first();
     int id_presupuesto = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
     VListaPresupuesto *f = new VListaPresupuesto();
+    f->setearIdPresupuesto( id_presupuesto );
+    agregarVentana( f );
+}
+
+#include "formmodificarpresupuesto.h"
+/*!
+ * \fn VPresupuesto::modificar()
+ * Modifica un presupuesto
+ */
+void VPresupuesto::modificar()
+{
+    // Veo que ID quiere reimprimir.
+    QModelIndexList lista = vista->selectionModel()->selectedRows();
+    if( lista.isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione uno o mas presupuestos para reimprimir", QMessageBox::Ok );
+        return;
+    }
+    QModelIndex indice = lista.first();
+    int id_presupuesto = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+    FormModificarPresupuesto *f = new FormModificarPresupuesto();
     f->setearIdPresupuesto( id_presupuesto );
     agregarVentana( f );
 }

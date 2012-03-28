@@ -40,6 +40,7 @@ protected slots:
     void aPdf();
     void verContenido();
     void menuContextual( const QModelIndex &indice, QMenu *menu );
+    void modificar();
 
 private:
     QModelIndex indiceMenu;
