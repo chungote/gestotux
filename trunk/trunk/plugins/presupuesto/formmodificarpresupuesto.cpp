@@ -5,6 +5,13 @@
 #include "dproductostotales.h"
 #include "MItemPresupuesto.h"
 #include "mclientes.h"
+#include "mvpresupuestos.h"
+#include "NumeroComprobante.h"
+
+#include <QDataWidgetMapper>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
 
 FormModificarPresupuesto::FormModificarPresupuesto(QWidget *parent) :
     EVentana(parent), Ui::FormPresupuestoBase()
@@ -68,9 +75,53 @@ FormModificarPresupuesto::FormModificarPresupuesto(QWidget *parent) :
     DSBCant->setPrefix( "" );
 }
 
-void FormModificarPresupuesto::setearIdPresupuesto(int id_presupuesto)
+/*!
+ * \fn FormModificarPresupuesto::setearIdPresupuesto( QModelIndex id )
+ * Setea el indice de fila y provoca la carga de datos
+ */
+void FormModificarPresupuesto::setearIdPresupuesto( QModelIndex idx )
 {
-    qWarning( "No implementado todavía" );
+    int id_presupuesto = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha, serie, numero, id_cliente, destinatario, direccion, observaciones FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+        cola.next();
+        dEFecha->setDate( cola.record().value(0).toDate() );
+
+        NumeroComprobante *nc = new NumeroComprobante( 0, 0, 0 );
+        nc->setearNumero( cola.record().value(2).toInt() );
+        nc->setearNumeroSerie( cola.record().value(1).toInt() );
+        LNumeroComprobante->setText( LNumeroComprobante->text().append( nc->aCadena() ) );
+        delete nc;
+
+        if( cola.record().value(3).isNull() ) {
+            CBCliente->lineEdit()->setText( cola.record().value(4).toString() );
+        } else {
+            CBCliente->setearId( cola.record().value(3).toInt() );
+        }
+
+        LEDireccion->setText( cola.record().value(5).toString() );
+
+        PTEObservaciones->setPlainText( cola.record().value(6).toString().insert( 0, "Observaciones: " ) );
+
+        // Cargo los datos de los items
+        MItemPresupuesto *mi = new MItemPresupuesto();
+        mi->setearId( id_presupuesto );
+        for( int i = 0; i < mi->rowCount(); i++ ) {
+            // Relleno con los datos
+            m->agregarItem(
+                            mi->data( mi->index( i, mi->fieldIndex( "cantidad" ) ), Qt::EditRole ).toInt(),
+                            mi->data( mi->index( i, mi->fieldIndex( "texto" ) ), Qt::EditRole ).toString(),
+                            mi->data( mi->index( i, mi->fieldIndex( "precio_unitario" ) ), Qt::EditRole ).toDouble()
+                          );
+        }
+        delete mi;
+
+    } else {
+        qDebug( "Error al buscar los datos del presupuesto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
 }
 
 /*!
@@ -84,6 +135,7 @@ void FormModificarPresupuesto::cancelar()
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QDir>
+
 #include "mpresupuesto.h"
 #include "EReporte.h"
 /*!
@@ -91,7 +143,7 @@ void FormModificarPresupuesto::cancelar()
  */
 void FormModificarPresupuesto::guardar( bool cerrar )
 {
-    qWarning( "No implementado todavía" );
+ qWarning( "No implementado todavía" );
  return;
  // Verifico que esten todos los datos - fecha valida
  if( !dEFecha->date().isValid() ) {
@@ -133,7 +185,7 @@ void FormModificarPresupuesto::guardar( bool cerrar )
  //////////////////////////////////////////////////////////////////////////
  // Guardo los items del presupuesto
  // elimino la fila de total
-  m->calcularTotales( false );
+ m->calcularTotales( false );
  MItemPresupuesto *items = new MItemPresupuesto();
  for( int fila = 0; fila< TVContenido->model()->rowCount(); fila++ ) {
      if( !items->agregarItemPresupuesto( id_presupuesto,

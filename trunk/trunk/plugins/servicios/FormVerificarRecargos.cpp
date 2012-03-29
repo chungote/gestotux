@@ -8,7 +8,10 @@
 #include <QSqlDatabase>
 
 #include "eactcerrar.h"
-
+#include "mservicios.h"
+#include "mperiodoservicio.h"
+#include "mrecargos.h"
+#include "mrecargoshechos.h"
 
 FormVerificarRecargos::FormVerificarRecargos(QWidget *parent) :
  EVentana( parent )
@@ -67,11 +70,10 @@ void FormVerificarRecargos::changeEvent(QEvent *e)
     }
 }
 
-#include "mservicios.h"
-#include "mperiodoservicio.h"
-#include "mrecargos.h"
-#include "mrecargoshechos.h"
-
+/*!
+ * \fn FormVerificarRecargos::iniciar()
+ * Algoritmo que verifica los recagos que se deben aplicar a cada servicio
+ */
 void FormVerificarRecargos::iniciar()
 {
  _detener = false;
@@ -156,7 +158,7 @@ void FormVerificarRecargos::iniciar()
                 .arg( fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
                 .arg( mps->obtenerFechaFinPeriodo( id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) ) // AREGLLAR ESTO!
     );
-
+    QApplication::processEvents();
     // Busco la cantidad de recargos que tiene el servicio
     int cant_recargos = 0;
     if( cola.exec( QString( "SELECT COUNT(id_recargo) FROM recargos WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
@@ -172,7 +174,8 @@ void FormVerificarRecargos::iniciar()
         l( cola.lastError().text() );
         l( cola.lastQuery() );
     }
-     if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+    if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+    QApplication::processEvents();
     if( cant_recargos == 0 ) {
         l( "No se encontraron recargos activos para el servicio" );
         PrBRecargos->setRange( 0, 1 );
@@ -196,6 +199,7 @@ void FormVerificarRecargos::iniciar()
             l( cola.lastQuery() );
         }
         if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+        QApplication::processEvents();
         QDate fecha_inicio = mps->getFechaInicioPeriodoActual( id_servicio );
         // La lista no puede estar vacia sino el conteo deberia de haber dado 0
         for( QMap<int,int>::iterator recargo = lista_recargos.begin(); recargo != lista_recargos.end(); recargo++ ) {
@@ -221,6 +225,7 @@ void FormVerificarRecargos::iniciar()
                     }
                 }
                 if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+                QApplication::processEvents();
                 double costo_recargo = MRecargos::calcularRecargo( recargo.key(), true );
                 if( cola.exec(
                     QString( "SELECT id_cliente FROM cobro_servicio_cliente_periodo "
@@ -243,15 +248,15 @@ void FormVerificarRecargos::iniciar()
                         }
                         LNTotalProcesado->display( LNTotalProcesado->value() + 1 );
                         PrBClientes->setValue( PrBClientes->value() + 1 );
-
+                        QApplication::processEvents();
                     }
                 } else {
                     l( "Error al buscar los datos de los clientes que no pagaron!" );
                     l( cola.lastError().text() );
                     l( cola.lastQuery() );
                 }
-                 if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
-
+                if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+                QApplication::processEvents();
             } else {
                 l( "El recargo considerado todavia no entro en vigencia" );
             }
@@ -259,11 +264,13 @@ void FormVerificarRecargos::iniciar()
             if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
         } // Fin bucle de recargo
         l( "Fin de procesado del recargo del servicio" );
+        QApplication::processEvents();
         if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
     }
     l( "Fin de procesado del servicio" );
     PrBServicios->setValue( PrBServicios->value() + 1 );
-     if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+    if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
+    QApplication::processEvents();
  } // fin for servicios
 
  ActDetener->setVisible( false );
@@ -276,13 +283,20 @@ void FormVerificarRecargos::iniciar()
  return;
 }
 
+/*!
+ * \fn FormVerificarRecargos::detener()
+ * Detiene la generación de recargos
+ */
 void FormVerificarRecargos::detener()
 {
     _detener = true;
     QApplication::processEvents();
 }
 
-
+/*!
+ * \fn FormVerificarRecargos::l( QString cadena )
+ * Función de conveniencia para loggear l que se va realizando en el algoritmo
+ */
 void FormVerificarRecargos::l( QString cadena )
 {
     PTELog->appendPlainText( cadena );
