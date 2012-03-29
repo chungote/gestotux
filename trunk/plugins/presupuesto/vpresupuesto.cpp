@@ -183,12 +183,11 @@ void VPresupuesto::modificar()
     // Veo que ID quiere reimprimir.
     QModelIndexList lista = vista->selectionModel()->selectedRows();
     if( lista.isEmpty() ) {
-        QMessageBox::information( this, "Error", "Por favor, seleccione uno o mas presupuestos para reimprimir", QMessageBox::Ok );
+        QMessageBox::information( this, "Error", "Por favor, seleccione un presupuesto para modificar", QMessageBox::Ok );
         return;
     }
     QModelIndex indice = lista.first();
-    int id_presupuesto = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
     FormModificarPresupuesto *f = new FormModificarPresupuesto();
-    f->setearIdPresupuesto( id_presupuesto );
     agregarVentana( f );
+    f->setearIdPresupuesto( indice.model()->index( indice.row(), 0 ) );
 }

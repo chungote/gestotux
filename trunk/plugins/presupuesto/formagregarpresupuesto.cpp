@@ -70,6 +70,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Pongo la fecha actual
         dEFecha->setDate( QDate::currentDate() );
+        dEFecha->setMaximumDate( QDate::currentDate().addDays( 1 ) );
 
         // Pongo el sistema de relleno
         m = new MProductosTotales( this, CBProductos->listadoProductos() );

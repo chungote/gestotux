@@ -51,10 +51,6 @@ protected slots:
 
 private:
    /*!
-    * Modelo utilizado por el combo box de clientes para hacer su selección
-    */
-    QSqlQueryModel *modeloClientes;
-   /*!
     * Modelo para mostrar la lista de productos e items
     */
     MProductosTotales *m;

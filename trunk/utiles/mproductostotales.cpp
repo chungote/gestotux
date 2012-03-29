@@ -46,6 +46,7 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa
  cantidades->clear();
  _tipoPrecio = MProductosTotales::Venta;
  _admite_duplicados = false;
+ _solo_lectura = false;
 }
 
 
