@@ -46,6 +46,7 @@ public:
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 
     void agregarItem( const int cant, const QString texto, double pu );
+    void agregarItem( const int cant, const int id_producto, double pu );
 
     void recalcularTotal();
     double total();

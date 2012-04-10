@@ -31,6 +31,12 @@ Q_OBJECT
 public:
     MCompraProducto( QObject *parent = 0 );
     bool agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad );
+    void setearId( const int id_compra ) { _id_compra = id_compra; setearFiltro(); }
+
+
+private:
+    int _id_compra;
+    void setearFiltro();
 };
 
 #endif

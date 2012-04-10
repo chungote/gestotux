@@ -44,6 +44,10 @@ private:
     */
     QString filtro;
 
+    int _id;
+
+    bool _inicializado;
+
 };
 
 #endif // ECBCLIENTES_H

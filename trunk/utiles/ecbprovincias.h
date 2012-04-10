@@ -30,7 +30,6 @@ private slots:
     void verificarExiste();
     void inicializar();
     void cambioPais( int pos );
-    void setearIdRetrasado();
 
 private:
    /*!
@@ -49,6 +48,7 @@ private:
     * Identificador para retrasados
     */
     int _id_provincia;
+    bool _inicializado;
 };
 
 #endif // ECBPROVINCIAS_H

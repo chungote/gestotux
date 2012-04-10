@@ -81,10 +81,10 @@ FormModificarPresupuesto::FormModificarPresupuesto(QWidget *parent) :
  */
 void FormModificarPresupuesto::setearIdPresupuesto( QModelIndex idx )
 {
-    int id_presupuesto = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    _id_presupuesto = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
 
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT fecha, serie, numero, id_cliente, destinatario, direccion, observaciones FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+    if( cola.exec( QString( "SELECT fecha, serie, numero, id_cliente, destinatario, direccion, observaciones FROM presupuestos WHERE id_presupuesto = %1" ).arg( _id_presupuesto ) ) ) {
         cola.next();
         dEFecha->setDate( cola.record().value(0).toDate() );
 
@@ -106,7 +106,7 @@ void FormModificarPresupuesto::setearIdPresupuesto( QModelIndex idx )
 
         // Cargo los datos de los items
         MItemPresupuesto *mi = new MItemPresupuesto();
-        mi->setearId( id_presupuesto );
+        mi->setearId( _id_presupuesto );
         for( int i = 0; i < mi->rowCount(); i++ ) {
             // Relleno con los datos
             m->agregarItem(
@@ -143,8 +143,6 @@ void FormModificarPresupuesto::cancelar()
  */
 void FormModificarPresupuesto::guardar( bool cerrar )
 {
- qWarning( "No implementado todavía" );
- return;
  // Verifico que esten todos los datos - fecha valida
  if( !dEFecha->date().isValid() ) {
      QMessageBox::information( this, "Error de fecha", "La fecha no es valida. Ingrese una correcta." );
@@ -168,32 +166,37 @@ void FormModificarPresupuesto::guardar( bool cerrar )
  MPresupuesto *mod = new MPresupuesto();
 
  int id_cliente = CBCliente->idClienteActual();
+ bool estado = mod->modificarPresupuesto( _id_presupuesto,
+                                          id_cliente,
+                                          CBCliente->currentText(),
+                                          LEDireccion->text(),
+                                          dEFecha->dateTime(),
+                                          m->total(),
+                                          observacion );
 
- int id_presupuesto = mod->agregarPresupuesto( id_cliente,
-                                               CBCliente->currentText(),
-                                               LEDireccion->text(),
-                                               dEFecha->dateTime(),
-                                               m->total(),
-                                               observacion );
-
- if( id_presupuesto == -1 ) {
-     qDebug( "Error al intentar agregar un prespuesto." );
-     QMessageBox::information( this, "Error", "No se pudo agregar el presupuesto. No se guardo nada" );
+ if( !estado ) {
+     qDebug( "Error al intentar guardar elprespuesto." );
+     QMessageBox::information( this, "Error", "No se pudo guardar los datos del presupuesto. No se guardo nada" );
      return;
  }
  // tengo el id del presupuesto y procedo a guardar los datos de los items
- //////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////b
  // Guardo los items del presupuesto
  // elimino la fila de total
  m->calcularTotales( false );
  MItemPresupuesto *items = new MItemPresupuesto();
+ if( !items->eliminarItemsDePresupuesto( _id_presupuesto ) ) {
+     qWarning( "No se pudieron eliminar los items del presupuesto" );
+     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+     return;
+ }
  for( int fila = 0; fila< TVContenido->model()->rowCount(); fila++ ) {
-     if( !items->agregarItemPresupuesto( id_presupuesto,
+     if( !items->agregarItemPresupuesto( _id_presupuesto,
                                          m->data( m->index( fila, 0 ), Qt::EditRole ).toDouble(), // Cantidad
                                          m->data( m->index( fila, 1 ), Qt::DisplayRole ).toString(), // Texto
                                          m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()  // Precio unitario
                                        ) ) {
-         qDebug( QString( "No se pudo agregar el item %1 del presupuesto a la base de datos" ).arg( fila ).toLocal8Bit() );
+         qDebug( QString( "No se pudo actualizar el item %1 del presupuesto a la base de datos" ).arg( fila ).toLocal8Bit() );
          QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
          return;
      }
@@ -204,7 +207,7 @@ void FormModificarPresupuesto::guardar( bool cerrar )
  delete mod;
  // Imprimo el presupuesto
  ParameterList lista;
- lista.append( Parameter( "id_presupuesto", id_presupuesto ) );
+ lista.append( Parameter( "id_presupuesto", _id_presupuesto ) );
  if( id_cliente < 0 ) {
      lista.append( Parameter( "cliente_existe", false ) );
      lista.append( Parameter( "direccion", LEDireccion->text() ) );

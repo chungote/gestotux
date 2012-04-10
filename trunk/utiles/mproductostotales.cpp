@@ -533,6 +533,33 @@ void MProductosTotales::agregarItem( const int cant, const QString texto, double
 
 
 /*!
+ * \fn MProductosTotales::agregarItem( const int cant, const int id_producto, const double pu )
+ * Funcion especial que ingresara los elementos sin hacer las verificaciones normales como si fuera un agregado desde la lista de ventas.
+ * Util para mostrar elementos con subtotales y totales en listas estaticas para mostrar por ejemplo elementos de compras.
+ * \param cant Cantidad del item.
+ * \param id_producto Identificador del producto
+ * \param pu Precio unitario del item
+ */
+void MProductosTotales::agregarItem( const int cant, const int id_producto, double pu )
+{
+    int pos = this->cantidades->size();
+    this->insertRow( -1 );
+
+    this->cantidades->insert( pos, cant );
+    this->precio_unitario->insert( pos, pu );
+    this->subtotales->insert( pos, cant * pu );
+
+    // inserto el indice de lo anterior en el mapa de productos
+    this->productos->insert( pos, id_producto );
+
+    if( _calcularTotal )
+        recalcularTotal();
+
+    emit dataChanged( this->index( pos, 0 ), this->index( pos, this->columnCount() ) );
+    emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
+}
+
+/*!
     \fn MProductosTotales::calcularTotales( bool sino  )
     Setea la propiedad de que se caclulen o no los totales.
     Este valor debe de ser seteado antes de asignar el modelo a una vista, ya que modifica la cantidad de columnas.

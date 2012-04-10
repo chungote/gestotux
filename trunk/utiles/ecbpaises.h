@@ -30,9 +30,6 @@ public:
     int idActual();
     void setearId( int id_pais );
 
-public slots:
-    void setearIdRetrasado();
-
 private slots:
     void verificarExiste();
     void inicializar();
@@ -48,6 +45,8 @@ private:
     QString filtro;
 
     int _id_pais;
+
+    bool _inicializado;
     
 };
 

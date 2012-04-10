@@ -27,6 +27,9 @@
 #include "dproductostotales.h"
 #include "mcompraproducto.h"
 #include "eregistroplugins.h"
+#include "mproductos.h"
+#include "formagregarproducto.h"
+#include "preferencias.h"
 
 #include <QMessageBox>
 #include <QTableView>
@@ -34,6 +37,7 @@
 #include <QDate>
 #include <QtSql>
 #include <QLineEdit>
+#include <QInputDialog>
 
 
 FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
@@ -48,46 +52,38 @@ FormAgregarCompra::FormAgregarCompra( MCompra *m, QWidget* parent )
       this->modelo = new MCompra( this, false );
     } else {  this->modelo = m; }
 
-    modeloProveedor = new MProveedor( CBProveedor );
-    CBProveedor->setModel( modeloProveedor );
-    CBProveedor->setModelColumn( 1 );
-    modeloProveedor->select();
-
     DEFecha->setMaximumDate( QDate::currentDate() );
     DEFecha->setDate( QDate::currentDate() );
 
-	PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
-	PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+    PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
+    PBEliminarProducto->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
 
-	connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
-	connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
+    connect( PBAgregarProducto, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
+    connect( PBEliminarProducto, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
 
     // Rellenar los items de productos
     connect( CBProducto, SIGNAL( agregarProducto() ), PBAgregarProducto, SIGNAL( clicked() ) );
 
     mcp = new MProductosTotales( this, CBProducto->listadoProductos() );
-	mcp->calcularTotales( true );
+    mcp->calcularTotales( true );
     mcp->buscarPrecios( true );
     mcp->setearTipoPrecioBuscar( MProductosTotales::Costo );
     TVLista->setModel( mcp );
-	TVLista->setAlternatingRowColors( true );
+    TVLista->setAlternatingRowColors( true );
     TVLista->setItemDelegateForColumn( 1, new DProductosTotales( TVLista ) );
     TVLista->setSelectionBehavior( QAbstractItemView::SelectRows );
-	TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    TVLista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
 
     this->addAction( new EActGuardar( this ) );
     this->addAction( new EActCerrar( this ) );
 
-/*    if( !ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
+    if( !ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
         RBContado->setEnabled( false );
         RBOtro->setChecked( true );
-    }*/
+    }
 }
 
-#include <QInputDialog>
-#include "mproductos.h"
-#include "formagregarproducto.h"
-#include "preferencias.h"
+
 /*!
     \fn FormAgregarCompra::guardar()
  */
@@ -119,13 +115,12 @@ void FormAgregarCompra::guardar()
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
- // veo el id del proveedor
- int id_proveedor = CBProveedor->model()->data( CBProveedor->model()->index( CBProveedor->currentIndex(), 0 ) , Qt::EditRole ).toInt();
  // Genero la compra
  MCompra *compra = new MCompra( this, false );
- if( compra->agregarCompra( DEFecha->date(), id_proveedor, mcp->total(), RBContado->isChecked() ) == false )
+ if( compra->agregarCompra( DEFecha->date(), CBProveedor->idProveedorActual(), mcp->total(), RBContado->isChecked() ) == false )
  {
      QSqlDatabase::database().rollback();
+     mcp->calcularTotales( true );
      return;
  }
  // Busco el ultimo id de compra
@@ -210,6 +205,7 @@ void FormAgregarCompra::guardar()
 
          qWarning( "No se pudo agregar el producto a la compra" );
          QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+         mcp->calcularTotales( true );
          return;
      }
 

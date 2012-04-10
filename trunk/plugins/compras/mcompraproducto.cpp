@@ -99,3 +99,13 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
     }
     return false;
 }
+
+void MCompraProducto::setearFiltro()
+{
+    if( _id_compra > 0 ) {
+        this->setFilter( QString( "id_compra = %1" ).arg( _id_compra ) );
+    } else {
+        this->setFilter( "" );
+    }
+    this->select();
+}

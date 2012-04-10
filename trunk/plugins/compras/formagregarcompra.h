@@ -38,7 +38,6 @@ public:
   FormAgregarCompra( MCompra *m = 0, QWidget* parent = 0  );
 
 private:
-  MProveedor *modeloProveedor;
   MCompra *modelo;
   MProductosTotales *mcp;
 
