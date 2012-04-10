@@ -55,7 +55,6 @@
 
 -- Servicios --
 ---------------
-- Probar sistema de baja de servicios.
 - Colocar el control de recargos en el sistema de chequeo automatico en el inicio.
 
 -- Compras --

@@ -38,7 +38,6 @@ protected slots:
     void eliminar();
     void verLista( const QModelIndex& indice );
     void verLista();
-
 };
 
 #endif

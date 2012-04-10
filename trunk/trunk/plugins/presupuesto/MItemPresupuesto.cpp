@@ -94,3 +94,22 @@ void MItemPresupuesto::setearId(const int id_presupuesto)
 {
     this->setFilter( QString( " id_presupuesto = %1 " ).arg( id_presupuesto ) );
 }
+
+/*!
+ * \fn MItemPresupuesto::eliminarItemsDePresupuesto( const int id_presupuesto )
+ * Elimina todos los items de un presupuesto pasado como parametro
+ * \param id_presupuesto Identificador del presupuesto al que se le desean eliminar los items
+ * \returns Verdadero si se pudo eliminar los items
+ */
+bool MItemPresupuesto::eliminarItemsDePresupuesto(const int id_presupuesto)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "DELETE FROM item_presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+        return true;
+    } else {
+        qDebug( "Error de exec al intentar ejecutar la cola de eliminacion de items del presupeusto" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        return false;
+    }
+}

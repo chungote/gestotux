@@ -39,6 +39,7 @@ public:
     void relacionar();
 
     bool agregarCompra( QVariant fecha, QVariant proveedor, double total, bool contado );
+    bool modificarCompra( const int id_compra, QDate fecha, int proveedor, double total, bool contado, QModelIndex indice );
     int ultimoId();
     bool eliminarCompra( int id_compra );
 

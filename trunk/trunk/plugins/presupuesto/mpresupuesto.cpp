@@ -147,3 +147,19 @@ int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QStr
         return -1;
     }
 }
+
+/*!
+ * \fn MPresupuesto::modificarPresupuesto( int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones )
+ * Modifica los datos del presupuesto pasado como parametro
+ * \param id_presupuesto Identificar del presupuesto a modificar
+ * \param id_cliente Identificador del cliente al cual está dirigido el presupuesto
+ * \param texto_cliente Texto que debe aparecer en el item del presupuesto
+ * \param direccion Dirección que aparecerá en el presupuesto
+ * \param fechahora Fecha y Hora en que se generó el presupuesto
+ * \param total Total del presupuesto
+ * \param observaciones Observaciones agregadas al presupuesto
+ * \returns Verdadero si no hubo error al guardar los datos del presupuesto.
+ */
+bool MPresupuesto::modificarPresupuesto(int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones)
+{
+}

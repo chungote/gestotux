@@ -30,6 +30,7 @@ public:
     explicit MItemPresupuesto(QObject *parent = 0);
     bool agregarItemPresupuesto( const int id_presupuesto, const double cantidad, const QString texto, const double precio_unitario );
     void setearId( const int id_presupuesto );
+    bool eliminarItemsDePresupuesto( const int id_presupuesto );
 
 private:
     void inicializar();

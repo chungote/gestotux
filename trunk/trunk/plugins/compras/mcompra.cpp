@@ -19,9 +19,15 @@
  ***************************************************************************/
 #include "mcompra.h"
 
+#include "mmovimientoscaja.h"
+#include "mcajas.h"
+#include "eregistroplugins.h"
+
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDate>
+#include <QSqlQuery>
+#include <QSqlDatabase>
 
 MCompra::MCompra(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
@@ -46,9 +52,7 @@ void MCompra::relacionar()
     setRelation( 1, QSqlRelation( "proveedor", "id", "nombre" ) );
 }
 
-#include "mmovimientoscaja.h"
-#include "mcajas.h"
-#include "eregistroplugins.h"
+
 /*!
     \fn MCompra::agregarCompra( QVariant fecha, QVariant proveedor )
 	Función que agrega un registro de compra directamente
@@ -91,6 +95,63 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, b
  }
  else
  { return true; }
+}
+
+bool MCompra::modificarCompra(const int id_compra, QDate fecha, int proveedor, double total, bool contado, QModelIndex indice )
+{
+    QSqlQuery cola;
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
+    if( contado ) {
+        // Busco si hay diferencias con el valor real de la compra que estaba guardado
+        if( cola.exec( QString( "SELECT total FROM compras WHERE id_compra = %1" ).arg( id_compra ) ) ) {
+            cola.next();
+            double total_ant = cola.record().value(0).toDouble();
+            if( total_ant != total ) {
+                // Ingreso una entrada en la caja con la diferencia apuntando hacia el registro de la compra actual
+                // Esto va a provocar que existan 2 entradas en la caja con referencia hacia la misma compra
+                MMovimientosCaja *mc = new MMovimientosCaja();
+                double importe = total - total_ant;
+                if( importe > 0 ) {
+                    // La compra actual necesita debitar plata de la caja
+                    if( !mc->agregarMovimiento( MCajas::cajaPredeterminada(), "Ajuste de importe de una compra", QString(), 0.0, importe ) ) {
+                        qWarning( "No se pudo ajustar el saldo de la caja con los nuevos datos de la compra" );
+                        qDebug( "No se pudo insertar el movimiento de caja de ajuste" );
+                        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                        return false;
+                    }
+                } else {
+                    // La compra actual fue por menos que la compra anterior. Se acredita a la caja.
+                    if( !mc->agregarMovimiento( MCajas::cajaPredeterminada(), "Ajuste de importe de una compra", QString(), importe ) ) {
+                        qWarning( "No se pudo ajustar el saldo de la caja con los nuevos datos de la compra" );
+                        qDebug( "No se pudo insertar el movimiento de caja de ajuste" );
+                        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                        return false;
+                    }
+                }
+                delete mc;
+            }
+        } else {
+            qWarning( "Error al buscar el importe de la compra seleccionada" );
+            qDebug( "Error al ejecutar la cola de busqueda de importe del registro de compra para comparar al modificar" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+            return false;
+        }
+    }
+    // Actualizo los datos
+    // El id de caja no se modifica
+    int row = indice.row();
+    setData( index( row, fieldIndex( "fecha" ) ), fecha );
+    setData( index( row, fieldIndex( "id_proveedor" ) ), proveedor );
+    setData( index( row, fieldIndex( "total" ) ), total );
+    submit();
+    if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
+        return true;
+    } else {
+        qWarning( "No se pudo completar la transacción de la modificaciones de la compra." );
+        return false;
+    }
 }
 
 
@@ -138,7 +199,12 @@ QVariant MCompra::data(const QModelIndex &index, int role ) const
 	{
 		switch( index.column() )
 		{
-			case 3:
+                        case 1:
+                        {
+                                return QSqlRelationalTableModel::data( index, role ).toInt();
+                                break;
+                        }
+                        case 3:
 			{
 				return QSqlRelationalTableModel::data( index, role ).toDouble();
 				break;

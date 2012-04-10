@@ -20,6 +20,7 @@
 #include "vcompras.h"
 
 #include "mcompra.h"
+#include "formagregarcompra.h"
 
 #include "dsino.h"
 
@@ -42,6 +43,7 @@ VCompras::VCompras(QWidget *parent)
  vista->setItemDelegateForColumn( 5, new DSiNo( vista ) );
 
  ActAgregar->setIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
+ ActModificar->setIcon( QIcon( ":/imagenes/editar_compras.png" ) );
 
  QAction *ActVerLista = new QAction( this );
  ActVerLista->setText( "Ver Productos" );
@@ -56,15 +58,12 @@ VCompras::VCompras(QWidget *parent)
  habilitarBusqueda();
 
  addAction( ActAgregar );
- //addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActVerLista );
  addAction( ActVerTodos );
  addAction( ActBuscar );
  addAction( ActCerrar );
 }
-
-#include "formagregarcompra.h"
 
 /*!
  * \fn VCompras::agregar( bool autoeliminarid )

@@ -19,6 +19,7 @@ ECBProvincias::ECBProvincias(QWidget *parent) :
     ids = new QList<int>();
 
     _id_provincia = -1;
+    _inicializado = false;
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
 }
@@ -28,6 +29,7 @@ void ECBProvincias::setearFiltro( const QString f ) {
     // Hago la carga diferida
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
+    _inicializado = false;
 }
 
 ECBProvincias::~ECBProvincias()
@@ -47,9 +49,12 @@ void ECBProvincias::inicializar()
     this->clear();
     if( cola.exec( QString( "SELECT id_provincia, nombre FROM provincias %1 ORDER BY nombre ASC" ).arg( filtro ) ) ) {
         int pos = 0;
+        int npos = -1;
         while( cola.next() ) {
             this->insertItem( pos, cola.record().value(1).toString() );
-            ids->insert( pos, cola.record().value(0).toInt() );
+            int id = cola.record().value(0).toInt();
+            if( id == _id_provincia ) { npos = pos; }
+            ids->insert( pos, id );
             pos++;
         }
         if( pos == 0 ) {
@@ -59,7 +64,7 @@ void ECBProvincias::inicializar()
             return;
         }
         this->setEnabled( true );
-        this->setCurrentIndex( this->ids->indexOf( _id_provincia ) );
+        this->setCurrentIndex( npos );
     } else {
         qWarning( "ECBProvincias::inicializar: Error al intentar ejecutar la cola para cargar las provincias" );
         qDebug( cola.lastError().text().toLocal8Bit() );
@@ -93,26 +98,13 @@ int ECBProvincias::idActual()
 void ECBProvincias::setearId( const int id_provincia )
 {
     if( id_provincia <= 0 ) { return; }
-    if( this->ids->isEmpty() ) {
-        QTimer timer;
+    if( ! _inicializado ) {
         this->_id_provincia = id_provincia;
-        timer.singleShot( 900, this, SLOT( setearIdRetrasado() ) );
         return;
     }
     int pos = this->ids->indexOf( id_provincia );
     if( pos < 0 ) {
         qDebug( QString( "ECBProvincias::setearId: Error buscando el id de provincia desde cbprovincias: id = %1" ).arg( id_provincia ).toLocal8Bit() );
-        this->setCurrentIndex( -1 );
-    } else {
-        this->setCurrentIndex( pos );
-    }
-}
-
-void ECBProvincias::setearIdRetrasado()
-{
-    int pos = this->ids->indexOf( _id_provincia );
-    if( pos < 0 ) {
-        qDebug( QString( "ECBProvincias::setearId: Error buscando el id de provincia desde cbprovincias: id = %1" ).arg( _id_provincia ).toLocal8Bit() );
         this->setCurrentIndex( -1 );
     } else {
         this->setCurrentIndex( pos );
