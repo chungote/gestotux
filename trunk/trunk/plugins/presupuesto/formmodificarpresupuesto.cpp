@@ -107,6 +107,7 @@ void FormModificarPresupuesto::setearIdPresupuesto( QModelIndex idx )
         // Cargo los datos de los items
         MItemPresupuesto *mi = new MItemPresupuesto();
         mi->setearId( _id_presupuesto );
+        mi->select();
         for( int i = 0; i < mi->rowCount(); i++ ) {
             // Relleno con los datos
             m->agregarItem(
@@ -177,8 +178,10 @@ void FormModificarPresupuesto::guardar( bool cerrar )
  if( !estado ) {
      qDebug( "Error al intentar guardar elprespuesto." );
      QMessageBox::information( this, "Error", "No se pudo guardar los datos del presupuesto. No se guardo nada" );
+     delete mod;
      return;
  }
+ delete mod;
  // tengo el id del presupuesto y procedo a guardar los datos de los items
  //////////////////////////////////////////////////////////////////////////b
  // Guardo los items del presupuesto
@@ -188,6 +191,7 @@ void FormModificarPresupuesto::guardar( bool cerrar )
  if( !items->eliminarItemsDePresupuesto( _id_presupuesto ) ) {
      qWarning( "No se pudieron eliminar los items del presupuesto" );
      QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+     delete items;
      return;
  }
  for( int fila = 0; fila< TVContenido->model()->rowCount(); fila++ ) {
@@ -204,7 +208,6 @@ void FormModificarPresupuesto::guardar( bool cerrar )
  // Si llego hasta aca, termine de guardar todos los datos y ninguno fallo
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
  delete items;
- delete mod;
  // Imprimo el presupuesto
  ParameterList lista;
  lista.append( Parameter( "id_presupuesto", _id_presupuesto ) );

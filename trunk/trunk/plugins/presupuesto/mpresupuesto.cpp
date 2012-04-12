@@ -162,4 +162,30 @@ int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QStr
  */
 bool MPresupuesto::modificarPresupuesto(int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones)
 {
+    QSqlQuery cola;
+    if( !cola.exec( QString(
+                        "UPDATE presupuestos "
+                        "SET `id_cliente` = %2,  "
+                        "`destinatario` = '%3',  "
+                        "`direccion` = '%4',  "
+                        "`fecha` = '%5',  "
+                        "`total` = %6,  "
+                        "`observaciones` = '%7'  "
+                        "WHERE id_presupuesto = %1 "
+                        )
+                    .arg( id_presupuesto )
+                    .arg( id_cliente )
+                    .arg( texto_cliente )
+                    .arg( direccion )
+                    .arg( fechahora.toString( Qt::ISODate ) )
+                    .arg( total )
+                    .arg( observaciones ) ) ) {
+        qWarning( "Hubo un error al guardar los datos del presupuesto" );
+        qDebug( "Error de exec al actualizar los datos del presupuesto." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
+    } else {
+        return true;
+    }
 }

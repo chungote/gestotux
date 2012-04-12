@@ -109,7 +109,9 @@ private:
          * Define si permite que existan duplicados de los items dentro del producto
          */
         bool _admite_duplicados;
-
+       /*!
+        * Define si se permite edicion de los items
+        */
         bool _solo_lectura;
         /*!
          * Define que tipo de precio Costo o Venta se buscará
