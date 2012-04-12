@@ -135,10 +135,17 @@ void VCliente::listadoClientes() {
     }
     // Hago el listado de clientes
     EReporte *rep = new EReporte( this );
-    rep->especial( "ListadoClientes", ParameterList() );
+    ParameterList lista;
+    QString filtro = this->mc->filter();
+    if( filtro.isEmpty() ) {
+        filtro = " 1=1 ";
+    }
+    lista.append( Parameter( "filtro", this->mc->filter() ) );
+    rep->especial( "ListadoClientes", lista );
     if( !rep->hacer() ) {
         QMessageBox::warning( this, "Error", "No se pudo realizar el reporte" );
     }
+    delete rep;
 }
 
 void VCliente::eliminar()
@@ -151,8 +158,12 @@ void VCliente::eliminar()
     }
     else
     {
-        // ver como eliminar
-        qWarning( "No implementado" );
+        if( this->mc->removeRow( idx.row() ) ) {
+            QMessageBox::information( this, "Correcto", QString::fromUtf8( "El cliente ha sido eliminado correctamente" ) );
+            return;
+        } else {
+            qWarning( "No se pudo eliminar el cliente" );
+        }
     }
     return;
 }
