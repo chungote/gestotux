@@ -7,7 +7,7 @@
 #include "math.h"
 #include <QMessageBox>
 
-MPeriodoServicio::MPeriodoServicio(QObject *parent) :
+MPeriodoServicio::MPeriodoServicio( QObject *parent ) :
 QSqlRelationalTableModel( parent ) {
     //inicializar();
 }
@@ -17,9 +17,9 @@ void MPeriodoServicio::inicializar() {
     setTable( "periodo_servicio" );
     setHeaderData( 0, Qt::Horizontal, "#ID" );
     setHeaderData( 1, Qt::Horizontal, "#Servicio" );
-    setHeaderData( 2, Qt::Horizontal, "Fecha de Facturacion" );
-    setHeaderData( 3, Qt::Horizontal, "Periodo" );
-    setHeaderData( 4, Qt::Horizontal, QString::fromUtf8( "Año" ) );
+    setHeaderData( 2, Qt::Horizontal, "Periodo" );
+    setHeaderData( 3, Qt::Horizontal, QString::fromUtf8( "Año" ) );
+    setHeaderData( 4, Qt::Horizontal, "Fecha de Facturacion" );
     setHeaderData( 5, Qt::Horizontal, "Fecha de Inicio" );
     setHeaderData( 6, Qt::Horizontal, "Fecha de Fin" );
 }
@@ -30,17 +30,21 @@ QVariant MPeriodoServicio::data(const QModelIndex &item, int role) const
         case Qt::DisplayRole:
         {
             switch( item.column() ) {
-                case 2:
                 case 5:
                 case 6:
                 {
                     return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::SystemLocaleShortDate );
                     break;
                 }
+                case 2:
                 case 3:
-                case 4:
                 {
                     return QSqlRelationalTableModel::data( item, role ).toInt();
+                    break;
+                }
+                case 4:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toDateTime().toString( Qt::SystemLocaleShortDate );
                     break;
                 }
                 default:
@@ -51,10 +55,40 @@ QVariant MPeriodoServicio::data(const QModelIndex &item, int role) const
             }
             break;
         }
-    /*    case Qt::TextAlignmentRole:
+        case Qt::TextAlignmentRole:
         {
-
-        }*/
+            return int( Qt::AlignCenter | Qt::AlignVCenter );
+        }
+        case Qt::EditRole:
+        {
+            switch( item.column() ) {
+                case 5:
+                case 6:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toDate();
+                    break;
+                }
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toInt();
+                    break;
+                }
+                case 4:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toDateTime();
+                    break;
+                }
+                default:
+                {
+                    return QSqlRelationalTableModel::data( item, role );
+                    break;
+                }
+            }
+            break;
+        }
         default:
         {
             return QSqlRelationalTableModel::data( item, role );
@@ -63,12 +97,10 @@ QVariant MPeriodoServicio::data(const QModelIndex &item, int role) const
     }
 }
 
-/*
+
 void MPeriodoServicio::relacionar() {
     setRelation( 1, QSqlRelation( "id_servicio", "servicios", "nombre" ) );
 }
-
-*/
 
 /*!
  * \fn MPeriodoServicio::agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin )
@@ -232,6 +264,29 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
         }
         default:
         { return 0; }
+    }
+}
+
+/*!
+ * \fn MPeriodoServicio::existeFacturacion( const int id_servicio )
+ * Devuelve verdadero si existe alguna facturación para el servicio elegido como parametro
+ * \param id_servicio Identificador del servicio
+ **/
+bool MPeriodoServicio::existeFacturacion(const int id_servicio)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM periodo_servicio WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        qDebug( "Servicios::MPeriodoServicio::existeFacturacion: Error en el exec de la cola actual" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return false;
     }
 }
 

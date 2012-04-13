@@ -49,7 +49,8 @@ HEADERS =   ../caja/mcajas.h \
            formmodificarservicio.h \
            FormVerificarRecargos.h \
     eserviciosdelegate.h \
-    vlistaperiodos.h
+    vlistaperiodos.h \
+    formfacturacionemitida.h
 
 
 SOURCES = servicios.cpp \
@@ -75,7 +76,8 @@ SOURCES = servicios.cpp \
            formmodificarservicio.cpp \
            FormVerificarRecargos.cpp \
     eserviciosdelegate.cpp \
-    vlistaperiodos.cpp
+    vlistaperiodos.cpp \
+    formfacturacionemitida.cpp
 
 RESOURCES += servicios.qrc
 
@@ -86,7 +88,8 @@ FORMS += FormAsociarBase.ui \
          FormRecargoBase.ui \
          FormClientesAdheridosBase.ui \
          FormFacturarServicioBase.ui \
-    FormVerificarRecargos.ui
+    FormVerificarRecargos.ui \
+    formfacturacionemitida.ui
 
 OTHER_FILES += servicios.QMYSQL.sql \
                servicios.QSQLITE.sql

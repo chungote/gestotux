@@ -23,6 +23,7 @@
 #include "formasociarserviciocliente.h"
 #include "formservicio.h"
 #include "FormFacturarServicio.h"
+#include "mperiodoservicio.h"
 
 #include <QTableView>
 #include <QAction>
@@ -286,5 +287,9 @@ void VServicios::verPeriodos()
       return;
     }
     int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
+    if( !MPeriodoServicio::existeFacturacion( id_servicio )  ) {
+        QMessageBox::warning( this, "No hay facturacion", QString::fromUtf8( "No se ha generado ninguna facturación para este servicio." ) );
+        return;
+    }
     emit agregarVentana( new VListaPeriodos( id_servicio ) );
 }

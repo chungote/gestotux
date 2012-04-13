@@ -18,18 +18,21 @@ class MPeriodoServicio : public QSqlRelationalTableModel
 public:
     explicit MPeriodoServicio(QObject *parent = 0);
     void inicializar();
-    /*void relacionar();*/
+    void relacionar();
     QVariant data(const QModelIndex &item, int role) const;
 
-    static int agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin );
-    static QDate ultimaFechaDeServicio( const int id_servicio );
-    static QDate obtenerFechaFinPeriodo( const int id_servicio, const QDate fecha_inicio );
+
     int agregarPeriodoAFacturarNuevo( const int id_servicio );
     int getPeriodoActual( const int id_servicio, bool facturar = false );
     int getAnoActual( const int id_servicio, bool facturar = false  );
     QDate getFechaInicioPeriodoActual( const int id_servicio, bool facturar = false );
     QDate generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano );
+
+    static int agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin );
+    static QDate ultimaFechaDeServicio( const int id_servicio );
+    static QDate obtenerFechaFinPeriodo( const int id_servicio, const QDate fecha_inicio );
     static int diasEnPeriodo( const int id_servicio, const QDate fecha_inicio = QDate::currentDate() );
+    static bool existeFacturacion( const int id_servicio );
 
 private:
     static int diasEnPeriodoServicio( const int tipo_periodo, QDate fecha_calculo );
