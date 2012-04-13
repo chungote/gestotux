@@ -10,6 +10,10 @@ class VListaPeriodos : public EVLista
 public:
     explicit VListaPeriodos( int id_servicio, QWidget *parent = 0 );
     
+protected slots:
+    void verFacturacion( QModelIndex idx );
+    void verFacturacion();
+
 private:
     MPeriodoServicio *modelo;
     
