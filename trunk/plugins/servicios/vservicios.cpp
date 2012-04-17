@@ -67,7 +67,8 @@ VServicios::VServicios(QWidget *parent)
  connect( ActGenerarFacturacion, SIGNAL( triggered() ), this, SLOT( generarFacturacion() ) );
 
  ActVerPeriodosFacturados = new QAction( this );
- ActVerPeriodosFacturados->setText( "Ver facturacion" );
+ ActVerPeriodosFacturados->setText( "Ver periodos" );
+ ActVerPeriodosFacturados->setStatusTip( "Permite obtener una lista de todos los periodos facturados del servicio seleccionado" );
  connect( ActVerPeriodosFacturados, SIGNAL( triggered() ), this, SLOT( verPeriodos() ) );
 
  ActRecargos = new QAction( this );

@@ -94,15 +94,16 @@ ECBTabla::~ECBTabla()
  */
 void ECBTabla::inicializar()
 {
-    if( _tabla.isEmpty() )       { qWarning( "No se seteo la tabla para el modelo." );          return; }
-    if( _campo_id.isEmpty() )    { qWarning( "No se seteo el campo de id para el modelo." );    return; }
-    if( _campo_texto.isEmpty() ) { qWarning( "No se seteo el campo de texto para el modelo." ); return; }
-    if( _campo_orden.isEmpty() ) { qWarning( "No se seteo el campo de orden para el modelo." ); return; }
+    if( _tabla.isEmpty() )        { qWarning( "No se seteo la tabla para el modelo." );          return; }
+    if( _campo_id.isEmpty() )     { qWarning( "No se seteo el campo de id para el modelo." );    return; }
+    if( _campo_texto.isEmpty() )  { qWarning( "No se seteo el campo de texto para el modelo." ); return; }
+
+    if( !_campo_orden.isEmpty() ) { _campo_orden.prepend( " ORDER BY " ); }
     // Cargo los datos del modelo
     QSqlQuery cola;
     // Limpio el combobox para que no cargue datos repetidos
     this->clear();
-    if( cola.exec( QString( "SELECT %1, %2 FROM %3 %4 ORDER BY %5 ASC" )
+    if( cola.exec( QString( "SELECT %1, %2 FROM %3 %4 %5" )
                    .arg( _campo_id )
                    .arg( _campo_texto )
                    .arg( _tabla )
@@ -118,8 +119,9 @@ void ECBTabla::inicializar()
             pos++;
         }
         if( pos == 0 ) {
-            qWarning( "No hay ningun dato para cargar!" );
+            qDebug( "No hay ningun dato para cargar!" );
             this->lineEdit()->setText( "No hay datos cargados..." );
+            qDebug( cola.lastQuery().toLocal8Bit() );
         }
         this->setEnabled( true );
         this->setCurrentIndex( npos );
@@ -150,11 +152,19 @@ void ECBTabla::setearId( const int id )
         _id = id;
         return;
     }
+    if( this->ids->isEmpty() || this->count() == 0 ) {
+        return;
+    }
+    if( id <= 0 ) {
+        qDebug( "ID Erroneo: < o = que cero " );
+        return;
+    }
     int pos = this->ids->indexOf( id );
     if( pos < 0 ) {
         qDebug( "Error buscando el id de cliente desde cbcliente" );
         this->setCurrentIndex( -1 );
     } else {
+        qDebug( QString( "Seteando pos = %1" ).arg( pos ).toLocal8Bit() );
         this->setCurrentIndex( pos );
         emit cambioId( idActual() );
     }
