@@ -1,6 +1,7 @@
 #include "vlistaperiodos.h"
 
 #include "mperiodoservicio.h"
+#include "formfacturacionemitida.h"
 
 #include <QTableView>
 #include <QSqlTableModel>
@@ -43,5 +44,13 @@ void VListaPeriodos::verFacturacion()
 
 void VListaPeriodos::verFacturacion( QModelIndex idx )
 {
-
+    if( !idx.isValid() ) {
+        QMessageBox::warning( this, "Error", "Indice invalido" );
+        return;
+    }
+    FormFacturacionEmitida *f = new FormFacturacionEmitida( this );
+    int fila = idx.row();
+    f->setearIdServicio( modelo->data( modelo->index( fila, modelo->fieldIndex( "id_servicio" ) ), Qt::EditRole ).toInt() );
+    f->setearIdPeriodo( modelo->data( modelo->index( fila, modelo->fieldIndex( "id_periodo_servicio" ) ), Qt::EditRole ).toInt() );
+    emit agregarVentana( f );
 }
