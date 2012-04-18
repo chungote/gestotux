@@ -4,8 +4,10 @@
 #include "mperiodoservicio.h"
 #include "eactcerrar.h"
 #include "EReporte.h"
+#include "eregistroplugins.h"
 
 #include <QSqlQueryModel>
+#include <QSqlQuery>
 #include <QMessageBox>
 
 FormFacturacionEmitida::FormFacturacionEmitida(QWidget *parent) :
@@ -38,7 +40,22 @@ FormFacturacionEmitida::FormFacturacionEmitida(QWidget *parent) :
     mpagado->setHeaderData( 1, Qt::Horizontal, "Importe" );
 
     TVDeudor->setModel( mdeudor );
+    TVDeudor->setAlternatingRowColors( true );
+    TVDeudor->setSortingEnabled( true );
+    TVDeudor->setSelectionMode( QAbstractItemView::SingleSelection );
+    TVDeudor->setSelectionBehavior( QAbstractItemView::SelectRows );
+    TVDeudor->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    TVDeudor->horizontalHeader()->setResizeMode( 0, QHeaderView::Stretch );
+    TVDeudor->setTextElideMode( Qt::ElideRight );
+
     TVPagada->setModel( mpagado );
+    TVPagada->setSelectionMode( QAbstractItemView::SingleSelection );
+    TVPagada->setSelectionBehavior( QAbstractItemView::SelectRows );
+    TVPagada->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    TVPagada->horizontalHeader()->setResizeMode( 0, QHeaderView::Stretch );
+    TVPagada->setTextElideMode( Qt::ElideRight );
+    TVPagada->setAlternatingRowColors( true );
+    TVPagada->setSortingEnabled( true );
 
     connect( CBServicio, SIGNAL( cambioId( int ) ), this, SLOT( cambioServicio( int ) ) );
     connect( CBPeriodo , SIGNAL( cambioId( int ) ), this, SLOT( cambioPeriodo(  int ) ) );
@@ -51,6 +68,7 @@ FormFacturacionEmitida::FormFacturacionEmitida(QWidget *parent) :
 
     ActListadoGeneral = new QAction( this );
     ActListadoGeneral->setText( "Listado Deudores" );
+    ActListadoGeneral->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
     ActListadoGeneral->setStatusTip( "Imprime un listado de todos los deudores de todos los periodos del servicio seleccionado" );
     connect( ActListadoGeneral, SIGNAL( triggered() ), this, SLOT( imprimirListadoGeneral() ) );
 
@@ -111,36 +129,54 @@ void FormFacturacionEmitida::cambioPeriodo( int id_periodo )
 
 void FormFacturacionEmitida::cargarDatos()
 {
-    mdeudor->setQuery( QString( "SELECT "
-                                /*" cscp.id_periodo_servicio,"
-                                " cscp.id_cliente, "
-                                " cscp.id_factura, "*/
-                                " c.razon_social, "
-                                " f.total "
-                                "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `factura` AS f"
-                                "WHERE cscp.id_cliente = c.id "
-                                " AND cscp.id_factura = f.id_factura "
-                                " AND cscp.id_servicio = %1 "
-                                " AND cscp.id_periodo_servicio = %2 "
-                                " AND cscp.id_recibo IS NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+        mdeudor->setQuery( QString( "SELECT c.razon_social, "
+                                    "       r.precio "
+                                    "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `recibos` AS r "
+                                    "WHERE cscp.id_cliente = c.id "
+                                    "  AND cscp.id_factura = r.id_recibo "
+                                    "  AND cscp.id_servicio = %1 "
+                                    "  AND cscp.id_periodo_servicio = %2 "
+                                    "  AND cscp.id_recibo IS NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
+    } else {
+        mdeudor->setQuery( QString( "SELECT c.razon_social, "
+                                    "       f.total "
+                                    "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `factura` AS f "
+                                    "WHERE cscp.id_cliente = c.id "
+                                    "  AND cscp.id_factura = f.id_factura "
+                                    "  AND cscp.id_servicio = %1 "
+                                    "  AND cscp.id_periodo_servicio = %2 "
+                                    "  AND cscp.id_recibo IS NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
+    }
+    qDebug( mdeudor->query().lastQuery().toLocal8Bit() );
 }
 
 void FormFacturacionEmitida::cambioHabilitadoPagados( bool estado )
 {
     if( estado ) {
         GBPagado->setVisible( true );
-        mpagado->setQuery( QString( "SELECT "
-                                     /*" cscp.id_periodo_servicio,"
-                                     " cscp.id_cliente, "
-                                     " cscp.id_factura, "*/
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+            mpagado->setQuery( QString( "SELECT "
+                                     " c.razon_social, "
+                                     " r.precio "
+                                     "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `recibo` AS r "
+                                     "WHERE cscp.id_cliente = c.id "
+                                     " AND cscp.id_factura = r.id_recibo "
+                                     " AND cscp.id_servicio = %1 "
+                                     " AND cscp.id_periodo_servicio = %2 "
+                                     " AND cscp.id_recibo IS NOT NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
+        } else {
+            mpagado->setQuery( QString( "SELECT "
                                      " c.razon_social, "
                                      " f.total "
-                                     "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `factura` AS f"
+                                     "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `factura` AS f "
                                      "WHERE cscp.id_cliente = c.id "
                                      " AND cscp.id_factura = f.id_factura "
                                      " AND cscp.id_servicio = %1 "
                                      " AND cscp.id_periodo_servicio = %2 "
                                      " AND cscp.id_recibo IS NOT NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
+        }
+        qDebug( mpagado->query().lastQuery().toLocal8Bit() );
     } else {
         mpagado->clear();
         GBPagado->setVisible( false );
@@ -153,7 +189,11 @@ void FormFacturacionEmitida::imprimirListadoGeneral()
     EReporte *rep = new EReporte( 0 );
     ParameterList lista;
     lista.append( "id_servicio", CBServicio->idActual() );
-    rep->especial( "ListadoDeudoresServicios", lista );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+        rep->especial( "ListadoDeudoresServiciosHC", lista );
+    } else {
+        rep->especial( "ListadoDeudoresServicios", lista );
+    }
     rep->hacer();
     delete rep;
 }
@@ -163,8 +203,13 @@ void FormFacturacionEmitida::imprimirListadoGeneralPDF()
     // Busco el id que está del servicio
     EReporte *rep = new EReporte( 0 );
     ParameterList lista;
-    lista.append( "id_servicio", CBServicio->idActual() );
-    rep->especial( "ListadoDeudoresServicios", lista );
-    rep->hacerPDF();
+    int id_servicio = CBServicio->idActual();
+    lista.append( "id_servicio", id_servicio );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+        rep->especial( "ListadoDeudoresServiciosHC", lista );
+    } else {
+        rep->especial( "ListadoDeudoresServicios", lista );
+    }
+    rep->hacerPDF( lista, QString( "Lista Deudores del servicio %1 al %2" ).arg( MServicios::getNombreServicio( id_servicio ) ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
     delete rep;
 }

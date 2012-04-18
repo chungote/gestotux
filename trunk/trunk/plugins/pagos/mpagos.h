@@ -60,13 +60,14 @@ public:
     int buscarIdPorSerieNumero( const int serie, const int numero );
     int buscarIdCliente( NumeroComprobante num );
     double buscarImporte( NumeroComprobante num );
-    NumeroComprobante &buscarNumeroComprobantePorId( const int id_recibo );
+
     bool cancelarRecibo( const int id_recibo, QString razon, QDateTime fechahora );
 
     static NumeroComprobante &buscarMenorSerieNumeroPagado();
     static int numeroSerieActual();
     static int numeroReciboActual( const int serie );
     static NumeroComprobante &proximoSerieNumeroRecibo();
+    static NumeroComprobante &buscarNumeroComprobantePorId( const int id_recibo );
 
 
 private:

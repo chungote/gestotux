@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller                                  *
+ *   tranfuga25s@gmail.com                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -160,7 +160,7 @@ int MPresupuesto::agregarPresupuesto(int id_cliente, QString texto_cliente, QStr
  * \param observaciones Observaciones agregadas al presupuesto
  * \returns Verdadero si no hubo error al guardar los datos del presupuesto.
  */
-bool MPresupuesto::modificarPresupuesto(int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones)
+bool MPresupuesto::modificarPresupuesto( int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones )
 {
     QSqlQuery cola;
     if( !cola.exec( QString(

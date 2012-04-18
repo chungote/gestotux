@@ -87,10 +87,18 @@ VServicios::VServicios(QWidget *parent)
  QAction *ActSep2 = new QAction( this );
  ActSep2->setSeparator( true );
 
+ ActVerDadosBaja = new QAction( this );
+ ActVerDadosBaja->setText( "Ver dados de baja" );
+ ActVerDadosBaja->setCheckable( true );
+ ActVerDadosBaja->setChecked( false );
+ cambioVerBaja( ActVerDadosBaja->isChecked() );
+ connect( ActVerDadosBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerBaja( bool ) ) );
+
  addAction( ActAgregar );
  addAction( ActModificar );
  //addAction( ActEliminar );
  addAction( ActSep );
+
  addAction( ActNuevoCliente );
  addAction( ActVerClientes );
  addAction( ActGenerarFacturacion );
@@ -98,7 +106,9 @@ VServicios::VServicios(QWidget *parent)
  addAction( ActRecargos );
  addAction( ActDarDeBaja );
  addAction( ActSep2 );
+
  addAction( ActCerrar );
+ addAction( ActVerDadosBaja );
 }
 
 void VServicios::agregar( bool /*autoeliminarid*/ )
@@ -177,6 +187,7 @@ void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
  menu->addSeparator();
  menu->addAction( ActGenerarFacturacion );
  menu->addAction( ActRecargos );
+ menu->addAction( ActVerPeriodosFacturados );
  indiceMenu = indice;
  return;
 }
@@ -293,4 +304,13 @@ void VServicios::verPeriodos()
         return;
     }
     emit agregarVentana( new VListaPeriodos( id_servicio ) );
+}
+
+void VServicios::cambioVerBaja( bool estado )
+{
+    if( estado ) {
+        modelo->setFilter( "" );
+    } else {
+        modelo->setFilter( " fecha_baja IS NULL " );
+    }
 }
