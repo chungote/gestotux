@@ -61,7 +61,7 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="GBDeudor">
       <property name="title">
        <string>Facturación no pagada</string>
       </property>
@@ -71,7 +71,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QGroupBox" name="groupBox_2">
+     <widget class="QGroupBox" name="GBPagado">
       <property name="title">
        <string>Facturacion Pagada</string>
       </property>
