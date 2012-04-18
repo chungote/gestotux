@@ -17,17 +17,25 @@ public:
 protected slots:
     void cambioServicio( int id_servicio );
     void cambioPeriodo( int id_periodo );
+    void cambioHabilitadoPagados( bool estado );
+    void imprimirListadoGeneral();
+    void imprimirListadoGeneralPDF();
 
 protected:
     void changeEvent(QEvent *e);
 
 private:
     void cargarDatos();
+
     int _id_servicio;
     int _id_periodo_servicio;
 
     QSqlQueryModel *mpagado;
     QSqlQueryModel *mdeudor;
+
+    QAction *ActVerPagado;
+    QAction *ActListadoGeneral;
+    QAction *ActListadoGeneralPDF;
 };
 
 #endif // FORMFACTURACIONEMITIDA_H

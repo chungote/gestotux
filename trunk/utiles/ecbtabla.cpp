@@ -122,6 +122,7 @@ void ECBTabla::inicializar()
             qDebug( "No hay ningun dato para cargar!" );
             this->lineEdit()->setText( "No hay datos cargados..." );
             qDebug( cola.lastQuery().toLocal8Bit() );
+            return;
         }
         this->setEnabled( true );
         this->setCurrentIndex( npos );
@@ -164,7 +165,6 @@ void ECBTabla::setearId( const int id )
         qDebug( "Error buscando el id de cliente desde cbcliente" );
         this->setCurrentIndex( -1 );
     } else {
-        qDebug( QString( "Seteando pos = %1" ).arg( pos ).toLocal8Bit() );
         this->setCurrentIndex( pos );
         emit cambioId( idActual() );
     }
