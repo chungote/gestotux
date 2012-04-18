@@ -226,7 +226,6 @@ void FormFacturarServicio::facturar()
     MTempClientesFacturarServicio *mtemp = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model());
 
     // Inicializo los valores que voy a ir refrescando
-    int id_recibo = -1;
     int id_cliente = -1;
     QString nombre_cliente = "";
     QHash<int, int> comprobantes; // Guarda el paso con el id del recibo guardado
@@ -379,7 +378,7 @@ void FormFacturarServicio::facturar()
     PBProgreso->setValue( 1 );
 
     // Inicializo el reporter
-    EReporte *reporte = new EReporte( this );
+    EReporte *reporte = new EReporte( 0 );
     // Genero los parametros
     ParameterList lista;
     lista.append( "id_servicio", this->_id_servicio );
@@ -421,19 +420,19 @@ void FormFacturarServicio::facturar()
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
+        int id_comp = comprobantes.take( i );
 #ifdef GESTOTUX_HICOMP
-        lista.append( "id_recibo", comprobantes.take( i ) );
-        LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
+        lista.append( "id_recibo", id_comp );
+        LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( MPagos::buscarNumeroComprobantePorId( id_comp ).aCadena() ).arg( i+1 ).arg( cantidad_total ) );
 #else
-        lista.append( "id_factura", comprobantes.take( i ) );
-        LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( id_recibo ).arg( i+1 ).arg( cantidad_total ) );
+        lista.append( "id_factura", id_comp );
+        LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( MFactura::obtenerComprobante( id_comp ).aCadena() ).arg( i+1 ).arg( cantidad_total ) );
 #endif
         if( !reporte->hacer( lista, false, false ) ) {
             qDebug( QString( "No se pudo hacer el reporte %i" ).arg( i ).toLocal8Bit() );
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
         // Actualizo indices y reinicio valores
-        id_recibo = -1;
         nombre_cliente = "";
     } // Fin for recibos
 

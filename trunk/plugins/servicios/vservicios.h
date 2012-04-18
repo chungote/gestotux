@@ -46,6 +46,7 @@ protected slots:
 private slots:
     void modificar( const QModelIndex &indice );
     void darAltaServicioCliente();
+    void cambioVerBaja( bool estado );
 
 protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
@@ -61,6 +62,7 @@ private:
     QAction *ActNuevoCliente;
     QAction *ActDarDeBaja;
     QAction *ActVerPeriodosFacturados;
+    QAction *ActVerDadosBaja;
 
 };
 
