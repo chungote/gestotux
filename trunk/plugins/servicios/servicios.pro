@@ -50,7 +50,8 @@ HEADERS =   ../caja/mcajas.h \
            FormVerificarRecargos.h \
     eserviciosdelegate.h \
     vlistaperiodos.h \
-    formfacturacionemitida.h
+    formfacturacionemitida.h \
+    mfacturacionemitida.h
 
 
 SOURCES = servicios.cpp \
@@ -77,7 +78,8 @@ SOURCES = servicios.cpp \
            FormVerificarRecargos.cpp \
     eserviciosdelegate.cpp \
     vlistaperiodos.cpp \
-    formfacturacionemitida.cpp
+    formfacturacionemitida.cpp \
+    mfacturacionemitida.cpp
 
 RESOURCES += servicios.qrc
 

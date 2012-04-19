@@ -30,6 +30,7 @@
 #include "mrecargos.h"
 #include "MTempClientesFacturarServicio.h"
 #include "dsino.h"
+#include "eregistroplugins.h"
 
 FormFacturarServicio::FormFacturarServicio(QWidget *parent) :
 EVentana(parent), _id_servicio(0)  {
@@ -217,12 +218,13 @@ void FormFacturarServicio::facturar()
     this->PBProgreso->setRange( 0, cantidad_total * multiplicador_pasos );
 
 
-    // Inicializo el modelo  de las facturas
-#ifdef GESTOTUX_HICOMP
-    MPagos *mr = new MPagos();
-#else
-    MFactura *mr = new MFactura();
-#endif
+    // Inicializo el modelo  de las facturas o recibos
+    QSqlTableModel *mr;
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+        mr = new MPagos();
+    } else {
+        mr = new MFactura();
+    }
     MTempClientesFacturarServicio *mtemp = qobject_cast<MTempClientesFacturarServicio *>(this->TVClientes->model());
 
     // Inicializo los valores que voy a ir refrescando
@@ -269,22 +271,22 @@ void FormFacturarServicio::facturar()
         // Paso 1 - Genero la factura con los items actuales mas los anteriores segun corresponda /
         ///////////////////////////////////////////////////////////////////////////////////////////
         int id_factura = -1;
-#ifdef GESTOTUX_HICOMP
-        LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
-        id_factura = mr->agregarRecibo( id_cliente,
-                                        QDate::currentDate(),
-                                        QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
-                                        this->_precio_base,
-                                        false, // No efectivo y no pagado para que quede para despues
-                                        false );
-#else
-        LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
-        id_factura = mr->agregarFactura( id_cliente,
-                                         QDateTime::currentDateTime(),
-                                         MFactura::CuentaCorriente,
-                                         this->_precio_base,
-                                         false ); // Con este ultimo parametro no registra la operación de cuenta corriente, porque lo hago manualmente mas tarde.
-#endif
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+            LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
+            id_factura = qobject_cast<MPagos *>(mr)->agregarRecibo( id_cliente,
+                                            QDate::currentDate(),
+                                            QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
+                                            this->_precio_base,
+                                            false, // No efectivo y no pagado para que quede para despues
+                                            false );
+        } else {
+            LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
+            id_factura = qobject_cast<MFactura *>(mr)->agregarFactura( id_cliente,
+                                             QDateTime::currentDateTime(),
+                                             MFactura::CuentaCorriente,
+                                             this->_precio_base,
+                                             false ); // Con este ultimo parametro no registra la operación de cuenta corriente, porque lo hago manualmente mas tarde.
+        }
         if( id_factura == -1 ) {
             QMessageBox::warning( this, "Error", "No se pudo generar la factura para el cliente requerido - se cancelara toda la facturacion del servicio" );
             qDebug( "Error al generar la factura - id erroneo" );
@@ -298,13 +300,14 @@ void FormFacturarServicio::facturar()
             // Si se genero correctamente ingreo el id en la cola para impresion luego.
             comprobantes.insert( i, id_factura );
             //qDebug( "Comprobante guardado correctamente - agregado a la cola para post impresion" );
-#ifndef GESTOTUX_HICOMP
+        if( ! ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
             // Genero los items para el comprobante
             MItemFactura *fact = new MItemFactura();
             if( !fact->agregarItemFactura( id_factura,
                                            1,
                                            QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
-                                           this->_precio_base ) ) {
+                                           this->_precio_base,
+                                           -1 ) ) { // Coloco el ultimo parametro en -1 para que no registre ningun producto
                 qDebug( "Error al intentar agregar el item de factura para el servicio del mes facturado" );
                 LIndicador->setText( QString( "Error - No se pudo agregar el item de la factura %1 para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
                 PBProgreso->setRange( 0, 1 );
@@ -313,7 +316,7 @@ void FormFacturarServicio::facturar()
                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return;
             }
-#endif
+        }
 
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -384,52 +387,54 @@ void FormFacturarServicio::facturar()
     lista.append( "id_servicio", this->_id_servicio );
     lista.append( "fecha_inicio", this->_fecha_inicio );
     lista.append( "precio_base", this->_precio_base );
-#ifdef GESTOTUX_HICOMP
-    reporte->especial( "Recibo-hicomp-venc", ParameterList() );
 
-    QSqlQuery cola;
-    if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( this->_id_servicio ) ) ) {
-        int i = 1;
-        while( cola.next() ) {
-            if( cola.record().isNull( 1 ) ) {
-                lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(2).toDouble() );
-                lista.append( QString( "total%1" ).arg( i ), this->_precio_base * ( 1 + ( cola.record().value(2).toDouble() / 100 ) ));
-            } else {
-                lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(1).toDouble() );
-                lista.append( QString( "total%1" ).arg( i ), this->_precio_base + cola.record().value(1).toDouble() );
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+
+        reporte->especial( "Recibo-hicomp-venc", ParameterList() );
+
+        QSqlQuery cola;
+        if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( this->_id_servicio ) ) ) {
+            int i = 1;
+            while( cola.next() ) {
+                if( cola.record().isNull( 1 ) ) {
+                    lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(2).toDouble() );
+                    lista.append( QString( "total%1" ).arg( i ), this->_precio_base * ( 1 + ( cola.record().value(2).toDouble() / 100 ) ));
+                } else {
+                    lista.append( QString( "recargo%1" ).arg( i ), cola.record().value(1).toDouble() );
+                    lista.append( QString( "total%1" ).arg( i ), this->_precio_base + cola.record().value(1).toDouble() );
+                }
+                lista.append( QString( "fecha%1" ).arg( i ), this->_fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ).toString( "dd/MM/yyyy" ) );
+                i++;
             }
-            lista.append( QString( "fecha%1" ).arg( i ), this->_fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ).toString( "dd/MM/yyyy" ) );
-            i++;
-        }
-        if( i < 4 ) {
-            for( int j = i; j <= 4; j++ ) {
-                lista.append( QString( "recargo%1" ).arg( j ), "" );
-                lista.append( QString( "total%1" ).arg( j ), "" );
-                lista.append( QString( "fecha%1" ).arg( j ), "" );
+            if( i < 4 ) {
+                for( int j = i; j <= 4; j++ ) {
+                    lista.append( QString( "recargo%1" ).arg( j ), "" );
+                    lista.append( QString( "total%1" ).arg( j ), "" );
+                    lista.append( QString( "fecha%1" ).arg( j ), "" );
+                }
             }
+        } else {
+            qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            return;
         }
     } else {
-        qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        return;
+        reporte->factura();
     }
-#else
-    reporte->factura();
-#endif
 
     for( int i = 0; i<cantidad_total; i++ ) {
         // Paso 3
         // Imprimir recibo
         int id_comp = comprobantes.take( i );
-#ifdef GESTOTUX_HICOMP
+    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
         lista.append( "id_recibo", id_comp );
         LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( MPagos::buscarNumeroComprobantePorId( id_comp ).aCadena() ).arg( i+1 ).arg( cantidad_total ) );
-#else
+    } else {
         lista.append( "id_factura", id_comp );
         LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( MFactura::obtenerComprobante( id_comp ).aCadena() ).arg( i+1 ).arg( cantidad_total ) );
-#endif
+    }
         if( !reporte->hacer( lista, false, false ) ) {
-            qDebug( QString( "No se pudo hacer el reporte %i" ).arg( i ).toLocal8Bit() );
+            qDebug( QString( "No se pudo hacer el reporte %1" ).arg( i ).toLocal8Bit() );
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
         // Actualizo indices y reinicio valores
@@ -451,11 +456,11 @@ void FormFacturarServicio::facturar()
             if( ok == true ) {
                 // Ingreso un recibo mal impreso, lo reimprimo
                 ParameterList lista;
-#ifdef GESTOTUX_HICOMP
-                lista.append( "id_recibo", ret2 );
-#else
-                lista.append( "id_factura", ret2 );
-#endif
+                if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+                    lista.append( "id_recibo", ret2 );
+                } else {
+                    lista.append( "id_factura", ret2 );
+                }
                 reporte->hacer( lista );
             } else {
                 // No hay mas recibos fallados

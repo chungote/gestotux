@@ -3,7 +3,7 @@
 
 #include "eventana.h"
 #include "ui_formfacturacionemitida.h"
-class QSqlQueryModel;
+class MFacturacionEmitida;
 
 class FormFacturacionEmitida : public EVentana, private Ui::FormFacturacionEmitida
 {
@@ -30,8 +30,8 @@ private:
     int _id_servicio;
     int _id_periodo_servicio;
 
-    QSqlQueryModel *mpagado;
-    QSqlQueryModel *mdeudor;
+    MFacturacionEmitida *mpagado;
+    MFacturacionEmitida *mdeudor;
 
     QAction *ActVerPagado;
     QAction *ActListadoGeneral;
