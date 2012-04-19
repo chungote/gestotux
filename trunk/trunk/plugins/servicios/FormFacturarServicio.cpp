@@ -244,8 +244,16 @@ void FormFacturarServicio::facturar()
         LIndicador->setText( "Error - No se pudo agregar el registro del periodo a facturar" );
         PBProgreso->setRange( 0, 1 );
         PBProgreso->setValue( 1 );
-        QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
+        QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio." ) );
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        delete mr;
+        return;
+    } else if( id_periodo_servicio == -2 ) {
+        // Ya se facturó este servicio.
+        LIndicador->setText( "No se emitió ningun comprobante" );
+        PBProgreso->setRange( 0, 1 );
+        PBProgreso->setValue( 1  );
+        delete mr;
         return;
     }
 
@@ -295,6 +303,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+            delete mr;
             return;
         } else {
             // Si se genero correctamente ingreo el id en la cola para impresion luego.
@@ -314,6 +323,7 @@ void FormFacturarServicio::facturar()
                 PBProgreso->setValue( 1 );
                 QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                delete mr;
                 return;
             }
         }
@@ -330,6 +340,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+            delete mr;
             return;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -353,6 +364,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+            delete mr;
             break;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -366,6 +378,7 @@ void FormFacturarServicio::facturar()
             PBProgreso->setValue( 1 );
             QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+            delete mr;
             return;
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -443,7 +456,7 @@ void FormFacturarServicio::facturar()
 
 
     // Pregunto si los recibos se imprimieron bien
-    int ret = QMessageBox::question( this, "Impresion", QString::fromUtf8( "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" ), QMessageBox::Ok, QMessageBox::Cancel );
+    int ret = QMessageBox::question( this, "Impresion", QString::fromUtf8( "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" ), "Si", "No" );
 
     if( ret == QMessageBox::Rejected ) {
        // Si no, pregunto que numero de recibo falta y lo mando a imprimir

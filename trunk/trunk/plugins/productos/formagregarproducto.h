@@ -19,6 +19,7 @@ class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
         void setearPrecioCosto( const double precio );
         void setearNombre( const QString nombre );
         void setearStockInicial( const int cantidad );
+        void setearNumeroAnterior( const int id_anterior ) { _id_anterior = id_anterior; }
 
     public slots:
         void accept();
@@ -33,10 +34,12 @@ class FormAgregarProducto : public QDialog, private Ui::FormProductoBase
         bool _descripcion;
         bool _stock;
         bool _modelo;
+        int _id_anterior;
 
     signals:
         void agregarVentana( QWidget * );
         void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
+        void agregarProducto( int anterior, int nuevo );
 };
 
 #endif // FORMAGREGARPRODUCTO_H

@@ -424,7 +424,7 @@ int MPeriodoServicio::agregarPeriodoAFacturarNuevo( const int id_servicio ) {
         if( fecha_ultimo_periodo >= fecha_inicio ) {
             qDebug( "Error - La fecha de inicio del periodo es anterior a la fecha de fin del periodo anterior." );
             QMessageBox::warning( 0, "Control", "Ya existe un periodo que esta incluido en el periodo que intenta facturar. <br /> Seguramente ya facturo este periodo de este servicio" );
-            return -1;
+            return -2;
         }
     } else {
         qDebug( "Atencion - La ulima fecha de inicio del periodo no existe - se utilizara la generica." );

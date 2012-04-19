@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>462</width>
     <height>425</height>
    </rect>
   </property>
@@ -84,7 +84,7 @@
    <item>
     <widget class="QGroupBox" name="GBCaja">
      <property name="title">
-      <string>Caja a usar en ventas y gastos</string>
+      <string>Caja a usar en compras, ventas y gastos</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
