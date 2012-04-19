@@ -5,6 +5,7 @@
 #include "eactcerrar.h"
 #include "EReporte.h"
 #include "eregistroplugins.h"
+#include "mfacturacionemitida.h"
 
 #include <QSqlQueryModel>
 #include <QSqlQuery>
@@ -30,28 +31,22 @@ FormFacturacionEmitida::FormFacturacionEmitida(QWidget *parent) :
         CBPeriodo->setearCampoTexto( " periodo || '/' || ano " );
     }
 
-    mdeudor = new QSqlQueryModel( this );
-    mpagado = new QSqlQueryModel( this );
-
-    mdeudor->setHeaderData( 0, Qt::Horizontal, QString::fromUtf8( "Razón Social" ) );
-    mdeudor->setHeaderData( 1, Qt::Horizontal, "Importe" );
-
-    mpagado->setHeaderData( 0, Qt::Horizontal, QString::fromUtf8( "Razón Social" ) );
-    mpagado->setHeaderData( 1, Qt::Horizontal, "Importe" );
+    mdeudor = new MFacturacionEmitida( true, this );
+    mpagado = new MFacturacionEmitida( false, this );
 
     TVDeudor->setModel( mdeudor );
     TVDeudor->setAlternatingRowColors( true );
     TVDeudor->setSortingEnabled( true );
     TVDeudor->setSelectionMode( QAbstractItemView::SingleSelection );
     TVDeudor->setSelectionBehavior( QAbstractItemView::SelectRows );
-    TVDeudor->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    //TVDeudor->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     TVDeudor->horizontalHeader()->setResizeMode( 0, QHeaderView::Stretch );
     TVDeudor->setTextElideMode( Qt::ElideRight );
 
     TVPagada->setModel( mpagado );
     TVPagada->setSelectionMode( QAbstractItemView::SingleSelection );
     TVPagada->setSelectionBehavior( QAbstractItemView::SelectRows );
-    TVPagada->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    //TVPagada->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     TVPagada->horizontalHeader()->setResizeMode( 0, QHeaderView::Stretch );
     TVPagada->setTextElideMode( Qt::ElideRight );
     TVPagada->setAlternatingRowColors( true );
@@ -123,60 +118,27 @@ void FormFacturacionEmitida::cambioServicio( int id_servicio )
 void FormFacturacionEmitida::cambioPeriodo( int id_periodo )
 {
     _id_periodo_servicio = id_periodo;
-    //CBPeriodo->setearId( _id_periodo_servicio );
     cargarDatos();
 }
 
 void FormFacturacionEmitida::cargarDatos()
 {
-    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-        mdeudor->setQuery( QString( "SELECT c.razon_social, "
-                                    "       r.precio "
-                                    "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `recibos` AS r "
-                                    "WHERE cscp.id_cliente = c.id "
-                                    "  AND cscp.id_factura = r.id_recibo "
-                                    "  AND cscp.id_servicio = %1 "
-                                    "  AND cscp.id_periodo_servicio = %2 "
-                                    "  AND cscp.id_recibo IS NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
-    } else {
-        mdeudor->setQuery( QString( "SELECT c.razon_social, "
-                                    "       f.total "
-                                    "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `factura` AS f "
-                                    "WHERE cscp.id_cliente = c.id "
-                                    "  AND cscp.id_factura = f.id_factura "
-                                    "  AND cscp.id_servicio = %1 "
-                                    "  AND cscp.id_periodo_servicio = %2 "
-                                    "  AND cscp.id_recibo IS NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
+    this->mpagado->setearServicio( _id_servicio );
+    this->mpagado->setearPeriodo( _id_periodo_servicio );
+    if( ActVerPagado->isChecked() ) {
+        this->mpagado->generarDatos();
     }
-    qDebug( mdeudor->query().lastQuery().toLocal8Bit() );
+
+    this->mdeudor->setearServicio( _id_servicio );
+    this->mdeudor->setearPeriodo( _id_periodo_servicio );
+    this->mdeudor->generarDatos();
 }
 
 void FormFacturacionEmitida::cambioHabilitadoPagados( bool estado )
 {
     if( estado ) {
         GBPagado->setVisible( true );
-        if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-            mpagado->setQuery( QString( "SELECT "
-                                     " c.razon_social, "
-                                     " r.precio "
-                                     "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `recibo` AS r "
-                                     "WHERE cscp.id_cliente = c.id "
-                                     " AND cscp.id_factura = r.id_recibo "
-                                     " AND cscp.id_servicio = %1 "
-                                     " AND cscp.id_periodo_servicio = %2 "
-                                     " AND cscp.id_recibo IS NOT NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
-        } else {
-            mpagado->setQuery( QString( "SELECT "
-                                     " c.razon_social, "
-                                     " f.total "
-                                     "FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `factura` AS f "
-                                     "WHERE cscp.id_cliente = c.id "
-                                     " AND cscp.id_factura = f.id_factura "
-                                     " AND cscp.id_servicio = %1 "
-                                     " AND cscp.id_periodo_servicio = %2 "
-                                     " AND cscp.id_recibo IS NOT NULL" ).arg( _id_servicio ).arg( _id_periodo_servicio ) );
-        }
-        qDebug( mpagado->query().lastQuery().toLocal8Bit() );
+        this->mpagado->generarDatos();
     } else {
         mpagado->clear();
         GBPagado->setVisible( false );
