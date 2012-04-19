@@ -50,7 +50,7 @@
   <name>recibo-hicomp</name>
   <sql>SELECT r.id_recibo AS numero,
        substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
-       strftime( '%d  %m  %y', r.fecha_pago ) AS fecha,
+       strftime( '%d  %m  %Y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
        c.calle || ' ' || c.numero AS direccion,
@@ -2025,46 +2025,6 @@ end
      <column>fecha</column>
     </data>
    </text>
-   <text>
-    <rect>
-     <x>1012</x>
-     <y>19</y>
-     <width>116</width>
-     <height>31.8</height>
-    </rect>
-    <bottompad>0</bottompad>
-    <font>
-     <face>Arial Black</face>
-     <size>11</size>
-     <weight>normal</weight>
-    </font>
-    <hcenter/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>NumSerie</column>
-    </data>
-   </text>
-   <text>
-    <rect>
-     <x>1010</x>
-     <y>51.8</y>
-     <width>111</width>
-     <height>31.8</height>
-    </rect>
-    <bottompad>0</bottompad>
-    <font>
-     <face>Arial Black</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <hcenter/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>fecha</column>
-    </data>
-   </text>
    <barcode>
     <rect>
      <x>372</x>
@@ -2159,65 +2119,6 @@ end
    <height>84.0909</height>
    <field>
     <rect>
-     <x>1031.46</x>
-     <y>59.0726</y>
-     <width>95.8</width>
-     <height>16.9</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <bottom/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total3</column>
-    </data>
-    <format>$%5.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>1031.46</x>
-     <y>16.7726</y>
-     <width>95.8</width>
-     <height>15.4</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha3</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>1030</x>
-     <y>35.2</y>
-     <width>95.8</width>
-     <height>19.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo3</column>
-    </data>
-    <format>%i%%</format>
-   </field>
-   <field>
-    <rect>
      <x>95</x>
      <y>14.5</y>
      <width>96</width>
@@ -2253,7 +2154,7 @@ end
      <query>Parameter Query</query>
      <column>recargo1</column>
     </data>
-    <format>%d %%</format>
+    <format>%0.2f %%</format>
    </field>
    <field>
     <rect>
@@ -2293,7 +2194,7 @@ end
      <query>Parameter Query</query>
      <column>recargo2</column>
     </data>
-    <format>%d %%</format>
+    <format>%0.2f %%</format>
    </field>
    <field>
     <rect>
@@ -2352,7 +2253,7 @@ end
      <query>Parameter Query</query>
      <column>recargo3</column>
     </data>
-    <format>%d %%</format>
+    <format>%0.2f %%</format>
    </field>
    <field>
     <rect>
@@ -2406,26 +2307,6 @@ end
     <rect>
      <x>424</x>
      <y>4.36</y>
-     <width>127</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Arial Black</face>
-     <size>14</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>total</column>
-    </data>
-    <format>$ %0.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>1000</x>
-     <y>3.63</y>
      <width>127</width>
      <height>25</height>
     </rect>

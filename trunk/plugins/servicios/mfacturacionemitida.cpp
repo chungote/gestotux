@@ -74,8 +74,13 @@ void MFacturacionEmitida::generarDatos()
         cola.append( QString( " AND cscp.id_periodo_servicio = %1 " ).arg( _id_periodo_servicio ) );
     }
     if( _deudor ) {
-        cola.append( " AND cscp.id_recibo IS NOT NULL" );
+        cola.append( " AND cscp.id_recibo IS NULL" );
+    } else {
+        cola.append( " AND cscp.id_recibo IS NOT NULL " );
     }
     setQuery( cola );
-    qDebug( cola.toLocal8Bit() );
+    //qDebug( cola.toLocal8Bit() );
+    this->setHeaderData( 0, Qt::Horizontal, "Razon Social" );
+    this->setHeaderData( 1, Qt::Horizontal, "#Comprobante" );
+    this->setHeaderData( 2, Qt::Horizontal, "Total" );
 }

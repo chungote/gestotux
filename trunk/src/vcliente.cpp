@@ -112,6 +112,7 @@ void VCliente::modificar()
 {
     FormCliente *f = new FormCliente( this, mc );
     f->setearCliente( this->vista->selectionModel()->selectedRows().first() );
+    f->setObjectName( QString( "visor-clientes-%1" ).arg( this->vista->selectionModel()->selectedRows().first().data( Qt::EditRole ).toInt() ) );
     emit agregarVentana( f );
 }
 

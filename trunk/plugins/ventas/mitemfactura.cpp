@@ -68,8 +68,7 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
             return false;
         }
     }
-    cola.prepare( "INSERT INTO item_factura( id_item_factura, id_factura, cantidad, texto, precio_unitario, id_producto ) VALUES ( :id_item_factura, :id_venta, :cantidad, :texto, :precio_unitario, :id_producto );" );
-    cola.bindValue( ":id_item_factura", _orden );
+    cola.prepare( "INSERT INTO item_factura( id_factura, cantidad, texto, precio_unitario, id_producto ) VALUES ( :id_venta, :cantidad, :texto, :precio_unitario, :id_producto );" );
     cola.bindValue( ":id_venta", id_venta );
     cola.bindValue( ":cantidad", cantidad );
     cola.bindValue( ":texto", texto );

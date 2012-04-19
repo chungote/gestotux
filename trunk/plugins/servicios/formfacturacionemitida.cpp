@@ -39,14 +39,14 @@ FormFacturacionEmitida::FormFacturacionEmitida(QWidget *parent) :
     TVDeudor->setSortingEnabled( true );
     TVDeudor->setSelectionMode( QAbstractItemView::SingleSelection );
     TVDeudor->setSelectionBehavior( QAbstractItemView::SelectRows );
-    //TVDeudor->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    TVDeudor->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     TVDeudor->horizontalHeader()->setResizeMode( 0, QHeaderView::Stretch );
     TVDeudor->setTextElideMode( Qt::ElideRight );
 
     TVPagada->setModel( mpagado );
     TVPagada->setSelectionMode( QAbstractItemView::SingleSelection );
     TVPagada->setSelectionBehavior( QAbstractItemView::SelectRows );
-    //TVPagada->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    TVPagada->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     TVPagada->horizontalHeader()->setResizeMode( 0, QHeaderView::Stretch );
     TVPagada->setTextElideMode( Qt::ElideRight );
     TVPagada->setAlternatingRowColors( true );
@@ -109,6 +109,9 @@ void FormFacturacionEmitida::changeEvent(QEvent *e)
 
 void FormFacturacionEmitida::cambioServicio( int id_servicio )
 {
+  if( id_servicio <= 0 )
+      return;
+
   _id_servicio = id_servicio;
   CBPeriodo->setearFiltro( QString(" WHERE id_servicio = %1" ).arg( _id_servicio ) );
   this->mpagado->clear();

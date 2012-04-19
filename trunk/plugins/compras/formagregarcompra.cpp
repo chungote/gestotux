@@ -130,6 +130,7 @@ void FormAgregarCompra::guardar()
  MCompraProducto *m = new MCompraProducto( this );
  bool siATodo = false;
  bool noATodo = false;
+ bool parar = false;
  for( int i= 0; i<mcp->rowCount(); i++ )
  {
      if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() <= -1 ) {
@@ -152,6 +153,7 @@ void FormAgregarCompra::guardar()
             {
                 siATodo = true;
                 // No pongo break para que agrege el producto
+                parar = true;
             }
             case QMessageBox::Yes:
             {
@@ -160,7 +162,10 @@ void FormAgregarCompra::guardar()
                 f->setearNombre( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() );
                 f->setearStockInicial(mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() );
                 f->setearPrecioCosto( mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
+                f->setearNumeroAnterior( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() );
+                connect( f, SIGNAL( productoAgregado( int, int ) ), this, SLOT( productoAgregado( int, int ) ) );
                 emit agregarVentana( f );
+                parar = true;
                 break;
             }
             case QMessageBox::NoToAll:
@@ -197,6 +202,10 @@ void FormAgregarCompra::guardar()
                  qWarning( QString( "No se pudo actualizar el precio de venta del producto %1" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ).toLocal8Bit() );
              }
          }
+     }
+     if( parar ) {
+         // Paro el agregar para que le de tiempo al cliente para llenar los datos del producto
+         return;
      }
      if( !m->agregarCompraProducto( id_compra,
                                    mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), // id_producto
@@ -278,4 +287,20 @@ void FormAgregarCompra::eliminarProducto()
 	}
  }
  return;
+}
+
+void FormAgregarCompra::productoAgregado( int anterior, int nuevo )
+{
+    // Actualizo la lista del cb que esta siendo usada por el mcp
+    this->CBProducto->listadoProductos()->insert( nuevo, this->CBProducto->listadoProductos()->value( anterior ) );
+    this->CBProducto->listadoProductos()->remove( anterior );
+
+    // Como mcp esta trabajando con un puntero a la lista anterior no tengo que actualizar nada mas
+
+    // Actualizo el dato del mcp
+    for( int i = 0; i < mcp->rowCount(); i++ ) {
+        if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() == anterior ) {
+            mcp->setData( mcp->index( i, 1 ), nuevo, Qt::EditRole );
+        }
+    }
 }
