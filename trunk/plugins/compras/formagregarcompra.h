@@ -45,7 +45,7 @@ protected slots:
     void guardar();
     void agregarProducto();
     void eliminarProducto();
-    void productoAgregado( int anterior, int nuevo );
+    void arreglarProductoAgregado( int anterior, int nuevo );
 };
 
 #endif

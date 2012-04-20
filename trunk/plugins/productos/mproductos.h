@@ -58,6 +58,8 @@ public:
     bool habilitar( const QModelIndex idx );
     bool deshabilitar( const QModelIndex idx );
 
+    int idProductoPorCodigo( const QString codigo );
+
 private:
     static bool cambiarHabilitado( const int id_producto, bool estado );
     bool cambiarHabilitado( const QModelIndex idx, bool estado );

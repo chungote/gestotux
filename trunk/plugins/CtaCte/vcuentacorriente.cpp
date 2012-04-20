@@ -20,14 +20,16 @@
 #include "vcuentacorriente.h"
 
 #include "mcuentacorriente.h"
+#include "dsino.h"
+#include "EReporte.h"
+#include "formresumenctacte.h"
+
 #include <QTableView>
 #include <QAction>
 #include <QMenu>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QHeaderView>
-#include "dsino.h"
-
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -76,11 +78,25 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActVerSuspendidas->setCheckable( true );
  connect( ActVerSuspendidas, SIGNAL( toggled( bool ) ), this, SLOT( verSuspendidas( bool ) ) );
 
+ ActListadoDeudor = new QAction( this );
+ ActListadoDeudor->setStatusTip( "Muestra un listado con todas las cuentas corrientes que tienen saldo deudor" );
+ ActListadoDeudor->setText( "Listado Deudor" );
+ connect( ActListadoDeudor, SIGNAL( triggered() ), this, SLOT( listadoDeudor() ) );
+
+ ActListadoDeudorPDF = new QAction( this );
+ ActListadoDeudorPDF->setStatusTip( "Muestra un listado con todas las cuentas corrientes que tienen saldo deudor" );
+ ActListadoDeudorPDF->setText( "Listado Deudor" );
+ ActListadoDeudorPDF->setIcon( QIcon( ":/imagenes/acroread.png" ) );
+ connect( ActListadoDeudorPDF, SIGNAL( triggered() ), this, SLOT( listadoDeudorPDF() ) );
+
+
  addAction( ActAgregar );
  addAction( ActModificarLimite );
  addAction( ActSuspender );
  addAction( ActVerTodos );
  addAction( ActResumen );
+ addAction( ActListadoDeudor );
+ addAction( ActListadoDeudorPDF );
  addAction( ActCerrar );
  addAction( ActSep );
  addAction( ActVerDeudoras );
@@ -90,6 +106,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
 #include "formnuevactacte.h"
 /*!
     \fn VCuentaCorriente::agregar( bool autoeliminarid )
+    Abre el formulario para agregar una nueva cuenta corriente, verificando que existan clientes para agregar a las cuentas corrientes.
  */
 void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
 {
@@ -119,6 +136,7 @@ void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
 
 /*!
     \fn VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
+    Muestra el menú contextual de cada item.
  */
 void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
@@ -146,6 +164,7 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
 
 /*!
     \fn VCuentaCorriente::modificarLimite()
+    Modifica el limite de la cuenta corriente seleccionada.
  */
 void VCuentaCorriente::modificarLimite()
 {
@@ -177,6 +196,7 @@ void VCuentaCorriente::modificarLimite()
 
 /*!
     \fn VCuentaCorriente::darBaja()
+    Da de baja la cuenta corriente seleccionada.
  */
 void VCuentaCorriente::darBaja()
 {
@@ -191,9 +211,9 @@ void VCuentaCorriente::darBaja()
 }
 
 
-#include "formresumenctacte.h"
 /*!
     \fn VCuentaCorriente::verResumen()
+    Muestra el resumen de cuenta de la cuenta corriente seleccionada.
  */
 void VCuentaCorriente::verResumen()
 {
@@ -263,4 +283,28 @@ void VCuentaCorriente::verSuspendidas( bool estado )
 {
     this->rmodelo->filtrarSoloSuspendidas( estado );
     this->rmodelo->select();
+}
+
+/*!
+ * \fn VCuentaCorriente::listadoDeudor()
+ * Imprime el listado de cuentas corrientes deudoras
+ */
+void VCuentaCorriente::listadoDeudor()
+{
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ListadoCtaCteSaldo", ParameterList() );
+    rep->hacer();
+    delete rep;
+}
+
+/*!
+ * \fn VCuentaCorriente::listadoDeudorPDF()
+ * Pasa a PDF el listado de cuentas corrientes deudoras
+ */
+void VCuentaCorriente::listadoDeudorPDF()
+{
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ListadoCtaCteSaldo", ParameterList() );
+    rep->hacerPDF( ParameterList(), QString( "Listado de Cuenta Corriente con saldo al %1" ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
+    delete rep;
 }

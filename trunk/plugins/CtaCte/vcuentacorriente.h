@@ -46,17 +46,39 @@ protected slots:
     void mostrarDeudoras( bool estado );
     void verSuspendidas( bool estado );
     void suspenderDesuspender();
+    void listadoDeudor();
+    void listadoDeudorPDF();
 
 private:
     MCuentaCorriente *rmodelo;
+   /*!
+    * Accion para modificar el limite de la cuenta corriente elegida
+    */
     QAction *ActModificarLimite;
+   /*!
+    * Accion que permite filtrar solamente por las cuentas corrientes que tienen saldo positivo
+    */
     QAction *ActVerDeudoras;
     /*!
      * Acción que muestra el resumen de una cuenta corriente especifica
      */
      QAction *ActResumen;
+    /*!
+     * Accion que permite suspender una cuenta corriente
+     */
      QAction *ActSuspender;
+    /*!
+     * Accion que permite filtrar solamente por las cuentas corrientes suspendidas
+     */
      QAction *ActVerSuspendidas;
+    /*!
+     * Accion que permite imprimir las cuentas corrientes con saldo deudor
+     */
+     QAction *ActListadoDeudor;
+    /*!
+     * Accion que permite pasar a pdf las cuentas corrientes con saldo deudor
+     */
+     QAction *ActListadoDeudorPDF;
 };
 
 #endif

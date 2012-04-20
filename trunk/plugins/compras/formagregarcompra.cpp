@@ -163,7 +163,7 @@ void FormAgregarCompra::guardar()
                 f->setearStockInicial(mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() );
                 f->setearPrecioCosto( mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
                 f->setearNumeroAnterior( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() );
-                connect( f, SIGNAL( productoAgregado( int, int ) ), this, SLOT( productoAgregado( int, int ) ) );
+                connect( f, SIGNAL( agregarProducto( int, int ) ), this, SLOT( arreglarProductoAgregado( int, int ) ) );
                 emit agregarVentana( f );
                 parar = true;
                 break;
@@ -189,7 +189,7 @@ void FormAgregarCompra::guardar()
              preferencias *p = preferencias::getInstancia();
              p->beginGroup( "Preferencias" );
              p->beginGroup( "Productos" );
-             double ganancia = p->value( "ganancia", 0.10 ).toDouble();
+             double ganancia = ( p->value( "ganancia", 10 ).toDouble() )/100;
              p->endGroup();p->endGroup(); p = 0;
              double precio_calculado = precio_anterior * ( 1 + ganancia );
              bool ok = false;
@@ -289,7 +289,7 @@ void FormAgregarCompra::eliminarProducto()
  return;
 }
 
-void FormAgregarCompra::productoAgregado( int anterior, int nuevo )
+void FormAgregarCompra::arreglarProductoAgregado( int anterior, int nuevo )
 {
     // Actualizo la lista del cb que esta siendo usada por el mcp
     this->CBProducto->listadoProductos()->insert( nuevo, this->CBProducto->listadoProductos()->value( anterior ) );
