@@ -128,7 +128,7 @@ void FormAgregarProducto::accept() {
                 this->LEModelo->text() ) ) {
         QMessageBox::information( this, "Correcto", QString::fromUtf8( "El producto se agregó correctamente" ) );
         if( _id_anterior < 0 ) {
-            emit agregarProducto( _id_anterior, m->query().lastInsertId().toInt() );
+            emit agregarProducto( _id_anterior,  m->idProductoPorCodigo( LECodigo->text() )  );
         }
         QDialog::accept();
         delete m;

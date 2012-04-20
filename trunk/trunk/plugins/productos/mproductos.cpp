@@ -441,7 +441,7 @@ bool MProductos::existeNombre( const QString nombre )
 {
     if( nombre.isNull() || nombre.isEmpty() ) {  return false;  }
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT COUNT(id) FROM producto WHERE nombre = %1" ).arg( nombre ) ) ) {
+    if( cola.exec( QString( "SELECT COUNT(id) FROM producto WHERE nombre = '%1'" ).arg( nombre ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() > 0 ) {
             return true;
@@ -541,3 +541,28 @@ bool MProductos::habilitar( QModelIndex idx )
  */
 bool MProductos::deshabilitar( QModelIndex idx )
 {  return cambiarHabilitado( idx, false ); }
+
+/*!
+ * \fn MProductos::idProductoPorCodigo( const QString codigo )
+ * Obtiene el ID de producto del codigo pasado como parametro
+ * \param codigo Codigo del producto a buscar
+ * \return ID del codigo o 0 si no existe
+ */
+int MProductos::idProductoPorCodigo( const QString codigo )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id FROM producto WHERE codigo = '%1'" ).arg( codigo ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug( "Error de next de la cola de averiguacion de id de producto x codigo" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit()  );
+        }
+    } else {
+        qDebug( "Error de ejecucion de la cola de averiguacion de id de producto x codigo" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit()  );
+    }
+    return 0;
+}

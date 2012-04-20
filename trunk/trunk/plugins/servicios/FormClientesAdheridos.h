@@ -46,6 +46,8 @@ protected slots:
     void cambioServicio( int id_servicio );
     void darDeBaja();
     void eliminar();
+    void aPdf();
+    void imprimir();
 
 private:
     MClientesServicios *modelo;
