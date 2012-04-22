@@ -21,11 +21,16 @@
 #include "FormClientesAdheridos.h"
 
 #include "mservicios.h"
-#include <QTableView>
+#include "eactimprimir.h"
+#include "eactpdf.h"
 #include "MClientesServicios.h"
 #include "eactcerrar.h"
+#include "EReporte.h"
+#include "ecbtabla.h"
+
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QTableView>
 
 FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     EVentana(parent) {
@@ -33,12 +38,13 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
 
     setObjectName( "ClientesAdheridos" );
     setWindowTitle( "Clientes Adheridos" );
-    //setWindowIcon();
+    setWindowIcon( QIcon( ":/imagenes/clientes_adheridos.png" ) );
 
-    CBServicios->setModel( new MServicios( CBServicios ) );
-    CBServicios->setModelColumn( 1 );
-    qobject_cast<QSqlTableModel *>(CBServicios->model())->select();
-    connect( CBServicios, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioServicio( int ) ) );
+    CBServicios->setearTabla( "servicios" );
+    CBServicios->setearCampoId( "id_servicio" );
+    CBServicios->setearCampoTexto( "nombre" );
+    CBServicios->setearCampoOrden( "nombre" );
+    connect( CBServicios, SIGNAL( cambioId( int ) ), this, SLOT( cambioServicio( int ) ) );
 
     modelo = new MClientesServicios( this );
     TVAdheridos->setModel( modelo );
@@ -53,11 +59,16 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     ActDarDeBaja->setText( "Dar de Baja" );
     connect( ActDarDeBaja, SIGNAL( triggered() ), this, SLOT( darDeBaja() ) );
     this->addAction( ActDarDeBaja );
+
     //// Eliminar adhesion
     QAction *ActEliminar = new QAction( this );
     ActEliminar->setText( "Eliminar" );
+    ActEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
     connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar() ) );
     this->addAction( ActEliminar );
+
+    this->addAction( new EActImprimir( this ) );
+    this->addAction( new EActPdf( this ) );
 
     this->addAction( new EActCerrar( this ) );
 
@@ -77,15 +88,16 @@ void FormClientesAdheridos::changeEvent(QEvent *e)
 
 void FormClientesAdheridos::setServicioInicial( int id_servicio )
 {
+    if( id_servicio <= 0 )
+        return;
+
     modelo->filtrarPorServicio( id_servicio );
     modelo->select();
-    // Coloco el combo box en la posicion correcta
-    CBServicios->setCurrentIndex( CBServicios->findData( id_servicio ) );
+    CBServicios->setearId( id_servicio );
 }
 
-void FormClientesAdheridos::cambioServicio( int /*id_combo*/ )
+void FormClientesAdheridos::cambioServicio( int id_servicio )
 {
-    int id_servicio = CBServicios->model()->data( CBServicios->model()->index( CBServicios->currentIndex(), 0), Qt::EditRole ).toInt();
     modelo->filtrarPorServicio( id_servicio );
     modelo->select();
 }
@@ -99,7 +111,7 @@ void FormClientesAdheridos::darDeBaja()
      QMessageBox::information( this, "Error", "Por favor, seleccione algun cliente adherido para darlo de baja" );
      return;
  }
-  int id_servicio = CBServicios->model()->data( CBServicios->model()->index( CBServicios->currentIndex(), 0), Qt::UserRole ).toInt();
+  int id_servicio = CBServicios->idActual();
   foreach( QModelIndex item, lista ) {
       int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
       bool ok = false;
@@ -117,7 +129,7 @@ void FormClientesAdheridos::eliminar() {
         QMessageBox::information( this, "Error", "Por favor, seleccione algun cliente adherido para darlo de baja" );
         return;
     }
-     int id_servicio = CBServicios->model()->data( CBServicios->model()->index( CBServicios->currentIndex(), 0 ), Qt::UserRole ).toInt();
+     int id_servicio = CBServicios->idActual();
      foreach( QModelIndex item, lista ) {
          int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
          QDate fecha_baja = item.model()->data( item.model()->index( item.row(), 3 ), Qt::EditRole ).toDate();
@@ -125,7 +137,7 @@ void FormClientesAdheridos::eliminar() {
              QMessageBox::information( this, "Error", "El cliente que está intentando eliminar no ha sido dado de baja todavía. Delo de baja antes de eliminar la asociación." );
          } else {
              if( MCobroServicioClientePeriodo::tieneDatosRelacionados( id_servicio, id_cliente ) ) {
-                 QMessageBox::warning( this, "Error", "La asociación del servicio que está intentando eliminar posee datos de facturación. No se puede eliminar la asociación para no comprometer la integridad de los datos." );
+                 QMessageBox::warning( this, "Error", QString::fromUtf8( "La asociación del servicio que está intentando eliminar posee datos de facturación. No se puede eliminar la asociación para no comprometer la integridad de los datos." ) );
              } else {
                 bool ok = false;
                 QString razon = QInputDialog::getText( this, "Razon de baja", "Ingrese la razon de baja:", QLineEdit::Normal, QString(), &ok );
@@ -134,4 +146,25 @@ void FormClientesAdheridos::eliminar() {
              }
          }
      }
+}
+
+
+void FormClientesAdheridos::imprimir()
+{
+    EReporte *rep = new EReporte( 0 );
+    ParameterList lista;
+    lista.append( Parameter( "id_servicio", CBServicios->idActual() ) );
+    rep->especial( "ListadoClientesServicio", lista );
+    rep->hacer();
+    delete rep;
+}
+
+void FormClientesAdheridos::aPdf()
+{
+   EReporte *rep = new EReporte( 0 );
+   ParameterList lista;
+   lista.append( Parameter( "id_servicio", CBServicios->idActual() ) );
+   rep->especial( "ListadoClientesServicio", lista );
+   rep->hacerPDF( lista, QString( "Listado de clientes adheridos a %1 al %2 " ).arg( CBServicios->currentText() ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
+   delete rep;
 }
