@@ -53,7 +53,7 @@ public:
 
     int buscarUltimoNumeroRecibo() const;
     QDate buscarFechaUltimoRecibo() const;
-    bool setearComoPagado( const int id_recibo, const bool efectivo );
+    bool setearComoPagado( const int id_recibo, const bool efectivo, const bool ctacte );
     bool buscarSiPagado( const int serie, const int numero );
     bool existe( NumeroComprobante num );
     int buscarIdPorSerieNumero( const NumeroComprobante num );

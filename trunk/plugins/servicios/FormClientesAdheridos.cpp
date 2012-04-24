@@ -134,7 +134,7 @@ void FormClientesAdheridos::eliminar() {
          int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
          QDate fecha_baja = item.model()->data( item.model()->index( item.row(), 3 ), Qt::EditRole ).toDate();
          if( !fecha_baja.isValid() ) {
-             QMessageBox::information( this, "Error", "El cliente que está intentando eliminar no ha sido dado de baja todavía. Delo de baja antes de eliminar la asociación." );
+             QMessageBox::information( this, "Error", QString::fromUtf8( "El cliente que está intentando eliminar no ha sido dado de baja todavía. Delo de baja antes de eliminar la asociación." ) );
          } else {
              if( MCobroServicioClientePeriodo::tieneDatosRelacionados( id_servicio, id_cliente ) ) {
                  QMessageBox::warning( this, "Error", QString::fromUtf8( "La asociación del servicio que está intentando eliminar posee datos de facturación. No se puede eliminar la asociación para no comprometer la integridad de los datos." ) );
@@ -147,7 +147,6 @@ void FormClientesAdheridos::eliminar() {
          }
      }
 }
-
 
 void FormClientesAdheridos::imprimir()
 {
@@ -168,3 +167,4 @@ void FormClientesAdheridos::aPdf()
    rep->hacerPDF( lista, QString( "Listado de clientes adheridos a %1 al %2 " ).arg( CBServicios->currentText() ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
    delete rep;
 }
+

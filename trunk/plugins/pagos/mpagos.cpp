@@ -434,9 +434,10 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
  * Setea como pago el recibo que se pasa como id. Si ya esta como pagado, no hace nada y devuelve true.
  * \param id_recibo ID del recibo
  * \param efectivo Define si la forma de pago es MPagos::Efectivo ( si el parametro es true ) o MPagos::Otro ( si es false )
+ * \param ctacte Define si se debe actualizar o no la cuenta corriente.
  * \return Verdadero si pudo ser puesto como pagado o si ya estaba como pagado.
  */
-bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
+bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo, const bool ctacte )
 {
  QSqlQuery cola;
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
@@ -448,7 +449,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo )
         double precio = cola.value(1).toDouble();
         QString t = QString( "%1-%2" ).arg( cola.value(2).toInt() ).arg( cola.value(3).toInt() );
         // Coloco el recibo en la cuenta corriente del cliente si no es el consumidor final
-        if( id_cliente > 0 ) {
+        if( id_cliente > 0 && ctacte ) {
             MItemCuentaCorriente *m = new MItemCuentaCorriente();
             if( m->agregarOperacion( MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente ), // Numero de cuenta del cliente
                                      t, // Numero de recibo ( real )
