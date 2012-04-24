@@ -113,7 +113,7 @@ void DPagarRecibo::accept()
             }
         }
         // El recibo no esta pagado. Lo intento poner como pagado.
-        if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked() ) ) {
+        if( m->setearComoPagado( id_recibo, CkBEfectivo->isChecked(), false  ) ) { // No actualizo la cuenta corriente porque ya lo verifique antes
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
             QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue puesto como pagado y fue descontado de la cuenta corriente del cliente" ).arg( this->_num_recibo.aCadena() ) );
             ok = true;

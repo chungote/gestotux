@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2011 by Esteban Zeller   				   *
- *   tranfuga25s@gmail.com   						   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -19,15 +19,18 @@
  ***************************************************************************/
 
 #include "EReporte.h"
+#include "preferencias.h"
+
 #include <QDir>
 #include <QFile>
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QApplication>
+#include <QDesktopServices>
 #include <QFile>
 #include <QDomDocument>
 #include <QFileDialog>
-#include "preferencias.h"
+
 
 EReporte::EReporte( QObject *padre )
     : QObject() {
@@ -126,7 +129,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
  * Realiza el reporte configurado.
  * Si no se definieron parametros, se tomarán los parametros definidos en el objeto.
  * \param parametros Objeto del tipo "ParameterList" con los parametros para el reporte.
- * \param ruta Ruta a donde guardar el reporte, sino se mostrará el dialogo de guardar.
+ * \param ruta Ruta a donde guardar el reporte, sino se mostrará el dialogo de guardar. Si la ruta no es relativa se colocará como predeterminado el directorio de documentos o el de la aplicación.
  * \returns Verdadero si se pudo imprimir. Falso si hubo un error de configuración o al renderizar.
  */
 bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
@@ -141,6 +144,15 @@ bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
 
     _rep->setParamList( _parametros );
 
+    if( ruta.at( 0 ) != '/' ) {
+        QDir dir;
+        if( !dir.exists( QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation ) ) ) {
+            dir.setPath( QApplication::applicationDirPath() );
+        } else {
+            dir.setPath( QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation ) );
+        }
+        ruta = dir.absoluteFilePath( ruta );
+    }
     // Muestro el dialogo de a donde guardar
     ruta = QFileDialog::getSaveFileName( 0,
                                          "Guardar en",
@@ -168,14 +180,17 @@ bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
  * \returns Verdadero si se pudo cargar.
  */
 bool EReporte::especial( const QString nombre, ParameterList parametros ) {
+
     if( nombre.isNull() ) {
         qDebug( "Error - nombre del reporte especial nulo." );
         return false;
     }
     _tipo = EReporte::Especial;
+
     // Si es especial tiene que cargarlo con el nombre indicado
     this->_parametros = parametros;
     _nombre = nombre;
+
     return cargar( nombre );
 }
 
@@ -184,15 +199,19 @@ bool EReporte::especial( const QString nombre, ParameterList parametros ) {
  * Carga el reporte de presupuesto definido por el plugin de información del cliente.
  */
 void EReporte::presupuesto() {
+
     _tipo = EReporte::Presupuesto;
+
     // Busco el tipo de presupuesto que se desea
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = p->value( "Presupuesto" ).toString();
     p->endGroup(); p->endGroup(); p=0;
+
     if( _nombre.isEmpty() )
         _nombre = "Presupuesto";
+
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -202,15 +221,19 @@ void EReporte::presupuesto() {
  * Carga el reporte de factura definido por el plugin de información del cliente.
  */
 void EReporte::factura() {
+
     _tipo = EReporte::Factura;
+
     // Busco el tipo de presupuesto que se desea
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "Factura" ).toString();
     p->endGroup(); p->endGroup(); p=0;
+
     if( _nombre.isEmpty() )
         _nombre = "Factura";
+
     // Cargo el reporte
     cargar( _nombre );
 }
@@ -220,18 +243,21 @@ void EReporte::factura() {
  * Carga el reporte de recibo definido por el plugin de información del cliente.
  */
 void EReporte::recibo() {
+
     _tipo = EReporte::Recibo;
+
     // Busco el tipo de presupuesto que se desea
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "Recibos" ).toString();
     p->endGroup(); p->endGroup(); p=0;
+
     if( _nombre.isEmpty() )
         _nombre = "Recibo";
+
     // Cargo el reporte
     cargar( _nombre );
-        qDebug( _nombre.toLocal8Bit() );
 }
 
 
@@ -241,13 +267,16 @@ void EReporte::recibo() {
  */
 void EReporte::anulacionFactura() {
     _tipo = EReporte::AnulacionFactura;
+
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "AnulacionFactura" ).toString();
     p->endGroup(); p->endGroup(); p=0;
+
     if( _nombre.isEmpty() )
         _nombre = "AnulacionFactura";
+
     cargar( _nombre );
 }
 
@@ -256,14 +285,18 @@ void EReporte::anulacionFactura() {
  * Carga el reporte de anulación de el recibo
  */
 void EReporte::anulacionRecibo() {
+
     _tipo = EReporte::AnulacionRecibo;
+
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
     _nombre = preferencias::getInstancia()->value( "AnulacionRecibo" ).toString();
     p->endGroup(); p->endGroup(); p=0;
+
     if( _nombre.isEmpty() )
         _nombre = "AnulacionRecibo";
+
     cargar( _nombre );
 }
 
