@@ -25,7 +25,7 @@ ORDER BY c.razon_social;</sql>
  </querysource>
  <pghead>
   <firstpage/>
-  <height>58</height>
+  <height>74.6313</height>
   <label>
    <rect>
     <x>14</x>
@@ -46,37 +46,81 @@ ORDER BY c.razon_social;</sql>
    <rect>
     <x>3</x>
     <y>27</y>
-    <width>148</width>
+    <width>140.401</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Helvetica</face>
+    <face>Bitstream Charter</face>
     <size>11</size>
     <weight>bold</weight>
+    <italic/>
    </font>
    <left/>
    <vcenter/>
    <string>Fecha de impresion:</string>
   </label>
-  <field>
+  <label>
    <rect>
-    <x>151</x>
-    <y>30</y>
+    <x>1</x>
+    <y>50</y>
+    <width>43.5</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>bold</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>#CC</string>
+  </label>
+  <label>
+   <rect>
+    <x>49.8928</x>
+    <y>49</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Helvetica</face>
-    <size>12</size>
-    <weight>normal</weight>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>bold</weight>
    </font>
    <left/>
-   <top/>
-   <data>
-    <query>Context Query</query>
-    <column></column>
-   </data>
-  </field>
+   <vcenter/>
+   <string>Razon Social</string>
+  </label>
+  <label>
+   <rect>
+    <x>627</x>
+    <y>48.5</y>
+    <width>100</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>bold</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <string>Saldo</string>
+  </label>
+  <line>
+   <xstart>2</xstart>
+   <ystart>71</ystart>
+   <xend>724</xend>
+   <yend>71</yend>
+   <weight>2</weight>
+  </line>
+  <line>
+   <xstart>3.53316</xstart>
+   <ystart>52.8435</ystart>
+   <xend>725.533</xend>
+   <yend>52.8435</yend>
+   <weight>2</weight>
+  </line>
  </pghead>
  <pghead>
   <height>29</height>
@@ -84,29 +128,29 @@ ORDER BY c.razon_social;</sql>
    <rect>
     <x>3</x>
     <y>1</y>
-    <width>81</width>
+    <width>40</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Helvetica</face>
+    <face>Bitstream Charter</face>
     <size>10</size>
-    <weight>normal</weight>
+    <weight>bold</weight>
    </font>
-   <left/>
+   <hcenter/>
    <vcenter/>
-   <string>#Cuenta</string>
+   <string>#CC</string>
   </label>
   <label>
    <rect>
-    <x>98</x>
-    <y>0</y>
+    <x>50.3796</x>
+    <y>1.01</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Helvetica</face>
+    <face>Bitstream Charter</face>
     <size>10</size>
-    <weight>normal</weight>
+    <weight>bold</weight>
    </font>
    <left/>
    <vcenter/>
@@ -120,20 +164,20 @@ ORDER BY c.razon_social;</sql>
     <height>25</height>
    </rect>
    <font>
-    <face>Helvetica</face>
+    <face>Bitstream Charter</face>
     <size>10</size>
-    <weight>normal</weight>
+    <weight>bold</weight>
    </font>
    <hcenter/>
    <vcenter/>
    <string>Saldo</string>
   </label>
   <line>
-   <xstart>2</xstart>
-   <ystart>25</ystart>
-   <xend>724</xend>
-   <yend>25</yend>
-   <weight>0</weight>
+   <xstart>3.01326</xstart>
+   <ystart>20.9469</ystart>
+   <xend>725.014</xend>
+   <yend>20.9469</yend>
+   <weight>2</weight>
   </line>
  </pghead>
  <section>
@@ -142,7 +186,7 @@ ORDER BY c.razon_social;</sql>
    <key>
     <query>datos</query>
    </key>
-   <height>21</height>
+   <height>24.1962</height>
    <field>
     <rect>
      <x>622</x>
@@ -155,7 +199,7 @@ ORDER BY c.razon_social;</sql>
      <size>11</size>
      <weight>normal</weight>
     </font>
-    <hcenter/>
+    <right/>
     <vcenter/>
     <data>
      <query>datos</query>
@@ -165,9 +209,9 @@ ORDER BY c.razon_social;</sql>
    </field>
    <field>
     <rect>
-     <x>96</x>
-     <y>1</y>
-     <width>524</width>
+     <x>50.9098</x>
+     <y>0.493369</y>
+     <width>563.011</width>
      <height>20</height>
     </rect>
     <font>
@@ -179,14 +223,14 @@ ORDER BY c.razon_social;</sql>
     <vcenter/>
     <data>
      <query>datos</query>
-     <column>numero_cuenta</column>
+     <column>razon_social</column>
     </data>
    </field>
    <field>
     <rect>
-     <x>2</x>
-     <y>1</y>
-     <width>90</width>
+     <x>2.51</x>
+     <y>0.493</y>
+     <width>38.8</width>
      <height>20</height>
     </rect>
     <font>
@@ -194,13 +238,100 @@ ORDER BY c.razon_social;</sql>
      <size>11</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>datos</query>
      <column>numero_cuenta</column>
     </data>
    </field>
+   <line>
+    <xstart>4.02652</xstart>
+    <ystart>21.8382</ystart>
+    <xend>726.027</xend>
+    <yend>21.8382</yend>
+    <weight>1</weight>
+   </line>
   </detail>
  </section>
+ <pgfoot>
+  <height>30.3979</height>
+  <label>
+   <rect>
+    <x>27.0867</x>
+    <y>3.04652</y>
+    <width>26</width>
+    <height>19.9337</height>
+   </rect>
+   <font>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>normal</weight>
+    <italic/>
+   </font>
+   <left/>
+   <top/>
+   <string> de </string>
+  </label>
+  <field>
+   <rect>
+    <x>159.806</x>
+    <y>3.56738</y>
+    <width>505.305</width>
+    <height>22.9735</height>
+   </rect>
+   <font>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>normal</weight>
+    <italic/>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <data>
+    <query>Context Query</query>
+    <column>report_title</column>
+   </data>
+  </field>
+  <field>
+   <rect>
+    <x>46.7403</x>
+    <y>-0.503049</y>
+    <width>37.1777</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>normal</weight>
+    <italic/>
+   </font>
+   <left/>
+   <vcenter/>
+   <data>
+    <query>Context Query</query>
+    <column>page_count</column>
+   </data>
+  </field>
+  <field>
+   <rect>
+    <x>3.07851</x>
+    <y>-0.593262</y>
+    <width>27.0618</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Bitstream Charter</face>
+    <size>10</size>
+    <weight>normal</weight>
+    <italic/>
+   </font>
+   <right/>
+   <vcenter/>
+   <data>
+    <query>Context Query</query>
+    <column>page_number</column>
+   </data>
+  </field>
+ </pgfoot>
 </report>
