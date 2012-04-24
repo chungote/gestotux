@@ -22,9 +22,15 @@
 #include "mpagos.h"
 #include "NumeroComprobante.h"
 #include "mrecargoshechos.h"
+#include "eregistroplugins.h"
+#include "mcajas.h"
+#include "mcuentacorriente.h"
+#include "mcobroservicioclienteperiodo.h"
+#include "mitemcuentacorriente.h"
 
 #include <QSqlDatabase>
 #include <QPushButton>
+#include <QMessageBox>
 
 DPagarRecibo::DPagarRecibo(QWidget *parent) :
     QDialog(parent), _num_recibo( 0, -1, -1 )
@@ -47,12 +53,7 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
 
 }
 
-#include <QMessageBox>
-#include "eregistroplugins.h"
-#include "mcajas.h"
-#include "mcuentacorriente.h"
-#include "mcobroservicioclienteperiodo.h"
-#include "mitemcuentacorriente.h"
+
 /*!
  * \fn DPagarRecibo::accept()
  * Funciòn llamada cuando se le da OK al dialogo, verifica que el recibo no este pagado ya y lo pone como pagado si no lo esta. En caso de falla muestra el error pero no se cierra.
@@ -62,7 +63,7 @@ void DPagarRecibo::accept()
     if( !_num_recibo.esValido() ) {
         return;
     }
-        bool ok = false;
+    bool ok = false;
     // busco si el recibo esta como pagado o no
     MPagos *m = new MPagos();
     if( !m->existe( _num_recibo ) ) {
