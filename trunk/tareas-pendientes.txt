@@ -243,7 +243,7 @@ select substr('0000000000' || mycolumn, -10, 10) from mytable
 
 select substr(mycolumn || '0000000000', 1, 10) from mytable
 
-Para Mysql usamos
+Para Mysql usamos:
  CONCAT( CONCAT( LPAD( p.serie, 5, 0 ), '-' ), LPAD( p.numero, 5, 0 ) )
 
 Temas de Jazz:

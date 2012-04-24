@@ -48,6 +48,7 @@ protected slots:
     void eliminar();
     void aPdf();
     void imprimir();
+    void verBaja( bool estado );
 
 private:
     MClientesServicios *modelo;
