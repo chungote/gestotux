@@ -67,6 +67,14 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     connect( ActEliminar, SIGNAL( triggered() ), this, SLOT( eliminar() ) );
     this->addAction( ActEliminar );
 
+    QAction *ActVerBaja = new QAction( this );
+    ActVerBaja->setText( "Ver solo baja" );
+    ActVerBaja->setStatusTip( "Muestra solamente los clientes que han sido dados de baja del servicio" );
+    ActVerBaja->setCheckable( true );
+    ActVerBaja->setChecked( false );
+    connect( ActEliminar, SIGNAL( toggled( bool ) ), this, SLOT( verBaja( bool ) ) );
+    this->addAction( ActVerBaja );
+
     this->addAction( new EActImprimir( this ) );
     this->addAction( new EActPdf( this ) );
 
@@ -152,8 +160,12 @@ void FormClientesAdheridos::imprimir()
 {
     EReporte *rep = new EReporte( 0 );
     ParameterList lista;
+
     lista.append( Parameter( "id_servicio", CBServicios->idActual() ) );
+    if( !modelo->filter().isEmpty() )
+        lista.append( Parameter( "filtro", modelo->filter() ) );
     rep->especial( "ListadoClientesServicio", lista );
+
     rep->hacer();
     delete rep;
 }
@@ -163,8 +175,23 @@ void FormClientesAdheridos::aPdf()
    EReporte *rep = new EReporte( 0 );
    ParameterList lista;
    lista.append( Parameter( "id_servicio", CBServicios->idActual() ) );
+
+   if( !modelo->filter().isEmpty() )
+    lista.append( Parameter( "filtro", modelo->filter() ) );
+
    rep->especial( "ListadoClientesServicio", lista );
    rep->hacerPDF( lista, QString( "Listado de clientes adheridos a %1 al %2 " ).arg( CBServicios->currentText() ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
+
    delete rep;
 }
 
+void FormClientesAdheridos::verBaja( bool estado )
+{
+    if( estado ) {
+        modelo->setFilter( " fecha_baja IS NOT NULL " );
+        modelo->select();
+    } else {
+        modelo->setFilter( "" );
+        modelo->select();
+    }
+}
