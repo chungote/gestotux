@@ -156,7 +156,7 @@ void FormVerificarRecargos::iniciar()
                 .arg( id_periodo_servicio )
                 .arg( ano )
                 .arg( fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
-                .arg( mps->obtenerFechaFinPeriodo( id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) ) // AREGLLAR ESTO!
+                .arg( mps->obtenerFechaFinPeriodo( id_servicio, fecha_inicio ).toString( Qt::SystemLocaleShortDate) ) // ARREGLAR ESTO!
     );
     QApplication::processEvents();
     // Busco la cantidad de recargos que tiene el servicio
@@ -226,25 +226,30 @@ void FormVerificarRecargos::iniciar()
                 }
                 if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
                 QApplication::processEvents();
-                double costo_recargo = MRecargos::calcularRecargo( recargo.key(), true );
+                double costo_recargo = MRecargos::calcularRecargo( recargo.key(), false );
+                qDebug( QString( "%1" ).arg( costo_recargo ).toLocal8Bit() );
                 if( cola.exec(
                     QString( "SELECT id_cliente FROM cobro_servicio_cliente_periodo "
                              " WHERE id_servicio = %1 AND id_periodo_servicio = %2 "
                              " AND id_recibo IS NULL" ).arg( id_servicio ).arg( id_periodo_servicio ) ) ) {
                     while( cola.next() ) {
                         if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
-                        // Para cada cliente agrego un recargo
-                        if( !MRecargosHechos::agregarRecargo( id_periodo_servicio,
-                                                              id_servicio,
-                                                              cola.record().value(0).toInt(),
-                                                              recargo.key(),
-                                                              QDateTime::currentDateTime(),
-                                                              QString( "Retraso de pago para %1" ).arg( nombre_servicio ),
-                                                              costo_recargo ) ) {
-                            l("No se pudo agregar el recargo!!! <-------------");
+                        // Para cada cliente agrego un recargo verificando que no este hecho ya
+                        if( MRecargosHechos::existe( id_periodo_servicio, id_servicio, cola.record().value(0).toInt(), recargo.key() ) ) {
+                            l("El recargo ya fue realizado.");
                         } else {
-                            LNDeudores->display( LNDeudores->value() + 1 );
-                            DSBDeudas->setValue( DSBDeudas->value() + costo_recargo );
+                            if( !MRecargosHechos::agregarRecargo( id_periodo_servicio,
+                                                                  id_servicio,
+                                                                  cola.record().value(0).toInt(),
+                                                                  recargo.key(),
+                                                                  QDateTime::currentDateTime(),
+                                                                  QString( "Retraso de pago para %1" ).arg( nombre_servicio ),
+                                                                  costo_recargo ) ) {
+                                l("No se pudo agregar el recargo!!! <-------------");
+                            } else {
+                                LNDeudores->display( LNDeudores->value() + 1 );
+                                DSBDeudas->setValue( DSBDeudas->value() + costo_recargo );
+                            }
                         }
                         LNTotalProcesado->display( LNTotalProcesado->value() + 1 );
                         PrBClientes->setValue( PrBClientes->value() + 1 );

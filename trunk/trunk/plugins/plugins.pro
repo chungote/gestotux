@@ -9,5 +9,5 @@ SUBDIRS +=  caja \
             pagos \
             presupuesto \
             servicios \
-            descuentos \
+#            descuentos \
             HiComp

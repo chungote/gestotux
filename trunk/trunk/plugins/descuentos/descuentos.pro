@@ -9,8 +9,7 @@ TARGET = descuentos
 DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
-               ../../utiles \
-               ../../reporte
+              ../../utiles
 
 LIBS += ../../bin/libutiles.a
 
@@ -19,13 +18,14 @@ PRE_TARGETDEPS += ../../bin/libutiles.a
 QT += sql
 
 OTHER_FILES += descuentos.QSQLITE.sql \
-               descuentos.QMYSQL.sql \
-    descuentos.QMYSQL.sql \
-    descuentos.SQLITE.sql
+               descuentos.QMYSQL.sql
 
-RESOURCES += descuentos.qrc \
-    descuentos.qrc
+RESOURCES += descuentos.qrc
 
-HEADERS += descuentosplugin.h
+HEADERS += descuentosplugin.h \
+           formprefdescuentos.h
 
-SOURCES += descuentosplugin.cpp
+SOURCES += descuentosplugin.cpp \
+           formprefdescuentos.cpp
+
+FORMS += FormPrefDescuentosBase.ui
