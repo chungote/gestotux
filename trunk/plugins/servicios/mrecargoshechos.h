@@ -39,6 +39,7 @@ public:
 
     static bool agregarRecargo( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_recargo, const QDateTime fecha = QDateTime::currentDateTime(), const QString detalle = QString(), const double costo = 0.0 );
     static double buscarRecargoPorPeriodoServicio( const int id_recibo, const int id_cliente );
+    static bool existe( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_recargo );
 
 };
 

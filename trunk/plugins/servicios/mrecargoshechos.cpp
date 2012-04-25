@@ -128,8 +128,8 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
     if( detalle.isEmpty() ) {
         detalle.append( "Recargo por pago fuera de termino" );
     }
-    if( costo ) {
-        costo = MRecargos::calcularRecargo( id_recargo, true );
+    if( costo <= 0.0 ) {
+        costo = MRecargos::calcularRecargo( id_recargo, false );
     }
 
     // Veo de actualizar la cuenta corriente del cliente
@@ -213,4 +213,20 @@ double MRecargosHechos::buscarRecargoPorPeriodoServicio( const int id_periodo_se
         qDebug( cola.lastError().text().toLocal8Bit() );
     }
     return 0.0;
+}
+
+bool MRecargosHechos::existe( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_recargo )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( id_cliente ) FROM recargo_cobro_servicio_cliente WHERE id_periodo_servicio = %1 AND id_cliente = %2 AND id_servicio = %3 AND id_recargo = %4" ).arg( id_periodo_servicio ).arg( id_cliente ).arg( id_servicio ).arg( id_recargo ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        }
+    } else {
+        qDebug( "MRecargosHechos::existe: Error al hacer exec" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+    }
+    return false;
 }

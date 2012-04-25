@@ -217,6 +217,7 @@ double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )
         qDebug( "Existio un error al intentar buscar el precio base del servicio buscando el recargo" );
         return -1.0;
     }
+    if( porcentaje > 1 ) { porcentaje = porcentaje / 100; }
     double aplicar = 0.0;
     if( recargo <= 0.0 ) {
         if( precio_final ){
