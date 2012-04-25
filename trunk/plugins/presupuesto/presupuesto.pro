@@ -3,7 +3,8 @@ CONFIG += plugin \
           dll \
           help
 
-QT += sql
+QT += sql \
+      xml
 
 HEADERS += presupuesto.h \
            formagregarpresupuesto.h \
@@ -11,18 +12,18 @@ HEADERS += presupuesto.h \
            vpresupuesto.h \
            MItemPresupuesto.h \
            ../../src/mclientes.cpp \
-    mvpresupuestos.h \
-    vlistapresupuesto.h \
-    formmodificarpresupuesto.h
+           mvpresupuestos.h \
+           vlistapresupuesto.h \
+           formmodificarpresupuesto.h
 SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
            mpresupuesto.cpp \
            vpresupuesto.cpp \
            MItemPresupuesto.cpp \
            ../../src/mclientes.cpp \
-    mvpresupuestos.cpp \
-    vlistapresupuesto.cpp \
-    formmodificarpresupuesto.cpp
+           mvpresupuestos.cpp \
+           vlistapresupuesto.cpp \
+           formmodificarpresupuesto.cpp
 
 FORMS += FormPresupuestoBase.ui
 

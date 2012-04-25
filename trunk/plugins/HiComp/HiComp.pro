@@ -1,9 +1,12 @@
 TEMPLATE = lib
+
 CONFIG += plugin \
           dll \
           help
 
 TARGET = hicomp
+
+QT += xml
 
 HEADERS += hicomp.h \
            DPagarRecibo.h\
