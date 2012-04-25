@@ -29,25 +29,7 @@ Q_EXPORT_PLUGIN2( Caja, Caja )
     \fn Caja::accionesBarra()
  */
 QList<QActionGroup *> Caja::accionesBarra()
-{
-/* QList<QActionGroup *> lista;
- QActionGroup *ventas = new QActionGroup( this );
- ventas->setObjectName( "ventas" );
- ventas->setProperty( "icono", ":/imagenes/ventas.jpg" );
- ventas->setProperty( "titulo", "Ventas" );
- ventas->addAction( ActProductos );
- preferencias *p = preferencias::getInstancia();
- p->beginGroup( "Preferencias" );
- p->beginGroup( "Productos" );
- bool categorias = p->value( "categorias" ).toBool();
- p->endGroup();
- p->endGroup();
- if( categorias )
- { ventas->addAction( ActCategorias ); }
- lista.append( ventas );
- return lista;*/
- return QList<QActionGroup *>();
-}
+{ return QList<QActionGroup *>(); }
 
 
 /*!
@@ -129,20 +111,12 @@ int Caja::tipo() const
  */
 void Caja::crearMenu( QMenuBar *m )
 {
- QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHer == 0 )
- {
-  qDebug( "Error en las baras de menu" );
- }
- else
- {
-     QMenu *menuCaja = menuHer->addMenu( QIcon( ":/imagenes/caja.png"), "Caja" );
+     QMenu *menuCaja = m->addMenu( /*QIcon( ":/imagenes/caja.png"),*/ "Caja" );
      menuCaja->addAction( ActVerEstado );
      menuCaja->addAction( ActHacerCierre );
      menuCaja->addAction( ActResumenes );
      menuCaja->addSeparator();
      menuCaja->addAction( ActCajas );
- }
 }
 
 

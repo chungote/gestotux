@@ -33,7 +33,6 @@ class EVerificaBackup : public QPushButton
 Q_OBJECT
 public:
     EVerificaBackup(QWidget *parent = 0);
-    ~EVerificaBackup();
 
 protected slots:
     void verificar();

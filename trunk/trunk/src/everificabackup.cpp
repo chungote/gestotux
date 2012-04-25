@@ -36,13 +36,6 @@ EVerificaBackup::EVerificaBackup(QWidget *parent)
  this->setFlat(true);
 }
 
-
-EVerificaBackup::~EVerificaBackup()
-{
-}
-
-
-
 /*!
     \fn EVerificaBackup::verificar()
 	Funcion llamada cada cierto tiempo que permite verificar si el backup no cumple con la frecuencia pedida.
@@ -94,7 +87,7 @@ void EVerificaBackup::verificar()
   QIcon icono( ":/imagenes/aviso.png" );
   this->setIcon( icono );
   this->setIconSize( QSize( 16, 16 ) );
-  connect( this, SIGNAL( clicked() ), this, SIGNAL( abrirBackups()) );
+  connect( this, SIGNAL( clicked() ), this, SIGNAL( abrirBackups() ) );
   this->setToolTip( "El ultimo backup fue echo hace mas de " + QString::number( cant_dias ) + " dias.\n Haga click aqui para generar un backup" );
  }
  else

@@ -101,13 +101,9 @@ int presupuesto::tipo() const
  */
 void presupuesto::crearMenu( QMenuBar *m )
 {
- QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHer != 0 ) {
-  QMenu *menuPresupuestos = menuHer->addMenu( "Presupuestos" );
-  menuPresupuestos->setIcon( ActPresuAnteriores->icon() );
-  menuPresupuestos->addAction( ActNuevoPresu );
-  menuPresupuestos->addAction( ActPresuAnteriores );
- }
+ QMenu *menuPresupuestos = m->addMenu( "Presupuestos" );
+ menuPresupuestos->addAction( ActNuevoPresu );
+ menuPresupuestos->addAction( ActPresuAnteriores );
 }
 
 

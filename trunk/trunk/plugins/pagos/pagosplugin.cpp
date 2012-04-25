@@ -72,20 +72,13 @@ QWidgetList PagosPlugin::formsPreferencias()
 
 void PagosPlugin::crearMenu( QMenuBar* m )
 {
- QMenu *mVentas = m->findChild<QMenu *>( "menuVentas" );
- if( mVentas == 0 )
- {
-  mVentas = m->addMenu( "Ventas" );
-  mVentas->setObjectName( "menuVentas" );
- }
- mVentas->addAction( ActPagos );
- mVentas->addAction( ActAgregarRecibo );
+    QMenu *mPagos = m->addMenu( "Pagos" );
+    mPagos->addAction( ActPagos );
+    mPagos->addAction( ActAgregarRecibo );
 }
 
-void PagosPlugin::crearToolBar(QToolBar* t)
-{
-    (void)t;
-}
+void PagosPlugin::crearToolBar(QToolBar*)
+{}
 
 void PagosPlugin::seCierraGestotux()
 {
