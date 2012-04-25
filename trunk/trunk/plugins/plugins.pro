@@ -9,11 +9,5 @@ SUBDIRS +=  caja \
             pagos \
             presupuesto \
             servicios \
-            HiComp #\
-#           bscomputacion
-#            digifauno \
-#            aCarCorr \
-#            credenciales
-#            email \
-#            planificador \
-
+            descuentos \
+            HiComp

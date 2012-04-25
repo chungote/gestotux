@@ -24,7 +24,8 @@ HEADERS +=  dgastos.h \
             vcategoriasgastos.h \
             mcategoriasgastos.h
 
-QT += sql
+QT += sql \
+      xml
 
 DESTDIR = ../../bin/plugins/
 

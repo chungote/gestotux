@@ -17,8 +17,8 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef PRESUPUESTO_H
-#define PRESUPUESTO_H
+#ifndef DESCUENTOSPLUGIN_H
+#define DESCUENTOSPLUGIN_H
 
 #include <QObject>
 #include "../../src/eplugin.h"
@@ -30,10 +30,11 @@
  * Clase que sirve de implementación para el plugin de proveedores, dando el sistema de carga y acciones para menus y barras
  * @author Esteban Zeller <juiraze@yahoo.com.ar>
 */
-class proveedor : public QObject, public EPlugin
+class DescuentosPlugin : public QObject, public EPlugin
 {
 Q_OBJECT
 Q_INTERFACES( EPlugin )
+
 public:
     bool inicializar();
     bool verificarTablas( QStringList tablas );
@@ -51,11 +52,11 @@ signals:
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
 public slots:
-    void proveedores();
     void seCierraGestotux();
+    void tipoDescuentos();
 
 private:
-    QAction *ActProveedores;
+    QAction *ActDescuentos;
 
 };
 

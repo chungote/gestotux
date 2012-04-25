@@ -4,7 +4,8 @@ CONFIG += dll \
           plugin \
           help
 
-QT += sql
+QT += sql \
+      xml
 
 TARGET = ctacte
 

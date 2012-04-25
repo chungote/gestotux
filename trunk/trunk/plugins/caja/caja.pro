@@ -18,7 +18,8 @@ LIBS += ../../bin/libutiles.a \
 PRE_TARGETDEPS += ../../bin/libreporte.a \
                   ../../bin/libutiles.a
 
-QT += sql
+QT += sql \
+      xml
 
 OTHER_FILES += caja.QSQLITE.sql \
                caja.QMYSQL.sql \

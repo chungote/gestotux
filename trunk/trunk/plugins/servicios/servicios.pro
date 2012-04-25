@@ -4,7 +4,8 @@ CONFIG += dll \
           plugin \
           help
 
-QT += sql
+QT += sql \
+      xml
 
 TARGET = servicios
 
@@ -48,10 +49,10 @@ HEADERS =   ../caja/mcajas.h \
            mcobroservicioclienteperiodo.h \
            formmodificarservicio.h \
            FormVerificarRecargos.h \
-    eserviciosdelegate.h \
-    vlistaperiodos.h \
-    formfacturacionemitida.h \
-    mfacturacionemitida.h
+           eserviciosdelegate.h \
+           vlistaperiodos.h \
+           formfacturacionemitida.h \
+           mfacturacionemitida.h
 
 
 SOURCES = servicios.cpp \
@@ -76,10 +77,10 @@ SOURCES = servicios.cpp \
            mcobroservicioclienteperiodo.cpp \
            formmodificarservicio.cpp \
            FormVerificarRecargos.cpp \
-    eserviciosdelegate.cpp \
-    vlistaperiodos.cpp \
-    formfacturacionemitida.cpp \
-    mfacturacionemitida.cpp
+           eserviciosdelegate.cpp \
+           vlistaperiodos.cpp \
+           formfacturacionemitida.cpp \
+           mfacturacionemitida.cpp
 
 RESOURCES += servicios.qrc
 
