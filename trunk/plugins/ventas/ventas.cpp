@@ -113,18 +113,10 @@ int Ventas::tipo() const
  */
 void Ventas::crearMenu( QMenuBar *m )
 {
- QMenu *mVentas = m->findChild<QMenu *>( "menuVentas" );
- if( mVentas == 0 )
- {
-  mVentas = m->addMenu( "Ventas" );
-  mVentas->setObjectName( "menuVentas" );
- }
- QList<QAction*> lista;
- lista.append( ActAgregarVentas );
- lista.append( ActVerFacturas );
- QAction *sep = new QAction( mVentas );
- sep->setSeparator( true );
- mVentas->insertActions( mVentas->actions().first(), lista );
+ QMenu *mVentas = m->addMenu( "Ventas" );
+ mVentas->addAction( ActAgregarVentas );
+ mVentas->addAction( ActVerFacturas );
+ mVentas->addSeparator();
 }
 
 

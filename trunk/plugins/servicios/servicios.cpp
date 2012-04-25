@@ -42,6 +42,7 @@ bool Servicios::inicializar()
  ActFacturarServicios = new QAction( this );
  ActFacturarServicios->setText( "Facturar Servicios" );
  ActFacturarServicios->setStatusTip( "Factura todos los servicios que no han sido dados de baja" );
+ ActFacturarServicios->setIcon( QIcon( ":/imagenes/facturar_servicio.png" ) );
  connect( ActFacturarServicios, SIGNAL( triggered() ), this, SLOT( facturarServicios() ) );
 
  ActVerfRecargos = new QAction( this );

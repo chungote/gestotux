@@ -119,12 +119,16 @@ void productos::crearMenu( QMenuBar *m )
 {
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer != 0 ) {
-     QMenu *menuProductos = menuHer->addMenu( "Productos" );
-     menuProductos->setIcon( ActProductos->icon() );
-     menuProductos->setObjectName( "menuProductos" );
-     menuProductos->addAction( ActProductos );
      if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
-     { menuProductos->addAction( ActCategorias ); }
+     {
+        QMenu *menuProductos = menuHer->addMenu( "Productos" );
+        menuProductos->setIcon( ActProductos->icon() );
+        menuProductos->setObjectName( "menuProductos" );
+        menuProductos->addAction( ActProductos );
+        menuProductos->addAction( ActCategorias );
+     } else {
+         menuHer->addAction( ActProductos );
+     }
  }
 }
 
