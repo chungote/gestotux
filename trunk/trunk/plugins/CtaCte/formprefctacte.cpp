@@ -27,6 +27,7 @@ FormPrefCtaCte::FormPrefCtaCte ( QWidget* parent, Qt::WFlags fl )
         setupUi ( this );
         this->setWindowTitle( "Cuenta Corriente" );
         this->setWindowIcon( QIcon( ":/imagenes/ctacte.png" ) );
+        this->setAttribute( Qt::WA_DeleteOnClose );
 }
 
 /*!

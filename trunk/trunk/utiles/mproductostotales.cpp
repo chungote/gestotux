@@ -32,13 +32,16 @@ MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa
  : QAbstractTableModel(parent)
 {
  // Inicializo los sistemas
- Total = 0;
+ Total = 0.0;
+ totalItems = 0.0;
  _calcularTotal = false;
  _buscarPrecio = false;
  cantidades = new QHash<int, double>();
  precio_unitario = new QHash<int, double>();
  subtotales = new QHash<int, double>();
  productos = new QHash<int, int>();
+ texto_descuentos = new QHash<int, QString>();
+ descuentos = new QHash<int, double>();
  if( _mapa_id_prod != 0 )
     prods = _mapa_id_prod;
  else
@@ -56,11 +59,15 @@ MProductosTotales::~MProductosTotales()
     delete precio_unitario;
     delete subtotales;
     delete productos;
+    delete texto_descuentos;
+    delete descuentos;
     cantidades = 0;
     precio_unitario = 0;
     subtotales = 0;
     productos = 0;
     prods = 0;
+    texto_descuentos = 0;
+    descuentos = 0;
 }
 
 bool MProductosTotales::insertRow( int row, const QModelIndex& parent )
@@ -95,7 +102,7 @@ bool MProductosTotales::removeRow( int row, const QModelIndex& parent )
   precio_unitario->remove( precio_unitario->size()-1 );
   cantidades->     remove( cantidades->size()-1      );
   subtotales->     remove( subtotales->size()-1      );
-  recalcularTotal();
+  recalcularTotalItems();
   endRemoveRows();
   emit dataChanged( this->index( row, 0 ), this->index( this->rowCount(), this->columnCount() ) );
   return true;
@@ -140,7 +147,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 if( _calcularTotal )
                                 {
                                         subtotales->insert( index.row(), precio_unitario->value( index.row() ) * value.toDouble() );
-                                        recalcularTotal();
+                                        recalcularTotalItems();
                                 }
                                 emit dataChanged( index , this->index( index.row(), 3 ) );
                                 return true;
@@ -197,7 +204,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 if( _calcularTotal )
                                 {
                                         subtotales->insert( index.row(), cantidades->value( index.row() ) * value.toDouble() );
-                                        recalcularTotal();
+                                        recalcularTotalItems();
                                 }
                                 emit dataChanged( index , this->index( index.row(), 3 ) );
                                 return true;
@@ -232,9 +239,9 @@ int MProductosTotales::columnCount(const QModelIndex& /*parent*/) const
 int MProductosTotales::rowCount(const QModelIndex& /*parent*/) const
 {
  if( _calcularTotal )
- { return cantidades->size() + 1; }
+ { return cantidades->size() + descuentos->size() + 1; }
  else
- { return cantidades->size(); }
+ { return cantidades->size() + descuentos->size(); }
 }
 
 Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
@@ -242,9 +249,17 @@ Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
  if( _solo_lectura ) {
   return QFlags<Qt::ItemFlag>( Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
  }
- if( index.row() >= this->cantidades->size() )
+ if( index.row() >= this->cantidades->size() + descuentos->size() )
  {
   return QFlags<Qt::ItemFlag>(!Qt::ItemIsSelectable | !Qt::ItemIsEditable | Qt::ItemIsEnabled );
+ }
+ else if( index.row() >= this->cantidades->size() )
+ {
+     if( index.column() > 0 ) {
+        return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEditable );
+     } else {
+        return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable );
+     }
  }
  else
  {
@@ -259,37 +274,12 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 {
  if( !idx.isValid() )
  { return( QVariant() ); }
+ ////////////////////////////////////////////////////////////////////
+ // Fila de total
  if( idx.row() == this->rowCount()-1 && _calcularTotal )
  {
-  //qDebug( qPrintable( QString::number( this->productos->size() ) ) );
   switch( idx.column() )
   {
-        case 0:
-        {
-                /*if( role == Qt::DisplayRole )
-                {
-                    return "Cantidad de lineas:";
-                } else if( role == Qt::TextAlignmentRole ) {
-                    return int( Qt::AlignRight | Qt::AlignVCenter );
-                } else { */
-                    return QVariant();
-                //}
-                break;
-        }
-        case 1:
-        {
-                /*if( role == Qt::DisplayRole )
-                {
-                        return QString( "%L1" ).arg( this->cantidades->size() );
-                }
-                else if( role == Qt::TextAlignmentRole )
-                {
-                    return int( Qt::AlignVCenter | Qt::AlignHCenter );
-                }
-                else
-                {*/ return QVariant(); //}
-                break;
-        }
         case 2:
         {
                 if( role == Qt::DisplayRole )
@@ -320,6 +310,54 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
         }
   }
  } // Fin ultima fila
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ // Descuentos
+ else if( idx.row() > cantidades->size() && !descuentos->isEmpty() ) {
+     int pos_i = idx.row() - cantidades->size();
+     switch( idx.column() )
+     {
+           // Filacero esta vacia
+           case 1:  // Fila del texto del subtotal
+           {
+                   if( role == Qt::DisplayRole || role == Qt::EditRole )
+                   {
+                        return texto_descuentos->value( pos_i );
+                   } else  if( role == Qt::TextAlignmentRole ) {
+                        return int( Qt::AlignLeft | Qt::AlignVCenter );
+                   } else { return QVariant(); }
+                   break;
+           }
+           case 2: // Porcentaje de descuento
+           {
+                   if( role == Qt::DisplayRole )
+                   {
+                       return QString( " %L1 %" ).arg( descuentos->value( pos_i ) );
+                   } else if( role == Qt::TextAlignmentRole ) {
+                       return int( Qt::AlignRight | Qt::AlignVCenter );
+                   } else if( role == Qt::EditRole ) {
+                       return descuentos->value( pos_i );
+                   } else {  return QVariant(); }
+                   break;
+           }
+           case 3: // Sutotales ---> tambien se guardan en subtotales
+           {
+                   if( role == Qt::DisplayRole ) {
+                       return QString( "$ %L1" ).arg( subtotales->value( idx.row() ), 10, 'f', 2 );
+                   } else if( role == Qt::TextAlignmentRole ) {
+                       return int( Qt::AlignRight | Qt::AlignVCenter );
+                   } else {
+                       return QVariant();
+                   }
+                   break;
+           }
+           default:
+           {
+                   return QVariant();
+                   break;
+           }
+     }
+
+ } // FIN DESCUENTOS
  else
  {
 
@@ -454,14 +492,14 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
 }
 
 /*!
-    \fn MProductosTotales::recalcularTotal()
+    \fn MProductosTotales::recalcularTotalItems()
  */
-void MProductosTotales::recalcularTotal()
+void MProductosTotales::recalcularTotalItems()
 {
- Total = 0;
+ totalItems = 0;
  for( QHash<int, double>::const_iterator i = subtotales->constBegin(); i != subtotales->constEnd(); ++i )
  {
-  Total += i.value();
+  totalItems += i.value();
  }
  // Emito la senal de que cambio el valor
  emit dataChanged( this->index( this->cantidades->size(), 0 ), this->index( this->cantidades->size(), 3 ) );
@@ -470,10 +508,17 @@ void MProductosTotales::recalcularTotal()
 
 /*!
     \fn MProductosTotales::total()
+    Devuelve el total de los items incluyendo descuentos si existen
  */
 double MProductosTotales::total()
 { return Total; }
 
+/*!
+    \fn MProductosTotales::totalitems()
+    Devuelve el total de los items incluyendo descuentos si existen
+ */
+double MProductosTotales::totalitems()
+{ return totalItems; }
 
 /*!
     \fn MProductosTotales::headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const
@@ -525,7 +570,7 @@ void MProductosTotales::agregarItem( const int cant, const QString texto, double
     this->productos->insert( pos, pos2 );
 
     if( _calcularTotal )
-        recalcularTotal();
+        recalcularTotalItems();
 
     emit dataChanged( this->index( pos, 0 ), this->index( pos, this->columnCount() ) );
     emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
@@ -553,7 +598,7 @@ void MProductosTotales::agregarItem( const int cant, const int id_producto, doub
     this->productos->insert( pos, id_producto );
 
     if( _calcularTotal )
-        recalcularTotal();
+        recalcularTotalItems();
 
     emit dataChanged( this->index( pos, 0 ), this->index( pos, this->columnCount() ) );
     emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
@@ -683,7 +728,7 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
               emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
 
               if( _calcularTotal )
-                  recalcularTotal();
+                  recalcularTotalItems();
                   emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() )  );
 
               return;
@@ -701,7 +746,7 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
         this->precio_unitario->insert( id_fila, precio_unitario            );
         this->subtotales->insert     ( id_fila, precio_unitario * cantidad );
 
-        recalcularTotal();
+        recalcularTotalItems();
 
         emit dataChanged( this->index( id_fila, 0 ), this->index( id_fila, this->columnCount() ) );
 
@@ -733,3 +778,73 @@ void MProductosTotales::setearTipoPrecioBuscar( int t )
 int  MProductosTotales::tipoPrecioBuscar()
 { return this->_tipoPrecio; }
 
+void MProductosTotales::agregarDescuento( QString texto, double porcentaje )
+{
+    if( texto_descuentos->values().contains( texto ) ) {
+        qWarning( "El descuento ya existe" );
+        return;
+    }
+
+    int pos = descuentos->size() + 1;
+    texto_descuentos->insert( pos, texto );
+    descuentos->insert( pos, porcentaje );
+    // Poner el subtotal en subtotales
+    double ant = 0.0;
+    if( pos == 1 ) {
+        ant = totalItems;
+    } else {
+        ant = subtotales->value( subtotales->size() - 1 );
+    }
+    double sub = ant * ( 1 - ( porcentaje / 100 ) );
+    subtotales->insert( this->rowCount()-1, sub  );
+
+    // Calcular el total
+    Total = sub;
+}
+
+bool MProductosTotales::esDescuento( QModelIndex idx )
+{
+    if( !idx.isValid() )
+        return false;
+
+    if( (idx.row()-cantidades->size()) <= descuentos->size() ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool MProductosTotales::eliminarDescuento( QModelIndex idx )
+{
+    if( !idx.isValid() )
+        return false;
+
+    beginRemoveRows( QModelIndex(), idx.row(), idx.row() );
+
+    // Busco el indice interno
+    int pos_i = idx.row() - cantidades->size();
+
+    // Aplico inversamente el descuento al total
+    double descuento = descuentos->value( pos_i );
+    Total *= ( 1 + ( descuento / 100 ) );
+
+    // Actualizo los datos siguientes al que elimino
+    for( int i = pos_i; i < descuentos->count(); i++ ) {
+        descuentos      ->insert( i, descuentos      ->value( i+1 ) );
+        texto_descuentos->insert( i, texto_descuentos->value( i+1 ) );
+    }
+    descuentos      ->remove( descuentos->size() - 1 );
+    texto_descuentos->remove( texto_descuentos->size() - 1 );
+
+    // Actualizo el subtotales
+    for( int i = idx.row(); i < subtotales->count(); i++ ) {
+        subtotales->insert( i, subtotales->value( i + 1 ) );
+    }
+    // Las posiciones estan basadas en indice base 0
+    subtotales->remove( subtotales->size() - 1 );
+
+    endRemoveRows();
+    emit dataChanged( this->index( idx.row(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
+
+    return true;
+}

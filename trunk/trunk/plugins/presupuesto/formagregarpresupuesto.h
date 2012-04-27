@@ -48,6 +48,8 @@ protected slots:
     void eliminarProducto();
     void borrarTodoProducto();
     void cambioCliente( int id_combo );
+    void agregarDescuento();
+    void eliminarDescuento();
 
 private:
    /*!

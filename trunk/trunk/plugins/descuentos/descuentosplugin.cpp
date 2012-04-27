@@ -18,7 +18,9 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "descuentosplugin.h"
- 
+
+#include "formprefdescuentos.h"
+
 #include <QSqlDatabase>
 #include <QAction>
 
@@ -40,7 +42,7 @@ QString DescuentosPlugin::nombre() const
 QWidgetList DescuentosPlugin::formsPreferencias()
 {
  QWidgetList lista;
-// lista.append( new FormPrefProductos() );
+ lista.append( new FormPrefDescuentos() );
  return lista;
 }
 

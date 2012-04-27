@@ -37,7 +37,7 @@ class FormPrefDb : public EVentana, public FormPrefHijo, private Ui::FormPrefDbB
 
 public:
   FormPrefDb(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~FormPrefDb();
+
 public slots:
     void cargar();
     void guardar();

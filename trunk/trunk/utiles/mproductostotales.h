@@ -48,7 +48,8 @@ public:
     void agregarItem( const int cant, const QString texto, double pu );
     void agregarItem( const int cant, const int id_producto, double pu );
 
-    void recalcularTotal();
+    void recalcularTotalItems();
+    double totalitems();
     double total();
     void calcularTotales( bool sino = true );
 
@@ -72,6 +73,14 @@ public:
 
     void setearSoloLectura( bool param ) { _solo_lectura = param; }
 
+    bool esDescuento( QModelIndex idx );
+    bool eliminarDescuento( QModelIndex idx );
+    int conteoDescuentos() { return descuentos->size(); }
+    int conteoItems() { return cantidades->size(); }
+
+public slots:
+    void agregarDescuento( QString texto, double porcentaje );
+
 private:
         /*!
          * Contiene el listado de subtotales por definicion de fila
@@ -94,9 +103,21 @@ private:
          */
         QMap<int, QString> *prods;
         /*!
+         * Contiene el listado de subtotales por definicion de fila
+         */
+        QHash<int, double> *descuentos;
+        /*!
+         * Contiene el listado de subtotales por definicion de fila
+         */
+        QHash<int, QString> *texto_descuentos;
+        /*!
          * Contiene el total de la factura calculado
          */
         double Total;
+        /*!
+         * Contiene el sutotal antes de los descuentos
+         */
+        double totalItems;
         /*!
          * Define si se calculará el total
          */

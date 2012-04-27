@@ -111,10 +111,10 @@ void FormModificarProducto::accept() {
         QMessageBox::warning( this, "Error", QString::fromUtf8("La categoría del producto no puede ser nula. Por favor, seleccióne una categoría para el producto" ) );
         return;
     }
-    if( this->DSBCosto->value() <= 0 ) {
+    /*if( this->DSBCosto->value() <= 0 ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El precio de costo del producto no puede ser cero. Por favor, ingrese un precio de costo para el producto" ) );
         return;
-    }
+    }*/
     if( this->DSBVenta->value() <= 0 ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8("El precio de venta del producto no puede ser nulo. Por favor, ingrese un precio de venta para el producto" ) );
         return;

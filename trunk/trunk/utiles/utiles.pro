@@ -32,7 +32,8 @@ HEADERS += eactcerrar.h \
     ecbpaises.h \
     ecbprovincias.h \
     ecbproveedor.h \
-    ecbtabla.h
+    ecbtabla.h \
+    eddescuento.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -64,7 +65,8 @@ SOURCES += eactcerrar.cpp \
     ecbpaises.cpp \
     ecbprovincias.cpp \
     ecbproveedor.cpp \
-    ecbtabla.cpp
+    ecbtabla.cpp \
+    eddescuento.cpp
 
 QT += sql
 
@@ -77,7 +79,8 @@ RESOURCES += utiles.qrc
 DESTDIR = ../bin
 
 FORMS += EAyudaBase.ui \
-    EBusquedaBase.ui
+    EBusquedaBase.ui \
+    eddescuentobase.ui
 
 TRANSLATIONS += utiles.ts
 

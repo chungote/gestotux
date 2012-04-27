@@ -27,11 +27,6 @@ FormPrefDb::FormPrefDb(QWidget* parent, Qt::WFlags fl)
  setupUi(this);
 }
 
-FormPrefDb::~FormPrefDb()
-{
-}
-
-
 /*!
     \fn FormPrefDb::cargar()
  */

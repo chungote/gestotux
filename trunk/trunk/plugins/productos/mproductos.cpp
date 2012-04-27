@@ -291,7 +291,11 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
     } else {
         cola.bindValue( ":stock", stock );
     }
-    cola.bindValue( ":precio_costo", costo );
+    if( costo == 0.0 ) {
+        cola.bindValue( ":precio_costo", QVariant() );
+    } else {
+        cola.bindValue( ":precio_costo", costo );
+    }
     cola.bindValue( ":precio_venta", venta );
     cola.bindValue( ":habilitado", true );
     if( cola.exec() ) {
