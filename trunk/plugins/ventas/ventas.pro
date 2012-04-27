@@ -55,7 +55,8 @@ INCLUDEPATH +=  ../../src \
                 ../../reporte \
                 ../productos \
                 ../CtaCte \
-                ../caja
+                ../caja \
+                ../descuentos
 
 RESOURCES += ventas.qrc
 

@@ -17,7 +17,8 @@ INCLUDEPATH += ../../src \
               ../CtaCte \
               ../ventas \
               ../productos \
-              ../caja
+              ../caja \
+              ../descuentos
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a

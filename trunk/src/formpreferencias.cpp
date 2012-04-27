@@ -99,7 +99,7 @@ FormPreferencias::FormPreferencias(QWidget *parent)
      EPlugin *plugin;
      foreach( plugin, ERegistroPlugins::getInstancia()->pluginsPunteros() )
      {
-        qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
+        //qDebug( QString( "Plugin: %1" ).arg( plugin->nombre() ).toLocal8Bit() );
         if( !plugin->formsPreferencias().isEmpty() )
         {
                 QWidget *form;
