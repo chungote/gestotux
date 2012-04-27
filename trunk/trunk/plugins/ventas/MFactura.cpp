@@ -24,16 +24,18 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QSqlField>
+#include <QMessageBox>
+
 #include "NumeroComprobante.h"
 #include "mitemfactura.h"
 #include "mproductos.h"
 #include "mproductostotales.h"
-#include <QMessageBox>
 #include "eregistroplugins.h"
 #include "mcuentacorriente.h"
 #include "mitemcuentacorriente.h"
 #include "mcajas.h"
 #include "mmovimientoscaja.h"
+#include "mdescuentos.h"
 
 MFactura::MFactura(QObject *parent) :
 QSqlRelationalTableModel(parent) {
@@ -111,7 +113,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
   // recorro el modelo y guardo los datos
   MItemFactura *mi = new MItemFactura();
   // Tengo que utilizar siempre el mismo objeto para evitar errores de indice de id_item_factura
-  for( int i= 0; i<mcp->rowCount(); i++ )
+  for( int i= 0; i<mcp->conteoItems(); i++ )
   {
    if( mi->agregarItemFactura( id_venta,
                                mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble(),
@@ -136,7 +138,21 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
        return -1;
    } // Fin if agregarItemFactura
   } // Fin del for items
-  //qDebug( "Items de factura agregados correctamente" );
+  if( mcp->conteoDescuentos() > 0 ) {
+     MDescuentos *md = new MDescuentos();
+     for( int fila = mcp->conteoItems()-1; fila < mcp->conteoDescuentos(); fila ++ ) {
+          if( !md->agregarDescuento( MDescuentos::Factura,
+                                     id_venta,
+                                     mcp->data( mcp->index( fila, 1 ), Qt::EditRole ).toString(),
+                                     mcp->data( mcp->index( fila, 2 ), Qt::EditRole ).toDouble()
+                                    ) ) {
+              qDebug( "Error al ingresar el descuento en la base de datos" );
+              QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+              return -1;
+         }
+     }
+     delete md;
+  }
   delete mi;
   mi = 0;
   double total_calculado = mcp->total();

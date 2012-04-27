@@ -71,7 +71,6 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Habilita el buscador de direccion.
         connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
-        //connect( CBCliente, SIGNAL( currentIndexChanged(int) ), this, SLOT( cambioCliente( int ) ) );
 
         // Pongo la fecha actual
         dEFecha->setDate( QDate::currentDate() );
@@ -93,7 +92,7 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
-        PBAgregarDescuento->setIcon( QIcon( ":/imagenes/agregar.png" ) );
+        PBAgregarDescuento->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBAgregar->setText( "Agregar" );
         PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
         PBEliminarTodo->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
@@ -186,7 +185,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  // Guardo los descuentos
  if( m->conteoDescuentos() > 0 ) {
     MDescuentos *md = new MDescuentos();
-    for( int fila = 0; fila < m->conteoDescuentos(); fila ++ ) {
+    for( int fila = m->conteoItems()-1; fila < m->conteoDescuentos(); fila ++ ) {
          if( !md->agregarDescuento( MDescuentos::Presupuesto,
                                           id_presupuesto,
                                           m->data( m->index( fila, 1 ), Qt::EditRole ).toString(),

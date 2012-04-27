@@ -256,15 +256,15 @@ Qt::ItemFlags MProductosTotales::flags(const QModelIndex& index) const
  else if( index.row() >= this->cantidades->size() )
  {
      if( index.column() > 0 ) {
-        return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEditable );
+        return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
      } else {
-        return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable );
+        return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
      }
  }
  else
  {
   if( index.column() == 3  || index.column() == 1 )
-  { return QFlags<Qt::ItemFlag>(!Qt::ItemIsEditable |  Qt::ItemIsSelectable ); }
+  { return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled ); }
   else
   { return QFlags<Qt::ItemFlag>( Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled ); }
  }
@@ -312,8 +312,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
  } // Fin ultima fila
  ////////////////////////////////////////////////////////////////////////////////////////////////////
  // Descuentos
- else if( idx.row() > cantidades->size() && !descuentos->isEmpty() ) {
-     int pos_i = idx.row() - cantidades->size();
+ else if( idx.row() > ( cantidades->size()-1 ) && !descuentos->isEmpty() ) {
      switch( idx.column() )
      {
            // Filacero esta vacia
@@ -321,9 +320,9 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
            {
                    if( role == Qt::DisplayRole || role == Qt::EditRole )
                    {
-                        return texto_descuentos->value( pos_i );
+                        return texto_descuentos->value( idx.row() );
                    } else  if( role == Qt::TextAlignmentRole ) {
-                        return int( Qt::AlignLeft | Qt::AlignVCenter );
+                        return int( Qt::AlignRight | Qt::AlignVCenter );
                    } else { return QVariant(); }
                    break;
            }
@@ -331,11 +330,11 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
            {
                    if( role == Qt::DisplayRole )
                    {
-                       return QString( " %L1 %" ).arg( descuentos->value( pos_i ) );
+                       return QString( " %L1 %" ).arg( descuentos->value( idx.row() ) );
                    } else if( role == Qt::TextAlignmentRole ) {
-                       return int( Qt::AlignRight | Qt::AlignVCenter );
+                       return int( Qt::AlignCenter | Qt::AlignVCenter );
                    } else if( role == Qt::EditRole ) {
-                       return descuentos->value( pos_i );
+                       return descuentos->value( idx.row() );
                    } else {  return QVariant(); }
                    break;
            }
@@ -784,22 +783,27 @@ void MProductosTotales::agregarDescuento( QString texto, double porcentaje )
         qWarning( "El descuento ya existe" );
         return;
     }
+    int pos = cantidades->size()+descuentos->size();
+    emit beginInsertRows( QModelIndex(), pos, pos );
 
-    int pos = descuentos->size() + 1;
     texto_descuentos->insert( pos, texto );
     descuentos->insert( pos, porcentaje );
+
     // Poner el subtotal en subtotales
     double ant = 0.0;
-    if( pos == 1 ) {
+    if( descuentos->size() == 1 ) {
         ant = totalItems;
     } else {
         ant = subtotales->value( subtotales->size() - 1 );
     }
     double sub = ant * ( 1 - ( porcentaje / 100 ) );
-    subtotales->insert( this->rowCount()-1, sub  );
+    subtotales->insert( pos, sub  );
 
     // Calcular el total
     Total = sub;
+
+    emit endInsertRows();
+    emit dataChanged( index( cantidades->size()-1, 0 ), index( rowCount(), columnCount() ) );
 }
 
 bool MProductosTotales::esDescuento( QModelIndex idx )

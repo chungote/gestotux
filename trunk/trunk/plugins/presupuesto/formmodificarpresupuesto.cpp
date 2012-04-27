@@ -7,6 +7,7 @@
 #include "mclientes.h"
 #include "mvpresupuestos.h"
 #include "NumeroComprobante.h"
+#include "mdescuentos.h"
 
 #include <QDataWidgetMapper>
 #include <QSqlQuery>
@@ -117,6 +118,21 @@ void FormModificarPresupuesto::setearIdPresupuesto( QModelIndex idx )
                           );
         }
         delete mi;
+
+        // Busco si existieron descuentos
+        MDescuentos *md = new MDescuentos();
+        md->setearTipo( MDescuentos::Presupuesto );
+        md->setearIdComprobante( _id_presupuesto );
+        if( md->existenDatos() ) {
+            md->seleccionarDatos();
+            for( int i = 0; i < md->rowCount(); i++ ) {
+                m->agregarDescuento(
+                                    md->data( md->index( i, mi->fieldIndex( "texto" ) ), Qt::EditRole ).toString(),
+                                    md->data( md->index( i, md->fieldIndex( "cantidad" ) ), Qt::EditRole ).toDouble()
+                                   );
+            }
+        }
+        delete md;
 
     } else {
         qDebug( "Error al buscar los datos del presupuesto" );

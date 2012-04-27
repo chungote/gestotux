@@ -68,6 +68,7 @@ QDialog(parent)
 void EDDescuento::accept()
 {
     emit agregarDescuento( CBDescuento->currentText(), dSBPorcentaje->value() );
+    QDialog::accept();
 }
 
 void EDDescuento::cargarPorcentaje( int id )
