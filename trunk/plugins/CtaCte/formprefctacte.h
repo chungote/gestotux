@@ -35,7 +35,7 @@ class FormPrefCtaCte : public QWidget, private Ui::FormPrefCtaCteBase, public Fo
 {
 Q_OBJECT
 public:
-	FormPrefCtaCte ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+    FormPrefCtaCte( QWidget* parent = 0, Qt::WFlags fl = 0 );
 
 public slots:
     void guardar();

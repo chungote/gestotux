@@ -19,12 +19,14 @@
  ***************************************************************************/
 #include "formagregarpresupuesto.h"
 
-#include "emcliente.h"
+
 #include <QDate>
 #include <QSqlError>
 #include <QHeaderView>
 #include <QCompleter>
 #include <QSqlQuery>
+#include <QInputDialog>
+
 #include "mproductostotales.h"
 #include "dproductostotales.h"
 #include "NumeroComprobante.h"
@@ -33,6 +35,9 @@
 #include "EReporte.h"
 #include "mclientes.h"
 #include "ecbclientes.h"
+#include "emcliente.h"
+#include "eddescuento.h"
+#include "mdescuentos.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -88,13 +93,17 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         // Pongo los botones en funcionamiento
         PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+        PBAgregarDescuento->setIcon( QIcon( ":/imagenes/agregar.png" ) );
         PBAgregar->setText( "Agregar" );
         PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
         PBEliminarTodo->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        PBEliminarDescuento->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
 
         connect( PBAgregar     , SIGNAL( clicked() ), this, SLOT( agregarProducto()    ) );
         connect( PBEliminar    , SIGNAL( clicked() ), this, SLOT( eliminarProducto()   ) );
         connect( PBEliminarTodo, SIGNAL( clicked() ), this, SLOT( borrarTodoProducto() ) );
+        connect( PBAgregarDescuento, SIGNAL( clicked() ), this, SLOT( agregarDescuento() ) );
+        connect( PBEliminarDescuento, SIGNAL( clicked() ), this, SLOT( eliminarDescuento() ) );
 
         // Busco el siguiente numero de comprobante valido para un presupuesto
         LNumeroComprobante->setText( LNumeroComprobante->text() + "   <b>" + MPresupuesto::proximoComprobante().aCadena() + "</b>" );
@@ -163,7 +172,7 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
  // elimino la fila de total
   m->calcularTotales( false );
  MItemPresupuesto *items = new MItemPresupuesto();
- for( int fila = 0; fila< TVContenido->model()->rowCount(); fila++ ) {
+ for( int fila = 0; fila < m->conteoItems(); fila++ ) {
      if( !items->agregarItemPresupuesto( id_presupuesto,
                                          m->data( m->index( fila, 0 ), Qt::EditRole ).toDouble(), // Cantidad
                                          m->data( m->index( fila, 1 ), Qt::DisplayRole ).toString(), // Texto
@@ -173,6 +182,22 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
          QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
          return;
      }
+ }
+ // Guardo los descuentos
+ if( m->conteoDescuentos() > 0 ) {
+    MDescuentos *md = new MDescuentos();
+    for( int fila = 0; fila < m->conteoDescuentos(); fila ++ ) {
+         if( !md->agregarDescuento( MDescuentos::Presupuesto,
+                                          id_presupuesto,
+                                          m->data( m->index( fila, 1 ), Qt::EditRole ).toString(),
+                                          m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()
+                                        ) ) {
+             qDebug( "Error al ingresar el descuento en la base de datos" );
+             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+             return;
+        }
+    }
+    delete md;
  }
  // Si llego hasta aca, termine de guardar todos los datos y ninguno fallo
  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
@@ -270,7 +295,7 @@ void FormAgregarPresupuesto::borrarTodoProducto()
  }
 }
 
-#include <mclientes.h>
+
 /*!
   \fn FormAgregarPresupuesto::cambioCliente( int id_combo )
   Slot llamado cada vez que el usuario cambia el contenido del combo de cliente o destinatario
@@ -278,4 +303,37 @@ void FormAgregarPresupuesto::borrarTodoProducto()
  */
 void FormAgregarPresupuesto::cambioCliente( int id_cliente ) {
     LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
+}
+
+/*!
+ * \fn FormAgregarPresupuesto::agregarDescuento()
+ */
+void FormAgregarPresupuesto::agregarDescuento()
+{
+    // Cargo el dialogo y conecto la señal
+    if( m->conteoItems() <= 0 ) {
+        QMessageBox::warning( this, "Error", "Por favor, inserte al menos un producto o item para poder agregar un descuento" );
+        return;
+    }
+    EDDescuento *d = new EDDescuento( this );
+    connect( d, SIGNAL( agregarDescuento( QString, double ) ), m, SLOT( agregarDescuento( QString, double ) ) );
+    d->exec();
+}
+
+/*!
+ * \fn FormAgregarPresupuesto::eliminarDescuento()
+ */
+void FormAgregarPresupuesto::eliminarDescuento()
+{
+    if( TVContenido->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::information( this, "Error", "El item seleccionado no es un descuento" );
+        return;
+    }
+    QModelIndex mi = TVContenido->selectionModel()->selectedRows().first();
+    if( m->esDescuento( mi ) ) {
+        m->eliminarDescuento( mi );
+    } else {
+        QMessageBox::information( this, "No descuento", "El item elegido no es un descuento" );
+        return;
+    }
 }

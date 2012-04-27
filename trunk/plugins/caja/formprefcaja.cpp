@@ -31,6 +31,7 @@ FormPrefCaja::FormPrefCaja(QWidget *parent) :
     this->setObjectName( "preferencias_caja" );
     this->setWindowTitle( "Caja" );
     this->setWindowIcon( QIcon( ":/imagenes/caja.png" ) );
+    this->setAttribute( Qt::WA_DeleteOnClose );
 
     // Cargo la lista de cajas
     ui->CBCaja->setModel( new MCajas( ui->CBCaja ) );

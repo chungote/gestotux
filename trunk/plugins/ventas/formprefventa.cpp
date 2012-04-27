@@ -31,6 +31,7 @@ FormPrefVenta::FormPrefVenta( QWidget* parent ) :
     setupUi(this);
     this->setWindowTitle( "Ventas" );
     this->setWindowIcon( QIcon( ":/imagenes/factura.png" ) );
+    this->setAttribute( Qt::WA_DeleteOnClose );
 }
 
 

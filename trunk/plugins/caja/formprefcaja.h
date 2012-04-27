@@ -39,7 +39,7 @@ class FormPrefCaja : public QWidget, public FormPrefHijo
     Q_OBJECT
 
 public:
-    explicit FormPrefCaja(QWidget *parent = 0);
+    FormPrefCaja( QWidget *parent = 0 );
     ~FormPrefCaja();
 
 public slots:
