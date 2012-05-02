@@ -31,13 +31,13 @@ PROJECT_NAME           = gestotux
 # This could be handy for archiving the generated documentation or 
 # if some version control system is used.
 
-PROJECT_NUMBER         = 0.5b
+PROJECT_NUMBER         = 0.5
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer
 # a quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = 
+PROJECT_BRIEF          = "Sistema de administracion de proyectos para mini-pymes"
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is 
 # included in the documentation. The maximum height of the logo should not 
@@ -697,7 +697,11 @@ EXCLUDE                = moc \
                          VerfVal \
                          reporte \
                          union \
-                         union
+                         union \
+                         plugins/credenciales \
+                	 plugins/digifauno \
+                	 plugins/autodestruct \
+                	 plugins/email
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 
@@ -717,7 +721,8 @@ EXCLUDE_PATTERNS       = svn \
                          moc \
                          ui \
                          ui_*.* \
-                         .svn
+                         .svn \
+                         *.diff
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names 
 # (namespaces, classes, functions, etc.) that should be excluded from the 
