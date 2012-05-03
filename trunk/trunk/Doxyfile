@@ -695,13 +695,12 @@ EXCLUDE                = moc \
                          plugins/OscarSorazi \
                          micelaseos/QuickCalendarView \
                          VerfVal \
-                         reporte \
-                         union \
                          union \
                          plugins/credenciales \
                 	 plugins/digifauno \
                 	 plugins/autodestruct \
-                	 plugins/email
+                	 plugins/email \
+                	 reporte
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 

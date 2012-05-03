@@ -947,102 +947,6 @@
     <class kind="class">MProductos</class>
   </compound>
   <compound kind="file">
-    <name>parche_unico_producto.patch</name>
-    <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
-    <filename>parche__unico__producto_8patch</filename>
-    <member kind="function">
-      <type>bool</type>
-      <name>aceptaDuplicados</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a8172d3ee282d03df8a2220077e9129fa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>cantidades</type>
-      <name>clear</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>afd507950ce0a0ae31714c677ca66e908</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>Index</type>
-      <name>if</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>af872abb954af5c57e49a0c2de6e5870d</anchor>
-      <arglist>(_mapa_id_prod!=0) prods</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type></type>
-      <name>if</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>ae0f3e0a82859e5ed361a8b6a7edfd2ed</anchor>
-      <arglist>(_buscarPrecio &amp;&amp;value.toInt() &gt; 0)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setearAceptaDuplicados</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a8d18e349ef431e14b56656841d93ebf8</anchor>
-      <arglist>(bool param)</arglist>
-    </member>
-    <member kind="function">
-      <type>Index void</type>
-      <name>setearTipoPrecioBuscar</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a0861b66d58b9460995a4fb185a12ffb5</anchor>
-      <arglist>(int t)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>tipoPrecioBuscar</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a4f77c0cacec318068fee1a2521b68b7d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable">
-      <type>Index</type>
-      <name>__pad0__</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a6085efd8841a4066dec303351d9a325c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Index</type>
-      <name>__pad1__</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>aec1482935b903c0c8c19889d07c182f8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>_admite_duplicados</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a30c15a16d1fa9cd4026743b006c05ec3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>_buscarPrecio</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>ace5fc302eadf4bc03e5152a933491a4c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>TipoPrecio</type>
-      <name>_tipoPrecio</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>aa00e6baf67004a394fb5f0a7dfc1b785</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>return</type>
-      <name>true</name>
-      <anchorfile>parche__unico__producto_8patch.html</anchorfile>
-      <anchor>a930920b2bc42824a5c03be681830f4b2</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
     <name>productos.cpp</name>
     <path>/home/Esteban/Programas/gestotux/plugins/productos/</path>
     <filename>productos_8cpp</filename>
@@ -23080,7 +22984,6 @@
     <file>mcategorias.h</file>
     <file>mproductos.cpp</file>
     <file>mproductos.h</file>
-    <file>parche_unico_producto.patch</file>
     <file>productos.cpp</file>
     <file>productos.h</file>
     <file>vcategorias.cpp</file>

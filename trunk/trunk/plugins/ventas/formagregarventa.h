@@ -43,6 +43,8 @@ protected slots:
     void guardar();
     void cambioCliente( int id_combo );
     void eliminarTodo();
+    void agregarDescuento();
+    void eliminarDescuento();
 
 private:
     MProductosTotales *mcp;
