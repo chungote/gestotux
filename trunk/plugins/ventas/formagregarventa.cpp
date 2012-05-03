@@ -2,7 +2,7 @@
  *   Copyright (C) 2007 by Esteban Zeller   				   *
  *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
- *    This program is free software; you can redistribute it and/or modify  *
+ *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
@@ -18,14 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "formagregarventa.h"
-#include "mproductostotales.h"
-#include "dproductostotales.h"
-#include "emcliente.h"
+
 #include <QTableView>
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QCompleter>
+
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "eregistroplugins.h"
@@ -38,6 +37,11 @@
 #include "mitemfactura.h"
 #include "NumeroComprobante.h"
 #include "ecbproductos.h"
+#include "mproductostotales.h"
+#include "dproductostotales.h"
+#include "emcliente.h"
+#include "mclientes.h"
+#include "eddescuento.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -69,6 +73,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         mcp->calcularTotales( true );
         if( preferencias::getInstancia()->value( "Preferencias/Ventas/buscarPrecio", true ).toBool() )
             mcp->buscarPrecios( true );
+
         TVProductos->setModel( mcp );
         TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
         TVProductos->setAlternatingRowColors( true );
@@ -108,11 +113,19 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         // Coloco el proximo numero de comprobante
         LNumeroComprobante->setText( LNumeroComprobante->text().append( "       <b>" ).append( MFactura::proximoComprobante().aCadena() ).append( "</b>" ) );
 
+        PBEliminarDescuento->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+        PBAgregarDescuento->setIcon( QIcon( ":/imagenes/add.png" ) );
+        PBAgregarDescuento->setText( "Descuento" );
+        PBEliminarDescuento->setText( "Descuento" );
+        connect( PBAgregarDescuento, SIGNAL( clicked() ), this, SLOT( agregarDescuento() ) );
+        connect( PBEliminarDescuento, SIGNAL( clicked() ), this, SLOT( eliminarDescuento() ) );
+
 }
 
 
 /*!
     \fn FormAgregarVenta::agregarProducto()
+    Slot llamado cuando se presiona el boton en el formulario o se presiona enter en el combobox.
  */
 void FormAgregarVenta::agregarProducto()
 {
@@ -204,7 +217,39 @@ void FormAgregarVenta::eliminarTodo()
  return;
 }
 
-#include "mclientes.h"
+/*!
+    \fn FormAgregarVenta::agregarDescuento()
+ */
+void FormAgregarVenta::agregarDescuento()
+{
+    // Cargo el dialogo y conecto la señal
+    if( mcp->conteoItems() <= 0 ) {
+        QMessageBox::warning( this, "Error", "Por favor, inserte al menos un producto o item para poder agregar un descuento" );
+        return;
+    }
+    EDDescuento *d = new EDDescuento( this );
+    connect( d, SIGNAL( agregarDescuento( QString, double ) ), mcp, SLOT( agregarDescuento( QString, double ) ) );
+    d->exec();
+}
+
+/*!
+    \fn FormAgregarVenta::eliminarDescuento()
+ */
+void FormAgregarVenta::eliminarDescuento()
+{
+    if( TVProductos->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::information( this, "Error", "El item seleccionado no es un descuento" );
+        return;
+    }
+    QModelIndex mi = TVProductos->selectionModel()->selectedRows().first();
+    if( mcp->esDescuento( mi ) ) {
+        mcp->eliminarDescuento( mi );
+    } else {
+        QMessageBox::information( this, "No descuento", "El item elegido no es un descuento" );
+        return;
+    }
+}
+
 /*!
     \fn FormAgregarVenta::guardar()
  */
