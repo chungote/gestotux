@@ -250,7 +250,7 @@ void FormFacturarServicio::facturar()
         return;
     } else if( id_periodo_servicio == -2 ) {
         // Ya se facturó este servicio.
-        LIndicador->setText( "No se emitió ningun comprobante" );
+        LIndicador->setText(  QString::fromUtf8( "No se emitió ningun comprobante" ) );
         PBProgreso->setRange( 0, 1 );
         PBProgreso->setValue( 1  );
         delete mr;

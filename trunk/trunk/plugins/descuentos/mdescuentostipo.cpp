@@ -18,9 +18,24 @@ QVariant MDescuentosTipo::data( const QModelIndex &idx, int role ) const
     }
 
     switch( idx.column() ) {
+        case 1:
+        {
+           if( role == Qt::DisplayRole )
+               return QString( "#%L1" ).arg( QSqlTableModel::data( idx, role ).toInt() );
+           else if ( role == Qt::TextAlignmentRole )
+              return int( Qt::AlignCenter | Qt::AlignVCenter );
+         else
+                return QSqlTableModel::data( idx, role );
+            break;
+        }
         case 3:
         {
-            return QString( "%L1 %" ).arg( QSqlTableModel::data( idx, role ).toDouble() );
+            if( role == Qt::DisplayRole )
+                return QString( "%L1 %" ).arg( QSqlTableModel::data( idx, role ).toDouble() );
+            else if ( role == Qt::TextAlignmentRole )
+                return int( Qt::AlignCenter | Qt::AlignVCenter );
+            else
+                return QSqlTableModel::data( idx, role );
             break;
         }
         default:
@@ -34,5 +49,5 @@ QVariant MDescuentosTipo::data( const QModelIndex &idx, int role ) const
 
 Qt::ItemFlags MDescuentosTipo::flags( const QModelIndex & ) const
 {
-  return QFlags<Qt::ItemFlag>( Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable );
+    return QFlags<Qt::ItemFlag>( !Qt::ItemIsTristate | Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable );
 }

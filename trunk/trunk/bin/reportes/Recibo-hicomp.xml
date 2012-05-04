@@ -15,7 +15,7 @@
   <height>830</height>
  </size>
  <portrait/>
- <topmargin>29</topmargin>
+ <topmargin>28</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
  <leftmargin>0</leftmargin>
@@ -23,7 +23,7 @@
   <name>recibo-hicomp</name>
   <sql>SELECT r.id_recibo AS numero,
        substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
-       strftime( '%d  %m  %Y', r.fecha_pago ) AS fecha,
+       strftime( '%d  %m %Y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
        c.calle || ' ' || c.numero AS direccion,
@@ -41,11 +41,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>286.071</height>
+   <height>239</height>
    <text>
     <rect>
-     <x>435</x>
-     <y>44.8</y>
+     <x>436</x>
+     <y>4.8</y>
      <width>116</width>
      <height>31.8</height>
     </rect>
@@ -64,8 +64,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <field>
     <rect>
-     <x>108</x>
-     <y>171</y>
+     <x>110</x>
+     <y>129</y>
      <width>439</width>
      <height>25</height>
     </rect>
@@ -83,8 +83,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>137</x>
-     <y>211</y>
+     <x>135</x>
+     <y>167</y>
      <width>405</width>
      <height>25</height>
     </rect>
@@ -102,8 +102,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <text>
     <rect>
-     <x>414</x>
-     <y>73.8</y>
+     <x>419</x>
+     <y>40.8</y>
      <width>137</width>
      <height>31.2</height>
     </rect>
@@ -122,8 +122,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <barcode>
     <rect>
-     <x>373</x>
-     <y>120.7</y>
+     <x>372</x>
+     <y>79.7</y>
      <width>176</width>
      <height>34.9</height>
     </rect>
@@ -139,7 +139,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <field>
     <rect>
      <x>389</x>
-     <y>250</y>
+     <y>203</y>
      <width>66</width>
      <height>33</height>
     </rect>
@@ -157,8 +157,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>521</x>
-     <y>249</y>
+     <x>520</x>
+     <y>202</y>
      <width>35</width>
      <height>33</height>
     </rect>
@@ -185,8 +185,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <height>454.545</height>
    <field>
     <rect>
-     <x>34.4429</x>
-     <y>44.5014</y>
+     <x>31.4429</x>
+     <y>11.5014</y>
      <width>524</width>
      <height>381.214</height>
     </rect>
@@ -211,7 +211,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>39.205</height>
+   <height>17.455</height>
   </detail>
  </section>
  <section>
@@ -220,11 +220,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>32.9545</height>
+   <height>84</height>
    <field>
     <rect>
-     <x>424</x>
-     <y>5.36</y>
+     <x>422</x>
+     <y>52.36</y>
      <width>127</width>
      <height>25</height>
     </rect>
