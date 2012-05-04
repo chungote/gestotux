@@ -26,7 +26,7 @@ LIBS += ../../bin/libutiles.a \
 PRE_TARGETDEPS += ../../bin/libreporte.a \
                    ../../bin/libutiles.a
 
-HEADERS =   ../caja/mcajas.h \
+HEADERS =  ../caja/mcajas.h \
            ../caja/mmovimientoscaja.h \
            servicios.h \
            mservicios.h \
@@ -53,10 +53,11 @@ HEADERS =   ../caja/mcajas.h \
            eserviciosdelegate.h \
            vlistaperiodos.h \
            formfacturacionemitida.h \
-           mfacturacionemitida.h
+           mfacturacionemitida.h \
+           ../descuentos/mdescuentos.h
 
 
-SOURCES = servicios.cpp \
+SOURCES =  servicios.cpp \
            mservicios.cpp \
            vservicios.cpp \
            mrecargos.cpp \
@@ -81,7 +82,8 @@ SOURCES = servicios.cpp \
            eserviciosdelegate.cpp \
            vlistaperiodos.cpp \
            formfacturacionemitida.cpp \
-           mfacturacionemitida.cpp
+           mfacturacionemitida.cpp \
+           ../descuentos/mdescuentos.cpp
 
 RESOURCES += servicios.qrc
 
