@@ -8060,6 +8060,13 @@
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
+      <name>agregarDescuento</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>ade12799f4fec339bd19fd3d852aa5fd4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
       <name>agregarProducto</name>
       <anchorfile>classFormAgregarVenta.html</anchorfile>
       <anchor>ac947c1a9e35b0de8d13d0938b1aa07bd</anchor>
@@ -8071,6 +8078,13 @@
       <anchorfile>classFormAgregarVenta.html</anchorfile>
       <anchor>a46b0f51d5c692b7d76244b2631574acf</anchor>
       <arglist>(int id_combo)</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>eliminarDescuento</name>
+      <anchorfile>classFormAgregarVenta.html</anchorfile>
+      <anchor>a955c20e01e951eb41aaa95e8f45a0443</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
@@ -9130,6 +9144,13 @@
       <name>_modelo</name>
       <anchorfile>classFormModificarProducto.html</anchorfile>
       <anchor>a70a8b25285668c79413526452d6350cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QString</type>
+      <name>_nombre_anterior</name>
+      <anchorfile>classFormModificarProducto.html</anchorfile>
+      <anchor>a0fde051be6c698b1a73971fe45e800d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -14077,6 +14098,13 @@
       <arglist>(const int id_movimiento=-1)</arglist>
     </member>
     <member kind="function">
+      <type>Qt::ItemFlags</type>
+      <name>flags</name>
+      <anchorfile>classMMovimientosCaja.html</anchorfile>
+      <anchor>afcd4561f9502878dda644fa997e2e637</anchor>
+      <arglist>(const QModelIndex &amp;index) const </arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>MMovimientosCaja</name>
       <anchorfile>classMMovimientosCaja.html</anchorfile>
@@ -14440,6 +14468,13 @@
       <anchorfile>classMPresupuesto.html</anchorfile>
       <anchor>a1e5f674d35f3e477ee6e114a8fe8c7d8</anchor>
       <arglist>(int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones=QString())</arglist>
+    </member>
+    <member kind="function">
+      <type>Qt::ItemFlags</type>
+      <name>flags</name>
+      <anchorfile>classMPresupuesto.html</anchorfile>
+      <anchor>a8094580928d0ba303c07f633c4c60f4b</anchor>
+      <arglist>(const QModelIndex &amp;) const </arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -15013,6 +15048,13 @@
       <anchorfile>classMProveedor.html</anchorfile>
       <anchor>a7e192734911c06295af463a9c9f62395</anchor>
       <arglist>(QObject *parent=0)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>existeCuitCuil</name>
+      <anchorfile>classMProveedor.html</anchorfile>
+      <anchor>a6620c1e0e8447278693b372c811728d4</anchor>
+      <arglist>(QString cuit)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
@@ -21720,6 +21762,13 @@
       <name>listado</name>
       <anchorfile>classVProveedor.html</anchorfile>
       <anchor>acb20d59a9de9b309b9462f8072f9b00c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="protected">
+      <type>void</type>
+      <name>listadoPDF</name>
+      <anchorfile>classVProveedor.html</anchorfile>
+      <anchor>a7c648be3c7df6618781b140f18635531</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot" protection="protected" virtualness="virtual">

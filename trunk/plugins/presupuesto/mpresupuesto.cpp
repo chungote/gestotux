@@ -19,6 +19,9 @@
  ***************************************************************************/
 #include "mpresupuesto.h"
 #include <QDateTime>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
 
 MPresupuesto::MPresupuesto(QObject *parent )
  : QSqlRelationalTableModel(parent)
@@ -44,6 +47,8 @@ void MPresupuesto::relacionar()
   setRelation( 1, QSqlRelation( "clientes", "id", "razon_social" ) );
 }
 
+
+
 /*
 CREATE TABLE IF NOT EXISTS `presupuestos` (
   `id_presupuesto` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -59,10 +64,11 @@ CREATE TABLE IF NOT EXISTS `presupuestos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 */
 
-#include <QSqlQuery>
-#include <QSqlRecord>
-#include <QSqlError>
-
+/*!
+ * \fn MPresupuesto::proximoComprobante()
+ * Devuelve el proximo numero de comprobante, o el primer numero disponible si no se emitió ningun presupuesto anteriormente
+ * \return NumeroComprobante conteniendo el numero y serie, o uno invalido si hubo un error
+ */
 NumeroComprobante &MPresupuesto::proximoComprobante() {
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT MAX( serie ) FROM presupuestos" ) ) ) {

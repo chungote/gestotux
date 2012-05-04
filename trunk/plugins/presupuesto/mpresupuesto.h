@@ -24,15 +24,18 @@
 #include "NumeroComprobante.h"
 
 /**
-Modelo de la tabla de recibos
-
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo de la tabla de recibos
+ *
+ * Modelo que permite administrar los datos de los presupuestos.
+ *
+ * \author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MPresupuesto : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MPresupuesto(QObject *parent = 0 );
+    MPresupuesto( QObject *parent = 0 );
+
     static NumeroComprobante &proximoComprobante();
     int agregarPresupuesto( int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones = QString() );
     bool modificarPresupuesto( int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones = QString() );
