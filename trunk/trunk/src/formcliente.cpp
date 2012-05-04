@@ -107,7 +107,7 @@ void FormCliente::guardar()
 
  if( !LECUITCUIL->text().isEmpty() ) {
      if( !LECUITCUIL->verificar() ) {
-         QMessageBox::warning( this, "Error Cuit/Cuil", "La verificación del cuit/cuil del cliente es incorrecta. Verifique el numero ingresado" );
+         QMessageBox::warning( this, "Error Cuit/Cuil", QString::fromUtf8("La verificación del cuit/cuil del cliente es incorrecta. Verifique el numero ingresado" ) );
          return;
      }
  }

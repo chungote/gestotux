@@ -411,7 +411,11 @@ NumeroComprobante & MFactura::obtenerComprobante( const int id_factura ) {
 
 /*!
  * \fn MFactura::anularFactura( const int id_factura, QString razon, QDateTime fechahora )
- *
+ * Metodo para anular una factura emitida.
+ * \param id_factura Identificador de la factura que se desea anular
+ * \param razon Razon de facturación.
+ * \param fechahora Fecha y hora en que se anulo la factura.
+ * \return Verdadero si se pudo eliminar, falso en caso de error.
  */
 bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fechahora ) {
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
@@ -431,7 +435,6 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                     if( ! n->agregarMovimiento( MCajas::cajaPredeterminada(),
                                                 QString( "Cancelacion de la factura %1" ).arg( num.aCadena() ),
                                                 QString(),
-                                                0.0,
                                                 total ) ) {
                         qDebug( "MFactura::anularFactura::No se pudo agregar el movimiento de caja" );
                         delete n;

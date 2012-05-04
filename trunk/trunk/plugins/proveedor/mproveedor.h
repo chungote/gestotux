@@ -36,6 +36,7 @@ public:
     static bool tieneDatosRelacionados( const int id_proveedor );
     static bool existenProveedores();
     static bool existeProveedor( QString razon_social );
+    static bool existeCuitCuil( QString cuit );
 };
 
 #endif

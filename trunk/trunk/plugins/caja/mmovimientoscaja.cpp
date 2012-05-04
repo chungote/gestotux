@@ -94,6 +94,11 @@ QVariant MMovimientosCaja::data(const QModelIndex& item, int role) const
  }
 }
 
+Qt::ItemFlags MMovimientosCaja::flags( const QModelIndex & ) const
+{
+    return Qt::ItemFlags( !Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+}
+
 
 
 /*!

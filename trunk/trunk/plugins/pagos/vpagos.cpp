@@ -70,11 +70,11 @@ VPagos::VPagos(QWidget *parent)
  connect( ActSoloCancelados, SIGNAL( triggered() ), this, SLOT( soloCancelados() ) );
 
  agregarFiltroBusqueda( "Numero de Comprobante", " `NumSerie` LIKE '%%1%' ");
- agregarFiltroBusqueda( "Nombre de Cliente", " `razon_social` LIKE '%%1%' " );
- agregarFiltroBusqueda( "Contiene texto", " `id_recibo` IN ( SELECT id_recibo FROM recibos WHERE `texto` LIKE '%%1%' ) " );
- agregarFiltroBusqueda( "Desde fecha", " DATE(`fecha_pago`) >= '%1' " );
- agregarFiltroBusqueda( "Importe desde", " `precio` >= %1" );
- agregarFiltroBusqueda( "Importe hasta", " `precio` <= %1" );
+ agregarFiltroBusqueda( "Nombre de Cliente"    , " `razon_social` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Contiene texto"       , " `id_recibo` IN ( SELECT id_recibo FROM recibos WHERE `texto` LIKE '%%1%' ) " );
+ agregarFiltroBusqueda( "Desde fecha"          , " DATE(`fecha_pago`) >= '%1' " );
+ agregarFiltroBusqueda( "Importe desde"        , " `precio` >= %1" );
+ agregarFiltroBusqueda( "Importe hasta"        , " `precio` <= %1" );
  habilitarBusqueda();
 
  addAction( ActAgregar );
@@ -87,6 +87,8 @@ VPagos::VPagos(QWidget *parent)
  addAction( ActSep );
  addAction( ActSoloCancelados );
  addAction( ActSoloNoPagados );
+
+ EVLista::modelo = modelo;
 }
 
 /*!
@@ -96,7 +98,7 @@ VPagos::VPagos(QWidget *parent)
 void VPagos::agregar( bool /*a*/)
 {
  FormAgregarRecibo *f = new FormAgregarRecibo( this );
- //f->setearModelo( qobject_cast<MPagos *>(this->modelo) );
+ //f->setearModelo( qobject_cast<MPagos *>( this->modelo ) );
  emit agregarVentana( f );
 }
 
