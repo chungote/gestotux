@@ -39,9 +39,11 @@ public:
     explicit MFactura(QObject *parent = 0);
     int agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp, QString observaciones = QString() );
     int agregarFactura( const int id_cliente, const QDateTime fecha, MFactura::FormaPago id_forma_pago, const double total, bool registrar_operacion = true );
+
     static NumeroComprobante &proximoComprobante();
     NumeroComprobante &obtenerComprobante();
     static NumeroComprobante &obtenerComprobante( const int id_factura );
+
     static bool anularFactura( const int id_factura, QString razon = QString(), QDateTime fechahora = QDateTime::currentDateTime() );
     static int idFacturaPorComprobante( const QString numero );
 
