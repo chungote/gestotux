@@ -130,6 +130,12 @@ void FormModificarProducto::accept() {
             return;
         }
     }
+    if( this->LENombre->text() != this->_nombre_anterior ) {
+        if( MProductos::existeNombre( this->LENombre->text() ) ) {
+            QMessageBox::warning( this, "Error", QString::fromUtf8( "El codigo ingresado %1 ya esta dado de alta" ).arg( this->LECodigo->text() ) );
+            return;
+        }
+    }
     if( mapa->submit() ) {
         QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
         QDialog::accept();
@@ -147,5 +153,6 @@ void FormModificarProducto::setearProducto( const int row )
     if( row >= 0 ) {
         mapa->setCurrentIndex( row );
         this->_codigo_anterior = this->LECodigo->text();
+        this->_nombre_anterior = this->LENombre->text();
     }
 }

@@ -31,6 +31,7 @@ class MMovimientosCaja : public QSqlRelationalTableModel
 public:
     MMovimientosCaja(QObject *parent = 0, bool relaciones = false );
     QVariant data( const QModelIndex& idx, int role ) const;
+    Qt::ItemFlags flags( const QModelIndex &index ) const;
 
     void ultimosMovimientosCaja( const int id_caja );
 

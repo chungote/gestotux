@@ -41,6 +41,28 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
  { return QVariant(); }
  switch( role )
  {
+        case Qt::DisplayRole:
+        {
+         switch ( idx.column() )
+         {
+                 case 7:
+                 {
+                         QString ret = QSqlTableModel::data( idx, role ).toString();
+                         if( ret.isEmpty() || ret.length() == 2 ) {
+                             return QVariant();
+                         } else {
+                             return ret.insert( 2, '-' ).insert( ret.length(), '-' );
+                         }
+                         break;
+                 }
+                 default:
+                 {
+                         return QSqlTableModel::data( idx, role );
+                         break;
+                 }
+         }
+         break;
+        }
 	case Qt::TextColorRole:
 	{
 		switch ( idx.column() )
@@ -74,6 +96,7 @@ QVariant MProveedor::data(const QModelIndex& idx, int role) const
 			}
 			case 5:
 			case 6:
+                        case 7:
 			{
 				return int( Qt::AlignRight | Qt::AlignVCenter );
 				break;
@@ -146,7 +169,7 @@ bool MProveedor::existenProveedores()
             qDebug( cola.lastQuery().toLocal8Bit() );
         }
     } else {
-        qWarning( "Existió un error al intentar ejecutar la consulta de la cantidad de proveedores" );
+        qWarning( QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de la cantidad de proveedores" ).toLocal8Bit() );
         qDebug( "Error al hacer exec en la cola de averiguación de cantidad de proveedores." );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
@@ -168,13 +191,40 @@ bool MProveedor::existeProveedor( QString razon_social )
                 return true;
             }
         } else {
-            qDebug( "Error al hacer next en la cola de averiguación de proveedor segun nombre." );
+            qDebug( QString::fromUtf8("Error al hacer next en la cola de averiguación de proveedor segun nombre." ).toLocal8Bit() );
             qDebug( cola.lastError().text().toLocal8Bit() );
             qDebug( cola.lastQuery().toLocal8Bit() );
         }
     } else {
-        qWarning( "Existió un error al intentar ejecutar la consulta de existencia de proveedor" );
+        qWarning( QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de existencia de proveedor" ).toLocal8Bit() );
         qDebug( "Error al hacer exec en la cola de averiguación de existencia de proveedor." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}
+
+/*!
+ * \fn MProveedor::existeCuitCuil( QString cuit )
+ * Devuelve verdadero si existe al menos un proveedor declarado con el mismo numero de CUIT o CUIL
+ * \param cuit CUIT o CUIL a verificar su existencia
+ */
+bool MProveedor::existeCuitCuil( QString cuit )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT count( id ) FROM proveedor WHERE `CUIT/CUIL` = %1" ).arg( cuit ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        } else {
+            qDebug( QString::fromUtf8("Error al hacer next en la cola de averiguación de proveedor segun CUIT/CUIL." ).toLocal8Bit() );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qWarning( QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de existencia de proveedor por CUIT/CUIL" ).toLocal8Bit() );
+        qDebug( "Error al hacer exec en la cola de averiguación de existencia de proveedor por CUIT/CUIL." );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }

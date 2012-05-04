@@ -20,9 +20,11 @@
 #include "vproveedor.h"
 #include "mproveedor.h"
 #include "dproveedor.h"
+#include "EReporte.h"
+
 #include <QTableView>
 #include <QAction>
-#include "EReporte.h"
+#include <QDate>
 #include <QMessageBox>
 
 VProveedor::VProveedor( QWidget *parent )
@@ -42,8 +44,14 @@ VProveedor::VProveedor( QWidget *parent )
  QAction *ActListado = new QAction( this );
  ActListado->setText( "Listado" );
  ActListado->setStatusTip( "Imprime la lista de todos los proveedores" );
- ActListado->setIcon( QIcon( ":/imagenes/listadoproveedores.png" ) );
+ ActListado->setIcon( QIcon( ":/imagenes/impresora.png" ) );
  connect( ActListado, SIGNAL(triggered() ), this, SLOT( listado() ) );
+
+ QAction *ActListadoPDF = new QAction( this );
+ ActListadoPDF->setText( "Listado" );
+ ActListadoPDF->setStatusTip( "Genera una lista de todos los proveedores en formato pdf" );
+ ActListadoPDF->setIcon( QIcon( ":/imagenes/acroread.png" ) );
+ connect( ActListadoPDF, SIGNAL(triggered() ), this, SLOT( listadoPDF() ) );
 
  agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%1%' " );
  agregarFiltroBusqueda( QString::fromUtf8( "Código" ), " `id` LIKE '%%1%' " );
@@ -54,6 +62,7 @@ VProveedor::VProveedor( QWidget *parent )
  addAction( ActModificar );
  addAction( ActEliminar );
  addAction( ActListado );
+ addAction( ActListadoPDF );
  addAction( ActBuscar );
  addAction( ActCerrar );
 }
@@ -96,6 +105,20 @@ void VProveedor::listado()
     EReporte *rep = new EReporte( 0 );
     rep->especial( "ListadoProveedores", ParameterList() );
     if( !rep->hacer( ParameterList(), true ) ) {
+        qDebug( "Hubo un error al intentar hacer el reporte" );
+    }
+    delete rep;
+}
+
+void VProveedor::listadoPDF()
+{
+    if( this->modelo->rowCount() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8("No existe ningun proveedor para listar. No se imprimirá ningun listado" ) );
+        return;
+    }
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "ListadoProveedores", ParameterList() );
+    if( !rep->hacerPDF( ParameterList(), QString( "Listado de proveedores al %1" ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) ) ) {
         qDebug( "Hubo un error al intentar hacer el reporte" );
     }
     delete rep;

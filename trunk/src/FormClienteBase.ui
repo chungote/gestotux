@@ -518,11 +518,16 @@
   <tabstop>LEDepto</tabstop>
   <tabstop>LECiudad</tabstop>
   <tabstop>LECodPostal</tabstop>
+  <tabstop>CBProvincia</tabstop>
+  <tabstop>CBPaises</tabstop>
+  <tabstop>LECUITCUIL</tabstop>
+  <tabstop>CBEstadoFiscal</tabstop>
   <tabstop>LETelFijo</tabstop>
   <tabstop>LETelCel</tabstop>
   <tabstop>LEFax</tabstop>
   <tabstop>LEEmail</tabstop>
   <tabstop>CkBComprobanteEmail</tabstop>
+  <tabstop>LENumCliente</tabstop>
  </tabstops>
  <resources/>
  <connections/>

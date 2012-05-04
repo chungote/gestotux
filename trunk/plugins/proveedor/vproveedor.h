@@ -36,6 +36,7 @@ public:
 
 protected slots:
     void listado();
+    void listadoPDF();
 
 public slots:
     void eliminar();
