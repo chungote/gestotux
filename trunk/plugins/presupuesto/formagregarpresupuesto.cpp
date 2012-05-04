@@ -38,6 +38,8 @@
 #include "emcliente.h"
 #include "eddescuento.h"
 #include "mdescuentos.h"
+#include "preferencias.h"
+#include "eregistroplugins.h"
 
 FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPresupuestoBase()
@@ -109,6 +111,18 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
 
         DSBCant->setValue( 1.0 );
         DSBCant->setPrefix( "" );
+
+        preferencias *p = preferencias::getInstancia();
+        p->inicio();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "Descuentos" );
+        if( ! ERegistroPlugins::getInstancia()->existePluginExterno( "descuentos" ) && p->value( "usar", false ).toBool() ) {
+            PBAgregarDescuento->setVisible( false );
+            PBEliminarDescuento->setVisible( false );
+        }
+        p->endGroup();
+        p->endGroup();
+        p=0;
 }
 
 /*!

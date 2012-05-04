@@ -237,7 +237,7 @@ QVariant MTempClientesFacturarServicio::data(const QModelIndex& idx, int role) c
 QVariant MTempClientesFacturarServicio::headerData( int section, Qt::Orientation orientation, int role ) const
 {
   if( orientation == Qt::Horizontal && role == Qt::DisplayRole ) {
-      if( section == 0 ) { return "¿Facturar?"; } else { return "Cliente"; }
+      if( section == 0 ) { return  QString::fromUtf8( "¿Facturar?" ); } else { return "Cliente"; }
   } else {
       return section;
   }

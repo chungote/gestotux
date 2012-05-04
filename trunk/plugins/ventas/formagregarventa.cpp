@@ -42,6 +42,8 @@
 #include "emcliente.h"
 #include "mclientes.h"
 #include "eddescuento.h"
+#include "preferencias.h"
+#include "eregistroplugins.h"
 
 FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormAgregarVentaBase()
@@ -105,7 +107,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
                 GBFormaPago->setVisible( false );
                 RBContado->setChecked( true );
         }
-        p->endGroup(); p->endGroup(); p=0;
+        p->endGroup(); p->endGroup();
 
         // deshabilito el item de cuotas por no estar programado
         RBCuotas->setVisible( false );
@@ -120,6 +122,16 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         connect( PBAgregarDescuento, SIGNAL( clicked() ), this, SLOT( agregarDescuento() ) );
         connect( PBEliminarDescuento, SIGNAL( clicked() ), this, SLOT( eliminarDescuento() ) );
 
+        p->inicio();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "Descuentos" );
+        if( ! ERegistroPlugins::getInstancia()->existePluginExterno( "descuentos" ) && p->value( "usar", false ).toBool() ) {
+            PBAgregarDescuento->setVisible( false );
+            PBEliminarDescuento->setVisible( false );
+        }
+        p->endGroup();
+        p->endGroup();
+        p=0;
 }
 
 
