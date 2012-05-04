@@ -213,7 +213,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
       qDebug( "La factura no fue a ctacte o no existe el plugin de ctacte cargado" );
   }
   // Veo si fue en efectivo
-  if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) && id_forma_pago == MFactura::Contado ) {
+  if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) && id_forma_pago == MFactura::Contado ) {
       // Agrego el item de caja
       MMovimientosCaja *m = new MMovimientosCaja();
       if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), QString( "Pago de factura %1" ).arg( num.aCadena() ), QString(), total_calculado ) ) {
@@ -265,7 +265,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
      int id_venta = cola.lastInsertId().toInt();
      qDebug( "ID obtenido" );
      // Si la operación es a cuenta corriente, guardo los datos si esta activo el plugin de ctacte
-     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente && registrar_operacion )
+     if( ERegistroPlugins::getInstancia()->existePluginExterno( "ctacte" ) && id_forma_pago == MFactura::CuentaCorriente && registrar_operacion )
      {
       // Si se ingresa aqui el cliente tiene cuenta corriente
       QString num_comprobante = this->obtenerComprobante().aCadena();
@@ -315,7 +315,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
       { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
 
       // Veo si fue en efectivo
-     } else if( ERegistroPlugins::getInstancia()->existePlugin( "caja " ) && id_forma_pago == MFactura::Contado && registrar_operacion ) {
+     } else if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja " ) && id_forma_pago == MFactura::Contado && registrar_operacion ) {
          // Agrego el item de caja
          MMovimientosCaja *m = new MMovimientosCaja();
          if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de factura %1", QString(), total ) ) {

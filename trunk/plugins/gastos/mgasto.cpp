@@ -215,7 +215,7 @@ bool MGasto::eliminarFila( const int fila ) {
     if( !rf.field( "id_caja" ).isNull() ) {
         // Elimino la acción de caja
         qDebug( "Campo de caja no nulo, intentando eliminarlo.");
-        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) == true ) {
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) == true ) {
             MMovimientosCaja *m = new MMovimientosCaja();
             bool r = m->eliminarMovimiento( rf.field("id_caja").value().toInt() );
             delete m;

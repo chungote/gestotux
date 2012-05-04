@@ -14,7 +14,9 @@ HEADERS += presupuesto.h \
            ../../src/mclientes.cpp \
            mvpresupuestos.h \
            vlistapresupuesto.h \
-           formmodificarpresupuesto.h
+           formmodificarpresupuesto.h \
+           ../descuentos/mdescuentos.h
+
 SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
            mpresupuesto.cpp \
@@ -23,7 +25,8 @@ SOURCES += presupuesto.cpp \
            ../../src/mclientes.cpp \
            mvpresupuestos.cpp \
            vlistapresupuesto.cpp \
-           formmodificarpresupuesto.cpp
+           formmodificarpresupuesto.cpp \
+           ../descuentos/mdescuentos.cpp
 
 FORMS += FormPresupuestoBase.ui
 
