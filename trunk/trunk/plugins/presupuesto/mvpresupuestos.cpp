@@ -101,3 +101,8 @@ QVariant MVPresupuestos::data(const QModelIndex& idx, int role) const
         }
  }
 }
+
+Qt::ItemFlags MVPresupuestos::flags(const QModelIndex & ) const
+{
+    return Qt::ItemFlags( !Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}
