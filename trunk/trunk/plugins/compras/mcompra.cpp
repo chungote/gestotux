@@ -66,7 +66,7 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, b
 {
  int id_caja = 0;
  if( contado ) {
-     /*if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {*/
+     if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
          // Agrego el movimiento en la caja predeterminada
          MMovimientosCaja *m = new MMovimientosCaja();
          if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), "Pago de compra al contado a proveedor", QString(), 0.0, total ) ) {
@@ -75,7 +75,7 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, b
          }
          id_caja = m->ultimoIdInsertado();
          delete m;
-     /*}*/
+     }
  }
  QSqlRecord regCompra = record();
  regCompra.remove( 0 );

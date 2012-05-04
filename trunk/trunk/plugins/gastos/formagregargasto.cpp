@@ -101,7 +101,7 @@ void FormAgregarGasto::guardar()
  }
  else
  {
-  if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
+  if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
       preferencias *p = preferencias::getInstancia();
       p->beginGroup( "Preferencias" );
       p->beginGroup( "Caja" );
@@ -121,7 +121,7 @@ void FormAgregarGasto::guardar()
                                 CWFecha->selectedDate(),
                                 CBTipo->model()->data( CBTipo->model()->index( CBTipo->currentIndex(), 0 ), Qt::EditRole ).toInt() ) == true )
   {
-        if( ERegistroPlugins::getInstancia()->existePlugin( "caja" )  && CkBSacarCaja->isChecked() ) {
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" )  && CkBSacarCaja->isChecked() ) {
              MMovimientosCaja *m = new MMovimientosCaja();
              int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
              if( !m->agregarMovimiento( id_caja, CBDescripcion->currentText(), QString(), 0.0, dSBCosto->value() ) ) {

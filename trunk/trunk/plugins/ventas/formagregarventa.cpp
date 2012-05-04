@@ -373,7 +373,7 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
  if( id_cliente > 0 ) { // 0 => Consumidor final.
      LEDireccion->setText( MClientes::direccionEntera( id_cliente ) );
      // Veo si esta habilitado el cliente con cueta corriente y el plugin esta cargado
-     if( ERegistroPlugins::getInstancia()->existePlugin( "ctacte" ) )
+     if( ERegistroPlugins::getInstancia()->existePluginExterno( "ctacte" ) )
      {
          if( MCuentaCorriente::existeCuentaCliente( id_cliente ) )
          {
