@@ -57,13 +57,13 @@ NumeroComprobante & NumeroComprobante::operator=( const NumeroComprobante &t ) {
 /*!
  * \fn NumeroComprobante::setearNumero( int numero )
  * Setea el numero de comprobante
- * @param Numero del comprobante
+ * @param numero del comprobante
  */
 void NumeroComprobante::setearNumero( int numero ) { _dato.second = numero; }
 /*!
  * \fn NumeroComprobante::setearNumeroSerie( int serie )
  * Setea el numero de serie del comprobante
- * @param Numero del comprobante
+ * @param serie del comprobante
  */
 void NumeroComprobante::setearNumeroSerie( int serie ) { _dato.first = serie; }
 /*!
@@ -137,23 +137,27 @@ void NumeroComprobante::siguienteNumero() {
 #include <QStringList>
 /*!
  * \fn NumeroComprobante::desdeString( const QString original )
+ * Intenta desifrar el numero de comprobante de la forma 99999-99999 desde una cadena cualquiera.
+ * De poder hacerlo, los datos son cargados en el objeto.
+ * \param original Cadena desde donde se intenta extraer el numero de comprobante.
+ * \returns Verdadero si los datos pudieron ser cargados.
  */
-bool NumeroComprobante::desdeString( const QString original) {
+bool NumeroComprobante::desdeString( const QString original ) {
     // Verificaciones
     if( original.isNull() || original.isEmpty() ) {
-        qDebug( "NumeroComprobante::desdeString: original vacio o nulo" );
+        //qDebug( "NumeroComprobante::desdeString: original vacio o nulo" );
         _dato.first = -1;
         _dato.second = -1;
         return false;
     }
     QStringList lista = original.split( "-" );
     if( lista.isEmpty() ) {
-        qDebug( "NumeroComprobante::desdeString: no se pudo dividir la cadena por -");
+        //qDebug( "NumeroComprobante::desdeString: no se pudo dividir la cadena por -");
         _dato.first = -1;
         _dato.second = -1;
         return false;
     }
-    qDebug( QString( "NumeroComprobante: %1-%2" ).arg( lista.first().toInt() ).arg( lista.last().toInt() ).toLocal8Bit() );
+    //qDebug( QString( "NumeroComprobante: %1-%2" ).arg( lista.first().toInt() ).arg( lista.last().toInt() ).toLocal8Bit() );
     _dato.first = lista.first().toInt();
     _dato.second = lista.last().toInt();
     return true;

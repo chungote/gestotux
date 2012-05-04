@@ -188,13 +188,13 @@ int MPeriodoServicio::diasEnPeriodoServicio( const int id_servicio, QDate fecha_
 
 
 /*!
- * \fn MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
+ * \fn MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_inicio )
  * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
  * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
  * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
  * En el caso de que sea trimestra, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tienen los 2 meses siguientes.
  * @param tipo_periodo Tipo de periodo que estamos considerando
- * @param fecha_calculo Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
+ * @param fecha_inicio Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
  * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
  */
 int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )

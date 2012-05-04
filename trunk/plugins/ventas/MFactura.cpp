@@ -71,14 +71,14 @@ CREATE TABLE IF NOT EXISTS `factura` (
 */
 
 /*!
-    \fn MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
-    Agrega el registro para una factura y devuelve el id o -1 si hubo un error.
-    \param fecha Fecha en que se registrará la venta
-    \param id_cliente ID del cliente al cual se le hace la venta
-    \param id_forma_pago Identificativo de la forma de pago
-    \param mcp Modelo de productos o items a facturar
-    \param observaciones Observaciones para agregar a la factura
-    \returns ID de la operaciòn o -1 si hubo un error.
+ * \fn MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp )
+ * Agrega el registro para una factura y devuelve el id o -1 si hubo un error.
+ * \param fecha Fecha en que se registrará la venta
+ * \param id_cliente ID del cliente al cual se le hace la venta
+ * \param id_forma_pago Identificativo de la forma de pago
+ * \param mcp Modelo de productos o items a facturar
+ * \param observaciones Observaciones para agregar a la factura
+ * \returns ID de la operaciòn o -1 si hubo un error.
  */
 int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp, QString observaciones )
 {

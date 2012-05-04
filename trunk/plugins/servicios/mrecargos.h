@@ -23,15 +23,16 @@
 #include <QSqlRelationalTableModel>
 
 /**
-Modelo para mantener los datos de los recargos que se aplican
-
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Modelo para mantener los datos de los recargos que se aplican
+ *
+ * Modelo que permite mantener, administrar y recuperar los datos de los recargos que se aplican a cada uno de los serivios. Sirve además para ver los recargos realizados.
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class MRecargos : public QSqlRelationalTableModel
 {
 Q_OBJECT
 public:
-    MRecargos(QObject *parent = 0, bool relaciones = true );
+    MRecargos( QObject *parent = 0, bool relaciones = true );
 
     bool setData(const QModelIndex& index, const QVariant& value, int role);
     QVariant data(const QModelIndex& idx, int role) const;
