@@ -198,17 +198,17 @@ end
    <string>Nombre</string>
   </label>
   <line>
-   <xstart>813.169</xstart>
-   <ystart>59.6634</ystart>
-   <xend>813.33</xend>
-   <yend>78.3909</yend>
+   <xstart>902.069</xstart>
+   <ystart>60.7926</ystart>
+   <xend>901.995</xend>
+   <yend>77.8784</yend>
    <weight>2</weight>
   </line>
   <label>
    <rect>
-    <x>815.36</x>
-    <y>60.3875</y>
-    <width>143.7</width>
+    <x>903</x>
+    <y>60.9</y>
+    <width>156</width>
     <height>17.9</height>
    </rect>
    <font>
@@ -223,15 +223,15 @@ end
   <line>
    <xstart>2.0138</xstart>
    <ystart>79.4432</ystart>
-   <xend>962.017</xend>
-   <yend>78.1773</yend>
+   <xend>1069.9</xend>
+   <yend>79.3499</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>1.7773</xstart>
    <ystart>59.4432</ystart>
-   <xend>962.022</xend>
-   <yend>58.1773</yend>
+   <xend>1069.67</xend>
+   <yend>59.3499</yend>
    <weight>2</weight>
   </line>
   <line>
@@ -242,10 +242,10 @@ end
    <weight>2</weight>
   </line>
   <line>
-   <xstart>962.154</xstart>
-   <ystart>60.0041</ystart>
-   <xend>962.084</xend>
-   <yend>77.0899</yend>
+   <xstart>1069.27</xstart>
+   <ystart>61.0291</ystart>
+   <xend>1069.2</xend>
+   <yend>78.1149</yend>
    <weight>2</weight>
   </line>
   <label>
@@ -275,14 +275,14 @@ end
    <line>
     <xstart>1.32063</xstart>
     <ystart>17.2645</ystart>
-    <xend>961.548</xend>
-    <yend>16.5686</yend>
+    <xend>1069.9</xend>
+    <yend>17.2722</yend>
     <weight>1</weight>
    </line>
    <field>
     <rect>
-     <x>815.733</x>
-     <y>0.318111</y>
+     <x>914</x>
+     <y>-0.62</y>
      <width>142</width>
      <height>19.3</height>
     </rect>
@@ -302,7 +302,7 @@ end
     <rect>
      <x>90.3425</x>
      <y>0.14039</y>
-     <width>720.31</width>
+     <width>810</width>
      <height>16.8101</height>
     </rect>
     <font>
@@ -319,7 +319,7 @@ end
    </field>
    <field>
     <rect>
-     <x>6.23679</x>
+     <x>7.26182</x>
      <y>0.411454</y>
      <width>81.7693</width>
      <height>16.7267</height>
@@ -431,7 +431,7 @@ end
   </field>
   <field>
    <rect>
-    <x>777.094</x>
+    <x>880.052</x>
     <y>0.825594</y>
     <width>183.718</width>
     <height>23.0446</height>
