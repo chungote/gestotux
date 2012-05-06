@@ -22,7 +22,7 @@
 #define VRESUMENCAJA_H
 
 #include "evlista.h"
-class QComboBox;
+class ECBTabla;
 class MCajas;
 class MMovimientosCaja;
 class QDateEdit;
@@ -48,7 +48,7 @@ protected slots:
     void actualizarFiltro();
 
 private:
-    QComboBox *CBCajas;
+    ECBTabla *CBCajas;
     MMovimientosCaja *modelo;
     MCajas *cmodelo;
     QAction *ActFiltrar;

@@ -3,6 +3,9 @@
  <title>Listado normal de Clientes</title>
  <name>ListadoClientes</name>
  <description>Listado normal de clientes</description>
+ <parameter default="1=1" active="true" listtype="static" type="string" name="filtro">
+  <description></description>
+ </parameter>
  <grid>
   <x>0.05</x>
   <y>0.05</y>
@@ -15,7 +18,15 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>clientes</name>
-  <sql>SELECT `id`, `razon_social`, `email`, `tel_fijo`, `tel_celular`, `calle` + ' ' + `numero` AS direccion  FROM `clientes`ORDER BY razon_social ASC</sql>
+  <sql>SELECT `id`,
+       `razon_social`,
+       `email`,
+       `tel_fijo`,
+       `tel_celular`,
+        `calle` | ' ' | `numero` AS direccion
+FROM `clientes` 
+WHERE &lt;? value("filtro") ?> 
+ORDER BY razon_social ASC;</sql>
  </querysource>
  <rpthead>
   <height>81.5916</height>
@@ -144,10 +155,10 @@ end
   </image>
   <label>
    <rect>
-    <x>74</x>
-    <y>5</y>
+    <x>70</x>
+    <y>1</y>
     <width>987</width>
-    <height>36</height>
+    <height>45</height>
    </rect>
    <font>
     <face>Arial</face>
@@ -161,7 +172,7 @@ end
   <label>
    <rect>
     <x>84</x>
-    <y>37</y>
+    <y>39</y>
     <width>971</width>
     <height>25</height>
    </rect>
@@ -172,7 +183,7 @@ end
    </font>
    <left/>
    <vcenter/>
-   <string>Realizado con gestotux 0.5 beta - Listado provisorio, puede cambiar sin aviso previo o notificacion. Usese de base para los listados personalizados</string>
+   <string>Realizado con gestotux 0.5 - Listado provisorio, puede cambiar sin aviso previo o notificacion. Usese de base para los listados personalizados</string>
   </label>
   <line>
    <xstart>65.8748</xstart>
@@ -200,9 +211,9 @@ end
   <label>
    <rect>
     <x>69.1641</x>
-    <y>64.7779</y>
+    <y>60.6922</y>
     <width>333</width>
-    <height>13.8</height>
+    <height>17.8857</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -223,9 +234,9 @@ end
   <label>
    <rect>
     <x>410.373</x>
-    <y>63.9424</y>
+    <y>59.4481</y>
     <width>163.137</width>
-    <height>13.8806</height>
+    <height>18.3749</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -246,9 +257,9 @@ end
   <label>
    <rect>
     <x>577</x>
-    <y>63.9</y>
+    <y>59.8143</y>
     <width>164.634</width>
-    <height>13.9</height>
+    <height>17.9857</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -262,9 +273,9 @@ end
   <label>
    <rect>
     <x>746</x>
-    <y>63.4</y>
+    <y>59.7228</y>
     <width>151.19</width>
-    <height>13.9</height>
+    <height>19.62</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -291,10 +302,10 @@ end
   </line>
   <label>
    <rect>
-    <x>903</x>
-    <y>62.9</y>
+    <x>902.591</x>
+    <y>59.6314</y>
     <width>156.189</width>
-    <height>13.9</height>
+    <height>19.62</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -344,9 +355,9 @@ end
    <field>
     <rect>
      <x>1.79</x>
-     <y>2.3</y>
+     <y>-0.151441</y>
      <width>62.8</width>
-     <height>15.7</height>
+     <height>18.9686</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -363,9 +374,9 @@ end
    <field>
     <rect>
      <x>68.9455</x>
-     <y>1.83916</y>
+     <y>-0.203707</y>
      <width>339.473</width>
-     <height>14.5039</height>
+     <height>17.3639</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -381,10 +392,10 @@ end
    </field>
    <field>
     <rect>
-     <x>579</x>
-     <y>1.74</y>
-     <width>113</width>
-     <height>14.2</height>
+     <x>577.366</x>
+     <y>-0.711441</y>
+     <width>166.115</width>
+     <height>18.2857</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -401,9 +412,9 @@ end
    <field>
     <rect>
      <x>411.415</x>
-     <y>1.07752</y>
+     <y>0.260373</y>
      <width>163.276</width>
-     <height>15.6</height>
+     <height>16.4171</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -419,29 +430,10 @@ end
    </field>
    <field>
     <rect>
-     <x>745.877</x>
-     <y>2.65682</y>
-     <width>148.379</width>
-     <height>14.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>clientes</query>
-     <column>tel_fijo</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>903</x>
-     <y>2.35</y>
-     <width>148</width>
-     <height>14.2</height>
+     <x>902.183</x>
+     <y>0.715706</y>
+     <width>162.3</width>
+     <height>16.6514</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -457,11 +449,30 @@ end
    </field>
    <line>
     <xstart>1.32063</xstart>
-    <ystart>17.2645</ystart>
+    <ystart>17.6731</ystart>
     <xend>1069.9</xend>
-    <yend>17.2722</yend>
+    <yend>17.6808</yend>
     <weight>1</weight>
    </line>
+   <field>
+    <rect>
+     <x>744.243</x>
+     <y>0.205379</y>
+     <width>148.379</width>
+     <height>17.4686</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>clientes</query>
+     <column>tel_fijo</column>
+    </data>
+   </field>
   </detail>
  </section>
  <pgfoot>
@@ -469,9 +480,9 @@ end
   <field>
    <rect>
     <x>4.56</x>
-    <y>6.33</y>
+    <y>1.01854</y>
     <width>31.6</width>
-    <height>14.2</height>
+    <height>24.4143</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -503,10 +514,10 @@ end
   </label>
   <field>
    <rect>
-    <x>43.8</x>
-    <y>6.51</y>
+    <x>42.9829</x>
+    <y>0.789971</y>
     <width>37.7</width>
-    <height>13.6</height>
+    <height>23.8143</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -522,9 +533,9 @@ end
   </field>
   <field>
    <rect>
-    <x>312.229</x>
-    <y>4.68346</y>
-    <width>475.907</width>
+    <x>221.229</x>
+    <y>0.68346</y>
+    <width>697.907</width>
     <height>25</height>
    </rect>
    <font>

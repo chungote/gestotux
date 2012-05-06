@@ -33,6 +33,8 @@ QVariant MVFacturas::data( const QModelIndex& item, int role ) const {
                             { return "Cuenta Corriente"; }
                             case MFactura::Cuotas:
                             { return "Cuotas"; }
+                            case MFactura::Otro:
+                            { return "Otro"; }
                             default:
                             { return "Desconocido"; }
                         }

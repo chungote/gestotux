@@ -68,7 +68,8 @@ SOURCES += eactcerrar.cpp \
     ecbtabla.cpp \
     eddescuento.cpp
 
-QT += sql
+QT += sql \
+      xml
 
 CONFIG +=   staticlib \
             help \

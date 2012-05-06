@@ -15,7 +15,7 @@ VListaPeriodos::VListaPeriodos( int id_servicio, QWidget *parent ) :
 
     modelo = new MPeriodoServicio( this );
     modelo->inicializar();
-    modelo->setFilter( QString( "id_servicio = %1").arg( id_servicio ) );
+    modelo->setFilter( QString( " id_servicio = %1 ").arg( id_servicio ) );
     modelo->sort( modelo->fieldIndex( "fecha_inicio" ), Qt::AscendingOrder );
 
     vista->setModel( modelo );

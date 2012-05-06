@@ -2,19 +2,21 @@ TEMPLATE = app
 
 SOURCES = verificarLinkeo.cpp
 
-LIBS += ../bin/plugins/libcaja.so \
-        ../bin/plugins/libcompras.so \
-        ../bin/plugins/libctacte.so \
-        ../bin/plugins/libgastos.so \
-        ../bin/plugins/libpagos.so \
-        ../bin/plugins/libpresupuesto.so \
-        ../bin/plugins/libproductos.so \
-        ../bin/plugins/libproveedor.so \
-        ../bin/plugins/libservicios.so \
-        ../bin/plugins/libventas.so \
-        ../bin/plugins/libzinfo.so \
-#        ../bin/plugins/libdigifauno.so \
-        ../bin/libreporte.a \
-        ../bin/libutiles.a \
-#        ../bin/plugins/libbscomputacion.so
-        #../bin/plugins/libhicomp.so
+LIBS += ../../gestotux-build-desktop/bin/plugins/libcaja.so \
+        ../../gestotux-build-desktop/bin/plugins/libcompras.so \
+        ../../gestotux-build-desktop/bin/plugins/libctacte.so \
+        ../../gestotux-build-desktop/bin/plugins/libgastos.so \
+        ../../gestotux-build-desktop/bin/plugins/libpagos.so \
+        ../../gestotux-build-desktop/bin/plugins/libpresupuesto.so \
+        ../../gestotux-build-desktop/bin/plugins/libproductos.so \
+        ../../gestotux-build-desktop/bin/plugins/libproveedor.so \
+        ../../gestotux-build-desktop/bin/plugins/libservicios.so \
+        ../../gestotux-build-desktop/bin/plugins/libventas.so \
+        ../../gestotux-build-desktop/bin/plugins/libzinfo.so \
+#        ../../gestotux-build-desktop/bin/plugins/libdigifauno.so \
+        ../../gestotux-build-desktop/bin/libreporte.a \
+        ../../gestotux-build-desktop/bin/libutiles.a \
+#        ../../gestotux-build-desktop/bin/plugins/libbscomputacion.so \
+        ../../gestotux-build-desktop/bin/plugins/libhicomp.so
+        
+        

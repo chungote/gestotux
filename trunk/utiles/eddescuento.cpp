@@ -61,6 +61,7 @@ QDialog(parent)
     CBDescuento->setearCampoId( "id_tipo_descuento" );
     CBDescuento->setearCampoTexto( "nombre" );
     CBDescuento->setearCampoOrden( "nombre" );
+    CBDescuento->setearCampoBusquedaExtra( "codigo" );
 
     connect( CBDescuento, SIGNAL( cambioId( int ) ), this, SLOT( cargarPorcentaje( int ) ) );
 }

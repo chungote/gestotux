@@ -24,7 +24,7 @@
           t1.egreso,
           (select SUM(t2.ingreso)-SUM(t2.egreso) FROM movimiento_caja AS t2 WHERE t2.id_caja = &lt;? value( "id_caja" ) ?> AND t2.id_movimiento &lt;= t1.id_movimiento ) AS saldo
 FROM movimiento_caja AS t1
-WHERE t1.id_caja = &lt;? value( "id_caja" ) ?></sql>
+WHERE t1.id_caja = &lt;? value( "id_caja", "filtro" ) ?></sql>
  </querysource>
  <querysource>
   <name>caja</name>
@@ -189,7 +189,7 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>872.09</xstart>
+   <xstart>871.858</xstart>
    <ystart>77.8358</ystart>
    <xend>871.875</xend>
    <yend>98.6172</yend>
@@ -276,8 +276,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <field>
    <rect>
-    <x>765</x>
-    <y>34.1</y>
+    <x>766</x>
+    <y>33.1</y>
     <width>169</width>
     <height>18.1</height>
    </rect>
@@ -292,14 +292,14 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
     <query>caja</query>
     <column>saldo</column>
    </data>
-   <format>$ %10.3f</format>
+   <format>$ %10.2f</format>
   </field>
  </rpthead>
  <section>
   <name>resumen</name>
   <detail>
    <key>
-    <query>resumen</query>
+    <query>datos</query>
    </key>
    <height>24.3762</height>
    <field>
@@ -342,8 +342,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    </field>
    <field>
     <rect>
-     <x>965</x>
-     <y>2.97</y>
+     <x>963.406</x>
+     <y>1.37561</y>
      <width>97.6</width>
      <height>22.8</height>
     </rect>
@@ -362,8 +362,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    </field>
    <field>
     <rect>
-     <x>875</x>
-     <y>3.71</y>
+     <x>877.391</x>
+     <y>1.31842</y>
      <width>88.1</width>
      <height>21.3</height>
     </rect>
@@ -382,8 +382,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    </field>
    <field>
     <rect>
-     <x>772</x>
-     <y>4.46</y>
+     <x>769.609</x>
+     <y>2.86561</y>
      <width>100</width>
      <height>19.1</height>
     </rect>
@@ -401,10 +401,10 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
     <format>$ %0.2f</format>
    </field>
    <line>
-    <xstart>5.14988</xstart>
-    <ystart>22.143</ystart>
-    <xend>1062.24</xend>
-    <yend>22.143</yend>
+    <xstart>7.54146</xstart>
+    <ystart>22.9402</ystart>
+    <xend>1064.63</xend>
+    <yend>22.9402</yend>
     <weight>0</weight>
    </line>
   </detail>
@@ -413,10 +413,10 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   <height>33.8888</height>
   <field>
    <rect>
-    <x>313.517</x>
-    <y>4.63122</y>
+    <x>312.442</x>
+    <y>7.85607</y>
     <width>475.907</width>
-    <height>25</height>
+    <height>22.8501</height>
    </rect>
    <font>
     <face>Times New Roman</face>

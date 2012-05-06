@@ -48,6 +48,7 @@ class MCajas : public QSqlTableModel
         static QString nombreCaja( const int id_caja );
 
         static int cajaPredeterminada();
+        static bool existen2omas();
 };
 
 #endif // MCAJAS_H

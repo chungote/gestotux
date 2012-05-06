@@ -21,10 +21,10 @@
   <height>81.262</height>
   <image>
    <rect>
-    <x>2</x>
-    <y>1</y>
-    <width>64</width>
-    <height>62</height>
+    <x>3.01326</x>
+    <y>0.493369</y>
+    <width>59.947</width>
+    <height>57.947</height>
    </rect>
    <mode>clip</mode>
    <map format="png">begin 644 internal
@@ -156,7 +156,7 @@ end
    </font>
    <hcenter/>
    <top/>
-   <string>Listado de Productos y Precios</string>
+   <string>Listado de precios de venta de productos</string>
   </label>
   <line>
    <xstart>88.8748</xstart>
@@ -198,17 +198,17 @@ end
    <string>Nombre</string>
   </label>
   <line>
-   <xstart>902.069</xstart>
+   <xstart>877.751</xstart>
    <ystart>60.7926</ystart>
-   <xend>901.995</xend>
+   <xend>877.677</xend>
    <yend>77.8784</yend>
    <weight>2</weight>
   </line>
   <label>
    <rect>
-    <x>903</x>
-    <y>60.9</y>
-    <width>156</width>
+    <x>880.202</x>
+    <y>60.3934</y>
+    <width>134.93</width>
     <height>17.9</height>
    </rect>
    <font>
@@ -223,15 +223,15 @@ end
   <line>
    <xstart>2.0138</xstart>
    <ystart>79.4432</ystart>
-   <xend>1069.9</xend>
-   <yend>79.3499</yend>
+   <xend>1023.93</xend>
+   <yend>78.133</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>1.7773</xstart>
    <ystart>59.4432</ystart>
-   <xend>1069.67</xend>
-   <yend>59.3499</yend>
+   <xend>1023.94</xend>
+   <yend>58.9096</yend>
    <weight>2</weight>
   </line>
   <line>
@@ -242,10 +242,10 @@ end
    <weight>2</weight>
   </line>
   <line>
-   <xstart>1069.27</xstart>
-   <ystart>61.0291</ystart>
-   <xend>1069.2</xend>
-   <yend>78.1149</yend>
+   <xstart>1024.01</xstart>
+   <ystart>60.049</ystart>
+   <xend>1023.94</xend>
+   <yend>77.1348</yend>
    <weight>2</weight>
   </line>
  </rpthead>
@@ -259,15 +259,15 @@ end
    <line>
     <xstart>1.32063</xstart>
     <ystart>17.2645</ystart>
-    <xend>1069.9</xend>
-    <yend>17.2722</yend>
+    <xend>1024.1</xend>
+    <yend>16.7656</yend>
     <weight>1</weight>
    </line>
    <field>
     <rect>
-     <x>923</x>
-     <y>1.38</y>
-     <width>142</width>
+     <x>887.029</x>
+     <y>-0.646524</y>
+     <width>134.187</width>
      <height>19.3</height>
     </rect>
     <font>
@@ -339,7 +339,7 @@ end
    </label>
    <label>
     <rect>
-     <x>899.61</x>
+     <x>873.772</x>
      <y>1.29332</y>
      <width>16.3534</width>
      <height>17.6967</height>
@@ -432,8 +432,8 @@ end
   </field>
   <field>
    <rect>
-    <x>880.052</x>
-    <y>0.825594</y>
+    <x>838.177</x>
+    <y>-0.931044</y>
     <width>183.718</width>
     <height>23.0446</height>
    </rect>

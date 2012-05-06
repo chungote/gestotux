@@ -236,6 +236,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QRadioButton" name="RBOtro">
+        <property name="text">
+         <string>Otro</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
