@@ -19,8 +19,7 @@
  <querysource>
   <name>servicio</name>
   <sql>SELECT nombre, 
-       strftime("%d/%m/%Y", fecha_alta ) AS fecha_alta,
-       'hacer' AS ultimo_periodo
+       strftime("%d/%m/%Y", fecha_alta ) AS fecha_alta
 FROM servicios
 WHERE id_servicio = &lt;? value( "id_servicio" ) ?></sql>
  </querysource>
@@ -30,7 +29,7 @@ WHERE id_servicio = &lt;? value( "id_servicio" ) ?></sql>
        ps.ano AS ano,
        cscp.id_cliente AS id_cliente,
        cscp.id_factura AS factura,
-       substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS num-factura,
+       substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS `num-factura`,
        c.razon_social AS razon_social,
        r.precio AS total
 FROM `cobro_servicio_cliente_periodo` AS cscp, `clientes` AS c, `recibos` AS r, `periodo_servicio` AS ps 
@@ -40,6 +39,14 @@ WHERE cscp.id_cliente = c.id
   AND cscp.id_servicio = &lt;? value( "id_servicio") ?>
   AND cscp.id_recibo IS NULL
 ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
+ </querysource>
+ <querysource>
+  <name>periodo</name>
+  <sql>SELECT  `periodo` || '\' || `ano` AS ultimo_periodo  
+FROM periodo_servicio AS ps  
+WHERE ps.id_servicio = &lt;? value("id_servicio") ?> 
+ORDER BY ps.fecha DESC   
+LIMIT 1 </sql>
  </querysource>
  <rpthead>
   <height>96</height>
@@ -77,7 +84,7 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
   </label>
   <field>
    <rect>
-    <x>61</x>
+    <x>66</x>
     <y>37</y>
     <width>300</width>
     <height>22</height>
@@ -112,8 +119,8 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
   </label>
   <field>
    <rect>
-    <x>88</x>
-    <y>53</y>
+    <x>99</x>
+    <y>54</y>
     <width>202</width>
     <height>25</height>
    </rect>
@@ -133,7 +140,7 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
    <rect>
     <x>10</x>
     <y>72</y>
-    <width>141</width>
+    <width>169</width>
     <height>25</height>
    </rect>
    <font>
@@ -147,9 +154,9 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
   </label>
   <field>
    <rect>
-    <x>148</x>
-    <y>71</y>
-    <width>100</width>
+    <x>167.358</x>
+    <y>71.4158</y>
+    <width>182</width>
     <height>25</height>
    </rect>
    <font>
@@ -160,7 +167,7 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
    <left/>
    <vcenter/>
    <data>
-    <query>servicio</query>
+    <query>periodo</query>
     <column>ultimo_periodo</column>
    </data>
   </field>
@@ -181,7 +188,7 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
     </line>
     <label>
      <rect>
-      <x>8</x>
+      <x>7</x>
       <y>5</y>
       <width>57</width>
       <height>25</height>
@@ -197,8 +204,8 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
     </label>
     <field>
      <rect>
-      <x>39</x>
-      <y>7</y>
+      <x>47</x>
+      <y>6</y>
       <width>100</width>
       <height>25</height>
      </rect>
@@ -220,7 +227,7 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
    <name>Periodo</name>
    <column>periodo</column>
    <head>
-    <height>57</height>
+    <height>54.1688</height>
     <line>
      <xstart>7</xstart>
      <ystart>4</ystart>
@@ -232,7 +239,7 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
      <rect>
       <x>8</x>
       <y>8</y>
-      <width>53</width>
+      <width>59</width>
       <height>25</height>
      </rect>
      <font>
@@ -246,8 +253,8 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
     </label>
     <field>
      <rect>
-      <x>60</x>
-      <y>9</y>
+      <x>69</x>
+      <y>8</y>
       <width>100</width>
       <height>25</height>
      </rect>
@@ -272,8 +279,8 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
     </line>
     <label>
      <rect>
-      <x>100</x>
-      <y>33</y>
+      <x>71.3444</x>
+      <y>32.3561</y>
       <width>100</width>
       <height>25</height>
      </rect>
@@ -334,109 +341,132 @@ ORDER BY ps.periodo, ps.ano, c.razon_social;</sql>
      <vcenter/>
      <string>Total</string>
     </label>
+    <line>
+     <xstart>8.41577</xstart>
+     <ystart>52.1255</ystart>
+     <xend>716.416</xend>
+     <yend>52.1255</yend>
+     <weight>1</weight>
+    </line>
+    <field>
+     <rect>
+      <x>631.484</x>
+      <y>54</y>
+      <width>90.3161</width>
+      <height>24.2</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>deudores</query>
+      <column>total</column>
+     </data>
+     <format>%5.2f</format>
+    </field>
+    <field>
+     <rect>
+      <x>492.09</x>
+      <y>54.8422</y>
+      <width>126.842</width>
+      <height>22.0896</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>deudores</query>
+      <column>num-factura</column>
+     </data>
+    </field>
+    <field>
+     <rect>
+      <x>71.0224</x>
+      <y>54.4797</y>
+      <width>419.677</width>
+      <height>22.0896</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>deudores</query>
+      <column>razon_social</column>
+     </data>
+    </field>
+    <field>
+     <rect>
+      <x>15.194</x>
+      <y>54.8017</y>
+      <width>48.3808</width>
+      <height>20.8423</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>deudores</query>
+      <column>id_cliente</column>
+     </data>
+    </field>
+    <label>
+     <rect>
+      <x>625.158</x>
+      <y>54.1669</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>$</string>
+    </label>
    </head>
   </group>
   <detail>
    <key>
     <query>deudores</query>
    </key>
-   <height>27</height>
-   <field>
-    <rect>
-     <x>5</x>
-     <y>2</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>deudores</query>
-     <column>id_cliente</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>100</x>
-     <y>2</y>
-     <width>386</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>deudores</query>
-     <column>razon_social</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>495</x>
-     <y>2</y>
-     <width>131</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>deudores</query>
-     <column>num-factura</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>640</x>
-     <y>2</y>
-     <width>82</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>deudores</query>
-     <column>total</column>
-    </data>
-    <format>$ %5.2f</format>
-   </field>
+   <height>22.0359</height>
   </detail>
  </section>
  <rptfoot>
-  <height>33</height>
+  <height>40.3158</height>
   <label>
    <rect>
-    <x>619</x>
-    <y>2</y>
-    <width>100</width>
+    <x>7.9104</x>
+    <y>14.4731</y>
+    <width>714</width>
     <height>25</height>
    </rect>
    <font>
     <face>Times New Roman</face>
-    <size>10</size>
+    <size>9</size>
     <weight>normal</weight>
    </font>
    <right/>
    <bottom/>
-   <string>Fin del listado</string>
+   <string>Listado valido hasta el día de publicación del reporte</string>
   </label>
  </rptfoot>
 </report>

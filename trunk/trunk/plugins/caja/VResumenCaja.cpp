@@ -38,6 +38,7 @@
 #include "formtransferir.h"
 
 #include "EReporte.h"
+#include "ecbtabla.h"
 
 VResumenCaja::VResumenCaja( QWidget *parent )
 : EVLista( parent )
@@ -55,7 +56,7 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   vista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
   vista->horizontalHeader()->setResizeMode( 5, QHeaderView::Stretch );
   vista->horizontalHeader()->setMinimumSectionSize( 60 );
-  CBCajas = new QComboBox( this );
+  CBCajas = new ECBTabla( this );
   // Reordena los items para que el combo box este arriba
   QGridLayout *l = qobject_cast<QGridLayout *>(this->layout());
   QLayoutItem *i = l->takeAt( 0 );
@@ -79,9 +80,6 @@ VResumenCaja::VResumenCaja( QWidget *parent )
 
   DTEInicio = new QDateEdit( GBFiltrado );
   DTEInicio->setMaximumDate( QDate::currentDate().addDays( -1 ) );
-  /// @todo Buscar fecha del ultimo movimiento
-  /*fecha = MMovimientosCaja::buscarUltimoCierre( id_caja );
-  DTEInicio->setDate( fecha );*/
   connect( DTEFin, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
   connect( DTEInicio, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
 
@@ -93,11 +91,11 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   l->addWidget( GBFiltrado, 2, 0 );
 
   // Inicializo el modelo de las cajas, lo pongo en el combobox y conecto las señales para cambiar los datos
-  cmodelo = new MCajas( CBCajas );
-  CBCajas->setModel( cmodelo );
-  CBCajas->setModelColumn( 1 );
-  connect( CBCajas, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCaja( int ) ) );
-  cmodelo->select();
+  CBCajas->setearTabla( "caja" );
+  CBCajas->setearCampoId( "id_caja" );
+  CBCajas->setearCampoTexto( "nombre" );
+  CBCajas->setearCampoOrden( "nombre" );
+  connect( CBCajas, SIGNAL( cambioId( int ) ), this, SLOT( cambioCaja( int ) ) );
 
   this->vista->horizontalHeader()->resizeSections( QHeaderView::ResizeToContents );
 
@@ -115,7 +113,7 @@ VResumenCaja::VResumenCaja( QWidget *parent )
 
   this->addAction( new ActIngresoCaja( this ) );
   this->addAction( new ActRetiroCaja( this ) );
-  if( cmodelo->rowCount() > 1 ) {
+  if( MCajas::existen2omas() ) {
     this->addAction( new ActTransferir( this ) );
   } else {
       CBCajas->setCurrentIndex( 1 );
@@ -132,28 +130,26 @@ VResumenCaja::VResumenCaja( QWidget *parent )
 
 void VResumenCaja::cambioCaja( int id )
 {
-    int id_caja = CBCajas->model()->data( CBCajas->model()->index( id, 0 ), Qt::EditRole ).toInt();
-    modelo->ultimosMovimientosCaja( id_caja );
+    modelo->ultimosMovimientosCaja( id );
 }
 
 void VResumenCaja::ingreso() {
     FormRetiroIngreso *f = new FormRetiroIngreso( this, FormRetiroIngreso::Ingreso );
-    f->setearCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    f->setearCaja( CBCajas->idActual() );
     f->exec();
-    modelo->ultimosMovimientosCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    modelo->ultimosMovimientosCaja( CBCajas->idActual() );
 }
 
 void VResumenCaja::retiro() {
     FormRetiroIngreso *f = new FormRetiroIngreso( this, FormRetiroIngreso::Retiro );
-    f->setearCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    f->setearCaja( CBCajas->idActual() );
     f->exec();
-    modelo->ultimosMovimientosCaja( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    modelo->ultimosMovimientosCaja( CBCajas->idActual() );
 }
 
 void VResumenCaja::transferir() {
-    int id_caja = CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt();
     FormTransferir *ft = new FormTransferir();
-    ft->setearCajaOrigen( id_caja );
+    ft->setearCajaOrigen( CBCajas->idActual() );
     ft->exec();
 }
 
@@ -162,7 +158,7 @@ void VResumenCaja::imprimir()
     EReporte *rep = new EReporte( 0 );
 
     ParameterList parametros;
-    parametros.append( "id_caja", CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    parametros.append( "id_caja", CBCajas->idActual() );
     if( ActFiltrar->isChecked() ) {
         parametros.append( "filtro", this->modelo->filter() );
     }
@@ -177,7 +173,7 @@ void VResumenCaja::aPdf()
     EReporte *rep = new EReporte( 0 );
 
     ParameterList parametros;
-    parametros.append( "id_caja", CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    parametros.append( "id_caja", CBCajas->idActual() );
     if( ActFiltrar->isChecked() ) {
         parametros.append( "filtro", this->modelo->filter() );
     }
@@ -202,7 +198,6 @@ void VResumenCaja::actualizarFiltro()
     this->modelo->setFilter( QString( " fecha_hora >= date( '%1' ) AND fecha_hora <= date( '%2' ) AND id_caja = %3" )
                              .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
                              .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
-                             .arg( CBCajas->model()->data( CBCajas->model()->index( CBCajas->currentIndex(), 0 ), Qt::EditRole ).toInt() ) );
+                             .arg( CBCajas->idActual() ) );
     this->modelo->select();
-    //qDebug( this->modelo->filter().toLocal8Bit() );
 }

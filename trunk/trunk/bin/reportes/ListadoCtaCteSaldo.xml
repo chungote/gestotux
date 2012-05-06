@@ -46,46 +46,49 @@ ORDER BY c.razon_social;</sql>
    <rect>
     <x>3</x>
     <y>27</y>
-    <width>140.401</width>
+    <width>148</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
+    <face>Helvetica</face>
     <size>11</size>
     <weight>bold</weight>
-    <italic/>
    </font>
    <left/>
    <vcenter/>
    <string>Fecha de impresion:</string>
   </label>
-  <label>
+  <field>
    <rect>
-    <x>1</x>
-    <y>50</y>
-    <width>43.5</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
-    <weight>bold</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>#CC</string>
-  </label>
-  <label>
-   <rect>
-    <x>49.8928</x>
-    <y>49</y>
+    <x>151</x>
+    <y>30</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
+    <face>Helvetica</face>
+    <size>12</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <top/>
+   <data>
+    <query>Context Query</query>
+    <column>report_date</column>
+   </data>
+  </field>
+  <label>
+   <rect>
+    <x>64.4271</x>
+    <y>49.7978</y>
+    <width>100</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Helvetica</face>
     <size>10</size>
     <weight>bold</weight>
+    <italic/>
    </font>
    <left/>
    <vcenter/>
@@ -93,33 +96,44 @@ ORDER BY c.razon_social;</sql>
   </label>
   <label>
    <rect>
-    <x>627</x>
-    <y>48.5</y>
+    <x>622.44</x>
+    <y>49.2812</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
+    <face>Helvetica</face>
     <size>10</size>
     <weight>bold</weight>
+    <italic/>
    </font>
    <hcenter/>
    <vcenter/>
    <string>Saldo</string>
   </label>
+  <label>
+   <rect>
+    <x>3.4138</x>
+    <y>50.7135</y>
+    <width>62.7613</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Helvetica</face>
+    <size>10</size>
+    <weight>bold</weight>
+    <italic/>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>#Cuenta</string>
+  </label>
   <line>
-   <xstart>2</xstart>
-   <ystart>71</ystart>
-   <xend>724</xend>
-   <yend>71</yend>
-   <weight>2</weight>
-  </line>
-  <line>
-   <xstart>3.53316</xstart>
-   <ystart>52.8435</ystart>
-   <xend>725.533</xend>
-   <yend>52.8435</yend>
-   <weight>2</weight>
+   <xstart>0.986738</xstart>
+   <ystart>52.0079</ystart>
+   <xend>722.987</xend>
+   <yend>52.0079</yend>
+   <weight>0</weight>
   </line>
  </pghead>
  <pghead>
@@ -127,30 +141,32 @@ ORDER BY c.razon_social;</sql>
   <label>
    <rect>
     <x>3</x>
-    <y>1</y>
-    <width>40</width>
+    <y>0.493369</y>
+    <width>81</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
+    <face>Helvetica</face>
     <size>10</size>
     <weight>bold</weight>
+    <italic/>
    </font>
-   <hcenter/>
+   <left/>
    <vcenter/>
-   <string>#CC</string>
+   <string>#Cuenta</string>
   </label>
   <label>
    <rect>
-    <x>50.3796</x>
-    <y>1.01</y>
+    <x>63</x>
+    <y>0.503369</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
+    <face>Helvetica</face>
     <size>10</size>
     <weight>bold</weight>
+    <italic/>
    </font>
    <left/>
    <vcenter/>
@@ -159,25 +175,33 @@ ORDER BY c.razon_social;</sql>
   <label>
    <rect>
     <x>620</x>
-    <y>1</y>
+    <y>0.493369</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
+    <face>Helvetica</face>
     <size>10</size>
     <weight>bold</weight>
+    <italic/>
    </font>
    <hcenter/>
    <vcenter/>
    <string>Saldo</string>
   </label>
   <line>
-   <xstart>3.01326</xstart>
-   <ystart>20.9469</ystart>
-   <xend>725.014</xend>
-   <yend>20.9469</yend>
-   <weight>2</weight>
+   <xstart>0.986738</xstart>
+   <ystart>23.4801</ystart>
+   <xend>722.987</xend>
+   <yend>23.4801</yend>
+   <weight>0</weight>
+  </line>
+  <line>
+   <xstart>0.986738</xstart>
+   <ystart>-4.38461</ystart>
+   <xend>722.987</xend>
+   <yend>-4.38461</yend>
+   <weight>0</weight>
   </line>
  </pghead>
  <section>
@@ -186,7 +210,7 @@ ORDER BY c.razon_social;</sql>
    <key>
     <query>datos</query>
    </key>
-   <height>24.1962</height>
+   <height>21.6631</height>
    <field>
     <rect>
      <x>622</x>
@@ -196,7 +220,7 @@ ORDER BY c.razon_social;</sql>
     </rect>
     <font>
      <face>Helvetica</face>
-     <size>11</size>
+     <size>10</size>
      <weight>normal</weight>
     </font>
     <right/>
@@ -205,18 +229,18 @@ ORDER BY c.razon_social;</sql>
      <query>datos</query>
      <column>saldo</column>
     </data>
-    <format>$ %0.2f</format>
+    <format>%0.2f</format>
    </field>
    <field>
     <rect>
-     <x>50.9098</x>
-     <y>0.493369</y>
-     <width>563.011</width>
+     <x>63.6</x>
+     <y>1</y>
+     <width>512</width>
      <height>20</height>
     </rect>
     <font>
      <face>Helvetica</face>
-     <size>11</size>
+     <size>10</size>
      <weight>normal</weight>
     </font>
     <left/>
@@ -228,110 +252,39 @@ ORDER BY c.razon_social;</sql>
    </field>
    <field>
     <rect>
-     <x>2.51</x>
-     <y>0.493</y>
-     <width>38.8</width>
+     <x>2</x>
+     <y>1</y>
+     <width>57.1</width>
      <height>20</height>
     </rect>
     <font>
      <face>Helvetica</face>
-     <size>11</size>
+     <size>10</size>
      <weight>normal</weight>
     </font>
-    <right/>
+    <left/>
     <vcenter/>
     <data>
      <query>datos</query>
      <column>numero_cuenta</column>
     </data>
    </field>
-   <line>
-    <xstart>4.02652</xstart>
-    <ystart>21.8382</ystart>
-    <xend>726.027</xend>
-    <yend>21.8382</yend>
-    <weight>1</weight>
-   </line>
+   <label>
+    <rect>
+     <x>606</x>
+     <y>2.36</y>
+     <width>110</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Helvetica</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
   </detail>
  </section>
- <pgfoot>
-  <height>30.3979</height>
-  <label>
-   <rect>
-    <x>27.0867</x>
-    <y>3.04652</y>
-    <width>26</width>
-    <height>19.9337</height>
-   </rect>
-   <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
-    <weight>normal</weight>
-    <italic/>
-   </font>
-   <left/>
-   <top/>
-   <string> de </string>
-  </label>
-  <field>
-   <rect>
-    <x>159.806</x>
-    <y>3.56738</y>
-    <width>505.305</width>
-    <height>22.9735</height>
-   </rect>
-   <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
-    <weight>normal</weight>
-    <italic/>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <data>
-    <query>Context Query</query>
-    <column>report_title</column>
-   </data>
-  </field>
-  <field>
-   <rect>
-    <x>46.7403</x>
-    <y>-0.503049</y>
-    <width>37.1777</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
-    <weight>normal</weight>
-    <italic/>
-   </font>
-   <left/>
-   <vcenter/>
-   <data>
-    <query>Context Query</query>
-    <column>page_count</column>
-   </data>
-  </field>
-  <field>
-   <rect>
-    <x>3.07851</x>
-    <y>-0.593262</y>
-    <width>27.0618</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
-    <weight>normal</weight>
-    <italic/>
-   </font>
-   <right/>
-   <vcenter/>
-   <data>
-    <query>Context Query</query>
-    <column>page_number</column>
-   </data>
-  </field>
- </pgfoot>
 </report>

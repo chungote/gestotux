@@ -52,9 +52,6 @@ FormFacturacionEmitida::FormFacturacionEmitida(QWidget *parent) :
     TVPagada->setAlternatingRowColors( true );
     TVPagada->setSortingEnabled( true );
 
-    connect( CBServicio, SIGNAL( cambioId( int ) ), this, SLOT( cambioServicio( int ) ) );
-    connect( CBPeriodo , SIGNAL( cambioId( int ) ), this, SLOT( cambioPeriodo(  int ) ) );
-
     ActVerPagado = new QAction( this );
     ActVerPagado->setCheckable( true );
     ActVerPagado->setChecked( false );
@@ -86,6 +83,7 @@ void FormFacturacionEmitida::setearIdServicio( const int id_servicio )
     _id_servicio = id_servicio;
     CBServicio->setearId( id_servicio );
     CBPeriodo->setearFiltro( QString( " WHERE id_servicio = %1" ).arg( _id_servicio ) );
+    connect( CBServicio, SIGNAL( cambioId( int ) ), this, SLOT( cambioServicio( int ) ) );
 }
 
 void FormFacturacionEmitida::setearIdPeriodo( const int id_periodo )
@@ -93,6 +91,7 @@ void FormFacturacionEmitida::setearIdPeriodo( const int id_periodo )
     _id_periodo_servicio = id_periodo;
     CBPeriodo->setearId( id_periodo );
     cargarDatos();
+    connect( CBPeriodo , SIGNAL( cambioId( int ) ), this, SLOT( cambioPeriodo(  int ) ) );
 }
 
 void FormFacturacionEmitida::changeEvent(QEvent *e)
@@ -155,9 +154,9 @@ void FormFacturacionEmitida::imprimirListadoGeneral()
     ParameterList lista;
     lista.append( "id_servicio", CBServicio->idActual() );
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-        rep->especial( "ListadoDeudoresServiciosHC", lista );
+        rep->especial( "ListaDeudoresServicioHC", lista );
     } else {
-        rep->especial( "ListadoDeudoresServicios", lista );
+        rep->especial( "ListaDeudoresServicio", lista );
     }
     rep->hacer();
     delete rep;
@@ -171,9 +170,9 @@ void FormFacturacionEmitida::imprimirListadoGeneralPDF()
     int id_servicio = CBServicio->idActual();
     lista.append( "id_servicio", id_servicio );
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-        rep->especial( "ListadoDeudoresServiciosHC", lista );
+        rep->especial( "ListaDeudoresServicioHC", lista );
     } else {
-        rep->especial( "ListadoDeudoresServicios", lista );
+        rep->especial( "ListaDeudoresServicio", lista );
     }
     rep->hacerPDF( lista, QString( "Lista Deudores del servicio %1 al %2" ).arg( MServicios::getNombreServicio( id_servicio ) ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
     delete rep;

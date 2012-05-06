@@ -29,6 +29,7 @@
 #include <parameter.h>
 
 #include <QSqlDatabase>
+#include <QSqlError>
 
 #include "metasql.h"
 
@@ -786,8 +787,16 @@ bool MetaSQLQuery::isValid() { return (_data && _data->isValid()); }
 XSqlQuery MetaSQLQuery::toQuery(const ParameterList & params, QSqlDatabase pDb, bool pExec) {
     XSqlQuery qry(pDb);
     if(isValid()) {
-        if(_data->populate(qry, params) && pExec) {
-            qry.exec();
+        if( _data->populate(qry, params) ) {
+            if( pExec) {
+                if( !qry.exec() ) {
+                    qDebug( "Error al ejecutar la cola" );
+                    qDebug( qry.lastError().text().toLocal8Bit() );
+                    qDebug( qry.lastQuery().toLocal8Bit() );
+                }
+            }
+        } else {
+            qDebug( "Error al popular los campos con los parametros" );
         }
     }
     return qry;

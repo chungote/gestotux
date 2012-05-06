@@ -234,6 +234,27 @@ int MCajas::cajaPredeterminada()
 }
 
 /*!
+ * \fn MCajas::existen2omas()
+ * Devuelve verdadero si existen 2 o mas cajas delcaradas, utilizado para definir si se pueden realizar transferencias
+ */
+bool MCajas::existen2omas()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT COUNT(nombre) FROM caja" ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 1 ) {
+                return true;
+            }
+        }
+    } else {
+         qDebug( "Error al ejecutar la cola de conteo de cajas" );
+         qDebug( cola.lastError().text().toLocal8Bit() );
+         qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}
+
+/*!
  * \fn MCajas::existeCaja( const QString nombre )
  * Funcion que devuelve verdadero si existe la caja con el nombre pasado como parametro
  * \param nombre Nombre a buscar
@@ -263,6 +284,10 @@ bool MCajas::existeCaja( QString nombre )
  */
 bool MCajas::tieneDatosRelacionados( const int id_caja )
 {
+    if( id_caja == cajaPredeterminada() ) {
+        qWarning( "La caja que intenta eliminar es la caja predeterminada. No se podrá eliminar" );
+        return true;
+    }
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT COUNT(id_caja) FROM movimientos_caja WHERE id_caja = %1" ).arg( id_caja ) ) ) {
         cola.next();
@@ -283,6 +308,13 @@ bool MCajas::tieneDatosRelacionados( const int id_caja )
  */
 bool MCajas::eliminarCaja( const int id_caja )
 {
-    qDebug( "No implementado" );
+    QSqlQuery cola;
+    if( cola.exec( QString( "DELETE FROM caja WHERE id_caja = %1" ).arg( id_caja ) ) ) {
+        return true;
+    } else {
+        qDebug( "Error al ejecutar la cola de eliminación de cajas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
     return false;
 }

@@ -78,6 +78,7 @@ void MFacturacionEmitida::generarDatos()
     } else {
         cola.append( " AND cscp.id_recibo IS NOT NULL " );
     }
+    cola.append( "  ORDER BY razon_social" );
     setQuery( cola );
     //qDebug( cola.toLocal8Bit() );
     this->setHeaderData( 0, Qt::Horizontal, "Razon Social" );

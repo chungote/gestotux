@@ -34,7 +34,8 @@ public:
     enum FormaPago {
         Contado = 1,
         CuentaCorriente = 2,
-        Cuotas = 3
+        Cuotas = 3,
+        Otro = 4
     };
     explicit MFactura(QObject *parent = 0);
     int agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago id_forma_pago, MProductosTotales *mcp, QString observaciones = QString() );

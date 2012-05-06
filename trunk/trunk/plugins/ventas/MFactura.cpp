@@ -514,7 +514,7 @@ int MFactura::idFacturaPorComprobante( const QString numero )
      return -1;
  }
  // Numero de comprobante valido
- if( cola.exec( QString( "SELECT id_factura FROM factura WHERE serie = %1 AND numero = %1" ).arg( n->serie() ).arg( n->numero() ) ) ) {
+ if( cola.exec( QString( "SELECT id_factura FROM factura WHERE serie = %1 AND numero = %2" ).arg( n->serie() ).arg( n->numero() ) ) ) {
      if( cola.next() ) {
          int valor = cola.record().value(0).toInt();
          if( valor > 0 ) {

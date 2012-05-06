@@ -132,6 +132,10 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         p->endGroup();
         p->endGroup();
         p=0;
+
+        if( !ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
+            RBContado->setVisible( false );
+        }
 }
 
 
@@ -323,6 +327,8 @@ void FormAgregarVenta::guardar()
  {
      id_forma_pago = MFactura::Cuotas;
      //qDebug( "MFactura::Cuotas" );
+ } else if( RBOtro->isChecked() ){
+     id_forma_pago = MFactura::Otro;
  } else {
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      mcp->calcularTotales( true );

@@ -25,6 +25,7 @@ ECBTabla::ECBTabla(QWidget *parent) :
     this->setEnabled( false );
 
     ids = new QList<int>();
+    codigos = new QList<int>();
 
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
@@ -37,6 +38,9 @@ ECBTabla::ECBTabla(QWidget *parent) :
     _campo_id = QString();
     _campo_texto = QString();
     _campo_orden = QString();
+    _campo_busqueda = QString();
+    _busqueda = false;
+
 }
 
 ECBTabla::ECBTabla( QWidget *parent, QString tabla, QString tid, QString texto, QString orden ) :
@@ -86,6 +90,7 @@ void ECBTabla::setearFiltro( const QString f ) {
 ECBTabla::~ECBTabla()
 {
     delete ids;
+    delete codigos;
 }
 
 /*!
@@ -99,16 +104,18 @@ void ECBTabla::inicializar()
     if( _campo_texto.isEmpty() )  { qWarning( "No se seteo el campo de texto para el modelo." ); return; }
 
     if( !_campo_orden.isEmpty() ) { _campo_orden.prepend( " ORDER BY " ); }
+    if( _busqueda && !_campo_busqueda.isEmpty() ) { _campo_busqueda.prepend( ", " ); }
     // Cargo los datos del modelo
     QSqlQuery cola;
     // Limpio el combobox para que no cargue datos repetidos
     this->clear();
-    if( cola.exec( QString( "SELECT %1, %2 FROM %3 %4 %5" )
+    if( cola.exec( QString( "SELECT %1, %2 %6 FROM %3 %4 %5" )
                    .arg( _campo_id )
                    .arg( _campo_texto )
                    .arg( _tabla )
                    .arg( filtro )
-                   .arg( _campo_orden )) ) {
+                   .arg( _campo_orden )
+                   .arg( _campo_busqueda ) ) ) {
         int npos = -1;
         int pos = 0;
         while( cola.next() ) {
@@ -116,6 +123,7 @@ void ECBTabla::inicializar()
             int id = cola.record().value(0).toInt();
             if( id == _id ) { npos = pos; }
             ids->insert( pos, id );
+            if( _busqueda ) { codigos->insert( pos, cola.record().value(2).toInt() ); }
             pos++;
         }
         if( pos == 0 ) {
@@ -214,6 +222,12 @@ void ECBTabla::setearCampoOrden( QString texto )
     _inicializado = false;
 }
 
+void ECBTabla::setearCampoBusquedaExtra( QString campo )
+{
+    _busqueda = true;
+    _campo_busqueda = campo;
+}
+
 /*!
  * \fn ECBClientes::verificarExiste()
  * Ve si el numero de cliente o texto buscado existe en la lista. Si existe lo coloca como item actual.
@@ -228,13 +242,22 @@ void ECBTabla::verificarExiste()
         emit cambioId( idActual() );
     } else {
         // No es un nombre de cliente sino un numero de cliente.
-        //int c =  this->findData( buscar );
         int c = ids->indexOf( buscar.toInt() );
         if( c != -1 ) {
             this->setCurrentIndex( c );
             emit cambioId( idActual() );
         } else {
-            QMessageBox::information( this, "No encontrado", "El cliente o codigo de cliente buscado no existe." );
+            if( _busqueda ) {
+                int d = codigos->indexOf( buscar.toInt() );
+                if( d != -1 ) {
+                    this->setCurrentIndex( d );
+                    emit cambioId( idActual() );
+                } else {
+                    QMessageBox::information( this, "No encontrado", "El cliente o codigo de cliente buscado no existe." );
+                }
+            } else {
+                    QMessageBox::information( this, "No encontrado", "El texto o codigo de cliente buscado no existe." );
+            }
         }
     }
     return;

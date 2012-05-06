@@ -198,17 +198,17 @@ end
    <string>Nombre</string>
   </label>
   <line>
-   <xstart>902.069</xstart>
-   <ystart>60.7926</ystart>
-   <xend>901.995</xend>
-   <yend>77.8784</yend>
+   <xstart>813.169</xstart>
+   <ystart>59.6634</ystart>
+   <xend>813.33</xend>
+   <yend>78.3909</yend>
    <weight>2</weight>
   </line>
   <label>
    <rect>
-    <x>903</x>
-    <y>60.9</y>
-    <width>156</width>
+    <x>815.36</x>
+    <y>60.3875</y>
+    <width>143.7</width>
     <height>17.9</height>
    </rect>
    <font>
@@ -223,15 +223,15 @@ end
   <line>
    <xstart>2.0138</xstart>
    <ystart>79.4432</ystart>
-   <xend>1069.9</xend>
-   <yend>79.3499</yend>
+   <xend>962.017</xend>
+   <yend>78.1773</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>1.7773</xstart>
    <ystart>59.4432</ystart>
-   <xend>1069.67</xend>
-   <yend>59.3499</yend>
+   <xend>962.022</xend>
+   <yend>58.1773</yend>
    <weight>2</weight>
   </line>
   <line>
@@ -242,18 +242,18 @@ end
    <weight>2</weight>
   </line>
   <line>
-   <xstart>1069.27</xstart>
-   <ystart>61.0291</ystart>
-   <xend>1069.2</xend>
-   <yend>78.1149</yend>
+   <xstart>962.154</xstart>
+   <ystart>60.0041</ystart>
+   <xend>962.084</xend>
+   <yend>77.0899</yend>
    <weight>2</weight>
   </line>
   <label>
    <rect>
-    <x>281</x>
-    <y>32</y>
-    <width>599</width>
-    <height>25</height>
+    <x>305</x>
+    <y>34</y>
+    <width>477</width>
+    <height>22</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -262,7 +262,7 @@ end
    </font>
    <hcenter/>
    <vcenter/>
-   <string>Los productos aqui listados se encuentran en existencia y habilitados</string>
+   <string>Los productos aquí listados se encuentran habilitados y en existencia.</string>
   </label>
  </rpthead>
  <section>
@@ -275,14 +275,14 @@ end
    <line>
     <xstart>1.32063</xstart>
     <ystart>17.2645</ystart>
-    <xend>1069.9</xend>
-    <yend>17.2722</yend>
+    <xend>961.548</xend>
+    <yend>16.5686</yend>
     <weight>1</weight>
    </line>
    <field>
     <rect>
-     <x>912</x>
-     <y>-0.62</y>
+     <x>815.733</x>
+     <y>0.318111</y>
      <width>142</width>
      <height>19.3</height>
     </rect>
@@ -302,7 +302,7 @@ end
     <rect>
      <x>90.3425</x>
      <y>0.14039</y>
-     <width>810</width>
+     <width>720.31</width>
      <height>16.8101</height>
     </rect>
     <font>
@@ -319,7 +319,7 @@ end
    </field>
    <field>
     <rect>
-     <x>7.26182</x>
+     <x>6.23679</x>
      <y>0.411454</y>
      <width>81.7693</width>
      <height>16.7267</height>
@@ -431,7 +431,7 @@ end
   </field>
   <field>
    <rect>
-    <x>880.052</x>
+    <x>777.094</x>
     <y>0.825594</y>
     <width>183.718</width>
     <height>23.0446</height>

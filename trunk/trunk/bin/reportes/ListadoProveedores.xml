@@ -358,10 +358,10 @@ end
    </field>
    <field>
     <rect>
-     <x>239.679</x>
-     <y>-0.37278</y>
-     <width>342.808</width>
-     <height>19.3168</height>
+     <x>236</x>
+     <y>-0.373</y>
+     <width>349</width>
+     <height>19.3</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -371,7 +371,7 @@ end
     <left/>
     <vcenter/>
     <data>
-     <query>clientes</query>
+     <query>proveedores</query>
      <column>direccion</column>
     </data>
    </field>

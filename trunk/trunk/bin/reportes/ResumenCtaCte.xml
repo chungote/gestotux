@@ -32,7 +32,7 @@
           t1.haber,
           (select SUM(t2.haber)-SUM(t2.debe) FROM item_ctacte AS t2 WHERE t2.id_ctacte = &lt;? value( "ctacte" ) ?> AND t2.id_item_ctacte &lt;= t1.id_item_ctacte ) AS saldo
 FROM item_ctacte AS t1
-WHERE t1.id_ctacte = &lt;? value( "ctacte" ) ?></sql>
+WHERE t1.id_ctacte = &lt;? value( "ctacte", "filtro" ) ?></sql>
  </querysource>
  <querysource>
   <name>datos</name>
@@ -80,8 +80,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>11.5674</x>
-    <y>58.0873</y>
+    <x>16.6337</x>
+    <y>53.5276</y>
     <width>98.2977</width>
     <height>19.6743</height>
    </rect>
@@ -164,7 +164,7 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <field>
    <rect>
     <x>115.865</x>
-    <y>59.7517</y>
+    <y>54.6854</y>
     <width>128</width>
     <height>16</height>
    </rect>
@@ -586,25 +586,6 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    <vcenter/>
    <string>Listado valido hasta fechas de emisiòn</string>
   </label>
-  <field>
-   <rect>
-    <x>313.517</x>
-    <y>4.63122</y>
-    <width>475.907</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <data>
-    <query>Context Query</query>
-    <column>report_title</column>
-   </data>
-  </field>
   <line>
    <xstart>3.63944</xstart>
    <ystart>3.45269</ystart>
@@ -649,5 +630,39 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </data>
    <format>$ %0.2f</format>
   </field>
+  <label>
+   <rect>
+    <x>2.69348</x>
+    <y>3.7138</y>
+    <width>67.069</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>11</size>
+    <weight>bold</weight>
+    <italic/>
+   </font>
+   <left/>
+   <vcenter/>
+   <string>Referencia:</string>
+  </label>
+  <label>
+   <rect>
+    <x>73.6862</x>
+    <y>10.2633</y>
+    <width>713.125</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+    <italic/>
+   </font>
+   <left/>
+   <top/>
+   <string>R: Recibo, F: Factura, NC: Nota de Credito, ND: Nota de Debito, CS: Cobro de servicio, RCS: Recargo por cobro de servicio, FA: Factura anulada</string>
+  </label>
  </rptfoot>
 </report>

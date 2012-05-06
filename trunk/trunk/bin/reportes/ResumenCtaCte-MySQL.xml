@@ -32,7 +32,7 @@
         haber,
         @saldo := @saldo - haber + debe AS saldo
 FROM item_ctacte
-WHERE id_ctacte = &lt;? value( "ctacte" ) ?>;</sql>
+WHERE id_ctacte = &lt;? value( "ctacte" ) ?> &lt;? value( "filtro" ) ?>;</sql>
  </querysource>
  <querysource>
   <name>datos</name>

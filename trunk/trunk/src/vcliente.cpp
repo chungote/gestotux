@@ -143,9 +143,7 @@ void VCliente::listadoClientes() {
     }
     lista.append( Parameter( "filtro", this->mc->filter() ) );
     rep->especial( "ListadoClientes", lista );
-    if( !rep->hacer() ) {
-        QMessageBox::warning( this, "Error", "No se pudo realizar el reporte" );
-    }
+    rep->hacer();
     delete rep;
 }
 

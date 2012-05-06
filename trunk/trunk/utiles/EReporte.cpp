@@ -94,9 +94,6 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
     _rep->setParamList( _duplicado );*/
 
     _rep->setParamList( _parametros );
-    /*for( int i = 0; i<_parametros.count(); i++ ) {
-        qDebug( QString( "%1: %2:%3" ).arg( i ).arg( _parametros.name( i ) ).arg( _parametros.value( i ).toString() ).toLocal8Bit() );
-    }*/
 
     /// @todo Ver si poner impresora para cada tipo
     if( !( _rep->print( 0, mostrarDialogoImpresion, previsualizar ) ) ) {

@@ -30,6 +30,7 @@ public:
     void setearCampoId( QString nombre );
     void setearCampoTexto( QString nombre );
     void setearCampoOrden( QString texto );
+    void setearCampoBusquedaExtra( QString campo );
 
 signals:
     void cambioId( int id );
@@ -44,6 +45,10 @@ private:
     * Guarda el ID de cliente segun la posicion del cb
     */
     QList<int> *ids;
+   /*!
+    * Guarda el codigo extra para las busquedas
+    */
+    QList<int> *codigos;
    /*!
     * Filtro para la consulta
     */
@@ -72,6 +77,14 @@ private:
      * Texto sql para el ORDER BY
      */
     QString _campo_orden;
+    /*!
+     * Texto sql para el campo de busqueda extra
+     */
+    QString _campo_busqueda;
+    /*!
+     * Indica si la busqueda por campo extra está habilitada
+     */
+    bool _busqueda;
 
 };
 

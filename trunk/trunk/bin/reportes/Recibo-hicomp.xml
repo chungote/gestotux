@@ -15,7 +15,7 @@
   <height>830</height>
  </size>
  <portrait/>
- <topmargin>28</topmargin>
+ <topmargin>0</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
  <leftmargin>0</leftmargin>
@@ -23,7 +23,7 @@
   <name>recibo-hicomp</name>
   <sql>SELECT r.id_recibo AS numero,
        substr( '0000000000' || r.serie, -5, 5 ) || '-' || substr( '0000000000' || r.numero, -5, 5 ) AS NumSerie,
-       strftime( '%d  %m %Y', r.fecha_pago ) AS fecha,
+       strftime( '%d  %m  %Y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
        c.calle || ' ' || c.numero AS direccion,
@@ -41,11 +41,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>239</height>
+   <height>250</height>
    <text>
     <rect>
-     <x>436</x>
-     <y>4.8</y>
+     <x>435</x>
+     <y>19.8</y>
      <width>116</width>
      <height>31.8</height>
     </rect>
@@ -64,8 +64,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <field>
     <rect>
-     <x>110</x>
-     <y>129</y>
+     <x>108</x>
+     <y>146</y>
      <width>439</width>
      <height>25</height>
     </rect>
@@ -83,8 +83,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>135</x>
-     <y>167</y>
+     <x>137</x>
+     <y>186</y>
      <width>405</width>
      <height>25</height>
     </rect>
@@ -102,10 +102,50 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <text>
     <rect>
-     <x>419</x>
-     <y>40.8</y>
-     <width>137</width>
+     <x>433</x>
+     <y>48.8</y>
+     <width>111</width>
      <height>31.2</height>
+    </rect>
+    <bottompad>0</bottompad>
+    <font>
+     <face>Arial Black</face>
+     <size>12</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>fecha</column>
+    </data>
+   </text>
+   <text>
+    <rect>
+     <x>1012</x>
+     <y>19</y>
+     <width>116</width>
+     <height>31.8</height>
+    </rect>
+    <bottompad>0</bottompad>
+    <font>
+     <face>Arial Black</face>
+     <size>11</size>
+     <weight>normal</weight>
+    </font>
+    <hcenter/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>NumSerie</column>
+    </data>
+   </text>
+   <text>
+    <rect>
+     <x>1010</x>
+     <y>51.8</y>
+     <width>111</width>
+     <height>31.8</height>
     </rect>
     <bottompad>0</bottompad>
     <font>
@@ -122,8 +162,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <barcode>
     <rect>
-     <x>372</x>
-     <y>79.7</y>
+     <x>373</x>
+     <y>95.7</y>
      <width>176</width>
      <height>34.9</height>
     </rect>
@@ -139,7 +179,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <field>
     <rect>
      <x>389</x>
-     <y>203</y>
+     <y>225</y>
      <width>66</width>
      <height>33</height>
     </rect>
@@ -157,8 +197,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>520</x>
-     <y>202</y>
+     <x>527</x>
+     <y>228</y>
      <width>35</width>
      <height>33</height>
     </rect>
@@ -185,10 +225,10 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <height>454.545</height>
    <field>
     <rect>
-     <x>31.4429</x>
-     <y>11.5014</y>
+     <x>27.3</x>
+     <y>3.68</y>
      <width>524</width>
-     <height>381.214</height>
+     <height>408</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -211,7 +251,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>17.455</height>
+   <height>84.0909</height>
   </detail>
  </section>
  <section>
@@ -220,11 +260,31 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>84</height>
+   <height>32.9545</height>
    <field>
     <rect>
-     <x>422</x>
-     <y>52.36</y>
+     <x>424</x>
+     <y>5.36</y>
+     <width>127</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Arial Black</face>
+     <size>14</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>total</column>
+    </data>
+    <format>$ %0.2f</format>
+   </field>
+   <field>
+    <rect>
+     <x>1000</x>
+     <y>3.63</y>
      <width>127</width>
      <height>25</height>
     </rect>
