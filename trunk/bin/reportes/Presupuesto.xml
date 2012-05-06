@@ -50,26 +50,7 @@ ORDER BY id_item_presupuesto;</sql>
  </querysource>
  <querysource>
   <name>descuentos</name>
-  <sql>SELECT d.texto AS texto,
-              d.cantidad AS cantidad,
-	      ( SELECT total FROM presupuestos WHERE id_presupuesto = &lt;? value("id_presupuesto") ?> )  *
-	      ( 1 - ( SELECT SUM( dd.cantidad ) 
-	                FROM descuentos  as dd 
-			WHERE dd.id_descuento &lt; d.id_descuento 
-			     AND dd.id_descuento IN (
-			        SELECT id_descuento
-				FROM descuento_comprobante
-				WHERE id_comprobante = &lt;? value("id_presupuesto") ?>
-				AND tipo = 1
-				)
-			) / 100 )  AS subtotal
-FROM descuentos as d
-WHERE d.id_descuento IN (
- SELECT id_descuento
- FROM descuento_comprobante
- WHERE id_comprobante = &lt;? value("id_presupuesto") ?>
-   AND tipo = 1
-);</sql>
+  <sql></sql>
  </querysource>
  <rpthead>
   <height>128.584</height>
@@ -4852,15 +4833,15 @@ end
    <rect>
     <x>71.9</x>
     <y>2.63</y>
-    <width>270</width>
-    <height>28.3</height>
+    <width>269.981</width>
+    <height>28.3208</height>
    </rect>
    <font>
     <face>Sans Serif</face>
     <size>14</size>
     <weight>bold</weight>
    </font>
-   <hcenter/>
+   <left/>
    <vcenter/>
    <string>Gestotux 0.5b</string>
   </label>
@@ -4988,22 +4969,6 @@ end
     <column>direccion</column>
    </data>
   </field>
-  <barcode>
-   <rect>
-    <x>632.336</x>
-    <y>71.2483</y>
-    <width>134</width>
-    <height>42.9</height>
-   </rect>
-   <format>128</format>
-   <maxlength>30</maxlength>
-   <center/>
-   <narrowBarWidth>0.02</narrowBarWidth>
-   <data>
-    <query>Parameter Query</query>
-    <column>id_presupuesto</column>
-   </data>
-  </barcode>
  </rpthead>
  <section>
   <name>Detalle</name>
@@ -5258,7 +5223,7 @@ end
    <field>
     <rect>
      <x>665</x>
-     <y>2.97</y>
+     <y>1.97</y>
      <width>114</width>
      <height>25</height>
     </rect>
@@ -5355,6 +5320,22 @@ end
    <yend>4.81892</yend>
    <weight>2</weight>
   </line>
+  <barcode>
+   <rect>
+    <x>11.3356</x>
+    <y>29.701</y>
+    <width>134</width>
+    <height>42.9</height>
+   </rect>
+   <format>128</format>
+   <maxlength>30</maxlength>
+   <center/>
+   <narrowBarWidth>0.02</narrowBarWidth>
+   <data>
+    <query>Parameter Query</query>
+    <column>id_presupuesto</column>
+   </data>
+  </barcode>
   <label>
    <rect>
     <x>622.663</x>

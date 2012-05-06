@@ -11,7 +11,7 @@
   <y>0.05</y>
  </grid>
  <size>A4</size>
- <landscape/>
+ <portrait/>
  <topmargin>50</topmargin>
  <bottommargin>50</bottommargin>
  <rightmargin>50</rightmargin>
@@ -48,9 +48,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <height>100.735</height>
   <label>
    <rect>
-    <x>9.63939</x>
-    <y>-6.2122</y>
-    <width>1054</width>
+    <x>0.63939</x>
+    <y>-2.2122</y>
+    <width>723</width>
     <height>40.8668</height>
    </rect>
    <font>
@@ -128,9 +128,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>482.298</x>
-    <y>41.9977</y>
-    <width>100</width>
+    <x>460.404</x>
+    <y>57.7563</y>
+    <width>86.4799</width>
     <height>20.4068</height>
    </rect>
    <font>
@@ -163,8 +163,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>115.865</x>
-    <y>54.6854</y>
+    <x>116.589</x>
+    <y>55.4097</y>
     <width>128</width>
     <height>16</height>
    </rect>
@@ -202,9 +202,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>344.567</x>
-    <y>55.4115</y>
-    <width>156</width>
+    <x>344.223</x>
+    <y>53.8944</y>
+    <width>119.997</width>
     <height>17.2697</height>
    </rect>
    <font>
@@ -222,9 +222,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <field>
    <rect>
-    <x>585</x>
-    <y>42.9</y>
-    <width>467</width>
+    <x>547.276</x>
+    <y>57.3486</y>
+    <width>171</width>
     <height>17.4</height>
    </rect>
    <font>
@@ -242,8 +242,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </field>
   <barcode>
    <rect>
-    <x>881</x>
-    <y>4.19</y>
+    <x>544</x>
+    <y>0.19</y>
     <width>178</width>
     <height>49.8</height>
    </rect>
@@ -258,8 +258,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </barcode>
   <field>
    <rect>
-    <x>636</x>
-    <y>62.3</y>
+    <x>26</x>
+    <y>10.3</y>
     <width>100</width>
     <height>15.3353</height>
    </rect>
@@ -311,7 +311,7 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    <rect>
     <x>138.78</x>
     <y>77.6198</y>
-    <width>629.366</width>
+    <width>327.366</width>
     <height>20.6394</height>
    </rect>
    <font>
@@ -325,9 +325,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>775</x>
-    <y>76.5257</y>
-    <width>94.8</width>
+    <x>491.414</x>
+    <y>78.384</y>
+    <width>72.8475</width>
     <height>21.7743</height>
    </rect>
    <font>
@@ -341,9 +341,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>874</x>
-    <y>75.3257</y>
-    <width>90.3</width>
+    <x>583.452</x>
+    <y>76.617</y>
+    <width>70.9302</width>
     <height>21.7743</height>
    </rect>
    <font>
@@ -357,9 +357,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>969</x>
-    <y>75.5583</y>
-    <width>94.8</width>
+    <x>655.209</x>
+    <y>76.8496</y>
+    <width>68.9736</width>
     <height>22.3417</height>
    </rect>
    <font>
@@ -374,64 +374,64 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <line>
    <xstart>4.00542</xstart>
    <ystart>77.2967</ystart>
-   <xend>1062.29</xend>
+   <xend>721.381</xend>
    <yend>76.5533</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>1062.46</xstart>
-   <ystart>77.1146</ystart>
-   <xend>1062.24</xend>
-   <yend>97.5354</yend>
+   <xstart>578.946</xstart>
+   <ystart>76.7528</ystart>
+   <xend>578.726</xend>
+   <yend>95.725</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>965.941</xstart>
-   <ystart>78.5813</ystart>
-   <xend>965.726</xend>
-   <yend>98.6415</yend>
+   <xstart>721.5</xstart>
+   <ystart>76.7185</ystart>
+   <xend>721.527</xend>
+   <yend>97.0202</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>872.09</xstart>
-   <ystart>77.8358</ystart>
-   <xend>871.875</xend>
-   <yend>98.6172</yend>
+   <xstart>657.482</xstart>
+   <ystart>77.1917</ystart>
+   <xend>657.267</xend>
+   <yend>96.766</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>768.512</xstart>
-   <ystart>78.557</ystart>
-   <xend>768.658</xend>
-   <yend>98.6172</yend>
+   <xstart>477.814</xstart>
+   <ystart>76.7984</ystart>
+   <xend>477.96</xend>
+   <yend>96.6172</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>133.423</xstart>
-   <ystart>78.4841</ystart>
-   <xend>133.208</xend>
-   <yend>99.626</yend>
+   <ystart>77.5184</ystart>
+   <xend>133.449</xend>
+   <yend>97.2117</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>92.8449</xstart>
-   <ystart>78.869</ystart>
-   <xend>92.9904</xend>
-   <yend>99.6503</yend>
+   <xstart>93.3278</xstart>
+   <ystart>77.4204</ystart>
+   <xend>93.2318</xend>
+   <yend>96.5117</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>3.80686</xstart>
-   <ystart>78.8933</ystart>
-   <xend>3.59158</xend>
-   <yend>99.314</yend>
+   <xstart>3.56543</xstart>
+   <ystart>77.4447</ystart>
+   <xend>3.35015</xend>
+   <yend>95.934</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>4.26506</xstart>
-   <ystart>99.9005</ystart>
-   <xend>1062.55</xend>
-   <yend>99.1571</yend>
+   <xstart>3.29934</xstart>
+   <ystart>97.4862</ystart>
+   <xend>721.798</xend>
+   <yend>97.0573</yend>
    <weight>2</weight>
   </line>
  </rpthead>
@@ -501,9 +501,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </field>
    <field>
     <rect>
-     <x>965.483</x>
-     <y>2.96938</y>
-     <width>97.646</width>
+     <x>658.028</x>
+     <y>0.1385</y>
+     <width>64.2672</width>
      <height>22.7697</height>
     </rect>
     <font>
@@ -521,9 +521,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </field>
    <field>
     <rect>
-     <x>875</x>
-     <y>3.71</y>
-     <width>88.1</width>
+     <x>583.542</x>
+     <y>1.12736</y>
+     <width>71.4106</width>
      <height>21.3</height>
     </rect>
     <font>
@@ -541,9 +541,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </field>
    <field>
     <rect>
-     <x>772</x>
-     <y>4.46</y>
-     <width>100</width>
+     <x>480.818</x>
+     <y>1.33074</y>
+     <width>97.3923</width>
      <height>19.1</height>
     </rect>
     <font>
@@ -562,8 +562,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    <line>
     <xstart>5.14988</xstart>
     <ystart>22.143</ystart>
-    <xend>1062.24</xend>
-    <yend>22.143</yend>
+    <xend>721.331</xend>
+    <yend>21.8174</yend>
     <weight>0</weight>
    </line>
   </detail>
@@ -572,7 +572,7 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <height>57.1212</height>
   <label>
    <rect>
-    <x>807</x>
+    <x>465.048</x>
     <y>31.1</y>
     <width>258</width>
     <height>25</height>
@@ -589,14 +589,14 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <line>
    <xstart>3.63944</xstart>
    <ystart>3.45269</ystart>
-   <xend>1061.93</xend>
-   <yend>2.70925</yend>
+   <xend>722.064</xend>
+   <yend>3.72726</yend>
    <weight>2</weight>
   </line>
   <label>
    <rect>
-    <x>830.784</x>
-    <y>7.27179</y>
+    <x>485.479</x>
+    <y>7.04863</y>
     <width>130.897</width>
     <height>25</height>
    </rect>
@@ -611,8 +611,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <field>
    <rect>
-    <x>963.884</x>
-    <y>7.50716</y>
+    <x>623.77</x>
+    <y>6.51422</y>
     <width>100</width>
     <height>25</height>
    </rect>
@@ -649,10 +649,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <label>
    <rect>
-    <x>73.6862</x>
-    <y>10.2633</y>
-    <width>713.125</width>
-    <height>25</height>
+    <x>73.7</x>
+    <y>10.3</y>
+    <width>319</width>
+    <height>17</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -662,7 +662,24 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </font>
    <left/>
    <top/>
-   <string>R: Recibo, F: Factura, NC: Nota de Credito, ND: Nota de Debito, CS: Cobro de servicio, RCS: Recargo por cobro de servicio, FA: Factura anulada</string>
+   <string>R: Recibo, F: Factura, NC: Nota de Credito, ND: Nota de Debito,</string>
+  </label>
+  <label>
+   <rect>
+    <x>68.6</x>
+    <y>23.9</y>
+    <width>394</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>9</size>
+    <weight>normal</weight>
+    <italic/>
+   </font>
+   <left/>
+   <top/>
+   <string> CS: Cobro de servicio, RCS: Recargo por cobro de servicio, FA: Factura anulada</string>
   </label>
  </rptfoot>
 </report>
