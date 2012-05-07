@@ -50,7 +50,26 @@ ORDER BY id_item_presupuesto;</sql>
  </querysource>
  <querysource>
   <name>descuentos</name>
-  <sql></sql>
+  <sql>SELECT texto, 
+       cantidad,
+       ( SELECT total 
+         FROM factura 
+         WHERE id_factura = 1 
+       ) * ( 1 - ( SELECT SUM( cantidad ) 
+                      FROM descuentos 
+                      WHERE id_descuento IN (
+                                  SELECT id_descuento
+                                  FROM descuento_comprobante
+                                  WHERE tipo = 1 AND id_comprobante = &lt;? value( "id_presupuesto" ) ?>
+                      )
+            ) )
+        AS subtotal
+FROM descuentos AS d
+WHERE d.id_descuento IN (
+   SELECT id_descuento
+   FROM descuento_comprobante
+   WHERE tipo = 1 AND id_comprobante = &lt;? value( "id_presupuesto" ) ?>
+);</sql>
  </querysource>
  <rpthead>
   <height>128.584</height>
@@ -5177,14 +5196,14 @@ end
    <line>
     <xstart>2.77355</xstart>
     <ystart>3.83913</ystart>
-    <xend>781.868</xend>
+    <xend>783.158</xend>
     <yend>3.00894</yend>
     <weight>0</weight>
    </line>
    <field>
     <rect>
-     <x>134</x>
-     <y>3.63</y>
+     <x>133.355</x>
+     <y>2.9852</y>
      <width>425</width>
      <height>25</height>
     </rect>
@@ -5223,7 +5242,7 @@ end
    <field>
     <rect>
      <x>665</x>
-     <y>1.97</y>
+     <y>2.97</y>
      <width>114</width>
      <height>25</height>
     </rect>

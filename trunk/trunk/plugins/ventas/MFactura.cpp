@@ -143,8 +143,8 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
      for( int fila = mcp->conteoItems()-1; fila < mcp->conteoDescuentos(); fila ++ ) {
           if( !md->agregarDescuento( MDescuentos::Factura,
                                      id_venta,
-                                     mcp->data( mcp->index( fila, 1 ), Qt::EditRole ).toString(),
-                                     mcp->data( mcp->index( fila, 2 ), Qt::EditRole ).toDouble()
+                                     mcp->data( mcp->index( fila+1, 1 ), Qt::EditRole ).toString(),
+                                     mcp->data( mcp->index( fila+1, 2 ), Qt::EditRole ).toDouble()
                                     ) ) {
               qDebug( "Error al ingresar el descuento en la base de datos" );
               QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();

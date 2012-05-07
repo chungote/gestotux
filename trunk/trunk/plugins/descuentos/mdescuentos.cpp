@@ -26,17 +26,19 @@ bool MDescuentos::agregarDescuento( Tipo t, int id_comprobante, QString texto, d
         return false;
 
     QSqlRecord r = this->record();
+    r.setNull( "id_descuento" );
     r.setValue( "texto", texto );
     r.setValue( "cantidad", porcentaje );
     if( this->insertRecord( -1, r ) ) {
         // Busco el ID
-        int id_descuento = r.value( "id_descuento" ).toInt();
+        int id_descuento = this->query().lastInsertId().toInt();
         if( id_descuento <= 0 ) {
             qWarning( "Error al obtener el id del descuento agregado" );
             return false;
         }
+        submit();
         this->clear();
-        this->setTable( "descuentos_comprobante" );
+        this->setTable( "descuento_comprobante" );
         QSqlRecord dc = this->record();
         dc.setValue( "id_descuento", id_descuento );
         dc.setValue( "id_comprobante", id_comprobante );

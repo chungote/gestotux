@@ -37,6 +37,9 @@ class FormAgregarCompra : public EVentana, private Ui::FormAgregarCompraBase
 public:
   FormAgregarCompra( MCompra *m = 0, QWidget* parent = 0  );
 
+signals:
+  void actualizarVista();
+
 private:
   MCompra *modelo;
   MProductosTotales *mcp;

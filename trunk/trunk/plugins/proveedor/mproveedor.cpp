@@ -185,7 +185,7 @@ bool MProveedor::existenProveedores()
 bool MProveedor::existeProveedor( QString razon_social )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT count(id) FROM proveedor WHERE razon_social = %1" ).arg( razon_social ) ) ) {
+    if( cola.exec( QString( "SELECT count(id) FROM proveedor WHERE razon_social = '%1'" ).arg( razon_social ) ) ) {
         if( cola.next() ) {
             if( cola.record().value(0).toInt() > 0 ) {
                 return true;
@@ -212,7 +212,7 @@ bool MProveedor::existeProveedor( QString razon_social )
 bool MProveedor::existeCuitCuil( QString cuit )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT count( id ) FROM proveedor WHERE `CUIT/CUIL` = %1" ).arg( cuit ) ) ) {
+    if( cola.exec( QString( "SELECT count( id ) FROM proveedor WHERE `CUIT/CUIL` = '%1'" ).arg( cuit ) ) ) {
         if( cola.next() ) {
             if( cola.record().value(0).toInt() > 0 ) {
                 return true;

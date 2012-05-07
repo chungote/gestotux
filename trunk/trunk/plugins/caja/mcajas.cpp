@@ -44,7 +44,7 @@ QVariant MCajas::data( const QModelIndex &idx, int role ) const
         case Qt::DisplayRole: {
             switch( idx.column() ) {
                 case 3:
-                { return QString( "$ %1" ).arg( QSqlTableModel::data( idx, Qt::EditRole ).toDouble() ); break; }
+                { return QString( "$ %L1" ).arg( QSqlTableModel::data( idx, Qt::EditRole ).toDouble(), 10, 'f', 2 ); break; }
                 default:
                 { return QSqlTableModel::data( idx, role ); break; }
             }

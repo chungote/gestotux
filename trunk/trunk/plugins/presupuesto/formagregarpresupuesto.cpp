@@ -206,10 +206,10 @@ void FormAgregarPresupuesto::guardar( bool cerrar )
     MDescuentos *md = new MDescuentos();
     for( int fila = m->conteoItems()-1; fila < m->conteoDescuentos(); fila ++ ) {
          if( !md->agregarDescuento( MDescuentos::Presupuesto,
-                                          id_presupuesto,
-                                          m->data( m->index( fila, 1 ), Qt::EditRole ).toString(),
-                                          m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()
-                                        ) ) {
+                                    id_presupuesto,
+                                    m->data( m->index( fila+1, 1 ), Qt::EditRole ).toString(),
+                                    m->data( m->index( fila+1, 2 ), Qt::EditRole ).toDouble()
+                                  ) ) {
              qDebug( "Error al ingresar el descuento en la base de datos" );
              QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
              return;

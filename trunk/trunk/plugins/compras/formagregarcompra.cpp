@@ -224,6 +224,7 @@ void FormAgregarCompra::guardar()
   if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() )
   {
    QMessageBox::information( this, "Correcto" , "La compra se ha registrado correctamente" );
+   emit actualizarVista();
    this->close();
    return;
   }

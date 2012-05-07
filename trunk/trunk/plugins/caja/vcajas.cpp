@@ -25,6 +25,7 @@
 #include <QTableView>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QMenu>
 
 #include "mcajas.h"
 #include "actretirocaja.h"
@@ -142,4 +143,13 @@ void VCajas::eliminar()
         }
     }
     return;
+}
+
+void VCajas::menuContextual( const QModelIndex &/*indice*/, QMenu *menu )
+{
+    menu->addAction( ActIngreso );
+    menu->addAction( ActEgreso );
+    menu->addAction( ActResumen );
+    menu->addSeparator();
+    menu->addAction( ActAgregar );
 }

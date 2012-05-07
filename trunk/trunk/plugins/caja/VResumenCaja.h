@@ -33,7 +33,7 @@ class VResumenCaja : public EVLista
     Q_OBJECT
 public:
     VResumenCaja( QWidget *parent = 0 );
-    void setearCaja( int id_caja ) { cambioCaja( id_caja ); }
+    void setearCaja( int id_caja );
 
 public slots:
     void cambioCaja( int id_caja );
@@ -46,6 +46,7 @@ protected slots:
     void aPdf();
     void filtrar();
     void actualizarFiltro();
+    void hacerCierre();
 
 private:
     ECBTabla *CBCajas;
@@ -55,6 +56,7 @@ private:
     QGroupBox *GBFiltrado;
     QDateEdit *DTEInicio;
     QDateEdit *DTEFin;
+    QAction *ActCierre;
 };
 
 #endif // VRESUMENCAJA_H

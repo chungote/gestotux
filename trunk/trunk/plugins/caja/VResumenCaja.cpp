@@ -36,6 +36,7 @@
 #include "acttransferir.h"
 #include "FormRetiroIngreso.h"
 #include "formtransferir.h"
+#include "FormCierreCaja.h"
 
 #include "EReporte.h"
 #include "ecbtabla.h"
@@ -105,6 +106,12 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   ActFiltrar->setIcon( QIcon( ":/imagenes/buscar.png" ) );
   connect( ActFiltrar, SIGNAL( triggered() ), this, SLOT( filtrar() ) );
 
+  ActCierre = new QAction( this );
+  ActCierre->setText( "Cerrar caja" );
+  ActCierre->setIcon( QIcon( ":/imagenes/cierrecaja.png" ) );
+  ActCierre->setStatusTip( "Genera un cierre para la caja seleccionada" );
+  connect( ActCierre, SIGNAL( triggered() ), this, SLOT( hacerCierre() ) );
+
   QAction *ActSep = new QAction( this );
   ActSep->setSeparator( true );
 
@@ -119,12 +126,19 @@ VResumenCaja::VResumenCaja( QWidget *parent )
       CBCajas->setCurrentIndex( 1 );
       CBCajas->setEnabled( false );
   }
+  this->addAction( ActCierre );
   this->addAction( ActSep );
   this->addAction( ActImprimir );
   this->addAction( ActPdf );
   this->addAction( ActCerrar );
   this->addAction( ActSep2 );
   this->addAction( ActFiltrar );
+}
+
+void VResumenCaja::setearCaja(int id_caja)
+{
+    CBCajas->setearId( id_caja );
+    cambioCaja( id_caja );
 }
 
 
@@ -201,3 +215,6 @@ void VResumenCaja::actualizarFiltro()
                              .arg( CBCajas->idActual() ) );
     this->modelo->select();
 }
+
+void VResumenCaja::hacerCierre()
+{ emit agregarVentana( new FormCierreCaja() ); }

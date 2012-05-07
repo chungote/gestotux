@@ -12,10 +12,12 @@ Q_OBJECT
 public:
     FormPrefDescuentos( QWidget *parent = 0 );
 
-protected slots:
+public slots:
     void aplicar();
     void cargar();
     void guardar();
+
+protected slots:
     void agregar();
     void eliminar();
 

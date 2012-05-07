@@ -39,6 +39,7 @@ protected slots:
     void eliminar();
     void resumen();
     void resumen(  const QModelIndex & ) { resumen(); }
+    void menuContextual(const QModelIndex &indice, QMenu *menu);
 
 private:
     QAction *ActTransferire;

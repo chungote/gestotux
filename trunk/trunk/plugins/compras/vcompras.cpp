@@ -72,6 +72,7 @@ VCompras::VCompras(QWidget *parent)
 void VCompras::agregar( bool /*autoeliminarid*/ )
 {
     FormAgregarCompra *f = new FormAgregarCompra( qobject_cast<MCompra *>( this->rmodelo ) );
+    connect( f, SIGNAL( actualizarVista() ), vista, SLOT( update() ) );
     emit agregarVentana( f );
 }
 
