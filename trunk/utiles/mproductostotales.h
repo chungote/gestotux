@@ -48,7 +48,6 @@ public:
     void agregarItem( const int cant, const QString texto, double pu );
     void agregarItem( const int cant, const int id_producto, double pu );
 
-    void recalcularTotalItems();
     double totalitems();
     double total();
     void calcularTotales( bool sino = true );
@@ -141,6 +140,8 @@ private:
 
         double buscarPrecioVenta( int id_producto );
         double buscarPrecioCompra( int id_producto );
+        void recalcularTotalItems();
+        void recalcularTotal();
 };
 
 #endif

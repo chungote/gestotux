@@ -2,3 +2,4 @@ CREATE TABLE IF NOT EXISTS producto (id INTEGER PRIMARY KEY AUTOINCREMENT, id_ca
 CREATE TABLE IF NOT EXISTS categoria_producto (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT );
 INSERT INTO sqlite_sequence VALUES ( 'categoria_producto', '0' );
 INSERT INTO sqlite_sequence VALUES ( 'producto', '0' );
+INSERT INTO categoria_producto( id ) VALUES ( 0 );

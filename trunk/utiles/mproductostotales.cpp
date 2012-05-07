@@ -502,8 +502,22 @@ void MProductosTotales::recalcularTotalItems()
  }
  // Emito la senal de que cambio el valor
  emit dataChanged( this->index( this->cantidades->size(), 0 ), this->index( this->cantidades->size(), 3 ) );
+ recalcularTotal();
 }
 
+
+void MProductosTotales::recalcularTotal()
+{
+    Total = totalItems;
+    int n = cantidades->size();
+    // Recalculo todos los subtotales según los descuentos
+    for( QHash<int, double>::const_iterator i = descuentos->constBegin(); i != descuentos->constEnd(); ++i ) {
+        n++;
+        Total *= ( 1 - ( i.value() / 100 ) );
+        subtotales->insert( n, Total );
+    }
+    emit dataChanged( this->index( cantidades->size()+1, 4 ), index( rowCount(), columnCount() ) );
+}
 
 /*!
     \fn MProductosTotales::total()
@@ -569,7 +583,8 @@ void MProductosTotales::agregarItem( const int cant, const QString texto, double
     this->productos->insert( pos, pos2 );
 
     if( _calcularTotal )
-        recalcularTotalItems();
+        recalcularTotalItems(); recalcularTotal();
+
 
     emit dataChanged( this->index( pos, 0 ), this->index( pos, this->columnCount() ) );
     emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
@@ -597,7 +612,7 @@ void MProductosTotales::agregarItem( const int cant, const int id_producto, doub
     this->productos->insert( pos, id_producto );
 
     if( _calcularTotal )
-        recalcularTotalItems();
+        recalcularTotalItems(); recalcularTotal();
 
     emit dataChanged( this->index( pos, 0 ), this->index( pos, this->columnCount() ) );
     emit dataChanged( this->index( this->rowCount(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
@@ -804,6 +819,7 @@ void MProductosTotales::agregarDescuento( QString texto, double porcentaje )
 
     emit endInsertRows();
     emit dataChanged( index( cantidades->size()-1, 0 ), index( rowCount(), columnCount() ) );
+    recalcularTotal();
 }
 
 bool MProductosTotales::esDescuento( QModelIndex idx )
@@ -850,5 +866,6 @@ bool MProductosTotales::eliminarDescuento( QModelIndex idx )
     endRemoveRows();
     emit dataChanged( this->index( idx.row(), 0 ), this->index( this->rowCount(), this->columnCount() ) );
 
+    recalcularTotal();
     return true;
 }

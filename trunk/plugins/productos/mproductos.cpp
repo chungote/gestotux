@@ -283,7 +283,7 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
     else
     { cola.bindValue( ":modelo", modelo); }
     if( categoria == -1 || pcategorias )
-    { cola.bindValue( ":categoria", QVariant() ); }
+    { cola.bindValue( ":categoria", 0 ); } // Evita el problema con mostrar cuando hay una relacion
     else
     { cola.bindValue( ":categoria", categoria ); }
     if( stock ==  0 || pstock ) {
