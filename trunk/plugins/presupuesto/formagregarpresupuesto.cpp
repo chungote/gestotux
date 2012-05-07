@@ -116,13 +116,18 @@ FormAgregarPresupuesto::FormAgregarPresupuesto(QWidget* parent, Qt::WFlags fl)
         p->inicio();
         p->beginGroup( "Preferencias" );
         p->beginGroup( "Descuentos" );
-        if( ! ERegistroPlugins::getInstancia()->existePluginExterno( "descuentos" ) && p->value( "usar", false ).toBool() ) {
-            PBAgregarDescuento->setVisible( false );
-            PBEliminarDescuento->setVisible( false );
-        }
+        bool usar = p->value( "usar", false ).toBool();
         p->endGroup();
         p->endGroup();
         p=0;
+        if( ! ERegistroPlugins::getInstancia()->existePluginExterno( "descuentos" ) ) {
+            PBAgregarDescuento->setVisible( false );
+            PBEliminarDescuento->setVisible( false );
+        } else if( !usar ) {
+            PBAgregarDescuento->setEnabled( false );
+            PBEliminarDescuento->setEnabled( false );
+        }
+
 }
 
 /*!

@@ -68,8 +68,6 @@ orQuery::orQuery( const QString &qstrPName, const QString &qstrSQL,
       else if(match[0] == '%')
       {
         //  Grab the parameter number
-          qWarning( "Parametro %" );
-          qWarning( re.cap(0).toLocal8Bit() );
         intParamNum = re.cap(1).toInt();
 
         //  Replace the parameter hold with the specified paramemter

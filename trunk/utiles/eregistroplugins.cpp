@@ -36,7 +36,8 @@ ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
     p->beginGroup( "carga" );
     foreach( QString grupo, p->childGroups() )
     {
-        p->remove( grupo );
+        if( grupo != QString::number( QCoreApplication::applicationPid() ) )
+            p->remove( grupo );
     }
     p->endGroup();
     p=0;

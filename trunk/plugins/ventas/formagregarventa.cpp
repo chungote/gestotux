@@ -73,8 +73,13 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         // Modelo del tableview
         mcp = new MProductosTotales( TVProductos, CBProducto->listadoProductos() );
         mcp->calcularTotales( true );
-        if( preferencias::getInstancia()->value( "Preferencias/Ventas/buscarPrecio", true ).toBool() )
+        preferencias *p = preferencias::getInstancia();
+        p->inicio();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "Ventas" );
+        if( p->value( "buscarPrecio", true ).toBool() )
             mcp->buscarPrecios( true );
+        p->endGroup();
 
         TVProductos->setModel( mcp );
         TVProductos->setItemDelegate( new DProductosTotales( TVProductos ) );
@@ -96,19 +101,6 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
         DSBCant->setValue( 1.0 );
         DSBCant->setPrefix( "" );
-
-        // Verifico si la venta a cta corriente esta habilitada
-        preferencias *p = preferencias::getInstancia();
-        p->inicio();
-        p->beginGroup( "Preferencias" );
-        p->beginGroup( "CtaCte" );
-        if( !p->value( "habilitada" ).toBool() )
-        {
-                GBFormaPago->setVisible( false );
-                RBContado->setChecked( true );
-        }
-        p->endGroup(); p->endGroup();
-
         // deshabilito el item de cuotas por no estar programado
         RBCuotas->setVisible( false );
 
@@ -122,18 +114,30 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         connect( PBAgregarDescuento, SIGNAL( clicked() ), this, SLOT( agregarDescuento() ) );
         connect( PBEliminarDescuento, SIGNAL( clicked() ), this, SLOT( eliminarDescuento() ) );
 
-        p->inicio();
-        p->beginGroup( "Preferencias" );
-        p->beginGroup( "Descuentos" );
-        if( ! ERegistroPlugins::getInstancia()->existePluginExterno( "descuentos" ) && p->value( "usar", false ).toBool() ) {
-            PBAgregarDescuento->setVisible( false );
-            PBEliminarDescuento->setVisible( false );
+        // Verifico si la venta a cta corriente esta habilitada
+        p->beginGroup( "CtaCte" );
+        if( !p->value( "habilitada" ).toBool() )
+        {
+                RBContado->setChecked( true );
+                RBCtaCte->setEnabled( false );
         }
+        p->endGroup();
+        p->beginGroup( "Descuentos" );
+        bool usar = p->value( "usar", false ).toBool();
         p->endGroup();
         p->endGroup();
         p=0;
+        if(  !( ERegistroPlugins::getInstancia()->existePluginExterno( "descuentos" ) ) ) {
+            PBAgregarDescuento->setVisible( false );
+            PBEliminarDescuento->setVisible( false );
+        } else if( !usar ) {
+            PBAgregarDescuento->setEnabled( false );
+            PBEliminarDescuento->setEnabled( false );
+        }
 
-        if( !ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) ) {
+            RBContado->setVisible( true );
+        } else {
             RBContado->setVisible( false );
         }
 }
