@@ -65,7 +65,7 @@ bool MDescuentos::agregarDescuento( Tipo t, int id_comprobante, QString texto, d
 bool MDescuentos::existenDatos()
 {
   QSqlQuery cola;
-  if( cola.exec( QString( "SELECT COUNT(id_comprobante) FROM descuentos_comprobantes WHERE id_comprobante = %1 AND tipo = %1" ).arg( _id_comprobante ).arg( _tipo ) ) ) {
+  if( cola.exec( QString( "SELECT COUNT(id_comprobante) FROM descuento_comprobante WHERE id_comprobante = %1 AND tipo = %2" ).arg( _id_comprobante ).arg( _tipo ) ) ) {
       cola.next();
       if( cola.record().value(0).toInt() > 0 ) {
           return true;
@@ -87,11 +87,11 @@ bool MDescuentos::seleccionarDatos()
     // Ya se que existen datos asi que genero el filtro y listo
     QString ids;
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_descuento FROM descuentos_comprobantes WHERE id_comprobante = %1 AND tipo = %1" ).arg( _id_comprobante ).arg( _tipo ) ) ) {
+    if( cola.exec( QString( "SELECT id_descuento FROM descuento_comprobante WHERE id_comprobante = %1 AND tipo = %2" ).arg( _id_comprobante ).arg( _tipo ) ) ) {
         while( cola.next() ) {
             ids.append( QString( " , %1").arg( cola.record().value(0).toInt() ) );
         }
-        this->setFilter( QString( " id_comprobante IN ( %1 )" ).arg( ids.remove( 0 , 2 ) ) );
+        this->setFilter( QString( " id_descuento IN ( %1 )" ).arg( ids.remove( 0 , 2 ) ) );
         this->select();
         return true;
     } else {

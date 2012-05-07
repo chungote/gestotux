@@ -4,6 +4,8 @@
 #include <QHeaderView>
 #include <mproductostotales.h>
 
+#include "mdescuentos.h"
+
 VListaPresupuesto::VListaPresupuesto(QWidget *parent) :
     EVLista(parent)
 {
@@ -35,4 +37,18 @@ void VListaPresupuesto::setearIdPresupuesto( const int id_presupuesto )
                     );
     }
     delete m;
+    // Cargo los datos si es necesario.
+    MDescuentos *md = new MDescuentos();
+    md->setearIdComprobante( id_presupuesto );
+    md->setearTipo( MDescuentos::Presupuesto );
+    if( md->existenDatos() ) {
+        md->seleccionarDatos();
+        for( int i=0; i<md->rowCount(); i++ ) {
+            modelo->agregarDescuento(
+                    md->data( md->index( i, 1 ), Qt::DisplayRole ).toString(),
+                    md->data( md->index( i, 2 ), Qt::EditRole ).toDouble()
+                    );
+        }
+    }
+    delete md;
 }

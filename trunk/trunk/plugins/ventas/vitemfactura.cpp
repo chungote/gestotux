@@ -3,6 +3,8 @@
 #include <QTableView>
 #include <QHeaderView>
 
+#include "mdescuentos.h"
+
 VItemFactura::VItemFactura(QWidget *parent) :
     EVLista(parent)
 {
@@ -36,4 +38,17 @@ void VItemFactura::setearIdFactura( const int id_factura )
                     m.data( m.index( i, 2 ), Qt::EditRole ).toDouble()
                     );
     }
+    // veo los descuentos
+    MDescuentos *md = new MDescuentos();
+    md->setearTipo( MDescuentos::Factura );
+    md->setearIdComprobante( id_factura );
+    if( md->existenDatos() ) {
+        md->seleccionarDatos();
+        for( int i =0; i<md->rowCount(); i++ ) {
+            modelo->agregarDescuento(
+                        md->data( md->index( i, 1), Qt::DisplayRole ).toString(),
+                        md->data( md->index( i, 2 ), Qt::EditRole ).toDouble() );
+        }
+    }
+    delete md;
 }
