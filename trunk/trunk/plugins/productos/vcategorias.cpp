@@ -40,6 +40,7 @@ VCategorias::VCategorias( QWidget *parent )
 
  modelo = new MCategorias( this );
  vista->setModel( modelo );
+ modelo->setFilter( "id != 0" );
  modelo->select();
 
  vista->hideColumn( 0 );
