@@ -42,7 +42,6 @@ QDialog(parent)
 
     horizontalLayout->addWidget(dSBPorcentaje);
 
-
     verticalLayout->addLayout(horizontalLayout);
 
     buttonBox = new QDialogButtonBox(this);

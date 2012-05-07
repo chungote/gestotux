@@ -82,6 +82,7 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, b
  regCompra.setValue( "fecha"       , fecha );
  regCompra.setValue( "id_proveedor", proveedor );
  regCompra.setValue( "total"       , total );
+ regCompra.setValue( "contado"     , contado ); // Para saber si es forma de pago "otro"
  if( contado ) {
      regCompra.setValue( "id_caja", id_caja );
  } else {
