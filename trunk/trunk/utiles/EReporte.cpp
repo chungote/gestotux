@@ -139,6 +139,10 @@ bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
         _parametros = parametros;
     }
 
+    if( ruta.isEmpty() ) {
+        ruta = QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation );
+    }
+
     _rep->setParamList( _parametros );
 
     if( ruta.at( 0 ) != '/' ) {

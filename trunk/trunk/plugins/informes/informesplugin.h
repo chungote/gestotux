@@ -22,6 +22,7 @@
 
 #include "eplugin.h"
 class QPluginLoader;
+#include <QAction>
 
 /**
 \brief Plugin que carga los informes
@@ -36,23 +37,26 @@ Q_OBJECT
 Q_INTERFACES( EPlugin )
 public:
     bool inicializar();
-    bool verificarTablas();
+    bool verificarTablas( QStringList tablas );
     double version() const;
     int tipo() const;
     QList< QActionGroup * > accionesBarra();
     QString nombre() const;
     QWidgetList formsPreferencias();
-    void crearMenu(QMenuBar* m);
-    void crearToolBar(QToolBar* t);
+    void crearMenu( QMenuBar* m );
+    void crearToolBar( QToolBar* t );
+    QAction *botonPantallaInicial() { return new QAction( this ); }
 
 signals:
     void agregarVentana(QWidget* v);
+    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
 public slots:
     void seCierraGestotux();
 
 private:
 	QPluginLoader *loader;
+        QHash<QString, EInformeInterface *> _plugins;
 
 private:
     bool cargarPluginsInformes();

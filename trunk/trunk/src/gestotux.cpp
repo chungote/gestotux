@@ -138,6 +138,11 @@ void gestotux::createActions()
       ActActualizar->setStatusTip( "Actualiza la aplicacion " );
       connect( ActActualizar, SIGNAL( triggered() ), this, SLOT( verActualizacion() ) );
 
+      ActResumenGeneral = new QAction( "Resumen General", this );
+      ActResumenGeneral->setText( "Resumen General" );
+      ActResumenGeneral->setStatusTip( "Genera un resumen general del estado del programa en formato pdf" );
+      connect( ActResumenGeneral, SIGNAL( triggered() ), this, SLOT( resumenGeneral() ) );
+
       ActRestaurar = new QAction( "Restaurar", this );
       connect( ActRestaurar, SIGNAL( triggered() ), this, SLOT( ocultar_mostrar() ) );
 }
@@ -152,6 +157,7 @@ void gestotux::createMenus()
  fileMenu->setObjectName( "menuArchivo" );
  fileMenu->addAction( ActBackup );
  fileMenu->addAction( ActPreferencias );
+ fileMenu->addAction( ActResumenGeneral );
  /*fileMenu->addSeparator();
  fileMenu->addAction( ActActualizar );*/
  fileMenu->addSeparator();
@@ -428,6 +434,16 @@ void gestotux::crearBarraLateral()
 {
  BarraLateral *r = new BarraLateral( "Barra Lateral", this );
  addDockWidget( Qt::LeftDockWidgetArea, r );
+}
+
+#include "EReporte.h"
+void gestotux::resumenGeneral()
+{
+    EReporte *rep = new EReporte( 0 );
+    ParameterList lista;
+    rep->especial( "BalanceGeneral", lista );
+    rep->hacerPDF( lista, "Balance general" );
+    delete rep;
 }
 
 

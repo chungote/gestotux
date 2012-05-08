@@ -70,6 +70,7 @@ protected slots:
       void acerca();
       void verActualizacion();
       void ayuda();
+      void resumenGeneral();
 
 private slots:
       void ocultar_mostrar( QSystemTrayIcon::ActivationReason razon = QSystemTrayIcon::Trigger );
@@ -106,6 +107,7 @@ private:
       QAction *ActActualizar;
       QAction *ActAyuda;
       QAction *ActRestaurar;
+      QAction *ActResumenGeneral;
 
       QSystemTrayIcon * iconoBandeja;
 

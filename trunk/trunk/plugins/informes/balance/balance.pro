@@ -1,35 +1,23 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-debug \
-help
+          plugin \
+          help
+
 CONFIG -= release
 
-QT += sql
+QT += sql \
+      xml
 
 TARGET = balance
 
-DESTDIR = /home/Esteban/Programas/gestotux/bin/plugins/informes
-
-QMAKE_CXXFLAGS_DEBUG += -ggdb \
-  -g3 \
-  -o0
+DESTDIR = ../../../bin/plugins/informes
 
 INCLUDEPATH += ../../../reporte \
-  ../../../utiles
+               ../../../utiles
 
 LIBS += ../../../bin/libutiles.a \
-  ../../../bin/libncreport.a
+        ../../../bin/libreporte.a
 
-TARGETDEPS += ../../../bin/libncreport.a \
-  ../../../bin/libutiles.a
-
-OBJECTS_DIR = obj
-
-UI_DIR = ui
-
-MOC_DIR = moc
-
-RCC_DIR = rcc
-
+PRE_TARGETDEPS += ../../../bin/libreporte.a \
+                  ../../../bin/libutiles.a

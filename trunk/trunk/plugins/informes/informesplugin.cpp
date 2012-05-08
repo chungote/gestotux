@@ -30,7 +30,7 @@ bool InformesPlugin::inicializar()
  return cargarPluginsInformes();
 }
 
-bool InformesPlugin::verificarTablas()
+bool InformesPlugin::verificarTablas(QStringList)
 {
  return true;
 }
@@ -60,41 +60,33 @@ QWidgetList InformesPlugin::formsPreferencias()
  return QWidgetList();
 }
 
-void InformesPlugin::crearMenu(QMenuBar* m)
+void InformesPlugin::crearMenu( QMenuBar* m )
 {
  // Busco el menu de informes
-/*  QMenu *mInformes = m->findChild<QMenu *>( "menuInformes" );
- if( mInformes == 0 )
+ QMenu *mh = m->findChild<QMenu *>( "menuHerramientas" );
+ QMenu *mInformes = mh->addMenu( "Informes" );
+ mInformes->setObjectName( "menuInformes" );
+ // Ingreso las acciones estandares
+ // Ingreso la accion y/o menu de cada plugin
+ if( !_plugins().isEmpty() )
  {
-  mInformes = m->addMenu( "Informes" );
-  mInformes->setObjectName( "menuInformes" );
+   ///@todo Agregar acciones de informes
  }
  else
  {
-  // Ingreso las acciones estandares
-  // Ingreso la accion y/o menu de cada plugin
- if( !plugins().isEmpty() )
-  {
-   ///@todo Agregar acciones de informes
-  }
-  else
-  {
-   qDebug( "No existen plugins para colocar en el menu de informes" );
-  }
- }*/
+  qDebug( "No existen plugins para colocar en el menu de informes" );
+ }
 }
 
-void InformesPlugin::crearToolBar(QToolBar* t)
-{
-}
+void InformesPlugin::crearToolBar(QToolBar*)
+{}
 
 void InformesPlugin::seCierraGestotux()
 {
- ///@todo Ver si emitir señal a los plugins
+ ///@todo Ver si emitir seÃ±al a los plugins
 }
 
-Q_EXPORT_PLUGIN2( informes, InformesPlugin );
-
+Q_EXPORT_PLUGIN2( informes, InformesPlugin )
 
 /*!
     \fn InformesPlugin::cargarPluginsInformes()
@@ -120,15 +112,15 @@ bool InformesPlugin::cargarPluginsInformes()
      pluginsDir.cd("informes");
      if( !pluginsDir.exists() ) { return false; }
 
-/*	_plugins = new QHash<QString, EInformeInterface *>();
-	QStringList filtro;
+     _plugins = new QHash<QString, EInformeInterface *>();
+      QStringList filtro;
 #ifdef Q_WS_WIN32
-	filtro.append( "*.dll" );
+      filtro.append( "*.dll" );
 #endif
 #ifdef Q_WS_X11
 	filtro.append( "*so" );
 #endif
-	if( pluginsDir.entryList( filtro, QDir::Files ).isEmpty() ) { return false; }
+     if( pluginsDir.entryList( filtro, QDir::Files ).isEmpty() ) { return false; }
      foreach( QString fileName, pluginsDir.entryList( filtro, QDir::Files ) )
      {
 
@@ -154,6 +146,6 @@ bool InformesPlugin::cargarPluginsInformes()
 		qWarning( QString( "Error al cargar el plugin. Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
 	}
 	// Fin de la carga del plugin
-  }*/
+  }
   return true;
 }
