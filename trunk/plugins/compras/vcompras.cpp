@@ -101,7 +101,7 @@ void VCompras::verLista()
 {
  // Busco el primer indice seleccionado.
  if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
-        QMessageBox::information( this, "Falta seleccion", "Por favor, seleccióne una compra para ver sus productos." );
+        QMessageBox::information( this, "Falta seleccion", "Por favor, seleccione una compra para ver sus productos." );
         return;
  }
  verLista( this->vista->selectionModel()->selectedRows().first() );
@@ -117,15 +117,16 @@ void VCompras::eliminar()
         QMessageBox::information( this, "Nada seleccionado", "Por favor, seleccione una compra para eliminarla." );
         return;
     }
-    int ret = QMessageBox::question( this, "¿Esta seguro?", "Esta seguro que desea eliminar las compras seleccionadas?\n Se descontará el stock de productos relacionados y se ajustará el saldo de caja.", "Si", "No" );
-    if( ret != QMessageBox::Accepted ) { return; }
+    int ret = QMessageBox::question( this, "¿Esta seguro?", QString::fromUtf8( "Esta seguro que desea eliminar las compras seleccionadas?\n Se descontará el stock de productos relacionados y se ajustará el saldo de caja."), QMessageBox::Ok, QMessageBox::Cancel );
+    if( ret != QMessageBox::Ok ) { return; }
     MCompra *mc = new MCompra();
     QString mensaje;
     foreach( QModelIndex indice, this->vista->selectionModel()->selectedRows() ) {
         // Busco los datos de la compra
         int id_compra = this->rmodelo->data( this->rmodelo->index( indice.row(), 0 ), Qt::EditRole ).toInt();
         if( mc->eliminarCompra( id_compra ) ) {
-            mensaje.append( "\n Compra nº" ).append( id_compra ).append( " eliminada." );
+            mensaje.append( QString::fromUtf8("\n Compra nº") ).append( id_compra ).append( " eliminada." );
+            rmodelo->select();
         } else {
             mensaje.append( "\n <b> no se pudo eliminar la compra " ).append( id_compra ).append( " correctamente." );
         }
