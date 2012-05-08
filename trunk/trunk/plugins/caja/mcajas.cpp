@@ -145,7 +145,10 @@ double MCajas::saldo( const int id_caja )
        //qDebug( QString( "Ejecutado: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
        if( cola.next() ) {
         return cola.record().value("saldo").toDouble();
-       } else { return 0.0;  }
+       } else {
+           qWarning( "Error de next en averiguar saldo de caja" );
+        return 0.0;
+       }
    } else {
         qDebug( "Saldo no encontrado" );
         return 0.0;
@@ -219,6 +222,11 @@ int MCajas::cajaPredeterminada()
                 int cantidad = cola.record().value(0).toInt();
                 if( cantidad == 1 ) {
                     // Existe una sola caja declarada... la devuelvo
+                    cola.exec( "SELECT id_caja FROM caja LIMIT 1 " );
+                    cola.next();
+                    return cola.record().value(0).toInt();
+                } else {
+                    qWarning( "No existe una caja predeterminada seleccionada. Se eligirá la primera disponible.\n <b>Por favor, seleccióne una caja predeterminada desde las preferencias del programa</b>" );
                     cola.exec( "SELECT id_caja FROM caja LIMIT 1 " );
                     cola.next();
                     return cola.record().value(0).toInt();
