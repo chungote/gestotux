@@ -39,6 +39,7 @@ public:
     static NumeroComprobante &proximoComprobante();
     int agregarPresupuesto( int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones = QString() );
     bool modificarPresupuesto( int id_presupuesto, int id_cliente, QString texto_cliente, QString direccion, QDateTime fechahora, double total, const QString observaciones = QString() );
+    static bool eliminarPresupuesto( int id_presupuesto );
 
 private:
     void inicializar();

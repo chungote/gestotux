@@ -41,6 +41,7 @@ protected slots:
     void verContenido();
     void menuContextual( const QModelIndex &indice, QMenu *menu );
     void modificar();
+    void eliminar();
 
 private:
     QModelIndex indiceMenu;
