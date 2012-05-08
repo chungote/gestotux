@@ -128,21 +128,24 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 preferencias *p = preferencias::getInstancia();
                                 p->beginGroup( "Preferencias" );
                                 p->beginGroup( "Productos" );
-                                p->beginGroup( "Stock" );
-                                if( p->value( "limitar" ).toBool() &&
-                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 &&
-                                        _tipoPrecio != MProductosTotales::Costo )
-                                {
-                                        // Busco si el stock actual menos la cantidad es <= 0
-                                        qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
-                                        if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
-                                        {
-                                                qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-                                                qDebug( QString( "Stock del producto (cantidad): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
-                                                return false;
-                                        }
+                                if( p->value( "stock", false ).toBool() ) {
+                                    p->beginGroup( "Stock" );
+                                    if( p->value( "limitar" ).toBool() &&
+                                           this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 &&
+                                          _tipoPrecio != MProductosTotales::Costo )
+                                    {
+                                            // Busco si el stock actual menos la cantidad es <= 0
+                                           qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                          if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
+                                         {
+                                                    qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+                                                   qDebug( QString( "Stock del producto (cantidad): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                                  return false;
+                                         }
+                                    }
+                                    p->endGroup();
                                 }
-                                p->endGroup(); p->endGroup(); p->endGroup(); p = 0;
+                                p->endGroup(); p->endGroup(); p = 0;
                                 cantidades->insert( index.row(), value.toDouble() );
                                 if( _calcularTotal )
                                 {
@@ -166,20 +169,23 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                 preferencias *p = preferencias::getInstancia();
                                 p->beginGroup( "Preferencias" );
                                 p->beginGroup( "Productos" );
-                                p->beginGroup( "Stock" );
-                                if( p->value( "limitar" ).toBool()  &&
-                                    this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 &&
-                                    _tipoPrecio != MProductosTotales::Costo )
-                                {
-                                        // Busco si el stock actual menos la cantidad es <= 0
-                                        if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
-                                        {
-                                                qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-                                                qDebug( QString( "Stock del producto(producto): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
-                                                return false;
-                                        }
+                                if( p->value( "stock", false ).toBool() ) {
+                                    p->beginGroup( "Stock" );
+                                    if( p->value( "limitar" ).toBool()  &&
+                                        this->data( this->index( index.row(), 1 ), Qt::EditRole ).toInt() == 0 &&
+                                        _tipoPrecio != MProductosTotales::Costo )
+                                    {
+                                            // Busco si el stock actual menos la cantidad es <= 0
+                                            if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
+                                            {
+                                                    qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
+                                                    qDebug( QString( "Stock del producto(producto): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                                    return false;
+                                            }
+                                    }
+                                    p->endGroup();
                                 }
-                                p->endGroup(); p->endGroup(); p->endGroup(); p = 0;
+                                p->endGroup(); p->endGroup(); p = 0;
                                 productos->insert( index.row(), value.toInt() );
                                 //qDebug( QString( "Valor insertado en productos %1!").arg( value.toInt() ).toLocal8Bit() );
                                 if( _buscarPrecio && value.toInt() > 0 )
@@ -713,13 +719,17 @@ void MProductosTotales::agregarNuevoProducto( int cantidad, int Id )
       }
 
       // Es un producto valido
-      if( _tipoPrecio != MProductosTotales::Costo ) {
+      preferencias *p = preferencias::getInstancia();
+      p->beginGroup( "Preferencias" );
+      p->beginGroup( "Productos" );
+      if( p->value( "stock", false ).toBool() && _tipoPrecio != MProductosTotales::Costo ) {
         if( ( MProductos::stock( Id ) - cantidad ) < 0 ) {
               qDebug( "-> Error, stock negativo" );
               qWarning( "-> El stock de este producto es insuficiente para la cantidad que intenta vender." );
               return;
         }
       }
+      p->endGroup(); p->endGroup(); p=0;
   }
 
   // Inserto el dato con la cantidad si fue buscado el precio o insertado
