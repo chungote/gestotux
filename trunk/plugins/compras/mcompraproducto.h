@@ -30,7 +30,7 @@ class MCompraProducto : public QSqlRelationalTableModel
 Q_OBJECT
 public:
     MCompraProducto( QObject *parent = 0 );
-    bool agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad );
+    bool agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad, bool stock_habilitado );
     void setearId( const int id_compra ) { _id_compra = id_compra; setearFiltro(); }
 
 

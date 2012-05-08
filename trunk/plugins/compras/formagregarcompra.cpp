@@ -160,7 +160,7 @@ void FormAgregarCompra::guardar()
                  // Agrego el producto
                 FormAgregarProducto *f = new FormAgregarProducto();
                 f->setearNombre( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() );
-                f->setearStockInicial(mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() );
+                f->setearStockInicial( mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() );
                 f->setearPrecioCosto( mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() );
                 f->setearNumeroAnterior( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() );
                 connect( f, SIGNAL( agregarProducto( int, int ) ), this, SLOT( arreglarProductoAgregado( int, int ) ) );
@@ -207,10 +207,17 @@ void FormAgregarCompra::guardar()
          // Paro el agregar para que le de tiempo al cliente para llenar los datos del producto
          return;
      }
+     preferencias *p = preferencias::getInstancia();
+     p->inicio();
+     p->beginGroup( "Preferencias" );
+     p->beginGroup( "Productos" );
+     bool stock = p->value( "stock", false ).toBool();
+     p->endGroup(); p->endGroup(); p=0;
      if( !m->agregarCompraProducto( id_compra,
                                    mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), // id_producto
                                    mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble(), // precio compra
-                                   mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt() ) ) { // cantidad
+                                   mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toInt(), // cantidad
+                                   stock ) ) {
 
          qWarning( "No se pudo agregar el producto a la compra" );
          QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();

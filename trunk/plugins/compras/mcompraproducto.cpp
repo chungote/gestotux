@@ -52,9 +52,10 @@ MCompraProducto::MCompraProducto(QObject *parent)
  * \param id_producto Identificador del producto
  * \param precio_compra Precio al cual se lo compro
  * \param cantidad Cantidad comprada
+ * \param stock_habilitado Verifica que se esté utilizando el sistema de ontrol de stock
  * \return Verdader si se pudo registrar
  */
-bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad )
+bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_producto, const double precio_compra, const int cantidad, bool stock_habilitado )
 {
     if( id_compra <= 0 )
         return false;
@@ -68,9 +69,11 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
     // Veo si existe el producto ( recordar que viene del mproductostotales )
     if( id_producto > 0 ) {
         // El producto existe -  Ajusto el stock
-        if( !MProductos::modificarStock( id_producto, cantidad )  ) {
-            qWarning( "Existió un error al intentar ajustar el stock del producto" );
-            return false;
+        if( stock_habilitado ) {
+            if( !MProductos::modificarStock( id_producto, cantidad )  ) {
+                qWarning( "Existió un error al intentar ajustar el stock del producto" );
+                return false;
+            }
         }
         // Actualizo el precio de compra
         if( !MProductos::actualizarPrecioCompra( id_producto, cantidad ) ) {
