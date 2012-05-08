@@ -18,10 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mpresupuesto.h"
+
 #include <QDateTime>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+
+#include "mdescuentos.h"
 
 MPresupuesto::MPresupuesto(QObject *parent )
  : QSqlRelationalTableModel(parent)
@@ -194,4 +197,67 @@ bool MPresupuesto::modificarPresupuesto( int id_presupuesto, int id_cliente, QSt
     } else {
         return true;
     }
+}
+
+/*!
+ * \fn MPresupuesto::eliminarPresupuesto( int id_presupuesto )
+ *
+ */
+bool MPresupuesto::eliminarPresupuesto(int id_presupuesto)
+{
+    if( id_presupuesto <= 0 )
+        return false;
+
+    QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
+    QSqlQuery cola;
+    // Elimino sus items
+    if( cola.exec( QString( "DELETE FROM item_presupuesto WHERE id_presupuesto = %1 LIMIT 1" ).arg( id_presupuesto ) ) ) {
+        qWarning( "No se pudo ejecutar la cola para eliminar los items de presupuesto" );
+        qDebug( "Error al ejectuar la cola para eliminar el presupuesto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        return false;
+    }
+    // Elimino sus descuentos
+    // Busco los que correspondan
+    if( cola.exec( QString( "SELECT id_descuento FROM descuento_comprobante WHERE id_comprobante = %1 AND tipo = %2" ).arg( id_presupuesto ).arg( MDescuentos::Presupuesto ) ) ) {
+        QSqlQuery cola2;
+        while( cola.next() ) {
+            if( !cola2.exec( QString( "DELETE FROM descuento WHERE id_descuento = %1 LIMIT 1" ).arg( cola.record().value(0).toInt() ) ) ) {
+                qWarning( "No se pudo ejecutar la cola para eliminar los descuentos del presupuesto" );
+                qDebug( "Error al ejectuar la cola para eliminar el presupuesto" );
+                qDebug( cola2.lastError().text().toLocal8Bit() );
+                qDebug( cola2.lastQuery().toLocal8Bit() );
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                return false;
+            }
+        }
+    }
+
+    if( !cola.exec( QString( "DELETE FROM descuento_comprobante WHERE id_comprobante = %1 AND tipo = %2 LIMIT 1" ).arg( id_presupuesto ).arg( MDescuentos::Presupuesto ) ) ) {
+        qWarning( "No se pudo ejecutar la cola para eliminar los descuentos del presupuesto" );
+        qDebug( "Error al ejectuar la cola para eliminar el presupuesto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        return false;
+    }
+    // Elimino el presupuesto
+    if( cola.exec( QString( "DELETE FROM presupuesto WHERE id_presupuesto = %1 LIMIT 1" ).arg( id_presupuesto ) ) ) {
+        if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
+            return true;
+        } else {
+            qWarning( "Se pudo eliminar los datos pero no confirmarlos" );
+            return false;
+        }
+    } else {
+        qWarning( "No se pudo ejecutar la cola para eliminar el presupuesto" );
+        qDebug( "Error al ejectuar la cola para eliminar el presupuesto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+        return false;
+    }
+
 }

@@ -18,13 +18,16 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "vpresupuesto.h"
-#include "mvpresupuestos.h"
 #include <QTableView>
-#include "formagregarpresupuesto.h"
-#include "EReporte.h"
 #include <QModelIndex>
 #include <QModelIndexList>
 #include <QMessageBox>
+
+#include "formmodificarpresupuesto.h"
+#include "formagregarpresupuesto.h"
+#include "EReporte.h"
+#include "mpresupuesto.h"
+#include "mvpresupuestos.h"
 
 VPresupuesto::VPresupuesto(QWidget *parent)
  : EVLista(parent)
@@ -173,7 +176,6 @@ void VPresupuesto::verContenido()
     agregarVentana( f );
 }
 
-#include "formmodificarpresupuesto.h"
 /*!
  * \fn VPresupuesto::modificar()
  * Modifica un presupuesto
@@ -190,4 +192,21 @@ void VPresupuesto::modificar()
     FormModificarPresupuesto *f = new FormModificarPresupuesto();
     agregarVentana( f );
     f->setearIdPresupuesto( indice.model()->index( indice.row(), 0 ) );
+}
+
+void VPresupuesto::eliminar()
+{
+    QModelIndexList lista = vista->selectionModel()->selectedRows();
+    if( lista.isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione un presupuesto para eliminar", QMessageBox::Ok );
+        return;
+    }
+    foreach( QModelIndex idx, lista ) {
+        // Obtengo el ID
+        int idp = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+        if( !MPresupuesto::eliminarPresupuesto( idp ) ) {
+            QMessageBox::warning( this, "Error", QString( "No se pudo eliminar el presupuesto %1" ).arg( idp ) );
+        }
+    }
+    modelo->select();
 }
