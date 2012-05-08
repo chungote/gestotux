@@ -13,8 +13,94 @@
  <bottommargin>50</bottommargin>
  <rightmargin>50</rightmargin>
  <leftmargin>50</leftmargin>
+ <querysource>
+  <name>compras_mes</name>
+  <sql>SELECT strftime( "%m/%Y", c.fecha ) AS mes,
+       SUM( c.total ) AS total
+FROM compras AS c
+GROUP BY 1</sql>
+ </querysource>
+ <querysource>
+  <name>compras_total</name>
+  <sql>SELECT SUM( c.total ) AS total
+FROM compras AS c</sql>
+ </querysource>
+ <querysource>
+  <name>presupuesto_mes</name>
+  <sql>SELECT strftime( "%m/%Y", p.fecha ) AS mes,
+             SUM( p.total ) AS total
+FROM presupuestos AS p
+GROUP BY 1</sql>
+ </querysource>
+ <querysource>
+  <name>presupuesto_total</name>
+  <sql>SELECT SUM( p.total ) AS total
+FROM presupuestos AS p</sql>
+ </querysource>
+ <querysource>
+  <name>ventas_mes</name>
+  <sql>SELECT strftime( "%m/%Y", f.fecha ) AS mes,
+             SUM( f.total ) AS total
+FROM factura AS f
+GROUP BY 1</sql>
+ </querysource>
+ <querysource>
+  <name>ventas_total</name>
+  <sql>SELECT SUM( f.total ) AS total
+FROM factura AS f</sql>
+ </querysource>
+ <querysource>
+  <name>gastos_mes</name>
+  <sql>SELECT strftime( "%m/%Y", g.fecha ) AS mes,
+             cg.nombre AS categoria,
+             SUM(g.costo ) AS total
+FROM gastos AS g, categoria_gastos as cg
+WHERE g.id_categoria = g.id_categoria
+GROUP BY 1</sql>
+ </querysource>
+ <querysource>
+  <name>gastos_total</name>
+  <sql></sql>
+ </querysource>
+ <querysource>
+  <name>recibos_mes</name>
+  <sql>SELECT strftime( "%d/%Y", r.fecha_pago ) as mes,
+             SUM( r.precio ) as total
+FROM recibos AS r
+GROUP BY strftime( "%d/%Y", r.fecha_pago )
+ORDER BY strftime( "%Y", r.fecha_pago ), strftime( "%d", r.fecha_pago )</sql>
+ </querysource>
+ <querysource>
+  <name>recibos_total</name>
+  <sql>SELECT SUM( r.precio ) as total
+FROM recibos AS r</sql>
+ </querysource>
+ <querysource>
+  <name>caja_item</name>
+  <sql>SELECT nombre, saldo
+FROM caja</sql>
+ </querysource>
+ <querysource>
+  <name>caja_total</name>
+  <sql>SELECT SUM( saldo ) AS total
+FROM caja</sql>
+ </querysource>
+ <querysource>
+  <name>ctacte_item</name>
+  <sql>SELECT cc.numero_cuenta AS num,
+             c.razon_social AS nombre,
+             cc.saldo AS saldo
+FROM ctacte AS cc, clientes AS c
+WHERE cc.id_cliente = c.id
+             AND cc.saldo > 0;</sql>
+ </querysource>
+ <querysource>
+  <name>ctacte_total</name>
+  <sql>SELECT SUM( saldo ) AS total
+FROM ctacte</sql>
+ </querysource>
  <rpthead>
-  <height>27</height>
+  <height>55</height>
  </rpthead>
  <pghead>
   <height>29</height>
@@ -37,8 +123,8 @@
   </label>
   <label>
    <rect>
-    <x>2</x>
-    <y>29</y>
+    <x>7</x>
+    <y>26</y>
     <width>717</width>
     <height>25</height>
    </rect>
@@ -54,74 +140,1373 @@
  </pghead>
  <section>
   <name>Compras</name>
+  <group>
+   <name>Comprasmes</name>
+   <column>1</column>
+   <head>
+    <height>35.7214</height>
+    <label>
+     <rect>
+      <x>1</x>
+      <y>0</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Compras</string>
+    </label>
+    <label>
+     <rect>
+      <x>2.68684</x>
+      <y>20.4939</y>
+      <width>64.0183</width>
+      <height>17.9072</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>Mes/Año</string>
+    </label>
+    <label>
+     <rect>
+      <x>202.465</x>
+      <y>7.89752</y>
+      <width>83.3</width>
+      <height>17.9</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total Sumado</string>
+    </label>
+    <line>
+     <xstart>1.16974</xstart>
+     <ystart>33.6949</ystart>
+     <xend>285.987</xend>
+     <yend>32.8501</yend>
+     <weight>0</weight>
+    </line>
+    <field>
+     <rect>
+      <x>0.156844</x>
+      <y>35.7184</y>
+      <width>66.0557</width>
+      <height>22.4668</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>compras_mes</query>
+      <column>mes</column>
+     </data>
+    </field>
+    <field>
+     <rect>
+      <x>215.968</x>
+      <y>33.734</y>
+      <width>70.153</width>
+      <height>22.5</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>compras_mes</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </head>
+   <foot>
+    <height>38.8615</height>
+    <field>
+     <rect>
+      <x>210.177</x>
+      <y>-0.843327</y>
+      <width>75.5004</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>compras_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+    <label>
+     <rect>
+      <x>206.136</x>
+      <y>5.21885</y>
+      <width>23.4987</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+    <label>
+     <rect>
+      <x>124.833</x>
+      <y>2.53149</y>
+      <width>68.7419</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>bold</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total:</string>
+    </label>
+    <line>
+     <xstart>189.927</xstart>
+     <ystart>4.22407</ystart>
+     <xend>289.927</xend>
+     <yend>4.22407</yend>
+     <weight>0</weight>
+    </line>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>compras_mes</query>
    </key>
-   <height>100</height>
+   <height>23.741</height>
+   <label>
+    <rect>
+     <x>205.894</x>
+     <y>4.21877</y>
+     <width>23.4987</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
   </detail>
  </section>
  <section>
   <name>Presupuestos</name>
+  <group>
+   <name>Sin nombre</name>
+   <column></column>
+   <head>
+    <height>38.8615</height>
+    <label>
+     <rect>
+      <x>75.9842</x>
+      <y>21.3306</y>
+      <width>83.3</width>
+      <height>17.9</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total Sumado</string>
+    </label>
+    <label>
+     <rect>
+      <x>4.61796</x>
+      <y>22.9444</y>
+      <width>64.0183</width>
+      <height>17.9072</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>Mes/Año</string>
+    </label>
+    <line>
+     <xstart>-1.19217</xstart>
+     <ystart>154.707</ystart>
+     <xend>153.524</xend>
+     <yend>154.707</yend>
+     <weight>0</weight>
+    </line>
+    <label>
+     <rect>
+      <x>2.96223</x>
+      <y>2.45</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Presupuestos</string>
+    </label>
+    <field>
+     <rect>
+      <x>1.53519</x>
+      <y>39.7074</y>
+      <width>63.673</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>presupuesto_mes</query>
+      <column>mes</column>
+     </data>
+    </field>
+   </head>
+   <foot>
+    <height>49.844</height>
+    <line>
+     <xstart>72.4981</xstart>
+     <ystart>4.22407</ystart>
+     <xend>172.498</xend>
+     <yend>4.22407</yend>
+     <weight>0</weight>
+    </line>
+    <label>
+     <rect>
+      <x>6.24071</x>
+      <y>3.86223</y>
+      <width>68.7419</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>bold</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total:</string>
+    </label>
+    <label>
+     <rect>
+      <x>82.0656</x>
+      <y>10.3763</y>
+      <width>14.6738</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+    <field>
+     <rect>
+      <x>89.4</x>
+      <y>3.38074</y>
+      <width>68.7419</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>presupuesto_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>presupuesto_total</query>
    </key>
-   <height>100</height>
+   <height>24.4996</height>
+   <field>
+    <rect>
+     <x>89.3759</x>
+     <y>1.69037</y>
+     <width>72.1211</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>presupuesto_mes</query>
+     <column>total</column>
+    </data>
+    <format>%10.2f</format>
+   </field>
+   <label>
+    <rect>
+     <x>82.6689</x>
+     <y>9.29</y>
+     <width>14.6738</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
+   <line>
+    <xstart>3.87671</xstart>
+    <ystart>-1.58395</ystart>
+    <xend>158.593</xend>
+    <yend>-1.58395</yend>
+    <weight>0</weight>
+   </line>
   </detail>
  </section>
  <section>
   <name>Facturas</name>
+  <group>
+   <name>facturas</name>
+   <column></column>
+   <head>
+    <height>44.7752</height>
+    <line>
+     <xstart>3.57846</xstart>
+     <ystart>43.0866</ystart>
+     <xend>158.295</xend>
+     <yend>43.0866</yend>
+     <weight>0</weight>
+    </line>
+    <label>
+     <rect>
+      <x>74.536</x>
+      <y>26.1081</y>
+      <width>83.3</width>
+      <height>17.9</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total Sumado</string>
+    </label>
+    <label>
+     <rect>
+      <x>1.48019</x>
+      <y>26.8771</y>
+      <width>64.0183</width>
+      <height>17.9072</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>Mes/Año</string>
+    </label>
+    <field>
+     <rect>
+      <x>2.38</x>
+      <y>45.6155</y>
+      <width>60.2937</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>ventas_mes</query>
+      <column>mes</column>
+     </data>
+    </field>
+    <label>
+     <rect>
+      <x>0.665186</x>
+      <y>0.155966</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Facturacion</string>
+    </label>
+   </head>
+   <foot>
+    <height>40.5511</height>
+    <line>
+     <xstart>65.7395</xstart>
+     <ystart>5.06888</ystart>
+     <xend>165.74</xend>
+     <yend>5.06888</yend>
+     <weight>0</weight>
+    </line>
+    <label>
+     <rect>
+      <x>4.91</x>
+      <y>1.70704</y>
+      <width>71.2763</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>bold</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total:</string>
+    </label>
+    <label>
+     <rect>
+      <x>75.9</x>
+      <y>7.6</y>
+      <width>12.1393</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+    <field>
+     <rect>
+      <x>85.1448</x>
+      <y>0.841487</y>
+      <width>70.4315</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>ventas_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>ventas_total</query>
    </key>
-   <height>100</height>
-  </detail>
- </section>
- <section>
-  <name>Servicios</name>
-  <detail>
-   <key>
-    <query></query>
-   </key>
-   <height>100</height>
+   <height>22.81</height>
+   <label>
+    <rect>
+     <x>79.2207</x>
+     <y>4.22556</y>
+     <width>12.1393</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
+   <field>
+    <rect>
+     <x>87.3626</x>
+     <y>4.24853</y>
+     <width>68.7419</width>
+     <height>20.7759</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <top/>
+    <data>
+     <query>ventas_mes</query>
+     <column>total</column>
+    </data>
+    <format>%10.2f</format>
+   </field>
   </detail>
  </section>
  <section>
   <name>Gastos</name>
+  <group>
+   <name>gastos</name>
+   <column></column>
+   <head>
+    <height>54.068</height>
+    <line>
+     <xstart>5.56634</xstart>
+     <ystart>51.6393</ystart>
+     <xend>292.074</xend>
+     <yend>51.6393</yend>
+     <weight>0</weight>
+    </line>
+    <label>
+     <rect>
+      <x>207.748</x>
+      <y>33.9528</y>
+      <width>81.6104</width>
+      <height>17.9</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total Sumado</string>
+    </label>
+    <label>
+     <rect>
+      <x>0.906</x>
+      <y>2.94</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Gastos - Categoria:</string>
+    </label>
+    <label>
+     <rect>
+      <x>7.80254</x>
+      <y>37.4234</y>
+      <width>64.0183</width>
+      <height>17.9072</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>Mes/Año</string>
+    </label>
+    <field>
+     <rect>
+      <x>127.532</x>
+      <y>0.481222</y>
+      <width>196</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>compras_mes</query>
+      <column>categoria</column>
+     </data>
+    </field>
+    <field>
+     <rect>
+      <x>3.22481</x>
+      <y>52.3743</y>
+      <width>166.369</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>gastos_mes</query>
+      <column>mes</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+    <field>
+     <rect>
+      <x>192.27</x>
+      <y>54.9084</y>
+      <width>100</width>
+      <height>20.7759</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>gastos_mes</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </head>
+   <foot>
+    <height>40.3689</height>
+    <line>
+     <xstart>190.548</xstart>
+     <ystart>4.06888</ystart>
+     <xend>290.548</xend>
+     <yend>4.06888</yend>
+     <weight>0</weight>
+    </line>
+    <field>
+     <rect>
+      <x>196</x>
+      <y>-0.529</y>
+      <width>95.8</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>gastos_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+    <label>
+     <rect>
+      <x>183.32</x>
+      <y>4.4353</y>
+      <width>27.6842</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>compras_mes</query>
    </key>
-   <height>100</height>
+   <height>24.4996</height>
+   <label>
+    <rect>
+     <x>183.323</x>
+     <y>5.57182</y>
+     <width>18.053</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
+   <label>
+    <rect>
+     <x>81.868</x>
+     <y>22.472</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>bold</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <string>Total:</string>
+   </label>
   </detail>
  </section>
  <section>
   <name>Recibos</name>
+  <group>
+   <name>recibos</name>
+   <column></column>
+   <head>
+    <height>44.2659</height>
+    <label>
+     <rect>
+      <x>0.28</x>
+      <y>2</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Pagos</string>
+    </label>
+    <label>
+     <rect>
+      <x>66.0368</x>
+      <y>22.2078</y>
+      <width>81.6104</width>
+      <height>17.9</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total Sumado</string>
+    </label>
+    <label>
+     <rect>
+      <x>2.09218</x>
+      <y>24.4074</y>
+      <width>64.0183</width>
+      <height>17.9072</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>Mes/Año</string>
+    </label>
+    <line>
+     <xstart>1.0308</xstart>
+     <ystart>39.777</ystart>
+     <xend>153.444</xend>
+     <yend>39.777</yend>
+     <weight>0</weight>
+    </line>
+    <field>
+     <rect>
+      <x>0.837928</x>
+      <y>44.4817</y>
+      <width>63.7755</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>recibos_mes</query>
+      <column>mes</column>
+     </data>
+    </field>
+    <label>
+     <rect>
+      <x>72.0197</x>
+      <y>45.1217</y>
+      <width>14.2051</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>$</string>
+    </label>
+    <field>
+     <rect>
+      <x>77.729</x>
+      <y>44.4817</y>
+      <width>70.1307</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>recibos_mes</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </head>
+   <foot>
+    <height>42.5797</height>
+    <label>
+     <rect>
+      <x>26.5872</x>
+      <y>0.192524</y>
+      <width>40.8968</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>bold</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total:</string>
+    </label>
+    <label>
+     <rect>
+      <x>71.4781</x>
+      <y>6.01991</y>
+      <width>27.6842</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+    <field>
+     <rect>
+      <x>75.3159</x>
+      <y>0.417928</y>
+      <width>69.7438</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>recibos_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+    <line>
+     <xstart>67.5708</xstart>
+     <ystart>4.44863</ystart>
+     <xend>167.571</xend>
+     <yend>4.44863</yend>
+     <weight>0</weight>
+    </line>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>compras_mes</query>
    </key>
-   <height>100</height>
+   <height>23.099</height>
   </detail>
  </section>
  <section>
   <name>Caja</name>
+  <group>
+   <name>caja</name>
+   <column></column>
+   <head>
+    <height>45.7573</height>
+    <label>
+     <rect>
+      <x>2.2</x>
+      <y>2.01</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Caja</string>
+    </label>
+    <label>
+     <rect>
+      <x>2.75</x>
+      <y>22.2869</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Nombre</string>
+    </label>
+    <label>
+     <rect>
+      <x>269.534</x>
+      <y>19.741</y>
+      <width>37.7192</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Saldo</string>
+    </label>
+    <line>
+     <xstart>0.841446</xstart>
+     <ystart>41.9442</ystart>
+     <xend>318.189</xend>
+     <yend>41.9442</yend>
+     <weight>0</weight>
+    </line>
+    <field>
+     <rect>
+      <x>0.20241</x>
+      <y>45.1176</y>
+      <width>211.216</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>caja_item</query>
+      <column>nombre</column>
+     </data>
+    </field>
+   </head>
+   <foot>
+    <height>35.589</height>
+    <line>
+     <xstart>206.114</xstart>
+     <ystart>4.44863</ystart>
+     <xend>323.908</xend>
+     <yend>4.44863</yend>
+     <weight>0</weight>
+    </line>
+    <label>
+     <rect>
+      <x>212.093</x>
+      <y>5.77653</y>
+      <width>11.663</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+    <field>
+     <rect>
+      <x>220.729</x>
+      <y>-0.632771</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>caja_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+    <label>
+     <rect>
+      <x>107.567</x>
+      <y>-0.510054</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>bold</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total:</string>
+    </label>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>compras_mes</query>
    </key>
-   <height>100</height>
+   <height>25.4207</height>
+   <field>
+    <rect>
+     <x>220.663</x>
+     <y>1.26689</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>caja_total</query>
+     <column>total</column>
+    </data>
+    <format>%10.2f</format>
+   </field>
+   <label>
+    <rect>
+     <x>212.72</x>
+     <y>7.03826</y>
+     <width>23.1023</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
   </detail>
  </section>
  <section>
   <name>Cuentas Corrientes</name>
+  <group>
+   <name>ctacte</name>
+   <column></column>
+   <head>
+    <height>43.8507</height>
+    <label>
+     <rect>
+      <x>1.58171</x>
+      <y>0.345372</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>12</size>
+      <weight>bold</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Cuentas Corrientes</string>
+    </label>
+    <label>
+     <rect>
+      <x>2.76</x>
+      <y>19.1</y>
+      <width>37.0837</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>#Num</string>
+    </label>
+    <label>
+     <rect>
+      <x>43.4645</x>
+      <y>19.771</y>
+      <width>312.279</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Cliente</string>
+    </label>
+    <label>
+     <rect>
+      <x>386.337</x>
+      <y>18.529</y>
+      <width>37.4562</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <string>Saldo</string>
+    </label>
+    <line>
+     <xstart>4.01904</xstart>
+     <ystart>40.0376</ystart>
+     <xend>438.937</xend>
+     <yend>40.0376</yend>
+     <weight>0</weight>
+    </line>
+    <field>
+     <rect>
+      <x>378.59</x>
+      <y>44.4183</y>
+      <width>64.5358</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>ctacte_item</query>
+      <column>saldo</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </head>
+   <foot>
+    <height>39.9779</height>
+    <label>
+     <rect>
+      <x>262.965</x>
+      <y>3.30821</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>bold</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <string>Total:</string>
+    </label>
+    <label>
+     <rect>
+      <x>367.907</x>
+      <y>8.93439</y>
+      <width>51.6398</width>
+      <height>19.1968</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <top/>
+     <string>$</string>
+    </label>
+    <field>
+     <rect>
+      <x>375.421</x>
+      <y>2.57677</y>
+      <width>67.115</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Times New Roman</face>
+      <size>10</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>ctacte_total</query>
+      <column>total</column>
+     </data>
+     <format>%10.2f</format>
+    </field>
+   </foot>
+  </group>
   <detail>
    <key>
-    <query></query>
+    <query>compras_mes</query>
    </key>
-   <height>100</height>
+   <height>23.7793</height>
+   <field>
+    <rect>
+     <x>2.23039</x>
+     <y>1.20638</y>
+     <width>31.6509</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>ctacte_item</query>
+     <column>num</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>40.3104</x>
+     <y>1.21039</y>
+     <width>324</width>
+     <height>25</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>ctacte_item</query>
+     <column>nombre</column>
+    </data>
+   </field>
+   <label>
+    <rect>
+     <x>368.645</x>
+     <y>8.30402</y>
+     <width>18.11</width>
+     <height>19.1968</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <top/>
+    <string>$</string>
+   </label>
   </detail>
  </section>
  <pgfoot>
