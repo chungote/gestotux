@@ -260,6 +260,7 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
         return false;
     }
     preferencias *p = preferencias::getInstancia();
+    p->inicio();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "Productos" );
     bool pdescripcion = p->value( "descripcion", false ).toBool();
@@ -286,7 +287,7 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
     { cola.bindValue( ":categoria", 0 ); } // Evita el problema con mostrar cuando hay una relacion
     else
     { cola.bindValue( ":categoria", categoria ); }
-    if( stock ==  0 || pstock ) {
+    if( stock ==  0 || !pstock ) {
         cola.bindValue( ":stock", QVariant() );
     } else {
         cola.bindValue( ":stock", stock );
