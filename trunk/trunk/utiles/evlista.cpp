@@ -239,6 +239,7 @@ void EVLista::buscar()
                 dockBusqueda->setVisible( true );
             } else {
                 dockBusqueda->setVisible( false );
+                ActBuscar->setChecked( false );
             }
         }
     }

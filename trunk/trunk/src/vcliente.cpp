@@ -81,7 +81,7 @@ VCliente::VCliente( QWidget *parent )
  agregarFiltroBusqueda( "Cualquiera", " `razon_social` LIKE '%%1%' OR nombre LIKE '%%1%' OR apellido LIKE '%%1%' OR calle LIKE '%%1%' OR numero LIKE '%%1%' OR piso LIKE '%%1%' OR depto LIKE '%%1%' OR ciudad LIKE '%%1%' OR `codigo_postal` LIKE '%%1%' OR provincia LIKE '%%1%' OR pais LIKE '%%1%' OR `tel_fijo` LIKE '%%1%' OR `tel_celular` LIKE '%%1%' OR fax LIKE '%%1%' OR email LIKE '%%1%' OR `CUIT/CUIL` LIKE '%%1%'" );
  agregarFiltroBusqueda( "Razon Social", " `razon_social` LIKE '%%1%'" );
  agregarFiltroBusqueda( "Numero de Cliente", " id = %1" );
- agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL` = %1" );
+ agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL` = '%%1%'" );
  habilitarBusqueda();
 
  addAction( ActAgregar );
@@ -139,9 +139,9 @@ void VCliente::listadoClientes() {
     ParameterList lista;
     QString filtro = this->mc->filter();
     if( filtro.isEmpty() ) {
-        filtro = " 1=1 ";
+        filtro = " 1 = 1 ";
     }
-    lista.append( Parameter( "filtro", this->mc->filter() ) );
+    lista.append( Parameter( "fil", this->mc->filter() ) );
     rep->especial( "ListadoClientes", lista );
     rep->hacer();
     delete rep;

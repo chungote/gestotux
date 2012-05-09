@@ -11,7 +11,8 @@ VListaPeriodos::VListaPeriodos( int id_servicio, QWidget *parent ) :
     EVLista(parent)
 {
     setObjectName( "lista-periodos" );
-    setWindowTitle( "Periodos facturados");
+    setWindowTitle( "Periodos facturados" );
+    setWindowIcon( QIcon( ":/imagenes/periodos.png" ) );
 
     modelo = new MPeriodoServicio( this );
     modelo->inicializar();

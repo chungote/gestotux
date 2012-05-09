@@ -30,7 +30,7 @@
 	 END AS Tipo,
           t1.debe,
           t1.haber,
-          (select SUM(t2.haber)-SUM(t2.debe) FROM item_ctacte AS t2 WHERE t2.id_ctacte = &lt;? value( "ctacte" ) ?> AND t2.id_item_ctacte &lt;= t1.id_item_ctacte ) AS saldo
+          (select SUM(t2.debe)-SUM(t2.haber) FROM item_ctacte AS t2 WHERE t2.id_ctacte = &lt;? value( "ctacte" ) ?> AND t2.id_item_ctacte &lt;= t1.id_item_ctacte ) AS saldo
 FROM item_ctacte AS t1
 WHERE t1.id_ctacte = &lt;? value( "ctacte", "filtro" ) ?></sql>
  </querysource>
@@ -48,9 +48,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   <height>100.735</height>
   <label>
    <rect>
-    <x>0.63939</x>
-    <y>-2.2122</y>
-    <width>723</width>
+    <x>2.63939</x>
+    <y>2.7878</y>
+    <width>683</width>
     <height>40.8668</height>
    </rect>
    <font>
@@ -258,8 +258,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </barcode>
   <field>
    <rect>
-    <x>26</x>
-    <y>10.3</y>
+    <x>9</x>
+    <y>8.3</y>
     <width>100</width>
     <height>15.3353</height>
    </rect>
@@ -501,10 +501,10 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </field>
    <field>
     <rect>
-     <x>658.028</x>
-     <y>0.1385</y>
-     <width>64.2672</width>
-     <height>22.7697</height>
+     <x>648.621</x>
+     <y>0.138293</y>
+     <width>72.8</width>
+     <height>22.8</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -521,8 +521,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    </field>
    <field>
     <rect>
-     <x>583.542</x>
-     <y>1.12736</y>
+     <x>578.468</x>
+     <y>0.204775</y>
      <width>71.4106</width>
      <height>21.3</height>
     </rect>
@@ -595,8 +595,8 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </line>
   <label>
    <rect>
-    <x>485.479</x>
-    <y>7.04863</y>
+    <x>467.479</x>
+    <y>6.04863</y>
     <width>130.897</width>
     <height>25</height>
    </rect>
@@ -611,9 +611,9 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
   </label>
   <field>
    <rect>
-    <x>623.77</x>
-    <y>6.51422</y>
-    <width>100</width>
+    <x>601.617</x>
+    <y>5.66745</y>
+    <width>117</width>
     <height>25</height>
    </rect>
    <font>
@@ -651,12 +651,12 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    <rect>
     <x>73.7</x>
     <y>10.3</y>
-    <width>319</width>
+    <width>401</width>
     <height>17</height>
    </rect>
    <font>
     <face>Times New Roman</face>
-    <size>10</size>
+    <size>9</size>
     <weight>normal</weight>
     <italic/>
    </font>
@@ -668,7 +668,7 @@ WHERE cc.id_cliente = c.id AND cc.numero_cuenta = &lt;? value( "ctacte" ) ?></sq
    <rect>
     <x>68.6</x>
     <y>23.9</y>
-    <width>394</width>
+    <width>420</width>
     <height>25</height>
    </rect>
    <font>
