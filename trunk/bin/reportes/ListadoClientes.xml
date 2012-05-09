@@ -3,12 +3,15 @@
  <title>Listado normal de Clientes</title>
  <name>ListadoClientes</name>
  <description>Listado normal de clientes</description>
+ <parameter default="id != 0" active="true" listtype="static" type="string" name="filtro">
+  <description></description>
+ </parameter>
  <grid>
   <x>0.05</x>
   <y>0.05</y>
  </grid>
  <size>A4</size>
- <landscape/>
+ <portrait/>
  <topmargin>50</topmargin>
  <bottommargin>50</bottommargin>
  <rightmargin>50</rightmargin>
@@ -22,18 +25,16 @@
        `tel_celular`,
         `calle` || ' ' || `numero` AS direccion
 FROM `clientes` 
-&lt;? if( exists("filtro") ?>
-WHERE &lt;? value("filtro") ?>
-&lt;? endif ?>
+WHERE id != 0 
 ORDER BY razon_social ASC</sql>
  </querysource>
  <rpthead>
   <height>81.5916</height>
   <label>
    <rect>
-    <x>74</x>
+    <x>17.1818</x>
     <y>5</y>
-    <width>987</width>
+    <width>696.452</width>
     <height>36</height>
    </rect>
    <font>
@@ -47,9 +48,9 @@ ORDER BY razon_social ASC</sql>
   </label>
   <label>
    <rect>
-    <x>84</x>
-    <y>37</y>
-    <width>971</width>
+    <x>6.52</x>
+    <y>34.4</y>
+    <width>583.767</width>
     <height>25</height>
    </rect>
    <font>
@@ -59,7 +60,7 @@ ORDER BY razon_social ASC</sql>
    </font>
    <left/>
    <vcenter/>
-   <string>Realizado con gestotux 0.5 - Listado provisorio, puede cambiar sin aviso previo o notificacion. Usese de base para los listados personalizados</string>
+   <string>Realizado con gestotux 0.5 - Listado provisorio, puede cambiar sin aviso previo o notificacion.</string>
   </label>
   <line>
    <xstart>65.8748</xstart>
@@ -130,58 +131,19 @@ ORDER BY razon_social ASC</sql>
    <yend>79.0616</yend>
    <weight>2</weight>
   </line>
+  <line>
+   <xstart>717.272</xstart>
+   <ystart>59.11</ystart>
+   <xend>717.435</xend>
+   <yend>78.5609</yend>
+   <weight>2</weight>
+  </line>
   <label>
    <rect>
-    <x>577</x>
+    <x>581.465</x>
     <y>63.9</y>
-    <width>164.634</width>
-    <height>13.9</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>bold</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>Direccion</string>
-  </label>
-  <label>
-   <rect>
-    <x>746</x>
-    <y>63.4</y>
-    <width>151.19</width>
-    <height>13.9</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>bold</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>Telefono fijo</string>
-  </label>
-  <line>
-   <xstart>744.041</xstart>
-   <ystart>59.8427</ystart>
-   <xend>744.204</xend>
-   <yend>79.2936</yend>
-   <weight>2</weight>
-  </line>
-  <line>
-   <xstart>902.069</xstart>
-   <ystart>60.7926</ystart>
-   <xend>901.995</xend>
-   <yend>77.8784</yend>
-   <weight>2</weight>
-  </line>
-  <label>
-   <rect>
-    <x>903</x>
-    <y>62.9</y>
-    <width>156.189</width>
-    <height>13.9</height>
+    <width>129.931</width>
+    <height>14.9</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -195,14 +157,14 @@ ORDER BY razon_social ASC</sql>
   <line>
    <xstart>2.0138</xstart>
    <ystart>79.4432</ystart>
-   <xend>1069.9</xend>
+   <xend>715.829</xend>
    <yend>79.3499</yend>
    <weight>2</weight>
   </line>
   <line>
    <xstart>1.7773</xstart>
-   <ystart>59.4432</ystart>
-   <xend>1069.67</xend>
+   <ystart>58.1519</ystart>
+   <xend>717.139</xend>
    <yend>59.3499</yend>
    <weight>2</weight>
   </line>
@@ -211,13 +173,6 @@ ORDER BY razon_social ASC</sql>
    <ystart>60.3266</ystart>
    <xend>1.40654</xend>
    <yend>79.2321</yend>
-   <weight>2</weight>
-  </line>
-  <line>
-   <xstart>1069.27</xstart>
-   <ystart>61.0291</ystart>
-   <xend>1069.2</xend>
-   <yend>78.1149</yend>
    <weight>2</weight>
   </line>
  </rpthead>
@@ -268,25 +223,6 @@ ORDER BY razon_social ASC</sql>
    </field>
    <field>
     <rect>
-     <x>579</x>
-     <y>1.74</y>
-     <width>113</width>
-     <height>14.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>clientes</query>
-     <column>direccion</column>
-    </data>
-   </field>
-   <field>
-    <rect>
      <x>411.415</x>
      <y>1.07752</y>
      <width>163.276</width>
@@ -304,31 +240,19 @@ ORDER BY razon_social ASC</sql>
      <column>email</column>
     </data>
    </field>
+   <line>
+    <xstart>1.32063</xstart>
+    <ystart>17.2645</ystart>
+    <xend>722.534</xend>
+    <yend>17.2722</yend>
+    <weight>1</weight>
+   </line>
    <field>
     <rect>
-     <x>745.877</x>
-     <y>2.65682</y>
-     <width>148.379</width>
-     <height>14.2</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>clientes</query>
-     <column>tel_fijo</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>903</x>
-     <y>2.35</y>
-     <width>148</width>
-     <height>14.2</height>
+     <x>584</x>
+     <y>2.02</y>
+     <width>133</width>
+     <height>18.2</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -342,13 +266,6 @@ ORDER BY razon_social ASC</sql>
      <column>tel_celular</column>
     </data>
    </field>
-   <line>
-    <xstart>1.32063</xstart>
-    <ystart>17.2645</ystart>
-    <xend>1069.9</xend>
-    <yend>17.2722</yend>
-    <weight>1</weight>
-   </line>
   </detail>
  </section>
  <pgfoot>
@@ -409,8 +326,8 @@ ORDER BY razon_social ASC</sql>
   </field>
   <field>
    <rect>
-    <x>312.229</x>
-    <y>4.68346</y>
+    <x>103.035</x>
+    <y>2.10082</y>
     <width>475.907</width>
     <height>25</height>
    </rect>
@@ -428,9 +345,9 @@ ORDER BY razon_social ASC</sql>
   </field>
   <field>
    <rect>
-    <x>943.451</x>
-    <y>4.67572</y>
-    <width>120.319</width>
+    <x>531.637</x>
+    <y>3.60756</y>
+    <width>185.512</width>
     <height>19.1945</height>
    </rect>
    <font>
