@@ -81,6 +81,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActListadoDeudor = new QAction( this );
  ActListadoDeudor->setStatusTip( "Muestra un listado con todas las cuentas corrientes que tienen saldo deudor" );
  ActListadoDeudor->setText( "Listado Deudor" );
+ ActListadoDeudor->setIcon( QIcon( ":/imagenes/impresora.png" ) );
  connect( ActListadoDeudor, SIGNAL( triggered() ), this, SLOT( listadoDeudor() ) );
 
  ActListadoDeudorPDF = new QAction( this );

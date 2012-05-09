@@ -67,7 +67,6 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
         connect( CBProducto, SIGNAL( agregarProducto() ), this, SLOT( agregarProducto() ) );
 
-        DEFecha->setMaximumDate( QDate::currentDate() );
         DEFecha->setDate( QDate::currentDate() );
 
         // Modelo del tableview
@@ -140,6 +139,8 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         } else {
             RBContado->setVisible( false );
         }
+
+        DEFecha->setMinimumDate( MFactura::fechaUltimaVenta() );
 }
 
 
@@ -280,12 +281,12 @@ void FormAgregarVenta::guardar()
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un cliente para esta venta" );
   return;
  }
- if( !DEFecha->date().isValid() )
+ if( !DEFecha->date().isValid() && DEFecha->date() <= MFactura::fechaUltimaVenta() )
  {
   QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta venta" );
   return;
  }
- if( !( RBContado->isChecked() || RBCuotas->isChecked() || RBCtaCte->isChecked()  ) ) {
+ if( !( RBContado->isChecked() || RBCuotas->isChecked() || RBCtaCte->isChecked() || RBOtro->isChecked() ) ) {
      QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
      return;
  }

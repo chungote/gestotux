@@ -47,6 +47,7 @@ public:
 
     static bool anularFactura( const int id_factura, QString razon = QString(), QDateTime fechahora = QDateTime::currentDateTime() );
     static int idFacturaPorComprobante( const QString numero );
+    static QDate fechaUltimaVenta();
 
 private:
     void inicializar();

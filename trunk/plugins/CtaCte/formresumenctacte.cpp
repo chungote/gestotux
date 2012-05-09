@@ -306,7 +306,7 @@ void FormResumenCtaCte::pagarTodo()
         QString texto = "Pago total del saldo restante en cuenta corriente.";
         int id_cliente = MCuentaCorriente::idClientePorCtaCte( _numero_cuenta );
         if( id_cliente == -1 ) {
-            QMessageBox::warning( this, "Error", "No se pudo buscar un dato para hacer el recibo. No se realizará nada");
+            QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo buscar un dato para hacer el recibo. No se realizará nada" ) );
             return;
         }
         FormAgregarRecibo *f = new FormAgregarRecibo();

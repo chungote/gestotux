@@ -50,7 +50,7 @@ QWidget * EDRecargos::createEditor( QWidget* parent, const QStyleOptionViewItem 
   {
    QDoubleSpinBox *editor = new QDoubleSpinBox( parent );
    editor->setSuffix( " %" );
-   editor->setRange( 0.0, 100.0 );
+   editor->setRange( 0.0, 999.99 );
    return editor;
    break;
   }
@@ -58,6 +58,7 @@ QWidget * EDRecargos::createEditor( QWidget* parent, const QStyleOptionViewItem 
   {
    QDoubleSpinBox *editor = new QDoubleSpinBox( parent );
    editor->setPrefix( "$ " );
+   editor->setRange( 0.0, 9999999999999999999.999 );
    return editor;
    break;
   }

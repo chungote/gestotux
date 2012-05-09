@@ -545,7 +545,7 @@ bool MCuentaCorriente::existeCuentaCliente( const int id_cliente )
 int MCuentaCorriente::idClientePorCtaCte(const QString numero_cuenta)
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_cliente FROM ctacte WHERE id_ctacte = %1" ).arg( numero_cuenta ) ) ) {
+    if( cola.exec( QString( "SELECT id_cliente FROM ctacte WHERE numero_cuenta = %1" ).arg( numero_cuenta ) ) ) {
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
