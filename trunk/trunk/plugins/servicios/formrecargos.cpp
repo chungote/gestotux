@@ -71,6 +71,8 @@ FormRecargos::FormRecargos( QWidget *parent, Qt::WFlags fl ) :
     TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
     TVRecargos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     //TVRecargos->setItemDelegate( new EDRecargos( TVRecargos ) );
+
+    cambioServicio( CBServicios->currentIndex() );
 }
 
 void FormRecargos::cambioServicio( int /*servicio*/ )

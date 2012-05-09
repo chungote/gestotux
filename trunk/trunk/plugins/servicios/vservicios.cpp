@@ -275,12 +275,22 @@ void VServicios::generarFacturacion()
  emit agregarVentana( f );
 }
 
+/*!
+ * \fn VServicios::darDeBaja()
+ * Da de baja el servicio seleccionado
+ */
 void VServicios::darDeBaja()
 {
     if( vista->selectionModel()->selectedRows().count() <= 0 ) {
       QMessageBox::warning( this, "Faltan Datos", "Por favor, seleccione un servicio para darlo de baja" );
       return;
     }
+
+    QMessageBox::StandardButton ret;
+    ret = QMessageBox::question( this, QString::fromUtf8("¿Seguro?" ), QString::fromUtf8( "¿Está seguro que desea dar de baja el servicio seleccionado?" ), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+    if ( ret != QMessageBox::Yes )
+        return;
+
     int id_servicio = modelo->data( modelo->index( vista->currentIndex().row(), 0 ) ).toInt();
     if( qobject_cast<MServicios *>(modelo)->darDeBaja( id_servicio, vista->currentIndex() ) ) {
         QMessageBox::information( this, "Correcto", QString::fromUtf8( "Servicio dado de baja correctamente. \n No se podrá facturar ni asociar clientes a el de ahora en adelante." ) );

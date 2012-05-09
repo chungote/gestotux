@@ -51,7 +51,9 @@ VPagos::VPagos(QWidget *parent)
  vista->setItemDelegateForColumn( 7, new DSiNo( vista ) );
 
  ActCancelarRecibo = new QAction( this );
- ActCancelarRecibo->setText( "Cancelar" );
+ ActCancelarRecibo->setText( "Anular" );
+ ActCancelarRecibo->setIcon( QIcon( ":/imagenes/recibo-anular.png" ) );
+ ActCancelarRecibo->setStatusTip( "Anula los recibos seleccionados" );
  connect( ActCancelarRecibo, SIGNAL( triggered() ), this, SLOT( cancelarPago() ) );
 
  QAction *ActSep = new QAction( this );
@@ -192,14 +194,14 @@ void VPagos::cancelarPago()
     if( indices.size() < 1 )
     {
       QMessageBox::warning( this, "Seleccione un item",
-                      "Por favor, seleccione un item para cancelar",
+                      "Por favor, seleccione un item para anular",
                       QMessageBox::Ok );
       return;
     }
     //Hacer dialogo de confirmacion..
     int ret;
-    ret = QMessageBox::warning( this, "Esta seguro?",
-                      QString( "Esta seguro de cancelar %1 recibo(s)?\n Se eliminaran las operaciones asociadas con este recibo.").arg( indices.size() ),
+    ret = QMessageBox::warning( this, QString::fromUtf8( "¿Esta seguro?" ),
+                      QString( "Esta seguro de anular %1 recibo(s)?\n Se eliminaran las operaciones asociadas con este recibo.").arg( indices.size() ),
                       "Si", "No" );
     if ( ret == 0 )
     {
@@ -210,18 +212,19 @@ void VPagos::cancelarPago()
                    {
                        bool ok;
                        int id_recibo = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
-                       QString razon = QInputDialog::getText( this, "Razón", QString::fromUtf8( "Razón de cancelación:" ), QLineEdit::Normal, QString(), &ok );
+                       QString razon = QInputDialog::getText( this, "Razón", QString::fromUtf8( "Razón de anulación:" ), QLineEdit::Normal, QString(), &ok );
                        NumeroComprobante num = mp->buscarNumeroComprobantePorId( id_recibo );
                        if( mp->cancelarRecibo( id_recibo, razon, QDateTime::currentDateTime() ) ) {
-                           QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue cancelado correctamente" ).arg( num.aCadena() ) );
+                           QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue anulado correctamente" ).arg( num.aCadena() ) );
                        } else {
-                           QMessageBox::warning( this, "Error", QString( "El recibo  %1 <b>no</b> pudo ser cancelado" ).arg( num.aCadena() ) );
+                           QMessageBox::warning( this, "Error", QString( "El recibo  %1 <b>no</b> pudo ser anulado" ).arg( num.aCadena() ) );
                        }
                    }
            }
            delete mp;
            mp = 0;
     }
+    modelo->select();
     return;
 }
 

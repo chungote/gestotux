@@ -246,9 +246,12 @@ bool MGasto::eliminarFila( const int fila ) {
  */
 bool MGasto::existe( QString descripcion, double importe, int categoria )
 {
+    if( descripcion.contains("'") ) {
+        descripcion.replace( "'", "\'" );
+    }
     QSqlQuery cola;
     if( cola.exec(
-        QString("SELECT COUNT(id_gasto) FROM gastos WHERE descripcion = '%1' AND costo = %2 AND id_categoria = %3" )
+        QString("SELECT COUNT(id_gasto) FROM gastos WHERE descripcion = \"%1\" AND costo = %2 AND id_categoria = %3" )
                 .arg( descripcion )
                 .arg( importe )
                 .arg( categoria )

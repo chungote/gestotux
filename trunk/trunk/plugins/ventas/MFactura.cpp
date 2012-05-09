@@ -534,3 +534,22 @@ int MFactura::idFacturaPorComprobante( const QString numero )
  delete n;
  return -1;
 }
+
+/*!
+ * \fn MFactura::fechaUltimaVenta()
+ * Devuelve la fecha de la ultima factura emitida
+ * \returns QDate con la fecha o un QDate invalido si existió un error
+ */
+QDate MFactura::fechaUltimaVenta()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM factura ORDER BY id_factura DESC LIMIT 1" ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar la fecha de la ultima factura" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QDate();
+}
