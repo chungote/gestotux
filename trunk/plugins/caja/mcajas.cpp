@@ -147,7 +147,8 @@ double MCajas::saldo( const int id_caja )
         return cola.record().value("saldo").toDouble();
        } else {
            qWarning( "Error de next en averiguar saldo de caja" );
-        return 0.0;
+           qDebug( QString( "Ejecutado: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+           return 0.0;
        }
    } else {
         qDebug( "Saldo no encontrado" );
