@@ -64,9 +64,10 @@ FormTransferir::FormTransferir(QWidget *parent) :
 
 void FormTransferir::setearCajaOrigen( const int id_caja )
 {
-    // como hacer el mappeo inverso?
+    // como hacer el mappeo inverso
     MCOrigen->setFilter( QString( " id_caja = %1" ).arg( id_caja ) );
     MCOrigen->select();
+    CBOrigen->setCurrentIndex( id_caja );
 }
 
 void FormTransferir::changeEvent(QEvent *e)
