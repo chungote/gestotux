@@ -111,11 +111,7 @@
       <item>
        <layout class="QHBoxLayout" name="hl4">
         <item>
-         <widget class="EDSBPrecio" name="DSBCant">
-          <property name="maximum">
-           <double>9999.989999999999782</double>
-          </property>
-         </widget>
+         <widget class="QSpinBox" name="DSBCant"/>
         </item>
         <item>
          <widget class="ECBProductos" name="CBProducto">
@@ -280,11 +276,6 @@
    <class>ECBClientes</class>
    <extends>QComboBox</extends>
    <header>ecbclientes.h</header>
-  </customwidget>
-  <customwidget>
-   <class>EDSBPrecio</class>
-   <extends>QDoubleSpinBox</extends>
-   <header location="global">edsbprecio.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
