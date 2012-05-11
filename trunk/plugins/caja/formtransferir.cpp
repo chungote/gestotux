@@ -42,21 +42,19 @@ FormTransferir::FormTransferir(QWidget *parent) :
     connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( close() ) );
 
     // Creo los modelos interdependientes
-    MCOrigen = new MCajas( this );
-    CBOrigen->setModel( MCOrigen );
-    CBOrigen->setModelColumn( 1 );
-    MCOrigen->select();
+    CBOrigen->setearTabla( "caja" );
+    CBOrigen->setearCampoId( "id_caja" );
+    CBOrigen->setearCampoTexto( "nombre" );
 
-    MCDestino = new MCajas( this );
-    CBDestino->setModel( MCDestino );
-    CBDestino->setModelColumn( 1 );
-    MCDestino->select();
+    CBDestino->setearTabla( "caja" );
+    CBDestino->setearCampoId( "id_caja" );
+    CBDestino->setearCampoTexto( "nombre" );
 
     CBDestino->setCurrentIndex( -1 );
     CBOrigen->setCurrentIndex( -1 );
 
-    connect( CBDestino, SIGNAL( currentIndexChanged( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
-    connect( CBOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
+    connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
+    connect( CBOrigen, SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
 
     DSBCantidad->setMinimum( 0.0 );
 
@@ -64,10 +62,17 @@ FormTransferir::FormTransferir(QWidget *parent) :
 
 void FormTransferir::setearCajaOrigen( const int id_caja )
 {
-    // como hacer el mappeo inverso
-    MCOrigen->setFilter( QString( " id_caja = %1" ).arg( id_caja ) );
-    MCOrigen->select();
-    CBOrigen->setCurrentIndex( id_caja );
+    CBDestino->setearFiltro( "" );
+    CBOrigen->setearId( id_caja );
+    CBDestino->setearFiltro( QString( " id_caja = %1" ).arg( id_caja ) );
+
+}
+
+void FormTransferir::setearCajaDestino( const int id_caja )
+{
+    CBDestino->setearFiltro( "" );
+    CBDestino->setearId( id_caja );
+    CBOrigen->setearFiltro( QString( " id_caja = %1 " ).arg( id_caja ) );
 }
 
 void FormTransferir::changeEvent(QEvent *e)
@@ -82,37 +87,29 @@ void FormTransferir::changeEvent(QEvent *e)
     }
 }
 
-void FormTransferir::cambioCajaDestino( int indiceDestino )
+void FormTransferir::cambioCajaDestino( int id_caja )
 {
      CBOrigen->disconnect( this, SLOT( cambioCajaOrigen( int ) ) );
      CBDestino->disconnect( this, SLOT( cambioCajaDestino( int ) ) );
      // Busco el ID que se selecciono para filtrar el otro modelo
-     int id_destino = CBDestino->model()->data( CBDestino->model()->index( indiceDestino, 0 ), Qt::EditRole ).toInt();
-     //qDebug( QString( "Filtrando caja: %1 ").arg( id_destino ).toLocal8Bit() );
-     MCOrigen->setFilter( QString( "id_caja NOT IN ( %1 )" ).arg( id_destino ) );
-     MCDestino->setFilter( "" );
-     MCOrigen->select();
-     MCDestino->select();
-     CBDestino->setCurrentIndex( indiceDestino );
-     connect( CBDestino, SIGNAL( currentIndexChanged( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
-     connect( CBOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
+     CBOrigen->setearFiltro( QString( "id_caja NOT IN ( %1 )" ).arg( CBDestino->idActual() ) );
+     CBDestino->setearFiltro( "" );
+     CBDestino->setCurrentIndex( id_caja );
+     connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
+     connect( CBOrigen, SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
 }
 
-void FormTransferir::cambioCajaOrigen( int indiceOrigen )
+void FormTransferir::cambioCajaOrigen( int id_caja )
 {
         CBOrigen->disconnect( this, SLOT( cambioCajaOrigen( int ) ) );
         CBDestino->disconnect( this, SLOT( cambioCajaDestino( int ) ) );
         // Busco el ID que se selecciono para filtrar el otro modelo
-        int id_origen = CBOrigen->model()->data( CBOrigen->model()->index( indiceOrigen, 0 ), Qt::EditRole ).toInt();
-        MCDestino->setFilter( QString( "id_caja NOT IN ( %1 )" ).arg( id_origen ) );
-        MCOrigen->setFilter( "" );
-        MCOrigen->select();
-        MCDestino->select();
-        CBOrigen->setCurrentIndex( indiceOrigen );
-        connect( CBDestino, SIGNAL( currentIndexChanged( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
-        connect( CBOrigen, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
-        DSBCantidad->setMaximum( MCajas::saldo( id_origen ) );
-
+        CBDestino->setearFiltro( QString( "id_caja NOT IN ( %1 )" ).arg( id_caja ) );
+        CBOrigen->setearFiltro( "" );
+        CBOrigen->setearId( id_caja );
+        connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
+        connect( CBOrigen, SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
+        DSBCantidad->setMaximum( MCajas::saldo( id_caja ) );
 }
 
 void FormTransferir::transferir()
@@ -123,14 +120,14 @@ void FormTransferir::transferir()
         return;
     }
     // veo el saldo de la caja
-    double saldo = MCajas::saldo( CBOrigen->model()->data( CBOrigen->model()->index( CBOrigen->currentIndex(), 0 ), Qt::EditRole ).toInt() );
+    double saldo = MCajas::saldo( CBOrigen->idActual() );
     if( DSBCantidad->value() > saldo ) {
         QMessageBox::critical( this, "Error", "El saldo de la caja es insuficiente para la cantidad requerida a transferir" );
         return;
     }
     // Hago la transferencia
-    int id_destino = CBDestino->model()->data( CBDestino->model()->index( CBDestino->currentIndex(), 0 ), Qt::EditRole ).toInt();
-    int id_origen = CBOrigen->model()->data( CBOrigen->model()->index( CBOrigen->currentIndex(), 0 ), Qt::EditRole ).toInt();
+    int id_destino = CBDestino->idActual();
+    int id_origen = CBOrigen->idActual();
     /// Registro el movimiento
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
     MMovimientosCaja *mv = new MMovimientosCaja();

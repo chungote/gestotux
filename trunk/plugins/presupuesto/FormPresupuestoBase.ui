@@ -112,7 +112,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QDoubleSpinBox" name="DSBCant"/>
+         <widget class="QSpinBox" name="DSBCant"/>
         </item>
         <item>
          <widget class="ECBProductos" name="CBProductos">
