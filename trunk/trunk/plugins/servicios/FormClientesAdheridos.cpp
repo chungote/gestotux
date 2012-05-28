@@ -51,7 +51,7 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     TVAdheridos->hideColumn( 0 );
     TVAdheridos->setSelectionBehavior( QAbstractItemView::SelectRows );
     TVAdheridos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
-    modelo->select();
+    //modelo->select();
 
     // Acciones
     //// Dar de baja
@@ -99,9 +99,10 @@ void FormClientesAdheridos::setServicioInicial( int id_servicio )
     if( id_servicio <= 0 )
         return;
 
+    CBServicios->setearId( id_servicio );
     modelo->filtrarPorServicio( id_servicio );
     modelo->select();
-    CBServicios->setearId( id_servicio );
+
 }
 
 void FormClientesAdheridos::cambioServicio( int id_servicio )

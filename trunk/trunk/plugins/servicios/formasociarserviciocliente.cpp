@@ -125,12 +125,19 @@ void FormAsociarServicioCliente::accept()
  MServicios *mservicios = new MServicios();
  if( mservicios->asociarCliente( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) )
  {
-  // Verifico que se cobre lo que falta del período.
-     if( !mservicios->calcularCobroAlta( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) ){
-         QMessageBox::warning( this, "Error", "No se pudo hacer el cobro del periodo inical. Realicelo a mano." );
-         _agregado = false;
-     } else { _agregado = true; }
+     // Verifico que se cobre lo que falta del período.
+     if( CBInicial->isChecked() ) {
+        if( !mservicios->calcularCobroAlta( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) ){
+             QMessageBox::warning( this, "Error", "No se pudo hacer el cobro del periodo inical. Realicelo a mano." );
+            _agregado = false;
+        } else { _agregado = true; }
+     } else {
+        _agregado = true;
+     }
      delete mservicios;
+     if( _agregado ) {
+         QMessageBox::information( this, "Correcto", QString::fromUtf8( "El cliente se adhirió al servicio correctamente" ) );
+     }
      this->close();
  }
  else
