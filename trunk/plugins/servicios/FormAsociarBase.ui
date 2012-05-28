@@ -73,6 +73,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QCheckBox" name="CBInicial">
+     <property name="text">
+      <string>Calcular cargo por adhesión</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
