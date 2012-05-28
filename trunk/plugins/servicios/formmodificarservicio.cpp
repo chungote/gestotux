@@ -8,7 +8,7 @@ FormModificarServicio::FormModificarServicio( MServicios *m, QWidget *parent, Qt
 {
     setupUi( this );
     this->setWindowTitle( "Modificar Servicio" );
-    this->setWindowIcon( QIcon( ":/imagenes/add.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/edit.png" ) );
 
     this->modelo = m;
 
