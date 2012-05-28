@@ -107,6 +107,9 @@ void FormClientesAdheridos::setServicioInicial( int id_servicio )
 
 void FormClientesAdheridos::cambioServicio( int id_servicio )
 {
+    if( id_servicio <= 0 )
+        return;
+
     modelo->filtrarPorServicio( id_servicio );
     modelo->select();
 }
