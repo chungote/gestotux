@@ -52,7 +52,7 @@ QVariant MMovimientosCaja::data(const QModelIndex& item, int role) const
  {
      case 2:
      {
-         return QSqlRelationalTableModel::data( item, role ).toDateTime().toString( Qt::SystemLocaleDate );
+         return QSqlRelationalTableModel::data( item, role ).toDateTime().toString( Qt::SystemLocaleShortDate );
      }
      case 3:
      case 4:

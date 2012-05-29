@@ -291,7 +291,7 @@ bool MPeriodoServicio::existeFacturacion(const int id_servicio)
 }
 
 /*!
- * \fn MPeriodoServicio::getPeriodoActual( const int id_servicio )
+ * \fn MPeriodoServicio::getPeriodoActual( const int id_servicio, bool facturar )
  * Devuelve el numero de periodo correspondiente al servicio a facturar de acuerdo con los ultimos datos dados
  * \param id_servicio Identificador del servicio
  * \param facturar Calcula los datos para el periodo siguiente al actual.
@@ -334,7 +334,13 @@ int MPeriodoServicio::getPeriodoActual( const int id_servicio, bool facturar ) {
             }
             //qDebug( QString::number( cant_dias_periodo ).toLocal8Bit() );
             //qDebug( QString::number( floor( u ) ).toLocal8Bit() );
-            return floor( u );
+            int n = floor( u );
+            if( facturar ) {
+                if( (n+1) > cantidadPeriodos( id_servicio ) ) {
+                    n=1;
+                } else { n++; }
+            }
+            return n;
         }
     } else {
         qDebug( "Servicios::MPeriodoServicio::getPeriodoActual: Error en el exec de la cola actual" );
@@ -395,7 +401,7 @@ QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio, bool
             }
         } else {
             // No hay ningun registro todavía - Es el primer periodo a registrar
-            return MPeriodoServicio::generarFechaInicioPeriodo( id_servicio, MPeriodoServicio::getPeriodoActual( id_servicio ), QDate::currentDate().year() );
+            return MPeriodoServicio::generarFechaInicioPeriodo( id_servicio, MPeriodoServicio::getPeriodoActual( id_servicio, facturar ), QDate::currentDate().year() );
         }
     } else {
         qDebug( "Servicios::MPeriodoServicio::getFechaInicioPeriodoActual: Error en el exec de la cola actual" );

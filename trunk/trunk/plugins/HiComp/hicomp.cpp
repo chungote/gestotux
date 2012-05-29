@@ -30,6 +30,8 @@
 #include <QSqlRecord>
 #include <QSqlError>
 
+#include "EReporte.h"
+
 QString HiComp::nombrePrograma()  const
 {  return QString( "%1 - %2" ).arg( this->empresa() ).arg( this->version() );  }
 

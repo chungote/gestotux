@@ -144,7 +144,8 @@ void VResumenCaja::setearCaja(int id_caja)
 
 void VResumenCaja::cambioCaja( int id )
 {
-    modelo->ultimosMovimientosCaja( id );
+    if( id > 0 )
+        modelo->ultimosMovimientosCaja( id );
 }
 
 void VResumenCaja::ingreso() {

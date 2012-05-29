@@ -39,6 +39,9 @@ protected slots:
     void agregarRecargo();
     void cambiarBaja( bool estado );
 
+signals:
+    void actualizarVista();
+
 private:
     MServicios *modelo;
     bool _modificando;

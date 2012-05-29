@@ -140,14 +140,14 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->_periodo = mp->getPeriodoActual( this->_id_servicio, true );
     this->_ano = mp->getAnoActual( this->_id_servicio, true );
     this->_fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio, true );
-    //if( _fecha_inicio.isValid() ) { qDebug( QString( "Fecha de inicio valida. %1 " ).arg( _fecha_inicio.toString() ).toLocal8Bit() ); }
     this->LPeriodo->setText(
         QString( " %1/%2 desde %3 hasta %4 " )
                 .arg( this->_periodo )
                 .arg( this->_ano )
                 .arg( _fecha_inicio.toString( Qt::SystemLocaleShortDate ) )
-                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, _fecha_inicio ).toString( Qt::SystemLocaleShortDate) )
+                .arg( mp->obtenerFechaFinPeriodo( this->_id_servicio, _fecha_inicio ).toString( Qt::SystemLocaleShortDate ) )
     );
+    delete mp;
     // Cargo los clientes del servicio
     MTempClientesFacturarServicio *mc = new MTempClientesFacturarServicio( this );
     // Cargo los clientes
