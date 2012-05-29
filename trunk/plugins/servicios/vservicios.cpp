@@ -24,6 +24,9 @@
 #include "formservicio.h"
 #include "FormFacturarServicio.h"
 #include "mperiodoservicio.h"
+#include "vlistaperiodos.h"
+#include "FormClientesAdheridos.h"
+#include "formrecargos.h"
 
 #include <QTableView>
 #include <QAction>
@@ -112,14 +115,21 @@ VServicios::VServicios(QWidget *parent)
  addAction( ActVerDadosBaja );
 }
 
+/*!
+ * \fn VServicios::agregar( bool autoeliminarid )
+ * Slot llamado para agregar un servicio
+ */
 void VServicios::agregar( bool /*autoeliminarid*/ )
 {
   FormServicio *f = new FormServicio( qobject_cast<MServicios *>( this->modelo ) );
+  connect( f, SIGNAL( actualizarVista() ), this, SLOT( actualizarVista() ) );
   emit agregarVentana( f );
 }
 
 /*!
-    \fn VServicios::modificar( const QModelIndex &idx )
+ * \fn VServicios::modificar( const QModelIndex &idx )
+ * Slot llamado para modificar los datos de un servicio
+ * \param idx Indice a modificar
  */
 void VServicios::modificar( const QModelIndex &idx )
 {
@@ -136,9 +146,14 @@ void VServicios::modificar( const QModelIndex &idx )
     }
     FormServicio *f = new FormServicio( qobject_cast<MServicios *>(this->modelo ) );
     f->setearId( id_servicio, idx.model()->index( idx.row(), 0 ) );
+    connect( f, SIGNAL( actualizarVista() ), this, SLOT( actualizarVista() ) );
     emit agregarVentana( f );
 }
 
+/*!
+ * \fn VServicios::modificar()
+ * Slot llamado para modificar el item seleccionado
+ */
 void VServicios::modificar()
 {
     if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
@@ -177,7 +192,10 @@ void VServicios::eliminar()
 
 
 /*!
-    \fn VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
+ * \fn VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
+ * Slot llamado para generar el menú contextual del servicio
+ * \param indice Indice desde donde se solicita el menú
+ * \param menu Menu contextual
  */
 void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
@@ -195,7 +213,8 @@ void VServicios::menuContextual( const QModelIndex &indice, QMenu *menu )
 
 
 /*!
-    \fn VServicios::darAltaServicioCliente()
+ * \fn VServicios::darAltaServicioCliente()
+ * Slot llamado para dar de alta un cliente a un servicio
  */
 void VServicios::darAltaServicioCliente()
 {
@@ -217,10 +236,10 @@ void VServicios::darAltaServicioCliente()
  f->exec();
 }
 
-#include "FormClientesAdheridos.h"
+
 /*!
-    \fn VServicios::verClientesAdheridos()
-    LLama al formulario que muestra la lista de clientes que estan adheridos al servicio
+ * \fn VServicios::verClientesAdheridos()
+ * LLama al formulario que muestra la lista de clientes que estan adheridos al servicio
  */
 void VServicios::verClientesAdheridos()
 {
@@ -235,10 +254,10 @@ void VServicios::verClientesAdheridos()
  emit agregarVentana( f );
 }
 
-#include "formrecargos.h"
+
 /*!
-    \fn VServicios::verRecargos()
-    Llama al formulario que muestra los recargos por servicio
+ * \fn VServicios::verRecargos()
+ * Llama al formulario que muestra los recargos por servicio
  */
 void VServicios::verRecargos()
 {
@@ -255,7 +274,8 @@ void VServicios::verRecargos()
 }
 
 /*!
- * @fn VServicios::generarFacturacion()
+ * \fn VServicios::generarFacturacion()
+ * Abre la ventana para generar la facturacion
  */
 void VServicios::generarFacturacion()
 {
@@ -301,7 +321,10 @@ void VServicios::darDeBaja()
     }
 }
 
-#include "vlistaperiodos.h"
+/*!
+ * \fn VServicios::verPeriodos()
+ * Slot llamado para ver los periodos facturados
+ */
 void VServicios::verPeriodos()
 {
     // Busco el servicio que esta seleccionado
@@ -317,6 +340,18 @@ void VServicios::verPeriodos()
     emit agregarVentana( new VListaPeriodos( id_servicio ) );
 }
 
+/*!
+ * \fn VServicios::actualizarVista()
+ * Actualiza el listado luego de las modificaciones
+ */
+void VServicios::actualizarVista()
+{  modelo->select();  }
+
+/*!
+ * \fn VServicios::cambioVerBaja( bool estado )
+ * Slot llamado cuando se cambia la acción de ver dados de baja
+ * \param estado Estado de la accion
+ */
 void VServicios::cambioVerBaja( bool estado )
 {
     if( estado ) {

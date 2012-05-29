@@ -124,6 +124,7 @@ void FormServicio::guardar()
            ) )
          {
              QMessageBox::information( this, "Correcto", "El servicio fue dado de alta correctamente" );
+             emit actualizarVista();
              this->close();
              return;
          } else {

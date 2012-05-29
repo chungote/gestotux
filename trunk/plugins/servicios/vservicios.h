@@ -42,6 +42,7 @@ protected slots:
     void generarFacturacion();
     void darDeBaja();
     void verPeriodos();
+    void actualizarVista();
 
 private slots:
     void modificar( const QModelIndex &indice );

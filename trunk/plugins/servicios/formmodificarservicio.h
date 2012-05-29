@@ -23,6 +23,9 @@ protected slots:
     void guardar();
     void cambiarBaja( bool estado );
 
+signals:
+    void actualizarVista();
+
 private:
     MServicios *modelo;
     QDataWidgetMapper *mapa;

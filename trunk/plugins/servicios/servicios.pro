@@ -48,7 +48,6 @@ HEADERS =  ../caja/mcajas.h \
            ../ventas/mitemfactura.h \
            mperiodoservicio.h \
            mcobroservicioclienteperiodo.h \
-           formmodificarservicio.h \
            FormVerificarRecargos.h \
            eserviciosdelegate.h \
            vlistaperiodos.h \
@@ -77,7 +76,6 @@ SOURCES =  servicios.cpp \
            ../ventas/mitemfactura.cpp \
            mperiodoservicio.cpp \
            mcobroservicioclienteperiodo.cpp \
-           formmodificarservicio.cpp \
            FormVerificarRecargos.cpp \
            eserviciosdelegate.cpp \
            vlistaperiodos.cpp \

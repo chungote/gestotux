@@ -74,6 +74,9 @@
    </item>
    <item>
     <widget class="QCheckBox" name="CBInicial">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>Calcular cargo por adhesión</string>
      </property>
