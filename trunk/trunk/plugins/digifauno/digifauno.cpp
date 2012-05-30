@@ -334,4 +334,21 @@ QImage DigiFauno::imagenPrograma() const
 QAction *DigiFauno::botonPantallaInicial()
 {}
 
+QString DigiFauno::reporte( int tipo )
+{
+    // Lista de reportes por default
+    switch( tipo ) {
+        case EReporte::Presupuesto:
+        { return "Presupuesto"; break; }
+        case EReporte::Factura:
+        { return "Factura"; break; }
+        case EReporte::Recibo:
+        { return "Recibo"; break; }
+        case EReporte::AnulacionFactura:
+        { return "AnulacionFactura"; break; }
+        default:
+        { return QString(); }
+    }
+}
+
 Q_EXPORT_PLUGIN2( adigifauno, DigiFauno );

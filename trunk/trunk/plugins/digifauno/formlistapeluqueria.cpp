@@ -38,7 +38,7 @@ FormListaPeluqueria::FormListaPeluqueria( QWidget* parent )
 	ActAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
 	ActAgregar->setShortcut( QKeySequence( "Ctrl+a" ) );
 	DigiFauno *digifauno = qobject_cast<DigiFauno *>(parent);
-	connect( ActAgregar, SIGNAL( triggered() ), digifauno, SLOT( agregarServicioPeluqueria() ) );
+        connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregarServicioPeluqueria() ) );
 	this->addAction( ActAgregar );
 
 	QAction *ActBorrar = new QAction( "Borrar", this );
@@ -229,4 +229,10 @@ void FormListaPeluqueria::crear_filtro()
  modelo->setFilter( filtro );
  modelo->select();
 //  qDebug( QString( "Cambiado filtro a: %1" ).arg( modelo->filter() ).toLocal8Bit() );
+}
+
+#include "formagregarservicio.h"
+void FormListaPeluqueria::agregarServicioPeluqueria()
+{
+  emit agregarVentana( new FormAgregarServicio( ) );
 }

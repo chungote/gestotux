@@ -57,6 +57,7 @@ public:
     QImage imagenPrograma() const;
     bool verificarTablas( QStringList lista );
     QAction *botonPantallaInicial();
+    QString reporte( int tipo );
 
 signals:
     void agregarVentana( QWidget *ventana );
