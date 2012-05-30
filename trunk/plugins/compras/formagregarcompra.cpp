@@ -184,7 +184,11 @@ void FormAgregarCompra::guardar()
      } else {
          // El sistema ajusta automaticamente el precio de compra pero no el de venta.
          double precio_anterior = MProductos::buscarPrecioCompra( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() );
-         if( ( precio_anterior - mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() ) != 0 ) {
+         if( precio_anterior <= 0.0 ) {
+             qDebug( "Error de precio de compra en formagregarcompra" );
+             continue;
+         }
+         if( ( precio_anterior - mcp->data( mcp->index( i, 2 ), Qt::EditRole ).toDouble() ) != 0.0 ) {
              // Actualizo el precio de venta
              preferencias *p = preferencias::getInstancia();
              p->beginGroup( "Preferencias" );
@@ -198,13 +202,16 @@ void FormAgregarCompra::guardar()
                                                             QString( "Ingrese el nuevo precio de venta para %1:" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ),
                                                             precio_calculado,
                                                             0.01, 2147483647, 2, &ok );
-             if( !MProductos::actualizarPrecioVenta( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), precio_venta ) ) {
-                 qWarning( QString( "No se pudo actualizar el precio de venta del producto %1" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ).toLocal8Bit() );
+             if( ok ) {
+                if( !MProductos::actualizarPrecioVenta( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), precio_venta ) ) {
+                     qWarning( QString( "No se pudo actualizar el precio de venta del producto %1" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ).toLocal8Bit() );
+                }
              }
          }
      }
      if( parar ) {
          // Paro el agregar para que le de tiempo al cliente para llenar los datos del producto
+         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
          return;
      }
      preferencias *p = preferencias::getInstancia();

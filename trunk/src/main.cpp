@@ -43,8 +43,7 @@
 #include <QPluginLoader>
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
-
-#define NOMBRE_CONEXION "gestotux"
+#include "EReporte.h"
 
 FILE *debug;
 /*!

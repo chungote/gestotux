@@ -23,6 +23,7 @@
 #include <QObject>
 #include <eplugin.h>
 #include "../../src/einfoprogramainterface.h"
+#include "EReporte.h"
 
 /**
  * \brief Plugin info predeterminado

@@ -20,9 +20,6 @@
         <file>imagenes/aplicar.png</file>
         <file>imagenes/otras.png</file>
         <file>imagenes/general.png</file>
-        <file>imagenes/backup.png</file>
-        <file>imagenes/backup1.png</file>
-        <file>imagenes/backup2.png</file>
         <file>imagenes/add_user.png</file>
         <file>imagenes/delete_user.png</file>
         <file>imagenes/search_user.png</file>
@@ -52,6 +49,9 @@
         <file>imagenes/email.png</file>
         <file>imagenes/inicio.png</file>
         <file>imagenes/listaclientes.png</file>
+        <file>imagenes/backup.png</file>
+        <file>imagenes/backup1.png</file>
+        <file>imagenes/backup2.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>tablas.QSQLITE.sql</file>
