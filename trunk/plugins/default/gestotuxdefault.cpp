@@ -53,8 +53,20 @@ bool GestotuxDefault::inicializar()
     return true;
 }
 
-bool GestotuxDefault::verificarTablas( QStringList /*tablas*/ )
-{ return true; }
+bool GestotuxDefault::verificarTablas( QStringList tablas )
+{
+    if( !tablas.contains( "paises" ) ) {
+        qDebug( "No se encontró la tabla de paises" );
+        return false;
+    } else if( !tablas.contains( "provincias" ) ) {
+        qDebug( "No se encontró la tabla de provincias" );
+        return false;
+    } else if( !tablas.contains( "estado_fiscal" ) ) {
+        qDebug( "No se encontró la tabla de estados_fiscales" );
+        return false;
+    }
+    return true;
+}
 
 int GestotuxDefault::tipo() const
 { return EPlugin::info; }

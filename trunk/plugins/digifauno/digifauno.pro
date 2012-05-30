@@ -40,11 +40,12 @@ CONFIG += warn_on \
           plugin \
           help
 
-QT += sql
+QT += sql \
+      xml
 
 RESOURCES = embebido.qrc
 
-FORMS += FormAgregarMascota.ui \
+FORMS = FormAgregarMascota.ui \
          FormServPeluqueria.ui \
          FPrefGeneral.ui \
          FormPrefOpcionesBase.ui \
@@ -63,8 +64,12 @@ LIBS += ../../bin/libutiles.a
 TRANSLATIONS += digifauno.ts
 
 INCLUDEPATH += ../../src \
-               ../../utiles
+               ../../utiles \
+               ../../reporte
 
 TARGET = digifauno
 
 PRE_TARGETDEPS += ../../bin/libutiles.a
+
+OTHER_FILES = digifauno.QMYSQL.sql \
+              digifauno.QSQLITE.sql

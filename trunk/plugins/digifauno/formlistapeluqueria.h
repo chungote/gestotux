@@ -44,6 +44,7 @@ protected slots:
     void cambioIndice( int indice );
     void cambioFecha( const QDate &fecha );
     void borrar();
+    void agregarServicioPeluqueria();
 private:
     void crear_filtro();
 };
