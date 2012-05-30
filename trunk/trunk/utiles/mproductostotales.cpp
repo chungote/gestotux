@@ -193,9 +193,9 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                         // Busco el precio de venta este producto
                                         double precio = 0.0;
                                         if( this->_tipoPrecio ==  MProductosTotales::Costo ) {
-                                                precio = buscarPrecioVenta( value.toInt() );
-                                        } else if( this->_tipoPrecio == MProductosTotales::Venta ){
                                                 precio = buscarPrecioCompra( value.toInt() );
+                                        } else if( this->_tipoPrecio == MProductosTotales::Venta ){
+                                                precio = buscarPrecioVenta( value.toInt() );
                                         }
                                         this->setData( this->index( index.row(), 2 ), QVariant::fromValue( precio ), Qt::EditRole );
                                         //qDebug( qPrintable( QString( "buscando precio para id: %1 en row %2" ).arg( value.toInt() ).arg( index.row() ) ) );

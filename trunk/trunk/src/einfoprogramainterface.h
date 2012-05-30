@@ -24,7 +24,6 @@
 #include <QString>
 #include <QIcon>
 #include <QImage>
-#include "EReporte.h"
 
 /*!
  *  \brief Interfaz de informacion del programa
