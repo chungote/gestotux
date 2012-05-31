@@ -45,7 +45,8 @@ PRE_TARGETDEPS += ../../bin/libutiles.a \
 INCLUDEPATH += ../../src \
                ../../utiles \
                ../../reporte \
-               ../descuentos
+               ../descuentos \
+               ../ventas
 
 OTHER_FILES += presupuesto.QSQLITE.sql \
                presupuesto.QMYSQL.sql

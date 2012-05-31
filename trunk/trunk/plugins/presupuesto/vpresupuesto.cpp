@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "vpresupuesto.h"
+
 #include <QTableView>
 #include <QModelIndex>
 #include <QModelIndexList>
@@ -28,6 +29,10 @@
 #include "EReporte.h"
 #include "mpresupuesto.h"
 #include "mvpresupuestos.h"
+#include "vlistapresupuesto.h"
+#include "formagregarventa.h"
+#include "mdescuentos.h"
+#include "mproductostotales.h"
 
 VPresupuesto::VPresupuesto(QWidget *parent)
  : EVLista(parent)
@@ -52,12 +57,18 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  ActVerContenido->setStatusTip( "Muestra los items que componen el presupuesto" );
  connect( ActVerContenido, SIGNAL( triggered() ), this, SLOT( verContenido() ) );
 
+ ActAFactura = new QAction( this );
+ ActAFactura->setText( "Facturar" );
+ ActAFactura->setStatusTip( "Pasa el presupuesto seleccionado a factura" );
+ connect( ActAFactura, SIGNAL( triggered() ), this, SLOT( aFactura() ) );
+
  addAction( ActAgregar );
  addAction( ActModificar );
  addAction( ActVerContenido );
  addAction( ActEliminar );
  addAction( ActImprimir );
  addAction( ActPdf );
+ addAction( ActAFactura );
  addAction( ActBuscar );
  addAction( ActCerrar );
 }
@@ -156,7 +167,6 @@ void VPresupuesto::menuContextual( const QModelIndex &indice, QMenu *menu )
  return;
 }
 
-#include "vlistapresupuesto.h"
 /*!
  * \fn VPresupuesto::verContenido()
  * Muestra la lista de contenido del presupuesto
@@ -209,4 +219,56 @@ void VPresupuesto::eliminar()
         }
     }
     modelo->select();
+}
+
+/*!
+ * \fn VPresupuesto::aFactura()
+ * Genera una factura con el primer item seleccionado
+ */
+void VPresupuesto::aFactura()
+{
+    QModelIndexList lista = vista->selectionModel()->selectedRows();
+    if( lista.isEmpty() ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione un presupuesto para eliminar", QMessageBox::Ok );
+        return;
+    }
+    // Obtengo los datos
+    QModelIndex idx = lista.first();
+    int id_presupuesto = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    int id_cliente = MPresupuesto::obtenerIdCliente( id_presupuesto );
+    QDate fecha = MPresupuesto::obtenerFecha( id_presupuesto );
+    MProductosTotales *mp = new MProductosTotales();
+    // Cargo todos los datos de los items
+    MItemPresupuesto *m = new MItemPresupuesto();
+    m->setearId( id_presupuesto );
+    m->select();
+    for( int i=0; i<m->rowCount(); i++ ) {
+        mp->agregarItem(
+                    m->data( m->index( i, 2 ), Qt::EditRole ).toDouble(),
+                    m->data( m->index( i, 3 ), Qt::EditRole ).toString(),
+                    m->data( m->index( i, 4 ), Qt::EditRole ).toDouble()
+                    );
+    }
+    delete m;
+    // Cargo los datos si es necesario.
+    MDescuentos *md = new MDescuentos();
+    md->setearIdComprobante( id_presupuesto );
+    md->setearTipo( MDescuentos::Presupuesto );
+    if( md->existenDatos() ) {
+        md->seleccionarDatos();
+        for( int i=0; i<md->rowCount(); i++ ) {
+            mp->agregarDescuento(
+                    md->data( md->index( i, 1 ), Qt::DisplayRole ).toString(),
+                    md->data( md->index( i, 2 ), Qt::EditRole ).toDouble()
+                    );
+        }
+    }
+    delete md;
+
+    FormAgregarVenta *fv = new FormAgregarVenta();
+    emit agregarVentana( fv );
+    fv->setearCliente( id_cliente );
+    fv->setearFecha( fecha );
+    fv->setearItems( mp );
+    mp = 0;
 }

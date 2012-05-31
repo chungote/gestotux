@@ -36,6 +36,9 @@ class FormAgregarVenta : public EVentana, private Ui::FormAgregarVentaBase
 Q_OBJECT
 public:
         FormAgregarVenta ( QWidget* parent = 0, Qt::WFlags fl = 0 );
+        void setearCliente( int id_cliente );
+        void setearFecha( QDate fecha );
+        void setearItems( MProductosTotales *m );
 
 protected slots:
     void agregarProducto();
