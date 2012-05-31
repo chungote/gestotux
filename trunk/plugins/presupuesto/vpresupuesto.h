@@ -42,10 +42,12 @@ protected slots:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
     void modificar();
     void eliminar();
+    void aFactura();
 
 private:
     QModelIndex indiceMenu;
     QAction *ActVerContenido;
+    QAction *ActAFactura;
 
 };
 

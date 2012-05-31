@@ -424,3 +424,38 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
  }
  return;
 }
+
+/*!
+ * \fn FormAgregarVenta::setearCliente( int id_cliente )
+ * Setea el numero de cliente
+ */
+void FormAgregarVenta::setearCliente( int id_cliente ) {
+    if( id_cliente < 0 )
+        id_cliente = 0;
+
+    this->CBCliente->setearId( id_cliente );
+}
+
+/*!
+ * \fn FormAgregarVenta::setearFecha( QDate fecha )
+ * Setea la fecha para la factura
+ */
+void FormAgregarVenta::setearFecha( QDate fecha )
+{
+    if( !fecha.isValid() )
+        return;
+
+    this->DEFecha->setDate( fecha );
+}
+
+/*!
+ * \fn FormAgregarVenta::setearItems( mProductosTotales *m )
+ * Setea el listado de items pasado como parametro
+ */
+void FormAgregarVenta::setearItems( MProductosTotales *m )
+{
+    m->setParent( this );
+    this->mcp = m;
+    this->TVProductos->setModel( this->mcp );
+    this->TVProductos->update();
+}

@@ -261,3 +261,49 @@ bool MPresupuesto::eliminarPresupuesto(int id_presupuesto)
     }
 
 }
+
+/*!
+ * \fn MPresupuesto::obtenerFecha( int id_presupuesto )
+ * Obtiene la fecha del presuupesto pasado como parametro. Si es incorrecto o hay error, la fecha será invalida.
+ * \param id_presupuesto Identificador del presupuesto
+ */
+QDate MPresupuesto::obtenerFecha( int id_presupuesto )
+{
+    if( id_presupuesto < 1 ) {
+        return QDate();
+    }
+
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qDebug( "Error al obtener la fecha del presupuesto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return QDate();
+    }
+}
+
+/*!
+ * \fn MPresupuesto::obtenerIdCliente( int id_presupuesto )
+ * Obtiene el id de cliente del presuupesto pasado como parametro. Si es incorrecto o hay error, el id será menor que cero
+ * \param id_presupuesto Identificador del presupuesto
+ */
+int MPresupuesto::obtenerIdCliente( int id_presupuesto )
+{
+    if( id_presupuesto < 1 )
+        return -1;
+
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_cliente FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+        cola.next();
+        return cola.record().value(0).toInt();
+    } else {
+        qDebug( "Error al obtener la fecha del presupuesto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        return -1;
+    }
+}
+

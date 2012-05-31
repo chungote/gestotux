@@ -19,14 +19,16 @@
  ***************************************************************************/
 #include "vventas.h"
 
-#include "eactcerrar.h"
-#include "MFactura.h"
 #include <QIcon>
 #include <QTableView>
-#include "MVFacturas.h"
 #include <QMessageBox>
 #include <QInputDialog>
+
+#include "MVFacturas.h"
 #include "EReporte.h"
+#include "eactcerrar.h"
+#include "MFactura.h"
+#include "formagregarrecibo.h"
 
 VVentas::VVentas(QWidget *parent)
  : EVLista(parent)
@@ -79,7 +81,7 @@ VVentas::VVentas(QWidget *parent)
 
     this->addAction( ActAgregar );
     this->addAction( ActVerItems );
-    //this->addAction( ActPagar );
+    this->addAction( ActPagar );
     this->addAction( ActAnular );
     this->addAction( ActSep );
     this->addAction( ActVerAnuladas );
@@ -172,11 +174,12 @@ void VVentas::pagar()
         texto_recibo.append( this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString() );
         texto_recibo.append( '\n' );
     }
+    // Busco el numero de cliente
+    int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
     // Abro la ventana del recibo
-    /*FormAgregarRecibo *f = new FormAgregarRecibo();
-    f->TETexto->setText( texto_recibo );
-    f->dSBPagado->setValue( total );
-    emit agregarVentana( f );*/
+    FormAgregarRecibo *f = new FormAgregarRecibo();
+    f->setearDatos( id_cliente, texto_recibo, total );
+    emit agregarVentana( f );
     return;
 }
 

@@ -1,4 +1,5 @@
 TEMPLATE = lib
+
 CONFIG += dll \
           plugin \
           help
@@ -46,6 +47,7 @@ DESTDIR = ../../bin/plugins/
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
+
 PRE_TARGETDEPS += ../../bin/libutiles.a \
                    ../../bin/libreporte.a
 
@@ -58,7 +60,8 @@ INCLUDEPATH +=  ../../src \
                 ../productos \
                 ../CtaCte \
                 ../caja \
-                ../descuentos
+                ../descuentos \
+                ../pagos
 
 RESOURCES += ventas.qrc
 
