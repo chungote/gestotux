@@ -52,7 +52,8 @@ PRE_TARGETDEPS += ../../bin/libutiles.a \
                    ../../bin/libreporte.a
 
 FORMS += FormAgregarVentaBase.ui \
-         FormPrefVentaBase.ui
+         FormPrefVentaBase.ui \
+         ../pagos/FormReciboBase.ui
 
 INCLUDEPATH +=  ../../src \
                 ../../utiles \

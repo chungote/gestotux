@@ -18,7 +18,11 @@ HEADERS += presupuesto.h \
            ../descuentos/mdescuentos.h \
            ../ventas/formagregarventa.h \
            ../ventas/MFactura.h \
-           ../CtaCte/MCuentaCorriente.h
+           ../ventas/MItemFactura.h \
+           ../CtaCte/MCuentaCorriente.h \
+           ../CtaCte/MItemCuentaCorriente.h \
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h
 
 SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
@@ -32,9 +36,14 @@ SOURCES += presupuesto.cpp \
            ../descuentos/mdescuentos.cpp \
            ../ventas/formagregarventa.cpp \
            ../ventas/MFactura.cpp \
-           ../CtaCte/MCuentaCorriente.cpp
+           ../ventas/MItemFactura.cpp \
+           ../CtaCte/MCuentaCorriente.cpp \
+           ../CtaCte/MItemCuentaCorriente.cpp \
+           ../caja/mcajas.cpp \
+           ../caja/mmovimientoscaja.cpp
 
-FORMS += FormPresupuestoBase.ui
+FORMS += FormPresupuestoBase.ui \
+         ../ventas/FormAgregarVentaBase.ui
 
 TARGET = presupuesto
 
