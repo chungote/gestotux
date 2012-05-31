@@ -15,7 +15,10 @@ HEADERS += presupuesto.h \
            mvpresupuestos.h \
            vlistapresupuesto.h \
            formmodificarpresupuesto.h \
-           ../descuentos/mdescuentos.h
+           ../descuentos/mdescuentos.h \
+           ../ventas/formagregarventa.h \
+           ../ventas/MFactura.h \
+           ../CtaCte/MCuentaCorriente.h
 
 SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
@@ -26,7 +29,10 @@ SOURCES += presupuesto.cpp \
            mvpresupuestos.cpp \
            vlistapresupuesto.cpp \
            formmodificarpresupuesto.cpp \
-           ../descuentos/mdescuentos.cpp
+           ../descuentos/mdescuentos.cpp \
+           ../ventas/formagregarventa.cpp \
+           ../ventas/MFactura.cpp \
+           ../CtaCte/MCuentaCorriente.cpp
 
 FORMS += FormPresupuestoBase.ui
 
@@ -46,7 +52,10 @@ INCLUDEPATH += ../../src \
                ../../utiles \
                ../../reporte \
                ../descuentos \
-               ../ventas
+               ../ventas \
+               ../productos \
+               ../CtaCte \
+               ../caja
 
 OTHER_FILES += presupuesto.QSQLITE.sql \
                presupuesto.QMYSQL.sql

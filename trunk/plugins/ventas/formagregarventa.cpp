@@ -456,6 +456,7 @@ void FormAgregarVenta::setearItems( MProductosTotales *m )
 {
     m->setParent( this );
     this->mcp = m;
+    mcp->calcularTotales( true );
     this->TVProductos->setModel( this->mcp );
     this->TVProductos->update();
 }
