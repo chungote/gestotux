@@ -161,6 +161,7 @@ void VPresupuesto::menuContextual( const QModelIndex &indice, QMenu *menu )
  menu->addAction( ActVerContenido );
  menu->addAction( ActImprimir );
  menu->addAction( ActPdf );
+ menu->addAction( ActAFactura );
  menu->addSeparator();
  menu->addAction( ActAgregar );
  indiceMenu = indice;
