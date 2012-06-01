@@ -29,6 +29,7 @@
 #include "vmascota.h"
 #include "eresumen.h"
 #include "formlistapeluqueria.h"
+#include "EReporte.h"
 
 /*!
     \fn DigiFauno::duenos()
@@ -114,7 +115,7 @@ bool DigiFauno::inicializar()
  ////////////////////////////////
  // Muestra los miembros
  ////////////////////////////////
- ActDuenos = new QAction( "Dueños", this );
+ ActDuenos = new QAction( QString::fromUtf8("Dueños"), this );
  ActDuenos->setStatusTip( "Muestra todos los dueños" );
  ActDuenos->setIcon( QIcon( ":/imagenes/duenos.png" ) );
  connect( ActDuenos, SIGNAL( triggered() ), this, SLOT( duenos() ) );
@@ -255,17 +256,15 @@ QWidgetList DigiFauno::formsPreferencias()
  */
 void DigiFauno::crearMenu( QMenuBar* m )
 {
-QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHerramientas == 0 )
- {
-  qDebug( "Error en las baras de menu" );
- }
- else
- {
-  menuHerramientas->addAction( ActDuenos );
-  menuHerramientas->addAction( ActMascotas );
-  menuHerramientas->addAction( ActPeluqueria );
- }
+ QMenu *mpelu = m->addMenu( "Peluqueria" );
+ mpelu->addAction( ActDuenos );
+ mpelu->addAction( ActMascotas );
+ mpelu->addAction( ActPeluqueria );
+ mpelu->addSeparator();
+ mpelu->addAction( ActResumenDiario );
+ mpelu->addAction( ActResumenMensual );
+ mpelu->addAction( ActResumenAnual );
+ mpelu->addAction( ActResumenEntreFechas );
 }
 
 
@@ -293,7 +292,7 @@ QString DigiFauno::empresa() const
         @return Nombre del socio
  */
 QString DigiFauno::companeros()
-{ return "Daniel Sequeira"; }
+{ return "Contacto y verificacion: \n Daniel Sequeira \n <daniels591@gmail.com> Boot System Computacion"; }
 
 
 /*!
@@ -329,10 +328,10 @@ void DigiFauno::seCierraGestotux()
 }
 
 QImage DigiFauno::imagenPrograma() const
-{ return QImage(); }
+{ return QImage( ":/imagenes/icono.png"); }
 
 QAction *DigiFauno::botonPantallaInicial()
-{}
+{ return new QAction( 0 ); }
 
 QString DigiFauno::reporte( int tipo )
 {

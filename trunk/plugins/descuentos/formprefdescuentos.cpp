@@ -34,22 +34,21 @@ FormPrefDescuentos::FormPrefDescuentos(QWidget *parent) :
 
 void FormPrefDescuentos::guardar()
 {
-    preferencias *p = preferencias::getInstancia();
-    p->inicio();
-    p->beginGroup( "Preferencias" );
-    p->beginGroup( "Descuentos" );
-    p->value( "usar", GBDescuentos->isChecked() );
-    p->endGroup();
-    p->endGroup();
     if( !mdescuentos->submitAll() ) {
         QMessageBox::warning( this, "Error", "No se pudieron guardar los descuentos modificados" );
     }
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Descuentos" );
+    p->setValue( "usar", GBDescuentos->isChecked() );
+    p->endGroup();
+    p->endGroup();
+
 }
 
 void FormPrefDescuentos::cargar()
 {
     preferencias *p = preferencias::getInstancia();
-    p->inicio();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "Descuentos" );
     GBDescuentos->setChecked( p->value( "usar", true ).toBool() );

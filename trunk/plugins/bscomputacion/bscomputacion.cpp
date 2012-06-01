@@ -19,7 +19,9 @@
  ***************************************************************************/
 #include <QAction>
 #include <QSqlDatabase>
+
 #include "bscomputacion.h"
+#include "EReporte.h"
 
 bool BSComputacion::inicializar()
 {
