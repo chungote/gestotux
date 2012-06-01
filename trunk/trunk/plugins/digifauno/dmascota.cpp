@@ -100,7 +100,7 @@ void DMascota::setModelData( QWidget * editor, QAbstractItemModel * model, const
     \fn DMascota::updateEditorGeometry ( QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index )
 	Redimensiona la geometria del editor para que calce en el espacio especificado
 	@param editor Puntero convertible al editor
-	@param option Opcion que contiene el tamaño a redimensionar
+	@param option Opcion que contiene el tamaÃ±o a redimensionar
 	@param index Indice que se esta actualizando
  */
 void DMascota::updateEditorGeometry ( QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index )

@@ -26,8 +26,8 @@ FormPrefOpciones::FormPrefOpciones( QWidget* parent )
 {
  setupUi(this);
  this->setAttribute( Qt::WA_DeleteOnClose );
- this->setWindowTitle( "Opciones Generales" );
- this->setWindowIcon( QIcon( ":/imagenes/general.png" ) );
+ this->setWindowTitle( "Peluqueria" );
+ this->setWindowIcon( QIcon( ":/imagenes/icono.png" ) );
 }
 
 FormPrefOpciones::~FormPrefOpciones()

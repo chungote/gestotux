@@ -17,8 +17,6 @@ DESTDIR = ../../bin/plugins/
 
 PRE_TARGETDEPS += ../../bin/libreporte.a \
                   ../../bin/libutiles.a
-#FORMS += FormReciboBase.ui \
-#         FormPrefRecibos.ui
 
 INCLUDEPATH += ../../src \
                ../../reporte \
@@ -29,9 +27,5 @@ INCLUDEPATH += ../../src \
 LIBS += ../../bin/libreporte.a \
         ../../bin/libutiles.a
 
-#TRANSLATIONS += pagos.ts
-
 RESOURCES = bscomputacion.qrc
 
-#OTHER_FILES += pagos.QMYSQL.sql \
-#               pagos.QSQLITE.sql
