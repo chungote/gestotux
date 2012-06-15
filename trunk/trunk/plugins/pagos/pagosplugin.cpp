@@ -105,4 +105,15 @@ void PagosPlugin::agregarRecibo()
     emit agregarVentana( f );
 }
 
+/*!
+    \fn PagosPlugin::agregarRecibo()
+*/
+void PagosPlugin::agregarRecibo( int id_cliente, QDate fecha, QString texto, double total )
+{
+    FormAgregarRecibo *f = new FormAgregarRecibo();
+    f->setearModelo(0);
+    f->setearDatos( id_cliente, texto, total );
+    emit agregarVentana( f );
+}
+
 Q_EXPORT_PLUGIN2( pagos, PagosPlugin );

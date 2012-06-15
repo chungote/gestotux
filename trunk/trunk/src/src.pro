@@ -49,7 +49,7 @@ HEADERS += gestotux.h \
            FormPantallaInicial.h \
            EFlecha.h \
            mestadofiscal.h \
-    formprefclientes.h
+           formprefclientes.h
 
 TEMPLATE = app
 
@@ -94,7 +94,10 @@ INCLUDEPATH += ../reporte \
                ../utiles/email
 
 LIBS += ../bin/libutiles.a \
-        ../bin/libreporte.a
+        ../bin/libreporte.a \
+        ../bin/plugins/libventas.so \
+        ../bin/plugins/libpresupuesto.so \
+        ../bin/plugins/libpagos.so
 
 OTHER_FILES += gestotux.ts \
                tablas.QSQLITE.sql \
