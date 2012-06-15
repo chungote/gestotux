@@ -23,6 +23,7 @@
 #include <QObject>
 #include "eplugin.h"
 #include <QtPlugin>
+#include <QDate>
 
 /**
 \brief Plugin de Pagos
@@ -50,10 +51,12 @@ public:
 signals:
     void agregarVentana(QWidget* v);
         void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+
 public slots:
     void seCierraGestotux();
     void verPagos();
     void agregarRecibo();
+    void agregarRecibo( int, QDate, QString, double );
 
 private:
         QAction *ActPagos;

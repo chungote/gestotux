@@ -5,6 +5,7 @@
         <file>imagenes/factura.png</file>
         <file>imagenes/anularfactura.png</file>
         <file>imagenes/verfacturaanuladas.png</file>
+        <file>imagenes/factura-items.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>ventas.QMYSQL.sql</file>

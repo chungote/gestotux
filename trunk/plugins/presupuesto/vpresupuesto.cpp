@@ -30,7 +30,6 @@
 #include "mpresupuesto.h"
 #include "mvpresupuestos.h"
 #include "vlistapresupuesto.h"
-#include "formagregarventa.h"
 #include "mdescuentos.h"
 #include "mproductostotales.h"
 
@@ -55,6 +54,7 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  ActVerContenido = new QAction( this );
  ActVerContenido->setText( "Ver items" );
  ActVerContenido->setStatusTip( "Muestra los items que componen el presupuesto" );
+ ActVerContenido->setIcon( QIcon( ":/imagenes/presupuesto-items.png" ) );
  connect( ActVerContenido, SIGNAL( triggered() ), this, SLOT( verContenido() ) );
 
  ActAFactura = new QAction( this );
@@ -239,15 +239,17 @@ void VPresupuesto::aFactura()
     int id_cliente = MPresupuesto::obtenerIdCliente( id_presupuesto );
     QDate fecha = MPresupuesto::obtenerFecha( id_presupuesto );
     MProductosTotales *mp = new MProductosTotales();
+    mp->calcularTotales( true );
+    mp->setearTipoPrecioBuscar( MProductosTotales::Venta );
     // Cargo todos los datos de los items
     MItemPresupuesto *m = new MItemPresupuesto();
     m->setearId( id_presupuesto );
     m->select();
     for( int i=0; i<m->rowCount(); i++ ) {
         mp->agregarItem(
-                    m->data( m->index( i, 2 ), Qt::EditRole ).toDouble(),
-                    m->data( m->index( i, 3 ), Qt::EditRole ).toString(),
-                    m->data( m->index( i, 4 ), Qt::EditRole ).toDouble()
+                         m->data( m->index( i, 2 ), Qt::EditRole ).toDouble(),
+                         m->data( m->index( i, 3 ), Qt::EditRole ).toString(),
+                         m->data( m->index( i, 4 ), Qt::EditRole ).toDouble()
                     );
     }
     delete m;
@@ -259,17 +261,12 @@ void VPresupuesto::aFactura()
         md->seleccionarDatos();
         for( int i=0; i<md->rowCount(); i++ ) {
             mp->agregarDescuento(
-                    md->data( md->index( i, 1 ), Qt::DisplayRole ).toString(),
-                    md->data( md->index( i, 2 ), Qt::EditRole ).toDouble()
+                                     md->data( md->index( i, 1 ), Qt::DisplayRole ).toString(),
+                                      md->data( md->index( i, 2 ), Qt::EditRole ).toDouble()
                     );
         }
     }
     delete md;
 
-    FormAgregarVenta *fv = new FormAgregarVenta();
-    emit agregarVentana( fv );
-    fv->setearCliente( id_cliente );
-    fv->setearFecha( fecha );
-    fv->setearItems( mp );
-    mp = 0;
+    emit emitirFactura( id_cliente, fecha, mp );
 }

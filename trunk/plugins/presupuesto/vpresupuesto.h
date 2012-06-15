@@ -21,6 +21,8 @@
 #define VPRESUPUESTO_H
 
 #include <evlista.h>
+#include <QDate>
+class MProductosTotales;
 
 /**
  * \brief Listado de presupuestos emitidos
@@ -43,6 +45,9 @@ protected slots:
     void modificar();
     void eliminar();
     void aFactura();
+
+signals:
+    void emitirFactura( int, QDate, MProductosTotales * );
 
 private:
     QModelIndex indiceMenu;

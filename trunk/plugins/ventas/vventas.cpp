@@ -24,11 +24,11 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
+
 #include "MVFacturas.h"
 #include "EReporte.h"
 #include "eactcerrar.h"
 #include "MFactura.h"
-#include "formagregarrecibo.h"
 
 VVentas::VVentas(QWidget *parent)
  : EVLista(parent)
@@ -72,12 +72,15 @@ VVentas::VVentas(QWidget *parent)
     ActVerItems = new QAction( this );
     ActVerItems->setText( "Ver items" );
     ActVerItems->setStatusTip( "Muestra el listado de items de la factura" );
+    ActVerItems->setIcon( QIcon( ":/imagenes/factura-items.png" ) );
     connect( ActVerItems, SIGNAL( triggered() ), this, SLOT( verItems() ) );
 
     //agregarFiltroBusqueda( "Numero de Factura", " ``" );
     agregarFiltroBusqueda( "Numero de Cliente", " `id_cliente` = '%%1%' " );
     agregarFiltroBusqueda( "Fecha", " `fecha` = '%%1%' ");
     habilitarBusqueda();
+
+    ActAgregar->setIcon( QIcon( ":/imagenes/factura-nueva.png" ) );
 
     this->addAction( ActAgregar );
     this->addAction( ActVerItems );
@@ -176,10 +179,7 @@ void VVentas::pagar()
     }
     // Busco el numero de cliente
     int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
-    // Abro la ventana del recibo
-    FormAgregarRecibo *f = new FormAgregarRecibo();
-    f->setearDatos( id_cliente, texto_recibo, total );
-    emit agregarVentana( f );
+    emit emitirRecibo( id_cliente, QDate::currentDate(), texto_recibo, total );
     return;
 }
 

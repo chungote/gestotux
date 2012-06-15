@@ -31,6 +31,8 @@
 #include <QIcon>
 #include <QApplication>
 #include <QMessageBox>
+#include <QPluginLoader>
+
 #include "gestotux.h"
 #include "preferencias.h"
 #include "eenviobackup.h"
@@ -40,10 +42,14 @@
 #include "eplugin.h"
 #include "einfoprogramainterface.h"
 #include "einterfazemail.h"
-#include <QPluginLoader>
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
 #include "EReporte.h"
+#include "mproductostotales.h"
+
+#include "../plugins/ventas/ventas.h"
+#include "../plugins/pagos/pagosplugin.h"
+#include "../plugins/presupuesto/presupuesto.h"
 
 FILE *debug;
 /*!
@@ -127,6 +133,26 @@ bool hacerTablas( QString nombrePlug )
  }
 }
 
+/*!
+ * \fn generarInterconexiones()
+ * Genera las interconexiones entre plugins
+ */
+void generarInterconexiones()
+{
+    ERegistroPlugins *egp = ERegistroPlugins::getInstancia();
+    if( egp->existePlugin( "presupuesto" ) && egp->existePlugin( "ventas" ) ) {
+        QObject::connect( dynamic_cast<presupuesto *>( egp->plugin( "presupuesto" ) ),
+                          SIGNAL( emitirFactura( int, QDate, MProductosTotales * ) ),
+                          dynamic_cast<Ventas *>( egp->plugin( "ventas" ) ),
+                          SLOT( agregarFactura( int, QDate, MProductosTotales * ) ) );
+    }
+    if( egp->existePlugin( "ventas" ) && egp->existePlugin( "pagos" ) ) {
+       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+                         SIGNAL( emitirRecibo( int, QDate, QString, double ) ),
+                         dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
+                         SLOT( agregarRecibo( int, QDate, QString, double ) ) );
+    }
+}
 
 /**
  * \mainpage Documentacion interna de Gestotux
@@ -384,6 +410,7 @@ int main(int argc, char *argv[])
                         qWarning( loader.errorString().toLocal8Bit() );
                  }
              }
+        generarInterconexiones();
         /////////////////////////////////////////////////////////////////////////////////////////////////
         p->beginGroup( "General" );
         if ( !p->value( "splash", false ).toBool() )
