@@ -22,7 +22,5 @@ TRANSLATIONS += default.ts
 
 RESOURCES += default.qrc
 
-OTHER_FILES += \
-    default.QMYSQL.sql \
-    default.QSQLITE.sql
-
+OTHER_FILES += default.QMYSQL.sql \
+               default.QSQLITE.sql

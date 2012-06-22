@@ -218,7 +218,7 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
         {
             // Mensual
             // Verificar el mes del periodo y devolver la cantidad de días
-            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth() - 1;
+            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
             // Eso se encarga automaticamnete de los años bisiestos
         }
         case MServicios::BiMensual:
@@ -299,7 +299,7 @@ bool MPeriodoServicio::existeFacturacion(const int id_servicio)
  */
 int MPeriodoServicio::getPeriodoActual( const int id_servicio, bool facturar ) {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT periodo, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin LIMIT 1" ).arg( id_servicio ) ) ) {
+    if( cola.exec( QString( "SELECT periodo, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin DESC LIMIT 1" ).arg( id_servicio ) ) ) {
         if( cola.next() ) {
             if( facturar ) {
                 int per = cola.record().value(0).toInt();
@@ -395,6 +395,7 @@ QDate MPeriodoServicio::getFechaInicioPeriodoActual( const int id_servicio, bool
     if( cola.exec( QString( "SELECT periodo, fecha_inicio, fecha_fin FROM periodo_servicio WHERE id_servicio = %1 ORDER BY fecha_fin DESC LIMIT 1" ).arg( id_servicio ) ) ) {
         if( cola.next() ) {
             if( facturar ) {
+                // Esto supone que la fecha de fin del periodo anterior es correcta!
                 return cola.record().value(2).toDate().addDays(1);
             } else {
                 return cola.record().value(0).toDate();

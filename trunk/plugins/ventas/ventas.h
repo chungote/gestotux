@@ -22,10 +22,16 @@
 
 #include <QObject>
 #include <eplugin.h>
+#include <QDate>
+#include "mproductostotales.h"
 
 /**
-        @author Esteban Zeller <juiraze@yahoo.com.ar>
-*/
+ * \brief Plugin de ventas
+ *
+ * Plugin para la implementación de ventas al contado
+ *
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
+ */
 class Ventas : public QObject, public EPlugin
 {
 Q_OBJECT
@@ -58,10 +64,11 @@ private slots:
 signals:
     void agregarVentana( QWidget * );
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void emitirRecibo( int, QDate, QString, double );
 
 public slots:
     void seCierraGestotux();
-    void facturarPresupuesto( const int id_presupuesto );
+    void agregarFactura( int, QDate, MProductosTotales * );
 
 };
 

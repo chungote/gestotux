@@ -96,11 +96,37 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  Pestanas->widget( 0 )->setObjectName( "crearBackup" );
  Pestanas->widget( 1 )->setObjectName( "restaurarBackup" );
  Pestanas->setCurrentIndex( 0 );
+ connect( Pestanas, SIGNAL( currentChanged( int ) ), this, SLOT( cambiopestana( int ) ) );
+
 }
 
 
 EBackupRemoto::~EBackupRemoto()
 {}
+
+void EBackupRemoto::cambiopestana( int pes ) {
+    if( pes == 1 ) {
+        // Busco los datos del sistema para ver cuales hay
+        QUrl url( "http://trafu.no-ip.org/TRSis/backup/historial" );
+        preferencias *p = preferencias::getInstancia();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "BackupRemoto" );
+        url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
+        url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
+        url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
+        url.addQueryItem( "gestotux", "0" );
+        p->endGroup(); p->endGroup(); p = 0;
+
+        if( manager == 0 ) {
+            manager = new QNetworkAccessManager( this );
+        }
+        connect( manager, SIGNAL( finished( QNetworkReply * ) ), this, SLOT( respuestaHistorial( QNetworkReply * ) ) );
+
+        QNetworkRequest req( url );
+        req.setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
+        manager->post( req, url.encodedQuery() );
+    }
+}
 
 /*!
  *   \fn EBackupRemoto::iniciar()
@@ -149,7 +175,9 @@ bool EBackupRemoto::generar_db( bool estructura )
  total += tablas.size();
 
  // Hago la conexion
- manager = new QNetworkAccessManager( this );
+ if( manager == 0 ) {
+    manager = new QNetworkAccessManager( this );
+ }
  connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
  preferencias *p = preferencias::getInstancia();
@@ -198,6 +226,7 @@ bool EBackupRemoto::generar_db( bool estructura )
             url.addQueryItem( "cancelar", "0" );
             req.setUrl( url );
             manager->post( req, url.encodedQuery() );
+            disconnect( this, SLOT( respuesta( QNetworkReply* ) ) );
             lista.clear();
         }
   }
@@ -210,10 +239,11 @@ bool EBackupRemoto::generar_db( bool estructura )
 void EBackupRemoto::respuesta( QNetworkReply *resp ) {
     if( resp->error() != QNetworkReply::NoError ) {
         QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
-    } else  if( resp->isFinished() ) {
+    } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
         QApplication::processEvents();
         bool ok = false;
+        resp->deleteLater();
         QVariantMap mapa = Json::parse( cont, ok ).toMap();
         if( !ok ) {
             QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
@@ -241,6 +271,7 @@ void EBackupRemoto::respuesta( QNetworkReply *resp ) {
                  QNetworkRequest req( url );
                  req.setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
                  manager->post( req, url.encodedQuery() );
+                 disconnect( this, SLOT( respuesta( QNetworkReply* ) ) );
                 _continuar = false;
                 emit cambiarDetener( false );
             }
@@ -342,4 +373,33 @@ bool EBackupRemoto::ejecutarColas( QStringList colas )
   QSqlDatabase::database().commit();
  }
  return estado;
+}
+
+/*!
+ * \fn EBackupRemoto::respuestaHistorial( QNetworkReply * )
+ * Slot llamado para cargar los datos del historial de backups
+ */
+void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
+{
+    if( resp->error() != QNetworkReply::NoError ) {
+        // Notifico el error
+    } else {
+        QByteArray cont( resp->readAll() );
+        QApplication::processEvents();
+        resp->deleteLater();
+        bool ok = false;
+        QVariantMap mapa = Json::parse( cont, ok ).toMap();
+        if( !ok ) {
+            QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
+            qDebug( cont );
+            return;
+        }
+        if( mapa["error"].toBool() ) {
+            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["texto"].toString() ).toLocal8Bit() );
+            return;
+        }
+        // Cargo los datos al modelo
+
+    }
+
 }
