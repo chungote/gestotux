@@ -42,7 +42,7 @@
   <height>830</height>
  </size>
  <portrait/>
- <topmargin>0</topmargin>
+ <topmargin>8</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
  <leftmargin>0</leftmargin>
@@ -68,11 +68,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>250</height>
+   <height>257</height>
    <text>
     <rect>
-     <x>431</x>
-     <y>26.8</y>
+     <x>419</x>
+     <y>34.8</y>
      <width>116</width>
      <height>31.8</height>
     </rect>
@@ -91,8 +91,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <field>
     <rect>
-     <x>108</x>
-     <y>151</y>
+     <x>116</x>
+     <y>153</y>
      <width>439</width>
      <height>25</height>
     </rect>
@@ -110,8 +110,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>137</x>
-     <y>189</y>
+     <x>148</x>
+     <y>200</y>
      <width>405</width>
      <height>25</height>
     </rect>
@@ -129,8 +129,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <text>
     <rect>
-     <x>435</x>
-     <y>58.8</y>
+     <x>414</x>
+     <y>63.8</y>
      <width>128</width>
      <height>31.2</height>
     </rect>
@@ -149,7 +149,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <barcode>
     <rect>
-     <x>375</x>
+     <x>356</x>
      <y>109.7</y>
      <width>176</width>
      <height>34.9</height>
@@ -165,8 +165,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </barcode>
    <field>
     <rect>
-     <x>378</x>
-     <y>221</y>
+     <x>364</x>
+     <y>224</y>
      <width>66</width>
      <height>33</height>
     </rect>
@@ -184,8 +184,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>517</x>
-     <y>221</y>
+     <x>500</x>
+     <y>223</y>
      <width>35</width>
      <height>33</height>
     </rect>
@@ -209,11 +209,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>434</height>
+   <height>414</height>
    <field>
     <rect>
-     <x>34.3</x>
-     <y>1.68</y>
+     <x>42.3</x>
+     <y>12.68</y>
      <width>524</width>
      <height>408</height>
     </rect>
@@ -241,27 +241,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <height>81</height>
    <field>
     <rect>
-     <x>95</x>
-     <y>14.5</y>
-     <width>96</width>
-     <height>24</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>fecha1</column>
-    </data>
-   </field>
-   <field>
-    <rect>
      <x>79</x>
-     <y>36.5</y>
+     <y>23.5</y>
      <width>112</width>
      <height>22</height>
     </rect>
@@ -280,8 +261,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>87</x>
-     <y>58.5</y>
+     <x>89</x>
+     <y>44.5</y>
      <width>104</width>
      <height>22</height>
     </rect>
@@ -300,8 +281,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>260</x>
-     <y>34.5</y>
+     <x>247</x>
+     <y>25.5</y>
      <width>112</width>
      <height>22</height>
     </rect>
@@ -320,8 +301,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>267</x>
-     <y>58.5</y>
+     <x>252</x>
+     <y>43.5</y>
      <width>106</width>
      <height>22</height>
     </rect>
@@ -340,8 +321,28 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>279</x>
-     <y>16.5</y>
+     <x>380</x>
+     <y>68.36</y>
+     <width>142</width>
+     <height>40</height>
+    </rect>
+    <font>
+     <face>Arial Black</face>
+     <size>14</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>total</column>
+    </data>
+    <format>$ %0.2f</format>
+   </field>
+   <field>
+    <rect>
+     <x>263</x>
+     <y>6.5</y>
      <width>94</width>
      <height>22</height>
     </rect>
@@ -359,50 +360,10 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>441</x>
-     <y>34.5</y>
-     <width>112</width>
-     <height>22</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>recargo3</column>
-    </data>
-    <format>%0.2f %%</format>
-   </field>
-   <field>
-    <rect>
-     <x>452</x>
-     <y>57.5</y>
-     <width>103</width>
-     <height>22</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>Parameter Query</query>
-     <column>total3</column>
-    </data>
-    <format>$ %0.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>458</x>
-     <y>17.5</y>
+     <x>96</x>
+     <y>3.5</y>
      <width>96</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -413,7 +374,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <vcenter/>
     <data>
      <query>Parameter Query</query>
-     <column>fecha3</column>
+     <column>fecha1</column>
     </data>
    </field>
   </detail>
@@ -425,26 +386,6 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <query>recibo-hicomp</query>
    </key>
    <height>32.9545</height>
-   <field>
-    <rect>
-     <x>424</x>
-     <y>4.36</y>
-     <width>127</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Arial Black</face>
-     <size>14</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>total</column>
-    </data>
-    <format>$ %0.2f</format>
-   </field>
   </detail>
  </section>
 </report>

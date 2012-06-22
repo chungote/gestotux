@@ -52,6 +52,8 @@ signals:
 
 protected slots:
     void respuesta( QNetworkReply * );
+    void respuestaHistorial( QNetworkReply * );
+    void cambiopestana( int );
 
 private:
        /*!
@@ -72,16 +74,23 @@ private:
         QAction *ActDetener;
 
        /*!
-        *
+        * Administrador de red
         */
         QNetworkAccessManager *manager;
 
        /*!
-        *
+        * Lista de solicitudes de red -  envio de colas
         */
         QList<QNetworkReply *> lista;
-    bool generar_db( bool estructura );
-    bool ejecutarColas( QStringList colas );
+
+       /*!
+        * Modelo para el listado de backups anteriores
+        */
+        //EMBackupAnteriores *anteriores;
+
+        bool generar_db( bool estructura );
+        bool ejecutarColas( QStringList colas );
+
 };
 
 #endif

@@ -160,7 +160,7 @@ void VVentas::pagar()
 {
     return;
     // Busco todos los IDs a pagar
-    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+  /*  QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
         QMessageBox::warning( this, "Seleccione un item",
                         "Por favor, seleccione al menos un item para pagar.",
@@ -180,7 +180,7 @@ void VVentas::pagar()
     // Busco el numero de cliente
     int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
     emit emitirRecibo( id_cliente, QDate::currentDate(), texto_recibo, total );
-    return;
+    return; */
 }
 
 /*!

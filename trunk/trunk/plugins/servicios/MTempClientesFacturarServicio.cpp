@@ -250,7 +250,7 @@ void MTempClientesFacturarServicio::cargarClientesDelServicio( const int id )
 {
     // Busco los clientes qe estan adheridos al servicio solcitiado
     QSqlQuery cola( QString( "SELECT c.razon_social, c.id FROM servicios_clientes, clientes c WHERE ( servicios_clientes.`id_cliente` = c.id ) AND ( servicios_clientes.id_servicio = %1 )" ).arg( id ) );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    //qDebug( cola.lastQuery().toLocal8Bit() );
     while ( cola.next() ) {
         this->insertRow( -1 );
         this->setData( this->index( this->rowCount()-1, 0 ), true, Qt::EditRole );

@@ -25,6 +25,8 @@
 #include "eplugin.h"
 #include <QWidgetList>
 #include <QList>
+#include <QDate>
+#include "mproductostotales.h"
 class QAction;
 class QSettings;
 class QStackedWidget;
@@ -64,8 +66,9 @@ protected slots:
     void verAnteriores();
 
 signals:
-        void agregarVentana( QWidget * );
-        void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
+    void agregarVentana( QWidget * );
+    void agregarDockWidget( Qt::DockWidgetArea, QDockWidget * );
+    void emitirFactura( int, QDate, MProductosTotales * );
 
 public slots:
     void seCierraGestotux();

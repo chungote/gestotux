@@ -18,9 +18,9 @@ HEADERS += presupuesto.h \
            ../descuentos/mdescuentos.h \
            ../ventas/formagregarventa.h \
            ../ventas/MFactura.h \
-           ../ventas/MItemFactura.h \
-           ../CtaCte/MCuentaCorriente.h \
-           ../CtaCte/MItemCuentaCorriente.h \
+           ../ventas/mitemfactura.h \
+           ../CtaCte/mcuentacorriente.h \
+           ../CtaCte/mitemcuentacorriente.h \
            ../caja/mcajas.h \
            ../caja/mmovimientoscaja.h
 
@@ -36,9 +36,9 @@ SOURCES += presupuesto.cpp \
            ../descuentos/mdescuentos.cpp \
            ../ventas/formagregarventa.cpp \
            ../ventas/MFactura.cpp \
-           ../ventas/MItemFactura.cpp \
-           ../CtaCte/MCuentaCorriente.cpp \
-           ../CtaCte/MItemCuentaCorriente.cpp \
+           ../ventas/mitemfactura.cpp \
+           ../CtaCte/mcuentacorriente.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp \
            ../caja/mcajas.cpp \
            ../caja/mmovimientoscaja.cpp
 

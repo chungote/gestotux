@@ -280,7 +280,7 @@ void FormFacturarServicio::facturar()
         ///////////////////////////////////////////////////////////////////////////////////////////
         int id_factura = -1;
         if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-            LIndicador->setText( QString( "Generando recibo ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
+            LIndicador->setText( QString( "( %1 de %2 ) Generando recibo ..." ).arg( i +1 ).arg( cantidad_total ) );
             id_factura = qobject_cast<MPagos *>(mr)->agregarRecibo( id_cliente,
                                             QDate::currentDate(),
                                             QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
@@ -347,7 +347,7 @@ void FormFacturarServicio::facturar()
         /////////////////////////////////////////////////////////////////
         // Paso 3 - Genero la entrada en la cuenta corriente del cliente
         /////////////////////////////////////////////////////////////////
-        LIndicador->setText( QString( "Actualizando cuenta corriente del cliente %1  ( %2 de %3 )..." ).arg( nombre_cliente ).arg( i + 1 ).arg( cantidad_total ) );
+        LIndicador->setText( QString( "( %2 de %3 ) Actualizando cuenta corriente del cliente %1  ..." ).arg( nombre_cliente ).arg( i + 1 ).arg( cantidad_total ) );
         // Intento agregar el numero de operación
         QString id_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
         int id_op_ctacte = MItemCuentaCorriente::agregarOperacion( id_ctacte,
@@ -435,7 +435,7 @@ void FormFacturarServicio::facturar()
         reporte->factura();
     }
 
-    for( int i = 0; i<cantidad_total; i++ ) {
+    for( int i = 0; i<comprobantes.size(); i++ ) {
         // Paso 3
         // Imprimir recibo
         int id_comp = comprobantes.take( i );
@@ -456,9 +456,9 @@ void FormFacturarServicio::facturar()
 
 
     // Pregunto si los recibos se imprimieron bien
-    int ret = QMessageBox::question( this, "Impresion", QString::fromUtf8( "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" ), "Si", "No" );
+    int ret = QMessageBox::question( this, QString::fromUtf8("Impresión"), QString::fromUtf8( "¿Se imprimieron correctamente <b>TODOS</b> los comprobantes?" ), QMessageBox::Yes, QMessageBox::No );
 
-    if( ret == QMessageBox::Rejected ) {
+    if( ret == QMessageBox::No ) {
        // Si no, pregunto que numero de recibo falta y lo mando a imprimir
         ret = true;
         while( ret ) {

@@ -157,11 +157,13 @@ void Ventas::seCierraGestotux()
 }
 
 /*!
- * \fn Ventas::facturarPresupuesto( const int id_presupuesto )
+ * \fn Ventas::agregarFactura(int, QDate, MProductosTotales *)
  */
-void Ventas::facturarPresupuesto( const int /*id_presupuesto*/ )
+void Ventas::agregarFactura( int id_cliente, QDate fecha, MProductosTotales * mpt )
 {
     FormAgregarVenta *f = new FormAgregarVenta();
-    //f->desdePresupuesto( id_presupuesto );
+    f->setearCliente( id_cliente );
+    f->setearFecha( fecha );
+    f->setearItems( mpt );
     emit agregarVentana( f );
 }

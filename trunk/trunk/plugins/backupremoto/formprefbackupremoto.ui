@@ -10,16 +10,22 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <widget class="QGroupBox" name="GBUsar">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>374</width>
-     <height>275</height>
+     <x>9</x>
+     <y>9</y>
+     <width>382</width>
+     <height>253</height>
     </rect>
    </property>
    <property name="title">

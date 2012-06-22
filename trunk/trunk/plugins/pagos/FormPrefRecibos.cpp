@@ -52,5 +52,5 @@ void FormPrefRecibos::changeEvent(QEvent *e)
 void FormPrefRecibos::renumerar()
 {
   // Verifico que el numero sea mayor que el que esta actualmente
-    QMessageBox::warning( this, "!Error!", "No implmentado todav´ia" );
+    QMessageBox::warning( this, "!Error!", "No implmentado todavia" );
 }

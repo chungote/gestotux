@@ -71,6 +71,7 @@ void FormPrefBackupRemoto::cargarDatos()
 {
   // conecto al servidor e intento cargar los datos
   GBDatos->setEnabled( false );
+  PBVerificar->setText( "Comprobando..." );
   manager = new QNetworkAccessManager( this );
   connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
@@ -85,6 +86,7 @@ void FormPrefBackupRemoto::cargarDatos()
 
 void FormPrefBackupRemoto::respuesta( QNetworkReply *resp )
 {
+    PBVerificar->setText( "Comprobar" );
     if( resp->error() != QNetworkReply::NoError ) {
         QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
     } else  if( resp->isFinished() ) {
@@ -114,4 +116,5 @@ void FormPrefBackupRemoto::respuesta( QNetworkReply *resp )
         GBDatos->setEnabled( true );
     }
     resp->deleteLater();
+    PBVerificar->setEnabled( false );
 }
