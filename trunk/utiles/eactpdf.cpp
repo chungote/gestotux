@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   *
- *   juiraze@yahoo.com.ar   *
+ *   Copyright (C) 2007 by Esteban Zeller                                  *
+ *   juiraze@yahoo.com.ar                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,9 +23,9 @@ EActPdf::EActPdf(QWidget *parent)
  : QAction(parent)
 {
  this->setText( "Pdf" );
+ this->setShortcut( QKeySequence( Qt::CTRL + Qt::SHIFT + Qt::Key_P ) );
  this->setIcon( QIcon( ":/imagenes/acroread.png" ) );
- this->setStatusTip( tr( "Guarda el informe actual en formato pdf" ) );
- this->setShortcut( QKeySequence( "Ctrl+D" ) );
+ this->setStatusTip( tr( "Guarda el informe actual en formato pdf( Ctrl + Shift + p )" ) );
 }
 
 

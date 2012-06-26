@@ -81,6 +81,8 @@ VVentas::VVentas(QWidget *parent)
     habilitarBusqueda();
 
     ActAgregar->setIcon( QIcon( ":/imagenes/factura-nueva.png" ) );
+    disconnect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
+    connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
 
     this->addAction( ActAgregar );
     this->addAction( ActVerItems );

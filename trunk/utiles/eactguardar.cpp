@@ -25,6 +25,7 @@ EActGuardar::EActGuardar(QObject *parent)
  this->setIcon( QIcon( ":/imagenes/guardar.png" ) );
  this->setShortcut( QKeySequence( "Ctrl + g" ) );
  this->setText( "Guardar" );
+ this->setStatusTip( "Guarda los datos actuales ( Ctrl + g )" );
  connect( this, SIGNAL( triggered() ), parent, SLOT( guardar() ) );
 }
 

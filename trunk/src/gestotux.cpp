@@ -107,11 +107,13 @@ void gestotux::createActions()
       exitAct = new QAction( "Salir", this);
       exitAct->setStatusTip( "Salir del programa" );
       exitAct->setIcon( QIcon( ":/imagenes/exit.png" ) );
+      exitAct->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_Q ) );
       connect(exitAct, SIGNAL( triggered() ), this, SLOT( close() ) );
 
       ActAyuda = new QAction( "Ayuda", this );
       ActAyuda->setStatusTip( "Muestra la ayuda del programa " );
       ActAyuda->setIcon( QIcon( ":/imagenes/ayuda.png" ) );
+      ActAyuda->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_F1 ) );
       connect( ActAyuda, SIGNAL( triggered() ), this, SLOT( ayuda() ) );
 
       acercade = new QAction( "Acerca de...", this );
@@ -121,16 +123,19 @@ void gestotux::createActions()
       ActClientes = new QAction( "Ver Clientes... ", this );
       ActClientes->setStatusTip( "Muestra la lista de clientes" );
       ActClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
+      ActClientes->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_C ) );
       connect( ActClientes, SIGNAL( triggered() ), this, SLOT( verClientes() ) );
 
       ActPreferencias = new QAction ( "Configuracion" , this );
       ActPreferencias->setStatusTip( "Modifica las preferencias de la aplicacion" );
       ActPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
+      ActPreferencias->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_O ) );
       connect( ActPreferencias, SIGNAL( triggered() ), this, SLOT( verPreferencias() ) );
 
       ActBackup = new QAction( "Backup", this );
       ActBackup->setStatusTip( "Genera y retaura backups del programa" );
       ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
+      ActBackup->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_B ) );
       connect( ActBackup, SIGNAL( triggered() ), this, SLOT( verBackup() ) );
 
       ActActualizar = new QAction( "Actualizar", this );

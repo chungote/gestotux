@@ -25,6 +25,7 @@ EActEmail::EActEmail(QWidget *parent)
  this->setIcon( QIcon( ":/imagenes/email.png" ) );
  this->setShortcut( QKeySequence( "Ctrl + e" ) );
  this->setText( "Em@il" );
+ this->setStatusTip( "Enviar por email ( Ctrl + e )" );
  connect( this, SIGNAL( triggered() ), parent, SLOT( email() ) );
 }
 

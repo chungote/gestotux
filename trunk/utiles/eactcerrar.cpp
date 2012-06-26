@@ -25,7 +25,7 @@ QAction(parent)
  this->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
  this->setShortcut( QKeySequence( "Ctrl+c" ) );
  this->setText( "Cerrar" );
- this->setStatusTip( "Cierra el formulario actual" );
+ this->setStatusTip( "Cierra el formulario actual ( Ctrl + c )" );
  connect( this, SIGNAL( triggered() ), parent, SLOT( close() ) );
 }
 

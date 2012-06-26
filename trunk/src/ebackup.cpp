@@ -48,7 +48,9 @@
 #include <QTabWidget>
 #include <QSqlDriver>
 #include <QTextStream>
+
 #include "eenviobackup.h"
+#include "eactcerrar.h"
 
 Ebackup::Ebackup( QWidget* parent )
 : EVentana( parent ), Ui_FormBackupBase()
@@ -63,11 +65,6 @@ Ebackup::Ebackup( QWidget* parent )
  // inicializo el deposito de datos
  datos = new QByteArray();
  comprimidos = new QByteArray();
-
- ActCerrar = new QAction( "Cerrar", this );
- ActCerrar->setStatusTip( "Cierra la ventana y cancela cualquier backup que se este realizando" );
- ActCerrar->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
- connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActIniciar = new QAction( "Iniciar", this );
  ActIniciar->setStatusTip( "Inincia la generaciÃ³n de los backups" );
@@ -84,7 +81,7 @@ Ebackup::Ebackup( QWidget* parent )
 
  addAction( ActIniciar );
  addAction( ActDetener );
- addAction( ActCerrar );
+ addAction( new EActCerrar(this) );
 
  ChBBaseDatos->setCheckState( Qt::Checked );
 

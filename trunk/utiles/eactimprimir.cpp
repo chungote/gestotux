@@ -23,9 +23,9 @@ EActImprimir::EActImprimir(QObject* parent):
 QAction(parent)
 {
  this->setIcon( QIcon( ":/imagenes/imprimir.png" ) );
- this->setShortcut( QKeySequence( "Ctrl+i" ) );
+ this->setShortcut( QKeySequence( "Ctrl+p" ) );
  this->setText( "Imprimir" );
- this->setStatusTip( "Imprime el contenido del formulario actual" );
+ this->setStatusTip( "Imprime los datos actuales ( Ctrl + p )" );
 }
 
 
