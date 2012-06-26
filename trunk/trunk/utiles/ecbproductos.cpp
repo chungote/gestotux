@@ -86,6 +86,13 @@ void ECBProductos::enterApretado()
 QMap<int, QString> *ECBProductos::listadoProductos()
 { return this->_mapa_id_nombre; }
 
+void ECBProductos::setearListado( QMap<int, QString> *lista )
+{
+    // Verifica que los demás items estén de acuerdo con esta lista
+    qWarning( "Error - Remapeo de items no implementado - Posible problema con al lista de productos" );
+    //abort();
+}
+
 int ECBProductos::idActual() const
 {
     return this->_mapa_pos_ids->value( this->currentIndex() );

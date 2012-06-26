@@ -274,7 +274,7 @@ QDate MPresupuesto::obtenerFecha( int id_presupuesto )
     }
 
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT fecha FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+    if( cola.exec( QString( "SELECT fecha FROM presupuestos WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
         cola.next();
         return cola.record().value(0).toDate();
     } else {
@@ -296,7 +296,7 @@ int MPresupuesto::obtenerIdCliente( int id_presupuesto )
         return -1;
 
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_cliente FROM presupuesto WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
+    if( cola.exec( QString( "SELECT id_cliente FROM presupuestos WHERE id_presupuesto = %1" ).arg( id_presupuesto ) ) ) {
         cola.next();
         return cola.record().value(0).toInt();
     } else {

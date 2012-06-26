@@ -110,7 +110,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         PBAgregarDescuento->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBAgregarDescuento->setText( "Descuento" );
         PBEliminarDescuento->setText( "Descuento" );
-        connect( PBAgregarDescuento, SIGNAL( clicked() ), this, SLOT( agregarDescuento() ) );
+        connect( PBAgregarDescuento,  SIGNAL( clicked() ), this, SLOT( agregarDescuento()  ) );
         connect( PBEliminarDescuento, SIGNAL( clicked() ), this, SLOT( eliminarDescuento() ) );
 
         // Verifico si la venta a cta corriente esta habilitada
@@ -449,14 +449,17 @@ void FormAgregarVenta::setearFecha( QDate fecha )
 }
 
 /*!
- * \fn FormAgregarVenta::setearItems( mProductosTotales *m )
+ * \fn FormAgregarVenta::setearItems( MProductosTotales *m )
  * Setea el listado de items pasado como parametro
  */
 void FormAgregarVenta::setearItems( MProductosTotales *m )
 {
     m->setParent( this );
     this->mcp = m;
+    this->CBProducto->setearListado( this->mcp->listaProductos() );
+
     mcp->calcularTotales( true );
+
     this->TVProductos->setModel( this->mcp );
     this->TVProductos->update();
 }

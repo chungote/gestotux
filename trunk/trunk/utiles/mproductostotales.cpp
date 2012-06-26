@@ -879,3 +879,8 @@ bool MProductosTotales::eliminarDescuento( QModelIndex idx )
     recalcularTotal();
     return true;
 }
+
+void MProductosTotales::setearListaProductos(  QMap<int, QString> *_mapa_id_prod )
+{
+    this->prods = _mapa_id_prod;
+}

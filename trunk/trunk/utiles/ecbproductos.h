@@ -24,6 +24,7 @@ public:
     ECBProductos( QWidget *parent = 0 );
     ~ECBProductos();
     QMap<int, QString> *listadoProductos();
+    void setearListado( QMap<int, QString> *lista );
     int idActual() const;
     void verificarExiste();
 

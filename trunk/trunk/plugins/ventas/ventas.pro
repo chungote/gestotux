@@ -52,8 +52,7 @@ PRE_TARGETDEPS += ../../bin/libutiles.a \
                    ../../bin/libreporte.a
 
 FORMS += FormAgregarVentaBase.ui \
-         FormPrefVentaBase.ui \
-         ../pagos/FormReciboBase.ui
+         FormPrefVentaBase.ui
 
 INCLUDEPATH +=  ../../src \
                 ../../utiles \
@@ -61,8 +60,7 @@ INCLUDEPATH +=  ../../src \
                 ../productos \
                 ../CtaCte \
                 ../caja \
-                ../descuentos \
-                ../pagos
+                ../descuentos
 
 RESOURCES += ventas.qrc
 

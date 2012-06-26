@@ -20,10 +20,13 @@
 #ifndef VENTAS_H
 #define VENTAS_H
 
+#include <QDate>
 #include <QObject>
 #include <eplugin.h>
 #include <QDate>
 #include "mproductostotales.h"
+
+class MProductosTotales;
 
 /**
  * \brief Plugin de ventas
@@ -65,6 +68,7 @@ signals:
     void agregarVentana( QWidget * );
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
     void emitirRecibo( int, QDate, QString, double );
+
 
 public slots:
     void seCierraGestotux();

@@ -77,6 +77,9 @@ public:
     int conteoDescuentos() { return descuentos->size(); }
     int conteoItems() { return cantidades->size(); }
 
+    void setearListaProductos(  QMap<int, QString> *_mapa_id_prod );
+    QMap<int, QString> *listaProductos() { return prods; }
+
 public slots:
     void agregarDescuento( QString texto, double porcentaje );
 
