@@ -81,6 +81,7 @@ bool presupuesto::inicializar()
  ActPresuAnteriores = new QAction( "Presupuestos Anteriores", this );
  ActPresuAnteriores->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  ActPresuAnteriores->setStatusTip( "Ver los presupuestos anteriores" );
+ ActPresuAnteriores->setShortcut( QKeySequence( Qt::CTRL +Qt::Key_P ) );
  connect( ActPresuAnteriores, SIGNAL( triggered() ), this, SLOT( verAnteriores() ) );
 
  return true;

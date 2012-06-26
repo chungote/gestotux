@@ -34,12 +34,18 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     // Seteo los iconos
     // Generales
     TBBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
+    TBBackup->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_B ) );
+    TBBackup->setStatusTip( "Muestra la ventana de backup( Shift + b )" );
     connect( TBBackup, SIGNAL( clicked() ), this, SLOT( backup() ) );
 
     TBPreferencias->setIcon( QIcon( ":/imagenes/configure.png" ) );
+    TBPreferencias->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_O ) );
+    TBPreferencias->setStatusTip( "Muestra las preferencias del programa ( Shift + o ) " );
     connect( TBPreferencias, SIGNAL( clicked() ), this, SLOT( preferencias() ) );
 
     TBClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
+    TBClientes->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_C ) );
+    TBClientes->setStatusTip( "Muestra el listado de clientes ( Shift + c )" );
     connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
 
     this->TBNotas->setVisible( false );
@@ -52,6 +58,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "presupuesto" ) ) {
         connect( TBPresupuestos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("presupuesto")->botonPantallaInicial(), SIGNAL(triggered()) );
         TBPresupuestos->setIcon(ERegistroPlugins::getInstancia()->plugin("presupuesto")->botonPantallaInicial()->icon() );
+        TBPresupuestos->setShortcut( Qt::SHIFT + Qt::Key_P );
+        TBPresupuestos->setStatusTip( "Muestra la ventana para emitir un presupeusto nuevo ( Shift + P )" );
     } else {
         TBPresupuestos->setVisible( false );
     }
@@ -60,6 +68,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "caja" ) ) {
         connect( TBCaja, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("caja")->botonPantallaInicial(), SIGNAL(triggered()) );
         TBCaja->setIcon(ERegistroPlugins::getInstancia()->plugin("caja")->botonPantallaInicial()->icon() );
+        TBCaja->setStatusTip( "Muestra el estado de las cajas del sistema ( Shift + e )" );
+        TBCaja->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_E ) );
     } else {
         TBCaja->setVisible( false );
     }
@@ -68,6 +78,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "compras" ) ) {
         connect( TBCompras, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("compras")->botonPantallaInicial(), SIGNAL(triggered()) );
         TBCompras->setIcon(ERegistroPlugins::getInstancia()->plugin("compras")->botonPantallaInicial()->icon() );
+        TBCompras->setStatusTip( "Muestra el listado de compras ( Shift + M )" );
+        TBCompras->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_M ) );
     } else {
         TBCompras->setVisible( false );
     }
@@ -76,6 +88,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "productos" ) ) {
         connect( TBProductos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("productos")->botonPantallaInicial(), SIGNAL(triggered()) );
         TBProductos->setIcon( ERegistroPlugins::getInstancia()->plugin("productos")->botonPantallaInicial()->icon() );
+        TBProductos->setShortcut( Qt::SHIFT + Qt::Key_I );
+        TBProductos->setStatusTip( "Muestra el listado de productos ( Shift + i )" );
     } else {
         TBProductos->setVisible( false );
     }
@@ -85,6 +99,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
         if( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() )
         { connect( TBCuentasCorrientes, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial(), SIGNAL(triggered()) );
           TBCuentasCorrientes->setIcon( ERegistroPlugins::getInstancia()->plugin("ctacte")->botonPantallaInicial() ->icon());
+          TBCuentasCorrientes->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_X ) );
+          TBCuentasCorrientes->setStatusTip( "Muestra el listado de cuentas corrientes ( Shift + X ) " );
         } else { qWarning( "Error de accion de cuenta corriente") ; }
     } else {
         TBCuentasCorrientes->setVisible( false );
@@ -96,6 +112,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "proveedor" ) ) {
         TBProveedores->setIcon( ERegistroPlugins::getInstancia()->plugin("proveedor")->botonPantallaInicial()->icon() );
         connect( TBProveedores, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("proveedor")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBProveedores->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_L ) );
+        TBProveedores->setStatusTip( "Muestra el listado de proveedores del sistema ( Shift + L ) " );
     } else {
         TBProveedores->setVisible( false );
     }
@@ -104,6 +122,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "servicios" ) ) {
         TBServicios->setIcon( ERegistroPlugins::getInstancia()->plugin("servicios")->botonPantallaInicial()->icon() );
         connect( TBServicios, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("servicios")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBServicios->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_S ) );
+        TBServicios->setStatusTip( "Muestra el listado de servicios actuales ( Shift + s )" );
     } else {
         TBServicios->setVisible( false );
     }
@@ -112,6 +132,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "gastos" ) ) {
         TBGastos->setIcon( ERegistroPlugins::getInstancia()->plugin("gastos")->botonPantallaInicial()->icon() );
         connect( TBGastos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("gastos")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBGastos->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_G ) );
+        TBGastos->setStatusTip( "Muestra el listado de gastos ( Shift + g )" );
     } else {
         TBGastos->setVisible( false );
     }
@@ -120,6 +142,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) ) {
         TBRecibos->setIcon( ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial()->icon() );
         connect( TBRecibos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBRecibos->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_R ) );
+        TBRecibos->setStatusTip( "Muestra la ventana para emitir un nuevo recibo ( Shift + R )" );
     } else {
         TBRecibos->setVisible( false );
     }
@@ -128,6 +152,8 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "ventas" ) ) {
         TBFacturas->setIcon( ERegistroPlugins::getInstancia()->plugin("ventas")->botonPantallaInicial()->icon() );
         connect( TBFacturas, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ventas")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBFacturas->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_V ) );
+        TBFacturas->setStatusTip( "Muestra la ventana para emitir una factura ( Shift + v )" );
     } else {
         TBFacturas->setVisible( false );
     }
