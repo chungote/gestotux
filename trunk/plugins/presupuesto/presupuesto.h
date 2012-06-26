@@ -39,7 +39,7 @@ class QMenuBar;
  *
  *	@author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-class presupuesto : public QObject, EPlugin
+class presupuesto : public QObject, public EPlugin
 {
 Q_OBJECT
 Q_INTERFACES(EPlugin)
@@ -72,6 +72,7 @@ signals:
 
 public slots:
     void seCierraGestotux();
+
 };
 
 #endif

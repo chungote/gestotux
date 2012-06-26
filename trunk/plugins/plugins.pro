@@ -10,4 +10,5 @@ SUBDIRS +=  caja \
             presupuesto \
             servicios \
             descuentos \
+            cuotas \
             HiComp
