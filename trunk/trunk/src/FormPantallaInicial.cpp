@@ -44,7 +44,7 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     connect( TBPreferencias, SIGNAL( clicked() ), this, SLOT( preferencias() ) );
 
     TBClientes->setIcon( QIcon( ":/imagenes/clientes.png" ) );
-    TBClientes->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_C ) );
+    //TBClientes->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_C ) );
     TBClientes->setStatusTip( "Muestra el listado de clientes ( Shift + c )" );
     connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
 

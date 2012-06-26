@@ -4,6 +4,7 @@
 #include "ui_formsimularcuotasbase.h"
 #include "eventana.h"
 #include "msimularcuotas.h"
+class QTextDocument;
 
 class FormSimularCuotas : public EVentana, private Ui::FormSimularCuotasBase
 {
@@ -11,6 +12,7 @@ class FormSimularCuotas : public EVentana, private Ui::FormSimularCuotasBase
     
 public:
     FormSimularCuotas( QWidget *parent = 0 );
+    ~FormSimularCuotas();
     
 protected:
     void changeEvent( QEvent *e );
@@ -20,7 +22,7 @@ protected slots:
     void cambioImporte( double cantidad );
     void cambioInteres( double cantidad );
     void cambioCantidad( int cantidad );
-    void cambioPeriodo( MSimularCuotas::Periodo idx );
+    void cambioPeriodo( int idx );
     void cambioFechaInicio( QDate fecha );
 
 private slots:
@@ -36,6 +38,9 @@ private:
     QAction *ActPdf;
 
     MSimularCuotas *modelo;
+    QTextDocument *documento;
+
+    void generaReporte();
 
 };
 

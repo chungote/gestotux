@@ -85,8 +85,8 @@ int CuotasPlugin::tipo() const
 void CuotasPlugin::crearMenu( QMenuBar *m )
 {
      QMenu *menuCuotas = m->addMenu( "Cuotas" );
-     menuCuotas->addAction( ActVerCuotas );
-     menuCuotas->addAction( ActGenerarComprobantes );
+     /*menuCuotas->addAction( ActVerCuotas );
+     menuCuotas->addAction( ActGenerarComprobantes );*/
      menuCuotas->addAction( ActSimular );
 }
 
@@ -109,8 +109,6 @@ void CuotasPlugin::crearToolBar( QToolBar */*t*/ )
  */
 void CuotasPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(cuotas); return; }
-
-Q_EXPORT_PLUGIN2( Cuotas, CuotasPlugin )
 
 /*!
  * \fn CuotasPlugin::generarComprobantes()
@@ -139,3 +137,5 @@ void CuotasPlugin::emitirVentaEnCuotas( int id_cliente, double total, int id_fac
 #include "formsimularcuotas.h"
 void CuotasPlugin::simularCuotas()
 { emit agregarVentana( new FormSimularCuotas() ); }
+
+Q_EXPORT_PLUGIN2( Cuotas, CuotasPlugin )
