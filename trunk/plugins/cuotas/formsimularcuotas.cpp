@@ -165,7 +165,7 @@ void FormSimularCuotas::generaReporte()
     double valor_cuota = ( ( DSBTotal->value() ) * ( 1 + DSBInteres->value() / 100 ) ) / SBCantidad->value();
     for( int i = 1; i<=SBCantidad->value(); i++ ) {
         tabla->cellAt( i+2, 0 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( i ) );
-        tabla->cellAt( i+2, 1 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( DEInicio->date().addDays( (i-1)*30 ).toString( Qt::SystemLocaleShortDate ) ) );
+        tabla->cellAt( i+2, 1 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( DEInicio->date().addDays( (i-1)*modelo->diasPeriodo( (MSimularCuotas::Periodo) CBPeriodo->currentIndex() ) ).toString( Qt::SystemLocaleShortDate ) ) );
         tabla->cellAt( i+2, 2 ).firstCursorPosition().setBlockFormat( bfizq );
         tabla->cellAt( i+2, 2 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( valor_cuota, 10, 'f', 2 ) );
         subtotal += valor_cuota;
@@ -180,13 +180,13 @@ void FormSimularCuotas::generaReporte()
     cursor.insertBlock();
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertText( "Firma de conforme: ________________________" );
+    cursor.insertText( "Firma del contrayente: ________________________" );
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertText( "Aclaracion: ____________________________________________" );
+    cursor.insertText( QString::fromUtf8( "Aclaración: ____________________________________________" ) );
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertHtml("<small>En caso de provocarse un atraso en la fecha de pago de cualquiera de las cuotas, se aplicará el recargo correspondiente tal cual se hace actualmenete con cualquier recibo emitido por nuestra entidad.</small>" );
+    cursor.insertHtml( QString::fromUtf8( "<small>En caso de provocarse un atraso en la fecha de pago de cualquiera de las cuotas, se aplicará el recargo correspondiente tal cual se hace actualmenete con cualquier recibo emitido por nuestra entidad.</small>" ) );
 
     // Cabecera
     cursor.movePosition( QTextCursor::Start );

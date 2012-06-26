@@ -31,6 +31,7 @@ public:
     void setFechaInicio( QDate f ) { fecha_inicio = f; }
 
     void regenerar();
+    int diasPeriodo( Periodo periodo ) const;
 
     int rowCount( const QModelIndex &parent = QModelIndex() ) const;
     int columnCount( const QModelIndex &parent = QModelIndex() ) const;
@@ -48,7 +49,6 @@ private:
     QHash<int,double> *sumatoria;
 
     bool valido() const;
-    int diasPeriodo( Periodo periodo ) const;
 
 };
 
