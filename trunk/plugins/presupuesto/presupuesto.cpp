@@ -129,10 +129,6 @@ bool presupuesto::verificarTablas( QStringList tablas )
  return true;
 }
 
-
-Q_EXPORT_PLUGIN2(presupuesto, presupuesto )
-
-
 /*!
     \fn presupuesto::nuevoPresupuesto()
  */
@@ -145,7 +141,11 @@ void presupuesto::nuevoPresupuesto()
     \fn presupuesto::verAnteriores()
  */
 void presupuesto::verAnteriores()
-{ emit agregarVentana( new VPresupuesto() ); }
+{
+    VPresupuesto *v = new VPresupuesto();
+    connect( v, SIGNAL( emitirFactura( int, QDate, MProductosTotales * ) ), this, SIGNAL( emitirFactura( int, QDate, MProductosTotales * ) ) );
+    emit agregarVentana( v );
+}
 
 
 /*!
@@ -163,3 +163,5 @@ void presupuesto::seCierraGestotux()
  Q_CLEANUP_RESOURCE(presupuesto);
  return;
 }
+
+Q_EXPORT_PLUGIN2( presupuesto, presupuesto )
