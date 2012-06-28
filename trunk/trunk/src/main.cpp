@@ -152,6 +152,12 @@ void generarInterconexiones()
                          dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
                          SLOT( agregarRecibo( int, QDate, QString, double ) ) );
     }
+    /*if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
+       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+                         SIGNAL( emitirRecibo( int, QDate, QString, double ) ),
+                         dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
+                         SLOT( agregarRecibo( int, QDate, QString, double ) ) );
+    }*/
 }
 
 /**
@@ -165,10 +171,10 @@ int main(int argc, char *argv[])
       Q_INIT_RESOURCE(gestotux);
       QApplication app(argc, argv);
       // Maneja la salida del programa
-        debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
+  /*      debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
         fseek( debug, 0, 0 );
         qInstallMsgHandler(myMessageOutput);
-
+*/
       // Muestro el splash
       ESplash splash;
       splash.show();

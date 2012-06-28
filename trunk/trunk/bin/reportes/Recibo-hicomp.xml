@@ -42,7 +42,7 @@
   <height>830</height>
  </size>
  <portrait/>
- <topmargin>40</topmargin>
+ <topmargin>14</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
  <leftmargin>0</leftmargin>
@@ -53,7 +53,7 @@
        strftime( '%d  %m  %Y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
-       c.calle || ' ' || c.numero AS direccion,
+        c.calle || ' ' || coalesce( c.numero, '  ' ) AS direccion,
        c.razon_social AS cliente,
        c.`CUIT/CUIL` AS cuit,
        CASE r.forma_pago WHEN 1 THEN 'X' ELSE ' ' END AS contado,

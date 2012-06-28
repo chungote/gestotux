@@ -2,7 +2,6 @@
 ::: Diseño :::
 ::::::::::::::
 - Terminar diseños de entidad relación para el conjunto general y cada plugin.
-- Verificar el diseño de las categorias.
 - Agregar inicialización de reportes en la base de datos Mysql
  - ¿ Descarga inicial por internet? ¿ Importación inicial desde archivos ?
  - Agregar capacidad para actualizar los reportes x internet ( caso db local )?
@@ -29,14 +28,10 @@
     - Utilizamos como base la "forma de pago"
     - Agregar formas de pago en recibos y/o ventas.
 
--- Recibos --
--------------
-
 -- General --
 -------------
 - Hacer calculos de ubicación de las flechas de la pantalla inicial.
 - Agregar a todos los modelos el metodo estatico siguienteNumero() para obtener el siguiente numero de comprobante.
-- Ver si realizar un reporte con todos los datos de un mes/año/semana con todos los datos y movimientos registrados.
 
 -- Cuentas corrientes --
 ------------------------
@@ -59,14 +54,10 @@
 
 -- Compras --
 -------------
-- Generar ventanas de modificacion.
-- Generar sistema de modificación de datos de una compra.
-- Generar sistema de eliminación de una compra.
 
 -- Ventas --
 ------------
 - Diseñar sistema para que soporte automaticamente el sistema de cuotas.
-- Agregar posibilidad de pagar facturas automaticamente desde la vista de facturas emitidas.
 
 -- Gastos --
 ------------
@@ -77,7 +68,6 @@
 
 -- Presupuestos --
 ------------------
-- Generar integración para pasar un presupuesto a factura automaticamente.
 
 -- Email --
 -----------
@@ -87,14 +77,13 @@
 
 -- Digifauno --
 ---------------
-- Generar tablas mysql corretamente.
+- Generar tablas mysql correctamente.
   - Generar FK.
 - Reformular sistema de generación de reportes.
 - Generar integración de autofacturación al registrar un corte.
 
 -- BSComputacion --
 -------------------
-
 - Generar integracion con gitextranet
 - Autopedido de compras?
 - Busqueda de precios con el proveedor.

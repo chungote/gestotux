@@ -172,13 +172,13 @@ void VPagos::aPdf()
         if( indice.isValid() )
         {
             QModelIndex r = indice.model()->index( indice.row(), 0 );
-            //QModelIndex c = indice.model()->index( indice.row(), 1 );
+            QModelIndex c = indice.model()->index( indice.row(), 1 );
             lista.append( "id_recibo", r.data( Qt::EditRole ).toInt() );
-            rep->hacer( lista );
+            rep->hacerPDF( lista, QString( "Recibo #%1" ).arg( c.data().toString() ) );
             lista.clear();
         }
-        delete rep;
     }
+    delete rep;
     return;
 }
 

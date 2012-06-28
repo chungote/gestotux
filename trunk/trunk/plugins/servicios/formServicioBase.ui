@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>668</width>
+    <width>669</width>
     <height>618</height>
    </rect>
   </property>
@@ -113,7 +113,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="dSBPrecioBase">
+           <widget class="EDSBPrecio" name="dSBPrecioBase">
             <property name="frame">
              <bool>false</bool>
             </property>
@@ -195,6 +195,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

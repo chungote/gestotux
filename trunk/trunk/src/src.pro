@@ -72,11 +72,9 @@ FORMS += FormAcercaDeBase.ui \
          formplugins.ui \
          ../utiles/EAyudaBase.ui \
          FormPantallaInicialBase.ui \
-    formprefclientesbase.ui
+         formprefclientesbase.ui
 
-TARGET = gestotux
-
-DESTDIR = ../bin
+TARGET = ../bin/gestotux
 
 DISTFILES += qt_es.qm
 
@@ -93,11 +91,15 @@ INCLUDEPATH += ../reporte \
                ../utiles \
                ../utiles/email
 
-LIBS += ../bin/libutiles.a \
-        ../bin/libreporte.a \
-        ../bin/plugins/libventas.so \
-        ../bin/plugins/libpresupuesto.so \
-        ../bin/plugins/libpagos.so
+LIBS += -lutiles \
+        -lreporte \
+        -lventas \
+        -lpresupuesto \
+        -lpagos \
+        -L../bin \
+        -L../bin/plugins
+
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
 
 OTHER_FILES += gestotux.ts \
                tablas.QSQLITE.sql \

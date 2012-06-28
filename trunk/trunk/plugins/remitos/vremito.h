@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
+ *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,49 +17,43 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "edsbprecio.h"
+#ifndef VREMITO_H
+#define VREMITO_H
 
-#include <QLatin1Char>
-#include <QKeyEvent>
-#include <QCoreApplication>
+#include <QDate>
+#include <evlista.h>
 
-EDSBPrecio::EDSBPrecio(QWidget *parent)
- : QDoubleSpinBox( parent )
-{
- setPrefix( "$ " );
-}
-
-/*!
-    \fn EDSBPrecio::keyPressEvent ( QKeyEvent * event )
+/**
+ * \brief Listado de remitos emitidos
+ *
+ * Vista de la lista de facturas emitidas
+ * @author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-void EDSBPrecio::keyPressEvent( QKeyEvent * event )
+class VRemito : public EVLista
 {
- //qDebug( QString( "Tecla: %1, texto: %2" ).arg( event->nativeScanCode() ).arg( event->text()).toLocal8Bit() );
- switch( event->nativeScanCode() )
- {
-#ifdef Q_WS_X11
-     case 91:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-#ifdef Q_WS_WIN
-     case 83:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-     default:
-     {
-       QDoubleSpinBox::keyPressEvent( event );
-       break;
-     }
-   }
-}
+Q_OBJECT
 
+public:
+    VRemito( QWidget *parent = 0 );
+
+protected slots:
+    void agregar();
+    void eliminar();
+    void imprimir();
+    void modificar();
+    void anular();
+    void pagar();
+    void cambioVerAnulados( bool parametro );
+    void verItems();
+
+signals:
+    void emitirRecibo( int, QDate, QString, double );
+
+private:
+    void imprimirAnulacion( const int id_remito, const QString razon, const QString numero );
+
+    QAction *ActVerItems;
+
+};
+
+#endif

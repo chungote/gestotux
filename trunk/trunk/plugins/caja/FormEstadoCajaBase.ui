@@ -55,7 +55,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="dSBSaldo">
+      <widget class="EDSBPrecio" name="dSBSaldo">
        <property name="wrapping">
         <bool>false</bool>
        </property>
@@ -89,6 +89,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

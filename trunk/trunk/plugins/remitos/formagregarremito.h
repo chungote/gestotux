@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,49 +17,41 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "edsbprecio.h"
 
-#include <QLatin1Char>
-#include <QKeyEvent>
-#include <QCoreApplication>
+#ifndef FORMAGREGARREMITO_H
+#define FORMAGREGARREMITO_H
 
-EDSBPrecio::EDSBPrecio(QWidget *parent)
- : QDoubleSpinBox( parent )
-{
- setPrefix( "$ " );
-}
+#include "eventana.h"
+#include "ui_FormAgregarRemitoBase.h"
+class MProductosTotales;
 
 /*!
-    \fn EDSBPrecio::keyPressEvent ( QKeyEvent * event )
+ * \brief Formulario para agregar una venta
+ *
+ * Clase que permite agregar una nueva venta al sistema
+ * \author Esteban Zeller
  */
-void EDSBPrecio::keyPressEvent( QKeyEvent * event )
+class FormAgregarRemito : public EVentana, private Ui::FormAgregarRemitoBase
 {
- //qDebug( QString( "Tecla: %1, texto: %2" ).arg( event->nativeScanCode() ).arg( event->text()).toLocal8Bit() );
- switch( event->nativeScanCode() )
- {
-#ifdef Q_WS_X11
-     case 91:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
+Q_OBJECT
+public:
+        FormAgregarRemito( QWidget* parent = 0, Qt::WFlags fl = 0 );
+        void setearCliente( int id_cliente );
+        void setearFecha( QDate fecha );
+        void setearItems( MProductosTotales *m );
+
+protected slots:
+    void agregarProducto();
+    void eliminarProducto();
+    void guardar();
+    void cambioCliente( int id_combo );
+    void eliminarTodo();
+    void agregarDescuento();
+    void eliminarDescuento();
+
+private:
+    MProductosTotales *mcp;
+};
+
 #endif
-#ifdef Q_WS_WIN
-     case 83:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-     default:
-     {
-       QDoubleSpinBox::keyPressEvent( event );
-       break;
-     }
-   }
-}
 

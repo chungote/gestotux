@@ -32,7 +32,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="DSBImporte">
+           <widget class="EDSBPrecio" name="DSBImporte">
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
@@ -56,7 +56,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="DSBEntrega">
+           <widget class="EDSBPrecio" name="DSBEntrega">
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
@@ -87,7 +87,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="DSBTotal">
+           <widget class="EDSBPrecio" name="DSBTotal">
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
@@ -210,6 +210,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

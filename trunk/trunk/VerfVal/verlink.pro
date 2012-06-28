@@ -19,5 +19,6 @@ LIBS += ../../gestotux-build-desktop/bin/plugins/libcaja.so \
         ../../gestotux-build-desktop/bin/libutiles.a \
 #        ../../gestotux-build-desktop/bin/plugins/libbscomputacion.so \
         ../../gestotux-build-desktop/bin/plugins/libhicomp.so \
-        ../../gestotux-build-desktop/bin/plugins/libcuotas.so
+        ../../gestotux-build-desktop/bin/plugins/libcuotas.so \
+        ../../gestotux-build-desktop/bin/plugins/libremitos.so
         

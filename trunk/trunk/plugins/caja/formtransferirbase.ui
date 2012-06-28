@@ -80,7 +80,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="DSBCantidad">
+      <widget class="EDSBPrecio" name="DSBCantidad">
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
@@ -135,6 +135,11 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
   <customwidget>
    <class>ECBTabla</class>
    <extends>QComboBox</extends>

@@ -129,7 +129,7 @@ void CuotasPlugin::verCuotas()
 /*!
  * \fn CuotasPlugin::emitirVentaEnCuotas( int id_cliente, double total, int id_factura )
  */
-void CuotasPlugin::emitirVentaEnCuotas( int id_cliente, double total, int id_factura )
+void CuotasPlugin::emitirVentaEnCuotas( int /*id_cliente*/, double /*total*/, int /*id_factura*/ )
 {
 
 }
