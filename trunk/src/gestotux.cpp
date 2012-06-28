@@ -447,7 +447,7 @@ void gestotux::resumenGeneral()
     EReporte *rep = new EReporte( 0 );
     ParameterList lista;
     rep->especial( "BalanceGeneral", lista );
-    rep->hacerPDF( lista, "Balance general" );
+    rep->hacerPDF( lista, QString( "Balance general al %1" ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
     delete rep;
 }
 
