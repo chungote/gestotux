@@ -14,7 +14,8 @@ public:
     enum Tipo {
         Invalido = 0, /** Tipo invalido */
         Presupuesto = 1, /** Tipo presupuesto */
-        Factura = 2 /** Tipo Factura */
+        Factura = 2, /** Tipo Factura */
+        Remito = 3 /** Tipo Remito */
     };
 
     MDescuentos( QObject *parent = 0 );
