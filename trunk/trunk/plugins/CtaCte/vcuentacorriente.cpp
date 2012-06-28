@@ -185,6 +185,8 @@ void VCuentaCorriente::modificarLimite()
   if( limite_anterior == limite_nuevo )
   { return; }
   if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), limite_nuevo ) ) {
+            rmodelo->modificarLimite( id_ctacte, limite_nuevo );
+            rmodelo->submit();
             QMessageBox::information( this, "Correcto", QString::fromUtf8( "El nuevo límite ha sido colocado correctamente." ) );
             return;
         } else {

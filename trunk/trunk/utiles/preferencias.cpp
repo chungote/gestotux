@@ -36,11 +36,8 @@ preferencias* preferencias::getInstancia()
 
 
 preferencias::preferencias()
-#ifdef GESTOTUX_DESARROLLO
- : QSettings( "Tranfuga", "GestoTux-dev" )
-#else
- : QSettings( "Tranfuga", "GestoTux" )
-#endif
+: QSettings( "Tranfuga", "GestoTux" )
+//: QSettings( "TRSis", "GestoTux" )
 {
  // Seteo el numero de la libreria
  this->setValue( "Preferencias/Generales/utiles/numseq", 1 );
