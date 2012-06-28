@@ -41,6 +41,7 @@ VCompras::VCompras(QWidget *parent)
  vista->hideColumn( 0 );
  vista->hideColumn( 4 );
  vista->setItemDelegateForColumn( 5, new DSiNo( vista ) );
+ rmodelo->select();
 
  ActAgregar->setIcon( QIcon( ":/imagenes/agregar_compras.png" ) );
  ActModificar->setIcon( QIcon( ":/imagenes/editar_compras.png" ) );

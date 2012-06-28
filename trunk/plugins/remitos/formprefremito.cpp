@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,49 +17,56 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "edsbprecio.h"
 
-#include <QLatin1Char>
-#include <QKeyEvent>
-#include <QCoreApplication>
+#include "formprefremito.h"
 
-EDSBPrecio::EDSBPrecio(QWidget *parent)
- : QDoubleSpinBox( parent )
+#include "preferencias.h"
+#include <QCheckBox>
+#include <QDoubleSpinBox>
+
+FormPrefRemito::FormPrefRemito( QWidget* parent ) :
+ FormPrefHijo(), Ui::FormPrefRemitoBase()
 {
- setPrefix( "$ " );
+    this->setParent( parent );
+    setupUi(this);
+    this->setWindowTitle( "Remito" );
+    //this->setWindowIcon( QIcon( ":/imagenes/factura.png" ) );
+    this->setAttribute( Qt::WA_DeleteOnClose );
 }
+
 
 /*!
-    \fn EDSBPrecio::keyPressEvent ( QKeyEvent * event )
+    \fn FormPrefRemito::cargar()
  */
-void EDSBPrecio::keyPressEvent( QKeyEvent * event )
+void FormPrefRemito::cargar()
 {
- //qDebug( QString( "Tecla: %1, texto: %2" ).arg( event->nativeScanCode() ).arg( event->text()).toLocal8Bit() );
- switch( event->nativeScanCode() )
- {
-#ifdef Q_WS_X11
-     case 91:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-#ifdef Q_WS_WIN
-     case 83:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-     default:
-     {
-       QDoubleSpinBox::keyPressEvent( event );
-       break;
-     }
-   }
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Remito" );
+ this->CkBBusquedaPrecio->setChecked( p->value( "buscarPrecio", false ).toBool() );
+ p->endGroup();
+ p->endGroup();
+ p=0;
 }
 
+
+/*!
+    \fn FormPrefRemito::aplicar()
+ */
+void FormPrefRemito::aplicar()
+{ return; }
+
+
+/*!
+    \fn FormPrefRemito::guardar()
+ */
+void FormPrefRemito::guardar()
+{
+ preferencias *p = preferencias::getInstancia();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "Remito" );
+ p->setValue( "buscarPrecio", this->CkBBusquedaPrecio->isChecked() );
+ p->endGroup();
+ p->endGroup();
+ p=0;
+}

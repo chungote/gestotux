@@ -67,6 +67,7 @@ VGastos::VGastos( QWidget* parent )
  addAction( ActBuscar );
  addAction( ActVerTodos );
  addAction( ActCerrar );
+ actualizarVista();
 }
 
 #include "formagregargasto.h"

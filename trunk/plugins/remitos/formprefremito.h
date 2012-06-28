@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Esteban Zeller & Daniel Sequeira		   *
- *   juiraze@yahoo.com.ar  - daniels@hotmail.com			   *
+ *   Copyright (C) 2007 by Esteban Zeller   				   *
+ *   juiraze@yahoo.com.ar   						   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,49 +17,32 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "edsbprecio.h"
 
-#include <QLatin1Char>
-#include <QKeyEvent>
-#include <QCoreApplication>
+#ifndef FORMPREFVENTA_H
+#define FORMPREFVENTA_H
 
-EDSBPrecio::EDSBPrecio(QWidget *parent)
- : QDoubleSpinBox( parent )
-{
- setPrefix( "$ " );
-}
+#include "ui_FormPrefRemitoBase.h"
+#include "preferencias.h"
+#include "formprefhijo.h"
+#include <QWidget>
 
 /*!
-    \fn EDSBPrecio::keyPressEvent ( QKeyEvent * event )
+ * \brief Formulario de preferencia de Ventas
+ *
+ *
+ * \author Esteban Zeller
  */
-void EDSBPrecio::keyPressEvent( QKeyEvent * event )
+class FormPrefRemito : public QWidget, public FormPrefHijo, private Ui::FormPrefRemitoBase
 {
- //qDebug( QString( "Tecla: %1, texto: %2" ).arg( event->nativeScanCode() ).arg( event->text()).toLocal8Bit() );
- switch( event->nativeScanCode() )
- {
-#ifdef Q_WS_X11
-     case 91:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-#ifdef Q_WS_WIN
-     case 83:
-     {
-       QKeyEvent *ev = new QKeyEvent( event->type(), Qt::Key_Comma, event->modifiers(), ",", event->isAutoRepeat(), event->count() );
-       ev->setAccepted( false );
-       QCoreApplication::sendEvent( this, ev );
-       break;
-     }
-#endif
-     default:
-     {
-       QDoubleSpinBox::keyPressEvent( event );
-       break;
-     }
-   }
-}
+    Q_OBJECT
+public:
+    FormPrefRemito( QWidget* parent = 0 );
 
+public slots:
+    void cargar();
+    void aplicar();
+    void guardar();
+
+};
+
+#endif // FORMPREFVENTA_H

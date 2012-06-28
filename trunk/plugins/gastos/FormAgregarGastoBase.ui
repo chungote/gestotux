@@ -68,7 +68,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QDoubleSpinBox" name="dSBCosto">
+        <widget class="EDSBPrecio" name="dSBCosto">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -175,6 +175,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

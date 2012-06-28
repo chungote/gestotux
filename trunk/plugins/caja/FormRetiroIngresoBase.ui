@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>227</width>
+    <width>238</width>
     <height>174</height>
    </rect>
   </property>
@@ -51,7 +51,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBCantidad">
+         <widget class="EDSBPrecio" name="DSBCantidad">
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
@@ -115,6 +115,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>CBCaja</tabstop>
   <tabstop>DSBCantidad</tabstop>

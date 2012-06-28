@@ -171,7 +171,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBPagar">
+         <widget class="EDSBPrecio" name="DSBPagar">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
             <horstretch>0</horstretch>
@@ -210,7 +210,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBSaldo">
+         <widget class="EDSBPrecio" name="DSBSaldo">
           <property name="autoFillBackground">
            <bool>true</bool>
           </property>
@@ -294,6 +294,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>LENumeroRecibo</tabstop>
   <tabstop>DSBPagar</tabstop>

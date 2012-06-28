@@ -86,7 +86,7 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBLimite">
+         <widget class="EDSBPrecio" name="DSBLimite">
           <property name="maximum">
            <double>99999999.000000000000000</double>
           </property>
@@ -104,7 +104,7 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBSaldoInicial">
+         <widget class="EDSBPrecio" name="DSBSaldoInicial">
           <property name="maximum">
            <double>999999999.990000009536743</double>
           </property>
@@ -130,6 +130,13 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

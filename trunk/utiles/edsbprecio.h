@@ -32,7 +32,6 @@ class EDSBPrecio : public QDoubleSpinBox
 Q_OBJECT
 public:
     EDSBPrecio( QWidget *parent = 0 );
-    ~EDSBPrecio();
 
 protected:
     void keyPressEvent ( QKeyEvent * event );

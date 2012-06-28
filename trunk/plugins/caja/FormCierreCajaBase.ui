@@ -45,7 +45,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="dSBComputado">
+      <widget class="EDSBPrecio" name="dSBComputado">
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
@@ -72,7 +72,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="dSBSumado">
+      <widget class="EDSBPrecio" name="dSBSumado">
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
@@ -111,6 +111,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
