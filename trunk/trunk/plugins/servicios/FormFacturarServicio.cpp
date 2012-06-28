@@ -22,6 +22,8 @@
 #include <QPair>
 #include <QLocale>
 #include <QTimer>
+#include <QPrintDialog>
+#include <QPrinterInfo>
 
 #include "mperiodoservicio.h"
 #include "FormFacturarServicio.h"
@@ -433,6 +435,16 @@ void FormFacturarServicio::facturar()
         }
     } else {
         reporte->factura();
+    }
+
+    // Genero la configuraciòn de la impresora
+    QPrinter *imp = new QPrinter( QPrinterInfo::defaultPrinter() );
+    QPrintDialog *di = new QPrintDialog( imp, this );
+    if( di->exec() ) {
+        reporte->setearImpresora( imp );
+    } else {
+        QMessageBox::information( this, "Listo", "Ha elegido no imprimir ningun comprobante ahora.<br /><b>Aun así, han quedado emitidos. Puede imprimirlos luego desde la lista de recibos" );
+        return;
     }
 
     for( int i = 0; i<comprobantes.size(); i++ ) {

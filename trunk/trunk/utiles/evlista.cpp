@@ -46,7 +46,6 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  layout->addWidget( vista );
  this->setLayout( layout );
  // Propiedades varias
- vista->setSelectionMode( QAbstractItemView::SingleSelection );
  vista->setSelectionBehavior( QAbstractItemView::SelectRows );
  vista->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
  vista->setTextElideMode( Qt::ElideRight );
