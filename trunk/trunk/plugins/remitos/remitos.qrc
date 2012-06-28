@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/"/>
+    <qresource prefix="/sql">
+        <file>remitos.QSQLITE.sql</file>
+        <file>remitos.QMYSQL.sql</file>
+    </qresource>
+</RCC>
