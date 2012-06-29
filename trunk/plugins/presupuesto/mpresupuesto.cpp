@@ -211,7 +211,7 @@ bool MPresupuesto::eliminarPresupuesto(int id_presupuesto)
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
     QSqlQuery cola;
     // Elimino sus items
-    if( cola.exec( QString( "DELETE FROM item_presupuesto WHERE id_presupuesto = %1 LIMIT 1" ).arg( id_presupuesto ) ) ) {
+    if( !cola.exec( QString( "DELETE FROM item_presupuesto WHERE id_presupuesto = %1 LIMIT 1" ).arg( id_presupuesto ) ) ) {
         qWarning( "No se pudo ejecutar la cola para eliminar los items de presupuesto" );
         qDebug( "Error al ejectuar la cola para eliminar el presupuesto" );
         qDebug( cola.lastError().text().toLocal8Bit() );

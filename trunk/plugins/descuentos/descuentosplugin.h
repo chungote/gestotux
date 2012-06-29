@@ -53,10 +53,6 @@ signals:
 
 public slots:
     void seCierraGestotux();
-    void tipoDescuentos();
-
-private:
-    QAction *ActDescuentos;
 
 };
 
