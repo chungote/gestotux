@@ -244,7 +244,7 @@ bool MPresupuesto::eliminarPresupuesto(int id_presupuesto)
         return false;
     }
     // Elimino el presupuesto
-    if( cola.exec( QString( "DELETE FROM presupuesto WHERE id_presupuesto = %1 LIMIT 1" ).arg( id_presupuesto ) ) ) {
+    if( cola.exec( QString( "DELETE FROM presupuestos WHERE id_presupuesto = %1 LIMIT 1" ).arg( id_presupuesto ) ) ) {
         if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
             return true;
         } else {
