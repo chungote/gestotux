@@ -61,7 +61,7 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  setupUi(this);
  this->setAttribute( Qt::WA_DeleteOnClose );
  setObjectName( "backup" );
- setWindowTitle( "Copia de Seguridad" );
+ setWindowTitle( "Copia de Seguridad Remota" );
  setWindowIcon( QIcon( ":/imagenes/backup.png" ) );
  PBProgreso->setValue( 0 );
  PBEnviado->setValue( 0 );
@@ -73,7 +73,7 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  connect( ActCerrar, SIGNAL( triggered() ), this, SLOT( close() ) );
 
  ActIniciar = new QAction( "Iniciar", this );
- ActIniciar->setStatusTip( "Inincia la generaciÃ³n de los backups" );
+ ActIniciar->setStatusTip( "Inincia la generacion de los backups" );
  ActIniciar->setIcon( QIcon( ":/imagenes/next.png" ) );
  connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( iniciar() ) );
 
@@ -107,7 +107,7 @@ EBackupRemoto::~EBackupRemoto()
 void EBackupRemoto::cambiopestana( int pes ) {
     if( pes == 1 ) {
         // Busco los datos del sistema para ver cuales hay
-        QUrl url( "http://trafu.no-ip.org/TRSis/backup/historial" );
+        QUrl url( "http://trafu.no-ip.org/TRSis/backups/historial" );
         preferencias *p = preferencias::getInstancia();
         p->beginGroup( "Preferencias" );
         p->beginGroup( "BackupRemoto" );
@@ -175,15 +175,13 @@ bool EBackupRemoto::generar_db( bool estructura )
  total += tablas.size();
 
  // Hago la conexion
- if( manager == 0 ) {
-    manager = new QNetworkAccessManager( this );
- }
+ manager = new QNetworkAccessManager( this );
  connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
- QUrl url( p->value( "url_envio", "http://trafu.np-ip.org/TRSis/backup/envio" ).toString() );
+ QUrl url( p->value( "url_envio", "http://localhost/TRSis/backups/envio" ).toString() );
  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
  url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
@@ -209,7 +207,8 @@ bool EBackupRemoto::generar_db( bool estructura )
  {
         PBProgreso->setValue( PBProgreso->value() + 1 );
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
-        while( cola.next() & _continuar )
+        int i = 0;
+        while( cola.next() && _continuar && i > 5 )
         {
             QUrl url2 = url;
             url2.addQueryItem( "pos", QString::number( pos ) );
@@ -221,9 +220,11 @@ bool EBackupRemoto::generar_db( bool estructura )
 
             PBProgreso->setValue( PBProgreso->value() + 1 );
             pos++;
+            i++;
         }
         if( _continuar == false ) {
             url.addQueryItem( "cancelar", "0" );
+            QApplication::processEvents();
             req.setUrl( url );
             manager->post( req, url.encodedQuery() );
             disconnect( this, SLOT( respuesta( QNetworkReply* ) ) );
@@ -241,13 +242,14 @@ void EBackupRemoto::respuesta( QNetworkReply *resp ) {
         QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
     } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
+        qDebug( cont );
         QApplication::processEvents();
         bool ok = false;
         resp->deleteLater();
         QVariantMap mapa = Json::parse( cont, ok ).toMap();
         if( !ok ) {
             QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
-            qDebug( cont );
+            _continuar = false;
             return;
         }
         if( mapa["error"].toBool() ) {

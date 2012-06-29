@@ -44,8 +44,8 @@ bool BackupRemotoPlugin::inicializar()
  Q_INIT_RESOURCE(backupremoto);
 
  ActBackup = new QAction( this );
- ActBackup->setText( "Copia de seguridad" );
- ActBackup->setStatusTip( "Genera una copia de seguridad y la envía al servidor" );
+ ActBackup->setText( "Backup Remoto" );
+ ActBackup->setStatusTip( "Genera una copia de seguridad y la envía al servidor remoto" );
  ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
  connect( ActBackup, SIGNAL( triggered() ), this, SLOT( hacerBackup() ) );
 

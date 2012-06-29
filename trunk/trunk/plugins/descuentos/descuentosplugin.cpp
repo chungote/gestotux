@@ -53,15 +53,6 @@ QWidgetList DescuentosPlugin::formsPreferencias()
 bool DescuentosPlugin::inicializar()
 {
  Q_INIT_RESOURCE(descuentos);
-
- ////////////////////////////////
- // Muestra las categorias
- ////////////////////////////////
- ActDescuentos = new QAction( "Descuentos", this );
- ActDescuentos->setStatusTip( "Muestra los tipos de descuentos que se pueden aplicar" );
- ActDescuentos->setIcon( QIcon( ":/imagenes/categorias.jpg" ) );
- connect( ActDescuentos, SIGNAL( triggered() ), this, SLOT( tipoDescuentos() ) );
-
  return true;
 }
 
@@ -91,13 +82,8 @@ int DescuentosPlugin::tipo() const
 /*!
     \fn DescuentosPlugin::crearMenu( QMenuBar *m )
  */
-void DescuentosPlugin::crearMenu( QMenuBar *m )
-{
- QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
- if( menuHer != 0 ) {
-     menuHer->addAction( ActDescuentos );
- }
-}
+void DescuentosPlugin::crearMenu( QMenuBar */*m*/ )
+{}
 
 
 /*!
@@ -112,15 +98,6 @@ double DescuentosPlugin::version() const
  */
 void DescuentosPlugin::crearToolBar( QToolBar */*t*/ )
 {}
-
-/*!
-    \fn DescuentosPlugin::tipoDescuentos()
-        Muestra la ventana de tipo de descuentos
- */
-void DescuentosPlugin::tipoDescuentos()
-{ 
-  //emit agregarVentana( new VTipoDescuento() ); 
-}
 
 /*!
     \fn DescuentosPlugin::seCierraGestotux()

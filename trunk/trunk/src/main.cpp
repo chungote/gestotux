@@ -171,10 +171,9 @@ int main(int argc, char *argv[])
       Q_INIT_RESOURCE(gestotux);
       QApplication app(argc, argv);
       // Maneja la salida del programa
-  /*      debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
-        fseek( debug, 0, 0 );
-        qInstallMsgHandler(myMessageOutput);
-*/
+      debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
+      fseek( debug, 0, 0 );
+      qInstallMsgHandler(myMessageOutput);
       // Muestro el splash
       ESplash splash;
       splash.show();
