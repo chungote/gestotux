@@ -213,7 +213,7 @@ void VPresupuesto::eliminar()
         return;
     }
     // confirmacion del usuario
-    if( QMessageBox::Question( this, "¿Seguro?", QString::fromUtf8( "¿Está seguro que desea eliminar %1 presupuesto(s)?").arg( lista.size() ), QMessageBox::Ok, QMessageBox::Cancel ) != QMessageBox::Ok ) {
+    if( QMessageBox::question( this, "¿Seguro?", QString::fromUtf8( "¿Está seguro que desea eliminar %1 presupuesto(s)?").arg( lista.size() ), QMessageBox::Ok, QMessageBox::Cancel ) != QMessageBox::Ok ) {
         return;
     }
     foreach( QModelIndex idx, lista ) {
