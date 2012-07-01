@@ -90,6 +90,16 @@ FormCliente::FormCliente ( QWidget* parent, QSqlRelationalTableModel *modelo,  Q
 
         CBProvincia->setearCBPais( CBPaises );
 
+        preferencias *p = preferencias::getInstancia();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "Clientes" );
+        CBPaises->setearId( p->value( "pais", -1 ).toInt() );
+        CBProvincia->setearId( p->value( "provincia", -1 ).toInt() );
+        CBEstadoFiscal->setCurrentIndex( p->value( "estado-fiscal", 4 ).toInt() );
+        p->endGroup();
+        p->endGroup();
+        p=0;
+
 }
 
 /*!
@@ -113,6 +123,15 @@ void FormCliente::guardar()
  }
  if( CBEstadoFiscal->currentIndex() == -1 ) {
      QMessageBox::warning( this, "Error estado fiscal", "Por favor, seleccione un estado fiscal para el cliente." );
+     return;
+ }
+ //
+ if( CBPaises->currentIndex() == -1 ) {
+     QMessageBox::warning( this, "Error de pais", "Por favor, ingrese un pais para el cliente" );
+     return;
+ }
+ if( CBProvincia->currentIndex() == -1 ) {
+     QMessageBox::warning( this, "Error de provincia", "Por favor, ingrese una provincia para el cliente" );
      return;
  }
  if( !this->_agregando ) {

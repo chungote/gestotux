@@ -45,7 +45,6 @@
 #include <QProgressDialog>
 #include <QTabWidget>
 #include <QSqlDriver>
-
 #include <QNetworkAccessManager>
 #include <QUrl>
 #include <QNetworkReply>
@@ -60,7 +59,7 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
 {
  setupUi(this);
  this->setAttribute( Qt::WA_DeleteOnClose );
- setObjectName( "backup" );
+ setObjectName( "backupremoto" );
  setWindowTitle( "Copia de Seguridad Remota" );
  setWindowIcon( QIcon( ":/imagenes/backup.png" ) );
  PBProgreso->setValue( 0 );
@@ -103,11 +102,11 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
 
 EBackupRemoto::~EBackupRemoto()
 {
-    if( !manager )
+    /*if( !manager )
         delete manager;
 
     if( !req )
-        delete req;
+        delete req;*/
 }
 
 void EBackupRemoto::cambiopestana( int pes ) {
@@ -162,7 +161,7 @@ void EBackupRemoto::iniciar()
         @param estructura Hacer backup de la estructura de la db
         @return Verdadero si no existieron errores, falso en caso contrario
  */
-bool EBackupRemoto::generar_db( bool estructura )
+bool EBackupRemoto::generar_db( bool /*estructura*/ )
 {
  QSqlDriver *db = QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driver();
  ////////////////////////////////////////////////////////////////////////
@@ -194,32 +193,36 @@ bool EBackupRemoto::generar_db( bool estructura )
  p->endGroup(); p->endGroup(); p = 0;
 
  // Envio el saludo de inicio
- QUrl envio = url;
- envio.addQueryItem( "inicio", "0"  );
+ QUrl *envio = new QUrl( url );
+ envio->addQueryItem( "inicio", "0"  );
 
- req = new QNetworkRequest( envio );
+ req = new QNetworkRequest( *envio );
  req->setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
- lista.append( manager->post( *req, envio.encodedQuery() ) );
+ lista.append( manager->post( *req, envio->encodedQuery() ) );
 
  // Preparo todo para que pueda enviar datos
  PBProgreso->setRange( 0, total );
  PBEnviado->setRange( 0, total );
 
  int pos = 0;
+ delete req;
+ QNetworkRequest *req2 = new QNetworkRequest( url );
+ req2->setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
 
  foreach( tabla, tablas )
  {
         PBProgreso->setValue( PBProgreso->value() + 1 );
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
         int i = 0;
-        while( cola.next() && _continuar && i > 10 )
+        while( cola.next() && _continuar && pos < 10 )
         {
-            QUrl url2 = url;
-            url2.addQueryItem( "pos", QString::number( pos ) );
-            url2.addQueryItem( "cola", db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
+            url.removeQueryItem( "pos" );
+            url.removeQueryItem( "cola" );
+            url.addQueryItem( "pos", QString::number( pos ) );
+            url.addQueryItem( "cola", db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
 
-            lista.append( manager->post( *req, url2.encodedQuery() ) );
-            qDebug( url2.encodedQuery() );
+            lista.append( manager->post( *req2, url.encodedQuery() ) );
+            qDebug( url.encodedQuery() );
 
             QApplication::processEvents();
 
@@ -248,7 +251,7 @@ void EBackupRemoto::respuesta( QNetworkReply *resp ) {
         this->mostrarError( resp->error() );
     } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
-        qDebug( cont );
+        qDebug( "resp:"+cont );
         QApplication::processEvents();
         bool ok = false;
         resp->deleteLater();
@@ -303,37 +306,37 @@ void EBackupRemoto::generarBackup()
 {
   emit cambiarDetener( true );
  _continuar = true;
- if( !ChBBaseDatos->isChecked() && !ChBConfirugacion->isChecked() )
+ /*if( !ChBBaseDatos->isChecked() && !ChBConfirugacion->isChecked() )
  {
   QMessageBox::information( this, "Seleccione opciones" , "Por favor, seleccione una opcion para iniciar la copia de seguridad" );
   emit cambiarDetener( false );
   return;
- }
+ }*/
  LDebug->setText( "Iniciando" );
  if( ChBBaseDatos->isChecked() )
  {
   LDebug->setText( "Generando backup de Base de datos" );
-  if( !generar_db( CkBEstructura->isChecked() ) )
+  if( !generar_db( false ) )
   {
    qDebug( "Error al intentar generar la copia de seg de la db" );
    emit cambiarDetener( false );
    return;
   }
  }
- if( ChBConfirugacion->isChecked() )
+ /*if( ChBConfirugacion->isChecked() )
  {
   LDebug->setText( "Generando backup de Configuracion del programa" );
-  /*if( !generar_config() )
+  if( !generar_config() )
   {
    qDebug( "Error al generar el backup de la config" );
    emit cambiarDetener( false );
    return;
-  }*/
+  }
  }
  else
  {
   PBProgreso->setValue( PBProgreso->maximum() );
- }
+ }*/
  emit cambiarDetener( false );
 }
 
