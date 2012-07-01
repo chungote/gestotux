@@ -28,7 +28,7 @@ p, li { white-space: pre-wrap; }
    <item>
     <widget class="QTabWidget" name="Pestanas">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -45,20 +45,6 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="checked">
           <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="CkBEstructura">
-         <property name="text">
-          <string>Incluir estructura de las tablas</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="ChBConfirugacion">
-         <property name="text">
-          <string>Configuración del programa</string>
          </property>
         </widget>
        </item>
@@ -135,22 +121,5 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>ChBBaseDatos</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CkBEstructura</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>118</x>
-     <y>146</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>133</x>
-     <y>207</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
