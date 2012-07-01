@@ -25,7 +25,7 @@
 
 class QAction;
 class QNetworkAccessManager;
-class QNetworkReply;
+#include <QNetworkReply>
 
 /**
  *	\brief Clase de Copias de Seguridad
@@ -78,6 +78,8 @@ private:
         */
         QNetworkAccessManager *manager;
 
+        QNetworkRequest *req;
+
        /*!
         * Lista de solicitudes de red -  envio de colas
         */
@@ -90,6 +92,7 @@ private:
 
         bool generar_db( bool estructura );
         bool ejecutarColas( QStringList colas );
+        void mostrarError( QNetworkReply::NetworkError e );
 
 };
 

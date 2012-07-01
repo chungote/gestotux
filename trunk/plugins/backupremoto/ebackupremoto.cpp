@@ -102,7 +102,13 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
 
 
 EBackupRemoto::~EBackupRemoto()
-{}
+{
+    if( !manager )
+        delete manager;
+
+    if( !req )
+        delete req;
+}
 
 void EBackupRemoto::cambiopestana( int pes ) {
     if( pes == 1 ) {
@@ -191,13 +197,11 @@ bool EBackupRemoto::generar_db( bool estructura )
  QUrl envio = url;
  envio.addQueryItem( "inicio", "0"  );
 
- QNetworkRequest req( envio );
- req.setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
- lista.append( manager->post( req, envio.encodedQuery() ) );
+ req = new QNetworkRequest( envio );
+ req->setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
+ lista.append( manager->post( *req, envio.encodedQuery() ) );
 
  // Preparo todo para que pueda enviar datos
- req.setUrl( url );
-
  PBProgreso->setRange( 0, total );
  PBEnviado->setRange( 0, total );
 
@@ -208,13 +212,14 @@ bool EBackupRemoto::generar_db( bool estructura )
         PBProgreso->setValue( PBProgreso->value() + 1 );
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
         int i = 0;
-        while( cola.next() && _continuar && i > 5 )
+        while( cola.next() && _continuar && i > 10 )
         {
             QUrl url2 = url;
             url2.addQueryItem( "pos", QString::number( pos ) );
             url2.addQueryItem( "cola", db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
 
-            lista.append( manager->post( req, url2.encodedQuery() ) );
+            lista.append( manager->post( *req, url2.encodedQuery() ) );
+            qDebug( url2.encodedQuery() );
 
             QApplication::processEvents();
 
@@ -225,8 +230,8 @@ bool EBackupRemoto::generar_db( bool estructura )
         if( _continuar == false ) {
             url.addQueryItem( "cancelar", "0" );
             QApplication::processEvents();
-            req.setUrl( url );
-            manager->post( req, url.encodedQuery() );
+            req->setUrl( url );
+            manager->post( *req, url.encodedQuery() );
             disconnect( this, SLOT( respuesta( QNetworkReply* ) ) );
             lista.clear();
         }
@@ -240,6 +245,7 @@ bool EBackupRemoto::generar_db( bool estructura )
 void EBackupRemoto::respuesta( QNetworkReply *resp ) {
     if( resp->error() != QNetworkReply::NoError ) {
         QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
+        this->mostrarError( resp->error() );
     } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
         qDebug( cont );
@@ -264,7 +270,7 @@ void EBackupRemoto::respuesta( QNetworkReply *resp ) {
                  preferencias *p = preferencias::getInstancia();
                  p->beginGroup( "Preferencias" );
                  p->beginGroup( "BackupRemoto" );
-                 QUrl url( p->value( "url_envio", "http://trafu.np-ip.org/TRSis/backup/envio" ).toString() );
+                 QUrl url( p->value( "url_envio", "http://trafu.np-ip.org/TRSis/backups/envio" ).toString() );
                  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
                  url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
                  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
@@ -402,6 +408,58 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
         }
         // Cargo los datos al modelo
 
+    }
+
+}
+
+void EBackupRemoto::mostrarError( QNetworkReply::NetworkError e ) {
+    switch( e ) {
+        case QNetworkReply::NoError:
+        { qDebug( "Sin error" ); break; }
+        case QNetworkReply::ConnectionRefusedError:
+        { qDebug( "El servidor esta rechazando la conexión activamente." ); break; }
+        case QNetworkReply::RemoteHostClosedError:
+        { qDebug( "El servidor cerro la conexión abruptamente." ); break; }
+        case QNetworkReply::HostNotFoundError:
+        { qDebug( "El servidor especificado no fue encontrado." ); break; }
+        case QNetworkReply::TimeoutError:
+        { qDebug( "Tiempo de espera agotado para esta solicitud." ); break; }
+        case QNetworkReply::OperationCanceledError:
+        { qDebug( "Operación cancelada." ); break; }
+        case QNetworkReply::SslHandshakeFailedError:
+        { qDebug( "Error al establecer la conexión SSL." ); break; }
+        case QNetworkReply::TemporaryNetworkFailureError:
+        { qDebug( "Red no disponible temporalmente." ); break; }
+        case QNetworkReply::ProxyConnectionRefusedError:
+        { qDebug( "El servidor proxy rechazó la conexión." ); break; }
+        case QNetworkReply::ProxyNotFoundError:
+        { qDebug( "El servidor proxy no fue encontrado." ); break; }
+        case QNetworkReply::ProxyTimeoutError:
+        { qDebug( "El servidor proxy tardó mucho en contestar." ); break; }
+        case QNetworkReply::ProxyAuthenticationRequiredError:
+        { qDebug( "El proxy solicita autentificación." ); break; }
+        case QNetworkReply::ContentAccessDenied:
+        { qDebug( "El contedo asociado ha sido denegado por el servidor." ); break; }
+        case QNetworkReply::ContentOperationNotPermittedError:
+        { qDebug( "Operación con el contenido no permitida" ); break; }
+        case QNetworkReply::ContentNotFoundError:
+        { qDebug( "El contenido buscado no fue encontrado." ); break; }
+        case QNetworkReply::AuthenticationRequiredError:
+        { qDebug( "Se requiere autentificaciòn para ingresar a este contenido." ); break; }
+        case QNetworkReply::ContentReSendError:
+        { qDebug( "Es necesario reenviar el conteido." ); break; }
+        case QNetworkReply::ProtocolUnknownError:
+        { qDebug( "Protocolo Desconocido." ); break; }
+        case QNetworkReply::ProtocolInvalidOperationError:
+        { qDebug( "Operacion del protocolo invalida." ); break; }
+        case QNetworkReply::UnknownNetworkError:
+        { qDebug( "Error de red desconocido." ); break; }
+        case QNetworkReply::UnknownProxyError:
+        { qDebug( "Error de proxy desconocido." ); break; }
+        case QNetworkReply::UnknownContentError:
+        { qDebug( "Contenid desconocido." ); break; }
+        case QNetworkReply::ProtocolFailure:
+        { qDebug( "Falla en el protocolo." ); break; }
     }
 
 }

@@ -212,6 +212,10 @@ void VPresupuesto::eliminar()
         QMessageBox::information( this, "Error", "Por favor, seleccione un presupuesto para eliminar", QMessageBox::Ok );
         return;
     }
+    // confirmacion del usuario
+    if( QMessageBox::Question( this, "¿Seguro?", QString::fromUtf8( "¿Está seguro que desea eliminar %1 presupuesto(s)?").arg( lista.size() ), QMessageBox::Ok, QMessageBox::Cancel ) != QMessageBox::Ok ) {
+        return;
+    }
     foreach( QModelIndex idx, lista ) {
         // Obtengo el ID
         int idp = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
@@ -230,7 +234,7 @@ void VPresupuesto::aFactura()
 {
     QModelIndexList lista = vista->selectionModel()->selectedRows();
     if( lista.isEmpty() ) {
-        QMessageBox::information( this, "Error", "Por favor, seleccione un presupuesto para eliminar", QMessageBox::Ok );
+        QMessageBox::information( this, "Error", "Por favor, seleccione un presupuesto para facturarlos", QMessageBox::Ok );
         return;
     }
     // Obtengo los datos
