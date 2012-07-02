@@ -40,7 +40,7 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
                 LEContra->setText( p->value( "contra" ).toString() );
         }
         adjustSize();
-        this->setWindowTitle( "Conexion a gestotux");
+        this->setWindowTitle( "Conexion remota a gestotux" );
         this->setWindowIcon( QIcon(":/imagenes/mysql.png" ) );
         LEContra->setEchoMode( QLineEdit::Password );
         connect( PBInterna, SIGNAL( clicked() ), this, SLOT( dbinterna() ) );
@@ -56,10 +56,6 @@ EMysql::EMysql(QWidget* parent, Qt::WFlags fl)
         }
         p->endGroup();
         p = 0;
-}
-
-EMysql::~EMysql()
-{
 }
 
 /*!
@@ -99,7 +95,7 @@ void EMysql::accept()
    {
         case QSqlError::ConnectionError:
         {
-                QMessageBox::information( this, "Error de conexión", "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" );
+                QMessageBox::information( this, QString::fromUtf8( "Error de conexión" ), QString::fromUtf8( "No se ha podido conectar a la base de datos. Verifique que se encuentre disponible y que su usuario y contraseña sean correctas" ) );
                 _db.removeDatabase( _db.connectionName() );
                 break;
         }

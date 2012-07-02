@@ -160,9 +160,8 @@ void VVentas::anular()
  */
 void VVentas::pagar()
 {
-    return;
     // Busco todos los IDs a pagar
-  /*  QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
         QMessageBox::warning( this, "Seleccione un item",
                         "Por favor, seleccione al menos un item para pagar.",
@@ -173,16 +172,17 @@ void VVentas::pagar()
     double total = 0;
     QString texto_recibo = "Pago de las factura";
     if( lista.size() > 1 ) { texto_recibo.append( "s" ); }
+    texto_recibo.append( "  " );
     foreach( QModelIndex indice, lista ) {
         total += this->modelo->data( this->modelo->index( indice.row(), 5 ) ).toDouble();
         texto_recibo.append( "#" );
         texto_recibo.append( this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString() );
-        texto_recibo.append( '\n' );
+        texto_recibo.append( ",  " );
     }
     // Busco el numero de cliente
     int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
     emit emitirRecibo( id_cliente, QDate::currentDate(), texto_recibo, total );
-    return; */
+    return;
 }
 
 /*!
