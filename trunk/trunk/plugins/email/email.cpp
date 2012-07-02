@@ -40,40 +40,32 @@ bool Email::inicializar()
  delete datosServer;
  // La cola la mantiene el mismo objecto
  _etiqueta = new QLabel();
- // Conecto las señales para cambiar la etiqueta de estado
+ // Conecto las seÃ±ales para cambiar la etiqueta de estado
  connect( enviador, SIGNAL( status( const QString& ) ), this, SLOT( cambioEstado( const QString& ) ) );
  connect( EEmail::instancia(), SIGNAL( enviar( Mail * ) ), enviador, SLOT( queueMail( Mail * ) ) );
  return true;
 }
 
-bool Email::verificarTablas()
+bool Email::verificarTablas( QStringList lista )
 {
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "servidores_email" ) )
+ if( !lista.contains( "servidores_email" ) )
  { qWarning( "Error al buscar la tabla servidores_email" ); return false; }
- if( !QSqlDatabase::database().tables( QSql::Tables ).contains( "emails" ) )
+ if( !lista.contains( "emails" ) )
  { qWarning( "Error al buscar la tabla emails" ); return false; }
  return true;
 }
 
 double Email::version() const
-{
- return 0.1;
-}
+{ return 0.1; }
 
 int Email::tipo() const
-{
- return EPlugin::email;
-}
+{ return EPlugin::email; }
 
 QList< QActionGroup * > Email::accionesBarra()
-{
- return QList<QActionGroup *>();
-}
+{ return QList<QActionGroup *>(); }
 
 QString Email::nombre() const
-{
- return "email";
-}
+{ return "email"; }
 
 QWidgetList Email::formsPreferencias()
 {
@@ -82,10 +74,10 @@ QWidgetList Email::formsPreferencias()
  return lista;
 }
 
-void Email::crearMenu(QMenuBar* m)
+void Email::crearMenu(QMenuBar*)
 {}
 
-void Email::crearToolBar(QToolBar* t)
+void Email::crearToolBar(QToolBar*)
 {}
 
 /*!
@@ -115,9 +107,6 @@ void Email::cambioEstado( const QString &texto )
  }
 }
 
-Q_EXPORT_PLUGIN2( email, Email );
-
-
 /*!
     \fn Email::statusBarWidget()
     Devuelve la etiqueta que se va a colocar en la barra de estado al enviar emails.
@@ -127,3 +116,8 @@ QWidget * Email::statusBarWidget()
 {
  return _etiqueta;
 }
+
+QAction *Email::botonPantallaInicial()
+{ return new QAction(this); }
+
+Q_EXPORT_PLUGIN2( email, Email );

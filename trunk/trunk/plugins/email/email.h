@@ -37,7 +37,7 @@ class Email : public QObject , public EPlugin, public EInterfazEmail
 
     public:
         bool inicializar();
-        bool verificarTablas();
+        bool verificarTablas( QStringList lista );
         double version() const;
         int tipo() const;
         QList< QActionGroup * > accionesBarra();
@@ -45,7 +45,9 @@ class Email : public QObject , public EPlugin, public EInterfazEmail
         QWidgetList formsPreferencias();
         void crearMenu(QMenuBar* m);
         void crearToolBar(QToolBar* t);
+        QAction * botonPantallaInicial();
         QWidget * statusBarWidget();
+
 
     signals:
         void agregarVentana(QWidget* v);

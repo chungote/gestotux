@@ -43,6 +43,7 @@
 #include <QMessageBox>
 
 #include "mime.h"
+#include "mime-types.h"
 
 class Mail;
 
@@ -55,10 +56,16 @@ class Mail;
 #endif
 
 #ifdef Q_OS_WIN32
- __declspec(dllexport)
+ #ifdef BUILD_DLL
+  #define DLL_MAKRO __declspec(dllexport)
+ #else
+  #define DLL_MAKRO __declspec(dllimport)
+ #endif
+#else
+ #define DLL_MAKRO
 #endif
 
-class MailPrivate {
+class DLL_MAKRO MailPrivate {
 public:
         MailPrivate(Mail *_owner, Mail *_parent) :
         owner(_owner),
@@ -72,12 +79,18 @@ public:
         index(0),
         is_send_data_valid( FALSE ),
         mime_source(),
-        temp_file() {
+        temp_file(0) {
                 init ();
         };
 
-/*--------------------------------------------------------------------------*/
         MailPrivate (const MailPrivate &copy);
+
+        ~MailPrivate (){
+                if(temp_file!=0){
+                        temp_file->close();
+                        delete temp_file;
+                }
+        };
 
 /*--------------------------------------------------------------------------*/
 
@@ -96,6 +109,9 @@ public:
 
                 is_singlePart=true;
 
+                temp_dir=QDir::tempPath()+QDir::separator()+"temp_mail_data";
+                QDir d(temp_dir);
+                if(!d.exists()) d.mkpath(temp_dir);
                 //mail_parts.setAutoDelete(true);
         }
 
@@ -114,7 +130,7 @@ public:
          */
         QString send_data;
         /**
-         * Content of attached filed
+         * Content of attached files
          */
         QByteArray raw_data;
 
@@ -126,12 +142,13 @@ public:
         bool is_send_data_valid;
 
         QString mime_source;
-        QString temp_file;
+        QTemporaryFile *temp_file;
+        QString temp_dir;
 };
 
 /****************************************************************************/
 
-class Mail : public QObject
+class DLL_MAKRO Mail : public QObject
 {
     Q_OBJECT
 
@@ -150,10 +167,7 @@ public:
          * @return Text representing message body
          */
         QString messageBody();
-        /**
-         * @return Cuerpo del mensaje en formato texto
-         */
-        QString textBody() { return d->text_body; }
+        QString textBody(){return d->text_body;};
 
         /**
          * Sets message body
@@ -174,15 +188,17 @@ public:
          * @param encod String representing encoding like ISO-8859-2
          */
         int setEncoding(const QString& encod);
+
+
         void setContentType(QString typ);
         void setContentTransferEncoding(QString enc);
 
         /**
          * @return @ref LHMailHeader of this mail
          */
-        QMap<QString, QString> header(){return d->header;}
+        QMap<QString, QString> header(){return d->header;};
 
-        QString header(QString key){return d->header.value(key);}
+        QString header(QString key){return d->header.value(key);};
 
         void setHeader(QString from, QString to, QString cc, QString bcc, QString subject);
 
@@ -217,6 +233,10 @@ public:
         //two helper-function
         uint longestLine(const QString cstr);
         QString breakLongLines(const QString& in, uint max_len, QString separator="=");
+
+        //used to add attachments to a message
+        void attachFile(QString fileName);
+        void attachMail(Mail *M);
 
         /**
          * Used to check if mail or mail part is single or multipart.
@@ -391,8 +411,9 @@ public:
         * Function is called, when building header data.
         */
         QString timeStamp();
-    QUuid  identificadorUnico();
-    void setIdentificadorUnico( QUuid id );
+
+        void setIdentificadorUnico( QUuid id );
+        QUuid identificadorUnico();
 
 protected:
 
@@ -403,8 +424,10 @@ protected:
 private:
 
         MailPrivate* d;
-protected:
-    QUuid  id_unico;
+
+        MimeTypes mimeTypes;
+
+        QUuid id_unico;
 };
 
 #endif

@@ -224,6 +224,62 @@ bool Mail::isText()
 	return false;
 }
 
+
+void Mail::attachFile(QString fileName)
+{
+//qDebug()<<"attach file"<<fileName;
+        Mail *mp=new Mail(this);
+        QFile f(fileName);
+        f.open(QIODevice::ReadOnly);
+        QByteArray ba=f.readAll();
+        //qDebug()<<"size"<<ba.size();
+        f.close();
+
+        QString ct,name;
+        name=f.fileName().right(f.fileName().size()-f.fileName().lastIndexOf("/")-1);
+        ct=mimeTypes.value(name.right(name.size()-name.lastIndexOf(".")-1));
+
+        if(ct=="")ct="application/x-unknown";
+
+        //move mail to mail-part, if it is a text or multipart/alternative
+        if(d->header.value("Content-Type").contains("multipart/alternative")||isText()){
+                Mail *m=new Mail(*this);
+                addPart(m);
+                setContentType("multipart/mixed");
+        }
+
+        mp->setHeader("Content-Type",QString("%1; \r\n name=\"%2\"").arg(ct).arg(name));
+        mp->setContentTransferEncoding("base64");
+        mp->setHeader("Content-Disposition","attachment;\r\n filename="+name);
+        mp->setRawData(ba);
+        addPart(mp);
+}
+
+
+void Mail::attachMail(Mail *m)
+{
+        QString sendData=m->getSendData();
+
+        //qDebug()<<sendData;
+
+        Mail *mp=new Mail(this);
+        mp->setHeader("Content-Disposition", "inline");
+        mp->setHeader("Content-Type", "message/rfc822");
+        mp->setHeader("Content-Description", m->subject());
+        mp->setMessageBody(sendData);
+
+        //move mail to mail-part, if it is a text or multipart/alternative
+        if(d->header.value("Content-Type").contains("multipart/alternative")||isText()){
+                Mail *m=new Mail(*this);
+                addPart(m);
+                setContentType("multipart/mixed");
+        }
+
+        addPart(mp);
+        delete m;
+}
+
+
 /**
 * helper function returning length of the longest line ended by \\r\\n
 */
@@ -366,9 +422,13 @@ QString Mail::breakLongLines(const QString& in, uint max_len, QString separator)
 
 QString Mail::getBodySendData()
 {
-	QString send_body;
+        QByteArray send_body;
 
-	return send_body;
+        send_body=d->raw_data;
+
+        if (d->header.value("Content-Transfer-Encoding")=="base64") send_body=send_body.toBase64();
+
+        return QString::fromAscii(send_body);
 }
 
 QString Mail::getBodySendDataForText()
@@ -534,19 +594,20 @@ QString Mail::getShowText()
 		else if (cnt_type.contains("image"))
 		{
 			QString file_name = getFileName();
-			ret += "\n<br><A href=\"imag://"+getAddress()+"\">" + file_name + "</A><br>\n";
+                        QString name = saveInTemp();
+                        ret += "\n<br><img source=\""+name+"\"><br><A href=\"file://"+name+"\">" + file_name + "</A><br>\n";
 
-			QString str(getRawData());
-			QImage img(str);
-			if (!img.isNull())
-			{
+                        //QString str(getRawData());
+                        //QImage img(str);
+                        //if (!img.isNull())
+                        //{
 //to be ported
 				//QString name = makeMimeSourceImg(img);
 				//ret += "\n<br><img source=\""+ name + "\"><br>\n";
-			}
+                        //}
 		} else {
 			QString file_name = getFileName();
-			ret += "\n<br><A href=\"part://"+getAddress()+"\">" + file_name + "</A><br>\n";
+                        ret += "\n<br><br><A href=\"file://"+saveInTemp()+"\" target=\"blank\">" + file_name + "</a><br>\n";
 		}
 	}else if(cnt_type.contains("multipart/alternative")){
 		//ret+="<meta http-equiv=\"content-type\" content=\"text/html; charset=" + encoding() +"\" /> \n";
@@ -714,7 +775,7 @@ void Mail::parseHeaderLine(QString line)
 	*/
 
 	QStringList prop_list;
-	prop_list<<"boundary"<<"charset"<<"name"<<"filename";
+        prop_list<<"boundary"<<"charset"<<"name"<<"filename"<<"protocol"<<"micalg";
 	for ( QStringList::Iterator it = prop_list.begin(); it != prop_list.end(); ++it )
 	{
 		QString prop = *it;
@@ -899,9 +960,11 @@ QString Mail::getHeaderData()
 		if(i.key()=="Content-Type"){
 			QString temp=QString("%1: %2").arg(i.key()).arg(i.value());
 			if(d->header.value("charset")!="") temp.append("; charset=\""+d->header.value("charset")+"\"");
-			if(!isSinglePart()) temp.append(";\n\tboundary=\""+d->header.value("boundary")+"\"");
+                        if(!isSinglePart()) temp.append(";\n\tboundary=\""+d->header.value("boundary")+"\";");
+                        if(d->header.value("protocol")!="") temp.append("\n\tprotocol=\""+d->header.value("protocol")+"\";");
+                        if(d->header.value("micalg")!="") temp.append("\n\tmicalg=\""+d->header.value("micalg")+"\";");
 			data.append(temp+"\r\n");
-		}else if(i.key()=="charset" || i.key()=="boundary" || i.key()=="Bcc") continue;
+                }else if(i.key()=="charset" || i.key()=="boundary" || i.key()=="Bcc" || i.key()=="protocol" || i.key()=="micalg") continue;
 		else data.append(QString("%1: %2\r\n").arg(i.key()).arg(i.value()));
 	}
 	data.append("\r\n");
@@ -956,13 +1019,20 @@ void Mail::cleanTemp()
 		mp->cleanTemp();
 	}
 }
+*/
 
 QString Mail::saveInTemp()
 {
-	QString short_fname = header().getFileName();
-	d->temp_file = LHFileTools::writeTempFile( short_fname, getRawData());
-	return d->temp_file;
-}*/
+        QString short_fname = getFileName();
+
+        d->temp_file = new QTemporaryFile(this);
+        d->temp_file->open();
+        if(d->raw_data.isEmpty()) d->temp_file->write(d->send_data.toAscii());
+        else d->temp_file->write(d->raw_data);
+        QString fileName=d->temp_file->fileName();
+        d->temp_file->close();
+        return fileName;
+}
 
 QString Mail::makeMimeSourceImg(QImage img)
 {
