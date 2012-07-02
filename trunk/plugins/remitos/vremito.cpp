@@ -62,7 +62,7 @@ VRemito::VRemito(QWidget *parent)
     //ActVerAnuladas->setIcon( QIcon( ":/imagenes/verfacturaanuladas.png" ) );
     ActVerAnuladas->setCheckable( true );
     ActVerAnuladas->setChecked( true );
-    connect( ActVerAnuladas, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerAnuladas( bool ) ) );
+    connect( ActVerAnuladas, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerAnulados( bool ) ) );
 
     //ActAgregar->setIcon( QIcon( ":/imagenes/facturanueva.png" ) );
 
@@ -163,7 +163,7 @@ void VRemito::pagar()
 {
     return;
     // Busco todos los IDs a pagar
-  /*  QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
         QMessageBox::warning( this, "Seleccione un item",
                         "Por favor, seleccione al menos un item para pagar.",
@@ -172,7 +172,7 @@ void VRemito::pagar()
     }
     // Busco los datos de las facturas
     double total = 0;
-    QString texto_recibo = "Pago de las factura";
+    QString texto_recibo = "Pago de los remitos ";
     if( lista.size() > 1 ) { texto_recibo.append( "s" ); }
     foreach( QModelIndex indice, lista ) {
         total += this->modelo->data( this->modelo->index( indice.row(), 5 ) ).toDouble();
@@ -183,7 +183,7 @@ void VRemito::pagar()
     // Busco el numero de cliente
     int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
     emit emitirRecibo( id_cliente, QDate::currentDate(), texto_recibo, total );
-    return; */
+    return;
 }
 
 /*!
@@ -206,7 +206,7 @@ void VRemito::verItems()
     QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
         bool ok = false;
-        QString numero = QInputDialog::getText( this, "Ingrese numero", "Numero de Remito:", QLineEdit::Normal, QString(), &ok );
+        QString numero = QInputDialog::getText( this, QString::fromUtf8("Ingrese número"), QString::fromUtf8("Número de Remito:"), QLineEdit::Normal, QString(), &ok );
         if( ok ) {
             id_remito = MRemito::idRemitoPorComprobante( numero );
         }
@@ -238,7 +238,7 @@ void VRemito::imprimirAnulacion( const int id_factura, const QString razon, cons
             lista.append( Parameter( "razon", razon ) );
             lista.append( Parameter( "fechahora", QDateTime::currentDateTime().toString( "dd/MM/yyyy") ) );
             if( !rep->hacer( lista, true ) ) {
-                QMessageBox::information( this, "Error de impresion", QString::fromUtf8( "Error al imprimir la anulación. Ingresela a mano." ), QMessageBox::Ok );
+                QMessageBox::information( this, QString::fromUtf8("Error de impresión"), QString::fromUtf8( "Error al imprimir la anulación. Ingresela a mano." ), QMessageBox::Ok );
             }
         }
     } else {

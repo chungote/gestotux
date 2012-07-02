@@ -147,7 +147,7 @@ void generarInterconexiones()
                           SLOT( agregarFactura( int, QDate, MProductosTotales * ) ) );
     }
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "pagos" ) ) {
-       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas" ) ),
                          SIGNAL( emitirRecibo( int, QDate, QString, double ) ),
                          dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
                          SLOT( agregarRecibo( int, QDate, QString, double ) ) );

@@ -105,7 +105,7 @@ QString MClientes::direccionEntera(int id_cliente) {
             return "Desconocido";
         }
     } else {
-        qDebug( "Error haciendo exec en la cola para obtener la direcci´on de un cliente");
+        qDebug( "Error haciendo exec en la cola para obtener la direccion de un cliente");
         qDebug( cola.lastError().text().toLocal8Bit() );
         return "Desconocido";
     }
@@ -148,7 +148,7 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
   }
   /////////////////////////////////////////////////////
   // Presupuestos
-  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM presupuesto WHERE id_cliente = %1" ).arg( id_cliente ) ) ) {
+  if( cola.exec( QString( "SELECT COUNT(id_cliente) FROM presupuestos WHERE id_cliente = %1" ).arg( id_cliente ) ) ) {
       cola.next();
       if( cola.record().value(0).toInt() > 0 ) {
           qWarning( "Este cliente posee presupuestos echos a su nombre" );

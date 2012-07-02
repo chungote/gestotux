@@ -35,7 +35,6 @@ class EMysql : public QDialog, private Ui::EMysqlBase
 
 public:
   EMysql(QWidget* parent = 0, Qt::WFlags fl = 0 );
-  ~EMysql();
   void timerEvent ( QTimerEvent * event );
 
 enum {
