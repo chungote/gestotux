@@ -26,20 +26,21 @@ UI_DIR = ui
 MOC_DIR = moc
 
 SOURCES += emodelomails.cpp \
-eservidoremail.cpp \
-mail.cpp \
-mime.cpp \
-smtp.cpp \
-formprefemail.cpp \
-email.cpp
+            eservidoremail.cpp \
+            mail.cpp \
+            mime.cpp \
+            smtp.cpp \
+            formprefemail.cpp \
+            email.cpp
 
 HEADERS += emodelomails.h \
-eservidoremail.h \
-mail.h \
-mime.h \
-smtp.h \
-formprefemail.h \
-email.h
+           eservidoremail.h \
+           mail.h \
+           mime.h \
+           smtp.h \
+           formprefemail.h \
+           email.h \
+           mime-types.h
 
 FORMS += FormPrefEmailBase.ui
 

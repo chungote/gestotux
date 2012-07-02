@@ -20,16 +20,16 @@
 *
 * Please report all bugs and problems to the project admins:
 * http://sourceforge.net/projects/nlcreator/
-*
+* 
 *
 * Copyright by dontinelli@users.sourceforge.net if no additional copyright information is given
-* otherwise copyright by given authors/organizations
+* otherwise copyright by given authors/organizations 
 * and modfified, e.g. ported, by dontinelli@users.sourceforge.net.
-* Some code has been taken from
-* http://sourceforge.net/projects/lhmail - License : GNU Library General Public License
+* Some code has been taken from 
+* http://sourceforge.net/projects/lhmail - License : GNU Library General Public License    
 * Authors: lukasz.iwaszkiewicz@gmail.com
-* lukasz.iwaszkiewicz@lefthand.com.pl, lukasz.iwaszkiewicz@software.com.pl
-* Copyright (C) 2004/2005 LeftHand sp.z.o.o. info@lefthand.com.pl
+* lukasz.iwaszkiewicz@lefthand.com.pl, lukasz.iwaszkiewicz@software.com.pl 
+* Copyright (C) 2004/2005 LeftHand sp.z.o.o. info@lefthand.com.pl 
 *
 *****************************************************************************/
 
@@ -53,7 +53,6 @@ enum State {
 	Disconnected,
 	Connect,
 	Connected,
-	Response,
 	Auth,
 	Pass,
 	AuthOk,
@@ -76,15 +75,21 @@ enum State {
 */
 
 #ifdef Q_OS_WIN32
-	__declspec(dllexport)
+ #ifdef BUILD_DLL
+  #define DLL_MAKRO __declspec(dllexport)
+ #else
+  #define DLL_MAKRO __declspec(dllimport)
+ #endif
+#else
+ #define DLL_MAKRO
 #endif
 
-class Smtp : public QThread
+class DLL_MAKRO Smtp : public QThread
 {
     Q_OBJECT
-
+   
 public:
-	Smtp(const QString &lsmtpusername, const QString &lsmtppass, const QString &lsmtphost, QObject *parent, QSqlDatabase nuevadb)
+        Smtp(const QString &lsmtpusername, const QString &lsmtppass, const QString &lsmtphost, QObject *parent, QSqlDatabase nuevadb)
 	: QThread(parent),error(false),newMail(false),readyToSend(false),preserveMails(false), state(Disconnected),read_state(Disconnected),sentMail(false),
 	quitAfterSending(false),mailsSent(0){
 		smtpusername=lsmtpusername;
@@ -92,41 +97,43 @@ public:
 		smtphost=lsmtphost;
 		t=0;
 		smtpsocket=0;
-		// Clono la conexion a la base de datos
-		if( nuevadb.open() )
-		{
-			queuedMails = new EModeloMails( this, nuevadb );
-		}
-		else
-		{
-			qFatal( "Error al abrir 2º conexión" );
-		}
-		running = false;
+                if( nuevadb.open() )
+                {
+                    queuedMails = new EModeloMails( this, nuevadb );
+                }
+                else
+                {
+                    qFatal( "Error al abrir 2 coneciones" );
+                }
+		running=false;
+		qDebug()<<"running"<<running;
+                quitAfterSending=false;
 		return;
 	};
 	~Smtp();
-
+	
 	QStringList ErrorMSG;
-
+	
 	void setPreserveMails(bool p){preserveMails=p;};
-
+	
 	// Send the mail
+        //void queueMail(Mail *m, bool qas=false);
 	void sendMail(Mail *m, bool qas=false);
-
+	
 	// Disconnect the socket
 	void disconnectSmtp();
 	bool error;
 	bool isRunning(){return running;};
 	int sentMails(){return mailsSent;};
-	int mailsToSend(){return queuedMails->size();};
-    void terminarEjecucion();
+        int mailsToSend(){return queuedMails->size();};
+        void terminarEjecucion();
 
 protected:
 	// start the thread and connect to the server
 	void run();
-
+ 
 signals:
-	void status( const QString & );
+	void status( const QString &);
 	void ConnectorSuccess();
 	void connected();
 	void sendNextLine();
@@ -134,7 +141,7 @@ signals:
 	void SuccessQuit();
 	void ReadyToSend();
 	void mailSent(Mail *m);
-	void badPassword();
+        void badPassword();
 
 private slots:
 	void grabLine();
@@ -148,7 +155,7 @@ private:
 	bool readyToSend;
 	bool preserveMails;
 	Mail *currentMail;
-	EModeloMails *queuedMails;
+        EModeloMails *queuedMails;
 	QString smtpusername;
 	QString smtppass;
 	QString smtphost;
@@ -173,9 +180,10 @@ private:
 	QString TimeStampMail();
 	bool running;
 	QMutex mutex;
-public slots:
-    void iniciarServicio();
-    void queueMail(Mail *m, bool qas=true );
+
+    public slots:
+        void iniciarServicio();
+        void queueMail( Mail *m, bool qas=true );
 };
 
 #endif

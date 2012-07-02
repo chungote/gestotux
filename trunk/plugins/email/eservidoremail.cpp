@@ -30,7 +30,7 @@ EServidorEmail::EServidorEmail( QObject *parent, QSqlDatabase db )
 	setHeaderData( 2, Qt::Horizontal, tr( "Direccion" ) );
 	setHeaderData( 3, Qt::Horizontal, tr( "# Puerto" ) );
 	setHeaderData( 4, Qt::Horizontal, tr( "Usuario" ) );
-	setHeaderData( 5, Qt::Horizontal, tr( "Contraseña" ) );
+	setHeaderData( 5, Qt::Horizontal, tr( "ContraseÃ±a" ) );
  	setHeaderData( 6, Qt::Horizontal, tr( "De" ) );
 	setHeaderData( 6, Qt::Horizontal, tr( "Predeterminado" ) );
 	_buscado_predeterminado = false;

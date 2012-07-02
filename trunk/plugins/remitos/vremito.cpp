@@ -161,7 +161,6 @@ void VRemito::anular()
  */
 void VRemito::pagar()
 {
-    return;
     // Busco todos los IDs a pagar
     QModelIndexList lista = this->vista->selectionModel()->selectedRows();
     if( lista.size() < 1 ) {
@@ -172,13 +171,14 @@ void VRemito::pagar()
     }
     // Busco los datos de las facturas
     double total = 0;
-    QString texto_recibo = "Pago de los remitos ";
+    QString texto_recibo = "Pago de los remito";
     if( lista.size() > 1 ) { texto_recibo.append( "s" ); }
+    texto_recibo.append( "  " );
     foreach( QModelIndex indice, lista ) {
         total += this->modelo->data( this->modelo->index( indice.row(), 5 ) ).toDouble();
         texto_recibo.append( "#" );
         texto_recibo.append( this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString() );
-        texto_recibo.append( '\n' );
+        texto_recibo.append( ",  " );
     }
     // Busco el numero de cliente
     int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
