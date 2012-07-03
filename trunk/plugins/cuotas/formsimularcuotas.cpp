@@ -12,6 +12,8 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPrinterInfo>
+#include <QFileDialog>
+#include <QDir>
 
 FormSimularCuotas::FormSimularCuotas(QWidget *parent) :
 EVentana(parent), Ui::FormSimularCuotasBase()
@@ -36,6 +38,10 @@ EVentana(parent), Ui::FormSimularCuotasBase()
     ActPdf->setStatusTip( "Convierte a PDF la simulacion actual" );
     ActPdf->setIcon( QIcon( ":/imagenes/acroread.png" ) );
     connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
+
+    ActConfirmar = new QAction( this );
+    ActConfirmar->setText( "Confirmar" );
+    connect( ActConfirmar, SIGNAL( triggered() ), this, SLOT( confirmar() ) );
 
     modelo = new MSimularCuotas( this );
 
@@ -73,6 +79,7 @@ EVentana(parent), Ui::FormSimularCuotasBase()
 
     addAction( ActSimular );
     addAction( ActImprimir );
+    addAction( ActPdf );
     addAction( new EActCerrar( this ) );
 }
 
@@ -80,6 +87,7 @@ FormSimularCuotas::~FormSimularCuotas()
 {
     if( !documento )
         delete documento;
+
 }
 
 void FormSimularCuotas::changeEvent(QEvent *e)
@@ -121,6 +129,8 @@ void FormSimularCuotas::imprimir()
     if( pd->exec() == QDialog::Accepted ) {
         documento->print( pd->printer() );
     }
+    delete impresora;
+    delete pd;
 }
 
 
@@ -205,7 +215,17 @@ void FormSimularCuotas::generaReporte()
  */
 void FormSimularCuotas::pdf()
 {
-    qWarning( "No implementado!" );
+    this->generaReporte();
+    QPrinter *imp = new QPrinter( QPrinterInfo::defaultPrinter() );
+    imp->setOutputFormat( QPrinter::PdfFormat );
+    QString nombreArchivo = QFileDialog::getSaveFileName( this, "Guardar como pdf", QDir::homePath(), "Archivos PDF (*.pdf)" );
+    if( !nombreArchivo.isEmpty() )
+    {
+     // ver que tenga la extension
+     imp->setOutputFileName( nombreArchivo );
+     documento->print( imp );
+    }
+    delete imp;
 }
 
 /*!
@@ -213,7 +233,12 @@ void FormSimularCuotas::pdf()
  *
  */
 void FormSimularCuotas::confirmar()
-{}
+{
+    // Genero el plan de cuotas
+    // Obtengo el id
+    // emit confirmarCuotas( id_plan );
+    return;
+}
 
 /*!
  * \fn FormSimularCuotas::cambioEntrega( double cant )

@@ -21,6 +21,10 @@
 #include "FormPantallaInicial.h"
 #include "EFlecha.h"
 #include "eregistroplugins.h"
+#include "ebackup.h"
+#include "vcliente.h"
+#include "formpreferencias.h"
+
 #include <QPaintEngine>
 
 FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
@@ -49,7 +53,6 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     connect( TBClientes, SIGNAL( clicked() ), this, SLOT( clientes() ) );
 
     this->TBNotas->setVisible( false );
-    this->TBResumenCtaCte->setVisible( false );
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     // ERegistroPlugins::getInstancia
@@ -104,7 +107,6 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
         } else { qWarning( "Error de accion de cuenta corriente") ; }
     } else {
         TBCuentasCorrientes->setVisible( false );
-        TBResumenCtaCte->setVisible( false );
     }
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -158,6 +160,15 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
         TBFacturas->setVisible( false );
     }
     ///////////////////////////////////////////////////////////////////////////////////
+    // Plugin de remitos
+    if( ERegistroPlugins::getInstancia()->existePlugin( "remitos" ) ) {
+        TBRemitos->setIcon( ERegistroPlugins::getInstancia()->plugin("remitos")->botonPantallaInicial()->icon() );
+        connect( TBRemitos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("remitos")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBRemitos->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_T ) );
+        TBRemitos->setStatusTip( "Genera un nuevo remito" );
+    } else {
+        TBFacturas->setVisible( false );
+    }
     // Dibujo las flechas
    /* EFlecha *f1 = new EFlecha( this );
     f1->setearOrigen( TBPresupuestos );
@@ -187,14 +198,11 @@ void FormPantallaInicial::changeEvent(QEvent *e)
     }
 }
 
-#include "ebackup.h"
 void FormPantallaInicial::backup()
 { emit agregarVentana( new Ebackup( this ) ); }
 
-#include "formpreferencias.h"
 void FormPantallaInicial::preferencias()
 { emit agregarVentana( new FormPreferencias( ) ); }
 
-#include "vcliente.h"
 void FormPantallaInicial::clientes()
 { emit agregarVentana( new VCliente()); }

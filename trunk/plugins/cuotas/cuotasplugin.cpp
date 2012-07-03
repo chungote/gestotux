@@ -1,7 +1,12 @@
 #include "cuotasplugin.h"
+
 #include <QMenuBar>
 #include <QSqlDatabase>
+
+#include "vplancuotas.h"
 #include "formprefcaja.h"
+#include "formsimularcuotas.h"
+#include "formprefcuotas.h"
 
 /*!
     \fn CuotasPlugin::accionesBarra()
@@ -15,8 +20,6 @@ QList<QActionGroup *> CuotasPlugin::accionesBarra()
  */
 QString CuotasPlugin::nombre() const
 { return "cuotas"; }
-
-#include "formprefcuotas.h"
 
 /*!
     \fn CuotasPlugin::formsPreferencias()
@@ -114,11 +117,8 @@ void CuotasPlugin::seCierraGestotux()
  * \fn CuotasPlugin::generarComprobantes()
  */
 void CuotasPlugin::generarComprobantes()
-{
+{}
 
-}
-
-#include "vplancuotas.h"
 /*!
  * \fn CuotasPlugin::verCuotas()
  * Muestra el listado de planes de cuotas activos al momento
@@ -131,10 +131,11 @@ void CuotasPlugin::verCuotas()
  */
 void CuotasPlugin::emitirVentaEnCuotas( int /*id_cliente*/, double /*total*/, int /*id_factura*/ )
 {
+    // Genero el formulario con los datos
+    // conecto la señal de devolucion del id de plan
 
 }
 
-#include "formsimularcuotas.h"
 void CuotasPlugin::simularCuotas()
 { emit agregarVentana( new FormSimularCuotas() ); }
 
