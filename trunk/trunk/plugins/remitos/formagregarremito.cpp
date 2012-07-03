@@ -51,7 +51,7 @@ FormAgregarRemito::FormAgregarRemito ( QWidget* parent, Qt::WFlags fl )
         setupUi( this );
         this->setObjectName( "formagregarremito" );
         this->setWindowTitle( "Agregar remito" );
-        //this->setWindowIcon( QIcon(":/imagenes/factura-nueva.png" ) );
+        this->setWindowIcon( QIcon(":/imagenes/remito-nuevo.png" ) );
 
         PBAgregarProducto->setIcon( QIcon( ":/imagenes/add.png" ) );
         PBAgregarProducto->setText( "Agregar Producto" );

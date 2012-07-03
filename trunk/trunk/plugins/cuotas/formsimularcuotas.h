@@ -31,6 +31,9 @@ private slots:
     void pdf();
     void confirmar();
 
+signals:
+    void confirmarCuotas( int id_plan );
+
 private:
     QAction *ActSimular;
     QAction *ActConfirmar;

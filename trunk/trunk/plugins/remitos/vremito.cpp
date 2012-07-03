@@ -35,7 +35,7 @@ VRemito::VRemito(QWidget *parent)
 {
     this->setObjectName( "ListaRemito" );
     this->setWindowTitle( "Lista de Remitos" );
-    //this->setWindowIcon( QIcon( ":/imagenes/factura.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/remito.png" ) );
 
     this->modelo = new MVRemito( this->vista );
     this->vista->setModel( this->modelo );
@@ -46,13 +46,13 @@ VRemito::VRemito(QWidget *parent)
 
     QAction *ActPagar = new QAction( this );
     ActPagar->setText( "Pagar" );
-    //ActPagar->setIcon( QIcon( ":/imagenes/pagarfactura.png" ) );
+    ActPagar->setIcon( QIcon( ":/imagenes/pagarremito.png" ) );
     ActPagar->setStatusTip( "Genera un recibo por las facturas seleccionadas." );
     connect( ActPagar, SIGNAL( triggered() ), this, SLOT( pagar() ) );
 
     QAction *ActAnular = new QAction( this );
     ActAnular->setText( "Anular" );
-    //ActAnular->setIcon( QIcon( ":/imagenes/anularfactura.png" ) );
+    ActAnular->setIcon( QIcon( ":/imagenes/remito-anular.png" ) );
     ActAnular->setStatusTip( "Anula las facturas seleccionadas" );
     connect( ActAnular, SIGNAL( triggered() ), this, SLOT( anular() ) );
 
@@ -64,7 +64,7 @@ VRemito::VRemito(QWidget *parent)
     ActVerAnuladas->setChecked( true );
     connect( ActVerAnuladas, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerAnulados( bool ) ) );
 
-    //ActAgregar->setIcon( QIcon( ":/imagenes/facturanueva.png" ) );
+    ActAgregar->setIcon( QIcon( ":/imagenes/remito-nuevo.png" ) );
 
     QAction *ActSep = new QAction( this );
     ActSep->setSeparator( true );
@@ -80,7 +80,6 @@ VRemito::VRemito(QWidget *parent)
     agregarFiltroBusqueda( "Fecha", " `fecha` = '%%1%' ");
     habilitarBusqueda();
 
-    //ActAgregar->setIcon( QIcon( ":/imagenes/factura-nueva.png" ) );
     disconnect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
     connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregar() ) );
 

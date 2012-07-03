@@ -64,12 +64,12 @@ bool RemitoPlugin::inicializar()
  Q_INIT_RESOURCE(remitos);
 
  ActAgregarRemito = new QAction( "Agregar remito", this );
- //ActAgregarVentas->setIcon( QIcon( ":/imagenes/factura-nueva.png" ) );
+ ActAgregarRemito->setIcon( QIcon( ":/imagenes/remito-nuevo.png" ) );
  ActAgregarRemito->setStatusTip( "Muestra el listado de remitos emitidos" );
  connect( ActAgregarRemito, SIGNAL( triggered() ), this, SLOT( agregarNuevoRemito() ) );
 
  ActVerRemitos = new QAction( "Listado de remitos", this );
- //ActVerFacturas->setIcon( QIcon( ":/imagenes/factura.png" ) );
+ ActVerRemitos->setIcon( QIcon( ":/imagenes/remito.png" ) );
  ActVerRemitos->setStatusTip( "Permite ver las facturas emitidas y anularlas." );
  connect( ActVerRemitos, SIGNAL( triggered() ), this, SLOT( verRemitos() ) );
 

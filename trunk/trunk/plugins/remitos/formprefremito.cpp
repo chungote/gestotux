@@ -30,7 +30,7 @@ FormPrefRemito::FormPrefRemito( QWidget* parent ) :
     this->setParent( parent );
     setupUi(this);
     this->setWindowTitle( "Remito" );
-    //this->setWindowIcon( QIcon( ":/imagenes/factura.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/remito.png" ) );
     this->setAttribute( Qt::WA_DeleteOnClose );
 }
 

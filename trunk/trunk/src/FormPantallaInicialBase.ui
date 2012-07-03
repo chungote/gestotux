@@ -158,19 +158,6 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_8">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="0" column="3">
        <spacer name="horizontalSpacer_9">
         <property name="orientation">
@@ -321,6 +308,35 @@ Credito y
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="TBRemitos">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Remitos</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../plugins/default/default.qrc">
+          <normaloff>:/imagenes/gestotux32.png</normaloff>:/imagenes/gestotux32.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -623,30 +639,6 @@ Seguridad</string>
         <property name="text">
          <string>Cuentas
 Corrientes</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../plugins/default/default.qrc">
-          <normaloff>:/imagenes/gestotux32.png</normaloff>:/imagenes/gestotux32.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextUnderIcon</enum>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="TBResumenCtaCte">
-        <property name="text">
-         <string>Resumenes de
-Cuenta</string>
         </property>
         <property name="icon">
          <iconset resource="../plugins/default/default.qrc">

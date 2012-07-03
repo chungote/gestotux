@@ -1,29 +1,19 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-help
+          plugin \
+          help
 
 QT += sql \
-network
+      network
 
 TARGET = email
 
 DESTDIR = ../../bin/plugins/
 
-QMAKE_CXXFLAGS_DEBUG += -o0 \
-  -g3 \
-  -ggdb
-
 LIBS += ../../bin/libutiles.a
 
-TARGETDEPS += ../../bin/libutiles.a
-
-OBJECTS_DIR = obj
-
-UI_DIR = ui
-
-MOC_DIR = moc
+PRE_TARGETDEPS += ../../bin/libutiles.a
 
 SOURCES += emodelomails.cpp \
             eservidoremail.cpp \
@@ -45,10 +35,10 @@ HEADERS += emodelomails.h \
 FORMS += FormPrefEmailBase.ui
 
 INCLUDEPATH += ../../src \
-  ../../utiles
+               ../../utiles
 
-DISTFILES += 	email.QMYSQL.sql \
-		email.QSQLITE.sql
+DISTFILES += email.QMYSQL.sql \
+             email.QSQLITE.sql
 
 RESOURCES += email.qrc
 
