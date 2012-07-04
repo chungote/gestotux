@@ -12,5 +12,4 @@ SUBDIRS +=  caja \
             descuentos \
             cuotas \
             HiComp \
-            remitos \
-            backupremoto
+            remitos

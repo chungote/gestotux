@@ -153,7 +153,7 @@ void gestotux::createActions()
 }
 
 /*!
- * @fn gestotux::createMenus()
+ * \fn gestotux::createMenus()
  * Genera el menu general de la aplicacion, con las acciones predefinidas y agrega los menus que coloque cada plugin.
  */
 void gestotux::createMenus()
@@ -344,7 +344,7 @@ void gestotux::bandeja_sistema()
     menu->addAction( ActRestaurar );
     menu->addAction( exitAct );
     iconoBandeja->setIcon( ERegistroPlugins::getInstancia()->pluginInfo()->iconoPrograma() );
-    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.5 Gamma" );
+    iconoBandeja->setToolTip( this->windowTitle() + " - Gestotux 0.5 RC 6" );
     iconoBandeja->show();
     iconoBandeja->setContextMenu( menu );
     connect( iconoBandeja, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( ocultar_mostrar( QSystemTrayIcon::ActivationReason ) ) );

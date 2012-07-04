@@ -25,7 +25,6 @@
 #include <QPaintEngine>
 #include "math.h"
 
-
 EFlecha::EFlecha( QWidget *parent ) {
   this->setParent( parent );
 }
@@ -83,23 +82,52 @@ void EFlecha::calcularDistanciaMinima() {
   int d8 = abs( origen->rect().x() - destino->rect().bottomRight().x() );
   // Busco los menores
   int min = qMin( qMin( qMin( qMin( d1, d2 ), qMin( d3, d4 ) ), qMin( d5, d6 ) ), qMin( d7, d8 ) );
-  /*switch( min ) {
-    case d1:
-    {
-        break;
-    }
-    case d2:
-    {
-          break;
-    }
-    case d3:
-    case d4:
-    case d5:
-    case d6:
-    case d7:
-    case d8:
-    default:
-  }*/
+  if( min == d1 ) {
+          inicio->setX( origen->rect().x() + ( origen->rect().width() / 2 ) );
+          inicio->setY( origen->rect().y() );
+          fin->setX( destino->rect().x() + ( origen->rect().width() / 2 ) );
+          fin->setY( destino->rect().y() );
+  } else if( min == d2 ) {
+          inicio->setX( origen->rect().x() + origen->rect().width() );
+          inicio->setY( origen->rect().y() );
+          fin->setX( destino->rect().x() );
+          fin->setY( destino->rect().y() + destino->rect().height() );
+  } else if( min == d3 ) {
+          inicio->setX( origen->rect().x() + origen->rect().width() );
+          inicio->setY( origen->rect().y() + ( origen->rect().height() / 2 ) );
+          fin->setX( destino->rect().x() );
+          fin->setY( destino->rect().y() + ( destino->rect().height() / 2 ) );
+  } else if( min ==  d4 ) {
+          inicio->setX( origen->rect().x() + origen->rect().width() );
+          inicio->setY( origen->rect().y() + origen->rect().height() );
+          fin->setX( destino->rect().x() );
+          fin->setY( destino->rect().y() );
+  } else if( min == d5 ) {
+          inicio->setX( origen->rect().x() + ( origen->rect().width() / 2 ) );
+          inicio->setY( origen->rect().y() + origen->rect().height() );
+          fin->setX( destino->rect().x() + ( destino->rect().width() / 2 ) );
+          fin->setY( destino->rect().y() );
+  } else if( min == d6 ) {
+          inicio->setX( origen->rect().x() );
+          inicio->setY( origen->rect().y() + origen->rect().height() );
+          fin->setX( destino->rect().x() + destino->rect().width() );
+          fin->setY( destino->rect().y() );
+  } else if( min == d7 ) {
+          inicio->setX( origen->rect().x() );
+          inicio->setY( origen->rect().y() + ( origen->rect().height() / 2 ) );
+          fin->setX( destino->rect().x() + destino->rect().width() );
+          fin->setY( destino->rect().y() + ( destino->rect().height() / 2 ) );
+  } else if( min == d8 ) {
+          inicio->setX( origen->rect().x() );
+          inicio->setY( origen->rect().y() );
+          fin->setX( destino->rect().x() + destino->rect().width() );
+          fin->setY( destino->rect().y() + destino->rect().height() );
+  } else {
+          inicio->setX(0);
+          inicio->setY(0);
+          fin->setX(0);
+          fin->setY(0);
+  }
 }
 
 void EFlecha::setearTamFlecha( int tam )
@@ -108,8 +136,8 @@ void EFlecha::setearTamFlecha( int tam )
 
 void EFlecha::paintEvent( QPaintEvent * /*evento */ )
 {
-    this->setP1( QPointF( 10, 50 ) );
-    this->setP2( QPointF( 100, 50 ) );
+    this->setP1( *inicio );
+    this->setP2( *fin );
     if( tamFlecha == 0  ) {  tamFlecha = 20; }
     QPoint f1;
     f1.setX( tamFlecha * cos( M_PI * ( 3.0 / 4.0 ) ) );

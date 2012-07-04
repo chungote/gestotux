@@ -78,6 +78,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         CBTipo->addItem( "RCS"  , MItemCuentaCorriente::RecargoCobroServicio );
         CBTipo->addItem( "AF"   , MItemCuentaCorriente::AnulacionFactura     );
         CBTipo->addItem( "AR"   , MItemCuentaCorriente::AnulacionRecibo      );
+        CBTipo->addItem( "RM"   , MItemCuentaCorriente::Remito               );
 
         EActImprimir *ActImprimir = new EActImprimir( this );
         connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );

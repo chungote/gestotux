@@ -41,9 +41,9 @@ public:
     QSize sizeHint() const;
 
     enum PosicionWidgets {
-        EsquinaSuperior = 0,
-        EsquinaInferior = 0,
-        Medio = 0
+        EsquinaSuperior = 1,
+        EsquinaInferior = 2,
+        Medio = 3
     };
 protected:
     void paintEvent( QPaintEvent *evento );
@@ -53,6 +53,8 @@ private:
     QWidget *origen;
     QWidget *destino;
     float tamFlecha;
+    QPointF *inicio;
+    QPointF *fin;
 
 };
 

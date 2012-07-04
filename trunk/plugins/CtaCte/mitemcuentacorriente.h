@@ -33,15 +33,16 @@ Q_OBJECT
 
 public:
 	enum TipoOperacionCtaCte {
-          Invalido = -1, /** Tipo invalido, dato mal cargado o error de busqueda */
-          Recibo = 0, /** Recibo */
-          Factura = 1, /** Factura */
-          NotaCredito = 2, /** Nota de Credito */
-          NotaDebito = 3, /** Nota de Debito */
-          CobroServicio = 4, /** Instancia de cobro de servicio en un periodo */
+          Invalido = -1,            /** Tipo invalido, dato mal cargado o error de busqueda                       */
+          Recibo = 0,               /** Recibo                                                                    */
+          Factura = 1,              /** Factura                                                                   */
+          NotaCredito = 2,          /** Nota de Credito                                                           */
+          NotaDebito = 3,           /** Nota de Debito                                                            */
+          CobroServicio = 4,        /** Instancia de cobro de servicio en un periodo                              */
           RecargoCobroServicio = 5, /** Instancia de cobro de un recargo de un cobro de un servicio en un periodo */
-          AnulacionFactura = 6, /** Anulación de una factura */
-          AnulacionRecibo = 7 /** Anulación de un recibo emitido */
+          AnulacionFactura = 6,     /** Anulación de una factura                                                  */
+          AnulacionRecibo = 7,      /** Anulación de un recibo emitido                                            */
+          Remito = 8                /** Remito ( Factura trucha )                                                 */
 	 };
 
     MItemCuentaCorriente( QObject *parent = 0, bool saldos = false );

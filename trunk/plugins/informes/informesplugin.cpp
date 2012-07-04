@@ -86,8 +86,6 @@ void InformesPlugin::seCierraGestotux()
  ///@todo Ver si emitir señal a los plugins
 }
 
-Q_EXPORT_PLUGIN2( informes, InformesPlugin )
-
 /*!
     \fn InformesPlugin::cargarPluginsInformes()
  */
@@ -149,3 +147,5 @@ bool InformesPlugin::cargarPluginsInformes()
   }
   return true;
 }
+
+Q_EXPORT_PLUGIN2( informes, InformesPlugin )
