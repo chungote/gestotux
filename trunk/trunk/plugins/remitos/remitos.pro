@@ -17,7 +17,7 @@ SOURCES +=  remitosplugins.cpp \
            vitemremito.cpp \
            MVRemito.cpp \
            formagregarremito.cpp \
-           mremito.cpp \
+           MRemito.cpp \
            mitemremito.cpp
 
 HEADERS += remitosplugins.h \
@@ -33,7 +33,7 @@ HEADERS += remitosplugins.h \
            vitemremito.h \
            MVRemito.h \
            formagregarremito.h \
-           mremito.h \
+           MRemito.h \
            mitemremito.h
 
 QT += sql \

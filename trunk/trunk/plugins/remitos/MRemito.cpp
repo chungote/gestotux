@@ -187,7 +187,7 @@ int MRemito::agregarVenta( QDateTime fecha, int id_cliente, MRemito::FormaPago i
    if( MItemCuentaCorriente::agregarOperacion(    num_ctacte,
                                                   num_comprobante,
                                                   id_venta,
-                                                  MItemCuentaCorriente::Factura,
+                                                  MItemCuentaCorriente::Remito,
                                                   fecha.date(),
                                                   "Remito a Cuenta Corriente",
                                                   total_calculado ) == -1 )

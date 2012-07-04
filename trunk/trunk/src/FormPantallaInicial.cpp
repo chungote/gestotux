@@ -167,7 +167,7 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
         TBRemitos->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_T ) );
         TBRemitos->setStatusTip( "Genera un nuevo remito" );
     } else {
-        TBFacturas->setVisible( false );
+        TBRemitos->setVisible( false );
     }
     // Dibujo las flechas
    /* EFlecha *f1 = new EFlecha( this );
