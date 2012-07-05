@@ -37,7 +37,7 @@ Q_OBJECT
 public:
         FormAgregarRecibo ( QWidget* parent = 0, Qt::WFlags fl = 0 );
         void setearModelo( MPagos *m );
-        void setearDatos( const int id_cliente, const QString texto, const double cantidad, const QDate fecha );
+        void setearDatos( const int id_cliente, const QString texto, const double cantidad );
 
 public slots:
         void guardar();
