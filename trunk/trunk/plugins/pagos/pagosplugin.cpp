@@ -113,7 +113,7 @@ void PagosPlugin::agregarRecibo( int id_cliente, QDate fecha, QString texto, dou
 {
     FormAgregarRecibo *f = new FormAgregarRecibo();
     f->setearModelo(0);
-    f->setearDatos( id_cliente, texto, total, fecha );
+    f->setearDatos( id_cliente, texto, total );
     emit agregarVentana( f );
 }
 
