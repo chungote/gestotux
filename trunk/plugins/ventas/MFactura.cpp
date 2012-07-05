@@ -59,14 +59,24 @@ void MFactura::relacionar() {
 
 /*
 CREATE TABLE IF NOT EXISTS `factura` (
-  `id_factura` bigint(20) NOT NULL AUTO_INCREMENT,
-  `id_cliente` bigint(20) REFERENCES `clientes`(`id`),
-  `fecha` datetime NOT NULL,
-  `id_forma_pago` int(1) NOT NULL,
-  `serie` bigint(20) NOT NULL,
-  `numero` bigint(20) NOT NULL,
-  PRIMARY KEY (`id_factura`),
-  UNIQUE KEY `factura-serie-numero` (`serie`,`numero`)
+    `id_factura` bigint(20) NOT NULL AUTO_INCREMENT,
+    `id_cliente` bigint(20) NULL,
+    `fecha` datetime NOT NULL,
+    `id_forma_pago` int(11) NOT NULL,
+    `serie` int(5) NOT NULL,
+    `numero` int(5) NOT NULL,
+    `total` Decimal(20,3),
+    `id_ctacte` bigint(20) NULL,
+    `id_mov_caja` bigint(20) NULL,
+    `anulada` boolean NOT NULL,
+    `razon` text COLLATE utf8_spanish_ci,
+    `fecha_cancelada` datetime DEFAULT NULL,
+    `observaciones` tinytext DEFAULT NULL,
+    PRIMARY KEY (`id_factura`),
+    UNIQUE KEY `factura-serie-numero` (`serie`,`numero`),
+    FOREIGN KEY (`id_cliente`) REFERENCES `clientes`( `id` ),
+    FOREIGN KEY (`id_ctacte`) REFERENCES `item_ctacte`( `id_op_ctacte` ),
+    FOREIGN KEY (`id_mov_caja`) REFERENCES `movimiento_caja`( `id_movimiento` )
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 */
 
@@ -552,4 +562,42 @@ QDate MFactura::fechaUltimaVenta()
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
     return QDate();
+}
+
+/*!
+ * \fn MFacura::obtenerFecha( const int id_factura )
+ * Devuelve la fecha de la factura pasada con parametro
+ * \param id_factura identificador de factura
+ */
+QDate MFactura::obtenerFecha(const int id_factura)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar la fecha de la factura" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QDate();
+}
+
+/*!
+ * \fn MFactura::obtenerTotal( const int id_factura )
+ * Devuelve el total de la factura pasada como parametro
+ * \param id_factura Identificador de la factura
+ */
+double MFactura::obtenerTotal( const int id_factura )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT total FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+        cola.next();
+        return cola.record().value(0).toDouble();
+    } else {
+        qWarning( "Error al buscar la fecha de la factura" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return -1.0;
 }

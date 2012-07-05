@@ -55,6 +55,9 @@ protected:
 private slots:
     void filtrar();
 
+signals:
+    void emitirRecibo( int id_cliente, QDate fecha, QString texto_recibo, double total );
+
 private:
     QAction *ActFiltrar;
     QString _numero_cuenta;

@@ -21,7 +21,11 @@
 
 #include <QSqlDatabase>
 #include <QApplication>
+#include <QDate>
+
 #include "preferencias.h"
+#include "vcuentacorriente.h"
+#include "formprefctacte.h"
 
 bool CuentaCorrientePlugin::inicializar()
 {
@@ -76,8 +80,6 @@ QString CuentaCorrientePlugin::nombre() const
  return "ctacte";
 }
 
-#include "formprefctacte.h"
-
 QWidgetList CuentaCorrientePlugin::formsPreferencias()
 {
  QWidgetList lista;
@@ -105,13 +107,14 @@ void CuentaCorrientePlugin::crearToolBar(QToolBar* /*t*/)
 void CuentaCorrientePlugin::seCierraGestotux()
 {}
 
-Q_EXPORT_PLUGIN2( ctacte, CuentaCorrientePlugin );
+Q_EXPORT_PLUGIN2( ctacte, CuentaCorrientePlugin )
 
-#include "vcuentacorriente.h"
 /*!
     \fn CuentaCorrientePlugin::verCuentasCorrientes()
  */
 void CuentaCorrientePlugin::verCuentasCorrientes()
 {
- emit agregarVentana( new VCuentaCorriente() );
+ VCuentaCorriente *f = new VCuentaCorriente();
+ connect( f, SIGNAL( emitirRecibo( int, QDate, QString, double ) ), this, SIGNAL( emitirRecibo( int, QDate, QString, double ) ) );
+ emit agregarVentana( f );
 }

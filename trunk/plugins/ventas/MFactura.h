@@ -48,6 +48,8 @@ public:
     static bool anularFactura( const int id_factura, QString razon = QString(), QDateTime fechahora = QDateTime::currentDateTime() );
     static int idFacturaPorComprobante( const QString numero );
     static QDate fechaUltimaVenta();
+    static QDate obtenerFecha( const int id_factura );
+    static double obtenerTotal( const int id_factura );
 
 private:
     void inicializar();
