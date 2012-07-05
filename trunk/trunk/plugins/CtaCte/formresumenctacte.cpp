@@ -34,6 +34,8 @@
 #include "eregistroplugins.h"
 #include "mcuentacorriente.h"
 
+#include "MFactura.h"
+
 FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 : EVentana ( parent, fl ), Ui::FormResumenCtaCteBase()
 {
@@ -355,13 +357,19 @@ void FormResumenCtaCte::verFactura()
  */
 void FormResumenCtaCte::pagarFactura()
 {
-    qWarning( "No implementado todavia" );
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "ventas" ) ) {
+        // Veo que numero de factura es
+        int id_pos = TVItems->selectionModel()->selectedRows().first().row();
+        int id_factura = modeloItem->data( modeloItem->index( id_pos, 2 ), Qt::EditRole ).toInt();
         // Verifico que la factura no este pagada
-
-        // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
-
+        qWarning( "No implementada verificacion" );
         // Busco los detalles de la factura
+        QString texto_recibo = QString( "Pago de la factura %1" ).arg( MFactura::obtenerComprobante( id_factura ).aCadena() );
+        QDate fecha = MFactura::obtenerFecha( id_factura );
+        double total = MFactura::obtenerTotal( id_factura );
+        int id_cliente = MCuentaCorriente::idClientePorCtaCte( _numero_cuenta );
+        // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
+        emit emitirRecibo( id_cliente, fecha, texto_recibo, total );
     }
 
 }

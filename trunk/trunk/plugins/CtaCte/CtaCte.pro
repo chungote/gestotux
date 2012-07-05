@@ -24,6 +24,7 @@ HEADERS += cuentacorrienteplugin.h \
            ../caja/mcajas.h \
            ../caja/mmovimientoscaja.h
 
+
 SOURCES += cuentacorrienteplugin.cpp \
            formprefctacte.cpp \
            mcuentacorriente.cpp \
@@ -52,6 +53,7 @@ PRE_TARGETDEPS += ../../bin/libreporte.a \
 
 INCLUDEPATH += ../pagos \
                ../caja \
+               ../ventas \
                ../../src \
                ../../reporte \
                ../../utiles

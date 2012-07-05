@@ -23,6 +23,7 @@
 #include <QObject>
 #include "eplugin.h"
 #include <QtPlugin>
+#include <QDate>
 
 /**
  * \brief Plugin de cuentas corriente
@@ -49,7 +50,8 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
-        void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void emitirRecibo( int, QDate, QString, double );
 
 public slots:
     void seCierraGestotux();

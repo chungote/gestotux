@@ -96,6 +96,7 @@ LIBS += -lutiles \
         -lventas \
         -lpresupuesto \
         -lpagos \
+        -lctacte \
         -L../bin \
         -L../bin/plugins
 
