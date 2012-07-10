@@ -313,7 +313,7 @@ void FormResumenCtaCte::pagarTodo()
             return;
         }
         FormAgregarRecibo *f = new FormAgregarRecibo();
-        f->setearDatos( id_cliente, texto, saldo, QDate::currentDate() );
+        f->setearDatos( id_cliente, texto, saldo );
         emit agregarVentana( f );
     } else {
         QMessageBox::warning( this, "Error", "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funcion.\n Contacte su administrador de sistema." );
