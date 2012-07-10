@@ -77,28 +77,28 @@ void Smtp::run()
 		if (smtpsocket->waitForReadyRead(Timeout)) {
 			qDebug() <<"emit from waitForReadyRead connect go can read";
 			emit ConnectorSuccess();
-			emit status(tr("Connected to host"));
+                        emit status( "Conectado con el servidor..." );
 		}
 	} else {
 		qDebug()<<"error"<<smtpsocket->errorString()<<smtphost;
 		emit ErrorCloseAll();
 	}
-	connect( smtpsocket,SIGNAL(readyRead()),this,SLOT(grabLine()));
+        connect( smtpsocket, SIGNAL( readyRead() ), this, SLOT( grabLine() ) );
 	
 	while(running){
 		QCoreApplication::processEvents();
-                if(readyToSend && queuedMails->size()>0){
+                if( readyToSend && queuedMails->size() > 0 ) {
 			mutex.lock();
-                        Mail *m=queuedMails->takeFirst();
+                        Mail *m = queuedMails->takeFirst();
 			mutex.unlock();
 			sendMail(m,quitAfterSending);
 		}
-                qDebug()<<"hilo:"<<quitAfterSending << sentMail << queuedMails->size();
-                if( quitAfterSending && sentMail && queuedMails->size()<=0 ) {
+                //qDebug()<<"hilo:"<<quitAfterSending << sentMail << queuedMails->size();
+                if( quitAfterSending && sentMail && queuedMails->size() <= 0 ) {
                     disconnectSmtp();
                 } else {
                     // intervalo de verificacion de email
-                    this->sleep( 2 );
+                    this->sleep( 4 );
                 }
         }
 	qDebug()<<"end";
@@ -109,41 +109,39 @@ void Smtp::run()
 	smtpsocket=0;
 }
 
-void Smtp::queueMail(Mail *m, bool qas)
+void Smtp::queueMail( Mail *m, bool qas )
 {
 	qDebug()<<"qas"<<qas<<running;
         if(readyToSend && queuedMails->size()==0){
 		mutex.lock();
-		quitAfterSending=qas;
+                quitAfterSending = qas;
 		mutex.unlock();
-		sendMail(m,qas);
+                sendMail( m, qas );
 		return;
 	}
 	
 	mutex.lock();
-	quitAfterSending=qas;
-        queuedMails->append(m);
-//qDebug()<<"appended queued mail";
+        quitAfterSending = qas;
+        queuedMails->append( m );
 	mutex.unlock();
         if(!running) start();
-        ///mutex.unlock();
 }
 
-void Smtp::sendMail(Mail *m, bool qas)
+void Smtp::sendMail( Mail *m, bool qas )
 {
 	//qDebug()<<readyToSend;//"qas"<<qas;
-	if(!readyToSend){
+        if( !readyToSend ){
 		qDebug()<<"not ready: queue mail";
-		queueMail(m,qas);
+                queueMail( m, qas );
 		return;
 	}
 	mutex.lock();
-	quitAfterSending=qas;
+        quitAfterSending = qas;
 	qDebug()<<qas;
-	readyToSend=false;
-	newMail=true;
+        readyToSend = false;
+        newMail = true;
 	
-	emit status(tr("Send mail"));
+        emit status( "Enviando email..." );
 	
 	from = m->from();
 	if(from.contains("<")){
@@ -158,12 +156,11 @@ void Smtp::sendMail(Mail *m, bool qas)
 	rcpt=m->to();
 	message=m->getSendData();
 	
-	read_state=Rcpt;
+        read_state = Rcpt;
 	mutex.unlock();
 	
-	sendLine(QString("MAIL FROM: %1\r\n").arg(from));
-	if(preserveMails) currentMail=m;
-	else delete m;
+        sendLine( QString( "MAIL FROM: %1\r\n" ).arg( from ) );
+        currentMail = m;
 }
 
 void Smtp::disconnectSmtp()
@@ -181,9 +178,9 @@ void Smtp::ReadLiner()
         
         int loops = 0;
         while (!t->atEnd()){
-        loops++;
-        response = t->readLine();
-        //qDebug() << loops << " in line  " << response;
+            loops++;
+            response = t->readLine();
+            //qDebug() << loops << " in line  " << response;
         }
         if (response.size() > 0) {
         RemoteServerName = response;
@@ -236,10 +233,12 @@ void Smtp::nextLine()
 		if (response.size() > 0) {
 			ErrorMSG.append(response);
 			qDebug() << "2---- " << response;
-                        if( response.contains("503", Qt::CaseInsensitive ) ||
-                            response.contains("authentication not enabled", Qt::CaseInsensitive ) ) {
+                        if( response.contains( "503", Qt::CaseInsensitive ) ||
+                            response.contains( "5.5.1", Qt::CaseInsensitive ) ) {
+                            response="";
                             read_state=Noop;
-                            response="Ok";
+                            emit status( "Ingreso correcto..." );
+                            emit sendNextLine();
                         } else {
                             read_state=Pass;
                             sendLine(encodeBase64(smtpusername)+"\r\n");   //send username
@@ -272,7 +271,7 @@ void Smtp::nextLine()
                             response.contains( "succeeded", Qt::CaseInsensitive ) ){
 				response="";
 				read_state=Noop;
-				emit status(tr("Login successful"));
+                                emit status( "Ingreso correcto..." );
 				emit sendNextLine();                   		
                             } else if( response.contains( "535", Qt::CaseInsensitive ) ) {
                                 qDebug() << "Error de contraseña incorrecta. Fallo al autentificacion";
@@ -280,7 +279,7 @@ void Smtp::nextLine()
                                 emit ErrorCloseAll();
                             } else {
 				qDebug() << "Connection lost4.1";
-				emit ErrorCloseAll();               			
+                                emit ErrorCloseAll();
 			}
 		} else {
 			qDebug() << "Connection lost4.2";
@@ -337,14 +336,16 @@ void Smtp::nextLine()
 				ErrorMSG.append(response);
 				read_state = Noop;
 				qDebug() << "Mail to " << rcpt << " successfully sent";
+                                emit status( QString( "Email enviado a %1" ).arg( rcpt ) );
 				response="";
-				if(preserveMails) emit mailSent(currentMail);
-				emit status(tr("Mail successfully sent"));
-				mutex.lock();
+                                mutex.lock();
+                                if( preserveMails ) emit mailSent( currentMail );
+                                //emit status( tr("Mail successfully sent") );
+                                queuedMails->enviado( currentMail );
 				mailsSent++;
-				sentMail=true;
+                                sentMail = true;
 				mutex.unlock();
-				sendLine("NOOP\r\n");
+                                sendLine( "NOOP\r\n" );
 			} else {
 				qDebug() << "Connection lost8";
 				emit ErrorCloseAll();
@@ -354,31 +355,31 @@ void Smtp::nextLine()
 	break;
 	case Noop:
             if(response=="") {
-                qDebug() << "Noop";
+                //qDebug() << "Noop";
                 sendLine("NOOP\r\n");
             } else {
 			qDebug() << "9---- "<<response;
                         QCoreApplication::processEvents();
-                        qDebug()<<mailsSent<<queuedMails->size()<<quitAfterSending<<"Enviando correo";
-                        if(queuedMails->size()>0){
+                        //qDebug()<<mailsSent<<queuedMails->size()<<quitAfterSending<<"Enviando correo";
+                        if( queuedMails->size() > 0 ){
 				mutex.lock();
 				readyToSend=true;
-                                Mail *m=queuedMails->takeFirst();
+                                Mail *m = queuedMails->takeFirst();
 				mutex.unlock();
-				sendMail(m,quitAfterSending);
+                                sendMail( m, quitAfterSending );
 			} else {
 				mutex.lock();
 				readyToSend=true;
 				mutex.unlock();
 				emit ReadyToSend();
 			}
-			//qDebug() << "Signal ReadyToSend emitted";
+                        qDebug() << "Signal ReadyToSend emitted";
 			response ="";
 		}
 	break;
 	case Close:
 		read_state=Quit;
-		emit status(tr("Disconnect Smtp"));
+                emit status( "Desconectandose del servidor..." );
 		sendLine("QUIT\r\n");
 	break;
 	case Quit:
@@ -386,7 +387,7 @@ void Smtp::nextLine()
 		ErrorMSG.append(response);
 		smtpsocket->disconnectFromHost();
 		//qDebug()<<"disconnectFromHost";
-		emit status(tr("Disconnected"));
+                emit status( "Desconectado" );
 		emit SuccessQuit();
 		response ="";
 		if(quitAfterSending) exitLoop();
@@ -399,11 +400,11 @@ void Smtp::nextLine()
 }
 
 /* SENDER AND RECIVER  */
-void Smtp::sendLine(QString senddata)
+void Smtp::sendLine( QString senddata )
 {
 	*t << senddata.toAscii();
 	t->flush();
-//qDebug()<<"line sent";
+        qDebug()<<" >>>"<<senddata.remove( '\r\n' ).toAscii();
 	return;
 }
 

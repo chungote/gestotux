@@ -15,8 +15,9 @@ HEADERS += eactcerrar.h \
            eregistroplugins.h \
            eactpdf.h \
            eemail.h \
-           mail.h \
-           mime.h \
+           ../plugins/email/mail.h \
+           ../plugins/email/mime.h \
+           ../plugins/email/mime-types.h \
            mproductostotales.h \
            dproductostotales.h \
            edsbprecio.h \
@@ -26,14 +27,14 @@ HEADERS += eactcerrar.h \
            NumeroComprobante.h \
            ELECuitCuil.h \
            ecbproductos.h \
-    ecbclientes.h \
-    ebusqueda.h \
-    etextbrowser.h \
-    ecbpaises.h \
-    ecbprovincias.h \
-    ecbproveedor.h \
-    ecbtabla.h \
-    eddescuento.h
+           ecbclientes.h \
+           ebusqueda.h \
+           etextbrowser.h \
+           ecbpaises.h \
+           ecbprovincias.h \
+           ecbproveedor.h \
+           ecbtabla.h \
+           eddescuento.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -48,8 +49,8 @@ SOURCES += eactcerrar.cpp \
            eregistroplugins.cpp \
            eactpdf.cpp \
            eemail.cpp \
-           mail.cpp \
-           mime.cpp \
+           ../plugins/email/mail.cpp \
+           ../plugins/email/mime.cpp \
            mproductostotales.cpp \
            dproductostotales.cpp \
            edsbprecio.cpp \
@@ -59,14 +60,14 @@ SOURCES += eactcerrar.cpp \
            EReporte.cpp \
            ELECuitCuil.cpp \
            ecbproductos.cpp \
-    ecbclientes.cpp \
-    ebusqueda.cpp \
-    etextbrowser.cpp \
-    ecbpaises.cpp \
-    ecbprovincias.cpp \
-    ecbproveedor.cpp \
-    ecbtabla.cpp \
-    eddescuento.cpp
+           ecbclientes.cpp \
+           ebusqueda.cpp \
+           etextbrowser.cpp \
+           ecbpaises.cpp \
+           ecbprovincias.cpp \
+           ecbproveedor.cpp \
+           ecbtabla.cpp \
+           eddescuento.cpp
 
 QT += sql \
       xml
@@ -86,8 +87,5 @@ FORMS += EAyudaBase.ui \
 TRANSLATIONS += utiles.ts
 
 INCLUDEPATH += ../src \
-               ../reporte
-
-
-
-
+               ../reporte \
+               ../plugins/email

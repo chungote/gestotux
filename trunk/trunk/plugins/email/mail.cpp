@@ -96,7 +96,7 @@ QString Mail::messageBody()
 		QString ret;
 		int pc = getPartCount();
 
-		for (uint i = 0; i < pc; i++)
+                for ( int i = 0; i < pc; i++)
 		{
 			Mail* mp = getPart(i);
 			if (mp->header().value("Content-Type")=="text/plain")
@@ -312,7 +312,7 @@ uint Mail::longestLine(const QString cstr)
 	return ret;
 }
 
-QString Mail::breakLongLines(const QString& in, uint max_len, QString separator)
+QString Mail::breakLongLines(const QString& in, int max_len, QString separator)
 {
 
 	QStringList strings=in.split("\r\n");
@@ -1062,7 +1062,12 @@ QString Mail::timeStamp()
  */
 QUuid  Mail::identificadorUnico()
 {
- return id_unico;
+    if( !this->id_unico.isNull() ) {
+        return this->id_unico;
+    } else {
+        qDebug( "Identificador nulo..." );
+    }
+    return QUuid::createUuid();
 }
 
 
@@ -1071,5 +1076,11 @@ QUuid  Mail::identificadorUnico()
  */
 void Mail::setIdentificadorUnico( QUuid id )
 {
- this->id_unico = id;
+    if( id.isNull() )
+    {
+        qDebug( "Intentando setear un id unico nulo" );
+        return;
+    }
+
+    this->id_unico = id;
 }

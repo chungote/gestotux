@@ -14,7 +14,7 @@ void ETextBrowser::setHelpEngine( QHelpEngine *he ) {
     qWarning( _pre.toLocal8Bit() );*/
 }
 
-QVariant ETextBrowser::loadResource( int type, const QUrl &url )
+QVariant ETextBrowser::loadResource( int /*type*/, const QUrl &url )
 {
     if( url.toString().contains( "http" ) || url.toString().contains( "ftp" ) ) {
         return QVariant( "" );

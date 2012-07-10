@@ -89,8 +89,20 @@ QMap<int, QString> *ECBProductos::listadoProductos()
 void ECBProductos::setearListado( QMap<int, QString> *lista )
 {
     // Verifica que los demás items estén de acuerdo con esta lista
-    qWarning( "Error - Remapeo de items no implementado - Posible problema con al lista de productos" );
-    //abort();
+    // El mappeo debe sacar solo los elementos menores que cero
+    QList<int> l2 = lista->keys();
+    for( int i = 0; i < l2.size(); i++ ) {
+        if( l2.value(i) < 0 ) {
+            // Ingreso este valor al cb
+            QString texto = lista->value( l2.value( i ) );
+            int indice = l2.value( i );
+            int pos = this->count();
+            this->insertItem( pos, texto, indice );
+            this->_mapa_id_nombre->insert( indice, texto );
+            this->_mapa_pos_ids->insert( pos, indice );
+            this->_mapa_pos_codigo->insert( QString::number( indice ), pos );
+        }
+    }
 }
 
 int ECBProductos::idActual() const

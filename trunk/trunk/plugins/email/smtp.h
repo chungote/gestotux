@@ -154,6 +154,7 @@ private:
 	bool newMail;
 	bool readyToSend;
 	bool preserveMails;
+        bool authEnabled;
 	Mail *currentMail;
         EModeloMails *queuedMails;
 	QString smtpusername;

@@ -24,6 +24,7 @@ EEmail *EEmail::_instancia = 0;
 EEmail::EEmail(QObject *parent)
  : QObject(parent)
 {
+    this->setObjectName( "_email" );
 }
 
 
@@ -38,7 +39,9 @@ EEmail::~EEmail()
 Mail * EEmail::email()
 {
  Mail *email = new Mail();
+#ifdef Q_WS_WIN
  email->setEncoding( "ISO-8859-2" );
+#endif
  email->setContentTransferEncoding( "quoted-printable" );
  return email;
 }
@@ -72,8 +75,8 @@ EEmail* EEmail::instancia()
 void EEmail::testear()
 {
  Mail *em = this->email();
- em->setHeader( "estebanz@guiasmayores.org.ar", "estebanz@guiasmayores.org.ar", "", "", "Asunto de prueba" );
- em->setMessageBody( "Intento de ver si el mensaje puede ser enviado desde el nuevo sistema de email del gestotux" );
+ em->setHeader( "esteban.zeller@gmail.com", "esteban.zeller@gmail.com", "", "", "Asunto de prueba" );
  em->setContentType( "text/plain" );
+ em->setMessageBody( "Intento de ver si el mensaje puede ser enviado desde el nuevo sistema de email del gestotux" );
  this->enviarEmail( em );
 }
