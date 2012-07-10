@@ -45,7 +45,7 @@ QString GestotuxDefault::empresa() const
 { return "uso generico"; }
 
 QString GestotuxDefault::nombrePrograma() const
-{ return "Gestotux"; }
+{ return "Gestotux 0.5 RC 6"; }
 
 bool GestotuxDefault::inicializar()
 {
@@ -56,13 +56,13 @@ bool GestotuxDefault::inicializar()
 bool GestotuxDefault::verificarTablas( QStringList tablas )
 {
     if( !tablas.contains( "paises" ) ) {
-        qDebug( "No se encontró la tabla de paises" );
+        qDebug( "No se encontrÃ³ la tabla de paises" );
         return false;
     } else if( !tablas.contains( "provincias" ) ) {
-        qDebug( "No se encontró la tabla de provincias" );
+        qDebug( "No se encontrÃ³ la tabla de provincias" );
         return false;
     } else if( !tablas.contains( "estado_fiscal" ) ) {
-        qDebug( "No se encontró la tabla de estados_fiscales" );
+        qDebug( "No se encontrÃ³ la tabla de estados_fiscales" );
         return false;
     }
     return true;
