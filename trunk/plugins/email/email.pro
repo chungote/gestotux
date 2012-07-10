@@ -37,7 +37,7 @@ FORMS += FormPrefEmailBase.ui
 INCLUDEPATH += ../../src \
                ../../utiles
 
-DISTFILES += email.QMYSQL.sql \
+OTHER_FILES += email.QMYSQL.sql \
              email.QSQLITE.sql
 
 RESOURCES += email.qrc

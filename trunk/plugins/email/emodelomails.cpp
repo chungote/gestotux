@@ -26,11 +26,13 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
+
 EModeloMails::EModeloMails(QObject *parent, QSqlDatabase db)
  : QSqlTableModel(parent, db)
 {
  setTable( "emails" );
  this->setEditStrategy( QSqlTableModel::OnManualSubmit );
+ _tamano = -1;
 }
 
 
@@ -44,7 +46,8 @@ EModeloMails::~EModeloMails()
  */
 Mail * EModeloMails::takeFirst()
 {
- //carga el primer email de la lista y lo elimina de la cola
+ mutex.lock();
+ //carga el primer email de la lista
  this->select();
  QSqlRecord primero = this->record( 0 );
  Mail *mail = EEmail::instancia()->email();
@@ -58,12 +61,7 @@ Mail * EModeloMails::takeFirst()
 		);
  mail->setMessageBody( primero.value( "cuerpo" ).toString() );
  mail->setContentType( primero.value( "content_type" ).toString() );
- this->removeRow( 0 );
- if( !this->submitAll() )
- {
-  qDebug( "Error la poner desencolar un email" );
-  qDebug( qPrintable( this->lastError().text() ) );
- }
+ mutex.unlock();
  return mail;
 }
 
@@ -73,18 +71,31 @@ Mail * EModeloMails::takeFirst()
  */
 int EModeloMails::size()
 {
- QSqlQuery cola( "SELECT COUNT( id_email ) FROM emails", this->database() );
- if( cola.next() )
- {
-  //qDebug( QString( "cant emails: %1" ).arg( cola.record().value(0).toInt() ).toLocal8Bit() );
-  return cola.record().value(0).toInt();
- }
- else
- {
-  qDebug( "Error al contar los emails en la cola" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  return 0;
- }
+    mutex.lock();
+    if( _tamano == -1 ) {
+         QSqlQuery cola;
+         if( cola.exec( "SELECT COUNT( id_email ) FROM emails" ) ) {
+             if( cola.next() )
+             {
+              qDebug( QString( "1-cant emails: %1" ).arg( cola.record().value(0).toInt() ).toLocal8Bit() );
+              _tamano = cola.record().value(0).toInt();
+             }
+             else
+             {
+              qDebug( "Error al contar los emails en la cola" );
+              qDebug( qPrintable( cola.lastError().text() ) );
+              qDebug( qPrintable( cola.lastQuery() ) );
+              _tamano = 0;
+             }
+         } else {
+             qDebug( "Error al ejectura la cola de conteo" );
+             qDebug( cola.lastError().text().toLocal8Bit() );
+             qDebug( cola.lastQuery().toLocal8Bit() );
+             _tamano = -1;
+         }
+     }
+  mutex.unlock();
+  return _tamano;
 }
 
 
@@ -93,6 +104,7 @@ int EModeloMails::size()
  */
 void EModeloMails::append( Mail *mail )
 {
+ mutex.lock();
  QSqlRecord encolar = this->record();
  encolar.remove(0);
  encolar.setValue( "id_unico", mail->identificadorUnico().toString() );
@@ -110,18 +122,57 @@ void EModeloMails::append( Mail *mail )
   {
     qDebug("error en el submit del email" );
     qDebug( qPrintable( this->lastError().text() ) );
-    return;
   }
   else
   {
    emit nuevoMail();
    qDebug( "Email encolado correctamente" );
-   return;
+   mutex.unlock();
+   this->size();
+   mutex.lock();
+   _tamano++;
   }
  }
  else
- {
-  qDebug( "Error al agregar el email: no se enviara" );
-  return;
- }
+ { qDebug( "Error al agregar el email: no se enviara" ); }
+ mutex.unlock();
+}
+
+/*!
+ * \fn EModeloMails::enviado( Mail *mail )
+ * Elimina el mensaje en cola identificado por el puntero pasado como parametro
+ */
+void EModeloMails::enviado(Mail *mail)
+{
+    // Elimina de la lista el email ingresado
+    mutex.lock();
+    QString id = mail->identificadorUnico().toString();
+    QSqlQuery cola;
+    if( !cola.exec( QString( "SELECT id_email, id_unico FROM emails WHERE id_unico = \"%1\"" ).arg( id ) ) ) {
+        qDebug( "Error al buscar email por id unica" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    } else {
+        if( cola.next() ) {
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            int id_email = cola.record().value(0).toInt();
+            if( !cola.exec( QString( "DELETE FROM emails WHERE id_email = %1" ).arg( id_email ) ) ) {
+                qDebug( "Error al eliminar el email enviado" );
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
+            }
+            qDebug( cola.lastQuery().toLocal8Bit() );
+            if( !this->submitAll() ) {
+                qDebug( "Error al guardar la cola de emails" );
+            } else {
+                qDebug( "Email desencolado correctamente..." );
+                _tamano--;
+            }
+        } else {
+            qDebug( "No se pudo encontrar el email encolado" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    }
+    mutex.unlock();
 }

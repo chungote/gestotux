@@ -22,6 +22,7 @@
 
 #include <QSqlTableModel>
 class Mail;
+#include <QMutex>
 
 /**
  * @brief Modelo de cola de emails
@@ -38,9 +39,14 @@ public:
     int size();
     void agregarMail( Mail *mail );
     void append( Mail *mail );
+    void enviado( Mail *mail );
 
 signals:
     void nuevoMail();
+
+private:
+    int _tamano;
+    QMutex mutex;
 
 };
 

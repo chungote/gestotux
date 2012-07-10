@@ -232,7 +232,7 @@ public:
 
         //two helper-function
         uint longestLine(const QString cstr);
-        QString breakLongLines(const QString& in, uint max_len, QString separator="=");
+        QString breakLongLines(const QString& in, int max_len, QString separator="=");
 
         //used to add attachments to a message
         void attachFile(QString fileName);
