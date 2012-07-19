@@ -53,6 +53,7 @@ enum State {
 	Disconnected,
 	Connect,
 	Connected,
+        ehlo,
 	Auth,
 	Pass,
 	AuthOk,

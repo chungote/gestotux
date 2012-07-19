@@ -40,6 +40,7 @@ public slots:
     void imprimir();
     void menuContextual( const QModelIndex &indice, QMenu *menu );
     void aPdf();
+    void email();
     void cancelarPago();
     void soloCancelados();
     void soloNoPagados();

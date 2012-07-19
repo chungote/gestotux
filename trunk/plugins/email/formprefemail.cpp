@@ -108,7 +108,7 @@ void FormPrefEmail::agregar()
  registro.setValue( "direccion", "direccion.com" );
  registro.setValue( "usuario", "usuario" );
  registro.setValue( "pass", "123456" );
- registro.setValue( "puerto", 21 );
+ registro.setValue( "puerto", 25 );
  registro.setValue( "de", "usuario@direccion.com" );
  servidores->insertRecord( -1, registro );
 }

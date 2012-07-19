@@ -44,6 +44,9 @@ void Smtp::exitLoop()
         queuedMails->database().close();
         // Elimino el objeto de la cola que se conecta con la base de datos
         delete queuedMails;
+        // Me desconecto del servidor
+        disconnectSmtp();
+
 	mutex.unlock();
 }
 
@@ -229,16 +232,38 @@ void Smtp::nextLine()
 		     emit ErrorCloseAll();
 		}
 	break;
+        case ehlo:
+                if( response.size() > 0 ) {
+                    qDebug() << "1-2---- " << response;
+                    read_state=Auth;
+                    // Saco el tamaño maximo permitido...
+                    /*if( response.contains( "250-SIZE" ) ) {
+                        int p1 = response.indexOf( "250-SIZE");
+                        int p2 = response.indexOf( '\n' );
+                        int tam = response.
+                    }*/
+                    response = "";
+                    sendLine("AUTH LOGIN\r\n");
+                } else {
+                    qDebug() << "Connection lost1-2";
+                    response="";
+                    emit ErrorCloseAll();
+                }
+                break;
 	case Auth:
 		if (response.size() > 0) {
 			ErrorMSG.append(response);
 			qDebug() << "2---- " << response;
-                        if( response.contains( "503", Qt::CaseInsensitive ) ||
-                            response.contains( "5.5.1", Qt::CaseInsensitive ) ) {
-                            response="";
-                            read_state=Noop;
-                            emit status( "Ingreso correcto..." );
-                            emit sendNextLine();
+                        if( response.contains( "503", Qt::CaseInsensitive ) ) {
+                            if( response.contains( "5.5.1", Qt::CaseInsensitive ) ) {
+                                response="";
+                                read_state=Noop;
+                                emit status( "Ingreso correcto..." );
+                                emit sendNextLine();
+                            } else {
+                                read_state=ehlo;
+                                sendLine("EHLO gestotux\r\n");
+                            }
                         } else {
                             read_state=Pass;
                             sendLine(encodeBase64(smtpusername)+"\r\n");   //send username
@@ -301,6 +326,11 @@ void Smtp::nextLine()
 	case Data:
 		qDebug() << "6---- " << response;
 		if (response.size() > 0){
+                    if(response.contains("550")) {
+                        emit status( "Usuario destinatario desconocido... no se puede enviar el email..." );
+                        read_state=Noop;
+                        response="";
+                    } else {
 			if(bcc.size()>0){
 				read_state=Data;
 				sendLine("RCPT TO: "+bcc.takeFirst()+"\r\n");
@@ -309,11 +339,11 @@ void Smtp::nextLine()
 				read_state=Send;
 				sendLine("DATA\r\n");
 			}
+                    }
 		} else {
 			qDebug() << "Connection lost6";
 			emit ErrorCloseAll();
 		}
-		//response ="";
 	break;
 	case Send:
         qDebug() << "7---- " << response;
@@ -404,7 +434,7 @@ void Smtp::sendLine( QString senddata )
 {
 	*t << senddata.toAscii();
 	t->flush();
-        qDebug()<<" >>>"<<senddata.remove( '\r\n' ).toAscii();
+        qDebug()<<" >>>"<<senddata.remove( "\r\n" ).toAscii();
 	return;
 }
 
@@ -477,6 +507,7 @@ void Smtp::terminarEjecucion()
 {
     if( running )
     {
+
         this->exitLoop();
     }
     // Cierro la base de datos clonada
