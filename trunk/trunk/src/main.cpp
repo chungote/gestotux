@@ -443,6 +443,9 @@ int main(int argc, char *argv[])
         mw->inicializar();
         if( maximizar ) { mw->showMaximized(); }
         int ret = app.exec();
-        QSqlDatabase::removeDatabase( "qt_sql_default_connection" );
+        QStringList list = QSqlDatabase::connectionNames();
+        for(int i = 0; i < list.count(); ++i) {
+            QSqlDatabase::removeDatabase(list[i]);
+        }
         return ret;
 }

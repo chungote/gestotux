@@ -211,7 +211,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
                                                   id_venta,
                                                   MItemCuentaCorriente::Factura,
                                                   fecha.date(),
-                                                  "Venta a Cuenta Corriente",
+                                                  QString("Venta a Cuenta Corriente - Factura %1" ).arg( num_comprobante ),
                                                   total_calculado ) == -1 )
    {
        qWarning( "Error al actualizar la cuenta corriente - inserccion de item" );
