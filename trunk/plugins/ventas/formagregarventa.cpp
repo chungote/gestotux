@@ -311,8 +311,6 @@ void FormAgregarVenta::guardar()
  // Remuevo el texto que dice "Observaciones:"
  QString observacion = PTEObservaciones->toPlainText();
  observacion.remove( "Observaciones: " );
- //Inicio una transacción
- QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  //seteo el modelo para que no calcule totales y subtotales
  mcp->calcularTotales( false );
  // veo el id del proveedor
@@ -339,6 +337,8 @@ void FormAgregarVenta::guardar()
      mcp->calcularTotales( true );
      return;
  }
+ //Inicio una transacción
+ QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
  // Genero la venta
  MFactura *venta = new MFactura();
  int id_venta = venta->agregarVenta( DEFecha->dateTime(), id_cliente, id_forma_pago, mcp, observacion );
