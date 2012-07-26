@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/sql">
+        <file>descuentos.QMYSQL.sql</file>
+        <file>descuentos.QSQLITE.sql</file>
+    </qresource>
+</RCC>
