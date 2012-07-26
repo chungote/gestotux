@@ -17,9 +17,13 @@ public:
     
 private slots:
     void simular();
+    void cambioTerminado( bool e );
+    void verDetalles();
 
 private:
     QAction *ActSimular;
+    QAction *ActTerminado;
+    QAction *ActDetalles;
 
 };
 

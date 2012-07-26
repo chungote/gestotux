@@ -11,5 +11,4 @@ SUBDIRS +=  caja \
             servicios \
             descuentos \
             cuotas \
-            HiComp \
             remitos

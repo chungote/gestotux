@@ -42,7 +42,7 @@
   <height>830</height>
  </size>
  <portrait/>
- <topmargin>14</topmargin>
+ <topmargin>5</topmargin>
  <bottommargin>0</bottommargin>
  <rightmargin>0</rightmargin>
  <leftmargin>0</leftmargin>
@@ -218,7 +218,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>414</height>
+   <height>439.104</height>
    <field>
     <rect>
      <x>42.5567</x>
