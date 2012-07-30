@@ -125,12 +125,17 @@ void FormClientesAdheridos::darDeBaja()
  }
   int id_servicio = CBServicios->idActual();
   foreach( QModelIndex item, lista ) {
-      int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+      MClientesServicios *mcs = new MClientesServicios( 0, false );
+      mcs->filtrarPorServicio( CBServicios->idActual() );
+      mcs->select();
+      int id_cliente = mcs->data( mcs->index( item.row(), 1 ), Qt::EditRole ).toInt();
+      delete mcs;
       bool ok = false;
       QString razon = QInputDialog::getText( this, "Razon de baja", "Ingrese la razon de baja:", QLineEdit::Normal, QString(), &ok );
       if( ok )
         modelo->darDeBaja( id_cliente, id_servicio, razon );
   }
+  modelo->select();
 }
 
 #include "mcobroservicioclienteperiodo.h"
@@ -158,6 +163,7 @@ void FormClientesAdheridos::eliminar() {
              }
          }
      }
+     modelo->select();
 }
 
 void FormClientesAdheridos::imprimir()
@@ -191,11 +197,6 @@ void FormClientesAdheridos::aPdf()
 
 void FormClientesAdheridos::verBaja( bool estado )
 {
-    if( estado ) {
-        modelo->setFilter( " fecha_baja IS NOT NULL " );
-        modelo->select();
-    } else {
-        modelo->setFilter( "" );
-        modelo->select();
-    }
+    modelo->setearVerBaja( estado );
+    modelo->select();
 }

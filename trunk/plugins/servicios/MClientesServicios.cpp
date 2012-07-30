@@ -21,12 +21,17 @@
 #include "MClientesServicios.h"
 #include <QDate>
 
-MClientesServicios::MClientesServicios(QObject *parent) :
-    QSqlRelationalTableModel(parent)
+MClientesServicios::MClientesServicios ( QObject *parent, bool relacion ) :
+    QSqlRelationalTableModel( parent )
 {
   inicializar();
   // Relaciones
-  relacionar();
+  if( relacion )
+    relacionar();
+
+  _baja = false;
+  _cliente = -1;
+  _servicio = -1;
 
 }
 
@@ -45,17 +50,52 @@ void MClientesServicios::relacionar()
     this->setRelation( 0, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
 }
 
+/*!
+ * \fn MClientesServicios::crearFiltro()
+ * Genera el filtro para el modelo según los parametros suministrados.
+ */
+void MClientesServicios::crearFiltro()
+{
+    QString filtro;
+    if( _cliente > 0 ) {
+        filtro.append( QString( "servicios_clientes.id_cliente = %1" ).arg( _cliente ) );
+    }
+    if( !filtro.isEmpty() ) { filtro.append( " AND " ); }
+    if( _servicio > 0 ) {
+        filtro.append( QString( "servicios_clientes.id_servicio = %1" ).arg( _servicio ) );
+    }
+    if( !filtro.isEmpty() ) { filtro.append( " AND " ); }
+    if( _baja ) {
+        filtro.append( "servicios_clientes.fecha_baja IS NOT NULL" );
+    } else {
+        filtro.append( "servicios_clientes.fecha_baja IS NULL" );
+    }
+    this->setFilter( filtro );
+}
+
+/*!
+ * \brief MClientesServicios::filtrarPorCliente
+ * Permite filtrar los items según el cliente pasado como parametro. Luego de llamar esta función se deberá rehacer el select del modelo.
+ * \param id_cliente Identificador del cliente
+ */
 void MClientesServicios::filtrarPorCliente( const int id_cliente )
 {
-    this->setFilter( QString( "servicios_clientes.id_cliente = %1 ").arg( id_cliente ) );
+    _cliente = id_cliente;
+    crearFiltro();
 }
 
+/*!
+ * \brief MClientesServicios::filtrarPorServicio
+ * Permite Filtrar los items según el servicio pasado como parametro. Luego de llamar esta función se deberá rehacer el select del modelo.
+ * \param id_servicio Identificador del servicio
+ */
 void MClientesServicios::filtrarPorServicio( const int id_servicio )
 {
-    this->setFilter( QString( "servicios_clientes.id_servicio = %1 ").arg( id_servicio ) );
+    _servicio = id_servicio;
+    crearFiltro();
 }
 
-QVariant MClientesServicios::data(const QModelIndex &item, int role) const
+QVariant MClientesServicios::data( const QModelIndex &item, int role ) const
 {
  switch( item.column() ) {
     case 2:
@@ -63,13 +103,22 @@ QVariant MClientesServicios::data(const QModelIndex &item, int role) const
     {
      switch( role ) {
         case Qt::DisplayRole:
-        {  return QDate( QSqlRelationalTableModel::data( item, role ).toDate() ).toString( Qt::SystemLocaleShortDate ); }
+        {  return QDate( QSqlRelationalTableModel::data( item, role ).toDate() ).toString( Qt::SystemLocaleShortDate ); break; }
         case Qt::TextAlignmentRole:
         {  return int( Qt::AlignCenter | Qt::AlignVCenter ); break; }
         default:
         { return QSqlRelationalTableModel::data( item, role ); break; }
      }
      break;
+    }
+    case 1: // ID Cliente
+    {
+      switch( role ) {
+         case Qt::EditRole:
+         { return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+         default:
+         { return QSqlRelationalTableModel::data( item, role ); break; }
+      }
     }
     default:
     { return QSqlRelationalTableModel::data( item, role ); break; }
@@ -109,11 +158,14 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
     } else {
         if( !cola.next() ) {
             qDebug( "Error al hacer next en la cola de obtencion del cliente servicio" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
             qDebug( cola.lastQuery().toLocal8Bit() );
             return false;
         } else {
             if( cola.record().value(0).toInt() <= 0 ) {
                 qWarning( "El cliente seleccionado no esta adherido al servicio especificado" );
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
                 return false;
             }
         }
@@ -132,6 +184,8 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
     // Ingresar baja
     if( !cola.prepare( "UPDATE servicios_clientes SET fecha_baja = :fecha, razon = :razon WHERE id_cliente = :id_cliente AND id_servicio = :id_servicio" ) ) {
         qDebug( "Error al preparar la cola" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
         return false;
     }
     cola.bindValue( "fecha" , QDate::currentDate() );
@@ -145,7 +199,7 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
         return false;
     }
     // Imprimir comprobante de baja
-    EReporte *rep = new EReporte( 0 );
+    /*EReporte *rep = new EReporte( 0 );
     ParameterList parametros;
     parametros.append( Parameter( "id_cliente", id_cliente ) );
     parametros.append( Parameter( "id_servicio", id_servicio ) );
@@ -153,6 +207,17 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
     parametros.append( Parameter( "fecha", QDate::currentDate() ) );
     rep->especial( "baja-servicio", parametros );
     rep->hacer();
-    delete rep;
+    delete rep;*/
     return true;
+}
+
+/*!
+ * \fn MClientesServicios::setearVerBaja( bool estado )
+ * Define si se desea ver los clientes dados de baja. Luego de llamar esta función se deberá rehacer el select del modelo.
+ * \param estado Ver o no los clientes dados de baja
+ */
+void MClientesServicios::setearVerBaja( bool estado )
+{
+    _baja = estado;
+    crearFiltro();
 }
