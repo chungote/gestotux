@@ -115,6 +115,6 @@ Q_EXPORT_PLUGIN2( ctacte, CuentaCorrientePlugin )
 void CuentaCorrientePlugin::verCuentasCorrientes()
 {
  VCuentaCorriente *f = new VCuentaCorriente();
- connect( f, SIGNAL( emitirRecibo( int, QDate, QString, double ) ), this, SIGNAL( emitirRecibo( int, QDate, QString, double ) ) );
+ connect( f, SIGNAL( emitirRecibo( int, QString, double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
  emit agregarVentana( f );
 }

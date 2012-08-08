@@ -56,7 +56,7 @@ public slots:
     void seCierraGestotux();
     void verPagos();
     void agregarRecibo();
-    void agregarRecibo( int, QDate, QString, double );
+    void agregarRecibo( int, QString, double );
 
 private:
         QAction *ActPagos;

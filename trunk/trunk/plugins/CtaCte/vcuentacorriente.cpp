@@ -230,7 +230,7 @@ void VCuentaCorriente::verResumen()
  QString numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
  FormResumenCtaCte *form = new FormResumenCtaCte( this );
  form->setNumeroCuenta( numero_cuenta );
- connect( form, SIGNAL(emitirRecibo(int,QDate,QString,double)), this, SIGNAL(emitirRecibo(int,QDate,QString,double)));
+ connect( form, SIGNAL( emitirRecibo( int, QString ,double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
  emit agregarVentana( form );
 }
 
