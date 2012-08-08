@@ -109,7 +109,7 @@ void PagosPlugin::agregarRecibo()
 /*!
     \fn PagosPlugin::agregarRecibo()
 */
-void PagosPlugin::agregarRecibo( int id_cliente, QDate fecha, QString texto, double total )
+void PagosPlugin::agregarRecibo( int id_cliente, QString texto, double total )
 {
     FormAgregarRecibo *f = new FormAgregarRecibo();
     f->setearModelo(0);

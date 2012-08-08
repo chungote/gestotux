@@ -67,7 +67,7 @@ private slots:
 signals:
     void agregarVentana( QWidget * );
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
-    void emitirRecibo( int, QDate, QString, double );
+    void emitirRecibo( int, QString, double );
 
 
 public slots:

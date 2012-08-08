@@ -365,13 +365,11 @@ void FormResumenCtaCte::pagarFactura()
         qWarning( "No implementada verificacion" );
         // Busco los detalles de la factura
         QString texto_recibo = QString( "Pago de la factura %1" ).arg( MFactura::obtenerComprobante( id_factura ).aCadena() );
-        QDate fecha = MFactura::obtenerFecha( id_factura );
         double total = MFactura::obtenerTotal( id_factura );
         int id_cliente = MCuentaCorriente::idClientePorCtaCte( _numero_cuenta );
         // Genero un nuevo recibo con el total de la factura y en el detalle que paga la factura
-        emit emitirRecibo( id_cliente, fecha, texto_recibo, total );
+        emit emitirRecibo( id_cliente, texto_recibo, total );
     }
-
 }
 
 /*!

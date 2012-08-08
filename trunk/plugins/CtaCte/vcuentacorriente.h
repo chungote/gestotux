@@ -39,7 +39,7 @@ protected:
     void menuContextual( const QModelIndex &indice, QMenu *menu );
 
 signals:
-    void emitirRecibo(int,QDate,QString,double);
+    void emitirRecibo( int, QString, double );
 
 protected slots:
     void modificarLimite();

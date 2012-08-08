@@ -85,6 +85,7 @@ void FormAgregarRecibo::setearModelo( MPagos *m )
  * \param id_cliente Identificador del cliente al que queremos hacerle el recibo
  * \param texto Texto que va a tener el recibo
  * \param cantidad Cantidad que debe tener el recibo
+ * \param fecha Fecha en que debe estar inicializado el recibo
  */
 void FormAgregarRecibo::setearDatos( const int id_cliente, const QString texto, const double cantidad )
 {
@@ -187,12 +188,6 @@ void FormAgregarRecibo::guardar()
         QMessageBox::warning( this, "Faltan datos", "Por favor verifique que haya ingresado una cantidad a pagar" );
         return;
     }
-    // busco la fecha de la ultima factura y verifico que facturemos con fecha igual o mayor
-    /*QDate fecha_ultima_factura = this->_modelo->buscarFechaUltimoRecibo();
-    if( ( fecha_ultima_factura.isValid() ) && ( this->DEFecha->date() < fecha_ultima_factura ) ) {
-        QMessageBox::warning( this, "Fallo de datos", QString( "La fecha del ultimo recibo emitido es %1. Por favor verifique que haya ingresado una fecha mayor o igual." ).arg( fecha_ultima_factura.toString( Qt::SystemLocaleLongDate) ) );
-        return;
-    }*/
     int id_cliente = this->CBCliente->idClienteActual();
     QDate fecha = this->DEFecha->date();
     QString contenido = this->TETexto->toPlainText();
