@@ -13,6 +13,9 @@ class FormSimularCuotas : public EVentana, private Ui::FormSimularCuotasBase
 public:
     FormSimularCuotas( QWidget *parent = 0 );
     ~FormSimularCuotas();
+    void setearIdCliente( int id_cliente ) { _id_cliente = id_cliente; }
+    int idCliente() { return _id_cliente; }
+    void setearTotal( double Total ) { SBCantidad->setValue( Total ); }
     
 protected:
     void changeEvent( QEvent *e );
@@ -44,6 +47,8 @@ private:
     QTextDocument *documento;
 
     void generaReporte();
+
+    int _id_cliente;
 
 };
 

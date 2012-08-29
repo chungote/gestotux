@@ -40,17 +40,32 @@ public:
         void setearFecha( QDate fecha );
         void setearItems( MProductosTotales *m );
 
+public slots:
+        void setearIdPlanCuota( int id_cuota ) { id_plan_cuota = id_cuota; }
+
+signals:
+        /*!
+         * \brief emitirPlanCuota
+         * \params id_cliente Identificador de Cliente
+         * \params total Total del plan
+         * \params id_factura Identificador de Factura
+         */
+        void emitirPlanCuota( int id_cliente, double total );
+        void emitirPlanCuotaSetIdFactura( int id_plan_cuota, int id_factura );
+
 protected slots:
-    void agregarProducto();
-    void eliminarProducto();
-    void guardar();
-    void cambioCliente( int id_combo );
-    void eliminarTodo();
-    void agregarDescuento();
-    void eliminarDescuento();
+        void agregarProducto();
+        void eliminarProducto();
+        void guardar();
+        void cambioCliente( int id_combo );
+        void eliminarTodo();
+        void agregarDescuento();
+        void eliminarDescuento();
 
 private:
-    MProductosTotales *mcp;
+        MProductosTotales *mcp;
+        int id_plan_cuota;
+
 };
 
 #endif

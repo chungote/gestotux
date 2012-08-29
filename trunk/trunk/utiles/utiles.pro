@@ -11,13 +11,8 @@ HEADERS += eactcerrar.h \
            eactguardar.h \
            emcliente.h \
            eeditor.h \
-           eactemail.h \
            eregistroplugins.h \
            eactpdf.h \
-           eemail.h \
-           ../plugins/email/mail.h \
-           ../plugins/email/mime.h \
-           ../plugins/email/mime-types.h \
            mproductostotales.h \
            dproductostotales.h \
            edsbprecio.h \
@@ -45,12 +40,8 @@ SOURCES += eactcerrar.cpp \
            eactguardar.cpp \
            emcliente.cpp \
            eeditor.cpp \
-           eactemail.cpp \
            eregistroplugins.cpp \
            eactpdf.cpp \
-           eemail.cpp \
-           ../plugins/email/mail.cpp \
-           ../plugins/email/mime.cpp \
            mproductostotales.cpp \
            dproductostotales.cpp \
            edsbprecio.cpp \

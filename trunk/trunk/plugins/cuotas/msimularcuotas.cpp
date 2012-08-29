@@ -1,4 +1,5 @@
 #include "msimularcuotas.h"
+#include "mplancuota.h"
 
 #include <QDate>
 
@@ -9,7 +10,7 @@ MSimularCuotas::MSimularCuotas(QObject *parent) :
     cantidad = 0;
     interes = 0.0;
     importe = 0.0;
-    periodo = Invalido;
+    periodo = MPlanCuota::Invalido;
 }
 
 MSimularCuotas::~MSimularCuotas()
@@ -72,42 +73,13 @@ int MSimularCuotas::columnCount( const QModelIndex & ) const
  */
 bool MSimularCuotas::valido() const
 {
-    if( importe > 0 && cantidad > 0 && periodo != Invalido && interes > 0.0 && fecha_inicio.isValid() ) {
+    if( importe > 0 && cantidad > 0 && periodo != MPlanCuota::Invalido && interes > 0.0 && fecha_inicio.isValid() ) {
         return true;
     } else {
         return false;
         qWarning( "Modelo invalido!" );
     }
 
-}
-
-/*!
- * \fn MSimularCuotas::diasPeriodo( Periodo periodo ) const
- * Devuelve la cantidad de días en el periodo pasado como parametro
- * \param periodo Tipo de periodo a calcular
- */
-int MSimularCuotas::diasPeriodo( Periodo periodo ) const
-{
-    switch( periodo ) {
-        case Semanal:
-        { return 7;    break; }
-        case Quincenal:
-        { return 14;   break; }
-        case Mensual:
-        { return 31;   break; }
-        case Bimensual:
-        { return 31*2; break; }
-        case Trimestral:
-        { return 31*3; break; }
-        case Cuatrimestral:
-        { return 31*4; break; }
-        case Semestral:
-        { return 31*6; break; }
-        case Anual:
-        { return 365;  break; }
-        default:
-        { return 1;    break; }
-    }
 }
 
 /*!
@@ -126,7 +98,7 @@ QVariant MSimularCuotas::data( const QModelIndex &index, int role ) const
                 }
                 case 1:
                 {
-                    return fecha_inicio.addDays( diasPeriodo( periodo ) * index.row() ).toString( Qt::SystemLocaleShortDate );
+                    return fecha_inicio.addDays( MPlanCuota::diasEnPeriodo( periodo, fecha_inicio ) * index.row() ).toString( Qt::SystemLocaleShortDate );
                     break;
                 }
                 case 2:

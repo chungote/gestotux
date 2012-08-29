@@ -23,7 +23,6 @@
 #include <QTableView>
 #include <QHeaderView>
 #include "preferencias.h"
-#include "eactemail.h"
 #include "eactcerrar.h"
 #include "eactpdf.h"
 #include <QSqlRecord>
@@ -89,8 +88,6 @@ EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
  ActVerTodos->setShortcut( QKeySequence( "Ctrl+t" ) );
  ActVerTodos->setToolTip( "Mostrar todo ( Ctrl + t)" );
  connect( ActVerTodos, SIGNAL( triggered() ), this, SLOT( mostrarTodos() ) );
-
- ActEmail = new EActEmail( this );
 
  ActPdf = new EActPdf( this );
  connect( ActPdf, SIGNAL( triggered() ), this, SLOT( aPdf() ) );
@@ -265,16 +262,6 @@ void EVLista::modificar()
 {
     /// \todo implement me
 }
-
-
-/*!
-    \fn EVLista::email()
- */
-void EVLista::email()
-{
-    /// \todo implement me
-}
-
 
 /*!
     \fn EVLista::aPdf()

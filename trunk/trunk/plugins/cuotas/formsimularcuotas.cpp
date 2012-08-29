@@ -1,6 +1,7 @@
 #include "formsimularcuotas.h"
 
 #include "msimularcuotas.h"
+#include "mplancuota.h"
 #include "eactcerrar.h"
 #include "preferencias.h"
 #include "eregistroplugins.h"
@@ -14,6 +15,7 @@
 #include <QPrinterInfo>
 #include <QFileDialog>
 #include <QDir>
+#include <QMessageBox>
 
 FormSimularCuotas::FormSimularCuotas(QWidget *parent) :
 EVentana(parent), Ui::FormSimularCuotasBase()
@@ -29,7 +31,7 @@ EVentana(parent), Ui::FormSimularCuotasBase()
 
     ActImprimir = new QAction( this );
     ActImprimir->setText( "Imprimir" );
-    ActImprimir->setText( QString::fromUtf8( "Imprime la simulación actual" ) );
+    ActImprimir->setText( QString::fromUtf8( "Imprimir" ) );
     ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
     connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
@@ -55,14 +57,14 @@ EVentana(parent), Ui::FormSimularCuotasBase()
 
     connect( DEInicio  , SIGNAL( dateChanged( QDate ) ), this, SLOT( cambioFechaInicio( QDate ) ) );
 
-    CBPeriodo->insertItem( MSimularCuotas::Semanal      , "Semanal"       );
-    CBPeriodo->insertItem( MSimularCuotas::Quincenal    , "Quincenal"     );
-    CBPeriodo->insertItem( MSimularCuotas::Mensual      , "Mensual"       );
-    CBPeriodo->insertItem( MSimularCuotas::Bimensual    , "Bimensual"     );
-    CBPeriodo->insertItem( MSimularCuotas::Trimestral   , "Trimestral"    );
-    CBPeriodo->insertItem( MSimularCuotas::Cuatrimestral, "Cuatrimestral" );
-    CBPeriodo->insertItem( MSimularCuotas::Semestral    , "Semestral"     );
-    CBPeriodo->insertItem( MSimularCuotas::Anual        , "Anual"         );
+    CBPeriodo->insertItem( MPlanCuota::Semanal      , "Semanal"       );
+    CBPeriodo->insertItem( MPlanCuota::Quincenal    , "Quincenal"     );
+    CBPeriodo->insertItem( MPlanCuota::Mensual      , "Mensual"       );
+    CBPeriodo->insertItem( MPlanCuota::BiMensual    , "Bimensual"     );
+    CBPeriodo->insertItem( MPlanCuota::Trimestral   , "Trimestral"    );
+    CBPeriodo->insertItem( MPlanCuota::Cuatrimestral, "Cuatrimestral" );
+    CBPeriodo->insertItem( MPlanCuota::Seximestral  , "Semestral"     );
+    CBPeriodo->insertItem( MPlanCuota::Anual        , "Anual"         );
 
     DEInicio->setDate( QDate::currentDate() );
 
@@ -81,6 +83,8 @@ EVentana(parent), Ui::FormSimularCuotasBase()
     addAction( ActImprimir );
     addAction( ActPdf );
     addAction( new EActCerrar( this ) );
+
+    _id_cliente = -1;
 }
 
 FormSimularCuotas::~FormSimularCuotas()
@@ -111,7 +115,7 @@ void FormSimularCuotas::simular()
     DSBTotal->setValue( DSBImporte->value() - DSBEntrega->value() );
     modelo->setImporte    ( DSBTotal->value()   );
     modelo->setCuotas     ( SBCantidad->value() );
-    modelo->setPeriodo    ( (MSimularCuotas::Periodo) CBPeriodo->currentIndex() );
+    modelo->setPeriodo    ( (MPlanCuota::Periodo) CBPeriodo->currentIndex() );
     modelo->setInteres    ( DSBInteres->value() );
     modelo->setFechaInicio( DEInicio->date()    );
     TVSimulacion->setModel( modelo );
@@ -173,9 +177,11 @@ void FormSimularCuotas::generaReporte()
     tabla->cellAt( 2, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
     subtotal *= ( 1 + DSBInteres->value() / 100 );
     double valor_cuota = ( ( DSBTotal->value() ) * ( 1 + DSBInteres->value() / 100 ) ) / SBCantidad->value();
+    QDate fch = DEInicio->date();
     for( int i = 1; i<=SBCantidad->value(); i++ ) {
         tabla->cellAt( i+2, 0 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( i ) );
-        tabla->cellAt( i+2, 1 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( DEInicio->date().addDays( (i-1)*modelo->diasPeriodo( (MSimularCuotas::Periodo) CBPeriodo->currentIndex() ) ).toString( Qt::SystemLocaleShortDate ) ) );
+        tabla->cellAt( i+2, 1 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( fch.toString( Qt::SystemLocaleShortDate ) ) );
+        fch.addDays( (i-1)*MPlanCuota::diasEnPeriodo( (MPlanCuota::Periodo) CBPeriodo->currentIndex(), fch ) );
         tabla->cellAt( i+2, 2 ).firstCursorPosition().setBlockFormat( bfizq );
         tabla->cellAt( i+2, 2 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( valor_cuota, 10, 'f', 2 ) );
         subtotal += valor_cuota;
@@ -234,9 +240,32 @@ void FormSimularCuotas::pdf()
  */
 void FormSimularCuotas::confirmar()
 {
+    if( _id_cliente <= 0 ) {
+        QMessageBox::information( this, "Error", "No se puede generar un plan de cuotas para un cliente Consumidor final o desconocido" );
+        return;
+    }
+    // Consulto si quiere imprimir el plan de cuotas
+    int ret = QMessageBox::question( this, QString::fromUtf8("¿Imprimir?"), QString::fromUtf8("¿Desea imprimir el resumen de cuotas para que el cliente lo firme?"), QMessageBox::Yes, QMessageBox::No );
+    if( ret == QMessageBox::Yes ) {
+        imprimir();
+    }
     // Genero el plan de cuotas
-    // Obtengo el id
-    // emit confirmarCuotas( id_plan );
+    int id_plan_cuota = -1;
+    MPlanCuota *mpc = new MPlanCuota();
+    if( ! mpc->agregarPlanCuota( _id_cliente,
+                                 DSBImporte->value(),
+                                 DSBInteres->value(),
+                                 CBPeriodo->currentIndex(),
+                                 DSBEntrega->value(),
+                                 DEInicio->date(),
+                                 SBCantidad->value(),
+                                 &id_plan_cuota ) ) {
+        QMessageBox::information( this, "Error", "No se pudo ingresar el plan de cuotas" );
+        delete mpc;
+        return;
+    }
+    delete mpc;
+    emit confirmarCuotas( id_plan_cuota );
     return;
 }
 
@@ -291,7 +320,7 @@ void FormSimularCuotas::cambioCantidad( int cantidad )
  */
 void FormSimularCuotas::cambioPeriodo( int idx )
 {
-    modelo->setPeriodo( (MSimularCuotas::Periodo) idx );
+    modelo->setPeriodo( (MPlanCuota::Periodo) idx );
     modelo->regenerar();
     TVSimulacion->update();
 }

@@ -46,8 +46,7 @@ public:
     {
       db = 0,
       comun = 1,
-      info = 2,
-      email = 3
+      info = 2
     };
     virtual ~EPlugin() {}
     virtual QList<QActionGroup *> accionesBarra() = 0;
@@ -70,6 +69,6 @@ public:
 };
 
 Q_DECLARE_INTERFACE( EPlugin,
-                     "tranfuga.EPlugin/2.1" );
+                     "tranfuga.EPlugin/2.1" )
 
 #endif

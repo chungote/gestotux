@@ -137,7 +137,12 @@ void Ventas::crearToolBar( QToolBar */*t*/ )
     \fn Ventas::agregarVenta()
  */
 void Ventas::agregarVenta()
-{ emit agregarVentana( new FormAgregarVenta() ); }
+{
+    FormAgregarVenta *f = new FormAgregarVenta();
+    connect( f, SIGNAL( emitirPlanCuota(int,double)), this, SIGNAL( emitirPlanCuota( int, double ) ) );
+    connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
+    connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
+    emit agregarVentana( new FormAgregarVenta() ); }
 
 #include "vventas.h"
 /*!

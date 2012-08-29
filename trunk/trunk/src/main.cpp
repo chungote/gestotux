@@ -38,10 +38,8 @@
 #include "eenviobackup.h"
 #include "esplash.h"
 #include "emysql.h"
-#include "eemail.h"
 #include "eplugin.h"
 #include "einfoprogramainterface.h"
-#include "einterfazemail.h"
 #include "formulariocentral.h"
 #include "eregistroplugins.h"
 #include "EReporte.h"
@@ -51,6 +49,7 @@
 #include "../plugins/pagos/pagosplugin.h"
 #include "../plugins/presupuesto/presupuesto.h"
 #include "../plugins/CtaCte/cuentacorrienteplugin.h"
+#include "../plugins/cuotas/cuotasplugin.h"
 
 FILE *debug;
 /*!
@@ -159,12 +158,20 @@ void generarInterconexiones()
                          dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
                          SLOT( agregarRecibo( int, QString, double ) ) );
     }
-    /*if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
+    if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
        QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
-                         SIGNAL( emitirRecibo( int, QDate, QString, double ) ),
+                         SIGNAL( emitirPlanCuota( int, double ) ),
                          dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
-                         SLOT( agregarRecibo( int, QDate, QString, double ) ) );
-    }*/
+                         SLOT( generarPlanCuotas( int, double ) ) );
+       QObject::connect( dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
+                         SIGNAL( emitirPlanCuotaId( int ) ),
+                         dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+                         SIGNAL( planCuotaSetearIdCuota( int, double ) ) );
+       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+                         SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ),
+                         dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
+                         SLOT( planCuotasSetearIdFactura( int, int ) ) );
+    }
 }
 
 /**
@@ -402,13 +409,6 @@ int main(int argc, char *argv[])
                                         p->setValue( "Presupuesto", e->reporte( EReporte::Presupuesto ) );
                                         p->setValue( "AnulacionFactura", e->reporte( EReporte::AnulacionFactura ) );
                                         p->endGroup();
-                                }
-                                else if ( plug->tipo() == EPlugin::email )
-                                {
-                                        ERegistroPlugins::getInstancia()->setPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
-                                        preferencias *p = preferencias::getInstancia();
-                                        p->setValue( "pluginEmail", plug->nombre() );
-                                        p=0;
                                 }
                         }
                         else

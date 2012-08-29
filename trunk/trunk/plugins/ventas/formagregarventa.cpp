@@ -101,7 +101,7 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         DSBCant->setValue( 1.0 );
         DSBCant->setPrefix( "" );
         // deshabilito el item de cuotas por no estar programado
-        RBCuotas->setVisible( false );
+        //RBCuotas->setVisible( false );
 
         // Coloco el proximo numero de comprobante
         LNumeroComprobante->setText( LNumeroComprobante->text().append( "       <b>" ).append( MFactura::proximoComprobante().aCadena() ).append( "</b>" ) );
@@ -141,6 +141,8 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
         }
 
         DEFecha->setMinimumDate( MFactura::fechaUltimaVenta() );
+
+        id_plan_cuota = -1;
 }
 
 
@@ -209,9 +211,7 @@ void FormAgregarVenta::eliminarProducto()
                 if( indice.isValid() )
                 {
                     mcp->removeRow( indice.row() );
-                } /*else {
-                    qDebug( " Indice no valido! - " );
-                }*/
+                }
         }
  }
  TVProductos->update();
@@ -329,7 +329,12 @@ void FormAgregarVenta::guardar()
  else if( RBCuotas->isChecked() )
  {
      id_forma_pago = MFactura::Cuotas;
-     //qDebug( "MFactura::Cuotas" );
+     if( id_plan_cuota == -1 ) {
+         // Todavía no se pudo hacer el plan de cuotas
+         emit emitirPlanCuota( CBCliente->idClienteActual(), mcp->total() );
+     } else {
+         // Si paso por aquí el plan de cuota fue creado pero todavía no se le asigno el id de factura
+     }
  } else if( RBOtro->isChecked() ){
      id_forma_pago = MFactura::Otro;
  } else {
@@ -346,6 +351,10 @@ void FormAgregarVenta::guardar()
     QMessageBox::information( this, "Error", "No se pudo agregar la venta" );
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return;
+ }
+ // si el plan de cuota fue utilizado tengo que asociarlo con la factura
+ if( id_forma_pago == MFactura::Cuotas ) {
+     emit emitirPlanCuotaSetIdFactura( id_plan_cuota, id_venta );
  }
  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
    // Ver si quiere ver la factura o imprimirla

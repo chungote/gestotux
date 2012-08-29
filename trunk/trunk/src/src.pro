@@ -44,7 +44,6 @@ HEADERS += gestotux.h \
            barralateral.h \
            botoneslaterales.h \
            formcliente.h \
-           einterfazemail.h \
            formplugins.h \
            FormPantallaInicial.h \
            EFlecha.h \
@@ -97,6 +96,7 @@ LIBS += -lutiles \
         -lpresupuesto \
         -lpagos \
         -lctacte \
+        -lcuotas \
         -L../bin \
         -L../bin/plugins
 

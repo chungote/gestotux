@@ -431,8 +431,8 @@ void EBackupRemoto::mostrarError( QNetworkReply::NetworkError e ) {
         { qDebug( "Operación cancelada." ); break; }
         case QNetworkReply::SslHandshakeFailedError:
         { qDebug( "Error al establecer la conexión SSL." ); break; }
-        case QNetworkReply::TemporaryNetworkFailureError:
-        { qDebug( "Red no disponible temporalmente." ); break; }
+        case QNetworkReply::ProxyConnectionClosedError:
+        { qDebug( "La conexión con el proxy ha sido cerrada." ); break; }
         case QNetworkReply::ProxyConnectionRefusedError:
         { qDebug( "El servidor proxy rechazó la conexión." ); break; }
         case QNetworkReply::ProxyNotFoundError:
