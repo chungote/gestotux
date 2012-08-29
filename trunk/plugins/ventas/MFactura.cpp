@@ -231,11 +231,10 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
           return -1;
       }
       delete m;
-  } else {
-      //qDebug( "La factura no fue al contado o no existe el plugin de caja cargado" );
   }
-  if( id_forma_pago == MFactura::Cuotas ) {
-      qDebug( "La venta en cuotas no fue implementada todavía" );
+  if( ERegistroPlugins::getInstancia()->existePluginExterno( "cuotas" ) && id_forma_pago == MFactura::Cuotas ) {
+      // Veo de simular el plan de cuotas de la factura
+
   }
   return id_venta;
  }

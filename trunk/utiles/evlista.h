@@ -76,10 +76,6 @@ public:
     */
     QAction *ActCerrar;
    /*!
-    * Accion generica para enviar por email
-    */
-    QAction *ActEmail;
-   /*!
     * Accion generica para guardar a pdf
     */
     QAction *ActPdf;
@@ -112,7 +108,6 @@ protected slots:
     virtual void imprimir();
     virtual void buscar();
     virtual void modificar();
-    virtual void email();
     virtual void aPdf();
     virtual void menuContextual( const QModelIndex &indice, QMenu *menu );
     virtual void hacerMenuContextual( const QModelIndex &indice );

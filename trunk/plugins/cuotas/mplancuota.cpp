@@ -1,9 +1,13 @@
 #include "mplancuota.h"
 
+#include "mitemplancuota.h"
+#include "math.h"
+
 #include <QDate>
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlField>
 
 MPlanCuota::MPlanCuota(QObject *parent) :
 QSqlTableModel(parent)
@@ -27,9 +31,11 @@ QSqlTableModel(parent)
  * \param periodo Tipo de periodo
  * \param entrega Entrega inicial realizada
  * \param fecha_inicio Fecha desde cuando se inicia el plan de cuotas
+ * \param id_plan Variable donde se devolverá el numero de plan de cuota
+ * \param cant_cuotas Cantidad de cuotas en que se dividió el pago
  * \returns Verdadero si se pudo generar el plan y sus items
  */
-bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio )
+bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan )
 {
     // Verifico los parametros
     if( id_factura <= 0 && cantidad <= 0.0 && interes <= 0.0 && periodo <= 0  ) {
@@ -43,8 +49,25 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
     rec.setValue( "periodo", periodo );
     rec.setValue( "fecha_inicio", fecha_inicio );
     rec.setValue( "entrega", entrega );
+    rec.setGenerated( rec.indexOf( "id_plan_cuota" ), true );
     if( this->insertRecord( -1, rec ) ) {
-        // ¿Genero los items de cuota?
+        // Genero los items de cuota
+        *id_plan = rec.value( "id_plan_cuota" ).toInt();
+        // Calculo los valores
+        double impcuota = ( cantidad - entrega ) * ( 1 + interes/100 );
+        double importe = impcuota/cant_cuotas;
+        QDate fecha_venc = fecha_inicio.addDays( diasEnPeriodo( periodo, fecha_inicio ) );
+        // Genero los elementos de el plan de cuotas
+        for( int i = 0; i < cant_cuotas; i++ ) {
+            if( !MItemPlanCuota::agregarItem( *id_plan, i+1, fecha_venc, importe ) ) {
+                qDebug( "Error al agregar un item del plan de cuotas" );
+                *id_plan = -1;
+                return false;
+            } else {
+                // Actualizo la fecha de la proxima cuota
+                fecha_venc.addDays( diasEnPeriodo( periodo, fecha_venc ) );
+            }
+        }
         return true;
     } else {
         qWarning( "Error al intentar insertar el registro del plan de cuotas" );
@@ -53,6 +76,110 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
         qDebug( this->query().lastQuery().toLocal8Bit() );
         return false;
     }
+}
 
+/*!
+ * \fn MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_inicio )
+ * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
+ * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
+ * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
+ * En el caso de que sea trimestra, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tienen los 2 meses siguientes.
+ * @param tipo_periodo Tipo de periodo que estamos considerando
+ * @param fecha_inicio Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
+ * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
+ */
+int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
+{
+    switch( tipo_periodo )
+    {
+        case MPlanCuota::Semanal:
+        {
+            // Semanal -> La semana siempre tiene 7 dias independientemente del día del mes
+            /// \todo Corte anual ¿Considerarlo? ( cuando la semana no esta completa un año )
+            return 7;
+        }
+        case MPlanCuota::Quincenal:
+        {
+            // Quincenal -> se considera como "medio mes"
+            if( floor( fecha_calculo.daysInMonth() / 2 ) > fecha_calculo.day() ) {
+                // Segunda quincena
+                QDate f1(floor( fecha_calculo.daysInMonth() / 2 ), fecha_calculo.month(), fecha_calculo.year() );
+                QDate f2( fecha_calculo.daysInMonth(), fecha_calculo.month(), fecha_calculo.year() );
+                return f1.daysTo( f2 ) - 1;
+            } else {
+                // Primera quincena
+                QDate f1(1, fecha_calculo.month(), fecha_calculo.year() );
+                QDate f2( floor( fecha_calculo.daysInMonth() / 2 ), fecha_calculo.month(), fecha_calculo.year() );
+                return f1.daysTo( f2 ) - 1;
+            }
+        }
+        case MPlanCuota::Mensual:
+        {
+            // Mensual
+            // Verificar el mes del periodo y devolver la cantidad de días
+            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
+            // Eso se encarga automaticamnete de los años bisiestos
+        }
+        case MPlanCuota::BiMensual:
+        {
+            // BiMensual
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(1);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 ) - 1;
+        }
+        case MPlanCuota::Trimestral:
+        {
+            // Trimensual
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(2);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 ) - 1;
+        }
+        case MPlanCuota::Cuatrimestral:
+        {
+            // Cuatrimestral
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(3);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 ) -1 ;
+        }
+        case MPlanCuota::Seximestral:
+        {
+            //Seximestral
+            // Siempre voy a pedir estos datos al inicio del periodo
+            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f2 = f1.addMonths(5);
+            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            return f1.daysTo( f3 ) - 1 ;
+        }
+        case MPlanCuota::Anual:
+        {
+            // Como consideramos los servicios con base en 1 año, siempre es periodo 1
+            return fecha_calculo.daysInYear() -1 ;
+        }
+        default:
+        { return 0; }
+    }
+}
 
+/*!
+ * \brief MPlanCuota::asociarConFactura
+ * \param id_plan Plan al cual asociar el identificador de factura
+ * \param id_factura Identificador de la factura al cual pertenece
+ */
+void MPlanCuota::asociarConFactura(int id_plan, int id_factura)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "UPDATE cuotas SET id_factura = %2 WHERE id_plan_cuota = %1" ).arg( id_factura ).arg( id_plan ) ) ) {
+        qDebug( "Plan de cuotas actualizado correctamente" );
+    } else {
+        qWarning( "No se pudo asociar la cuota" );
+        qDebug( "Error al ejecutar la cola de actualziación de id de factura en el plan  de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
 }

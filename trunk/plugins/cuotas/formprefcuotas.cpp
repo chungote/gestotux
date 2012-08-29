@@ -11,14 +11,14 @@ FormPrefCuotas::FormPrefCuotas( QWidget *parent ) :
     this->setWindowTitle( "Cuotas" );
     //this->setWindowIcon( QIcon( ":/imagenes/" ) );
 
-    CBPeriodo->insertItem( MSimularCuotas::Semanal      , "Semanal"       );
-    CBPeriodo->insertItem( MSimularCuotas::Quincenal    , "Quincenal"     );
-    CBPeriodo->insertItem( MSimularCuotas::Mensual      , "Mensual"       );
-    CBPeriodo->insertItem( MSimularCuotas::Bimensual    , "Bimensual"     );
-    CBPeriodo->insertItem( MSimularCuotas::Trimestral   , "Trimestral"    );
-    CBPeriodo->insertItem( MSimularCuotas::Cuatrimestral, "Cuatrimestral" );
-    CBPeriodo->insertItem( MSimularCuotas::Semestral    , "Semestral"     );
-    CBPeriodo->insertItem( MSimularCuotas::Anual        , "Anual"         );
+    CBPeriodo->insertItem( MPlanCuota::Semanal      , "Semanal"       );
+    CBPeriodo->insertItem( MPlanCuota::Quincenal    , "Quincenal"     );
+    CBPeriodo->insertItem( MPlanCuota::Mensual      , "Mensual"       );
+    CBPeriodo->insertItem( MPlanCuota::BiMensual    , "Bimensual"     );
+    CBPeriodo->insertItem( MPlanCuota::Trimestral   , "Trimestral"    );
+    CBPeriodo->insertItem( MPlanCuota::Cuatrimestral, "Cuatrimestral" );
+    CBPeriodo->insertItem( MPlanCuota::Seximestral  , "Semestral"     );
+    CBPeriodo->insertItem( MPlanCuota::Anual        , "Anual"         );
 }
 
 void FormPrefCuotas::changeEvent(QEvent *e)

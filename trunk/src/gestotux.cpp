@@ -42,8 +42,6 @@
 #include "einfoprogramainterface.h"
 #include "formactualizacion.h"
 #include "version.h"
-#include "eemail.h"
-#include "einterfazemail.h"
 #include "eregistroplugins.h"
 #include "FormPantallaInicial.h"
 
@@ -70,12 +68,6 @@ void gestotux::inicializar()
  bandeja_sistema();
  createMenus();
  crearPantallaInicio();
-
- if( ERegistroPlugins::getInstancia()->pluginEmail() != 0 )
- {
-  statusBar()->addPermanentWidget( ERegistroPlugins::getInstancia()->pluginEmail()->statusBarWidget(), -1 );
-  EEmail::instancia()->testear();
- }
 
  setWindowIcon( ERegistroPlugins::getInstancia()->pluginInfo()->iconoPrograma() );
  setWindowTitle( ERegistroPlugins::getInstancia()->pluginInfo()->nombrePrograma() );

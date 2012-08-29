@@ -28,7 +28,6 @@
 
 #include "eactcerrar.h"
 #include "eactimprimir.h"
-#include "eactemail.h"
 #include "eactpdf.h"
 #include "mitemcuentacorriente.h"
 #include "eregistroplugins.h"
@@ -112,10 +111,6 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
 
         DEDesde->setDate( QDate::currentDate() );
         DEHasta->setDate( QDate::currentDate() );
-
-        /*EActEmail *ActEmail = new EActEmail( this );
-        this->addAction( ActEmail );
-        connect( ActEmail, SIGNAL( triggered() ), this, SLOT( email() ) );*/
 
         this->addAction( ActImprimir );
         this->addAction( ActPdf );

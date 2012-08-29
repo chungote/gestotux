@@ -84,7 +84,6 @@ VPagos::VPagos(QWidget *parent)
  addAction( ActVerTodos );
  addAction( ActImprimir );
  addAction( ActPdf );
- addAction( ActEmail );
  addAction( ActBuscar );
  addAction( ActCerrar );
  addAction( ActSep );

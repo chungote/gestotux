@@ -42,13 +42,13 @@ bool CuotasPlugin::inicializar()
  ActVerCuotas = new QAction( this );
  ActVerCuotas->setText( "Cuotas Activas" );
  ActVerCuotas->setToolTip( "Ver el listado de los planes de cuotas que hay en el sistema." );
- //ActVerCuotas->setIcon( QIcon( ":/imagenes/caja.png" ) );
+ //ActVerCuotas->setIcon( QIcon( ":/imagenes/.png" ) );
  connect( ActVerCuotas, SIGNAL( triggered() ), this, SLOT( verCuotas() ) );
 
  ActGenerarComprobantes = new QAction( this );
- ActGenerarComprobantes->setText( "Ver Estado Caja" );
- ActGenerarComprobantes->setToolTip( "Ver el estado actual de la caja." );
- //ActGenerarComprobantes->setIcon( QIcon( ":/imagenes/cajaestado.png" ) );
+ ActGenerarComprobantes->setText( "Generar cuotas" );
+ ActGenerarComprobantes->setToolTip( "Genera los comprobantes de cuotas correspondientes." );
+ //ActGenerarComprobantes->setIcon( QIcon( ":/imagenes/.png" ) );
  connect( ActGenerarComprobantes, SIGNAL( triggered() ), this, SLOT( generarComprobantes() ) );
 
  ActSimular = new QAction( this );
@@ -70,8 +70,8 @@ bool CuotasPlugin::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "plan_cuota" ) )
  { qDebug( "Error al buscar la tabla plan_cuota" ); return false; }
- /*else if( !tablas.contains( "item_cuota" ) )
- { qDebug( "Error al buscar la tabla item_cuota" ); return false; }*/
+ else if( !tablas.contains( "item_cuota" ) )
+ { qDebug( "Error al buscar la tabla item_cuota" ); return false; }
  return true;
 }
 
@@ -88,8 +88,8 @@ int CuotasPlugin::tipo() const
 void CuotasPlugin::crearMenu( QMenuBar *m )
 {
      QMenu *menuCuotas = m->addMenu( "Cuotas" );
-     /*menuCuotas->addAction( ActVerCuotas );
-     menuCuotas->addAction( ActGenerarComprobantes );*/
+     menuCuotas->addAction( ActVerCuotas );
+     menuCuotas->addAction( ActGenerarComprobantes );
      menuCuotas->addAction( ActSimular );
 }
 
@@ -114,6 +114,32 @@ void CuotasPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(cuotas); return; }
 
 /*!
+ * \fn CuotasPlugin::emitirPlanCuota( int id_cliente, double total )
+ * Prepara la ventana para generar un plan de cuotas segun los datos pasados de la cuota.
+ * \param id_cliente Identificador del cliente al cual se les emitirá el plan de cuotas
+ * \param total Total a pagar
+ */
+void CuotasPlugin::emitirPlanCuota(int id_cliente, double total)
+{
+    FormSimularCuotas *f = new FormSimularCuotas();
+    f->setearIdCliente( id_cliente );
+    f->setearTotal( total );
+    connect( f, SIGNAL( emitirIdPlanCuota( int ) ), this, SIGNAL( emitirPlanCuotaId( int ) ) );
+    emit agregarVentana( f );
+}
+
+/*!
+ * \brief CuotasPlugin::planCuotasSetearIdFactura
+ * Slot llamado para cuando se ha echo el plan de cuotas pero no se asocio con ninguna factura, este metodo genera la asociación.
+ * \param id_plan_cuota Identificador del plan de cuotas sobre el cual se asociará la factura correspondiente
+ * \param id_factura Identificador de la factura para ese plan de cuotas
+ */
+void CuotasPlugin::planCuotasSetearIdFactura(int id_plan_cuota, int id_factura)
+{
+    MPlanCuota::asociarConFactura( id_plan_cuota, id_factura );
+}
+
+/*!
  * \fn CuotasPlugin::generarComprobantes()
  */
 void CuotasPlugin::generarComprobantes()
@@ -125,16 +151,6 @@ void CuotasPlugin::generarComprobantes()
  */
 void CuotasPlugin::verCuotas()
 { emit agregarVentana( new VPlanCuotas() ); }
-
-/*!
- * \fn CuotasPlugin::emitirVentaEnCuotas( int id_cliente, double total, int id_factura )
- */
-void CuotasPlugin::emitirVentaEnCuotas( int /*id_cliente*/, double /*total*/, int /*id_factura*/ )
-{
-    // Genero el formulario con los datos
-    // conecto la señal de devolucion del id de plan
-
-}
 
 void CuotasPlugin::simularCuotas()
 { emit agregarVentana( new FormSimularCuotas() ); }
