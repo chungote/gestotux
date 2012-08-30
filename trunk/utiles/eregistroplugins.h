@@ -46,7 +46,6 @@ public:
     EInfoProgramaInterface *pluginInfo();
     QList<EPlugin *> pluginsPunteros();
     QStringList plugins();
-    EInterfazEmail *pluginEmail();
     QHash<QString, EPlugin *> *pluginsHash();
     static ERegistroPlugins *getInstancia();
 
@@ -54,7 +53,6 @@ public:
 
     void setPluginInfo( EInfoProgramaInterface *obj );
     void agregarPlugin( EPlugin *obj );
-    void setPluginEmail( EInterfazEmail *obj );
 
     bool existePlugin( const QString &nombre );
     bool existePluginExterno( const QString & nombre );
@@ -69,7 +67,6 @@ private:
    static ERegistroPlugins *instance;
    QHash<QString, EPlugin *> *_plugins;
    EInfoProgramaInterface *_pluginInfo;
-   EInterfazEmail *_pluginEmail;
 
 };
 
