@@ -18,7 +18,6 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "eregistroplugins.h"
-#include "einterfazemail.h"
 #include "einfoprogramainterface.h"
 #include <QApplication>
 #include <QStringList>
@@ -29,7 +28,6 @@ ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
 {
     _plugins = new QHash<QString, EPlugin *>();
     _pluginInfo = 0;
-    _pluginEmail = 0;
     // Elimino cualquier PID anterior
     preferencias *p = preferencias::getInstancia();
     p->inicio();
@@ -104,16 +102,6 @@ QHash<QString, EPlugin *> *ERegistroPlugins::pluginsHash()
 { return _plugins; }
 
 /*!
- * \fn ERegistroPlugins::pluginEmail()
- * Devuelve el puntero al plugin de email activo
- */
-EInterfazEmail *ERegistroPlugins::pluginEmail()
-{
- return _pluginEmail;
-}
-
-
-/*!
  * \fn ERegistroPlugins::agregarPlugin( EPlugin *obj )
  * Agrega el plugin pasado como parametro a la lista interna
  */
@@ -151,16 +139,6 @@ void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
  qDebug( QString( "Seteando plugin de Info cliente: %1" ).arg( obj->nombrePrograma() ).toLocal8Bit() );
  _pluginInfo = obj;
-}
-
-
-/*!
- * \fn ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
- * Setea el objeto de plugin de email
- */
-void ERegistroPlugins::setPluginEmail( EInterfazEmail *obj )
-{
-    _pluginEmail = obj;
 }
 
 /*!
