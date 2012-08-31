@@ -19,8 +19,11 @@
  ***************************************************************************/
 #include <QAction>
 #include <QSqlDatabase>
-#include "pagosplugin.h"
 
+#include "pagosplugin.h"
+#include "formagregarrecibo.h"
+#include "formrecibo.h"
+#include "vpagos.h"
 
 bool PagosPlugin::inicializar()
 {
@@ -47,24 +50,16 @@ bool PagosPlugin::verificarTablas( QStringList tablas )
 }
 
 double PagosPlugin::version() const
-{
- return 0.1;
-}
+{ return 0.1; }
 
 int PagosPlugin::tipo() const
-{
- return EPlugin::comun;
-}
+{ return EPlugin::comun; }
 
 QList< QActionGroup * > PagosPlugin::accionesBarra()
-{
- return QList<QActionGroup*>();
-}
+{ return QList<QActionGroup*>(); }
 
 QString PagosPlugin::nombre() const
-{
- return "pagos";
-}
+{ return "pagos"; }
 
 QWidgetList PagosPlugin::formsPreferencias()
 {
@@ -86,7 +81,7 @@ void PagosPlugin::seCierraGestotux()
     Q_CLEANUP_RESOURCE(pagos);
 }
 
-#include "vpagos.h"
+
 /*!
     \fn PagosPlugin::verPagos()
  */
@@ -95,7 +90,7 @@ void PagosPlugin::verPagos()
  emit agregarVentana( new VPagos() );
 }
 
-#include "formagregarrecibo.h"
+
 /*!
     \fn PagosPlugin::agregarRecibo()
 */
@@ -114,6 +109,13 @@ void PagosPlugin::agregarRecibo( int id_cliente, QString texto, double total )
     FormAgregarRecibo *f = new FormAgregarRecibo();
     f->setearModelo(0);
     f->setearDatos( id_cliente, texto, total );
+    emit agregarVentana( f );
+}
+
+void PagosPlugin::mostrarRecibo( int id_recibo )
+{
+    FormRecibo *f = new FormRecibo();
+    f->setId( id_recibo );
     emit agregarVentana( f );
 }
 

@@ -182,43 +182,6 @@ void VPagos::aPdf()
     return;
 }
 
-/*!
-  \fn VPagos::aPdf()
-  Imprime en pdf el recibo que se encuentre seleccionado en la vista actual
- */
-void VPagos::email()
-{
-    // Imprime el recibo que se encuentre seleccionado
-    QItemSelectionModel *selectionModel = vista->selectionModel();
-    QModelIndexList indices = selectionModel->selectedRows();
-    if( indices.size() < 1 )
-    {
-      QMessageBox::warning( this, "Seleccione un item",
-                      "Por favor, seleccione un item para exportar a pdf",
-                      QMessageBox::Ok );
-      return;
-    }
-    /*
-    QModelIndex indice;
-    EReporte *rep = new EReporte( 0 );
-    rep->recibo();
-    ParameterList lista;
-    foreach( indice, indices )
-    {
-        if( indice.isValid() )
-        {
-            QModelIndex r = indice.model()->index( indice.row(), 0 );
-            QModelIndex c = indice.model()->index( indice.row(), 1 );
-            lista.append( "id_recibo", r.data( Qt::EditRole ).toInt() );
-            rep->hacerPDF( lista, QString( "Recibo #%1" ).arg( c.data().toString() ) );
-            lista.clear();
-        }
-    }
-    delete rep;*/
-    return;
-}
-
-
 
 /*!
  * \fn VPagos::cancelarPago()

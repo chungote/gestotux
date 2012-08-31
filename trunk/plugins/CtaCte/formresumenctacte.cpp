@@ -325,8 +325,9 @@ void FormResumenCtaCte::pagarTodo()
 void FormResumenCtaCte::verRecibo()
 {
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) ) {
-        /// @todo Agregar este metodo
-
+        int id_fila = TVItems->selectionModel()->selectedRows().first().row();
+        int id_recibo = modeloItem->data( modeloItem->index( id_fila, 2 ), Qt::EditRole ).toInt();
+        emit mostrarRecibo( id_recibo );
     } else {
         QMessageBox::warning( this, "Error", "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funcion.\n Contacte su administrador de sistema." );
         return;
