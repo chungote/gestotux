@@ -50,13 +50,14 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
-        void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
 public slots:
     void seCierraGestotux();
     void verPagos();
     void agregarRecibo();
     void agregarRecibo( int, QString, double );
+    void mostrarRecibo( int id_recibo );
 
 private:
         QAction *ActPagos;

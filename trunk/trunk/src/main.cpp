@@ -157,6 +157,10 @@ void generarInterconexiones()
                          SIGNAL( emitirRecibo( int, QString, double ) ),
                          dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
                          SLOT( agregarRecibo( int, QString, double ) ) );
+       QObject::connect( dynamic_cast<CuentaCorrientePlugin *>( egp->plugin( "ctacte"  ) ),
+                         SIGNAL( mostrarRecibo( int ) ),
+                         dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
+                         SLOT( mostrarRecibo( int ) ) );
     }
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
        QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),

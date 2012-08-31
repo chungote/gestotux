@@ -87,8 +87,7 @@ PRE_TARGETDEPS += ../bin/libreporte.a \
 DEFINES += GESTOTUX_DESARROLLO
 
 INCLUDEPATH += ../reporte \
-               ../utiles \
-               ../utiles/email
+               ../utiles
 
 LIBS += -lutiles \
         -lreporte \

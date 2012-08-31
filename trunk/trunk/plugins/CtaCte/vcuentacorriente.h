@@ -40,6 +40,7 @@ protected:
 
 signals:
     void emitirRecibo( int, QString, double );
+    void mostrarRecibo( int );
 
 protected slots:
     void modificarLimite();

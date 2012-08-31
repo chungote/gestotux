@@ -35,7 +35,6 @@ class QToolBar;
 class EInfoProgramaInterface;
 class EPlugin;
 class FormularioCentral;
-class EInterfazEmail;
 
 /**
  * \brief Ventana principal del programa

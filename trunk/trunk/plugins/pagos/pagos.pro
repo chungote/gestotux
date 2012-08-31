@@ -24,7 +24,8 @@ HEADERS += pagosplugin.h \
            vpagos.h \
            recibo.h \
            FormPrefRecibos.h \
-           mvpagos.h
+           mvpagos.h \
+    formrecibo.h
 
 SOURCES += pagosplugin.cpp \
            mpagos.cpp \
@@ -36,10 +37,12 @@ SOURCES += pagosplugin.cpp \
            vpagos.cpp \
            recibo.cpp \
            FormPrefRecibos.cpp \
-           mvpagos.cpp
+           mvpagos.cpp \
+    formrecibo.cpp
 
 FORMS += FormReciboBase.ui \
-         FormPrefRecibos.ui
+         FormPrefRecibos.ui \
+    formrecibobase.ui
 
 INCLUDEPATH += ../../src \
                ../../reporte \
