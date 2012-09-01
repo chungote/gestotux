@@ -22,8 +22,10 @@ HEADERS += cuentacorrienteplugin.h \
            ../pagos/formagregarrecibo.h \
            ../pagos/mpagos.h \
            ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h
-
+           ../caja/mmovimientoscaja.h \
+           ../ventas/MFactura.h \
+           ../ventas/MItemFactura.h \
+           ../descuentos/MDescuentos.h
 
 SOURCES += cuentacorrienteplugin.cpp \
            formprefctacte.cpp \
@@ -36,7 +38,10 @@ SOURCES += cuentacorrienteplugin.cpp \
            ../pagos/formagregarrecibo.cpp \
            ../pagos/mpagos.cpp \
            ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp
+           ../caja/mmovimientoscaja.cpp \
+           ../ventas/MFactura.cpp \
+           ../ventas/MItemFactura.cpp \
+           ../descuentos/MDescuentos.cpp
 
 RESOURCES += CtaCte.qrc
 
@@ -54,6 +59,8 @@ PRE_TARGETDEPS += ../../bin/libreporte.a \
 INCLUDEPATH += ../pagos \
                ../caja \
                ../ventas \
+               ../productos \
+               ../descuentos \
                ../../src \
                ../../reporte \
                ../../utiles
