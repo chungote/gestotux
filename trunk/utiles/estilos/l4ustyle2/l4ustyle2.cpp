@@ -259,12 +259,11 @@ void L4uStyle2::drawPrimitive( PrimitiveElement element, const QStyleOption *opt
     case PE_IndicatorArrowLeft:
 	{
 	    if ( PE_IndicatorArrowUp == element || PE_IndicatorArrowDown == element ) {
-		QRect aRect( left + (width - 9) / 2, top + (height - 7) / 2, 9, 7 );
-		drawAnyArrow( element, painter, aRect, option->palette.buttonText() );
-	    }
-	    else {
-		QRect aRect( left + (width - 7) / 2, top + (height - 9) / 2, 7, 9 );
-		drawAnyArrow( element, painter, aRect, option->palette.buttonText() );
+            QRect aRect( left + (width - 9) / 2, top + (height - 7) / 2, 9, 5 );
+            drawAnyArrow( element, painter, aRect, option->palette.buttonText() );
+        } else {
+            QRect aRect( left + (width - 7) / 2, top + (height - 9) / 2, 7, 9 );
+            drawAnyArrow( element, painter, aRect, option->palette.buttonText() );
 	    }
 	    break;
 	}
@@ -286,7 +285,7 @@ void L4uStyle2::drawPrimitive( PrimitiveElement element, const QStyleOption *opt
 	    painter->drawLine( rect.center().x() - 3, rect.center().y(),  rect.center().x() + 3, rect.center().y() );
 	    
 	    if ( PE_IndicatorSpinPlus == element )
-		painter->drawLine( rect.center().x(), rect.center().y() - 3, rect.center().x(), rect.center().y() + 3 );
+        painter->drawLine( rect.center().x(), rect.center().y() - 3, rect.center().x(), rect.center().y() + 3 );
 	    
 	    painter->setPen( oldPen );
 	    break;
@@ -2188,7 +2187,7 @@ void L4uStyle2::drawComplexControl( ComplexControl control,
 		
 		if ( SC_SpinBoxDown & sbox-> subControls ) {
 		    QRect down = subControlRect( CC_SpinBox, sbox, SC_SpinBoxDown, widget );
-		    
+
 		    
 		    if ( down.isValid() && (QAbstractSpinBox::NoButtons != sbox->buttonSymbols) ) { 
 			if ( !(QAbstractSpinBox::StepDownEnabled & sbox->stepEnabled) )
@@ -2205,7 +2204,7 @@ void L4uStyle2::drawComplexControl( ComplexControl control,
 			    
 			QStyleOption opt = *option;
 			QRegion clip( down );
-			opt.rect = down.adjusted( 1, 2, 0, 0 );
+            opt.rect = down.adjusted( 1, 2, 0, 0 );
 			opt.state = state;
 			painter->setClipRegion( clip );
 			drawPrimitive( (QAbstractSpinBox::UpDownArrows == sbox->buttonSymbols ? PE_IndicatorSpinDown :

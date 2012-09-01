@@ -206,7 +206,7 @@ QRect FloatStyle::subControlRect ( ComplexControl control, const QStyleOptionCom
 			case SC_ComboBoxArrow:
 				if( cbO->frame ) {
 					r = box( o->rect );
-					r.adjust( 1,1, 0,0 );
+                    r.adjust( 1,1, 0,0 );
 				}
 				r.setLeft( r.right() -r.height()+4 );
 				break;
@@ -242,10 +242,10 @@ QRect FloatStyle::subControlRect ( ComplexControl control, const QStyleOptionCom
 			rx = x - fw;
 			switch ( subControl ) {
 				case SC_SpinBoxUp:
-					r = QRect(x, y-2, bs.width(), bs.height()+1);
+                    r = QRect(x, y-2, bs.width(), bs.height()+1 );
 					break;
 				case SC_SpinBoxDown:
-					r = QRect(x, y + bs.height()-1, bs.width(), bs.height()+2);
+                    r = QRect(x, y + bs.height()-2, bs.width(), bs.height()+2 );
 					break;
 				case SC_SpinBoxEditField:
 					r = QRect(lx, fw, rx, spinbox->rect.height() - 2*fw);
