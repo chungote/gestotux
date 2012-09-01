@@ -220,7 +220,7 @@ void FloatStyle::drawPrimitive( PrimitiveElement elem, const QStyleOption *o, QP
 		break;
 	case PE_IndicatorArrowDown:
 	case PE_IndicatorSpinDown:
-		if( o->state & (State_On | State_Sunken) ) drawPixmapCentered( o->rect.adjusted( 1,2,0,0 ), p, m_arrowDNS );
+        if( o->state & (State_On | State_Sunken) ) drawPixmapCentered( o->rect.adjusted( 1,-2,0,0 ), p, m_arrowDNS );
 		else drawPixmapCentered( o->rect, p, m_arrowD );
 		break;
 	case PE_IndicatorArrowUp:
