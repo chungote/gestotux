@@ -61,6 +61,7 @@ INCLUDEPATH += ../pagos \
                ../ventas \
                ../productos \
                ../descuentos \
+               ../pagos \
                ../../src \
                ../../reporte \
                ../../utiles
