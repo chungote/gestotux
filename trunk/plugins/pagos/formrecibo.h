@@ -1,7 +1,7 @@
 #ifndef FORMRECIBO_H
 #define FORMRECIBO_H
 
-#include "ui_formrecibobase.h"
+#include "ui_FormReciboBase.h"
 #include "eventana.h"
 
 class FormRecibo : public EVentana, private Ui::FormReciboBase
@@ -11,6 +11,10 @@ class FormRecibo : public EVentana, private Ui::FormReciboBase
 public:
     explicit FormRecibo(QWidget *parent = 0);
     void setId( int id );
+
+public slots:
+    void aPdf();
+    void imprimir();
     
 protected:
     void changeEvent(QEvent *e);

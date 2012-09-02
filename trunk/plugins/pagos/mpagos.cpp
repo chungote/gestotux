@@ -21,7 +21,6 @@
 
 #include <QDate>
 #include <QSqlQuery>
-#include <QSqlRecord>
 #include <QSqlField>
 #include <QSqlError>
 
@@ -679,6 +678,68 @@ NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
     }
     NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
     return *invalido;
+}
+
+void MPagos::setearId( const int id )
+{
+    if( id > 0 ) {
+        _id_actual = id;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT * FROM recibos WHERE id_recibo = %1").arg( id ) ) ) {
+        if( cola.next() ) {
+            _registro = cola.record();
+        } else {
+            qDebug( "Error al cargar los datos del recibo - id no existente!" );
+            _id_actual = -1;
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtenicion de datos del registro de recibo" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        _id_actual = -1;
+    }
+
+}
+
+QDate MPagos::getFecha()
+{
+    if( _id_actual <= 0 )
+        return QDate();
+
+    return _registro.value( "fecha_pago" ).toDate();
+}
+
+int MPagos::getIdCliente()
+{
+    if( _id_actual <= 0 )
+        return -1;
+
+    return _registro.value( "id_cliente" ).toInt();
+}
+
+QString MPagos::getTexto()
+{
+    if( _id_actual <= 0 )
+        return QString();
+
+    return _registro.value( "texto" ).toString();
+}
+
+double MPagos::getTotal()
+{
+    if( _id_actual <= 0 )
+        return -0.0;
+
+    return _registro.value( "precio" ).toDouble();
+}
+
+MPagos::FormaPago MPagos::getFormaPago()
+{
+    if( _id_actual <= 0 )
+        return MPagos::Otro;
+
+    return (MPagos::FormaPago) _registro.value( "forma_pago" ).toInt();
 }
 
 /*!
