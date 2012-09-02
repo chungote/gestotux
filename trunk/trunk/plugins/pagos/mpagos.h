@@ -22,6 +22,7 @@
 
 #include <QSqlRelationalTableModel>
 #include "NumeroComprobante.h"
+#include <QSqlRecord>
 
 /**
  * \brief Modelo de los pagos
@@ -69,10 +70,20 @@ public:
     static NumeroComprobante &proximoSerieNumeroRecibo();
     static NumeroComprobante &buscarNumeroComprobantePorId( const int id_recibo );
 
+    void setearId( const int id );
+    QDate getFecha();
+    int getIdCliente();
+    QString getTexto();
+    double getTotal();
+    FormaPago getFormaPago();
+
 
 private:
     void inicializar();
     void relacionar();
+
+    int _id_actual;
+    QSqlRecord _registro;
 };
 
 #endif

@@ -41,8 +41,7 @@ SOURCES += pagosplugin.cpp \
     formrecibo.cpp
 
 FORMS += FormReciboBase.ui \
-         FormPrefRecibos.ui \
-    formrecibobase.ui
+         FormPrefRecibos.ui
 
 INCLUDEPATH += ../../src \
                ../../reporte \
