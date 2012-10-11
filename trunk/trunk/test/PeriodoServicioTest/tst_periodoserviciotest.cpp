@@ -51,9 +51,9 @@ void PeriodoServicioTest::testCalcularPeriodo()
     QFETCH( QDate, ff );
     QDate fecha;
     fecha.setDate( fi.year(), mes, 1 );
-    QCOMPARE( fecha, fi );
+    QCOMPARE( fi, fecha );
     fecha.setDate( fecha.year(), fecha.month(), fecha.daysInMonth() );
-    QCOMPARE( fecha, ff );
+    QCOMPARE( ff, fecha );
 }
 
 void PeriodoServicioTest::testCalcularPeriodo_data()
