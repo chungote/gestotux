@@ -218,43 +218,43 @@ int MPeriodoServicio::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo
         {
             // Mensual
             // Verificar el mes del periodo y devolver la cantidad de días
-            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
+            return QDate( fecha_calculo.year(), fecha_calculo.month(), 1 ).daysInMonth();
             // Eso se encarga automaticamnete de los años bisiestos
         }
         case MServicios::BiMensual:
         {
             // BiMensual
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(1);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3(  f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) - 1;
         }
         case MServicios::Trimestral:
         {
             // Trimensual
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(2);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3( f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) - 1;
         }
         case MServicios::Cuatrimestral:
         {
             // Cuatrimestral
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+        QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(3);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3( f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) -1 ;
         }
         case MServicios::Seximestral:
         {
             //Seximestral
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(5);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3( f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) - 1 ;
         }
         case MServicios::Anual:

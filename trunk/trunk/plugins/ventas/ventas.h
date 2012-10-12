@@ -70,6 +70,7 @@ signals:
     void emitirRecibo( int, QString, double );
     void planCuotaSetearIdCuota( int );
     void emitirPlanCuotaSetIdFactura( int, int );
+    void emitirPlanCuota( int, double );
 
 public slots:
     void seCierraGestotux();
