@@ -6,6 +6,8 @@
 #include <QSqlDatabase>
 #include <QDir>
 #include <QSqlError>
+#include <QSqlQuery>
+#include <QSqlRecord>
 
 class PeriodoServicioTest : public QObject
 {
@@ -60,13 +62,18 @@ void PeriodoServicioTest::testCalcularPeriodo_data()
 {
     /// @todo Hacer este test para todos los periodos de servicio
     int ano = QDate::currentDate().year();
+    QSqlQuery cola( "SELECT id FROM servicios" );
     MPeriodoServicio *mp = new MPeriodoServicio();
+    QTest::addColumn<int>( "id_servicio");
     QTest::addColumn<int>( "mes" );
     QTest::addColumn<QDate>( "fi" );
     QTest::addColumn<QDate>( "ff" );
-    for( int i=1; i<=12; i++ ) {
-        QDate fi = mp->generarFechaInicioPeriodo( 2, i, ano+1 );
-        QTest::newRow( QString::number( i ).toAscii() ) <<  i << fi << mp->obtenerFechaFinPeriodo( 2, fi );
+    while( cola.next() ) {
+        int id_servicio = cola.record().value(0).toInt();
+        for( int i=1; i<=12; i++ ) {
+            QDate fi = mp->generarFechaInicioPeriodo( id_servicio, i, ano+1 );
+            QTest::newRow( QString::number( i ).toAscii() )<< id_servicio <<  i << fi << mp->obtenerFechaFinPeriodo( id_servicio, fi );
+        }
     }
     delete mp;
 }
