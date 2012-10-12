@@ -58,6 +58,7 @@ void PeriodoServicioTest::testCalcularPeriodo()
 
 void PeriodoServicioTest::testCalcularPeriodo_data()
 {
+    /// @todo Hacer este test para todos los periodos de servicio
     int ano = QDate::currentDate().year();
     MPeriodoServicio *mp = new MPeriodoServicio();
     QTest::addColumn<int>( "mes" );

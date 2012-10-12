@@ -72,56 +72,88 @@ void EFlecha::setearDestino( QWidget *destino ) {
 
 void EFlecha::calcularDistanciaMinima() {
   // Busco los lados del widget destino-origen mas cercanos
-  int d1 = abs( origen->rect().top() - destino->rect().bottom() );
-  int d2 = sqrt( pow( origen->rect().topLeft().y(), 2 ) + pow( destino->rect().bottomRight().y(), 2 ) );
-  int d3 = abs( origen->rect().topLeft().x() - destino->rect().bottomRight().x() );
-  int d4 = abs( origen->rect().bottomLeft().x() - destino->rect().topRight().x() );
-  int d5 = abs( origen->rect().bottomRight().y() - destino->rect().top() );
-  int d6 = abs( origen->rect().bottomRight().x() - destino->rect().topLeft().x() );
-  int d7 = abs( origen->rect().x() - destino->rect().topLeft().x() );
-  int d8 = abs( origen->rect().x() - destino->rect().bottomRight().x() );
+  QPoint t1 = QPoint( origen->pos().x() + origen->rect().width(),
+                      origen->pos().y() + origen->rect().height() )
+              - destino->pos();
+  int d1 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x() + ( origen->rect().width() / 2 ),
+               origen->pos().y() ) -
+       QPoint( destino->pos().x() + ( destino->rect().width() / 2 ),
+               destino->pos().y() + destino->rect().height() );
+  int d2 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x() + origen->rect().width(),
+               origen->pos().y() ) -
+       QPoint( destino->pos().x(),
+               destino->pos().y() + destino->rect().height() );
+  int d3 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x() + origen->rect().width(),
+               origen->pos().y() + ( origen->rect().height() / 2 ) ) -
+       QPoint( destino->pos().x(),
+               destino->pos().y() + ( destino->rect().height() / 2 ) );
+  int d4 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x() + origen->rect().width(),
+               origen->pos().y() + origen->rect().height() ) -
+       QPoint( destino->pos().x(),
+               destino->pos().y() );
+  int d5 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x() + ( origen->rect().width() / 2 ),
+               origen->pos().y() + origen->rect().height()  ) -
+       QPoint( destino->pos().x() + ( destino->rect().width() / 2 ),
+               destino->pos().y() );
+  int d6 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x(),
+               origen->pos().y() + origen->rect().height()  ) -
+       QPoint( destino->pos().x() + destino->rect().width(),
+               destino->pos().y() );
+  int d7 = t1.manhattanLength();
+  t1 = QPoint( origen->pos().x(),
+               origen->pos().y() + ( origen->rect().height() / 2 ) ) -
+       QPoint( destino->pos().x() + destino->rect().width(),
+               destino->pos().y() + ( destino->rect().width() / 2 ) );
+  int d8 = t1.manhattanLength();
   // Busco los menores
   int min = qMin( qMin( qMin( qMin( d1, d2 ), qMin( d3, d4 ) ), qMin( d5, d6 ) ), qMin( d7, d8 ) );
   if( min == d1 ) {
-          inicio->setX( origen->rect().x() + ( origen->rect().width() / 2 ) );
-          inicio->setY( origen->rect().y() );
-          fin->setX( destino->rect().x() + ( origen->rect().width() / 2 ) );
-          fin->setY( destino->rect().y() );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x() + origen->rect().width(),
+                                           origen->pos().y() + origen->rect().height() ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x(),
+                                           destino->pos().y() ) );
   } else if( min == d2 ) {
-          inicio->setX( origen->rect().x() + origen->rect().width() );
-          inicio->setY( origen->rect().y() );
-          fin->setX( destino->rect().x() );
-          fin->setY( destino->rect().y() + destino->rect().height() );
+
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x() + ( origen->rect().width() / 2 ),
+                                           origen->pos().y() + origen->rect().height() ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x() + ( destino->rect().width() / 2 ),
+                                           destino->pos().y() ) );
   } else if( min == d3 ) {
-          inicio->setX( origen->rect().x() + origen->rect().width() );
-          inicio->setY( origen->rect().y() + ( origen->rect().height() / 2 ) );
-          fin->setX( destino->rect().x() );
-          fin->setY( destino->rect().y() + ( destino->rect().height() / 2 ) );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x(),
+                                           origen->pos().y() + origen->rect().height() ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x(),
+                                           destino->pos().y() + destino->rect().height() ) );
   } else if( min ==  d4 ) {
-          inicio->setX( origen->rect().x() + origen->rect().width() );
-          inicio->setY( origen->rect().y() + origen->rect().height() );
-          fin->setX( destino->rect().x() );
-          fin->setY( destino->rect().y() );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x() + origen->rect().width(),
+                                           origen->pos().y() + ( origen->rect().height() / 2 ) ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x(),
+                                           destino->pos().y() + ( destino->rect().height() / 2 ) ) );
   } else if( min == d5 ) {
-          inicio->setX( origen->rect().x() + ( origen->rect().width() / 2 ) );
-          inicio->setY( origen->rect().y() + origen->rect().height() );
-          fin->setX( destino->rect().x() + ( destino->rect().width() / 2 ) );
-          fin->setY( destino->rect().y() );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x() + origen->rect().width(),
+                                           origen->pos().y() + origen->rect().height() ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x(),
+                                           destino->pos().y() ) );
   } else if( min == d6 ) {
-          inicio->setX( origen->rect().x() );
-          inicio->setY( origen->rect().y() + origen->rect().height() );
-          fin->setX( destino->rect().x() + destino->rect().width() );
-          fin->setY( destino->rect().y() );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x() + ( origen->rect().width() / 2 ),
+                                           origen->pos().y() + origen->rect().height() ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x() + ( destino->rect().width() / 2 ),
+                                           destino->pos().y() ) );
   } else if( min == d7 ) {
-          inicio->setX( origen->rect().x() );
-          inicio->setY( origen->rect().y() + ( origen->rect().height() / 2 ) );
-          fin->setX( destino->rect().x() + destino->rect().width() );
-          fin->setY( destino->rect().y() + ( destino->rect().height() / 2 ) );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x(),
+                                           origen->pos().y() + origen->rect().height() ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x() + destino->rect().width(),
+                                           destino->pos().y() ) );
   } else if( min == d8 ) {
-          inicio->setX( origen->rect().x() );
-          inicio->setY( origen->rect().y() );
-          fin->setX( destino->rect().x() + destino->rect().width() );
-          fin->setY( destino->rect().y() + destino->rect().height() );
+      *inicio = this->mapToGlobal( QPoint( origen->pos().x(),
+                                           origen->pos().y() + ( origen->rect().height() / 2 ) ) );
+      *fin    = this->mapToGlobal( QPoint( destino->pos().x() + destino->rect().width(),
+                                           destino->pos().y() + ( destino->rect().height() / 2 ) ) );
   } else {
           inicio->setX(0);
           inicio->setY(0);
