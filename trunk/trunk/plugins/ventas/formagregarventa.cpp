@@ -100,8 +100,6 @@ FormAgregarVenta::FormAgregarVenta ( QWidget* parent, Qt::WFlags fl )
 
         DSBCant->setValue( 1.0 );
         DSBCant->setPrefix( "" );
-        // deshabilito el item de cuotas por no estar programado
-        //RBCuotas->setVisible( false );
 
         // Coloco el proximo numero de comprobante
         LNumeroComprobante->setText( LNumeroComprobante->text().append( "       <b>" ).append( MFactura::proximoComprobante().aCadena() ).append( "</b>" ) );
@@ -332,6 +330,7 @@ void FormAgregarVenta::guardar()
      if( id_plan_cuota == -1 ) {
          // Todavía no se pudo hacer el plan de cuotas
          emit emitirPlanCuota( CBCliente->idClienteActual(), mcp->total() );
+         return;
      } else {
          // Si paso por aquí el plan de cuota fue creado pero todavía no se le asigno el id de factura
      }

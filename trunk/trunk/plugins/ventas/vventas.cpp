@@ -43,6 +43,7 @@ VVentas::VVentas(QWidget *parent)
     this->vista->hideColumn( 0 );
     this->vista->hideColumn( 6 );
     this->vista->setAlternatingRowColors( true );
+    this->vista->setSortingEnabled( true );
 
     QAction *ActPagar = new QAction( this );
     ActPagar->setText( "Pagar" );

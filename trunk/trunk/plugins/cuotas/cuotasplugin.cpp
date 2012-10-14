@@ -114,12 +114,12 @@ void CuotasPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(cuotas); return; }
 
 /*!
- * \fn CuotasPlugin::emitirPlanCuota( int id_cliente, double total )
+ * \fn CuotasPlugin::generarPlanCuota( int id_cliente, double total )
  * Prepara la ventana para generar un plan de cuotas segun los datos pasados de la cuota.
  * \param id_cliente Identificador del cliente al cual se les emitirá el plan de cuotas
  * \param total Total a pagar
  */
-void CuotasPlugin::emitirPlanCuota(int id_cliente, double total)
+void CuotasPlugin::generarPlanCuotas(int id_cliente, double total)
 {
     FormSimularCuotas *f = new FormSimularCuotas();
     f->setearIdCliente( id_cliente );

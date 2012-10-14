@@ -27,6 +27,7 @@
 #include <QAction>
 #include <QMessageBox>
 #include <QSqlError>
+#include <QHeaderView>
 
 VGastos::VGastos( QWidget* parent )
 : EVLista( parent )
@@ -45,6 +46,10 @@ VGastos::VGastos( QWidget* parent )
  vista->hideColumn( 0 );
  vista->hideColumn( 5 );
  vista->setItemDelegate( new DGastos( vista ) );
+ vista->setSortingEnabled( true );
+ vista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+ vista->horizontalHeader()->setResizeMode( 2, QHeaderView::Stretch );
+ vista->horizontalHeader()->setMinimumSectionSize( 60 );
 
  vista->resizeColumnsToContents();
 
