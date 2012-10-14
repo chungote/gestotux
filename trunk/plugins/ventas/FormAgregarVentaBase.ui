@@ -211,7 +211,7 @@
       <item>
        <widget class="QRadioButton" name="RBCuotas">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="text">
          <string>Cuotas</string>

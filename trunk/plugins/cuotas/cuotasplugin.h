@@ -31,7 +31,7 @@ class CuotasPlugin : public QObject, public EPlugin
 
     public slots:
         void seCierraGestotux();
-        void emitirPlanCuota( int id_cliente, double total );
+        void generarPlanCuotas( int id_cliente, double total );
         void planCuotasSetearIdFactura( int id_plan_cuota, int id_factura );
 
     signals:
