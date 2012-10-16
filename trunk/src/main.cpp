@@ -170,7 +170,7 @@ void generarInterconexiones()
        QObject::connect( dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
                          SIGNAL( emitirPlanCuotaId( int ) ),
                          dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
-                         SIGNAL( planCuotaSetearIdCuota( int, double ) ) );
+                         SIGNAL( planCuotaSetearIdCuota( int ) ) );
        QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
                          SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ),
                          dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
