@@ -112,7 +112,7 @@ EBackupRemoto::~EBackupRemoto()
 void EBackupRemoto::cambiopestana( int pes ) {
     if( pes == 1 ) {
         // Busco los datos del sistema para ver cuales hay
-        QUrl url( "http://trafu.no-ip.org/TRSis/backups/historial" );
+        QUrl url( "http://trafu.no-ip.org/trsis/backups/historial" );
         preferencias *p = preferencias::getInstancia();
         p->beginGroup( "Preferencias" );
         p->beginGroup( "BackupRemoto" );
@@ -186,7 +186,7 @@ bool EBackupRemoto::generar_db( bool /*estructura*/ )
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
- QUrl url( p->value( "url_envio", "http://localhost/TRSis/backups/envio" ).toString() );
+ QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
  url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
@@ -207,7 +207,7 @@ bool EBackupRemoto::generar_db( bool /*estructura*/ )
  int pos = 0;
  delete req;
  QNetworkRequest *req2 = new QNetworkRequest( url );
- req2->setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
+ req2->setHeader( QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded" );
 
  foreach( tabla, tablas )
  {
@@ -216,13 +216,11 @@ bool EBackupRemoto::generar_db( bool /*estructura*/ )
         int i = 0;
         while( cola.next() && _continuar && pos < 10 )
         {
-            url.removeQueryItem( "pos" );
-            url.removeQueryItem( "cola" );
-            url.addQueryItem( "pos", QString::number( pos ) );
-            url.addQueryItem( "cola", db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) );
-
-            lista.append( manager->post( *req2, url.encodedQuery() ) );
-            qDebug( url.encodedQuery() );
+            QUrl temp;
+            temp.addEncodedQueryItem( "posicion", QUrl::toPercentEncoding( QString::number( pos ) ) );
+            temp.addEncodedQueryItem( "cola", QUrl::toPercentEncoding( db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) ) );
+            QByteArray data = temp.encodedQuery();
+            lista.append( manager->post( *req2, data ) );
 
             QApplication::processEvents();
 
@@ -255,6 +253,9 @@ void EBackupRemoto::respuesta( QNetworkReply *resp ) {
         QApplication::processEvents();
         bool ok = false;
         resp->deleteLater();
+        if( cont.isEmpty() ) {
+            return;
+        }
         QVariantMap mapa = Json::parse( cont, ok ).toMap();
         if( !ok ) {
             QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );

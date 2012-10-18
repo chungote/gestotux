@@ -11,4 +11,6 @@ SUBDIRS +=  caja \
             servicios \
             descuentos \
             cuotas \
-            remitos
+            remitos \
+            backupremoto \
+            ordentrabajo

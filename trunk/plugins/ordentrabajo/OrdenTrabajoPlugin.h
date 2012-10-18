@@ -51,10 +51,17 @@ signals:
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 
 public slots:
+    void verOrdenesTrabajo();
+    void agregarOrdenTrabajo();
+    void verTecnicos();
+    void verTipoOperacion();
     void seCierraGestotux();
 
 private:
-    //QAction *ActProveedores;
+    QAction *ActOrdenTrabajo;
+    QAction *ActAgregarOrdenTrabajo;
+    QAction *ActVerTecnicos;
+    QAction *ActVerTipoOperacion;
 
 };
 
