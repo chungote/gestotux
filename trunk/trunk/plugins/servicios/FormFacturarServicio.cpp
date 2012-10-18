@@ -443,7 +443,7 @@ void FormFacturarServicio::facturar()
     if( di->exec() ) {
         reporte->setearImpresora( imp );
     } else {
-        QMessageBox::information( this, "Listo", "Ha elegido no imprimir ningun comprobante ahora.<br /><b>Aun así, han quedado emitidos. Puede imprimirlos luego desde la lista de recibos" );
+        QMessageBox::information( this, "Listo", QString::fromUtf8("Ha elegido no imprimir ningun comprobante ahora.<br /><b>Aun así, han quedado emitidos. Puede imprimirlos luego desde la lista de recibos" ) );
         return;
     }
 
