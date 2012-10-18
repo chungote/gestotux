@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/"/>
+    <qresource prefix="/sql">
+        <file>ordentrabajo.QMYSQL.sql</file>
+        <file>ordentrabajo.QSQLITE.sql</file>
+    </qresource>
+</RCC>
