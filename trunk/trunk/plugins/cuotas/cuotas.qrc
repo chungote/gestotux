@@ -3,5 +3,9 @@
         <file>cuotas.QMYSQL.sql</file>
         <file>cuotas.QSQLITE.sql</file>
     </qresource>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>imagenes/ingresar_pago.png</file>
+        <file>imagenes/cancelar_cuota.png</file>
+        <file>imagenes/cuotas_detalle.png</file>
+    </qresource>
 </RCC>

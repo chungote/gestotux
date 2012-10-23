@@ -121,6 +121,7 @@ void CuotasPlugin::seCierraGestotux()
  */
 void CuotasPlugin::generarPlanCuotas(int id_cliente, double total)
 {
+    qWarning( "Señal recibida" );
     FormSimularCuotas *f = new FormSimularCuotas();
     f->setearIdCliente( id_cliente );
     f->setearTotal( total );

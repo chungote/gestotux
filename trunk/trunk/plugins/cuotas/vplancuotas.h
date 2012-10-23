@@ -19,11 +19,15 @@ private slots:
     void simular();
     void cambioTerminado( bool e );
     void verDetalles();
+    void cancelar();
+    void ingresarPago();
 
 private:
     QAction *ActSimular;
     QAction *ActTerminado;
     QAction *ActDetalles;
+    QAction *ActIngresarPago;
+    QAction *ActCancelar;
 
 };
 

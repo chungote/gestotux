@@ -42,19 +42,39 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
 
     ActDetalles = new QAction( this );
     ActDetalles->setText( "Detalles" );
-    //ActDetalles->setIcon( QIcon( ":/imagenes/" ) );
+    ActDetalles->setIcon( QIcon( ":/imagenes/cuotas_detalle.png" ) );
     connect( ActDetalles, SIGNAL( triggered() ), this, SLOT( verDetalles() ) );
+
+    ActIngresarPago = new QAction( this );
+    ActIngresarPago->setText( "Pago" );
+    ActIngresarPago->setIcon( QIcon( ":/imagenes/ingresar_pago.png" ) );
+    ActIngresarPago->setStatusTip( "Ingresa un nuevo pago mediante un recibo" );
+    connect( ActIngresarPago, SIGNAL( triggered() ), this, SLOT( ingresarPago() ) );
+
+    ActCancelar = new QAction( this );
+    ActCancelar->setText( "Cancelar" );
+    ActCancelar->setIcon( QIcon( ":/imagenes/cancelar_cuota.png" ) );
+    ActCancelar->setStatusTip( "Ingresa un nuevo pago mediante un recibo" );
+    connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( cancelar() ) );
 
     QAction *ActSep = new QAction( this );
     ActSep->setSeparator( true );
+    QAction *ActSep2 = new QAction( ActSep );
+    ActSep2->setSeparator( true );
 
     addAction( ActSimular );
-    addAction( ActCerrar );
     addAction( ActSep );
+    addAction( ActDetalles );
+    addAction( ActIngresarPago );
+    addAction( ActCancelar );
+    addAction( ActCerrar );
+    addAction( ActSep2 );
     addAction( ActTerminado );
 
     modelo = new MVPlanCuota( this );
     vista->setModel( modelo );
+
+    modelo->select();
 
 }
 
@@ -70,8 +90,19 @@ void VPlanCuotas::simular()
  * Muestra los planes terminados en la lista de planes
  * \param e Estado de la accion
  */
-void VPlanCuotas::cambioTerminado( bool )
+void VPlanCuotas::cambioTerminado( bool e )
 {
+    if( e ) {
+        qWarning( "No implementado filtro todavía" );
+        this->modelo->setFilter( "    ic.id_plan_cuota = pc.id_plan_cuota "
+                                 "AND pc.id_factura    = f.id_factura "
+                                 "AND c.id             = f.id_cliente" );
+    } else {
+        this->modelo->setFilter( "    ic.id_plan_cuota = pc.id_plan_cuota "
+                                 "AND pc.id_factura    = f.id_factura "
+                                 "AND c.id             = f.id_cliente" );
+    }
+    this->modelo->select();
 }
 
 /*!
@@ -80,4 +111,22 @@ void VPlanCuotas::cambioTerminado( bool )
  */
 void VPlanCuotas::verDetalles()
 {
+    qWarning( "No implementado" );
+}
+
+/*!
+ * \fn VPlanCuotas::cancelar()
+ * Cancela un plan o planes de cuota seleccionados
+ */
+void VPlanCuotas::cancelar()
+{
+qWarning( "No implementado" );
+}
+
+/*!
+ * \fn VPlanCuotas::ingresarPago()
+ */
+void VPlanCuotas::ingresarPago()
+{
+qWarning( "No implementado" );
 }
