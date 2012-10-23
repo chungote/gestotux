@@ -1,7 +1,10 @@
 #include "vplancuotas.h"
 
 #include "formsimularcuotas.h"
+#include "formdetallecuotas.h"
 #include "mvplancuota.h"
+
+#include <QMessageBox>
 
 /* CONSULTA MODELO
  *SELECT CONCAT( '# ', pc.id_plan_cuota ) AS plan_cuota,
@@ -111,7 +114,16 @@ void VPlanCuotas::cambioTerminado( bool e )
  */
 void VPlanCuotas::verDetalles()
 {
-    qWarning( "No implementado" );
+    // Busco el plan de cuota seleccionado
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una sola fila para ver su detalle" );
+        return;
+    }
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    int id_plan = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    FormDetalleCuotas *f = new FormDetalleCuotas();
+    f->setearIdPlanCuota( id_plan );
+    emit agregarVentana( f );
 }
 
 /*!
@@ -120,7 +132,7 @@ void VPlanCuotas::verDetalles()
  */
 void VPlanCuotas::cancelar()
 {
-qWarning( "No implementado" );
+    qWarning( "No implementado" );
 }
 
 /*!
@@ -128,5 +140,5 @@ qWarning( "No implementado" );
  */
 void VPlanCuotas::ingresarPago()
 {
-qWarning( "No implementado" );
+    qWarning( "No implementado" );
 }
