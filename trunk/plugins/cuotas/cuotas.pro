@@ -34,18 +34,21 @@ HEADERS += cuotasplugin.h \
            formsimularcuotas.h \
            msimularcuotas.h \
            formprefcuotas.h \
-    vplancuotas.h \
-    mitemplancuota.h \
-    mvplancuota.h
+           vplancuotas.h \
+           mitemplancuota.h \
+           mvplancuota.h \
+           formdetallecuotas.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
            formsimularcuotas.cpp \
            msimularcuotas.cpp \
            formprefcuotas.cpp \
-    vplancuotas.cpp \
-    mitemplancuota.cpp \
-    mvplancuota.cpp
+            vplancuotas.cpp \
+            mitemplancuota.cpp \
+            mvplancuota.cpp \
+           formdetallecuotas.cpp
 
 FORMS += formsimularcuotasbase.ui \
-         formprefcuotasbase.ui
+         formprefcuotasbase.ui \
+         formcuotasbase.ui
