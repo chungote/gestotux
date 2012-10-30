@@ -97,9 +97,13 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
     _rep->setParamList( _parametros );
 
     if( _impresora == 0 ) {
-        _impresora = new QPrinter( QPrinterInfo::defaultPrinter() );
+        if( !QPrinterInfo::defaultPrinter().isNull() ) {
+            _impresora = new QPrinter( QPrinterInfo::defaultPrinter() );
+        } else {
+            _impresora = new QPrinter();
+        }
     }
-    if( !( _rep->print( _impresora, mostrarDialogoImpresion, previsualizar ) ) ) {
+    if( !( _rep->print( 0, mostrarDialogoImpresion, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );
         _rep->reportError( 0 );
         return false;
