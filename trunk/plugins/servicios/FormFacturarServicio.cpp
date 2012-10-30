@@ -450,6 +450,7 @@ void FormFacturarServicio::facturar()
     for( int i = 0; i<comprobantes.size(); i++ ) {
         // Paso 3
         // Imprimir recibo
+        lista.clear();
         int id_comp = comprobantes.take( i );
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
         lista.append( "id_recibo", id_comp );
