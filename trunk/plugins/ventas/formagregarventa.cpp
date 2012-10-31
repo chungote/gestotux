@@ -334,6 +334,7 @@ void FormAgregarVenta::guardar()
          return;
      } else {
          // Si paso por aquí el plan de cuota fue creado pero todavía no se le asigno el id de factura
+         QMessageBox::information( this, "Paso", "Plan de cuota emitido" );
      }
  } else if( RBOtro->isChecked() ){
      id_forma_pago = MFactura::Otro;

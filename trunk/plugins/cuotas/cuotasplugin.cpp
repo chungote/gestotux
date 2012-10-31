@@ -99,7 +99,7 @@ void CuotasPlugin::crearMenu( QMenuBar *m )
         Devuelve la version del plugin
  */
 double CuotasPlugin::version() const
-{ return 0.01; }
+{ return 0.02; }
 
 /*!
     \fn CuotasPlugin::crearToolBar( QToolBar *t )

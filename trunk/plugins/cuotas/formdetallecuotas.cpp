@@ -52,8 +52,6 @@ EVentana(parent), Ui::FormDetalleCuotasBase()
     addAction( ActImprimir );
     addAction( ActPdf );
     addAction( new EActCerrar( this ) );
-
-    _id_cliente = -1;
 }
 
 FormDetalleCuotas::~FormDetalleCuotas()
@@ -193,6 +191,8 @@ void FormDetalleCuotas::pdf()
  * Setea el id de cuota correspondiente.
  * \param id Identificador del plan de cuotas
  */
-void FormDetalleCuotas::setearIdPlanCuota( int id ) {
-    qWarning( "Carga de datos no implementada" );
+void FormDetalleCuotas::setearIdPlanCuota( int /*id*/ ) {
+    qWarning( "Carga de datos no implementada!" );
+    // Cargo los datos de la cuota
+
 }
