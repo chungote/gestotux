@@ -144,7 +144,7 @@ void FormSimularCuotas::generaReporte()
     documento = new QTextDocument();
     QTextCursor cursor( documento );
     int cant_filas = 3 + SBCantidad->value();
-    QTextTable *tabla = cursor.insertTable( cant_filas, 4 );
+    QTextTable *tabla = cursor.insertTable( cant_filas, 5 );
     QTextTableFormat formatoTabla = tabla->format();
     formatoTabla.setHeaderRowCount( 1 );
     formatoTabla.setWidth( QTextLength( QTextLength::PercentageLength, 100 ) );
@@ -156,38 +156,47 @@ void FormSimularCuotas::generaReporte()
     tabla->cellAt( 0,0 ).firstCursorPosition().insertHtml( "<b> # Cuota</b>" );
     tabla->cellAt( 0,1 ).firstCursorPosition().insertHtml( "<b> Fecha de pago </b>" );
     tabla->cellAt( 0,2 ).firstCursorPosition().insertHtml( "<b> Cuota </b>" );
-    tabla->cellAt( 0,3 ).firstCursorPosition().insertHtml( "<b> Subtotal </b>" );
+    tabla->cellAt( 0,3 ).firstCursorPosition().insertHtml( "<b> Pagado </b> " );
+    tabla->cellAt( 0,4 ).firstCursorPosition().insertHtml( "<b> Subtotal </b>" );
 
     QTextBlockFormat bfizq = tabla->cellAt( 0, 3 ).firstCursorPosition().blockFormat();
     bfizq.setAlignment( Qt::AlignRight );
     // Ingreso los datos
-    double subtotal = DSBImporte->value() * (-1);
+    double subtotal = DSBImporte->value();
+    double pagado = DSBEntrega->value();
     // Importe
     tabla->cellAt( 1, 0 ).firstCursorPosition().insertHtml( " " );
     tabla->cellAt( 1, 1 ).firstCursorPosition().insertHtml( "Importe a pagar en cuotas" );
     tabla->cellAt( 1, 2 ).firstCursorPosition().setBlockFormat( bfizq );
-    tabla->cellAt( 1, 2 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal*(-1), 10, 'f', 2 ) );
+    tabla->cellAt( 1, 2 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
     tabla->cellAt( 1, 3 ).firstCursorPosition().setBlockFormat( bfizq );
-    tabla->cellAt( 1, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
-    subtotal += DSBEntrega->value();
+    tabla->cellAt( 1, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( 0.0, 10, 'f', 2 ) );
+    tabla->cellAt( 1, 4 ).firstCursorPosition().setBlockFormat( bfizq );
+    tabla->cellAt( 1, 4 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
+    subtotal -= DSBEntrega->value();
     tabla->cellAt( 2, 0 ).firstCursorPosition().insertHtml( "" );
     tabla->cellAt( 2, 1 ).firstCursorPosition().insertHtml( "Entrega inicial" );
     tabla->cellAt( 2, 2 ).firstCursorPosition().setBlockFormat( bfizq );
     tabla->cellAt( 2, 2 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( DSBEntrega->value(), 10, 'f', 2 ) );
     tabla->cellAt( 2, 3 ).firstCursorPosition().setBlockFormat( bfizq );
-    tabla->cellAt( 2, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
+    tabla->cellAt( 2, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( pagado, 10, 'f', 2 ) );
+    tabla->cellAt( 2, 4 ).firstCursorPosition().setBlockFormat( bfizq );
+    tabla->cellAt( 2, 4 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
     subtotal *= ( 1 + DSBInteres->value() / 100 );
     double valor_cuota = ( ( DSBTotal->value() ) * ( 1 + DSBInteres->value() / 100 ) ) / SBCantidad->value();
     QDate fch = DEInicio->date();
     for( int i = 1; i<=SBCantidad->value(); i++ ) {
-        tabla->cellAt( i+2, 0 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( i ) );
+        tabla->cellAt( i+2, 0 ).firstCursorPosition().insertHtml( QString( "#%1" ).arg( i ) );
         tabla->cellAt( i+2, 1 ).firstCursorPosition().insertHtml( QString( "%1" ).arg( fch.toString( Qt::SystemLocaleShortDate ) ) );
         fch.addDays( (i-1)*MPlanCuota::diasEnPeriodo( (MPlanCuota::Periodo) CBPeriodo->currentIndex(), fch ) );
         tabla->cellAt( i+2, 2 ).firstCursorPosition().setBlockFormat( bfizq );
         tabla->cellAt( i+2, 2 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( valor_cuota, 10, 'f', 2 ) );
-        subtotal += valor_cuota;
+        pagado += valor_cuota;
         tabla->cellAt( i+2, 3 ).firstCursorPosition().setBlockFormat( bfizq );
-        tabla->cellAt( i+2, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
+        tabla->cellAt( i+2, 3 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( pagado, 10, 'f', 2 ) );
+        subtotal -= valor_cuota;
+        tabla->cellAt( i+2, 4 ).firstCursorPosition().setBlockFormat( bfizq );
+        tabla->cellAt( i+2, 4 ).firstCursorPosition().insertHtml( QString( "$ %L1" ).arg( subtotal, 10, 'f', 2 ) );
     }
 
     // Firma y aclaracion
@@ -208,7 +217,11 @@ void FormSimularCuotas::generaReporte()
     // Cabecera
     cursor.movePosition( QTextCursor::Start );
     cursor.insertBlock();
+#ifdef Q_OS_WIN
+    cursor.insertHtml( "<h1> HiComp Computación</h1><br />" );
+#else
     cursor.insertHtml( "<h1>" + ERegistroPlugins::getInstancia()->pluginInfo()->empresa() + "</h1><br />" );
+#endif
     cursor.insertHtml( "<h2>Plan de cuotas</h2><br /><br />" );
     cursor.insertBlock();
     cursor.insertHtml( QString( "<b>Fecha de Inicio:</b> %1 <br />" ).arg( DEInicio->date().toString( Qt::SystemLocaleLongDate ) ) );

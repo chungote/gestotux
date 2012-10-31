@@ -129,7 +129,7 @@ bool HiComp::verificarTablas( QStringList )
     \fn HiComp::version() const
  */
 double HiComp::version() const
-{  return 0.5; }
+{  return 0.53; }
 
 
 /*!

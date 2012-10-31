@@ -104,56 +104,56 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
             if( floor( fecha_calculo.daysInMonth() / 2 ) > fecha_calculo.day() ) {
                 // Segunda quincena
                 QDate f1(floor( fecha_calculo.daysInMonth() / 2 ), fecha_calculo.month(), fecha_calculo.year() );
-                QDate f2( fecha_calculo.daysInMonth(), fecha_calculo.month(), fecha_calculo.year() );
+                QDate f2(  fecha_calculo.year(), fecha_calculo.month(),fecha_calculo.daysInMonth() );
                 return f1.daysTo( f2 ) - 1;
             } else {
                 // Primera quincena
-                QDate f1(1, fecha_calculo.month(), fecha_calculo.year() );
-                QDate f2( floor( fecha_calculo.daysInMonth() / 2 ), fecha_calculo.month(), fecha_calculo.year() );
+                QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
+                QDate f2( fecha_calculo.year(), fecha_calculo.month(), floor( fecha_calculo.daysInMonth() / 2 ) );
                 return f1.daysTo( f2 ) - 1;
             }
         }
         case MPlanCuota::Mensual:
         {
             // Mensual
-            // Verificar el mes del periodo y devolver la cantidad de días
-            return QDate( 1, fecha_calculo.month(), fecha_calculo.year() ).daysInMonth();
+            // Verificar el mes del periodo y devolver la cantidad de di�as
+            return QDate( fecha_calculo.year(), fecha_calculo.month(), 1 ).daysInMonth();
             // Eso se encarga automaticamnete de los años bisiestos
         }
         case MPlanCuota::BiMensual:
         {
             // BiMensual
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(1);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3( f2.year(), f2.month(),f2.daysInMonth() );
             return f1.daysTo( f3 ) - 1;
         }
         case MPlanCuota::Trimestral:
         {
             // Trimensual
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(2);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3( f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) - 1;
         }
         case MPlanCuota::Cuatrimestral:
         {
             // Cuatrimestral
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(3);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3( f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) -1 ;
         }
         case MPlanCuota::Seximestral:
         {
             //Seximestral
             // Siempre voy a pedir estos datos al inicio del periodo
-            QDate f1( 0, fecha_calculo.month(), fecha_calculo.year() );
+            QDate f1( fecha_calculo.year(), fecha_calculo.month(), 1 );
             QDate f2 = f1.addMonths(5);
-            QDate f3( f2.daysInMonth(), f2.month(), f2.year() );
+            QDate f3(  f2.year(), f2.month(), f2.daysInMonth() );
             return f1.daysTo( f3 ) - 1 ;
         }
         case MPlanCuota::Anual:

@@ -27,7 +27,7 @@ void MSimularCuotas::setCuotas( int c )
 {
     int ant = cantidad;
     cantidad = c;
-    if( ant > c ) {
+    if( ant < c ) {
         emit beginInsertRows( QModelIndex(), ant, c );
         insertRows( ant, c );
         emit endInsertRows();
