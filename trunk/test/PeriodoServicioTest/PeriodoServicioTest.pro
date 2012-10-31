@@ -14,7 +14,7 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-LIBS += ../../bin/plugins/libservicios.so
+LIBS += ../../bin/plugins/libservicios.a
 
 SOURCES += tst_periodoserviciotest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

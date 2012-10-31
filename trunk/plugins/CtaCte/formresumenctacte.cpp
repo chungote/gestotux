@@ -311,7 +311,7 @@ void FormResumenCtaCte::pagarTodo()
         f->setearDatos( id_cliente, texto, saldo );
         emit agregarVentana( f );
     } else {
-        QMessageBox::warning( this, "Error", "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funcion.\n Contacte su administrador de sistema." );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal función.\n Contacte su administrador de sistema." ) );
         return;
     }
     return;

@@ -42,6 +42,7 @@ VPagos::VPagos(QWidget *parent)
  vista->hideColumn( 0 );
  vista->setSortingEnabled( true );
  vista->setAlternatingRowColors( true );
+ vista->setSelectionBehavior( QAbstractItemView::SelectRows );
 
  if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
      vista->setItemDelegateForColumn( 6, new DSiNo( vista ) );
