@@ -19,6 +19,7 @@ public:
     void setPeriodo( MPlanCuota::Periodo p ) { periodo = p; }
     void setInteres( double i ) { interes = i; }
     void setFechaInicio( QDate f ) { fecha_inicio = f; }
+    void setPagoInicial( double d ) { pinicial = d; }
 
     void regenerar();
 
@@ -31,11 +32,13 @@ public:
 private:
     double importe;
     double interes;
+    double pinicial;
     int cantidad;
     MPlanCuota::Periodo periodo;
     QDate fecha_inicio;
 
     QHash<int,double> *sumatoria;
+    QHash<int,double> *faltante;
 
     bool valido() const;
 

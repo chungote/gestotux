@@ -51,7 +51,8 @@ signals:
     void cambiarDetener( bool estado );
 
 protected slots:
-    void respuesta( QNetworkReply * );
+    void respuestaInicio( QNetworkReply * );
+    void respuestaColas( QNetworkReply * );
     void respuestaHistorial( QNetworkReply * );
     void cambiopestana( int );
 
@@ -90,7 +91,8 @@ private:
         */
         //EMBackupAnteriores *anteriores;
 
-        bool generar_db( bool estructura );
+        void generar_db( bool estructura );
+        void enviarColas();
         bool ejecutarColas( QStringList colas );
         void mostrarError( QNetworkReply::NetworkError e );
 

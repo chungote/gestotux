@@ -32,8 +32,6 @@ private:
 
     void generaReporte();
 
-    int _id_cliente;
-
 };
 
 #endif // FormDetalleCuotas_H

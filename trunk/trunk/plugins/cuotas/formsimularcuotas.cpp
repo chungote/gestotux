@@ -118,6 +118,7 @@ void FormSimularCuotas::simular()
     modelo->setPeriodo    ( (MPlanCuota::Periodo) CBPeriodo->currentIndex() );
     modelo->setInteres    ( DSBInteres->value() );
     modelo->setFechaInicio( DEInicio->date()    );
+    modelo->setPagoInicial( DSBEntrega->value() );
     TVSimulacion->setModel( modelo );
 }
 

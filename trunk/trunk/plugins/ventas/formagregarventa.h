@@ -41,7 +41,7 @@ public:
         void setearItems( MProductosTotales *m );
 
 public slots:
-        void setearIdPlanCuota( int id_cuota ) { id_plan_cuota = id_cuota; }
+        void setearIdPlanCuota( int id_cuota ) { id_plan_cuota = id_cuota; guardar(); }
 
 signals:
         /*!
