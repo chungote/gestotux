@@ -504,6 +504,8 @@ void EBackupRemoto::mostrarError( QNetworkReply::NetworkError e ) {
         { qDebug( "Contenid desconocido." ); break; }
         case QNetworkReply::ProtocolFailure:
         { qDebug( "Falla en el protocolo." ); break; }
+        case QNetworkReply::TemporaryNetworkFailureError:
+        { qDebug( "Error de red temporal" ); break; }
     }
 
 }

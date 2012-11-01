@@ -53,7 +53,8 @@ bool OrdenTrabajoPlugin::inicializar()
  //ActVerTipoOperacion->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
  connect( ActVerTipoOperacion, SIGNAL( triggered() ), this, SLOT( verTipoOperacion() ) );
 
- return true;
+ //return true;
+ return false;
 }
 
 bool OrdenTrabajoPlugin::verificarTablas( QStringList tablas )
@@ -117,6 +118,11 @@ QAction *OrdenTrabajoPlugin::botonPantallaInicial()
  */
 void OrdenTrabajoPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(ordentrabajo); return; }
+
+void OrdenTrabajoPlugin::verOrdenesTrabajo() {}
+void OrdenTrabajoPlugin::agregarOrdenTrabajo() {}
+void OrdenTrabajoPlugin::verTipoOperacion() {}
+void OrdenTrabajoPlugin::verTecnicos() {}
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )
 
