@@ -21,10 +21,15 @@ LIBS += ../../bin/libutiles.a \
 PRE_TARGETDEPS += ../../bin/libutiles.a \
                   ../../bin/libreporte.a
 
-SOURCES += OrdenTrabajoPlugin.cpp
-HEADERS += OrdenTrabajoPlugin.h
+SOURCES += OrdenTrabajoPlugin.cpp \
+    formordentrabajo.cpp
+HEADERS += OrdenTrabajoPlugin.h \
+    formordentrabajo.h
 
 RESOURCES += ordentrabajo.qrc
 
 OTHER_FILES += ordentrabajo.QMYSQL.sql \
                ordentrabajo.QSQLITE.sql
+
+FORMS += \
+    formordentrabajobase.ui

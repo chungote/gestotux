@@ -88,8 +88,8 @@ int CuotasPlugin::tipo() const
 void CuotasPlugin::crearMenu( QMenuBar *m )
 {
      QMenu *menuCuotas = m->addMenu( "Cuotas" );
-     /*menuCuotas->addAction( ActVerCuotas );
-     menuCuotas->addAction( ActGenerarComprobantes ); */
+     menuCuotas->addAction( ActVerCuotas );
+     /*menuCuotas->addAction( ActGenerarComprobantes ); */
      menuCuotas->addAction( ActSimular );
 }
 

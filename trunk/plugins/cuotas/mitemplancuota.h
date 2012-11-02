@@ -15,9 +15,11 @@ class MItemPlanCuota : public QSqlRelationalTableModel
 {
     Q_OBJECT
 public:
-    explicit MItemPlanCuota(QObject *parent = 0);
+    explicit MItemPlanCuota( QObject *parent = 0 );
     
     static bool agregarItem( int id_plan, int num_cuota, QDate fecha_venc, double importe );
+
+    QVariant data(const QModelIndex &item, int role) const;
 
 };
 
