@@ -31,8 +31,8 @@ QSqlTableModel(parent)
  * \param periodo Tipo de periodo
  * \param entrega Entrega inicial realizada
  * \param fecha_inicio Fecha desde cuando se inicia el plan de cuotas
- * \param id_plan Variable donde se devolverá el numero de plan de cuota
- * \param cant_cuotas Cantidad de cuotas en que se dividió el pago
+ * \param id_plan Variable donde se devolverÃ¡ el numero de plan de cuota
+ * \param cant_cuotas Cantidad de cuotas en que se dividiÃ³ el pago
  * \returns Verdadero si se pudo generar el plan y sus items
  */
 bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan )
@@ -80,13 +80,13 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
 
 /*!
  * \fn MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_inicio )
- * Considerando que todos los periodos se ajustan dentro de un año, devolverá el numero de días que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
- * En el caso de que sea mensual, se devolverá la cantidad de días que tiene el mes de fecha_calculo
- * En el caso de que sea bimestral, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tiene el mes siguiente.
- * En el caso de que sea trimestra, se devolverá la cantidad de días que tiene el mes de fecha_calculo mas la cantidad de días que tienen los 2 meses siguientes.
+ * Considerando que todos los periodos se ajustan dentro de un aÃ±o, devolverÃ¡ el numero de dÃ­as que tiene el periodo seleccionado en la fecha elegida ( sin parametro fecha actual ) segun la fecha de alta del servicio.
+ * En el caso de que sea mensual, se devolverÃ¡ la cantidad de dÃ­as que tiene el mes de fecha_calculo
+ * En el caso de que sea bimestral, se devolverÃ¡ la cantidad de dÃ­as que tiene el mes de fecha_calculo mas la cantidad de dÃ­as que tiene el mes siguiente.
+ * En el caso de que sea trimestra, se devolverÃ¡ la cantidad de dÃ­as que tiene el mes de fecha_calculo mas la cantidad de dÃ­as que tienen los 2 meses siguientes.
  * @param tipo_periodo Tipo de periodo que estamos considerando
  * @param fecha_inicio Fecha que se desea averiguar el periodo ( predeterminada fecha actual )
- * @return Cantidad de Días que tiene el periodo que corresponde a la fecha solicitada
+ * @return Cantidad de DÃ­as que tiene el periodo que corresponde a la fecha solicitada
  */
 int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
 {
@@ -94,8 +94,8 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
     {
         case MPlanCuota::Semanal:
         {
-            // Semanal -> La semana siempre tiene 7 dias independientemente del día del mes
-            /// \todo Corte anual ¿Considerarlo? ( cuando la semana no esta completa un año )
+            // Semanal -> La semana siempre tiene 7 dias independientemente del dÃ­a del mes
+            /// \todo Corte anual Â¿Considerarlo? ( cuando la semana no esta completa un aÃ±o )
             return 7;
         }
         case MPlanCuota::Quincenal:
@@ -116,9 +116,9 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
         case MPlanCuota::Mensual:
         {
             // Mensual
-            // Verificar el mes del periodo y devolver la cantidad de di�as
+            // Verificar el mes del periodo y devolver la cantidad de di­as
             return QDate( fecha_calculo.year(), fecha_calculo.month(), 1 ).daysInMonth();
-            // Eso se encarga automaticamnete de los años bisiestos
+            // Eso se encarga automaticamnete de los aÃ±os bisiestos
         }
         case MPlanCuota::BiMensual:
         {
@@ -158,7 +158,7 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
         }
         case MPlanCuota::Anual:
         {
-            // Como consideramos los servicios con base en 1 año, siempre es periodo 1
+            // Como consideramos los servicios con base en 1 aÃ±o, siempre es periodo 1
             return fecha_calculo.daysInYear() -1 ;
         }
         default:
@@ -178,7 +178,7 @@ void MPlanCuota::asociarConFactura(int id_plan, int id_factura)
         qDebug( "Plan de cuotas actualizado correctamente" );
     } else {
         qWarning( "No se pudo asociar la cuota" );
-        qDebug( "Error al ejecutar la cola de actualziación de id de factura en el plan  de cuotas" );
+        qDebug( "Error al ejecutar la cola de actualziaciÃ³n de id de factura en el plan  de cuotas" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }

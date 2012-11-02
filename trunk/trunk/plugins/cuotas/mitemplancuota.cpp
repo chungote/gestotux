@@ -48,3 +48,30 @@ bool MItemPlanCuota::agregarItem(int id_plan, int num_cuota, QDate fecha_venc, d
     }
     return false;
 }
+
+QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
+{
+    if( item.isValid() ) {
+        switch( item.column() ) {
+            case 0: // Identificador del item del plan de cuota
+            {
+                switch( role ) {
+                    case Qt::DisplayRole:
+                    { return QString( "#%1").arg( QSqlRelationalTableModel::data( item, role ).toInt() ); break; }
+                    case Qt::EditRole:
+                    { return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+                    default:
+                    { return QSqlRelationalTableModel::data( item, role ); break; }
+                }
+                break;
+            }
+            default:
+            {
+                return QSqlRelationalTableModel::data( item, role );
+                break;
+            }
+        }
+    } else {
+        return QVariant();
+    }
+}

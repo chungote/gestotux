@@ -13,8 +13,42 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
-   <item>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Datos origen</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="LCliente">
+            <property name="text">
+             <string>Cliente:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ECBClientes" name="CBCliente"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="LFactura">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_7">
      <item>
       <widget class="QGroupBox" name="groupBox">
@@ -196,7 +230,7 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
       <string>Listado de cuotas</string>
@@ -215,6 +249,11 @@
    <class>EDSBPrecio</class>
    <extends>QDoubleSpinBox</extends>
    <header>edsbprecio.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBClientes</class>
+   <extends>QComboBox</extends>
+   <header>ecbclientes.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
