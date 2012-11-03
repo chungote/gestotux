@@ -7,5 +7,6 @@
         <file>imagenes/ingresar_pago.png</file>
         <file>imagenes/cancelar_cuota.png</file>
         <file>imagenes/cuotas_detalle.png</file>
+        <file>imagenes/simular_cuota.png</file>
     </qresource>
 </RCC>

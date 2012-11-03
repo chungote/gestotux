@@ -1,5 +1,10 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>imagenes/cancelar_orden_trabajo.png</file>
+        <file>imagenes/crear_orden_trabajo.png</file>
+        <file>imagenes/detalle_orden_trabajo.png</file>
+        <file>imagenes/orden_trabajo.png</file>
+    </qresource>
     <qresource prefix="/sql">
         <file>ordentrabajo.QMYSQL.sql</file>
         <file>ordentrabajo.QSQLITE.sql</file>

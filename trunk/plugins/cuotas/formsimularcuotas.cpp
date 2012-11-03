@@ -254,7 +254,7 @@ void FormSimularCuotas::pdf()
  */
 void FormSimularCuotas::confirmar()
 {
-    if( _id_cliente <= 0 ) {
+   /* if( _id_cliente <= 0 ) {
         QMessageBox::information( this, "Error", "No se puede generar un plan de cuotas para un cliente Consumidor final o desconocido" );
         return;
     }
@@ -280,7 +280,7 @@ void FormSimularCuotas::confirmar()
     }
     delete mpc;
     emit confirmarCuotas( id_plan_cuota );
-    return;
+    return;*/
 }
 
 /*!

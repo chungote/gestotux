@@ -35,6 +35,8 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
 
     ActSimular = new QAction( this );
     ActSimular->setText( "Simular" );
+    ActSimular->setStatusTip( "Simular un plan de cuotas" );
+    ActSimular->setIcon( QIcon( ":/imagenes/simular_cuotas.png" ) );
     connect( ActSimular, SIGNAL( triggered() ), this, SLOT( simular() ) );
 
     ActTerminado = new QAction( this );
@@ -45,6 +47,7 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
 
     ActDetalles = new QAction( this );
     ActDetalles->setText( "Detalles" );
+    ActDetalles->setStatusTip( "Ver los detalles de un plan de cuotas seleccionado" );
     ActDetalles->setIcon( QIcon( ":/imagenes/cuotas_detalle.png" ) );
     connect( ActDetalles, SIGNAL( triggered() ), this, SLOT( verDetalles() ) );
 
@@ -57,7 +60,7 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
     ActCancelar = new QAction( this );
     ActCancelar->setText( "Cancelar" );
     ActCancelar->setIcon( QIcon( ":/imagenes/cancelar_cuota.png" ) );
-    ActCancelar->setStatusTip( "Ingresa un nuevo pago mediante un recibo" );
+    ActCancelar->setStatusTip( "Cancelar un plan de cuotas" );
     connect( ActCancelar, SIGNAL( triggered() ), this, SLOT( cancelar() ) );
 
     QAction *ActSep = new QAction( this );
