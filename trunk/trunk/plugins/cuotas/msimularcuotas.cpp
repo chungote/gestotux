@@ -111,7 +111,7 @@ QVariant MSimularCuotas::data( const QModelIndex &index, int role ) const
                 case 1:
                 {
                     if( index.row() == 0 ) {
-                        return fecha_inicio;
+                        return fecha_inicio.toString( Qt::SystemLocaleShortDate );
                     } else {
                         return fecha_inicio.addDays( MPlanCuota::diasEnPeriodo( periodo, fecha_inicio ) * index.row() ).toString( Qt::SystemLocaleShortDate );
                     }
