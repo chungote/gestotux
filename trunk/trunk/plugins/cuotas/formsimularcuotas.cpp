@@ -22,11 +22,12 @@ EVentana(parent), Ui::FormSimularCuotasBase()
 {
     setupUi(this);
     setWindowTitle( "Simulador de cuotas" );
+    setWindowIcon( QIcon( ":/imagenes/simular_cuota.png" ) );
 
     ActSimular = new QAction( this );
     ActSimular->setText( "Simular" );
-    ActSimular->setStatusTip( "Simula los pagos según los datos ingresados" );
-    //ActSimular->setIcon( QIcon( ":/imagenes/" ) );
+    ActSimular->setStatusTip( "Simula los pagos segÃºn los datos ingresados" );
+    ActSimular->setIcon( QIcon( ":/imagenes/simular_cuota.png" ) );
     connect( ActSimular, SIGNAL( triggered() ), this, SLOT( simular() ) );
 
     ActImprimir = new QAction( this );
@@ -108,7 +109,7 @@ void FormSimularCuotas::changeEvent(QEvent *e)
 
 /*!
  * \fn FormSimularCuotas::simular()
- * Genera todos los datos para la simulación
+ * Genera todos los datos para la simulaciÃ³n
  */
 void FormSimularCuotas::simular()
 {
@@ -206,19 +207,19 @@ void FormSimularCuotas::generaReporte()
     cursor.insertBlock();
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertText( "Firma del contrayente: ________________________" );
+    cursor.insertText( "Firma del contrayente: ___________________________" );
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertText( QString::fromUtf8( "Aclaración: ____________________________________________" ) );
+    cursor.insertText( QString::fromUtf8( "AclaraciÃ³n: ________________________________________________" ) );
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertHtml( QString::fromUtf8( "<small>En caso de provocarse un atraso en la fecha de pago de cualquiera de las cuotas, se aplicará el recargo correspondiente tal cual se hace actualmenete con cualquier recibo emitido por nuestra entidad.</small>" ) );
+    cursor.insertHtml( QString::fromUtf8( "<small>En caso de provocarse un atraso en la fecha de pago de cualquiera de las cuotas, se aplicarÃ¡ el recargo correspondiente tal cual se hace actualmenete con cualquier recibo emitido por nuestra entidad.</small>" ) );
 
     // Cabecera
     cursor.movePosition( QTextCursor::Start );
     cursor.insertBlock();
 #ifdef Q_OS_WIN
-    cursor.insertHtml( "<h1> HiComp Computaci�n</h1><br />" );
+    cursor.insertHtml( "<h1> HiComp Computación</h1><br />" );
 #else
     cursor.insertHtml( "<h1>" + ERegistroPlugins::getInstancia()->pluginInfo()->empresa() + "</h1><br />" );
 #endif
@@ -259,7 +260,7 @@ void FormSimularCuotas::confirmar()
         return;
     }
     // Consulto si quiere imprimir el plan de cuotas
-    int ret = QMessageBox::question( this, QString::fromUtf8("¿Imprimir?"), QString::fromUtf8("¿Desea imprimir el resumen de cuotas para que el cliente lo firme?"), QMessageBox::Yes, QMessageBox::No );
+    int ret = QMessageBox::question( this, QString::fromUtf8("Â¿Imprimir?"), QString::fromUtf8("Â¿Desea imprimir el resumen de cuotas para que el cliente lo firme?"), QMessageBox::Yes, QMessageBox::No );
     if( ret == QMessageBox::Yes ) {
         imprimir();
     }

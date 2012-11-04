@@ -54,6 +54,7 @@ bool CuotasPlugin::inicializar()
  ActSimular = new QAction( this );
  ActSimular->setText( "Simular Cuotas" );
  ActSimular->setStatusTip( "Abre el simulador de cuotas" );
+ ActSimular->setIcon( QIcon( ":/imagenes/simular_cuota.png" ) );
  connect( ActSimular, SIGNAL( triggered() ), this, SLOT( simularCuotas() ) );
 
  return true;

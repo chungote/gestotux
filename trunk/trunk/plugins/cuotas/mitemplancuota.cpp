@@ -54,12 +54,39 @@ QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
     if( item.isValid() ) {
         switch( item.column() ) {
             case 0: // Identificador del item del plan de cuota
+            case 1: // Identificador del plan de cuota padre
+            case 2: // Numero de cuota
             {
                 switch( role ) {
                     case Qt::DisplayRole:
                     { return QString( "#%1").arg( QSqlRelationalTableModel::data( item, role ).toInt() ); break; }
                     case Qt::EditRole:
                     { return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+                    default:
+                    { return QSqlRelationalTableModel::data( item, role ); break; }
+                }
+                break;
+            }
+            case 3: // Importe
+            {
+                switch( role ) {
+                    case Qt::DisplayRole:
+                    { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble(), 10, 'f', 2 ); break; }
+                    case Qt::EditRole:
+                    { return QSqlRelationalTableModel::data( item, role ).toDouble(); break; }
+                    default:
+                    { return QSqlRelationalTableModel::data( item, role ); break; }
+                }
+                break;
+            }
+            case 4: // Fecha de vencimiento
+            case 5: // Fecha de Pago
+            {
+                switch( role ) {
+                    case Qt::DisplayRole:
+                    { return QSqlRelationalTableModel::data( item, role ).toDate().toString(); break; }
+                    case Qt::EditRole:
+                    { return QSqlRelationalTableModel::data( item, role ).toDate(); break; }
                     default:
                     { return QSqlRelationalTableModel::data( item, role ); break; }
                 }

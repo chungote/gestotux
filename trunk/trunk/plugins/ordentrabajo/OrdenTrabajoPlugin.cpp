@@ -29,7 +29,7 @@ bool OrdenTrabajoPlugin::inicializar()
  //////////////////////////////
  ActOrdenTrabajo = new QAction( "Ordenes de trabajo", this );
  ActOrdenTrabajo->setStatusTip( "Muestra la lista de ordenes de trabajo" );
- //ActOrdenTrabajo->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
+ ActOrdenTrabajo->setIcon( QIcon( ":/imagenes/orden_trabajo.png" ) );
  connect( ActOrdenTrabajo, SIGNAL( triggered() ), this, SLOT( verOrdenesTrabajo() ) );
  ///////////////////////////////////
  // Agrega una nueva orden de trabajo
@@ -53,8 +53,7 @@ bool OrdenTrabajoPlugin::inicializar()
  //ActVerTipoOperacion->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
  connect( ActVerTipoOperacion, SIGNAL( triggered() ), this, SLOT( verTipoOperacion() ) );
 
- //return true;
- return false;
+ return true;
 }
 
 bool OrdenTrabajoPlugin::verificarTablas( QStringList tablas )
@@ -86,7 +85,7 @@ QList< QActionGroup * > OrdenTrabajoPlugin::accionesBarra()
  compras->addAction( ActProveedores );
  lista.append( compras );
  return lista;*/
-    return QList<QActionGroup *>();
+ return QList<QActionGroup *>();
 }
 
 QString OrdenTrabajoPlugin::nombre() const
@@ -111,7 +110,7 @@ void OrdenTrabajoPlugin::crearToolBar(QToolBar* /*t*/)
 {}
 
 QAction *OrdenTrabajoPlugin::botonPantallaInicial()
-{ /*return ActProveedores;*/ return new QAction( this ); }
+{ return ActOrdenTrabajo; }
 
 /*!
     \fn OrdenTrabajoPlugin::seCierraGestotux()
