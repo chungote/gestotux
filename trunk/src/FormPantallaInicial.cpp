@@ -169,6 +169,16 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     } else {
         TBRemitos->setVisible( false );
     }
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Plugin de ordenes de trabajo
+    if( ERegistroPlugins::getInstancia()->existePlugin( "ordentrabajo" ) ) {
+        TBOrdenTrabajo->setIcon( ERegistroPlugins::getInstancia()->plugin("ordentrabajo")->botonPantallaInicial()->icon() );
+        connect(  TBOrdenTrabajo, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("ordentrabajo")->botonPantallaInicial(), SIGNAL(triggered()) );
+        //TBOrdenTrabajo->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_T ) );
+        TBOrdenTrabajo->setStatusTip( "Muestra la lista de ordenes de trabajo" );
+    } else {
+        TBOrdenTrabajo->setVisible( false );
+    }
     // Dibujo las flechas
    /* EFlecha *f1 = new EFlecha( this );
     f1->setearOrigen( TBPresupuestos );

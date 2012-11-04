@@ -24,13 +24,13 @@ EVentana(parent), Ui::FormDetalleCuotasBase()
 
     ActImprimir = new QAction( this );
     ActImprimir->setText( "Imprimir" );
-    ActImprimir->setText( QString::fromUtf8( "Imprimir" ) );
+    ActImprimir->setText( QString::fromUtf8( "Imprimir detalle completo del plan de cuota" ) );
     ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
     connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
     ActPdf = new QAction( this );
     ActPdf->setText( "PDF" );
-    ActPdf->setStatusTip( "Convierte a PDF la simulacion actual" );
+    ActPdf->setStatusTip( "Convierte a PDF la información actual" );
     ActPdf->setIcon( QIcon( ":/imagenes/acroread.png" ) );
     connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
 

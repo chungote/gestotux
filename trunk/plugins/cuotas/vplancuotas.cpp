@@ -31,12 +31,12 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
 {
     this->setObjectName( "visorplancuotas" );
     this->setWindowTitle( "Planes de cuota activos" );
-    this->setWindowIcon( QIcon( ":/imagenes/cuotas.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/cuota.png" ) );
 
     ActSimular = new QAction( this );
     ActSimular->setText( "Simular" );
     ActSimular->setStatusTip( "Simular un plan de cuotas" );
-    ActSimular->setIcon( QIcon( ":/imagenes/simular_cuotas.png" ) );
+    ActSimular->setIcon( QIcon( ":/imagenes/simular_cuota.png" ) );
     connect( ActSimular, SIGNAL( triggered() ), this, SLOT( simular() ) );
 
     ActTerminado = new QAction( this );

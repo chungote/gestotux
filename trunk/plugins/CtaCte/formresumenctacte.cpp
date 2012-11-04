@@ -304,14 +304,14 @@ void FormResumenCtaCte::pagarTodo()
         QString texto = "Pago total del saldo restante en cuenta corriente.";
         int id_cliente = MCuentaCorriente::idClientePorCtaCte( _numero_cuenta );
         if( id_cliente == -1 ) {
-            QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo buscar un dato para hacer el recibo. No se realizará nada" ) );
+            QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo buscar un dato para hacer el recibo. No se realizarÃ¡ nada" ) );
             return;
         }
         FormAgregarRecibo *f = new FormAgregarRecibo();
         f->setearDatos( id_cliente, texto, saldo );
         emit agregarVentana( f );
     } else {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funci�n.\n Contacte su administrador de sistema." ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal función.\n Contacte su administrador de sistema." ) );
         return;
     }
     return;
