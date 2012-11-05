@@ -5,6 +5,8 @@
 #include "preferencias.h"
 #include "eregistroplugins.h"
 #include "einfoprogramainterface.h"
+#include "../ventas/MFactura.h"
+#include "NumeroComprobante.h"
 
 #include <QTextTable>
 #include <QTextDocument>
@@ -15,6 +17,9 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QMessageBox>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QSqlRecord>
 
 FormDetalleCuotas::FormDetalleCuotas(QWidget *parent) :
 EVentana(parent), Ui::FormDetalleCuotasBase()
@@ -191,8 +196,43 @@ void FormDetalleCuotas::pdf()
  * Setea el id de cuota correspondiente.
  * \param id Identificador del plan de cuotas
  */
-void FormDetalleCuotas::setearIdPlanCuota( int /*id*/ ) {
-    qWarning( "Carga de datos no implementada!" );
+void FormDetalleCuotas::setearIdPlanCuota( int id ) {
     // Cargo los datos de la cuota
-
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT * FROM plan_cuota WHERE id_plan_cuota = %1" ).arg( id ) ) ) {
+        if( cola.next() ) {
+            SBCantidad->setValue(       cola.record().value("cantidad_cuotas").toInt()    );
+            CBPeriodo->setCurrentIndex( cola.record().value("tipo_periodo"   ).toInt()    );
+            DEInicio->setDate(          cola.record().value("fecha_inicio"   ).toDate()   );
+            DSBEntrega->setValue(       cola.record().value("entrega_inicial").toDouble() );
+            DSBInteres->setValue(       cola.record().value("recargo"        ).toDouble() );
+            int id_factura = cola.record().value("id_factura").toInt();
+            if( cola.exec( QString( "SELECT serie, numero, id_cliente FROM factura WHERE id_factura = %1").arg( id_factura ) ) ){
+                if( cola.next() ) {
+                    LFactura->setText( "Numero de factura: #"+MFactura::obtenerComprobante( id_factura ).aCadena() );
+                    CBCliente->setearId( cola.record().value("id_cliente").toInt() );
+                } else {
+                    qWarning( "No se pudo cargar los datos de la factura - seguramente no existe");
+                }
+            } else {
+                qWarning( "Error al intentar cargar los datos de la factura asociada al plan de cuotas" );
+                qDebug( "Error de exec de la cola de obtención de datos de la factura de una cuota" );
+                qDebug( cola.lastError().text().toLocal8Bit() );
+                qDebug( cola.lastQuery().toLocal8Bit() );
+                return;
+            }
+            // Cargo los datos de los pagos y no pagos
+            qWarning( "No se implementó todavía la carga d los datos de los items de cuotas" );
+        } else {
+            qWarning( "Error de seleccion de datos - Seguramente el plan de cuota no existe" );
+            qDebug( "Error de next al ejecutar la cola de carga de datos de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qWarning( "Existió un error al cargar los datos de la cuota" );
+        qDebug( "Error al ejecutar la cola de carga de datos de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false; /// Sarasa
 }
