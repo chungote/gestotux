@@ -15,12 +15,12 @@
  </grid>
  <size>A4</size>
  <portrait/>
- <topmargin>50</topmargin>
- <bottommargin>50</bottommargin>
- <rightmargin>50</rightmargin>
- <leftmargin>50</leftmargin>
+ <topmargin>0</topmargin>
+ <bottommargin>0</bottommargin>
+ <rightmargin>0</rightmargin>
+ <leftmargin>0</leftmargin>
  <rpthead>
-  <height>269</height>
+  <height>288.271</height>
   <image>
    <rect>
     <x>119</x>
@@ -76,14 +76,14 @@ end
   </image>
   <label>
    <rect>
-    <x>383</x>
-    <y>15</y>
+    <x>509</x>
+    <y>21</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
     <face>Sans Serif</face>
-    <size>12</size>
+    <size>14</size>
     <weight>bold</weight>
    </font>
    <right/>
@@ -104,7 +104,7 @@ end
    </font>
    <hcenter/>
    <vcenter/>
-   <string>Gestotux 0.5</string>
+   <string>Gestotux 0.5b</string>
   </label>
   <label>
    <rect>
@@ -124,14 +124,14 @@ end
   </label>
   <label>
    <rect>
-    <x>19</x>
-    <y>120</y>
+    <x>22</x>
+    <y>118</y>
     <width>89</width>
     <height>25</height>
    </rect>
    <font>
     <face>Sans Serif</face>
-    <size>11</size>
+    <size>12</size>
     <weight>bold</weight>
    </font>
    <right/>
@@ -140,14 +140,14 @@ end
   </label>
   <field>
    <rect>
-    <x>487</x>
-    <y>16.9</y>
+    <x>613</x>
+    <y>25.9</y>
     <width>198</width>
     <height>21</height>
    </rect>
    <font>
     <face>Sans Serif</face>
-    <size>11</size>
+    <size>12</size>
     <weight>normal</weight>
    </font>
    <left/>
@@ -161,7 +161,7 @@ end
    <rect>
     <x>119</x>
     <y>119</y>
-    <width>597</width>
+    <width>668</width>
     <height>23</height>
    </rect>
    <font>
@@ -178,18 +178,18 @@ end
   </field>
   <label>
    <rect>
-    <x>8</x>
-    <y>62</y>
-    <width>702</width>
-    <height>32.1</height>
+    <x>433</x>
+    <y>56</y>
+    <width>347</width>
+    <height>32.1178</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
-    <size>18</size>
+    <face>Times New Roman</face>
+    <size>24</size>
     <weight>bold</weight>
    </font>
-   <hcenter/>
-   <vcenter/>
+   <left/>
+   <top/>
    <string>Comprobante de Baja de servicio</string>
   </label>
   <label>
@@ -201,7 +201,7 @@ end
    </rect>
    <font>
     <face>Sans Serif</face>
-    <size>11</size>
+    <size>12</size>
     <weight>bold</weight>
    </font>
    <right/>
@@ -212,7 +212,7 @@ end
    <rect>
     <x>119</x>
     <y>142</y>
-    <width>599</width>
+    <width>694</width>
     <height>23</height>
    </rect>
    <font>
@@ -231,7 +231,7 @@ end
    <rect>
     <x>118</x>
     <y>99</y>
-    <width>596</width>
+    <width>661</width>
     <height>23</height>
    </rect>
    <font>
@@ -255,7 +255,7 @@ end
    </rect>
    <font>
     <face>Sans Serif</face>
-    <size>11</size>
+    <size>12</size>
     <weight>bold</weight>
    </font>
    <right/>
@@ -264,53 +264,53 @@ end
   </label>
   <label>
    <rect>
-    <x>5.1</x>
-    <y>171</y>
-    <width>728</width>
-    <height>23.6</height>
+    <x>31.1</x>
+    <y>179</y>
+    <width>707</width>
+    <height>23.5989</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
+    <face>Times New Roman</face>
+    <size>14</size>
     <weight>normal</weight>
    </font>
    <left/>
    <top/>
-   <string>Mediante el siguiente comprobante el cliente especificado con su numero y razon social toma conocimiento de </string>
+   <string>Mediante el siguiente comprobante el cliente especificado con su numero y razon social toma conocimiento de que desea</string>
   </label>
   <line>
    <xstart>11</xstart>
    <ystart>167</ystart>
-   <xend>715.274</xend>
+   <xend>804.274</xend>
    <yend>167</yend>
    <weight>0</weight>
   </line>
   <label>
    <rect>
-    <x>4</x>
-    <y>187</y>
+    <x>31</x>
+    <y>200</y>
     <width>707</width>
     <height>23.6</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
+    <face>Times New Roman</face>
+    <size>14</size>
     <weight>normal</weight>
    </font>
    <left/>
    <top/>
-   <string>que desea dejar de recibir las prestaciones presentas por el servicio especificado.</string>
+   <string>dejar de recibir las prestaciones presentas por el servicio especificado.</string>
   </label>
   <label>
    <rect>
-    <x>5.6</x>
-    <y>207</y>
+    <x>31.6</x>
+    <y>220</y>
     <width>707</width>
-    <height>19.6</height>
+    <height>23.6</height>
    </rect>
    <font>
     <face>Times New Roman</face>
-    <size>10</size>
+    <size>14</size>
     <weight>normal</weight>
    </font>
    <left/>
@@ -319,35 +319,35 @@ end
   </label>
   <label>
    <rect>
-    <x>5.2</x>
-    <y>224</y>
-    <width>693</width>
-    <height>19</height>
-   </rect>
-   <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <left/>
-   <top/>
-   <string>de la desicion del cliente de cesar la prestacion del servicio de manera inmediata. Se compromete a no generarle </string>
-  </label>
-  <label>
-   <rect>
-    <x>4.8</x>
+    <x>32.2</x>
     <y>239</y>
     <width>697</width>
     <height>20</height>
    </rect>
    <font>
-    <face>Bitstream Charter</face>
-    <size>10</size>
+    <face>Times New Roman</face>
+    <size>14</size>
     <weight>normal</weight>
    </font>
    <left/>
    <top/>
-   <string>nuevas deudas al cliente y  retener la prestación que estaba brindandose.</string>
+   <string>de la desicion del cliente de cesar la prestacion del servicio de manera inmediata. Se compromete a no generarle nuevas</string>
+  </label>
+  <label>
+   <rect>
+    <x>32.8</x>
+    <y>260</y>
+    <width>697</width>
+    <height>20</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>14</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <top/>
+   <string>deudas al cliente y  retener la prestación que estaba brindandose.</string>
   </label>
  </rpthead>
  <rptfoot>
@@ -370,7 +370,7 @@ end
   </label>
   <label>
    <rect>
-    <x>273.035</x>
+    <x>282.035</x>
     <y>50.3764</y>
     <width>117</width>
     <height>25</height>

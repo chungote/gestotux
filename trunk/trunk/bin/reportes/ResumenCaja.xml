@@ -11,7 +11,7 @@
   <y>0.05</y>
  </grid>
  <size>A4</size>
- <portrait/>
+ <landscape/>
  <topmargin>50</topmargin>
  <bottommargin>50</bottommargin>
  <rightmargin>50</rightmargin>
@@ -24,7 +24,7 @@
           t1.egreso,
           (select SUM(t2.ingreso)-SUM(t2.egreso) FROM movimiento_caja AS t2 WHERE t2.id_caja = &lt;? value( "id_caja" ) ?> AND t2.id_movimiento &lt;= t1.id_movimiento ) AS saldo
 FROM movimiento_caja AS t1
-WHERE t1.id_caja = &lt;? value( "id_caja", "filtro" ) ?></sql>
+WHERE t1.id_caja = &lt;? value( "id_caja" ) ?></sql>
  </querysource>
  <querysource>
   <name>caja</name>
@@ -38,9 +38,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   <height>100.735</height>
   <label>
    <rect>
-    <x>-7.36</x>
-    <y>-8.21</y>
-    <width>740</width>
+    <x>9.64</x>
+    <y>-6.21</y>
+    <width>1050</width>
     <height>40.9</height>
    </rect>
    <font>
@@ -54,9 +54,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <label>
    <rect>
-    <x>1.99573</x>
-    <y>33.9</y>
-    <width>51</width>
+    <x>-0.00427</x>
+    <y>35.9</y>
+    <width>115</width>
     <height>22.4</height>
    </rect>
    <font>
@@ -70,9 +70,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <field>
    <rect>
-    <x>53</x>
-    <y>35.1</y>
-    <width>184</width>
+    <x>119</x>
+    <y>38.1</y>
+    <width>169</width>
     <height>18.1</height>
    </rect>
    <font>
@@ -89,8 +89,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </field>
   <label>
    <rect>
-    <x>5.18236</x>
-    <y>78.2255</y>
+    <x>10.8766</x>
+    <y>77.5137</y>
     <width>72.4929</width>
     <height>24.8056</height>
    </rect>
@@ -105,9 +105,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <label>
    <rect>
-    <x>82.968</x>
-    <y>81.1787</y>
-    <width>340.383</width>
+    <x>95.78</x>
+    <y>77.6198</y>
+    <width>629.366</width>
     <height>20.6394</height>
    </rect>
    <font>
@@ -121,9 +121,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <label>
    <rect>
-    <x>512.021</x>
-    <y>77.9354</y>
-    <width>65.8828</width>
+    <x>775</x>
+    <y>76.5</y>
+    <width>94.8</width>
     <height>21.8</height>
    </rect>
    <font>
@@ -137,9 +137,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <label>
    <rect>
-    <x>580.352</x>
-    <y>77.9298</y>
-    <width>60.156</width>
+    <x>874</x>
+    <y>75.3</y>
+    <width>90.3</width>
     <height>21.8</height>
    </rect>
    <font>
@@ -153,9 +153,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <label>
    <rect>
-    <x>653.216</x>
-    <y>76.9937</y>
-    <width>70.3977</width>
+    <x>969</x>
+    <y>75.5583</y>
+    <width>94.8</width>
     <height>22.3417</height>
    </rect>
    <font>
@@ -170,43 +170,43 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   <line>
    <xstart>4.00542</xstart>
    <ystart>77.2967</ystart>
-   <xend>725.879</xend>
-   <yend>77.0605</yend>
+   <xend>1062.29</xend>
+   <yend>76.5533</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>724.634</xstart>
-   <ystart>77.3948</ystart>
-   <xend>724.655</xend>
-   <yend>100.226</yend>
+   <xstart>1062.46</xstart>
+   <ystart>77.1146</ystart>
+   <xend>1062.24</xend>
+   <yend>97.5354</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>654.694</xstart>
-   <ystart>77.6171</ystart>
-   <xend>654.72</xend>
-   <yend>97.6773</yend>
+   <xstart>965.941</xstart>
+   <ystart>78.5813</ystart>
+   <xend>965.726</xend>
+   <yend>98.6415</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>578.976</xstart>
-   <ystart>77.5948</ystart>
-   <xend>578.993</xend>
-   <yend>98.3762</yend>
+   <xstart>872.09</xstart>
+   <ystart>77.8358</ystart>
+   <xend>871.875</xend>
+   <yend>98.6172</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>511.077</xstart>
-   <ystart>78.3051</ystart>
-   <xend>510.982</xend>
-   <yend>98.1243</yend>
+   <xstart>768.512</xstart>
+   <ystart>78.557</ystart>
+   <xend>768.658</xend>
+   <yend>98.6172</yend>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>80.0329</xstart>
-   <ystart>78.1572</ystart>
-   <xend>80.1784</xend>
-   <yend>98.9385</yend>
+   <xstart>92.8449</xstart>
+   <ystart>78.869</ystart>
+   <xend>92.9904</xend>
+   <yend>99.6503</yend>
    <weight>2</weight>
   </line>
   <line>
@@ -217,17 +217,17 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    <weight>2</weight>
   </line>
   <line>
-   <xstart>3.54193</xstart>
+   <xstart>4.26506</xstart>
    <ystart>99.9005</ystart>
-   <xend>723.729</xend>
-   <yend>99.525</yend>
+   <xend>1062.55</xend>
+   <yend>99.1571</yend>
    <weight>2</weight>
   </line>
   <label>
    <rect>
-    <x>242</x>
-    <y>32.9</y>
-    <width>85</width>
+    <x>277</x>
+    <y>35.9</y>
+    <width>115</width>
     <height>22.4</height>
    </rect>
    <font>
@@ -241,8 +241,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <field>
    <rect>
-    <x>331</x>
-    <y>34.1</y>
+    <x>396</x>
+    <y>38.1</y>
     <width>169</width>
     <height>18.1</height>
    </rect>
@@ -260,8 +260,8 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </field>
   <label>
    <rect>
-    <x>488</x>
-    <y>30.9</y>
+    <x>646</x>
+    <y>31.9</y>
     <width>115</width>
     <height>22.4</height>
    </rect>
@@ -276,9 +276,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
   </label>
   <field>
    <rect>
-    <x>605</x>
-    <y>33.1</y>
-    <width>115</width>
+    <x>765</x>
+    <y>34.1</y>
+    <width>169</width>
     <height>18.1</height>
    </rect>
    <font>
@@ -292,14 +292,14 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
     <query>caja</query>
     <column>saldo</column>
    </data>
-   <format>$ %10.2f</format>
+   <format>$ %10.3f</format>
   </field>
  </rpthead>
  <section>
   <name>resumen</name>
   <detail>
    <key>
-    <query>datos</query>
+    <query>resumen</query>
    </key>
    <height>24.3762</height>
    <field>
@@ -325,7 +325,7 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
     <rect>
      <x>96.7</x>
      <y>1.46</y>
-     <width>412.519</width>
+     <width>632</width>
      <height>17.6</height>
     </rect>
     <font>
@@ -342,9 +342,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    </field>
    <field>
     <rect>
-     <x>654.778</x>
-     <y>0.893526</y>
-     <width>70.622</width>
+     <x>965</x>
+     <y>2.97</y>
+     <width>97.6</width>
      <height>22.8</height>
     </rect>
     <font>
@@ -362,9 +362,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    </field>
    <field>
     <rect>
-     <x>581.134</x>
-     <y>1.31842</y>
-     <width>72.8897</width>
+     <x>875</x>
+     <y>3.71</y>
+     <width>88.1</width>
      <height>21.3</height>
     </rect>
     <font>
@@ -382,9 +382,9 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
    </field>
    <field>
     <rect>
-     <x>511.145</x>
-     <y>2.1533</y>
-     <width>68.9459</width>
+     <x>772</x>
+     <y>4.46</y>
+     <width>100</width>
      <height>19.1</height>
     </rect>
     <font>
@@ -401,21 +401,40 @@ WHERE id_caja = &lt;? value( "id_caja" ) ?></sql>
     <format>$ %0.2f</format>
    </field>
    <line>
-    <xstart>7.54146</xstart>
-    <ystart>22.9402</ystart>
-    <xend>724.908</xend>
-    <yend>22.6292</yend>
+    <xstart>5.14988</xstart>
+    <ystart>22.143</ystart>
+    <xend>1062.24</xend>
+    <yend>22.143</yend>
     <weight>0</weight>
    </line>
   </detail>
  </section>
  <rptfoot>
   <height>33.8888</height>
+  <field>
+   <rect>
+    <x>313.517</x>
+    <y>4.63122</y>
+    <width>475.907</width>
+    <height>25</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <vcenter/>
+   <data>
+    <query>Context Query</query>
+    <column>report_title</column>
+   </data>
+  </field>
   <line>
    <xstart>3.63944</xstart>
    <ystart>3.45269</ystart>
-   <xend>724.846</xend>
-   <yend>3.12055</yend>
+   <xend>1061.93</xend>
+   <yend>2.70925</yend>
    <weight>2</weight>
   </line>
  </rptfoot>

@@ -40,6 +40,7 @@ public slots:
     void imprimir();
     void menuContextual( const QModelIndex &indice, QMenu *menu );
     void aPdf();
+    void verRecibo();
     void cancelarPago();
     void soloCancelados();
     void soloNoPagados();
@@ -48,6 +49,7 @@ private:
     QAction *ActCancelarRecibo;
     QAction *ActSoloNoPagados;
     QAction *ActSoloCancelados;
+    QAction *ActVerRecibo;
     QModelIndex indiceMenu;
 
     MVPagos *modelo;

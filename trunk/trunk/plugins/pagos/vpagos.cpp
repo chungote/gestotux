@@ -29,6 +29,7 @@
 #include "EReporte.h"
 #include "dsino.h"
 #include "eregistroplugins.h"
+#include "evisorinformes.h"
 
 VPagos::VPagos(QWidget *parent)
  : EVLista(parent)
@@ -50,6 +51,12 @@ VPagos::VPagos(QWidget *parent)
      vista->hideColumn( 6 );
  }
  vista->setItemDelegateForColumn( 7, new DSiNo( vista ) );
+
+ ActVerRecibo = new QAction( this );
+ ActVerRecibo->setText( "Ver" );
+ ActVerRecibo->setStatusTip( "Muestra una vista previa del recibo" );
+ ActVerRecibo->setIcon( QIcon( ":/imagenes/zoom.png" ) );
+ connect( ActVerRecibo, SIGNAL( triggered() ), this, SLOT( verRecibo() ) );
 
  ActCancelarRecibo = new QAction( this );
  ActCancelarRecibo->setText( "Anular" );
@@ -80,6 +87,7 @@ VPagos::VPagos(QWidget *parent)
  agregarFiltroBusqueda( "Importe hasta"        , " `precio` <= %1" );
  habilitarBusqueda();
 
+ addAction( ActVerRecibo );
  addAction( ActAgregar );
  addAction( ActCancelarRecibo );
  addAction( ActVerTodos );
@@ -180,6 +188,44 @@ void VPagos::aPdf()
         }
     }
     delete rep;
+    return;
+}
+
+/*!
+ * \brief VPagos::verRecibo()
+ * Permite tener una vista previa del recibo impreso
+ */
+void VPagos::verRecibo()
+{
+    // Imprime el recibo que se encuentre seleccionado
+    QItemSelectionModel *selectionModel = vista->selectionModel();
+    QModelIndexList indices = selectionModel->selectedRows();
+    if( indices.size() < 1 )
+    {
+      QMessageBox::warning( this, "Seleccione un item",
+                      QString::fromUtf8( "Por favor, seleccióne al menos un item para verlo" ),
+                      QMessageBox::Ok );
+      return;
+    }
+    QModelIndex indice;
+    foreach( indice, indices )
+    {
+        if( indice.isValid() )
+        {
+            EVisorInformes *vi = new EVisorInformes();
+            EReporte *rep = new EReporte( 0 );
+            rep->recibo();
+            rep->setParent( vi );
+            ParameterList lista;
+            QModelIndex r = indice.model()->index( indice.row(), 0 );
+            QModelIndex c = indice.model()->index( indice.row(), 1 );
+            lista.append( "id_recibo", r.data( Qt::EditRole ).toInt() );
+            rep->setearParametros( lista );
+            connect( vi, SIGNAL( paintRequested( QPrinter* ) ), rep, SLOT( imprimir( QPrinter* ) ) );
+            lista.clear();
+            emit agregarVentana( vi );
+        }
+    }
     return;
 }
 

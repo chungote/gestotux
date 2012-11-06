@@ -3,9 +3,6 @@
  <title>Listado de Clientes Adheridos a un servicio</title>
  <name>ListadoClientesAdheridos</name>
  <description>Listado de todos los clientes adheridos a un servicio especifico</description>
- <parameter default="" active="false" listtype="static" type="string" name="filtro">
-  <description></description>
- </parameter>
  <parameter default="1" active="true" listtype="static" type="integer" name="id_servicio">
   <description></description>
  </parameter>
@@ -21,28 +18,23 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>datos</name>
-  <sql>SELECT cc.id AS id,
-       cc.razon_social AS razon_social,
-       strftime("%d/%m/%Y", sc.fecha_alta) AS fecha_alta
+  <sql>SELECT cc.razon_social AS razon_social,
+       sc.fecha_alta AS fecha_alta
 FROM `servicios_clientes` as sc, `clientes` AS cc
 WHERE sc.id_cliente = cc.id
   AND sc.id_servicio = &lt;? value("id_servicio") ?>
-&lt;? if exists( "filtro" ) ?>
-AND &lt;? value("filtro") ?>
-&lt;? endif ?>
 ORDER BY cc.razon_social;</sql>
  </querysource>
  <querysource>
   <name>servicio</name>
   <sql>SELECT nombre,
-       strftime( "%d/%m/%Y", fecha_alta ) AS fecha_alta
+       fecha_alta
 FROM `servicios`
-WHERE id_servicio = &lt;? value("id_servicio")?>;
-</sql>
+WHERE id_servicio = &lt;? value("id_servicio")?>;</sql>
  </querysource>
  <pghead>
   <firstpage/>
-  <height>84.5265</height>
+  <height>86</height>
   <label>
    <rect>
     <x>6</x>
@@ -95,7 +87,7 @@ WHERE id_servicio = &lt;? value("id_servicio")?>;
    <rect>
     <x>57.4326</x>
     <y>24.7023</y>
-    <width>209.986</width>
+    <width>100</width>
     <height>25</height>
    </rect>
    <font>
@@ -112,8 +104,8 @@ WHERE id_servicio = &lt;? value("id_servicio")?>;
   </field>
   <field>
    <rect>
-    <x>419.57</x>
-    <y>25.4235</y>
+    <x>441.567</x>
+    <y>24.7023</y>
     <width>100</width>
     <height>25</height>
    </rect>
@@ -131,15 +123,15 @@ WHERE id_servicio = &lt;? value("id_servicio")?>;
   </field>
   <label>
    <rect>
-    <x>64.1249</x>
-    <y>59.7118</y>
-    <width>523</width>
+    <x>2.2</x>
+    <y>59</y>
+    <width>586.852</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Sans Serif</face>
+    <face>Helvetica</face>
     <size>11</size>
-    <weight>bold</weight>
+    <weight>normal</weight>
    </font>
    <left/>
    <vcenter/>
@@ -147,15 +139,15 @@ WHERE id_servicio = &lt;? value("id_servicio")?>;
   </label>
   <label>
    <rect>
-    <x>598</x>
-    <y>60.7</y>
+    <x>598.13</x>
+    <y>60.6583</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Sans Serif</face>
+    <face>Helvetica</face>
     <size>11</size>
-    <weight>bold</weight>
+    <weight>normal</weight>
    </font>
    <left/>
    <vcenter/>
@@ -163,92 +155,58 @@ WHERE id_servicio = &lt;? value("id_servicio")?>;
   </label>
   <label>
    <rect>
-    <x>599</x>
-    <y>84.7</y>
+    <x>599.455</x>
+    <y>84.6811</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Sans Serif</face>
+    <face>Helvetica</face>
     <size>11</size>
-    <weight>bold</weight>
+    <weight>normal</weight>
    </font>
    <left/>
    <vcenter/>
    <string>Fecha de alta</string>
   </label>
-  <label>
-   <rect>
-    <x>2.5522</x>
-    <y>59.501</y>
-    <width>56.5814</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>bold</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>#CC</string>
-  </label>
-  <line>
-   <xstart>4.80708</xstart>
-   <ystart>62.4613</ystart>
-   <xend>724.768</xend>
-   <yend>61.7495</yend>
-   <weight>2</weight>
-  </line>
-  <line>
-   <xstart>4.80708</xstart>
-   <ystart>79.544</ystart>
-   <xend>724.768</xend>
-   <yend>78.8322</yend>
-   <weight>2</weight>
-  </line>
  </pghead>
  <pghead>
   <height>23.4469</height>
   <label>
    <rect>
-    <x>63.5</x>
-    <y>1.56</y>
-    <width>529</width>
-    <height>23.9</height>
+    <x>0.688597</x>
+    <y>1.56222</y>
+    <width>586.852</width>
+    <height>23.8651</height>
    </rect>
    <font>
-    <face>Sans Serif</face>
+    <face>Helvetica</face>
     <size>11</size>
-    <weight>bold</weight>
+    <weight>normal</weight>
    </font>
    <left/>
    <vcenter/>
    <string>Razon social</string>
   </label>
-  <label>
+  <field>
    <rect>
-    <x>2.67</x>
-    <y>2.09</y>
-    <width>56.5814</width>
+    <x>600.801</x>
+    <y>24.1972</y>
+    <width>112</width>
     <height>25</height>
    </rect>
    <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>bold</weight>
+    <face>Helvetica</face>
+    <size>12</size>
+    <weight>normal</weight>
    </font>
-   <hcenter/>
-   <vcenter/>
-   <string>#CC</string>
-  </label>
-  <line>
-   <xstart>3.03235</xstart>
-   <ystart>19.8704</ystart>
-   <xend>722.993</xend>
-   <yend>19.1587</yend>
-   <weight>2</weight>
-  </line>
+   <left/>
+   <top/>
+   <data>
+    <query>datos</query>
+    <column>fecha_alta</column>
+   </data>
+  </field>
  </pghead>
  <section>
   <name>datos</name>
@@ -259,66 +217,21 @@ WHERE id_servicio = &lt;? value("id_servicio")?>;
    <height>24.9668</height>
    <field>
     <rect>
-     <x>63.6</x>
-     <y>0.67817</y>
-     <width>530</width>
-     <height>18.1</height>
+     <x>1.63772</x>
+     <y>1.69801</y>
+     <width>591.959</width>
+     <height>25</height>
     </rect>
     <font>
-     <face>Sans Serif</face>
-     <size>10</size>
+     <face>Helvetica</face>
+     <size>12</size>
      <weight>normal</weight>
     </font>
     <left/>
-    <vcenter/>
+    <top/>
     <data>
      <query>datos</query>
      <column>razon_social</column>
-    </data>
-   </field>
-   <line>
-    <xstart>3.39296</xstart>
-    <ystart>19.5026</ystart>
-    <xend>723.354</xend>
-    <yend>18.7908</yend>
-    <weight>0</weight>
-   </line>
-   <field>
-    <rect>
-     <x>4.82244</x>
-     <y>0.366489</y>
-     <width>54.4</width>
-     <height>22.1529</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>datos</query>
-     <column>id</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>599.721</x>
-     <y>0.39573</y>
-     <width>121.376</width>
-     <height>19.9515</height>
-    </rect>
-    <font>
-     <face>Sans Serif</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>datos</query>
-     <column>fecha_alta</column>
     </data>
    </field>
   </detail>

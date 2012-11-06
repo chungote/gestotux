@@ -222,6 +222,7 @@ void FormDetalleCuotas::setearIdPlanCuota( int id ) {
                 return;
             }
             // Cargo los datos de los pagos y no pagos
+            ///@todo Agregar carga de los elementos de item plan de cuota
             qWarning( "No se implementó todavía la carga d los datos de los items de cuotas" );
         } else {
             qWarning( "Error de seleccion de datos - Seguramente el plan de cuota no existe" );
@@ -234,5 +235,5 @@ void FormDetalleCuotas::setearIdPlanCuota( int id ) {
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return false; /// Sarasa
+    return;
 }
