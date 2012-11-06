@@ -26,13 +26,7 @@
   <name>factura</name>
   <sql>SELECT strftime("%d/%m/%Y", f.fecha) AS fecha,
        f.total As total,
-       substr( '0000000000' || f.serie, -5, 5 ) || '-' || substr( '0000000000' || f.numero, -5, 5 ) AS NumSerie,
-       f.observaciones AS observaciones,
-       CASE f.id_forma_pago WHEN 1 THEN 'Contado'
-		     WHEN 2 THEN 'Cta. Cte.'
-		     WHEN 3 THEN 'Cuotas'
-		     WHEN 4 THEN 'Otro'
-	 END AS forma_pago
+       substr( '0000000000' || f.serie, -5, 5 ) || '-' || substr( '0000000000' || f.numero, -5, 5 ) AS NumSerie
 FROM factura AS f, clientes AS c
 WHERE f.id_cliente = c.id AND f.id_factura = &lt;? value( "id_factura" ) ?>;</sql>
  </querysource>
@@ -47,31 +41,8 @@ FROM item_factura
 WHERE id_factura = &lt;? value( "id_factura" ) ?>
 ORDER BY id_item_factura;</sql>
  </querysource>
- <querysource>
-  <name>descuentos</name>
-  <sql>SELECT texto, 
-       cantidad,
-       ( SELECT SUM( cantidad * precio_unitario ) 
-         FROM item_factura 
-         WHERE id_factura = &lt;? value("id_factura") ?>
-       ) * ( 1 - ( SELECT SUM( cantidad ) 
-                      FROM descuentos 
-                      WHERE id_descuento IN (
-                                  SELECT id_descuento
-                                  FROM descuento_comprobante
-                                  WHERE tipo = 2 AND id_comprobante = &lt;? value( "id_factura" ) ?>
-                      )
-            ) /100 )
-        AS subtotal
-FROM descuentos AS d
-WHERE d.id_descuento IN (
-   SELECT id_descuento
-   FROM descuento_comprobante
-   WHERE tipo = 2 AND id_comprobante = &lt;? value( "id_factura" ) ?>
-);</sql>
- </querysource>
  <rpthead>
-  <height>147.779</height>
+  <height>126</height>
   <rect>
    <x>365</x>
    <y>5</y>
@@ -81,10 +52,10 @@ WHERE d.id_descuento IN (
   </rect>
   <image>
    <rect>
-    <x>3</x>
-    <y>3</y>
-    <width>71</width>
-    <height>67</height>
+    <x>36</x>
+    <y>18</y>
+    <width>28</width>
+    <height>25</height>
    </rect>
    <mode>stretch</mode>
    <map format="png">begin 644 internal
@@ -166,7 +137,7 @@ end
   </label>
   <label>
    <rect>
-    <x>467</x>
+    <x>465</x>
     <y>38</y>
     <width>100</width>
     <height>25</height>
@@ -336,57 +307,6 @@ end
    <top/>
    <string>Documento no valido como factura</string>
   </label>
-  <barcode>
-   <rect>
-    <x>545.188</x>
-    <y>64.2</y>
-    <width>224.812</width>
-    <height>37.7</height>
-   </rect>
-   <format>128</format>
-   <maxlength>40</maxlength>
-   <center/>
-   <narrowBarWidth>0.01</narrowBarWidth>
-   <data>
-    <query>Parameter Query</query>
-    <column>id_factura</column>
-   </data>
-  </barcode>
-  <label>
-   <rect>
-    <x>52.3</x>
-    <y>121</y>
-    <width>156</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Sans Serif</face>
-    <size>10</size>
-    <weight>bold</weight>
-   </font>
-   <right/>
-   <vcenter/>
-   <string>Forma de pago:</string>
-  </label>
-  <field>
-   <rect>
-    <x>208.278</x>
-    <y>125.296</y>
-    <width>394</width>
-    <height>19</height>
-   </rect>
-   <font>
-    <face>Sans Serif</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <left/>
-   <vcenter/>
-   <data>
-    <query>factura</query>
-    <column>forma_pago</column>
-   </data>
-  </field>
  </rpthead>
  <section>
   <name>Detalle</name>
@@ -466,6 +386,64 @@ end
      <yend>23.729</yend>
      <weight>1</weight>
     </line>
+    <field>
+     <rect>
+      <x>5.17759</x>
+      <y>27.6355</y>
+      <width>35</width>
+      <height>29.4486</height>
+     </rect>
+     <font>
+      <face>Sans Serif</face>
+      <size>12</size>
+      <weight>normal</weight>
+     </font>
+     <hcenter/>
+     <vcenter/>
+     <data>
+      <query>items</query>
+      <column>cantidad</column>
+     </data>
+    </field>
+    <field>
+     <rect>
+      <x>45.3645</x>
+      <y>30.271</y>
+      <width>497</width>
+      <height>26.7197</height>
+     </rect>
+     <font>
+      <face>Sans Serif</face>
+      <size>12</size>
+      <weight>normal</weight>
+     </font>
+     <left/>
+     <vcenter/>
+     <data>
+      <query>items</query>
+      <column>texto</column>
+     </data>
+    </field>
+    <field>
+     <rect>
+      <x>556</x>
+      <y>30.9</y>
+      <width>104</width>
+      <height>25</height>
+     </rect>
+     <font>
+      <face>Sans Serif</face>
+      <size>12</size>
+      <weight>normal</weight>
+     </font>
+     <right/>
+     <vcenter/>
+     <data>
+      <query>items</query>
+      <column>precio_unitario</column>
+     </data>
+     <format>$ %10.2f</format>
+    </field>
    </head>
   </group>
   <detail>
@@ -475,7 +453,7 @@ end
    <height>28</height>
    <field>
     <rect>
-     <x>674</x>
+     <x>672.635</x>
      <y>1</y>
      <width>100</width>
      <height>25</height>
@@ -491,203 +469,12 @@ end
      <query>items</query>
      <column>subtotal</column>
     </data>
-    <format>%10.2f</format>
+    <format>$ %10.2f</format>
    </field>
-   <field>
-    <rect>
-     <x>559</x>
-     <y>1.38011</y>
-     <width>104</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Sans Serif</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>items</query>
-     <column>precio_unitario</column>
-    </data>
-    <format>%10.2f</format>
-   </field>
-   <label>
-    <rect>
-     <x>545.934</x>
-     <y>6.98674</y>
-     <width>19</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>11</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <top/>
-    <string>$</string>
-   </label>
-   <field>
-    <rect>
-     <x>46</x>
-     <y>1.9</y>
-     <width>505</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Sans Serif</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>items</query>
-     <column>texto</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>0</x>
-     <y>2.9</y>
-     <width>33</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Sans Serif</face>
-     <size>12</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>items</query>
-     <column>cantidad</column>
-    </data>
-   </field>
-   <label>
-    <rect>
-     <x>666.419</x>
-     <y>5.88064</y>
-     <width>19</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>11</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <top/>
-    <string>$</string>
-   </label>
-  </detail>
- </section>
- <section>
-  <name>descuentos</name>
-  <detail>
-   <key>
-    <query>descuentos</query>
-   </key>
-   <height>28.5216</height>
-   <field>
-    <rect>
-     <x>672</x>
-     <y>-1</y>
-     <width>97</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>descuentos</query>
-     <column>subtotal</column>
-    </data>
-    <format>%10.2f</format>
-   </field>
-   <label>
-    <rect>
-     <x>663.49</x>
-     <y>3.95195</y>
-     <width>19</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>11</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <top/>
-    <string>$</string>
-   </label>
-   <field>
-    <rect>
-     <x>570.039</x>
-     <y>0.148033</y>
-     <width>76.5166</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>descuentos</query>
-     <column>cantidad</column>
-    </data>
-    <format>%10.2f %</format>
-   </field>
-   <field>
-    <rect>
-     <x>150.32</x>
-     <y>0.148033</y>
-     <width>379</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>descuentos</query>
-     <column>texto</column>
-    </data>
-   </field>
-   <label>
-    <rect>
-     <x>4</x>
-     <y>3</y>
-     <width>100</width>
-     <height>25</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>9</size>
-     <weight>normal</weight>
-     <italic/>
-    </font>
-    <left/>
-    <top/>
-    <string>Descuento</string>
-   </label>
   </detail>
  </section>
  <rptfoot>
-  <height>76</height>
+  <height>30</height>
   <label>
    <rect>
     <x>510.564</x>
@@ -706,8 +493,8 @@ end
   </label>
   <field>
    <rect>
-    <x>610</x>
-    <y>6.42</y>
+    <x>615</x>
+    <y>6.9</y>
     <width>150</width>
     <height>21</height>
    </rect>
@@ -731,41 +518,5 @@ end
    <yend>3</yend>
    <weight>1</weight>
   </line>
-  <label>
-   <rect>
-    <x>9</x>
-    <y>9</y>
-    <width>86</width>
-    <height>19</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>bold</weight>
-   </font>
-   <left/>
-   <top/>
-   <string>Observaciones:</string>
-  </label>
-  <field>
-   <rect>
-    <x>9</x>
-    <y>25</y>
-    <width>758</width>
-    <height>22.8674</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <wordwrap/>
-   <left/>
-   <top/>
-   <data>
-    <query>factura</query>
-    <column>observaciones</column>
-   </data>
-  </field>
  </rptfoot>
 </report>

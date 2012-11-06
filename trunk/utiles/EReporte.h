@@ -72,6 +72,11 @@ class EReporte : public QObject {
     void setearImpresora( QPrinter *imp );
     void mostrarError( QWidget *ventana );
 
+    void setearParametros( ParameterList param );
+
+    public slots:
+    void imprimir( QPrinter *p );
+
     private:
        /*!
         * Tipo de reporte cargado actualmente

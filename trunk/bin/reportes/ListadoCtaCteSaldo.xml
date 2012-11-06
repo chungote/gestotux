@@ -25,7 +25,7 @@ ORDER BY c.razon_social;</sql>
  </querysource>
  <pghead>
   <firstpage/>
-  <height>74.6313</height>
+  <height>58</height>
   <label>
    <rect>
     <x>14</x>
@@ -74,82 +74,23 @@ ORDER BY c.razon_social;</sql>
    <top/>
    <data>
     <query>Context Query</query>
-    <column>report_date</column>
+    <column></column>
    </data>
   </field>
-  <label>
-   <rect>
-    <x>64.4271</x>
-    <y>49.7978</y>
-    <width>100</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Helvetica</face>
-    <size>10</size>
-    <weight>bold</weight>
-    <italic/>
-   </font>
-   <left/>
-   <vcenter/>
-   <string>Razon Social</string>
-  </label>
-  <label>
-   <rect>
-    <x>622.44</x>
-    <y>49.2812</y>
-    <width>100</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Helvetica</face>
-    <size>10</size>
-    <weight>bold</weight>
-    <italic/>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <string>Saldo</string>
-  </label>
-  <label>
-   <rect>
-    <x>3.4138</x>
-    <y>50.7135</y>
-    <width>62.7613</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Helvetica</face>
-    <size>10</size>
-    <weight>bold</weight>
-    <italic/>
-   </font>
-   <left/>
-   <vcenter/>
-   <string>#Cuenta</string>
-  </label>
-  <line>
-   <xstart>0.986738</xstart>
-   <ystart>52.0079</ystart>
-   <xend>722.987</xend>
-   <yend>52.0079</yend>
-   <weight>0</weight>
-  </line>
  </pghead>
  <pghead>
   <height>29</height>
   <label>
    <rect>
     <x>3</x>
-    <y>0.493369</y>
+    <y>1</y>
     <width>81</width>
     <height>25</height>
    </rect>
    <font>
     <face>Helvetica</face>
     <size>10</size>
-    <weight>bold</weight>
-    <italic/>
+    <weight>normal</weight>
    </font>
    <left/>
    <vcenter/>
@@ -157,16 +98,15 @@ ORDER BY c.razon_social;</sql>
   </label>
   <label>
    <rect>
-    <x>63</x>
-    <y>0.503369</y>
+    <x>98</x>
+    <y>0</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
     <face>Helvetica</face>
     <size>10</size>
-    <weight>bold</weight>
-    <italic/>
+    <weight>normal</weight>
    </font>
    <left/>
    <vcenter/>
@@ -175,32 +115,24 @@ ORDER BY c.razon_social;</sql>
   <label>
    <rect>
     <x>620</x>
-    <y>0.493369</y>
+    <y>1</y>
     <width>100</width>
     <height>25</height>
    </rect>
    <font>
     <face>Helvetica</face>
     <size>10</size>
-    <weight>bold</weight>
-    <italic/>
+    <weight>normal</weight>
    </font>
    <hcenter/>
    <vcenter/>
    <string>Saldo</string>
   </label>
   <line>
-   <xstart>0.986738</xstart>
-   <ystart>23.4801</ystart>
-   <xend>722.987</xend>
-   <yend>23.4801</yend>
-   <weight>0</weight>
-  </line>
-  <line>
-   <xstart>0.986738</xstart>
-   <ystart>-4.38461</ystart>
-   <xend>722.987</xend>
-   <yend>-4.38461</yend>
+   <xstart>2</xstart>
+   <ystart>25</ystart>
+   <xend>724</xend>
+   <yend>25</yend>
    <weight>0</weight>
   </line>
  </pghead>
@@ -210,7 +142,7 @@ ORDER BY c.razon_social;</sql>
    <key>
     <query>datos</query>
    </key>
-   <height>21.6631</height>
+   <height>21</height>
    <field>
     <rect>
      <x>622</x>
@@ -220,46 +152,27 @@ ORDER BY c.razon_social;</sql>
     </rect>
     <font>
      <face>Helvetica</face>
-     <size>10</size>
+     <size>11</size>
      <weight>normal</weight>
     </font>
-    <right/>
+    <hcenter/>
     <vcenter/>
     <data>
      <query>datos</query>
      <column>saldo</column>
     </data>
-    <format>%0.2f</format>
+    <format>$ %0.2f</format>
    </field>
    <field>
     <rect>
-     <x>63.6</x>
+     <x>96</x>
      <y>1</y>
-     <width>512</width>
+     <width>524</width>
      <height>20</height>
     </rect>
     <font>
      <face>Helvetica</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <data>
-     <query>datos</query>
-     <column>razon_social</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>2</x>
-     <y>1</y>
-     <width>57.1</width>
-     <height>20</height>
-    </rect>
-    <font>
-     <face>Helvetica</face>
-     <size>10</size>
+     <size>11</size>
      <weight>normal</weight>
     </font>
     <left/>
@@ -269,22 +182,25 @@ ORDER BY c.razon_social;</sql>
      <column>numero_cuenta</column>
     </data>
    </field>
-   <label>
+   <field>
     <rect>
-     <x>606</x>
-     <y>2.36</y>
-     <width>110</width>
-     <height>25</height>
+     <x>2</x>
+     <y>1</y>
+     <width>90</width>
+     <height>20</height>
     </rect>
     <font>
      <face>Helvetica</face>
-     <size>10</size>
+     <size>11</size>
      <weight>normal</weight>
     </font>
     <left/>
-    <top/>
-    <string>$</string>
-   </label>
+    <vcenter/>
+    <data>
+     <query>datos</query>
+     <column>numero_cuenta</column>
+    </data>
+   </field>
   </detail>
  </section>
 </report>

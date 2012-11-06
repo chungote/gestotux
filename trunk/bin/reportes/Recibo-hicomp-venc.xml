@@ -212,8 +212,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <height>414</height>
    <field>
     <rect>
-     <x>42.3</x>
-     <y>12.68</y>
+     <x>105.3</x>
+     <y>14.68</y>
      <width>524</width>
      <height>408</height>
     </rect>
@@ -241,8 +241,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <height>81</height>
    <field>
     <rect>
-     <x>79</x>
-     <y>23.5</y>
+     <x>270</x>
+     <y>27.5</y>
      <width>112</width>
      <height>22</height>
     </rect>
@@ -261,8 +261,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>89</x>
-     <y>44.5</y>
+     <x>277</x>
+     <y>42.5</y>
      <width>104</width>
      <height>22</height>
     </rect>
@@ -281,7 +281,7 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>247</x>
+     <x>429</x>
      <y>25.5</y>
      <width>112</width>
      <height>22</height>
@@ -301,8 +301,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>252</x>
-     <y>43.5</y>
+     <x>430</x>
+     <y>42.5</y>
      <width>106</width>
      <height>22</height>
     </rect>
@@ -321,8 +321,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>380</x>
-     <y>68.36</y>
+     <x>444</x>
+     <y>75.36</y>
      <width>142</width>
      <height>40</height>
     </rect>
@@ -341,8 +341,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>263</x>
-     <y>6.5</y>
+     <x>434</x>
+     <y>7.5</y>
      <width>94</width>
      <height>22</height>
     </rect>
@@ -360,8 +360,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>96</x>
-     <y>3.5</y>
+     <x>279</x>
+     <y>7.5</y>
      <width>96</width>
      <height>24</height>
     </rect>

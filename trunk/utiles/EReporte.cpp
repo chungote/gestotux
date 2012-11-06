@@ -103,7 +103,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
             _impresora = new QPrinter();
         }
     }
-    if( !( _rep->print( 0, mostrarDialogoImpresion, previsualizar ) ) ) {
+    if( !( _rep->print( _impresora, mostrarDialogoImpresion, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );
         _rep->reportError( 0 );
         return false;
@@ -382,4 +382,19 @@ void EReporte::mostrarError( QWidget *ventana ) {
     if( _rep != 0 ) {
         _rep->reportError( ventana );
     }
+}
+
+void EReporte::setearParametros( ParameterList param )
+{ this->_parametros = param; }
+
+
+/*!
+ * \brief EReporte::imprimir
+ *  Slot llamado desde el visor de informes
+ * \param p impresora sobre la cual imprimir
+ */
+void EReporte::imprimir( QPrinter *p )
+{
+    this->setearImpresora( p );
+    this->hacer( _parametros, false, false );
 }
