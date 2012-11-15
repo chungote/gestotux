@@ -232,6 +232,7 @@ void VCuentaCorriente::verResumen()
  form->setNumeroCuenta( numero_cuenta );
  connect( form, SIGNAL( emitirRecibo( int, QString ,double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
  connect( form, SIGNAL( mostrarRecibo( int ) ), this, SIGNAL( mostrarRecibo( int ) ) );
+ connect( form, SIGNAL( mostrarFactura( int ) ), this, SIGNAL( mostrarFactura( int ) ) );
  emit agregarVentana( form );
 }
 

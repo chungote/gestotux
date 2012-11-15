@@ -45,6 +45,7 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool /*s */)
   saldos = new QHash<int, double>();
  }
  _num_cuenta = "";
+ this->sort( 1, Qt::AscendingOrder );
 }
 
 

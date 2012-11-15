@@ -340,10 +340,10 @@ void FormResumenCtaCte::verRecibo()
  */
 void FormResumenCtaCte::verFactura()
 {
-    qWarning( "No implementado todavia" );
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "ventas" ) ) {
-        // veo los datos de la factura ??=== falta hacer!
-
+        int id_pos = TVItems->selectionModel()->selectedRows().first().row();
+        int id_factura = modeloItem->data( modeloItem->index( id_pos, 2 ), Qt::EditRole ).toInt();
+        emit mostrarFactura( id_factura );
     }
 }
 
@@ -358,7 +358,7 @@ void FormResumenCtaCte::pagarFactura()
         int id_pos = TVItems->selectionModel()->selectedRows().first().row();
         int id_factura = modeloItem->data( modeloItem->index( id_pos, 2 ), Qt::EditRole ).toInt();
         // Verifico que la factura no este pagada
-        qWarning( "No implementada verificacion" );
+        qWarning( "No implementada verificacion de si la factura se encuentra pagada o no..." );
         // Busco los detalles de la factura
         QString texto_recibo = QString( "Pago de la factura %1" ).arg( MFactura::obtenerComprobante( id_factura ).aCadena() );
         double total = MFactura::obtenerTotal( id_factura );

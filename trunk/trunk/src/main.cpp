@@ -162,6 +162,12 @@ void generarInterconexiones()
                          dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
                          SLOT( mostrarRecibo( int ) ) );
     }
+    if( egp->existePlugin( "ctacte" ) && egp->existePlugin( "ventas" ) ) {
+       QObject::connect( dynamic_cast<CuentaCorrientePlugin *>( egp->plugin( "ctacte" ) ),
+                         SIGNAL( mostrarFactura( int ) ),
+                         dynamic_cast<Ventas *>( egp->plugin( "ventas" ) ),
+                         SLOT( mostrarFactura( int ) ) );
+    }
     // Estructura de señales para integración de cuotas con ventas
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
        QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),

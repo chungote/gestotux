@@ -102,7 +102,7 @@ int NumeroComprobante::cuentaRecursivo( int dato ) {
  * @return verdadero o falso
  */
 bool NumeroComprobante::esValido() const {
-    if( _dato.first == -1 || _dato.second == -1 ) {
+    if( _dato.first == -1 || _dato.second == -1 || _dato.first == 0 || _dato.second == 0 ) {
         return false;
     } else { return true; }
 }

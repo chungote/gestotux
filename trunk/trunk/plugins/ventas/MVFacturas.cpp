@@ -73,6 +73,16 @@ QVariant MVFacturas::data( const QModelIndex& item, int role ) const {
             }
             break;
         }
+        case Qt::EditRole:
+        {
+            switch( item.column() ) {
+                case 5:
+                { return QSqlTableModel::data( item, role ).toDouble(); break; }
+                default:
+                { return QSqlTableModel::data( item, role ); break; }
+            }
+            break;
+        }
         default:
         { return QSqlTableModel::data( item, role ); }
     }

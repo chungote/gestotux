@@ -209,8 +209,8 @@ void FormDetalleCuotas::setearIdPlanCuota( int id ) {
             int id_factura = cola.record().value("id_factura").toInt();
             if( cola.exec( QString( "SELECT serie, numero, id_cliente FROM factura WHERE id_factura = %1").arg( id_factura ) ) ){
                 if( cola.next() ) {
-                    LFactura->setText( "Numero de factura: #"+MFactura::obtenerComprobante( id_factura ).aCadena() );
-                    CBCliente->setearId( cola.record().value("id_cliente").toInt() );
+//                    LFactura->setText( "Numero de factura: #"+MFactura::obtenerComprobante( id_factura ).aCadena() );
+ //                   CBCliente->setearId( cola.record().value("id_cliente").toInt() );
                 } else {
                     qWarning( "No se pudo cargar los datos de la factura - seguramente no existe");
                 }

@@ -391,7 +391,7 @@ NumeroComprobante & MFactura::obtenerComprobante() {
           qDebug( "Error de cola al hacer next al obtener el numero de serie de factura maximo -  Se inicio una nueva numeracion" );
       }
   } else {
-      NumeroComprobante *num = new NumeroComprobante( 0, 0, 1 );
+      NumeroComprobante *num = new NumeroComprobante( 0, 1, 0 );
       num->siguienteNumero();
       qDebug( "Error de cola al hacer exec al obtener el numero de serie de factura maximo - Se inicio una nueva numeracion" );
       return *num;
@@ -599,4 +599,24 @@ double MFactura::obtenerTotal( const int id_factura )
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
     return -1.0;
+}
+
+/*!
+ * \brief MFactura::obtenerIdCliente
+ * Devuelve el identificador del cliente que tiene asociada la factura
+ * \param id_factura Identificador de la factura a buscar
+ * \return Identificador del cliente o -1 si hubo error
+ */
+int MFactura::obtenerIdCliente(const int id_factura)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_cliente FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+        cola.next();
+        return cola.record().value(0).toInt();
+    } else {
+        qWarning( "Error al buscar el cliente de la factura" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return -1;
 }
