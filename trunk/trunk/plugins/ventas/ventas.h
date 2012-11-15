@@ -75,6 +75,7 @@ signals:
 public slots:
     void seCierraGestotux();
     void agregarFactura( int, QDate, MProductosTotales * );
+    void slotEmitirPlanCuota( int c, double d );
 
 };
 

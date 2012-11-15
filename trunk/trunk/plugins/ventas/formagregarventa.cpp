@@ -330,7 +330,7 @@ void FormAgregarVenta::guardar()
      if( id_plan_cuota == -1 ) {
          // Todavía no se pudo hacer el plan de cuotas
          emit emitirPlanCuota( CBCliente->idClienteActual(), mcp->total() );
-         qWarning( "Emisión de plan de cuota" );
+         qWarning( "Emision de plan de cuota" );
          return;
      } else {
          // Si paso por aquí el plan de cuota fue creado pero todavía no se le asigno el id de factura
