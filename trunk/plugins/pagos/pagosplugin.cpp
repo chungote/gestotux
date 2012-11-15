@@ -103,6 +103,10 @@ void PagosPlugin::agregarRecibo()
 
 /*!
     \fn PagosPlugin::agregarRecibo()
+    Slot llamado desde otro plugin cuando se desea agregar un nuevo recibo con datos predefinidos
+    \param id_cliente Identificador del cliente
+    \param texto Texto que contendrá el recibo
+    \param total Importe del recibo
 */
 void PagosPlugin::agregarRecibo( int id_cliente, QString texto, double total )
 {
@@ -112,6 +116,11 @@ void PagosPlugin::agregarRecibo( int id_cliente, QString texto, double total )
     emit agregarVentana( f );
 }
 
+/*!
+ * \brief PagosPlugin::mostrarRecibo
+ *  Genera una ventana donde se ven los datos de un recibo ya emitido
+ * \param id_recibo Identificador del recibo a mostrar
+ */
 void PagosPlugin::mostrarRecibo( int id_recibo )
 {
     FormRecibo *f = new FormRecibo();

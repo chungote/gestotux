@@ -139,10 +139,16 @@ void Ventas::crearToolBar( QToolBar */*t*/ )
 void Ventas::agregarVenta()
 {
     FormAgregarVenta *f = new FormAgregarVenta();
-    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SIGNAL( emitirPlanCuota( int, double ) ) );
+    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SLOT( slotEmitirPlanCuota( int, double ) ) );
     //connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
     //connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
-    emit agregarVentana( new FormAgregarVenta() ); }
+    emit agregarVentana( new FormAgregarVenta() );
+}
+
+void Ventas::slotEmitirPlanCuota( int id_cliente, double valor ) {
+    qWarning( "Señal retransmitida" );
+    emit( emitirPlanCuota( id_cliente, valor ) );
+}
 
 #include "vventas.h"
 /*!
@@ -150,7 +156,11 @@ void Ventas::agregarVenta()
  * Muestra el listado de facturas y permite cancelar o anular las que sean necesarias
  */
 void Ventas::verFacturas()
-{ emit agregarVentana( new VVentas() ); }
+{
+    VVentas *f = new VVentas();
+    connect( f, SIGNAL( emitirRecibo( int, QString, double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
+    emit agregarVentana( f );
+}
 
 /*!
     \fn Ventas::seCierraGestotux()

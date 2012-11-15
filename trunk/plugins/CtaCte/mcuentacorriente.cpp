@@ -135,7 +135,7 @@ QVariant MCuentaCorriente::data(const QModelIndex& item, int role) const
                         }
                         case 4:
                         {
-                                if( this->data( this->index( item.row(), 4 ), Qt::EditRole ).toDouble() >= this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() )
+                                if( this->data( this->index( item.row(), 4 ), Qt::EditRole ).toDouble() > this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() )
                                 { return Qt::red; }
                                 else
                                 { return Qt::black; }

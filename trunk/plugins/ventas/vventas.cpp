@@ -180,9 +180,10 @@ void VVentas::pagar()
         texto_recibo.append( this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString() );
         texto_recibo.append( ",  " );
     }
+    texto_recibo.remove( texto_recibo.length() - 3, 4 ); // Saco la ultima coma que sobra
     // Busco el numero de cliente
     int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
-    emit emitirRecibo( id_cliente, QDate::currentDate(), texto_recibo, total );
+    emit emitirRecibo( id_cliente, texto_recibo, total );
     return;
 }
 

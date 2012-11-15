@@ -47,7 +47,7 @@ protected slots:
     void verItems();
 
 signals:
-    void emitirRecibo( int, QDate, QString, double );
+    void emitirRecibo( int, QString, double );
 
 private:
     void imprimirAnulacion( const int id_factura, const QString razon, const QString numero );
