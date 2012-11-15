@@ -58,6 +58,7 @@ private slots:
 signals:
     void emitirRecibo( int id_cliente, QString texto_recibo, double total );
     void mostrarRecibo( int id_recibo );
+    void mostrarFactura( int id_factura );
 
 private:
     QAction *ActFiltrar;

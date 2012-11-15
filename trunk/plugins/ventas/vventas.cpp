@@ -175,14 +175,15 @@ void VVentas::pagar()
     if( lista.size() > 1 ) { texto_recibo.append( "s" ); }
     texto_recibo.append( "  " );
     foreach( QModelIndex indice, lista ) {
-        total += this->modelo->data( this->modelo->index( indice.row(), 5 ) ).toDouble();
+        total += this->modelo->data( this->modelo->index( indice.row(), 5 ), Qt::EditRole ).toDouble();
         texto_recibo.append( "#" );
         texto_recibo.append( this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString() );
         texto_recibo.append( ",  " );
     }
     texto_recibo.remove( texto_recibo.length() - 3, 4 ); // Saco la ultima coma que sobra
-    // Busco el numero de cliente
-    int id_cliente = this->modelo->data( this->modelo->index( lista.first().row(), 2 ) ).toInt();
+    // Busco el numero de cliente -  No sirve porqué está relacionado
+    int id_factura = this->modelo->data( this->modelo->index( lista.first().row(), 0 ) ).toInt();
+    int id_cliente = MFactura::obtenerIdCliente( id_factura );
     emit emitirRecibo( id_cliente, texto_recibo, total );
     return;
 }

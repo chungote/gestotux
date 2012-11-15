@@ -41,6 +41,7 @@ protected:
 signals:
     void emitirRecibo( int, QString, double );
     void mostrarRecibo( int );
+    void mostrarFactura( int );
 
 protected slots:
     void modificarLimite();

@@ -53,6 +53,7 @@ signals:
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
     void emitirRecibo( int, QString, double );
     void mostrarRecibo( int );
+    void mostrarFactura( int );
 
 public slots:
     void seCierraGestotux();

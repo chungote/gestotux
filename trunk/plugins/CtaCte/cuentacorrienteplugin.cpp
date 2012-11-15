@@ -117,5 +117,6 @@ void CuentaCorrientePlugin::verCuentasCorrientes()
  VCuentaCorriente *f = new VCuentaCorriente();
  connect( f, SIGNAL( emitirRecibo( int, QString, double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
  connect( f, SIGNAL( mostrarRecibo( int ) ), this, SIGNAL( mostrarRecibo( int ) ) );
+ connect( f, SIGNAL( mostrarFactura( int ) ), this, SIGNAL( mostrarFactura( int ) ) );
  emit agregarVentana( f );
 }

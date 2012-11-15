@@ -76,6 +76,7 @@ public slots:
     void seCierraGestotux();
     void agregarFactura( int, QDate, MProductosTotales * );
     void slotEmitirPlanCuota( int c, double d );
+    void mostrarFactura( int id_factura );
 
 };
 
