@@ -77,6 +77,8 @@ void FormPrefDb::guardar()
  if( CkBPuerto->isChecked() )
  {
   p->setValue( "puerto", SBPuerto->value() );
+ } else {
+     if( p->contains( "puerto" ) ) { p->remove( "puerto" ); }
  }
  if( CkBPass->isChecked() )
  {
