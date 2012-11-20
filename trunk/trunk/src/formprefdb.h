@@ -31,7 +31,7 @@
  * Clase que realiza el formulario para la configuracion de la db interna o externa segun sea necesario
  * @author Esteban Zeller <tranfuga25s@gmail.com>
  */
-class FormPrefDb : public EVentana, public FormPrefHijo, private Ui::FormPrefDbBase
+class FormPrefDb : public EVentana, public FormPrefHijo, public Ui::FormPrefDbBase
 {
   Q_OBJECT
 
