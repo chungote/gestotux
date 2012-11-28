@@ -66,6 +66,9 @@ private:
         MProductosTotales *mcp;
         int id_plan_cuota;
 
+signals:
+        void actualizarListado();
+
 };
 
 #endif

@@ -386,6 +386,7 @@ void FormAgregarVenta::guardar()
     }
    }
    this->close();
+   emit actualizarListado();
    return;
 
   } else {

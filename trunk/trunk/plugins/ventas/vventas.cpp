@@ -99,7 +99,11 @@ VVentas::VVentas(QWidget *parent)
 
 #include "formagregarventa.h"
 void VVentas::agregar()
-{ emit agregarVentana( new FormAgregarVenta() ); }
+{
+    FormAgregarVenta *f = new FormAgregarVenta();
+    connect( f, SIGNAL( actualizarListado() ), this, SLOT( actualizarListado() ) );
+    emit agregarVentana( f );
+}
 
 void VVentas::eliminar()
 { return; }
@@ -247,3 +251,11 @@ void VVentas::imprimirAnulacion( const int id_factura, const QString razon, cons
         QMessageBox::warning( this, "Error", "Hubo un error la intentar anular la factura. No se anulo" );
     }
 }
+
+
+/*!
+ * \fn VVentas::actualizarListado()
+ * Slot llamado luego de una actualizacion en la que sea necesaria recargar los datos
+ */
+void VVentas::actualizarListado()
+{ this->modelo->select(); }

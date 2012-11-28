@@ -45,12 +45,6 @@
 #include "EReporte.h"
 #include "mproductostotales.h"
 
-#include "../plugins/ventas/ventas.h"
-#include "../plugins/pagos/pagosplugin.h"
-#include "../plugins/presupuesto/presupuesto.h"
-#include "../plugins/CtaCte/cuentacorrienteplugin.h"
-#include "../plugins/cuotas/cuotasplugin.h"
-
 FILE *debug;
 /*!
  * /fn myMessageOutput( QtMsgType type, const char *msg )
