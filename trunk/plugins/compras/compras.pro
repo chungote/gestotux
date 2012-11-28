@@ -54,15 +54,6 @@ HEADERS += formagregarcompra.h \
 OTHER_FILES += compras.QMYSQL.sql \
                compras.QSQLITE.sql
 
-
-
-
-
-
-
-
-
-
-
-
-
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

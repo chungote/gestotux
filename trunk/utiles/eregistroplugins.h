@@ -49,9 +49,11 @@ public:
     static ERegistroPlugins *getInstancia();
 
     EPlugin *plugin( const QString &nombre );
+    QObject *pluginQObject( const QString &nombre );
 
     void setPluginInfo( EInfoProgramaInterface *obj );
     void agregarPlugin( EPlugin *obj );
+    void agregarPlugin( QString nombre, QObject *obj );
 
     bool existePlugin( const QString &nombre );
     bool existePluginExterno( const QString & nombre );
@@ -65,6 +67,7 @@ private:
    ~ERegistroPlugins();
    static ERegistroPlugins *instance;
    QHash<QString, EPlugin *> *_plugins;
+   QHash<QString, QObject *> *_plugins2;
    EInfoProgramaInterface *_pluginInfo;
 
 };
