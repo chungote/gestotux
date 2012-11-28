@@ -45,6 +45,7 @@ protected slots:
     void pagar();
     void cambioVerAnuladas( bool parametro );
     void verItems();
+    void actualizarListado();
 
 signals:
     void emitirRecibo( int, QString, double );
