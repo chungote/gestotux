@@ -52,3 +52,6 @@ SOURCES += cuotasplugin.cpp \
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \
          formcuotasbase.ui
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

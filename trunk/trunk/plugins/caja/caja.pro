@@ -65,3 +65,6 @@ FORMS += FormAgregarCajaBase.ui \
          formprefcajabase.ui \
          FormRetiroIngresoBase.ui \
          formtransferirbase.ui
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

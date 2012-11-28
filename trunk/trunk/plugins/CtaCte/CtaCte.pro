@@ -74,3 +74,6 @@ TRANSLATIONS += CtaCte.ts
 OTHER_FILES +=  CtaCte.ts \
                 ctacte.QMYSQL.sql \
                 ctacte.QSQLITE.sql
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

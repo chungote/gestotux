@@ -64,3 +64,7 @@ RESOURCES += remitos.qrc
 
 OTHER_FILES += remitos.QSQLITE.sql \
                remitos.QMYSQL.sql
+
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

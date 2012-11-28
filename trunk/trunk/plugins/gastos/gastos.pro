@@ -49,3 +49,6 @@ TARGET = gastos
 
 OTHER_FILES += gastos.QSQLITE.sql \
                gastos.QMYSQL.sql
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

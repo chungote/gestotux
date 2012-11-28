@@ -44,5 +44,8 @@ OTHER_FILES += proveedor.ts \
 
 DISTFILES += ../../bin/reportes/ListadoProveedores.xml
 
-FORMS += \
-    FormProveedorBase.ui
+FORMS += FormProveedorBase.ui
+
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

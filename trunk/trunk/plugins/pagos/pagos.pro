@@ -58,3 +58,6 @@ RESOURCES = pagos.qrc
 
 OTHER_FILES += pagos.QMYSQL.sql \
                pagos.QSQLITE.sql
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

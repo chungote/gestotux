@@ -27,6 +27,7 @@ ERegistroPlugins *ERegistroPlugins::instance = 0;
 ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
 {
     _plugins = new QHash<QString, EPlugin *>();
+    _plugins2 = new QHash<QString, QObject *>();
     _pluginInfo = 0;
     // Elimino cualquier PID anterior
     preferencias *p = preferencias::getInstancia();
@@ -120,6 +121,10 @@ void ERegistroPlugins::agregarPlugin( EPlugin *obj )
  p=0;
 }
 
+void ERegistroPlugins::agregarPlugin( QString nombre, QObject *obj )
+{
+    _plugins2->insert( nombre, obj );
+}
 
 /*!
  * \fn ERegistroPlugins::plugin( const QString &nombre )
@@ -128,6 +133,11 @@ void ERegistroPlugins::agregarPlugin( EPlugin *obj )
 EPlugin* ERegistroPlugins::plugin( const QString &nombre )
 {
  return _plugins->value( nombre );
+}
+
+QObject* ERegistroPlugins::pluginQObject( const QString &nombre )
+{
+    return _plugins2->value( nombre );
 }
 
 

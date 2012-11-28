@@ -103,7 +103,6 @@ SOURCES += ../caja/mcajas.cpp \
 
 DEFINES += GESTOTUX_HICOMP
 
-
-
-
-
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

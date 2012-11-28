@@ -70,3 +70,6 @@ OTHER_FILES += presupuesto.QSQLITE.sql \
                presupuesto.QMYSQL.sql
 
 TRANSLATIONS += presupuesto.ts
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

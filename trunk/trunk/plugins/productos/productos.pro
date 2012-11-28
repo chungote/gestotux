@@ -53,3 +53,7 @@ FORMS += FormPrefProductosBase.ui \
 
 OTHER_FILES += productos.QMYSQL.sql \
                productos.QSQLITE.sql
+
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

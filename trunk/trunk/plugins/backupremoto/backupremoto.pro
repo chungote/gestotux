@@ -35,5 +35,8 @@ PRE_TARGETDEPS += ../../bin/libutiles.a
 FORMS += formprefbackupremoto.ui \
     formBackupRemoto.ui
 
-RESOURCES += \
-    backupremoto.qrc
+RESOURCES += backupremoto.qrc
+
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

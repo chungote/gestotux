@@ -56,7 +56,8 @@ CONFIG += warn_on \
           thread \
           qt \
           exceptions \
-          help
+          help \
+          rtti
 QT += sql \
       xml \
       network
@@ -73,7 +74,7 @@ FORMS += FormAcercaDeBase.ui \
          FormPantallaInicialBase.ui \
          formprefclientesbase.ui
 
-TARGET = ../bin/gestotux
+TARGET = ../../bin/gestotux
 
 DISTFILES += qt_es.qm
 

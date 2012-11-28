@@ -141,46 +141,46 @@ void generarInterconexiones()
 {
     ERegistroPlugins *egp = ERegistroPlugins::getInstancia();
     if( egp->existePlugin( "presupuesto" ) && egp->existePlugin( "ventas" ) ) {
-        QObject::connect( dynamic_cast<presupuesto *>( egp->plugin( "presupuesto" ) ),
+       QObject::connect( egp->pluginQObject( "presupuesto" ),
                           SIGNAL( emitirFactura( int, QDate, MProductosTotales * ) ),
-                          dynamic_cast<Ventas *>( egp->plugin( "ventas" ) ),
+                          egp->pluginQObject( "ventas" ),
                           SLOT( agregarFactura( int, QDate, MProductosTotales * ) ) );
     }
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "pagos" ) ) {
-       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas" ) ),
+       QObject::connect( egp->pluginQObject( "ventas" ),
                          SIGNAL( emitirRecibo( int, QString, double ) ),
-                         dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
+                         egp->pluginQObject( "pagos" ),
                          SLOT( agregarRecibo( int, QString, double ) ) );
     }
     if( egp->existePlugin( "ctacte" ) && egp->existePlugin( "pagos" ) ) {
-       QObject::connect( dynamic_cast<CuentaCorrientePlugin *>( egp->plugin( "ctacte"  ) ),
+       QObject::connect( egp->pluginQObject( "ctacte"  ),
                          SIGNAL( emitirRecibo( int, QString, double ) ),
-                         dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
+                         egp->pluginQObject( "pagos" ),
                          SLOT( agregarRecibo( int, QString, double ) ) );
-       QObject::connect( dynamic_cast<CuentaCorrientePlugin *>( egp->plugin( "ctacte"  ) ),
+       QObject::connect( egp->pluginQObject( "ctacte" ),
                          SIGNAL( mostrarRecibo( int ) ),
-                         dynamic_cast<PagosPlugin *>( egp->plugin( "pagos" ) ),
+                         egp->pluginQObject( "pagos" ),
                          SLOT( mostrarRecibo( int ) ) );
     }
     if( egp->existePlugin( "ctacte" ) && egp->existePlugin( "ventas" ) ) {
-       QObject::connect( dynamic_cast<CuentaCorrientePlugin *>( egp->plugin( "ctacte" ) ),
+       QObject::connect( egp->pluginQObject( "ctacte" ),
                          SIGNAL( mostrarFactura( int ) ),
-                         dynamic_cast<Ventas *>( egp->plugin( "ventas" ) ),
+                         egp->pluginQObject( "ventas" ),
                          SLOT( mostrarFactura( int ) ) );
     }
     // Estructura de señales para integración de cuotas con ventas
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
-       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+       QObject::connect( egp->pluginQObject( "ventas"  ),
                          SIGNAL( emitirPlanCuota( int, double ) ),
-                         dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
+                         egp->pluginQObject( "cuotas" ),
                          SLOT( generarPlanCuotas( int, double ) ) );
-       QObject::connect( dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
+       QObject::connect( egp->pluginQObject( "cuotas" ),
                          SIGNAL( emitirPlanCuotaId( int ) ),
-                         dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+                         egp->pluginQObject( "ventas"  ),
                          SIGNAL( planCuotaSetearIdCuota( int ) ) );
-       QObject::connect( dynamic_cast<Ventas *>( egp->plugin( "ventas"  ) ),
+       QObject::connect( egp->pluginQObject( "ventas"  ),
                          SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ),
-                         dynamic_cast<CuotasPlugin *>( egp->plugin( "cuotas" ) ),
+                         egp->pluginQObject( "cuotas" ),
                          SLOT( planCuotasSetearIdFactura( int, int ) ) );
     }
 }
@@ -350,6 +350,7 @@ int main(int argc, char *argv[])
         ////////////////////////////////////////////////////////
         splash.showMessage( "Cargando plugins" );
         QPluginLoader loader;
+        loader.setLoadHints( QLibrary::ResolveAllSymbolsHint | QLibrary::ExportExternalSymbolsHint );
         QDir pluginsDir = QDir(qApp->applicationDirPath());
 
          #if defined(Q_OS_WIN)
@@ -401,6 +402,7 @@ int main(int argc, char *argv[])
                                         }
                                 }
                                 ERegistroPlugins::getInstancia()->agregarPlugin( plug );
+                                ERegistroPlugins::getInstancia()->agregarPlugin( plug->nombre(), obj );
                                 splash.showMessage( "Cargando plugin "+ plug->nombre() );
                                 //////////////////////////////////////////////////////////////////////////////////////
                                 /*if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )

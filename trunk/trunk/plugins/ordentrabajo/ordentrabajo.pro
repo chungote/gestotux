@@ -31,5 +31,8 @@ RESOURCES += ordentrabajo.qrc
 OTHER_FILES += ordentrabajo.QMYSQL.sql \
                ordentrabajo.QSQLITE.sql
 
-FORMS += \
-    formordentrabajobase.ui
+FORMS += formordentrabajobase.ui
+
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}
