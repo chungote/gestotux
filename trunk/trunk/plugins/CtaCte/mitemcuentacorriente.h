@@ -50,6 +50,7 @@ public:
 
     QVariant data(const QModelIndex& item, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;
+    void sort( int column, Qt::SortOrder order );
 
     static int agregarOperacion( const QString &numero_cuenta, const QString &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
     static int agregarOperacion( const QString &numero_cuenta, const NumeroComprobante &num_comb, const int &num_ref, const TipoOperacionCtaCte tipo, const QDate &fecha, const QString &descripcion, const double &aplicar );
