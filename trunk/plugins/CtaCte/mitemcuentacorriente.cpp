@@ -59,7 +59,19 @@ MItemCuentaCorriente::~MItemCuentaCorriente()
 
 Qt::ItemFlags MItemCuentaCorriente::flags(const QModelIndex& /*index*/) const
 {
- return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+    return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
+}
+
+/*!
+ * \fn MItemCuentaCorriente::sort( int column, Qt::SortOrder order )
+ * Esta función nos permite "resetear" la lista de saldos cada vez que se reordenan los elementos.
+ * \param column Columna por la cual se ordena
+ * \param order Dirección de ordenamiento
+ */
+void MItemCuentaCorriente::sort(int column, Qt::SortOrder order)
+{
+    saldos->clear();
+    QSqlRelationalTableModel::sort( column, order );
 }
 
 
