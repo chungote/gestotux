@@ -7,8 +7,7 @@ class MTecnicos : public QSqlTableModel
 {
     Q_OBJECT
 public:
-    explicit MTecnicos(QObject *parent = 0);
-    
+    MTecnicos( QObject *parent = 0 );
 };
 
 #endif // MTECNICOS_H
