@@ -3,7 +3,7 @@
 MTecnicos::MTecnicos(QObject *parent) :
     QSqlTableModel(parent)
 {
-    setTable( "tecnicos" );
+    setTable( "tecnico" );
     setHeaderData( 0, Qt::Horizontal, "#ID" );
     setHeaderData( 1, Qt::Horizontal, "Razon Social" );
     setHeaderData( 2, Qt::Horizontal, "Habilitado" );
