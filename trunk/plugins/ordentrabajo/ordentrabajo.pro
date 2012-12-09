@@ -22,9 +22,13 @@ PRE_TARGETDEPS += ../../bin/libutiles.a \
                   ../../bin/libreporte.a
 
 SOURCES += OrdenTrabajoPlugin.cpp \
-    formordentrabajo.cpp
+    formordentrabajo.cpp \
+    vtecnicos.cpp \
+    mtecnicos.cpp
 HEADERS += OrdenTrabajoPlugin.h \
-    formordentrabajo.h
+    formordentrabajo.h \
+    vtecnicos.h \
+    mtecnicos.h
 
 RESOURCES += ordentrabajo.qrc
 

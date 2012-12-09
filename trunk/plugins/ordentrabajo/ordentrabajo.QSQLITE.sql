@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS "tecnico" ("id_tecnico" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "razon_social" TEXT NOT NULL  UNIQUE , "habilitado" BOOL NOT NULL  DEFAULT 0 );
+INSERT OR IGNORE INTO sqlite_sequence VALUES ( 'tecnico', '1' );

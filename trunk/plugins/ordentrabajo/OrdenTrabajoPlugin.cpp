@@ -43,7 +43,7 @@ bool OrdenTrabajoPlugin::inicializar()
  ///////////////////////////////////
  ActVerTecnicos = new QAction( "Tecnicos", this );
  ActVerTecnicos->setStatusTip( "Muestra el listado de tecnicos habilitados" );
- //ActVerTecnicos->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
+ ActVerTecnicos->setIcon( QIcon( ":/imagenes/tecnico.png" ) );
  connect( ActVerTecnicos, SIGNAL( triggered() ), this, SLOT( verTecnicos() ) );
  ///////////////////////////////////
  // Muestra los tipos de operaciones
@@ -121,7 +121,12 @@ void OrdenTrabajoPlugin::seCierraGestotux()
 void OrdenTrabajoPlugin::verOrdenesTrabajo() {}
 void OrdenTrabajoPlugin::agregarOrdenTrabajo() {}
 void OrdenTrabajoPlugin::verTipoOperacion() {}
-void OrdenTrabajoPlugin::verTecnicos() {}
+
+#include "vtecnicos.h"
+void OrdenTrabajoPlugin::verTecnicos()
+{
+    emit agregarVentana( new VTecnicos() );
+}
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )
 
