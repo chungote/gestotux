@@ -172,7 +172,7 @@ void EBackupRemoto::generar_db( bool /*estructura*/ )
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
- url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
+ url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
  p->endGroup(); p->endGroup(); p = 0;
 
@@ -210,7 +210,7 @@ void EBackupRemoto::enviarColas() {
  PBEnviado->setRange( 0, total );
 
  // Desconecto la señal y pongo la que quiero realmente
- disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaInicio( QNetworkReply* ) ) );
+ //disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaInicio( QNetworkReply* ) ) );
  connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaColas( QNetworkReply* ) ) );
 
  preferencias *p = preferencias::getInstancia();
@@ -218,7 +218,7 @@ void EBackupRemoto::enviarColas() {
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
- url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
+ url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
  p->endGroup(); p->endGroup(); p = 0;
  QNetworkRequest *req2 = new QNetworkRequest( url );
@@ -227,14 +227,16 @@ void EBackupRemoto::enviarColas() {
  int pos = 0;
  foreach( tabla, tablas )
  {
+        qDebug( tabla.toLocal8Bit() );
         PBProgreso->setValue( PBProgreso->value() + 1 );
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
-        while( cola.next() && _continuar && pos < 10 )
+        while( cola.next() )
         {
             QUrl temp;
             temp.addEncodedQueryItem( "posicion", QUrl::toPercentEncoding( QString::number( pos ) ) );
             temp.addEncodedQueryItem( "cola", QUrl::toPercentEncoding( db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) ) );
             QByteArray data = temp.encodedQuery();
+            //qDebug( data );
             lista.append( manager->post( *req2, data ) );
 
             QApplication::processEvents();
@@ -242,14 +244,14 @@ void EBackupRemoto::enviarColas() {
             PBProgreso->setValue( PBProgreso->value() + 1 );
             pos++;
         }
-        if( _continuar == false ) {
+       /* if( _continuar == false ) {
             url.addQueryItem( "cancelar", "0" );
             QApplication::processEvents();
             req->setUrl( url );
             manager->post( *req, url.encodedQuery() );
             disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaColas(QNetworkReply*) ) );
             lista.clear();
-        }
+        }*/
   }
  //////////////////////////////////////////////////////////////////////////////////////////////////////////
  PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -262,7 +264,6 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
         this->mostrarError( resp->error() );
     } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
-        qDebug( "resp:"+cont );
         QApplication::processEvents();
         bool ok = false;
         resp->deleteLater();
@@ -289,7 +290,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
                  p->beginGroup( "BackupRemoto" );
                  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
                  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
-                 url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
+                 url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
                  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
                  p->endGroup(); p->endGroup(); p = 0;
                  url.addQueryItem( "fin", "0" );
@@ -299,6 +300,13 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
                  disconnect( manager, SIGNAL( finished( QNetworkReply* ) ),this, SLOT( respuestaColas( QNetworkReply* ) ) );
                 _continuar = false;
                 emit cambiarDetener( false );
+            } else {
+                if( lista.size() == 1 ) {
+                    QNetworkReply *respuesta = lista.first();
+                    qDebug( respuesta->url().path().toLocal8Bit() );
+                    qDebug( respuesta->url().encodedQuery() );
+                }
+                qDebug( QString( "Faltan %1 colas todavia" ).arg( lista.size() ).toLocal8Bit() );
             }
         }
     }
@@ -329,8 +337,9 @@ void EBackupRemoto::respuestaInicio( QNetworkReply *resp ) {
             emit cambiarDetener( false );
             return;
         } else {
-            lista.removeOne( resp );
+            lista.removeAll( resp );
             PBEnviado->setValue( PBEnviado->value() + 1 );
+            disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaInicio( QNetworkReply* ) ) );
             enviarColas();
         }
     }
@@ -435,6 +444,8 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
 {
     if( resp->error() != QNetworkReply::NoError ) {
         // Notifico el error
+        QMessageBox::information( this, "Error", "Hubo un error de comunicación con el servidor. Por favor intente nuevamente más tarde" );
+        return;
     } else {
         QByteArray cont( resp->readAll() );
         QApplication::processEvents();
