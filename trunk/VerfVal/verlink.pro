@@ -2,23 +2,24 @@ TEMPLATE = app
 
 SOURCES = verificarLinkeo.cpp
 
-LIBS += ../../gestotux-build-desktop/bin/plugins/libcaja.so \
-        ../../gestotux-build-desktop/bin/plugins/libcompras.so \
-        ../../gestotux-build-desktop/bin/plugins/libctacte.so \
-        ../../gestotux-build-desktop/bin/plugins/libgastos.so \
-        ../../gestotux-build-desktop/bin/plugins/libpagos.so \
-        ../../gestotux-build-desktop/bin/plugins/libpresupuesto.so \
-        ../../gestotux-build-desktop/bin/plugins/libproductos.so \
-        ../../gestotux-build-desktop/bin/plugins/libproveedor.so \
-        ../../gestotux-build-desktop/bin/plugins/libservicios.so \
-        ../../gestotux-build-desktop/bin/plugins/libventas.so \
-        ../../gestotux-build-desktop/bin/plugins/libbackupremoto.so \
-        ../../gestotux-build-desktop/bin/plugins/libzinfo.so \
+LIBS += ../../gestotux/bin/plugins/libcaja.so \
+        ../../gestotux/bin/plugins/libcompras.so \
+        ../../gestotux/bin/plugins/libctacte.so \
+        ../../gestotux/bin/plugins/libgastos.so \
+        ../../gestotux/bin/plugins/libpagos.so \
+        ../../gestotux/bin/plugins/libpresupuesto.so \
+        ../../gestotux/bin/plugins/libproductos.so \
+        ../../gestotux/bin/plugins/libproveedor.so \
+        ../../gestotux/bin/plugins/libservicios.so \
+        ../../gestotux/bin/plugins/libventas.so \
+        ../../gestotux/bin/plugins/libbackupremoto.so \
+        ../../gestotux/bin/plugins/libzinfo.so \
 #        ../../gestotux-build-desktop/bin/plugins/libdigifauno.so \
-        ../../gestotux-build-desktop/bin/libreporte.a \
-        ../../gestotux-build-desktop/bin/libutiles.a \
+        ../../gestotux/bin/libreporte.a \
+        ../../gestotux/bin/libutiles.a \
 #        ../../gestotux-build-desktop/bin/plugins/libbscomputacion.so \
-        ../../gestotux-build-desktop/bin/plugins/libhicomp.so \
-        ../../gestotux-build-desktop/bin/plugins/libcuotas.so \
-        ../../gestotux-build-desktop/bin/plugins/libremitos.so
+        ../../gestotux/bin/plugins/libhicomp.so \
+        ../../gestotux/bin/plugins/libcuotas.so \
+        ../../gestotux/bin/plugins/libremitos.so \
+        ../../gestotux/bin/plugins/libordentrabajo.so
         

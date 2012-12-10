@@ -1,5 +1,8 @@
 #include "mtecnicos.h"
 
+#include <QSqlQuery>
+#include <QSqlRecord>
+
 MTecnicos::MTecnicos(QObject *parent) :
     QSqlTableModel(parent)
 {
@@ -7,6 +10,18 @@ MTecnicos::MTecnicos(QObject *parent) :
     setHeaderData( 0, Qt::Horizontal, "#ID" );
     setHeaderData( 1, Qt::Horizontal, "Razon Social" );
     setHeaderData( 2, Qt::Horizontal, "Habilitado" );
+}
+
+bool MTecnicos::existe(const QString nombre)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(razon_social) FROM tecnico WHERE razon_social = %1" ).arg( nombre ) ) ) {
+        cola.next();
+        if( cola.record().value(0).toInt() > 0 ) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /*

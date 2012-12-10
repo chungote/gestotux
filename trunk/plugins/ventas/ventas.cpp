@@ -150,7 +150,7 @@ void Ventas::slotEmitirPlanCuota( int id_cliente, double valor ) {
     emit( emitirPlanCuota( id_cliente, valor ) );
 }
 
-void Ventas::mostrarFactura( int id_factura )
+void Ventas::mostrarFactura( int /*id_factura */ )
 {
     qWarning( "Todavía no está implementada la vision de una factura emitida" );
 }
