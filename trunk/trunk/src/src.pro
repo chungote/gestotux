@@ -74,7 +74,11 @@ FORMS += FormAcercaDeBase.ui \
          FormPantallaInicialBase.ui \
          formprefclientesbase.ui
 
-TARGET = ../../bin/gestotux
+win32 {
+    TARGET = ../../bin/gestotux
+} else {
+    TARGET = ../bin/gestotux
+}
 
 DISTFILES += qt_es.qm
 

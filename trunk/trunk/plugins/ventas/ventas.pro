@@ -67,4 +67,6 @@ RESOURCES += ventas.qrc
 OTHER_FILES += ventas.ts \
                ventas.QSQLITE.sql \
                ventas.QMYSQL.sql
-QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}

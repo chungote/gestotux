@@ -14,12 +14,19 @@ class VTecnicos : public EVLista
     Q_OBJECT
 public:
     VTecnicos( QWidget *parent = 0 );
-    
 
 public slots:
-    void agregar();
+    void agregar(bool autoeliminarid);
     void modificar();
     void eliminar();
+    void habilitar();
+    void deshabilitar();
+    void cambiarHabilitado( bool estado);
+
+private:
+    QAction *ActHabilitar;
+    QAction *ActDeshabilitar;
+    QAction *ActMostrarDeshabilitados;
 
 };
 

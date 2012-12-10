@@ -198,7 +198,7 @@ void FormDetalleCuotas::pdf()
  */
 void FormDetalleCuotas::setearIdPlanCuota( int id ) {
     // Cargo los datos de la cuota
-  /*  QSqlQuery cola;
+    QSqlQuery cola;
     if( cola.exec( QString( "SELECT * FROM plan_cuota WHERE id_plan_cuota = %1" ).arg( id ) ) ) {
         if( cola.next() ) {
             SBCantidad->setValue(       cola.record().value("cantidad_cuotas").toInt()    );
@@ -235,5 +235,5 @@ void FormDetalleCuotas::setearIdPlanCuota( int id ) {
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return;*/
+    return;
 }
