@@ -47,6 +47,13 @@ void MItemFactura::relacionar() {
  * @returns Verdadero si se pudo agregar correctamente.
  */
 bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario, const int id_producto ) {
+    if( id_venta == 0 || cantidad == 0 || texto.isEmpty() ) {
+        qWarning( "Datos incorrectos al intentar guardar el item de venta." );
+        qDebug( QString( "id_venta = %1" ).arg( id_venta ).toLocal8Bit() );
+        qDebug( QString( "cantidad: %1" ).arg( cantidad ).toLocal8Bit() );
+        qDebug( QString( "Texto: %1" ).arg( texto ).toLocal8Bit() );
+        return false;
+    }
     QSqlQuery cola;
     if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "SQLITE" ) {
         if( cola.exec( QString( "SELECT COUNT(id_factura) FROM factura WHERE id_factura = %1").arg( id_venta ) ) ) {

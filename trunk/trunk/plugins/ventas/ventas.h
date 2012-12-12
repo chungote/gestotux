@@ -66,7 +66,7 @@ private slots:
 
 signals:
     void agregarVentana( QWidget * );
-    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void agregarDockWidget(Qt::DockWidgetArea , QDockWidget * );
     void emitirRecibo( int, QString, double );
     void emitirPlanCuota( int, double );
     void planCuotaSetearIdCuota( int );
