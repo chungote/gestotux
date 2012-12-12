@@ -25,6 +25,7 @@
 #include <QSqlError>
 #include <QSqlField>
 #include <QMessageBox>
+#include <QSqlDriver>
 
 #include "NumeroComprobante.h"
 #include "mitemfactura.h"
@@ -115,9 +116,26 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
  }
  else
  {
-
-  int id_venta = cola.lastInsertId().toInt();
-  //qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
+  int id_venta = -1;
+  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
+    id_venta = cola.lastInsertId().toInt();
+  } else {
+      if( cola.exec( "SELECT MAX( id_factura ) FROM factura" ) ) {
+          cola.next();
+          id_venta = cola.record().value(0).toInt();
+      } else {
+          qDebug( "Error de obtencion del id del registro de venta" );
+          qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+          return -1;
+      }
+  }
+  if( id_venta <= 0 ) {
+      qWarning( "Identificador de factura incorrecto!" );
+      QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+      return -1;
+  }
+  qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
   // Guardo los datos de el modelo
 
   // recorro el modelo y guardo los datos

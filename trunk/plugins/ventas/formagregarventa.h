@@ -48,10 +48,18 @@ signals:
          * \brief emitirPlanCuota
          * \params id_cliente Identificador de Cliente
          * \params total Total del plan
-         * \params id_factura Identificador de Factura
          */
         void emitirPlanCuota( int id_cliente, double total );
+        /*!
+         * \brief emitirPlanCuotaSetIdFactura
+         * \params id_cliente Identificador del plan de cuota
+         * \params id_factura Identificador de la factura
+         */
         void emitirPlanCuotaSetIdFactura( int id_plan_cuota, int id_factura );
+        /*!
+         * \brief Actualiza el listado de ventas
+         */
+        void actualizarListado();
 
 protected slots:
         void agregarProducto();
@@ -65,9 +73,6 @@ protected slots:
 private:
         MProductosTotales *mcp;
         int id_plan_cuota;
-
-signals:
-        void actualizarListado();
 
 };
 
