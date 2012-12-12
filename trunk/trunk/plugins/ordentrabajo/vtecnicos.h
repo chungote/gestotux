@@ -21,7 +21,7 @@ public slots:
     void eliminar();
     void habilitar();
     void deshabilitar();
-    void cambiarHabilitado( bool estado);
+    void cambiarVerDeshabilitado( bool estado);
 
 private:
     QAction *ActHabilitar;
