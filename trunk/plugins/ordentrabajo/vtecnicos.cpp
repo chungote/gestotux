@@ -43,7 +43,7 @@ EVLista(parent)
     ActMostrarDeshabilitados->setText( "Deshabilitados" );
     ActMostrarDeshabilitados->setCheckable( true );
     ActMostrarDeshabilitados->setStatusTip( QString::fromUtf8( "Muestra los técnicos deshabilitados" ) );
-    connect( ActMostrarDeshabilitados, SIGNAL( toggled( bool ) ), this, SLOT( cambiarHabilitado( bool ) ) );
+    connect( ActMostrarDeshabilitados, SIGNAL( toggled( bool ) ), this, SLOT( cambiarVerDeshabilitado( bool ) ) );
 
     QAction *ActSep = new QAction( this );
     ActSep->setSeparator( true );
@@ -57,7 +57,7 @@ EVLista(parent)
     this->addAction( ActSep );
     this->addAction( ActMostrarDeshabilitados );
 
-    cambiarHabilitado( false );
+    cambiarVerDeshabilitado( false );
 
     this->modelo->select();
 }
@@ -120,12 +120,12 @@ void VTecnicos::deshabilitar()
  * \fn VTecnicos::cambiarHabilitado()
  * Permite mostrar o ocultar los técnicos deshabilitados
  */
-void VTecnicos::cambiarHabilitado( bool estado )
+void VTecnicos::cambiarVerDeshabilitado( bool estado )
 {
-    if( !estado ) {
-        this->modelo->setFilter( " habilitado = 0" );
-    } else {
+    if( estado ) {
         this->modelo->setFilter( QString() );
+    } else {
+        this->modelo->setFilter( "habilitado = 0" );
     }
     this->modelo->select();
 }

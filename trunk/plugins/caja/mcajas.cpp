@@ -23,6 +23,7 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QMessageBox>
 
 #include "mmovimientoscaja.h"
 #include "preferencias.h"
@@ -227,7 +228,7 @@ int MCajas::cajaPredeterminada()
                     cola.next();
                     return cola.record().value(0).toInt();
                 } else {
-                    qWarning( "No existe una caja predeterminada seleccionada. Se eligirá la primera disponible.\n <b>Por favor, seleccióne una caja predeterminada desde las preferencias del programa</b>" );
+                    QMessageBox::information( 0, "Caja predeterminada", QString::fromUtf8( "No existe una caja predeterminada seleccionada. Se eligirá la primera disponible.\n <b>Por favor, seleccióne una caja predeterminada desde las preferencias del programa" ) );
                     cola.exec( "SELECT id_caja FROM caja LIMIT 1 " );
                     cola.next();
                     return cola.record().value(0).toInt();
