@@ -120,12 +120,12 @@ void CuotasPlugin::seCierraGestotux()
  * \param id_cliente Identificador del cliente al cual se les emitirá el plan de cuotas
  * \param total Total a pagar
  */
-void CuotasPlugin::generarPlanCuotas(int id_cliente, double total)
+void CuotasPlugin::generarPlanCuotas( int id_cliente, double total )
 {
-    qWarning( "Señal recibida" );
     FormSimularCuotas *f = new FormSimularCuotas();
     f->setearIdCliente( id_cliente );
     f->setearTotal( total );
+    f->setearConfirmar( true );
     connect( f, SIGNAL( emitirIdPlanCuota( int ) ), this, SIGNAL( emitirPlanCuotaId( int ) ) );
     emit agregarVentana( f );
 }

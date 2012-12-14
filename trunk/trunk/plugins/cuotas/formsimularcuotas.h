@@ -15,7 +15,8 @@ public:
     ~FormSimularCuotas();
     void setearIdCliente( int id_cliente ) { _id_cliente = id_cliente; }
     int idCliente() { return _id_cliente; }
-    void setearTotal( double Total ) { SBCantidad->setValue( Total ); }
+    void setearTotal( double Total ) { DSBImporte->setValue( Total ); }
+    void setearConfirmar( bool conf );
     
 protected:
     void changeEvent( QEvent *e );
@@ -35,7 +36,7 @@ private slots:
     void confirmar();
 
 signals:
-    void confirmarCuotas( int id_plan );
+    void emitirIdPlanCuota( int );
 
 private:
     QAction *ActSimular;
