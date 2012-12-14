@@ -1,6 +1,8 @@
 #ifndef VTECNICOS_H
 #define VTECNICOS_H
 
+#include "mtecnicos.h"
+
 #include "evlista.h"
 
 /**
@@ -27,6 +29,8 @@ private:
     QAction *ActHabilitar;
     QAction *ActDeshabilitar;
     QAction *ActMostrarDeshabilitados;
+
+    MTecnicos *modelo;
 
 };
 

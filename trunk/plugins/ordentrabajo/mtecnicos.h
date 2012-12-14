@@ -10,6 +10,7 @@ public:
     MTecnicos( QObject *parent = 0 );
 
     static bool existe( const QString nombre );
+    bool tieneDatosRelacionados( const int id_tecnico );
 };
 
 #endif // MTECNICOS_H
