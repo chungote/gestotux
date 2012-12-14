@@ -95,6 +95,13 @@ FormSimularCuotas::~FormSimularCuotas()
 
 }
 
+void FormSimularCuotas::setearConfirmar(bool conf)
+{
+    if( conf ) {
+        this->addAction( ActConfirmar );
+    }
+}
+
 void FormSimularCuotas::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
@@ -255,12 +262,12 @@ void FormSimularCuotas::pdf()
  */
 void FormSimularCuotas::confirmar()
 {
-   /* if( _id_cliente <= 0 ) {
+    if( _id_cliente <= 0 ) {
         QMessageBox::information( this, "Error", "No se puede generar un plan de cuotas para un cliente Consumidor final o desconocido" );
         return;
     }
     // Consulto si quiere imprimir el plan de cuotas
-    int ret = QMessageBox::question( this, QString::fromUtf8("Â¿Imprimir?"), QString::fromUtf8("Â¿Desea imprimir el resumen de cuotas para que el cliente lo firme?"), QMessageBox::Yes, QMessageBox::No );
+    int ret = QMessageBox::question( this, QString::fromUtf8("¿Imprimir?"), QString::fromUtf8("¿Desea imprimir el resumen de cuotas para que el cliente lo firme?"), QMessageBox::Yes, QMessageBox::No );
     if( ret == QMessageBox::Yes ) {
         imprimir();
     }
@@ -280,8 +287,8 @@ void FormSimularCuotas::confirmar()
         return;
     }
     delete mpc;
-    emit confirmarCuotas( id_plan_cuota );
-    return;*/
+    emit emitirIdPlanCuota( id_plan_cuota );
+    return;
 }
 
 /*!

@@ -139,16 +139,10 @@ void Ventas::crearToolBar( QToolBar */*t*/ )
 void Ventas::agregarVenta()
 {
     FormAgregarVenta *f = new FormAgregarVenta();
-    //connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SLOT( slotEmitirPlanCuota( int, double ) ) );
-    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), qApp, SLOT( aboutQt() ) );
-    //connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
-    //connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
-    emit agregarVentana( new FormAgregarVenta() );
-}
-
-void Ventas::slotEmitirPlanCuota( int id_cliente, double valor ) {
-    qWarning( "Senal retransmitida" );
-    emit( emitirPlanCuota( id_cliente, valor ) );
+    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SIGNAL( emitirPlanCuota( int, double ) ) );
+    connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
+    connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
+    emit agregarVentana( f );
 }
 
 void Ventas::mostrarFactura( int /*id_factura */ )

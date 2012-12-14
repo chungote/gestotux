@@ -54,6 +54,14 @@ public:
     bool publicidad() { return true; }
     QAction *botonPantallaInicial() { return ActAgregarVentas; }
 
+signals:
+    void agregarVentana( QWidget * );
+    void agregarDockWidget(Qt::DockWidgetArea , QDockWidget * );
+    void emitirRecibo( int, QString, double );
+    void emitirPlanCuota( int, double );
+    void planCuotaSetearIdCuota( int );
+    void emitirPlanCuotaSetIdFactura( int, int );
+
 private:
     QList<QAction *> _acciones;
     QAction *ActAgregarVentas;
@@ -64,18 +72,11 @@ private slots:
     void agregarVenta();
     void verFacturas();
 
-signals:
-    void agregarVentana( QWidget * );
-    void agregarDockWidget(Qt::DockWidgetArea , QDockWidget * );
-    void emitirRecibo( int, QString, double );
-    void emitirPlanCuota( int, double );
-    void planCuotaSetearIdCuota( int );
-    void emitirPlanCuotaSetIdFactura( int, int );
+
 
 public slots:
     void seCierraGestotux();
     void agregarFactura( int, QDate, MProductosTotales * );
-    void slotEmitirPlanCuota( int c, double d );
     void mostrarFactura( int id_factura );
 
 };
