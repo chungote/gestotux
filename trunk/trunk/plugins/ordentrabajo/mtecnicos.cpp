@@ -24,6 +24,12 @@ bool MTecnicos::existe(const QString nombre)
     return false;
 }
 
+bool MTecnicos::tieneDatosRelacionados(const int id_tecnico)
+{
+    /// @todo Implementar esto
+    return false;
+}
+
 /*
  CREATE TABLE IF NOT EXISTS `tecnico` (
     `id_tecnico` bigint(20) NOT NULL AUTO_INCREMENT,

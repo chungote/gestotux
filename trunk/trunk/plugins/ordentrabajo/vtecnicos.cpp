@@ -8,6 +8,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QSqlRecord>
+#include <QSqlError>
 
 VTecnicos::VTecnicos(QWidget *parent) :
 EVLista(parent)
@@ -93,28 +94,100 @@ void VTecnicos::agregar( bool )
  * Modifica el técnico que esté seleccionado
  **/
 void VTecnicos::modificar()
-{ qWarning( "No Implementado todavía" ); }
+{
+    if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para modificarlo" ) );
+        return;
+    }
+    // Busco solo el primero
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    QString nombre_anterior = idx.model()->data( idx, Qt::EditRole ).toString();
+    bool ok = false;
+    QString nombre = QInputDialog::getText( this,  QString::fromUtf8( "Modificar técnico" ),  QString::fromUtf8( "Nueva razón social:" ), QLineEdit::Normal, nombre_anterior, &ok );
+    if( ok && nombre_anterior != nombre && !nombre.isEmpty() ) {
+        if( MTecnicos::existe( nombre ) ) {
+            QMessageBox::warning( this, "Error", QString::fromUtf8( "El técnico que está intentando ingresar ya se encuentra en la base de datos" ) );
+        } else {
+            QSqlRecord r = this->modelo->record( idx.row() );
+            r.setValue( "razon_social", nombre );
+            if( this->modelo->setRecord( idx.row(), r ) ) {
+                QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico fue modificado correctamente" ) );
+                return;
+            } else {
+                QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo modificar el técnico" ) );
+                qDebug( "Error al modificar el registro del técnico" );
+                qDebug( this->modelo->lastError().text().toLocal8Bit() );
+                return;
+            }
+        }
+    }
+    return;
+}
 
 /*!
  * \fn VTecnicos::eliminar()
  * Verifica si se puede eliminar un tecnico
  */
 void VTecnicos::eliminar()
-{ qWarning( "Eliminar datos es peligroso!"); }
+{
+    if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para borrar" ) );
+        return;
+    }
+    QModelIndexList indices = this->vista->selectionModel()->selectedRows();
+    // Obtener la confirmación
+    int ret = QMessageBox::question( this, QString::fromUtf8( "¿Está seguro?" ), QString::fromUtf8( "¿Está seguro que desea eliminar %1 tecnico%2?" ).arg( indices.size() ).arg( (indices.size() > 1) ? "s":"" ) );
+    if( ret == QMessageBox::Ok ) {
+        foreach( QModelIndex idx, indices ) {
+            // Busco cada registro y verifico que no existan relaciones
+            int id_tecnico = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+            if( !this->modelo->tieneDatosRelacionados( id_tecnico ) ) {
+                this->modelo->removeRow( idx.row() );
+            }
+        }
+    }
+    QMessageBox::information( this, "Listo", "Los items que no fueron eliminados poseen alguna orden de trabajo relacionada. Si no desea perder la orden de trabajo o cambiar su tecnico asociado, ponga el técnico como deshabilitado." );
+}
 
 /*!
  * \fn VTecnicos::habilitar()
  * Habilita un técnico que ha estado deshabilitado
  */
 void VTecnicos::habilitar()
-{ qWarning( "No implementado todavía" ); }
+{
+    if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para borrar" ) );
+        return;
+    }
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    QSqlRecord r = this->modelo->record( idx.row() );
+    r.setValue( "habilitado", true );
+    if( this->modelo->setRecord( idx.row(), r ) ) {
+        QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ha sido habilitado" ) );
+    } else {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El técnico no pude ser habilitado" ) );
+    }
+}
 
 /*!
  * \fn VTecnicos::deshabilitar()
  * Deshabilita un técnico que ha estado habilitado
  */
 void VTecnicos::deshabilitar()
-{ qWarning( "No implementado todavía" ); }
+{
+    if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para borrar" ) );
+        return;
+    }
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    QSqlRecord r = this->modelo->record( idx.row() );
+    r.setValue( "habilitado", false );
+    if( this->modelo->setRecord( idx.row(), r ) ) {
+        QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ha sido habilitado" ) );
+    } else {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El técnico no pude ser habilitado" ) );
+    }
+}
 
 /*!
  * \fn VTecnicos::cambiarHabilitado()
