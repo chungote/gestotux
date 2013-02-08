@@ -51,6 +51,7 @@ VProductos::VProductos(QWidget *parent)
 
  vista->hideColumn( 0 );
  preferencias *p = preferencias::getInstancia();
+ p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "Productos" );
  if( !p->value( "categorias" ).toBool() )
@@ -59,7 +60,8 @@ VProductos::VProductos(QWidget *parent)
  { vista->hideColumn( rmodelo->fieldIndex( "descripcion" ) ); }
  if( !p->value( "marcas" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "marca" ) ); }
- if( !p->value( "stock" ).toBool() )
+ bool hab_stock = p->value( "stock" ).toBool();
+ if( !hab_stock )
  { vista->hideColumn( rmodelo->fieldIndex( "stock" ) ); }
  if( !p->value( "modelo" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "modelo" ) ); }
@@ -100,7 +102,7 @@ VProductos::VProductos(QWidget *parent)
 
          addAction( ActCategorias );
  }
- p->endGroup();p->endGroup(); p=0;
+
 
  ActListadoVenta = new QAction( this );
  ActListadoVenta->setText( "Listado de venta" );
@@ -117,7 +119,9 @@ VProductos::VProductos(QWidget *parent)
  connect( ActListadoStock, SIGNAL( triggered() ), this, SLOT( listaStock() ) );
 
  addAction( ActListadoVenta );
- addAction( ActListadoStock );
+ if( hab_stock == true ) {
+    addAction( ActListadoStock );
+ }
  addAction( ActBuscar );
  addAction( ActVerTodos );
  addAction( ActCerrar );
@@ -126,10 +130,13 @@ VProductos::VProductos(QWidget *parent)
  agregarFiltroBusqueda( QString::fromUtf8("Código"), " `codigo` LIKE '%%1%' " );
  agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%1%' " );
  agregarFiltroBusqueda( QString::fromUtf8("Descripción"), " `descripcion` LIKE '%%1%' " );
- agregarFiltroBusqueda( "Stock mayor o igual a ", " `stock` >= %1" );
- agregarFiltroBusqueda( "Stock menor a ", " `stock` < %1" );
+ if( hab_stock == true ) {
+    agregarFiltroBusqueda( "Stock mayor o igual a ", " `stock` >= %1" );
+    agregarFiltroBusqueda( "Stock menor a ", " `stock` < %1" );
+ }
  habilitarBusqueda();
 
+ p->endGroup();p->endGroup(); p=0;
 }
 
 /*!
