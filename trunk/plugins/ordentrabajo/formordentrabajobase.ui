@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="LNumeroOrden">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -32,7 +32,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="GBBasico">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -84,7 +84,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateTimeEdit" name="DTEFechaIngreso"/>
+      <widget class="QDateTimeEdit" name="DTEFechaIngreso">
+       <property name="displayFormat">
+        <string>d MMM yyyy HH:mm</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

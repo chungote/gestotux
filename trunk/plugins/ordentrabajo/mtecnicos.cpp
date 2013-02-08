@@ -2,6 +2,7 @@
 
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QSqlError>
 
 MTecnicos::MTecnicos(QObject *parent) :
     QSqlTableModel(parent)
@@ -20,11 +21,15 @@ bool MTecnicos::existe(const QString nombre)
         if( cola.record().value(0).toInt() > 0 ) {
             return true;
         }
+    } else {
+        qDebug( "Error al ejecutar la cola de contabilidad de cantidad de tecnicos en el sistema" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
     }
     return false;
 }
 
-bool MTecnicos::tieneDatosRelacionados(const int id_tecnico)
+bool MTecnicos::tieneDatosRelacionados( const int id_tecnico )
 {
     /// @todo Implementar esto
     return false;
