@@ -190,6 +190,12 @@ int main(int argc, char *argv[])
       Q_INIT_RESOURCE(gestotux);
       QApplication app(argc, argv);
       // Maneja la salida del programa
+      // Elimino el archivo anterior si existe para que el rename no falle
+      QFile::remove( QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) );
+      if( !QFile::rename( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ),
+                        QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) ) ) {
+          qDebug( "Error al mover el archivo de debug anterior a su nueva posicion" );
+      }
       debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
       fseek( debug, 0, 0 );
       qInstallMsgHandler(myMessageOutput);
@@ -198,8 +204,12 @@ int main(int argc, char *argv[])
       splash.show();
       splash.showMessage( "Cargando propiedades locales" );
       // Permite que el programa tenga el Look & Feel del escritorio actual
-      //app.setDesktopSettingsAware( true );
+      app.setDesktopSettingsAware( true );
       preferencias *p = preferencias::getInstancia();
+      // Valor de referencia para el plugin de retroalimentacion
+      p->setValue( "error_cierre", true );
+      p->sync();
+      // Busco las preferencias de estilo
       p->beginGroup( "Preferencias" );
       p->beginGroup( "General" );
       QApplication::setStyle( QStyleFactory::create( p->value( "estilo", "float" ).toString() ) );
@@ -226,7 +236,7 @@ int main(int argc, char *argv[])
       QDir *directorio = new QDir( QCoreApplication::applicationDirPath() );
       directorio->cd( "traducciones" );
       if( tran.load( directorio->absoluteFilePath( "qt_es" ) ) )
-      { app.installTranslator(&tran); } else  { qDebug( "Fallo al cargar la traduccion" ); }
+      { app.installTranslator(&tran); } else  { qDebug( "Fallo al cargar la traduccion de qt" ); }
       if( tran.load( directorio->absoluteFilePath( "ncreport_es" ) ) )
       { QCoreApplication::instance()->installTranslator(&tran); } else { qDebug( "Fallo al cargar la traduccion del reporte" ); }
       delete directorio;
@@ -454,5 +464,10 @@ int main(int argc, char *argv[])
         for(int i = 0; i < list.count(); ++i) {
             QSqlDatabase::removeDatabase(list[i]);
         }
+        p = preferencias::getInstancia();
+        p->inicio();
+        p->setValue( "error_cierre", false );
+        p->sync();
+        p = 0;
         return ret;
 }
