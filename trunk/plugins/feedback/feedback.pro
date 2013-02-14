@@ -1,0 +1,36 @@
+TEMPLATE = lib
+
+CONFIG += plugin \
+          dll \
+          help
+
+TARGET = feedback
+
+QT += xml \
+      network
+
+DESTDIR = ../../bin/plugins
+
+INCLUDEPATH += ../../utiles \
+               ../../src
+
+LIBS += ../../bin/libutiles.a
+
+PRE_TARGETDEPS += ../../bin/libutiles.a
+
+win32 {
+    QMAKE_LFLAGS += "-Wl,-export-all-symbols"
+}
+
+HEADERS += \
+    feedbackplugin.h \
+    feedbacksender.h \
+    formpreffeedback.h
+
+SOURCES += \
+    feedbackplugin.cpp \
+    feedbacksender.cpp \
+    formpreffeedback.cpp
+
+FORMS += \
+    formpreffeedback.ui

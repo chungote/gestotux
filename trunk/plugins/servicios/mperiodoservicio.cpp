@@ -437,7 +437,7 @@ int MPeriodoServicio::agregarPeriodoAFacturarNuevo( const int id_servicio ) {
         qDebug( "Atencion - La ulima fecha de inicio del periodo no existe - se utilizara la generica." );
     }
     int ultimo_periodo = this->getUltimoPeriodo( id_servicio );
-    if( ultimo_periodo != -1 && ultimo_periodo >= periodo ) {
+    if( ultimo_periodo != -1 && ultimo_periodo >= periodo && periodo != 1 ) { // La ultima opción es para evitar que de error al cambiar de año
         qDebug( "Error- El numero de periodo es invalido o igual que el periodo que se facturara." );
         return -1;
     }

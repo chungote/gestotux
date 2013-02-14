@@ -32,7 +32,7 @@ QSqlTableModel(parent)
  * \param entrega Entrega inicial realizada
  * \param fecha_inicio Fecha desde cuando se inicia el plan de cuotas
  * \param id_plan Variable donde se devolverÃ¡ el numero de plan de cuota
- * \param cant_cuotas Cantidad de cuotas en que se dividiÃ³ el pago
+ * \param cant_cuotas Cantidad de cuotas en que se dividio el pago
  * \returns Verdadero si se pudo generar el plan y sus items
  */
 bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan )
@@ -158,7 +158,7 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
         }
         case MPlanCuota::Anual:
         {
-            // Como consideramos los servicios con base en 1 aÃ±o, siempre es periodo 1
+            // Como consideramos los servicios con base en 1 año, siempre es periodo 1
             return fecha_calculo.daysInYear() -1 ;
         }
         default:
@@ -178,7 +178,7 @@ void MPlanCuota::asociarConFactura(int id_plan, int id_factura)
         qDebug( "Plan de cuotas actualizado correctamente" );
     } else {
         qWarning( "No se pudo asociar la cuota" );
-        qDebug( "Error al ejecutar la cola de actualziaciÃ³n de id de factura en el plan  de cuotas" );
+        qDebug( "Error al ejecutar la cola de actualziacion de id de factura en el plan  de cuotas" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
