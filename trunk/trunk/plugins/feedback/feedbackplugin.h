@@ -9,6 +9,7 @@ class QMenuBar;
 #include <QList>
 #include <QAction>
 #include "../../src/eplugin.h"
+class FeedbackSender;
 
 
 class FeedbackPlugin : public QObject, EPlugin
@@ -30,11 +31,14 @@ public:
 
 public slots:
     void seCierraGestotux();
-    void hacerBackup();
+    void enviarFeedback();
 
 signals:
     void agregarVentana( QWidget *v );
     void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
+
+private:
+    FeedbackSender *enviador;
 
 };
 

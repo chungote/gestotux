@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QApplication>
 #include <QDir>
+#include <QMessageBox>
 
 FeedbackSender::FeedbackSender(QObject *parent) :
 QThread(parent)
@@ -19,7 +20,7 @@ QThread(parent)
 void FeedbackSender::run()
 {
     if( reintentos == 0 ) {
-        qDebug( "Numero de reintentos maximo alcanzados" );
+        qDebug( "Feedback: Numero de reintentos maximo alcanzados" );
         exit( 2 );
     }
 
@@ -28,6 +29,7 @@ void FeedbackSender::run()
     bool ultimo_error = p->value( "lastError", false ).toBool();
 
     if( ultimo_error == false ) {
+        qDebug( "Feedback: No hubo error en el ultimo cierre.");
         exit( 0 ); // No hubo error en el ultimo cierre
     }
     p->beginGroup( "Preferencias" );
@@ -46,7 +48,7 @@ void FeedbackSender::run()
 
     QFile *f = new QFile( QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) );
     if( ! f->open( QIODevice::ReadOnly ) ) {
-        qDebug( "Error al intentar abrir el archivo debugOld.txt como solo lectura" );
+        qDebug( "Feedback: Error al intentar abrir el archivo debugOld.txt como solo lectura" );
         exit( 1 );
     }
 
@@ -62,28 +64,32 @@ void FeedbackSender::run()
     req = new QNetworkRequest( url );
 
     // Envio el archivo
-    lista.append( manager->post( *req, f ) );
+    lista = manager->post( *req, f );
 
     exec();
 }
 
 /**
+ * \fn FeedbackSender::respuesta( QNetworkReply *resp )
+ * \param resp Respuesta recibida del servidor
  * Slot llamado cuando se obtiene la respuesta
  **/
 void FeedbackSender::respuesta( QNetworkReply *resp )
 {
     if( resp->error() != QNetworkReply::NoError ) {
+        qDebug( "Error de red al enviar informe de errores" );
         qDebug( resp->errorString().toLocal8Bit() );
         // Intento nuevamente más tarde hasta n veces
         reintentos--;
+        qDebug( QString( "Numero de reintentos faltantes: %1" ).arg( reintentos ).toLocal8Bit() );
         sleep( 10000 );
     } else if( resp->isFinished() ) {
         QApplication::processEvents();
         resp->deleteLater();
-        qDebug( "Envio de error completado" );
+        qDebug( "Feedback: Envio de error completado." );
         f->close();
         f->remove();
-        /// @TODO Agregar elemento de analisis para dar una devolución al usuario de si el error se mostró correctamente al servidor
+        QMessageBox::information( 0, "Correcto", "El informe de errores de el ultimo uso del programa se envió correctamente." );
         exit( 0 );
    }
 }
