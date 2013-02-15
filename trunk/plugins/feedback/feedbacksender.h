@@ -23,12 +23,15 @@ private:
      */
      QNetworkAccessManager *manager;
 
+     /*!
+      * Puntero de request
+      */
      QNetworkRequest *req;
 
     /*!
      * Lista de solicitudes de red -  envio de colas
      */
-     QList<QNetworkReply *> lista;
+     QNetworkReply *lista;
 
     /*!
      * Apuntador de archivo

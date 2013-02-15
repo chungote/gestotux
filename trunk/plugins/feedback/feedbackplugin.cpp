@@ -10,6 +10,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QTimer>
 
 /*!
     \fn FeedbackPlugin::accionesBarra()
@@ -24,11 +25,8 @@ bool FeedbackPlugin::inicializar()
 {
  //Q_INIT_RESOURCE(FeedbackPlugin);
 
-/* ActBackup = new QAction( this );
- ActBackup->setText( "Backup Remoto" );
- ActBackup->setStatusTip( "Genera una copia de seguridad y la envía al servidor remoto" );
- ActBackup->setIcon( QIcon( ":/imagenes/backup.png" ) );
- connect( ActBackup, SIGNAL( triggered() ), this, SLOT( hacerBackup() ) );*/
+ // Seteo el timer para no sobrecargar el inicio del sistema
+ QTimer::singleShot( 10*100, this, SLOT( enviarFeedback() ) );
 
  return true;
 }
@@ -96,6 +94,16 @@ void FeedbackPlugin::seCierraGestotux()
 QAction *FeedbackPlugin::botonPantallaInicial()
 {
     return ( new QAction( this ) );
+}
+
+#include "feedbacksender.h"
+/*!
+ * \fn FeedbackPlugin::enviarFeedback()
+ * Slot llamado a los 10 seg de iniciado el programa para enviar el informe de errores si existió error
+ **/
+void FeedbackPlugin::enviarFeedback() {
+    enviador  = new FeedbackSender( this );
+    enviador->run();
 }
 
 Q_EXPORT_PLUGIN2( feedback, FeedbackPlugin )
