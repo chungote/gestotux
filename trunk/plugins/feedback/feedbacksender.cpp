@@ -19,6 +19,7 @@ QThread(parent)
  */
 void FeedbackSender::run()
 {
+    exec();
     if( reintentos == 0 ) {
         qDebug( "Feedback: Numero de reintentos maximo alcanzados" );
         exit( 2 );
@@ -66,7 +67,7 @@ void FeedbackSender::run()
     // Envio el archivo
     lista = manager->post( *req, f );
 
-    exec();
+
 }
 
 /**
@@ -77,12 +78,12 @@ void FeedbackSender::run()
 void FeedbackSender::respuesta( QNetworkReply *resp )
 {
     if( resp->error() != QNetworkReply::NoError ) {
-        qDebug( "Error de red al enviar informe de errores" );
+        qDebug( "Feedback: Error de red al enviar informe de errores" );
         qDebug( resp->errorString().toLocal8Bit() );
         // Intento nuevamente más tarde hasta n veces
         reintentos--;
-        qDebug( QString( "Numero de reintentos faltantes: %1" ).arg( reintentos ).toLocal8Bit() );
-        sleep( 10000 );
+        qDebug( QString( "Feedback: Numero de reintentos faltantes: %1" ).arg( reintentos ).toLocal8Bit() );
+        this->sleep( 10 ); // Este sleep es en segundos
     } else if( resp->isFinished() ) {
         QApplication::processEvents();
         resp->deleteLater();
