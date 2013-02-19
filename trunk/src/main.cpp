@@ -32,6 +32,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <QPluginLoader>
+#include <QDate>
 
 #include "gestotux.h"
 #include "preferencias.h"
@@ -191,10 +192,12 @@ int main(int argc, char *argv[])
       QApplication app(argc, argv);
       // Maneja la salida del programa
       // Elimino el archivo anterior si existe para que el rename no falle
-      QFile::remove( QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) );
-      if( !QFile::rename( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ),
-                        QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) ) ) {
-          qDebug( "Error al mover el archivo de debug anterior a su nueva posicion" );
+      QString dir1 = QApplication::applicationDirPath().append( QDir::separator() );
+      QString dir2 = dir1;
+      dir2.append( "debug.txt" );
+      QFile::rename( dir1 + "debugOld.txt", dir1 + "debug" + QDate::currentDate().toString( "ddMyyhms" ) + ".txt" );
+      if( !QFile::copy( dir2, dir1.append( "debugOld.txt") ) ) {
+          qWarning( "Error al mover el archivo de debug anterior a su nueva posicion" );
       }
       debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
       fseek( debug, 0, 0 );

@@ -28,7 +28,7 @@ bool FeedbackPlugin::inicializar()
  //Q_INIT_RESOURCE(FeedbackPlugin);
 
  // Seteo el timer para no sobrecargar el inicio del sistema
- QTimer::singleShot( 10*100, this, SLOT( enviarFeedback() ) );
+ QTimer::singleShot( 900, this, SLOT( enviarFeedback() ) );
 
  return true;
 }

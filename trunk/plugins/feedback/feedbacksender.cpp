@@ -13,7 +13,7 @@ QObject( parent )
 }
 
 /**
- * @brief FeedbackSender::run
+ * @brief FeedbackSender::verificarEnvío
  * Codigo que verifica la existencia de un error previo y envía el error al servidor de gestotux
  * @author Esteban Zeller
  */
@@ -58,17 +58,22 @@ void FeedbackSender::verificarEnvio()
     manager = new QNetworkAccessManager( this );
     connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
-    QUrl url( p->value( "url_envio", "http://www.gestotux.com.ar/feedback/enviar" ).toString() );
+#ifdef GESTOTUX_DESARROLLO
+    QUrl url( p->value( "url_envio", "http://localhost/trsis/feedbacks/enviar" ).toString() );
+#else
+    QUrl url( p->value( "url_envio", "http://www.gestotux.com.ar/feedbacks/enviar" ).toString() );
+#endif
     p->inicio();
     p->beginGroup( "carga" );
     url.addQueryItem( "cliente", p->value( "pluginInfo", "default" ).toString() );
     p->endGroup(); p = 0;
 
+    url.addQueryItem( "data", f->readAll().replace( '\n', "<br />" ) );
+
     req = new QNetworkRequest( url );
 
     // Envio el archivo
-    lista = manager->post( *req, f );
-    qDebug( "Envio enviado" );
+    lista = manager->post( *req, url.encodedQuery() );
 
 }
 
@@ -92,7 +97,6 @@ void FeedbackSender::respuesta( QNetworkReply *resp )
         qDebug( "Feedback: Envio de error completado." );
         f->close();
         f->remove();
-        qDebug( resp->readAll() );
         emit terminar();
    }
 }
