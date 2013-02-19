@@ -12,6 +12,8 @@
 #include <QSqlError>
 #include <QTimer>
 
+#include <QThread>
+
 /*!
     \fn FeedbackPlugin::accionesBarra()
         Retorna las acciones que tiene la barra lateral para este plugin
@@ -102,8 +104,16 @@ QAction *FeedbackPlugin::botonPantallaInicial()
  * Slot llamado a los 10 seg de iniciado el programa para enviar el informe de errores si existió error
  **/
 void FeedbackPlugin::enviarFeedback() {
-    enviador  = new FeedbackSender( this );
-    enviador->run();
+    QThread *hilo = new QThread( this );
+    enviador  = new FeedbackSender();
+    enviador->moveToThread( hilo );
+    connect( hilo, SIGNAL( started() ) , enviador, SLOT( verificarEnvio() ) );
+    connect( hilo, SIGNAL( finished() ), enviador, SLOT( deleteLater() ) );
+
+    connect( enviador, SIGNAL( terminar() ), hilo, SLOT( quit() ) );
+
+    hilo->start( QThread::LowPriority );
 }
 
 Q_EXPORT_PLUGIN2( feedback, FeedbackPlugin )
+

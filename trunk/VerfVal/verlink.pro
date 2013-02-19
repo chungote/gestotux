@@ -21,6 +21,6 @@ LIBS += ../../gestotux/bin/plugins/libcaja.so \
 #        ../../gestotux/bin/plugins/libhicomp.so \
         ../../gestotux/bin/plugins/libcuotas.so \
         ../../gestotux/bin/plugins/libremitos.so \
-        ../../gestotux/bin/plugins/libordentrabajo.so \
+#        ../../gestotux/bin/plugins/libordentrabajo.so \
         ../../gestotux/bin/plugins/libfeedback.so
         
