@@ -24,13 +24,8 @@ win32 {
 
 HEADERS += \
     feedbackplugin.h \
-    feedbacksender.h \
-    formpreffeedback.h
+    feedbacksender.h
 
 SOURCES += \
     feedbackplugin.cpp \
-    feedbacksender.cpp \
-    formpreffeedback.cpp
-
-FORMS += \
-    formpreffeedback.ui
+    feedbacksender.cpp
