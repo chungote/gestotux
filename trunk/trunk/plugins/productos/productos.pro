@@ -20,7 +20,7 @@ SOURCES += mcategorias.cpp \
            dcategoria.cpp \
            formprefproductos.cpp \
            formagregarproducto.cpp \
-    formmodificarproducto.cpp
+           formmodificarproducto.cpp
 HEADERS += mcategorias.h \
            mproductos.h \
            vcategorias.h \
@@ -30,7 +30,7 @@ HEADERS += mcategorias.h \
            dcategoria.h \
            formprefproductos.h \
            formagregarproducto.h \
-    formmodificarproducto.h
+           formmodificarproducto.h
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a

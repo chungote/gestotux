@@ -1,21 +1,26 @@
 #ifndef FEEDBACKSENDER_H
 #define FEEDBACKSENDER_H
 
-#include <QThread>
+#include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QFile>
 
-class FeedbackSender : public QThread
+class FeedbackSender : public QObject
 {
     Q_OBJECT
 public:
     FeedbackSender( QObject *parent = 0 );
 
-    void run();
+public slots:
+    void verificarEnvio();
 
 private slots:
     void respuesta( QNetworkReply * );
+
+signals:
+    void terminar();
+    void pausar( unsigned int );
 
 private:
     /*!
