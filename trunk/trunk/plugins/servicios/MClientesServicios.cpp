@@ -42,6 +42,8 @@ void MClientesServicios::inicializar()
     this->setHeaderData( 1, Qt::Horizontal, "Cliente");
     this->setHeaderData( 2, Qt::Horizontal, "Fecha Alta" );
     this->setHeaderData( 3, Qt::Horizontal, "Fecha Baja" );
+    this->setHeaderData( 4, Qt::Horizontal, QString::fromUtf8( "Razón de baja" ) );
+    this->setSort( 1, Qt::AscendingOrder );
 }
 
 void MClientesServicios::relacionar()
@@ -199,7 +201,7 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
         return false;
     }
     // Imprimir comprobante de baja
-    /*EReporte *rep = new EReporte( 0 );
+    EReporte *rep = new EReporte( 0 );
     ParameterList parametros;
     parametros.append( Parameter( "id_cliente", id_cliente ) );
     parametros.append( Parameter( "id_servicio", id_servicio ) );
@@ -207,7 +209,7 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
     parametros.append( Parameter( "fecha", QDate::currentDate() ) );
     rep->especial( "baja-servicio", parametros );
     rep->hacer();
-    delete rep;*/
+    delete rep;
     return true;
 }
 

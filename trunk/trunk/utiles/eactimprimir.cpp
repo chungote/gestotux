@@ -26,6 +26,7 @@ QAction(parent)
  this->setShortcut( QKeySequence( "Ctrl+p" ) );
  this->setText( "Imprimir" );
  this->setStatusTip( "Imprime los datos actuales ( Ctrl + p )" );
+ this->connect( this, SIGNAL( triggered() ), parent, SLOT( imprimir() ) );
 }
 
 

@@ -26,6 +26,7 @@ EActPdf::EActPdf(QWidget *parent)
  this->setShortcut( QKeySequence( Qt::CTRL + Qt::SHIFT + Qt::Key_P ) );
  this->setIcon( QIcon( ":/imagenes/acroread.png" ) );
  this->setStatusTip( tr( "Guarda el informe actual en formato pdf( Ctrl + Shift + p )" ) );
+ this->connect( this, SIGNAL( triggered() ), parent, SLOT( aPdf() ) );
 }
 
 
