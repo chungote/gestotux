@@ -45,7 +45,7 @@ QString GestotuxDefault::empresa() const
 { return "uso generico"; }
 
 QString GestotuxDefault::nombrePrograma() const
-{ return "Gestotux 0.5 RC 7"; }
+{ return "Gestotux 0.5 RC 8"; }
 
 bool GestotuxDefault::inicializar()
 {
