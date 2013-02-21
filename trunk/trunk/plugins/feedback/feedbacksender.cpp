@@ -27,20 +27,20 @@ void FeedbackSender::verificarEnvio()
 
     preferencias *p = preferencias::getInstancia();
     p->inicio();
-    /*bool ultimo_error = p->value( "lastError", false ).toBool();
+    bool ultimo_error = p->value( "lastError", false ).toBool();
 
     if( ultimo_error == false ) {
         qDebug( "Feedback: No hubo error en el ultimo cierre.");
-        this->exit( 0 ); // No hubo error en el ultimo cierre
+        emit terminar(); // No hubo error en el ultimo cierre
     }
     p->beginGroup( "Preferencias" );
     p->beginGroup( "Feedback" );
     bool enviar = p->value( "enviar_reporte", true ).toBool();
 
     if( !enviar ) {
-        this->exit( 0 ); // No quiere enviar los datos
+        emit terminar(); // No quiere enviar los datos
     }
-    */
+
     // Abro el archivo y genero el encabezado para que llegue al servidor
     if( !QFile::exists(  QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) ) ) {
         qDebug( "Feedback: No se pudo enviar el archivo de errores ya que no existe la copia anterior" );

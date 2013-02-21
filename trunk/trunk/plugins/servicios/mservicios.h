@@ -70,6 +70,7 @@ public:
     static MServicios::Periodo obtenerPeriodo( const int id_servicio );
     static QString getNombreServicio( int id_servicio );
     static QDate getFechaAlta( const int id_servicio );
+    static int getDiaFacturacion( const int id_servicio );
     static bool verificarSiPuedeEliminar( const int id_servicio );
     static bool dadoDeBaja( const int id_servicio );
 

@@ -27,6 +27,7 @@ public:
     int getAnoActual( const int id_servicio, bool facturar = false  );
     QDate getFechaInicioPeriodoActual( const int id_servicio, bool facturar = false );
     QDate generarFechaInicioPeriodo( const int id_servicio, const int periodo, const int ano );
+    QDate getFechaEmision(const int id_servicio, const QDate fecha_inicio_periodo );
 
     static int agregarPeriodoServicio( const int id_servicio, const int periodo, const int ano, const QDate fecha_inicio, const QDate fecha_fin );
     static QDate ultimaFechaDeServicio( const int id_servicio );

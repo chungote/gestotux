@@ -573,6 +573,25 @@ QDate MPeriodoServicio::generarFechaInicioPeriodo( const int id_servicio, const 
     return fecha;
 }
 
+QDate MPeriodoServicio::getFechaEmision(const int id_servicio, const QDate fecha_inicio_periodo )
+{
+    int dia = MServicios::getDiaFacturacion( id_servicio );
+    // Si es el día 1 tengo que facturarlo en la fecha de inicio
+    if( dia == 1 ) {
+        return fecha_inicio_periodo;
+    } else if( dia > 1 ) {
+        qDebug( "Dia de facutracion > 1 " );
+        dia = dia - 1;
+        QDate fecha = fecha_inicio_periodo.addDays( dia );
+        return fecha;
+    } else {
+        qDebug( "Error al buscar el día de facturación de un servicio" );
+        return fecha_inicio_periodo;
+    }
+    qDebug( "Error de logica, dia < 1" );
+    return QDate();
+}
+
 
 /*!
  * \fn MPeriodoServicio::getUltimoPeriodo( const int id_servicio )

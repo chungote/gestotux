@@ -100,11 +100,16 @@ void FormServicio::guardar()
      if( CkBBaja->isChecked() ) {
          _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );
      }
-     if( !_mapa->submit() && modelo->submitAll() ) {
-         QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
-         /// @todo Version 0.6 -> Veo la modificacion del precio para ofrecer sistema de aviso en la proxima factura
-         this->close();
-         return;
+     if( _mapa->submit() )
+         if( modelo->submitAll() ) {
+            QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
+            /// @todo Version 0.6 -> Veo la modificacion del precio para ofrecer sistema de aviso en la proxima factura
+            this->close();
+            return;
+         } else {
+             qDebug( "Error, no se pudo hacer el submitAll del modelo" );
+             qDebug( this->modelo->lastError().text().toLocal8Bit() );
+             qWarning( "Hubo un error al guardar los datos en la base de datos" );
      } else {
          qDebug( "Error, no se pudo hacer submit del mapa" );
          qDebug( this->modelo->lastError().text().toLocal8Bit() );
@@ -186,7 +191,7 @@ void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
     _mapa->addMapping( dSBPrecioBase     , modelo->fieldIndex( "precio_base" ) );
     _mapa->addMapping( CBPeriodo         , modelo->fieldIndex( "periodo" ) );
     _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ) );
-    _mapa->addMapping( CBInicioCobro     , modelo->fieldIndex( "inicio_cobro" ) );
+    _mapa->addMapping( CBInicioCobro     , modelo->fieldIndex( "dia_cobro" ) );
 
     if( this->modelo->data( this->modelo->index( indice.row(), this->modelo->fieldIndex( "fecha_baja" ) ), Qt::EditRole ).toDate().isValid() ) {
         _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );

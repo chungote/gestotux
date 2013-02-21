@@ -262,7 +262,7 @@ QString MServicios::getNombreServicio( int id_servicio )
  */
 QDate MServicios::getFechaAlta( const int id_servicio )
 {
-    QSqlQuery cola( QString( "SELECT fecha_alta FROM servicios WHERE id_servicio = %2" ).arg( id_servicio ) );
+    QSqlQuery cola( QString( "SELECT fecha_alta FROM servicios WHERE id_servicio = %1" ).arg( id_servicio ) );
     if( cola.exec() ) {
         if( cola.next() ) {
             return cola.record().value(0).toDate();
@@ -273,6 +273,28 @@ QDate MServicios::getFechaAlta( const int id_servicio )
     } else {
         qDebug( "Servicios:MServicios:Error al buscar la fecha de alta del periodo -> exec" );
         return QDate();
+    }
+}
+
+/*!
+ * \fn MServicios::getDiaFacturacion( const int id_servicio )
+ * Devuelve el día en que se debe emitir los recibos de un servicio.
+ * \param id_servicio Identificador de servicio
+ * \return dia del período o -1 en caso de error
+ */
+int MServicios::getDiaFacturacion(const int id_servicio)
+{
+    QSqlQuery cola( QString( "SELECT dia_cobro FROM servicios WHERE id_servicio = %1" ).arg( id_servicio ) );
+    if( cola.exec() ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug( "Servicios:MServicios: Error al buscar el dia de cobro de un servicio -> next" );
+            return -1;
+        }
+    } else {
+        qDebug( "Servicios:MServicios:Error al busca el dia de cobro de un servicio-> exec" );
+        return -1;
     }
 }
 
