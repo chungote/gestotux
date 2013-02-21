@@ -142,6 +142,8 @@ void FormFacturarServicio::cargar_datos_servicio()
     this->_periodo = mp->getPeriodoActual( this->_id_servicio, true );
     this->_ano = mp->getAnoActual( this->_id_servicio, true );
     this->_fecha_inicio = mp->getFechaInicioPeriodoActual( this->_id_servicio, true );
+    this->_fecha_emision = mp->getFechaEmision( this->_id_servicio, this->_fecha_inicio );
+    this->LFechaRecibo->setText( this->_fecha_emision.toString( Qt::SystemLocaleShortDate ) );
     this->LPeriodo->setText(
         QString( " %1/%2 desde %3 hasta %4 " )
                 .arg( this->_periodo )
@@ -284,7 +286,7 @@ void FormFacturarServicio::facturar()
         if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
             LIndicador->setText( QString( "( %1 de %2 ) Generando recibo ..." ).arg( i +1 ).arg( cantidad_total ) );
             id_factura = qobject_cast<MPagos *>(mr)->agregarRecibo( id_cliente,
-                                            QDate::currentDate(),
+                                            this->_fecha_emision,
                                             QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
                                             this->_precio_base,
                                             false, // No efectivo y no pagado para que quede para despues
@@ -356,7 +358,7 @@ void FormFacturarServicio::facturar()
                                                                    MFactura::obtenerComprobante( id_factura ),
                                                                    id_factura,
                                                                    MItemCuentaCorriente::Factura,
-                                                                   QDate::currentDate(),
+                                                                   this->_fecha_emision,
                                                                    QString( "%2 periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
                                                                    this->_precio_base );
         if( id_op_ctacte == -1 ) {

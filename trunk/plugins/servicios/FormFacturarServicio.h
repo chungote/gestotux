@@ -56,6 +56,7 @@ private:
     int _ano;
     double _precio_base;
     QDate _fecha_inicio;
+    QDate _fecha_emision;
     EActCerrar *ActCerrar;
     QAction *ActFacturar;
 
