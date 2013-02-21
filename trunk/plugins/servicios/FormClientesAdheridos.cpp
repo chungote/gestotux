@@ -49,8 +49,11 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     modelo = new MClientesServicios( this );
     TVAdheridos->setModel( modelo );
     TVAdheridos->hideColumn( 0 );
+    TVAdheridos->hideColumn( 3 );
+    TVAdheridos->hideColumn( 4 );
     TVAdheridos->setSelectionBehavior( QAbstractItemView::SelectRows );
     TVAdheridos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
+    TVAdheridos->setSortingEnabled( true );
     //modelo->select();
 
     // Acciones
