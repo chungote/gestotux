@@ -364,6 +364,9 @@ NumeroComprobante &MFactura::proximoComprobante() {
   if( cola.exec( QString( "SELECT MAX( serie ) FROM factura" ) ) ) {
       if( cola.next() ) {
           int serie = cola.record().value(0).toInt();
+          if( serie == 0 ) {
+              serie = 1;
+          }
           if( cola.exec( QString( "SELECT MAX( numero ) FROM factura WHERE serie = %1" ).arg( serie ) ) ) {
               if( cola.next() ) {
                   int numero = cola.record().value(0).toInt();
@@ -389,6 +392,10 @@ NumeroComprobante &MFactura::proximoComprobante() {
   return *invalido;
 }
 
+/*!
+ * \brief MFactura::obtenerComprobante
+ * \return
+ */
 NumeroComprobante & MFactura::obtenerComprobante() {
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT MAX( serie ) FROM factura" ) ) ) {
@@ -418,6 +425,11 @@ NumeroComprobante & MFactura::obtenerComprobante() {
   return *invalido;
 }
 
+/*!
+ * \brief MFactura::obtenerComprobante
+ * \param id_factura
+ * \return
+ */
 NumeroComprobante & MFactura::obtenerComprobante( const int id_factura ) {
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT serie, numero FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
