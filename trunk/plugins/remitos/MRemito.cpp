@@ -326,11 +326,17 @@ NumeroComprobante &MRemito::proximoComprobante() {
   if( cola.exec( QString( "SELECT MAX( serie ) FROM remito" ) ) ) {
       if( cola.next() ) {
           int serie = cola.record().value(0).toInt();
+          if( serie == 0 ) {
+              // Posiblemente sea el primer remito
+              serie = 1;
+          }
           if( cola.exec( QString( "SELECT MAX( numero ) FROM remito WHERE serie = %1" ).arg( serie ) ) ) {
               if( cola.next() ) {
                   int numero = cola.record().value(0).toInt();
                   NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
                   num->siguienteNumero();
+                  qDebug( "Devolviendo proximo numero de remito:" );
+                  qDebug( num->aCadena().toLocal8Bit() );
                   return *num;
               } else {
                   qDebug( "Error de cola al hacer next al obtener el numero de remito maximo");
@@ -351,6 +357,11 @@ NumeroComprobante &MRemito::proximoComprobante() {
   return *invalido;
 }
 
+/*!
+ * \brief MRemito::obtenerComprobante
+ * Método que devuelve el número del maximo remito emitido
+ * \return Numero de comprobante maximo emitido
+ */
 NumeroComprobante & MRemito::obtenerComprobante() {
   QSqlQuery cola;
   if( cola.exec( QString( "SELECT MAX( serie ) FROM remito" ) ) ) {
@@ -380,9 +391,15 @@ NumeroComprobante & MRemito::obtenerComprobante() {
   return *invalido;
 }
 
-NumeroComprobante & MRemito::obtenerComprobante( const int id_factura ) {
+/*!
+ * \brief MRemito::obtenerComprobante
+ * Devuelve el numero de comprobante según el identificador de remito pasado como parámetro
+ * \param id_remito Identificador de remito correspontiente
+ * \return Numero de comprobante o numero invalido
+ */
+NumeroComprobante & MRemito::obtenerComprobante( const int id_remito ) {
   QSqlQuery cola;
-  if( cola.exec( QString( "SELECT serie, numero FROM remito WHERE id_remito = %1" ).arg( id_factura ) ) ) {
+  if( cola.exec( QString( "SELECT serie, numero FROM remito WHERE id_remito = %1" ).arg( id_remito ) ) ) {
     if( cola.next() ) {
         int serie = cola.record().value(0).toInt();
         int numero = cola.record().value(1).toInt();
