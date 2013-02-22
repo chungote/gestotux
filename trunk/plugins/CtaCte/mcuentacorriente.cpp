@@ -629,7 +629,13 @@ double MCuentaCorriente::limite( const QString numero_cuenta )
     return false;
 }
 
-bool MCuentaCorriente::suspendida(const int id_cliente)
+/*!
+ * \fn MCuentaCorriente::suspendida( const int id_cliente )
+ * Devuelve verdadero si la cuenta corriente del cliente pasado como parametro se encuentra suspendida.
+ * \param id_cliente Numero de cliente.
+ * \returns Verdadero, si la cuenta se encuentra suspendida, falso en otro caso o error.
+ */
+bool MCuentaCorriente::suspendida( const int id_cliente )
 {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT suspendida FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) ) ) {

@@ -41,15 +41,16 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  this->setWindowTitle( "Cuentas Corrientes" );
  this->setWindowIcon( QIcon( ":/imagenes/ctacte.png" ) );
 
- rmodelo = new MCuentaCorriente( this );
- vista->setModel( rmodelo );
+ crmodelo = new MCuentaCorriente( this );
+ vista->setModel( crmodelo );
  vista->setItemDelegateForColumn( 6, new DSiNo( this->vista ) );
  vista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
  vista->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
  vista->horizontalHeader()->setMinimumSectionSize( 60 );
  vista->setSortingEnabled( true );
- connect( rmodelo, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), vista, SLOT( dataChanged( QModelIndex, QModelIndex ) ) );
+ connect( crmodelo, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), vista, SLOT( dataChanged( QModelIndex, QModelIndex ) ) );
  modelo = 0;
+ rmodelo = crmodelo;
 
  ActResumen = new QAction( "Ver Resumen de Cuenta", this );
  connect( ActResumen, SIGNAL( triggered() ), this, SLOT( verResumen() ) );
@@ -90,18 +91,44 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActListadoDeudorPDF->setIcon( QIcon( ":/imagenes/acroread.png" ) );
  connect( ActListadoDeudorPDF, SIGNAL( triggered() ), this, SLOT( listadoDeudorPDF() ) );
 
+/* SELECT ctacte."numero_cuenta",
+ *        relTblAl_1.razon_social,
+ *        ctacte."fecha_alta",
+ *        ctacte."fecha_baja",
+ *        ctacte."saldo",
+ *        ctacte."limite",
+ *        ctacte."suspendida"
+ * FROM ctacte, clientes relTblAl_1
+ * WHERE (ctacte."id_cliente" = relTblAl_1.id)
+ * ORDER BY ctacte."numero_cuenta" DESC*/
+
+
+ this->agregarFiltroBusqueda( "Cualquiera", "relTblAl_1.razon_social  LIKE %%1% OR ctacte.\"numero_cuenta\" = %1" );
+ this->agregarFiltroBusqueda( "Razon Social", "relTblAl_1.razon_social  LIKE %%1%" );
+ this->agregarFiltroBusqueda( "Razon social y habilitadas", "relTblAl_1.razon_social  LIKE %%1% AND ctacte.\"suspendida\" = 1" );
+ this->agregarFiltroBusqueda( "Saldo mayor a ", "ctacte.\"saldo\" > %1" );
+ this->agregarFiltroBusqueda( "Saldo menor a", "ctacte.\"saldo\" < %1" );
+ habilitarBusqueda();
+
+ QAction *ActSep1 = new QAction( this );
+ ActSep1->setSeparator(true);
+ QAction *ActSep2 = new QAction( this );
+ ActSep2->setSeparator(true);
 
  addAction( ActAgregar );
  addAction( ActModificarLimite );
  addAction( ActSuspender );
+ addAction( ActSep1 );
  addAction( ActVerTodos );
  addAction( ActResumen );
  addAction( ActListadoDeudor );
  addAction( ActListadoDeudorPDF );
- addAction( ActCerrar );
  addAction( ActSep );
  addAction( ActVerDeudoras );
  addAction( ActVerSuspendidas );
+ addAction( ActBuscar );
+ addAction( ActSep2 );
+ addAction( ActCerrar );
 }
 
 #include "formnuevactacte.h"
@@ -130,7 +157,7 @@ void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
      qDebug( cola.lastQuery().toLocal8Bit() );
  }
  FormNuevaCtaCte d;
- d.setModelo( qobject_cast<MCuentaCorriente *>( rmodelo ) );
+ d.setModelo( crmodelo );
  d.exec();
 }
 
@@ -143,13 +170,13 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
  menu->addAction( ActAgregar );
  menu->addSeparator();
- if( !indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "fecha_baja" ) ) ).toDate().isValid() )
+ if( !indice.model()->data( indice.model()->index( indice.row(), crmodelo->fieldIndex( "fecha_baja" ) ) ).toDate().isValid() )
  {
         QAction *ActDarBaja = new QAction( "Dar de Baja", this );
         connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
         menu->addAction( ActDarBaja );
  }
- if( !indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ) ).toBool() ) {
+ if( !indice.model()->data( indice.model()->index( indice.row(), crmodelo->fieldIndex( "suspendida" ) ) ).toBool() ) {
      QAction *ActSuspender2 = new QAction( "Sacar suspension", this );
      connect( ActSuspender2, SIGNAL( triggered() ), this, SLOT( suspenderDesuspender() ) );
      menu->addAction( ActSuspender2 );
@@ -175,8 +202,8 @@ void VCuentaCorriente::modificarLimite()
      return;
  }
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
- double limite_anterior = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), Qt::EditRole ).toDouble();
- QString id_ctacte = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
+ double limite_anterior = crmodelo->data( crmodelo->index( indice.row(), crmodelo->fieldIndex( "limite" ) ), Qt::EditRole ).toDouble();
+ QString id_ctacte = crmodelo->data( crmodelo->index( indice.row(), crmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
  bool ok = false;
  double limite_nuevo = QInputDialog::getDouble( this, "Ingrese el limite maximo", QString::fromUtf8("Límite máximo de credito:"), limite_anterior, 0.0, 1000000.0, 3, &ok );
  if( ok )
@@ -184,9 +211,9 @@ void VCuentaCorriente::modificarLimite()
   //Verifico que no sean el mismo
   if( limite_anterior == limite_nuevo )
   { return; }
-  if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "limite" ) ), limite_nuevo ) ) {
-            rmodelo->modificarLimite( id_ctacte, limite_nuevo );
-            rmodelo->submit();
+  if( crmodelo->setData( rmodelo->index( indice.row(), crmodelo->fieldIndex( "limite" ) ), limite_nuevo ) ) {
+            crmodelo->modificarLimite( id_ctacte, limite_nuevo );
+            crmodelo->submit();
             QMessageBox::information( this, "Correcto", QString::fromUtf8( "El nuevo límite ha sido colocado correctamente." ) );
             return;
         } else {
@@ -208,8 +235,8 @@ void VCuentaCorriente::darBaja()
  int ret = QMessageBox::question( this, QString::fromUtf8( "¿Esta seguro?" ), "Esta seguro que desea deshabilitar esta cuenta corriente?", QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
  if( ret == QMessageBox::Ok )
  {
-  rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "fecha_baja" ) ), QDate::currentDate(), Qt::EditRole );
-  rmodelo->submitAll();
+  crmodelo->setData( crmodelo->index( indice.row(), crmodelo->fieldIndex( "fecha_baja" ) ), QDate::currentDate(), Qt::EditRole );
+  crmodelo->submitAll();
  }
 }
 
@@ -227,7 +254,7 @@ void VCuentaCorriente::verResumen()
  }
  QModelIndex indice = vista->selectionModel()->selectedRows().first();
  //Obtengo el numero de cuenta
- QString numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), rmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
+ QString numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), crmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
  FormResumenCtaCte *form = new FormResumenCtaCte( this );
  form->setNumeroCuenta( numero_cuenta );
  connect( form, SIGNAL( emitirRecibo( int, QString ,double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
@@ -241,8 +268,8 @@ void VCuentaCorriente::verResumen()
  * Setea para que se vean solo las cuentas deudoras o no.
  */
 void VCuentaCorriente::mostrarDeudoras( bool estado ) {
-    this->rmodelo->filtrarSoloDeudoras( estado );
-    this->rmodelo->select();
+    this->crmodelo->filtrarSoloDeudoras( estado );
+    this->crmodelo->select();
 }
 
 /*!
@@ -257,7 +284,7 @@ void VCuentaCorriente::suspenderDesuspender()
         return;
     }
     QModelIndex indice = vista->selectionModel()->selectedRows().first();
-    bool anterior = rmodelo->data( rmodelo->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ), Qt::EditRole ).toBool();
+    bool anterior = crmodelo->data( crmodelo->index( indice.row(), crmodelo->fieldIndex( "suspendida" ) ), Qt::EditRole ).toBool();
     int ret = -1;
     if( !anterior ) {
         ret = QMessageBox::question( this, QString::fromUtf8("¿Esta seguro?"), QString::fromUtf8("¿Está seguro que desea suspender esta cuenta corriente?. \n El cliente que posee esta cuenta corriente no podrá realizar mas operaciónes a cuenta corriente."), QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Cancel );
@@ -267,12 +294,12 @@ void VCuentaCorriente::suspenderDesuspender()
     if( ret == QMessageBox::Ok )
     {
      //Verifico que no sean el mismo
-     if( rmodelo->setData( rmodelo->index( indice.row(), rmodelo->fieldIndex( "suspendida" ) ), !anterior ) ) {
+     if( crmodelo->setData( crmodelo->index( indice.row(), crmodelo->fieldIndex( "suspendida" ) ), !anterior ) ) {
                if( !anterior )
                    QMessageBox::information( this, "Correcto", QString::fromUtf8( "La cuenta ha sido suspendida correctamente." ) );
                else
                    QMessageBox::information( this, "Correcto", QString::fromUtf8( "La cuenta ha sido sacada de suspencion correctamente." ) );
-               rmodelo->submit();
+               crmodelo->submit();
                return;
            } else {
                QMessageBox::warning( this, "Incorrecto", QString::fromUtf8( "No se pudo modificar la suspensión de la cuenta corriente." ) );
@@ -287,8 +314,8 @@ void VCuentaCorriente::suspenderDesuspender()
  */
 void VCuentaCorriente::verSuspendidas( bool estado )
 {
-    this->rmodelo->filtrarSoloSuspendidas( estado );
-    this->rmodelo->select();
+    this->crmodelo->filtrarSoloSuspendidas( estado );
+    this->crmodelo->select();
 }
 
 /*!

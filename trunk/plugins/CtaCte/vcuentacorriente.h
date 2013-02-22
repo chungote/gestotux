@@ -54,7 +54,7 @@ protected slots:
     void listadoDeudorPDF();
 
 private:
-    MCuentaCorriente *rmodelo;
+    MCuentaCorriente *crmodelo;
    /*!
     * Accion para modificar el limite de la cuenta corriente elegida
     */

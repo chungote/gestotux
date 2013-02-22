@@ -82,10 +82,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         CBTipo->addItem( "RM"   , MItemCuentaCorriente::Remito               );
 
         EActImprimir *ActImprimir = new EActImprimir( this );
-        connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
-
         EActPdf *ActPdf = new EActPdf( this );
-        connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
 
         QAction *ActSep = new QAction( this );
         ActSep->setSeparator( true );
@@ -194,7 +191,7 @@ void FormResumenCtaCte::imprimir()
 /*!
     \fn FormResumenCtaCte::pdf()
  */
-void FormResumenCtaCte::pdf()
+void FormResumenCtaCte::aPdf()
 {
     if( modeloItem->rowCount() <= 0 ) {
         QMessageBox::warning( this, "Error", "No hay ningun movimiento para la cuenta corriente. No se imprimira nada" );
