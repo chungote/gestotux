@@ -16,7 +16,7 @@ DESTDIR = .
 OTHER_FILES = tareas-pendientes.txt
 
 unix {
-  SUBDIRS += test
+  #SUBDIRS += test
   system( generar_pri.sh eliminar )
   system( generar_doc_usuario.sh )
 }
