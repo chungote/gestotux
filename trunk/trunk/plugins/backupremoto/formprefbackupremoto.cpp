@@ -13,7 +13,6 @@ FormPrefBackupRemoto::FormPrefBackupRemoto(QWidget *parent, Qt::WFlags fl )
     : QWidget ( parent, fl ), Ui::FormPrefBackupRemoto()
 {
     setupUi(this);
-    setupUi ( this );
     this->setWindowTitle( "Backup Remoto" );
     this->setWindowIcon( QIcon( ":/imagenes/backup.png" ) );
     this->setAttribute( Qt::WA_DeleteOnClose );
@@ -75,7 +74,7 @@ void FormPrefBackupRemoto::cargarDatos()
   manager = new QNetworkAccessManager( this );
   connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
-  QUrl url( "http://trafu.no-ip.org/TRSis/usuarios/verificar" );
+  QUrl url( "http://trafu.no-ip.org/trsis/usuarios/verificar" );
   url.addQueryItem( "num_cliente", LENumeroCliente->text() );
   url.addQueryItem( "codigo", LEContra->text() );
   QNetworkRequest req( url );
@@ -89,6 +88,7 @@ void FormPrefBackupRemoto::respuesta( QNetworkReply *resp )
     PBVerificar->setText( "Comprobar" );
     if( resp->error() != QNetworkReply::NoError ) {
         QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
+        qDebug( resp->readAll() );
     } else  if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
         bool ok = false;
