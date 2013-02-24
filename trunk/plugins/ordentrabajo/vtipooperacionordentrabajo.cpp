@@ -15,7 +15,7 @@ EVLista( parent )
     this->setWindowTitle( "Tipo de operacion de orden de trabajo" );
     //this->setWindowIcon( QIcon( ":/imagenes/tecnico.png" ) );
 
-    modelo = new MTipoOrdenTrabajo( this->vista );
+    modelo = new MTipoOperacionOrdenTrabajo( this->vista );
     this->vista->setModel( this->modelo );
 
     this->vista->hideColumn( 0 ); // Oculta el ID del modelo
@@ -43,7 +43,7 @@ void VTipoOperacionOrdenTrabajo::agregar( bool )
     QString nombre = QInputDialog::getText( this,  QString::fromUtf8( "Agregar tipo" ),  QString::fromUtf8( "Nueva tipo de orden:" ), QLineEdit::Normal, QString(), &ok );
     if( ok && !nombre.isEmpty() ) {
         // Verifico que no exista ya el nombre
-        if( MTipoOrdenTrabajo::existe( nombre ) ) {
+        if( MTipoOperacionOrdenTrabajo::existe( nombre ) ) {
             QMessageBox::warning( this, "Error", QString::fromUtf8( "El tipo de orden de trabajo que está intentando ingresar ya se encuentra en la base de datos" ) );
         } else {
             if( this->modelo->agregarTipo( nombre ) ) {
@@ -71,7 +71,7 @@ void VTipoOperacionOrdenTrabajo::modificar()
     bool ok = false;
     QString nombre = QInputDialog::getText( this,  QString::fromUtf8( "Modificar tipo de orden de trabajo" ),  QString::fromUtf8( "Nuevo nombre:" ), QLineEdit::Normal, nombre_anterior, &ok );
     if( ok && nombre_anterior != nombre && !nombre.isEmpty() ) {
-        if( MTipoOrdenTrabajo::existe( nombre ) ) {
+        if( MTipoOperacionOrdenTrabajo::existe( nombre ) ) {
             QMessageBox::warning( this, "Error", QString::fromUtf8( "El tipo de orden de trabajo que está intentando ingresar ya se encuentra en la base de datos" ) );
         } else {
             if( this->modelo->modificar( idx.row(), nombre ) ) {

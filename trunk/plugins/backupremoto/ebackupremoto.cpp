@@ -143,6 +143,7 @@ void EBackupRemoto::iniciar()
  if( Pestanas->currentIndex() == 0 )
  {
   generarBackup();
+  return;
  }
  else if( Pestanas->currentIndex() == 1 )
  {
