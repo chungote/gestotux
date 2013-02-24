@@ -97,6 +97,9 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  Pestanas->setCurrentIndex( 0 );
  connect( Pestanas, SIGNAL( currentChanged( int ) ), this, SLOT( cambiopestana( int ) ) );
 
+ manager = 0;
+ req = 0;
+
 }
 
 
@@ -124,8 +127,12 @@ void EBackupRemoto::cambiopestana( int pes ) {
 
         if( manager == 0 ) {
             manager = new QNetworkAccessManager( this );
+            this->connect( manager, SIGNAL( finished( QNetworkReply * ) ), this, SLOT( respuestaHistorial( QNetworkReply * ) ) );
+        } else {
+            this->disconnect( manager, SIGNAL( finished( QNetworkReply * ) ), this, SLOT( respuestaInicio( QNetworkReply * ) ) );
+            this->connect( manager, SIGNAL( finished( QNetworkReply * ) ), this, SLOT( respuestaHistorial( QNetworkReply * ) ) );
         }
-        connect( manager, SIGNAL( finished( QNetworkReply * ) ), this, SLOT( respuestaHistorial( QNetworkReply * ) ) );
+
 
         QNetworkRequest req( url );
         req.setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
@@ -218,8 +225,7 @@ void EBackupRemoto::enviarColas() {
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
- url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
- url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
+ url.addQueryItem( "id_usuario", p->value( "cliente", 6 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
  p->endGroup(); p->endGroup(); p = 0;
  QNetworkRequest *req2 = new QNetworkRequest( url );

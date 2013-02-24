@@ -36,7 +36,7 @@ class QNetworkAccessManager;
  */
 class EBackupRemoto : public EVentana , private Ui_FormBackupRemotoBase
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     EBackupRemoto( QWidget* parent = 0 );
     ~EBackupRemoto();
