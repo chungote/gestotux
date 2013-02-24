@@ -49,7 +49,6 @@
 #include <QSqlDriver>
 #include <QTextStream>
 
-#include "eenviobackup.h"
 #include "eactcerrar.h"
 
 Ebackup::Ebackup( QWidget* parent )

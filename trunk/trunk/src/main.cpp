@@ -36,7 +36,6 @@
 
 #include "gestotux.h"
 #include "preferencias.h"
-#include "eenviobackup.h"
 #include "esplash.h"
 #include "emysql.h"
 #include "eplugin.h"
@@ -201,7 +200,7 @@ int main(int argc, char *argv[])
       }
       debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
       fseek( debug, 0, 0 );
-      qInstallMsgHandler(myMessageOutput);
+      //qInstallMsgHandler(myMessageOutput);
       // Muestro el splash
       ESplash splash;
       splash.show();
@@ -456,10 +455,7 @@ int main(int argc, char *argv[])
         // Salir del programa cuando se cierren todas las ventanas
         app.connect( &app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()) );
         splash.showMessage( "Listo." );
-        // Inicio el hilo de envio del backup
-        /*EEnvioBackup envios( &app );
-        envios.start( QThread::IdlePriority );
-        QObject::connect( mw, SIGNAL( saliendoGestotux() ), &envios, SLOT( terminate() ) );*/
+
         mw->inicializar();
         if( maximizar ) { mw->showMaximized(); }
         int ret = app.exec();

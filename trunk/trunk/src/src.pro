@@ -1,6 +1,5 @@
 SOURCES += gestotux.cpp \
            main.cpp \
-           eenviobackup.cpp \
            ebackup.cpp \
            reloj.cpp \
            formacercade.cpp \
@@ -25,7 +24,6 @@ SOURCES += gestotux.cpp \
 
 HEADERS += gestotux.h \
            ebackup.h \
-           eenviobackup.h \
            reloj.h \
            formacercade.h \
            formpreferencias.h \
