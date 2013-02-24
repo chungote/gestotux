@@ -24,11 +24,15 @@ PRE_TARGETDEPS += ../../bin/libutiles.a \
 SOURCES += OrdenTrabajoPlugin.cpp \
     formordentrabajo.cpp \
     vtecnicos.cpp \
-    mtecnicos.cpp
+    mtecnicos.cpp \
+    vtipooperacionordentrabajo.cpp \
+    mtipooperacionordentrabajo.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
-    mtecnicos.h
+    mtecnicos.h \
+    vtipooperacionordentrabajo.h \
+    mtipooperacionordentrabajo.h
 
 RESOURCES += ordentrabajo.qrc
 
