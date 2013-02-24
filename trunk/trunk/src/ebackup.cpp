@@ -67,7 +67,7 @@ Ebackup::Ebackup( QWidget* parent )
  comprimidos = new QByteArray();
 
  ActIniciar = new QAction( "Iniciar", this );
- ActIniciar->setStatusTip( "Inincia la generaciÃ³n de los backups" );
+ ActIniciar->setStatusTip( QString::fromUtf8( "Inincia la generación de los backups" ) );
  ActIniciar->setIcon( QIcon( ":/imagenes/next.png" ) );
  connect( ActIniciar, SIGNAL( triggered() ), this, SLOT( iniciar() ) );
 
