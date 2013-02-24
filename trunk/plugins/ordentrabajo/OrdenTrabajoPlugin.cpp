@@ -120,7 +120,12 @@ void OrdenTrabajoPlugin::seCierraGestotux()
 
 void OrdenTrabajoPlugin::verOrdenesTrabajo() {}
 void OrdenTrabajoPlugin::agregarOrdenTrabajo() {}
-void OrdenTrabajoPlugin::verTipoOperacion() {}
+
+#include "vtipooperacionordentrabajo.h"
+void OrdenTrabajoPlugin::verTipoOperacion()
+{
+    emit agregarVentana( new VTipoOperacionOrdenTrabajo() );
+}
 
 #include "vtecnicos.h"
 void OrdenTrabajoPlugin::verTecnicos()
@@ -129,4 +134,3 @@ void OrdenTrabajoPlugin::verTecnicos()
 }
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )
-

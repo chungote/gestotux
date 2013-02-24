@@ -195,11 +195,7 @@ void VTecnicos::deshabilitar()
  */
 void VTecnicos::cambiarVerDeshabilitado( bool estado )
 {
-    if( estado ) {
-        this->modelo->setFilter( QString() );
-    } else {
-        this->modelo->setFilter( "habilitado = 0" );
-    }
+    this->modelo->setFilter( QString( "habilitado = %1" ).arg( estado ) );
     this->modelo->select();
 }
 
