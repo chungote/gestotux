@@ -1,7 +1,7 @@
 #ifndef VTIPOORDENTRABAJO_H
 #define VTIPOORDENTRABAJO_H
 
-#include "mtipoordentrabajo.h"
+#include "mtipooperacionordentrabajo.h"
 #include "evlista.h"
 
 /**
@@ -22,7 +22,7 @@ public slots:
     void eliminar();
 
 private:
-    MTipoOrdenTrabajo *modelo;
+    MTipoOperacionOrdenTrabajo *modelo;
 
 };
 
