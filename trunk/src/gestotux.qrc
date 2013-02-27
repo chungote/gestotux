@@ -52,6 +52,7 @@
         <file>imagenes/backup.png</file>
         <file>imagenes/backup1.png</file>
         <file>imagenes/backup2.png</file>
+        <file>imagenes/filtro.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>tablas.QSQLITE.sql</file>

@@ -19,6 +19,8 @@
  ***************************************************************************/
 #include "mclientes.h"
 
+#include "util.h"
+
 MClientes::MClientes( QObject *parent )
  : QSqlRelationalTableModel( parent )
 {
@@ -212,9 +214,7 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
  */
 bool MClientes::existe( QString razon_social, QString /*nombre*/ ) {
     QSqlQuery cola;
-    /////////////////////////////////////////////////////
-    // Cuenta corriente
-    if( cola.exec( QString( "SELECT COUNT(id) FROM clientes WHERE razon_social = %1" ).arg( razon_social ) ) ) {
+    if( cola.exec( QString( "SELECT COUNT(id) FROM clientes WHERE %1 = \"%2\"" ).arg( Util::funcionComparacionSQL( "razon_social" ) ).arg( Util::comparacionSQL( razon_social ) ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() != 0 )
                 return true;

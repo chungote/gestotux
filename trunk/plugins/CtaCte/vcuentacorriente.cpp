@@ -65,6 +65,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActVerDeudoras->setStatusTip( "Muestra solo las cuentas corrientes que tienen registrados movimientos mas altos que su limite." );
  ActVerDeudoras->setText( "Solo Sobrepasadas" );
  ActVerDeudoras->setCheckable( true );
+ ActVerDeudoras->setIcon( QIcon( ":/imagenes/filtro.png" ) );
  connect( ActVerDeudoras, SIGNAL( toggled( bool ) ), this, SLOT( mostrarDeudoras( bool ) ) );
 
  ActModificarLimite = new QAction( "Modificar Limite", this );
@@ -76,6 +77,7 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActVerSuspendidas = new QAction( this );
  ActVerSuspendidas->setStatusTip( "Muestra solo las cuentas corrientes quese encuentren suspendidas." );
  ActVerSuspendidas->setText( "Solo Suspendidas" );
+ ActVerSuspendidas->setIcon( QIcon( ":/imagenes/filtro.png" ) );
  ActVerSuspendidas->setCheckable( true );
  connect( ActVerSuspendidas, SIGNAL( toggled( bool ) ), this, SLOT( verSuspendidas( bool ) ) );
 
@@ -103,9 +105,9 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  * ORDER BY ctacte."numero_cuenta" DESC*/
 
 
- this->agregarFiltroBusqueda( "Cualquiera", "relTblAl_1.razon_social  LIKE %%1% OR ctacte.\"numero_cuenta\" = %1" );
- this->agregarFiltroBusqueda( "Razon Social", "relTblAl_1.razon_social  LIKE %%1%" );
- this->agregarFiltroBusqueda( "Razon social y habilitadas", "relTblAl_1.razon_social  LIKE %%1% AND ctacte.\"suspendida\" = 1" );
+ this->agregarFiltroBusqueda( "Cualquiera", "relTblAl_1.\"razon_social\"  LIKE \"%%1%\" OR ctacte.\"numero_cuenta\" = %1" );
+ this->agregarFiltroBusqueda( "Razon Social", "relTblAl_1.\"razon_social\"  LIKE \"%%1%\"" );
+ this->agregarFiltroBusqueda( "Razon social y habilitadas", "relTblAl_1.\"razon_social\"  LIKE \"%%1%\" AND ctacte.\"suspendida\" = 1" );
  this->agregarFiltroBusqueda( "Saldo mayor a ", "ctacte.\"saldo\" > %1" );
  this->agregarFiltroBusqueda( "Saldo menor a", "ctacte.\"saldo\" < %1" );
  habilitarBusqueda();
