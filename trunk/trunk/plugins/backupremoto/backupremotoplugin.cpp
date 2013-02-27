@@ -113,7 +113,7 @@ void BackupRemotoPlugin::crearToolBar( QToolBar */*t*/ )
  */
 void BackupRemotoPlugin::seCierraGestotux()
 {
- //Q_CLEANUP_RESOURCE(backupremoto);
+ Q_CLEANUP_RESOURCE(backupremoto);
 }
 
 QAction *BackupRemotoPlugin::botonPantallaInicial()

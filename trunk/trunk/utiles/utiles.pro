@@ -29,7 +29,8 @@ HEADERS += eactcerrar.h \
            ecbprovincias.h \
            ecbproveedor.h \
            ecbtabla.h \
-           eddescuento.h
+           eddescuento.h \
+    util.h
 SOURCES += eactcerrar.cpp \
            eactimprimir.cpp \
            eventana.cpp \
@@ -58,7 +59,8 @@ SOURCES += eactcerrar.cpp \
            ecbprovincias.cpp \
            ecbproveedor.cpp \
            ecbtabla.cpp \
-           eddescuento.cpp
+           eddescuento.cpp \
+    util.cpp
 
 QT += sql \
       xml
