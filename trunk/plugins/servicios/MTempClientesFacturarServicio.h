@@ -37,6 +37,7 @@ public:
     QVariant data(const QModelIndex& idx, int role) const;
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
     void cargarClientesDelServicio( const int id );
+    void cargarClientesDelServicioAFacturar( const int id );
 
 private:
         QHash<int, QString> *clientes;

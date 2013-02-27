@@ -245,11 +245,34 @@ QVariant MTempClientesFacturarServicio::headerData( int section, Qt::Orientation
 
 #include <QSqlQuery>
 #include <QSqlRecord>
-
+/*!
+ * \brief MTempClientesFacturarServicio::cargarClientesDelServicio
+ * Carga todos los clientes del servicio que hay declarados
+ * \param id Identificador del servicio
+ */
 void MTempClientesFacturarServicio::cargarClientesDelServicio( const int id )
 {
     // Busco los clientes qe estan adheridos al servicio solcitiado
     QSqlQuery cola( QString( "SELECT c.razon_social, c.id FROM servicios_clientes, clientes c WHERE ( servicios_clientes.`id_cliente` = c.id ) AND ( servicios_clientes.id_servicio = %1 ) ORDER BY c.razon_social ASC" ).arg( id ) );
+    //qDebug( cola.lastQuery().toLocal8Bit() );
+    while ( cola.next() ) {
+        this->insertRow( -1 );
+        this->setData( this->index( this->rowCount()-1, 0 ), true, Qt::EditRole );
+        QString val = cola.record().value(0).toString();
+        this->setData( this->index( this->rowCount()-1, 1 ), val, Qt::EditRole  );
+        this->setData( this->index( this->rowCount()-1, 2 ), cola.record().value(1).toInt(), Qt::EditRole );
+    }
+}
+
+/*!
+ * \brief MTempClientesFacturarServicio::cargarClientesDelServicioAFacturar
+ *  Genera los datos del modelo con los clientes adheridos pero que no estén dados de baja
+ * \param id Identificador del servicio
+ */
+void MTempClientesFacturarServicio::cargarClientesDelServicioAFacturar( const int id )
+{
+    // Busco los clientes qe estan adheridos al servicio solcitiado pero no dados de baja
+    QSqlQuery cola( QString( "SELECT c.razon_social, c.id FROM servicios_clientes, clientes c WHERE ( servicios_clientes.`id_cliente` = c.id ) AND ( servicios_clientes.id_servicio = %1 ) AND servicios_clientes.fecha_baja IS NOT NULL ORDER BY c.razon_social ASC" ).arg( id ) );
     //qDebug( cola.lastQuery().toLocal8Bit() );
     while ( cola.next() ) {
         this->insertRow( -1 );
