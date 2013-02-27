@@ -157,7 +157,7 @@ void FormFacturarServicio::cargar_datos_servicio()
     // Cargo los clientes
     this->TVClientes->setModel( mc );
     this->TVClientes->hideColumn( 2 );
-    mc->cargarClientesDelServicio( this->_id_servicio );
+    mc->cargarClientesDelServicioAFacturar( this->_id_servicio );
     this->TVClientes->setItemDelegateForColumn( 0, new DSiNo( this->TVClientes ) );
     this->TVClientes->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     this->TVClientes->horizontalHeader()->setResizeMode( 1, QHeaderView::Stretch );
