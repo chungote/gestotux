@@ -1,0 +1,8 @@
+#labels Phase-Design
+# Documentación de la clase util
+
+= Introduccion =
+
+Esta clase ubicada dentro de la carpeta util provee un método multi base de datos de comparar cadenas de texto al estilo razon social sin que permita repetir elementos por cambios de espacios o comas.
+
+= Detalles =
