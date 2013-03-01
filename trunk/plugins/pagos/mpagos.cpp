@@ -446,16 +446,16 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo, const b
         cola.next();
         int id_cliente = cola.value(0).toInt();
         double precio = cola.value(1).toDouble();
-        QString t = QString( "%1-%2" ).arg( cola.value(2).toInt() ).arg( cola.value(3).toInt() );
+        NumeroComprobante *num = new NumeroComprobante( this, cola.value(2).toInt(), cola.value(3).toInt() );
         // Coloco el recibo en la cuenta corriente del cliente si no es el consumidor final
         if( id_cliente > 0 && ctacte ) {
             MItemCuentaCorriente *m = new MItemCuentaCorriente();
             if( m->agregarOperacion( MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente ), // Numero de cuenta del cliente
-                                     t, // Numero de recibo ( real )
+                                     num->aCadena(), // Numero de recibo ( real )
                                      id_recibo, // Id de referencia
                                      MItemCuentaCorriente::Recibo,
                                      QDate::currentDate(),
-                                     QString( "Pago mediante recibo %1" ).arg( t ),
+                                     QString( "Pago mediante recibo %1" ).arg( num->aCadena() ),
                                      precio ) != -1 )
             {
                 qDebug( "Operación de cuenta corriente guardada correctamente" );
@@ -471,7 +471,7 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo, const b
         {
             MMovimientosCaja *m = new MMovimientosCaja();
             if( m->agregarMovimiento( MCajas::cajaPredeterminada(),
-                                      QString( "Pago del recibo %1" ).arg( t ),
+                                      QString( "Pago del recibo %1" ).arg( num->aCadena() ),
                                       QString(),
                                       precio ) )
             {
