@@ -45,7 +45,7 @@ VCajas::VCajas(QWidget *parent) :
     modelo = new MCajas( this );
     vista->setModel( modelo );
     vista->setAlternatingRowColors( true );
-    vista->hideColumn(0);
+    //vista->hideColumn(0);
     vista->setSortingEnabled( true );
     modelo->select();
 

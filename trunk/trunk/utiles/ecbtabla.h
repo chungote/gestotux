@@ -23,7 +23,7 @@ public:
     ECBTabla( QWidget *parent, QString tabla, QString tid, QString texto, QString orden = QString() );
     ~ECBTabla();
 
-    void setearFiltro( const QString f );
+    void setearFiltro( const QString f, const bool inmmediate = false );
     int idActual();
     void setearId( const int id );
     void setearTabla( QString tabla );

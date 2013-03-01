@@ -78,13 +78,19 @@ ECBTabla::ECBTabla( QWidget *parent, QString tabla, QString tid, QString texto, 
  * \fn ECBTabla::setearFiltro( const QString f )
  * Setea el filtro al actual
  * \param f Filtro tal cual se lo pasaría a la base de datos
+ * \param inmmediato Si esta en falso ( valor prederminado ) se esperarn 900 ms para ejecutar las consultas
  */
-void ECBTabla::setearFiltro( const QString f ) {
+void ECBTabla::setearFiltro( const QString f , const bool inmmediate ) {
     this->filtro = f;
     // Hago la carga diferida
-    QTimer timer;
-    timer.singleShot( 900, this, SLOT( inicializar() ) );
-    _inicializado = false;
+    if( !inmmediate ) {
+        QTimer timer;
+        timer.singleShot( 900, this, SLOT( inicializar() ) );
+        _inicializado = false;
+    } else {
+        _inicializado = false;
+        inicializar();
+    }
 }
 
 ECBTabla::~ECBTabla()
