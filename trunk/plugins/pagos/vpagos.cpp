@@ -75,7 +75,7 @@ VPagos::VPagos(QWidget *parent)
 
  ActSoloCancelados = new QAction( this );
  ActSoloCancelados->setText( "Cancelados" );
- ActSoloCancelados->setIcon( QIcon( ":/imagenes/.png" ) );
+ ActSoloCancelados->setIcon( QIcon( ":/imagenes/filtro.png" ) );
  ActSoloCancelados->setCheckable( true );
  connect( ActSoloCancelados, SIGNAL( triggered() ), this, SLOT( soloCancelados() ) );
 
