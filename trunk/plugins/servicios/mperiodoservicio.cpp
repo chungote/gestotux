@@ -97,6 +97,9 @@ QVariant MPeriodoServicio::data(const QModelIndex &item, int role) const
     }
 }
 
+Qt::ItemFlags MPeriodoServicio::flags( const QModelIndex &/*index*/ ) const
+{ return Qt::ItemIsEnabled | Qt::ItemIsSelectable; }
+
 
 void MPeriodoServicio::relacionar() {
     setRelation( 1, QSqlRelation( "id_servicio", "servicios", "nombre" ) );

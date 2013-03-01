@@ -20,6 +20,7 @@ public:
     void inicializar();
     void relacionar();
     QVariant data(const QModelIndex &item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 
 
     int agregarPeriodoAFacturarNuevo( const int id_servicio );

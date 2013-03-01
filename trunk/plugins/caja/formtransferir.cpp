@@ -31,10 +31,11 @@ FormTransferir::FormTransferir(QWidget *parent) :
     setupUi(this);
     this->setAttribute( Qt::WA_DeleteOnClose );
     this->setWindowTitle( "Transferencia" );
+    this->setWindowIcon( QIcon( ":/imagenes/cajatransferir.png" ) );
 
     // seteo los botones
     PBAceptar->setText( "Transferir" );
-    //PBAceptar->setIcon( QIcon( ":/imagenes/" ) );
+    PBAceptar->setIcon( QIcon( ":/imagenes/cajatransferir.png" ) );
     connect( PBAceptar, SIGNAL( clicked() ), this, SLOT( transferir() ) );
 
     PBCancelar->setText( "Cancelar" );
@@ -53,7 +54,7 @@ FormTransferir::FormTransferir(QWidget *parent) :
     CBDestino->setCurrentIndex( -1 );
     CBOrigen->setCurrentIndex( -1 );
 
-    connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
+    //connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
     connect( CBOrigen, SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
 
     DSBCantidad->setMinimum( 0.0 );
@@ -62,17 +63,24 @@ FormTransferir::FormTransferir(QWidget *parent) :
 
 void FormTransferir::setearCajaOrigen( const int id_caja )
 {
-    CBDestino->setearFiltro( "" );
-    CBOrigen->setearId( id_caja );
-    CBDestino->setearFiltro( QString( " id_caja = %1" ).arg( id_caja ) );
-
+    if( id_caja > 0 ) {
+        CBDestino->setearFiltro( "" );
+        CBOrigen->setearId( id_caja );
+        CBDestino->setearFiltro( QString( " id_caja = %1" ).arg( id_caja ) );
+    } else {
+        qDebug( "setearCajaOrigen::Caja de origen = 0" );
+    }
 }
 
 void FormTransferir::setearCajaDestino( const int id_caja )
 {
-    CBDestino->setearFiltro( "" );
-    CBDestino->setearId( id_caja );
-    CBOrigen->setearFiltro( QString( " id_caja = %1 " ).arg( id_caja ) );
+    if( id_caja > 0 ) {
+        CBDestino->setearFiltro( "" );
+        CBDestino->setearId( id_caja );
+        CBOrigen->setearFiltro( QString( " id_caja = %1 " ).arg( id_caja ) );
+    } else {
+        qDebug( "setearCajaDestino::Caja de destino = 0" );
+    }
 }
 
 void FormTransferir::changeEvent(QEvent *e)
@@ -89,27 +97,38 @@ void FormTransferir::changeEvent(QEvent *e)
 
 void FormTransferir::cambioCajaDestino( int id_caja )
 {
-     CBOrigen->disconnect( this, SLOT( cambioCajaOrigen( int ) ) );
-     CBDestino->disconnect( this, SLOT( cambioCajaDestino( int ) ) );
+    if( id_caja > 0 ) {
+     CBDestino->disconnect( SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
+     CBOrigen->disconnect( SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
      // Busco el ID que se selecciono para filtrar el otro modelo
-     CBOrigen->setearFiltro( QString( "id_caja NOT IN ( %1 )" ).arg( CBDestino->idActual() ) );
-     CBDestino->setearFiltro( "" );
-     CBDestino->setCurrentIndex( id_caja );
+     // Conservar el ID de origen para despues del filtrado
+     int temp = CBOrigen->idActual();
+     CBOrigen->setearFiltro( QString( "WHERE id_caja NOT IN ( %1 )" ).arg( CBDestino->idActual() ), true );
+     CBDestino->setearFiltro( "", true );
+     CBDestino->setearId( id_caja );
+     CBOrigen->setearId( temp );
      connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
      connect( CBOrigen, SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
+    } else {
+        qDebug( "cambioCajaDestino::Caja de Destino = 0" );
+    }
 }
 
 void FormTransferir::cambioCajaOrigen( int id_caja )
 {
-        CBOrigen->disconnect( this, SLOT( cambioCajaOrigen( int ) ) );
-        CBDestino->disconnect( this, SLOT( cambioCajaDestino( int ) ) );
+    if( id_caja > 0 ) {
+        CBDestino->disconnect( SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaDestino( int ) ) );
+        CBOrigen->disconnect ( SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen ( int ) ) );
         // Busco el ID que se selecciono para filtrar el otro modelo
-        CBDestino->setearFiltro( QString( "id_caja NOT IN ( %1 )" ).arg( id_caja ) );
-        CBOrigen->setearFiltro( "" );
+        CBDestino->setearFiltro( QString( "WHERE id_caja NOT IN ( %1 )" ).arg( id_caja ), true );
+        CBOrigen->setearFiltro( "", true );
         CBOrigen->setearId( id_caja );
+        DSBCantidad->setMaximum( MCajas::saldo( id_caja ) );
         connect( CBDestino, SIGNAL( cambioId( int ) ), this,SLOT( cambioCajaDestino( int ) ) );
         connect( CBOrigen, SIGNAL( cambioId( int ) ), this, SLOT( cambioCajaOrigen( int ) ) );
-        DSBCantidad->setMaximum( MCajas::saldo( id_caja ) );
+   } else {
+    qDebug( "cambioCajaOrigen::Caja de origen = 0" );
+   }
 }
 
 void FormTransferir::transferir()
