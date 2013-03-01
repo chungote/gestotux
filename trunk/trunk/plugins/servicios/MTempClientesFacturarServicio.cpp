@@ -272,7 +272,7 @@ void MTempClientesFacturarServicio::cargarClientesDelServicio( const int id )
 void MTempClientesFacturarServicio::cargarClientesDelServicioAFacturar( const int id )
 {
     // Busco los clientes qe estan adheridos al servicio solcitiado pero no dados de baja
-    QSqlQuery cola( QString( "SELECT c.razon_social, c.id FROM servicios_clientes, clientes c WHERE ( servicios_clientes.`id_cliente` = c.id ) AND ( servicios_clientes.id_servicio = %1 ) AND servicios_clientes.fecha_baja IS NOT NULL ORDER BY c.razon_social ASC" ).arg( id ) );
+    QSqlQuery cola( QString( "SELECT c.razon_social, c.id FROM servicios_clientes, clientes c WHERE ( servicios_clientes.`id_cliente` = c.id ) AND ( servicios_clientes.id_servicio = %1 ) AND servicios_clientes.fecha_baja IS NULL ORDER BY c.razon_social ASC" ).arg( id ) );
     //qDebug( cola.lastQuery().toLocal8Bit() );
     while ( cola.next() ) {
         this->insertRow( -1 );
