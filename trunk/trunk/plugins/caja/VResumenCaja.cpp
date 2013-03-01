@@ -78,9 +78,11 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   DTEFin = new QDateEdit( GBFiltrado );
   DTEFin->setMaximumDate( QDate::currentDate() );
   DTEFin->setDate( QDate::currentDate() );
+  DTEFin->setDisplayFormat( "dd/MM/yyyy" );
 
   DTEInicio = new QDateEdit( GBFiltrado );
   DTEInicio->setMaximumDate( QDate::currentDate().addDays( -1 ) );
+  DTEInicio->setDisplayFormat( "dd/MM/yyyy" );
   connect( DTEFin, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
   connect( DTEInicio, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
 
@@ -210,10 +212,17 @@ void VResumenCaja::filtrar()
 
 void VResumenCaja::actualizarFiltro()
 {
-    this->modelo->setFilter( QString( " fecha_hora >= date( '%1' ) AND fecha_hora <= date( '%2' ) AND id_caja = %3" )
-                             .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
-                             .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
-                             .arg( CBCajas->idActual() ) );
+    if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QSQLITE" ) {
+        this->modelo->setFilter( QString( " fecha_hora >= '%1T00:00:00' AND fecha_hora <= '%2T23:59:59' AND id_caja = %3" )
+                                 .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
+                                 .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
+                                 .arg( CBCajas->idActual() ) );
+    } else if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QMYSQL" ) {
+        this->modelo->setFilter( QString( " DATE( fecha_hora ) >= DATE( '%1' ) AND DATE( fecha_hora ) <= DATE( '%2' ) AND id_caja = %3" )
+                                 .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
+                                 .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
+                                 .arg( CBCajas->idActual() ) );
+    }
     this->modelo->select();
 }
 
