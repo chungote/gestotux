@@ -26,8 +26,8 @@
 
 #include "mcuentacorriente.h"
 
-MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool /*s */)
- : QSqlRelationalTableModel(parent), _saldo(saldos)
+MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool saldos )
+ : QSqlRelationalTableModel(parent)
 {
  setTable( "item_ctacte" );
  setHeaderData( 0, Qt::Horizontal, "IdOperacion" );
@@ -39,11 +39,9 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool /*s */)
  setHeaderData( 6, Qt::Horizontal, "Haber" );
  setHeaderData( 7, Qt::Horizontal, "Numero cuenta Corriente" );
  setHeaderData( 8, Qt::Horizontal, "Numero de Comprobante" );
- if( saldos )
- {
-  setHeaderData( 9, Qt::Horizontal, "Saldo" );
-  saldos = new QHash<int, double>();
- }
+ saldos = new QHash<int, double>();
+ setHeaderData( 9, Qt::Horizontal, "Saldo" );
+ this->_saldo = saldos;
  _num_cuenta = "";
  this->sort( 1, Qt::AscendingOrder );
 }
@@ -68,9 +66,11 @@ Qt::ItemFlags MItemCuentaCorriente::flags(const QModelIndex& /*index*/) const
  * \param column Columna por la cual se ordena
  * \param order Dirección de ordenamiento
  */
-void MItemCuentaCorriente::sort(int column, Qt::SortOrder order)
+void MItemCuentaCorriente::sort( int column, Qt::SortOrder order )
 {
-    saldos->clear();
+    if( saldos != 0 )
+        if( saldos->count() > 0 )
+            saldos->clear();
     QSqlRelationalTableModel::sort( column, order );
 }
 

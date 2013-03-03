@@ -3,6 +3,7 @@
 #include "formsimularcuotas.h"
 #include "formdetallecuotas.h"
 #include "mvplancuota.h"
+#include "DPagoCuota.h"
 
 #include <QMessageBox>
 
@@ -31,7 +32,7 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
 {
     this->setObjectName( "visorplancuotas" );
     this->setWindowTitle( "Planes de cuota activos" );
-    this->setWindowIcon( QIcon( ":/imagenes/cuota.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/cuotas_detalle.png" ) );
 
     ActSimular = new QAction( this );
     ActSimular->setText( "Simular" );
@@ -143,5 +144,16 @@ void VPlanCuotas::cancelar()
  */
 void VPlanCuotas::ingresarPago()
 {
-    qWarning( "No implementado" );
+    // Busco el plan de cuota seleccionado
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una sola fila para ver su detalle" );
+        return;
+    }
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    int id_plan_cuota = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+
+    DPagoCuota *dialogo = new DPagoCuota( this );
+    dialogo->setearPlanCuota( id_plan_cuota );
+    dialogo->setearModelo( qobject_cast<MVPlanCuota *>(this->modelo) );
+    dialogo->exec();
 }

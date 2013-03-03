@@ -183,3 +183,75 @@ void MPlanCuota::asociarConFactura(int id_plan, int id_factura)
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
 }
+
+/*!
+ * \brief MPlanCuota::obtenerRazonSocial
+ * Devuelve la razón social del cliente asociado con el plan de cuotas pasado como parametro
+ * \param id_plan Identificador del plan de cuotas
+ * \return Razon social del cliente o nulo si no se encuentra el cliente.
+ */
+QString MPlanCuota::obtenerRazonSocial( const int id_plan )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT c.razon_social FROM plan_cuota AS pc, clientes AS c, factura AS f WHERE c.id = f.id_cliente AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toString();
+        } else {
+            qDebug( "Error de next al obtención de razon social de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de razon social de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QString();
+}
+
+/*!
+ * \brief MPlanCuota::obtenerEstadoCuotas
+ * Devuelve el par de datos cantidad_cuotas/cuotas_pagadas de un plan de cuotas.
+ * \param id_plan Identificador del plan de cuotas
+ * \return los datos o un par -1,-1 si hubo un error.
+ */
+QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT pc.cantidad_cuotas, COUNT( ic.id_item_cuota ) FROM plan_cuota AS pc, item_cuota AS ic WHERE ic.id_plan_cuota = pc.id_plan_cuota AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            return QPair<int,int>( cola.record().value(0).toInt(), cola.record().value(1).toInt() );
+        } else {
+            qDebug( "Error de next al obtención de cantidad de cuotas de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de cantidad de cuotas de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QPair<int,int>( -1, -1 );
+}
+
+/*!
+ * \brief MPlanCuota::obtenerEstadoImportes
+ * Devuelve el par de datos cantidad pagada/importe total del plan de cuotas
+ * \param id_plan Identificador del plan
+ * \return importes mencionados o -1.0/-1.0
+ */
+QPair<double, double> MPlanCuota::obtenerEstadoImportes(const int id_plan)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT SUM( ic.monto ), f.total FROM plan_cuota AS pc, item_cuota AS ic, factura AS f WHERE ic.id_plan_cuota = pc.id_plan_cuota AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            return QPair<double,double>( cola.record().value(0).toDouble(), cola.record().value(1).toDouble() );
+        } else {
+            qDebug( "Error de next al obtención de estado financiero de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de estado financiero de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QPair<double,double>( -1.0, -1.0 );
+}
