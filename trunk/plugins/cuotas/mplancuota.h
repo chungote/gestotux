@@ -34,6 +34,10 @@ public:
     
     static int diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo );
     static void asociarConFactura( int id_plan, int id_factura );
+    static QString obtenerRazonSocial( const int id_plan );
+    static QPair<int,int> obtenerEstadoCuotas( const int id_plan );
+    static QPair<double,double> obtenerEstadoImportes( const int id_plan );
+
 };
 
 #endif // MPLANCUOTA_H

@@ -37,7 +37,8 @@ HEADERS += cuotasplugin.h \
            vplancuotas.h \
            mitemplancuota.h \
            mvplancuota.h \
-           formdetallecuotas.h
+           formdetallecuotas.h \
+    DPagoCuota.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
@@ -47,11 +48,13 @@ SOURCES += cuotasplugin.cpp \
             vplancuotas.cpp \
             mitemplancuota.cpp \
             mvplancuota.cpp \
-           formdetallecuotas.cpp
+           formdetallecuotas.cpp \
+    DPagoCuota.cpp
 
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \
-         formcuotasbase.ui
+         formcuotasbase.ui \
+    DPagoCuotaBase.ui
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }

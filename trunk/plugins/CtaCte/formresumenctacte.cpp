@@ -66,7 +66,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         TVItems->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
         TVItems->horizontalHeader()->setResizeMode( 4, QHeaderView::Stretch );
         TVItems->setTextElideMode( Qt::ElideRight );
-        TVItems->setSortingEnabled( true );
+        //TVItems->setSortingEnabled( true );
         /// Menu contextual para cada operacion de la cuenta corriente
         connect( TVItems, SIGNAL( pressed( const QModelIndex & ) ), this, SLOT( menuContextual( const QModelIndex & ) ) );
 
