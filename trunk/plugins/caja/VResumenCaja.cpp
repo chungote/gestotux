@@ -57,12 +57,15 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   vista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
   vista->horizontalHeader()->setResizeMode( 5, QHeaderView::Stretch );
   vista->horizontalHeader()->setMinimumSectionSize( 60 );
+  LSaldo = new QLabel( this );
+  LSaldo->setText( "<b>Saldo actual:</b>" );
   CBCajas = new ECBTabla( this );
   // Reordena los items para que el combo box este arriba
   QGridLayout *l = qobject_cast<QGridLayout *>(this->layout());
   QLayoutItem *i = l->takeAt( 0 );
   l->addWidget( CBCajas, 0, 0 );
-  l->addItem( i, 1, 0 );
+  l->addWidget( LSaldo, 1, 0 );
+  l->addItem( i, 2, 0 );
 
   // Genero los items para el filtrado
   GBFiltrado = new QGroupBox( this );
@@ -91,7 +94,7 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   lg->addWidget( lfin, 0, 2 );
   lg->addWidget( DTEFin, 0, 3 );
   GBFiltrado->setVisible( false );
-  l->addWidget( GBFiltrado, 2, 0 );
+  l->addWidget( GBFiltrado, 3, 0 );
 
   // Inicializo el modelo de las cajas, lo pongo en el combobox y conecto las señales para cambiar los datos
   CBCajas->setearTabla( "caja" );
@@ -147,7 +150,10 @@ void VResumenCaja::setearCaja(int id_caja)
 void VResumenCaja::cambioCaja( int id )
 {
     if( id > 0 )
+    {
         modelo->ultimosMovimientosCaja( id );
+        LSaldo->setText( QString( "<b>Saldo Actual:</b> $ %L1" ).arg( MCajas::saldo( id ), 10, 'f', 2 ) );
+    }
 }
 
 void VResumenCaja::ingreso() {
