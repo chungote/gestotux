@@ -95,6 +95,28 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>20</y>
+      <width>131</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="LTecnico">
+       <property name="text">
+        <string>Tecnico:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ECBTecnicos" name="CBTecnico"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <customwidgets>
@@ -102,6 +124,11 @@
    <class>ECBClientes</class>
    <extends>QComboBox</extends>
    <header>ecbclientes.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBTecnicos</class>
+   <extends>QComboBox</extends>
+   <header>ecbtecnicos.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
