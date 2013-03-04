@@ -57,6 +57,7 @@ public:
     bool setearComoPagado( const int id_recibo, const bool efectivo, const bool ctacte );
     bool buscarSiPagado( const int serie, const int numero );
     bool existe( NumeroComprobante num );
+    bool anulado( NumeroComprobante num );
     int buscarIdPorSerieNumero( const NumeroComprobante num );
     int buscarIdPorSerieNumero( const int serie, const int numero );
     int buscarIdCliente( NumeroComprobante num );

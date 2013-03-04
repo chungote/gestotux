@@ -260,7 +260,7 @@ void VPagos::cancelarPago()
                    {
                        bool ok;
                        int id_recibo = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
-                       QString razon = QInputDialog::getText( this, "Razón", QString::fromUtf8( "Razón de anulación:" ), QLineEdit::Normal, QString(), &ok );
+                       QString razon = QInputDialog::getText( this, QString::fromUtf8( "Razón" ), QString::fromUtf8( "Razón de anulación:" ), QLineEdit::Normal, QString(), &ok );
                        NumeroComprobante num = mp->buscarNumeroComprobantePorId( id_recibo );
                        if( mp->cancelarRecibo( id_recibo, razon, QDateTime::currentDateTime() ) ) {
                            QMessageBox::information( this, "Correcto", QString( "El recibo %1 fue anulado correctamente" ).arg( num.aCadena() ) );

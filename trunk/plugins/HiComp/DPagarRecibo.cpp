@@ -146,6 +146,12 @@ void DPagarRecibo::cambioNumeroRecibo()
       delete m;
       return;
   }
+  if( !m->anulado( _num_recibo ) ) {
+      QMessageBox::warning( this, "Error", "El recibo ingresado se encuentra anulado." );
+      LENumeroRecibo->clear();
+      delete m;
+      return;
+  }
   if( m->buscarSiPagado( _num_recibo.serie(), _num_recibo.numero() ) ) {      
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El recibo ya se encuentra pagado!" ) );
         LENumeroRecibo->clear();
