@@ -756,9 +756,34 @@ bool MPagos::existe( NumeroComprobante num ) {
             }
         } else {
             qDebug( "MPagos::existe: Error al hacer next en buscar si existe un recibo" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
         }
     } else {
         qDebug( "Mpagos::existe: Error al hacer exec en buscar si existe un recibo" );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+    }
+    return false;
+}
+
+/*!
+ * \brief MPagos::anulado
+ * Verifica si un recibo ha sido anulado o no.
+ * \param num Numero de comprobante a verificar
+ * \return Verdadero o falso incluso en caso de error.
+ */
+bool MPagos::anulado(NumeroComprobante num)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT cancelado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toBool();
+        } else {
+            qDebug( "MPagos::existe: Error al hacer next en buscar si un recibo esta anulado" );
+            qDebug( cola.lastError().text().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Mpagos::existe: Error al hacer exec en buscar si un recibo esta anulado" );
         qDebug( cola.lastQuery().toLocal8Bit() );
         qDebug( cola.lastError().text().toLocal8Bit() );
     }
