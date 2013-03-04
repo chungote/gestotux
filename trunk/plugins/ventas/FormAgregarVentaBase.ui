@@ -111,7 +111,7 @@
       <item>
        <layout class="QHBoxLayout" name="hl4">
         <item>
-         <widget class="QSpinBox" name="DSBCant"/>
+         <widget class="EDSBPrecio" name="DSBCant"/>
         </item>
         <item>
          <widget class="ECBProductos" name="CBProducto">
@@ -268,14 +268,19 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ECBClientes</class>
+   <extends>QComboBox</extends>
+   <header>ecbclientes.h</header>
+  </customwidget>
+  <customwidget>
    <class>ECBProductos</class>
    <extends>QComboBox</extends>
    <header>ecbproductos.h</header>
   </customwidget>
   <customwidget>
-   <class>ECBClientes</class>
-   <extends>QComboBox</extends>
-   <header>ecbclientes.h</header>
+   <class>EDSBPrecio</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>edsbprecio.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
