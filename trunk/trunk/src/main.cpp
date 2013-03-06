@@ -54,25 +54,26 @@ FILE *debug;
  */
  void myMessageOutput(QtMsgType type, const char *msg)
  {
+     const char *time = QDateTime::currentDateTime().toString(Qt::ISODate).toAscii().constData();
      switch (type) {
          case QtDebugMsg:
-            fprintf(debug, "Debug: %s\n", msg);
+            fprintf(debug, "%s: Debug: %s\n", time, msg );
             fflush(debug);
             break;
          case QtWarningMsg:
             #ifdef GESTOTUX_DESARROLLO
             QMessageBox::warning( 0, "Warning de aplicacion", msg );
             #endif
-            fprintf(debug, "warning: %s\n", msg);
+            fprintf(debug, "%s: warning: %s\n", time, msg );
             fflush(debug);
             break;
          case QtCriticalMsg:
             QMessageBox::critical( 0, "Error Critico", msg );
-            fprintf(debug, "critico: %s\n", msg);
+            fprintf(debug, "%s: critico: %s\n", time, msg );
             fflush(debug);
             break;
          case QtFatalMsg:
-            fprintf( debug, "Fatal: %s\n", msg);
+            fprintf( debug, "%s: Fatal: %s\n", time, msg );
             fflush(debug);
             QMessageBox::critical( 0, "¡¡¡¡¡¡FATAL!!!!!!", msg );
             abort();
@@ -200,7 +201,7 @@ int main(int argc, char *argv[])
       }
       debug = fopen( QApplication::applicationDirPath().append( QDir::separator() ).append( "debug.txt" ).toLocal8Bit(), "w" );
       fseek( debug, 0, 0 );
-      //qInstallMsgHandler(myMessageOutput);
+      qInstallMsgHandler(myMessageOutput);
       // Muestro el splash
       ESplash splash;
       splash.show();
