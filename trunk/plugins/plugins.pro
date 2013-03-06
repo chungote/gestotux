@@ -13,4 +13,6 @@ SUBDIRS +=  caja \
             cuotas \
             remitos \
             backupremoto \
-            ordentrabajo
+            ordentrabajo \
+            bscomputacion \
+            feedback

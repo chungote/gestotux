@@ -369,7 +369,7 @@ bool EReporte::cargar( const QString nombre ) {
         _rep = new orReport( nombre );
     }
     if( (!_rep == 0) && !_rep->isValid() ) {
-        qDebug( "Error - el reporte solicitado no es valido" );
+        qWarning( "Error - el reporte solicitado no es valido" );
         _rep->reportError( 0 );
         _tipo = Invalido;
         return false;
