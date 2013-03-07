@@ -1,10 +1,13 @@
+CREATE TABLE IF NOT EXISTS `estado_fiscal` ( `id_estado_fiscal` int(11) NOT NULL AUTO_INCREMENT, `titulo` tinytext COLLATE utf8_spanish_ci NOT NULL, PRIMARY KEY (`id_estado_fiscal`) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE IF NOT EXISTS `paises` ( `id_pais` bigint(20) NOT NULL AUTO_INCREMENT, `nombre` tinytext COLLATE utf8_spanish_ci NOT NULL, `predeterminado` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`id_pais`), UNIQUE KEY `nombre_unico` (`nombre`(50)) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE IF NOT EXISTS `provincias` ( `id_provincia` bigint(20) NOT NULL AUTO_INCREMENT, `nombre` tinytext COLLATE utf8_spanish_ci NOT NULL, `predeterminado` tinyint(1) NOT NULL DEFAULT '0', `id_pais` bigint(20) NOT NULL, PRIMARY KEY (`id_provincia`) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE IF NOT EXISTS `clientes` ( `id` bigint(10) NOT NULL auto_increment, `razon_social` tinytext NOT NULL, `nombre` tinytext, `apellido` tinytext, `calle` tinytext, `numero` int(2) default NULL, `piso` int(2) default NULL, `depto` tinytext, `ciudad` tinytext, `codigo_postal` tinytext, `provincia` BIGINT(20) NULL DEFAULT NULL, `pais` BIGINT(20) NULL DEFAULT NULL, `tel_fijo` tinytext, `tel_celular` tinytext, `fax` tinytext, `email` tinytext, `comprobante_email` tinyint(1) default '1', `ctacte` tinyint(1) default NULL, `CUIT/CUIL` tinytext default null, `id_estado_fiscal` INT NULL,  FOREIGN KEY (`id_estado_fiscal`) REFERENCES `estado_fiscal`(`id_estado_fiscal`),PRIMARY KEY  (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE IF NOT EXISTS `report` ( `report_id` int(11) NOT NULL AUTO_INCREMENT, `report_name` text, `report_descrip` text NOT NULL, `report_grade` int(11) NOT NULL DEFAULT '0', `report_source` longtext,  PRIMARY KEY (`report_id`) ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 ALTER TABLE `clientes` ADD CONSTRAINT `pais_fk` FOREIGN KEY (`pais`) REFERENCES `paises`(`id_pais`);
 ALTER TABLE `clientes` ADD CONSTRAINT `provincia_fk` FOREIGN KEY (`provincia`) REFERENCES `provincias`(`id_provincia`);
 INSERT INTO `clientes` (`id`, `razon_social`, `nombre` ) VALUES (  0, 'Consumidor Final', 'Consumidor Final'  );
 INSERT INTO `estado_fiscal` (`id_estado_fiscal`, `titulo`) VALUES ( 1, 'Responsable Inscripto'), (2, 'Responsable Monotributista'), (3, 'No Responable Inscripto'), (4, 'Exento'), (5, 'Consumidor Final'), (6, 'Monotributista Social'), (7, 'PequeÃ±o Contribuidor Eventual'), (8, 'PequeÃ±o Contribuyente Eventual Social' );
-INSERT INTO `paises` VALUES ( 1, 'AfganistÃ¡n');
+INSERT INTO `paises` VALUES ( 1, 'Afganistan');
 INSERT INTO `paises` VALUES (2, 'Albania');
 INSERT INTO `paises` VALUES (3, 'Alemania');
 INSERT INTO `paises` VALUES (4, 'American Samoa');
