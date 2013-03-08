@@ -39,8 +39,10 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool saldos )
  setHeaderData( 6, Qt::Horizontal, "Haber" );
  setHeaderData( 7, Qt::Horizontal, "Numero cuenta Corriente" );
  setHeaderData( 8, Qt::Horizontal, "Numero de Comprobante" );
- saldos = new QHash<int, double>();
  setHeaderData( 9, Qt::Horizontal, "Saldo" );
+ setHeaderData( 10, Qt::Horizontal, "Saldo" );
+ this->saldos = new QHash<int, double>();
+ this->saldos->clear();
  this->_saldo = saldos;
  _num_cuenta = "";
  this->sort( 1, Qt::AscendingOrder );
