@@ -18,6 +18,11 @@ EBusqueda::EBusqueda( QWidget *parent, QSqlTableModel *modelo, QString titulo ) 
     QString _filtro_anterior = _modelo->filter();
 }
 
+/*!
+ * \brief EBusqueda::filtrar
+ * Permite generar el filtro al modelo necesario y aplicarlo para el filtrado
+ * \author Esteban Zeller
+ */
 void EBusqueda::filtrar()
 {
     if( filtros.isEmpty() || CBTipo->currentIndex() == -1
@@ -27,6 +32,10 @@ void EBusqueda::filtrar()
     _modelo->select();
 }
 
+/*!
+ * \brief EBusqueda::borrar
+ * Borra todos los filtros que hayan aplicado
+ */
 void EBusqueda::borrar()
 {
     this->_modelo->setFilter( _filtro_anterior );
@@ -71,5 +80,10 @@ void EBusqueda::changeEvent( QEvent *e )
     }
 }
 
+/*!
+ * \brief EBusqueda::setearTitulo
+ * Setea el titulo que aparecerá en la ventana de busqueda
+ * \param titulo titulo a colocar
+ */
 void EBusqueda::setearTitulo( QString titulo )
 { this->setWindowTitle( titulo ); }
