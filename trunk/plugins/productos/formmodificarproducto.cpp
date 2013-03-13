@@ -5,7 +5,7 @@
 #include <QSqlError>
 
 FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) :
-    QDialog(parent), Ui::FormProductoBase()
+QDialog(parent), Ui::FormProductoBase()
 {
     setupUi( this );
     setAttribute( Qt::WA_DeleteOnClose );
@@ -18,6 +18,7 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
 
     mapa = new QDataWidgetMapper( this );
     mapa->setModel( modelo );
+    this->_anterior = modelo->editStrategy();
     mapa->addMapping( this->LECodigo     , modelo->fieldIndex( "codigo"       ) );
     mapa->addMapping( this->LENombre     , modelo->fieldIndex( "nombre"       ) );
     mapa->addMapping( this->LEDescripcion, modelo->fieldIndex( "descripcion"  ) );
@@ -26,7 +27,8 @@ FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) 
     mapa->addMapping( this->SBStock      , modelo->fieldIndex( "stock"        ) );
     mapa->addMapping( this->DSBCosto     , modelo->fieldIndex( "precio_costo" ) );
     mapa->addMapping( this->DSBVenta     , modelo->fieldIndex( "precio_venta" ) );
-    mapa->addMapping( this->CBCategoria  , modelo->fieldIndex( "id_categoria" ) );
+    mapa->addMapping( this->CBCategoria  , modelo->fieldIndex( "id_categoria" ), "id" );
+    modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
     mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
 
     this->GBContenedor->setTitle( "Modificar Producto" );
@@ -138,11 +140,12 @@ void FormModificarProducto::accept() {
     }
     if( mapa->submit() ) {
         QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
+        this->modelo->setEditStrategy( _anterior );
         QDialog::accept();
         return;
     } else {
         QMessageBox::information( this, "Erroneo", "No se pudo hacer el submit de los datos" );
-        qDebug( this->modelo->lastError().text().toLocal8Bit() );
+        qDebug( qobject_cast<QSqlTableModel *>(this->mapa->model())->lastError().text().toLocal8Bit() );
         return;
     }
 }

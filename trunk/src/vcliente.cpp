@@ -78,10 +78,10 @@ VCliente::VCliente( QWidget *parent )
  ActAgregar->setIcon( QIcon( ":/imagenes/add_user.png" ) );
  ActEliminar->setIcon( QIcon( ":/imagenes/delete_user.png" ) );
 
- agregarFiltroBusqueda( "Cualquiera", " `razon_social` LIKE '%%1%' OR nombre LIKE '%%1%' OR apellido LIKE '%%1%' OR calle LIKE '%%1%' OR numero LIKE '%%1%' OR piso LIKE '%%1%' OR depto LIKE '%%1%' OR ciudad LIKE '%%1%' OR `codigo_postal` LIKE '%%1%' OR provincia LIKE '%%1%' OR pais LIKE '%%1%' OR `tel_fijo` LIKE '%%1%' OR `tel_celular` LIKE '%%1%' OR fax LIKE '%%1%' OR email LIKE '%%1%' OR `CUIT/CUIL` LIKE '%%1%'" );
- agregarFiltroBusqueda( "Razon Social", " `razon_social` LIKE '%%1%'" );
+ agregarFiltroBusqueda( "Cualquiera", " `razon_social` LIKE '%%%1%' OR nombre LIKE '%%%1%' OR apellido LIKE '%%%1%' OR calle LIKE '%%%1%' OR numero LIKE '%%%1%' OR piso LIKE '%%%1%' OR depto LIKE '%%%1%' OR ciudad LIKE '%%%1%' OR `codigo_postal` LIKE '%%%1%' OR provincia LIKE '%%%1%' OR pais LIKE '%%%1%' OR `tel_fijo` LIKE '%%%1%' OR `tel_celular` LIKE '%%%1%' OR fax LIKE '%%%1%' OR email LIKE '%%%1%' OR `CUIT/CUIL` LIKE '%%%1%'" );
+ agregarFiltroBusqueda( "Razon Social", " `razon_social` LIKE '%%%1%'" );
  agregarFiltroBusqueda( "Numero de Cliente", " id = %1" );
- agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL` = '%%1%'" );
+ agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL` = '%%%1%'" );
  habilitarBusqueda();
 
  addAction( ActAgregar );

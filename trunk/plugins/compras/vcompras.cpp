@@ -53,7 +53,7 @@ VCompras::VCompras(QWidget *parent)
  connect( ActVerLista, SIGNAL( triggered() ), this, SLOT( verLista() ) );
 
  agregarFiltroBusqueda( "A contado", "`contado` = 1" );
- agregarFiltroBusqueda( "Proveedor", "`nombre` LIKE %%1%" );
+ agregarFiltroBusqueda( "Proveedor", "`nombre` LIKE '%%%1%'" );
  agregarFiltroBusqueda( "Mayor a ", "`total` >= %1" );
  agregarFiltroBusqueda( "Menor a", "`total` <= %1" );
  habilitarBusqueda();

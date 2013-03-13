@@ -126,10 +126,12 @@ VProductos::VProductos(QWidget *parent)
  addAction( ActVerTodos );
  addAction( ActCerrar );
 
- agregarFiltroBusqueda( "Todo", "`codigo` LIKE '%%1%' OR  `nombre` LIKE '%%1%'  OR `descripcion` LIKE '%%1%' OR" );
- agregarFiltroBusqueda( QString::fromUtf8("Código"), " `codigo` LIKE '%%1%' " );
- agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%1%' " );
- agregarFiltroBusqueda( QString::fromUtf8("Descripción"), " `descripcion` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Todo", "`codigo` LIKE '%%%1%' OR  `nombre` LIKE '%%%1%'  OR `descripcion` LIKE '%%%1%' OR" );
+ agregarFiltroBusqueda( QString::fromUtf8("Código"), " `codigo` LIKE '%%%1%' " );
+ agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%%1%' " );
+ if( p->value( "descripcion", false ).toBool() ) {
+    agregarFiltroBusqueda( QString::fromUtf8("Descripción"), " `descripcion` LIKE '%%%1%' " );
+ }
  if( hab_stock == true ) {
     agregarFiltroBusqueda( "Stock mayor o igual a ", " `stock` >= %1" );
     agregarFiltroBusqueda( "Stock menor a ", " `stock` < %1" );

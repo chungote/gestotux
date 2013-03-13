@@ -59,7 +59,7 @@ VGastos::VGastos( QWidget* parent )
  ActCategorias->setStatusTip( "Muestra las distintas categorias de gastos disponibles" );
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( mostrarCategorias() ) );
 
- agregarFiltroBusqueda( QString::fromUtf8( "Descripción" ), " `gastos`.`descripcion` LIKE '%%1%' " );
+ agregarFiltroBusqueda( QString::fromUtf8( "Descripción" ), " `gastos`.`descripcion` LIKE '%%%1%' " );
  agregarFiltroBusqueda( "Costo mayor a", " `gastos`.`costo` >= %1" );
  agregarFiltroBusqueda( "Costo menor a", " `gastos`.`costo` <= %1" );
  habilitarBusqueda();

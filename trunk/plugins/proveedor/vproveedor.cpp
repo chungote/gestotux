@@ -53,7 +53,7 @@ VProveedor::VProveedor( QWidget *parent )
  ActListadoPDF->setIcon( QIcon( ":/imagenes/acroread.png" ) );
  connect( ActListadoPDF, SIGNAL(triggered() ), this, SLOT( listadoPDF() ) );
 
- agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Nombre", " `nombre` LIKE '%%%1%' " );
  agregarFiltroBusqueda( QString::fromUtf8( "Código" ), " `id` LIKE '%%1%' " );
  agregarFiltroBusqueda( "CUIT/CUIL", " `CUIT/CUIL`  LIKE '%%1%' ");
  habilitarBusqueda();
