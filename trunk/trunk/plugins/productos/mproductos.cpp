@@ -23,12 +23,13 @@
 #include <QBrush>
 
 MProductos::MProductos(QObject *parent)
- : QSqlRelationalTableModel(parent)
+: QSqlRelationalTableModel(parent)
 {
  setTable( "producto" );
  setHeaderData( 0, Qt::Horizontal, "#ID" );
  setHeaderData( 1, Qt::Horizontal, "Categoria" );
  preferencias *p = preferencias::getInstancia();
+ p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "Productos" );
  if( p->value( "categorias" ).toBool() )
@@ -50,7 +51,7 @@ MProductos::MProductos(QObject *parent)
 }
 
 
-QVariant MProductos::data(const QModelIndex& item, int role) const
+QVariant MProductos::data( const QModelIndex& item, int role ) const
 {
  if( !item.isValid() )
  {

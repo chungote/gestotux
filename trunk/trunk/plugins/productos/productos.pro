@@ -17,20 +17,20 @@ SOURCES += mcategorias.cpp \
            vproductos.cpp \
            productos.cpp \
            dproductos.cpp \
-           dcategoria.cpp \
            formprefproductos.cpp \
            formagregarproducto.cpp \
-           formmodificarproducto.cpp
+           formmodificarproducto.cpp \
+    ecbcategoriasproductos.cpp
 HEADERS += mcategorias.h \
            mproductos.h \
            vcategorias.h \
            vproductos.h \
            productos.h \
            dproductos.h \
-           dcategoria.h \
            formprefproductos.h \
            formagregarproducto.h \
-           formmodificarproducto.h
+           formmodificarproducto.h \
+    ecbcategoriasproductos.h
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a

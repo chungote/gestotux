@@ -37,7 +37,8 @@ SOURCES += mcompra.cpp \
            ../caja/mcajas.cpp \
            FormActualizarPrecios.cpp \
            vlistacompra.cpp \
-           ../productos/formagregarproducto.cpp
+           ../productos/formagregarproducto.cpp \
+           ../productos/ecbcategoriasproductos.cpp
 
 HEADERS += formagregarcompra.h \
            mcompra.h \
@@ -49,7 +50,8 @@ HEADERS += formagregarcompra.h \
            ../caja/mcajas.h \
            FormActualizarPrecios.h \
            vlistacompra.h \
-           ../productos/formagregarproducto.h
+           ../productos/formagregarproducto.h \
+           ../productos/ecbcategoriasproductos.h
 
 OTHER_FILES += compras.QMYSQL.sql \
                compras.QSQLITE.sql

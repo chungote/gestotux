@@ -32,6 +32,8 @@ public:
     void setearCampoOrden( QString texto );
     void setearCampoBusquedaExtra( QString campo );
 
+    Q_PROPERTY( int id READ idActual WRITE setearId USER true )
+
 signals:
     void cambioId( int id );
 

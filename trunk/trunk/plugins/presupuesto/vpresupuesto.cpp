@@ -46,7 +46,7 @@ VPresupuesto::VPresupuesto(QWidget *parent)
  vista->setSortingEnabled( true );
  modelo->select();
 
- agregarFiltroBusqueda( "Destinatario", " `destinatario` LIKE '%%1%' " );
+ agregarFiltroBusqueda( "Destinatario", " `destinatario` LIKE '%%%1%' " );
  agregarFiltroBusqueda( "Fecha menor a", " DATE( `fecha` ) <= %1" );
  agregarFiltroBusqueda( "Fecha mayor a ", " DATE( `fecha` ) > %1" );
  habilitarBusqueda();

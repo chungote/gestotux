@@ -77,7 +77,7 @@ VVentas::VVentas(QWidget *parent)
     connect( ActVerItems, SIGNAL( triggered() ), this, SLOT( verItems() ) );
 
     //agregarFiltroBusqueda( "Numero de Factura", " ``" );
-    agregarFiltroBusqueda( "Numero de Cliente", " `id_cliente` = '%%1%' " );
+    agregarFiltroBusqueda( "Numero de Cliente", " `id_cliente` = '%%%1%' " );
     agregarFiltroBusqueda( "Fecha", " `fecha` = '%%1%' ");
     habilitarBusqueda();
 

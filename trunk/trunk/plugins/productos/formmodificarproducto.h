@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QDockWidget>
 #include <QDataWidgetMapper>
+#include <QSqlTableModel>
 #include "mproductos.h"
 
 /*!
@@ -41,6 +42,7 @@ private:
     QString _nombre_anterior;
     MProductos *modelo;
     QDataWidgetMapper *mapa;
+    QSqlTableModel::EditStrategy _anterior;
 
 };
 

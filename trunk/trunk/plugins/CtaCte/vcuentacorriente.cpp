@@ -105,9 +105,9 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  * ORDER BY ctacte."numero_cuenta" DESC*/
 
 
- this->agregarFiltroBusqueda( "Cualquiera", "relTblAl_1.\"razon_social\"  LIKE \"%%1%\" OR ctacte.\"numero_cuenta\" = %1" );
- this->agregarFiltroBusqueda( "Razon Social", "relTblAl_1.\"razon_social\"  LIKE \"%%1%\"" );
- this->agregarFiltroBusqueda( "Razon social y habilitadas", "relTblAl_1.\"razon_social\"  LIKE \"%%1%\" AND ctacte.\"suspendida\" = 1" );
+ this->agregarFiltroBusqueda( "Cualquiera", "relTblAl_1.\"razon_social\"  LIKE \"%%%1%\" OR ctacte.\"numero_cuenta\" = %1" );
+ this->agregarFiltroBusqueda( "Razon Social", "relTblAl_1.\"razon_social\"  LIKE \"%%%1%\"" );
+ this->agregarFiltroBusqueda( "Razon social y habilitadas", "relTblAl_1.\"razon_social\"  LIKE \"%%%1%\" AND ctacte.\"suspendida\" = 1" );
  this->agregarFiltroBusqueda( "Saldo mayor a ", "ctacte.\"saldo\" > %1" );
  this->agregarFiltroBusqueda( "Saldo menor a", "ctacte.\"saldo\" < %1" );
  habilitarBusqueda();

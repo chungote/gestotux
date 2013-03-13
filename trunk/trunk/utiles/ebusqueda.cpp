@@ -9,9 +9,9 @@ EBusqueda::EBusqueda( QWidget *parent, QSqlTableModel *modelo, QString titulo ) 
         this->setWindowTitle( "Buscador y filtrador" );
     } else { this->setWindowTitle( titulo ); }
 
-    connect( CBTipo, SIGNAL( currentIndexChanged( int ) ), this, SLOT( filtrar() ) );
-    connect( LETexto, SIGNAL( textChanged(QString) ), this, SLOT( filtrar() ) );
-    connect( PBBorrar, SIGNAL( clicked() ), this, SLOT( borrar() ) );
+    connect( CBTipo  , SIGNAL( currentIndexChanged( int ) ), this, SLOT( filtrar() ) );
+    connect( LETexto , SIGNAL( textChanged( QString )     ), this, SLOT( filtrar() ) );
+    connect( PBBorrar, SIGNAL( clicked()                  ), this, SLOT( borrar()  ) );
 
     _modelo = modelo;
     // Guardo el filtro anterior
@@ -28,13 +28,15 @@ void EBusqueda::filtrar()
     if( filtros.isEmpty() || CBTipo->currentIndex() == -1
         || LETexto->text().isEmpty() || LETexto->text().isNull() )
         return;
+    //qDebug( filtros.at( CBTipo->currentIndex() ).arg( LETexto->text() ).toLocal8Bit() );
     _modelo->setFilter( filtros.at( CBTipo->currentIndex() ).arg( LETexto->text() ) );
+    qDebug( _modelo->filter().toLocal8Bit() );
     _modelo->select();
 }
 
 /*!
  * \brief EBusqueda::borrar
- * Borra todos los filtros que hayan aplicado
+ * Borra todos los filtros que hayan aplicado.
  */
 void EBusqueda::borrar()
 {
