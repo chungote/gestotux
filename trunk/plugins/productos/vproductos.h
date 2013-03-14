@@ -45,6 +45,7 @@ protected slots:
     void listaStock();
     void actualizar();
     void modificar();
+    void eliminar();
     void habilitarProducto();
     void deshabilitarProducto();
 

@@ -77,12 +77,15 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
     addAction( ActCerrar );
     addAction( ActSep2 );
     addAction( ActTerminado );
+    addAction( ActBuscar );
 
     modelo = new MVPlanCuota( this );
     vista->setModel( modelo );
 
     modelo->select();
 
+    agregarFiltroBusqueda( QString::fromUtf8( "Razón Social" ), "cliente LIKE '%%%1%'" );
+    habilitarBusqueda();
 }
 
 /*!

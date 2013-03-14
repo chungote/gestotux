@@ -74,7 +74,7 @@ VProductos::VProductos(QWidget *parent)
 
  addAction( ActAgregar );
  addAction( ActModificar );
- //addAction( ActEliminar );
+ addAction( ActEliminar );
 
  ActHabilitar = new QAction( this );
  ActHabilitar->setText( "Habilitar" );
@@ -283,4 +283,28 @@ void VProductos::deshabilitarProducto()
         }
     }
     return;
+}
+
+void VProductos::eliminar()
+{
+    // Busco el item
+    QModelIndexList indices = this->vista->selectionModel()->selectedRows();
+    if( indices.size() < 1 )
+    {
+      QMessageBox::warning( this, "Seleccione un item",
+                      "Por favor, seleccione un item para eliminar",
+                      QMessageBox::Ok );
+      return;
+    }
+    int neliminados = 0; int eliminados = 0;
+    foreach( QModelIndex idx, indices ) {
+        int id = this->rmodelo->data( this->rmodelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+        if( qobject_cast<MProductos *>(this->rmodelo)->tieneDatosRelacionados( id ) ) {
+            this->rmodelo->removeRow( idx.row() );
+            eliminados++;
+        } else {
+            neliminados++;
+        }
+    }
+    QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 elementos. Falló eliminar %2 elementos.<br />Si el producto fue utilizado alguna vez, tiene datos relacionados y no podrá ser eliminado. Intente deshabilitarlo.").arg( eliminados ).arg( neliminados ) );
 }

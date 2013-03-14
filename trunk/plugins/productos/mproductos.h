@@ -59,6 +59,8 @@ public:
     bool habilitar( const QModelIndex idx );
     bool deshabilitar( const QModelIndex idx );
 
+    bool tieneDatosRelacionados( const int id_producto );
+
     int idProductoPorCodigo( const QString codigo );
 
 private:

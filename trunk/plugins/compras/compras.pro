@@ -37,8 +37,7 @@ SOURCES += mcompra.cpp \
            ../caja/mcajas.cpp \
            FormActualizarPrecios.cpp \
            vlistacompra.cpp \
-           ../productos/formagregarproducto.cpp \
-           ../productos/ecbcategoriasproductos.cpp
+           ../productos/formagregarproducto.cpp
 
 HEADERS += formagregarcompra.h \
            mcompra.h \

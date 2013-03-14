@@ -19,8 +19,7 @@ SOURCES += mcategorias.cpp \
            dproductos.cpp \
            formprefproductos.cpp \
            formagregarproducto.cpp \
-           formmodificarproducto.cpp \
-    ecbcategoriasproductos.cpp
+           formmodificarproducto.cpp
 HEADERS += mcategorias.h \
            mproductos.h \
            vcategorias.h \
