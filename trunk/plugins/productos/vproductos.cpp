@@ -299,12 +299,16 @@ void VProductos::eliminar()
     int neliminados = 0; int eliminados = 0;
     foreach( QModelIndex idx, indices ) {
         int id = this->rmodelo->data( this->rmodelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
-        if( qobject_cast<MProductos *>(this->rmodelo)->tieneDatosRelacionados( id ) ) {
+        if( !qobject_cast<MProductos *>(this->rmodelo)->tieneDatosRelacionados( id ) ) {
             this->rmodelo->removeRow( idx.row() );
             eliminados++;
         } else {
             neliminados++;
         }
     }
-    QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 elementos. Falló eliminar %2 elementos.<br />Si el producto fue utilizado alguna vez, tiene datos relacionados y no podrá ser eliminado. Intente deshabilitarlo.").arg( eliminados ).arg( neliminados ) );
+    if( neliminados > 0 ) {
+        QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 elementos. Falló eliminar %2 elementos.<br />Si el producto fue utilizado alguna vez, tiene datos relacionados y no podrá ser eliminado. Intente deshabilitarlo.").arg( eliminados ).arg( neliminados ) );
+    } else {
+        QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 productos.").arg( eliminados ) );
+    }
 }
