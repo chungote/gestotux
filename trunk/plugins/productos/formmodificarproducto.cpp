@@ -1,8 +1,11 @@
 #include "formmodificarproducto.h"
 
 #include "preferencias.h"
+#include "dproductos.h"
+#include "mcategorias.h"
 #include <QMessageBox>
 #include <QSqlError>
+#include <QSqlRecord>
 
 FormModificarProducto::FormModificarProducto( MProductos *mod, QWidget *parent) :
 QDialog(parent), Ui::FormProductoBase()
@@ -18,7 +21,9 @@ QDialog(parent), Ui::FormProductoBase()
 
     mapa = new QDataWidgetMapper( this );
     mapa->setModel( modelo );
+    mapa->setOrientation( Qt::Horizontal );
     this->_anterior = modelo->editStrategy();
+    this->modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
     mapa->addMapping( this->LECodigo     , modelo->fieldIndex( "codigo"       ) );
     mapa->addMapping( this->LENombre     , modelo->fieldIndex( "nombre"       ) );
     mapa->addMapping( this->LEDescripcion, modelo->fieldIndex( "descripcion"  ) );
@@ -27,8 +32,8 @@ QDialog(parent), Ui::FormProductoBase()
     mapa->addMapping( this->SBStock      , modelo->fieldIndex( "stock"        ) );
     mapa->addMapping( this->DSBCosto     , modelo->fieldIndex( "precio_costo" ) );
     mapa->addMapping( this->DSBVenta     , modelo->fieldIndex( "precio_venta" ) );
-    mapa->addMapping( this->CBCategoria  , modelo->fieldIndex( "id_categoria" ), "id" );
-    modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
+    mapa->addMapping( this->CBCategoria  , 1 );
+    mapa->setItemDelegate( new DProductos( this ) );
     mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
 
     this->GBContenedor->setTitle( "Modificar Producto" );
@@ -91,6 +96,7 @@ void FormModificarProducto::cambioPrecioCosto( double precio ) {
     this->DSBVenta->setValue( ( 1.00 + ( _recargo / 100 ) ) * precio );
 }
 
+#include <QSqlRecord>
 void FormModificarProducto::accept() {
     // Verificaciones de estado correcto
     if( this->LECodigo->text().isEmpty() ) {
@@ -108,12 +114,12 @@ void FormModificarProducto::accept() {
     if( this->LEMarca->text().isEmpty() && _marca ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El código del producto no puede ser nulo. Por favor, ingrese un código para el producto" ) );
         return;
-    }*/
+    }
     if( this->CBCategoria->currentIndex() == 0 && _categorias ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8("La categoría del producto no puede ser nula. Por favor, seleccióne una categoría para el producto" ) );
         return;
     }
-    /*if( this->DSBCosto->value() <= 0 ) {
+    if( this->DSBCosto->value() <= 0 ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "El precio de costo del producto no puede ser cero. Por favor, ingrese un precio de costo para el producto" ) );
         return;
     }*/
@@ -139,13 +145,19 @@ void FormModificarProducto::accept() {
         }
     }
     if( mapa->submit() ) {
-        QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
-        this->modelo->setEditStrategy( _anterior );
-        QDialog::accept();
-        return;
+        if( modelo->submitAll() ) {
+            QMessageBox::information( this, "Correcto", "Los cambios fueron guardados correctamente" );
+            this->modelo->setEditStrategy( _anterior );
+            QDialog::accept();
+            return;
+        } else {
+            QMessageBox::information( this, "Erroneo", "No se pudo hacer el submit del modelo" );
+            qDebug( this->modelo->lastError().text().toLocal8Bit() );
+            return;
+        }
     } else {
         QMessageBox::information( this, "Erroneo", "No se pudo hacer el submit de los datos" );
-        qDebug( qobject_cast<QSqlTableModel *>(this->mapa->model())->lastError().text().toLocal8Bit() );
+        qDebug( this->modelo->lastError().text().toLocal8Bit() );
         return;
     }
 }

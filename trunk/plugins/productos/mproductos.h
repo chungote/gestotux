@@ -35,6 +35,7 @@ Q_OBJECT
 public:
     MProductos(QObject *parent = 0);
     QVariant data(const QModelIndex& item, int role) const;
+    bool setData( const QModelIndex &item, const QVariant &value, int role = Qt::EditRole );
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     static bool agregarProducto( const QString codigo, const QString nombre, const double costo, const double venta, int stock = 0, int categoria = -1, QString descripcion = QString(), QString marca = QString(), QString modelo = QString() );

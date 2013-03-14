@@ -34,6 +34,7 @@ ECBTabla::ECBTabla(QWidget *parent) :
 
     _inicializado = false;
     _id = -1;
+    _texto = QString();
     _tabla = QString();
     _campo_id = QString();
     _campo_texto = QString();
@@ -60,6 +61,7 @@ ECBTabla::ECBTabla( QWidget *parent, QString tabla, QString tid, QString texto, 
     this->setEnabled( false );
 
     ids = new QList<int>();
+    codigos = new QList<int>();
 
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
@@ -68,6 +70,7 @@ ECBTabla::ECBTabla( QWidget *parent, QString tabla, QString tid, QString texto, 
 
     _inicializado = false;
     _id = -1;
+    _texto = QString();
     _tabla = tabla;
     _campo_id = tid;
     _campo_texto = texto;
@@ -90,6 +93,27 @@ void ECBTabla::setearFiltro( const QString f , const bool inmmediate ) {
     } else {
         _inicializado = false;
         inicializar();
+    }
+}
+
+void ECBTabla::setearTexto( const QString t )
+{
+    if( !_inicializado ) {
+        _texto = t;
+        return;
+    }
+    if( this->ids->isEmpty() || this->count() == 0 ) {
+        return;
+    }
+
+    // Buscar El elemento
+    int id = this->findText( _texto );
+    if( id < 0 ) {
+        qDebug( "Error buscando el texto en el combo box" );
+        this->setCurrentIndex( -1 );
+    } else {
+        this->setCurrentIndex( id );
+        emit cambioId( idActual() );
     }
 }
 
@@ -127,7 +151,9 @@ void ECBTabla::inicializar()
         while( cola.next() ) {
             this->insertItem( pos, cola.record().value(1).toString() );
             int id = cola.record().value(0).toInt();
+            QString texto = cola.record().value(1).toString();
             if( id == _id ) { npos = pos; }
+            if( texto == _texto ) { npos = pos; }
             ids->insert( pos, id );
             if( _busqueda ) { codigos->insert( pos, cola.record().value(2).toInt() ); }
             pos++;

@@ -20,50 +20,31 @@
 #include "dproductos.h"
 
 #include <QModelIndex>
-#include <QComboBox>
-#include "edsbprecio.h"
+#include "ecbcategoriasproductos.h"
+
+#include <QSqlRecord>
 
 DProductos::DProductos(QObject *parent)
- : QSqlRelationalDelegate(parent)
+: QSqlRelationalDelegate(parent)
+{}
+
+void DProductos::setEditorData( QWidget *editor, const QModelIndex &index ) const
 {
+    if( index.column() == 1 ) {
+        ECBCategoriasProductos *combo = qobject_cast<ECBCategoriasProductos *>(editor);
+        // El modelo te devuelve el nombre de la categoría
+        combo->setearTexto( index.model()->data( index, Qt::DisplayRole ).toString() );
+    } else {
+        QSqlRelationalDelegate::setEditorData( editor, index );
+    }
 }
 
-
-DProductos::~DProductos()
+void DProductos::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-}
-
-
-QWidget* DProductos::createEditor( QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index ) const
-{
- switch( index.column() )
- {
-	case 1:
-	{
-		QComboBox *combo = qobject_cast<QComboBox *>( QSqlRelationalDelegate::createEditor( parent, option, index));
- 		QSqlTableModel *modelo = qobject_cast<QSqlTableModel *>(combo->model());
- 		modelo->setFilter( "tipo <> '2'" );
-		combo->setModel( modelo );
-		return combo;
-		break;
-	}
-	case 3:
-	{
-		EDSBPrecio *editor = new EDSBPrecio( parent );
-		return editor;
-		break;
-	}
-	case 7:
-	{
-		EDSBPrecio *editor = new EDSBPrecio( parent );
-		editor->setPrefix( "" );
-		return editor;
-		break;
-	}
-	default:
-	{
-		return QSqlRelationalDelegate::createEditor(parent, option, index);
-		break;
-	}
- }
+    if( index.column() == 1 ) {
+        ECBCategoriasProductos *combo = qobject_cast<ECBCategoriasProductos *>(editor);
+        model->setData( index, combo->idActual(), Qt::UserRole );
+    } else {
+        QSqlRelationalDelegate::setModelData( editor, model, index );
+    }
 }

@@ -154,12 +154,26 @@ QVariant MProductos::data( const QModelIndex& item, int role ) const
                 return QVariant( "Haga doble click o seleccione y F2 para editar" );
                 break;
         }
+        case Qt::UserRole:
+        {
+                return QSqlTableModel::data( item, Qt::DisplayRole );
+                break;
+        }
         default:
         {
                 return QSqlRelationalTableModel::data( item, role );
                 break;
         }
  }
+}
+
+bool MProductos::setData(const QModelIndex &item, const QVariant &value, int role)
+{
+    if( item.column() == 1 && role == Qt::UserRole ) {
+        return QSqlTableModel::setData( item, value, Qt::EditRole );
+    } else {
+        return QSqlRelationalTableModel::setData( item, value, role );
+    }
 }
 
 Qt::ItemFlags MProductos::flags(const QModelIndex &/*index*/) const
