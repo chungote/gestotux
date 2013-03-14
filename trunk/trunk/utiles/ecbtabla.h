@@ -24,6 +24,7 @@ public:
     ~ECBTabla();
 
     void setearFiltro( const QString f, const bool inmmediate = false );
+    void setearTexto( const QString t );
     int idActual();
     void setearId( const int id );
     void setearTabla( QString tabla );
@@ -59,6 +60,10 @@ private:
     * Id seleccionado
     */
     int _id;
+   /*!
+    *
+    */
+    QString _texto;
     /*!
      * Guarda si el modelo está inicializado o no
      */

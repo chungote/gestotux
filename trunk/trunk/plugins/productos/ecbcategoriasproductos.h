@@ -7,7 +7,7 @@ class ECBCategoriasProductos : public ECBTabla
 {
     Q_OBJECT
 public:
-    ECBCategoriasProductos( QWidget *parent = 0 );
+    ECBCategoriasProductos( QWidget *parent = 0 ) : ECBTabla( parent, "categoria_producto", "id", "nombre", "nombre" ) {}
     
 };
 
