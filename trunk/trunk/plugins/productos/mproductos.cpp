@@ -515,30 +515,34 @@ bool MProductos::deshabilitar( int id_producto )
  * @param id_producto Identificador del producto.
  * @return Verdadero si tiene datos relacionados en la base de datos
  */
-bool MProductos::tieneDatosRelacionados(const int id_producto)
+bool MProductos::tieneDatosRelacionados( const int id_producto )
 {
      QSqlQuery cola;
      if( cola.exec( QString( "SELECT COUNT(id_producto) FROM compras_productos WHERE id_producto = %1" ).arg( id_producto ) ) ) {
          cola.next();
          if( cola.record().value(0).toInt() > 0 ) {
+             qWarning( "El producto esta utilizado en una compra" );
              return true;
          }
      }
      if( cola.exec( QString( "SELECT COUNT(id_producto) FROM item_factura WHERE id_producto = %1" ).arg( id_producto ) ) ) {
          cola.next();
          if( cola.record().value(0).toInt() > 0 ) {
+             qWarning( "El producto esta utilizado en una factura" );
              return true;
          }
      }
      if( cola.exec( QString( "SELECT COUNT(id_producto) FROM item_presupuesto WHERE id_producto = %1" ).arg( id_producto ) ) ) {
          cola.next();
          if( cola.record().value(0).toInt() > 0 ) {
+             qWarning( "El producto esta utilizado en un presupuesto" );
              return true;
          }
      }
      if( cola.exec( QString( "SELECT COUNT(id_producto) FROM item_remito WHERE id_producto = %1" ).arg( id_producto ) ) ) {
          cola.next();
          if( cola.record().value(0).toInt() > 0 ) {
+             qWarning( "El producto esta utilizado en un remito" );
              return true;
          }
      }
