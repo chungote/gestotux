@@ -63,6 +63,7 @@ QDialog(parent)
     CBDescuento->setearCampoBusquedaExtra( "codigo" );
 
     connect( CBDescuento, SIGNAL( cambioId( int ) ), this, SLOT( cargarPorcentaje( int ) ) );
+    connect( CBDescuento, SIGNAL( sinDatos() ), this, SLOT( sinDatosPorcentaje() ) );
 }
 
 void EDDescuento::accept()
@@ -82,4 +83,9 @@ void EDDescuento::cargarPorcentaje( int id )
       qDebug( cola.lastError().text().toLocal8Bit() );
       qDebug( cola.lastQuery().toLocal8Bit() );
   }
+}
+
+void EDDescuento::sinDatosPorcentaje()
+{
+    CBDescuento->setEditable( true );
 }

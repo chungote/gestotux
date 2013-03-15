@@ -24,6 +24,7 @@ public slots:
 
 protected slots:
     void cargarPorcentaje( int id );
+    void sinDatosPorcentaje();
     
 protected:
     QVBoxLayout *verticalLayout;
