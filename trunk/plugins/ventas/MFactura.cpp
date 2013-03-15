@@ -152,7 +152,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
         // veo si tengo que disminuir el stock
         if( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt() > 0 ) {
              if( !MProductos::modificarStock( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(),
-                                             mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble() ) ) {
+                                              mcp->data( mcp->index( i, 0 ), Qt::EditRole ).toDouble()*(-1.0) ) ) {
                  qDebug( "Error al disminuir el stock del producto" );
                  return -1;
              } else {
