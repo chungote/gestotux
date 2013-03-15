@@ -9,7 +9,8 @@ CONFIG += dll \
           help
 
 QT += sql \
-      webkit
+      webkit \
+      xml
 
 TARGET = bscomputacion
 

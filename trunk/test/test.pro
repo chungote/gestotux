@@ -1,4 +1,4 @@
 TEMPLATE = subdirs
 
-SUBDIRS += PeriodoServicioTest \
-    MProductosTotalesTest
+SUBDIRS +=  PeriodoServicioTest \
+            ProductosTest
