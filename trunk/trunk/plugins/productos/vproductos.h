@@ -48,6 +48,7 @@ protected slots:
     void eliminar();
     void habilitarProducto();
     void deshabilitarProducto();
+    void mostrarDeshabilitados( bool );
 
 private:
     QAction *ActHabilitar;
@@ -55,6 +56,7 @@ private:
     QAction *ActCategorias;
     QAction *ActListadoVenta;
     QAction *ActListadoStock;
+    QAction *ActVerDeshabilitados;
 
 };
 

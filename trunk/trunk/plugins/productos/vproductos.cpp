@@ -118,11 +118,19 @@ VProductos::VProductos(QWidget *parent)
  //ActListadoStock->setIcon( QIcon( ":/imagenes/listastock.png" ) );
  connect( ActListadoStock, SIGNAL( triggered() ), this, SLOT( listaStock() ) );
 
+ ActVerDeshabilitados = new QAction( this );
+ ActVerDeshabilitados->setText( "Deshabilitados" );
+ ActVerDeshabilitados->setIcon( QIcon( ":/imagenes/filtro.png" ) );
+ ActVerDeshabilitados->setStatusTip( "Mestra los productos que estan deshabilitados" );
+ ActVerDeshabilitados->setCheckable( true );
+ connect( ActVerDeshabilitados, SIGNAL( toggled( bool ) ), this, SLOT( mostrarDeshabilitados( bool ) ) );
+
  addAction( ActListadoVenta );
  if( hab_stock == true ) {
     addAction( ActListadoStock );
  }
  addAction( ActBuscar );
+ addAction( ActVerDeshabilitados );
  addAction( ActVerTodos );
  addAction( ActCerrar );
 
@@ -164,6 +172,8 @@ void VProductos::verCategorias()
 
 /*!
     \fn VProductos::agregar( bool autoeliminarid )
+    Slot llamado para agregar un producto.
+    \param autoeliminarid No utilizado
  */
 void VProductos::agregar( bool /*autoeliminarid*/ )
 {
@@ -206,6 +216,10 @@ void VProductos::listaVenta()
     delete rep;
 }
 
+/**
+ * @brief VProductos::listaStock
+ * Imprime el listado de stock
+ */
 void VProductos::listaStock()
 {
     if( this->rmodelo->rowCount() <= 0 ) {
@@ -220,11 +234,19 @@ void VProductos::listaStock()
     delete rep;
 }
 
+/**
+ * @brief VProductos::actualizar
+ * Slot llamado para actualizar la vista despues de agegar un producto.
+ */
 void VProductos::actualizar() {
     this->rmodelo->select();
 }
 
 #include "formmodificarproducto.h"
+/**
+ * @brief VProductos::modificar
+ * Slot llamado para modificar un producto
+ */
 void VProductos::modificar()
 {
     // busco el que esta seleccionado
@@ -244,6 +266,10 @@ void VProductos::modificar()
     f->exec();
 }
 
+/**
+ * @brief VProductos::habilitarProducto
+ * Slot llamado para habilitar un producto de la lista
+ */
 void VProductos::habilitarProducto()
 {
   // Busco el item
@@ -265,6 +291,10 @@ void VProductos::habilitarProducto()
   return;
 }
 
+/**
+ * @brief VProductos::deshabilitarProducto
+ * Slot llamado para deshabilitar un producto
+ */
 void VProductos::deshabilitarProducto()
 {
     // Busco el item
@@ -285,6 +315,19 @@ void VProductos::deshabilitarProducto()
     return;
 }
 
+/**
+ * @brief VProductos::mostrarDeshabilitados
+ * Slot llamado para mostrar o sacar los elementos deshabilitados
+ */
+void VProductos::mostrarDeshabilitados( bool mostrar )
+{
+    qWarning( "No implementado todavía" );
+}
+
+/**
+ * @brief VProductos::eliminar
+ * Slot llamado cuando se desea eliminar un produto de la lista.
+ */
 void VProductos::eliminar()
 {
     // Busco el item
