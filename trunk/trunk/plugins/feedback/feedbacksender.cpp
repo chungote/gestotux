@@ -30,7 +30,7 @@ void FeedbackSender::verificarEnvio()
     bool ultimo_error = p->value( "lastError", false ).toBool();
 
     if( ultimo_error == false ) {
-        qDebug( "Feedback: No hubo error en el ultimo cierre.");
+        //qDebug( "Feedback: No hubo error en el ultimo cierre.");
         emit terminar(); // No hubo error en el ultimo cierre
     }
     p->beginGroup( "Preferencias" );
@@ -43,14 +43,14 @@ void FeedbackSender::verificarEnvio()
 
     // Abro el archivo y genero el encabezado para que llegue al servidor
     if( !QFile::exists(  QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) ) ) {
-        qDebug( "Feedback: No se pudo enviar el archivo de errores ya que no existe la copia anterior" );
+       // qDebug( "Feedback: No se pudo enviar el archivo de errores ya que no existe la copia anterior" );
         emit terminar();
         return;
     }
 
     f = new QFile( QApplication::applicationDirPath().append( QDir::separator() ).append( "debugOld.txt" ) );
     if( ! f->open( QIODevice::ReadOnly ) ) {
-        qDebug( "Feedback: Error al intentar abrir el archivo debugOld.txt como solo lectura" );
+        //qDebug( "Feedback: Error al intentar abrir el archivo debugOld.txt como solo lectura" );
         emit terminar();
         return;
     }
@@ -59,7 +59,7 @@ void FeedbackSender::verificarEnvio()
     connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
 #ifdef GESTOTUX_DESARROLLO
-    QUrl url( p->value( "url_envio", "http://localhost/trsis/feedbacks/enviar" ).toString() );
+    QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/feedbacks/enviar" ).toString() );
 #else
     QUrl url( p->value( "url_envio", "http://www.gestotux.com.ar/feedbacks/enviar" ).toString() );
 #endif
@@ -85,16 +85,16 @@ void FeedbackSender::verificarEnvio()
 void FeedbackSender::respuesta( QNetworkReply *resp )
 {
     if( resp->error() != QNetworkReply::NoError ) {
-        qDebug( "Feedback: Error de red al enviar informe de errores" );
-        qDebug( resp->errorString().toLocal8Bit() );
+        //qDebug( "Feedback: Error de red al enviar informe de errores" );
+        //qDebug( resp->errorString().toLocal8Bit() );
         // Intento nuevamente más tarde hasta n veces
         reintentos--;
-        qDebug( QString( "Feedback: Numero de reintentos faltantes: %1" ).arg( reintentos ).toLocal8Bit() );
+        //qDebug( QString( "Feedback: Numero de reintentos faltantes: %1" ).arg( reintentos ).toLocal8Bit() );
         emit pausar( 10 ); // Este sleep es en segundos
     } else if( resp->isFinished() ) {
         QApplication::processEvents();
         resp->deleteLater();
-        qDebug( "Feedback: Envio de error completado." );
+        //qDebug( "Feedback: Envio de error completado." );
         f->close();
         f->remove();
         emit terminar();
