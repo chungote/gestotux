@@ -848,28 +848,26 @@ bool MProductosTotales::eliminarDescuento( QModelIndex idx )
 {
     if( !idx.isValid() )
         return false;
+    if( !esDescuento( idx ) ) {
+        qWarning( "Lo que estás intentando eliminar no es un descuento!" );
+        return false;
+    }
 
     beginRemoveRows( QModelIndex(), idx.row(), idx.row() );
 
-    // Busco el indice interno
-    int pos_i = idx.row() - cantidades->size();
-
-    // Aplico inversamente el descuento al total
-    double descuento = descuentos->value( pos_i );
-    Total *= ( 1 + ( descuento / 100 ) );
-
     // Actualizo los datos siguientes al que elimino
-    for( int i = pos_i; i < descuentos->count(); i++ ) {
+    for( int i = idx.row(); i < idx.row()+descuentos->count(); i++ ) {
         descuentos      ->insert( i, descuentos      ->value( i+1 ) );
         texto_descuentos->insert( i, texto_descuentos->value( i+1 ) );
     }
-    descuentos      ->remove( descuentos->size() - 1 );
-    texto_descuentos->remove( texto_descuentos->size() - 1 );
+    descuentos      ->remove( cantidades->size() + descuentos->size() - 1 );
+    texto_descuentos->remove( cantidades->size() + texto_descuentos->size() - 1 );
 
     // Actualizo el subtotales
     for( int i = idx.row(); i < subtotales->count(); i++ ) {
         subtotales->insert( i, subtotales->value( i + 1 ) );
     }
+
     // Las posiciones estan basadas en indice base 0
     subtotales->remove( subtotales->size() - 1 );
 
