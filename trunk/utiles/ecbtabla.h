@@ -37,6 +37,7 @@ public:
 
 signals:
     void cambioId( int id );
+    void sinDatos();
 
 private slots:
     void verificarExiste();
