@@ -60,7 +60,7 @@ signals:
 
 
 public slots:
-        void setearIdPlanCuota( int id_cuota ) { id_plan_cuota = id_cuota; guardar(); }
+        void setearIdPlanCuota( int id_cuota );
 
 protected slots:
         void agregarProducto();

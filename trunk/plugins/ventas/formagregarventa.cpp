@@ -473,3 +473,14 @@ void FormAgregarVenta::setearItems( MProductosTotales *m )
     this->TVProductos->setModel( this->mcp );
     this->TVProductos->update();
 }
+
+
+void FormAgregarVenta::setearIdPlanCuota(int id_cuota)
+{
+    if( id_cuota <= 0 ) {
+        qWarning( "Numero de plan de cuota pasado como parametro es 0" );
+        return;
+    }
+    this->id_plan_cuota = id_cuota;
+    guardar();
+}

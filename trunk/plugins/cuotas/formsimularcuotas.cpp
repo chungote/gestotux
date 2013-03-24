@@ -288,6 +288,7 @@ void FormSimularCuotas::confirmar()
     }
     delete mpc;
     emit emitirIdPlanCuota( id_plan_cuota );
+    this->close();
     return;
 }
 

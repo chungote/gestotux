@@ -135,7 +135,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
       QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
       return -1;
   }
-  qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
+
   // Guardo los datos de el modelo
 
   // recorro el modelo y guardo los datos
@@ -254,6 +254,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
       // Veo de simular el plan de cuotas de la factura
 
   }
+  qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
   return id_venta;
  }
  return -1;

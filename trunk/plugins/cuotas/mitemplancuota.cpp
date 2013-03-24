@@ -28,16 +28,16 @@ MItemPlanCuota::MItemPlanCuota(QObject *parent) :
 bool MItemPlanCuota::agregarItem(int id_plan, int num_cuota, QDate fecha_venc, double importe)
 {
     QSqlQuery cola;
-    if( !cola.prepare( "INSERT INTO item_cuota( id_plan, num_cuota, importe, fecha_venc ) VALUES (  :id_plan, :num_cuota, :importe, :fecha_venc )" ) ) {
+    if( !cola.prepare( "INSERT INTO item_cuota( id_plan_cuota, num_cuota, monto, fecha_vencimiento ) VALUES (  :id_plan_cuota, :num_cuota, :monto, :fecha_vencimiento )" ) ) {
         qDebug( "Error al preparar la cola para la inseción de los datos de un item de cuota" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
         return false;
     }
-    cola.bindValue( ":id_plan", id_plan );
+    cola.bindValue( ":id_plan_cuota", id_plan );
     cola.bindValue( ":num_cuota", num_cuota );
-    cola.bindValue( ":importe", importe ),
-    cola.bindValue( ":fecha_venc", fecha_venc );
+    cola.bindValue( ":monto", importe ),
+    cola.bindValue( ":fecha_vencimiento", fecha_venc );
     if( !cola.exec() ) {
         qDebug( "Error al ejecutar la cola de insersión de los datos de un item de cuota" );
         qDebug( cola.lastError().text().toLocal8Bit() );
