@@ -8,6 +8,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlField>
+#include <QSqlDriver>
 
 MPlanCuota::MPlanCuota(QObject *parent) :
 QSqlTableModel(parent)
@@ -49,10 +50,27 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
     rec.setValue( "periodo", periodo );
     rec.setValue( "fecha_inicio", fecha_inicio );
     rec.setValue( "entrega", entrega );
-    rec.setGenerated( rec.indexOf( "id_plan_cuota" ), true );
+    rec.setValue( "recargo", interes );
+    //rec.setGenerated( rec.indexOf( "id_plan_cuota" ), true );
     if( this->insertRecord( -1, rec ) ) {
         // Genero los items de cuota
-        *id_plan = rec.value( "id_plan_cuota" ).toInt();
+        if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
+           *id_plan =this->query().lastInsertId().toInt();
+           //qWarning( QString( "Numero de plan de cuota emitido: %1" ).arg( *id_plan ).toLocal8Bit() );
+        } else {
+           QSqlQuery cola;
+           if( cola.exec( "SELECT MAX( id_plan_cuota ) FROM plan_cuota" ) ) {
+               cola.next();
+               *id_plan = cola.record().value(0).toInt();
+               //qWarning( QString( "Numero de plan de cuota emitido: %1" ).arg( *id_plan ).toLocal8Bit() );
+           } else {
+               qDebug( "Error de obtencion del id del registro de plan de cuota" );
+               qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+               qDebug( cola.lastQuery().toLocal8Bit() );
+               return -1;
+           }
+        }
+
         // Calculo los valores
         double impcuota = ( cantidad - entrega ) * ( 1 + interes/100 );
         double importe = impcuota/cant_cuotas;
@@ -171,13 +189,17 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
  * \param id_plan Plan al cual asociar el identificador de factura
  * \param id_factura Identificador de la factura al cual pertenece
  */
-void MPlanCuota::asociarConFactura(int id_plan, int id_factura)
+void MPlanCuota::asociarConFactura( int id_plan, int id_factura )
 {
+    if( id_factura <= 0 && id_plan <= 0 ) {
+        qWarning( "Numero de factura o plan invalido!" );
+        return;
+    }
     QSqlQuery cola;
-    if( cola.exec( QString( "UPDATE cuotas SET id_factura = %2 WHERE id_plan_cuota = %1" ).arg( id_factura ).arg( id_plan ) ) ) {
+    if( cola.exec( QString( "UPDATE plan_cuota SET id_factura = %1 WHERE id_plan_cuota = %2" ).arg( id_factura ).arg( id_plan ) ) ) {
         qDebug( "Plan de cuotas actualizado correctamente" );
     } else {
-        qWarning( "No se pudo asociar la cuota" );
+        qWarning( "No se pudo asociar el plan de cuotas con la factura recién emitida!" );
         qDebug( "Error al ejecutar la cola de actualziacion de id de factura en el plan  de cuotas" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
