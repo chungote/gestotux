@@ -90,7 +90,7 @@ void CuotasPlugin::crearMenu( QMenuBar *m )
 {
      QMenu *menuCuotas = m->addMenu( "Cuotas" );
      menuCuotas->addAction( ActVerCuotas );
-     /*menuCuotas->addAction( ActGenerarComprobantes ); */
+     menuCuotas->addAction( ActGenerarComprobantes );
      menuCuotas->addAction( ActSimular );
 }
 
@@ -141,11 +141,14 @@ void CuotasPlugin::planCuotasSetearIdFactura(int id_plan_cuota, int id_factura)
     MPlanCuota::asociarConFactura( id_plan_cuota, id_factura );
 }
 
+#include "formgenerarcomprobantescuotas.h"
 /*!
  * \fn CuotasPlugin::generarComprobantes()
  */
 void CuotasPlugin::generarComprobantes()
-{}
+{
+  emit agregarVentana( new FormGenerarComprobantesCuotas() );
+}
 
 /*!
  * \fn CuotasPlugin::verCuotas()
