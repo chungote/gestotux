@@ -396,7 +396,7 @@ void FormAgregarVenta::guardar()
 
 /*!
     \fn FormAgregarVenta::cambioCliente( int id_combo )
-        Slot llamado cada vez que cambia el cliente para verificar si tiene cuenta corriente habilitada
+        Slot llamado cada vez que cambia el cliente para verificar si tiene cuenta corriente habilitada o si se puede venderle en cuotas.
         @param id_combo Indice en la lista de combobox que indica el cliente
  */
 void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
@@ -426,11 +426,13 @@ void FormAgregarVenta::cambioCliente( int /*id_combo*/ )
             RBCtaCte->setEnabled( false );
          }
      }
+     RBCuotas->setEnabled( true );
 
  } else {
      //qDebug( "Cliente consumidor final - Sin direccion" );
      RBContado->setChecked( true );
      RBCtaCte->setEnabled( false );
+     RBCuotas->setEnabled( false );
  }
  return;
 }
