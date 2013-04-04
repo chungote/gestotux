@@ -6,36 +6,52 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>439</width>
-    <height>305</height>
+    <width>516</width>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
-    <widget class="QCheckBox" name="CkBCategorias">
-     <property name="enabled">
-      <bool>true</bool>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Elementos a mostrar</string>
      </property>
-     <property name="text">
-      <string>Utilizar Categorias</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="CkBMarcas">
-     <property name="text">
-      <string>Utilizar Marcas</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="CkBDescripcion">
-     <property name="text">
-      <string>Mostrar Descripcion</string>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="CkBDescripcion">
+        <property name="text">
+         <string>Mostrar Descripcion</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="CkBMarcas">
+        <property name="text">
+         <string>Utilizar Marcas</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="CkBCategorias">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Utilizar Categorias</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="CkBCosto">
+        <property name="text">
+         <string>Mostrar precio de costo</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>

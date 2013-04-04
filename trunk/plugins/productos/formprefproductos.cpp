@@ -46,6 +46,7 @@ void FormPrefProductos::cargar()
  CkBMarcas->setChecked( p->value( "marcas", false ).toBool() );
  CkBDescripcion->setChecked( p->value( "descripcion", false ).toBool() );
  GBStock->setChecked( p->value( "stock", false ).toBool() );
+ CkBCosto->setChecked( p->value( "mostrar-costo", true ).toBool() );
  p->beginGroup( "Stock" );
  CkBPermitir->setChecked( p->value( "permitir", false ).toBool() );
  CkBLimitarVenta->setChecked( p->value( "limitar", false ).toBool() );
@@ -79,6 +80,7 @@ void FormPrefProductos::guardar()
  p->setValue( "marcas", CkBMarcas->isChecked() );
  p->setValue( "descripcion",CkBDescripcion->isChecked() );
  p->setValue( "stock", GBStock->isChecked() );
+ p->setValue( "mostrar-costo", CkBCosto->isChecked() );
  p->beginGroup( "Stock" );
  p->setValue( "permitir", CkBPermitir->isChecked() );
  p->setValue( "limitar", CkBLimitarVenta->isChecked() );
