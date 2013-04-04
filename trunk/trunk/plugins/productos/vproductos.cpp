@@ -65,7 +65,8 @@ VProductos::VProductos(QWidget *parent)
  { vista->hideColumn( rmodelo->fieldIndex( "stock" ) ); }
  if( !p->value( "modelo" ).toBool() )
  { vista->hideColumn( rmodelo->fieldIndex( "modelo" ) ); }
-
+ if( !p->value( "mostrar-costo", true ).toBool() )
+ { vista->hideColumn( rmodelo->fieldIndex( "precio_costo" ) ); } else { vista->showColumn( rmodelo->fieldIndex( "precio_costo" ) ); }
 
  vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
@@ -131,6 +132,16 @@ VProductos::VProductos(QWidget *parent)
  }
  addAction( ActBuscar );
  addAction( ActVerDeshabilitados );
+
+ ActVerCosto = new QAction( this );
+ ActVerCosto->setText( "Costo" );
+ ActVerCosto->setIcon( QIcon( ":/imagenes/productos-costos.png" ) );
+ ActVerCosto->setStatusTip( "Muestra o oculta la columna de precio de costo" );
+ ActVerCosto->setCheckable( true );
+ ActVerCosto->setChecked( p->value( "mostrar-costo", true ).toBool() );
+ connect( ActVerCosto, SIGNAL( toggled( bool ) ), this, SLOT( mostrarOcultarCosto( bool ) ) );
+
+ addAction( ActVerCosto );
  addAction( ActVerTodos );
  addAction( ActCerrar );
 
@@ -319,9 +330,23 @@ void VProductos::deshabilitarProducto()
  * @brief VProductos::mostrarDeshabilitados
  * Slot llamado para mostrar o sacar los elementos deshabilitados
  */
-void VProductos::mostrarDeshabilitados( bool mostrar )
+void VProductos::mostrarDeshabilitados( bool /*mostrar*/ )
 {
-    qWarning( "No implementado todavía" );
+  qWarning( "No implementado todavía" );
+}
+
+/**
+ * @brief VProductos::mostrarOcultarCosto
+ * Muestra o oculta la columna de precio de costo en el listado de productos
+ * @param mostrar Muestra o oculta la columna
+ */
+void VProductos::mostrarOcultarCosto( bool mostrar )
+{
+    if( mostrar ) {
+      vista->showColumn( rmodelo->fieldIndex( "precio_costo" ) );
+    } else {
+      vista->hideColumn( rmodelo->fieldIndex( "precio_costo" ) );
+    }
 }
 
 /**
