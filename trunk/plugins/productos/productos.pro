@@ -19,7 +19,9 @@ SOURCES += mcategorias.cpp \
            dproductos.cpp \
            formprefproductos.cpp \
            formagregarproducto.cpp \
-           formmodificarproducto.cpp
+           formmodificarproducto.cpp \
+    dremarcadormasivo.cpp \
+    mtempproductoremarcar.cpp
 HEADERS += mcategorias.h \
            mproductos.h \
            vcategorias.h \
@@ -29,7 +31,9 @@ HEADERS += mcategorias.h \
            formprefproductos.h \
            formagregarproducto.h \
            formmodificarproducto.h \
-    ecbcategoriasproductos.h
+    ecbcategoriasproductos.h \
+    dremarcadormasivo.h \
+    mtempproductoremarcar.h
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
@@ -48,7 +52,8 @@ TRANSLATIONS += productos.ts
 RESOURCES += productos.qrc
 
 FORMS += FormPrefProductosBase.ui \
-         formproductobase.ui
+         formproductobase.ui \
+    dremarcadormasivobase.ui
 
 OTHER_FILES += productos.QMYSQL.sql \
                productos.QSQLITE.sql
