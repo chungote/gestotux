@@ -21,6 +21,8 @@
 #include "vproductos.h"
 #include "vcategorias.h"
 #include "preferencias.h"
+#include "dremarcadormasivo.h"
+
 #include <QSqlDatabase>
 
 
@@ -85,8 +87,16 @@ bool productos::inicializar()
  ActCategorias->setIcon( QIcon( ":/imagenes/categorias.jpg" ) );
  connect( ActCategorias, SIGNAL( triggered() ), this, SLOT( categorias() ) );
 
+ //////////////////////
+ // Remarcador masivo
+ //////////////////////
+ ActRemarcar = new QAction( "Remarcador masivo" , this );
+ ActRemarcar->setStatusTip( "Abre el remarcador masivo para cambiar el precio de los productos" );
+ connect( ActRemarcar, SIGNAL( triggered() ), this, SLOT( remarcar() ) );
+
  _acciones.append( ActProductos );
  _acciones.append( ActCategorias );
+ _acciones.append( ActRemarcar );
 
  return true;
 }
@@ -119,16 +129,13 @@ void productos::crearMenu( QMenuBar *m )
 {
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHer != 0 ) {
+     QMenu *menuProductos = menuHer->addMenu( "Productos" );
+     menuProductos->setIcon( ActProductos->icon() );
+     menuProductos->setObjectName( "menuProductos" );
+     menuProductos->addAction( ActProductos );
      if( preferencias::getInstancia()->value( "Preferencias/Productos/categorias" ).toBool() )
-     {
-        QMenu *menuProductos = menuHer->addMenu( "Productos" );
-        menuProductos->setIcon( ActProductos->icon() );
-        menuProductos->setObjectName( "menuProductos" );
-        menuProductos->addAction( ActProductos );
-        menuProductos->addAction( ActCategorias );
-     } else {
-         menuHer->addAction( ActProductos );
-     }
+     { menuProductos->addAction( ActCategorias ); }
+     menuProductos->addAction( ActRemarcar );
  }
 }
 
@@ -167,6 +174,16 @@ void productos::categorias()
  */
 void productos::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(productos); return; }
+
+/*!
+ * \brief productos::remarcar
+ * Abre la ventana del remarcador masivo
+ */
+void productos::remarcar()
+{
+    DRemarcadorMasivo *d = new DRemarcadorMasivo();
+    d->exec();
+}
 
 
 Q_EXPORT_PLUGIN2( productos, productos )
