@@ -51,15 +51,17 @@ private:
 
     QAction *ActProductos;
     QAction *ActCategorias;
+    QAction *ActRemarcar;
 
 public slots:
     void verProductos();
     void categorias();
     void seCierraGestotux();
+    void remarcar();
 
 signals:
-        void agregarVentana( QWidget * );
-            void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
+    void agregarVentana( QWidget * );
+    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
 };
 
 #endif

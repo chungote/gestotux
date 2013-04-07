@@ -15,8 +15,8 @@ protected:
   void changeEvent(QEvent *e);
 
 protected slots:
-  void cambioAPorcentaje();
-  void cambioAMontoFijo();
+  void cambioAPorcentaje( bool );
+  void cambioAMontoFijo( bool );
   void agregarProducto();
   void eliminarProducto();
   void accept();

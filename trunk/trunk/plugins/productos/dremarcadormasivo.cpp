@@ -1,7 +1,7 @@
 #include "dremarcadormasivo.h"
 
 DRemarcadorMasivo::DRemarcadorMasivo(QWidget *parent) :
-  QDialog(parent)
+QDialog( parent )
 {
   setupUi(this);
 
@@ -17,8 +17,18 @@ DRemarcadorMasivo::DRemarcadorMasivo(QWidget *parent) :
   connect( CkBDeshabilitados, SIGNAL( toggled( bool ) ), modelo, SLOT( cambioDeshabilitados( bool ) ) );
   connect( CkBSinStock, SIGNAL( toggled( bool ) ), modelo, SLOT( cambioSinStock( bool ) ) );
 
-  this->TVProductos->setModel( modelo );
-  this->TVProductos->hideColumn( 0 );
+  TVProductos->setModel( modelo );
+  TVProductos->hideColumn( 0 );
+
+  connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
+  connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
+
+  PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+  PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+  PBEliminar->setText( "Eliminar producto" );
+
+  // Pongo como predeterminado el porcentaje
+  RBPorcentaje->setChecked( true );
 }
 
 void DRemarcadorMasivo::changeEvent(QEvent *e)
@@ -33,20 +43,26 @@ void DRemarcadorMasivo::changeEvent(QEvent *e)
     }
 }
 
-void DRemarcadorMasivo::cambioAPorcentaje()
+void DRemarcadorMasivo::cambioAPorcentaje( bool estado )
 {
-  DSBValor->setPrefix( "" );
-  DSBValor->setSuffix( " %" );
-  DSBValor->setValue( 0.0 );
-  modelo->setearPorcentaje( true );
+    if( !estado )
+        return;
+
+    DSBValor->setPrefix( "" );
+    DSBValor->setSuffix( " %" );
+    DSBValor->setValue( 0.0 );
+    modelo->setearPorcentaje( true );
 }
 
-void DRemarcadorMasivo::cambioAMontoFijo()
+void DRemarcadorMasivo::cambioAMontoFijo( bool estado )
 {
-  DSBValor->setPrefix( "$ " );
-  DSBValor->setSuffix( "" );
-  DSBValor->setValue( 0.0 );
-  modelo->setearValorFijo( true );
+    if( !estado )
+        return;
+
+    DSBValor->setPrefix( "$ " );
+    DSBValor->setSuffix( "" );
+    DSBValor->setValue( 0.0 );
+    modelo->setearValorFijo( true );
 }
 
 void DRemarcadorMasivo::agregarProducto()
@@ -59,5 +75,5 @@ void DRemarcadorMasivo::eliminarProducto()
 
 void DRemarcadorMasivo::accept()
 {
+    qWarning( "No implementado" );
 }
-
