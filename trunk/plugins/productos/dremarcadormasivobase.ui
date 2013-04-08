@@ -136,7 +136,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="CBProductos">
+         <widget class="ECBTabla" name="CBProductos">
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -203,6 +203,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ECBTabla</class>
+   <extends>QComboBox</extends>
+   <header>ecbtabla.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
