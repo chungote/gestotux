@@ -1,5 +1,7 @@
 #include "dremarcadormasivo.h"
 
+#include <QMessageBox>
+
 DRemarcadorMasivo::DRemarcadorMasivo(QWidget *parent) :
 QDialog( parent )
 {
@@ -73,10 +75,18 @@ void DRemarcadorMasivo::cambioAMontoFijo( bool estado )
 
 void DRemarcadorMasivo::agregarProducto()
 {
+  modelo->agregarProducto( CBProductos->idActual() );
 }
 
 void DRemarcadorMasivo::eliminarProducto()
 {
+  if( TVProductos->selectionModel()->selectedRows().size() <= 0 ) {
+      QMessageBox::information( this, "Error", "Por favor, seleccione al menos un producto para sacar del listado" );
+      return;
+  }
+  foreach( QModelIndex idx, TVProductos->selectionModel()->selectedRows() ) {
+      modelo->eliminarProducto( idx );
+  }
 }
 
 void DRemarcadorMasivo::accept()
