@@ -14,8 +14,8 @@ QDialog( parent )
   modelo = new MTempProductoRemarcar( this );
 
   connect( DSBValor, SIGNAL( valueChanged( double ) ), modelo, SLOT( cambioValor( double ) ) );
-  connect( CkBDeshabilitados, SIGNAL( toggled( bool ) ), modelo, SLOT( cambioDeshabilitados( bool ) ) );
-  connect( CkBSinStock, SIGNAL( toggled( bool ) ), modelo, SLOT( cambioSinStock( bool ) ) );
+  connect( CkBDeshabilitados, SIGNAL( toggled( bool ) ), this, SLOT( cambioDeshabilitados( bool ) ) );
+  connect( CkBSinStock, SIGNAL( toggled( bool ) ), this, SLOT( cambioSinStock( bool ) ) );
 
   TVProductos->setModel( modelo );
   TVProductos->hideColumn( 0 );
@@ -29,6 +29,12 @@ QDialog( parent )
 
   // Pongo como predeterminado el porcentaje
   RBPorcentaje->setChecked( true );
+
+  CBProductos->setearTabla( "producto" );
+  CBProductos->setearCampoId( "id" );
+  CBProductos->setearCampoTexto( "nombre" );
+  CBProductos->setearCampoOrden( "nombre" );
+
 }
 
 void DRemarcadorMasivo::changeEvent(QEvent *e)
@@ -76,4 +82,29 @@ void DRemarcadorMasivo::eliminarProducto()
 void DRemarcadorMasivo::accept()
 {
     qWarning( "No implementado" );
+}
+
+void DRemarcadorMasivo::cambioSinStock( bool estado )
+{
+    modelo->cambioSinStock( estado );
+    recalcularFiltro();
+}
+
+void DRemarcadorMasivo::cambioDeshabilitados( bool estado )
+{
+    modelo->cambioDeshabilitados( estado );
+    recalcularFiltro();
+}
+
+void DRemarcadorMasivo::recalcularFiltro() {
+    QString filtro = " WHERE ";
+    if( CkBDeshabilitados->isChecked() ) {
+        filtro.append( " habilitado = 1" );
+    } else {
+        filtro.append( " habilitado = 0" );
+    }
+    if( !CkBSinStock->isChecked() ) {
+        filtro.append( " AND stock > 0" );
+    }
+    CBProductos->setearFiltro( filtro, true );
 }

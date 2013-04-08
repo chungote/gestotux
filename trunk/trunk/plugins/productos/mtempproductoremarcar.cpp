@@ -1,5 +1,10 @@
 #include "mtempproductoremarcar.h"
 
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
+#include <QMutableListIterator>
+
 MTempProductoRemarcar::MTempProductoRemarcar( QObject *parent ) :
   QAbstractTableModel( parent )
 {
@@ -36,14 +41,10 @@ void MTempProductoRemarcar::setearPorcentaje( bool p )
 }
 
 int MTempProductoRemarcar::columnCount( const QModelIndex & ) const
-{
-  return 4;
-}
+{ return 5; }
 
 int MTempProductoRemarcar::rowCount( const QModelIndex & ) const
-{
-  return _id_productos->size();
-}
+{ return _id_productos->size(); }
 
 QVariant MTempProductoRemarcar::data(const QModelIndex &index, int role) const
 {
@@ -91,8 +92,30 @@ QVariant MTempProductoRemarcar::data(const QModelIndex &index, int role) const
   return QVariant();
 }
 
+
 void MTempProductoRemarcar::agregarProducto( int id )
 {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id, codigo, nombre, precio_venta, habilitado, stock FROM producto WHERE id_producto = %1" ).arg( id ) ) ) {
+        cola.next();
+        beginInsertRows( QModelIndex(), rowCount(), rowCount() );
+        int pos = rowCount();
+        _id_productos->insert( pos, cola.record().value(0).toInt() );
+        _codigos->insert( pos, cola.record().value(1).toString() );
+        _nombres->insert( pos, cola.record().value(2).toString() );
+        _precio_original->insert( pos, cola.record().value(3).toDouble() );
+        _deshabilitado->insert( pos, !cola.record().value(4).toBool() );
+        if( cola.record().value(5).toInt() > 0 ) {
+            _sin_stock->insert( pos, false );
+        } else {
+            _sin_stock->insert( pos, true );
+        }
+        endInsertRows();
+    } else {
+        qWarning( "Error al consultar los datos del producto" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
 }
 
 void MTempProductoRemarcar::eliminarProducto( QModelIndex idx )
@@ -104,7 +127,13 @@ void MTempProductoRemarcar::cambioSinStock( bool estado )
     if( !estado )
         return;
 
+    // Recorro la lista y elimino los elementos sin stock si existen
+    for( int i = 0; i<_id_productos->size(); i++ ) {
+        if( _sin_stock->at( i ) ) {
 
+        }
+    }
+    return;
 }
 
 void MTempProductoRemarcar::cambioDeshabilitados( bool estado )
@@ -112,7 +141,13 @@ void MTempProductoRemarcar::cambioDeshabilitados( bool estado )
     if( !estado )
         return;
 
+    // Recorro la lista y elimino los elementos sin stock si existen
+    for( int i = 0; i<_id_productos->size(); i++ ) {
+        if( _deshabilitado->at( i ) ) {
 
+        }
+    }
+    return;
 }
 
 void MTempProductoRemarcar::cambioValor( double valor )

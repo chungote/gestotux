@@ -20,9 +20,12 @@ protected slots:
   void agregarProducto();
   void eliminarProducto();
   void accept();
+  void cambioSinStock( bool );
+  void cambioDeshabilitados( bool );
 
 private:
   MTempProductoRemarcar *modelo;
+  void recalcularFiltro();
 
 };
 
