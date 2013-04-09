@@ -73,3 +73,5 @@ TRANSLATIONS += presupuesto.ts
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/Presupuesto.xml

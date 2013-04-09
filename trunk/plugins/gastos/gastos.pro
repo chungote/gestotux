@@ -52,3 +52,5 @@ OTHER_FILES += gastos.QSQLITE.sql \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/ListadoGastos.xml

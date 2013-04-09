@@ -106,3 +106,7 @@ DEFINES += GESTOTUX_HICOMP
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/baja-servicio.xml \
+             ../../bin/reportes/ListaDeudoresServicio.xml \
+             ../../bin/reportes/ListaDeudoresServicioHC.xml

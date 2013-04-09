@@ -68,3 +68,5 @@ OTHER_FILES += remitos.QSQLITE.sql \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/Remito.xml

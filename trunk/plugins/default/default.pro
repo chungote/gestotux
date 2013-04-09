@@ -24,3 +24,7 @@ RESOURCES += default.qrc
 
 OTHER_FILES += default.QMYSQL.sql \
                default.QSQLITE.sql
+
+DISTFILES += ../../bin/reportes/Factura.xml \
+             ../../bin/reportes/Recibo.xml \
+             ../../bin/reportes/Presupuesto.xml

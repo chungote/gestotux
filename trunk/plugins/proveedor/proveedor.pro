@@ -49,3 +49,5 @@ FORMS += FormProveedorBase.ui
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/ListadoProveedores.xml

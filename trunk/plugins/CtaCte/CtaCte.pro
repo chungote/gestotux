@@ -77,3 +77,7 @@ OTHER_FILES +=  CtaCte.ts \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/ListadoCtaCteSaldo.xml \
+             ../../bin/reportes/ResumenCtaCte.xml \
+             ../../bin/reportes/ResumenCtaCte-MySQL.xml
