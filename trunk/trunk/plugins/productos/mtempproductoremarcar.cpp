@@ -1,5 +1,7 @@
 #include "mtempproductoremarcar.h"
 
+#include "mproductos.h"
+
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -89,12 +91,15 @@ QVariant MTempProductoRemarcar::data(const QModelIndex &index, int role) const
         default:
         { break; }
     }
-  return QVariant();
+    return QVariant();
 }
-
 
 void MTempProductoRemarcar::agregarProducto( int id )
 {
+    // Busco si no existe ya
+    if( _id_productos->indexOf( id ) == -1 )
+        return;
+
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT id, codigo, nombre, precio_venta, habilitado, stock FROM producto WHERE id_producto = %1" ).arg( id ) ) ) {
         cola.next();
@@ -154,4 +159,38 @@ void MTempProductoRemarcar::cambioValor( double valor )
 {
     _valor = valor;
     emit dataChanged( index( 0, 3 ), index( rowCount(), 3 ) );
+}
+
+QPair<int, int> MTempProductoRemarcar::remarcar()
+{
+    bool condicion = true;
+    int cambiados = 0;
+    int no_cambiados = 0;
+    int contador = 0;
+    while( condicion ) {
+        if( _fijo ) {
+            if( MProductos::remarcarFijo( _id_productos->at( contador ),_valor ) ) {
+                cambiados++;
+                eliminarProducto( index( contador, 0 ) );
+                // No aumento el contador porque elimino el producto y se corren los indices hacia arriba.
+            } else {
+                no_cambiados++;
+                contador++;
+            }
+        } else  if( _porcentaje ) {
+            if( MProductos::remarcarPorcentaje( _id_productos->at( contador ),_valor ) ) {
+                cambiados++;
+                eliminarProducto( index( contador, 0 ) );
+            } else {
+                no_cambiados++;
+                contador++;
+            }
+        }
+        if( _id_productos->size() <= 0 )
+            condicion = false;
+        if( contador >= _id_productos->size() )
+            condicion = false;
+        contador++;
+    }
+    return QPair<int,int>(cambiados,no_cambiados);
 }

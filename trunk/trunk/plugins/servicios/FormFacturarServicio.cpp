@@ -451,20 +451,22 @@ void FormFacturarServicio::facturar()
 
     int contador = 0;
     while( comprobantes.size() > 0 ) {
+        QApplication::processEvents();
         // Paso 3
         // Imprimir recibo
         lista.clear();
         int id_comp = comprobantes.take( contador );
-    if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-        lista.append( "id_recibo", id_comp );
-        LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( MPagos::buscarNumeroComprobantePorId( id_comp ).aCadena() ).arg( contador+1 ).arg( cantidad_total ) );
-    } else {
-        lista.append( "id_factura", id_comp );
-        LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( MFactura::obtenerComprobante( id_comp ).aCadena() ).arg( contador+1 ).arg( cantidad_total ) );
-    }
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+            lista.append( "id_recibo", id_comp );
+            LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( MPagos::buscarNumeroComprobantePorId( id_comp ).aCadena() ).arg( contador+1 ).arg( cantidad_total ) );
+        } else {
+            lista.append( "id_factura", id_comp );
+            LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( MFactura::obtenerComprobante( id_comp ).aCadena() ).arg( contador+1 ).arg( cantidad_total ) );
+        }
         if( !reporte->hacer( lista, false, false ) ) {
             qDebug( QString( "No se pudo hacer el reporte %1" ).arg( contador ).toLocal8Bit() );
         }
+        QApplication::processEvents();
         PBProgreso->setValue( PBProgreso->value() + 1 );
         // Actualizo indices y reinicio valores
         nombre_cliente = "";

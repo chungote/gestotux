@@ -133,7 +133,7 @@ void ECBTabla::inicializar()
     if( _campo_id.isEmpty() )     { qWarning( "No se seteo el campo de id para el modelo." );    return; }
     if( _campo_texto.isEmpty() )  { qWarning( "No se seteo el campo de texto para el modelo." ); return; }
 
-    if( !_campo_orden.isEmpty() ) { _campo_orden.prepend( " ORDER BY " ); }
+    if( !_campo_orden.isEmpty() && !_campo_orden.contains( " ORDER BY " ) ) { _campo_orden.prepend( " ORDER BY " ); }
     if( _busqueda && !_campo_busqueda.isEmpty() ) { _campo_busqueda.prepend( ", " ); }
     // Cargo los datos del modelo
     QSqlQuery cola;
