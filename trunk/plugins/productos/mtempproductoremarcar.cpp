@@ -21,11 +21,6 @@ MTempProductoRemarcar::MTempProductoRemarcar( QObject *parent ) :
   _porcentaje = false;
   _valor = 0.0;
 
-  setHeaderData( 0, Qt::Horizontal, "#ID Producto" );
-  setHeaderData( 1, Qt::Horizontal, "Código" );
-  setHeaderData( 2, Qt::Horizontal, "Nombre del producto" );
-  setHeaderData( 3, Qt::Horizontal, "Precio Original" );
-  setHeaderData( 4, Qt::Horizontal, "Nuevo precio" );
 }
 
 void MTempProductoRemarcar::setearValorFijo( bool p )
@@ -94,14 +89,36 @@ QVariant MTempProductoRemarcar::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+QVariant MTempProductoRemarcar::headerData(int section, Qt::Orientation orientation, int role) const
+{
+  if( orientation == Qt::Horizontal && role == Qt::DisplayRole ) {
+        switch( section ) {
+          case 0:
+            { return "#ID Producto"; break; }
+          case 1:
+            { return QString::fromUtf8( "Código" ); break; }
+          case 2:
+            { return QString::fromUtf8( "Nombre del producto" ); break; }
+          case 3:
+            { return QString::fromUtf8( "Precio Original" ); break; }
+          case 4:
+            { return QString::fromUtf8( "Nuevo precio" ); break; }
+          default:
+            { return QAbstractTableModel::headerData( section, orientation, role ); break; }
+        }
+  }
+  return QAbstractTableModel::headerData( section, orientation, role );
+}
+
 void MTempProductoRemarcar::agregarProducto( int id )
 {
+
     // Busco si no existe ya
-    if( _id_productos->indexOf( id ) == -1 )
+    if( _id_productos->indexOf( id ) != -1 )
         return;
 
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id, codigo, nombre, precio_venta, habilitado, stock FROM producto WHERE id_producto = %1" ).arg( id ) ) ) {
+    if( cola.exec( QString( "SELECT id, codigo, nombre, precio_venta, habilitado, stock FROM producto WHERE id = %1" ).arg( id ) ) ) {
         cola.next();
         beginInsertRows( QModelIndex(), rowCount(), rowCount() );
         int pos = rowCount();
@@ -125,6 +142,24 @@ void MTempProductoRemarcar::agregarProducto( int id )
 
 void MTempProductoRemarcar::eliminarProducto( QModelIndex idx )
 {
+  emit beginRemoveRows( QModelIndex(), idx.row(), idx.row() );
+  // Elimino la fila que corresponde
+  for( int i = idx.row(); i<_id_productos->size()-1; i++ ) {
+      _id_productos->insert( i, _id_productos->at( i+1 ) );
+      _codigos->insert( i, _codigos->at( i+1 ) );
+      _nombres->insert( i, _nombres->at( i+1 ) );
+      _precio_original->insert( i, _precio_original->at( i+1 ) );
+      _sin_stock->insert( i, _sin_stock->at( i+1 ) );
+      _deshabilitado->insert( i, _deshabilitado->at( i+1 ) );
+  }
+  // Elimino el último elemento de cada uno
+  _id_productos->removeLast();
+  _codigos->removeLast();
+  _nombres->removeLast();
+  _precio_original->removeLast();
+  _sin_stock->removeLast();
+  _deshabilitado->removeLast();
+  endRemoveRows();
 }
 
 void MTempProductoRemarcar::cambioSinStock( bool estado )
@@ -132,10 +167,10 @@ void MTempProductoRemarcar::cambioSinStock( bool estado )
     if( !estado )
         return;
 
-    // Recorro la lista y elimino los elementos sin stock si existen
     for( int i = 0; i<_id_productos->size(); i++ ) {
         if( _sin_stock->at( i ) ) {
-
+            eliminarProducto( index( i, 0 ) );
+            i--; // Como corro todos los indices para arriba, tengo que volver a evaluar el elemento que acabo de eliminar ya que es un elemento siguiente traspasado
         }
     }
     return;
@@ -146,21 +181,31 @@ void MTempProductoRemarcar::cambioDeshabilitados( bool estado )
     if( !estado )
         return;
 
-    // Recorro la lista y elimino los elementos sin stock si existen
     for( int i = 0; i<_id_productos->size(); i++ ) {
         if( _deshabilitado->at( i ) ) {
-
+            eliminarProducto( index( i, 0 ) );
+            i--; // Como corro todos los indices para arriba, tengo que volver a evaluar el elemento que acabo de eliminar ya que es un elemento siguiente traspasado
         }
     }
     return;
 }
 
+/*!
+ * \brief MTempProductoRemarcar::cambioValor
+ * Actualiza los valores de precios nuevos
+ * \param valor Valor a aplicar
+ */
 void MTempProductoRemarcar::cambioValor( double valor )
 {
     _valor = valor;
     emit dataChanged( index( 0, 3 ), index( rowCount(), 3 ) );
 }
 
+/*!
+ * \brief MTempProductoRemarcar::remarcar
+ * Remarca los productos seleccionados
+ * \return Par de int, 1º cantidad cambiados, 2º cantidad no cambiados
+ */
 QPair<int, int> MTempProductoRemarcar::remarcar()
 {
     bool condicion = true;
@@ -169,7 +214,7 @@ QPair<int, int> MTempProductoRemarcar::remarcar()
     int contador = 0;
     while( condicion ) {
         if( _fijo ) {
-            if( MProductos::remarcarFijo( _id_productos->at( contador ),_valor ) ) {
+            if( MProductos::remarcarFijo( _id_productos->at( contador ), _valor ) ) {
                 cambiados++;
                 eliminarProducto( index( contador, 0 ) );
                 // No aumento el contador porque elimino el producto y se corren los indices hacia arriba.
@@ -177,20 +222,27 @@ QPair<int, int> MTempProductoRemarcar::remarcar()
                 no_cambiados++;
                 contador++;
             }
-        } else  if( _porcentaje ) {
-            if( MProductos::remarcarPorcentaje( _id_productos->at( contador ),_valor ) ) {
+        } else if( _porcentaje ) {
+            if( MProductos::remarcarPorcentaje( _id_productos->at( contador ), _valor ) ) {
                 cambiados++;
                 eliminarProducto( index( contador, 0 ) );
             } else {
                 no_cambiados++;
                 contador++;
             }
+        } else {
+            qWarning( "Metodo desconocido!" );
+            condicion = false;
         }
+
         if( _id_productos->size() <= 0 )
             condicion = false;
+
         if( contador >= _id_productos->size() )
             condicion = false;
+
         contador++;
     }
     return QPair<int,int>(cambiados,no_cambiados);
 }
+
