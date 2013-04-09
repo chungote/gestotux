@@ -78,7 +78,9 @@ win32 {
     TARGET = ../bin/gestotux
 }
 
-DISTFILES += qt_es.qm
+DISTFILES += qt_es.qm \
+             ../bin/reportes/ListadoClientes.xml \
+             ../bin/reportes/BalanceGeneral.xml
 
 RESOURCES += gestotux.qrc
 

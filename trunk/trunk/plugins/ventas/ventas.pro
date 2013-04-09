@@ -70,3 +70,6 @@ OTHER_FILES += ventas.ts \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/AnulacionFactura.xml \
+             ../../bin/reportes/Factura.xml

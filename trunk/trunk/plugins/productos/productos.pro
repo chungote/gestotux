@@ -61,3 +61,6 @@ OTHER_FILES += productos.QMYSQL.sql \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+DISTFILES += ../../bin/reportes/ListadoProductosPrecio.xml \
+             ../../bin/reportes/ListadoProductosStock.xml
