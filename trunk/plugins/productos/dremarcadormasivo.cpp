@@ -21,6 +21,7 @@ QDialog( parent )
 
   TVProductos->setModel( modelo );
   TVProductos->hideColumn( 0 );
+  TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
 
   connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
   connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
@@ -89,23 +90,49 @@ void DRemarcadorMasivo::eliminarProducto()
   }
 }
 
+/*!
+ * \brief DRemarcadorMasivo::accept
+ * Slot llamado al presionar el boton de aceptar
+ */
 void DRemarcadorMasivo::accept()
 {
     qWarning( "No implementado" );
+    QPair<int,int> dato = modelo->remarcar();
+    if( dato.second != 0 ) {
+        QMessageBox::information( this, "Estado", QString( "No se pudieron remarcar %1 productos. Los remarcados han sido eliminados de la lista" ).arg( dato.second ) );
+    } else {
+        QMessageBox::information( this, "Correcto", QString( "Se han remarcado %1 producto(s) correctamente" ).arg( dato.first ) );
+        QDialog::accept();
+    }
+    return;
 }
 
+/*!
+ * \brief DRemarcadorMasivo::cambioSinStock
+ * Slot llamado cuando se cambia el estado de la casilla de remarcar productos sin stock
+ * \param estado Seleccion de la casilla
+ */
 void DRemarcadorMasivo::cambioSinStock( bool estado )
 {
     modelo->cambioSinStock( estado );
     recalcularFiltro();
 }
 
+/*!
+ * \brief DRemarcadorMasivo::cambioDeshabilitados
+ * Slot llamado cuando se cambia el estado de la casilla de remarcar productos deshabilitados
+ * \param estado Seleccion de la casilla
+ */
 void DRemarcadorMasivo::cambioDeshabilitados( bool estado )
 {
     modelo->cambioDeshabilitados( estado );
     recalcularFiltro();
 }
 
+/*!
+ * \brief DRemarcadorMasivo::recalcularFiltro
+ * Metodo que permite generar el filtro necesario para filtrar los elementos del combo box de seleccion de productos disponibles
+ */
 void DRemarcadorMasivo::recalcularFiltro() {
     QString filtro = " WHERE ";
     if( CkBDeshabilitados->isChecked() ) {

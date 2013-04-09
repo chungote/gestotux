@@ -24,6 +24,8 @@ public:
   int rowCount(const QModelIndex &parent = QModelIndex() ) const;
   QVariant data(const QModelIndex &index, int role) const;
 
+  QPair<int,int> remarcar();
+
 public slots:
   void agregarProducto( int id );
   void eliminarProducto( QModelIndex idx );

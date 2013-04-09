@@ -47,7 +47,10 @@ public:
     static bool actualizarPrecioVenta( const int id_producto, const double precio );
 
     static double buscarPrecioCompra( const int id_producto );
+    static double buscarPrecioVenta( const int id_producto );
+
     static double buscarPrecioCompra( const QString codigo );
+    static double buscarPrecioVenta( const QString codigo );
 
     static bool existeCodigo( const QString codigo );
     static bool existeNombre( const QString nombre );
@@ -55,6 +58,9 @@ public:
     static bool habilitado( const int id_producto );
     static bool habilitar( const int id_producto );
     static bool deshabilitar( const int id_producto );
+
+    static bool remarcarFijo( const int id_producto, double cantidad );
+    static bool remarcarPorcentaje( const int id_producto, double porcentaje );
 
     bool habilitar( const QModelIndex idx );
     bool deshabilitar( const QModelIndex idx );

@@ -401,6 +401,32 @@ double MProductos::buscarPrecioCompra( const int id_producto )
 }
 
 /*!
+ * \brief MProductos::buscarPrecioVenta
+ * Busca el precio de venta del producto pedido como parametro
+ * \param id_producto Identificador Unico de producto
+ * \return Precio de venta del producto o -1 en caso de error
+ */
+double MProductos::buscarPrecioVenta( const int id_producto )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE id = %1" ).arg( id_producto ) ) )
+    {
+        if( cola.next() ) {
+            return cola.record().value(0).toDouble();
+        } else {
+            qWarning( "Error al hacer next la cola de busqueda del precio de compra del producto solicitado" );
+        }
+    }
+    else
+    {
+     qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado" );
+    }
+    qDebug( qPrintable( cola.lastError().text() ) );
+    qDebug( qPrintable( cola.lastQuery() ) );
+    return -1.0;
+}
+
+/*!
     \fn MProductos::buscarPrecioCompra( const QString codigo )
     Busca el precio de compra del producto dado por codigo del producto.
     \param codigo Codigo del producto.
@@ -428,6 +454,35 @@ double MProductos::buscarPrecioCompra( const QString codigo )
     qDebug( qPrintable( cola.lastQuery() ) );
     return -1.0;
 
+}
+
+/*!
+ * \brief MProductos::buscarPrecioVenta
+ * Devuelve el precio de venta del producto cuyo codigo es pasado como parametro.
+ * \param codigo Codigo del producto buscado
+ * \return Precio de venta del producto o -1 en caso de error o si el codigo no existe.
+ */
+double MProductos::buscarPrecioVenta( const QString codigo )
+{
+    if( !MProductos::existeCodigo( codigo ) ) {
+        return -1.0;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT precio_venta FROM producto WHERE codigo = %1" ).arg( codigo ) ) )
+    {
+        if( cola.next() ) {
+            return cola.record().value(0).toDouble();
+        } else {
+            qWarning( "Error al hacer next la cola de busqueda del precio de compra del producto solicitado - codigo" );
+        }
+    }
+    else
+    {
+     qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado - codigo" );
+    }
+    qDebug( qPrintable( cola.lastError().text() ) );
+    qDebug( qPrintable( cola.lastQuery() ) );
+    return -1.0;
 }
 
 /*!
@@ -508,6 +563,38 @@ bool MProductos::habilitar( int id_producto )
  */
 bool MProductos::deshabilitar( int id_producto )
 {  return cambiarHabilitado( id_producto, false ); }
+
+/*!
+ * \brief MProductos::remarcarFijo
+ * Remarca el precio de venta de un producto según la cantidad fija especificada
+ * \param id_producto Identificador del producto
+ * \param cantidad Cantidad financiaera a agregar o quitar ( <0 )
+ * \return verdadero si se pudo remarcar el precio del producto
+ */
+bool MProductos::remarcarFijo( const int id_producto, double cantidad )
+{
+    double precio_anterior = buscarPrecioVenta( id_producto );
+    if( precio_anterior == -1.0 )
+        return false;
+    double precio_nuevo = precio_anterior + cantidad;
+    return actualizarPrecioVenta( id_producto, precio_nuevo );
+}
+
+/*!
+ * \brief MProductos::remarcarPorcentaje
+ * Remarca el precio de venta de un producto según la cantidad porcentual
+ * \param id_producto Identificador del producto
+ * \param cantidad Cantidad a remarcar precio_final = precio_inicial * ( 1 + cantidad )
+ * \return verdadero si se pudo remarcar el precio del producto
+ */
+bool MProductos::remarcarPorcentaje( const int id_producto, double porcentaje )
+{
+    double precio_anterior =  buscarPrecioVenta( id_producto );
+    if( precio_anterior == -1.0 )
+        return false;
+    double precio_nuevo = precio_anterior * ( 1.0 + porcentaje );
+    return actualizarPrecioVenta( id_producto, precio_nuevo );
+}
 
 /**
  * @brief MProductos::tieneDatosRelacionados
