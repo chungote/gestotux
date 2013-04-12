@@ -139,7 +139,7 @@ QVariant MServicios::data( const QModelIndex& item, int role ) const {
 
 Qt::ItemFlags MServicios::flags( const QModelIndex &/*index*/ ) const
 {
-    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+   return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
 /*!
