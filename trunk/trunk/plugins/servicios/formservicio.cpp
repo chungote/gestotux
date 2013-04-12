@@ -100,7 +100,7 @@ void FormServicio::guardar()
      if( CkBBaja->isChecked() ) {
          _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );
      }
-     if( _mapa->submit() )
+     if( _mapa->submit() ) {
          if( modelo->submitAll() ) {
             QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
             /// @todo Version 0.6 -> Veo la modificacion del precio para ofrecer sistema de aviso en la proxima factura
@@ -110,6 +110,7 @@ void FormServicio::guardar()
              qDebug( "Error, no se pudo hacer el submitAll del modelo" );
              qDebug( this->modelo->lastError().text().toLocal8Bit() );
              qWarning( "Hubo un error al guardar los datos en la base de datos" );
+         }
      } else {
          qDebug( "Error, no se pudo hacer submit del mapa" );
          qDebug( this->modelo->lastError().text().toLocal8Bit() );
@@ -176,6 +177,10 @@ void FormServicio::agregarRecargo()
  */
 void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
 {
+    if( !indice.isValid() ) {
+        qWarning( "El indice pasado es invalido!" );
+        abort();
+    }
     this->modelo->setEditStrategy( QSqlTableModel::OnManualSubmit );
     this->_modificando = true;
 
@@ -183,15 +188,15 @@ void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
     _mapa->setOrientation( Qt::Horizontal );
     _mapa->setModel( this->modelo );
     _mapa->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
-    _mapa->setItemDelegate( new EServiciosDelegate( _mapa ) );
+    _mapa->setItemDelegate( new EServiciosDelegate( _mapa ) ); /// ESTO PUEDE SER PROBLEMATICO SI NO ESTA TOTALMENTE IMPLEMENTADO
 
-    _mapa->addMapping( LENombre          , modelo->fieldIndex( "nombre" ) );
-    _mapa->addMapping( TEDescripcion     , modelo->fieldIndex( "descripcion" ) );
-    _mapa->addMapping( DEFechaAlta       , modelo->fieldIndex( "fecha_alta" ) );
-    _mapa->addMapping( dSBPrecioBase     , modelo->fieldIndex( "precio_base" ) );
-    _mapa->addMapping( CBPeriodo         , modelo->fieldIndex( "periodo" ) );
+    _mapa->addMapping( LENombre          , modelo->fieldIndex( "nombre" )           );
+    _mapa->addMapping( TEDescripcion     , modelo->fieldIndex( "descripcion" )      );
+    _mapa->addMapping( DEFechaAlta       , modelo->fieldIndex( "fecha_alta" )       );
+    _mapa->addMapping( dSBPrecioBase     , modelo->fieldIndex( "precio_base" )      );
+    _mapa->addMapping( CBPeriodo         , modelo->fieldIndex( "periodo" )          );
     _mapa->addMapping( CBMetodoIncompleto, modelo->fieldIndex( "forma_incompleto" ) );
-    _mapa->addMapping( CBInicioCobro     , modelo->fieldIndex( "dia_cobro" ) );
+    _mapa->addMapping( CBInicioCobro     , modelo->fieldIndex( "dia_cobro" )        );
 
     if( this->modelo->data( this->modelo->index( indice.row(), this->modelo->fieldIndex( "fecha_baja" ) ), Qt::EditRole ).toDate().isValid() ) {
         _mapa->addMapping( DEFechaBaja, modelo->fieldIndex( "fecha_baja" ) );
@@ -200,10 +205,6 @@ void FormServicio::setearId( const int id_servicio, const QModelIndex indice )
 
     // Busco el indice
     this->_id_servicio = id_servicio;
-    if( indice.isValid() ) {
-        _mapa->setCurrentModelIndex( indice );
-    } else {
-        qWarning( "El indice pasado es invalido!" );
-        abort();
-    }
+    this->_mapa->setCurrentModelIndex( indice );
+
 }

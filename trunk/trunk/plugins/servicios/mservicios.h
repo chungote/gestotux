@@ -76,7 +76,6 @@ public:
 
     static QList<int> listaDeServicios();
     static bool existe( const QString nombre );
-
 };
 
 #endif
