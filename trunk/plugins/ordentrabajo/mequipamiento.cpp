@@ -37,7 +37,7 @@ MEquipamiento::MEquipamiento(QObject *parent) :
  */
 bool MEquipamiento::tieneDatosRelacionados( const int id_equipamiento )
 {
-    qDebug( "Busqueda de elementos relacionado sa un equipamiento no implementados" );
+    qDebug( "Busqueda de elementos relacionados a un equipamiento no implementados" );
     /// @TODO Implementar datos relacionados equipamiento
     return true;
 }

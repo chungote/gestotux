@@ -363,35 +363,37 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
  * \fn MCuentaCorriente::agregarCuentaCorrientePredeterminada( const int id_cliente, const QDateTime fecha_alta )
  *  Genera una cuenta corriente nueva para el cliente seleccionado en la fecha de alta elegida con los valores de saldo inicial y limite de credito seleccionados en las preferencias
  * @param id_cliente Identificador del cliente al cual se le abrirÃ¡ la cuenta corriente.
- * @param fecha_alta Fecha en que se darÃ¡ de alta la cuenta corriente
+ * @param fecha_alta Fecha en que se dara de alta la cuenta corriente
  * @return Verdadero si se pudo crear
  */
-bool MCuentaCorriente::agregarCuentaCorrientePredeterminada(const int id_cliente, const QDateTime fecha_alta )
+bool MCuentaCorriente::agregarCuentaCorrientePredeterminada( const int id_cliente, const QDateTime fecha_alta )
 {
     QSqlQuery cola;
     // Datos predeterminados
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "CtaCte" );
-    double saldo = p->value( "saldo-inicial", 0.0 ).toDouble();
-    double limite = p->value( "limite", 1000.0 ).toDouble();
+    double saldo  = p->value( "saldo-inicial", 0.0    ).toDouble();
+    double limite = p->value( "limite"       , 1000.0 ).toDouble();
     p->endGroup();
     p->endGroup();
     p=0;
     delete p;
     // Numero de cuenta
     cola.prepare( "INSERT INTO ctacte( numero_cuenta, id_cliente, fecha_alta, saldo, limite ) VALUES( :num_cuenta, :id_cliente, :fecha_alta, :saldo, :limite )" );
-    QString num_cuenta = QString( "%L1" ).arg( id_cliente );
+    int num_cuenta = QString( "%L1" ).arg( id_cliente ).toInt();
     cola.bindValue( ":num_cuenta", num_cuenta );
     cola.bindValue( ":id_cliente", id_cliente );
     cola.bindValue( ":fecha_alta", fecha_alta );
-    cola.bindValue( ":saldo", saldo );
-    cola.bindValue( ":limite", limite );
+    cola.bindValue( ":saldo"     , saldo      );
+    cola.bindValue( ":limite"    , limite     );
     if( cola.exec() ) {
         return true;
     } else {
         qDebug( "MCuentaCorriente::agregarCuentaCorrientePredeterminada: Error al intentar insertar una cuenta corriente predeterminada" );
         qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola.executedQuery().toLocal8Bit() );
         return false;
     }
 }
