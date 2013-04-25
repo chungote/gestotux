@@ -120,7 +120,10 @@ void FormAsociarServicioCliente::accept()
  // Busco si el cliente tiene cuenta corriente
  if( MCuentaCorriente::obtenerNumeroCuentaCorriente( _id_cliente ) == QString::number( MCuentaCorriente::ErrorNumeroCuenta) ) {
      QMessageBox::information( this, "Creando nueva cuenta corriente", "El cliente no posee cuenta corriente, se le creara una automaticamente." );
-     MCuentaCorriente::agregarCuentaCorrientePredeterminada( _id_cliente, DEFechaAlta->dateTime() );
+     if( !MCuentaCorriente::agregarCuentaCorrientePredeterminada( _id_cliente, DEFechaAlta->dateTime() ) ) {
+         QMessageBox::information( this, "Error", "Error al crear la cuenta corriente predeterminada" );
+         return;
+     }
  }
  MServicios *mservicios = new MServicios();
  if( mservicios->asociarCliente( _id_cliente, _id_servicio, DEFechaAlta->dateTime() ) )
