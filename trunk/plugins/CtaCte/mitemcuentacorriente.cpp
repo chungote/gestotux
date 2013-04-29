@@ -395,7 +395,7 @@ bool MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte )
         return false;
     }
     // Elimino el registro de la operacion
-    if( !cola.exec( QString( "DELETE FROM item_ctacte WHERE id_op_ctacte = %1 LIMIT 1" ).arg( id_op_ctacte ) ) ) {
+    if( !cola.exec( QString( "DELETE FROM item_ctacte WHERE id_op_ctacte = %1" ).arg( id_op_ctacte ) ) ) {
         qWarning( "No se puede eliminar la operacion guardada en la cuenta corriente" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
