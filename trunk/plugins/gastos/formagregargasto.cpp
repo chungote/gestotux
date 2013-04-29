@@ -42,6 +42,7 @@ FormAgregarGasto::FormAgregarGasto( QWidget* parent )
         setupUi( this );
         setObjectName( "AgregarGasto" );
         setWindowTitle( "Agregar nuevo gasto" );
+        setWindowIcon( QIcon( ":/imagenes/gasto.jpg" ) );
 
         this->addAction( new EActGuardar( this ) );
         this->addAction( new EActCerrar( this ) );
