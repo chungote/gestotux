@@ -52,6 +52,13 @@ bool OrdenTrabajoPlugin::inicializar()
  ActVerTipoOperacion->setStatusTip( "Muestra el listado de operaciones disponibles" );
  //ActVerTipoOperacion->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
  connect( ActVerTipoOperacion, SIGNAL( triggered() ), this, SLOT( verTipoOperacion() ) );
+ ///////////////////////////////////
+ // Muestra el listado de equipamiento en el sistema
+ ///////////////////////////////////
+ ActVerEquipamiento = new QAction( "Equipamientos", this );
+ ActVerEquipamiento->setStatusTip( "Muestra el listado de equipamientos dados de alta en el sistema" );
+ //ActVerEquipamiento->setIcon( QIcon( ":/imagenes/equipamiento.png" ) );
+ connect( ActVerEquipamiento, SIGNAL( triggered() ), this, SLOT( verEquipamientos() ) );
 
  return true;
 }
@@ -103,6 +110,7 @@ void OrdenTrabajoPlugin::crearMenu( QMenuBar* m )
      menuOrden->addAction( ActOrdenTrabajo );
      menuOrden->addAction( ActVerTecnicos );
      menuOrden->addAction( ActVerTipoOperacion );
+     menuOrden->addAction( ActVerEquipamiento );
  }
 }
 
@@ -119,18 +127,29 @@ void OrdenTrabajoPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(ordentrabajo); return; }
 
 void OrdenTrabajoPlugin::verOrdenesTrabajo() {}
-void OrdenTrabajoPlugin::agregarOrdenTrabajo() {}
+
+#include "vequipamiento.h"
+/*!
+ * \brief OrdenTrabajoPlugin::verEquipamientos
+ * Slot llamado  para mostrar el equipamiento dado de alta.
+ */
+void OrdenTrabajoPlugin::verEquipamientos()
+{ emit agregarVentana( new VEquipamiento() ); }
 
 #include "vtipooperacionordentrabajo.h"
+/*!
+ * \brief OrdenTrabajoPlugin::verTipoOperacion
+ * Slot llamado para mostrar la ventana de tipos de operaciones de orden de trabajo
+ */
 void OrdenTrabajoPlugin::verTipoOperacion()
-{
-    emit agregarVentana( new VTipoOperacionOrdenTrabajo() );
-}
+{ emit agregarVentana( new VTipoOperacionOrdenTrabajo() ); }
 
 #include "vtecnicos.h"
 void OrdenTrabajoPlugin::verTecnicos()
 {
     emit agregarVentana( new VTecnicos() );
 }
+
+void OrdenTrabajoPlugin::agregarOrdenTrabajo() {}
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )

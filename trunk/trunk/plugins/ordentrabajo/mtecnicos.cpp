@@ -32,7 +32,7 @@ bool MTecnicos::existe(const QString nombre)
 bool MTecnicos::tieneDatosRelacionados( const int id_tecnico )
 {
     /// @todo Implementar esto
-    return false;
+    return true;
 }
 
 /*
