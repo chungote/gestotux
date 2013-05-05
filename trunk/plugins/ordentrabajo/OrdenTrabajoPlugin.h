@@ -52,9 +52,12 @@ signals:
 
 public slots:
     void verOrdenesTrabajo();
-    void agregarOrdenTrabajo();
+    void verEquipamientos();
     void verTecnicos();
     void verTipoOperacion();
+
+    void agregarOrdenTrabajo();
+
     void seCierraGestotux();
 
 private:
@@ -62,6 +65,7 @@ private:
     QAction *ActAgregarOrdenTrabajo;
     QAction *ActVerTecnicos;
     QAction *ActVerTipoOperacion;
+    QAction *ActVerEquipamiento;
 
 };
 

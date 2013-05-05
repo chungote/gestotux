@@ -28,7 +28,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     vtipooperacionordentrabajo.cpp \
     mtipooperacionordentrabajo.cpp \
     mequipamiento.cpp \
-    ecbtecnicos.cpp
+    ecbtecnicos.cpp \
+    vequipamiento.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
@@ -36,7 +37,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     vtipooperacionordentrabajo.h \
     mtipooperacionordentrabajo.h \
     mequipamiento.h \
-    ecbtecnicos.h
+    ecbtecnicos.h \
+    vequipamiento.h
 
 RESOURCES += ordentrabajo.qrc
 
