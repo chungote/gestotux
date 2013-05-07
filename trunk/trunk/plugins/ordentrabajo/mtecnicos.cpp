@@ -11,6 +11,7 @@ MTecnicos::MTecnicos(QObject *parent) :
     setHeaderData( 0, Qt::Horizontal, "#ID" );
     setHeaderData( 1, Qt::Horizontal, "Razon Social" );
     setHeaderData( 2, Qt::Horizontal, "Habilitado" );
+    setEditStrategy( QSqlTableModel::OnFieldChange );
 }
 
 bool MTecnicos::existe(const QString nombre)

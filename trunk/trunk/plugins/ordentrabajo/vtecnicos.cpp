@@ -61,6 +61,7 @@ EVLista(parent)
     cambiarVerDeshabilitado( false );
 
     this->modelo->select();
+
 }
 
 /*!
@@ -78,12 +79,14 @@ void VTecnicos::agregar( bool )
             QMessageBox::warning( this, "Error", QString::fromUtf8( "El técnico que está intentando ingresar ya se encuentra en la base de datos" ) );
         } else {
             QSqlRecord r = this->modelo->record();
+            r.setGenerated( 0, true );
             r.setValue( "razon_social", nombre );
             r.setValue( "habilitado", true );
             if( this->modelo->insertRecord( -1, r ) ) {
                 QMessageBox::information( this, "Correcto",  QString::fromUtf8( "El técnico se agregó correctamente" ) );
             } else {
                 QMessageBox::warning( this, "Incorrecto",  QString::fromUtf8( "No se pudo agregar el nuevo técnico" ) );
+                QMessageBox::warning( this, "Incorrecto",  this->modelo->lastError().text().toLocal8Bit() );
             }
         }
     }
@@ -112,12 +115,10 @@ void VTecnicos::modificar()
             r.setValue( "razon_social", nombre );
             if( this->modelo->setRecord( idx.row(), r ) ) {
                 QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico fue modificado correctamente" ) );
-                return;
             } else {
                 QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo modificar el técnico" ) );
                 qDebug( "Error al modificar el registro del técnico" );
                 qDebug( this->modelo->lastError().text().toLocal8Bit() );
-                return;
             }
         }
     }
@@ -195,7 +196,11 @@ void VTecnicos::deshabilitar()
  */
 void VTecnicos::cambiarVerDeshabilitado( bool estado )
 {
-    this->modelo->setFilter( QString( "habilitado = %1" ).arg( estado ) );
-    this->modelo->select();
+  if( !estado ) {
+    this->modelo->setFilter( "habilitado = 'true'" );
+  } else {
+    this->modelo->setFilter( "habilitado = 'false'" );
+  }
+  this->modelo->select();
 }
 
