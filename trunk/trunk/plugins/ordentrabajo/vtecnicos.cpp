@@ -157,7 +157,7 @@ void VTecnicos::eliminar()
 void VTecnicos::habilitar()
 {
     if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para borrar" ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para habilitar" ) );
         return;
     }
     QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
@@ -177,7 +177,7 @@ void VTecnicos::habilitar()
 void VTecnicos::deshabilitar()
 {
     if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para borrar" ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para deshabilitar" ) );
         return;
     }
     QModelIndex idx = this->vista->selectionModel()->selectedRows().first();

@@ -91,7 +91,7 @@ void VTipoOperacionOrdenTrabajo::modificar()
 void VTipoOperacionOrdenTrabajo::eliminar()
 {
     if( this->vista->selectionModel()->selectedRows().size() <= 0 ) {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un técnico para borrar" ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Seleccióne al menos un tipo de orden para borrar" ) );
         return;
     }
     QModelIndexList indices = this->vista->selectionModel()->selectedRows();
@@ -100,8 +100,8 @@ void VTipoOperacionOrdenTrabajo::eliminar()
     if( ret == QMessageBox::Ok ) {
         foreach( QModelIndex idx, indices ) {
             // Busco cada registro y verifico que no existan relaciones
-            int id_tecnico = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
-            if( !this->modelo->tieneDatosRelacionados( id_tecnico ) ) {
+            int id_tipo = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+            if( !this->modelo->tieneDatosRelacionados( id_tipo ) ) {
                 this->modelo->removeRow( idx.row() );
             }
         }
