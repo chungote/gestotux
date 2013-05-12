@@ -12,6 +12,12 @@ class VEquipamiento : public EVLista
     Q_OBJECT
 public:
     VEquipamiento( QWidget *parent = 0 );
+
+public slots:
+    void agregar(bool autoeliminarid);
+    void modificar();
+    void eliminar();
+
 };
 
 #endif // VEQUIPAMIENTO_H

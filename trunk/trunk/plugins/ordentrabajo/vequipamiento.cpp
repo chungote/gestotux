@@ -15,5 +15,17 @@ EVLista( parent )
     this->vista->setModel( this->modelo );
     this->modelo->select();
 
+    addAction( ActAgregar );
+    addAction( ActModificar );
+    addAction( ActEliminar );
     addAction( ActCerrar );
 }
+
+void VEquipamiento::agregar(bool autoeliminarid)
+{ qWarning( "No implementado" ); }
+
+void VEquipamiento::modificar()
+{ qWarning( "No implementado" ); }
+
+void VEquipamiento::eliminar()
+{ qWarning( "No implementado" ); }
