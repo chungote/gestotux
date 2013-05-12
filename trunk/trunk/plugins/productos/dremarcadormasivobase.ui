@@ -152,6 +152,13 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="PBAgregarTodos">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -186,6 +193,13 @@
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QPushButton" name="PBEliminarTodos">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -207,7 +221,7 @@
   <customwidget>
    <class>ECBTabla</class>
    <extends>QComboBox</extends>
-   <header>ecbtabla.h</header>
+   <header location="global">ecbtabla.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

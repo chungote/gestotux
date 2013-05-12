@@ -30,6 +30,7 @@ public:
 public slots:
   void agregarProducto( int id );
   void eliminarProducto( QModelIndex idx );
+  void eliminarTodos();
 
   void cambioSinStock( bool estado );
   void cambioDeshabilitados( bool estado );
