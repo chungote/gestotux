@@ -24,11 +24,17 @@ QDialog( parent )
   TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
 
   connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
+  connect( PBAgregarTodos, SIGNAL( clicked() ), this, SLOT( agregarTodos() ) );
   connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
+  connect( PBEliminarTodos, SIGNAL( clicked() ), this, SLOT( eliminarTodos() ) );
 
   PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
+  PBAgregarTodos->setIcon( QIcon( ":/imagenes/add.png") );
+  PBAgregarTodos->setText( "Agregar todos" );
   PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
+  PBEliminarTodos->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
   PBEliminar->setText( "Eliminar producto" );
+  PBEliminarTodos->setText( "Eliminar todos" );
 
   // Pongo como predeterminado el porcentaje
   RBPorcentaje->setChecked( true );
@@ -76,7 +82,14 @@ void DRemarcadorMasivo::cambioAMontoFijo( bool estado )
 
 void DRemarcadorMasivo::agregarProducto()
 {
-  modelo->agregarProducto( CBProductos->idActual() );
+    modelo->agregarProducto( CBProductos->idActual() );
+}
+
+void DRemarcadorMasivo::agregarTodos()
+{
+    foreach( int id_producto, *(CBProductos->getListaIDs()) ) {
+        modelo->agregarProducto( id_producto );
+    }
 }
 
 void DRemarcadorMasivo::eliminarProducto()
@@ -90,13 +103,15 @@ void DRemarcadorMasivo::eliminarProducto()
   }
 }
 
+void DRemarcadorMasivo::eliminarTodos()
+{ modelo->eliminarTodos(); }
+
 /*!
  * \brief DRemarcadorMasivo::accept
  * Slot llamado al presionar el boton de aceptar
  */
 void DRemarcadorMasivo::accept()
 {
-    qWarning( "No implementado" );
     QPair<int,int> dato = modelo->remarcar();
     if( dato.second != 0 ) {
         QMessageBox::information( this, "Estado", QString( "No se pudieron remarcar %1 productos. Los remarcados han sido eliminados de la lista" ).arg( dato.second ) );

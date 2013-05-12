@@ -25,13 +25,21 @@ public:
 
     void setearFiltro( const QString f, const bool inmmediate = false );
     void setearTexto( const QString t );
-    int idActual();
     void setearId( const int id );
     void setearTabla( QString tabla );
     void setearCampoId( QString nombre );
     void setearCampoTexto( QString nombre );
     void setearCampoOrden( QString texto );
     void setearCampoBusquedaExtra( QString campo );
+
+    int idActual();
+
+    /*!
+     * \brief getListaIDs
+     *  Función auxiliar para obtener los IDs cargados en el combobox
+     * \return QList<int> * Con la lista de IDs en el combo box
+     */
+    QList<int> *getListaIDs() { return ids; }
 
     Q_PROPERTY( int id READ idActual WRITE setearId USER true )
 

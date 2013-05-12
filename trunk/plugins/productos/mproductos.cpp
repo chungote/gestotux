@@ -590,9 +590,13 @@ bool MProductos::remarcarFijo( const int id_producto, double cantidad )
 bool MProductos::remarcarPorcentaje( const int id_producto, double porcentaje )
 {
     double precio_anterior =  buscarPrecioVenta( id_producto );
-    if( precio_anterior == -1.0 )
+    qDebug( QString( "Precio anterior: $%1" ).arg( precio_anterior ).toLocal8Bit() );
+    if( precio_anterior == -1.0 ) {
+        qDebug( "Precio anterior incorrecto" );
         return false;
+    }
     double precio_nuevo = precio_anterior * ( 1.0 + porcentaje );
+    qDebug( QString( "Precio nuevo: $%1" ).arg( precio_nuevo ).toLocal8Bit() );
     return actualizarPrecioVenta( id_producto, precio_nuevo );
 }
 

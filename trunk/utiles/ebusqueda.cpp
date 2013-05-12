@@ -1,5 +1,7 @@
 #include "ebusqueda.h"
 
+#include <QSqlQuery>
+
 EBusqueda::EBusqueda( QWidget *parent, QSqlTableModel *modelo, QString titulo ) :
     QDockWidget( parent ), Ui::EBusquedaBase()
 {
@@ -32,6 +34,7 @@ void EBusqueda::filtrar()
     _modelo->setFilter( filtros.at( CBTipo->currentIndex() ).arg( LETexto->text() ) );
     qDebug( _modelo->filter().toLocal8Bit() );
     _modelo->select();
+    qDebug( _modelo->query().lastQuery().toLocal8Bit() );
 }
 
 /*!

@@ -142,15 +142,19 @@ void MTempProductoRemarcar::agregarProducto( int id )
 
 void MTempProductoRemarcar::eliminarProducto( QModelIndex idx )
 {
+
+  if( idx.row() >= this->rowCount() )
+      return;
+
   emit beginRemoveRows( QModelIndex(), idx.row(), idx.row() );
-  // Elimino la fila que corresponde
+  // Elimino la fila que corresponde moviendo todos los demás elementos
   for( int i = idx.row(); i<_id_productos->size()-1; i++ ) {
-      _id_productos->insert( i, _id_productos->at( i+1 ) );
-      _codigos->insert( i, _codigos->at( i+1 ) );
-      _nombres->insert( i, _nombres->at( i+1 ) );
-      _precio_original->insert( i, _precio_original->at( i+1 ) );
-      _sin_stock->insert( i, _sin_stock->at( i+1 ) );
-      _deshabilitado->insert( i, _deshabilitado->at( i+1 ) );
+      _id_productos->replace( i, _id_productos->at( i+1 ) );
+      _codigos->replace( i, _codigos->at( i+1 ) );
+      _nombres->replace( i, _nombres->at( i+1 ) );
+      _precio_original->replace( i, _precio_original->at( i+1 ) );
+      _sin_stock->replace( i, _sin_stock->at( i+1 ) );
+      _deshabilitado->replace( i, _deshabilitado->at( i+1 ) );
   }
   // Elimino el último elemento de cada uno
   _id_productos->removeLast();
@@ -160,6 +164,18 @@ void MTempProductoRemarcar::eliminarProducto( QModelIndex idx )
   _sin_stock->removeLast();
   _deshabilitado->removeLast();
   endRemoveRows();
+}
+
+void MTempProductoRemarcar::eliminarTodos()
+{
+    beginRemoveRows( QModelIndex(), 0, this->rowCount() );
+    _id_productos->clear();
+    _codigos->clear();
+    _nombres->clear();
+    _precio_original->clear();
+    _sin_stock->clear();
+    _deshabilitado->clear();
+    endRemoveRows();
 }
 
 void MTempProductoRemarcar::cambioSinStock( bool estado )
@@ -243,6 +259,6 @@ QPair<int, int> MTempProductoRemarcar::remarcar()
 
         contador++;
     }
-    return QPair<int,int>(cambiados,no_cambiados);
+    return QPair<int,int>( cambiados, no_cambiados );
 }
 
