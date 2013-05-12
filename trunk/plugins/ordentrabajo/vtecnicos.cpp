@@ -38,7 +38,7 @@ EVLista(parent)
     ActDeshabilitar->setText( "Deshabilitar" );
     ActDeshabilitar->setStatusTip( QString::fromUtf8( "Deshabilita un técnico que ha estado habilitado" ) );
     //ActHabilitar->setIcon();
-    connect( ActDeshabilitar, SIGNAL( triggered() ), this, SLOT( habilitar() ) );
+    connect( ActDeshabilitar, SIGNAL( triggered() ), this, SLOT( deshabilitar() ) );
 
     ActMostrarDeshabilitados = new QAction( this );
     ActMostrarDeshabilitados->setText( "Deshabilitados" );
@@ -104,7 +104,7 @@ void VTecnicos::modificar()
     }
     // Busco solo el primero
     QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
-    QString nombre_anterior = idx.model()->data( idx, Qt::EditRole ).toString();
+    QString nombre_anterior = idx.model()->data( idx.model()->index( idx.row(), modelo->fieldIndex( "razon_social" ) ), Qt::EditRole ).toString();
     bool ok = false;
     QString nombre = QInputDialog::getText( this,  QString::fromUtf8( "Modificar técnico" ),  QString::fromUtf8( "Nueva razón social:" ), QLineEdit::Normal, nombre_anterior, &ok );
     if( ok && nombre_anterior != nombre && !nombre.isEmpty() ) {
@@ -147,7 +147,7 @@ void VTecnicos::eliminar()
             }
         }
     }
-    QMessageBox::information( this, "Listo", "Los items que no fueron eliminados poseen alguna orden de trabajo relacionada. Si no desea perder la orden de trabajo o cambiar su tecnico asociado, ponga el técnico como deshabilitado." );
+    QMessageBox::information( this, "Listo", QString::fromUtf8( "Los items que no fueron eliminados poseen alguna orden de trabajo relacionada. Si no desea perder la orden de trabajo o cambiar su técnico asociado, ponga el técnico como deshabilitado." ) );
 }
 
 /*!
@@ -162,7 +162,11 @@ void VTecnicos::habilitar()
     }
     QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
     QSqlRecord r = this->modelo->record( idx.row() );
-    r.setValue( "habilitado", true );
+    if( r.value( "habilitado" ).toBool() == true ) {
+        QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ya se encuentra habilitado" ) );
+        return;
+    }
+    r.setValue( r.indexOf( "habilitado" ), true );
     if( this->modelo->setRecord( idx.row(), r ) ) {
         QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ha sido habilitado" ) );
     } else {
@@ -182,11 +186,15 @@ void VTecnicos::deshabilitar()
     }
     QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
     QSqlRecord r = this->modelo->record( idx.row() );
-    r.setValue( "habilitado", false );
+    if( r.value( "habilitado" ).toBool() == false ) {
+        QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ya se encuentra deshabilitado" ) );
+        return;
+    }
+    r.setValue( r.indexOf( "habilitado" ), false );
     if( this->modelo->setRecord( idx.row(), r ) ) {
-        QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ha sido habilitado" ) );
+        QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico ha sido deshabilitado" ) );
     } else {
-        QMessageBox::warning( this, "Error", QString::fromUtf8( "El técnico no pude ser habilitado" ) );
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "El técnico no pude ser deshabilitado" ) );
     }
 }
 
