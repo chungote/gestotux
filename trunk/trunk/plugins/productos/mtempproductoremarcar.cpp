@@ -213,7 +213,11 @@ void MTempProductoRemarcar::cambioDeshabilitados( bool estado )
  */
 void MTempProductoRemarcar::cambioValor( double valor )
 {
-    _valor = valor;
+    if( _porcentaje ) {
+        _valor = valor/100.0;
+    } else {
+        _valor = valor;
+    }
     emit dataChanged( index( 0, 3 ), index( rowCount(), 3 ) );
 }
 
