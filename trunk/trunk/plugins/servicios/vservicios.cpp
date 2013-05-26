@@ -45,9 +45,13 @@ VServicios::VServicios(QWidget *parent)
 
  vista->setModel( modelo );
  vista->setAlternatingRowColors( true );
+ modelo->setFilter( "fecha_baja IS NULL" );
  modelo->select();
  vista->hideColumn( 0 );
  vista->hideColumn( 2 );
+ vista->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
+ vista->setSortingEnabled( true );
+ vista->horizontalHeader()->setResizeMode( modelo->fieldIndex( "nombre" ), QHeaderView::ResizeToContents );
 
  connect( vista, SIGNAL( doubleClicked ( const QModelIndex & ) ), this, SLOT( modificar( const QModelIndex & ) ) );
 
@@ -355,8 +359,12 @@ void VServicios::actualizarVista()
 void VServicios::cambioVerBaja( bool estado )
 {
     if( estado ) {
-        modelo->setFilter( "" );
+        modelo->setFilter( " fecha_baja IS NOT NULL " );
+        vista->showColumn( modelo->fieldIndex( "fecha_baja" ) );
+        modelo->select();
     } else {
         modelo->setFilter( " fecha_baja IS NULL " );
+        vista->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
+        modelo->select();
     }
 }
