@@ -25,8 +25,10 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
-protected slots:
+public slots:
     void borrar();
+
+protected slots:
     void filtrar();
 
 signals:
