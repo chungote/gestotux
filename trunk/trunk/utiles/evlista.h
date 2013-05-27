@@ -91,7 +91,7 @@ public:
      void agregarFiltroBusqueda( const QString nombre, const QString filtro );
 
 public slots:
-     void cerroBusqueda() { ActBuscar->setChecked( false ); }
+     void cerroBusqueda();
 
 protected:
   /**

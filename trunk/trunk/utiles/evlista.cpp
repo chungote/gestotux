@@ -235,7 +235,7 @@ void EVLista::buscar()
                 dockBusqueda->setVisible( true );
             } else {
                 dockBusqueda->setVisible( false );
-                ActBuscar->setChecked( false );
+                dockBusqueda->borrar();
             }
         }
     }
@@ -243,7 +243,13 @@ void EVLista::buscar()
 
 void EVLista::agregarFiltroBusqueda( QString nombre, QString filtro )
 {
-    filtros.append( QPair<QString,QString>( nombre, filtro ) );
+  filtros.append( QPair<QString,QString>( nombre, filtro ) );
+}
+
+void EVLista::cerroBusqueda()
+{
+  ActBuscar->setChecked( false );
+  this->mostrarTodos();
 }
 
 /*!
