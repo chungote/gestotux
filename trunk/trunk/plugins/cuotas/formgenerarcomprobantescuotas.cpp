@@ -17,7 +17,7 @@ FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) 
     // Conecto los totales y demás
     connect( modelo, SIGNAL( cambioTotal( double ) ), DSBTotal, SLOT( setValue( double ) ) );
     connect( modelo, SIGNAL( cambioCantidad( int ) ), LCDNCantidad, SLOT( display( int ) ) );
-    connect( modelo, SIGNAL( comprobantes( QPair<NumeroComprobante *> ) ), this, SLOT( cambioComprobantes( QPair<NumeroComprobante *> ) ) );
+    connect( modelo, SIGNAL( comprobantes( QPair<NumeroComprobante *, NumeroComprobante *> ) ), this, SLOT( cambioComprobantes( QPair<NumeroComprobante *, NumeroComprobante *> ) ) );
 
     TVVista->setModel( modelo );
 

@@ -39,10 +39,6 @@ EVentana(parent), Ui::FormDetalleCuotasBase()
     ActPdf->setIcon( QIcon( ":/imagenes/acroread.png" ) );
     connect( ActPdf, SIGNAL( triggered() ), this, SLOT( pdf() ) );
 
-    ActConfirmar = new QAction( this );
-    ActConfirmar->setText( "Confirmar" );
-    connect( ActConfirmar, SIGNAL( triggered() ), this, SLOT( confirmar() ) );
-
     modelo = new MPlanCuota( this );
 
     CBPeriodo->insertItem( MPlanCuota::Semanal      , "Semanal"       );
