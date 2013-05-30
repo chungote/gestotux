@@ -7,7 +7,9 @@ class MVPlanCuota : public QSqlTableModel
 {
     Q_OBJECT
 public:
-    explicit MVPlanCuota( QObject *parent = 0 );
+    MVPlanCuota( QObject *parent = 0 );
+
+    QVariant data(const QModelIndex &idx, int role) const;
     
 };
 
