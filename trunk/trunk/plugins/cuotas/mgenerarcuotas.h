@@ -12,7 +12,6 @@ class MGenerarCuotas : public QSqlTableModel
 public:
     MGenerarCuotas( QObject *parent = 0 );
     QVariant data( const QModelIndex &idx, int role ) const;
-    bool setData( const QModelIndex &index, const QVariant &value, int role );
     int columnCount( const QModelIndex &parent ) const;
     int rowCount( const QModelIndex &parent ) const;
     
