@@ -16,6 +16,8 @@ public:
     int columnCount( const QModelIndex &parent ) const;
     int rowCount( const QModelIndex &parent ) const;
     
+    bool calcularComprobantes();
+
 signals:
     void cambioTotal( double );
     void cambioCantidad( int );
@@ -26,8 +28,9 @@ private:
     double _total;
     QHash<int, int> *_numeros;
     QHash<int, int> *_planes;
-    QHash<int,QPair<int,QString> > *_clientes;
-    QHash<int, QPair<int,int> > *_cuotas;
+    QHash<int, QString> *_clientes;
+    QHash<int, int> *_clientes_id;
+    QHash<int, QString> *_cuotas;
     QHash<int, double> *_importes;
     QHash<int, NumeroComprobante *> *_comprobantes;
     

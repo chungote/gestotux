@@ -73,6 +73,8 @@ bool CuotasPlugin::verificarTablas( QStringList tablas )
  { qDebug( "Error al buscar la tabla plan_cuota" ); return false; }
  else if( !tablas.contains( "item_cuota" ) )
  { qDebug( "Error al buscar la tabla item_cuota" ); return false; }
+ else if( !tablas.contains( "v_plan_cuota" ) )
+ { qDebug( "Error al buscar la vista v_plan_cuota" ); return false; }
  return true;
 }
 
