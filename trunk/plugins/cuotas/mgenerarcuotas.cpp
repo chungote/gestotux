@@ -1,5 +1,7 @@
 #include "mgenerarcuotas.h"
 
+#include "mpagos.h"
+
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -78,37 +80,6 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
     }
 }
 
-bool MGenerarCuotas::setData( const QModelIndex &index, const QVariant &value, int role )
-{
-    if( role == Qt::EditRole ) {
-        switch( index.column() ) {
-            case 0:
-            {
-                // Esto se debe llamar si la fila no existe
-                if( _numeros->contains( index.row() ) ) {
-                    return false;
-                } else {
-                    _numeros->insert( index.row(), value.toInt() );
-                    return true;
-                }
-                break;
-            }
-            case 1:
-            {
-                _planes->insert( index.row(), value.toInt() );
-                return true;
-                break;
-            }
-            case 2:
-            {
-                _cuotas->insert( index.row(), value.toString() );
-            }
-
-        }
-    }
-    return false;
-}
-
 int MGenerarCuotas::columnCount( const QModelIndex & ) const
 { return 6; }
 
@@ -122,8 +93,11 @@ bool MGenerarCuotas::calcularComprobantes()
    // Fecha del mes actual - Inicio del mes
    QDate fin_mes = QDate::currentDate();
    fin_mes.addDays( fin_mes.daysInMonth()-fin_mes.day() );
+   // Busco el próximo número de recibo
+   NumeroComprobante *num = new NumeroComprobante( this, -1, -1 );
+   *num = MPagos::proximoSerieNumeroRecibo();
    QSqlQuery cola;
-   if( cola.exec( QString( " SELECT ic.id_item_cuota, ic.id_plan_cuota, ic.num_cuota, pc.cantidad_cuotas, ic.monto, c.razon_social "
+   if( cola.exec( QString( " SELECT ic.id_item_cuota, ic.id_plan_cuota, ic.num_cuota, pc.cantidad_cuotas, ic.monto, c.razon_social, c.id "
                            " FROM item_cuota AS ic "
                            "      INNER JOIN plan_cuota AS pc ON ic.id_plan_cuota = pc.id_plan_cuota "
                            "      INNER JOIN factura AS f ON pc.id_factura = f.id_factura "
@@ -135,21 +109,28 @@ bool MGenerarCuotas::calcularComprobantes()
                            " HAVING MIN( ic.num_cuota )  "
                            " ORDER BY ic.id_plan_cuota, ic.num_cuota " ).arg( fin_mes.toString( Qt::ISODate ) ) ) ){
        while( cola.next() ) {
-           setData( index( _cant, 0 ), _cant, Qt::EditRole );
-           setData( index( _cant, 1 ), cola.record().value( "id_plan_cuota" ).toInt()   , Qt::EditRole );
-           setData( index( _cant, 2 ), QString( "%1/%2" ).arg( cola.record().value( "cantidad_cuotas" ).toInt(), cola.record().value("num_cuota").toInt() ), Qt::EditRole );
-           setData( index( _cant, 2 ), cola.record().value( "razon_social"  ).toString(), Qt::EditRole );
-           setData( index( _cant, 3 ), cola.record().value( "num_cuota"     ).toInt()   , Qt::EditRole );
+           _numeros ->insert( _cant, cola.record().value("id_item_cuota").toInt() );
+           _planes  ->insert( _cant, cola.record().value( "id_plan_cuota" ).toInt() );
+           _cuotas  ->insert( _cant, QString( "%1/%2" ).arg( cola.record().value( "cantidad_cuotas" ).toInt(), cola.record().value("num_cuota").toInt() ) );
+           _clientes->insert( _cant, cola.record().value( "razon_social"  ).toString() );
+           _clientes_id->insert( _cant, cola.record().value( "id" ).toInt() );
            double monto = cola.record().value( "monto" ).toDouble();
            _total += monto;
-           setData( index( _cant, 4 ), monto, Qt::EditRole );
+           _importes->insert( _cant, monto );
+           _comprobantes->insert( _cant, num );
            _cant++;
+           num->siguienteNumero();
        }
        if( _cant > 0 ) {
            emit cambioTotal( _total );
            emit cambioCantidad( _cant );
+           emit dataChanged( index( 0, 0 ), index( _cant, 5 ) );
+           emit comprobantes( QPair<NumeroComprobante *, NumeroComprobante *>( _comprobantes->value( 0 ), _comprobantes->value( _cant ) ) );
            return true;
        } else {
+           emit cambioTotal( 0.0 );
+           emit cambioCantidad( 0 );
+           qWarning( "No existe ninguna cuota para generar recibos" );
            return false;
        }
    } else {

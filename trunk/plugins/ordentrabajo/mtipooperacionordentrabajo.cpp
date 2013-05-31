@@ -38,7 +38,7 @@ bool MTipoOperacionOrdenTrabajo::existe( const QString nombre )
 bool MTipoOperacionOrdenTrabajo::tieneDatosRelacionados( const int id_tipo )
 {
     qDebug( "Buscador de datos relacionados todavía no implementado!" );
-    /// @TODO Agregar busqueda de datos relacionados
+    /// @TODO Agregar busqueda de datos relacionados para tipos de ordenes de trabajo
     return true;
 }
 

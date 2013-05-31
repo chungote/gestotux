@@ -21,6 +21,11 @@ FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) 
 
     TVVista->setModel( modelo );
 
+    ActCalcular = new QAction( this );
+    ActCalcular->setText( "Calcular" );
+    connect( ActCalcular, SIGNAL( triggered() ), this, SLOT( calcularCuotas() ) );
+
+    addAction( ActCalcular );
     addAction( new EActCerrar( this ) );
 }
 
@@ -43,5 +48,14 @@ void FormGenerarComprobantesCuotas::changeEvent(QEvent *e)
  */
 void FormGenerarComprobantesCuotas::cambioComprobantes( QPair<NumeroComprobante *,NumeroComprobante *> nums)
 {
-    LComprobantes->setText( QString( "Emitiendo comprobantes número: %1 al %2" ).arg( nums.first->aCadena() ).arg( nums.second->aCadena() ) );
+  LComprobantes->setText( QString( "Emitiendo comprobantes número: %1 al %2" ).arg( nums.first->aCadena() ).arg( nums.second->aCadena() ) );
+}
+
+/**
+ * @brief FormGenerarComprobantesCuotas::calcularCuotas
+ * Llama al sistema para que vea de generar las los datos para modelo
+ */
+void FormGenerarComprobantesCuotas::calcularCuotas()
+{
+  modelo->calcularComprobantes();
 }
