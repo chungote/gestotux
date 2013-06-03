@@ -8,6 +8,7 @@
 #include <QDate>
 
 MGenerarCuotas::MGenerarCuotas( QObject *parent )
+: QSqlTableModel( parent )
 {
     setHeaderData( 0, Qt::Horizontal, "#Num" );
     setHeaderData( 1, Qt::Horizontal, "#Plan" );
@@ -109,6 +110,7 @@ bool MGenerarCuotas::calcularComprobantes()
                            " HAVING MIN( ic.num_cuota )  "
                            " ORDER BY ic.id_plan_cuota, ic.num_cuota " ).arg( fin_mes.toString( Qt::ISODate ) ) ) ){
        while( cola.next() ) {
+           beginInsertRows( QModelIndex(), _cant, _cant );
            _numeros ->insert( _cant, cola.record().value("id_item_cuota").toInt() );
            _planes  ->insert( _cant, cola.record().value( "id_plan_cuota" ).toInt() );
            _cuotas  ->insert( _cant, QString( "%1/%2" ).arg( cola.record().value( "cantidad_cuotas" ).toInt(), cola.record().value("num_cuota").toInt() ) );
@@ -118,6 +120,7 @@ bool MGenerarCuotas::calcularComprobantes()
            _total += monto;
            _importes->insert( _cant, monto );
            _comprobantes->insert( _cant, num );
+           beginInsertRows( QModelIndex(), _cant, _cant );
            _cant++;
            num->siguienteNumero();
        }
@@ -125,7 +128,7 @@ bool MGenerarCuotas::calcularComprobantes()
            emit cambioTotal( _total );
            emit cambioCantidad( _cant );
            emit dataChanged( index( 0, 0 ), index( _cant, 5 ) );
-           emit comprobantes( QPair<NumeroComprobante *, NumeroComprobante *>( _comprobantes->value( 0 ), _comprobantes->value( _cant ) ) );
+           //emit comprobantes( QPair<NumeroComprobante *, NumeroComprobante *>( _comprobantes->value( 0 ), _comprobantes->value( _cant ) ) );
            return true;
        } else {
            emit cambioTotal( 0.0 );

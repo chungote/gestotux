@@ -19,10 +19,12 @@ protected:
 protected slots:
     void cambioComprobantes( QPair<NumeroComprobante *, NumeroComprobante *> nums );
     void calcularCuotas();
+    void emitirComprobantes();
 
 private:
     MGenerarCuotas *modelo;
     QAction *ActCalcular;
+    QAction *ActEmitir;
 
 };
 
