@@ -12,8 +12,8 @@ class MGenerarCuotas : public QSqlTableModel
 public:
     MGenerarCuotas( QObject *parent = 0 );
     QVariant data( const QModelIndex &idx, int role ) const;
-    int columnCount( const QModelIndex &parent ) const;
-    int rowCount( const QModelIndex &parent ) const;
+    int columnCount( const QModelIndex &parent = QModelIndex() ) const;
+    int rowCount( const QModelIndex &parent = QModelIndex()  ) const;
     
     bool calcularComprobantes();
 
