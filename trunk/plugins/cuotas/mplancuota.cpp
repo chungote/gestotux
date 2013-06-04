@@ -240,7 +240,7 @@ QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT pc.cantidad_cuotas, COUNT( ic.id_item_cuota ) FROM plan_cuota AS pc, item_cuota AS ic WHERE ic.id_plan_cuota = pc.id_plan_cuota AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
         if( cola.next() ) {
-            return QPair<int,int>( cola.record().value(0).toInt(), cola.record().value(1).toInt() );
+            return QPair<int,int>( cola.record().value(1).toInt(), cola.record().value(0).toInt() );
         } else {
             qDebug( "Error de next al obtención de cantidad de cuotas de un plan de cuotas" );
             qDebug( cola.lastQuery().toLocal8Bit() );
