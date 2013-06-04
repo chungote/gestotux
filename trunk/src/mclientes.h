@@ -31,9 +31,11 @@ class MClientes : public QSqlRelationalTableModel
 public:
     MClientes( QObject *parent = 0);
 
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+
     static QString direccionEntera( int id_cliente );
     static bool tieneDatosRelacionados( const int id_cliente );
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    static QString getRazonSocial( const int id_cliente );
     static bool existe( QString razon_social, QString nombre );
 };
 
