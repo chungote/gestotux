@@ -1,19 +1,22 @@
 #ifndef MGENERARCUOTAS_H
 #define MGENERARCUOTAS_H
 
-#include <QSqlTableModel>
+#include <QAbstractTableModel>
 #include <QPair>
 #include <QHash>
 #include "NumeroComprobante.h"
 
-class MGenerarCuotas : public QSqlTableModel
+class MGenerarCuotas : public QAbstractTableModel
 {
     Q_OBJECT
 public:
     MGenerarCuotas( QObject *parent = 0 );
+    ~MGenerarCuotas();
     QVariant data( const QModelIndex &idx, int role ) const;
     int columnCount( const QModelIndex &parent = QModelIndex() ) const;
     int rowCount( const QModelIndex &parent = QModelIndex()  ) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     
     bool calcularComprobantes();
 

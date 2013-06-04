@@ -8,15 +8,8 @@
 #include <QDate>
 
 MGenerarCuotas::MGenerarCuotas( QObject *parent )
-: QSqlTableModel( parent )
+: QAbstractTableModel( parent )
 {
-    setHeaderData( 0, Qt::Horizontal, "#Num" );
-    setHeaderData( 1, Qt::Horizontal, "#Plan" );
-    setHeaderData( 2, Qt::Horizontal, "Cliente" );
-    setHeaderData( 3, Qt::Horizontal, "#Cuota" );
-    setHeaderData( 4, Qt::Horizontal, "Importe" );
-    setHeaderData( 5, Qt::Horizontal, "#Recibo" );
-
     _numeros = new QHash<int, int>();
     _planes = new QHash<int, int>();
     _clientes = new QHash<int, QString>();
@@ -27,6 +20,25 @@ MGenerarCuotas::MGenerarCuotas( QObject *parent )
 
     _total = 0.0;
     _cant = 0;
+}
+
+MGenerarCuotas::~MGenerarCuotas()
+{
+    delete _numeros;
+    delete _planes;
+    delete _clientes;
+    delete _clientes_id;
+    delete _cuotas;
+    delete _importes;
+    delete _comprobantes;
+    _numeros = 0;
+    _planes = 0;
+    _clientes = 0;
+    _clientes_id = 0;
+    _cuotas = 0;
+    _importes = 0;
+    _comprobantes = 0;
+
 }
 
 QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
@@ -87,6 +99,32 @@ int MGenerarCuotas::columnCount( const QModelIndex & ) const
 int MGenerarCuotas::rowCount( const QModelIndex & ) const
 { return _cant; }
 
+Qt::ItemFlags MGenerarCuotas::flags( const QModelIndex & ) const
+{ return Qt::ItemFlags( !Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled ); }
+
+QVariant MGenerarCuotas::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if( orientation == Qt::Horizontal && role == Qt::DisplayRole ) {
+        switch( section ) {
+            case 0:
+            { return "#Num";    break; }
+            case 1:
+            { return "#Plan";   break; }
+            case 2:
+            { return "Cliente"; break; }
+            case 3:
+            { return "#Cuota";  break; }
+            case 4:
+            { return "Importe"; break; }
+            case 5:
+            { return "#Recibo"; break; }
+            default:
+            { return section;   break; }
+        }
+    }
+    return QAbstractTableModel::headerData( section, orientation, role );
+}
+
 bool MGenerarCuotas::calcularComprobantes()
 {
    _cant = 0;
@@ -120,7 +158,7 @@ bool MGenerarCuotas::calcularComprobantes()
            _total += monto;
            _importes->insert( _cant, monto );
            _comprobantes->insert( _cant, num );
-           beginInsertRows( QModelIndex(), _cant, _cant );
+           endInsertRows();
            _cant++;
            num->siguienteNumero();
        }

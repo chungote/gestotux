@@ -7,26 +7,6 @@
 
 #include <QMessageBox>
 
-/* CONSULTA MODELO
- *SELECT CONCAT( '# ', pc.id_plan_cuota ) AS plan_cuota,
-             c.razon_social AS cliente,
-             CONCAT( ( SELECT SUM( ic2.id_plan_cuota ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NULL ),
-                            ( SELECT SUM( ic2.id_plan_cuota ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago ) ) AS cuotas,
-            ( SELECT SUM( ic2.monto ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NULL ) AS total_faltante,
-             ( SELECT MAX( ic2.fecha_pago ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NOT NULL ) AS ultimo_pago,
-             ( SELECT MIN( ic2.fecha_vencimiento ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NULL ) AS proximo_pago
-FROM plan_cuota AS pc,
-           item_cuota AS ic,
-           clientes AS c,
-           factura AS f
-WHERE ic.id_plan_cuota = pc.id_plan_cuota
- AND pc.id_factura = f.id_factura
- AND c.id = f.id_cliente
- *
- **/
-
-
-
 VPlanCuotas::VPlanCuotas(QWidget *parent) :
  EVLista(parent)
 {
