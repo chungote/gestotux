@@ -82,7 +82,7 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
                 return false;
             } else {
                 // Actualizo la fecha de la proxima cuota
-                fecha_venc.addDays( diasEnPeriodo( periodo, fecha_venc ) );
+                fecha_venc = fecha_venc.addDays( diasEnPeriodo( periodo, fecha_venc ) );
             }
         }
         return true;
@@ -179,7 +179,7 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
             return fecha_calculo.daysInYear() -1 ;
         }
         default:
-        { return 0; }
+        { qDebug( "Tipo de periodo desconocido" ); qDebug( QString::number( tipo_periodo ).toLocal8Bit() ); return 0; }
     }
 }
 
