@@ -204,6 +204,30 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
   return false;
 }
 
+/*!
+ * \brief MClientes::getRazonSocial
+ * Devuelve la razón social del cliente pasado como parametro
+ * \param id_cliente Identificador del cliente
+ * \return Razon social del cliente o Desconocido
+ */
+QString MClientes::getRazonSocial( const int id_cliente )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT razon_social FROM clientes WHERE id = %1" ).arg( id_cliente ) ) ) {
+      if( cola.next() ) {
+          return cola.record().value(0).toString();
+      } else {
+          qDebug( "Error al hacer next en la cola de averiguacion de razonsocial de clientes" );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+      }
+  } else {
+      qDebug( "Error al ejecutar  la cola de averiguacion de razonsocial de clientes" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return "Desconocido";
+}
+
 
 /*!
  * \fn MClientes::existe( QString razon_social, QString nombre )

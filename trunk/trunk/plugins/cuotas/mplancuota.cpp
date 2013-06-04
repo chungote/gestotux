@@ -49,9 +49,8 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
     rec.setValue( "cantidad", cantidad );
     rec.setValue( "periodo", periodo );
     rec.setValue( "fecha_inicio", fecha_inicio );
-    rec.setValue( "entrega", entrega );
+    rec.setValue( "entrega_inicial", entrega );
     rec.setValue( "recargo", interes );
-    //rec.setGenerated( rec.indexOf( "id_plan_cuota" ), true );
     if( this->insertRecord( -1, rec ) ) {
         // Genero los items de cuota
         if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driver()->hasFeature( QSqlDriver::LastInsertId ) ) {

@@ -6,6 +6,7 @@
 #include "preferencias.h"
 #include "eregistroplugins.h"
 #include "einfoprogramainterface.h"
+#include "mclientes.h"
 
 #include <QTextTable>
 #include <QTextDocument>
@@ -217,23 +218,25 @@ void FormSimularCuotas::generaReporte()
     cursor.insertText( "Firma del contrayente: ___________________________" );
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertText( QString::fromUtf8( "AclaraciÃ³n: ________________________________________________" ) );
     cursor.insertBlock();
     cursor.insertBlock();
-    cursor.insertHtml( QString::fromUtf8( "<small>En caso de provocarse un atraso en la fecha de pago de cualquiera de las cuotas, se aplicarÃ¡ el recargo correspondiente tal cual se hace actualmenete con cualquier recibo emitido por nuestra entidad.</small>" ) );
+    cursor.insertText( QString::fromUtf8( "Aclaracion: ________________________________________________      DNI:___-__________-___" ) );
+    cursor.insertBlock();
+    cursor.insertBlock();
+    cursor.insertHtml( QString::fromUtf8( "<small>En caso de provocarse un atraso en la fecha de pago de cualquiera de las cuotas, se aplicara el recargo correspondiente tal cual se hace actualmenete con cualquier recibo emitido por nuestra entidad.</small>" ) );
 
     // Cabecera
     cursor.movePosition( QTextCursor::Start );
     cursor.insertBlock();
 #ifdef Q_OS_WIN
-    cursor.insertHtml( "<h1> HiComp Computación</h1><br />" );
+    cursor.insertHtml( "<h1>HiComp Computación</h1><br />" );
 #else
     cursor.insertHtml( "<h1>" + ERegistroPlugins::getInstancia()->pluginInfo()->empresa() + "</h1><br />" );
 #endif
     cursor.insertHtml( "<h2>Plan de cuotas</h2><br /><br />" );
     cursor.insertBlock();
     cursor.insertHtml( QString( "<b>Fecha de Inicio:</b> %1 <br />" ).arg( DEInicio->date().toString( Qt::SystemLocaleLongDate ) ) );
-    cursor.insertHtml( QString( "<b>Nombre del cliente:</b> %1 <br />").arg( "Desconocido" ) );
+    cursor.insertHtml( QString( "<b>Nombre del cliente:</b> %1 <br />").arg( MClientes::getRazonSocial( _id_cliente ) ) );
     return;
 }
 
