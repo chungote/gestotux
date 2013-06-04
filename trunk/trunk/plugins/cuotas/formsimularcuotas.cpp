@@ -59,14 +59,14 @@ EVentana(parent), Ui::FormSimularCuotasBase()
 
     connect( DEInicio  , SIGNAL( dateChanged( QDate ) ), this, SLOT( cambioFechaInicio( QDate ) ) );
 
-    CBPeriodo->insertItem( MPlanCuota::Semanal      , "Semanal"       );
-    CBPeriodo->insertItem( MPlanCuota::Quincenal    , "Quincenal"     );
-    CBPeriodo->insertItem( MPlanCuota::Mensual      , "Mensual"       );
-    CBPeriodo->insertItem( MPlanCuota::BiMensual    , "Bimensual"     );
-    CBPeriodo->insertItem( MPlanCuota::Trimestral   , "Trimestral"    );
-    CBPeriodo->insertItem( MPlanCuota::Cuatrimestral, "Cuatrimestral" );
-    CBPeriodo->insertItem( MPlanCuota::Seximestral  , "Semestral"     );
-    CBPeriodo->insertItem( MPlanCuota::Anual        , "Anual"         );
+    CBPeriodo->insertItem( MPlanCuota::Semanal      , "Semanal"       , MPlanCuota::Semanal       );
+    CBPeriodo->insertItem( MPlanCuota::Quincenal    , "Quincenal"     , MPlanCuota::Quincenal     );
+    CBPeriodo->insertItem( MPlanCuota::Mensual      , "Mensual"       , MPlanCuota::Mensual       );
+    CBPeriodo->insertItem( MPlanCuota::BiMensual    , "Bimensual"     , MPlanCuota::BiMensual     );
+    CBPeriodo->insertItem( MPlanCuota::Trimestral   , "Trimestral"    , MPlanCuota::Trimestral    );
+    CBPeriodo->insertItem( MPlanCuota::Cuatrimestral, "Cuatrimestral" , MPlanCuota::Cuatrimestral );
+    CBPeriodo->insertItem( MPlanCuota::Seximestral  , "Semestral"     , MPlanCuota::Seximestral   );
+    CBPeriodo->insertItem( MPlanCuota::Anual        , "Anual"         , MPlanCuota::Anual         );
 
     DEInicio->setDate( QDate::currentDate() );
 
@@ -124,7 +124,7 @@ void FormSimularCuotas::simular()
     DSBTotal->setValue( DSBImporte->value() - DSBEntrega->value() );
     modelo->setImporte    ( DSBTotal->value()   );
     modelo->setCuotas     ( SBCantidad->value() );
-    modelo->setPeriodo    ( (MPlanCuota::Periodo) CBPeriodo->currentIndex() );
+    modelo->setPeriodo    ( (MPlanCuota::Periodo) CBPeriodo->itemData( CBPeriodo->currentIndex() ).toInt() );
     modelo->setInteres    ( DSBInteres->value() );
     modelo->setFechaInicio( DEInicio->date()    );
     modelo->setPagoInicial( DSBEntrega->value() );
@@ -280,7 +280,7 @@ void FormSimularCuotas::confirmar()
     if( ! mpc->agregarPlanCuota( _id_cliente,
                                  DSBImporte->value(),
                                  DSBInteres->value(),
-                                 CBPeriodo->currentIndex(),
+                                 (MPlanCuota::Periodo) CBPeriodo->itemData( CBPeriodo->currentIndex() ).toInt(),
                                  DSBEntrega->value(),
                                  DEInicio->date(),
                                  SBCantidad->value(),
