@@ -2,6 +2,7 @@
 
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlRecord>
 
 MItemPlanCuota::MItemPlanCuota(QObject *parent) :
     QSqlRelationalTableModel(parent)
@@ -47,6 +48,31 @@ bool MItemPlanCuota::agregarItem(int id_plan, int num_cuota, QDate fecha_venc, d
         return true;
     }
     return false;
+}
+
+/**
+ * @brief MItemPlanCuota::obtenerProximoImporte
+ * Devuelve el importe del item de cuota que no esté pagado.
+ * @param id_plan Identificador del plan
+ * @return valor de la cuota
+ */
+double MItemPlanCuota::obtenerProximoImporte( const int id_plan )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT monto FROM item_cuota WHERE id_plan_cuota = %1 AND fecha_pago is NULL ORDER BY fecha_vencimiento LIMIT 1" ).arg( id_plan ) ) ) {
+      if( cola.next() ) {
+          return cola.record().value(0).toDouble();
+      } else {
+          qDebug( "Error al hacer next en la cola de averiguacion del importe de un item de cuota" );
+          qDebug( cola.lastError().text().toLocal8Bit() );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+      }
+  } else {
+      qDebug( "Error al ejecutar la cola de averiguacion del importe de un item de cuota" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return -1.0;
 }
 
 QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const

@@ -176,7 +176,7 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
         case MPlanCuota::Anual:
         {
             // Como consideramos los servicios con base en 1 año, siempre es periodo 1
-            return fecha_calculo.daysInYear() -1 ;
+            return fecha_calculo.daysInYear() - 1;
         }
         default:
         { qDebug( "Tipo de periodo desconocido" ); qDebug( QString::number( tipo_periodo ).toLocal8Bit() ); return 0; }
@@ -238,9 +238,10 @@ QString MPlanCuota::obtenerRazonSocial( const int id_plan )
 QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT pc.cantidad_cuotas, COUNT( ic.id_item_cuota ) FROM plan_cuota AS pc, item_cuota AS ic WHERE ic.id_plan_cuota = pc.id_plan_cuota AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+    QPair<int, int> par( -1, -1 );
+    if( cola.exec( QString( "SELECT pc.cantidad_cuotas FROM plan_cuota AS pc WHERE pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
         if( cola.next() ) {
-            return QPair<int,int>( cola.record().value(1).toInt(), cola.record().value(0).toInt() );
+            par.second = cola.record().value(0).toInt();
         } else {
             qDebug( "Error de next al obtención de cantidad de cuotas de un plan de cuotas" );
             qDebug( cola.lastQuery().toLocal8Bit() );
@@ -250,7 +251,19 @@ QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return QPair<int,int>( -1, -1 );
+    if( cola.exec( QString( "SELECT COUNT( id_plan_cuota ) FROM item_cuota  WHERE id_plan_cuota = %1 AND fecha_pago IS NOT NULL" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            par.first = cola.record().value(0).toInt();
+        } else {
+            qDebug( "Error de next al obtención de cantidad de cuotas de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de cantidad de cuotas de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return par;
 }
 
 /*!
@@ -261,10 +274,11 @@ QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
  */
 QPair<double, double> MPlanCuota::obtenerEstadoImportes(const int id_plan)
 {
+    QPair<double, double> par( -1.0, -1.0 );
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT SUM( ic.monto ), f.total FROM plan_cuota AS pc, item_cuota AS ic, factura AS f WHERE ic.id_plan_cuota = pc.id_plan_cuota AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+    if( cola.exec( QString( "SELECT SUM( monto ) FROM item_cuota WHERE id_plan_cuota = %1 AND fecha_pago IS NOT NULL" ).arg( id_plan ) ) ) {
         if( cola.next() ) {
-            return QPair<double,double>( cola.record().value(0).toDouble(), cola.record().value(1).toDouble() );
+            par.first = cola.record().value(0).toDouble();
         } else {
             qDebug( "Error de next al obtención de estado financiero de un plan de cuotas" );
             qDebug( cola.lastQuery().toLocal8Bit() );
@@ -274,5 +288,17 @@ QPair<double, double> MPlanCuota::obtenerEstadoImportes(const int id_plan)
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return QPair<double,double>( -1.0, -1.0 );
+    if( cola.exec( QString( "SELECT f.total FROM factura AS f, plan_cuota AS pc WHERE pc.id_plan_cuota = %1 AND f.id_factura = pc.id_factura" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            par.second = cola.record().value(0).toDouble();
+        } else {
+            qDebug( "Error de next al obtención de estado financiero de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención de estado financiero de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return par;
 }

@@ -18,6 +18,7 @@ public:
     explicit MItemPlanCuota( QObject *parent = 0 );
     
     static bool agregarItem( int id_plan, int num_cuota, QDate fecha_venc, double importe );
+    static double obtenerProximoImporte( const int id_plan );
 
     QVariant data(const QModelIndex &item, int role) const;
 
