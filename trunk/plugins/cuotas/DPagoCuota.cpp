@@ -1,6 +1,9 @@
 #include "DPagoCuota.h"
 
 #include "mplancuota.h"
+#include "mitemplancuota.h"
+#include "NumeroComprobante.h"
+#include "mpagos.h"
 
 DPagoCuota::DPagoCuota(QWidget *parent) :
 QDialog(parent)
@@ -67,11 +70,16 @@ void DPagoCuota::cargarDatos()
 {
     this->LRazonSocial->setText( MPlanCuota::obtenerRazonSocial( this->_id_plan_cuota ) );
     QPair<int,int> estado_cuotas = MPlanCuota::obtenerEstadoCuotas( this->_id_plan_cuota );
-    this->LCDNTotal->display( estado_cuotas.first );
-    this->LCDNPagadas->display( estado_cuotas.second );
+    this->LCDNTotal->display( estado_cuotas.second );
+    this->LCDNPagadas->display( estado_cuotas.first );
     QPair<double,double> estado_plata = MPlanCuota::obtenerEstadoImportes( this->_id_plan_cuota );
+    this->DSBTotal->setValue( estado_plata.second );
+    this->DSBFaltante->setValue( estado_plata.second - estado_plata.first );
+    this->DSBPagado->setValue( estado_plata.first );
     double porcentaje = ( estado_plata.first * 100 ) / estado_plata.second;
     this->PrBProgreso->setValue( porcentaje );
-    this->DSBImporte->setValue( estado_plata.second );
-    this->DSBPagado->setValue( estado_plata.first );
+    NumeroComprobante num = MPagos::proximoSerieNumeroRecibo();
+    LRecibo->setText( num.aCadena() );
+    double importe_cuota = MItemPlanCuota::obtenerProximoImporte( this->_id_plan_cuota );
+    this->DSBImporte->setValue( importe_cuota );
 }

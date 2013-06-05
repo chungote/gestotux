@@ -58,4 +58,9 @@ void FormGenerarComprobantesCuotas::cambioComprobantes( QPair<NumeroComprobante 
 void FormGenerarComprobantesCuotas::calcularCuotas()
 {
   modelo->calcularComprobantes();
+  TVVista->update();
+}
+
+void FormGenerarComprobantesCuotas::emitirComprobantes()
+{
 }

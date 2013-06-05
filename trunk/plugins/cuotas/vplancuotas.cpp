@@ -82,17 +82,12 @@ void VPlanCuotas::simular()
  */
 void VPlanCuotas::cambioTerminado( bool e )
 {
-    if( e ) {
-        qWarning( "No implementado filtro todavía" );
-        this->modelo->setFilter( "    ic.id_plan_cuota = pc.id_plan_cuota "
-                                 "AND pc.id_factura    = f.id_factura "
-                                 "AND c.id             = f.id_cliente" );
+    /*if( e ) {
+        this->modelo->setFilter( "" );
     } else {
-        this->modelo->setFilter( "    ic.id_plan_cuota = pc.id_plan_cuota "
-                                 "AND pc.id_factura    = f.id_factura "
-                                 "AND c.id             = f.id_cliente" );
+        this->modelo->setFilter( "" );
     }
-    this->modelo->select();
+    this->modelo->select();*/
 }
 
 /*!
