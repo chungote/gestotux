@@ -12,6 +12,9 @@ public:
     DPagoCuota( QWidget *parent = 0 );
     void setearPlanCuota( const int id_plan_cuota );
     void setearModelo( MVPlanCuota *m );
+
+public slots:
+    void accept();
     
 protected:
     void changeEvent(QEvent *e);

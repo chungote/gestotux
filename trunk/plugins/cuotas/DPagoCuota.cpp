@@ -1,5 +1,7 @@
 #include "DPagoCuota.h"
 
+#include <QMessageBox>
+
 #include "mplancuota.h"
 #include "mitemplancuota.h"
 #include "NumeroComprobante.h"
@@ -47,7 +49,7 @@ void DPagoCuota::setearModelo( MVPlanCuota *m )
             this->cargarDatos();
     } else {
         qDebug( "DPagoCuotas::setearModelo: Puntero a modelo incorrecto" );
-    }
+      }
 }
 
 void DPagoCuota::changeEvent(QEvent *e)
@@ -82,4 +84,20 @@ void DPagoCuota::cargarDatos()
     LRecibo->setText( num.aCadena() );
     double importe_cuota = MItemPlanCuota::obtenerProximoImporte( this->_id_plan_cuota );
     this->DSBImporte->setValue( importe_cuota );
+}
+
+/**
+ * @brief DPagoCuota::accept
+ * Función llamada cuando se presiona el aceptar en el dialogo
+ */
+void DPagoCuota::accept()
+{
+  // Cosas a verificar: coincidencia del total a pagar
+  if( this->DSBImporte->value() != this->DSBPago->value() ) {
+      QMessageBox::information( this, "Error", QString::fromUtf8( "El importe a pagar no corresponde con la cuota" ) );
+      return;
+  }
+
+  // Genero el recibo
+  return;
 }
