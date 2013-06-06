@@ -230,6 +230,30 @@ QString MPlanCuota::obtenerRazonSocial( const int id_plan )
 }
 
 /*!
+ * \brief MPlanCuota::obtenerIdCliente
+ * Devuelve el ID del cliente asociado con el plan de cuotas pasado como parametro
+ * \param id_plan Identificador del plan de cuotas
+ * \return id del cliente o -1 si hubo algún error
+ */
+int MPlanCuota::obtenerIdCliente( const int id_plan )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT c.id FROM plan_cuota AS pc, clientes AS c, factura AS f WHERE c.id = f.id_cliente AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug( "Error de next al obtención del Id de cliente de un plan de cuotas" );
+            qDebug( cola.lastQuery().toLocal8Bit() );
+        }
+    } else {
+        qDebug( "Error al ejecutar la cola de obtención del id de cliente de un plan de cuotas" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return -1;
+}
+
+/*!
  * \brief MPlanCuota::obtenerEstadoCuotas
  * Devuelve el par de datos cantidad_cuotas/cuotas_pagadas de un plan de cuotas.
  * \param id_plan Identificador del plan de cuotas
