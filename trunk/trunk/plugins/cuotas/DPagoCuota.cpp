@@ -98,6 +98,21 @@ void DPagoCuota::accept()
       return;
   }
 
+  // Genero la transacción
+  QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).transaction();
   // Genero el recibo
+  int id_cliente = MPlanCuota::obtenerIdCliente( this->_id_plan_cuota );
+  QDate fecha_recibo = QDate::currentDate();
+  QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
+  double total = this->DSBPago->value();
+  bool efectivo = this->CkBEfectivo->isChecked();
+  MPagos *m = new MPagos( this, false );
+  int id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, efectivo, true );
+  if ( id_recibo == -1 ) {
+      QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
+      QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+  }
+  // Guardo la información en el registro del item de cuota correspondiente
+
   return;
 }
