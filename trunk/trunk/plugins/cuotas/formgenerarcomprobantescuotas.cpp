@@ -1,6 +1,11 @@
 #include "formgenerarcomprobantescuotas.h"
 
 #include "eactcerrar.h"
+#include "mpagos.h"
+#include "mitemplancuota.h"
+
+#include <QSqlDatabase>
+#include <QMessageBox>
 
 FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) :
     EVentana( parent )
@@ -63,4 +68,54 @@ void FormGenerarComprobantesCuotas::calcularCuotas()
 
 void FormGenerarComprobantesCuotas::emitirComprobantes()
 {
+  // Genero la transaccion
+  QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).transaction();
+
+  // Deshabilito las acciones para que no pueda tocar nada mientras trabajo
+  ActEmitir->setEnabled( false );
+  ActCalcular->setEnabled( false );
+  TVVista->setEnabled( false );
+
+  // Muestro la barra de progreso
+  GBProgreso->setVisible( true );
+
+  // Coloco el rango ( busqueda de info = 1, emision = 2, guardado de datos = 3 )
+  PgBEstado->setRange( 0, modelo->rowCount()*3 );
+
+  MPagos *m = new MPagos( this, false );
+  // Recorro el modelo y genero los recibos
+  while( modelo->rowCount() > 0 ) {
+      // Busco los datos del modelo
+      LProgreso->setText( QString( "Buscando información para el plan de cuota %1" ).arg( ? ) );
+
+      int id_cliente = ?;
+      double monto = ?;
+      QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
+      QDate fecha = QDate::currentDate();
+
+      PgBEstado->setValue( PgBEstado->value() + 1 );
+      LProgreso->setText( QString( "Emitiendo recibo Nº %1" ).arg( ?.aCadena() ) );
+
+      // Emito el recibo con los datos pero lo pongo como "A Pagar luego" o como pagado = false
+      int id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, true, false );
+      if ( id_recibo == -1 ) {
+          QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
+          QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+      }
+
+      PgBEstado->setValue( PgBEstado->value() + 1 );
+      LEstado->setText( "Recibo generado... Guardando relacion...." );
+
+      // Guardo el numero de recibo en el registro de la cuota
+      int id_item_plan_cuota = ?;
+      if( !MItemPlanCuota::setearIdRecibo( id_item_plan_cuota, id_recibo ) ) {
+          QMessageBox::information( this, "Error", "No se pudo asociar el recibo con el item del plan de cuota" );
+          QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+      }
+      PgBEstado->setValue( PgBEstado->value() + 1 );
+
+      modelo->removeRow( 0 );
+  }
+  QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+
 }
