@@ -75,6 +75,31 @@ double MItemPlanCuota::obtenerProximoImporte( const int id_plan )
   return -1.0;
 }
 
+/**
+ * @brief MItemPlanCuota::buscarReciboEmitido
+ * @param id_plan Identificador del plan
+ * @return Identificador del recibo si existe, -2 si no se encuentra el dato y -1 si hubo un error
+ */
+int MItemPlanCuota::buscarReciboEmitido( const int id_plan )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT id_recibo FROM item_cuota WHERE id_plan_cuota = %1 AND fecha_pago is NULL ORDER BY fecha_vencimiento LIMIT 1" ).arg( id_plan ) ) ) {
+      if( cola.next() ) {
+          return cola.record().value(0).toInt();
+      } else {
+          qDebug( "Error al hacer next en la cola de averiguacion del id de recibo de un item de cuota" );
+          qDebug( cola.lastError().text().toLocal8Bit() );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+          return -2;
+      }
+  } else {
+      qDebug( "Error al ejecutar la cola de averiguacion del id de recibo de un item de cuota" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return -1;
+}
+
 QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
 {
     if( item.isValid() ) {

@@ -22,6 +22,7 @@ protected:
 private:
     int _id_plan_cuota;
     MVPlanCuota *_model;
+    bool _emitir;
 
     void cargarDatos();
 };

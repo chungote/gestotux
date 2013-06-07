@@ -17,6 +17,7 @@ QDialog(parent)
 
     _id_plan_cuota = -1;
     _model = 0;
+    _emitir = false;
 }
 
 /*!
@@ -80,8 +81,15 @@ void DPagoCuota::cargarDatos()
     this->DSBPagado->setValue( estado_plata.first );
     double porcentaje = ( estado_plata.first * 100 ) / estado_plata.second;
     this->PrBProgreso->setValue( porcentaje );
-    NumeroComprobante num = MPagos::proximoSerieNumeroRecibo();
-    LRecibo->setText( num.aCadena() );
+    // Busco si el recibo ya se encuentra emitido
+    int num = MItemPlanCuota::buscarReciboEmitido( this->_id_plan_cuota );
+    if( num == -2 ) {
+        LRecibo->setText( MPagos::buscarNumeroComprobantePorId( num ).aCadena() );
+        this->_emitir = false;
+    } else {
+        LRecibo->setText( MPagos::proximoSerieNumeroRecibo().aCadena() );
+        this->_emitir = true;
+    }
     double importe_cuota = MItemPlanCuota::obtenerProximoImporte( this->_id_plan_cuota );
     this->DSBImporte->setValue( importe_cuota );
 }
@@ -100,19 +108,31 @@ void DPagoCuota::accept()
 
   // Genero la transacción
   QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).transaction();
-  // Genero el recibo
-  int id_cliente = MPlanCuota::obtenerIdCliente( this->_id_plan_cuota );
-  QDate fecha_recibo = QDate::currentDate();
-  QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
-  double total = this->DSBPago->value();
-  bool efectivo = this->CkBEfectivo->isChecked();
+
   MPagos *m = new MPagos( this, false );
-  int id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, efectivo, true );
-  if ( id_recibo == -1 ) {
-      QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
-      QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+  if( this->_emitir ) {
+      // Hay que emitir un recibo como pagado
+
+      // Genero el recibo
+      int id_cliente = MPlanCuota::obtenerIdCliente( this->_id_plan_cuota );
+      QDate fecha_recibo = QDate::currentDate();
+      QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
+      double total = this->DSBPago->value();
+      int id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, CkBEfectivo->isChecked(), true );
+      if ( id_recibo == -1 ) {
+          QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
+          QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+      }
+      // Actualizo la información en el registro de item de cuota con el dato del recibo y la fecha de pago
+
+  } else {
+      // El recibo ya está emitido y es necesario colocarlo como pagado
+      int id_recibo = MItemPlanCuota::buscarReciboEmitido( id_item_plan_cuota );
+      if( !m->setearComoPagado( id_recibo, CkBEfectivo->isChecked(), true ) ) {
+          QMessageBox::information( this, "Error", "No se pudo setear como pagado el recibo emitido anteriormente" );
+          QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+      }
   }
-  // Guardo la información en el registro del item de cuota correspondiente
 
   return;
 }
