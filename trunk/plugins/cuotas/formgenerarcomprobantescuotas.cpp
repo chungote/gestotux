@@ -86,29 +86,32 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
   // Recorro el modelo y genero los recibos
   while( modelo->rowCount() > 0 ) {
       // Busco los datos del modelo
-      LProgreso->setText( QString( "Buscando información para el plan de cuota %1" ).arg( ? ) );
+      LProgreso->setText( QString( "Buscando información para el plan de cuota %1" )
+                          .arg( modelo->data( modelo->index( 0, 1 ), Qt::DisplayRole ).toString() ) );
 
-      int id_cliente = ?;
-      double monto = ?;
-      QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
+      int id_cliente = modelo->data( modelo->index( 0, 2 ), Qt::EditRole ).toInt();
+      double monto = modelo->data( modelo->index( 0, 4 ), Qt::EditRole ).toDouble();
+      QString contenido = QString( "Pago de cuota %1 del plan de cuotas #%2")
+              .arg( modelo->data( modelo->index( 0, 3 ), Qt::EditRole ).toString() )
+              .arg( modelo->data( modelo->index( 0, 1 ), Qt::EditRole ).toInt() );
       QDate fecha = QDate::currentDate();
 
       PgBEstado->setValue( PgBEstado->value() + 1 );
-      LProgreso->setText( QString( "Emitiendo recibo Nº %1" ).arg( ?.aCadena() ) );
+      LProgreso->setText( QString( "Emitiendo recibo Nº %1" ).arg( modelo->data( modelo->index( 0, 5 ), Qt::EditRole ).toString() ) );
 
       // Emito el recibo con los datos pero lo pongo como "A Pagar luego" o como pagado = false
-      int id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, true, false );
+      int id_recibo = m->agregarRecibo( id_cliente, fecha, contenido, monto, true, false );
       if ( id_recibo == -1 ) {
           QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
       }
 
       PgBEstado->setValue( PgBEstado->value() + 1 );
-      LEstado->setText( "Recibo generado... Guardando relacion...." );
+      LProgreso->setText( "Recibo generado... Guardando relacion...." );
 
       // Guardo el numero de recibo en el registro de la cuota
-      int id_item_plan_cuota = ?;
-      if( !MItemPlanCuota::setearIdRecibo( id_item_plan_cuota, id_recibo ) ) {
+      int id_item_plan_cuota = modelo->data( modelo->index( 0, 0 ), Qt::EditRole ).toInt();
+      if( !MItemPlanCuota::setearItemCuotaPagado( id_item_plan_cuota, id_recibo ) ) {
           QMessageBox::information( this, "Error", "No se pudo asociar el recibo con el item del plan de cuota" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
       }

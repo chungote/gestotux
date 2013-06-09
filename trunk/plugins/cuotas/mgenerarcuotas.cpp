@@ -46,13 +46,13 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
     switch( role ) {
       case Qt::DisplayRole:
       {
-          switch( idx.column() ) {
+          switch( idx.column() ) { // Numero interno
               case 0:
               {
                 return QString( "#%1" ).arg( _numeros->value( idx.row() ) );
                 break;
               }
-              case 1:
+              case 1: // Numero de plan de cuota
               {
                 return QString( "#%1" ).arg( _planes->value( idx.row() ) );
                   break;
@@ -84,6 +84,49 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
               }
           }
           break;
+      }
+      case Qt::EditRole:
+      {
+        switch( idx.column() )
+        {
+
+            case 0:
+            {
+              return _numeros->value( idx.row() );
+              break;
+            }
+            case 1: // Numero de plan de cuota
+            {
+              return _planes->value( idx.row() );
+                break;
+            }
+            case 2: // Nombre del cliente
+            {
+                return _clientes_id->value( idx.row() );
+                break;
+            }
+            case 3: // # Cuota ( 1/10 )
+            {
+                return _cuotas->value( idx.row() );
+                break;
+            }
+            case 4: // Importe de la cuota
+            {
+                return _importes->value( idx.row() );
+                break;
+            }
+            case 5:
+            {
+                return _comprobantes->value( idx.row() )->aCadena();
+                break;
+            }
+            default:
+            {
+              return QVariant();
+              break;
+            }
+        }
+        break;
       }
       default:
       {

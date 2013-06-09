@@ -92,6 +92,7 @@ void DPagoCuota::cargarDatos()
     }
     double importe_cuota = MItemPlanCuota::obtenerProximoImporte( this->_id_plan_cuota );
     this->DSBImporte->setValue( importe_cuota );
+    this->_id_item_plan_cuota = MItemPlanCuota::obtenerIdProximaCuota( this->_id_plan_cuota );
 }
 
 /**
@@ -105,11 +106,15 @@ void DPagoCuota::accept()
       QMessageBox::information( this, "Error", QString::fromUtf8( "El importe a pagar no corresponde con la cuota" ) );
       return;
   }
+  if( this->_id_item_plan_cuota == -1 ) {
+      abort();
+  }
 
   // Genero la transacción
   QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).transaction();
 
   MPagos *m = new MPagos( this, false );
+  int id_recibo = -1;
   if( this->_emitir ) {
       // Hay que emitir un recibo como pagado
 
@@ -118,7 +123,7 @@ void DPagoCuota::accept()
       QDate fecha_recibo = QDate::currentDate();
       QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
       double total = this->DSBPago->value();
-      int id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, CkBEfectivo->isChecked(), true );
+      id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, CkBEfectivo->isChecked(), true );
       if ( id_recibo == -1 ) {
           QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
@@ -127,12 +132,22 @@ void DPagoCuota::accept()
 
   } else {
       // El recibo ya está emitido y es necesario colocarlo como pagado
-      int id_recibo = MItemPlanCuota::buscarReciboEmitido( id_item_plan_cuota );
+      id_recibo = MItemPlanCuota::buscarReciboEmitido( this->_id_item_plan_cuota );
       if( !m->setearComoPagado( id_recibo, CkBEfectivo->isChecked(), true ) ) {
           QMessageBox::information( this, "Error", "No se pudo setear como pagado el recibo emitido anteriormente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
       }
   }
-
+  if( MItemPlanCuota::setearItemCuotaPagado( this->_id_item_plan_cuota, id_recibo ) ) {
+      if( QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).commit() ) {
+        QMessageBox::information( this, "Correcto", "El item de cuota fue registrado como pagado y el recibo emitido" );
+        return;
+      } else {
+        QMessageBox::information( this, "Incorrecto", "No se pudo hacer el guardado de los datos en lotes" );
+      }
+  } else {
+      QMessageBox::information( this, "Error", "El sistema no pudo registrar el item de cuota como pagado" );
+  }
+  QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
   return;
 }
