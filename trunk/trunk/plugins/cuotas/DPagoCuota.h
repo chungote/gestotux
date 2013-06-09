@@ -21,6 +21,7 @@ protected:
 
 private:
     int _id_plan_cuota;
+    int _id_item_plan_cuota;
     MVPlanCuota *_model;
     bool _emitir;
 
