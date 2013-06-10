@@ -2,7 +2,6 @@
 #define MITEMPLANCUOTA_H
 
 #include <QSqlRelationalTableModel>
-
 #include <QDate>
 
 /*!
@@ -18,8 +17,16 @@ public:
     explicit MItemPlanCuota( QObject *parent = 0 );
     
     static bool agregarItem( int id_plan, int num_cuota, QDate fecha_venc, double importe );
+
     static double obtenerProximoImporte( const int id_plan );
+    static int obtenerIdProximaCuota( const int id_plan );
+
     static int buscarReciboEmitido( const int id_plan );
+    static bool buscarSiReciboAPagar( const int id_recibo );
+
+    static bool setearItemCuotaPagado(const int id_item_cuota, const int id_recibo , QDateTime fecha_pagado = QDateTime::currentDateTime() );
+    static bool setearItemCuotaPagadoSegunRecibo( const int id_recibo , QDateTime fecha_pagado = QDateTime::currentDateTime() );
+
 
     QVariant data(const QModelIndex &item, int role) const;
 

@@ -27,6 +27,7 @@
 #include "mcuentacorriente.h"
 #include "mcobroservicioclienteperiodo.h"
 #include "mitemcuentacorriente.h"
+#include "mitemplancuota.h"
 
 #include <QSqlDatabase>
 #include <QPushButton>
@@ -82,6 +83,10 @@ void DPagarRecibo::accept()
         MCobroServicioClientePeriodo *c = new MCobroServicioClientePeriodo();
         if( c->verificarIdFactura( id_recibo ) ) {
             c->colocarComoPagado( id_recibo, id_recibo );
+        }
+        // busco si corresponde a un recibo de cuota
+        if( MItemPlanCuota::buscarSiReciboAPagar( id_recibo ) ) {
+            MItemPlanCuota::setearItemCuotaPagadoSegunRecibo( id_recibo );
         }
         // Veo de actualizar la cuenta corriente que corresponda
         NumeroComprobante proximo = m->buscarNumeroComprobantePorId( id_recibo );
