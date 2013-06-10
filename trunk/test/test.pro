@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 
-SUBDIRS +=  PeriodoServicioTest \
-            ProductosTest \
+SUBDIRS +=  ProductosTest \
+            #PeriodoServicioTest \
             BajaClienteServicioTest \
             PreferenciasTest

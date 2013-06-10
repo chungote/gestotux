@@ -56,6 +56,7 @@ INCLUDEPATH += ../../utiles \
                ../servicios \
                ../productos \
                ../descuentos \
+               ../cuotas \
                ../../reporte
 
 LIBS += ../../bin/libutiles.a \

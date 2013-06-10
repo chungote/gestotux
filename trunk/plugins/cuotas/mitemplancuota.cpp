@@ -76,6 +76,32 @@ double MItemPlanCuota::obtenerProximoImporte( const int id_plan )
 }
 
 /**
+ * @brief MItemPlanCuota::obtenerIdProximaCuota
+ * Busca el ID del proximo item de cuota a pagar para un plan específico
+ * @param id_plan Identificador del plan
+ * @return Identificador o -1 si hubo error o -2 si no existe proximo ítem
+ */
+int MItemPlanCuota::obtenerIdProximaCuota( const int id_plan )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT id_item_cuota FROM item_cuota WHERE id_plan_cuota = %1 AND fecha_pago is NULL ORDER BY fecha_vencimiento LIMIT 1" ).arg( id_plan ) ) ) {
+      if( cola.next() ) {
+          return cola.record().value(0).toInt();
+      } else {
+          qDebug( "Error al hacer next en la cola de averiguacion del id de un item de cuota" );
+          qDebug( cola.lastError().text().toLocal8Bit() );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+          return -2;
+      }
+  } else {
+      qDebug( "Error al ejecutar la cola de averiguacion del id de un item de cuota" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return -1.0;
+}
+
+/**
  * @brief MItemPlanCuota::buscarReciboEmitido
  * @param id_plan Identificador del plan
  * @return Identificador del recibo si existe, -2 si no se encuentra el dato y -1 si hubo un error
@@ -98,6 +124,72 @@ int MItemPlanCuota::buscarReciboEmitido( const int id_plan )
       qDebug( cola.lastQuery().toLocal8Bit() );
   }
   return -1;
+}
+
+/**
+ * @brief MItemPlanCuota::setearItemCuotaPagadoSegunRecibo
+ * Setea un plan de cuota como pagado según el recibo pagado
+ * @param id_recibo Identificador de recibo
+ * @return Verdadero si se pudo setear, falso en caso contrario
+ */
+bool MItemPlanCuota::setearItemCuotaPagadoSegunRecibo( const int id_recibo, QDateTime fecha_pagado )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "UPDATE item_cuota SET fecha_pagado = %2 WHERE id_recibo = %1 AND fecha_pago is NULL" ).arg( id_recibo ).arg( fecha_pagado.toString( Qt::ISODate ) ) ) ) {
+      return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado según id de recibo " );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return false;
+}
+
+/**
+ * @brief MItemPlanCuota::buscarSiReciboAPagar
+ * Verifica si el identificador de recibo se encuentra en un item de cuota a pagar
+ * @param id_recibo Identificador del recibo
+ * @return verdader si corresponde a una cuota o falso.
+ */
+bool MItemPlanCuota::buscarSiReciboAPagar( const int id_recibo )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT COUNT( id_recibo ) FROM item_cuota WHERE id_recibo = %1 AND fecha_pago is NULL" ).arg( id_recibo ) ) ) {
+      if( cola.next() ) {
+          if ( cola.record().value(0).toInt() > 0 ) {
+              return true;
+          }
+      } else {
+          qDebug( "Error al hacer next en la cola de averiguacion del id de recibo a pagar de un item de cuota" );
+          qDebug( cola.lastError().text().toLocal8Bit() );
+          qDebug( cola.lastQuery().toLocal8Bit() );
+      }
+  } else {
+      qDebug( "Error al ejecutar la cola de averiguacion del id de recibo a pagar de un item de cuota" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return false;
+}
+
+/**
+ * @brief MItemPlanCuota::setearItemCuotaPagado
+ * Setea el item de cuota como pagado con el identificador de recibo
+ * @param id_item_cuota Identificador de item de cuota
+ * @param id_recibo Identificador del recibo que paga la cuota.
+ * @return Verdadero si se pudo hacer la asociacion.
+ */
+bool MItemPlanCuota::setearItemCuotaPagado( const int id_item_cuota, const int id_recibo, QDateTime fecha_pagado )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "UPDATE item_cuota SET fecha_pagado = %2, id_recibo = %1, WHERE id_item_cuota = %3" ).arg( id_recibo ).arg( fecha_pagado.toString( Qt::ISODate ) ).arg( id_item_cuota ) ) ) {
+      return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado" );
+      qDebug( cola.lastError().text().toLocal8Bit() );
+      qDebug( cola.lastQuery().toLocal8Bit() );
+  }
+  return false;
 }
 
 QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
