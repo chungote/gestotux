@@ -276,7 +276,7 @@ void FormSimularCuotas::confirmar()
     }
     // Genero el plan de cuotas
     int id_plan_cuota = -1;
-    MPlanCuota *mpc = new MPlanCuota();
+    MPlanCuota *mpc = new MPlanCuota( this );
     if( ! mpc->agregarPlanCuota( _id_cliente,
                                  DSBImporte->value(),
                                  DSBInteres->value(),
@@ -284,12 +284,11 @@ void FormSimularCuotas::confirmar()
                                  DSBEntrega->value(),
                                  DEInicio->date(),
                                  SBCantidad->value(),
-                                 &id_plan_cuota ) ) {
+                                 &id_plan_cuota,
+                                 CkBEntregaEfectivo->isChecked() ) ) {
         QMessageBox::information( this, "Error", "No se pudo ingresar el plan de cuotas" );
-        delete mpc;
         return;
     }
-    delete mpc;
     emit emitirIdPlanCuota( id_plan_cuota );
     this->close();
     return;

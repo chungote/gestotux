@@ -2,6 +2,8 @@
 
 #include "mitemplancuota.h"
 #include "math.h"
+#include "mpagos.h"
+#include "EReporte.h"
 
 #include <QDate>
 #include <QSqlRecord>
@@ -24,9 +26,9 @@ QSqlTableModel(parent)
 }
 
 /*!
- * \fn MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double interes, int periodo, double entrega )
+ * \fn MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega )
  * Genera un nuevo plan de cuotas con los datos pasados como parametros
- * \param id_factura Identificador de cliente
+ * \param id_cliente Identificador de cliente
  * \param cantidad Importe total a generar en cuotas
  * \param interes Intereses a aplicar
  * \param periodo Tipo de periodo
@@ -34,18 +36,19 @@ QSqlTableModel(parent)
  * \param fecha_inicio Fecha desde cuando se inicia el plan de cuotas
  * \param id_plan Variable donde se devolverÃ¡ el numero de plan de cuota
  * \param cant_cuotas Cantidad de cuotas en que se dividio el pago
+ * \param efectivo Muestra si el recibo de entrega inicial tiene que ser en efectivo o no
  * \returns Verdadero si se pudo generar el plan y sus items
  */
-bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan )
+bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo )
 {
     // Verifico los parametros
-    if( id_factura <= 0 && cantidad <= 0.0 && interes <= 0.0 && periodo <= 0  ) {
+    if( id_cliente <= 0 && cantidad <= 0.0 && interes <= 0.0 && periodo <= 0  ) {
         qWarning( "Parametros de plan de cuota incorrecto" );
         return false;
     }
 
     QSqlRecord rec = this->record();
-    rec.setValue( "id_factura", id_factura );
+    //rec.setValue( "id_cliente", id_factura );
     rec.setValue( "cantidad", cantidad );
     rec.setValue( "periodo", periodo );
     rec.setValue( "fecha_inicio", fecha_inicio );
@@ -66,7 +69,8 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
                qDebug( "Error de obtencion del id del registro de plan de cuota" );
                qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
                qDebug( cola.lastQuery().toLocal8Bit() );
-               return -1;
+               *id_plan = -1;
+               return false;
            }
         }
 
@@ -85,12 +89,37 @@ bool MPlanCuota::agregarPlanCuota( int id_factura, double cantidad, double inter
                 fecha_venc = fecha_venc.addDays( diasEnPeriodo( periodo, fecha_venc ) );
             }
         }
+
+        if( entrega > 0.0 ) {
+            MPagos *mp = new MPagos( this, false );
+            QString contenido = QString( "Pago de entrega inicial de plan de cuota #%1" ).arg( *id_plan );
+            int id_recibo =  mp->agregarRecibo( id_cliente, QDate::currentDate(), contenido, entrega, recibo_efectivo, true );
+            if( id_recibo != -1 ) {
+                // Emitir el comprobante
+                EReporte *rep = new EReporte( this );
+                rep->recibo();
+                ParameterList lista;
+                lista.append( "id_recibo", id_recibo );
+                if( !rep->hacer( lista ) ) {
+                    qWarning( "No se pudo emitir el recibo por la entrega inicial del plan de cuotas; Pero el recibo quedó emitido" );
+                }
+                delete rep;rep=0;
+            } else {
+                // Reporto el problema
+                qWarning( "No se pudo agregar el registro correspondiente al pago de la entrega inicial del plan de cuotas" );
+                delete mp; mp=0;
+                *id_plan=-1;
+                return false;
+            }
+            delete mp; mp=0;
+        }
         return true;
     } else {
         qWarning( "Error al intentar insertar el registro del plan de cuotas" );
         qDebug( "Error al insertrecord de plan_cuota" );
         qDebug( this->lastError().text().toLocal8Bit() );
         qDebug( this->query().lastQuery().toLocal8Bit() );
+        *id_plan=-1;
         return false;
     }
 }
