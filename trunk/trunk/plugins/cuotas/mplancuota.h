@@ -30,7 +30,7 @@ public:
 
     MPlanCuota( QObject *parent = 0 );
 
-    bool agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan );
+    bool agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo );
     
     static int diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo );
     static void asociarConFactura( int id_plan, int id_factura );
