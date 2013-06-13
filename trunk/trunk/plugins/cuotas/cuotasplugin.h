@@ -7,7 +7,8 @@
 
 /**
  * \brief Plugin de Cuotas
- *
+ * Sistema de control para ventas en formato de cuotas.
+ * Se emiten recibos por cada elemento vendido por medio de cuotas.
  * @author Esteban Zeller <juiraze@yahoo.com.ar>
  */
 class CuotasPlugin : public QObject, public EPlugin
@@ -43,11 +44,14 @@ class CuotasPlugin : public QObject, public EPlugin
         void verCuotas();
         void generarComprobantes();
         void simularCuotas();
+        void resumenCuotas();
 
     private:
         QAction *ActVerCuotas;
         QAction *ActGenerarComprobantes;
         QAction *ActSimular;
+        QAction *ActResumenCuotas;
+        QAction *ActSep;
 
 };
 

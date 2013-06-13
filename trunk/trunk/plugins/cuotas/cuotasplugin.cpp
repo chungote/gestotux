@@ -57,6 +57,14 @@ bool CuotasPlugin::inicializar()
  ActSimular->setIcon( QIcon( ":/imagenes/simular_cuota.png" ) );
  connect( ActSimular, SIGNAL( triggered() ), this, SLOT( simularCuotas() ) );
 
+ ActResumenCuotas = new QAction( this );
+ ActResumenCuotas->setText( "Resumen de cuotas" );
+ ActResumenCuotas->setStatusTip( "Muestra un resumen de los estados de todas las cuotas" );
+ connect( ActSimular, SIGNAL( triggered() ), this, SLOT( resumenCuotas() ) );
+
+ ActSep = new QAction( this );
+ ActSep->setSeparator( true );
+
  return true;
 }
 
@@ -94,6 +102,8 @@ void CuotasPlugin::crearMenu( QMenuBar *m )
      menuCuotas->addAction( ActVerCuotas );
      menuCuotas->addAction( ActGenerarComprobantes );
      menuCuotas->addAction( ActSimular );
+     menuCuotas->addAction( ActSep );
+     menuCuotas->addAction( ActResumenCuotas );
 }
 
 
@@ -102,7 +112,7 @@ void CuotasPlugin::crearMenu( QMenuBar *m )
         Devuelve la version del plugin
  */
 double CuotasPlugin::version() const
-{ return 0.02; }
+{ return 0.1; }
 
 /*!
     \fn CuotasPlugin::crearToolBar( QToolBar *t )
@@ -159,7 +169,20 @@ void CuotasPlugin::generarComprobantes()
 void CuotasPlugin::verCuotas()
 { emit agregarVentana( new VPlanCuotas() ); }
 
+/**
+ * @brief CuotasPlugin::simularCuotas
+ * Abre la ventana del simulador de cuotas
+ */
 void CuotasPlugin::simularCuotas()
 { emit agregarVentana( new FormSimularCuotas() ); }
+
+/**
+ * @brief CuotasPlugin::resumenCuotas
+ * Slot que llama al resumen de estados de cuotas
+ */
+void CuotasPlugin::resumenCuotas()
+{
+    qWarning( "No Implementado" );
+}
 
 Q_EXPORT_PLUGIN2( Cuotas, CuotasPlugin )
