@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Esteban Zeller   				   *
- *   juiraze@yahoo.com.ar   						   *
+ *   Copyright (C) 2007 by Esteban Zeller   *
+ *   juiraze@yahoo.com.ar   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -17,55 +17,33 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef INFORMESPLUGIN_H
-#define INFORMESPLUGIN_H
+#ifndef EINFORMEINTERFACE_H
+#define EINFORMEINTERFACE_H
 
-#include "eplugin.h"
-class QPluginLoader;
-#include <QAction>
-#include "einformeinterface.h"
+#include <QtPlugin>
+#include <QString>
+#include <QIcon>
+#include <QImage>
+#include <QMenu>
 
-/**
- * \brief Plugin que carga los informes
+/*!
+ *  \brief Interfaz de informes del programa
  *
- * Plugin que carga la lista de informes y muestra y administra los menus
- *
- *	@author Esteban Zeller <juiraze@yahoo.com.ar>
+ *   Clase que se utiliza para conocer que metodos va a tener un plugin de informes
+ *   @author Esteban Zeller <juiraze@yahoo.com.ar>
  */
-class InformesPlugin : public QObject, public EPlugin
+class EInformeInterface
 {
-Q_OBJECT
-Q_INTERFACES( EPlugin )
 public:
-    bool inicializar();
-    bool verificarTablas( QStringList tablas );
-    double version() const;
-    int tipo() const;
-    QList< QActionGroup * > accionesBarra();
-    QString nombre() const;
-    QWidgetList formsPreferencias();
-    void crearMenu( QMenuBar* m );
-    void crearToolBar( QToolBar* t );
-    QAction *botonPantallaInicial() { return new QAction( this ); }
-
-signals:
-    void agregarVentana(QWidget* v);
-    void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
-
-public slots:
-    void seCierraGestotux();
-
-private:
-	QPluginLoader *loader;
-        QHash<QString, EInformeInterface *> *_plugins;
-
-        QAction *ActActualizar;
-
-private slots:
-        void actualizar();
-
-private:
-    bool cargarPluginsInformes();
+    virtual ~EInformeInterface() {}
+    virtual double version() const = 0;
+    virtual QString nombre() const = 0;
+    virtual bool inicializar() = 0;
+    virtual void hacerMenu( QMenu *m ) = 0;
+    virtual void agregarVentana( QWidget * ) = 0;
 };
+
+Q_DECLARE_INTERFACE( EInformeInterface,
+                     "tranfuga.EInfome/1.0" )
 
 #endif

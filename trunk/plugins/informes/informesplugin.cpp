@@ -26,8 +26,12 @@
 
 bool InformesPlugin::inicializar()
 {
- // Cargar los plugins
- return cargarPluginsInformes();
+    ActActualizar = new QAction( this );
+    ActActualizar->setText( "Actualizar informes" );
+    connect( ActActualizar, SIGNAL( triggered()), this, SLOT( actualizar() ) );
+
+    // Cargar los plugins
+    return cargarPluginsInformes();
 }
 
 bool InformesPlugin::verificarTablas(QStringList)
@@ -37,13 +41,11 @@ bool InformesPlugin::verificarTablas(QStringList)
 
 double InformesPlugin::version() const
 {
- return 0.0;
+ return 0.2;
 }
 
 int InformesPlugin::tipo() const
-{
- return EPlugin::comun;
-}
+{ return EPlugin::comun; }
 
 QList< QActionGroup * > InformesPlugin::accionesBarra()
 {
@@ -51,14 +53,10 @@ QList< QActionGroup * > InformesPlugin::accionesBarra()
 }
 
 QString InformesPlugin::nombre() const
-{
- return "informes";
-}
+{ return "informes"; }
 
 QWidgetList InformesPlugin::formsPreferencias()
-{
- return QWidgetList();
-}
+{ return QWidgetList(); }
 
 void InformesPlugin::crearMenu( QMenuBar* m )
 {
@@ -68,14 +66,15 @@ void InformesPlugin::crearMenu( QMenuBar* m )
  mInformes->setObjectName( "menuInformes" );
  // Ingreso las acciones estandares
  // Ingreso la accion y/o menu de cada plugin
- if( !_plugins().isEmpty() )
+ if( !_plugins->isEmpty() )
  {
-   ///@todo Agregar acciones de informes
+     foreach( EInformeInterface *plug, *_plugins ) {
+         plug->hacerMenu( mInformes );
+     }
  }
  else
- {
-  qDebug( "No existen plugins para colocar en el menu de informes" );
- }
+ { qDebug( "No existen plugins para colocar en el menu de informes" ); }
+ mInformes->addAction( ActActualizar );
 }
 
 void InformesPlugin::crearToolBar(QToolBar*)
@@ -83,7 +82,12 @@ void InformesPlugin::crearToolBar(QToolBar*)
 
 void InformesPlugin::seCierraGestotux()
 {
- ///@todo Ver si emitir señal a los plugins
+    ///@todo Ver si emitir señal a los plugins de informes
+}
+
+void InformesPlugin::actualizar()
+{
+    qWarning( "No implementado" );
 }
 
 /*!
@@ -132,16 +136,16 @@ bool InformesPlugin::cargarPluginsInformes()
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), this, SIGNAL( agregarVentana( QWidget * ) ) );
 			_plugins->insert( plug->nombre(), plug );
-			qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
+                        qDebug( QString( "Cargando Informe Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
 		else
 		{
-			qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
+                        qWarning( QString( "Error de inicializacion en el plug in Informe %1" ).arg( plug->nombre() ).toLocal8Bit() );
 		}
 	}
 	else
 	{
-		qWarning( QString( "Error al cargar el plugin. Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
+                qWarning( QString( "Error al cargar el plugin Informe . Error: %1" ).arg( loader->errorString() ).toLocal8Bit() );
 	}
 	// Fin de la carga del plugin
   }

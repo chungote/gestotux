@@ -14,7 +14,8 @@ PRE_TARGETDEPS += ../../bin/libutiles.a
 
 SOURCES += informesplugin.cpp
 
-HEADERS += informesplugin.h
+HEADERS += informesplugin.h \
+    einformeinterface.h
 
 INCLUDEPATH += ../../src \
                ../../utiles

@@ -55,6 +55,7 @@
        r.precio AS total,
         c.calle || ' ' || coalesce( c.numero, '  ' ) AS direccion,
        c.razon_social AS cliente,
+       '#' || substr( '0000000000' || c.id, -5, 5 ) AS codigo,
        c.`CUIT/CUIL` AS cuit,
        CASE r.forma_pago WHEN 1 THEN 'X' ELSE ' ' END AS contado,
        CASE r.forma_pago WHEN 0 THEN 'X' ELSE ' ' END AS ctacte,
@@ -296,6 +297,41 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
      <column>fecha3</column>
     </data>
    </field>
+   <field>
+    <rect>
+     <x>133.837</x>
+     <y>8.98058</y>
+     <width>183.126</width>
+     <height>33</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>codigo</column>
+    </data>
+   </field>
+   <label>
+    <rect>
+     <x>22.1806</x>
+     <y>12.5845</y>
+     <width>116</width>
+     <height>24.6</height>
+    </rect>
+    <font>
+     <face>Arial Black</face>
+     <size>9</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <string>Cód Ges. Pers.:</string>
+   </label>
   </detail>
  </section>
  <section>
