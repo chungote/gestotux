@@ -126,6 +126,10 @@ QAction *OrdenTrabajoPlugin::botonPantallaInicial()
 void OrdenTrabajoPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(ordentrabajo); return; }
 
+/*!
+ * \brief OrdenTrabajoPlugin::verOrdenesTrabajo
+ * Muestra la lista de ordenes de trabajo
+ */
 void OrdenTrabajoPlugin::verOrdenesTrabajo() {}
 
 #include "vequipamiento.h"
@@ -146,10 +150,12 @@ void OrdenTrabajoPlugin::verTipoOperacion()
 
 #include "vtecnicos.h"
 void OrdenTrabajoPlugin::verTecnicos()
-{
-    emit agregarVentana( new VTecnicos() );
-}
+{ emit agregarVentana( new VTecnicos() ); }
 
+/*!
+ * \brief OrdenTrabajoPlugin::agregarOrdenTrabajo
+ * Agrega una nueva orden de trabajo
+ */
 void OrdenTrabajoPlugin::agregarOrdenTrabajo() {}
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )
