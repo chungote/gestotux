@@ -15,4 +15,6 @@ SUBDIRS +=  caja \
             backupremoto \
             ordentrabajo \
             bscomputacion \
-            feedback
+            feedback \
+            informes/informa.pro \
+            informes

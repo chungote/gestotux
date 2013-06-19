@@ -2,5 +2,5 @@ TEMPLATE = subdirs
 
 CONFIG += ordered
 
-SUBDIRS += balance
-
+SUBDIRS = balance \
+          gananciaventa
