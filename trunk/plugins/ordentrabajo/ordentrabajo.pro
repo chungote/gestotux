@@ -30,7 +30,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     mequipamiento.cpp \
     ecbtecnicos.cpp \
     vequipamiento.cpp \
-    ecbmodeloequipamiento.cpp
+    ecbmodeloequipamiento.cpp \
+    formequipamiento.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
@@ -40,14 +41,16 @@ HEADERS += OrdenTrabajoPlugin.h \
     mequipamiento.h \
     ecbtecnicos.h \
     vequipamiento.h \
-    ecbmodeloequipamiento.h
+    ecbmodeloequipamiento.h \
+    formequipamiento.h
 
 RESOURCES += ordentrabajo.qrc
 
 OTHER_FILES += ordentrabajo.QMYSQL.sql \
                ordentrabajo.QSQLITE.sql
 
-FORMS += formordentrabajobase.ui
+FORMS += formordentrabajobase.ui \
+    formequipamientobase.ui
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"

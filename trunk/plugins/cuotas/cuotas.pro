@@ -28,7 +28,8 @@ LIBS += ../../bin/libutiles.a \
 RESOURCES = cuotas.qrc
 
 OTHER_FILES += cuotas.QMYSQL.sql \
-               cuotas.QSQLITE.sql
+               cuotas.QSQLITE.sql \
+               ./../bin/reportes/ResumenCuotas.xml
 
 HEADERS += cuotasplugin.h \
            mplancuota.h \
@@ -39,28 +40,29 @@ HEADERS += cuotasplugin.h \
            mitemplancuota.h \
            mvplancuota.h \
            formdetallecuotas.h \
-    DPagoCuota.h \
-    formgenerarcomprobantescuotas.h \
-    mgenerarcuotas.h
+           DPagoCuota.h \
+           formgenerarcomprobantescuotas.h \
+           mgenerarcuotas.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
            formsimularcuotas.cpp \
            msimularcuotas.cpp \
            formprefcuotas.cpp \
-            vplancuotas.cpp \
-            mitemplancuota.cpp \
-            mvplancuota.cpp \
+           vplancuotas.cpp \
+           mitemplancuota.cpp \
+           mvplancuota.cpp \
            formdetallecuotas.cpp \
-    DPagoCuota.cpp \
-    formgenerarcomprobantescuotas.cpp \
-    mgenerarcuotas.cpp
+           DPagoCuota.cpp \
+           formgenerarcomprobantescuotas.cpp \
+           mgenerarcuotas.cpp
 
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \
          formcuotasbase.ui \
-    DPagoCuotaBase.ui \
-    formgenerarcomprobantescuotasbase.ui
+         DPagoCuotaBase.ui \
+         formgenerarcomprobantescuotasbase.ui
+
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
