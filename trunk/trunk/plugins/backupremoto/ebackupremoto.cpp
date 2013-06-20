@@ -100,6 +100,7 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  manager = 0;
  req = 0;
  ids = "";
+ terminar = false;
 
 }
 
@@ -263,6 +264,7 @@ void EBackupRemoto::enviarColas() {
  //////////////////////////////////////////////////////////////////////////////////////////////////////////
  PBProgreso->setValue( PBProgreso->value() + 1 );
  LDebug->setText( "Listo backup de Base de datos.. Esperando envios..." );
+ terminar = true;
 }
 
 void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
@@ -291,7 +293,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
         } else {
             lista.removeOne( resp );
             PBEnviado->setValue( PBEnviado->value() + 1 );
-            if( lista.isEmpty() ) {
+            if( lista.size() == 0 && terminar == true ) {
                  preferencias *p = preferencias::getInstancia();
                  p->beginGroup( "Preferencias" );
                  p->beginGroup( "BackupRemoto" );
@@ -309,7 +311,6 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
                 ids = "";
                 emit cambiarDetener( false );
             }
-            //qDebug( QString( "Faltan %1 colas todavia" ).arg( lista.size() ).toLocal8Bit() );
         }
     }
 }
