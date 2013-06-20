@@ -99,6 +99,7 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
 
  manager = 0;
  req = 0;
+ ids = "";
 
 }
 
@@ -225,9 +226,8 @@ void EBackupRemoto::enviarColas() {
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
- url.addQueryItem( "num_cliente", p->value( "cliente", 6 ).toString() );
- url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
- url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
+ url.addQueryItem( "ids", this->ids );
+ qDebug( this->ids.toLocal8Bit() );
  p->endGroup(); p->endGroup(); p = 0;
  QNetworkRequest *req2 = new QNetworkRequest( url );
  req2->setHeader( QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded" );
@@ -306,15 +306,10 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
                  manager->post( req, url.encodedQuery() );
                  disconnect( manager, SIGNAL( finished( QNetworkReply* ) ),this, SLOT( respuestaColas( QNetworkReply* ) ) );
                 _continuar = false;
+                ids = "";
                 emit cambiarDetener( false );
-            } else {
-                if( lista.size() == 1 ) {
-                    QNetworkReply *respuesta = lista.first();
-                    qDebug( respuesta->url().path().toLocal8Bit() );
-                    qDebug( respuesta->url().encodedQuery() );
-                }
-                qDebug( QString( "Faltan %1 colas todavia" ).arg( lista.size() ).toLocal8Bit() );
             }
+            //qDebug( QString( "Faltan %1 colas todavia" ).arg( lista.size() ).toLocal8Bit() );
         }
     }
 }
@@ -347,6 +342,12 @@ void EBackupRemoto::respuestaInicio( QNetworkReply *resp ) {
             lista.removeAll( resp );
             PBEnviado->setValue( PBEnviado->value() + 1 );
             disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaInicio( QNetworkReply* ) ) );
+            if( mapa.contains("ids") ) {
+                this->ids = mapa["ids"].toString();
+            } else {
+                qWarning( "No se encontro el identificador de backup" );
+                abort();
+            }
             enviarColas();
         }
     }
@@ -465,7 +466,7 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
             return;
         }
         if( mapa["error"].toBool() ) {
-            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["texto"].toString() ).toLocal8Bit() );
+            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["mensaje"].toString() ).toLocal8Bit() );
             return;
         }
         // Cargo los datos al modelo

@@ -2,13 +2,14 @@
 #define FORMEQUIPAMIENTO_H
 
 #include "ui_formequipamientobase.h"
+#include "eventana.h"
 
-class FormEquipamiento : public QWidget, private Ui::FormEquipamientoBase
+class FormEquipamiento : public EVentana, private Ui::FormEquipamientoBase
 {
   Q_OBJECT
   
 public:
-  explicit FormEquipamiento(QWidget *parent = 0);
+  FormEquipamiento( QWidget *parent = 0 );
   
 protected:
   void changeEvent(QEvent *e);
