@@ -218,14 +218,15 @@ void EBackupRemoto::enviarColas() {
  PBEnviado->setRange( 0, total );
 
  // Desconecto la señal y pongo la que quiero realmente
- //disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaInicio( QNetworkReply* ) ) );
+ disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaInicio( QNetworkReply* ) ) );
  connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaColas( QNetworkReply* ) ) );
 
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
- url.addQueryItem( "id_usuario", p->value( "cliente", 6 ).toString() );
+ url.addQueryItem( "num_cliente", p->value( "cliente", 6 ).toString() );
+ url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
  p->endGroup(); p->endGroup(); p = 0;
  QNetworkRequest *req2 = new QNetworkRequest( url );
@@ -234,7 +235,6 @@ void EBackupRemoto::enviarColas() {
  int pos = 0;
  foreach( tabla, tablas )
  {
-        qDebug( tabla.toLocal8Bit() );
         PBProgreso->setValue( PBProgreso->value() + 1 );
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
         while( cola.next() )
@@ -243,7 +243,7 @@ void EBackupRemoto::enviarColas() {
             temp.addEncodedQueryItem( "posicion", QUrl::toPercentEncoding( QString::number( pos ) ) );
             temp.addEncodedQueryItem( "cola", QUrl::toPercentEncoding( db->sqlStatement( QSqlDriver::InsertStatement, tabla, cola.record(), false ) ) );
             QByteArray data = temp.encodedQuery();
-            //qDebug( data );
+
             lista.append( manager->post( *req2, data ) );
 
             QApplication::processEvents();
@@ -284,7 +284,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
             return;
         }
         if( mapa["error"].toBool() ) {
-            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["texto"].toString() ).toLocal8Bit() );
+            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["mensaje"].toString() ).toLocal8Bit() );
             _continuar = false;
             emit cambiarDetener( false );
             return;
@@ -339,7 +339,7 @@ void EBackupRemoto::respuestaInicio( QNetworkReply *resp ) {
             return;
         }
         if( mapa["error"].toBool() ) {
-            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["texto"].toString() ).toLocal8Bit() );
+            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["mensaje"].toString() ).toLocal8Bit() );
             _continuar = false;
             emit cambiarDetener( false );
             return;
