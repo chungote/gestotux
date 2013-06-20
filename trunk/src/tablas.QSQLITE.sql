@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS clientes ( "id" INTEGER PRIMARY KEY autoincrement, "r
 CREATE TABLE IF NOT EXISTS paises ( "id_pais" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , "nombre" TEXT NOT NULL );
 CREATE TABLE IF NOT EXISTS provincias ( "id_provincia" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "nombre" TEXT NOT NULL , "id_pais" INTEGER NOT NULL );
 CREATE TABLE IF NOT EXISTS estado_fiscal ( "id_estado_fiscal" INTEGER PRIMARY KEY autoincrement, "titulo" TEXT NOT NULL );
-INSERT INTO sqlite_sequence VALUES ( 'clientes', '1' );
+INSERT OR IGNORE INTO "sqlite_sequence" ( "name", "seq" ) VALUES ( 'clientes', '1' );
 INSERT INTO `clientes` (`id`, `razon_social`, `nombre`, `comprobante_email` ) VALUES ( 0, 'Consumidor Final','Consumidor Final', 1 );
 INSERT INTO `estado_fiscal` (`id_estado_fiscal`, `titulo`) VALUES (1, 'Responsable Inscripto');
 INSERT INTO `estado_fiscal` (`id_estado_fiscal`, `titulo`) VALUES (2, 'Responsable Monotributista');

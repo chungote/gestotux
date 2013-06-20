@@ -97,6 +97,7 @@ private:
         void mostrarError( QNetworkReply::NetworkError e );
 
         QString ids;
+        bool terminar;
 };
 
 #endif
