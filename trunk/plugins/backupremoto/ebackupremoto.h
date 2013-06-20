@@ -96,6 +96,7 @@ private:
         bool ejecutarColas( QStringList colas );
         void mostrarError( QNetworkReply::NetworkError e );
 
+        QString ids;
 };
 
 #endif

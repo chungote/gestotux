@@ -1,6 +1,7 @@
 #include "vequipamiento.h"
 
 #include "mequipamiento.h"
+#include "formequipamiento.h"
 
 #include <QTableView>
 
@@ -21,8 +22,11 @@ EVLista( parent )
     addAction( ActCerrar );
 }
 
-void VEquipamiento::agregar(bool autoeliminarid)
-{ qWarning( "No implementado" ); }
+void VEquipamiento::agregar( bool )
+{
+    qWarning( "No implementado" );
+    emit agregarVentana( new FormEquipamiento() );
+}
 
 void VEquipamiento::modificar()
 { qWarning( "No implementado" ); }
