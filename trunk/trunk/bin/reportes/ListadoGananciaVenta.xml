@@ -3,6 +3,12 @@
  <title>Listado de Venta con ganancias</title>
  <name>LVentaGanancia</name>
  <description>Listado de Venta de productos con calculo de ganancias</description>
+ <parameter default="" active="true" listtype="static" type="string" name="fecha_fin">
+  <description></description>
+ </parameter>
+ <parameter default="" active="true" listtype="static" type="string" name="fecha_inicio">
+  <description></description>
+ </parameter>
  <grid>
   <x>0.05</x>
   <y>0.05</y>
@@ -16,16 +22,18 @@
  <querysource>
   <name>listado</name>
   <sql>SELECT distinct if.texto AS item, 
-             if.id_producto AS codigo,             
-             SUM( if.cantidad ) AS total_vendido, 
-             if.precio_unitario AS precio_venta,
-             p.precio_costo AS precio_compra, 
-             if.precio_unitario*SUM( if.cantidad ) AS  suma_vendido,
-             if.precio_unitario*SUM( if.cantidad )-p.precio_costo*SUM( if.cantidad ) AS ganancia
+       if.id_producto AS codigo,             
+       SUM( if.cantidad ) AS total_vendido, 
+       if.precio_unitario AS precio_venta,
+       p.precio_costo AS precio_compra, 
+       if.precio_unitario*SUM( if.cantidad ) AS  suma_vendido,
+       if.precio_unitario*SUM( if.cantidad ) - p.precio_costo*SUM( if.cantidad ) AS ganancia
 FROM item_factura AS if 
 LEFT JOIN producto AS p ON if.id_producto = p.id 
-LEFT JOIN compras_productos AS cp ON if.id_producto = cp.id_producto 
+LEFT JOIN compras_productos AS cp ON if.id_producto = cp.id_producto  
+INNER JOIN factura AS f ON if.id_factura = f.id_factura 
 WHERE if.id_producto IS NOT NULL
+    AND f.fecha BETWEEN &lt;? value('fecha_inicio' ) ?> AND &lt;? value('fecha_fin') ?>  
 GROUP BY if.texto</sql>
  </querysource>
  <querysource>
@@ -35,7 +43,9 @@ GROUP BY if.texto</sql>
              if.precio_unitario*SUM( if.cantidad )-p.precio_costo*SUM( if.cantidad ) AS ganancia
 FROM item_factura AS if 
 LEFT JOIN producto AS p ON if.id_producto = p.id 
-WHERE if.id_producto IS NOT NULL</sql>
+INNER JOIN factura AS f ON if.id_factura = f.id_factura 
+WHERE if.id_producto IS NOT NULL
+  AND f.fecha BETWEEN &lt;? value("fecha_inicio") ?> AND &lt;? value("fecha_fin") ?></sql>
  </querysource>
  <pghead>
   <height>84.1648</height>
