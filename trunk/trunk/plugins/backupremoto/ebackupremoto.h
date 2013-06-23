@@ -54,6 +54,7 @@ protected slots:
     void respuestaInicio( QNetworkReply * );
     void respuestaColas( QNetworkReply * );
     void respuestaHistorial( QNetworkReply * );
+    void respuestaFin( QNetworkReply * );
     void cambiopestana( int );
 
 private:
