@@ -182,7 +182,7 @@ void EBackupRemoto::generar_db( bool /*estructura*/ )
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
- url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
+ url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 2 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
  p->endGroup(); p->endGroup(); p = 0;
 
@@ -294,6 +294,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
             lista.removeOne( resp );
             PBEnviado->setValue( PBEnviado->value() + 1 );
             if( lista.size() == 0 && terminar == true ) {
+                 qWarning( "Enviado etiqueta de fin" );
                  preferencias *p = preferencias::getInstancia();
                  p->beginGroup( "Preferencias" );
                  p->beginGroup( "BackupRemoto" );
@@ -307,6 +308,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
                  req.setHeader( QNetworkRequest::ContentTypeHeader, "application/octet-stream" );
                  manager->post( req, url.encodedQuery() );
                  disconnect( manager, SIGNAL( finished( QNetworkReply* ) ),this, SLOT( respuestaColas( QNetworkReply* ) ) );
+                 connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaFin( QNetworkReply* ) ) );
                 _continuar = false;
                 ids = "";
                 emit cambiarDetener( false );
@@ -350,6 +352,39 @@ void EBackupRemoto::respuestaInicio( QNetworkReply *resp ) {
                 abort();
             }
             enviarColas();
+        }
+    }
+}
+
+void EBackupRemoto::respuestaFin( QNetworkReply *resp ) {
+    if( resp->error() != QNetworkReply::NoError ) {
+        QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
+        this->mostrarError( resp->error() );
+    } else if( resp->isFinished() ) {
+        QByteArray cont( resp->readAll() );
+        qDebug( "resp:"+cont );
+        QApplication::processEvents();
+        bool ok = false;
+        resp->deleteLater();
+        if( cont.isEmpty() ) {
+            return;
+        }
+        QVariantMap mapa = Json::parse( cont, ok ).toMap();
+        if( !ok ) {
+            QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
+            _continuar = false;
+            return;
+        }
+        if( mapa["error"].toBool() ) {
+            QMessageBox::warning( this, "Error", QString( "Error: %1" ).arg( mapa["mensaje"].toString() ).toLocal8Bit() );
+            _continuar = false;
+            emit cambiarDetener( false );
+            return;
+        } else {
+            lista.clear();
+            PBEnviado->setValue( PBEnviado->value() + 1 );
+            disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaFin( QNetworkReply* ) ) );
+            QMessageBox::information( this, "Correcto", "El backup ha sido generado y guardado correctamente." );
         }
     }
 }
