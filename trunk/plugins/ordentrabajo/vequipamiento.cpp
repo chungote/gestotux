@@ -25,7 +25,10 @@ EVLista( parent )
 void VEquipamiento::agregar( bool )
 {
     qWarning( "No implementado" );
-    emit agregarVentana( new FormEquipamiento() );
+    FormEquipamiento *f = new FormEquipamiento();
+    f->setearModeloEquipamiento( qobject_cast<MEquipamiento *>( this->modelo ) );
+    f->setearAgregar();
+    emit agregarVentana( f );
 }
 
 void VEquipamiento::modificar()
