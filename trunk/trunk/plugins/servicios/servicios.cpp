@@ -66,6 +66,8 @@ bool Servicios::verificarTablas( QStringList tablas )
  { qDebug( "Servicios::Error al buscar la tabla cobro_servicio_cliente_periodo" ); return false; }
  if( !tablas.contains( "recargo_cobro_servicio_cliente" ) )
  { qDebug( "Servicios::Error al buscar la tabla recargo_cobro_servicio_cliente" ); return false; }
+ if( !tablas.contains( "v_servicios_clientes" ) )
+ { qDebug( "Servicios::Error al buscar la tabla v_servicios_clientes" ); return false; }
  return true;
 }
 

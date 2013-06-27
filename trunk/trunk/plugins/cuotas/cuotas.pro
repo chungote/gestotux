@@ -42,7 +42,13 @@ HEADERS += cuotasplugin.h \
            formdetallecuotas.h \
            DPagoCuota.h \
            formgenerarcomprobantescuotas.h \
-           mgenerarcuotas.h
+           mgenerarcuotas.h \
+           ../pagos/mpagos.h \
+           ../../src/mclientes.h \
+           ../CtaCte/mitemcuentacorriente.h \
+           ../CtaCte/mcuentacorriente.h \
+           ../caja/mcajas.h \
+           ../caja/mmovimientoscaja.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
@@ -55,7 +61,13 @@ SOURCES += cuotasplugin.cpp \
            formdetallecuotas.cpp \
            DPagoCuota.cpp \
            formgenerarcomprobantescuotas.cpp \
-           mgenerarcuotas.cpp
+           mgenerarcuotas.cpp \
+           ../pagos/mpagos.cpp \
+           ../../src/mclientes.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp \
+           ../CtaCte/mcuentacorriente.cpp \
+           ../caja/mcajas.cpp \
+           ../caja/mmovimientoscaja.cpp \
 
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \
