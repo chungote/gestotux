@@ -24,7 +24,8 @@ HEADERS += hicomp.h \
            ../ventas/mitemfactura.h \
            ../productos/mproductos.h \
            ../../reporte/common/parameter.h \
-           ../descuentos/mdescuentos.h
+           ../descuentos/mdescuentos.h \
+           ../cuotas/mitemplancuota.h
 
 SOURCES += hicomp.cpp \
            DPagarRecibo.cpp \
@@ -42,7 +43,8 @@ SOURCES += hicomp.cpp \
            ../ventas/mitemfactura.cpp \
            ../productos/mproductos.cpp \
            ../../reporte/common/parameter.cpp \
-           ../descuentos/mdescuentos.cpp
+           ../descuentos/mdescuentos.cpp \
+           ../cuotas/mitemplancuota.cpp
 
 DESTDIR = ../../bin/plugins
 
