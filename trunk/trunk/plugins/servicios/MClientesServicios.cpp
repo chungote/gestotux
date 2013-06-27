@@ -37,7 +37,7 @@ MClientesServicios::MClientesServicios ( QObject *parent, bool relacion ) :
 
 void MClientesServicios::inicializar()
 {
-    this->setTable( "servicios_clientes" );
+    this->setTable( "v_servicios_clientes" );
     this->setHeaderData( 0, Qt::Horizontal, "Servicio" );
     this->setHeaderData( 1, Qt::Horizontal, "Cliente");
     this->setHeaderData( 2, Qt::Horizontal, "Fecha Alta" );
@@ -60,17 +60,17 @@ void MClientesServicios::crearFiltro()
 {
     QString filtro;
     if( _cliente > 0 ) {
-        filtro.append( QString( "servicios_clientes.id_cliente = %1" ).arg( _cliente ) );
+        filtro.append( QString( "v_servicios_clientes.id_cliente = %1" ).arg( _cliente ) );
     }
     if( !filtro.isEmpty() ) { filtro.append( " AND " ); }
     if( _servicio > 0 ) {
-        filtro.append( QString( "servicios_clientes.id_servicio = %1" ).arg( _servicio ) );
+        filtro.append( QString( "v_servicios_clientes.id_servicio = %1" ).arg( _servicio ) );
     }
     if( !filtro.isEmpty() ) { filtro.append( " AND " ); }
     if( _baja ) {
-        filtro.append( "servicios_clientes.fecha_baja IS NOT NULL" );
+        filtro.append( "v_servicios_clientes.fecha_baja IS NOT NULL" );
     } else {
-        filtro.append( "servicios_clientes.fecha_baja IS NULL" );
+        filtro.append( "v_servicios_clientes.fecha_baja IS NULL" );
     }
     this->setFilter( filtro );
 }
@@ -184,21 +184,27 @@ bool MClientesServicios::darDeBaja( int id_cliente, int id_servicio, QString raz
         razon = "Desconocida - No Especificada.";
     }
     // Ingresar baja
-    if( !cola.prepare( "UPDATE servicios_clientes SET fecha_baja = :fecha, razon = :razon WHERE id_cliente = :id_cliente AND id_servicio = :id_servicio" ) ) {
+    QSqlQuery cola2;
+    if( !cola2.prepare(
+         QString( "UPDATE servicios_clientes SET fecha_baja = :fecha, razon = :razon WHERE id_cliente = %1 AND id_servicio = %2" )
+                .arg( id_cliente ).arg( id_servicio ) ) ) {
         qDebug( "Error al preparar la cola" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug( cola2.lastError().text().toLocal8Bit() );
+        qDebug( cola2.lastQuery().toLocal8Bit() );
         return false;
     }
-    cola.bindValue( "fecha" , QDate::currentDate() );
-    cola.bindValue( "razon", razon );
-    cola.bindValue( "id_cliente",  id_cliente );
-    cola.bindValue( "id_servicio", id_servicio );
-    if( !cola.exec() ) {
-        qDebug( "Error al ejecutar la cola de inservion de fecha de baja y razon en la tabla de servicios_clientes" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+    cola2.bindValue( ":fecha" , QDate::currentDate() );
+    cola2.bindValue( ":razon", razon );
+    /*cola2.bindValue( ":id_cliente",  id_cliente );
+    cola2.bindValue( ":id_servicio", id_servicio );*/
+    if( !cola2.exec() ) {
+        qDebug( "Error al ejecutar la cola de insercion de fecha de baja y razon en la tabla de servicios_clientes" );
+        qDebug( cola2.lastError().text().toLocal8Bit() );
+        qDebug( cola2.lastQuery().toLocal8Bit() );
         return false;
+    } else {
+        qDebug( cola2.lastError().text().toLocal8Bit() );
+        qDebug( cola2.lastQuery().toLocal8Bit() );
     }
     // Imprimir comprobante de baja
     EReporte *rep = new EReporte( 0 );

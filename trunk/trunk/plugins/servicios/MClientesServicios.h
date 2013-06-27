@@ -27,7 +27,7 @@ class MClientesServicios : public QSqlRelationalTableModel
 {
     Q_OBJECT
 public:
-    explicit MClientesServicios( QObject *parent = 0, bool relacion = true );
+    MClientesServicios( QObject *parent = 0, bool relacion = true );
 
     void filtrarPorServicio( const int id_servicio );
     void filtrarPorCliente( const int id_cliente );

@@ -279,6 +279,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
         if( cont.isEmpty() ) {
             return;
         }
+        lista.removeOne( resp );
         QVariantMap mapa = Json::parse( cont, ok ).toMap();
         if( !ok ) {
             QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
@@ -291,16 +292,14 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
             emit cambiarDetener( false );
             return;
         } else {
-            lista.removeOne( resp );
             PBEnviado->setValue( PBEnviado->value() + 1 );
             if( lista.size() == 0 && terminar == true ) {
-                 qWarning( "Enviado etiqueta de fin" );
                  preferencias *p = preferencias::getInstancia();
                  p->beginGroup( "Preferencias" );
                  p->beginGroup( "BackupRemoto" );
                  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
                  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
-                 url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 4 ).toString() );
+                 url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 2 ).toString() );
                  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
                  p->endGroup(); p->endGroup(); p = 0;
                  url.addQueryItem( "fin", "0" );
@@ -323,7 +322,6 @@ void EBackupRemoto::respuestaInicio( QNetworkReply *resp ) {
         this->mostrarError( resp->error() );
     } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
-        qDebug( "resp:"+cont );
         QApplication::processEvents();
         bool ok = false;
         resp->deleteLater();
@@ -362,7 +360,6 @@ void EBackupRemoto::respuestaFin( QNetworkReply *resp ) {
         this->mostrarError( resp->error() );
     } else if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
-        qDebug( "resp:"+cont );
         QApplication::processEvents();
         bool ok = false;
         resp->deleteLater();
