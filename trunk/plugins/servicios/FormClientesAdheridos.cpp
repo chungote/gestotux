@@ -51,6 +51,8 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     TVAdheridos->hideColumn( 0 );
     TVAdheridos->hideColumn( 3 );
     TVAdheridos->hideColumn( 4 );
+    TVAdheridos->hideColumn( modelo->fieldIndex( "idcliente" ) );
+    TVAdheridos->hideColumn( modelo->fieldIndex( "idservicio" ) );
     TVAdheridos->setSelectionBehavior( QAbstractItemView::SelectRows );
     TVAdheridos->horizontalHeader()->setResizeMode( QHeaderView::Stretch );
     TVAdheridos->setSortingEnabled( true );
@@ -75,7 +77,7 @@ FormClientesAdheridos::FormClientesAdheridos(QWidget *parent) :
     ActVerBaja->setStatusTip( "Muestra solamente los clientes que han sido dados de baja del servicio" );
     ActVerBaja->setCheckable( true );
     ActVerBaja->setChecked( false );
-    connect( ActEliminar, SIGNAL( toggled( bool ) ), this, SLOT( verBaja( bool ) ) );
+    connect( ActVerBaja, SIGNAL( toggled( bool ) ), this, SLOT( verBaja( bool ) ) );
     this->addAction( ActVerBaja );
 
     this->addAction( new EActImprimir( this ) );
@@ -128,11 +130,7 @@ void FormClientesAdheridos::darDeBaja()
  }
   int id_servicio = CBServicios->idActual();
   foreach( QModelIndex item, lista ) {
-      MClientesServicios *mcs = new MClientesServicios( 0, false );
-      mcs->filtrarPorServicio( CBServicios->idActual() );
-      mcs->select();
-      int id_cliente = mcs->data( mcs->index( item.row(), 1 ), Qt::EditRole ).toInt();
-      delete mcs;
+      int id_cliente = modelo->data( modelo->index( item.row(), modelo->fieldIndex( "idcliente" ) ), Qt::EditRole ).toInt();
       bool ok = false;
       QString razon = QInputDialog::getText( this, "Razon de baja", "Ingrese la razon de baja:", QLineEdit::Normal, QString(), &ok );
       if( ok )
@@ -200,6 +198,13 @@ void FormClientesAdheridos::aPdf()
 
 void FormClientesAdheridos::verBaja( bool estado )
 {
+    if( estado ) {
+        TVAdheridos->showColumn( modelo->fieldIndex( "fecha_baja" ) );
+        TVAdheridos->showColumn( modelo->fieldIndex( "razon" ) );
+    } else {
+        TVAdheridos->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
+        TVAdheridos->hideColumn( modelo->fieldIndex( "razon" ) );
+    }
     modelo->setearVerBaja( estado );
     modelo->select();
 }
