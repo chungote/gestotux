@@ -8,3 +8,4 @@ INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "servi
 INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "recargos", 0 );
 INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "periodo_servicio", 0 );
 INSERT OR IGNORE INTO "main"."sqlite_sequence" ( "name", "seq" ) VALUES ( "cobro_servicio_cliente_periodo", 0 );
+CREATE VIEW IF NOT EXISTS "v_servicios_clientes" AS   SELECT id_servicio, id_cliente, fecha_alta, fecha_baja, razon, id_servicio AS idservicio, id_cliente AS idcliente FROM servicios_clientes;
