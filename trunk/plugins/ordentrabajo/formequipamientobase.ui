@@ -68,7 +68,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="CBMarca">
+        <widget class="ECBModeloEquipamiento" name="CBMarca">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -185,6 +185,11 @@
    <class>ECBClientes</class>
    <extends>QComboBox</extends>
    <header>ecbclientes.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBModeloEquipamiento</class>
+   <extends>QComboBox</extends>
+   <header>ecbmodeloequipamiento.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

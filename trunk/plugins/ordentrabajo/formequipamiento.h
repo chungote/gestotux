@@ -12,7 +12,8 @@ class FormEquipamiento : public EVentana, private Ui::FormEquipamientoBase
 public:
   FormEquipamiento( QWidget *parent = 0 );
   void setearModeloEquipamiento( MEquipamiento *m );
-  void setearAgregar() { _editar = false; }
+  void setearAgregar( bool estado );
+  void setearEditar( bool estado ) { setearAgregar( !estado ); }
 
 public slots:
   void guardar();
