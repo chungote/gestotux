@@ -51,6 +51,7 @@ public:
     static QDate obtenerFecha( const int id_factura );
     static double obtenerTotal( const int id_factura );
     static int obtenerIdCliente( const int id_factura );
+    static QDate obtenerFechaMinimaVenta();
 
 private:
     void inicializar();

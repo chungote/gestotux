@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>94</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="DEDesde"/>
+      <widget class="QDateEdit" name="DEDesde">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_3">
@@ -41,7 +48,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="DEHasta"/>
+      <widget class="QDateEdit" name="DEHasta">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

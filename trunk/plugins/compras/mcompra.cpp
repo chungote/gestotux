@@ -346,3 +346,41 @@ bool MCompra::eliminarCompra( int id_compra )
  }
  return QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
 }
+
+/*!
+ * \brief MCompra::obtenerFechaMinimaCompra
+ * Devuelve la fecha minima de compra echa
+ * \return fecha de primera compra
+ */
+QDate MCompra::obtenerFechaMinimaCompra()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM compras ORDER BY fecha ASC LIMIT 1" ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar el minimo de compra fecha" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QDate();
+}
+
+/*!
+ * \brief MCompra::obtenerFechaMaximaCompra
+ * Busca la fecha de la compra más actual
+ * \return fecha de la ultima compra
+ */
+QDate MCompra::obtenerFechaMaximaCompra()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM compras ORDER BY fecha DESC LIMIT 1" ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar el minimo de compra fecha" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return QDate();
+}
