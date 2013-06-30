@@ -2,6 +2,8 @@
 #define UTIL_H
 
 class QString;
+class QDate;
+class QDateTime;
 /*!
  * \brief The Util class
  * Colección de métodos estaticos varios que no requieren una clase específica.
@@ -12,6 +14,8 @@ class Util
 public:
     static QString comparacionSQL(const QString texto );
     static QString funcionComparacionSQL( const QString nombre_campo );
+    static QString formateoFechas( QDate fecha );
+    static QString formateoFechas( QDateTime fecha );
 
 };
 

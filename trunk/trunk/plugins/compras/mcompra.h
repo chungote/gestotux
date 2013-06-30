@@ -43,6 +43,9 @@ public:
     int ultimoId();
     bool eliminarCompra( int id_compra );
 
+    static QDate obtenerFechaMinimaCompra();
+    static QDate obtenerFechaMaximaCompra();
+
 
 };
 
