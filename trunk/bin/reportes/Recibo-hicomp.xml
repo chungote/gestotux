@@ -53,9 +53,9 @@
        strftime( '%d  %m  %Y', r.fecha_pago ) AS fecha,
        r.texto AS contenido,
        r.precio AS total,
-       c.calle || ' ' || c.numero AS direccion,
-       c.razon_social AS cliente,
+       c.calle || ' ' || coalesce( c.numero, '  ' ) AS direccion,
        '#' || substr( '0000000000' || c.id, -5, 5 ) AS codigo,
+       c.razon_social AS cliente,
        c.`CUIT/CUIL` AS cuit,
        CASE r.forma_pago WHEN 1 THEN 'X' ELSE ' ' END AS contado,
        CASE r.forma_pago WHEN 0 THEN 'X' ELSE ' ' END AS ctacte,
@@ -78,11 +78,11 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    <key>
     <query>recibo-hicomp</query>
    </key>
-   <height>257</height>
+   <height>216</height>
    <text>
     <rect>
-     <x>461</x>
-     <y>34.8</y>
+     <x>431</x>
+     <y>31.8</y>
      <width>116</width>
      <height>31.8</height>
     </rect>
@@ -101,8 +101,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <field>
     <rect>
-     <x>296</x>
-     <y>170</y>
+     <x>106</x>
+     <y>154</y>
      <width>439</width>
      <height>25</height>
     </rect>
@@ -120,8 +120,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>296</x>
-     <y>186</y>
+     <x>133</x>
+     <y>193</y>
      <width>405</width>
      <height>25</height>
     </rect>
@@ -139,8 +139,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <text>
     <rect>
-     <x>449</x>
-     <y>69.8</y>
+     <x>420</x>
+     <y>58.8</y>
      <width>128</width>
      <height>31.2</height>
     </rect>
@@ -159,8 +159,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </text>
    <barcode>
     <rect>
-     <x>403</x>
-     <y>107.7</y>
+     <x>377</x>
+     <y>106.7</y>
      <width>176</width>
      <height>34.9</height>
     </rect>
@@ -173,10 +173,39 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
      <column>NumSerie</column>
     </data>
    </barcode>
+  </detail>
+ </section>
+ <section>
+  <name>contenido</name>
+  <detail>
+   <key>
+    <query>recibo-hicomp</query>
+   </key>
+   <height>500</height>
    <field>
     <rect>
-     <x>406</x>
-     <y>222</y>
+     <x>26.557</x>
+     <y>41.4233</y>
+     <width>524</width>
+     <height>420</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <wordwrap/>
+    <left/>
+    <top/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>contenido</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>379</x>
+     <y>11</y>
      <width>66</width>
      <height>33</height>
     </rect>
@@ -194,8 +223,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>521</x>
-     <y>223</y>
+     <x>532</x>
+     <y>13</y>
      <width>35</width>
      <height>33</height>
     </rect>
@@ -213,82 +242,28 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>157</x>
-     <y>221</y>
-     <width>167.422</width>
-     <height>33</height>
+     <x>79</x>
+     <y>481.5</y>
+     <width>96</width>
+     <height>28</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>recibo-hicomp</query>
-     <column>codigo</column>
+     <column>fecha1</column>
     </data>
    </field>
-   <label>
-    <rect>
-     <x>41.4156</x>
-     <y>224.959</y>
-     <width>116</width>
-     <height>24.6</height>
-    </rect>
-    <font>
-     <face>Arial Black</face>
-     <size>9</size>
-     <weight>normal</weight>
-    </font>
-    <left/>
-    <vcenter/>
-    <string>Cód Ges. Pers.:</string>
-   </label>
-  </detail>
- </section>
- <section>
-  <name>contenido</name>
-  <detail>
-   <key>
-    <query>recibo-hicomp</query>
-   </key>
-   <height>414</height>
    <field>
     <rect>
-     <x>116.557</x>
-     <y>9.4233</y>
-     <width>524</width>
-     <height>408</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <wordwrap/>
-    <left/>
-    <top/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>contenido</column>
-    </data>
-   </field>
-  </detail>
- </section>
- <section>
-  <name>recargos</name>
-  <detail>
-   <key>
-    <query>recibo-hicomp</query>
-   </key>
-   <height>81</height>
-   <field>
-    <rect>
-     <x>94</x>
-     <y>20.5</y>
-     <width>112</width>
+     <x>265</x>
+     <y>480.5</y>
+     <width>94</width>
      <height>22</height>
     </rect>
     <font>
@@ -300,13 +275,76 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <vcenter/>
     <data>
      <query>recibo-hicomp</query>
-     <column>recargo1</column>
+     <column>fecha2</column>
     </data>
    </field>
    <field>
     <rect>
-     <x>89</x>
-     <y>44.5</y>
+     <x>429.947</x>
+     <y>484.833</y>
+     <width>94</width>
+     <height>22</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>fecha3</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>123.738</x>
+     <y>15</y>
+     <width>187</width>
+     <height>29.6</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>9</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>codigo</column>
+    </data>
+   </field>
+   <label>
+    <rect>
+     <x>21.3</x>
+     <y>16.8</y>
+     <width>102.019</width>
+     <height>24.6</height>
+    </rect>
+    <font>
+     <face>Arial Black</face>
+     <size>8</size>
+     <weight>normal</weight>
+    </font>
+    <left/>
+    <vcenter/>
+    <string>Cód Ges. Pers.:</string>
+   </label>
+  </detail>
+ </section>
+ <section>
+  <name>recargos</name>
+  <detail>
+   <key>
+    <query>recibo-hicomp</query>
+   </key>
+   <height>81</height>
+   <field>
+    <rect>
+     <x>69</x>
+     <y>23.5</y>
      <width>104</width>
      <height>22</height>
     </rect>
@@ -325,27 +363,8 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>247</x>
-     <y>25.5</y>
-     <width>112</width>
-     <height>22</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>recargo2</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>252</x>
-     <y>43.5</y>
+     <x>254</x>
+     <y>21.5</y>
      <width>106</width>
      <height>22</height>
     </rect>
@@ -364,29 +383,9 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>380</x>
-     <y>68.36</y>
-     <width>142</width>
-     <height>40</height>
-    </rect>
-    <font>
-     <face>Arial Black</face>
-     <size>14</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>total</column>
-    </data>
-    <format>$ %0.2f</format>
-   </field>
-   <field>
-    <rect>
-     <x>263</x>
-     <y>6.5</y>
-     <width>94</width>
+     <x>423.947</x>
+     <y>19.8134</y>
+     <width>106</width>
      <height>22</height>
     </rect>
     <font>
@@ -398,15 +397,16 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <vcenter/>
     <data>
      <query>recibo-hicomp</query>
-     <column>fecha2</column>
+     <column>total3</column>
     </data>
+    <format>$ %0.2f</format>
    </field>
    <field>
     <rect>
-     <x>96</x>
-     <y>3.5</y>
-     <width>96</width>
-     <height>24</height>
+     <x>70</x>
+     <y>1.5</y>
+     <width>112</width>
+     <height>22</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -417,13 +417,32 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
     <vcenter/>
     <data>
      <query>recibo-hicomp</query>
-     <column>fecha1</column>
+     <column>recargo1</column>
     </data>
    </field>
    <field>
     <rect>
-     <x>422.947</x>
-     <y>25.8134</y>
+     <x>256</x>
+     <y>3.5</y>
+     <width>112</width>
+     <height>22</height>
+    </rect>
+    <font>
+     <face>Times New Roman</face>
+     <size>10</size>
+     <weight>normal</weight>
+    </font>
+    <right/>
+    <vcenter/>
+    <data>
+     <query>recibo-hicomp</query>
+     <column>recargo2</column>
+    </data>
+   </field>
+   <field>
+    <rect>
+     <x>420.947</x>
+     <y>3.813</y>
      <width>112</width>
      <height>22</height>
     </rect>
@@ -441,40 +460,21 @@ WHERE r.id_recibo = &lt;? value("id_recibo") ?> AND c.id = r.id_cliente;</sql>
    </field>
    <field>
     <rect>
-     <x>438.947</x>
-     <y>6.83335</y>
-     <width>94</width>
-     <height>22</height>
+     <x>391</x>
+     <y>52.36</y>
+     <width>142</width>
+     <height>40</height>
     </rect>
     <font>
-     <face>Times New Roman</face>
-     <size>10</size>
+     <face>Arial Black</face>
+     <size>14</size>
      <weight>normal</weight>
     </font>
     <right/>
     <vcenter/>
     <data>
      <query>recibo-hicomp</query>
-     <column>fecha3</column>
-    </data>
-   </field>
-   <field>
-    <rect>
-     <x>427.947</x>
-     <y>43.8134</y>
-     <width>106</width>
-     <height>22</height>
-    </rect>
-    <font>
-     <face>Times New Roman</face>
-     <size>10</size>
-     <weight>normal</weight>
-    </font>
-    <right/>
-    <vcenter/>
-    <data>
-     <query>recibo-hicomp</query>
-     <column>total3</column>
+     <column>total</column>
     </data>
     <format>$ %0.2f</format>
    </field>
