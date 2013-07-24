@@ -238,7 +238,7 @@ void EBackupRemoto::enviarColas() {
  {
         PBProgreso->setValue( PBProgreso->value() + 1 );
         cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
-        while( cola.next() )
+        while( cola.next() && _continuar )
         {
             QUrl temp;
             temp.addEncodedQueryItem( "posicion", QUrl::toPercentEncoding( QString::number( pos ) ) );
@@ -252,14 +252,13 @@ void EBackupRemoto::enviarColas() {
             PBProgreso->setValue( PBProgreso->value() + 1 );
             pos++;
         }
-       /* if( _continuar == false ) {
+        if( _continuar == false ) {
             url.addQueryItem( "cancelar", "0" );
             QApplication::processEvents();
             req->setUrl( url );
             manager->post( *req, url.encodedQuery() );
             disconnect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuestaColas(QNetworkReply*) ) );
-            lista.clear();
-        }*/
+        }
   }
  //////////////////////////////////////////////////////////////////////////////////////////////////////////
  PBProgreso->setValue( PBProgreso->value() + 1 );
@@ -503,6 +502,10 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
             return;
         }
         // Cargo los datos al modelo
+        if( !mapa.contains("data") ) {
+            QMessageBox::warning( this, "Error", "La cadena descargada no contiene el elemento data" );
+            return;
+        }
 
     }
 

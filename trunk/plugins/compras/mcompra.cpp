@@ -356,14 +356,14 @@ QDate MCompra::obtenerFechaMinimaCompra()
 {
     QSqlQuery cola;
     if( cola.exec( "SELECT fecha FROM compras ORDER BY fecha ASC LIMIT 1" ) ) {
-        cola.next();
-        return cola.record().value(0).toDate();
+        if( cola.next() )
+            return cola.record().value(0).toDate();
     } else {
         qWarning( "Error al buscar el minimo de compra fecha" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return QDate();
+    return QDate( 1900, 1, 1 );
 }
 
 /*!
@@ -375,12 +375,12 @@ QDate MCompra::obtenerFechaMaximaCompra()
 {
     QSqlQuery cola;
     if( cola.exec( "SELECT fecha FROM compras ORDER BY fecha DESC LIMIT 1" ) ) {
-        cola.next();
-        return cola.record().value(0).toDate();
+        if( cola.next() )
+            return cola.record().value(0).toDate();
     } else {
         qWarning( "Error al buscar el minimo de compra fecha" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return QDate();
+    return QDate( 1900, 1, 1 );
 }

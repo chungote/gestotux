@@ -661,12 +661,13 @@ QDate MFactura::obtenerFechaMinimaVenta()
 {
     QSqlQuery cola;
     if( cola.exec( "SELECT fecha FROM factura ORDER BY fecha ASC LIMIT 1" ) ) {
-        cola.next();
-        return cola.record().value(0).toDate();
+        if( cola.next() ) {
+            return cola.record().value(0).toDate();
+        }
     } else {
         qWarning( "Error al buscar la fecha de la factura minima" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
-    return QDate();
+    return QDate( 1900, 1, 1);
 }
