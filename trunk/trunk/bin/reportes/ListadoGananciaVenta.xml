@@ -21,26 +21,27 @@
  <leftmargin>50</leftmargin>
  <querysource>
   <name>listado</name>
-  <sql>SELECT distinct if.texto AS item, 
-       if.id_producto AS codigo,             
-       SUM( if.cantidad ) AS total_vendido, 
-       if.precio_unitario AS precio_venta,
+  <sql>SELECT distinct ifc.texto AS item, 
+       ifc.id_producto AS codigo,             
+       SUM( ifc.cantidad ) AS total_vendido, 
+       ifc.precio_unitario AS precio_venta,
        p.precio_costo AS precio_compra, 
-       if.precio_unitario*SUM( if.cantidad ) AS  suma_vendido,
-       if.precio_unitario*SUM( if.cantidad ) - p.precio_costo*SUM( if.cantidad ) AS ganancia
-FROM item_factura AS if 
-LEFT JOIN producto AS p ON if.id_producto = p.id 
-LEFT JOIN compras_productos AS cp ON if.id_producto = cp.id_producto  
-INNER JOIN factura AS f ON if.id_factura = f.id_factura 
-WHERE if.id_producto IS NOT NULL
-    AND f.fecha BETWEEN &lt;? value('fecha_inicio' ) ?> AND &lt;? value('fecha_fin') ?>  
-GROUP BY if.texto</sql>
+       ifc.precio_unitario*SUM( ifc.cantidad ) AS  suma_vendido,
+       ifc.precio_unitario*SUM( ifc.cantidad ) - p.precio_costo*SUM( ifc.cantidad ) AS ganancia
+FROM item_factura AS ifc 
+LEFT JOIN producto AS p ON ifc.id_producto = p.id 
+LEFT JOIN compras_productos AS cp ON ifc.id_producto = cp.id_producto  
+INNER JOIN factura AS f ON ifc.id_factura = f.id_factura 
+WHERE ifc.id_producto IS NOT NULL
+    AND f.fecha BETWEEN &lt;? value("fecha_inicio") ?>  AND &lt;? value("fecha_fin") ?>  
+GROUP BY ifc.texto
+ORDER BY item</sql>
  </querysource>
  <querysource>
   <name>total</name>
   <sql>SELECT SUM( if.cantidad ) AS cantidad_total, 
              if.precio_unitario*SUM( if.cantidad ) AS total_vendido,
-             if.precio_unitario*SUM( if.cantidad )-p.precio_costo*SUM( if.cantidad ) AS ganancia
+             if.precio_unitario*SUM( if.cantidad )-p.precio_costo*SUM( if.cantidad ) AS total_ganancia
 FROM item_factura AS if 
 LEFT JOIN producto AS p ON if.id_producto = p.id 
 INNER JOIN factura AS f ON if.id_factura = f.id_factura 
@@ -48,7 +49,7 @@ WHERE if.id_producto IS NOT NULL
   AND f.fecha BETWEEN &lt;? value("fecha_inicio") ?> AND &lt;? value("fecha_fin") ?></sql>
  </querysource>
  <pghead>
-  <height>84.1648</height>
+  <height>81.3224</height>
   <label>
    <rect>
     <x>1</x>
@@ -59,7 +60,7 @@ WHERE if.id_producto IS NOT NULL
    <font>
     <face>Times New Roman</face>
     <size>12</size>
-    <weight>normal</weight>
+    <weight>bold</weight>
    </font>
    <hcenter/>
    <vcenter/>
@@ -67,15 +68,15 @@ WHERE if.id_producto IS NOT NULL
   </label>
   <label>
    <rect>
-    <x>13</x>
-    <y>33</y>
+    <x>0.467419</x>
+    <y>34.5633</y>
     <width>81</width>
     <height>25</height>
    </rect>
    <font>
     <face>Times New Roman</face>
     <size>10</size>
-    <weight>normal</weight>
+    <weight>bold</weight>
    </font>
    <left/>
    <vcenter/>
@@ -83,15 +84,15 @@ WHERE if.id_producto IS NOT NULL
   </label>
   <label>
    <rect>
-    <x>176</x>
-    <y>32</y>
+    <x>195</x>
+    <y>34.4</y>
     <width>81</width>
     <height>25</height>
    </rect>
    <font>
     <face>Times New Roman</face>
     <size>10</size>
-    <weight>normal</weight>
+    <weight>bold</weight>
    </font>
    <left/>
    <vcenter/>
@@ -100,7 +101,7 @@ WHERE if.id_producto IS NOT NULL
   <line>
    <xstart>0</xstart>
    <ystart>60</ystart>
-   <xend>724</xend>
+   <xend>725.16</xend>
    <yend>60</yend>
    <weight>0</weight>
   </line>
@@ -128,10 +129,10 @@ WHERE if.id_producto IS NOT NULL
    <string>Código</string>
   </label>
   <line>
-   <xstart>56.4247</xstart>
-   <ystart>60.2406</ystart>
-   <xend>56.3409</xend>
-   <yend>80.0491</yend>
+   <xstart>56.1927</xstart>
+   <ystart>60.0086</ystart>
+   <xend>56.1089</xend>
+   <yend>79.8171</yend>
    <weight>0</weight>
   </line>
   <label>
@@ -153,26 +154,10 @@ WHERE if.id_producto IS NOT NULL
   <line>
    <xstart>436.209</xstart>
    <ystart>60.2992</ystart>
-   <xend>436.372</xend>
-   <yend>80.354</yend>
+   <xend>436.142</xend>
+   <yend>79.8944</yend>
    <weight>0</weight>
   </line>
-  <label>
-   <rect>
-    <x>184</x>
-    <y>59.9</y>
-    <width>60.7383</width>
-    <height>21.1</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <left/>
-   <vcenter/>
-   <string>Cantidad</string>
-  </label>
   <label>
    <rect>
     <x>437.029</x>
@@ -192,9 +177,9 @@ WHERE if.id_producto IS NOT NULL
   <label>
    <rect>
     <x>662.651</x>
-    <y>59.3536</y>
-    <width>61.7</width>
-    <height>21.1</height>
+    <y>63.7622</y>
+    <width>57.2914</width>
+    <height>16.6914</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -236,7 +221,7 @@ WHERE if.id_producto IS NOT NULL
    <weight>0</weight>
   </line>
   <line>
-   <xstart>532.049</xstart>
+   <xstart>532.279</xstart>
    <ystart>60.2992</ystart>
    <xend>532.211</xend>
    <yend>80.1076</yend>
@@ -244,9 +229,9 @@ WHERE if.id_producto IS NOT NULL
   </line>
   <label>
    <rect>
-    <x>531.825</x>
+    <x>533.663</x>
     <y>59.8</y>
-    <width>57.0182</width>
+    <width>55.1798</width>
     <height>21.1</height>
    </rect>
    <font>
@@ -262,7 +247,7 @@ WHERE if.id_producto IS NOT NULL
    <rect>
     <x>474</x>
     <y>59.4</y>
-    <width>58.4785</width>
+    <width>57.5593</width>
     <height>21.1</height>
    </rect>
    <font>
@@ -277,8 +262,8 @@ WHERE if.id_producto IS NOT NULL
   <line>
    <xstart>472.86</xstart>
    <ystart>60.0528</ystart>
-   <xend>472.776</xend>
-   <yend>79.6148</yend>
+   <xend>472.774</xend>
+   <yend>80.3109</yend>
    <weight>0</weight>
   </line>
   <line>
@@ -286,13 +271,6 @@ WHERE if.id_producto IS NOT NULL
    <ystart>117.434</ystart>
    <xend>1034.44</xend>
    <yend>137.242</yend>
-   <weight>0</weight>
-  </line>
-  <line>
-   <xstart>0.552878</xstart>
-   <ystart>137.046</ystart>
-   <xend>724.553</xend>
-   <yend>137.046</yend>
    <weight>0</weight>
   </line>
   <line>
@@ -309,6 +287,65 @@ WHERE if.id_producto IS NOT NULL
    <yend>137.488</yend>
    <weight>0</weight>
   </line>
+  <field>
+   <rect>
+    <x>82.8548</x>
+    <y>35.4422</y>
+    <width>100</width>
+    <height>24.3265</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <data>
+    <query>Parameter Query</query>
+    <column>fecha_inicio</column>
+   </data>
+  </field>
+  <field>
+   <rect>
+    <x>272.518</x>
+    <y>36.315</y>
+    <width>100</width>
+    <height>24.0357</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <left/>
+   <vcenter/>
+   <data>
+    <query>Parameter Query</query>
+    <column>fecha_fin</column>
+   </data>
+  </field>
+  <line>
+   <xstart>724.897</xstart>
+   <ystart>81.8506</ystart>
+   <xend>724.814</xend>
+   <yend>101.659</yend>
+   <weight>0</weight>
+  </line>
+  <line>
+   <xstart>725.704</xstart>
+   <ystart>60.5169</ystart>
+   <xend>725.866</xend>
+   <yend>80.5717</yend>
+   <weight>0</weight>
+  </line>
+  <line>
+   <xstart>1.19267</xstart>
+   <ystart>60.0086</ystart>
+   <xend>1.10887</xend>
+   <yend>79.8171</yend>
+   <weight>0</weight>
+  </line>
  </pghead>
  <section>
   <name>Listado</name>
@@ -316,20 +353,26 @@ WHERE if.id_producto IS NOT NULL
    <key>
     <query>listado</query>
    </key>
-   <height>24.6747</height>
+   <height>20.3202</height>
+   <rect>
+    <x>-0.0412397</x>
+    <y>-0.504104</y>
+    <width>725.78</width>
+    <height>20.6341</height>
+   </rect>
    <field>
     <rect>
-     <x>0.561679</x>
-     <y>1.26987</y>
-     <width>53.1807</width>
-     <height>25</height>
+     <x>0.562</x>
+     <y>0.0582</y>
+     <width>53.2</width>
+     <height>20.1</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>listado</query>
@@ -339,9 +382,9 @@ WHERE if.id_producto IS NOT NULL
    <field>
     <rect>
      <x>59.1</x>
-     <y>0.779</y>
-     <width>379</width>
-     <height>25</height>
+     <y>-0.385242</y>
+     <width>375.297</width>
+     <height>20.343</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -357,17 +400,17 @@ WHERE if.id_producto IS NOT NULL
    </field>
    <field>
     <rect>
-     <x>437.532</x>
-     <y>0.781807</y>
-     <width>31.6</width>
-     <height>25</height>
+     <x>437.524</x>
+     <y>0.0994063</y>
+     <width>32.7395</width>
+     <height>19.5874</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <hcenter/>
     <vcenter/>
     <data>
      <query>listado</query>
@@ -376,67 +419,70 @@ WHERE if.id_producto IS NOT NULL
    </field>
    <field>
     <rect>
-     <x>474</x>
-     <y>1.23</y>
-     <width>58.759</width>
-     <height>25</height>
+     <x>474.285</x>
+     <y>1.51488</y>
+     <width>58.8</width>
+     <height>18.5096</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>listado</query>
      <column>precio_compra</column>
     </data>
+    <format>$ %0.2f</format>
    </field>
    <field>
     <rect>
-     <x>535</x>
-     <y>1.7</y>
-     <width>57.8</width>
-     <height>25</height>
+     <x>534.283</x>
+     <y>0.750324</y>
+     <width>58.2542</width>
+     <height>19.6989</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>listado</query>
      <column>precio_venta</column>
     </data>
+    <format>$ %0.2f</format>
    </field>
    <field>
     <rect>
-     <x>595</x>
-     <y>1.7</y>
-     <width>67.7</width>
-     <height>25</height>
+     <x>593.701</x>
+     <y>1.28396</y>
+     <width>69.971</width>
+     <height>19.5496</height>
     </rect>
     <font>
      <face>Times New Roman</face>
      <size>10</size>
      <weight>normal</weight>
     </font>
-    <left/>
+    <right/>
     <vcenter/>
     <data>
      <query>listado</query>
      <column>suma_vendido</column>
     </data>
+    <format>$ %0.2f</format>
    </field>
    <field>
     <rect>
-     <x>666.3</x>
-     <y>-0.66358</y>
-     <width>59.3</width>
-     <height>25</height>
+     <x>664.681</x>
+     <y>0.371101</y>
+     <width>60.8458</width>
+     <height>21.3664</height>
     </rect>
     <font>
      <face>Times New Roman</face>
@@ -449,124 +495,18 @@ WHERE if.id_producto IS NOT NULL
      <query>listado</query>
      <column>ganancia</column>
     </data>
+    <format>$ %0.2f</format>
    </field>
   </detail>
  </section>
  <pgfoot>
-  <height>73.597</height>
-  <rect>
-   <x>429.407</x>
-   <y>1.79602</y>
-   <width>69.0992</width>
-   <height>25</height>
-   <weight>1</weight>
-  </rect>
-  <rect>
-   <x>498.232</x>
-   <y>1.79602</y>
-   <width>109.364</width>
-   <height>25</height>
-   <weight>1</weight>
-  </rect>
-  <rect>
-   <x>607.587</x>
-   <y>1.77562</y>
-   <width>109.364</width>
-   <height>24.7628</height>
-   <weight>1</weight>
-  </rect>
-  <field>
-   <rect>
-    <x>437.127</x>
-    <y>1.35071</y>
-    <width>53.6489</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <data>
-    <query>total</query>
-    <column>cantidad_total</column>
-   </data>
-  </field>
-  <field>
-   <rect>
-    <x>499</x>
-    <y>2.38</y>
-    <width>103</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <vcenter/>
-   <data>
-    <query>total</query>
-    <column> total_vendido</column>
-   </data>
-  </field>
+  <height>19.3111</height>
   <label>
    <rect>
-    <x>429.342</x>
-    <y>27.6496</y>
-    <width>69.6332</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <top/>
-   <string>Cantidad</string>
-  </label>
-  <label>
-   <rect>
-    <x>503</x>
-    <y>27.9</y>
-    <width>101</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <top/>
-   <string>Venta total</string>
-  </label>
-  <label>
-   <rect>
-    <x>607</x>
-    <y>26.9</y>
-    <width>110</width>
-    <height>25</height>
-   </rect>
-   <font>
-    <face>Times New Roman</face>
-    <size>10</size>
-    <weight>normal</weight>
-   </font>
-   <hcenter/>
-   <top/>
-   <string>Ganancia total</string>
-  </label>
-  <label>
-   <rect>
-    <x>1.77</x>
-    <y>46.9</y>
+    <x>2.63</x>
+    <y>1.99</y>
     <width>721</width>
-    <height>25</height>
+    <height>15.2</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -575,12 +515,36 @@ WHERE if.id_producto IS NOT NULL
    </font>
    <hcenter/>
    <bottom/>
-   <string>Atencion: Los precios de compra están tomados al momento de hacer el resumen. No se incluyen articulos vendidos que no tengan una referencia de productos.</string>
+   <string>Atención: Los precios de compra están tomados al momento de hacer el resumen. No se incluyen articulos vendidos que no tengan una referencia de productos.</string>
   </label>
+ </pgfoot>
+ <rptfoot>
+  <height>36.2236</height>
+  <rect>
+   <x>438.224</x>
+   <y>1.03294</y>
+   <width>69.0992</width>
+   <height>19.4745</height>
+   <weight>1</weight>
+  </rect>
+  <rect>
+   <x>507.049</x>
+   <y>1.03294</y>
+   <width>109.364</width>
+   <height>19.4745</height>
+   <weight>1</weight>
+  </rect>
+  <rect>
+   <x>616.404</x>
+   <y>1.01254</y>
+   <width>109.364</width>
+   <height>19.4092</height>
+   <weight>1</weight>
+  </rect>
   <label>
    <rect>
-    <x>325</x>
-    <y>5.3</y>
+    <x>333.18</x>
+    <y>0.713472</y>
     <width>100</width>
     <height>25</height>
    </rect>
@@ -593,31 +557,100 @@ WHERE if.id_producto IS NOT NULL
    <vcenter/>
    <string>Totales:</string>
   </label>
- </pgfoot>
- <rptfoot>
-  <height>26.7409</height>
-  <label>
+  <field>
    <rect>
-    <x>182</x>
-    <y>2.34</y>
-    <width>359</width>
-    <height>16.1</height>
+    <x>512.434</x>
+    <y>0.812366</y>
+    <width>103</width>
+    <height>16.5664</height>
    </rect>
    <font>
     <face>Times New Roman</face>
-    <size>8</size>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <right/>
+   <vcenter/>
+   <data>
+    <query>total</query>
+    <column>total_vendido</column>
+   </data>
+   <format>$ %0.2f</format>
+  </field>
+  <label>
+   <rect>
+    <x>615.817</x>
+    <y>20.4351</y>
+    <width>110</width>
+    <height>14.707</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
     <weight>normal</weight>
    </font>
    <hcenter/>
-   <vcenter/>
-   <string>Listado de ventas de productos y ganancias entre fechas</string>
+   <top/>
+   <string>Ganancia total</string>
   </label>
   <field>
    <rect>
-    <x>612</x>
-    <y>27.6858</y>
+    <x>621.271</x>
+    <y>0.802366</y>
     <width>103</width>
-    <height>25</height>
+    <height>16.2756</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <right/>
+   <vcenter/>
+   <data>
+    <query>total</query>
+    <column>total_ganancia</column>
+   </data>
+   <format>$ %0.2f</format>
+  </field>
+  <label>
+   <rect>
+    <x>511.817</x>
+    <y>20.4482</y>
+    <width>104.781</width>
+    <height>16.5664</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <top/>
+   <string>Venta total</string>
+  </label>
+  <label>
+   <rect>
+    <x>438.159</x>
+    <y>20.1978</y>
+    <width>69.6332</width>
+    <height>15.9847</height>
+   </rect>
+   <font>
+    <face>Times New Roman</face>
+    <size>10</size>
+    <weight>normal</weight>
+   </font>
+   <hcenter/>
+   <top/>
+   <string>Cantidad</string>
+  </label>
+  <field>
+   <rect>
+    <x>440.292</x>
+    <y>0.586922</y>
+    <width>65.952</width>
+    <height>18.6021</height>
    </rect>
    <font>
     <face>Times New Roman</face>
@@ -628,7 +661,7 @@ WHERE if.id_producto IS NOT NULL
    <vcenter/>
    <data>
     <query>total</query>
-    <column>ganancia</column>
+    <column>cantidad_total</column>
    </data>
   </field>
  </rptfoot>

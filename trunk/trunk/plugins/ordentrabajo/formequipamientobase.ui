@@ -121,24 +121,6 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="LNumFactura">
-       <property name="text">
-        <string>Nº de Factura:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="LFechaFactura">
-       <property name="text">
-        <string>Fecha de Factura</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_11">
      <item>
       <widget class="QLabel" name="LObservaciones">

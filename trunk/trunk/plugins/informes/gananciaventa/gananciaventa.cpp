@@ -50,13 +50,12 @@ void GananciaVenta::hacerMenu( QMenu *m )
 void GananciaVenta::hacerResumenTotal()
 {
     QDate min_venta, min_compra, max_compra, max_venta;
-    min_venta = MFactura::obtenerFechaMinimaVenta();
-    min_compra = MCompra::obtenerFechaMinimaCompra();
-    max_venta = MFactura::fechaUltimaVenta();
-    max_compra = MCompra::obtenerFechaMaximaCompra();
+    min_venta = MFactura::obtenerFechaMinimaVenta().addDays( -1 );
+    min_compra = MCompra::obtenerFechaMinimaCompra().addDays( -1 );
+    max_venta = MFactura::fechaUltimaVenta().addDays( 1 );
+    max_compra = MCompra::obtenerFechaMaximaCompra().addDays( 1 );
     EReporte *rep = new EReporte( this );
     ParameterList lista;
-    /// @TODO colocar las fechas en formato sql dependiendo del reporte
     lista.append( "fecha_inicio", Util::formateoFechas( qMin( min_venta, min_compra ) ) );
     lista.append( "fecha_fin", Util::formateoFechas( qMax( max_venta, max_compra ) ) );
     rep->especial( "ListadoGananciaVenta", lista );
