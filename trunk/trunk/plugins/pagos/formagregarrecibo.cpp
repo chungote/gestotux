@@ -214,7 +214,7 @@ void FormAgregarRecibo::guardar()
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
     // Imprimir el recibo
     QMessageBox::information( this, "Correcto", QString::fromUtf8( "El recibo nº %1 se guardo correctamente y se ha enviado a imprimir automaticamente" ).arg( this->_modelo->buscarNumeroComprobantePorId( num_recibo ).aCadena() ) );
-    /// Imprimo el recibo
+    // Imprimo el recibo
     ParameterList lista;
     lista.append( "id_recibo", num_recibo );
     EReporte *rep = new EReporte( this );

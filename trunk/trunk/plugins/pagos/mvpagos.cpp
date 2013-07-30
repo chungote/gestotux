@@ -29,7 +29,7 @@ QVariant MVPagos::data(const QModelIndex& item, int role) const
      case 3: // fecha de pago
      { return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::LocalDate ); break; }
      case 4: // Monto
-     { return QString::number( QSqlRelationalTableModel::data( item, role ).toDouble(), 'f', 2 ).prepend( "$  "); break; }
+     { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item,role).toDouble(), 10, 'f', 2 ); break; }
      case 5:
      {
        switch( QSqlRelationalTableModel::data( item, role ).toInt() )

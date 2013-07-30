@@ -90,7 +90,7 @@ QVariant MRecargosHechos::data(const QModelIndex& item, int role) const
                 }
                 case 6:
                 {
-                    return QString::number( QSqlRelationalTableModel::data( item, role ).toDouble() ).prepend( "$ ");
+                    return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item,role).toDouble(), 10, 'f', 2 );
                     break;
                 }
                 default:
