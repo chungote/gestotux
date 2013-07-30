@@ -99,6 +99,10 @@ void FormClientesAdheridos::changeEvent(QEvent *e)
     }
 }
 
+/*!
+ * \brief FormClientesAdheridos::setServicioInicial
+ * \param id_servicio
+ */
 void FormClientesAdheridos::setServicioInicial( int id_servicio )
 {
     if( id_servicio <= 0 )
@@ -110,6 +114,10 @@ void FormClientesAdheridos::setServicioInicial( int id_servicio )
 
 }
 
+/*!
+ * \brief FormClientesAdheridos::cambioServicio
+ * \param id_servicio
+ */
 void FormClientesAdheridos::cambioServicio( int id_servicio )
 {
     if( id_servicio <= 0 )
@@ -119,7 +127,9 @@ void FormClientesAdheridos::cambioServicio( int id_servicio )
     modelo->select();
 }
 
-
+/*!
+ * \brief FormClientesAdheridos::darDeBaja
+ */
 void FormClientesAdheridos::darDeBaja()
 {
  // Busco el ID que quiere dar de baja
@@ -139,34 +149,37 @@ void FormClientesAdheridos::darDeBaja()
   modelo->select();
 }
 
-#include "mcobroservicioclienteperiodo.h"
+/*!
+ * \brief FormClientesAdheridos::eliminar
+ * Elimina la relación de algun cliente que ha sido dado de baja de un servicio
+ */
 void FormClientesAdheridos::eliminar() {
     // Busco el ID que quiere dar de baja
     QModelIndexList lista = TVAdheridos->selectionModel()->selectedRows();
     if( lista.isEmpty() ) {
-        QMessageBox::information( this, "Error", "Por favor, seleccione algun cliente adherido para darlo de baja" );
+        QMessageBox::information( this, "Error", "Por favor, seleccione algun cliente dado de baja para eliminarlo" );
         return;
     }
      int id_servicio = CBServicios->idActual();
      foreach( QModelIndex item, lista ) {
-         int id_cliente = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
-         QDate fecha_baja = item.model()->data( item.model()->index( item.row(), 3 ), Qt::EditRole ).toDate();
+         int id_cliente = modelo->data( modelo->index( item.row(), modelo->fieldIndex( "idcliente" ) ), Qt::EditRole ).toInt();
+         QDate fecha_baja = item.model()->data( item.model()->index( item.row(), modelo->fieldIndex( "fecha_baja" ) ), Qt::EditRole ).toDate();
          if( !fecha_baja.isValid() ) {
              QMessageBox::information( this, "Error", QString::fromUtf8( "El cliente que está intentando eliminar no ha sido dado de baja todavía. Delo de baja antes de eliminar la asociación." ) );
          } else {
-             if( MCobroServicioClientePeriodo::tieneDatosRelacionados( id_servicio, id_cliente ) ) {
-                 QMessageBox::warning( this, "Error", QString::fromUtf8( "La asociación del servicio que está intentando eliminar posee datos de facturación. No se puede eliminar la asociación para no comprometer la integridad de los datos." ) );
+             if( modelo->eliminarRelacion( id_cliente, id_servicio ) ) {
+                 QMessageBox::information( this, "Correcto", QString::fromUtf8( "La asociacion del cliente al servicio ha sido eliminada. No así sus datos historicos" ) );
              } else {
-                bool ok = false;
-                QString razon = QInputDialog::getText( this, "Razon de baja", "Ingrese la razon de baja:", QLineEdit::Normal, QString(), &ok );
-                if( ok )
-                    modelo->darDeBaja( id_cliente, id_servicio, razon );
+                 QMessageBox::information( this, "Error", QString::fromUtf8( "No se pudo eliminar la asociacion del cliente al servicio." ) );
              }
          }
      }
      modelo->select();
 }
 
+/*!
+ * \brief FormClientesAdheridos::imprimir
+ */
 void FormClientesAdheridos::imprimir()
 {
     EReporte *rep = new EReporte( 0 );
@@ -181,6 +194,9 @@ void FormClientesAdheridos::imprimir()
     delete rep;
 }
 
+/*!
+ * \brief FormClientesAdheridos::aPdf
+ */
 void FormClientesAdheridos::aPdf()
 {
    EReporte *rep = new EReporte( 0 );
@@ -196,6 +212,10 @@ void FormClientesAdheridos::aPdf()
    delete rep;
 }
 
+/*!
+ * \brief FormClientesAdheridos::verBaja
+ * \param estado
+ */
 void FormClientesAdheridos::verBaja( bool estado )
 {
     if( estado ) {

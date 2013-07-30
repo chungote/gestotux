@@ -186,10 +186,16 @@ int MCobroServicioClientePeriodo::buscarIdPeriodoServicio( const int id_recibo )
 
 }
 
-bool MCobroServicioClientePeriodo::tieneDatosRelacionados(const int id_servicio, const int id_cliente)
+/*!
+ * \brief MCobroServicioClientePeriodo::tieneDatosRelacionados
+ * \param id_servicio Identificador del servicio
+ * \param id_cliente Identificador del cliente
+ * \return Verdadero si hay algún dato relacionados
+ */
+bool MCobroServicioClientePeriodo::tieneDatosRelacionados( const int id_servicio, const int id_cliente )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM cobro_servicio_cliente_periodo WHERE id_servicio = %1 AND id_cliente = %2 ").arg( id_servicio ).arg( id_cliente ) ) ) {
+    if( cola.exec( QString( "SELECT COUNT( id_servicio ) FROM cobro_servicio_cliente_periodo WHERE id_servicio = %1 AND id_cliente = %2" ).arg( id_servicio ).arg( id_cliente ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() > 0 ) {
             return true;
@@ -197,7 +203,7 @@ bool MCobroServicioClientePeriodo::tieneDatosRelacionados(const int id_servicio,
             return false;
         }
     } else {
-        qDebug( "Error al ejecutar la cola para averiguar las relaciones de datos entre un cliente yy un servicio." );
+        qDebug( "Error al ejecutar la cola para averiguar las relaciones de datos entre un cliente y un servicio." );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
         return false;
