@@ -68,7 +68,7 @@ QVariant MGasto::data(const QModelIndex& item, int role) const
                 {
                         case 3:
                         {
-                                return QSqlRelationalTableModel::data(item, role).toString().prepend("$");
+                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item,role).toDouble(), 10, 'f', 2 );
                                 break;
                         }
                         case 4:
