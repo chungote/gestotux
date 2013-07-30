@@ -33,6 +33,7 @@ public:
     void filtrarPorCliente( const int id_cliente );
     bool darDeBaja( int id_cliente, int id_servicio, QString razon = QString() );
     void setearVerBaja( bool estado );
+    bool eliminarRelacion( const int id_cliente, const int id_servicio );
 
     QVariant data(const QModelIndex &item, int role) const;
     Qt::ItemFlags flags(const QModelIndex& index) const;

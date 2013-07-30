@@ -229,3 +229,32 @@ void MClientesServicios::setearVerBaja( bool estado )
     _baja = estado;
     crearFiltro();
 }
+
+/**
+ * @brief MClientesServicios::eliminarRelacion
+ * Elimina la relación que existe entre los clientes.
+ * @param id_cliente Identificador del cliente.
+ * @param id_servicio Identificador del servicio
+ * @return Verdader si se pudo eliminar la relación.
+ */
+bool MClientesServicios::eliminarRelacion( const int id_cliente, const int id_servicio )
+{
+    /**
+     * No existe problema en eliminar en si misma la relación ya que la tabla relacionada
+     * cobro_servicio_cliente_período tiene los 3 datos independientemente de la asociación
+     * Por lo tanto se guardarán los datos historicos.
+     */
+    if( id_cliente <= 0 ) {
+        qDebug( "Identificador de cliente <= 0" );
+        return false;
+    }
+    QSqlQuery cola;
+    if( !cola.exec( QString( "DELETE FROM servicios_clientes WHERE id_cliente = %1 AND id_servicio = %2 AND fecha_baja IS NOT NULL" ).arg( id_cliente ).arg( id_servicio ) ) ) {
+        qDebug( "Error al intentar eliminar la relacion cliente-servicio." );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    } else {
+        return true;
+    }
+    return false;
+}
