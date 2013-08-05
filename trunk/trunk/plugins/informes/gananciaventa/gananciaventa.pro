@@ -2,7 +2,8 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti
 
 QT += sql \
       xml
@@ -16,19 +17,27 @@ INCLUDEPATH += ../../../reporte \
                ../../../src \
                ../. \
                ../../compras \
-               ../../ventas
+               ../../ventas \
+               ../../caja \
+               ../../productos
 
 LIBS += ../../../bin/libutiles.a \
         ../../../bin/libreporte.a
+
+LIBS += -lventas \
+        -lcompras \
+        -L../../../bin \
+        -L../../../bin/plugins
+
+QMAKE_LFLAGS += -Wl,-rpath,./../plugins
 
 PRE_TARGETDEPS += ../../../bin/libreporte.a \
                   ../../../bin/libutiles.a
 
 HEADERS += gananciaventa.h \
-    formrangofechas.h
+           formrangofechas.h
 
 SOURCES += gananciaventa.cpp \
-    formrangofechas.cpp
+           formrangofechas.cpp
 
-FORMS += \
-    FormRangoFechasBase.ui
+FORMS += FormRangoFechasBase.ui

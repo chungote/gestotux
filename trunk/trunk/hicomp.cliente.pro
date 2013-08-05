@@ -20,6 +20,8 @@ SUBDIRS = utiles/utiles.pro \
           plugins/gastos/gastos.pro \
           plugins/compras/compras.pro \
           plugins/proveedor/proveedor.pro \
+          plugins/informes/informa.pro \
+          plugins/informes/informes.pro \
           src/src.pro
 
 NOMBRE_PROGRAMA = ../../bin/hicomp

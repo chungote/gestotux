@@ -10,11 +10,5 @@ SUBDIRS +=  caja \
             presupuesto \
             servicios \
             descuentos \
-            cuotas \
-            remitos \
-            backupremoto \
-            ordentrabajo \
-            bscomputacion \
             feedback \
-            informes/informa.pro \
-            informes
+            cuotas

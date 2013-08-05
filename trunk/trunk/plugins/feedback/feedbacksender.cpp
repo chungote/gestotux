@@ -58,11 +58,8 @@ void FeedbackSender::verificarEnvio()
     manager = new QNetworkAccessManager( this );
     connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
-#ifdef GESTOTUX_DESARROLLO
-    QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/feedbacks/enviar" ).toString() );
-#else
     QUrl url( p->value( "url_envio", "http://www.gestotux.com.ar/feedbacks/enviar" ).toString() );
-#endif
+
     p->inicio();
     p->beginGroup( "carga" );
     url.addQueryItem( "cliente", p->value( "pluginInfo", "default" ).toString() );

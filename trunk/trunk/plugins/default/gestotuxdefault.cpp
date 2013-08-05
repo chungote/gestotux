@@ -20,8 +20,8 @@
 #include "gestotuxdefault.h"
 
 bool GestotuxDefault::publicidad()
-//{ return true; }
-{ return false; }
+{ return true; }
+//{ return false; }
 
 double GestotuxDefault::version() const
 { return 1; }
@@ -45,7 +45,7 @@ QString GestotuxDefault::empresa() const
 { return "uso generico"; }
 
 QString GestotuxDefault::nombrePrograma() const
-{ return "Gestotux 0.5 RC 8"; }
+{ return "Gestotux 0.5 RC 13"; }
 
 bool GestotuxDefault::inicializar()
 {
@@ -56,13 +56,13 @@ bool GestotuxDefault::inicializar()
 bool GestotuxDefault::verificarTablas( QStringList tablas )
 {
     if( !tablas.contains( "paises" ) ) {
-        qDebug( "No se encontró la tabla de paises" );
+        qDebug( "No se encontro la tabla de paises" );
         return false;
     } else if( !tablas.contains( "provincias" ) ) {
-        qDebug( "No se encontró la tabla de provincias" );
+        qDebug( "No se encontro la tabla de provincias" );
         return false;
     } else if( !tablas.contains( "estado_fiscal" ) ) {
-        qDebug( "No se encontró la tabla de estados_fiscales" );
+        qDebug( "No se encontro la tabla de estados_fiscales" );
         return false;
     }
     return true;
