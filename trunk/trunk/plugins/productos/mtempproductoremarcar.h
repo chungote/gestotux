@@ -27,6 +27,9 @@ public:
 
   QPair<int,int> remarcar();
 
+signals:
+  void aumentoProgreso( int );
+
 public slots:
   void agregarProducto( int id );
   void eliminarProducto( QModelIndex idx );

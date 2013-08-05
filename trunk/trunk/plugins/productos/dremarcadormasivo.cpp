@@ -22,6 +22,7 @@ QDialog( parent )
   TVProductos->setModel( modelo );
   TVProductos->hideColumn( 0 );
   TVProductos->setSelectionBehavior( QAbstractItemView::SelectRows );
+  TVProductos->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
 
   connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
   connect( PBAgregarTodos, SIGNAL( clicked() ), this, SLOT( agregarTodos() ) );
@@ -44,6 +45,17 @@ QDialog( parent )
   CBProductos->setearCampoTexto( "nombre" );
   CBProductos->setearCampoOrden( "nombre" );
 
+  GBAvance->setVisible( false );
+
+  _total = 0;
+
+}
+
+void DRemarcadorMasivo::avanzarProgreso( int cantidad )
+{
+    int cant = PgBAvance->value() + cantidad;
+    PgBAvance->setValue( cant );
+    LEstado->setText( QString( "Remarcando %1 de %2 productos..." ).arg( cant ).arg( _total ) );
 }
 
 void DRemarcadorMasivo::changeEvent(QEvent *e)
@@ -112,9 +124,25 @@ void DRemarcadorMasivo::eliminarTodos()
  */
 void DRemarcadorMasivo::accept()
 {
+    GBAvance->setVisible( true );
+    PgBAvance->setRange( 0, modelo->rowCount() );
+    this->_total = modelo->rowCount();
+    connect( modelo, SIGNAL( aumentoProgreso( int ) ), this, SLOT( avanzarProgreso( int ) ) );
+    GBRemarcar->setEnabled( false );
+    CBProductos->setEnabled( false );
+    PBAgregar->setEnabled( false );
+    PBAgregarTodos->setEnabled( false );
+    PBEliminar->setEnabled( false );
+    PBEliminarTodos->setEnabled( false );
     QPair<int,int> dato = modelo->remarcar();
     if( dato.second != 0 ) {
         QMessageBox::information( this, "Estado", QString( "No se pudieron remarcar %1 productos. Los remarcados han sido eliminados de la lista" ).arg( dato.second ) );
+        GBRemarcar->setEnabled( true );
+        CBProductos->setEnabled( true );
+        PBAgregar->setEnabled( true );
+        PBAgregarTodos->setEnabled( true );
+        PBEliminar->setEnabled( true );
+        PBEliminarTodos->setEnabled( true );
     } else {
         QMessageBox::information( this, "Correcto", QString( "Se han remarcado %1 producto(s) correctamente" ).arg( dato.first ) );
         QDialog::accept();

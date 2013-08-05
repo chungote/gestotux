@@ -11,6 +11,9 @@ class DRemarcadorMasivo : public QDialog, private Ui::DRemarcadorMasivo
 public:
   DRemarcadorMasivo( QWidget *parent = 0 );
   
+public slots:
+  void avanzarProgreso( int cantidad );
+
 protected:
   void changeEvent(QEvent *e);
 
@@ -28,6 +31,7 @@ protected slots:
 private:
   MTempProductoRemarcar *modelo;
   void recalcularFiltro();
+  int _total;
 
 };
 
