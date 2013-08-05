@@ -261,7 +261,7 @@ QPair<int, int> MTempProductoRemarcar::remarcar()
         if( contador >= _id_productos->size() )
             condicion = false;
 
-        contador++;
+        emit aumentoProgreso( 1 );
     }
     return QPair<int,int>( cambiados, no_cambiados );
 }
