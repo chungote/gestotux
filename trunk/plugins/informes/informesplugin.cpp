@@ -87,6 +87,7 @@ void InformesPlugin::seCierraGestotux()
 
 void InformesPlugin::actualizar()
 {
+    /// @TODO Implementar actualización de informes
     qWarning( "No implementado" );
 }
 

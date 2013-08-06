@@ -1,7 +1,7 @@
 #include "balancegeneral.h"
 #include "EReporte.h"
 
-Q_EXPORT_PLUGIN2( balance, BalanceGeneral )
+#include <QDate>
 
 double BalanceGeneral::version() const
 { return 1.0; }
@@ -26,7 +26,11 @@ void BalanceGeneral::hacerMenu( QMenu *m )
 
 void BalanceGeneral::hacerResumen()
 {
-    EReporte *rep = new EReporte( this );
-    rep->especial( "BalanceGeneral", ParameterList() );
-    rep->hacer();
+    EReporte *rep = new EReporte( 0 );
+    ParameterList lista;
+    rep->especial( "BalanceGeneral", lista );
+    rep->hacerPDF( lista, QString( "Balance general al %1" ).arg( QDate::currentDate().toString( "dd-MM-yyyy" ) ) );
+    delete rep;
 }
+
+Q_EXPORT_PLUGIN2( balance, BalanceGeneral )
