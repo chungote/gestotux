@@ -69,7 +69,7 @@ EReporte::~EReporte()
  * \returns Verdadero si se pudo imprimir. Falso si hubo un error de configuración o al imprimir.
  */
 bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrarDialogoImpresion ) {
-    if( _rep == 0 || !_rep->isValid() || _tipo == Invalido || _nombre.isNull() ) {
+    if( _nombre.isNull() || _tipo == Invalido || _rep == 0 || !_rep->isValid()  ) {
         qDebug( "Error - Reporte no inicializado o erroneo" );
         return false;
     }
@@ -195,7 +195,7 @@ void EReporte::setearImpresora( QPrinter *imp )
  */
 bool EReporte::especial( const QString nombre, ParameterList parametros ) {
 
-    if( nombre.isNull() ) {
+    if( nombre.isNull() || nombre.isEmpty() ) {
         qDebug( "Error - nombre del reporte especial nulo." );
         return false;
     }
