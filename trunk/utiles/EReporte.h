@@ -50,7 +50,8 @@ class EReporte : public QObject {
         Recibo = 3, /** Tipo Recibo */
         AnulacionFactura = 4, /** Tipo Anulacion de una factura */
         Especial = 5, /** Tipo Especial, se deberá incluir el nombre del reporte en un parametro adicional */
-        AnulacionRecibo = 6 /** Tipo Anulacion de recibo */
+        AnulacionRecibo = 6, /** Tipo Anulacion de recibo */
+        Remito = 7 /** Tipo Remito ( Factura en negro ) */
     };
     explicit EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros );
     explicit EReporte( QObject *padre );
