@@ -107,6 +107,8 @@ QString GestotuxDefault::reporte( int tipo ) {
         { return "Recibo"; break; }
         case EReporte::AnulacionFactura:
         { return "AnulacionFactura"; break; }
+        case EReporte::Remito:
+        { return "Remito"; break; }
         default:
         { return QString(); }
     }
