@@ -37,7 +37,7 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         setWindowTitle( "Nuevo recibo" );
         setWindowIcon( QIcon( ":/imagenes/recibo-nuevo.png" ) );
 
-        connect( CBCliente, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
+        connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
         connect( dSBPagado, SIGNAL( valueChanged( double ) ), this, SLOT( cambioPagado( double ) ) );
 
         this->addAction( new EActGuardar( this ) );
@@ -122,15 +122,26 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
  p->beginGroup( "Preferencias" );
  p->beginGroup( "CtaCte" );
  bool habilitada = p->value( "habilitada" ).toBool();
- p->endGroup(); p->endGroup(); p = 0;
+ p->endGroup();
+ p->endGroup();
+ p->beginGroup( "carga" );
+ bool hicomp = false;
+ if( p->value( "pluginInfo" ).toString() == "hicomp" ) {
+     hicomp =  true;
+ }
+ p->endGroup();
+ p = 0;
  if( habilitada && ERegistroPlugins::getInstancia()->existePluginExterno( "ctacte" ) )
  {
   if( id_combo == 0 ) {
      // El numero indica Consumidor Final
-     qDebug( "FormAgregarRecibo::cambioCliente::Se eligio consumidor final" );
+     //qDebug( "FormAgregarRecibo::cambioCliente::Se eligio consumidor final" );
   } else {
     QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->idClienteActual() );
-    if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite ) || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) )
+    qDebug( numero_cuenta.toLocal8Bit() );
+    if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite )
+     || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta )
+     || numero_cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) )
     {
         qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
         qDebug( numero_cuenta.toLocal8Bit() );
@@ -143,6 +154,8 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
         dSBTotal->setVisible( true );
         LDeuda->setVisible( true );
         recalcularTotal();
+        if( hicomp )
+        { RBLuego->setVisible( true ); } else { qDebug( "No debo salir" ); }
         return;
     }
   }
@@ -151,6 +164,8 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
  LDeuda->setVisible( false );
  dSBTotal->setVisible( false );
  LSaldo->setVisible( false );
+ if( hicomp )
+ { RBLuego->setVisible( false ); }
 }
 
 

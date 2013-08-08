@@ -28,6 +28,7 @@
 #include "mcobroservicioclienteperiodo.h"
 #include "mitemcuentacorriente.h"
 #include "mitemplancuota.h"
+#include "mclientes.h"
 
 #include <QSqlDatabase>
 #include <QPushButton>
@@ -95,6 +96,7 @@ void DPagarRecibo::accept()
             qWarning( "No se puede encontrar el cliente al cual se le realizo el recibo. Solo se lo colocará como pagado pero no se actuazliará ninguna cuenta corriente" );
         } else {
             QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+            QString nombre_cliente = MClientes::getRazonSocial( id_cliente );
             if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
                 // no posee cuenta corriente
                 qDebug( "El cliente no posee cuenta corriente, se salteara la actualizacion de cuentas corrientes" );
@@ -109,7 +111,7 @@ void DPagarRecibo::accept()
                                                             id_recibo,
                                                             MItemCuentaCorriente::Recibo,
                                                             QDate::currentDate(),
-                                                            QString( "Pago de recibo %1" ).arg( proximo.aCadena() ),
+                                                            QString( "Pago de recibo %1 de %2" ).arg( proximo.aCadena() ).arg( nombre_cliente ),
                                                             DSBPagar->value() * ( -1 ) ) ) {
                     qDebug( "Item de cuenta corriente agregado correctamente." );
                 } else {

@@ -34,6 +34,7 @@ public:
     Qt::ItemFlags flags( const QModelIndex &index ) const;
 
     void ultimosMovimientosCaja( const int id_caja );
+    void actualizarMovimiento( const int id_movimiento_caja, QString texto );
 
     bool agregarMovimiento( int id_caja,  QString razon, QString responsable = QString(), double ingreso = 0.0, double egreso = 0.0, bool agregando_caja = false );
     bool verificarCierreCaja( const int id_caja );
