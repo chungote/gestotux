@@ -29,6 +29,7 @@
 #include "../caja/mcajas.h"
 #include "../CtaCte/mcuentacorriente.h"
 #include "../CtaCte/mitemcuentacorriente.h"
+#include "../../src/mclientes.h"
 
 /*
 DROP TABLE `recibos`;
@@ -267,9 +268,6 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "serie", proximo.serie() );
     rec.setValue( "numero",proximo.numero() );
     rec.setValue( "cancelado", false );
-    /*for( int i = 0; i < rec.count(); i++ ) {
-        qDebug( QString( "%1: %2" ).arg( rec.fieldName(i) ).arg( rec.value(i).toString() ).toLocal8Bit() );
-    }*/
     if( this->insertRecord( -1, rec ) ) {
         this->submitAll();
         int id_recibo = query().lastInsertId().toInt();
@@ -325,6 +323,16 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
 #else
                 qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
 #endif
+            }
+
+            // Actualizo la entrada de caja
+            if( pagado && efectivo ) {
+                if( ERegistroPlugins::getInstancia()->existePluginExterno("caja") ) {
+                    QString nombre_cliente = MClientes::getRazonSocial( id_cliente );
+                    MMovimientosCaja *mc = new MMovimientosCaja();
+                    mc->actualizarMovimiento( id_caja, QString( "Pago en efectivo de recibo %1 - %2" ).arg( proximo.aCadena() ).arg( nombre_cliente ) );
+                    delete mc;
+                }
             }
         } else {
             // ¿no se lleno el campo ? - seguramente la base de datos no lo soporta

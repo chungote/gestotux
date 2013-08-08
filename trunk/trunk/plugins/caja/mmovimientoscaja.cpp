@@ -333,6 +333,25 @@ void MMovimientosCaja::ultimosMovimientosCaja( const int id_caja )
  this->select();
 }
 
+
+/*!
+ * \brief MMovimientosCaja::actualizarMovimiento
+ * \param id_movimiento_caja
+ * \param texto
+ */
+void MMovimientosCaja::actualizarMovimiento( const int id_movimiento_caja, QString texto )
+{
+    if( id_movimiento_caja <= 0 || texto.isNull() || texto.isEmpty() ) {
+        return;
+    }
+    QSqlQuery cola;
+    if( !cola.exec( QString( "UPDATE FROM movimiento_caja SET razon = \"%2\" WHERE id_movimiento_caja = %1 LIMIT 1" ).arg( id_movimiento_caja ).arg( texto ) ) ) {
+        qDebug( "Error al actualizar la información del movimiento de caja" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+}
+
 /*!
  * @fn MMovimientosCaja::usuarioActual()
  * Devuelve el usuario loggeado en la base de datos actualmente
