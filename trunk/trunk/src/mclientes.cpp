@@ -82,16 +82,16 @@ QString MClientes::direccionEntera(int id_cliente) {
             if( !cola.record().value(0).isNull() ) {
                 ret.append( cola.record().value(0).toString() );
             }
-            if( !cola.record().value(1).isNull() ) {
+            if( !cola.record().value(1).isNull() && !cola.record().value(1).toString().isEmpty() ) {
                 ret.append( " " + cola.record().value(1).toString() );
             }
-            if( !cola.record().value(2).isNull()) {
+            if( !cola.record().value(2).isNull() & !cola.record().value(2).toString().isEmpty() ) {
                 ret.append( " P " + cola.record().value(2).toString() );
             }
-            if( !cola.record().value(3).isNull()) {
+            if( !cola.record().value(3).isNull() && !cola.record().value(3).toString().isEmpty() ) {
                 ret.append( " dept " + cola.record().value(3).toString() );
             }
-            if( !cola.record().value(4).isNull()) {
+            if( !cola.record().value(4).isNull() && !cola.record().value(4).toString().isEmpty() ) {
                 ret.append( " - " + cola.record().value(4).toString() );
             }
             /*if( !cola.record().value(5).isNull()) {
