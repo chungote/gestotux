@@ -477,9 +477,10 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo, const b
         // Si el recibo se pago en efectivo, hago su ingreso en caja
         if( efectivo )
         {
+            QString nombre_cliente = MClientes::getRazonSocial( id_cliente );
             MMovimientosCaja *m = new MMovimientosCaja();
             if( m->agregarMovimiento( MCajas::cajaPredeterminada(),
-                                      QString( "Pago del recibo %1" ).arg( num->aCadena() ),
+                                      QString( "Pago del recibo %1 - %2" ).arg( num->aCadena() ).arg( nombre_cliente ),
                                       QString(),
                                       precio ) )
             {

@@ -577,12 +577,12 @@ qDebug("orReport[_wrapper]::satisfyParams() not implemented");
 int orReport::reportError(QWidget *pParent)
 {
   if (!_internal->_reportExists)
-    QMessageBox::critical( pParent, QObject::tr("Report Definition Not Found"),
-                           QObject::tr( "The report definition for this report, \"%1\" cannot be found.\n"
-                                        "Please contact your Systems Administrator and report this issue." )
+    QMessageBox::critical( pParent, "No se encontro el reporte",
+                           QString( "La definicion para el reporte %1 no pudo ser encontrada.\n"
+                                    "Por favor, comuniquese con el soporte técnico." )
                            .arg(_internal->_reportName) );
   else
-    QMessageBox::critical( pParent, QObject::tr("Unknown Error"),
+      QMessageBox::critical( pParent, "Error desconocido",
                            QObject::tr( "An unknown error was encountered while processing your request.\n"
                                         "Please contact your Systems Administrator and report this issue." ) );
 //  ToDo  Add support for unsatisfied parameters list and return something meaningful
