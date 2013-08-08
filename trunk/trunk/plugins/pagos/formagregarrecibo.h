@@ -50,6 +50,8 @@ private:
         void recalcularTotal();
 
         MPagos *_modelo;
+
+        bool _hicomp;
 };
 
 #endif
