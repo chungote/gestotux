@@ -37,6 +37,7 @@
 #include "mcajas.h"
 #include "mmovimientoscaja.h"
 #include "mdescuentos.h"
+#include "mclientes.h"
 
 MRemito::MRemito(QObject *parent) :
 QSqlRelationalTableModel(parent) {
@@ -156,7 +157,7 @@ int MRemito::agregarVenta( QDateTime fecha, int id_cliente, MRemito::FormaPago i
    {
          case MCuentaCorriente::LimiteExcedido:
          {
-                 QMessageBox::information( 0, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara la factura" );
+                 QMessageBox::information( 0, "Limite de Saldo Excedido", "El limite de saldo para este cliente ha sido excedido. No se hara el remito." );
                  QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                  return -1;
                  break;
@@ -204,8 +205,9 @@ int MRemito::agregarVenta( QDateTime fecha, int id_cliente, MRemito::FormaPago i
   if( ERegistroPlugins::getInstancia()->existePluginExterno( "caja" ) && id_forma_pago == MRemito::Contado ) {
       // Agrego el item de caja
       MMovimientosCaja *m = new MMovimientosCaja();
-      if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), QString( "Pago de remito %1" ).arg( num.aCadena() ), QString(), total_calculado ) ) {
-          qDebug( "Error al agregar el movimiento de caja cuando se pago una factura en contado.");
+      QString nombre_cliente = MClientes::getRazonSocial( id_cliente );
+      if( !m->agregarMovimiento( MCajas::cajaPredeterminada(), QString( "Pago de remito %1 - %2" ).arg( num.aCadena() ).arg( nombre_cliente ), QString(), total_calculado ) ) {
+          qDebug( "Error al agregar el movimiento de caja cuando se pago un remito a contado.");
           return -1;
       }
       delete m;
@@ -222,7 +224,7 @@ int MRemito::agregarVenta( QDateTime fecha, int id_cliente, MRemito::FormaPago i
 
 /*!
  * \fn MRemito::agregarRemito( const int id_cliente, const QDateTime fecha, MRemito::FormaPago id_forma_pago, const double total, bool registrar_operacion )
- * Agrega un registro en la tabla de facturas para las facturas de servicios.
+ * Agrega un registro en la tabla de remitos para las facturas de servicios.
  * \param id_cliente Identificador de cliente.
  * \param fecha Fecha de la factura.
  * \param id_forma_pago Forma de pago de la factura
@@ -295,12 +297,12 @@ int MRemito::agregarRemito( const int id_cliente, const QDateTime fecha, MRemito
             }
       }
       if( MItemCuentaCorriente::agregarOperacion(   num_ctacte,
-                                                     num_comprobante,
-                                                     id_venta,
-                                                     MItemCuentaCorriente::Factura,
-                                                     fecha.date(),
-                                                     "Remito a Cuenta Corriente",
-                                                     total ) == -1 )
+                                                    num_comprobante,
+                                                    id_venta,
+                                                    MItemCuentaCorriente::Factura,
+                                                    fecha.date(),
+                                                    "Remito a Cuenta Corriente",
+                                                    total ) == -1 )
       { qWarning( "Error al actualizar la cuenta corriente - inserccion de item" ); return -1; }
 
       // Veo si fue en efectivo
@@ -485,17 +487,17 @@ bool MRemito::anularRemito( const int id_remito, QString razon, QDateTime fechah
                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
                 return true;
             } else {
-                qDebug( "MRemito::anularFactura::Error al ejecutar la cola de anulación de la factura seleccionada." );
+                qDebug( "MRemito::anularFactura::Error al ejecutar la cola de anulación del remito seleccionado." );
                 qDebug( cola.lastError().text().toLocal8Bit() );
                 qDebug( cola.lastQuery().toLocal8Bit() );
             }
         } else {
-            qDebug( "MRemito::anularFactura::Error al hacer next al buscar informacion de la factura" );
+            qDebug( "MRemito::anularFactura::Error al hacer next al buscar informacion del remito" );
             qDebug( cola.lastError().text().toLocal8Bit() );
             qDebug( cola.lastQuery().toLocal8Bit() );
         }
     } else {
-        qDebug( "MRemito::anularFactura::Error al hacer next al buscar informacion de la factura" );
+        qDebug( "MRemito::anularFactura::Error al hacer next al buscar informacion del remito" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
@@ -504,7 +506,7 @@ bool MRemito::anularRemito( const int id_remito, QString razon, QDateTime fechah
 }
 
 /*!
- * \fn MRemito::idFacturaPorComprobante( const QString numero )
+ * \fn MRemito::idRemitoPorComprobante( const QString numero )
  * Devuleve el id de la factura que corresponde al numero pasado como parametro o -1 si hubo un error o no existe.
  * \param numero Numero de factura de la forma 99999-99999
  * \return -1 en caso de error, id en caso correcto
@@ -520,7 +522,7 @@ int MRemito::idRemitoPorComprobante( const QString numero )
      return -1;
  }
  // Numero de comprobante valido
- if( cola.exec( QString( "SELECT id_remito FROM factura WHERE serie = %1 AND numero = %2" ).arg( n->serie() ).arg( n->numero() ) ) ) {
+ if( cola.exec( QString( "SELECT id_remito FROM remito WHERE serie = %1 AND numero = %2" ).arg( n->serie() ).arg( n->numero() ) ) ) {
      if( cola.next() ) {
          int valor = cola.record().value(0).toInt();
          if( valor > 0 ) {

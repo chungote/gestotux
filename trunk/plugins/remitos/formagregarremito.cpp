@@ -220,7 +220,7 @@ void FormAgregarRemito::eliminarProducto()
 
 /*!
     \fn FormAgregarVenta::eliminarTodo()
-    Elimina todos los productos de la factura
+    Elimina todos los productos del remito
  */
 void FormAgregarRemito::eliminarTodo()
 {
@@ -321,17 +321,14 @@ void FormAgregarRemito::guardar()
  if( RBCtaCte->isChecked() && RBCtaCte->isEnabled() )
  {
    id_forma_pago = MRemito::CuentaCorriente;
-   //qDebug( "MFactura::CuentaCorriente" );
  }
  else if( RBContado->isChecked() )
  {
    id_forma_pago = MRemito::Contado;
-   //qDebug( "MFactura::Contado" );
  }
  else if( RBCuotas->isChecked() )
  {
      id_forma_pago = MRemito::Cuotas;
-     //qDebug( "MFactura::Cuotas" );
  } else if( RBOtro->isChecked() ){
      id_forma_pago = MRemito::Otro;
  } else {
@@ -438,7 +435,7 @@ void FormAgregarRemito::setearCliente( int id_cliente ) {
 
 /*!
  * \fn FormAgregarVenta::setearFecha( QDate fecha )
- * Setea la fecha para la factura
+ * Setea la fecha para el remito
  */
 void FormAgregarRemito::setearFecha( QDate fecha )
 {
