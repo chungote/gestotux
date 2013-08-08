@@ -13,7 +13,7 @@ FormPrefDescuentos::FormPrefDescuentos(QWidget *parent) :
     this->setParent( parent );
     setupUi( this );
     this->setWindowTitle( "Descuentos" );
-    this->setWindowIcon( QIcon( ":/imagenes/descuentos.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/descuento.png" ) );
 
     PBAgregar->setIcon( QIcon( ":/imagenes/add.png" ) );
     PBEliminar->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
