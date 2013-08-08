@@ -114,7 +114,11 @@ void FormAgregarRecibo::setearDatos( const int id_cliente, const QString texto, 
 void FormAgregarRecibo::recalcularTotal()
 {
     if( dSBDeuda->value() > 0 ) {
-        dSBTotal->setValue( dSBDeuda->value() - dSBPagado->value() );
+        if( RBLuego->isChecked() ) {
+            dSBTotal->setValue( dSBDeuda->value() + dSBPagado->value() );
+        } else {
+            dSBTotal->setValue( dSBDeuda->value() - dSBPagado->value() );
+        }
     } else {
         dSBTotal->setValue( dSBPagado->value() );
     }
@@ -141,7 +145,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
      || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta )
      || numero_cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) )
     {
-        qDebug( numero_cuenta.toLocal8Bit() );
+        // El número de cuenta no es correcto
     }
     else
     {
