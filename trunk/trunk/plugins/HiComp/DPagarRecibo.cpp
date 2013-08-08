@@ -153,7 +153,7 @@ void DPagarRecibo::cambioNumeroRecibo()
       delete m;
       return;
   }
-  if( !m->anulado( _num_recibo ) ) {
+  if( m->anulado( _num_recibo ) ) {
       QMessageBox::warning( this, "Error", "El recibo ingresado se encuentra anulado." );
       LENumeroRecibo->clear();
       delete m;

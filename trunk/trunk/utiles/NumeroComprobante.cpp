@@ -19,7 +19,7 @@
  ***************************************************************************/
 #include "NumeroComprobante.h"
 
-#define CANT_DIGITOS 6
+#define CANT_DIGITOS 5
 
 NumeroComprobante::NumeroComprobante( QObject *parent )
 {

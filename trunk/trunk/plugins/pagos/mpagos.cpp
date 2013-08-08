@@ -231,7 +231,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
             {
                 id_caja = mc->ultimoIdInsertado();
             } else {
-                qDebug( "MPagos::agregarRecibo::MovimientoCaja:: error al agregar el movimiento" );
+                qDebug( "MPagos::agregarRecibo::MovimientoCaja:: Error al agregar el movimiento" );
                 return -1;
             }
         }
@@ -298,31 +298,31 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
                     }
                 }
             } else {
-#ifdef GESTOTUX_HICOMP
-                QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
-                if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
-                    // no posee cuenta corriente
-                    qDebug( "El cliente no posee cuenta corriente, se salteara la actualizaciòn de cuentas corrientes" );
-                } else if( cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
-                    // Error de numero de cliente
-                    qDebug( "Id de cliente erroneo" );
-                } else {
-                    // Actualizo la cuenta corriente - El total es positivo para que vaya al debe
-                    if( MItemCuentaCorriente::agregarOperacion( cuenta,
-                                                                proximo.aCadena(),
-                                                                ret,
-                                                                MItemCuentaCorriente::Recibo,
-                                                                fecha,
-                                                                QString( "Deuda de recibo %1" ).arg( proximo.aCadena() ),
-                                                                total ) ) {
-                        qDebug( "Item de cuenta corriente agregado correctamente." );
+                if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+                    QString cuenta = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
+                    if( cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta ) ) {
+                        // no posee cuenta corriente
+                        qDebug( "El cliente no posee cuenta corriente, se salteara la actualizaciòn de cuentas corrientes" );
+                    } else if( cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
+                        // Error de numero de cliente
+                        qDebug( "Id de cliente erroneo" );
                     } else {
-                        qWarning( "No se pudo agregar el item de la cuenta corriente" );
+                        // Actualizo la cuenta corriente - El total es positivo para que vaya al debe
+                        if( MItemCuentaCorriente::agregarOperacion( cuenta,
+                                                                    proximo.aCadena(),
+                                                                    ret,
+                                                                    MItemCuentaCorriente::Recibo,
+                                                                    fecha,
+                                                                    QString( "Deuda de recibo %1" ).arg( proximo.aCadena() ),
+                                                                    total ) ) {
+                            qDebug( "Item de cuenta corriente agregado correctamente." );
+                        } else {
+                            qWarning( "No se pudo agregar el item de la cuenta corriente" );
+                        }
                     }
+                } else {
+                    //qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
                 }
-#else
-                qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
-#endif
             }
 
             // Actualizo la entrada de caja
@@ -785,7 +785,12 @@ bool MPagos::anulado(NumeroComprobante num)
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT cancelado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
         if( cola.next() ) {
-            return cola.record().value(0).toBool();
+            bool estado = cola.record().value(0).toBool();
+            if( cola.record().value(0).toBool() == true ) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             qDebug( "MPagos::existe: Error al hacer next en buscar si un recibo esta anulado" );
             qDebug( cola.lastError().text().toLocal8Bit() );

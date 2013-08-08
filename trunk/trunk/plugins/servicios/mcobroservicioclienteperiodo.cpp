@@ -169,12 +169,12 @@ bool MCobroServicioClientePeriodo::esDeudor(const int id_cliente, const int id_s
 int MCobroServicioClientePeriodo::buscarIdPeriodoServicio( const int id_recibo )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( " SELECT id_periodo_servicio FROM cobro_servicio_cliente_periodo WHERE id_factura = %1").arg( id_recibo ) ) ) { // EN HICOMP id_factura es un recibo
+    if( cola.exec( QString( "SELECT id_periodo_servicio FROM cobro_servicio_cliente_periodo WHERE id_factura = %1").arg( id_recibo ) ) ) { // EN HICOMP id_factura es un recibo
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
-            qDebug( "Error al hacer next al averiguar la id del periodo de servicio respecto a un recibo." );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            //qDebug( "Error al hacer next al averiguar la id del periodo de servicio respecto a un recibo." );
+            //qDebug( cola.lastQuery().toLocal8Bit() );
             return -1;
         }
     } else {
