@@ -400,7 +400,10 @@ int main(int argc, char *argv[])
                                                 // todo ok
                                                 qDebug( "Tablas creadas correctamente" );
                                                 // Actualizo la lista de tablas para que incluya las ultimas agregadas
-                                                tablas = QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables();
+                                                tablas.append( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ) );
+                                                tablas.removeDuplicates();
+                                                tablas.append( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Views ) );
+                                                tablas.removeDuplicates();
                                         }
                                         else
                                         {
