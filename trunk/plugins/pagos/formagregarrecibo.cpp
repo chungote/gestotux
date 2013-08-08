@@ -57,7 +57,14 @@ FormAgregarRecibo::FormAgregarRecibo ( QWidget* parent, Qt::WFlags fl )
         } else {
             _hicomp = true;
         }
-        p->endGroup(); p = 0;
+        p->endGroup();
+        p->inicio();
+        p->beginGroup( "Preferencias" );
+        p->beginGroup( "CtaCte" );
+        _ctacte_habilitada = p->value( "habilitada" ).toBool();
+        p->endGroup();
+        p->endGroup();
+        p = 0;
 
         dSBDeuda->setVisible( false );
         dSBTotal->setVisible( false );
@@ -121,27 +128,19 @@ void FormAgregarRecibo::recalcularTotal()
  */
 void FormAgregarRecibo::cambioCliente( int id_combo )
 {
- // Si es un cliente existente veo si tiene saldo
- preferencias *p = preferencias::getInstancia();
- p->beginGroup( "Preferencias" );
- p->beginGroup( "CtaCte" );
- bool habilitada = p->value( "habilitada" ).toBool();
- p->endGroup();
- p->endGroup();
- p = 0;
- if( habilitada && ERegistroPlugins::getInstancia()->existePluginExterno( "ctacte" ) )
+ // Si es un cliente existente veo si tiene saldo y si puede hacer recibos a pagar luego
+ if( _ctacte_habilitada && ERegistroPlugins::getInstancia()->existePluginExterno( "ctacte" ) )
  {
+  id_combo = this->CBCliente->idClienteActual();
   if( id_combo == 0 ) {
      // El numero indica Consumidor Final
      //qDebug( "FormAgregarRecibo::cambioCliente::Se eligio consumidor final" );
   } else {
     QString numero_cuenta =  MCuentaCorriente::obtenerNumeroCuentaCorriente( this->CBCliente->idClienteActual() );
-    qDebug( numero_cuenta.toLocal8Bit() );
     if( numero_cuenta == QString::number( MCuentaCorriente::ErrorBuscarLimite )
      || numero_cuenta == QString::number( MCuentaCorriente::ErrorNumeroCuenta )
      || numero_cuenta == QString::number( MCuentaCorriente::ErrorClienteInvalido ) )
     {
-        qDebug( "FormAgregarRecibo::cambioCliente::Numero de cuenta invalido" );
         qDebug( numero_cuenta.toLocal8Bit() );
     }
     else
@@ -153,7 +152,7 @@ void FormAgregarRecibo::cambioCliente( int id_combo )
         LDeuda->setVisible( true );
         recalcularTotal();
         if( _hicomp )
-        { RBLuego->setVisible( true ); } else { qDebug( "No debo salir" ); }
+        { RBLuego->setVisible( true ); }
         return;
     }
   }
