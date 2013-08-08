@@ -337,6 +337,7 @@ int main(int argc, char *argv[])
        ////////////////////////////////////////////////////////////////////////////////////////////////////
        // Chequeo si existen las tablas, llegado este punto la base de datos debe estar abierta
        QStringList tablas = QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables );
+       tablas.append( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Views ) );
        if( tablas.isEmpty() )
        {
                 // Es la primera vez que se arranca el programa

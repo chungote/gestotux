@@ -25,7 +25,8 @@ HEADERS += cuentacorrienteplugin.h \
            ../caja/mmovimientoscaja.h \
            ../ventas/MFactura.h \
            ../ventas/mitemfactura.h \
-           ../descuentos/mdescuentos.h
+           ../descuentos/mdescuentos.h \
+           ../../src/mclientes.h
 
 SOURCES += cuentacorrienteplugin.cpp \
            formprefctacte.cpp \
@@ -41,7 +42,8 @@ SOURCES += cuentacorrienteplugin.cpp \
            ../caja/mmovimientoscaja.cpp \
            ../ventas/MFactura.cpp \
            ../ventas/mitemfactura.cpp \
-           ../descuentos/mdescuentos.cpp
+           ../descuentos/mdescuentos.cpp \
+           ../../src/mclientes.cpp
 
 RESOURCES += CtaCte.qrc
 
