@@ -20,6 +20,7 @@ ECBClientes::ECBClientes(QWidget *parent) :
     this->setCurrentIndex( -1 );
     this->setInsertPolicy( QComboBox::NoInsert );
     this->connect( this->lineEdit(), SIGNAL( returnPressed() ), this, SLOT( verificarExiste() ) );
+    this->connect( this->lineEdit(), SIGNAL( lostFocus() ), this, SLOT( verificarExiste() ) );
 
     this->lineEdit()->setText( "Cargando datos..." );
     this->setEnabled( false );
@@ -114,6 +115,10 @@ void ECBClientes::setearId(const int id_cliente)
 void ECBClientes::verificarExiste()
 {
     // Veo que tipo de entrada es
+    if( this->lineEdit()->text().isEmpty() ||
+        this->lineEdit()->text().isNull() ) {
+        return;
+    }
     QString buscar = this->lineEdit()->text();
     int b = this->findText( buscar );
     if( b != -1 ) {

@@ -52,6 +52,7 @@ private:
         MPagos *_modelo;
 
         bool _hicomp;
+        bool _ctacte_habilitada;
 };
 
 #endif
