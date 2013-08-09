@@ -28,6 +28,7 @@ class MMovimientosCaja;
 class QDateEdit;
 class QGroupBox;
 class QLabel;
+class QLineEdit;
 
 class VResumenCaja : public EVLista
 {
@@ -59,6 +60,8 @@ private:
     QDateEdit *DTEFin;
     QAction *ActCierre;
     QLabel *LSaldo;
+    QLabel *LTexto;
+    QLineEdit *LETexto;
 };
 
 #endif // VRESUMENCAJA_H

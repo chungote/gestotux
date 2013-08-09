@@ -28,6 +28,7 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QDateEdit>
+#include <QLineEdit>
 
 #include "mmovimientoscaja.h"
 #include "mcajas.h"
@@ -89,10 +90,18 @@ VResumenCaja::VResumenCaja( QWidget *parent )
   connect( DTEFin, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
   connect( DTEInicio, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFiltro() ) );
 
+  LTexto = new QLabel( GBFiltrado );
+  LTexto->setText( "Buscar en movimiento: " );
+
+  LETexto = new QLineEdit( GBFiltrado );
+  connect( LETexto, SIGNAL( textEdited( QString ) ), this, SLOT( actualizarFiltro() ) );
+
   lg->addWidget( linicio, 0, 0 );
   lg->addWidget( DTEInicio, 0, 1 );
   lg->addWidget( lfin, 0, 2 );
   lg->addWidget( DTEFin, 0, 3 );
+  lg->addWidget( LTexto, 0, 4 );
+  lg->addWidget( LETexto, 0, 5 );
   GBFiltrado->setVisible( false );
   l->addWidget( GBFiltrado, 3, 0 );
 
@@ -218,17 +227,21 @@ void VResumenCaja::filtrar()
 
 void VResumenCaja::actualizarFiltro()
 {
+    QString filtro = QString();
+    filtro.append( QString( " id_caja = %1 " ).arg( CBCajas->idActual() ) );
     if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QSQLITE" ) {
-        this->modelo->setFilter( QString( " fecha_hora >= '%1T00:00:00' AND fecha_hora <= '%2T23:59:59' AND id_caja = %3" )
+        filtro.append( QString( " AND fecha_hora >= '%1T00:00:00' AND fecha_hora <= '%2T23:59:59' " )
                                  .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
-                                 .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
-                                 .arg( CBCajas->idActual() ) );
+                                 .arg( DTEFin->date().toString( "yyyy-MM-dd" ) ) );
     } else if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QMYSQL" ) {
-        this->modelo->setFilter( QString( " DATE( fecha_hora ) >= DATE( '%1' ) AND DATE( fecha_hora ) <= DATE( '%2' ) AND id_caja = %3" )
+        filtro.append( QString( " DATE( fecha_hora ) >= DATE( '%1' ) AND DATE( fecha_hora ) <= DATE( '%2' ) " )
                                  .arg( DTEInicio->date().toString( "yyyy-MM-dd" ) )
-                                 .arg( DTEFin->date().toString( "yyyy-MM-dd" ) )
-                                 .arg( CBCajas->idActual() ) );
+                                 .arg( DTEFin->date().toString( "yyyy-MM-dd" ) ) );
     }
+    if( !LETexto->text().isEmpty() ) {
+        filtro.append( QString( " AND razon LIKE \"%%%1%%\" " ).arg( LETexto->text() ) );
+    }
+    this->modelo->setFilter( filtro );
     this->modelo->select();
 }
 
