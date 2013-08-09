@@ -40,12 +40,14 @@ protected slots:
     void resumen();
     void resumen(  const QModelIndex & ) { resumen(); }
     void menuContextual(const QModelIndex &indice, QMenu *menu);
+    void cambiarNombre();
 
 private:
     QAction *ActTransferire;
     QAction *ActIngreso;
     QAction *ActEgreso;
     QAction *ActResumen;
+    QAction *ActCambiarNombre;
 
 };
 

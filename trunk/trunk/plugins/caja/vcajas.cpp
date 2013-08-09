@@ -26,6 +26,7 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QMenu>
+#include <QInputDialog>
 
 #include "mcajas.h"
 #include "actretirocaja.h"
@@ -54,6 +55,11 @@ VCajas::VCajas(QWidget *parent) :
     ActIngreso = new ActIngresoCaja( this );
     ActEgreso = new ActRetiroCaja( this );
     ActTransferire = new ActTransferir( this );
+
+    ActCambiarNombre = new QAction( this );
+    ActCambiarNombre->setText( "Renombrar" );
+    ActCambiarNombre->setToolTip( "Cambia el nombre a la caja seleccionada" );
+    connect( ActCambiarNombre, SIGNAL( triggered() ), this, SLOT( cambiarNombre() ) );
 
     ActResumen = new QAction( this );
     ActResumen->setText( "Resumen" );
@@ -152,4 +158,32 @@ void VCajas::menuContextual( const QModelIndex &/*indice*/, QMenu *menu )
     menu->addAction( ActResumen );
     menu->addSeparator();
     menu->addAction( ActAgregar );
+    menu->addAction( ActCambiarNombre );
+}
+
+void VCajas::cambiarNombre()
+{
+    if( vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una caja para cambiar su nombre" );
+        return;
+    }
+    QModelIndex idx = vista->selectionModel()->selectedRows().first();
+    int id_caja = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+    bool ok = false;
+    QString nuevo_nombre = QInputDialog::getText( this, "Renombrar caja", "Nuevo nombre:", QLineEdit::Normal, QString(), &ok );
+    if( ok ) {
+        QString nombre_anterior = MCajas::nombreCaja( id_caja );
+        if( nuevo_nombre != nombre_anterior ) {
+            MCajas *mc = qobject_cast<MCajas *>(modelo);
+            if( mc->renombrarCaja( id_caja, nuevo_nombre ) ) {
+                QMessageBox::information( this, "Correcto", QString::fromUtf8( "La caja se renombró correctamente" ) );
+            } else {
+                QMessageBox::warning( this, "Incorrecto", "No se pudo renombrar la caja" );
+            }
+        } else {
+            QMessageBox::information( this, "Correcto", QString::fromUtf8( "No se cambió el nombre de la caja." ) );
+        }
+    }
+    modelo->select();
+    return;
 }
