@@ -222,6 +222,7 @@ void VResumenCaja::filtrar()
     } else {
         GBFiltrado->setVisible( false );
         this->modelo->setFilter( "" );
+        this->modelo->select();
     }
 }
 
