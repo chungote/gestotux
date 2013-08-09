@@ -39,6 +39,8 @@ class MCajas : public QSqlTableModel
 
         bool existeCaja( const QString nombre );
 
+        bool renombrarCaja( const int id_caja, QString nombre );
+
         bool tieneDatosRelacionados( const int id_caja );
         bool eliminarCaja( const int id_caja );
 

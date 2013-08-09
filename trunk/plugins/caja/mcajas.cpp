@@ -287,6 +287,26 @@ bool MCajas::existeCaja( QString nombre )
 }
 
 /*!
+ * \fn MCajas::renombrarCaja( const int id_caja, QString nombre )
+ * Renombra el nombre de la caja pasada como parametro
+ * \param id_caja Identificador de la caja a renombrar
+ * \param nombre Nuevo nombre que se le dará a la caja
+ * \return Verdadero si se pudo renombrar la caja correctamente
+ */
+bool MCajas::renombrarCaja(const int id_caja, QString nombre)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "UPDATE caja SET nombre = \"%1\" WHERE id_caja = %2" ).arg( nombre ).arg( id_caja ) ) ) {
+        return true;
+    } else {
+        qDebug( "Error al intentar actualizar el nombre de la caja" );
+        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug( cola.lastQuery().toLocal8Bit() );
+    }
+    return false;
+}
+
+/*!
  * \fn MCajas::tieneDatosRelacionados( const int id_caja )
  * Busca si existe algun dato relacionado con la caja y devuelve verdadero si existe.
  * \param id_caja Identificador de la caja
