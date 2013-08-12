@@ -53,7 +53,8 @@ HEADERS =  ../caja/mcajas.h \
            vlistaperiodos.h \
            formfacturacionemitida.h \
            mfacturacionemitida.h \
-           ../descuentos/mdescuentos.h
+           ../descuentos/mdescuentos.h \
+           ../../src/mclientes.h
 
 
 SOURCES =  servicios.cpp \
@@ -81,7 +82,8 @@ SOURCES =  servicios.cpp \
            vlistaperiodos.cpp \
            formfacturacionemitida.cpp \
            mfacturacionemitida.cpp \
-           ../descuentos/mdescuentos.cpp
+           ../descuentos/mdescuentos.cpp \
+           ../../src/mclientes.cpp
 
 RESOURCES += servicios.qrc
 
