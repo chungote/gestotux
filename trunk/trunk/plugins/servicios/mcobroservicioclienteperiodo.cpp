@@ -125,7 +125,7 @@ bool MCobroServicioClientePeriodo::verificarIdFactura( const int id_factura ) {
  */
 bool MCobroServicioClientePeriodo::colocarComoPagado( const int id_factura, const int id_recibo ) {
     QSqlQuery cola;
-    if( cola.exec( QString( "UPDATE cobro_servicio_cliente_periodo SET id_recibo = %1 WHERE id_factura = %2 LIMIT 1" ).arg( id_recibo ).arg( id_factura ) ) ) {
+    if( cola.exec( QString( "UPDATE cobro_servicio_cliente_periodo SET id_recibo = %1 WHERE id_factura = %2" ).arg( id_recibo ).arg( id_factura ) ) ) {
         return true;
     } else {
         qDebug( "MCobroServicioClientePeriodo::colocarComoPagado::Error al intentar colocar como pagado un cobro de servicio. Error de exec." );

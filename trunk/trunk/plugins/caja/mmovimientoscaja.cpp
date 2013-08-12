@@ -345,7 +345,7 @@ void MMovimientosCaja::actualizarMovimiento( const int id_movimiento_caja, QStri
         return;
     }
     QSqlQuery cola;
-    if( !cola.exec( QString( "UPDATE FROM movimiento_caja SET razon = \"%2\" WHERE id_movimiento_caja = %1 LIMIT 1" ).arg( id_movimiento_caja ).arg( texto ) ) ) {
+    if( !cola.exec( QString( "UPDATE FROM movimiento_caja SET razon = \"%2\" WHERE id_movimiento_caja = %1" ).arg( id_movimiento_caja ).arg( texto ) ) ) {
         qDebug( "Error al actualizar la información del movimiento de caja" );
         qDebug( cola.lastError().text().toLocal8Bit() );
         qDebug( cola.lastQuery().toLocal8Bit() );
