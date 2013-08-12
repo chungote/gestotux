@@ -170,7 +170,7 @@ void InformeCierreCaja::hacerResumen( int id_caja, bool ultimo, int id_cierre )
     cursor.movePosition( QTextCursor::Start );
     cursor.insertBlock();
     if( logo ) {
-        cursor.insertImage( ERegistroPlugins::getInstancia()->pluginInfo()->imagenPrograma() );
+        //cursor.insertImage( ERegistroPlugins::getInstancia()->pluginInfo()->imagenPrograma() );
         //cursor.insertImage( ":/imagenes/gestotux32.png" );
     }
     cursor.insertHtml( "<h1>Cierre de Caja</h1>" );
