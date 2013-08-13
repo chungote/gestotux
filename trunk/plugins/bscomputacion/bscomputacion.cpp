@@ -33,7 +33,7 @@ bool BSComputacion::verificarTablas( QStringList /*tablas*/ )
 { return true; }
 
 double BSComputacion::version() const
-{ return 0.1; }
+{ return 0.21; }
 
 int BSComputacion::tipo() const
 {

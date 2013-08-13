@@ -786,7 +786,6 @@ bool MPagos::anulado(NumeroComprobante num)
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT cancelado FROM recibos WHERE serie = %1 AND numero = %2" ).arg( num.serie() ).arg( num.numero() ) ) ) {
         if( cola.next() ) {
-            bool estado = cola.record().value(0).toBool();
             if( cola.record().value(0).toBool() == true ) {
                 return true;
             } else {
