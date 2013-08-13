@@ -37,6 +37,7 @@ EReporte::EReporte( QObject *padre )
     : QObject() {
     this->setParent( padre );
     _tipo = EReporte::Invalido;
+    _impresora = 0;
 }
 
 EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros )
@@ -44,6 +45,7 @@ EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parame
     this->setParent( padre );
     especial( nombre_reporte, parametros );
     _parametros = parametros;
+    _impresora = 0;
 }
 
 EReporte::~EReporte()
@@ -52,7 +54,7 @@ EReporte::~EReporte()
         _tipo = EReporte::Invalido;
         _nombre = "";
         _parametros.clear();
-        delete _rep;
+        //delete _rep;
     }
 }
 
@@ -102,6 +104,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
         } else {
             _impresora = new QPrinter();
         }
+        //mostrarDialogoImpresion = true;
     }
     if( !( _rep->print( _impresora, mostrarDialogoImpresion, previsualizar ) ) ) {
         qDebug( "Error al intentar imprimir el reporte o se cancelo" );
