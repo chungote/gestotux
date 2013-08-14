@@ -24,6 +24,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "mmovimientoscaja.h"
 #include "preferencias.h"
@@ -97,7 +98,7 @@ bool MCajas::agregarCaja( QString nombre, QDate fecha_alta, double saldo_inicial
         {  return true; } else { return false; }
       }
   } else {
-      qWarning( QString( "Error al insertar caja nueva: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+      qWarning() << "Error al insertar caja nueva: " << this->lastError().text();
       return false;
   }
 }
@@ -118,17 +119,17 @@ bool MCajas::actualizarSaldo( const int id_caja, const double cantidad )
         if( cola.exec( QString( "UPDATE caja SET saldo = %1 WHERE id_caja = %2" ).arg( saldo_nuevo ).arg( id_caja ) ) ) {
             return true;
         } else {
-            qWarning( QString( "Error al guardar el nuevo saldo." ).toLocal8Bit() );
+            qWarning() <<  "Error al guardar el nuevo saldo.";
             return false;
         }
     } else {
-        qWarning( QString( "Error al buscar el saldo anterior haciendo next. <br /> Posiblemente la caja predeterminada este mal guardada. Por favor, cambiela desde las preferencias e intente realizar la operacion nuevamente." ).toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qWarning() << "Error al buscar el saldo anterior haciendo next. <br /> Posiblemente la caja predeterminada este mal guardada. Por favor, cambiela desde las preferencias e intente realizar la operacion nuevamente.";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     }
  } else {
-    qWarning( QString( "Error al buscar el saldo anterior." ).toLocal8Bit() );
+    qWarning() <<  "Error al buscar el saldo anterior.";
     return false;
  }
 }
@@ -148,7 +149,7 @@ double MCajas::saldo( const int id_caja )
         return cola.record().value("saldo").toDouble();
        } else {
            qWarning( "Error de next en averiguar saldo de caja" );
-           qDebug( QString( "Ejecutado: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+           qDebug() << "Ejecutado: " << cola.lastQuery();
            return 0.0;
        }
    } else {
@@ -235,8 +236,8 @@ int MCajas::cajaPredeterminada()
                 }
             }
         } else {
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
             return false;
         }
     }
@@ -257,9 +258,9 @@ bool MCajas::existen2omas()
             }
         }
     } else {
-         qDebug( "Error al ejecutar la cola de conteo de cajas" );
-         qDebug( cola.lastError().text().toLocal8Bit() );
-         qDebug( cola.lastQuery().toLocal8Bit() );
+         qDebug() << "Error al ejecutar la cola de conteo de cajas";
+         qDebug() << cola.lastError().text();
+         qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -279,9 +280,9 @@ bool MCajas::existeCaja( QString nombre )
             }
         }
     } else {
-         qDebug( "Error al ejecutar la cola de conteo de cajas con nombre especificado.Nombre no encontrado" );
-         qDebug( cola.lastError().text().toLocal8Bit() );
-         qDebug( cola.lastQuery().toLocal8Bit() );
+         qDebug() << "Error al ejecutar la cola de conteo de cajas con nombre especificado.Nombre no encontrado";
+         qDebug() << cola.lastError().text();
+         qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -299,9 +300,9 @@ bool MCajas::renombrarCaja(const int id_caja, QString nombre)
     if( cola.exec( QString( "UPDATE caja SET nombre = \"%1\" WHERE id_caja = %2" ).arg( nombre ).arg( id_caja ) ) ) {
         return true;
     } else {
-        qDebug( "Error al intentar actualizar el nombre de la caja" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al intentar actualizar el nombre de la caja";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -342,9 +343,9 @@ bool MCajas::eliminarCaja( const int id_caja )
     if( cola.exec( QString( "DELETE FROM caja WHERE id_caja = %1" ).arg( id_caja ) ) ) {
         return true;
     } else {
-        qDebug( "Error al ejecutar la cola de eliminación de cajas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de eliminación de cajas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }

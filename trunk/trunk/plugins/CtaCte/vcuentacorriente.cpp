@@ -33,6 +33,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QDebug>
 
 VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  : EVLista(parent)
@@ -149,14 +150,14 @@ void VCuentaCorriente::agregar( bool /*autoeliminarid*/ )
              return;
          }
      } else {
-         qDebug( "Error de next en la cola de averiguación de cantidad de clientes para la ctacte." );
-         qDebug( cola.lastError().text().toLocal8Bit() );
-         qDebug( cola.lastQuery().toLocal8Bit() );
+         qDebug() << "Error de next en la cola de averiguación de cantidad de clientes para la ctacte.";
+         qDebug() << cola.lastError().text();
+         qDebug() << cola.lastQuery();
      }
  } else {
-     qWarning( "Error de exec en la cola de averiguación de cantidad de clientes para la ctacte." );
-     qDebug( cola.lastError().text().toLocal8Bit() );
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qWarning() << "Error de exec en la cola de averiguación de cantidad de clientes para la ctacte.";
+     qDebug() << cola.lastError().text();
+     qDebug() << cola.lastQuery();
  }
  FormNuevaCtaCte d;
  d.setModelo( crmodelo );

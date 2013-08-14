@@ -25,6 +25,8 @@
 #include <QIcon>
 #include <QImage>
 
+#include "../reporte/common/parameter.h"
+
 /*!
  *  \brief Interfaz de informacion del programa
  *
@@ -45,9 +47,10 @@ public:
     virtual QString companeros() = 0;
     virtual bool publicidad() = 0;
     virtual QString reporte( int tipo ) = 0;
+    virtual void  reporteParametros( int tipo, QString &nombre, ParameterList &parametros ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EInfoProgramaInterface,
-                     "tranfuga.EInfoPrograma/1.3" )
+                     "tranfuga.EInfoPrograma/1.4" )
 
 #endif

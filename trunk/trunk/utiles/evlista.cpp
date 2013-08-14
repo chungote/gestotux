@@ -18,13 +18,11 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "evlista.h"
-#include <QSqlRelationalTableModel>
-#include <QSqlTableModel>
-#include <QTableView>
-#include <QHeaderView>
 #include "preferencias.h"
 #include "eactcerrar.h"
 #include "eactpdf.h"
+#include "ebusqueda.h"
+
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QMessageBox>
@@ -34,7 +32,11 @@
 #include <QMenu>
 #include <QApplication>
 #include <QPair>
-#include "ebusqueda.h"
+#include <QSqlRelationalTableModel>
+#include <QSqlTableModel>
+#include <QTableView>
+#include <QHeaderView>
+#include <QDebug>
 
 EVLista::EVLista( QWidget *parent, Qt::WFlags fl )
 : EVentana( parent, fl )
@@ -141,8 +143,8 @@ void EVLista::agregar( bool autoeliminarid )
 
     if( !m->insertRecord( -1, registro ) )
     {
-         qDebug( "Error al insertar el registro" );
-         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( m->lastError().type() ).arg( m->lastError().number() ).arg( m->lastError().text() ).toLocal8Bit() );
+         qDebug() << "Error al insertar el registro";
+         qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( m->lastError().type() ).arg( m->lastError().number() ).arg( m->lastError().text() );
     }
 }
 
@@ -178,7 +180,7 @@ void EVLista::eliminar()
                         if( m->removeRow( indice.row() ) )
                         { return; }
                         else
-                        { qWarning( qPrintable( "Error al eliminar el registro" + m->lastError().text() ) ); }
+                        { qWarning() << qPrintable( "Error al eliminar el registro" + m->lastError().text() ); }
                 }
         }
  }

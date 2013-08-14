@@ -114,4 +114,7 @@ QString GestotuxDefault::reporte( int tipo ) {
     }
 }
 
+void GestotuxDefault::reporteParametros(int, QString &, ParameterList & )
+{}
+
 Q_EXPORT_PLUGIN2( zinfo, GestotuxDefault )

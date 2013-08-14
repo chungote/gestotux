@@ -25,6 +25,7 @@
 #include <QSqlError>
 #include <QAction>
 #include <QMenu>
+#include <QDebug>
 
 #include "eactcerrar.h"
 #include "eactimprimir.h"
@@ -145,9 +146,9 @@ void FormResumenCtaCte::setNumeroCuenta( const QString &numero_cuenta )
   LSaldoActual->setText( "" );
   LLimiteCredito->setText( "" );
   qWarning( "Error al obtener los datos de la cuenta corriente" );
-  qDebug( qPrintable( "Numero cuenta: " + numero_cuenta ) );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
+  qDebug() << qPrintable( "Numero cuenta: " + numero_cuenta );
+  qDebug() << qPrintable( cola.lastError().text() );
+  qDebug() <<  qPrintable( cola.executedQuery() );
  }
 }
 

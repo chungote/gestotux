@@ -58,9 +58,11 @@ public:
 
 signals:
     void agregarVentana(QWidget* v);
-        void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
+    void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana );
+
 public slots:
     void seCierraGestotux();
+
 };
 
 #endif
