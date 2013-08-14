@@ -22,6 +22,7 @@
 #include <QColor>
 #include <QDate>
 #include <QSqlError>
+#include <QDebug>
 
 MCuentaCorriente::MCuentaCorriente( QObject *parent, bool relaciones )
  : QSqlRelationalTableModel( parent )
@@ -187,10 +188,10 @@ QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
 {
  if( id_cliente < 0 )
  {
-        qDebug( "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error, el numero de cliente es invalido" );
+        qDebug() << "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error, el numero de cliente es invalido";
         return QString::number( MCuentaCorriente::ErrorClienteInvalido );
  } else if ( id_cliente == 0 ) {
-     qDebug( "Cliente .:Consumidor final:. no posee cuenta corriente." );
+     qDebug() << "Cliente .:Consumidor final:. no posee cuenta corriente.";
      return QString::number( MCuentaCorriente::ErrorNumeroCuenta );
  }
  QSqlQuery cola( QString( "SELECT numero_cuenta FROM ctacte WHERE id_cliente = %1" ).arg( id_cliente ) );
@@ -198,7 +199,7 @@ QString MCuentaCorriente::obtenerNumeroCuentaCorriente( const int id_cliente )
  { return cola.record().value(0).toString(); }
  else
  {
-        qDebug( "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error al buscar el numero de cuenta para el cliente solicitado - posiblemente no tenga cuenta corriente habilitada" );
+        qDebug() << "MCuentaCorriente::obtenerNumeroCuentaCorriente::Error al buscar el numero de cuenta para el cliente solicitado - posiblemente no tenga cuenta corriente habilitada";
         return QString::number( MCuentaCorriente::ErrorNumeroCuenta );
  }
 }
@@ -225,17 +226,17 @@ int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplica
       }
       if( cola.record().value(0).toDouble() + aplicar > cola.record().value(1).toDouble() )
       {
-            qDebug( "Limite de la cuenta corriente solicitada excedido" );
+            qDebug() << "Limite de la cuenta corriente solicitada excedido";
             return MCuentaCorriente::LimiteExcedido;
       }
       else if( cola.record().value(0).toDouble() + aplicar == cola.record().value(1).toDouble() )
       {
-            qDebug( "Limite de la cuenta corriente solicitada alcanzado" );
+            qDebug() << "Limite de la cuenta corriente solicitada alcanzado";
             return MCuentaCorriente::EnLimite;
       }
       else
       {
-            qDebug( "Limite de la cuenta corriente solicitada correcto incluyendo aplicacion" );
+            qDebug() << "Limite de la cuenta corriente solicitada correcto incluyendo aplicacion";
             return MCuentaCorriente::LimiteCorrecto;
       }
      }
@@ -243,15 +244,15 @@ int MCuentaCorriente::verificarSaldo( const QString numero_cuenta, double aplica
      {
       // Error al buscar
       qWarning( "Error al buscar el limite de la cuenta corriente solicitada ( next )" );
-      qDebug( qPrintable( cola.lastError().text() ) );
-      qDebug( qPrintable( cola.executedQuery() ) );
+      qDebug() << qPrintable( cola.lastError().text() );
+      qDebug() << qPrintable( cola.executedQuery() );
       return MCuentaCorriente::ErrorBuscarLimite;
      }
  } else {
      // Error al buscar
      qWarning( "Error al buscar el limite de la cuenta corriente solicitada ( exec )" );
-     qDebug( qPrintable( cola.lastError().text() ) );
-     qDebug( qPrintable( cola.executedQuery() ) );
+     qDebug() << qPrintable( cola.lastError().text() );
+     qDebug() << qPrintable( cola.executedQuery() );
      return MCuentaCorriente::ErrorBuscarLimite;
  }
  return -10;
@@ -274,22 +275,22 @@ bool MCuentaCorriente::actualizarSaldo( const QString numero_cuenta, const doubl
         anterior += aplicar;
         if(  cola.exec( QString( "UPDATE ctacte SET saldo = %1 WHERE numero_cuenta = %2" ).arg( anterior ).arg( numero_cuenta ) ) )
         {
-                //qDebug( "Saldo actualizado correctamente" );
+                //qDebug() << "Saldo actualizado correctamente";
                 return true;
         }
         else
         {
-                qWarning( "Error al buscar el saldo de la cuenta corriente solicitada al intentar actualizar el saldo" );
-                qDebug( qPrintable( cola.lastError().text() ) );
-                qDebug( qPrintable( cola.executedQuery() ) );
+                qWarning() << "Error al buscar el saldo de la cuenta corriente solicitada al intentar actualizar el saldo";
+                qDebug() << qPrintable( cola.lastError().text() );
+                qDebug() << qPrintable( cola.executedQuery() );
                 return false;
         }
  }
  else
  {
-  qWarning( "Error al intentar actualizar el saldo de la cuenta corriente solicitada" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
+  qWarning() << "Error al intentar actualizar el saldo de la cuenta corriente solicitada";
+  qDebug() << qPrintable( cola.lastError().text() );
+  qDebug() << qPrintable( cola.executedQuery() );
   return false;
  }
 }
@@ -308,29 +309,29 @@ bool MCuentaCorriente::recalcularSaldo( const QString numero_cuenta )
             double saldo = cola.record().value(0).toDouble() - cola.record().value(0).toDouble();
             if(  cola.exec( QString( "UPDATE ctacte SET saldo = %1 WHERE numero_cuenta = %2" ).arg( saldo ).arg( numero_cuenta ) ) )
             {
-                    qDebug( "Saldo actualizado correctamente - recalculado" );
+                    qDebug() << "Saldo actualizado correctamente - recalculado";
                     return true;
             }
             else
             {
-                    qWarning( "Error al buscar el saldo de la cuenta corriente solicitada al intentar recalcular el saldo" );
-                    qDebug( qPrintable( cola.lastError().text() ) );
-                    qDebug( qPrintable( cola.executedQuery() ) );
+                    qWarning() << "Error al buscar el saldo de la cuenta corriente solicitada al intentar recalcular el saldo";
+                    qDebug() << qPrintable( cola.lastError().text() );
+                    qDebug() << qPrintable( cola.executedQuery() );
                     return false;
             }
         }
         else
         {
          // Error al buscar
-         qWarning( "Error al calcular el saldo de la cuenta corriente solicitada ( next )" );
-         qDebug( qPrintable( cola.lastError().text() ) );
-         qDebug( qPrintable( cola.executedQuery() ) );
+         qWarning() << "Error al calcular el saldo de la cuenta corriente solicitada ( next )";
+         qDebug() << qPrintable( cola.lastError().text() );
+         qDebug() << qPrintable( cola.executedQuery() );
         }
     } else {
         // Error al buscar
-        qWarning( "Error al calcular el saldo de la cuenta corriente solicitada ( exec )" );
-        qDebug( qPrintable( cola.lastError().text() ) );
-        qDebug( qPrintable( cola.executedQuery() ) );
+        qWarning() << "Error al calcular el saldo de la cuenta corriente solicitada ( exec )";
+        qDebug() << qPrintable( cola.lastError().text() );
+        qDebug() << qPrintable( cola.executedQuery() );
     }
     return false;
 }
@@ -351,9 +352,9 @@ double MCuentaCorriente::saldo( const QString numero_cuenta )
  }
  else
  {
-  qWarning( "MCuentaCorriente::saldo::Error al intentar buscar el saldo de la cuenta corriente solicitada" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
+  qWarning() << "MCuentaCorriente::saldo::Error al intentar buscar el saldo de la cuenta corriente solicitada";
+  qDebug() << qPrintable( cola.lastError().text() );
+  qDebug() << qPrintable( cola.executedQuery() );
   return MCuentaCorriente::ErrorBuscarSaldo;
  }
 }
@@ -390,10 +391,10 @@ bool MCuentaCorriente::agregarCuentaCorrientePredeterminada( const int id_client
     if( cola.exec() ) {
         return true;
     } else {
-        qDebug( "MCuentaCorriente::agregarCuentaCorrientePredeterminada: Error al intentar insertar una cuenta corriente predeterminada" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.executedQuery().toLocal8Bit() );
+        qDebug() << "MCuentaCorriente::agregarCuentaCorrientePredeterminada: Error al intentar insertar una cuenta corriente predeterminada";
+        qDebug() << cola.lastError().text().toLocal8Bit();
+        qDebug() << cola.lastQuery().toLocal8Bit();
+        qDebug() << cola.executedQuery().toLocal8Bit();
         return false;
     }
 }
@@ -444,9 +445,9 @@ bool MCuentaCorriente::agregarCuentaCorriente( const int id_cliente, const QDate
     if( cola.exec() ) {
         return true;
     } else {
-        qDebug( "MCuentaCorriente::agregarCuentaCorriente: Error al intentar insertar una cuenta corriente predeterminada" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "MCuentaCorriente::agregarCuentaCorriente: Error al intentar insertar una cuenta corriente predeterminada";
+        qDebug() << cola.lastError().text().toLocal8Bit();
+        qDebug() << cola.lastQuery().toLocal8Bit();
         return false;
     }
 }
@@ -475,7 +476,7 @@ void MCuentaCorriente::regenerarFiltro()
         filtro.append(  "suspendida = \"true\"" );
     }
     this->setFilter( filtro );
-    qDebug( this->filter().toLocal8Bit() );
+    //qDebug() << this->filter();
 }
 
 /*!
@@ -504,13 +505,13 @@ bool MCuentaCorriente::existeCuenta( const QString num_cuenta )
         if( cola.next() ) {
             if( cola.record().value(0).toInt() <= 0 ) { return false; } else { return true; }
         } else {
-            qDebug( "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta" );
+            qDebug() << "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta";
         }
     } else {
-        qDebug( "Error al hacer next en la cola para averiguar si existe el numero de cuenta" );
+        qDebug() << "Error al hacer next en la cola para averiguar si existe el numero de cuenta";
     }
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return false;
 }
 
@@ -528,13 +529,13 @@ bool MCuentaCorriente::existeCuentaCliente( const int id_cliente )
         if( cola.next() ) {
             if( cola.record().value(0).toInt() <= 0 ) { return false; } else { return true; }
         } else {
-            qDebug( "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta de un cliente" );
+            qDebug() << "Error al intentar hacer next en la cola para averiguar si existe el numero de cuenta de un cliente";
         }
     } else {
-        qDebug( "Error al hacer next en la cola para averiguar si existe el numero de cuenta de un cliente" );
+        qDebug() << "Error al hacer next en la cola para averiguar si existe el numero de cuenta de un cliente";
     }
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return false;
 }
 
@@ -555,8 +556,8 @@ int MCuentaCorriente::idClientePorCtaCte(const QString numero_cuenta)
         }
     } else {
         qWarning( "No se encontro el cliente que tiene esta cuenta corriente asociada" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return -1;
 }
@@ -579,8 +580,8 @@ bool MCuentaCorriente::modificarLimite( const QString numero_cuenta, const doubl
         return true;
     } else {
         qWarning( "Error al intentar actualizar el limite para una cuena corriente." );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -626,8 +627,8 @@ double MCuentaCorriente::limite( const QString numero_cuenta )
     } else {
         qDebug( "Error al hacer exec en la cola de obtenciÃ³n del limite de ctacte" );
     }
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return false;
 }
 
@@ -649,7 +650,7 @@ bool MCuentaCorriente::suspendida( const int id_cliente )
     } else {
         qDebug( "Error al hacer exec en la cola de obtencion del suspencion de ctacte" );
     }
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return false;
 }

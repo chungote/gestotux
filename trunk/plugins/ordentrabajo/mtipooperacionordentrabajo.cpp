@@ -3,6 +3,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QDebug>
 /*
 CREATE TABLE IF NOT EXISTS `tipo_operacion_orden_trabajo` (
     `id_tipo_operacion_orden_trabajo` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,16 +29,16 @@ bool MTipoOperacionOrdenTrabajo::existe( const QString nombre )
             return true;
         }
     } else {
-        qDebug( "Error al ejecutar la cola de contabilidad de cantidad de tipo de ordenes de trabajo en el sistema" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de contabilidad de cantidad de tipo de ordenes de trabajo en el sistema";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
 
 bool MTipoOperacionOrdenTrabajo::tieneDatosRelacionados( const int id_tipo )
 {
-    qDebug( "Buscador de datos relacionados todavía no implementado!" );
+    qDebug() << "Buscador de datos relacionados todavía no implementado!";
     /// @TODO Agregar busqueda de datos relacionados para tipos de ordenes de trabajo
     return true;
 }

@@ -23,6 +23,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDebug>
 
 #include "mcuentacorriente.h"
 
@@ -133,8 +134,8 @@ int MItemCuentaCorriente::agregarOperacion( const QString &numero_cuenta, const 
  else
  {
   qWarning( "Error al intentar guardar la operacion de item de cuenta corriente" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.lastQuery() ) );
+  qDebug() << cola.lastError().text();
+  qDebug() << cola.lastQuery();
   return -1;
  }
 
@@ -303,13 +304,13 @@ double MItemCuentaCorriente::valorOperacion( const int id_op_ctacte ) {
         if( cola.next() ) {
             return cola.record().value(0).toDouble() - cola.record().value(1).toDouble();
         } else {
-            qDebug( "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.");
-            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug() << "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.";
+            qDebug() << cola.lastError().text();
             return 0.0; /// \todo ver si esto es 0 o -1
         }
     } else {
-        qDebug( "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.");
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "CtaCte::MItemCuentaCorriente::valorOperación:: Error en el next de la cola para obtener los valores de la operación.";
+        qDebug() << cola.lastError().text();
         return -1.0;
     }
 }
@@ -346,9 +347,9 @@ int MItemCuentaCorriente::buscarIDPorComprobante( TipoOperacionCtaCte tipo, int 
             qDebug( "no se encontro el id de operacion de ctacte por tipo/id de comprobante" );
         }
     } else {
-        qDebug( "Error al ejecutar la cola de busqueda de id de operacion de ctacte por tipo/id comprobante" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de busqueda de id de operacion de ctacte por tipo/id comprobante" ;
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return -1;
 }
@@ -372,9 +373,9 @@ QString MItemCuentaCorriente::buscarNumeroCuentaCorrientePorIdOperacion( const i
             qDebug( "no se encontro el id de cuentacte por id de operacion" );
         }
     } else {
-        qDebug( "Error al ejecutar la cola de busqueda de id de ctacte por id de operacion" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de busqueda de id de ctacte por id de operacion";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QString();
 }
@@ -397,13 +398,13 @@ bool MItemCuentaCorriente::cancelarOperacion( const int id_op_ctacte )
     // Elimino el registro de la operacion
     if( !cola.exec( QString( "DELETE FROM item_ctacte WHERE id_op_ctacte = %1" ).arg( id_op_ctacte ) ) ) {
         qWarning( "No se puede eliminar la operacion guardada en la cuenta corriente" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     }
     // Busco la cuenta corriente que le corresponde a la operacion y actualizo su saldo
     if( !MCuentaCorriente::recalcularSaldo( numero_cuenta ) ) {
-        qDebug( "Error al actualizar el saldo de la cuenta corriente" );
+        qDebug() << "Error al actualizar el saldo de la cuenta corriente";
         return false;
     }
     return true;

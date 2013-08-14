@@ -23,6 +23,7 @@
 #include <QSqlQuery>
 #include <QSqlField>
 #include <QSqlError>
+#include <QDebug>
 
 #include "eregistroplugins.h"
 #include "../caja/mmovimientoscaja.h"
@@ -173,13 +174,13 @@ int MPagos::buscarUltimoNumeroRecibo() const
       if( cola.next() ) {
           return cola.record().value(0).toInt();
       } else {
-          qDebug( "MPagos::buscarUltimoNumeroRecibo::Error al hacer next en la cola" );
-          qDebug( this->lastError().text().toLocal8Bit() );
+          qDebug() << "MPagos::buscarUltimoNumeroRecibo::Error al hacer next en la cola";
+          qDebug() << this->lastError().text();
           return -1;
       }
   } else {
-      qDebug( "MPagos::buscarUltimoNumeroRecibo::Error al hacer exec de la cola" );
-      qDebug( this->lastError().text().toLocal8Bit() );
+      qDebug() << "MPagos::buscarUltimoNumeroRecibo::Error al hacer exec de la cola";
+      qDebug() << this->lastError().text();
       return -1;
   }
 }
@@ -197,13 +198,13 @@ QDate MPagos::buscarFechaUltimoRecibo() const
       if( cola.next() ) {
           return cola.record().value(0).toDate();
       } else {
-          qDebug( "MPagos::buscarFechaUltimoRecibo::Error al hacer next en la cola" );
-          qDebug( this->lastError().text().toLocal8Bit() );
+          qDebug() << "MPagos::buscarFechaUltimoRecibo::Error al hacer next en la cola";
+          qDebug() << this->lastError().text();
           return QDate();
       }
   } else {
-      qDebug( "MPagos::buscarFechaUltimoRecibo::Error al hacer exec de la cola" );
-      qDebug( this->lastError().text().toLocal8Bit() );
+      qDebug() << "MPagos::buscarFechaUltimoRecibo::Error al hacer exec de la cola";
+      qDebug() << this->lastError().text();
       return QDate();
   }
 }
@@ -340,8 +341,8 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
         }
     } else {
         // Error al insertar el registro
-        qDebug( "MPagos::agregarRecibo:: Error al insertar el registro" );
-        qDebug( this->lastError().text().toLocal8Bit() );
+        qDebug() << "MPagos::agregarRecibo:: Error al insertar el registro";
+        qDebug() << this->lastError().text();
     }
     this->relacionar();
 
@@ -408,23 +409,23 @@ NumeroComprobante &MPagos::proximoSerieNumeroRecibo()
                     num->siguienteNumero();
                     return *num;
                 } else {
-                    qDebug( "Error de cola al hacer next al obtener el numero de recibo maximo");
-                    qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+                    qDebug() << "Error de cola al hacer next al obtener el numero de recibo maximo";
+                    qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
                 }
             } else {
-                qDebug( "Error de cola al hacer exec al obtener el numero de recibo maximo" );
-                qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+                qDebug() << "Error de cola al hacer exec al obtener el numero de recibo maximo";
+                qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
             }
         } else {
-            qDebug( "Error de cola al hacer next al obtener el numero de serie de recibo maximo" );
-            qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+            qDebug() << "Error de cola al hacer next al obtener el numero de serie de recibo maximo";
+            qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
         }
     } else {
         // por ley se empieza desde el numero de serie 1
         NumeroComprobante *num = new NumeroComprobante( 0, 1, 0 );
         num->siguienteNumero();
-        qDebug( "Error de cola al hacer exec al obtener el numero de serie de recibo maximo - Se inicio una nueva numeracion" );
-        qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+        qDebug() << "Error de cola al hacer exec al obtener el numero de serie de recibo maximo - Se inicio una nueva numeracion";
+        qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
         return *num;
     }
     NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
@@ -495,9 +496,9 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo, const b
             if( cola.exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Efectivo ).arg( id_recibo ) ) ) {
                 // Todos los pasos guardados correctamente
             } else {
-                qDebug( "Error al intentar poner la forma de pago en efectivo al poner como pagado un recibo ya emitido" )   ;
-                qDebug( cola.lastError().text().toLocal8Bit() );
-                qDebug( cola.lastQuery().toLocal8Bit() );
+                qDebug() << "Error al intentar poner la forma de pago en efectivo al poner como pagado un recibo ya emitido";
+                qDebug() << cola.lastError().text();
+                qDebug() << cola.lastQuery();
                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return false;
             }
@@ -506,29 +507,29 @@ bool MPagos::setearComoPagado( const int id_recibo, const bool efectivo, const b
             if( cola.exec( QString( "UPDATE recibos SET forma_pago = %1 WHERE id_recibo = %2" ).arg( MPagos::Otro ).arg( id_recibo ) ) ) {
                 // Todos los pasos guardados correctamente
             } else {
-                qDebug( "Error al intentar poner la forma de pago en otro al poner como pagado un recibo ya emitido" )   ;
-                qDebug( cola.lastError().text().toLocal8Bit() );
-                qDebug( cola.lastQuery().toLocal8Bit() );
+                qDebug() << "Error al intentar poner la forma de pago en otro al poner como pagado un recibo ya emitido";
+                qDebug() << cola.lastError().text();
+                qDebug() << cola.lastQuery();
                 QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                 return false;
             }
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtención de datos del recibo." );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de obtención de datos del recibo.";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
         return false;
     }
  } else {
-    qDebug( "Error al intentar colocar el recibo como pagado" );
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << "Error al intentar colocar el recibo como pagado";
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;
  }
  if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
-     qCritical( "Error al hacer commit de la base de datos!" );
+     qCritical() << "Error al hacer commit de la base de datos!";
      abort();
  } else {
      return true;
@@ -553,20 +554,20 @@ NumeroComprobante &MPagos::buscarMenorSerieNumeroPagado()
                     num->siguienteNumero();
                     return *num;
                 } else {
-                    qDebug( "Error de cola al hacer next al obtener el numero de recibo maximo pagado");
-                    qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+                    qDebug() << "Error de cola al hacer next al obtener el numero de recibo maximo pagado";
+                    qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
                 }
             } else {
-                qDebug( "Error de cola al hacer exec al obtener el numero de recibo maximo pagado" );
-                qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+                qDebug() << "Error de cola al hacer exec al obtener el numero de recibo maximo pagado";
+                qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
             }
         } else {
-            qDebug( "Error de cola al hacer next al obtener el numero de serie de recibo maximo pagado" );
-            qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+            qDebug() << "Error de cola al hacer next al obtener el numero de serie de recibo maximo pagado";
+            qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
         }
     } else {
-        qDebug( "Error de cola al hacer exec al obtener el numero de serie de recibo maximo pagado" );
-        qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+        qDebug() << "Error de cola al hacer exec al obtener el numero de serie de recibo maximo pagado";
+        qDebug() << "Error: " << cola.lastError().number() << cola.lastError().text() << cola.lastQuery();
     }
     NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
     return *invalido;
@@ -582,8 +583,8 @@ NumeroComprobante &MPagos::buscarMenorSerieNumeroPagado()
 bool MPagos::buscarSiPagado( const int serie, const int numero )
 {
     if( serie < 0 && numero <= 0 ) {
-        qDebug( "Numeros de comprobante invalido" );
-        qDebug( QString( "%1-%2" ).arg( serie ).arg( numero ).toLocal8Bit() );
+        qDebug() << "Numeros de comprobante invalido";
+        qDebug() << QString( "%1-%2" ).arg( serie ).arg( numero );
         return true;
     }
  QSqlQuery cola;
@@ -595,15 +596,15 @@ bool MPagos::buscarSiPagado( const int serie, const int numero )
              return false;
          }
      } else {
-         qDebug( "Error al hacer next en cola de si pagado serie-numero" );
-         qDebug( cola.lastQuery().toLocal8Bit() );
-         qDebug( cola.lastError().text().toLocal8Bit() );
+         qDebug() << "Error al hacer next en cola de si pagado serie-numero";
+         qDebug() << cola.lastQuery();
+         qDebug() << cola.lastError().text();
          return false;
      }
  } else {
-     qDebug( "error al hacer exec de cola de si pagado serie-numero" );
-     qDebug( cola.lastQuery().toLocal8Bit() );
-     qDebug( cola.lastError().text().toLocal8Bit() );
+     qDebug() << "error al hacer exec de cola de si pagado serie-numero";
+     qDebug() << cola.lastQuery();
+     qDebug() << cola.lastError().text();
      return false;
  }
 }
@@ -703,9 +704,9 @@ void MPagos::setearId( const int id )
             _id_actual = -1;
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtenicion de datos del registro de recibo" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de obtenicion de datos del registro de recibo";
+        qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
         _id_actual = -1;
     }
 
@@ -764,13 +765,13 @@ bool MPagos::existe( NumeroComprobante num ) {
                 return true;
             }
         } else {
-            qDebug( "MPagos::existe: Error al hacer next en buscar si existe un recibo" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug() << "MPagos::existe: Error al hacer next en buscar si existe un recibo";
+            qDebug() << cola.lastError().text();
         }
     } else {
-        qDebug( "Mpagos::existe: Error al hacer exec en buscar si existe un recibo" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "Mpagos::existe: Error al hacer exec en buscar si existe un recibo";
+        qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
     }
     return false;
 }
@@ -792,13 +793,13 @@ bool MPagos::anulado(NumeroComprobante num)
                 return false;
             }
         } else {
-            qDebug( "MPagos::existe: Error al hacer next en buscar si un recibo esta anulado" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug() << "MPagos::existe: Error al hacer next en buscar si un recibo esta anulado";
+            qDebug() << cola.lastError().text();
         }
     } else {
-        qDebug( "Mpagos::existe: Error al hacer exec en buscar si un recibo esta anulado" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "Mpagos::existe: Error al hacer exec en buscar si un recibo esta anulado";
+        qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
     }
     return false;
 }
@@ -815,12 +816,12 @@ int MPagos::buscarIdCliente( NumeroComprobante num )
         if( cola.next() ) {
              return cola.record().value(0).toInt();
         } else {
-            qDebug( "MPagos::existe: Error al hacer next en buscar id de cliente de un recibo" );
+            qDebug() << "MPagos::existe: Error al hacer next en buscar id de cliente de un recibo";
         }
     } else {
-        qDebug( "Mpagos::existe: Error al hacer exec en buscar id de cliente de un recibo" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "Mpagos::existe: Error al hacer exec en buscar id de cliente de un recibo";
+        qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
     }
     return -1;
 }
@@ -856,9 +857,9 @@ bool MPagos::cancelarRecibo( const int id_recibo, QString razon, QDateTime fecha
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit();
             return true;
         } else {
-            qDebug( "Error al intentar ejecutar la cola de cancelacion de recibo" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "Error al intentar ejecutar la cola de cancelacion de recibo";
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     }
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();

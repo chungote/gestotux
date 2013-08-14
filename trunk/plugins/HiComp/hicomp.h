@@ -56,6 +56,7 @@ public:
     QImage imagenPrograma() const;
     QAction *botonPantallaInicial();
     QString reporte( int );
+    void reporteParametros(int tipo, QString &nombre, ParameterList &parametros);
 
 private:
     QAction *ActPagarRecibo;

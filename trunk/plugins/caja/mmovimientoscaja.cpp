@@ -25,6 +25,7 @@
 #include <QDateTime>
 #include <QSqlQuery>
 #include <QSqlResult>
+#include <QDebug>
 
 #include "mcajas.h"
 
@@ -116,13 +117,13 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
 {
   // Verificaciones previas
   if( ( ingreso != 0 && egreso != 0 ) || ( ingreso > 0 && egreso > 0 ) ) {
-       qWarning( QString( "MMovimientosCaja::agregarMovimiento::El movimiento debe ser de entrada o salida, no ambos" ).toLocal8Bit() );
+       qWarning() << "MMovimientosCaja::agregarMovimiento::El movimiento debe ser de entrada o salida, no ambos";
        return false;
   }
   // Verificacion de saldo
   if( egreso != 0 ) {
       if( MCajas::saldo( id_caja ) - egreso <= 0 ) {
-          qWarning( QString( "Error!: El importe que esta intentando sacar de caja supera el saldo que esta posee.\n El saldo actual es $%L1").arg( MCajas::saldo( id_caja ) ).toLocal8Bit() );
+          qWarning() <<  QString( "Error!: El importe que esta intentando sacar de caja supera el saldo que esta posee.\n El saldo actual es $%L1").arg( MCajas::saldo( id_caja ) );
           return false;
       }
   }
@@ -156,7 +157,7 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
       }
 
   } else {
-      qWarning( QString( "MMovimientosCaja::agregarMovimiento::Error al insertar movimiento: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+      qWarning() << "MMovimientosCaja::agregarMovimiento::Error al insertar movimiento: " <<  this->lastError().text();
       return false;
   }
 
@@ -187,8 +188,8 @@ double MMovimientosCaja::recalcularSaldo( const int id_caja )
     } else {
         qWarning( "MMovimientosCaja::recalcularSaldo: Error al hacer la consulta de calculo de saldo post-inicial." );
     }
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return -1.0;
 
 }
@@ -224,7 +225,7 @@ bool MMovimientosCaja::agregarCierre( const int id_caja, QDateTime fechahora, do
     if( this->insertRecord( -1, rec ) ) {
         return true;
     } else {
-        qWarning( QString( "MMovimientosCaja::agregarCierre::Error al insertar movimiento de cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        qWarning() << "MMovimientosCaja::agregarCierre::Error al insertar movimiento de cierre: " << this->lastError().text();
         return false;
     }
 }
@@ -243,12 +244,12 @@ int MMovimientosCaja::buscarUltimoCierre( const int id_caja ) {
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
-            qDebug( "MMovimientosCaja::buscarUltimoCierre::Error al hacer next en la cola de ultimo cierre " );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "MMovimientosCaja::buscarUltimoCierre::Error al hacer next en la cola de ultimo cierre ";
+            qDebug() << cola.lastQuery();
             return 0;
         }
     } else {
-        qDebug( QString( "MMovimientosCaja::buscarUltimoCierre::Error al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        qDebug() << "MMovimientosCaja::buscarUltimoCierre::Error al ejecutar la cola de ultimo cierre: " <<  this->lastError().text();
         return -1;
     }
 }
@@ -271,11 +272,11 @@ QSqlQuery MMovimientosCaja::buscarMovimientos( const int id_caja, const int id_c
         if( cola.next() ) {
             id_cierre_anterior = cola.record().value(0).toInt();
         } else {
-            qWarning( "MMovimientosCaja::buscarMovimientos::Error al hacer next en la cola de ultimo cierre " );
+            qWarning() << "MMovimientosCaja::buscarMovimientos::Error al hacer next en la cola de ultimo cierre ";
             id_cierre_anterior = 0;
         }
     } else {
-        qWarning( QString( "MMovimientosCaja::buscarMovimientosError al ejecutar la cola de ultimo cierre: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+        qWarning() << "MMovimientosCaja::buscarMovimientosError al ejecutar la cola de ultimo cierre: " << QString( this->lastError().text() );
     }
     // Busco los datos
     if( cola.exec( QString( "SELECT id_movimiento, fecha_hora, ingreso, egreso, razon, responsable, cierre FROM %1 WHERE id_movimiento >= %2 AND id_movimiento <= %3 ORDER BY fecha_hora ASC" ).arg( this->tableName() ).arg( id_cierre_anterior ).arg( id_cierre ) ) ) {
@@ -308,15 +309,15 @@ double MMovimientosCaja::saldoEnMovimientoAnteriorA( const int id_caja, const in
              return cola.record().value( "ingreso" ).toDouble();
          } else {
              // Generalmente esto implica que es el primer movimiento - Saldo no Iguales entre si.
-             qWarning( "Los datos del cierre no coinciden entre si - Posible Saldo inicial" );
+             qWarning() << "Los datos del cierre no coinciden entre si - Posible Saldo inicial";
              return cola.record().value("ingreso").toDouble();
          }
      } else {
-         qWarning( QString( "No existe siquiera la apertura de la caja echa? ERROR GARRAFAL DE DATOS!!!! caja = %1 ").arg( id_caja ).toLocal8Bit() );
+         qWarning() << "No existe siquiera la apertura de la caja echa? ERROR GARRAFAL DE DATOS!!!! caja = " << id_caja;
          return 0.0;
      }
   } else {
-     qWarning( QString( "Error al ejecutar la cola de ultimo cierre para saldo anterior a movimiento: %1" ).arg( this->lastError().text() ).toLocal8Bit() );
+     qWarning() << "Error al ejecutar la cola de ultimo cierre para saldo anterior a movimiento: " << this->lastError().text();
      return 0.0;
   }
 }
@@ -346,9 +347,9 @@ void MMovimientosCaja::actualizarMovimiento( const int id_movimiento_caja, QStri
     }
     QSqlQuery cola;
     if( !cola.exec( QString( "UPDATE FROM movimiento_caja SET razon = \"%2\" WHERE id_movimiento_caja = %1" ).arg( id_movimiento_caja ).arg( texto ) ) ) {
-        qDebug( "Error al actualizar la información del movimiento de caja" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al actualizar la información del movimiento de caja";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 
@@ -424,36 +425,36 @@ bool MMovimientosCaja::eliminarMovimiento( const int id_movimiento ) {
             if( cola.next() ) {
                 id_caja = cola.record().value(0).toInt();
             } else {
-                qWarning( "No se pudo hace next de la cola de obtener la caja correspondiente al movimiento de caja a eliminar" );
-                qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-                qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+                qWarning() << "No se pudo hace next de la cola de obtener la caja correspondiente al movimiento de caja a eliminar";
+                qWarning() << "Error: " << cola.lastError().text();
+                qWarning() << "Cola: " << cola.lastQuery();
                 return false;
             }
         } else {
-            qWarning( "No se pudo ejecutar la cola de obtencion de caja correspondiente al movimiento de caja a eliminar" );
-            qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-            qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+            qWarning() << "No se pudo ejecutar la cola de obtencion de caja correspondiente al movimiento de caja a eliminar" ;
+            qWarning() << "Error: " << cola.lastError().text();
+            qWarning() << "Cola: " << cola.lastQuery();
             return false;
         }
         if( cola.exec( QString( "DELETE FROM movimiento_caja WHERE id_movimiento = %1" ).arg( id_movimiento ) ) ) {
             // Una vez eliminado el movimiento si recalculo el saldo
             if( !this->recalcularSaldo( id_caja ) ) {
-                qWarning( "No se pudo actualizar el saldo de la caja cuyo movimiento estamos eliminado" );
-                qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-                qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+                qWarning() << "No se pudo actualizar el saldo de la caja cuyo movimiento estamos eliminado";
+                qWarning() << "Error: " << cola.lastError().text();
+                qWarning() << "Cola: " << cola.lastQuery();
                 return false;
             } else {
-                qDebug( "MMovimientosCaja::eliminarMovimiento::Saldo actualizado correctamente." );
+                qDebug() << "MMovimientosCaja::eliminarMovimiento::Saldo actualizado correctamente.";
                 return true;
             }
         } else {
-            qWarning( "No se pudo ejecutar la cola de eliminacion de movimiento de caja" );
-            qWarning( QString( "Error: %1" ).arg( cola.lastError().text() ).toLocal8Bit() );
-            qWarning( QString( "Cola: %1" ).arg( cola.lastQuery() ).toLocal8Bit() );
+            qWarning() << "No se pudo ejecutar la cola de eliminacion de movimiento de caja";
+            qWarning() << "Error: " << cola.lastError().text();
+            qWarning() << "Cola: " << cola.lastQuery();
             return false;
         }
     } else {
-        qWarning( "No se pudo ejecutar la cola de eiminacion de movimiento porque el id es invalido" );
+        qWarning() << "No se pudo ejecutar la cola de eiminacion de movimiento porque el id es invalido";
         return false;
     }
 }

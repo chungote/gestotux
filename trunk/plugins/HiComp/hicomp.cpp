@@ -196,4 +196,7 @@ QString HiComp::reporte( int tipo ) {
     }
 }
 
+void HiComp::reporteParametros(int /*tipo*/, QString &/*nombre*/, ParameterList &/*parametros*/)
+{}
+
 Q_EXPORT_PLUGIN2(hicomp, HiComp )

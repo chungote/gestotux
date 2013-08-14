@@ -22,6 +22,7 @@
 #include <QSqlDatabase>
 #include <QApplication>
 #include <QDate>
+#include <QDebug>
 
 #include "preferencias.h"
 #include "vcuentacorriente.h"
@@ -54,9 +55,9 @@ bool CuentaCorrientePlugin::inicializar()
 bool CuentaCorrientePlugin::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "ctacte" ) )
-    { qWarning( QString::fromUtf8( "No se encontro la tabla de cuenta corriente <br /> Se creará" ).toLocal8Bit() ); return false; }
+ { qWarning() << QString::fromUtf8( "No se encontro la tabla de cuenta corriente <br /> Se creará" ); return false; }
  if( !tablas.contains( "item_ctacte" ) )
-  { qWarning( "Error al buscar la tabla de item cuenta corriente" ); return false; }
+ { qWarning() << "Error al buscar la tabla de item cuenta corriente"; return false; }
  return true;
 }
 
@@ -92,7 +93,7 @@ void CuentaCorrientePlugin::crearMenu( QMenuBar* m )
  QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
  if( menuHerramientas == 0 )
  {
-  qDebug( "CtaCte: Error en las baras de menu" );
+  qDebug() << "CtaCte: Error en las baras de menu";
  }
  else
  {
