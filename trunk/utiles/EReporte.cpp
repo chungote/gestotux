@@ -98,6 +98,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
     _duplicado.append( Parameter( "copia", "Duplicado" ) );
     _rep->setParamList( _duplicado );*/
 
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
     _rep->setParamList( _parametros );
 
     if( _impresora == 0 ) {
@@ -155,6 +156,7 @@ bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
         ruta = QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation );
     }
 
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
     _rep->setParamList( _parametros );
 
     if( ruta.at( 0 ) != '/' ) {
@@ -211,7 +213,6 @@ bool EReporte::especial( const QString nombre, ParameterList parametros ) {
     _nombre = nombre;
 
     return cargar( nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -234,7 +235,6 @@ void EReporte::presupuesto() {
 
     // Cargo el reporte
     cargar( _nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -257,7 +257,6 @@ void EReporte::factura() {
 
     // Cargo el reporte
     cargar( _nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -280,7 +279,6 @@ void EReporte::recibo() {
 
     // Cargo el reporte
     cargar( _nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 
@@ -301,7 +299,6 @@ void EReporte::anulacionFactura() {
         _nombre = "AnulacionFactura";
 
     cargar( _nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -322,7 +319,6 @@ void EReporte::anulacionRecibo() {
         _nombre = "AnulacionRecibo";
 
     cargar( _nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -343,7 +339,6 @@ void EReporte::remito() {
         _nombre = "Remito";
 
     cargar( _nombre );
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 
@@ -429,5 +424,6 @@ void EReporte::setearParametros( ParameterList param )
 void EReporte::imprimir( QPrinter *p )
 {
     this->setearImpresora( p );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
     this->hacer( _parametros, false, false );
 }

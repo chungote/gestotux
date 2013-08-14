@@ -16,6 +16,8 @@ public:
     static QString funcionComparacionSQL( const QString nombre_campo );
     static QString formateoFechas( QDate fecha );
     static QString formateoFechas( QDateTime fecha );
+    static QString importeATexto( double importe );
+    static QString numeroATexto( double importe );
 
 };
 
