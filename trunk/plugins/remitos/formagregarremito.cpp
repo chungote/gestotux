@@ -145,7 +145,7 @@ FormAgregarRemito::FormAgregarRemito ( QWidget* parent, Qt::WFlags fl )
 
 
 /*!
-    \fn FormAgregarVenta::agregarProducto()
+    \fn FormAgregarRemito::agregarProducto()
     Slot llamado cuando se presiona el boton en el formulario o se presiona enter en el combobox.
  */
 void FormAgregarRemito::agregarProducto()
@@ -169,7 +169,7 @@ void FormAgregarRemito::agregarProducto()
 
 
 /*!
-    \fn FormAgregarVenta::eliminarProducto()
+    \fn FormAgregarRemito::eliminarProducto()
  */
 void FormAgregarRemito::eliminarProducto()
 {
@@ -219,7 +219,7 @@ void FormAgregarRemito::eliminarProducto()
 }
 
 /*!
-    \fn FormAgregarVenta::eliminarTodo()
+    \fn FormAgregarRemito::eliminarTodo()
     Elimina todos los productos del remito
  */
 void FormAgregarRemito::eliminarTodo()
@@ -239,7 +239,7 @@ void FormAgregarRemito::eliminarTodo()
 }
 
 /*!
-    \fn FormAgregarVenta::agregarDescuento()
+    \fn FormAgregarRemito::agregarDescuento()
  */
 void FormAgregarRemito::agregarDescuento()
 {
@@ -254,7 +254,7 @@ void FormAgregarRemito::agregarDescuento()
 }
 
 /*!
-    \fn FormAgregarVenta::eliminarDescuento()
+    \fn FormAgregarRemito::eliminarDescuento()
  */
 void FormAgregarRemito::eliminarDescuento()
 {
@@ -272,22 +272,22 @@ void FormAgregarRemito::eliminarDescuento()
 }
 
 /*!
-    \fn FormAgregarVenta::guardar()
+    \fn FormAgregarRemito::guardar()
  */
 void FormAgregarRemito::guardar()
 {
  if( CBCliente->currentIndex() == -1 )
  {
-  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un cliente para esta venta" );
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese un cliente para este remito" );
   return;
  }
  if( !DEFecha->date().isValid() && DEFecha->date() <= MRemito::fechaUltimoRemito() )
  {
-  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para esta venta" );
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una fecha valida para este remito" );
   return;
  }
  if( !( RBContado->isChecked() || RBCuotas->isChecked() || RBCtaCte->isChecked() || RBOtro->isChecked() ) ) {
-     QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
+     QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para este remito" );
      return;
  }
  /// @todo ver si esta restriccion tiene sentido
@@ -298,7 +298,7 @@ void FormAgregarRemito::guardar()
  mcp->calcularTotales( false );
  if( mcp->rowCount() < 1 )
  {
-  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos vendidos distinta de cero para esta venta" );
+  QMessageBox::warning( this, "Faltan Datos" , "Por favor, ingrese una cantidad de productos vendidos distinta de cero para este remito" );
   mcp->calcularTotales( true );
   return;
  }
@@ -332,11 +332,11 @@ void FormAgregarRemito::guardar()
  } else if( RBOtro->isChecked() ){
      id_forma_pago = MRemito::Otro;
  } else {
-     QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta venta" );
+     QMessageBox::warning( this, "Faltan Datos" , "Por favor, elija una forma de pago para esta remito" );
      mcp->calcularTotales( true );
      return;
  }
- // Genero la venta
+ // Genero el remito
  MRemito *remito = new MRemito();
  int id_remito = remito->agregarVenta( DEFecha->dateTime(), id_cliente, id_forma_pago, mcp, observacion );
  if( id_remito == -1 ) {
@@ -346,7 +346,7 @@ void FormAgregarRemito::guardar()
  }
  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
    // Ver si quiere ver la factura o imprimirla
-   int respuesta = QMessageBox::question( this, "Correcto", "El remito se ha registrado correctamente. Desea imprimir un comprobante de venta?",
+   int respuesta = QMessageBox::question( this, "Correcto", "El remito se ha registrado correctamente. Desea imprimir un comprobante?",
                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel );
    switch( respuesta )
    {
@@ -382,7 +382,7 @@ void FormAgregarRemito::guardar()
 }
 
 /*!
-    \fn FormAgregarVenta::cambioCliente( int id_combo )
+    \fn FormAgregarRemito::cambioCliente( int id_combo )
         Slot llamado cada vez que cambia el cliente para verificar si tiene cuenta corriente habilitada
         @param id_combo Indice en la lista de combobox que indica el cliente
  */
@@ -423,7 +423,7 @@ void FormAgregarRemito::cambioCliente( int /*id_combo*/ )
 }
 
 /*!
- * \fn FormAgregarVenta::setearCliente( int id_cliente )
+ * \fn FormAgregarRemito::setearCliente( int id_cliente )
  * Setea el numero de cliente
  */
 void FormAgregarRemito::setearCliente( int id_cliente ) {
@@ -434,7 +434,7 @@ void FormAgregarRemito::setearCliente( int id_cliente ) {
 }
 
 /*!
- * \fn FormAgregarVenta::setearFecha( QDate fecha )
+ * \fn FormAgregarRemito::setearFecha( QDate fecha )
  * Setea la fecha para el remito
  */
 void FormAgregarRemito::setearFecha( QDate fecha )
@@ -446,7 +446,7 @@ void FormAgregarRemito::setearFecha( QDate fecha )
 }
 
 /*!
- * \fn FormAgregarVenta::setearItems( MProductosTotales *m )
+ * \fn FormAgregarremito::setearItems( MProductosTotales *m )
  * Setea el listado de items pasado como parametro
  */
 void FormAgregarRemito::setearItems( MProductosTotales *m )
