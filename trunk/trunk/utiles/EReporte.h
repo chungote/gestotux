@@ -60,6 +60,7 @@ class EReporte : public QObject {
     void presupuesto();
     void factura();
     void recibo();
+    void remito();
     void anulacionFactura();
     void anulacionRecibo();
     bool especial( const QString nombre, ParameterList parametros );

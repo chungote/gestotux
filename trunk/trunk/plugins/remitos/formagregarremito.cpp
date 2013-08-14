@@ -358,7 +358,7 @@ void FormAgregarRemito::guardar()
      lista.append( "id_remito", id_remito );
 
      EReporte *rep = new EReporte( this );
-     rep->especial( "Remito", lista );
+     rep->remito();
      if( !rep->hacer( lista ) ) {
          QMessageBox::critical( this, "Error", "No se pudo imprimir el reporte. Consulte con el administrador del sistema" );
          return;

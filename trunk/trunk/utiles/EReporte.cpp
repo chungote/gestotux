@@ -20,6 +20,7 @@
 
 #include "EReporte.h"
 #include "preferencias.h"
+#include "eregistroplugins.h"
 
 #include <QDir>
 #include <QFile>
@@ -32,6 +33,7 @@
 #include <QFileDialog>
 #include <QPrinter>
 #include <QPrinterInfo>
+#include <QDebug>
 
 EReporte::EReporte( QObject *padre )
     : QObject() {
@@ -54,7 +56,7 @@ EReporte::~EReporte()
         _tipo = EReporte::Invalido;
         _nombre = "";
         _parametros.clear();
-        //delete _rep;
+        delete _rep;
     }
 }
 
@@ -209,6 +211,7 @@ bool EReporte::especial( const QString nombre, ParameterList parametros ) {
     _nombre = nombre;
 
     return cargar( nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -231,6 +234,7 @@ void EReporte::presupuesto() {
 
     // Cargo el reporte
     cargar( _nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -253,6 +257,7 @@ void EReporte::factura() {
 
     // Cargo el reporte
     cargar( _nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -275,6 +280,7 @@ void EReporte::recibo() {
 
     // Cargo el reporte
     cargar( _nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 
@@ -295,6 +301,7 @@ void EReporte::anulacionFactura() {
         _nombre = "AnulacionFactura";
 
     cargar( _nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
 
 /*!
@@ -315,7 +322,30 @@ void EReporte::anulacionRecibo() {
         _nombre = "AnulacionRecibo";
 
     cargar( _nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
 }
+
+/*!
+ * \fn EReporte::remito()
+ * Carga el reporte de anulación de el recibo
+ */
+void EReporte::remito() {
+
+    _tipo = EReporte::Remito;
+
+    preferencias *p = preferencias::getInstancia();
+    p->beginGroup( "carga" );
+    p->beginGroup( "Reportes" );
+    _nombre = preferencias::getInstancia()->value( "Remito" ).toString();
+    p->endGroup(); p->endGroup(); p=0;
+
+    if( _nombre.isEmpty() )
+        _nombre = "Remito";
+
+    cargar( _nombre );
+    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
+}
+
 
 /*!
  * \fn EReporte::cargar( const QString nombre )
@@ -362,7 +392,7 @@ bool EReporte::cargar( const QString nombre ) {
                 return false;
             }
         } else {
-            qWarning( QString( "Error - No se pudo cargar el reporte - No existe el archivo %1" ).arg( ruta ).toLocal8Bit() );
+            qWarning() << "Error - No se pudo cargar el reporte - No existe el archivo: " << ruta;
             _tipo = Invalido;
             return false;
         }
