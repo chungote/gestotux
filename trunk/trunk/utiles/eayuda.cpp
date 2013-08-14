@@ -27,16 +27,16 @@ EAyuda::EAyuda(QWidget* parent, Qt::WFlags fl)
 : QWidget( parent, fl ), Ui::EAyudaBase()
 {
         setupUi(this);
-        qDebug( QString( "Cargando Documentacion desde: %1").arg(QApplication::applicationDirPath() + QDir::separator() + "documentacion.qhc").toLocal8Bit());
+        qDebug() << "Cargando Documentacion desde: " << QApplication::applicationDirPath() + QDir::separator() + "documentacion.qhc";
         engine = new QHelpEngine( QApplication::applicationDirPath() + QDir::separator() + "documentacion.qhc", parent );
         connect( engine, SIGNAL( setupStarted() ), this, SLOT( inicioConstruccion() ) );
         connect( engine, SIGNAL( setupFinished() ), this, SLOT( finConstruccion() ) );
         if( !engine->setupData() )
         {
-                qWarning( QString( "Error al cargar la documentacion:  %1" ).arg( engine->error() ).toLocal8Bit().constData() );
+                qWarning() << "Error al cargar la documentacion: " << engine->error();
                 return;
         } else {
-            qDebug( QString( "Documentacion cargada desde %1. OK!" ).arg( engine->collectionFile() ).toLocal8Bit() );
+            qDebug() << "Documentacion cargada desde " << engine->collectionFile();
         }
         connect( engine, SIGNAL( warning( const QString & ) ), this, SLOT( errorEngine( const QString & ) ) );
         this->textBrowser->setHelpEngine( engine );
@@ -69,7 +69,7 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
  }
  else
  {
-        qWarning( qPrintable( "Documentacion no encontrada: " + nombreObjeto + ": " + QString::number( engine->indexModel()->linksForKeyword( nombreObjeto ).count() ) ) );
+        qWarning() << "Documentacion no encontrada: " << nombreObjeto << ": " << engine->indexModel()->linksForKeyword( nombreObjeto ).count();
         return false;
  }
 }
@@ -83,7 +83,7 @@ bool EAyuda::hayAyuda( QString nombreObjeto )
 void EAyuda::mostrarAyuda( QString nombreObjeto )
 {
  // Estamos seguros que hay datos para este objeto
- qDebug( QString( "Abriendo ayuda de %1" ).arg( engine->indexModel()->linksForKeyword( nombreObjeto ).constBegin().value().toString() ).toLocal8Bit() );
+ qDebug() << "Abriendo ayuda de " << engine->indexModel()->linksForKeyword( nombreObjeto ).constBegin().value().toString();
  QByteArray helpData = engine->fileData( engine->indexModel()->linksForKeyword( nombreObjeto ).constBegin().value() );
  // Muestro la documentación al usuario
  if ( !helpData.isEmpty() )
@@ -131,7 +131,7 @@ void EAyuda::mostrarIndice()
 */
 void EAyuda::errorEngine( const QString &mensaje )
 {
-    qDebug( mensaje.toLocal8Bit() );
+    qDebug() << mensaje;
     qWarning( "Error de documentacion reportado." );
 }
 

@@ -21,6 +21,7 @@
 #include "preferencias.h"
 #include <QColor>
 #include <QBrush>
+#include <QDebug>
 
 MProductos::MProductos(QObject *parent)
 : QSqlRelationalTableModel(parent)
@@ -54,10 +55,7 @@ MProductos::MProductos(QObject *parent)
 QVariant MProductos::data( const QModelIndex& item, int role ) const
 {
  if( !item.isValid() )
- {
-   qDebug( QString( "Indice invalido Productos: col=%1, row=%2, role=%3").arg( item.column() ).arg( item.row() ).arg( role ).toLocal8Bit() );
-   return( QVariant() );
- }
+ { return( QVariant() ); }
  switch( role )
  {
         case Qt::DisplayRole:
@@ -209,8 +207,8 @@ double MProductos::stock( const int id_producto )
  else
  {
   qWarning( "Error al intentar obtener el stock del producto" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
+  qDebug() << cola.lastError().text();
+  qDebug() << cola.executedQuery();
   return -1.0;
  }
 }
@@ -240,16 +238,16 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
         else
         {
                 qWarning( "Error al actualizar el stock del producto" );
-                qDebug( qPrintable( cola.lastError().text() ) );
-                qDebug( qPrintable( cola.executedQuery() ) );
+                qDebug() << cola.lastError().text();
+                qDebug() << cola.executedQuery();
                 return false;
         }
  }
  else
  {
   qWarning( "Error al intentar actualizar el stock del producto solicitado" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.executedQuery() ) );
+  qDebug() << cola.lastError().text();
+  qDebug() << cola.executedQuery();
   return false;
  }
 }
@@ -271,7 +269,7 @@ bool MProductos::modificarStock( const int id_producto, const double cantidad )
 bool MProductos::agregarProducto(const QString codigo, const QString nombre, const double costo, const double venta, int stock, int categoria, QString descripcion, QString marca, QString modelo) {
     QSqlQuery cola;
     if( !cola.prepare( "INSERT INTO producto ( codigo, nombre, precio_costo, precio_venta, stock, id_categoria, descripcion, marca, modelo, habilitado ) VALUES( :codigo, :nombre, :precio_costo, :precio_venta, :stock, :categoria, :descripcion, :marca, :modelo, :habilitado )" ) ) {
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() <<  cola.lastError().text();
         return false;
     }
     preferencias *p = preferencias::getInstancia();
@@ -319,8 +317,8 @@ bool MProductos::agregarProducto(const QString codigo, const QString nombre, con
      return true;
     } else {
       qWarning( "Error al intentar insertar el producto." );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
       return false;
     }
 }
@@ -344,8 +342,8 @@ bool MProductos::actualizarPrecioCompra( const int id_producto, const double pre
  else
  {
   qWarning( "Error al intentar actualizar el precio de compra del producto solicitado" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.lastQuery() ) );
+  qDebug() << cola.lastError().text();
+  qDebug() << cola.lastQuery();
   return false;
  }
 }
@@ -368,8 +366,8 @@ bool MProductos::actualizarPrecioVenta( const int id_producto, const double prec
  else
  {
   qWarning( "Error al intentar actualizar el precio de venta del producto solicitado" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  qDebug( qPrintable( cola.lastQuery() ) );
+  qDebug() << cola.lastError().text();
+  qDebug() << cola.lastQuery();
   return false;
  }
 }
@@ -395,8 +393,8 @@ double MProductos::buscarPrecioCompra( const int id_producto )
  {
   qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado" );
  }
- qDebug( qPrintable( cola.lastError().text() ) );
- qDebug( qPrintable( cola.lastQuery() ) );
+ qDebug() << cola.lastError().text();
+ qDebug() << cola.lastQuery();
  return -1.0;
 }
 
@@ -421,8 +419,8 @@ double MProductos::buscarPrecioVenta( const int id_producto )
     {
      qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado" );
     }
-    qDebug( qPrintable( cola.lastError().text() ) );
-    qDebug( qPrintable( cola.lastQuery() ) );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return -1.0;
 }
 
@@ -450,8 +448,8 @@ double MProductos::buscarPrecioCompra( const QString codigo )
     {
      qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado - codigo" );
     }
-    qDebug( qPrintable( cola.lastError().text() ) );
-    qDebug( qPrintable( cola.lastQuery() ) );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return -1.0;
 
 }
@@ -480,8 +478,8 @@ double MProductos::buscarPrecioVenta( const QString codigo )
     {
      qWarning( "Error al ejecutar la cola de busqueda del precio de compra del producto solicitado - codigo" );
     }
-    qDebug( qPrintable( cola.lastError().text() ) );
-    qDebug( qPrintable( cola.lastQuery() ) );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return -1.0;
 }
 
@@ -501,8 +499,8 @@ bool MProductos::existeCodigo( const QString codigo )
         }
     } else {
         qDebug( "Error de ejecucion de la cola de averiguacion de codigo de producto" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit()  );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -523,8 +521,8 @@ bool MProductos::existeNombre( const QString nombre )
         }
     } else {
         qDebug( "Error de ejecucion de la cola de averiguacion de codigo de producto" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit()  );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -540,8 +538,8 @@ bool MProductos::cambiarHabilitado( int id_producto, bool estado )
         return true;
     } else {
         qDebug( "Error de ejecucion de la cola de cambio de estado de habilitacion del producto" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit()  );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -590,13 +588,13 @@ bool MProductos::remarcarFijo( const int id_producto, double cantidad )
 bool MProductos::remarcarPorcentaje( const int id_producto, double porcentaje )
 {
     double precio_anterior =  buscarPrecioVenta( id_producto );
-    qDebug( QString( "Precio anterior: $%1" ).arg( precio_anterior ).toLocal8Bit() );
+    //qDebug() << QString( "Precio anterior: $%1" ).arg( precio_anterior );
     if( precio_anterior == -1.0 ) {
         qDebug( "Precio anterior incorrecto" );
         return false;
     }
     double precio_nuevo = precio_anterior * ( 1.0 + porcentaje );
-    qDebug( QString( "Precio nuevo: $%1" ).arg( precio_nuevo ).toLocal8Bit() );
+    //qDebug() << QString( "Precio nuevo: $%1" ).arg( precio_nuevo );
     return actualizarPrecioVenta( id_producto, precio_nuevo );
 }
 
@@ -654,13 +652,13 @@ bool MProductos::habilitado( int id_producto )
             return cola.record().value(0).toBool();
         } else {
             qDebug( "Error de next de la cola de averiguacion de habilitacion de producto" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit()  );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     } else {
         qDebug( "Error de ejecucion de la cola de averiguacion de habilitacion de producto" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit()  );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -707,13 +705,13 @@ int MProductos::idProductoPorCodigo( const QString codigo )
             return cola.record().value(0).toInt();
         } else {
             qDebug( "Error de next de la cola de averiguacion de id de producto x codigo" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit()  );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     } else {
         qDebug( "Error de ejecucion de la cola de averiguacion de id de producto x codigo" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit()  );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return 0;
 }

@@ -1,5 +1,7 @@
 #include "ecbpaises.h"
 
+#include <QDebug>
+
 ECBPaises::ECBPaises(QWidget *parent) :
     QComboBox(parent)
 {
@@ -70,8 +72,8 @@ void ECBPaises::inicializar()
         _inicializado = true;
     } else {
         qWarning( "Error al intentar ejecutar la cola para cargar los paises" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 
@@ -95,7 +97,7 @@ void ECBPaises::setearId( int id_pais )
     }
     int pos = this->ids->indexOf( id_pais );
     if( pos < 0 ) {
-        qDebug( QString( "ECBPaises::setearId: Error buscando el id de paises desde cbpaises: id = %1" ).arg( id_pais ).toLocal8Bit() );
+        qDebug() << "ECBPaises::setearId: Error buscando el id de paises desde cbpaises: id = " << id_pais;
         this->setCurrentIndex( -1 );
     } else {
         this->setCurrentIndex( pos );

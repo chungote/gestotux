@@ -7,6 +7,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QDebug>
 
 ECBTabla::ECBTabla(QWidget *parent) :
  QComboBox(parent)
@@ -161,7 +162,7 @@ void ECBTabla::inicializar()
         if( pos == 0 ) {
             qDebug( "No hay ningun dato para cargar!" );
             this->lineEdit()->setText( "No hay datos cargados..." );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastQuery();
             return;
         }
         this->setEnabled( true );
@@ -169,8 +170,8 @@ void ECBTabla::inicializar()
         _inicializado = true;
     } else {
         qWarning( "Error al intentar ejecutar la cola para cargar los datos" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 

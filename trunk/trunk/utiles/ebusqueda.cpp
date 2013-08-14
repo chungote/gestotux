@@ -32,9 +32,9 @@ void EBusqueda::filtrar()
         return;
     //qDebug( filtros.at( CBTipo->currentIndex() ).arg( LETexto->text() ).toLocal8Bit() );
     _modelo->setFilter( filtros.at( CBTipo->currentIndex() ).arg( LETexto->text() ) );
-    qDebug( _modelo->filter().toLocal8Bit() );
+    //qDebug( _modelo->filter().toLocal8Bit() );
     _modelo->select();
-    qDebug( _modelo->query().lastQuery().toLocal8Bit() );
+    //qDebug( _modelo->query().lastQuery().toLocal8Bit() );
 }
 
 /*!

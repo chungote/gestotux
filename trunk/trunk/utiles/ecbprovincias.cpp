@@ -1,5 +1,7 @@
 #include "ecbprovincias.h"
 
+#include <QDebug>
+
 ECBProvincias::ECBProvincias(QWidget *parent) :
     QComboBox(parent)
 {
@@ -67,8 +69,8 @@ void ECBProvincias::inicializar()
         this->setCurrentIndex( npos );
     } else {
         qWarning( "ECBProvincias::inicializar: Error al intentar ejecutar la cola para cargar las provincias" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 
@@ -104,7 +106,7 @@ void ECBProvincias::setearId( const int id_provincia )
     }
     int pos = this->ids->indexOf( id_provincia );
     if( pos < 0 ) {
-        qDebug( QString( "ECBProvincias::setearId: Error buscando el id de provincia desde cbprovincias: id = %1" ).arg( id_provincia ).toLocal8Bit() );
+        qDebug() << "ECBProvincias::setearId: Error buscando el id de provincia desde cbprovincias: id = " << id_provincia;
         this->setCurrentIndex( -1 );
     } else {
         this->setCurrentIndex( pos );
