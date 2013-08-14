@@ -146,8 +146,8 @@ void FormAgregarGasto::guardar()
   {
       QMessageBox::information( this, "Error de base de datos", "Los datos del gasto no se han agregado correctamente" );
       qDebug( "Error de guardar" );
-      qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modeloGastos->lastError().type() ).arg( modeloGastos->lastError().number() ).arg( modeloGastos->lastError().text() ).toLocal8Bit() );
-      qDebug( QString( "Detalles: cola: %1" ).arg( modeloGastos->query().lastQuery() ).toLocal8Bit() );
+      qDebug() << "Detalles: tipo: " << modeloGastos->lastError().type()  << ", errno: " << modeloGastos->lastError().number() << ", descripcion: " << modeloGastos->lastError().text();
+      qDebug() << "Detalles: cola:" << modeloGastos->query().lastQuery();
   }
   delete modeloGastos;
  }

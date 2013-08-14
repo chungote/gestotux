@@ -28,6 +28,7 @@
 #include <QDate>
 #include <QColor>
 #include <QModelIndex>
+#include <QDebug>
 
 #include "../caja/mmovimientoscaja.h"
 #include <eregistroplugins.h>
@@ -56,10 +57,7 @@ Qt::ItemFlags MGasto::flags(const QModelIndex &/*index*/) const
 QVariant MGasto::data(const QModelIndex& item, int role) const
 {
  if( !item.isValid() )
-  {
-   qDebug( QString( "Indice invalido Gasto: col=%1, row=%2, role=%3").arg( item.column() ).arg( item.row() ).arg( role ).toLocal8Bit() );
-   return( QVariant() );
-  }
+  { return( QVariant() ); }
   switch( role )
  {
         case Qt::DisplayRole:
@@ -166,7 +164,7 @@ bool MGasto::agregarGasto( QString descripcion, double costo, QDate Fecha, int c
  if( this->insertRecord( -1, registro ) == false )
  {
   qDebug( "Error al insertar registro de gasto" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+  qDebug() << "Detalles: tipo: " << lastError().type() << ", errno:" << lastError().number() << ", descripcion: " << lastError().text();
   this->setEditStrategy( modo );
   return false;
  }
@@ -181,7 +179,7 @@ bool MGasto::agregarGasto( QString descripcion, double costo, QDate Fecha, int c
      else
      {
          qDebug( "Error al insertar registro de gasto" );
-         qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+         qDebug() << "Detalles: tipo: " << lastError().type() << ", errno:" << lastError().number() << ", descripcion: " << lastError().text();
          this->setEditStrategy( modo );
          return false;
      }
@@ -199,11 +197,11 @@ bool MGasto::setearIdMovimiento( int num_mov, double valor ) {
   } else { return false; }
   if( cola.exec( QString( "UPDATE %1 SET id_caja = %4 WHERE id_gasto = %2 AND costo = %3" ).arg( this->tableName() ).arg( id_gasto ).arg( valor ).arg( num_mov ) ) ) {
      qDebug( "movimiento de caja y gastos enlazados correctamente");
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug() << cola.lastQuery();
      return true;
  } else {
      qDebug( "Error al actualizar el indicador de caja en un gasto" );
-     qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+     qDebug() << "Detalles: tipo: " << cola.lastError().type() << ", errno:" << cola.lastError().number() << ", descripcion: " << cola.lastError().text();
      return false;
  }
 }
@@ -260,8 +258,8 @@ bool MGasto::existe( QString descripcion, double importe, int categoria )
             if( cola.record().value(0).toInt() > 0 ) { return true; } else { return false; }
     } else {
             qDebug( "Error al intentar buscar el gasto como repetido" );
-            qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "Detalles: tipo: " << cola.lastError().type() << ", errno:" << cola.lastError().number() << ", descripcion: " << cola.lastError().text();
+            qDebug() << cola.lastQuery();
     }
     return true;
 }

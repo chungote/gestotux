@@ -21,6 +21,7 @@
 #include "einfoprogramainterface.h"
 #include <QApplication>
 #include <QStringList>
+#include <QDebug>
 
 ERegistroPlugins *ERegistroPlugins::instance = 0;
 
@@ -147,7 +148,7 @@ QObject* ERegistroPlugins::pluginQObject( const QString &nombre )
  */
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
- qDebug( QString( "Seteando plugin de Info cliente: %1" ).arg( obj->nombrePrograma() ).toLocal8Bit() );
+ qDebug() << "Seteando plugin de Info cliente: " << obj->nombrePrograma();
  _pluginInfo = obj;
 }
 

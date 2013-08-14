@@ -3,6 +3,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlRecord>
+#include <QDebug>
 
 EDDescuento::EDDescuento(QWidget *parent) :
 QDialog(parent)
@@ -80,8 +81,8 @@ void EDDescuento::cargarPorcentaje( int id )
       dSBPorcentaje->setValue( cola.record().value(0).toDouble() );
   } else {
       qDebug( "Error al ejecutar la cola de obtención de porcentaje de un tipo de descuento" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
 }
 

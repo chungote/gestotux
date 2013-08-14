@@ -30,6 +30,7 @@
 
 #include <QSqlDatabase>
 #include <QSqlError>
+#include <QDebug>
 
 #include "metasql.h"
 
@@ -791,8 +792,8 @@ XSqlQuery MetaSQLQuery::toQuery(const ParameterList & params, QSqlDatabase pDb, 
             if( pExec) {
                 if( !qry.exec() ) {
                     qDebug( "Error al ejecutar la cola" );
-                    qDebug( qry.lastError().text().toLocal8Bit() );
-                    qDebug( qry.lastQuery().toLocal8Bit() );
+                    qDebug() << qry.lastError().text();
+                    qDebug() << qry.lastQuery();
                 }
             }
         } else {

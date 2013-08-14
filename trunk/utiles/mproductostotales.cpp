@@ -27,6 +27,7 @@
 #include <QSize>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QDebug>
 
 MProductosTotales::MProductosTotales( QObject *parent, QMap<int, QString> *_mapa_id_prod )
  : QAbstractTableModel(parent)
@@ -135,11 +136,11 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                           _tipoPrecio != MProductosTotales::Costo )
                                     {
                                             // Busco si el stock actual menos la cantidad es <= 0
-                                           qDebug( QString( "Stock del producto: %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                           qDebug() << "Stock del producto: " << MProductos::stock( productos->value( index.row() ) );
                                           if( ( MProductos::stock( productos->value( index.row() ) ) - value.toDouble() ) <= 0 )
                                          {
-                                                    qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-                                                   qDebug( QString( "Stock del producto (cantidad): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                                   qWarning() << "No hay suficientes unidades del producto para vender la cantidad pedida";
+                                                   qDebug() << "Stock del producto (cantidad): " << MProductos::stock( productos->value( index.row() ) );
                                                   return false;
                                          }
                                     }
@@ -179,7 +180,7 @@ bool MProductosTotales::setData(const QModelIndex& index, const QVariant& value,
                                             if( ( MProductos::stock( productos->value( index.row() ) ) - this->data( this->index( index.row(), 0 ), Qt::EditRole ).toDouble() ) <= 0 )
                                             {
                                                     qWarning( "No hay suficientes unidades del producto para vender la cantidad pedida" );
-                                                    qDebug( QString( "Stock del producto(producto): %1").arg( MProductos::stock( productos->value( index.row() ) ) ).toLocal8Bit() );
+                                                    qDebug() << "Stock del producto(producto): " << MProductos::stock( productos->value( index.row() ) );
                                                     return false;
                                             }
                                     }
@@ -385,7 +386,7 @@ QVariant MProductosTotales::data(const QModelIndex& idx, int role) const
                                 if( prods->contains( productos->value( idx.row() ) ) ) {
                                     return prods->value( productos->value( idx.row() ) );
                                 } else {
-                                    qDebug( QString( "No se encontro el articulo en el data. Row=%1, indice=%2 " ).arg( idx.row() ).arg( productos->value( idx.row()) ).toLocal8Bit() );
+                                    qDebug() << "No se encontro el articulo en el data. Row= " << idx.row() << ", indice=" << productos->value( idx.row());
                                     return " error al buscar el prod en prods ";
                                 }
                                 break;

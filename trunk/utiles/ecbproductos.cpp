@@ -3,6 +3,7 @@
 #include <QCompleter>
 #include <QTimer>
 #include <QLineEdit>
+#include <QDebug>
 
 ECBProductos::ECBProductos( QWidget *parent ) :
  QComboBox(parent)
@@ -71,8 +72,8 @@ void ECBProductos::inicializar()
         this->setCurrentIndex( -1 );
     } else {
         qWarning( "Error al intentar ejecutar la cola para cargar los productos" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 

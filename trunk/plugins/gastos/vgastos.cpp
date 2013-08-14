@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QHeaderView>
+#include <QDebug>
 
 VGastos::VGastos( QWidget* parent )
 : EVLista( parent )
@@ -137,7 +138,7 @@ void VGastos::eliminar() {
                            if( m->eliminarFila( indice.row() ) )
                            { return; }
                            else
-                           { qWarning( qPrintable( "Error al eliminar el registro" + m->lastError().text() ) ); }
+                           { qWarning() << "Error al eliminar el registro" << m->lastError().text(); }
                    }
            }
     }

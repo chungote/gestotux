@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QDebug>
 
 ECBClientes::ECBClientes(QWidget *parent) :
     QComboBox(parent), filtro()
@@ -78,8 +79,8 @@ void ECBClientes::inicializar()
         _inicializado = true;
     } else {
         qWarning( "Error al intentar ejecutar la cola para cargar los clientes" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 
