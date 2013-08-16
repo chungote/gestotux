@@ -66,10 +66,10 @@ bool HiComp::inicializar()
  //ActPagarRecibo->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
  connect( ActPagarRecibo, SIGNAL( triggered() ), this, SLOT( pagarRecibosEmitidos() ) );
 
- /*ActNuevoRecibo = new QAction( "Nuevo Recibo", this );
- ActNuevoRecibo->setToolTip( "Crear un nuevo recibo" );
- ActNuevoRecibo->setIcon( QIcon( ":/imagenes/nuevo.png" ) );
- connect( ActNuevoRecibo, SIGNAL( triggered() ), this, SLOT( nuevoRecibo() ) );*/
+ ActVerImpagos = new QAction( "Ver recibos impagos", this );
+ ActVerImpagos->setToolTip( "Ver listado de recibos impagos" );
+ ActVerImpagos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
+ connect( ActVerImpagos, SIGNAL( triggered() ), this, SLOT( verRecibosImpagos() ) );
 
  return true;
 }
@@ -113,6 +113,7 @@ void HiComp::crearMenu( QMenuBar *m )
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  menuHer->addSeparator();
  menuHer->addAction( ActPagarRecibo );
+ menuHer->addAction( ActVerImpagos );
 }
 
 bool HiComp::verificarTablas( QStringList )
@@ -177,6 +178,11 @@ void HiComp::pagarRecibosEmitidos()
   DPagarRecibo d;
   d.exec();
   return;
+}
+
+#include "vrecibosimpagos.h"
+void HiComp::verRecibosImpagos() {
+    emit agregarVentana( new VRecibosImpagos() );
 }
 
 QString HiComp::reporte( int tipo ) {

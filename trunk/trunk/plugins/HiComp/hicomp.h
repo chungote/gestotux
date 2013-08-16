@@ -60,9 +60,11 @@ public:
 
 private:
     QAction *ActPagarRecibo;
+    QAction *ActVerImpagos;
 
 public slots:
     void pagarRecibosEmitidos();
+    void verRecibosImpagos();
     void seCierraGestotux();
 
 signals:
