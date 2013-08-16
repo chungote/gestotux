@@ -11,4 +11,9 @@ SUBDIRS +=  caja \
             servicios \
             descuentos \
             feedback \
-            cuotas
+            informes/informa.pro \
+            informes \
+            trsistemas \
+            cuotas \
+            ordentrabajo \
+            HiComp
