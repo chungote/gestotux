@@ -23,7 +23,7 @@ QSqlTableModel( parent )
 bool MTipoOperacionOrdenTrabajo::existe( const QString nombre )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT COUNT(nombre) FROM tipo_operacion_orden_trabajo WHERE nombre = %1" ).arg( nombre ) ) ) {
+    if( cola.exec( QString( "SELECT COUNT( nombre) FROM tipo_operacion_orden_trabajo WHERE nombre = %1" ).arg( nombre ) ) ) {
         cola.next();
         if( cola.record().value(0).toInt() > 0 ) {
             return true;
@@ -38,9 +38,20 @@ bool MTipoOperacionOrdenTrabajo::existe( const QString nombre )
 
 bool MTipoOperacionOrdenTrabajo::tieneDatosRelacionados( const int id_tipo )
 {
-    qDebug() << "Buscador de datos relacionados todavía no implementado!";
-    /// @TODO Agregar busqueda de datos relacionados para tipos de ordenes de trabajo
-    return true;
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT( tipo_operacion ) FROM operacion_orden_trabajo WHERE tipo_operacion = %1" ).arg( id_tipo ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            } else {
+                qWarning() << "Existe alguna orden de trabajo que está relacionada con este tipo de operacion de trabajo";
+            }
+        } else {
+            qDebug() << "Error al ejecutar la cola de averiguacion de tipo_operacion_orden_trabajo<->operacion_orden_trabajo";
+            qDebug() << cola.lastError().text() << endl << cola.lastQuery();
+        }
+    }
+    return false;
 }
 
 bool MTipoOperacionOrdenTrabajo::agregarTipo( const QString nombre )
