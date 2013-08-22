@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QMenu>
+#include <QDebug>
 
 VTecnicos::VTecnicos(QWidget *parent) :
 EVLista(parent)
@@ -117,8 +119,8 @@ void VTecnicos::modificar()
                 QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico fue modificado correctamente" ) );
             } else {
                 QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo modificar el técnico" ) );
-                qDebug( "Error al modificar el registro del técnico" );
-                qDebug( this->modelo->lastError().text().toLocal8Bit() );
+                qDebug() << "Error al modificar el registro del técnico";
+                qDebug() << modelo->lastError().text();
             }
         }
     }
@@ -210,5 +212,21 @@ void VTecnicos::cambiarVerDeshabilitado( bool estado )
     this->modelo->setFilter( "habilitado = 'false'" );
   }
   this->modelo->select();
+}
+
+/*!
+ * \brief VTecnicos::menuContextual
+ * \param indice
+ * \param menu
+ */
+void VTecnicos::menuContextual( const QModelIndex &indice, QMenu *menu )
+{
+    menu->addAction( ActAgregar );
+    menu->addAction( ActEliminar );
+    if( this->modelo->data( this->modelo->index( indice.row(), this->modelo->fieldIndex( "habilitado" ) ), Qt::DisplayRole ).toBool() ) {
+        menu->addAction( ActDeshabilitar );
+    } else {
+        menu->addAction( ActHabilitar );
+    }
 }
 

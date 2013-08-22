@@ -4,6 +4,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDebug>
+#include <QDate>
 
 MTecnicos::MTecnicos(QObject *parent) :
     QSqlTableModel(parent)
@@ -16,6 +17,36 @@ MTecnicos::MTecnicos(QObject *parent) :
     setEditStrategy( QSqlTableModel::OnFieldChange );
 }
 
+QVariant MTecnicos::data(const QModelIndex &idx, int role) const
+{
+    switch( idx.column() ) {
+        case 2:
+        {
+            if(role == Qt::DisplayRole) {
+                return QSqlTableModel::data( idx, role ).toBool();
+                break;
+            }
+        }
+        case 3:
+        {
+            if( role == Qt::DisplayRole ) {
+                return QSqlTableModel::data( idx, role ).toDate().toString( Qt::LocaleDate );
+                break;
+            }
+        }
+        default:
+        {
+            break;
+        }
+    }
+    return QSqlTableModel::data( idx, role );
+}
+
+Qt::ItemFlags MTecnicos::flags( const QModelIndex & ) const
+{
+    return Qt::ItemFlags( !Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+}
+
 bool MTecnicos::existe(const QString nombre)
 {
     QSqlQuery cola;
@@ -25,9 +56,9 @@ bool MTecnicos::existe(const QString nombre)
             return true;
         }
     } else {
-        qDebug( "Error al ejecutar la cola de contabilidad de cantidad de tecnicos en el sistema" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de contabilidad de cantidad de tecnicos en el sistema";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }

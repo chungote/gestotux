@@ -25,6 +25,8 @@ public slots:
     void deshabilitar();
     void cambiarVerDeshabilitado( bool estado);
 
+    void menuContextual(const QModelIndex &indice, QMenu *menu);
+
 private:
     QAction *ActHabilitar;
     QAction *ActDeshabilitar;
