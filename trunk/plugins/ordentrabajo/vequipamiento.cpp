@@ -10,10 +10,20 @@ EVLista( parent )
 {
     this->setObjectName( "VisorEquipamiento" );
     this->setWindowTitle( "Equipamientos" );
-    //this->setWindowIcon( QIcon( ":/imagenes/equipamiento.png" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/equipamiento.png" ) );
 
     this->modelo = new MEquipamiento( this );
     this->vista->setModel( this->modelo );
+    this->vista->setSelectionBehavior( QAbstractItemView::SelectRows );
+    this->vista->setAlternatingRowColors( true );
+    this->vista->hideColumn( modelo->fieldIndex( "id_equipamiento" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "num_serie" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "razon_baja" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "fecha_compra" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "modelo" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "marca" ) );
+    this->vista->setSortingEnabled( true );
     this->modelo->select();
 
     addAction( ActAgregar );
@@ -24,7 +34,6 @@ EVLista( parent )
 
 void VEquipamiento::agregar( bool )
 {
-    qWarning( "No implementado" );
     FormEquipamiento *f = new FormEquipamiento();
     f->setearModeloEquipamiento( qobject_cast<MEquipamiento *>( this->modelo ) );
     f->setearAgregar( true );
