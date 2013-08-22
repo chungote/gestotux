@@ -1,5 +1,7 @@
 #include "mequipamiento.h"
 
+#include <QDate>
+
 MEquipamiento::MEquipamiento(QObject *parent) :
     QSqlRelationalTableModel(parent)
 {
@@ -19,6 +21,28 @@ MEquipamiento::MEquipamiento(QObject *parent) :
 }
 
 /*!
+ * \brief MEquipamiento::data
+ * \param item
+ * \param role
+ * \return
+ */
+QVariant MEquipamiento::data(const QModelIndex &item, int role) const
+{
+    switch( item.column() ) {
+        case 5:
+        case 6:
+        case 10:
+        {
+            if( role == Qt::DisplayRole ) {
+                return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::LocaleDate );
+                break;
+            }
+        }
+    }
+    return QSqlRelationalTableModel::data( item, role );
+}
+
+/*!
  * \brief MEquipamiento::tieneDatosRelacionados
  * Busca si el elemento posee alguna relación con los otros datos de las tablas.
  * \param id_equipamiento Identificador del equipamiento
@@ -27,3 +51,13 @@ MEquipamiento::MEquipamiento(QObject *parent) :
 bool MEquipamiento::tieneDatosRelacionados( const int /* id_equipamiento */ )
 { return false; }
 // Los datos relacionados deberán ser eliminados si se elimina un equipamiento
+
+
+/*!
+ * \brief MEquipamiento::flags
+ * \return
+ */
+Qt::ItemFlags MEquipamiento::flags( const QModelIndex & ) const
+{
+    return Qt::ItemFlags( !Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+}

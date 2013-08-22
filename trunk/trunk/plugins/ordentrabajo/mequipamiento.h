@@ -9,6 +9,9 @@ class MEquipamiento : public QSqlRelationalTableModel
 public:
     MEquipamiento( QObject *parent = 0 );
 
+    QVariant data(const QModelIndex &item, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+
     static bool tieneDatosRelacionados( const int id_equipamiento );
 };
 
