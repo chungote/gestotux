@@ -14,6 +14,7 @@ public:
   void setearModeloEquipamiento( MEquipamiento *m );
   void setearAgregar( bool estado );
   void setearEditar( bool estado ) { setearAgregar( !estado ); }
+  void setearIndice( QModelIndex indice );
 
 public slots:
   void guardar();
