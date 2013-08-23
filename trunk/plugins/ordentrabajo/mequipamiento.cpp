@@ -36,6 +36,9 @@ QVariant MEquipamiento::data(const QModelIndex &item, int role) const
             if( role == Qt::DisplayRole ) {
                 return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::LocaleDate );
                 break;
+            } else if ( role == Qt::UserRole && item.column() == 10 ) {
+                QDate temp = QSqlRelationalTableModel::data( item, role ).toDate();
+                if( temp.isValid() ) { return true;  } else { return false;  }
             }
         }
     }

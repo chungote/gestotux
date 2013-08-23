@@ -2,6 +2,7 @@
 #define VEQUIPAMIENTO_H
 
 #include "evlista.h"
+class MEquipamiento;
 /**
  * @brief The VEquipamiento class
  * Esta clase sirve para ver cuales de los equipamientos actuales está dado de alto en el sistema
@@ -17,7 +18,15 @@ public slots:
     void agregar(bool autoeliminarid);
     void modificar();
     void eliminar();
+    void darBaja();
 
+    void menuContextual(const QModelIndex &indice, QMenu *menu);
+
+private:
+    MEquipamiento *modelo;
+
+    QAction *ActDarBaja;
+    QAction *ActDarAlta;
 };
 
 #endif // VEQUIPAMIENTO_H

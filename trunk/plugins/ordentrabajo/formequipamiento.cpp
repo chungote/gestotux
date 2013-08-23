@@ -3,6 +3,8 @@
 #include "eactcerrar.h"
 #include "eactguardar.h"
 
+#include <QDebug>
+
 FormEquipamiento::FormEquipamiento( QWidget *parent ) :
   EVentana( parent )
 {
@@ -43,6 +45,11 @@ void FormEquipamiento::setearAgregar( bool estado )
     GBHistorial->setVisible( true );
     _editar = true;
   }
+}
+
+void FormEquipamiento::setearIndice( QModelIndex indice )
+{
+    qWarning() << "No implementado";
 }
 
 /*!
