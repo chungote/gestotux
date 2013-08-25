@@ -22,6 +22,8 @@
 #include "emcliente.h"
 #include "mservicios.h"
 #include "mcuentacorriente.h"
+#include "mclientes.h"
+
 #include <QMessageBox>
 #include <QSqlQuery>
 
@@ -107,6 +109,16 @@ void FormAsociarServicioCliente::accept()
         { break; }
  }
  _fecha = this->DEFechaAlta->date();
+ // Autoagregado de clientes
+ if( _id_cliente <= 0 && !CBCliente->currentText().isEmpty() ) {
+    // Veo de trasladar los datos al cliente nuevo
+    _id_cliente = MClientes::agregarClientePredeterminado( CBCliente->currentText() );
+    if( _id_cliente == -1 ) {
+        QMessageBox::information( this, "Error", "No se pudo agregar el cliente de manera automática. Por favor, agregelo manualmente e intente asociarlo nuevamente" );
+        this->close();
+        return;
+    }
+ }
  if( _id_cliente <= 0 || _id_servicio <= 0 || !_fecha.isValid() )
  {
   qDebug( QString( "Error de comprobación: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );

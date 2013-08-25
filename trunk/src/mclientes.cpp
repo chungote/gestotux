@@ -20,6 +20,12 @@
 #include "mclientes.h"
 
 #include "util.h"
+#include "preferencias.h"
+
+#include <QString>
+#include <QStringList>
+#include <QDebug>
+#include <QSqlDriver>
 
 MClientes::MClientes( QObject *parent )
  : QSqlRelationalTableModel( parent )
@@ -205,6 +211,77 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
 }
 
 /*!
+ * \brief MClientes::agregarClientePredeterminado
+ * Agrega un cliente predeterminado sacando sus propiedades de las preferencias y extrapolando el nombre desde el parametro
+ * \param texto
+ * \return
+ */
+int MClientes::agregarClientePredeterminado( const QString texto )
+{
+    if( texto.isEmpty() || texto.isNull() ) {
+        qWarning() << "El parametro de texto no puede ser nulo";
+        return -1;
+    }
+    // Busco las preferencias de usuario
+    preferencias *p = preferencias::getInstancia();
+    p->inicio();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Clientes" );
+    int id_provincia = p->value( "provincia", 0 ).toInt();
+    int id_pais = p->value( "pais", 0 ).toInt();
+    int id_estado_fiscal = p->value( "estado-fiscal", 0 ).toInt();
+    p->endGroup(); p->endGroup(); p=0;
+
+    // Intento extrapolar el texto
+    QString apellido, nombre;
+    if( texto.contains( ',' ) ) {
+        QStringList salida = texto.split( ',', QString::KeepEmptyParts );
+        // Supongo que el apellido está primero
+        apellido = salida.takeFirst();
+        nombre = salida.takeLast();
+    } else {
+        apellido = texto;
+        nombre = QString::null;
+    }
+
+    // Intento agregar el cliente con los datos
+    QSqlQuery cola;
+    if( !cola.prepare( "INSERT INTO clientes( razon_social , nombre , apellido , id_provincia , id_pais , id_estado_fiscal  ) "
+                       "             VALUES ( :razon_social, :nombre, :apellido, :id_provincia, :id_pais, :id_estado_fiscal )" ) ) {
+        qWarning() << "No se pudo preparar la cola para insertar el cliente predeterminado";
+        return -1;
+    }
+    cola.bindValue( ":razon_social", texto );
+    cola.bindValue( ":nombre", nombre );
+    cola.bindValue( ":apellido", apellido );
+    cola.bindValue( ":id_provincia", id_provincia );
+    cola.bindValue( ":id_pais", id_pais );
+    cola.bindValue( ":id_estado_fiscal", id_estado_fiscal );
+    if( cola.exec() ) {
+        // Busco el ID que se inserto
+        if( cola.driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
+            return cola.lastInsertId().toInt();
+        } else {
+            if( cola.exec( "SELECT MAX(id_cliente) FROM clientes" ) ) {
+                if( cola.next() ) {
+                    return cola.record().value(0).toInt();
+                } else {
+                    qDebug() << "Error al hacer next para averiguar el id del cliente";
+                }
+            } else {
+                qDebug() << "Error al ejecutar la cola para averiguar el id del cliente insertado";
+            }
+        }
+    } else {
+        qDebug() << "Error al intentar ejecutar la cola de inserción de datos de cliente predeterminado";
+    }
+    qDebug() << "Error al intentar ejecutar la cola de inserción de datos de cliente predeterminado";
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
+    return -1;
+}
+
+/*!
  * \brief MClientes::getRazonSocial
  * Devuelve la razón social del cliente pasado como parametro
  * \param id_cliente Identificador del cliente
@@ -218,12 +295,12 @@ QString MClientes::getRazonSocial( const int id_cliente )
           return cola.record().value(0).toString();
       } else {
           qDebug( "Error al hacer next en la cola de averiguacion de razonsocial de clientes" );
-          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug() << cola.lastQuery();
       }
   } else {
       qDebug( "Error al ejecutar  la cola de averiguacion de razonsocial de clientes" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return "Desconocido";
 }
@@ -244,8 +321,8 @@ bool MClientes::existe( QString razon_social, QString /*nombre*/ ) {
                 return true;
     } else {
         qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
