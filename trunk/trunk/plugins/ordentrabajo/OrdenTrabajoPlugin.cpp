@@ -21,6 +21,10 @@
 
 #include <QSqlDatabase>
 
+/*!
+ * \brief OrdenTrabajoPlugin::inicializar
+ * \return
+ */
 bool OrdenTrabajoPlugin::inicializar()
 {
  Q_INIT_RESOURCE(ordentrabajo);
@@ -63,6 +67,11 @@ bool OrdenTrabajoPlugin::inicializar()
  return true;
 }
 
+/*!
+ * \brief OrdenTrabajoPlugin::verificarTablas
+ * \param tablas
+ * \return
+ */
 bool OrdenTrabajoPlugin::verificarTablas( QStringList tablas )
 {
  if( !tablas.contains( "orden_trabajo" ) )
@@ -78,12 +87,24 @@ bool OrdenTrabajoPlugin::verificarTablas( QStringList tablas )
  return true;
 }
 
+/*!
+ * \brief OrdenTrabajoPlugin::version
+ * \return
+ */
 double OrdenTrabajoPlugin::version() const
 { return 0.1; }
 
+/*!
+ * \brief OrdenTrabajoPlugin::tipo
+ * \return
+ */
 int OrdenTrabajoPlugin::tipo() const
 { return EPlugin::comun; }
 
+/*!
+ * \brief OrdenTrabajoPlugin::accionesBarra
+ * \return
+ */
 QList< QActionGroup * > OrdenTrabajoPlugin::accionesBarra()
 {
  /*QList<QActionGroup *> lista;
@@ -95,12 +116,24 @@ QList< QActionGroup * > OrdenTrabajoPlugin::accionesBarra()
  return QList<QActionGroup *>();
 }
 
+/*!
+ * \brief OrdenTrabajoPlugin::nombre
+ * \return
+ */
 QString OrdenTrabajoPlugin::nombre() const
 { return "ordentrabajo"; }
 
+/*!
+ * \brief OrdenTrabajoPlugin::formsPreferencias
+ * \return
+ */
 QWidgetList OrdenTrabajoPlugin::formsPreferencias()
 { return QWidgetList(); }
 
+/*!
+ * \brief OrdenTrabajoPlugin::crearMenu
+ * \param m
+ */
 void OrdenTrabajoPlugin::crearMenu( QMenuBar* m )
 {
  QMenu *menuHerramientas = m->findChild<QMenu *>( "menuHerramientas" );
@@ -114,11 +147,18 @@ void OrdenTrabajoPlugin::crearMenu( QMenuBar* m )
  }
 }
 
+/*!
+ * \brief OrdenTrabajoPlugin::crearToolBar
+ */
 void OrdenTrabajoPlugin::crearToolBar(QToolBar* /*t*/)
 {}
 
+/*!
+ * \brief OrdenTrabajoPlugin::botonPantallaInicial
+ * \return
+ */
 QAction *OrdenTrabajoPlugin::botonPantallaInicial()
-{ return ActOrdenTrabajo; }
+{ return ActAgregarOrdenTrabajo; }
 
 /*!
     \fn OrdenTrabajoPlugin::seCierraGestotux()

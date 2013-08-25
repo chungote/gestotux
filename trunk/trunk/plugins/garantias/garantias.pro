@@ -26,3 +26,6 @@ PRE_TARGETDEPS += ../../bin/libutiles.a
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+OTHER_FILES += \
+    garantias.QMYSQL.sql
