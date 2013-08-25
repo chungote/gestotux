@@ -34,6 +34,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
         setupUi(this);
         _id_cliente = _id_servicio = -1;
         _fecha = QDate::currentDate();
+        CBCliente->setearAlertaNoExistentes( true );
         switch( tipo )
         {
                 case Cliente:
@@ -118,7 +119,7 @@ void FormAsociarServicioCliente::accept()
  if( _id_cliente <= 0 || _id_servicio <= 0 || !_fecha.isValid() )
  {
   qDebug( QString( "Error de comprobación: id_cliente=%1, id_servicio=%2, fecha=%3").arg( _id_cliente ).arg( _id_servicio ).arg( _fecha.toString() ).toLocal8Bit() );
-  qWarning( "Existiò un error de comprobancion de datos - no se adherirà el cliente" );
+  qWarning( "Existio un error de comprobancion de datos - no se adherirà el cliente" );
   return;
  }
  if( _fecha < MServicios::getFechaAlta( _id_servicio ) ) {

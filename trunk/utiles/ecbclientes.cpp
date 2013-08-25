@@ -34,6 +34,7 @@ ECBClientes::ECBClientes(QWidget *parent) :
     connect( this, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioCliente( int ) ) );
 
     _inicializado = false;
+    _no_alertar_no_existentes = false;
     _id = -1;
 }
 
@@ -132,7 +133,7 @@ void ECBClientes::verificarExiste()
         if( c != -1 ) {
             this->setCurrentIndex( c );
             emit cambioIdCliente( idClienteActual() );
-        } else {
+        } else if( !_no_alertar_no_existentes ) {
             QMessageBox::information( this, "No encontrado", "El cliente o codigo de cliente buscado no existe." );
         }
     }
