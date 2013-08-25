@@ -1,4 +1,6 @@
 <RCC>
     <qresource prefix="/"/>
-    <qresource prefix="/sql"/>
+    <qresource prefix="/sql">
+        <file>garantias.QMYSQL.sql</file>
+    </qresource>
 </RCC>

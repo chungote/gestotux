@@ -79,11 +79,17 @@ void GarantiasPlugin::crearMenu( QMenuBar *m )
  menuHer->addAction( ActBackup );*/
 }
 
-bool GarantiasPlugin::verificarTablas( QStringList )
+bool GarantiasPlugin::verificarTablas( QStringList tablas )
 {
- if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ).contains( "garantias" ) )
- { qWarning() << "Error al buscar la tabla garantias"; return false; }
- return true;
+    if( !tablas.contains( "factura" ) )
+    { qWarning() << "Error al buscar la tabla factura"; return false; }
+    if( !tablas.contains( "clientes" ) )
+    { qWarning() << "Error al buscar la tabla clientes"; return false; }
+    if( !tablas.contains( "equipamientos" ) )
+    { qWarning() << "Error al buscar la tabla de equipamientos"; return false; }
+    if( !tablas.contains( "garantias" ) )
+    { qWarning() << "Error al buscar la tabla garantias"; return false; }
+    return true;
 }
 
 
