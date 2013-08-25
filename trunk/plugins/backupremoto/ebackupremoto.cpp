@@ -48,6 +48,7 @@
 #include <QNetworkAccessManager>
 #include <QUrl>
 #include <QNetworkReply>
+#include <QDebug>
 
 #include "eenviobackup.h"
 #include "json.h"
@@ -101,7 +102,7 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  req = 0;
  ids = "";
  terminar = false;
-
+ anteriores = 0;
 }
 
 
@@ -122,7 +123,7 @@ void EBackupRemoto::cambiopestana( int pes ) {
         p->beginGroup( "Preferencias" );
         p->beginGroup( "BackupRemoto" );
         url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
-        url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 1 ).toString() );
+        url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 2 ).toString() );
         url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
         url.addQueryItem( "gestotux", "0" );
         p->endGroup(); p->endGroup(); p = 0;
@@ -484,7 +485,9 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
 {
     if( resp->error() != QNetworkReply::NoError ) {
         // Notifico el error
+        this->mostrarError( resp->error() );
         QMessageBox::information( this, "Error", "Hubo un error de comunicación con el servidor. Por favor intente nuevamente más tarde" );
+        qDebug() << resp->readAll();
         return;
     } else {
         QByteArray cont( resp->readAll() );
@@ -494,7 +497,7 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
         QVariantMap mapa = Json::parse( cont, ok ).toMap();
         if( !ok ) {
             QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
-            qDebug( cont );
+            qDebug() << cont;
             return;
         }
         if( mapa["error"].toBool() ) {
@@ -506,7 +509,19 @@ void EBackupRemoto::respuestaHistorial( QNetworkReply *resp )
             QMessageBox::warning( this, "Error", "La cadena descargada no contiene el elemento data" );
             return;
         }
+        // Cargo los datos al modelo del historial
+        if( anteriores == 0 ) {
+            anteriores = new MTempBackups( this );
+        } else {
+            anteriores->clear();
+        }
+        TVRestaurar->setModel( anteriores );
+        qDebug() << mapa;
+        /*foreach( QVariant arreglo, mapa ) {
 
+        }*/
+
+        //QVariant(QVariantMap, QMap(("Backup", QVariant(QVariantMap, QMap(("archivo_db", QVariant(QString, "/var/www/trsis/app/webroot/backups/1/QSQLITE/20130623180427.bkp") ) ( "archivo_est" ,  QVariant(, ) ) ( "archivo_pref" ,  QVariant(, ) ) ( "fecha" ,  QVariant(QString, "2013-06-23 18:04:27") ) ( "id_backup" ,  QVariant(QString, "12") ) ( "servicio_backup_id" ,  QVariant(QString, "2") ) ( "tamano" ,  QVariant(QString, "7122581") ) ( "usuario_id" ,  QVariant(QString, "1") ) )  ) ) ( "ServicioBackup" ,  QVariant(QVariantMap, QMap(("fecha_alta", QVariant(QString, "2012-05-22") ) ( "id_servicio" ,  QVariant(QString, "4") ) ( "id_servicio_backup" ,  QVariant(QString, "2") ) ( "limite_cantidad" ,  QVariant(QString, "2147483647") ) ( "limite_espacio" ,  QVariant(QString, "5368709120") ) )  ) ) ( "Usuario" ,  QVariant(QVariantMap, QMap(("cliente_id", QVariant(QString, "6") ) ( "contra" ,  QVariant(QString, "8807387a6325d5d3201faef03f7d1004fd4632fa") ) ( "id_usuario" ,  QVariant(QString, "1") ) ( "ultimo_acceso" ,  QVariant(QString, "2012-05-23 00:00:00") ) ( "ultimo_backup" ,  QVariant(QString, "2012-07-19 11:52:00") ) )  ) ) )  ) )  );
     }
 
 }
@@ -556,7 +571,7 @@ void EBackupRemoto::mostrarError( QNetworkReply::NetworkError e ) {
         case QNetworkReply::UnknownProxyError:
         { qDebug( "Error de proxy desconocido." ); break; }
         case QNetworkReply::UnknownContentError:
-        { qDebug( "Contenid desconocido." ); break; }
+        { qDebug( "Contenido desconocido." ); break; }
         case QNetworkReply::ProtocolFailure:
         { qDebug( "Falla en el protocolo." ); break; }
 #if QT_VERSION > 0x040801

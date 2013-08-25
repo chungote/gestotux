@@ -22,6 +22,7 @@
 
 #include "eventana.h"
 #include "ui_formBackupRemoto.h"
+#include "mtempbackups.h"
 
 class QAction;
 class QNetworkAccessManager;
@@ -90,7 +91,7 @@ private:
        /*!
         * Modelo para el listado de backups anteriores
         */
-        //EMBackupAnteriores *anteriores;
+        MTempBackups *anteriores;
 
         void generar_db( bool estructura );
         void enviarColas();

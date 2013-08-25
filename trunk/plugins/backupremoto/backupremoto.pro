@@ -13,13 +13,15 @@ HEADERS += backupremotoplugin.h \
            formprefbackupremoto.h \
     json.h \
     eenviobackup.h \
-    ebackupremoto.h
+    ebackupremoto.h \
+    mtempbackups.h
 
 SOURCES += backupremotoplugin.cpp \
            formprefbackupremoto.cpp \
     json.cpp \
     eenviobackup.cpp \
-    ebackupremoto.cpp
+    ebackupremoto.cpp \
+    mtempbackups.cpp
 
 DESTDIR = ../../bin/plugins
 
