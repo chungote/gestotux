@@ -16,4 +16,5 @@ SUBDIRS +=  caja \
             trsistemas \
             cuotas \
             ordentrabajo \
-            HiComp
+            HiComp \
+            garantias

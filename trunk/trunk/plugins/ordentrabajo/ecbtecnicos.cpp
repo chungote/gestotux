@@ -8,4 +8,5 @@ ECBTabla(parent)
     this->setearCampoId( "id_tecnico" );
     this->setearCampoTexto( "razon_social" );
     this->setearCampoOrden( "razon_social" );
+    this->setearFiltro( "WHERE habilitado = true " );
 }
