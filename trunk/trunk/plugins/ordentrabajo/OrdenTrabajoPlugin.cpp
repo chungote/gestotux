@@ -40,7 +40,7 @@ bool OrdenTrabajoPlugin::inicializar()
  ///////////////////////////////////
  ActAgregarOrdenTrabajo = new QAction( "Agregar orden de trabajo", this );
  ActAgregarOrdenTrabajo->setStatusTip( "Agrega una nueva orden de trabajo" );
- //ActAgregarOrdenTrabajo->setIcon( QIcon( ":/imagenes/proveedores.jpg" ) );
+ ActAgregarOrdenTrabajo->setIcon( QIcon( ":/imagenes/orden_trabajo.png" ) );
  connect( ActAgregarOrdenTrabajo, SIGNAL( triggered() ), this, SLOT( agregarOrdenTrabajo() ) );
  ///////////////////////////////////
  // Muestra el listado de tecnicos

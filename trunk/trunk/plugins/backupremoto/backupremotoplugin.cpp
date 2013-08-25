@@ -87,16 +87,15 @@ void BackupRemotoPlugin::crearMenu( QMenuBar *m )
  menuHer->addAction( ActBackup );
 }
 
+/*!
+ * \brief BackupRemotoPlugin::verificarTablas
+ * \return
+ */
 bool BackupRemotoPlugin::verificarTablas( QStringList )
-{
- /*if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ).contains( "recibos" ) )
- {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }*/
- return true;
-}
-
+{ return true; }
 
 /*!
-    \fn BackupRemotoPlugin::version() const
+ * \fn BackupRemotoPlugin::version() const
  */
 double BackupRemotoPlugin::version() const
 {  return 0.1; }
