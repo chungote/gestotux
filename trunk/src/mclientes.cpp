@@ -241,12 +241,12 @@ int MClientes::agregarClientePredeterminado( const QString texto )
         nombre = salida.takeLast();
     } else {
         apellido = texto;
-        nombre = QString::null;
+        nombre = " ";
     }
 
     // Intento agregar el cliente con los datos
     QSqlQuery cola;
-    if( !cola.prepare( "INSERT INTO clientes( razon_social , nombre , apellido , id_provincia , id_pais , id_estado_fiscal  ) "
+    if( !cola.prepare( "INSERT INTO clientes( razon_social , nombre , apellido , provincia    , pais    , id_estado_fiscal  ) "
                        "             VALUES ( :razon_social, :nombre, :apellido, :id_provincia, :id_pais, :id_estado_fiscal )" ) ) {
         qWarning() << "No se pudo preparar la cola para insertar el cliente predeterminado";
         return -1;

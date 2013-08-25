@@ -40,9 +40,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                 {
                         CBServicio->setVisible( false );
                         LServicio->setVisible( false );
-                        CBCliente->setModel( new EMCliente( CBCliente ) );
-                        qobject_cast<EMCliente *>( CBCliente->model())->setQuery( "SELECT id, razon_social FROM clientes WHERE id != 0" );
-                        CBCliente->setModelColumn( 1 );
+                        CBCliente->setearFiltro( " WHERE id != 0" );
                         this->setWindowTitle( "Adherir cliente" );
                         break;
                 }
@@ -59,9 +57,7 @@ FormAsociarServicioCliente::FormAsociarServicioCliente(QWidget* parent, tipoForm
                         LCliente->setVisible( false );
                         CBServicio->setVisible( false );
                         LServicio->setVisible( false );
-                        CBCliente->setModel( new EMCliente( CBCliente ) );
-                        qobject_cast<EMCliente *>( CBCliente->model())->setQuery( "SELECT id, razon_social FROM clientes WHERE id != 0" );
-                        CBCliente->setModelColumn( 1 );
+                        CBCliente->setearFiltro( " WHERE id != 0 " );
                         this->setWindowTitle( "Fecha de adhesion" );
                         break;
                 }
@@ -97,7 +93,7 @@ void FormAsociarServicioCliente::accept()
  {
         case Cliente:
         {
-                this->setIdCliente( CBCliente->model()->data( CBCliente->model()->index( CBCliente->currentIndex(), 0 ) , Qt::EditRole ).toInt() );
+                this->setIdCliente( CBCliente->idClienteActual() );
                 break;
         }
         case Servicio:
@@ -236,10 +232,7 @@ int FormAsociarServicioCliente::exec()
         case Cliente:
         {
                 // Tengo que eliminar todos los clientes que ya estan adheridos a este servicio
-                QSqlQueryModel *modelo = new QSqlQueryModel( CBCliente );
-                modelo->setQuery( QString( "SELECT id, razon_social FROM clientes WHERE id NOT IN ( SELECT id_cliente FROM servicios_clientes WHERE id_servicio = %1 ) AND id != 0 ORDER BY razon_social" ).arg( _id_servicio ) );
-                CBCliente->setModel( modelo );
-                CBCliente->setModelColumn( 1 );
+                CBCliente->setearFiltro( QString( "WHERE id NOT IN ( SELECT id_cliente FROM servicios_clientes WHERE id_servicio = %1 ) AND id != 0 " ).arg( _id_servicio ) );
                 break;
         }
         case Servicio:
