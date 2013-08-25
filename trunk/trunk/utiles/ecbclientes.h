@@ -25,6 +25,8 @@ public:
     void setearFiltro( const QString f );
     int idClienteActual();
     void setearId( const int id_cliente );
+    void setearAlertaNoExistentes( bool sino ) { _no_alertar_no_existentes = !sino; }
+    bool alertaNoExistentes() { return !_no_alertar_no_existentes; }
 
 signals:
     void cambioIdCliente( int id_cliente );
@@ -47,6 +49,7 @@ private:
     int _id;
 
     bool _inicializado;
+    bool _no_alertar_no_existentes;
 
 };
 
