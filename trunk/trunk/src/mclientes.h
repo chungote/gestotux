@@ -34,9 +34,14 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     static QString direccionEntera( int id_cliente );
-    static bool tieneDatosRelacionados( const int id_cliente );
     static QString getRazonSocial( const int id_cliente );
+
     static bool existe( QString razon_social, QString nombre );
+    static bool tieneDatosRelacionados( const int id_cliente );
+
+    static int agregarClientePredeterminado( const QString texto );
+
+
 };
 
 #endif
