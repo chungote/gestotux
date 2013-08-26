@@ -23,6 +23,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QSqlQuery>
+#include <QDebug>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -142,8 +143,8 @@ void FormCliente::guardar()
         return;
      } else {
         qWarning( "No se pudieron guardar los datos" );
-        qDebug( "Error, no se pudo hacer submit del mapa" );
-        qDebug( this->modelo->lastError().text().toLocal8Bit() );
+        qDebug() << "Error, no se pudo hacer submit del mapa";
+        qDebug() << this->modelo->lastError().text();
      }
  } else {
      // Verifico si existe ya
@@ -252,15 +253,15 @@ void FormCliente::guardar()
       else
       {
        qWarning( "Error al hacer submit del modelo de datos de cliente" );
-       qWarning( qPrintable( modelo->lastError().text() ) );
-       qWarning( qPrintable( modelo->query().lastQuery() ) );
+       qWarning() << modelo->lastError().text();
+       qWarning() << modelo->query().lastQuery();
       }
      }
      else
      {
        qWarning( "Error al insertar el registro de datos de cliente" );
-       qWarning( qPrintable( modelo->lastError().text() ) );
-       qWarning( qPrintable( modelo->query().lastQuery() ) );
+       qWarning() << modelo->lastError().text();
+       qWarning() << modelo->query().lastQuery();
      }
      modelo->setEditStrategy( _anterior );
  } // Fin agregando

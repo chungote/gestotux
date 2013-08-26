@@ -56,6 +56,9 @@ signals:
     void agregarVentana( QWidget * );
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
     void emitirRecibo( int, QDate, QString, double );
+    void emitirPlanCuota( int, double );
+    void planCuotaSetearIdCuota( int );
+    void emitirPlanCuotaSetIdFactura( int, int );
 
 
 public slots:

@@ -130,7 +130,13 @@ void RemitoPlugin::crearToolBar( QToolBar */*t*/ )
     \fn RemitoPlugin::agregarNuevoRemito()
  */
 void RemitoPlugin::agregarNuevoRemito()
-{ emit agregarVentana( new FormAgregarRemito() ); }
+{
+    FormAgregarRemito *f = new FormAgregarRemito();
+    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SIGNAL( emitirPlanCuota( int, double ) ) );
+    connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
+    connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
+    emit agregarVentana( f );
+}
 
 
 /*!
@@ -158,5 +164,8 @@ void RemitoPlugin::agregarRemito( int id_cliente, QDate fecha, MProductosTotales
     f->setearCliente( id_cliente );
     f->setearFecha( fecha );
     f->setearItems( mpt );
+    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SIGNAL( emitirPlanCuota( int, double ) ) );
+    connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
+    connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
     emit agregarVentana( f );
 }

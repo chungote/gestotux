@@ -216,8 +216,8 @@ void VTecnicos::cambiarVerDeshabilitado( bool estado )
 
 /*!
  * \brief VTecnicos::menuContextual
- * \param indice
- * \param menu
+ * \param indice Indice sobre el cual se está ejecutando el menú
+ * \param menu Menu a completar.
  */
 void VTecnicos::menuContextual( const QModelIndex &indice, QMenu *menu )
 {
@@ -228,5 +228,6 @@ void VTecnicos::menuContextual( const QModelIndex &indice, QMenu *menu )
     } else {
         menu->addAction( ActHabilitar );
     }
+    menu->addSeparator();
 }
 

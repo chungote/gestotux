@@ -137,5 +137,6 @@ void ECBClientes::verificarExiste()
             QMessageBox::information( this, "No encontrado", "El cliente o codigo de cliente buscado no existe." );
         }
     }
+    emit cambioIdCliente( -1 );
     return;
 }

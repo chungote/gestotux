@@ -35,10 +35,13 @@ class FormAgregarRemito : public EVentana, private Ui::FormAgregarRemitoBase
 {
 Q_OBJECT
 public:
-        FormAgregarRemito( QWidget* parent = 0, Qt::WFlags fl = 0 );
-        void setearCliente( int id_cliente );
-        void setearFecha( QDate fecha );
-        void setearItems( MProductosTotales *m );
+    FormAgregarRemito( QWidget* parent = 0, Qt::WFlags fl = 0 );
+    void setearCliente( int id_cliente );
+    void setearFecha( QDate fecha );
+    void setearItems( MProductosTotales *m );
+
+public slots:
+    void setearIdPlanCuota( int id_cuota );
 
 protected slots:
     void agregarProducto();
@@ -49,8 +52,14 @@ protected slots:
     void agregarDescuento();
     void eliminarDescuento();
 
+signals:
+    void emitirPlanCuota( int, double );
+    void emitirPlanCuotaSetIdFactura( int, int );
+    void actualizarListado();
+
 private:
     MProductosTotales *mcp;
+    int id_plan_cuota;
 };
 
 #endif

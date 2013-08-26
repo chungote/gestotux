@@ -115,7 +115,7 @@ void VEquipamiento::darBaja()
                 razon.append( "Razón desconocida" );
             }
             int id_equipamiento = modelo->data( modelo->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
-            if( modelo->darDeBaja( id_equipamiento ) ) {
+            if( modelo->darDeBaja( id_equipamiento, razon ) ) {
                 QMessageBox::information( this, "Correcto", "El equipamiento se pudo dar de baja correctamente" );
             } else {
                 QMessageBox::information( this, "Incorrecto", "El equipamiento no se pudo dar de baja" );

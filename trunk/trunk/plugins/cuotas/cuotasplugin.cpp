@@ -2,6 +2,7 @@
 
 #include <QMenuBar>
 #include <QSqlDatabase>
+#include <QDebug>
 
 #include "vplancuotas.h"
 #include "formprefcaja.h"
@@ -99,7 +100,7 @@ int CuotasPlugin::tipo() const
 void CuotasPlugin::crearMenu( QMenuBar *m )
 {
      QMenu *menuCuotas = m->addMenu( "Cuotas" );
-     //menuCuotas->addAction( ActVerCuotas );
+     menuCuotas->addAction( ActVerCuotas );
      //menuCuotas->addAction( ActGenerarComprobantes );
      menuCuotas->addAction( ActSimular );
      menuCuotas->addAction( ActSep );
@@ -182,7 +183,7 @@ void CuotasPlugin::simularCuotas()
  */
 void CuotasPlugin::resumenCuotas()
 {
-    qWarning( "No Implementado" );
+    qWarning() << "No Implementado";
 }
 
 Q_EXPORT_PLUGIN2( Cuotas, CuotasPlugin )
