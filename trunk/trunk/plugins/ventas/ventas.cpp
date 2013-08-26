@@ -139,7 +139,7 @@ void Ventas::crearToolBar( QToolBar */*t*/ )
 void Ventas::agregarVenta()
 {
     FormAgregarVenta *f = new FormAgregarVenta();
-    connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SIGNAL( emitirPlanCuota( int, double ) ) );
+    connect( f, SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ), this, SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ) );
     connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
     connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
     emit agregarVentana( f );
@@ -172,7 +172,7 @@ void Ventas::seCierraGestotux()
 }
 
 /*!
- * \fn Ventas::agregarFactura(int, QDate, MProductosTotales *)
+ * \fn Ventas::agregarFactura( int, QDate, MProductosTotales * )
  */
 void Ventas::agregarFactura( int id_cliente, QDate fecha, MProductosTotales * mpt )
 {
@@ -180,5 +180,8 @@ void Ventas::agregarFactura( int id_cliente, QDate fecha, MProductosTotales * mp
     f->setearCliente( id_cliente );
     f->setearFecha( fecha );
     f->setearItems( mpt );
+    connect( f, SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ), this, SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ) );
+    connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
+    connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
     emit agregarVentana( f );
 }

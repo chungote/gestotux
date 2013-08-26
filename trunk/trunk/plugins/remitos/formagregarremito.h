@@ -23,6 +23,7 @@
 
 #include "eventana.h"
 #include "ui_FormAgregarRemitoBase.h"
+#include "../cuotas/mplancuota.h"
 class MProductosTotales;
 
 /*!
@@ -53,7 +54,7 @@ protected slots:
     void eliminarDescuento();
 
 signals:
-    void emitirPlanCuota( int, double );
+    void emitirPlanCuota( int, double, MPlanCuota::TipoComprobante );
     void emitirPlanCuotaSetIdFactura( int, int );
     void actualizarListado();
 

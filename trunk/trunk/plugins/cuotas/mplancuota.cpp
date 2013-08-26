@@ -11,6 +11,7 @@
 #include <QSqlQuery>
 #include <QSqlField>
 #include <QSqlDriver>
+#include <QDebug>
 
 MPlanCuota::MPlanCuota(QObject *parent) :
 QSqlTableModel(parent)
@@ -39,7 +40,7 @@ QSqlTableModel(parent)
  * \param efectivo Muestra si el recibo de entrega inicial tiene que ser en efectivo o no
  * \returns Verdadero si se pudo generar el plan y sus items
  */
-bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo )
+bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo, TipoComprobante tipo_comprobante )
 {
     // Verifico los parametros
     if( id_cliente <= 0 && cantidad <= 0.0 && interes <= 0.0 && periodo <= 0  ) {
@@ -48,17 +49,20 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
     }
 
     QSqlRecord rec = this->record();
-    //rec.setValue( "id_cliente", id_factura );
+    rec.setValue( "id_cliente", id_cliente );
     rec.setValue( "cantidad", cantidad );
     rec.setValue( "periodo", periodo );
     rec.setValue( "fecha_inicio", fecha_inicio );
     rec.setValue( "entrega_inicial", entrega );
     rec.setValue( "recargo", interes );
+    // Agrego el FK de ID factura en un valor random
+    rec.setValue( "id_factura", -2 );
+    rec.setValue( "tipo_comprobante", tipo_comprobante );
     if( this->insertRecord( -1, rec ) ) {
         // Genero los items de cuota
         if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
            *id_plan =this->query().lastInsertId().toInt();
-           //qWarning( QString( "Numero de plan de cuota emitido: %1" ).arg( *id_plan ).toLocal8Bit() );
+           qWarning() << QString( "Numero de plan de cuota emitido: %1" ).arg( *id_plan );
         } else {
            QSqlQuery cola;
            if( cola.exec( "SELECT MAX( id_plan_cuota ) FROM plan_cuota" ) ) {

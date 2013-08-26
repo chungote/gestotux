@@ -4,6 +4,7 @@
 #include <QObject>
 #include <eplugin.h>
 #include <QtPlugin>
+#include "mplancuota.h"
 
 /**
  * \brief Plugin de Cuotas
@@ -32,8 +33,8 @@ class CuotasPlugin : public QObject, public EPlugin
 
     public slots:
         void seCierraGestotux();
-        void generarPlanCuotas( int id_cliente, double total );
-        void planCuotasSetearIdFactura( int id_plan_cuota, int id_factura );
+        void generarPlanCuotas( int id_cliente, double total, MPlanCuota::TipoComprobante tipo );
+        void planCuotasSetearIdFactura( int id_plan_cuota, int id_factura);
 
     signals:
         void agregarVentana( QWidget * );

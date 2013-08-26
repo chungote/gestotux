@@ -23,6 +23,7 @@
 
 #include "eventana.h"
 #include "ui_FormAgregarVentaBase.h"
+#include "../cuotas/mplancuota.h"
 class MProductosTotales;
 
 /*!
@@ -46,7 +47,7 @@ signals:
          * \params id_cliente Identificador de Cliente
          * \params total Total del plan
          */
-        void emitirPlanCuota( int, double );
+        void emitirPlanCuota( int, double, MPlanCuota::TipoComprobante );
         /*!
          * \brief emitirPlanCuotaSetIdFactura
          * \params id_cliente Identificador del plan de cuota

@@ -166,9 +166,9 @@ void generarInterconexiones()
     // Estructura de señales para integración de cuotas con ventas
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
        QObject::connect( egp->pluginQObject( "ventas"  ),
-                         SIGNAL( emitirPlanCuota( int, double ) ),
+                         SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ),
                          egp->pluginQObject( "cuotas" ),
-                         SLOT( generarPlanCuotas( int, double ) ) );
+                         SLOT( generarPlanCuotas( int, double, MPlanCuota::TipoComprobante ) ) );
        QObject::connect( egp->pluginQObject( "cuotas" ),
                          SIGNAL( emitirPlanCuotaId( int ) ),
                          egp->pluginQObject( "ventas"  ),
@@ -181,10 +181,10 @@ void generarInterconexiones()
     // Estructura de señales para integración de cuotas con remitos
     if( egp->existePlugin( "remitos" ) && egp->existePlugin( "cuotas" ) ) {
        QObject::connect( egp->pluginQObject( "remitos"  ),
-                         SIGNAL( emitirPlanCuota( int, double ) ),
+                         SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ),
                          egp->pluginQObject( "cuotas" ),
-                         SLOT( generarPlanCuotas( int, double ) ) );
-       QObject::connect( egp->pluginQObject( "remitos" ),
+                         SLOT( generarPlanCuotas( int, double, MPlanCuota::TipoComprobante ) ) );
+       QObject::connect( egp->pluginQObject( "cuotas" ),
                          SIGNAL( emitirPlanCuotaId( int ) ),
                          egp->pluginQObject( "remitos"  ),
                          SIGNAL( planCuotaSetearIdCuota( int ) ) );

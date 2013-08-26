@@ -25,6 +25,7 @@
 #include <eplugin.h>
 #include <QDate>
 #include "mproductostotales.h"
+#include "../cuotas/mplancuota.h"
 
 class MProductosTotales;
 
@@ -58,7 +59,7 @@ signals:
     void agregarVentana( QWidget * );
     void agregarDockWidget(Qt::DockWidgetArea , QDockWidget * );
     void emitirRecibo( int, QString, double );
-    void emitirPlanCuota( int, double );
+    void emitirPlanCuota( int, double, MPlanCuota::TipoComprobante );
     void planCuotaSetearIdCuota( int );
     void emitirPlanCuotaSetIdFactura( int, int );
 
