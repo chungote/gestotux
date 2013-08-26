@@ -68,6 +68,12 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
     habilitarBusqueda();
 }
 
+void VPlanCuotas::actualizar()
+{
+    modelo->select();
+    vista->update();
+}
+
 /*!
  * \fn VPlanCuotas::simular()
  * Muestra la ventana de simular cuotas
@@ -133,5 +139,7 @@ void VPlanCuotas::ingresarPago()
     DPagoCuota *dialogo = new DPagoCuota( this );
     dialogo->setearPlanCuota( id_plan_cuota );
     dialogo->setearModelo( qobject_cast<MVPlanCuota *>(this->modelo) );
+    connect( dialogo, SIGNAL( actualizarModelo() ), this, SLOT( actualizar() ) );
     dialogo->exec();
+    this->actualizar();
 }

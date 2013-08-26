@@ -14,6 +14,9 @@ class VPlanCuotas : public EVLista
     Q_OBJECT
 public:
     VPlanCuotas( QWidget *parent = 0 );
+
+protected slots:
+    void actualizar();
     
 private slots:
     void simular();

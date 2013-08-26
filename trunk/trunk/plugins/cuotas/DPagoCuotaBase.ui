@@ -158,6 +158,9 @@
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
+          <property name="prefix">
+           <string>$ </string>
+          </property>
           <property name="maximum">
            <double>1000000092.000000000000000</double>
           </property>
@@ -174,6 +177,9 @@
          <widget class="QDoubleSpinBox" name="DSBFaltante">
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="prefix">
+           <string>$ </string>
           </property>
           <property name="maximum">
            <double>1000000092.000000000000000</double>

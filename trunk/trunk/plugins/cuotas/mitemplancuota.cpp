@@ -135,7 +135,7 @@ int MItemPlanCuota::buscarReciboEmitido( const int id_plan )
 bool MItemPlanCuota::setearItemCuotaPagadoSegunRecibo( const int id_recibo, QDateTime fecha_pagado )
 {
   QSqlQuery cola;
-  if( cola.exec( QString( "UPDATE item_cuota SET fecha_pagado = %2 WHERE id_recibo = %1 AND fecha_pago is NULL" ).arg( id_recibo ).arg( fecha_pagado.toString( Qt::ISODate ) ) ) ) {
+  if( cola.exec( QString( "UPDATE item_cuota SET fecha_pago = \"%2\" WHERE id_recibo = %1 AND fecha_pago is NULL" ).arg( id_recibo ).arg( fecha_pagado.toString( Qt::ISODate ) ) ) ) {
       return true;
   } else {
       qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado según id de recibo " );
@@ -182,7 +182,7 @@ bool MItemPlanCuota::buscarSiReciboAPagar( const int id_recibo )
 bool MItemPlanCuota::setearItemCuotaPagado( const int id_item_cuota, const int id_recibo, QDateTime fecha_pagado )
 {
   QSqlQuery cola;
-  if( cola.exec( QString( "UPDATE item_cuota SET fecha_pagado = %2, id_recibo = %1, WHERE id_item_cuota = %3" ).arg( id_recibo ).arg( fecha_pagado.toString( Qt::ISODate ) ).arg( id_item_cuota ) ) ) {
+  if( cola.exec( QString( "UPDATE item_cuota SET fecha_pago = \"%2\", id_recibo = %1 WHERE id_item_cuota = %3" ).arg( id_recibo ).arg( fecha_pagado.toString( Qt::ISODate ) ).arg( id_item_cuota ) ) ) {
       return true;
   } else {
       qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado" );

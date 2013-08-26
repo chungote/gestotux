@@ -84,10 +84,10 @@ void DPagoCuota::cargarDatos()
     // Busco si el recibo ya se encuentra emitido
     int num = MItemPlanCuota::buscarReciboEmitido( this->_id_plan_cuota );
     if( num == -2 ) {
-        LRecibo->setText( MPagos::buscarNumeroComprobantePorId( num ).aCadena() );
+        LRecibo->setText( "#"+MPagos::buscarNumeroComprobantePorId( num ).aCadena() );
         this->_emitir = false;
     } else {
-        LRecibo->setText( MPagos::proximoSerieNumeroRecibo().aCadena() );
+        LRecibo->setText( "#"+MPagos::proximoSerieNumeroRecibo().aCadena() );
         this->_emitir = true;
     }
     double importe_cuota = MItemPlanCuota::obtenerProximoImporte( this->_id_plan_cuota );
@@ -149,5 +149,7 @@ void DPagoCuota::accept()
       QMessageBox::information( this, "Error", "El sistema no pudo registrar el item de cuota como pagado" );
   }
   QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+  this->close();
+  emit actualizarModelo();
   return;
 }

@@ -50,8 +50,9 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
 
     QSqlRecord rec = this->record();
     rec.setValue( "id_cliente", id_cliente );
-    rec.setValue( "cantidad", cantidad );
-    rec.setValue( "periodo", periodo );
+    rec.setValue( "total", cantidad );
+    rec.setValue( "cantidad_cuotas", cant_cuotas );
+    rec.setValue( "tipo_periodo", periodo );
     rec.setValue( "fecha_inicio", fecha_inicio );
     rec.setValue( "entrega_inicial", entrega );
     rec.setValue( "recargo", interes );
@@ -300,25 +301,25 @@ QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
         if( cola.next() ) {
             par.second = cola.record().value(0).toInt();
         } else {
-            qDebug( "Error de next al obtención de cantidad de cuotas de un plan de cuotas" );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "Error de next al obtención de cantidad de cuotas de un plan de cuotas";
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtención de cantidad de cuotas de un plan de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de obtención de cantidad de cuotas de un plan de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     if( cola.exec( QString( "SELECT COUNT( id_plan_cuota ) FROM item_cuota  WHERE id_plan_cuota = %1 AND fecha_pago IS NOT NULL" ).arg( id_plan ) ) ) {
         if( cola.next() ) {
             par.first = cola.record().value(0).toInt();
         } else {
-            qDebug( "Error de next al obtención de cantidad de cuotas de un plan de cuotas" );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "Error de next al obtención de cantidad de cuotas de un plan de cuotas";
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtención de cantidad de cuotas de un plan de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de obtención de cantidad de cuotas de un plan de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return par;
 }
@@ -329,7 +330,7 @@ QPair<int, int> MPlanCuota::obtenerEstadoCuotas( const int id_plan )
  * \param id_plan Identificador del plan
  * \return importes mencionados o -1.0/-1.0
  */
-QPair<double, double> MPlanCuota::obtenerEstadoImportes(const int id_plan)
+QPair<double, double> MPlanCuota::obtenerEstadoImportes( const int id_plan )
 {
     QPair<double, double> par( -1.0, -1.0 );
     QSqlQuery cola;
@@ -337,25 +338,25 @@ QPair<double, double> MPlanCuota::obtenerEstadoImportes(const int id_plan)
         if( cola.next() ) {
             par.first = cola.record().value(0).toDouble();
         } else {
-            qDebug( "Error de next al obtención de estado financiero de un plan de cuotas" );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "Error de next al obtención de estado financiero de un plan de cuotas";
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtención de estado financiero de un plan de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de obtención de estado financiero de un plan de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
-    if( cola.exec( QString( "SELECT f.total FROM factura AS f, plan_cuota AS pc WHERE pc.id_plan_cuota = %1 AND f.id_factura = pc.id_factura" ).arg( id_plan ) ) ) {
+    if( cola.exec( QString( "SELECT pc.total FROM plan_cuota AS pc WHERE pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
         if( cola.next() ) {
             par.second = cola.record().value(0).toDouble();
         } else {
-            qDebug( "Error de next al obtención de estado financiero de un plan de cuotas" );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << "Error de next al obtención de estado financiero de un plan de cuotas";
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtención de estado financiero de un plan de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de obtención de estado financiero de un plan de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return par;
 }

@@ -6,6 +6,7 @@
 #include "eregistroplugins.h"
 #include "einfoprogramainterface.h"
 #include "../ventas/MFactura.h"
+#include "../remitos/MRemito.h"
 #include "NumeroComprobante.h"
 
 #include <QTextTable>
@@ -28,8 +29,8 @@ EVentana(parent), Ui::FormDetalleCuotasBase()
     setWindowTitle( "Simulador de cuotas" );
 
     ActImprimir = new QAction( this );
-    ActImprimir->setText( "Imprimir" );
-    ActImprimir->setText( QString::fromUtf8( "Imprimir detalle completo del plan de cuota" ) );
+    ActImprimir->setText( QString::fromUtf8( "Imprimir" ) );
+    ActImprimir->setStatusTip( "Imprime la información detallada del estado de cuotas del plan" );
     ActImprimir->setIcon( QIcon( ":/imagenes/impresora.png" ) );
     connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
 
@@ -198,28 +199,49 @@ void FormDetalleCuotas::setearIdPlanCuota( int id ) {
     if( cola.exec( QString( "SELECT * FROM plan_cuota WHERE id_plan_cuota = %1" ).arg( id ) ) ) {
         if( cola.next() ) {
             SBCantidad->setValue(       cola.record().value("cantidad_cuotas").toInt()    );
-            CBPeriodo->setCurrentIndex( cola.record().value("tipo_periodo"   ).toInt()    );
-            DEInicio->setDate(          cola.record().value("fecha_inicio"   ).toDate()   );
+            CBPeriodo ->setCurrentIndex(cola.record().value("tipo_periodo"   ).toInt()    );
+            DEInicio  ->setDate(        cola.record().value("fecha_inicio"   ).toDate()   );
             DSBEntrega->setValue(       cola.record().value("entrega_inicial").toDouble() );
             DSBInteres->setValue(       cola.record().value("recargo"        ).toDouble() );
-            int id_factura = cola.record().value("id_factura").toInt();
-            if( cola.exec( QString( "SELECT serie, numero, id_cliente FROM factura WHERE id_factura = %1").arg( id_factura ) ) ){
-                if( cola.next() ) {
-//                    LFactura->setText( "Numero de factura: #"+MFactura::obtenerComprobante( id_factura ).aCadena() );
- //                   CBCliente->setearId( cola.record().value("id_cliente").toInt() );
+            DSBImporte->setValue(       cola.record().value("total"          ).toDouble() );
+            DSBTotal  ->setValue( DSBImporte->value() - DSBEntrega->value() );
+            MPlanCuota::TipoComprobante tipo_comprobante = (MPlanCuota::TipoComprobante)cola.record().value("tipo_comprobante").toInt();
+            if( tipo_comprobante == MPlanCuota::Factura ) {
+                int id_factura = cola.record().value("id_factura").toInt();
+                if( cola.exec( QString( "SELECT serie, numero, id_cliente FROM factura WHERE id_factura = %1").arg( id_factura ) ) ){
+                    if( cola.next() ) {
+                        LFactura->setText( "Numero de factura: #"+MFactura::obtenerComprobante( id_factura ).aCadena() );
+                        CBCliente->setearId( cola.record().value("id_cliente").toInt() );
+                    } else {
+                        qWarning( "No se pudo cargar los datos de la factura - seguramente no existe");
+                    }
                 } else {
-                    qWarning( "No se pudo cargar los datos de la factura - seguramente no existe");
+                    qWarning( "Error al intentar cargar los datos de la factura asociada al plan de cuotas" );
+                    qDebug( "Error de exec de la cola de obtención de datos de la factura de una cuota" );
+                    qDebug( cola.lastError().text().toLocal8Bit() );
+                    qDebug( cola.lastQuery().toLocal8Bit() );
+                    return;
                 }
-            } else {
-                qWarning( "Error al intentar cargar los datos de la factura asociada al plan de cuotas" );
-                qDebug( "Error de exec de la cola de obtención de datos de la factura de una cuota" );
-                qDebug( cola.lastError().text().toLocal8Bit() );
-                qDebug( cola.lastQuery().toLocal8Bit() );
-                return;
+            } else if( tipo_comprobante == MPlanCuota::Remito ) {
+                int id_factura = cola.record().value("id_factura").toInt();
+                if( cola.exec( QString( "SELECT serie, numero, id_cliente FROM remito WHERE id_remito = %1").arg( id_factura ) ) ){
+                    if( cola.next() ) {
+                        LFactura->setText( "Numero de remito: #"+MRemito::obtenerComprobante( id_factura ).aCadena() );
+                        CBCliente->setearId( cola.record().value("id_cliente").toInt() );
+                    } else {
+                        qWarning( "No se pudo cargar los datos de la factura - seguramente no existe");
+                    }
+                } else {
+                    qWarning( "Error al intentar cargar los datos de la factura asociada al plan de cuotas" );
+                    qDebug( "Error de exec de la cola de obtención de datos de la factura de una cuota" );
+                    qDebug( cola.lastError().text().toLocal8Bit() );
+                    qDebug( cola.lastQuery().toLocal8Bit() );
+                    return;
+                }
             }
             // Cargo los datos de los pagos y no pagos
             ///@todo Agregar carga de los elementos de item plan de cuota
-            qWarning( "No se implementó todavía la carga d los datos de los items de cuotas" );
+            qWarning() << "No se implementó todavía la carga de los datos de los items de cuotas";
         } else {
             qWarning( "Error de seleccion de datos - Seguramente el plan de cuota no existe" );
             qDebug( "Error de next al ejecutar la cola de carga de datos de un plan de cuotas" );
