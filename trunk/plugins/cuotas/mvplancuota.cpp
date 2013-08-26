@@ -84,3 +84,17 @@ QVariant MVPlanCuota::data(const QModelIndex &idx, int role) const
     }
     return QVariant();
 }
+
+/*
+CREATE VIEW `v_plan_cuota` AS
+SELECT DISTINCT pc.id_plan_cuota AS plan_cuota,
+       c.razon_social AS cliente,
+       coalesce( ( SELECT COUNT( ic2.id_plan_cuota ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NOT NULL ), 0 ) || '/' || ( SELECT COUNT( ic2.id_plan_cuota ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NULL )  AS cuotas,
+       ( SELECT SUM( ic2.monto ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NULL ) AS total_faltante,
+       coalesce( ( SELECT MAX( ic2.fecha_pago ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NOT NULL ), 'Ninguno' ) AS ultimo_pago,
+       ( SELECT MIN( ic2.fecha_vencimiento ) FROM item_cuota AS ic2 WHERE ic2.id_plan_cuota = pc.id_plan_cuota AND ic2.fecha_pago IS NULL ) AS proximo_pago
+FROM plan_cuota AS pc
+  INNER JOIN item_cuota AS ic ON ic.id_plan_cuota = pc.id_plan_cuota
+  INNER JOIN factura AS f ON pc.id_factura = f.id_factura
+  INNER JOIN clientes AS c ON f.id_cliente = c.id;
+*/

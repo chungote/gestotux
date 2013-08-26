@@ -214,9 +214,6 @@ int MRemito::agregarVenta( QDateTime fecha, int id_cliente, MRemito::FormaPago i
   } else {
       //qDebug( "La factura no fue al contado o no existe el plugin de caja cargado" );
   }
-  if( id_forma_pago == MRemito::Cuotas ) {
-      qDebug( "La venta en cuotas no fue implementada todavía" );
-  }
   return id_venta;
  }
  return -1;

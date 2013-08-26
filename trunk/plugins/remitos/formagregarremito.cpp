@@ -353,6 +353,10 @@ void FormAgregarRemito::guardar()
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return;
  }
+ // si el plan de cuota fue utilizado tengo que asociarlo con la factura
+ if( id_forma_pago == MRemito::Cuotas ) {
+     emit emitirPlanCuotaSetIdFactura( id_plan_cuota, id_remito );
+ }
  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).commit() ) {
    // Ver si quiere ver la factura o imprimirla
    int respuesta = QMessageBox::question( this, "Correcto", "El remito se ha registrado correctamente. Desea imprimir un comprobante?",

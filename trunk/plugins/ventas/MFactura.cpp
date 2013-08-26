@@ -250,10 +250,6 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
       }
       delete m;
   }
-  if( ERegistroPlugins::getInstancia()->existePluginExterno( "cuotas" ) && id_forma_pago == MFactura::Cuotas ) {
-      // Veo de simular el plan de cuotas de la factura
-
-  }
   qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
   return id_venta;
  }

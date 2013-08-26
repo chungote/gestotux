@@ -19,6 +19,9 @@ public slots:
 protected:
     void changeEvent(QEvent *e);
 
+signals:
+    void actualizarModelo();
+
 private:
     int _id_plan_cuota;
     int _id_item_plan_cuota;

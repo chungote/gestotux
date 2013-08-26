@@ -17,4 +17,6 @@ SUBDIRS +=  caja \
             cuotas \
             ordentrabajo \
             HiComp \
-            garantias
+            garantias \
+            backupremoto \
+            remitos
