@@ -13,6 +13,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QDebug>
 
 FormModificarPresupuesto::FormModificarPresupuesto(QWidget *parent) :
     EVentana(parent), Ui::FormPresupuestoBase()
@@ -135,9 +136,9 @@ void FormModificarPresupuesto::setearIdPresupuesto( QModelIndex idx )
         delete md;
 
     } else {
-        qDebug( "Error al buscar los datos del presupuesto" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al buscar los datos del presupuesto";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 
@@ -216,7 +217,7 @@ void FormModificarPresupuesto::guardar( bool cerrar )
                                          m->data( m->index( fila, 1 ), Qt::DisplayRole ).toString(), // Texto
                                          m->data( m->index( fila, 2 ), Qt::EditRole ).toDouble()  // Precio unitario
                                        ) ) {
-         qDebug( QString( "No se pudo actualizar el item %1 del presupuesto a la base de datos" ).arg( fila ).toLocal8Bit() );
+         qDebug() << QString( "No se pudo actualizar el item %1 del presupuesto a la base de datos" ).arg( fila );
          QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
          return;
      }

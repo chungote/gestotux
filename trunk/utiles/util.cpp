@@ -75,6 +75,7 @@ QString Util::formateoFechas( QDateTime fecha )
         return fecha.toString( Qt::ISODate );
     }
 }
+
 /*!
  * \brief Util::importeATexto
  * \param importe Importe a pasar a texto

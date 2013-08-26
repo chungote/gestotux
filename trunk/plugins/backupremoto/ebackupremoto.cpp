@@ -229,7 +229,7 @@ void EBackupRemoto::enviarColas() {
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
  url.addQueryItem( "ids", this->ids );
- qDebug( this->ids.toLocal8Bit() );
+ qDebug() << this->ids;
  p->endGroup(); p->endGroup(); p = 0;
  QNetworkRequest *req2 = new QNetworkRequest( url );
  req2->setHeader( QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded" );
@@ -461,7 +461,7 @@ bool EBackupRemoto::ejecutarColas( QStringList colas )
   }
   else
   {
-        qWarning( qPrintable( cola->lastError().text() + ". Cola: " + cola->lastQuery() ) );
+        qWarning() << cola->lastError().text() << ". Cola: " << cola->lastQuery();
         estado = false;
   }
  }

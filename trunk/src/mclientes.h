@@ -29,9 +29,9 @@
 class MClientes : public QSqlRelationalTableModel
 {
 public:
-    MClientes( QObject *parent = 0);
+    MClientes( QObject *parent = 0 );
 
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    Qt::ItemFlags flags( const QModelIndex &index ) const;
 
     static QString direccionEntera( int id_cliente );
     static QString getRazonSocial( const int id_cliente );

@@ -100,8 +100,6 @@ FormAgregarRemito::FormAgregarRemito ( QWidget* parent, Qt::WFlags fl )
 
         DSBCant->setValue( 1.0 );
         DSBCant->setPrefix( "" );
-        // deshabilito el item de cuotas por no estar programado
-        RBCuotas->setVisible( false );
 
         // Coloco el proximo numero de comprobante
         LNumeroComprobante->setText( LNumeroComprobante->text().append( "       <b>" ).append( MRemito::proximoComprobante().aCadena() ).append( "</b>" ) );
@@ -141,6 +139,8 @@ FormAgregarRemito::FormAgregarRemito ( QWidget* parent, Qt::WFlags fl )
         }
 
         DEFecha->setMinimumDate( MRemito::fechaUltimoRemito() );
+
+        id_plan_cuota = -1;
 }
 
 
@@ -329,6 +329,14 @@ void FormAgregarRemito::guardar()
  else if( RBCuotas->isChecked() )
  {
      id_forma_pago = MRemito::Cuotas;
+     if( id_plan_cuota == -1 ) {
+         // Todavía no se pudo hacer el plan de cuotas
+         emit emitirPlanCuota( CBCliente->idClienteActual(), mcp->total() );
+         return;
+     } else {
+         // Si paso por aquí el plan de cuota fue creado pero todavía no se le asigno el id de factura
+         QMessageBox::information( this, "Paso", "Plan de cuota emitido" );
+     }
  } else if( RBOtro->isChecked() ){
      id_forma_pago = MRemito::Otro;
  } else {
@@ -399,11 +407,13 @@ void FormAgregarRemito::cambioCliente( int /*id_combo*/ )
          {
              if( !MCuentaCorriente::suspendida( id_cliente ) ) {
                 RBCtaCte->setEnabled( true );
+                RBCuotas->setEnabled( true );
                 GBFormaPago->setEnabled( true );
              } else {
                  qDebug( "Cuenta corriente suspendida" );
                  RBContado->setChecked( true );
                  RBCtaCte->setEnabled( false );
+                 RBCuotas->setEnabled( false );
              }
          }
          else
@@ -411,6 +421,7 @@ void FormAgregarRemito::cambioCliente( int /*id_combo*/ )
            // qDebug( "No se encontro una cuenta corriente para el cliente." );
             RBContado->setChecked( true );
             RBCtaCte->setEnabled( false );
+            RBCuotas->setEnabled( false );
          }
      }
 
@@ -418,6 +429,7 @@ void FormAgregarRemito::cambioCliente( int /*id_combo*/ )
      //qDebug( "Cliente consumidor final - Sin direccion" );
      RBContado->setChecked( true );
      RBCtaCte->setEnabled( false );
+     RBCuotas->setEnabled( false );
  }
  return;
 }
@@ -459,4 +471,14 @@ void FormAgregarRemito::setearItems( MProductosTotales *m )
 
     this->TVProductos->setModel( this->mcp );
     this->TVProductos->update();
+}
+
+void FormAgregarRemito::setearIdPlanCuota(int id_cuota)
+{
+    if( id_cuota <= 0 ) {
+        qWarning( "Numero de plan de cuota pasado como parametro es 0" );
+        return;
+    }
+    this->id_plan_cuota = id_cuota;
+    guardar();
 }

@@ -52,8 +52,39 @@ QVariant MEquipamiento::data(const QModelIndex &item, int role) const
  * \return Verdadero si hay alguna relacion
  */
 bool MEquipamiento::tieneDatosRelacionados( const int /* id_equipamiento */ )
-{ return false; }
-// Los datos relacionados deberán ser eliminados si se elimina un equipamiento
+{ return false; } // Los datos relacionados deberán ser eliminados si se elimina un equipamiento
+
+/*!
+ * \brief MEquipamiento::eliminarConRelacionados
+ * \param id_equipamiento
+ * \return
+ */
+bool MEquipamiento::eliminarConRelacionados( const int id_equipamiento )
+{ return false;
+}
+
+/*!
+ * \brief MEquipamiento::darBaja
+ * \param id_equipamiento
+ * \param razon
+ * \param fecha
+ * \return
+ */
+bool MEquipamiento::darDeBaja( const int id_equipamiento, const QString razon, QDateTime fechahora )
+{ return false;
+}
+
+/*!
+ * \brief MEquipamiento::darReAlta
+ * \param id_equipamiento
+ * \param razon
+ * \param fechahora
+ * \return
+ */
+bool MEquipamiento::darReAlta( const int id_equipamiento, const QString razon, QDateTime fechahora )
+{ return false;
+}
+
 
 
 /*!
