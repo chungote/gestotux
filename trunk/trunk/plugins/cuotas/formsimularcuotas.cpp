@@ -279,7 +279,7 @@ void FormSimularCuotas::confirmar()
     int id_plan_cuota = -1;
     MPlanCuota *mpc = new MPlanCuota( this );
     if( ! mpc->agregarPlanCuota( _id_cliente,
-                                 DSBImporte->value() * ( 1.0 + DSBInteres->value() ),
+                                 DSBTotal->value(),
                                  DSBInteres->value(),
                                  (MPlanCuota::Periodo) CBPeriodo->itemData( CBPeriodo->currentIndex() ).toInt(),
                                  DSBEntrega->value(),

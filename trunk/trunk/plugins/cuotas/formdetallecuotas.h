@@ -5,6 +5,7 @@
 #include "eventana.h"
 class QTextDocument;
 class MPlanCuota;
+class MItemPlanCuota;
 
 class FormDetalleCuotas : public EVentana, private Ui::FormDetalleCuotasBase
 {
@@ -28,6 +29,7 @@ private:
     QAction *ActPdf;
 
     MPlanCuota *modelo;
+    MItemPlanCuota *modelo_item;
     QTextDocument *documento;
 
     void generaReporte();
