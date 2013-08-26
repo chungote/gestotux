@@ -28,9 +28,14 @@ public:
         Invalido = -1 /** Invalido - Para casos de error */
     };
 
+    enum TipoComprobante {
+        Factura = 0,
+        Remito = 1
+    };
+
     MPlanCuota( QObject *parent = 0 );
 
-    bool agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo );
+    bool agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo, TipoComprobante tipo );
     
     static int diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo );
     static void asociarConFactura( int id_plan, int id_factura );

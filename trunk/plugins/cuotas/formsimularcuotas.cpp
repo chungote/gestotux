@@ -87,6 +87,7 @@ EVentana(parent), Ui::FormSimularCuotasBase()
     addAction( new EActCerrar( this ) );
 
     _id_cliente = -1;
+    _tipo_comprobante = MPlanCuota::Factura;
 }
 
 FormSimularCuotas::~FormSimularCuotas()
@@ -285,7 +286,8 @@ void FormSimularCuotas::confirmar()
                                  DEInicio->date(),
                                  SBCantidad->value(),
                                  &id_plan_cuota,
-                                 CkBEntregaEfectivo->isChecked() ) ) {
+                                 CkBEntregaEfectivo->isChecked(),
+                                 _tipo_comprobante ) ) {
         QMessageBox::information( this, "Error", "No se pudo ingresar el plan de cuotas" );
         return;
     }

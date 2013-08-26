@@ -25,6 +25,7 @@
 #include <eplugin.h>
 #include <QDate>
 #include "mproductostotales.h"
+#include "../cuotas/mplancuota.h"
 
 /**
  * \brief Plugin de remitos
@@ -56,10 +57,9 @@ signals:
     void agregarVentana( QWidget * );
     void agregarDockWidget(Qt::DockWidgetArea area, QDockWidget *ventana);
     void emitirRecibo( int, QDate, QString, double );
-    void emitirPlanCuota( int, double );
+    void emitirPlanCuota( int, double, MPlanCuota::TipoComprobante );
     void planCuotaSetearIdCuota( int );
     void emitirPlanCuotaSetIdFactura( int, int );
-
 
 public slots:
     void seCierraGestotux();

@@ -31,6 +31,7 @@
 #include "../CtaCte/mcuentacorriente.h"
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../productos/mproductos.h"
+#include "../cuotas/mplancuota.h"
 #include "preferencias.h"
 #include "EReporte.h"
 #include "MRemito.h"
@@ -331,7 +332,7 @@ void FormAgregarRemito::guardar()
      id_forma_pago = MRemito::Cuotas;
      if( id_plan_cuota == -1 ) {
          // Todavía no se pudo hacer el plan de cuotas
-         emit emitirPlanCuota( CBCliente->idClienteActual(), mcp->total() );
+         emit emitirPlanCuota( CBCliente->idClienteActual(), mcp->total(), MPlanCuota::Remito );
          return;
      } else {
          // Si paso por aquí el plan de cuota fue creado pero todavía no se le asigno el id de factura

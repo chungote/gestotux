@@ -17,6 +17,8 @@ public:
     int idCliente() { return _id_cliente; }
     void setearTotal( double Total ) { DSBImporte->setValue( Total ); }
     void setearConfirmar( bool conf );
+    void setearTipoComprobante( MPlanCuota::TipoComprobante tipo ) { _tipo_comprobante = tipo; }
+    MPlanCuota::TipoComprobante tipoComprobante() { return _tipo_comprobante; }
     
 protected:
     void changeEvent( QEvent *e );
@@ -50,6 +52,7 @@ private:
     void generaReporte();
 
     int _id_cliente;
+    MPlanCuota::TipoComprobante _tipo_comprobante;
 
 };
 
