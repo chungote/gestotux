@@ -27,8 +27,8 @@ public:
     static bool setearItemCuotaPagado(const int id_item_cuota, const int id_recibo , QDateTime fecha_pagado = QDateTime::currentDateTime() );
     static bool setearItemCuotaPagadoSegunRecibo( const int id_recibo , QDateTime fecha_pagado = QDateTime::currentDateTime() );
 
-
     QVariant data(const QModelIndex &item, int role) const;
+    void setearPlanCuota( const int id_plan_cuota );
 
 };
 

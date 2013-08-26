@@ -3,9 +3,10 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlRecord>
+#include <QColor>
 
 MItemPlanCuota::MItemPlanCuota(QObject *parent) :
-    QSqlRelationalTableModel(parent)
+QSqlRelationalTableModel(parent)
 {
     setTable( "item_cuota" );
     setHeaderData( 0, Qt::Horizontal, "#ID Item" );
@@ -14,7 +15,7 @@ MItemPlanCuota::MItemPlanCuota(QObject *parent) :
     setHeaderData( 3, Qt::Horizontal, "Importe" );
     setHeaderData( 4, Qt::Horizontal, "Fecha Vencimiento" );
     setHeaderData( 5, Qt::Horizontal, "Fecha de Pago" );
-    setHeaderData( 6, Qt::Horizontal, "#ID pago" );
+    setHeaderData( 6, Qt::Horizontal, "#ID Recibo" );
 }
 
 /*!
@@ -205,6 +206,13 @@ QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
                     { return QString( "#%1").arg( QSqlRelationalTableModel::data( item, role ).toInt() ); break; }
                     case Qt::EditRole:
                     { return QSqlRelationalTableModel::data( item, role ).toInt(); break; }
+                    case Qt::BackgroundColorRole:
+                    {
+                        if( QSqlRelationalTableModel::data( index( item.row(), 5 ), Qt::EditRole ).toDate().isValid() ) {
+                            return QColor( Qt::darkGreen );
+                        }
+                        break;
+                    }
                     default:
                     { return QSqlRelationalTableModel::data( item, role ); break; }
                 }
@@ -217,6 +225,13 @@ QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
                     { return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble(), 10, 'f', 2 ); break; }
                     case Qt::EditRole:
                     { return QSqlRelationalTableModel::data( item, role ).toDouble(); break; }
+                    case Qt::BackgroundColorRole:
+                    {
+                        if( QSqlRelationalTableModel::data( index( item.row(), 5 ), Qt::EditRole ).toDate().isValid() ) {
+                            return QColor( Qt::darkGreen );
+                        }
+                        break;
+                    }
                     default:
                     { return QSqlRelationalTableModel::data( item, role ); break; }
                 }
@@ -227,9 +242,16 @@ QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
             {
                 switch( role ) {
                     case Qt::DisplayRole:
-                    { return QSqlRelationalTableModel::data( item, role ).toDate().toString(); break; }
+                    { return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::LocaleDate ); break; }
                     case Qt::EditRole:
                     { return QSqlRelationalTableModel::data( item, role ).toDate(); break; }
+                    case Qt::BackgroundColorRole:
+                    {
+                        if( QSqlRelationalTableModel::data( index( item.row(), 5 ), Qt::EditRole ).toDate().isValid() ) {
+                            return QColor( Qt::darkGreen );
+                        }
+                        break;
+                    }
                     default:
                     { return QSqlRelationalTableModel::data( item, role ); break; }
                 }
@@ -237,11 +259,15 @@ QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
             }
             default:
             {
-                return QSqlRelationalTableModel::data( item, role );
-                break;
+                return QSqlRelationalTableModel::data( item, role ); break;
             }
         }
     } else {
         return QVariant();
     }
+}
+
+void MItemPlanCuota::setearPlanCuota(const int id_plan_cuota)
+{
+    this->setFilter( QString( " id_plan_cuota = %1" ).arg( id_plan_cuota ) );
 }
