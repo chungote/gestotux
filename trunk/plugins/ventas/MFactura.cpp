@@ -110,9 +110,9 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
  }
  if( !cola.exec() )
  {
-  qDebug( "Error de insercion de registro de venta" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
-  qDebug( cola.lastQuery().toLocal8Bit() );
+  qDebug() << "Error de insercion de registro de venta";
+  qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() );
+  qDebug() << cola.lastQuery();
   return -1;
  }
  else
@@ -125,9 +125,9 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
           cola.next();
           id_venta = cola.record().value(0).toInt();
       } else {
-          qDebug( "Error de obtencion del id del registro de venta" );
-          qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
-          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug() << "Error de obtencion del id del registro de venta";
+          qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() );
+          qDebug() << cola.lastQuery();
           return -1;
       }
   }
@@ -251,7 +251,7 @@ int MFactura::agregarVenta( QDateTime fecha, int id_cliente, MFactura::FormaPago
       }
       delete m;
   }
-  qDebug( QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta ).toLocal8Bit() );
+  qDebug() << QString( "Factura ingresada correctamente: id = %1" ).arg( id_venta );
   return id_venta;
  }
  return -1;
@@ -281,7 +281,7 @@ int MFactura::agregarFactura( const int id_cliente, const QDateTime fecha, MFact
     if( !cola.exec() )
     {
      qDebug( "Error de insercion de registro de venta" );
-     qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
+     qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() );
      return -1;
     }
     else
@@ -517,18 +517,18 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                 return true;
             } else {
                 qDebug( "MFactura::anularFactura::Error al ejecutar la cola de anulación de la factura seleccionada." );
-                qDebug( cola.lastError().text().toLocal8Bit() );
-                qDebug( cola.lastQuery().toLocal8Bit() );
+                qDebug() << cola.lastError().text();
+                qDebug() << cola.lastQuery();
             }
         } else {
             qDebug( "MFactura::anularFactura::Error al hacer next al buscar informacion de la factura" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     } else {
         qDebug( "MFactura::anularFactura::Error al hacer next al buscar informacion de la factura" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
     return false;
@@ -565,8 +565,8 @@ int MFactura::idFacturaPorComprobante( const QString numero )
      }
  } else {
      qDebug( "Error al hacer exec en el id de factura según comprobante" );
-     qDebug( cola.lastError().text().toLocal8Bit() );
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug() << cola.lastError().text();
+     qDebug() << cola.lastQuery();
  }
  delete n;
  return -1;
@@ -585,8 +585,8 @@ QDate MFactura::fechaUltimaVenta()
         return cola.record().value(0).toDate();
     } else {
         qWarning( "Error al buscar la fecha de la ultima factura" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QDate();
 }
@@ -604,8 +604,8 @@ QDate MFactura::obtenerFecha(const int id_factura)
         return cola.record().value(0).toDate();
     } else {
         qWarning( "Error al buscar la fecha de la factura" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QDate();
 }
@@ -623,8 +623,8 @@ double MFactura::obtenerTotal( const int id_factura )
         return cola.record().value(0).toDouble();
     } else {
         qWarning( "Error al buscar la fecha de la factura" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return -1.0;
 }
@@ -663,8 +663,8 @@ QDate MFactura::obtenerFechaMinimaVenta()
         }
     } else {
         qWarning( "Error al buscar la fecha de la factura minima" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QDate( 1900, 1, 1);
 }
