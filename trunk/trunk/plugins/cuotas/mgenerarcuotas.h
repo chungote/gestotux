@@ -19,6 +19,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     
     bool calcularComprobantes();
+    void setearMesBusqueda( const int mes ) { _mes_busqueda = mes; }
+    int mesBusqueda() { return _mes_busqueda; }
 
 signals:
     void cambioTotal( double );
@@ -27,6 +29,7 @@ signals:
 
 private:
     int _cant;
+    int _mes_busqueda;
     double _total;
     QHash<int, int> *_numeros;
     QHash<int, int> *_planes;
@@ -34,7 +37,7 @@ private:
     QHash<int, int> *_clientes_id;
     QHash<int, QString> *_cuotas;
     QHash<int, double> *_importes;
-    QHash<int, NumeroComprobante *> *_comprobantes;
+    QHash<int, NumeroComprobante*> *_comprobantes;
     
 };
 

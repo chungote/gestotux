@@ -25,6 +25,10 @@ FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) 
     connect( modelo, SIGNAL( comprobantes( QPair<NumeroComprobante *, NumeroComprobante *> ) ), this, SLOT( cambioComprobantes( QPair<NumeroComprobante *, NumeroComprobante *> ) ) );
 
     TVVista->setModel( modelo );
+    TVVista->hideColumn( 0 );
+    TVVista->setAlternatingRowColors( true );
+    TVVista->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+    TVVista->setSelectionBehavior( QAbstractItemView::SelectRows );
 
     ActCalcular = new QAction( this );
     ActCalcular->setText( "Calcular" );
@@ -32,6 +36,8 @@ FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) 
 
     addAction( ActCalcular );
     addAction( new EActCerrar( this ) );
+
+    SBMes->setValue( QDate::currentDate().month() );
 }
 
 void FormGenerarComprobantesCuotas::changeEvent(QEvent *e)
@@ -62,8 +68,12 @@ void FormGenerarComprobantesCuotas::cambioComprobantes( QPair<NumeroComprobante 
  */
 void FormGenerarComprobantesCuotas::calcularCuotas()
 {
-  modelo->calcularComprobantes();
-  TVVista->update();
+  modelo->setearMesBusqueda( SBMes->value() );
+  if( modelo->calcularComprobantes() ) {
+    TVVista->update();
+  } else {
+      QMessageBox::information( this, "Sin datos", "No existen datos para el mes seleccionado" );
+  }
 }
 
 void FormGenerarComprobantesCuotas::emitirComprobantes()

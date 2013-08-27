@@ -19,7 +19,9 @@ INCLUDEPATH += ../../src \
                ../../utiles \
                ../caja \
                ../CtaCte \
-               ../pagos
+               ../pagos \
+               ../productos \
+               ../descuentos
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
@@ -48,7 +50,10 @@ HEADERS += cuotasplugin.h \
            ../CtaCte/mitemcuentacorriente.h \
            ../CtaCte/mcuentacorriente.h \
            ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h
+           ../caja/mmovimientoscaja.h \
+           ../remitos/MRemito.h \
+           ../remitos/mitemremito.h \
+           ../productos/mproductos.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
@@ -68,6 +73,9 @@ SOURCES += cuotasplugin.cpp \
            ../CtaCte/mcuentacorriente.cpp \
            ../caja/mcajas.cpp \
            ../caja/mmovimientoscaja.cpp \
+           ../remitos/MRemito.cpp \
+           ../remitos/mitemremito.cpp \
+           ../productos/mproductos.cpp
 
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \

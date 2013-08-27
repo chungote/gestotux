@@ -26,6 +26,7 @@
 #include <QSqlError>
 #include <QSqlField>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "NumeroComprobante.h"
 #include "mitemremito.h"
@@ -557,4 +558,24 @@ QDate MRemito::fechaUltimoRemito()
         qDebug( cola.lastQuery().toLocal8Bit() );
     }
     return QDate();
+}
+
+/*!
+ * \brief MRemito::obtenerIdCliente
+ * Devuelve el identificador del cliente que tiene asociada la factura
+ * \param id_factura Identificador de la factura a buscar
+ * \return Identificador del cliente o -1 si hubo error
+ */
+int MRemito::obtenerIdCliente( const int id_remito )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_cliente FROM remito WHERE id_remito = %1" ).arg( id_remito ) ) ) {
+        cola.next();
+        return cola.record().value(0).toInt();
+    } else {
+        qWarning() << "Error al buscar el cliente del remito";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return -1;
 }
