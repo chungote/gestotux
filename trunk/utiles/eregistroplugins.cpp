@@ -148,7 +148,7 @@ QObject* ERegistroPlugins::pluginQObject( const QString &nombre )
  */
 void ERegistroPlugins::setPluginInfo( EInfoProgramaInterface *obj )
 {
- qDebug() << "Seteando plugin de Info cliente: " << obj->nombrePrograma();
+ //qDebug() << "Seteando plugin de Info cliente: " << obj->nombrePrograma();
  _pluginInfo = obj;
 }
 

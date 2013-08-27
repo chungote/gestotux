@@ -26,6 +26,7 @@
 #include <QSqlField>
 #include <QMessageBox>
 #include <QSqlDriver>
+#include <QDebug>
 
 #include "NumeroComprobante.h"
 #include "mitemfactura.h"
@@ -637,13 +638,13 @@ double MFactura::obtenerTotal( const int id_factura )
 int MFactura::obtenerIdCliente(const int id_factura)
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_cliente FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+    if( cola.exec( QString( "SELECT id_cliente, id_factura FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
         cola.next();
         return cola.record().value(0).toInt();
     } else {
-        qWarning( "Error al buscar el cliente de la factura" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qWarning() << "Error al buscar el cliente de la factura";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return -1;
 }

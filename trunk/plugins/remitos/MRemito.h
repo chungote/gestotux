@@ -48,6 +48,7 @@ public:
     static bool anularRemito( const int id_remito, QString razon = QString(), QDateTime fechahora = QDateTime::currentDateTime() );
     static int idRemitoPorComprobante( const QString numero );
     static QDate fechaUltimoRemito();
+    static int obtenerIdCliente(const int id_remito );
 
 private:
     void inicializar();

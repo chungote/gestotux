@@ -1,11 +1,16 @@
 #include "mgenerarcuotas.h"
 
 #include "mpagos.h"
+#include "mplancuota.h"
+#include "../ventas/MFactura.h"
+#include "../remitos/MRemito.h"
+#include "mclientes.h"
 
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDate>
+#include <QDebug>
 
 MGenerarCuotas::MGenerarCuotas( QObject *parent )
 : QAbstractTableModel( parent )
@@ -16,10 +21,11 @@ MGenerarCuotas::MGenerarCuotas( QObject *parent )
     _clientes_id = new QHash<int, int>();
     _cuotas = new QHash<int, QString>();
     _importes = new QHash<int, double>();
-    _comprobantes = new QHash<int, NumeroComprobante *>();
+    _comprobantes = new QHash<int, NumeroComprobante*>();
 
     _total = 0.0;
     _cant = 0;
+    _mes_busqueda = QDate::currentDate().month();
 }
 
 MGenerarCuotas::~MGenerarCuotas()
@@ -69,19 +75,17 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
               }
               case 4: // Importe de la cuota
               {
-                  return QString( "$ %L1" ).arg( _importes->value( idx.row() ), 0, 'f', 10 );
+                  return QString( "$ %L1" ).arg( _importes->value( idx.row() ), 10, 'f', 2 );
                   break;
               }
               case 5:
               {
-                  return _comprobantes->value( idx.row() )->aCadena();
+                  NumeroComprobante *num = _comprobantes->value( idx.row() );
+                  return num->aCadena();
                   break;
               }
               default:
-              {
-                return QVariant();
-                break;
-              }
+              { break; }
           }
           break;
       }
@@ -89,7 +93,6 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
       {
         switch( idx.column() )
         {
-
             case 0:
             {
               return _numeros->value( idx.row() );
@@ -115,25 +118,53 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
                 return _importes->value( idx.row() );
                 break;
             }
-            case 5:
-            {
-                return _comprobantes->value( idx.row() )->aCadena();
-                break;
-            }
             default:
-            {
-              return QVariant();
-              break;
-            }
+            { break; }
         }
         break;
       }
+/*      case Qt::TextAlignmentRole: {
+            switch( idx.column() )
+            {
+                case 0:
+                {
+                  return _numeros->value( idx.row() );
+                  break;
+                }
+                case 1: // Numero de plan de cuota
+                {
+                  return _planes->value( idx.row() );
+                    break;
+                }
+                case 2: // Nombre del cliente
+                {
+                    return _clientes_id->value( idx.row() );
+                    break;
+                }
+                case 3: // # Cuota ( 1/10 )
+                {
+                    return _cuotas->value( idx.row() );
+                    break;
+                }
+                case 4: // Importe de la cuota
+                {
+                    return _importes->value( idx.row() );
+                    break;
+                }
+                case 5:
+                {
+                    return _comprobantes->value( idx.row() ).aCadena();
+                    break;
+                }
+                default:
+                { break; }
+            }
+            break;
+      }*/
       default:
-      {
-          return QVariant();
-          break;
-      }
+      { break; }
     }
+    return QVariant();
 }
 
 int MGenerarCuotas::columnCount( const QModelIndex & ) const
@@ -173,38 +204,55 @@ bool MGenerarCuotas::calcularComprobantes()
    _cant = 0;
    _total = 0.0;
    // Fecha del mes actual - Inicio del mes
-   QDate fin_mes = QDate::currentDate();
-   fin_mes.addDays( fin_mes.daysInMonth()-fin_mes.day() );
+   QDate inicio_mes = QDate( QDate::currentDate().year(), _mes_busqueda, 1 );
+   QDate fin_mes = inicio_mes;
+   fin_mes = fin_mes.addMonths( 1 );
    // Busco el próximo número de recibo
-   NumeroComprobante *num = new NumeroComprobante( this, -1, -1 );
-   *num = MPagos::proximoSerieNumeroRecibo();
+   //NumeroComprobante *num = new NumeroComprobante( 0, -1, -1 );
+   NumeroComprobante num = MPagos::proximoSerieNumeroRecibo();
+
    QSqlQuery cola;
-   if( cola.exec( QString( " SELECT ic.id_item_cuota, ic.id_plan_cuota, ic.num_cuota, pc.cantidad_cuotas, ic.monto, c.razon_social, c.id "
+   if( cola.exec( QString( " SELECT ic.id_item_cuota, ic.id_plan_cuota, ic.num_cuota, pc.cantidad_cuotas, ic.monto, pc.id_factura, pc.tipo_comprobante "
                            " FROM item_cuota AS ic "
                            "      INNER JOIN plan_cuota AS pc ON ic.id_plan_cuota = pc.id_plan_cuota "
-                           "      INNER JOIN factura AS f ON pc.id_factura = f.id_factura "
-                           "      INNER JOIN clientes AS c ON f.id_cliente = c.id "
                            " WHERE ic.fecha_pago IS NULL "
-                           "   AND ic.id_recibo  IS NULL "
-                           "   AND ic.fecha_vencimiento <= Datetime('%1') "
+                           "   AND ic.id_recibo  IS NULL " // Cuando se emite el recibo de la cuota este campo no debe estar vacío
+                           "   AND ic.fecha_vencimiento <= \"%1\" "
+                           "   AND ic.fecha_vencimiento >= \"%2\" "
                            " GROUP BY ic.id_plan_cuota   "
                            " HAVING MIN( ic.num_cuota )  "
-                           " ORDER BY ic.id_plan_cuota, ic.num_cuota " ).arg( fin_mes.toString( Qt::ISODate ) ) ) ){
+                           " ORDER BY ic.id_plan_cuota, ic.num_cuota " )
+                    .arg( fin_mes.toString( Qt::ISODate ) )
+                    .arg( inicio_mes.toString( Qt::ISODate ) ) ) ) {
        while( cola.next() ) {
            beginInsertRows( QModelIndex(), _cant, _cant );
-           _numeros ->insert( _cant, cola.record().value("id_item_cuota").toInt() );
+           _numeros ->insert( _cant, cola.record().value( "id_item_cuota" ).toInt() );
            _planes  ->insert( _cant, cola.record().value( "id_plan_cuota" ).toInt() );
-           _cuotas  ->insert( _cant, QString( "%1/%2" ).arg( cola.record().value( "cantidad_cuotas" ).toInt(), cola.record().value("num_cuota").toInt() ) );
+           _cuotas  ->insert( _cant, QString( "%2/%1" )
+                                          .arg( cola.record().value( "cantidad_cuotas" ).toInt() )
+                                          .arg( cola.record().value( "num_cuota" ).toInt() ) );
+           if( cola.record().value( "tipo_comprobante" ).toInt() == MPlanCuota::Factura ) {
+               int id_factura = cola.record().value("id_factura").toInt();
+               int id_cliente = MFactura::obtenerIdCliente( id_factura );
+               _clientes_id->insert( _cant, id_cliente );
+               _clientes->insert( _cant, MClientes::getRazonSocial( id_cliente ) );
+           } else if( cola.record().value( "tipo_comprobante" ).toInt() == MPlanCuota::Remito ) {
+               int id_remito = cola.record().value("id_factura").toInt();
+               int id_cliente = MRemito::obtenerIdCliente( id_remito );
+               _clientes_id->insert( _cant, id_cliente );
+               _clientes->insert( _cant, MClientes::getRazonSocial( id_cliente ) );
+           }
            _clientes->insert( _cant, cola.record().value( "razon_social"  ).toString() );
            _clientes_id->insert( _cant, cola.record().value( "id" ).toInt() );
            double monto = cola.record().value( "monto" ).toDouble();
            _total += monto;
            _importes->insert( _cant, monto );
-           _comprobantes->insert( _cant, num );
+           _comprobantes->insert( _cant, new NumeroComprobante( num ) );
            endInsertRows();
            _cant++;
-           num->siguienteNumero();
+           num.siguienteNumero();
        }
+       qDebug() << cola.lastQuery();
        if( _cant > 0 ) {
            emit cambioTotal( _total );
            emit cambioCantidad( _cant );
@@ -214,13 +262,12 @@ bool MGenerarCuotas::calcularComprobantes()
        } else {
            emit cambioTotal( 0.0 );
            emit cambioCantidad( 0 );
-           qWarning( "No existe ninguna cuota para generar recibos" );
            return false;
        }
    } else {
-       qDebug( "Error al ejecutar la cola de averiguamiento de los datos de las cuotas a pagar" );
-       qDebug( cola.lastError().text().toLocal8Bit() );
-       qDebug( cola.lastQuery().toLocal8Bit() );
+       qDebug() << "Error al ejecutar la cola de averiguamiento de los datos de las cuotas a pagar";
+       qDebug() << cola.lastError().text();
+       qDebug() << cola.lastQuery();
    }
    return false;
 }
