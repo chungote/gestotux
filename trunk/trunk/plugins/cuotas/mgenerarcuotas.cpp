@@ -275,7 +275,6 @@ bool MGenerarCuotas::calcularComprobantes()
            emit cambioTotal( _total );
            emit cambioCantidad( _cant );
            emit dataChanged( index( 0, 0 ), index( _cant, 5 ) );
-           //emit comprobantes( QPair<NumeroComprobante *, NumeroComprobante *>( _comprobantes->value( 0 ), _comprobantes->value( _cant ) ) );
            return true;
        } else {
            emit cambioTotal( 0.0 );
