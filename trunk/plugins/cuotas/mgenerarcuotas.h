@@ -17,7 +17,6 @@ public:
     int rowCount( const QModelIndex &parent = QModelIndex()  ) const;
     Qt::ItemFlags flags( const QModelIndex &index ) const;
     QVariant headerData( int section, Qt::Orientation orientation, int role ) const;
-    bool removeRow( int row, const QModelIndex &parent = QModelIndex() );
     
     bool calcularComprobantes();
     void setearMesBusqueda( const int mes ) { _mes_busqueda = mes; }
