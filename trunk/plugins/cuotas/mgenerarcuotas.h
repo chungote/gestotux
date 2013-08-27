@@ -26,7 +26,6 @@ public:
 signals:
     void cambioTotal( double );
     void cambioCantidad( int );
-    void comprobantes( QPair<NumeroComprobante *,NumeroComprobante *> );
 
 private:
     int _cant;

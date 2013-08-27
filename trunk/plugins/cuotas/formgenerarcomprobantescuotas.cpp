@@ -6,6 +6,7 @@
 
 #include <QSqlDatabase>
 #include <QMessageBox>
+#include <QDebug>
 
 FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) :
     EVentana( parent )
@@ -22,7 +23,6 @@ FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) 
     // Conecto los totales y demás
     connect( modelo, SIGNAL( cambioTotal( double ) ), DSBTotal, SLOT( setValue( double ) ) );
     connect( modelo, SIGNAL( cambioCantidad( int ) ), LCDNCantidad, SLOT( display( int ) ) );
-    connect( modelo, SIGNAL( comprobantes( QPair<NumeroComprobante *, NumeroComprobante *> ) ), this, SLOT( cambioComprobantes( QPair<NumeroComprobante *, NumeroComprobante *> ) ) );
 
     TVVista->setModel( modelo );
     TVVista->hideColumn( 0 );
@@ -32,9 +32,16 @@ FormGenerarComprobantesCuotas::FormGenerarComprobantesCuotas( QWidget *parent ) 
 
     ActCalcular = new QAction( this );
     ActCalcular->setText( "Calcular" );
+    ActCalcular->setStatusTip( "Calcula las cuotas necesarias para el mes seleccionado" );
     connect( ActCalcular, SIGNAL( triggered() ), this, SLOT( calcularCuotas() ) );
 
+    ActEmitir = new QAction( this );
+    ActEmitir->setText( "Emitir" );
+    ActEmitir->setStatusTip( "Emite los comprobantes necesarios" );
+    connect( ActEmitir, SIGNAL( triggered() ), this, SLOT( emitirComprobantes() ) );
+
     addAction( ActCalcular );
+    addAction( ActEmitir );
     addAction( new EActCerrar( this ) );
 
     SBMes->setValue( QDate::currentDate().month() );
@@ -50,16 +57,6 @@ void FormGenerarComprobantesCuotas::changeEvent(QEvent *e)
     default:
         break;
     }
-}
-
-/**
- * @brief FormGenerarComprobantesCuotas::cambioComprobantes
- * Coloca el numero de comprobantes en la etiqueta informativa correspondiente
- * @param nums Par de Numeros de Comprobante a generar
- */
-void FormGenerarComprobantesCuotas::cambioComprobantes( QPair<NumeroComprobante *,NumeroComprobante *> nums)
-{
-  LComprobantes->setText( QString( "Emitiendo comprobantes número: %1 al %2" ).arg( nums.first->aCadena() ).arg( nums.second->aCadena() ) );
 }
 
 /**
@@ -130,6 +127,13 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
 
       modelo->removeRow( 0 );
   }
-  QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+  if( QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).commit() ) {
+      QMessageBox::information( this, "Correcto", "La emisión de comprobantes fue correcta" );
+      this->close();
+      return;
+  } else {
+      QMessageBox::information( this, "Error", "Hubo un problema guardando los datos" );
+      return;
+  }
 
 }

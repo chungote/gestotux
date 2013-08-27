@@ -17,7 +17,6 @@ protected:
     void changeEvent(QEvent *e);
 
 protected slots:
-    void cambioComprobantes( QPair<NumeroComprobante *, NumeroComprobante *> nums );
     void calcularCuotas();
     void emitirComprobantes();
 

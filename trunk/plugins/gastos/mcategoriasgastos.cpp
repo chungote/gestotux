@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include <QDebug>
 /*
 CREATE TABLE IF NOT EXISTS `categoria_gastos` (
   `id_categoria_gastos` int(11) NOT NULL AUTO_INCREMENT,
@@ -61,8 +62,8 @@ bool MCategoriasGastos::vacio()
      }
  } else {
      qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola" );
-     qDebug( QString( "Gastos:MCategoriasGastos:cola=%1").arg( cola.lastQuery() ).toLocal8Bit() );
-     qDebug( QString( "Gastos:MCategoriasGastos:error=%1").arg( cola.lastError().text() ).toLocal8Bit() );
+     qDebug() << "Gastos:MCategoriasGastos:cola = " << cola.lastQuery();
+     qDebug() << "Gastos:MCategoriasGastos:error= " << cola.lastError().text();
      return true;
  }
 }
@@ -87,8 +88,8 @@ bool MCategoriasGastos::tieneGastosAsociados( const int id_categoria )
      }
  } else {
      qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola" );
-     qDebug( QString( "Gastos:MCategoriasGastos:cola=%1").arg( cola.lastQuery() ).toLocal8Bit() );
-     qDebug( QString( "Gastos:MCategoriasGastos:error=%1").arg( cola.lastError().text() ).toLocal8Bit() );
+     qDebug() << "Gastos:MCategoriasGastos:cola = " << cola.lastQuery();
+     qDebug() << "Gastos:MCategoriasGastos:error= " << cola.lastError().text();
      return true;
  }
 }
@@ -106,8 +107,8 @@ bool MCategoriasGastos::eliminarCategoria( const int id_categoria )
      return true;
  } else {
      qDebug( "Gastos:MCategoriasGastos:Error al hacer exec de la cola de eliminacion de categoria." );
-     qDebug( QString( "Gastos:MCategoriasGastos:cola=%1").arg( cola.lastQuery() ).toLocal8Bit() );
-     qDebug( QString( "Gastos:MCategoriasGastos:error=%1").arg( cola.lastError().text() ).toLocal8Bit() );
+     qDebug() << "Gastos:MCategoriasGastos:cola = " << cola.lastQuery();
+     qDebug() << "Gastos:MCategoriasGastos:error= " << cola.lastError().text();
  }
  return false;
 }

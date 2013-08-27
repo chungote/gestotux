@@ -27,6 +27,7 @@
 #include <QMessageBox>
 #include <QSqlRecord>
 #include <QSqlField>
+#include <QDebug>
 #include <QSqlError>
 
 VCategoriasGastos::VCategoriasGastos( QWidget *parent )
@@ -57,7 +58,7 @@ void VCategoriasGastos::agregar(bool autoeliminarid )
         return;
     } else {
         qWarning( "Error al insertar el registro" );
-        qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() ).toLocal8Bit() );
+        qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( modelo->lastError().type() ).arg( modelo->lastError().number() ).arg( modelo->lastError().text() );
     }
 }
 
