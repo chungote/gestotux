@@ -49,38 +49,42 @@ MGenerarCuotas::~MGenerarCuotas()
 
 QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
 {
+    if( _numeros->keys().isEmpty() ) {
+        return QVariant();
+    }
+    int clave = _numeros->keys().at( idx.row() );
     switch( role ) {
       case Qt::DisplayRole:
       {
           switch( idx.column() ) { // Numero interno
               case 0:
               {
-                return QString( "#%1" ).arg( _numeros->value( idx.row() ) );
+                return QString( "#%1" ).arg( _numeros->value( clave ) );
                 break;
               }
               case 1: // Numero de plan de cuota
               {
-                return QString( "#%1" ).arg( _planes->value( idx.row() ) );
+                return QString( "#%1" ).arg( _planes->value( clave ) );
                   break;
               }
               case 2: // Nombre del cliente
               {
-                  return _clientes->value( idx.row() );
+                  return _clientes->value( clave );
                   break;
               }
               case 3: // # Cuota ( 1/10 )
               {
-                  return _cuotas->value( idx.row() );
+                  return _cuotas->value( clave );
                   break;
               }
               case 4: // Importe de la cuota
               {
-                  return QString( "$ %L1" ).arg( _importes->value( idx.row() ), 10, 'f', 2 );
+                  return QString( "$ %L1" ).arg( _importes->value( clave ), 10, 'f', 2 );
                   break;
               }
               case 5:
               {
-                  NumeroComprobante *num = _comprobantes->value( idx.row() );
+                  NumeroComprobante *num = _comprobantes->value( clave );
                   return num->aCadena();
                   break;
               }
@@ -95,27 +99,27 @@ QVariant MGenerarCuotas::data( const QModelIndex &idx, int role ) const
         {
             case 0:
             {
-              return _numeros->value( idx.row() );
+              return _numeros->value( clave );
               break;
             }
             case 1: // Numero de plan de cuota
             {
-              return _planes->value( idx.row() );
+              return _planes->value( clave );
                 break;
             }
             case 2: // Nombre del cliente
             {
-                return _clientes_id->value( idx.row() );
+                return _clientes_id->value( clave );
                 break;
             }
             case 3: // # Cuota ( 1/10 )
             {
-                return _cuotas->value( idx.row() );
+                return _cuotas->value( clave );
                 break;
             }
             case 4: // Importe de la cuota
             {
-                return _importes->value( idx.row() );
+                return _importes->value( clave );
                 break;
             }
             default:
@@ -197,24 +201,6 @@ QVariant MGenerarCuotas::headerData(int section, Qt::Orientation orientation, in
         }
     }
     return QAbstractTableModel::headerData( section, orientation, role );
-}
-
-bool MGenerarCuotas::removeRow( int row, const QModelIndex & )
-{
-    if( row < 0 || row >= _numeros->size() )
-    { return false; }
-
-    emit beginRemoveRows( QModelIndex(), 0, 0 );
-    int clave = _numeros->keys().first();
-    _numeros->remove( clave );
-    _planes->remove( clave );
-    _clientes->remove( clave );
-    _clientes_id->remove( clave );
-    _cuotas->remove( clave );
-    _importes->remove( clave );
-    _comprobantes->remove( clave );
-    emit endRemoveRows();
-    return true;
 }
 
 bool MGenerarCuotas::calcularComprobantes()
