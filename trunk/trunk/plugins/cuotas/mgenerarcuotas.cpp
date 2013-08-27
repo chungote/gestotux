@@ -199,6 +199,24 @@ QVariant MGenerarCuotas::headerData(int section, Qt::Orientation orientation, in
     return QAbstractTableModel::headerData( section, orientation, role );
 }
 
+bool MGenerarCuotas::removeRow( int row, const QModelIndex & )
+{
+    if( row < 0 || row >= _numeros->size() )
+    { return false; }
+
+    emit beginRemoveRows( QModelIndex(), 0, 0 );
+    int clave = _numeros->keys().first();
+    _numeros->remove( clave );
+    _planes->remove( clave );
+    _clientes->remove( clave );
+    _clientes_id->remove( clave );
+    _cuotas->remove( clave );
+    _importes->remove( clave );
+    _comprobantes->remove( clave );
+    emit endRemoveRows();
+    return true;
+}
+
 bool MGenerarCuotas::calcularComprobantes()
 {
    _cant = 0;
@@ -241,9 +259,9 @@ bool MGenerarCuotas::calcularComprobantes()
                int id_cliente = MRemito::obtenerIdCliente( id_remito );
                _clientes_id->insert( _cant, id_cliente );
                _clientes->insert( _cant, MClientes::getRazonSocial( id_cliente ) );
+           } else {
+               qDebug() << "Tipo de comprobante desconocido";
            }
-           _clientes->insert( _cant, cola.record().value( "razon_social"  ).toString() );
-           _clientes_id->insert( _cant, cola.record().value( "id" ).toInt() );
            double monto = cola.record().value( "monto" ).toDouble();
            _total += monto;
            _importes->insert( _cant, monto );
@@ -252,7 +270,7 @@ bool MGenerarCuotas::calcularComprobantes()
            _cant++;
            num.siguienteNumero();
        }
-       qDebug() << cola.lastQuery();
+
        if( _cant > 0 ) {
            emit cambioTotal( _total );
            emit cambioCantidad( _cant );
@@ -271,4 +289,5 @@ bool MGenerarCuotas::calcularComprobantes()
    }
    return false;
 }
+
 

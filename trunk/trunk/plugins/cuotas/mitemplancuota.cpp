@@ -4,6 +4,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QColor>
+#include <QDebug>
 
 MItemPlanCuota::MItemPlanCuota(QObject *parent) :
 QSqlRelationalTableModel(parent)
@@ -32,8 +33,8 @@ bool MItemPlanCuota::agregarItem(int id_plan, int num_cuota, QDate fecha_venc, d
     QSqlQuery cola;
     if( !cola.prepare( "INSERT INTO item_cuota( id_plan_cuota, num_cuota, monto, fecha_vencimiento ) VALUES (  :id_plan_cuota, :num_cuota, :monto, :fecha_vencimiento )" ) ) {
         qDebug( "Error al preparar la cola para la inseción de los datos de un item de cuota" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     }
     cola.bindValue( ":id_plan_cuota", id_plan );
@@ -42,8 +43,8 @@ bool MItemPlanCuota::agregarItem(int id_plan, int num_cuota, QDate fecha_venc, d
     cola.bindValue( ":fecha_vencimiento", fecha_venc );
     if( !cola.exec() ) {
         qDebug( "Error al ejecutar la cola de insersión de los datos de un item de cuota" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     } else {
         return true;
@@ -65,13 +66,13 @@ double MItemPlanCuota::obtenerProximoImporte( const int id_plan )
           return cola.record().value(0).toDouble();
       } else {
           qDebug( "Error al hacer next en la cola de averiguacion del importe de un item de cuota" );
-          qDebug( cola.lastError().text().toLocal8Bit() );
-          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug() << cola.lastError().text();
+          qDebug() << cola.lastQuery();
       }
   } else {
       qDebug( "Error al ejecutar la cola de averiguacion del importe de un item de cuota" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return -1.0;
 }
@@ -90,14 +91,14 @@ int MItemPlanCuota::obtenerIdProximaCuota( const int id_plan )
           return cola.record().value(0).toInt();
       } else {
           qDebug( "Error al hacer next en la cola de averiguacion del id de un item de cuota" );
-          qDebug( cola.lastError().text().toLocal8Bit() );
-          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug() << cola.lastError().text();
+          qDebug() << cola.lastQuery();
           return -2;
       }
   } else {
       qDebug( "Error al ejecutar la cola de averiguacion del id de un item de cuota" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return -1.0;
 }
@@ -115,14 +116,14 @@ int MItemPlanCuota::buscarReciboEmitido( const int id_plan )
           return cola.record().value(0).toInt();
       } else {
           qDebug( "Error al hacer next en la cola de averiguacion del id de recibo de un item de cuota" );
-          qDebug( cola.lastError().text().toLocal8Bit() );
-          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug() << cola.lastError().text();
+          qDebug() << cola.lastQuery();
           return -2;
       }
   } else {
       qDebug( "Error al ejecutar la cola de averiguacion del id de recibo de un item de cuota" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return -1;
 }
@@ -140,8 +141,8 @@ bool MItemPlanCuota::setearItemCuotaPagadoSegunRecibo( const int id_recibo, QDat
       return true;
   } else {
       qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado según id de recibo " );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return false;
 }
@@ -162,13 +163,13 @@ bool MItemPlanCuota::buscarSiReciboAPagar( const int id_recibo )
           }
       } else {
           qDebug( "Error al hacer next en la cola de averiguacion del id de recibo a pagar de un item de cuota" );
-          qDebug( cola.lastError().text().toLocal8Bit() );
-          qDebug( cola.lastQuery().toLocal8Bit() );
+          qDebug() << cola.lastError().text();
+          qDebug() << cola.lastQuery();
       }
   } else {
       qDebug( "Error al ejecutar la cola de averiguacion del id de recibo a pagar de un item de cuota" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return false;
 }
@@ -187,8 +188,28 @@ bool MItemPlanCuota::setearItemCuotaPagado( const int id_item_cuota, const int i
       return true;
   } else {
       qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
+  }
+  return false;
+}
+
+/**
+ * @brief MItemPlanCuota::setearReciboItemCuota
+ * Setea el item de cuota con el identificador de recibo
+ * @param id_item_cuota Identificador de item de cuota
+ * @param id_recibo Identificador del recibo que paga la cuota.
+ * @return Verdadero si se pudo hacer la asociacion.
+ */
+bool MItemPlanCuota::setearReciboItemCuota( const int id_item_cuota, const int id_recibo )
+{
+  QSqlQuery cola;
+  if( cola.exec( QString( "UPDATE item_cuota SET id_recibo = %1 WHERE id_item_cuota = %2" ).arg( id_recibo ).arg( id_item_cuota ) ) ) {
+      return true;
+  } else {
+      qDebug( "Error al ejecutar la cola de seteo de item de cuota pagado" );
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   return false;
 }
@@ -262,9 +283,8 @@ QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
                 return QSqlRelationalTableModel::data( item, role ); break;
             }
         }
-    } else {
-        return QVariant();
     }
+    return QSqlRelationalTableModel::data( item, role );
 }
 
 void MItemPlanCuota::setearPlanCuota(const int id_plan_cuota)

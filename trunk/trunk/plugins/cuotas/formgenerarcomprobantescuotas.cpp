@@ -114,6 +114,7 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
       if ( id_recibo == -1 ) {
           QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
+          return;
       }
 
       PgBEstado->setValue( PgBEstado->value() + 1 );
@@ -121,7 +122,7 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
 
       // Guardo el numero de recibo en el registro de la cuota
       int id_item_plan_cuota = modelo->data( modelo->index( 0, 0 ), Qt::EditRole ).toInt();
-      if( !MItemPlanCuota::setearItemCuotaPagado( id_item_plan_cuota, id_recibo ) ) {
+      if( !MItemPlanCuota::setearReciboItemCuota( id_item_plan_cuota, id_recibo ) ) {
           QMessageBox::information( this, "Error", "No se pudo asociar el recibo con el item del plan de cuota" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
       }

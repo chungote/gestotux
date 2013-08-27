@@ -71,9 +71,9 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
                *id_plan = cola.record().value(0).toInt();
                //qWarning( QString( "Numero de plan de cuota emitido: %1" ).arg( *id_plan ).toLocal8Bit() );
            } else {
-               qDebug( "Error de obtencion del id del registro de plan de cuota" );
-               qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).toLocal8Bit() );
-               qDebug( cola.lastQuery().toLocal8Bit() );
+               qDebug() << "Error de obtencion del id del registro de plan de cuota";
+               qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( cola.lastError().type() ).arg( cola.lastError().number() ).arg( cola.lastError().text() );
+               qDebug() << cola.lastQuery();
                *id_plan = -1;
                return false;
            }
@@ -121,9 +121,9 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
         return true;
     } else {
         qWarning( "Error al intentar insertar el registro del plan de cuotas" );
-        qDebug( "Error al insertrecord de plan_cuota" );
-        qDebug( this->lastError().text().toLocal8Bit() );
-        qDebug( this->query().lastQuery().toLocal8Bit() );
+        qDebug() << "Error al insertrecord de plan_cuota";
+        qDebug() << this->lastError().text();
+        qDebug() << this->query().lastQuery();
         *id_plan=-1;
         return false;
     }
@@ -213,7 +213,7 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
             return fecha_calculo.daysInYear() - 1;
         }
         default:
-        { qDebug( "Tipo de periodo desconocido" ); qDebug( QString::number( tipo_periodo ).toLocal8Bit() ); return 0; }
+        { qDebug( "Tipo de periodo desconocido" ); qDebug() << QString::number( tipo_periodo ); return 0; }
     }
 }
 
@@ -233,9 +233,9 @@ void MPlanCuota::asociarConFactura( int id_plan, int id_factura )
         qDebug( "Plan de cuotas actualizado correctamente" );
     } else {
         qWarning( "No se pudo asociar el plan de cuotas con la factura recién emitida!" );
-        qDebug( "Error al ejecutar la cola de actualziacion de id de factura en el plan  de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de actualziacion de id de factura en el plan  de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
 }
 
@@ -253,12 +253,12 @@ QString MPlanCuota::obtenerRazonSocial( const int id_plan )
             return cola.record().value(0).toString();
         } else {
             qDebug( "Error de next al obtención de razon social de un plan de cuotas" );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastQuery();
         }
     } else {
         qDebug( "Error al ejecutar la cola de obtención de razon social de un plan de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QString();
 }
@@ -277,12 +277,12 @@ int MPlanCuota::obtenerIdCliente( const int id_plan )
             return cola.record().value(0).toInt();
         } else {
             qDebug( "Error de next al obtención del Id de cliente de un plan de cuotas" );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastQuery();
         }
     } else {
         qDebug( "Error al ejecutar la cola de obtención del id de cliente de un plan de cuotas" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return -1;
 }
