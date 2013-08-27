@@ -3,6 +3,7 @@
 #include "eactcerrar.h"
 #include "mpagos.h"
 #include "mitemplancuota.h"
+#include "EReporte.h"
 
 #include <QSqlDatabase>
 #include <QMessageBox>
@@ -90,6 +91,9 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
   PgBEstado->setRange( 0, modelo->rowCount()*3 );
 
   MPagos *m = new MPagos( this, false );
+  EReporte *rep = new EReporte( this );
+  rep->recibo();
+  ParameterList lista_parametros;
   // Recorro el modelo y genero los recibos
   int contador = 0;
   while( contador < modelo->rowCount() ) {
@@ -113,6 +117,9 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
           QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();
           return;
+      } else {
+          lista_parametros.append( Parameter( "id_recibo", id_recibo ) );
+          rep->hacer( lista_parametros, false, false );
       }
 
       PgBEstado->setValue( PgBEstado->value() + 1 );
@@ -126,7 +133,9 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
       }
       PgBEstado->setValue( PgBEstado->value() + 1 );
       contador++;
+      lista_parametros.clear();
   }
+  PgBEstado->setValue( PgBEstado->maximum() );
   if( QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).commit() ) {
       QMessageBox::information( this, "Correcto", "La emisión de comprobantes fue correcta" );
       this->close();
