@@ -360,3 +360,15 @@ QPair<double, double> MPlanCuota::obtenerEstadoImportes( const int id_plan )
     }
     return par;
 }
+
+/*!
+ * \brief MPlanCuota::cancelarPlan
+ * \param id_plan_cuota
+ * \param razon
+ * \param fecha_hora
+ * \return
+ */
+bool MPlanCuota::cancelarPlan( const int id_plan_cuota, QString razon, QDateTime fecha_hora )
+{
+    return false;
+}
