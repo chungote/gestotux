@@ -38,11 +38,14 @@ public:
     bool agregarPlanCuota( int id_cliente, double cantidad, double interes, int periodo, double entrega, QDate fecha_inicio, int cant_cuotas, int *id_plan, bool recibo_efectivo, TipoComprobante tipo );
     
     static int diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo );
+
     static void asociarConFactura( int id_plan, int id_factura );
     static QString obtenerRazonSocial( const int id_plan );
     static int obtenerIdCliente( const int id_plan );
     static QPair<int,int> obtenerEstadoCuotas( const int id_plan );
     static QPair<double,double> obtenerEstadoImportes( const int id_plan );
+
+    static bool cancelarPlan( const int id_plan_cuota, QString razon, QDateTime fecha_hora = QDateTime::currentDateTime() );
 
 };
 

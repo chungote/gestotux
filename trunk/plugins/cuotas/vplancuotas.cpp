@@ -6,6 +6,8 @@
 #include "DPagoCuota.h"
 
 #include <QMessageBox>
+#include <QDebug>
+#include <QInputDialog>
 
 VPlanCuotas::VPlanCuotas(QWidget *parent) :
  EVLista(parent)
@@ -120,7 +122,43 @@ void VPlanCuotas::verDetalles()
  */
 void VPlanCuotas::cancelar()
 {
-    qWarning( "No implementado" );
+    // Busco el plan de cuota seleccionado
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una sola fila para ver su detalle" );
+        return;
+    }
+
+    int resp = QMessageBox::question( this,
+                                      QString::fromUtf8( "¿Está seguro?" ),
+                                      QString::fromUtf8( "¿Está seguro que desea cancelar %1 plan de cuotas? El sistema cancelará todos los proximos pagos que no hayan sido emitidos. EL SISTEMA NO MODIFICARÁ LA CUENTA CORRIENTE DEL CLIENTE!" ).arg( this->vista->selectionModel()->selectedRows().size() )
+                                    );
+    if( resp == QMessageBox::Ok ) {
+        // Cancelando el plan de cuota
+        // Inicio la transacción
+        QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).transaction();
+        foreach( QModelIndex idx, this->vista->selectionModel()->selectedRows() ) {
+            int id_plan_cuota = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+            bool ok = false;
+            QString razon = QInputDialog::getText( this,
+                                                   "Razon de cancelacion",
+                                                   QString( "Ingrese la razon de cancelacion del plan de cuotas %1" ).arg( id_plan_cuota ),
+                                                   QLineEdit::Normal,
+                                                   QString(),
+                                                   &ok );
+            if( !MPlanCuota::cancelarPlan( id_plan_cuota, razon ) ) {
+                QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo eliminar el plan de cuotas %1" ).arg( id_plan_cuota ) );
+                QSqlDatabase::database().rollback();
+                return;
+            } else {
+                qDebug() << "Plan de cuotas " << id_plan_cuota << " cancelado correctamente";
+            }
+        }
+        if( QSqlDatabase::database().commit() ) {
+            QMessageBox::information( this, "Correcto", "La cancelación fue correcta" );
+        } else {
+            QMessageBox::information( this, "Incorrecto", "No se pudieron guardar los datos cancelados" );
+        }
+    }
 }
 
 /*!
