@@ -65,6 +65,8 @@ EVentana(parent), Ui::FormDetalleCuotasBase()
     CBPeriodo->setEditable( false );
     DEInicio->setReadOnly( true );
     CBCliente->setEditable( false );
+
+    GBAdelanto->setVisible( false );
 }
 
 FormDetalleCuotas::~FormDetalleCuotas()
@@ -204,7 +206,7 @@ void FormDetalleCuotas::pdf()
  * Setea el id de cuota correspondiente.
  * \param id Identificador del plan de cuotas
  */
-void FormDetalleCuotas::setearIdPlanCuota( int id ) {
+void FormDetalleCuotas::setearIdPlanCuota(int id , bool inicializar_submodelo ) {
     // Cargo los datos de la cuota
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT * FROM plan_cuota WHERE id_plan_cuota = %1" ).arg( id ) ) ) {
@@ -251,16 +253,19 @@ void FormDetalleCuotas::setearIdPlanCuota( int id ) {
                 }
             }
             // Cargo los datos de los pagos y no pagos
-            modelo_item = new MItemPlanCuota( this );
-            modelo_item->setearPlanCuota( id );
-            TVSimulacion->setModel( modelo_item );
-            TVSimulacion->setAlternatingRowColors( true );
-            TVSimulacion->setSortingEnabled( true );
-            TVSimulacion->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
-            modelo_item->select();
-            TVSimulacion->hideColumn( 0 );
-            TVSimulacion->hideColumn( 1 );
-            TVSimulacion->hideColumn( 2 );
+            if( inicializar_submodelo ) {
+                modelo_item = new MItemPlanCuota( this );
+                modelo_item->setearPlanCuota( id );
+                modelo_item->sort( modelo_item->fieldIndex("fecha_vencimiento" ), Qt::DescendingOrder );
+                TVSimulacion->setModel( modelo_item );
+                TVSimulacion->setAlternatingRowColors( true );
+                TVSimulacion->setSortingEnabled( true );
+                TVSimulacion->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+                modelo_item->select();
+                TVSimulacion->hideColumn( 0 );
+                TVSimulacion->hideColumn( 1 );
+                TVSimulacion->hideColumn( 2 );
+            }
         } else {
             qWarning() << "Error de seleccion de datos - Seguramente el plan de cuota no existe";
             qDebug() << "Error de next al ejecutar la cola de carga de datos de un plan de cuotas";

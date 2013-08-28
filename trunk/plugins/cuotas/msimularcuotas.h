@@ -29,7 +29,7 @@ public:
     Qt::ItemFlags flags( const QModelIndex & index ) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
-private:
+protected:
     double importe;
     double interes;
     double pinicial;
