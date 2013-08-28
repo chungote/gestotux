@@ -24,6 +24,7 @@ private slots:
     void verDetalles();
     void cancelar();
     void ingresarPago();
+    void ingresarAdelanto();
 
 private:
     QAction *ActSimular;
@@ -31,6 +32,7 @@ private:
     QAction *ActDetalles;
     QAction *ActIngresarPago;
     QAction *ActCancelar;
+    QAction *ActIngresarAdelanto;
 
 };
 

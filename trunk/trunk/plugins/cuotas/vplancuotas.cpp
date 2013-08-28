@@ -2,6 +2,7 @@
 
 #include "formsimularcuotas.h"
 #include "formdetallecuotas.h"
+#include "formadelantocuotas.h"
 #include "mvplancuota.h"
 #include "DPagoCuota.h"
 
@@ -40,6 +41,11 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
     ActIngresarPago->setStatusTip( "Ingresa un nuevo pago mediante un recibo" );
     connect( ActIngresarPago, SIGNAL( triggered() ), this, SLOT( ingresarPago() ) );
 
+    ActIngresarAdelanto = new QAction( this );
+    ActIngresarAdelanto->setText( "Adelanto" );
+    ActIngresarAdelanto->setIcon( QIcon( ":/imagenes/ingresar_adelanto.png" ) );
+    connect( ActIngresarAdelanto, SIGNAL( triggered() ), this, SLOT( ingresarAdelanto() ) );
+
     ActCancelar = new QAction( this );
     ActCancelar->setText( "Cancelar" );
     ActCancelar->setIcon( QIcon( ":/imagenes/cancelar_cuota.png" ) );
@@ -55,6 +61,7 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
     addAction( ActSep );
     addAction( ActDetalles );
     addAction( ActIngresarPago );
+    addAction( ActIngresarAdelanto );
     addAction( ActCancelar );
     addAction( ActCerrar );
     addAction( ActSep2 );
@@ -90,12 +97,12 @@ void VPlanCuotas::simular()
  */
 void VPlanCuotas::cambioTerminado( bool e )
 {
-    /*if( e ) {
-        this->modelo->setFilter( "" );
+    if( e ) {
+        this->modelo->setFilter( " total_faltante = 0 " );
     } else {
         this->modelo->setFilter( "" );
     }
-    this->modelo->select();*/
+    this->modelo->select();
 }
 
 /*!
@@ -180,4 +187,25 @@ void VPlanCuotas::ingresarPago()
     connect( dialogo, SIGNAL( actualizarModelo() ), this, SLOT( actualizar() ) );
     dialogo->exec();
     this->actualizar();
+}
+
+/*!
+ * \brief VPlanCuotas::ingresarAdelanto
+ *
+ */
+void VPlanCuotas::ingresarAdelanto()
+{
+    // Busco el plan de cuota seleccionado
+    if( this->vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", "Por favor, seleccione una sola fila para ver su detalle" );
+        return;
+    }
+    QModelIndex idx = this->vista->selectionModel()->selectedRows().first();
+    int id_plan_cuota = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+
+    FormAdelantoCuotas *f = new FormAdelantoCuotas( this );
+    f->setearIdPlanCuota( id_plan_cuota );
+    connect( f, SIGNAL( actualizarModelo() ), this, SLOT( actualizar() ) );
+    emit agregarVentana( f );
+
 }

@@ -103,8 +103,8 @@ void CuotasPlugin::crearMenu( QMenuBar *m )
      menuCuotas->addAction( ActVerCuotas );
      menuCuotas->addAction( ActGenerarComprobantes );
      menuCuotas->addAction( ActSimular );
-     menuCuotas->addAction( ActSep );
-     menuCuotas->addAction( ActResumenCuotas );
+     /*menuCuotas->addAction( ActSep );
+     menuCuotas->addAction( ActResumenCuotas );*/
 }
 
 
@@ -184,7 +184,7 @@ void CuotasPlugin::simularCuotas()
  */
 void CuotasPlugin::resumenCuotas()
 {
-    qWarning() << "No Implementado";
+
 }
 
 Q_EXPORT_PLUGIN2( Cuotas, CuotasPlugin )

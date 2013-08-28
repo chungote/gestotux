@@ -53,7 +53,9 @@ HEADERS += cuotasplugin.h \
            ../caja/mmovimientoscaja.h \
            ../remitos/MRemito.h \
            ../remitos/mitemremito.h \
-           ../productos/mproductos.h
+           ../productos/mproductos.h \
+    formadelantocuotas.h \
+    madelantosimularcuotas.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
@@ -75,7 +77,9 @@ SOURCES += cuotasplugin.cpp \
            ../caja/mmovimientoscaja.cpp \
            ../remitos/MRemito.cpp \
            ../remitos/mitemremito.cpp \
-           ../productos/mproductos.cpp
+           ../productos/mproductos.cpp \
+    formadelantocuotas.cpp \
+    madelantosimularcuotas.cpp
 
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \

@@ -144,8 +144,45 @@ QVariant MSimularCuotas::data( const QModelIndex &index, int role ) const
             }
             break;
         }
-        case Qt::TextAlignmentRole:
+        case Qt::EditRole:
         {
+            switch( index.column() ) {
+                case 1:
+                {
+                    if( index.row() == 0 ) {
+                        return fecha_inicio;
+                    } else {
+                        return fecha_inicio.addDays( MPlanCuota::diasEnPeriodo( periodo, fecha_inicio ) * index.row() );
+                    }
+                    break;
+                }
+                case 2:
+                {
+                    if( index.row() == 0 ) {
+                        return pinicial;
+                    } else {
+                        return ( importe/cantidad )*( 1 + ( interes/100 ) );
+                    }
+                    break;
+                }
+                case 3:
+                {
+                    return sumatoria->value( index.row() );
+                    break;
+                }
+                case 4:
+                {
+                    return faltante->value( index.row() );
+                    break;
+                }
+                default:
+                {
+                    return QVariant();
+                }
+            }
+            break;
+        }
+        case Qt::TextAlignmentRole: {
             switch( index.column() ) {
                 case 0:
                 {
@@ -169,6 +206,7 @@ QVariant MSimularCuotas::data( const QModelIndex &index, int role ) const
                     return QVariant();
                 }
             }
+            break;
         }
         default:
         {

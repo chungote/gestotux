@@ -7,14 +7,14 @@ class QTextDocument;
 class MPlanCuota;
 class MItemPlanCuota;
 
-class FormDetalleCuotas : public EVentana, private Ui::FormDetalleCuotasBase
+class FormDetalleCuotas : public EVentana, public Ui::FormDetalleCuotasBase
 {
     Q_OBJECT
     
 public:
     FormDetalleCuotas( QWidget *parent = 0 );
     ~FormDetalleCuotas();
-    void setearIdPlanCuota( int id );
+    void setearIdPlanCuota( int id, bool inicializar_submodelo = true );
     
 protected:
     void changeEvent( QEvent *e );
@@ -24,7 +24,6 @@ private slots:
     void pdf();
 
 private:
-    QAction *ActConfirmar;
     QAction *ActImprimir;
     QAction *ActPdf;
 
