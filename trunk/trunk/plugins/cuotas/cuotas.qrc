@@ -10,5 +10,6 @@
         <file>imagenes/simular_cuota.png</file>
         <file>imagenes/generar_comprobantes_cuotas.png</file>
         <file>imagenes/adelanto_cuota.png</file>
+        <file>imagenes/resumen_cuotas.png</file>
     </qresource>
 </RCC>

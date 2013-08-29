@@ -43,7 +43,7 @@ bool CuotasPlugin::inicializar()
  ActVerCuotas = new QAction( this );
  ActVerCuotas->setText( "Cuotas Activas" );
  ActVerCuotas->setToolTip( "Ver el listado de los planes de cuotas que hay en el sistema." );
- //ActVerCuotas->setIcon( QIcon( ":/imagenes/.png" ) );
+ ActVerCuotas->setIcon( QIcon( ":/imagenes/cuotas_detalle.png" ) );
  connect( ActVerCuotas, SIGNAL( triggered() ), this, SLOT( verCuotas() ) );
 
  ActGenerarComprobantes = new QAction( this );
@@ -61,6 +61,7 @@ bool CuotasPlugin::inicializar()
  ActResumenCuotas = new QAction( this );
  ActResumenCuotas->setText( "Resumen de cuotas" );
  ActResumenCuotas->setStatusTip( "Muestra un resumen de los estados de todas las cuotas" );
+ ActResumenCuotas->setIcon( QIcon( ":/imagenes/resumen_cuotas.png" ) );
  connect( ActSimular, SIGNAL( triggered() ), this, SLOT( resumenCuotas() ) );
 
  ActSep = new QAction( this );
