@@ -15,8 +15,6 @@ public:
     void setearIdPlanCuota( int id );
 
 private slots:
-    void imprimir();
-    void pdf();
     void confirmar();
     void cambiarImporte( double );
 
