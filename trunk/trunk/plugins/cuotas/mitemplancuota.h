@@ -30,6 +30,8 @@ public:
 
     static bool eliminarItemsNoPagadosNoEmitidos( const int id_plan_cuota );
 
+    static bool agregarAdelanto( const int id_plan_cuota, double monto );
+
     QVariant data(const QModelIndex &item, int role) const;
     void setearPlanCuota( const int id_plan_cuota );
 

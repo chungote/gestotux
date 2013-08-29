@@ -235,6 +235,52 @@ bool MItemPlanCuota::eliminarItemsNoPagadosNoEmitidos(const int id_plan_cuota)
     return false;
 }
 
+/*!
+ * \brief MItemPlanCuota::agregarAdelanto
+ *  Genera un adelanto de cuotas según el importe ingresado
+ * \param id_plan_cuota Identificador de plan de cuota emitido
+ * \param monto Monto a adelantar
+ * \return Verdadero si se pudo realizar el registro
+ */
+bool MItemPlanCuota::agregarAdelanto(const int id_plan_cuota, double monto)
+{
+    return false;
+    // Busco todos los identificadores de cuotas en orden inverso.
+    QSqlQuery cola;
+    if( !cola.exec( QString( "SELECT id_item_cuota, monto FROM item_cuota WHERE id_plan_cuota = %1"
+                             "   AND fecha_pago IS NULL "
+                             "   AND id_recibo IS NULL  " ).arg( id_plan_cuota ) ) ) {
+        qDebug() << "Error al ejecutar la cola de obtención de datos de planes de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
+    QVector<int> ids;
+    QVector<double> montos;
+    while( cola.next() ) {
+        ids.append( cola.record().value(0).toInt() );
+        montos.append( cola.record().value(0).toDouble() );
+    }
+    if( ids.size() <= 0 || montos.size() <= 0 ) {
+        qDebug() << "Error al cargar los datos - ids.size() <= 0 || montos.size() <= 0";
+        return false;
+    }
+    // Veo hasta que ID tengo que eliminar
+    int cantidad = 0;
+    double temp = monto;
+    for( int i = ids.size()-1; i >= 0; i-- ) {
+        if( temp > montos.at( i ) ) {
+            temp -= montos.at( i );
+            cantidad++;
+        }
+    }
+    // Elimino los ultimos "cantidad" items de cuota
+    /// @TODO hacer!
+    // Busco cuanto tengo que cambiar de la ultima cuota
+    /// @TODO hacer!
+    return true;
+}
+
 QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
 {
     if( item.isValid() ) {
