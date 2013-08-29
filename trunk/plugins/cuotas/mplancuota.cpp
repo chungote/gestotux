@@ -363,12 +363,37 @@ QPair<double, double> MPlanCuota::obtenerEstadoImportes( const int id_plan )
 
 /*!
  * \brief MPlanCuota::cancelarPlan
- * \param id_plan_cuota
- * \param razon
- * \param fecha_hora
- * \return
+ * Pone el plan de cuotas especificado como cancelado, con su razon y fecha, eliminando además todos los items de pago a futuro que no esten pagados o emitidos.
+ * \param id_plan_cuota Identificador del plan de cuotas
+ * \param razon Razon de la cancelación
+ * \param fecha_hora Fecha y hora de la acción
+ * \return Verdadero si se pudo realizar todo el proceso correctamente. Falso en caso contrario.
  */
 bool MPlanCuota::cancelarPlan( const int id_plan_cuota, QString razon, QDateTime fecha_hora )
 {
+    if( id_plan_cuota <= 0 ) {
+        qDebug() << "Identificador de plan de cuota invalido";
+        return false;
+    }
+    if( razon.isEmpty() || razon.isNull() ) {
+        // Coloco la razón predeterminada
+        razon.append( QString::fromUtf8("Razón desconocida" ) );
+    }
+
+    QSqlQuery cola;
+    if( cola.prepare( "UPDATE plan_cuota SET razon_cancelado = :razon, fechahora_cancelacion = :fechahora_cancelacion WHERE id_plan_cuota = :id_plan_cuota" ) ) {
+        return false;
+    }
+    cola.bindValue( ":razon", razon );
+    cola.bindValue( ":fechahora_cancelacion", fecha_hora );
+    cola.bindValue( ":id_plan_cuota", id_plan_cuota );
+    if( cola.exec() ) {
+        // Empiezo a eliminar los items de plan de cuota
+        return MItemPlanCuota::eliminarItemsNoPagadosNoEmitidos( id_plan_cuota );
+    } else {
+        qDebug() << "Error al ejecutar la cola de seteo de plan de cuota";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
     return false;
 }
