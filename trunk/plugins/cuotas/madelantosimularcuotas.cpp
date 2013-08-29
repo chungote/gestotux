@@ -12,6 +12,7 @@ MSimularCuotas( parent )
     cuotas = new QHash<int,double>();
     pagados = new QHash<int,bool>();
     modificables = new QHash<int,bool>();
+    adelantos = new QHash<int,double>();
 }
 
 MAdelantoSimularCuotas::~MAdelantoSimularCuotas()
@@ -22,6 +23,8 @@ MAdelantoSimularCuotas::~MAdelantoSimularCuotas()
     pagados=0;
     delete modificables;
     modificables=0;
+    delete adelantos;
+    adelantos=0;
 }
 
 void MAdelantoSimularCuotas::cargarCuotasPagadas( const int id_plan_cuota )
@@ -71,11 +74,19 @@ void MAdelantoSimularCuotas::regenerar()
     double temporal_adelanto = _adelanto;
     for( int i=cantidad; i>=0; i-- ) {
         if( modificables->value( i ) ) {
-            cuotas->insert( i, cuotas->value( i ) - temporal_adelanto );
-            if( cuotas->value( i ) < 0.0 ) {
-                temporal_adelanto = (-1.0)*cuotas->value(i);
+            double temp = cuotas->value( i );
+            temp -= temporal_adelanto;
+            if( temp <= 0.0 ) {
+                temporal_adelanto = (-1.0)*temp;
                 cuotas->insert( i, 0.0 );
+                adelantos->insert( i, valor_cuota );
+            } else {
+                cuotas->insert( i, temp );
+                adelantos->insert( i, valor_cuota - temp );
+                temporal_adelanto = 0.0;
             }
+        } else {
+            adelantos->insert( i, 0.0 );
         }
     }
     // Calculo el subtotal y la sumatoria
@@ -84,7 +95,7 @@ void MAdelantoSimularCuotas::regenerar()
         if( pagados->value( i ) ) {
             faltante->insert( i, faltante->value( i-1 ) - valor_cuota );
         } else {
-            faltante->insert( i, faltante->value( i-1 ) - cuotas->value( i ) );
+            faltante->insert( i, faltante->value( i-1 ) - cuotas->value( i ) - adelantos->value( i ) );
         }
     }
     emit dataChanged( index( 0, 0 ), index( rowCount(), columnCount() ) );
