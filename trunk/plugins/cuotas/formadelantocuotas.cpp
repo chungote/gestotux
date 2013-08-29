@@ -6,9 +6,7 @@ FormDetalleCuotas( parent )
     GBAdelanto->setVisible( true );
     GBDetalles->setVisible( false );
 
-
-
-    connect( DSBImporteAdelanto, SIGNAL( valueChanged( double ) ), this, SLOT( cambioImporte( double ) ) );
+    connect( DSBImporteAdelanto, SIGNAL( valueChanged( double ) ), this, SLOT( cambiarImporte( double ) ) );
 
     ActConfirmar = new QAction( this );
     ActConfirmar->setText( "Confirmar" );
@@ -29,6 +27,8 @@ void FormAdelantoCuotas::setearIdPlanCuota( int id )
     modelo_item->setInteres( DSBInteres->value() );
     modelo_item->setPeriodo( (MPlanCuota::Periodo)CBPeriodo->currentIndex() );
     modelo_item->setPagoInicial( DSBEntrega->value() );
+    modelo_item->cargarCuotasPagadas( id );
+    modelo_item->setearImporteAdelanto( 100.0 );
     modelo_item->regenerar();
 }
 
