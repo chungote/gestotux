@@ -22,6 +22,7 @@ public:
 private:
     double _adelanto;
     QHash<int,double> *cuotas;
+    QHash<int,double> *adelantos;
     QHash<int,bool> *pagados;
     QHash<int,bool> *modificables;
 

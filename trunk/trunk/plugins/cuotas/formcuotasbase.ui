@@ -246,7 +246,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="DSBImporteAdelanto"/>
+         <widget class="QDoubleSpinBox" name="DSBImporteAdelanto">
+          <property name="prefix">
+           <string>$ </string>
+          </property>
+          <property name="maximum">
+           <double>1000000006.000000000000000</double>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
