@@ -43,7 +43,7 @@ VPlanCuotas::VPlanCuotas(QWidget *parent) :
 
     ActIngresarAdelanto = new QAction( this );
     ActIngresarAdelanto->setText( "Adelanto" );
-    ActIngresarAdelanto->setIcon( QIcon( ":/imagenes/ingresar_adelanto.png" ) );
+    ActIngresarAdelanto->setIcon( QIcon( ":/imagenes/adelanto_cuota.png" ) );
     connect( ActIngresarAdelanto, SIGNAL( triggered() ), this, SLOT( ingresarAdelanto() ) );
 
     ActCancelar = new QAction( this );
@@ -207,5 +207,4 @@ void VPlanCuotas::ingresarAdelanto()
     f->setearIdPlanCuota( id_plan_cuota );
     connect( f, SIGNAL( actualizarModelo() ), this, SLOT( actualizar() ) );
     emit agregarVentana( f );
-
 }

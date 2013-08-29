@@ -49,7 +49,7 @@ bool CuotasPlugin::inicializar()
  ActGenerarComprobantes = new QAction( this );
  ActGenerarComprobantes->setText( "Generar cuotas" );
  ActGenerarComprobantes->setToolTip( "Genera los comprobantes de cuotas correspondientes." );
- //ActGenerarComprobantes->setIcon( QIcon( ":/imagenes/.png" ) );
+ ActGenerarComprobantes->setIcon( QIcon( ":/imagenes/generar_comprobantes_cuotas.png" ) );
  connect( ActGenerarComprobantes, SIGNAL( triggered() ), this, SLOT( generarComprobantes() ) );
 
  ActSimular = new QAction( this );

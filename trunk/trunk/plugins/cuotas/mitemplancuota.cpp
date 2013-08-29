@@ -214,6 +214,27 @@ bool MItemPlanCuota::setearReciboItemCuota( const int id_item_cuota, const int i
   return false;
 }
 
+/*!
+ * \brief MItemPlanCuota::eliminarItemsNoPagadosNoEmitidos
+ * ELimina todos los items de plan de cuota que no hayan sido pagados o emitidos.
+ * \param id_plan_cuota Identificador del plan de cuotas
+ * \return Verdadero si la consulta fue exitosa
+ */
+bool MItemPlanCuota::eliminarItemsNoPagadosNoEmitidos(const int id_plan_cuota)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "DELETE FROM item_cuota WHERE id_plan_cuota = %1"
+                            "  AND fecha_pago IS NULL "
+                            "  AND id_recibo  IS NULL " ).arg( id_plan_cuota ) ) ) {
+        return true;
+    } else {
+        qDebug( "Error al ejecutar la cola de eliminacion de items no pagados, no emitidos de plan de cuota" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return false;
+}
+
 QVariant MItemPlanCuota::data(const QModelIndex &item, int role) const
 {
     if( item.isValid() ) {

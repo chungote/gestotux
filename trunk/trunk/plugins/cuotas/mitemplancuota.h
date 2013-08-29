@@ -28,6 +28,8 @@ public:
     static bool setearItemCuotaPagadoSegunRecibo( const int id_recibo , QDateTime fecha_pagado = QDateTime::currentDateTime() );
     static bool setearReciboItemCuota( const int id_recibo, const int id_item_cuota );
 
+    static bool eliminarItemsNoPagadosNoEmitidos( const int id_plan_cuota );
+
     QVariant data(const QModelIndex &item, int role) const;
     void setearPlanCuota( const int id_plan_cuota );
 
