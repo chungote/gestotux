@@ -379,7 +379,7 @@ bool MPlanCuota::cancelarPlan( const int id_plan_cuota, QString razon, QDateTime
         // Coloco la razón predeterminada
         razon.append( QString::fromUtf8("Razón desconocida" ) );
     }
-
+    return false; /// @TODO Ver esto!
     QSqlQuery cola;
     if( cola.prepare( "UPDATE plan_cuota SET razon_cancelado = :razon, fechahora_cancelacion = :fechahora_cancelacion WHERE id_plan_cuota = :id_plan_cuota" ) ) {
         return false;
