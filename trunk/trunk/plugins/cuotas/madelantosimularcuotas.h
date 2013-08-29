@@ -13,15 +13,17 @@ public:
     void setearImporteAdelanto( double importe ) { _adelanto = importe; regenerar(); }
     double importeAdelanto() { return _adelanto; }
 
+    void cargarCuotasPagadas( const int id_plan_cuota );
+
     void regenerar();
 
-    int columnCount(const QModelIndex &parent) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    QVariant data( const QModelIndex &index, int role ) const;
     
 private:
     double _adelanto;
-    QHash<int,double> *adelantos;
+    QHash<int,double> *cuotas;
+    QHash<int,bool> *pagados;
+    QHash<int,bool> *modificables;
 
 };
 
