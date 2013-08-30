@@ -1,8 +1,10 @@
 HEADERS += trsistemas.h \
-           ../pagos/mpagos.h
+           ../pagos/mpagos.h \
+           ../CtaCte/mitemcuentacorriente.h
 
 SOURCES += trsistemas.cpp \
-           ../pagos/mpagos.cpp
+           ../pagos/mpagos.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp
 
 TEMPLATE = lib
 
