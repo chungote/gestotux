@@ -43,7 +43,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>543</width>
+        <width>544</width>
         <height>427</height>
        </rect>
       </property>
@@ -63,7 +63,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox"/>
+            <widget class="QLabel" name="LNumeroOrdenTrabajo">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -122,7 +126,7 @@
          <item>
           <widget class="QLabel" name="LTecnico">
            <property name="text">
-            <string>Tecnico:</string>
+            <string>Técnico:</string>
            </property>
           </widget>
          </item>
@@ -200,8 +204,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
-        <height>318</height>
+        <width>331</width>
+        <height>178</height>
        </rect>
       </property>
       <attribute name="label">
@@ -334,8 +338,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
-        <height>444</height>
+        <width>392</width>
+        <height>107</height>
        </rect>
       </property>
       <attribute name="label">
@@ -390,8 +394,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
-        <height>444</height>
+        <width>272</width>
+        <height>107</height>
        </rect>
       </property>
       <attribute name="label">

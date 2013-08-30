@@ -15,6 +15,9 @@ MSimularCuotas( parent )
     adelantos = new QHash<int,double>();
 }
 
+/*!
+ * \brief MAdelantoSimularCuotas::~MAdelantoSimularCuotas
+ */
 MAdelantoSimularCuotas::~MAdelantoSimularCuotas()
 {
     delete cuotas;
@@ -27,6 +30,10 @@ MAdelantoSimularCuotas::~MAdelantoSimularCuotas()
     adelantos=0;
 }
 
+/*!
+ * \brief MAdelantoSimularCuotas::cargarCuotasPagadas
+ * \param id_plan_cuota Identificador del Plan de Cuotas
+ */
 void MAdelantoSimularCuotas::cargarCuotasPagadas( const int id_plan_cuota )
 {
     QSqlQuery cola;
@@ -53,6 +60,9 @@ void MAdelantoSimularCuotas::cargarCuotasPagadas( const int id_plan_cuota )
     }
 }
 
+/*!
+ * \brief MAdelantoSimularCuotas::regenerar
+ */
 void MAdelantoSimularCuotas::regenerar()
 {
     sumatoria->clear();
@@ -101,6 +111,12 @@ void MAdelantoSimularCuotas::regenerar()
     emit dataChanged( index( 0, 0 ), index( rowCount(), columnCount() ) );
 }
 
+/*!
+ * \brief MAdelantoSimularCuotas::data
+ * \param index
+ * \param role
+ * \return
+ */
 QVariant MAdelantoSimularCuotas::data(const QModelIndex &index, int role) const
 {
     switch( index.column() ) {

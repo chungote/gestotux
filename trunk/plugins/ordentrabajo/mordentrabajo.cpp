@@ -27,4 +27,17 @@ bool MOrdenTrabajo::tieneDatosRelacionados( const int /* id_orden_trabajo */ )
     return false;
 }
 
+NumeroComprobante MOrdenTrabajo::numeroComprobanteProximo()
+{
+    return NumeroComprobante( 0, 0, 0 );
+}
+
+NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId(const int id_orden)
+{
+}
+
+int MOrdenTrabajo::idSegunNumeroComprobante(NumeroComprobante num)
+{
+}
+
 
