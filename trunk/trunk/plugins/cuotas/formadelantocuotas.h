@@ -27,6 +27,8 @@ private:
     MAdelantoSimularCuotas *modelo_item;
     QTextDocument *documento;
 
+    int _id_plan_cuota;
+
     void generaReporte();
 
 };

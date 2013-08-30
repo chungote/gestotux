@@ -237,7 +237,8 @@ bool MItemPlanCuota::eliminarItemsNoPagadosNoEmitidos(const int id_plan_cuota)
 
 /*!
  * \brief MItemPlanCuota::agregarAdelanto
- *  Genera un adelanto de cuotas según el importe ingresado
+ *  Genera un adelanto de cuotas según el importe ingresado.
+ *  Esto implica: cargar todos los items de cuota, buscar cuales deben ser eliminados segun el monto y cambiar el monto de la ultima cuota según el resto.
  * \param id_plan_cuota Identificador de plan de cuota emitido
  * \param monto Monto a adelantar
  * \return Verdadero si se pudo realizar el registro
@@ -249,7 +250,8 @@ bool MItemPlanCuota::agregarAdelanto(const int id_plan_cuota, double monto)
     QSqlQuery cola;
     if( !cola.exec( QString( "SELECT id_item_cuota, monto FROM item_cuota WHERE id_plan_cuota = %1"
                              "   AND fecha_pago IS NULL "
-                             "   AND id_recibo IS NULL  " ).arg( id_plan_cuota ) ) ) {
+                             "   AND id_recibo IS NULL  "
+                             " ORDER BY fecha_pago DESC ").arg( id_plan_cuota ) ) ) {
         qDebug() << "Error al ejecutar la cola de obtención de datos de planes de cuotas";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
@@ -275,9 +277,28 @@ bool MItemPlanCuota::agregarAdelanto(const int id_plan_cuota, double monto)
         }
     }
     // Elimino los ultimos "cantidad" items de cuota
-    /// @TODO hacer!
+    QStringList a_eliminar;
+    for( int i=0; i<cantidad; i++ ) {
+        a_eliminar.append( QString::number( ids.at( ids.size() - i ) ) );
+    }
+    if( !cola.exec( QString( "DELETE FROM item_cuota WHERE id_plan_cuota = %1 AND id_item_cuota IN ( %2 ) " ).arg( id_plan_cuota ).arg( a_eliminar.join( "," ) ) ) ) {
+        qDebug() << "Error al ejecutar la cola de eliminación de items de cuotas";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
     // Busco cuanto tengo que cambiar de la ultima cuota
-    /// @TODO hacer!
+    // La variable temporal posee lo que falta restar a la ultima cuota
+    int id_cuota_modificar = ids.at( ids.size() - cantidad );
+    double nuevo_monto = montos.at( ids.size() - cantidad ) - temp;
+    // Actualizo el valor de la cuota
+    if( !cola.exec( QString( "UPDATE item_cuota SET monto = %1"
+                             " WHERE id_item_cuota = %2 " ).arg( nuevo_monto ).arg( id_cuota_modificar ) ) ) {
+        qDebug() << "Error al ejecutar la cola de modificacion de precio del item de cuota";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
     return true;
 }
 
