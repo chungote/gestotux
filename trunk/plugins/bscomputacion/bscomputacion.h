@@ -38,7 +38,7 @@ public:
     bool publicidad();
     QString reporte( int tipo );
     QImage imagenPrograma() const;
-
+    void reporteParametros(int tipo, QString &nombre, ParameterList &parametros);
 
 signals:
     void agregarVentana(QWidget* v);

@@ -61,6 +61,23 @@ void BSComputacion::seCierraGestotux()
 QImage BSComputacion::imagenPrograma() const
 { return QImage( ":/imagenes/logoBS.png" ); }
 
+void BSComputacion::reporteParametros(int tipo, QString &nombre, ParameterList &parametros)
+{
+   /* switch( tipo ) {
+        case EReporte::Factura:
+        { return "Factura-BS"; break; }
+        case EReporte::Recibo:
+        { return "Recibo-BS"; break; }
+        case EReporte::Presupuesto:
+        { return "Presupuesto-BS"; break; }
+        case EReporte::AnulacionFactura:
+        { return "AnulacionFactura"; break; }
+        case EReporte::Remito:
+        { return "Remito"; break; }
+        default: { return ""; break; }
+    }*/
+}
+
 QString BSComputacion::nombrePrograma() const { return "BSComputacion"; }
 
 QIcon BSComputacion::iconoPrograma() const

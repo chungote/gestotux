@@ -20,18 +20,19 @@ SUBDIRS = utiles/utiles.pro \
           plugins/gastos/gastos.pro \
           plugins/compras/compras.pro \
           plugins/proveedor/proveedor.pro \
+          plugins/remitos/remitos.pro \
           plugins/informes/informa.pro \
           plugins/informes/informes.pro \
           src/src.pro
 
 NOMBRE_PROGRAMA = ../../bin/hicomp
-ARCHIVO_RC = HiComp/icono.rc
+ARCHIVO_RC = HiComp/hicomp.rc
 
 unix {
   #system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }
 win32 {
- #system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+ system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }
 
 DEFINES += GESTOTUX_HICOMP
