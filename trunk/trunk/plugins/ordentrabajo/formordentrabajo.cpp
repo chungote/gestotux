@@ -2,8 +2,12 @@
 
 #include <QDateTime>
 
-FormOrdenTrabajo::FormOrdenTrabajo( QWidget *parent ) :
-EVentana( parent ), FormOrdenTrabajoBase()
+#include "eactcerrar.h"
+#include "eactguardar.h"
+#include "mordentrabajo.h"
+
+FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
+    EVentana( parent ), FormOrdenTrabajoBase(), _agregando(agregar)
 {
     setupUi(this);
 
@@ -25,6 +29,7 @@ EVentana( parent ), FormOrdenTrabajoBase()
 
     // Pongo la fecha de hoy
     DTEFechaIngreso->setDateTime( QDateTime::currentDateTime() );
+    DEFechaDevolucion->setDate( QDate::currentDate().addDays( 2 ) );
 
     connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
     connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
@@ -47,10 +52,31 @@ EVentana( parent ), FormOrdenTrabajoBase()
     PBCerrarOrden->setIcon( QIcon( ":/imagenes/fileclose.png" ) );
     connect( PBCerrarOrden, SIGNAL( clicked() ), this, SLOT( cerrarOrden() ) );
 
+    addAction( new EActGuardar( this ) );
+    addAction( new EActCerrar( this ) );
+
+    if( agregar ) {
+        // Deshabilito los datos de historial y facturacion.
+        TBGeneral->setItemEnabled( 2, false );
+        TBGeneral->setItemEnabled( 3, false );
+        // Coloco el proximo numero de comprobante.
+        LNumeroOrdenTrabajo->setText( MOrdenTrabajo::numeroComprobanteProximo().aCadena() );
+    }
+}
+
+/*!
+ * \brief FormOrdenTrabajo::setearIdOrdenTrabajo
+ * \param id_orden_trabajo
+ */
+void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
+{
+    _agregando = false;
+    TBGeneral->setItemEnabled( 2, true );
+    TBGeneral->setItemEnabled( 3, true );
+    /// @TODO agregar carga de datos
     /// @TODO Agregar carga de historial
     /// @TODO Agregar carga de historial de facturacion
     /// @TODO Agregar carga de datos de equipamiento
-
 }
 
 /**
@@ -61,17 +87,25 @@ EVentana( parent ), FormOrdenTrabajoBase()
 void FormOrdenTrabajo::cambioCliente( int id_cliente )
 {
     if( id_cliente <= 0 ) { return; }
-    ///@TODO Agregar registro de cambio de cliente asignado
+    if( _agregando ) {
+        /// @TODO Si está agregando, cargar el Equipamiento que exista para el cliente ( si es solo uno )
+    } else {
+        /// @TODO Agregar registro de cambio de cliente asignado
+    }
 }
 
 /*!
  * \brief FormOrdenTrabajo::cambioTecnico
  * \param id_tecnico
  */
-void FormOrdenTrabajo::cambioTecnico(int id_tecnico)
+void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
 {
     if( id_tecnico <= 0 ) { return; }
-    ///@TODO Agregar registro de cambio de técnico.
+    if( _agregando ) {
+
+    } else {
+        /// @TODO Agregar registro de cambio de técnico.
+    }
 }
 
 /*!
@@ -117,6 +151,13 @@ void FormOrdenTrabajo::eliminarHistorial()
 }
 
 /*!
+ * \brief FormOrdenTrabajo::facturarOrden
+ */
+void FormOrdenTrabajo::facturarOrden()
+{
+}
+
+/*!
  * \brief FormOrdenTrabajo::imprimir
  */
 void FormOrdenTrabajo::imprimir()
@@ -134,6 +175,13 @@ void FormOrdenTrabajo::pdf()
  * \brief FormOrdenTrabajo::cancelar
  */
 void FormOrdenTrabajo::cancelar()
+{
+}
+
+/*!
+ * \brief FormOrdenTrabajo::guardar
+ */
+void FormOrdenTrabajo::guardar()
 {
 }
 

@@ -11,7 +11,8 @@ class FormOrdenTrabajo : public EVentana, public FormOrdenTrabajoBase
     Q_OBJECT
     
 public:
-    FormOrdenTrabajo( QWidget *parent = 0 );
+    FormOrdenTrabajo( bool agregar, QWidget *parent = 0 );
+    void setearIdOrdenTrabajo( const int id_orden_trabajo );
 
 protected slots:
     void cambioCliente( int id_cliente );
@@ -22,10 +23,11 @@ protected slots:
     void eliminarFacturacion();
     void agregarHistorial();
     void eliminarHistorial();
+    void facturarOrden();
     void imprimir();
     void pdf();
     void cancelar();
-
+    void guardar();
     
 protected:
     void changeEvent( QEvent *e );
@@ -37,6 +39,8 @@ private:
     QAction *ActImprimir;
     QAction *ActPdf;
     QAction *ActCancelarOrden;
+
+    bool _agregando;
 
 };
 
