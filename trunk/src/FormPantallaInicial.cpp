@@ -179,6 +179,16 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     } else {
         TBOrdenTrabajo->setVisible( false );
     }
+    ////////////////////////////////////////////////////////////////////////////////////
+    // Plugin de Planes de Cuotas
+    if( ERegistroPlugins::getInstancia()->existePlugin( "cuotas" ) ) {
+        TBCuotas->setIcon( ERegistroPlugins::getInstancia()->plugin("cuotas")->botonPantallaInicial()->icon() );
+        connect(  TBCuotas, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("cuotas")->botonPantallaInicial(), SIGNAL(triggered()) );
+        TBCuotas->setStatusTip( "Muestra la lista de planes de cuota activos" );
+    } else {
+        TBCuotas->setVisible( false );
+    }
+
     // Dibujo las flechas
    /* EFlecha *f1 = new EFlecha( this );
     f1->setearOrigen( TBPresupuestos );

@@ -29,7 +29,7 @@ class CuotasPlugin : public QObject, public EPlugin
         static QStackedWidget *tabs();
         void crearToolBar( QToolBar *t );
         bool publicidad() { return true; }
-        QAction *botonPantallaInicial() { return new QAction( this ); }
+        QAction *botonPantallaInicial() { return ActVerCuotas; }
 
     public slots:
         void seCierraGestotux();
