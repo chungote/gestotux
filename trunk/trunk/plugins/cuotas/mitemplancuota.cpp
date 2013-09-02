@@ -245,7 +245,6 @@ bool MItemPlanCuota::eliminarItemsNoPagadosNoEmitidos(const int id_plan_cuota)
  */
 bool MItemPlanCuota::agregarAdelanto(const int id_plan_cuota, double monto)
 {
-    return false;
     // Busco todos los identificadores de cuotas en orden inverso.
     QSqlQuery cola;
     if( !cola.exec( QString( "SELECT id_item_cuota, monto FROM item_cuota WHERE id_plan_cuota = %1"
@@ -279,7 +278,8 @@ bool MItemPlanCuota::agregarAdelanto(const int id_plan_cuota, double monto)
     // Elimino los ultimos "cantidad" items de cuota
     QStringList a_eliminar;
     for( int i=0; i<cantidad; i++ ) {
-        a_eliminar.append( QString::number( ids.at( ids.size() - i ) ) );
+        int id = ids.at( ids.size() - ( i + 1 ) );
+        a_eliminar.append( QString::number( id ) );
     }
     if( !cola.exec( QString( "DELETE FROM item_cuota WHERE id_plan_cuota = %1 AND id_item_cuota IN ( %2 ) " ).arg( id_plan_cuota ).arg( a_eliminar.join( "," ) ) ) ) {
         qDebug() << "Error al ejecutar la cola de eliminación de items de cuotas";
