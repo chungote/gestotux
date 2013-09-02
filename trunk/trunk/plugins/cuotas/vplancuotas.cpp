@@ -170,6 +170,7 @@ void VPlanCuotas::cancelar()
 
 /*!
  * \fn VPlanCuotas::ingresarPago()
+ * Slot llamado para ingresar a la ventana de ingreso de un pago.
  */
 void VPlanCuotas::ingresarPago()
 {
@@ -191,7 +192,7 @@ void VPlanCuotas::ingresarPago()
 
 /*!
  * \brief VPlanCuotas::ingresarAdelanto
- *
+ * Slot llamado para abrir la ventana de ingresar un adelanto a un plan de cuota
  */
 void VPlanCuotas::ingresarAdelanto()
 {
