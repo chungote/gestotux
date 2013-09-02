@@ -7,9 +7,9 @@ FormPrefCuotas::FormPrefCuotas( QWidget *parent ) :
     FormPrefCuotasBase(), FormPrefHijo()
 {
     this->setParent( parent );
-    setupUi(this);
+    setupUi( this );
     this->setWindowTitle( "Cuotas" );
-    //this->setWindowIcon( QIcon( ":/imagenes/" ) );
+    this->setWindowIcon( QIcon( ":/imagenes/cuotas_detalle.png" ) );
 
     CBPeriodo->insertItem( MPlanCuota::Semanal      , "Semanal"       );
     CBPeriodo->insertItem( MPlanCuota::Quincenal    , "Quincenal"     );
