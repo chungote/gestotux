@@ -122,7 +122,7 @@ bool MMovimientosCaja::agregarMovimiento( int id_caja, QString razon, QString re
   }
   // Verificacion de saldo
   if( egreso != 0 ) {
-      if( MCajas::saldo( id_caja ) - egreso <= 0 ) {
+      if( MCajas::saldo( id_caja ) - egreso < 0 ) {
           qWarning() <<  QString( "Error!: El importe que esta intentando sacar de caja supera el saldo que esta posee.\n El saldo actual es $%L1").arg( MCajas::saldo( id_caja ) );
           return false;
       }
