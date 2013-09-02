@@ -13,7 +13,6 @@ CONFIG += dll \
           help
 
 QT += sql \
-      webkit \
       xml
 
 TARGET = trsistemas

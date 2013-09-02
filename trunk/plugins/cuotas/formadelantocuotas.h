@@ -18,6 +18,9 @@ private slots:
     void confirmar();
     void cambiarImporte( double );
 
+signals:
+    void actualizarModelo();
+
 private:
     QAction *ActConfirmar;
     QAction *ActImprimir;

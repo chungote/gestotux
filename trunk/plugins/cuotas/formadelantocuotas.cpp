@@ -54,7 +54,6 @@ void FormAdelantoCuotas::cambiarImporte( double importe )
  */
 void FormAdelantoCuotas::confirmar()
 {
-    return;
     QSqlDatabase::database().transaction();
     if( !MItemPlanCuota::agregarAdelanto( this->_id_plan_cuota, DSBImporteAdelanto->value() ) ) {
         QMessageBox::information( this, "Error", "No se pudo cambiar los datos de los pagos" );
@@ -86,6 +85,8 @@ void FormAdelantoCuotas::confirmar()
         lista.append( Parameter( "id_recibo", id_recibo ) );
         e->hacer( lista, false, true );
         QMessageBox::information( this, "Correcto", "El adelanto se registro correctamente. Se emitió el recibo correspondiente y se modificaron las cuotas." );
+        emit actualizarModelo();
+        this->close();
     } else {
         QMessageBox::information( this, "Incorrecto", "No se pudo guardar la transacción!");
     }
