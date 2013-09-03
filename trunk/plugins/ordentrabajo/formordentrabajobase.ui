@@ -43,8 +43,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>544</width>
-        <height>427</height>
+        <width>542</width>
+        <height>435</height>
        </rect>
       </property>
       <attribute name="label">
@@ -180,7 +180,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QDateEdit" name="DEFechaDevolucion"/>
+          <widget class="QDateEdit" name="DEFechaDevolucion">
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -204,7 +208,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>331</width>
+        <width>333</width>
         <height>178</height>
        </rect>
       </property>
@@ -338,8 +342,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>392</width>
-        <height>107</height>
+        <width>374</width>
+        <height>114</height>
        </rect>
       </property>
       <attribute name="label">
@@ -394,8 +398,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>272</width>
-        <height>107</height>
+        <width>254</width>
+        <height>114</height>
        </rect>
       </property>
       <attribute name="label">

@@ -3,6 +3,8 @@
 
 #include "eventana.h"
 #include "ui_formordentrabajobase.h"
+#include "mordentrabajo.h"
+#include "mhistorialordentrabajo.h"
 
 using namespace Ui;
 
@@ -41,6 +43,9 @@ private:
     QAction *ActCancelarOrden;
 
     bool _agregando;
+
+    MOrdenTrabajo _modelo_orden;
+    MHistorialOrdenTrabajo _modelo_historial;
 
 };
 
