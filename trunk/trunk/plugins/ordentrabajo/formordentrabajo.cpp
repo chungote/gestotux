@@ -113,6 +113,7 @@ void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
  */
 void FormOrdenTrabajo::cerrarOrden()
 {
+
 }
 
 /*!
@@ -120,6 +121,7 @@ void FormOrdenTrabajo::cerrarOrden()
  */
 void FormOrdenTrabajo::devolverCliente()
 {
+
 }
 
 /*!

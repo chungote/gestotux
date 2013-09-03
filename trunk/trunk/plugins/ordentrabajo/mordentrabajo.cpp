@@ -32,7 +32,7 @@ NumeroComprobante MOrdenTrabajo::numeroComprobanteProximo()
     return NumeroComprobante( 0, 0, 0 );
 }
 
-NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId(const int id_orden)
+NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId( const int id_orden )
 {
 }
 
