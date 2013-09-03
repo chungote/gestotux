@@ -8,7 +8,7 @@
 #include <QInputDialog>
 #include <QMenu>
 
-VEquipamiento::VEquipamiento(QWidget *parent) :
+VEquipamiento::VEquipamiento( QWidget *parent ) :
 EVLista( parent )
 {
     this->setObjectName( "VisorEquipamiento" );
@@ -20,18 +20,19 @@ EVLista( parent )
     this->vista->setSelectionBehavior( QAbstractItemView::SelectRows );
     this->vista->setAlternatingRowColors( true );
     this->vista->hideColumn( modelo->fieldIndex( "id_equipamiento" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "num_serie" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "razon_baja" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "fecha_compra" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "modelo" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "marca" ) );
+    this->vista->hideColumn( modelo->fieldIndex( "num_serie"       ) );
+    this->vista->hideColumn( modelo->fieldIndex( "fecha_baja"      ) );
+    this->vista->hideColumn( modelo->fieldIndex( "razon_baja"      ) );
+    this->vista->hideColumn( modelo->fieldIndex( "fecha_compra"    ) );
+    this->vista->hideColumn( modelo->fieldIndex( "modelo"          ) );
+    this->vista->hideColumn( modelo->fieldIndex( "marca"           ) );
     this->vista->setSortingEnabled( true );
     this->modelo->select();
 
     ActDarBaja = new QAction( this );
     ActDarBaja->setText( "Baja" );
     ActDarBaja->setStatusTip( "Da de baja el equipamiento seleccionado" );
+    ActDarBaja->setIcon( QIcon( ":/imagenes/baja_equipamiento.png" ) );
     connect( ActDarBaja, SIGNAL( triggered() ), this, SLOT( darBaja() ) );
 
     ActDarAlta = new QAction( this );
@@ -39,15 +40,16 @@ EVLista( parent )
     ActDarAlta->setStatusTip( "Da de alta nuevamente el equipamiento seleccionado" );
     connect( ActDarAlta, SIGNAL( triggered() ), this, SLOT( darAlta() ) );
 
-    addAction( ActAgregar );
+    addAction( ActAgregar   );
     addAction( ActModificar );
-    addAction( ActDarBaja );
-    addAction( ActEliminar );
-    addAction( ActCerrar );
+    addAction( ActDarBaja   );
+    addAction( ActEliminar  );
+    addAction( ActCerrar    );
 }
 
 /*!
  * \brief VEquipamiento::agregar
+ * Slot llamado para agregar un nuevo equipamiento al sistema
  */
 void VEquipamiento::agregar( bool )
 {
@@ -59,6 +61,7 @@ void VEquipamiento::agregar( bool )
 
 /*!
  * \brief VEquipamiento::modificar
+ * Slot llamado para abrir la ventana de modificación de un equipamiento
  */
 void VEquipamiento::modificar()
 {
@@ -78,6 +81,7 @@ void VEquipamiento::modificar()
 
 /*!
  * \brief VEquipamiento::eliminar
+ * Slot llamado para eliminar un equipamiento
  */
 void VEquipamiento::eliminar()
 {
@@ -97,6 +101,10 @@ void VEquipamiento::eliminar()
     }
 }
 
+/*!
+ * \brief VEquipamiento::darBaja
+ * Slot llamado para dar de baja un equipamiento
+ */
 void VEquipamiento::darBaja()
 {
     QModelIndexList lista = this->vista->selectionModel()->selectedRows();
@@ -124,6 +132,11 @@ void VEquipamiento::darBaja()
     }
 }
 
+/*!
+ * \brief VEquipamiento::menuContextual
+ * \param indice
+ * \param menu
+ */
 void VEquipamiento::menuContextual(const QModelIndex &indice, QMenu *menu)
 {
     menu->addAction( ActAgregar );

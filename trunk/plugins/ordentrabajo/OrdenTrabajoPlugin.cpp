@@ -166,11 +166,15 @@ QAction *OrdenTrabajoPlugin::botonPantallaInicial()
 void OrdenTrabajoPlugin::seCierraGestotux()
 { Q_CLEANUP_RESOURCE(ordentrabajo); return; }
 
+#include "vordentrabajo.h"
 /*!
  * \brief OrdenTrabajoPlugin::verOrdenesTrabajo
  * Muestra la lista de ordenes de trabajo
  */
-void OrdenTrabajoPlugin::verOrdenesTrabajo() {}
+void OrdenTrabajoPlugin::verOrdenesTrabajo()
+{
+    emit agregarVentana( new VOrdenTrabajo() );
+}
 
 #include "vequipamiento.h"
 /*!

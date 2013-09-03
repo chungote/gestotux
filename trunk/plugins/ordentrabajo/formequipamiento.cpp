@@ -2,8 +2,10 @@
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
+#include "mequipamiento.h"
 
 #include <QDebug>
+#include <QMessageBox>
 
 FormEquipamiento::FormEquipamiento( QWidget *parent ) :
   EVentana( parent )
@@ -12,7 +14,6 @@ FormEquipamiento::FormEquipamiento( QWidget *parent ) :
   this->setWindowTitle( "Equipamiento" );
   this->setWindowIcon( QIcon(":/imagenes/equipamiento.png" ) );
 
-  /// @TODO ver modelo de historial
   _id = -1;
   _editar = false;
   _mequipamiento = 0;
@@ -41,15 +42,25 @@ void FormEquipamiento::setearAgregar( bool estado )
   if( estado ) {
     GBHistorial->setVisible( false );
     _editar = false;
+    this->setWindowTitle( "Agregar Equipamiento" );
   } else {
     GBHistorial->setVisible( true );
     _editar = true;
+    this->setWindowTitle( "Editar Equipamiento" );
+    /// @TODO cargar datos del equipamiento
   }
 }
 
 void FormEquipamiento::setearIndice( QModelIndex indice )
 {
-    qWarning() << "No implementado";
+    // Extraigo el dato del ID de equipameinto
+    int temp = indice.model()->data( indice.model()->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+    if( temp > 0 ) {
+        this->_id = temp;
+        this->cargarDatos();
+    } else {
+        qDebug() << "Identificador de ID de equipamiento incorrecto";
+    }
 }
 
 /*!
@@ -58,7 +69,7 @@ void FormEquipamiento::setearIndice( QModelIndex indice )
  */
 void FormEquipamiento::guardar()
 {
-
+    QMessageBox::information( this, "Error", "No implementado" );
 }
 
 void FormEquipamiento::changeEvent(QEvent *e)
@@ -70,5 +81,16 @@ void FormEquipamiento::changeEvent(QEvent *e)
       break;
     default:
       break;
+  }
+}
+
+/*!
+ * \brief FormEquipamiento::cargarDatos
+ * Carga los datos del equipamiento seteado en this->_id
+ */
+void FormEquipamiento::cargarDatos()
+{
+    if( this->_id <= 0 ) {
+        return;
     }
 }

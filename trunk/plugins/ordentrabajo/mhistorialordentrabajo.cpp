@@ -11,4 +11,18 @@ MHistorialOrdenTrabajo::MHistorialOrdenTrabajo(QObject *parent) :
     setHeaderData( 4, Qt::Horizontal, "#tipo_operacion" );
     setHeaderData( 5, Qt::Horizontal, "#Tecnico" );
     setHeaderData( 6, Qt::Horizontal, "Costo" );
+    _id_orden_trabajo = 0;
+    _mostrar_suma_costos = false;
+}
+
+bool MHistorialOrdenTrabajo::agregarHistorial(const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico)
+{
+}
+
+void MHistorialOrdenTrabajo::setearOrdenTrabajo(const int id_orden_trabajo)
+{
+}
+
+void MHistorialOrdenTrabajo::mostrarCostosSumados()
+{
 }
