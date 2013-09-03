@@ -28,6 +28,8 @@ private:
 
   MEquipamiento *_mequipamiento;
 
+  void cargarDatos();
+
 };
 
 #endif // FORMEQUIPAMIENTO_H

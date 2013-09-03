@@ -249,7 +249,7 @@ bool MItemPlanCuota::agregarAdelanto(const int id_plan_cuota, double monto)
     QSqlQuery cola;
     if( !cola.exec( QString( "SELECT id_item_cuota, monto FROM item_cuota WHERE id_plan_cuota = %1"
                              "   AND fecha_pago IS NULL "
-                             "   AND id_recibo IS NULL  "
+                             "   AND id_recibo  IS NULL "
                              " ORDER BY fecha_pago DESC ").arg( id_plan_cuota ) ) ) {
         qDebug() << "Error al ejecutar la cola de obtención de datos de planes de cuotas";
         qDebug() << cola.lastError().text();

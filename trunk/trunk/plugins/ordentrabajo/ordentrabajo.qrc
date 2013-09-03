@@ -5,6 +5,7 @@
         <file>imagenes/detalle_orden_trabajo.png</file>
         <file>imagenes/orden_trabajo.png</file>
         <file>imagenes/tecnico.png</file>
+        <file>imagenes/baja_equipamiento.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>ordentrabajo.QMYSQL.sql</file>
