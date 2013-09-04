@@ -64,8 +64,7 @@ bool MEquipamiento::tieneDatosRelacionados( const int /* id_equipamiento */ )
  * \return
  */
 bool MEquipamiento::eliminarConRelacionados( const int id_equipamiento )
-{ return false;
-}
+{ return false; }
 
 /*!
  * \brief MEquipamiento::darBaja

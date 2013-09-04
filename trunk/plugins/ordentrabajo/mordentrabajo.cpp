@@ -19,6 +19,8 @@ QSqlRelationalTableModel( parent )
     setHeaderData( 6, Qt::Horizontal, "Fecha de Devolucion" );
     setHeaderData( 7, Qt::Horizontal, "#Equipamiento" );
     setHeaderData( 8, Qt::Horizontal, "#Factura" );
+    _id_orden_trabajo = -1;
+    _data = QSqlRecord();
 }
 
 /*!
@@ -65,6 +67,29 @@ int MOrdenTrabajo::idSegunNumeroComprobante(NumeroComprobante num)
  */
 int MOrdenTrabajo::obtenerIdEquipamientoSegunId(const int id_orden)
 {
+}
+
+/*!
+ * \brief MOrdenTrabajo::cargarDatos
+ * Carga los datos de una orden de trabajo pasada como parametro.
+ * \param id_orden IDentificador de la orden de trabajo a cargar.
+ */
+void MOrdenTrabajo::cargarDatos( const int id_orden )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT * FROM orden_trabajo WHERE id_orden = %1" ).arg( id_orden ) ) ) {
+        if( cola.next() ) {
+            this->_data = cola.record();
+            _id_orden_trabajo = id_orden;
+        } else {
+            qDebug() << "Error al intentar cargar los datos de una orden de trabajo";
+            qDebug() << cola.lastQuery();
+        }
+    } else {
+        qDebug() << "Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
 }
 
 
