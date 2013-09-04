@@ -130,8 +130,21 @@ bool MEquipamiento::existe( const int id_equipamiento )
  * \brief MEquipamiento::cargarDatos
  * \param id_equipamiento
  */
-void MEquipamiento::cargarDatos(const int id_equipamiento)
+void MEquipamiento::cargarDatos( const int id_equipamiento )
 {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT * FROM equipamiento WHERE id_equipamiento = %1" ).arg( id_equipamiento ) ) ) {
+        if( cola.next() ) {
+            this->_datos = cola.record();
+        } else {
+            qDebug() << "Error al obtener los datos del ID de equipamiento indicado";
+        }
+    } else {
+        qDebug() << "Error al ejecutar la cola de averiguación de datos de equipamiento";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return;
 }
 
 /*!
@@ -140,4 +153,5 @@ void MEquipamiento::cargarDatos(const int id_equipamiento)
  */
 bool MEquipamiento::enGarantia()
 {
+    /// @TODO ver esto!
 }
