@@ -81,7 +81,15 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     _agregando = false;
     TBGeneral->setItemEnabled( 2, true );
     TBGeneral->setItemEnabled( 3, true );
-    /// @TODO agregar carga de datos
+
+    // Cargo los datos
+    _modelo_orden->cargarDatos( id_orden_trabajo );
+    CBCliente->setearId( _modelo_orden->idCliente() );
+    LEIngresante->setText( _modelo_orden->ingresante() );
+    LERequerente->setText( _modelo_orden->requerente() );
+    CBTecnico->setearId( _modelo_orden->idTecnico() );
+    DEFechaDevolucion->setDateTime( _modelo_orden->fechaDevolucion() );
+    DTEFechaIngreso->setDateTime( _modelo_orden->fechaIngreso() );
 
     // Historial de acciones
     _modelo_historial->setearOrdenTrabajo( id_orden_trabajo );
