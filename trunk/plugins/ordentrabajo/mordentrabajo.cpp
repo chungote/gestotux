@@ -21,22 +21,49 @@ QSqlRelationalTableModel( parent )
     setHeaderData( 8, Qt::Horizontal, "#Factura" );
 }
 
+/*!
+ * \brief MOrdenTrabajo::tieneDatosRelacionados
+ * \return
+ */
 bool MOrdenTrabajo::tieneDatosRelacionados( const int /* id_orden_trabajo */ )
 {
     // Las ordenes de trabajo implican la eliminacion de todos los datos relacionados ( operacion_orden_trabajo )
     return false;
 }
 
+/*!
+ * \brief MOrdenTrabajo::numeroComprobanteProximo
+ * \return
+ */
 NumeroComprobante MOrdenTrabajo::numeroComprobanteProximo()
 {
     return NumeroComprobante( 0, 0, 0 );
 }
 
+/*!
+ * \brief MOrdenTrabajo::numeroComprobanteSegunId
+ * \param id_orden
+ * \return
+ */
 NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId( const int id_orden )
 {
 }
 
+/*!
+ * \brief MOrdenTrabajo::idSegunNumeroComprobante
+ * \param num
+ * \return
+ */
 int MOrdenTrabajo::idSegunNumeroComprobante(NumeroComprobante num)
+{
+}
+
+/*!
+ * \brief MOrdenTrabajo::obtenerIdEquipamientoSegunId
+ * \param id_orden
+ * \return
+ */
+int MOrdenTrabajo::obtenerIdEquipamientoSegunId(const int id_orden)
 {
 }
 

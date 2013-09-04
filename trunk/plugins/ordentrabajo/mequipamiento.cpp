@@ -1,6 +1,10 @@
 #include "mequipamiento.h"
 
 #include <QDate>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
+#include <QDebug>
 
 MEquipamiento::MEquipamiento(QObject *parent) :
     QSqlRelationalTableModel(parent)
@@ -94,4 +98,46 @@ bool MEquipamiento::darReAlta( const int id_equipamiento, const QString razon, Q
 Qt::ItemFlags MEquipamiento::flags( const QModelIndex & ) const
 {
     return Qt::ItemFlags( !Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable );
+}
+
+/*!
+ * \brief MEquipamiento::existe
+ * \param id_equipamiento
+ * \return
+ */
+bool MEquipamiento::existe( const int id_equipamiento )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString() ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            qDebug() << "Error al hacer next en la cola de averiguación de existencia de equipamiento";
+        }
+    } else {
+        qDebug() << "Error al ejecutar la cola de averiguación de existencia de equipamiento";
+    }
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
+    return false;
+}
+
+/*!
+ * \brief MEquipamiento::cargarDatos
+ * \param id_equipamiento
+ */
+void MEquipamiento::cargarDatos(const int id_equipamiento)
+{
+}
+
+/*!
+ * \brief MEquipamiento::enGarantia
+ * \return
+ */
+bool MEquipamiento::enGarantia()
+{
 }

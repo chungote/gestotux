@@ -5,6 +5,7 @@
 #include "ui_formordentrabajobase.h"
 #include "mordentrabajo.h"
 #include "mhistorialordentrabajo.h"
+#include "mequipamiento.h"
 
 using namespace Ui;
 
@@ -44,8 +45,10 @@ private:
 
     bool _agregando;
 
-    MOrdenTrabajo _modelo_orden;
-    MHistorialOrdenTrabajo _modelo_historial;
+    MEquipamiento *_modelo_equipamiento;
+    MOrdenTrabajo *_modelo_orden;
+    MHistorialOrdenTrabajo *_modelo_historial;
+    MHistorialOrdenTrabajo *_modelo_historial_facturacion;
 
 };
 

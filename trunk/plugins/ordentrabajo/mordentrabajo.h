@@ -14,6 +14,8 @@ public:
     static NumeroComprobante numeroComprobanteProximo();
     static NumeroComprobante numeroComprobanteSegunId( const int id_orden );
     static int idSegunNumeroComprobante( NumeroComprobante num );
+
+    int obtenerIdEquipamientoSegunId( const int id_orden );
 };
 
 #endif // MORDENTRABAJO_H

@@ -1,6 +1,7 @@
 #include "formordentrabajo.h"
 
 #include <QDateTime>
+#include <QMessageBox>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -55,12 +56,19 @@ FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
     addAction( new EActGuardar( this ) );
     addAction( new EActCerrar( this ) );
 
+    _modelo_equipamiento = new MEquipamiento( this );
+    _modelo_historial = new MHistorialOrdenTrabajo( this );
+    _modelo_historial_facturacion = new MHistorialOrdenTrabajo( this );
+    _modelo_orden = new MOrdenTrabajo( this );
+
     if( agregar ) {
         // Deshabilito los datos de historial y facturacion.
         TBGeneral->setItemEnabled( 2, false );
         TBGeneral->setItemEnabled( 3, false );
         // Coloco el proximo numero de comprobante.
         LNumeroOrdenTrabajo->setText( MOrdenTrabajo::numeroComprobanteProximo().aCadena() );
+    } else {
+        _modelo_historial_facturacion->mostrarCostosSumados();
     }
 }
 
@@ -74,9 +82,28 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     TBGeneral->setItemEnabled( 2, true );
     TBGeneral->setItemEnabled( 3, true );
     /// @TODO agregar carga de datos
-    /// @TODO Agregar carga de historial
-    /// @TODO Agregar carga de historial de facturacion
-    /// @TODO Agregar carga de datos de equipamiento
+
+    // Historial de acciones
+    _modelo_historial->setearOrdenTrabajo( id_orden_trabajo );
+    LVHistorial->setModel( _modelo_historial );
+
+    // Modelo del historial de facturación
+    _modelo_historial_facturacion->setearOrdenTrabajo( id_orden_trabajo );
+    TVFacturacion->setModel( _modelo_historial_facturacion );
+
+    // Datos del equipamiento
+    int id_equipamiento = _modelo_orden->obtenerIdEquipamientoSegunId( id_orden_trabajo );
+    if( !_modelo_equipamiento->existe( id_equipamiento ) ) {
+        QMessageBox::critical( this, "Error", "El equipamiento relacionado no existe!" );
+        return;
+    }
+    _modelo_equipamiento->cargarDatos( id_equipamiento );
+    LEEquipamientoDescripcion->setText( _modelo_equipamiento->descripcion() );
+    //CBEquipamientoMarca->setCurrentText( _modelo_equipamiento->marca() ); /// @TODO Ver como resolver esto
+    LEEquipamientoModelo->setText( _modelo_equipamiento->modelo() );
+    LEEquipamientoNumeroSerie->setText( _modelo_equipamiento->numeroSerie() );
+    PTEEquipamientoObservaciones->setPlainText( _modelo_equipamiento->observaciones() );
+    CkBEquipamientoGarantia->setChecked( _modelo_equipamiento->enGarantia() );
 }
 
 /**

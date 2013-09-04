@@ -36,15 +36,15 @@
    <item row="1" column="0">
     <widget class="QToolBox" name="TBGeneral">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="PBasico">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>542</width>
-        <height>435</height>
+        <width>579</width>
+        <height>421</height>
        </rect>
       </property>
       <attribute name="label">
@@ -208,8 +208,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>333</width>
-        <height>178</height>
+        <width>521</width>
+        <height>434</height>
        </rect>
       </property>
       <attribute name="label">
@@ -219,14 +219,14 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="LEquipamientoDescripcion">
            <property name="text">
             <string>Descripcion:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_2"/>
+          <widget class="QLineEdit" name="LEEquipamientoDescripcion"/>
          </item>
         </layout>
        </item>
@@ -235,42 +235,42 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="LEquipamientoMarca">
              <property name="text">
               <string>Marca:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox"/>
+            <widget class="QComboBox" name="CBEquipamientoMarca"/>
            </item>
           </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="LEquipamientoModelo">
              <property name="text">
               <string>Modelo</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit"/>
+            <widget class="QLineEdit" name="LEEquipamientoModelo"/>
            </item>
           </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="LEquipamientoNumeroSerie">
              <property name="text">
               <string>Nº de Serie:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3"/>
+            <widget class="QLineEdit" name="LEEquipamientoNumeroSerie"/>
            </item>
           </layout>
          </item>
@@ -279,21 +279,21 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="CkBEquipamientoGarantia">
            <property name="text">
             <string>En garantía</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="LEquipamientoFactura">
            <property name="text">
             <string>Nº de Factura:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="LEquipamientoFechaFactura">
            <property name="text">
             <string>Fecha de Factura</string>
            </property>
@@ -304,14 +304,14 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_11">
          <item>
-          <widget class="QLabel" name="label_8">
+          <widget class="QLabel" name="LEquipamientoObservaciones">
            <property name="text">
             <string>Observaciones:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPlainTextEdit" name="plainTextEdit">
+          <widget class="QPlainTextEdit" name="PTEEquipamientoObservaciones">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -342,8 +342,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>374</width>
-        <height>114</height>
+        <width>521</width>
+        <height>434</height>
        </rect>
       </property>
       <attribute name="label">
@@ -398,8 +398,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>254</width>
-        <height>114</height>
+        <width>521</width>
+        <height>434</height>
        </rect>
       </property>
       <attribute name="label">
