@@ -18,6 +18,8 @@ FormEquipamiento::FormEquipamiento( QWidget *parent ) :
   _editar = false;
   _mequipamiento = 0;
 
+  CBMarca->setEditable( true );
+
   addAction( new EActGuardar( this ) );
   addAction( new EActCerrar( this ) );
 }
