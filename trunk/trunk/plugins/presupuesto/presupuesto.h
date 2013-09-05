@@ -55,6 +55,7 @@ public:
     bool verificarTablas( QStringList tablas );
     void crearToolBar( QToolBar *t );
     QAction *botonPantallaInicial() { return ActNuevoPresu; }
+    void crearAccionesGlobales(QMainWindow *){}
 
 private:
     QList<QAction *> _acciones;

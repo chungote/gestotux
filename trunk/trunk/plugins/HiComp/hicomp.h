@@ -57,6 +57,7 @@ public:
     QAction *botonPantallaInicial();
     QString reporte( int );
     void reporteParametros(int tipo, QString &nombre, ParameterList &parametros);
+    void crearAccionesGlobales(QMainWindow *);
 
 private:
     QAction *ActPagarRecibo;

@@ -47,6 +47,7 @@ public:
     void crearMenu( QMenuBar* m );
     void crearToolBar( QToolBar* t );
     QAction *botonPantallaInicial() { return new QAction( this ); }
+    void crearAccionesGlobales(QMainWindow *){}
 
 signals:
     void agregarVentana(QWidget* v);

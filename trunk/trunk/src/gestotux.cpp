@@ -165,7 +165,10 @@ void gestotux::createMenus()
  menuHer->addAction( ActClientes );
 
  foreach( EPlugin *plug , ERegistroPlugins::getInstancia()->pluginsPunteros() )
- { plug->crearMenu( menuBar() ); }
+ {
+     plug->crearMenu( menuBar() );
+     plug->crearAccionesGlobales( this );
+ }
 
  menuAyuda = menuBar()->addMenu( "A&yuda" );
  menuAyuda->setObjectName( "menuAyuda" );

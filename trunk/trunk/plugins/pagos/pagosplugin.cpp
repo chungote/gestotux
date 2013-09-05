@@ -31,7 +31,7 @@ bool PagosPlugin::inicializar()
  ActPagos = new QAction( "Lista de pagos", this );
  ActPagos->setStatusTip( "Visualiza todos los pagos echos recientemente" );
  ActPagos->setIcon( QIcon( ":/imagenes/recibo.png" ) );
- ActPagos->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_R ) );
+ //ActPagos->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_R ) );
  connect( ActPagos, SIGNAL( triggered() ), this, SLOT( verPagos() ) );
 
  ActAgregarRecibo = new QAction( "Agregar Recibo", this );

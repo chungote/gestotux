@@ -43,6 +43,7 @@ public:
     void crearMenu(QMenuBar* m);
     void crearToolBar(QToolBar* t);
     QAction *botonPantallaInicial() { return ActCompras; }
+    void crearAccionesGlobales(QMainWindow *){}
 
 signals:
     void agregarVentana(QWidget* v);

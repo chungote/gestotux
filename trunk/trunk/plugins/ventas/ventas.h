@@ -54,6 +54,7 @@ public:
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
     QAction *botonPantallaInicial() { return ActAgregarVentas; }
+    void crearAccionesGlobales(QMainWindow *){}
 
 signals:
     void agregarVentana( QWidget * );

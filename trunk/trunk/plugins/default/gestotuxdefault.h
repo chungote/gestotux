@@ -55,6 +55,7 @@ public:
     QAction *botonPantallaInicial();
     QString reporte( int tipo );
     void reporteParametros( int tipo, QString &nombre, ParameterList &parametros );
+    void crearAccionesGlobales(QMainWindow *){}
 
 signals:
     void agregarVentana(QWidget* v);
