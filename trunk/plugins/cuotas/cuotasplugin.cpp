@@ -3,6 +3,7 @@
 #include <QMenuBar>
 #include <QSqlDatabase>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "vplancuotas.h"
 #include "formprefcaja.h"
@@ -62,7 +63,7 @@ bool CuotasPlugin::inicializar()
  ActResumenCuotas->setText( "Resumen de cuotas" );
  ActResumenCuotas->setStatusTip( "Muestra un resumen de los estados de todas las cuotas" );
  ActResumenCuotas->setIcon( QIcon( ":/imagenes/resumen_cuotas.png" ) );
- connect( ActSimular, SIGNAL( triggered() ), this, SLOT( resumenCuotas() ) );
+ connect( ActResumenCuotas, SIGNAL( triggered() ), this, SLOT( resumenCuotas() ) );
 
  ActSep = new QAction( this );
  ActSep->setSeparator( true );
@@ -104,8 +105,6 @@ void CuotasPlugin::crearMenu( QMenuBar *m )
      menuCuotas->addAction( ActVerCuotas );
      menuCuotas->addAction( ActGenerarComprobantes );
      menuCuotas->addAction( ActSimular );
-     /*menuCuotas->addAction( ActSep );
-     menuCuotas->addAction( ActResumenCuotas );*/
 }
 
 
@@ -179,13 +178,18 @@ void CuotasPlugin::verCuotas()
 void CuotasPlugin::simularCuotas()
 { emit agregarVentana( new FormSimularCuotas() ); }
 
+#include "EReporte.h"
 /**
  * @brief CuotasPlugin::resumenCuotas
  * Slot que llama al resumen de estados de cuotas
  */
 void CuotasPlugin::resumenCuotas()
 {
-
+    /*EReporte *rep = new EReporte( 0 );
+    rep->especial( "ResumenCuotas", ParameterList() );
+    rep->hacer();
+    delete rep;*/
+    QMessageBox::information( 0, "Error", "Resumen de cuota" );
 }
 
 Q_EXPORT_PLUGIN2( Cuotas, CuotasPlugin )

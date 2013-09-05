@@ -28,7 +28,7 @@ bool GananciaVenta::inicializar()
     connect( ActResumenFechas, SIGNAL( triggered() ), this, SLOT( hacerResumenFechas() ) );
 
     ActResumenDia = new QAction( this );
-    ActResumenDia->setText( "Ganancias del día" );
+    ActResumenDia->setText( QString::fromUtf8( "Ganancias del día" ) );
     ActResumenDia->setToolTip( "Genera un resumen del día de hoy" );
     connect( ActResumenDia, SIGNAL( triggered() ), this, SLOT( hacerResumenDia() ) );
 
