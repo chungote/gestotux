@@ -144,7 +144,6 @@ FormPantallaInicial::FormPantallaInicial(QWidget *parent) :
     if( ERegistroPlugins::getInstancia()->existePlugin( "pagos" ) ) {
         TBRecibos->setIcon( ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial()->icon() );
         connect( TBRecibos, SIGNAL( clicked() ), ERegistroPlugins::getInstancia()->plugin("pagos")->botonPantallaInicial(), SIGNAL(triggered()) );
-        TBRecibos->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_R ) );
         TBRecibos->setStatusTip( "Muestra la ventana para emitir un nuevo recibo ( Shift + R )" );
     } else {
         TBRecibos->setVisible( false );

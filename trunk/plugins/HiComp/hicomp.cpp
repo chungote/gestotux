@@ -29,6 +29,8 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QMainWindow>
+#include <QShortcut>
 
 #include "EReporte.h"
 
@@ -64,6 +66,7 @@ bool HiComp::inicializar()
  ActPagarRecibo = new QAction( "Pagar Recibos", this );
  ActPagarRecibo->setToolTip( "Abre la ventana de dialogo para pagar un recibo ya emitido" );
  //ActPagarRecibo->setIcon( QIcon( ":/imagenes/anteriores.png" ) );
+ ActPagarRecibo->setShortcut( QKeySequence( "Shift + R" ) );
  connect( ActPagarRecibo, SIGNAL( triggered() ), this, SLOT( pagarRecibosEmitidos() ) );
 
  ActVerImpagos = new QAction( "Ver recibos impagos", this );
@@ -204,5 +207,12 @@ QString HiComp::reporte( int tipo ) {
 
 void HiComp::reporteParametros(int /*tipo*/, QString &/*nombre*/, ParameterList &/*parametros*/)
 {}
+
+void HiComp::crearAccionesGlobales( QMainWindow *ventana )
+{
+    QShortcut *menu = new QShortcut( Qt::SHIFT + Qt::Key_R, ventana );
+    menu->setContext( Qt::ApplicationShortcut );
+    connect( menu, SIGNAL( activated() ), this, SLOT( pagarRecibosEmitidos() ) );
+}
 
 Q_EXPORT_PLUGIN2(hicomp, HiComp )

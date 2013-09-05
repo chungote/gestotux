@@ -45,6 +45,7 @@ public:
      void crearMenu(QMenuBar* m);
      void crearToolBar(QToolBar* t);
      QAction *botonPantallaInicial() { return ActGastos; }
+     void crearAccionesGlobales(QMainWindow *){}
 
 private:
     QAction *ActAgregarGasto;

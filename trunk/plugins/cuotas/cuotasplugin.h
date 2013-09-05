@@ -30,6 +30,7 @@ class CuotasPlugin : public QObject, public EPlugin
         void crearToolBar( QToolBar *t );
         bool publicidad() { return true; }
         QAction *botonPantallaInicial() { return ActVerCuotas; }
+        void crearAccionesGlobales(QMainWindow *){}
 
     public slots:
         void seCierraGestotux();

@@ -66,6 +66,8 @@ public:
     virtual void agregarDockWidget( Qt::DockWidgetArea area, QDockWidget *ventana ) = 0;
     // Funcion para el boton de la pantalla inicial
     virtual QAction *botonPantallaInicial() = 0;
+
+    virtual void crearAccionesGlobales( QMainWindow * ) = 0;
 };
 
 Q_DECLARE_INTERFACE( EPlugin,

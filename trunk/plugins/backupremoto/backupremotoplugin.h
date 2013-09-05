@@ -45,6 +45,7 @@ public:
     double version() const;
     void crearToolBar( QToolBar *t );
     QAction *botonPantallaInicial();
+    void crearAccionesGlobales(QMainWindow *){};
 
 private:
     QAction *ActBackup;

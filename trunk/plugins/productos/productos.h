@@ -45,6 +45,7 @@ public:
     void crearToolBar( QToolBar *t );
     bool publicidad() { return true; }
     QAction *botonPantallaInicial() { return ActProductos; }
+    void crearAccionesGlobales(QMainWindow *){}
 
 private:
     QList<QAction *> _acciones;
