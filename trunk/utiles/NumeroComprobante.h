@@ -41,6 +41,8 @@ public:
     bool esValido() const;
     void siguienteNumero();
     bool desdeString( const QString original );
+    void deNumero( const int numero );
+    int aNumero();
 
 private:
    /*!

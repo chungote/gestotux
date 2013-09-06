@@ -162,3 +162,19 @@ bool NumeroComprobante::desdeString( const QString original ) {
     _dato.second = lista.last().toInt();
     return true;
 }
+
+void NumeroComprobante::deNumero( const int numero )
+{
+    if( numero > (10*CANT_DIGITOS)-1 ) {
+        this->_dato.first++;
+        this->deNumero( numero - ( (10*CANT_DIGITOS)-1 ) );
+    } else {
+        this->_dato.second = numero;
+    }
+}
+
+int NumeroComprobante::aNumero()
+{
+    return (this->_dato.first*((10*CANT_DIGITOS)-1) )+this->_dato.second;
+    /// @TODO revisar esta transformación
+}
