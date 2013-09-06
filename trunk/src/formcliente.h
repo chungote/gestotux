@@ -37,6 +37,7 @@ class FormCliente : public EVentana, private Ui::FormClienteBase
     public:
         FormCliente ( QWidget* parent = 0, QSqlRelationalTableModel *modelo = 0,  Qt::WFlags fl = 0 );
         void setearCliente( QModelIndex &indice );
+        void setearCliente( int id_cliente );
         void agregar();
 
     signals:

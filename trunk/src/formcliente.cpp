@@ -292,7 +292,14 @@ void FormCliente::setearCliente( QModelIndex &indice )
     // Cargo todos los datos del cliente.
     mapa->setCurrentIndex( indice.row() );
     _agregando = false;
- }
+}
+
+void FormCliente::setearCliente( int id_cliente )
+{
+    qWarning() << "No implementado!";
+    this->close();
+    return;
+}
 
 
 /*!
