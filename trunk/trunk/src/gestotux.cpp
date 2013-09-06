@@ -44,6 +44,7 @@
 #include "version.h"
 #include "eregistroplugins.h"
 #include "FormPantallaInicial.h"
+#include "formcliente.h"
 
 
 FormularioCentral *gestotux::formCentral = 0;
@@ -457,6 +458,17 @@ void gestotux::agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana )
 {
     ventana->setParent( this );
     this->addDockWidget( area, ventana );
+}
+
+/*!
+ * \brief gestotux::editarCliente
+ * \param id_cliente
+ */
+void gestotux::editarCliente(int id_cliente)
+{
+    FormCliente *form = new FormCliente( this );
+    form->setearCliente( id_cliente );
+    formCen()->agregarForm( form );
 }
 
 /*!

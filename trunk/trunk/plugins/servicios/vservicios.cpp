@@ -237,6 +237,7 @@ void VServicios::darAltaServicioCliente()
  }
  FormAsociarServicioCliente *f = new FormAsociarServicioCliente( this, FormAsociarServicioCliente::Cliente );
  f->setIdServicio( id_servicio );
+ connect( f, SIGNAL( editarCliente( int ) ), this, SIGNAL( editarCliente( int ) ) );
  f->exec();
 }
 

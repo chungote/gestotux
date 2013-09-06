@@ -55,6 +55,9 @@ protected:
 protected slots:
     void modificar();
 
+signals:
+    void editarCliente( int );
+
 private:
     QModelIndex indiceMenu;
     QAction *ActRecargos;

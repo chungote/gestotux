@@ -132,7 +132,7 @@ bool hacerTablas( QString nombrePlug )
  * \fn generarInterconexiones()
  * Genera las interconexiones entre plugins
  */
-void generarInterconexiones()
+void generarInterconexiones( QMainWindow *ventana_principal )
 {
     ERegistroPlugins *egp = ERegistroPlugins::getInstancia();
     if( egp->existePlugin( "presupuesto" ) && egp->existePlugin( "ventas" ) ) {
@@ -192,6 +192,12 @@ void generarInterconexiones()
                          SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ),
                          egp->pluginQObject( "cuotas" ),
                          SLOT( planCuotasSetearIdFactura( int, int ) ) );
+    }
+    if( egp->existePlugin( "servicios" ) ) {
+        QObject::connect( egp->pluginQObject( "servicios" ),
+                          SIGNAL( editarCliente( int ) ),
+                          ventana_principal,
+                          SLOT( editarCliente( int ) ) );
     }
 }
 
@@ -461,7 +467,6 @@ int main(int argc, char *argv[])
                         qWarning( loader.errorString().toLocal8Bit() );
                  }
              }
-        generarInterconexiones();
         /////////////////////////////////////////////////////////////////////////////////////////////////
         p->beginGroup( "General" );
         if ( !p->value( "splash", false ).toBool() )
@@ -478,6 +483,7 @@ int main(int argc, char *argv[])
 
         mw->inicializar();
         if( maximizar ) { mw->showMaximized(); }
+        generarInterconexiones( mw );
         int ret = app.exec();
         QStringList list = QSqlDatabase::connectionNames();
         for(int i = 0; i < list.count(); ++i) {

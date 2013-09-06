@@ -62,6 +62,9 @@ private slots:
     void reject();
     void accept();
 
+signals:
+    void editarCliente( int );
+
 private:
    /*!
     * Guarda el identificador del cliente

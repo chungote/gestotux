@@ -63,6 +63,7 @@ public slots:
       void verPreferencias();
       void verBackup();
       void agregarDock( Qt::DockWidgetArea area, QDockWidget *ventana );
+      void editarCliente( int id_cliente );
 
 protected slots:
       void salir();
