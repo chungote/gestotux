@@ -10,6 +10,7 @@ class MHistorialOrdenTrabajo : public QSqlRelationalTableModel
     Q_OBJECT
 public:
     MHistorialOrdenTrabajo( QObject *parent = 0 );
+    QVariant data( const QModelIndex &item, int role ) const;
     
     static bool agregarHistorial( const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico );
 
@@ -18,7 +19,7 @@ public:
 
 private:
     bool _mostrar_suma_costos;
-    QHash<int,double> _sumas;
+    QMap<int,double> _sumas;
     int _id_orden_trabajo;
 };
 
