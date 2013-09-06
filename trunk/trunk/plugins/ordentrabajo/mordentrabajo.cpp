@@ -39,7 +39,24 @@ bool MOrdenTrabajo::tieneDatosRelacionados( const int /* id_orden_trabajo */ )
  */
 NumeroComprobante MOrdenTrabajo::numeroComprobanteProximo()
 {
-    return NumeroComprobante( 0, 0, 0 );
+    QSqlQuery cola;
+    if( cola.exec( "SELECT MAX(id_orden_trabajo) FROM orden_trabajo" ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                NumeroComprobante temp( 0, 0, 1 );
+                temp.deNumero( cola.record().value(0).toInt() );
+                temp.siguienteNumero();
+                return temp;
+            }
+        } else {
+            return NumeroComprobante( 0, 0, 1 );
+        }
+    } else {
+        qDebug() << "Error al intentar ejecutar la cola de averiguación de numero de comprobante proximo de una orden de trabajo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return NumeroComprobante( 0, -1, -1 );
 }
 
 /*!
@@ -49,6 +66,24 @@ NumeroComprobante MOrdenTrabajo::numeroComprobanteProximo()
  */
 NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId( const int id_orden )
 {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_orden_trabajo FROM orden_trabajo WHERE id_orden = %1" ).arg( id_orden ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                NumeroComprobante temp( 0, 0, 1 );
+                temp.deNumero( cola.record().value(0).toInt() );
+                return temp;
+            }
+        } else {
+            qDebug() << "Error al intentar hacer next de la cola de averiguación de numero de comprobante de una orden de trabajo";
+            qDebug() << cola.lastQuery();
+        }
+    } else {
+        qDebug() << "Error al intentar ejecutar la cola de averiguación de numero de comprobante segun id de una orden de trabajo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return NumeroComprobante( 0, -1, -1 );
 }
 
 /*!
@@ -56,17 +91,35 @@ NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId( const int id_orden )
  * \param num
  * \return
  */
-int MOrdenTrabajo::idSegunNumeroComprobante(NumeroComprobante num)
+int MOrdenTrabajo::idSegunNumeroComprobante( NumeroComprobante num )
 {
+    return num.aNumero();
 }
 
 /*!
  * \brief MOrdenTrabajo::obtenerIdEquipamientoSegunId
- * \param id_orden
- * \return
+ * Se obtiene el identificador de equiapamiento asociado con la orde pasada como parametro
+ * \param id_orden Identificador de la orden
+ * \return Identificador del equipamiento o -1 si hubo error
  */
-int MOrdenTrabajo::obtenerIdEquipamientoSegunId(const int id_orden)
+int MOrdenTrabajo::obtenerIdEquipamientoSegunId( const int id_orden )
 {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_equipamiento FROM orden_trabajo WHERE id_orden = %1" ).arg( id_orden ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return cola.record().value(0).toInt();
+            }
+        } else {
+            qDebug() << "Error al intentar cargar los datos de una orden de trabajo";
+            qDebug() << cola.lastQuery();
+        }
+    } else {
+        qDebug() << "Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return -1;
 }
 
 /*!

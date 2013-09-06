@@ -31,6 +31,7 @@
 #include <QDate>
 #include <QSqlQuery>
 #include <QSqlDatabase>
+#include <QDebug>
 
 MCompra::MCompra(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
@@ -94,7 +95,7 @@ bool MCompra::agregarCompra( QVariant fecha, QVariant proveedor, double total, b
  if( !insertRecord( -1, regCompra ) )
  {
   qDebug( "Error de insercion de registro de compra" );
-  qDebug( QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() ).toLocal8Bit() );
+  qDebug() << QString( "Detalles: tipo: %1, errno: %2, descripcion: %3" ).arg( lastError().type() ).arg( lastError().number() ).arg( lastError().text() );
   return false;
  }
  else
@@ -137,8 +138,8 @@ bool MCompra::modificarCompra(const int id_compra, QDate fecha, int proveedor, d
         } else {
             qWarning( "Error al buscar el importe de la compra seleccionada" );
             qDebug( "Error al ejecutar la cola de busqueda de importe del registro de compra para comparar al modificar" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
             return false;
         }
@@ -276,8 +277,8 @@ bool MCompra::eliminarCompra( int id_compra )
  if( !cola.exec( QString( "SELECT total, contado FROM compras WHERE id = %1" ).arg( id_compra ) ) ) {
      qWarning( "Error al buscar el importe de la compra seleccionada" );
      qDebug( "Error al ejecutar la cola de busqueda de importe del registro de compra" );
-     qDebug( cola.lastError().text().toLocal8Bit() );
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug() << cola.lastError().text();
+     qDebug() << cola.lastQuery();
      QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
      return false;
  } else {
@@ -313,7 +314,7 @@ bool MCompra::eliminarCompra( int id_compra )
          int id_producto = cola.record().value(0).toInt();
          int cantidad = cola.record().value(1).toDouble();
          if( !MProductos::modificarStock( id_producto, (-1) * cantidad ) ) {
-             qDebug( QString( "No se pudo ajustar el stock del producto comprado, id = %1" ).arg( id_producto ).toLocal8Bit() );
+             qDebug() << QString( "No se pudo ajustar el stock del producto comprado, id = %1" ).arg( id_producto );
              QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
              return false;
          }
@@ -321,8 +322,8 @@ bool MCompra::eliminarCompra( int id_compra )
  } else {
      qWarning( "No se pudo consultar los productos de la compra" );
      qDebug( "Error al ejecutar la cola de consulta de productos de compra" );
-     qDebug( cola.lastError().text().toLocal8Bit() );
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug() << cola.lastError().text();
+     qDebug() << cola.lastQuery();
      QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
      return false;
  }
@@ -330,8 +331,8 @@ bool MCompra::eliminarCompra( int id_compra )
  if( !cola.exec( QString( "DELETE FROM compras_productos WHERE id_compra = %1" ).arg( id_compra ) ) ) {
      qWarning( "No se pudo eliminar los productos de la compra" );
      qDebug( "Error al ejecutar la cola de eliminación de registros de productos de compra" );
-     qDebug( cola.lastError().text().toLocal8Bit() );
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug() << cola.lastError().text();
+     qDebug() << cola.lastQuery();
      QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
      return false;
  }
@@ -339,8 +340,8 @@ bool MCompra::eliminarCompra( int id_compra )
  if( !cola.exec( QString( "DELETE FROM compras WHERE id = %1" ).arg( id_compra ) ) ) {
      qWarning( "No se pudo eliminar el registro de la compra" );
      qDebug( "Error al ejecutar la cola de eliminación de registro de compra" );
-     qDebug( cola.lastError().text().toLocal8Bit() );
-     qDebug( cola.lastQuery().toLocal8Bit() );
+     qDebug() << cola.lastError().text();
+     qDebug() << cola.lastQuery();
      QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
      return false;
  }
@@ -360,8 +361,8 @@ QDate MCompra::obtenerFechaMinimaCompra()
             return cola.record().value(0).toDate();
     } else {
         qWarning( "Error al buscar el minimo de compra fecha" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QDate( 1900, 1, 1 );
 }
@@ -379,8 +380,8 @@ QDate MCompra::obtenerFechaMaximaCompra()
             return cola.record().value(0).toDate();
     } else {
         qWarning( "Error al buscar el minimo de compra fecha" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return QDate( 1900, 1, 1 );
 }
