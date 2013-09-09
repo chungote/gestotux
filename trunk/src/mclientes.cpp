@@ -108,13 +108,13 @@ QString MClientes::direccionEntera(int id_cliente) {
             }*/
             return ret;
         } else {
-            qDebug( "Error haciendo next en la cola para obtener la direcicon de un cliente");
-            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug() << "Error haciendo next en la cola para obtener la direcicon de un cliente";
+            qDebug() << cola.lastError().text();
             return "Desconocido";
         }
     } else {
-        qDebug( "Error haciendo exec en la cola para obtener la direccion de un cliente");
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "Error haciendo exec en la cola para obtener la direccion de un cliente";
+        qDebug() << cola.lastError().text();
         return "Desconocido";
     }
 }
@@ -150,9 +150,9 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
          return true;
       }
   } else {
-      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes";
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   /////////////////////////////////////////////////////
   // Presupuestos
@@ -163,9 +163,9 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
           return true;
       }
   } else {
-      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en los presupuestos" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << "Error al ejecutar la cola de contar la cantidad de clientes que hay en los presupuestos";
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   /////////////////////////////////////////////////////
   // Factura
@@ -176,9 +176,9 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
           return true;
       }
   } else {
-      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las facturas" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << "Error al ejecutar la cola de contar la cantidad de clientes que hay en las facturas";
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   /////////////////////////////////////////////////////
   // Recibos
@@ -189,9 +189,9 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
           return true;
       }
   } else {
-      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes";
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   /////////////////////////////////////////////////////
   // Servicios Asociados
@@ -202,9 +202,9 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
           return true;
       }
   } else {
-      qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
-      qDebug( cola.lastError().text().toLocal8Bit() );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes";
+      qDebug() << cola.lastError().text();
+      qDebug() << cola.lastQuery();
   }
   // Si llego hasta aca no hay datos relacionados
   return false;
@@ -294,7 +294,7 @@ QString MClientes::getRazonSocial( const int id_cliente )
       if( cola.next() ) {
           return cola.record().value(0).toString();
       } else {
-          qDebug( "Error al hacer next en la cola de averiguacion de razonsocial de clientes" );
+          qDebug() << "Error al hacer next en la cola de averiguacion de razonsocial de clientes";
           qDebug() << cola.lastQuery();
       }
   } else {
@@ -320,7 +320,7 @@ bool MClientes::existe( QString razon_social, QString /*nombre*/ ) {
         if( cola.record().value(0).toInt() != 0 )
                 return true;
     } else {
-        qDebug( "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes" );
+        qDebug() << "Error al ejecutar la cola de contar la cantidad de clientes que hay en las cuentas corrientes";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
     }
