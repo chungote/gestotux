@@ -19,6 +19,8 @@ public:
 
     int obtenerIdEquipamientoSegunId( const int id_orden );
 
+    bool cambiarTecnico( const int id_orden_trabajo, const int id_tecnico );
+
     void cargarDatos( const int id_orden );
     int idCliente() { return _data.value("id_cliente").toInt(); }
     int idTecnico() { return _data.value("id_tecnico").toInt(); }

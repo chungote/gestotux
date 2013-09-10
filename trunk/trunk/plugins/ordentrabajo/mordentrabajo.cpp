@@ -123,6 +123,26 @@ int MOrdenTrabajo::obtenerIdEquipamientoSegunId( const int id_orden )
 }
 
 /*!
+ * \brief MOrdenTrabajo::cambiarTecnico
+ * Cambia el tecnico de una orden de trabajo.
+ * \param id_orden_trabajo Identificador de orden de trabajo
+ * \param id_tecnico identificador del técnico.
+ * \return Verdadero si el cambio fue correcto.
+ */
+bool MOrdenTrabajo::cambiarTecnico(const int id_orden_trabajo, const int id_tecnico)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "UPDATE orden_trabajo SET id_tecnico = %1 WHERE id_orden = %2" ).arg( id_tecnico ).arg( id_orden_trabajo ) ) ) {
+        return true;
+    } else {
+        qDebug() << "Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return false;
+}
+
+/*!
  * \brief MOrdenTrabajo::cargarDatos
  * Carga los datos de una orden de trabajo pasada como parametro.
  * \param id_orden IDentificador de la orden de trabajo a cargar.

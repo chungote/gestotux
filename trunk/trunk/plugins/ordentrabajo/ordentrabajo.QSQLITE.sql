@@ -8,3 +8,6 @@ INSERT OR IGNORE INTO "sqlite_sequence" ( "name", "seq" ) VALUES ( 'tipo_operaci
 INSERT OR IGNORE INTO "sqlite_sequence" ( "name", "seq" ) VALUES ( 'equipamiento', '1' );
 INSERT OR IGNORE INTO "sqlite_sequence" ( "name", "seq" ) VALUES ( 'operacion_orden_trabajo', '1' );
 INSERT OR IGNORE INTO "sqlite_sequence" ( "name", "seq" ) VALUES ( 'orden_trabajo', '1' );
+INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 1, "Cambio de Técnico" );
+INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 2, "Cambio de Cliente" );
+INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 3, "Cambio de Equipamiento" );

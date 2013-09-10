@@ -6,7 +6,15 @@
 class MTipoOperacionOrdenTrabajo : public QSqlTableModel
 {
     Q_OBJECT
+
 public:
+
+    enum TipoOperacionOrdenTrabajo {
+        CambioTecnico = 1,
+        CambioCliente = 2,
+        CambioEquipamiento = 3
+    };
+
     MTipoOperacionOrdenTrabajo(QObject *parent = 0);
     
     static bool existe( const QString nombre );

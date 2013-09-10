@@ -2,10 +2,12 @@
 
 #include <QDateTime>
 #include <QMessageBox>
+#include <QInputDialog>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
 #include "mordentrabajo.h"
+#include "mtipooperacionordentrabajo.h"
 
 FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
     EVentana( parent ), FormOrdenTrabajoBase(), _agregando(agregar)
@@ -79,6 +81,8 @@ FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
  */
 void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
 {
+    if( id_orden_trabajo <= 0 ) { return; }
+    _id_orden_trabajo = id_orden_trabajo;
     _agregando = false;
     TBGeneral->setItemEnabled( 2, true );
     TBGeneral->setItemEnabled( 3, true );
@@ -144,7 +148,22 @@ void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
 {
     if( id_tecnico <= 0 ) { return; }
     if( !_agregando ) {
-        /// @TODO: Agregar registro de cambio de técnico.
+        bool ok = false;
+        QString razon = QInputDialog::getText( this, "Dato necesario", "Ingrese razón de cambio de técnico", QLineEdit::Normal, QString(), &ok );
+        if( ok && !razon.isEmpty() ) {
+            // Busco el técnico actual
+            int id_tecnico_actual = _modelo_orden->idTecnico();
+            if( _modelo_historial->agregarHistorial( _id_orden_trabajo,
+                                                     QDateTime::currentDateTime(),
+                                                     QString( "Cambio de técnico responsable. Razón: %1" ).arg( razon ),
+                                                     0.0,
+                                                     MTipoOperacionOrdenTrabajo::CambioTecnico,
+                                                     id_tecnico_actual )
+                && _modelo_orden->cambiarTecnico( _id_orden_trabajo, id_tecnico ) ) {
+                QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico fue cambiado correctamente" ) );
+                return;
+            }
+        }
     }
 }
 
