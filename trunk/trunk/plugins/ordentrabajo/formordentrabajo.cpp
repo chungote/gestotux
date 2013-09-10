@@ -185,6 +185,7 @@ void FormOrdenTrabajo::devolverCliente()
 
 /*!
  * \brief FormOrdenTrabajo::agregarFacturacion
+ * Agrega la facturación de algun item a la orden de trabajo a futuro.
  */
 void FormOrdenTrabajo::agregarFacturacion()
 {

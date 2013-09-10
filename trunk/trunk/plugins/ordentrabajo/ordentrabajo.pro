@@ -34,7 +34,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     formequipamiento.cpp \
     mordentrabajo.cpp \
     vordentrabajo.cpp \
-    mhistorialordentrabajo.cpp
+    mhistorialordentrabajo.cpp \
+    dhistorialordentrabajo.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
@@ -48,7 +49,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     formequipamiento.h \
     mordentrabajo.h \
     vordentrabajo.h \
-    mhistorialordentrabajo.h
+    mhistorialordentrabajo.h \
+    dhistorialordentrabajo.h
 
 RESOURCES += ordentrabajo.qrc
 
@@ -56,7 +58,8 @@ OTHER_FILES += ordentrabajo.QMYSQL.sql \
                ordentrabajo.QSQLITE.sql
 
 FORMS += formordentrabajobase.ui \
-    formequipamientobase.ui
+    formequipamientobase.ui \
+    dhistorialordentrabajo.ui
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
