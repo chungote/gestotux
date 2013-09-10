@@ -70,6 +70,7 @@ FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
     } else {
         _modelo_historial_facturacion->mostrarCostosSumados();
     }
+
 }
 
 /*!
@@ -106,13 +107,11 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
         return;
     }
     _modelo_equipamiento->cargarDatos( id_equipamiento );
-    LEEquipamientoDescripcion->setText( _modelo_equipamiento->descripcion() );
-    //CBEquipamientoMarca->setCurrentText( _modelo_equipamiento->marca() ); /// @TODO Ver como resolver esto
-    LEEquipamientoModelo->setText( _modelo_equipamiento->modelo() );
-    LEEquipamientoNumeroSerie->setText( _modelo_equipamiento->numeroSerie() );
-    PTEEquipamientoObservaciones->setPlainText( _modelo_equipamiento->observaciones() );
-    CkBEquipamientoGarantia->setChecked( _modelo_equipamiento->enGarantia() );
+    cargarDatosEquipamiento();
+
 }
+
+
 
 /**
  * @brief FormOrdenTrabajo::cambioCliente
@@ -123,9 +122,17 @@ void FormOrdenTrabajo::cambioCliente( int id_cliente )
 {
     if( id_cliente <= 0 ) { return; }
     if( _agregando ) {
-        /// @TODO Si está agregando, cargar el Equipamiento que exista para el cliente ( si es solo uno )
+        // Ingreso el primer equipamiento del cliente
+        if( _modelo_equipamiento->existeEquipamientoParaCliente( id_cliente ) ) {
+            if( _modelo_equipamiento->cantidadEquipamientoParaCliente( id_cliente ) == 1 ) {
+                _modelo_equipamiento->cargarDatos( _modelo_equipamiento->buscarIdEquipamientoSegunCliente( id_cliente ) );
+                cargarDatosEquipamiento();
+            } else {
+                /// @TODO: Mostrar las opciones para elegir el equipamiento
+            }
+        }
     } else {
-        /// @TODO Agregar registro de cambio de cliente asignado
+        /// @TODO: Agregar registro de cambio de cliente asignado
     }
 }
 
@@ -136,10 +143,8 @@ void FormOrdenTrabajo::cambioCliente( int id_cliente )
 void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
 {
     if( id_tecnico <= 0 ) { return; }
-    if( _agregando ) {
-
-    } else {
-        /// @TODO Agregar registro de cambio de técnico.
+    if( !_agregando ) {
+        /// @TODO: Agregar registro de cambio de técnico.
     }
 }
 
@@ -148,7 +153,7 @@ void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
  */
 void FormOrdenTrabajo::cerrarOrden()
 {
-
+    /// @TODO: Agregar cierre de orden
 }
 
 /*!
@@ -156,7 +161,7 @@ void FormOrdenTrabajo::cerrarOrden()
  */
 void FormOrdenTrabajo::devolverCliente()
 {
-
+    /// @TODO: Agregar devolución al cliente
 }
 
 /*!
@@ -164,6 +169,7 @@ void FormOrdenTrabajo::devolverCliente()
  */
 void FormOrdenTrabajo::agregarFacturacion()
 {
+    /// @TODO: Agregar facturación parcial
 }
 
 /*!
@@ -171,6 +177,7 @@ void FormOrdenTrabajo::agregarFacturacion()
  */
 void FormOrdenTrabajo::eliminarFacturacion()
 {
+    /// @TODO: Agregar eliminar facturacion
 }
 
 /*!
@@ -178,6 +185,7 @@ void FormOrdenTrabajo::eliminarFacturacion()
  */
 void FormOrdenTrabajo::agregarHistorial()
 {
+    /// @TODO: Agregar agregar historial cualquiera
 }
 
 /*!
@@ -185,6 +193,7 @@ void FormOrdenTrabajo::agregarHistorial()
  */
 void FormOrdenTrabajo::eliminarHistorial()
 {
+    /// @TODO: Agregar eliminar Historial
 }
 
 /*!
@@ -192,6 +201,7 @@ void FormOrdenTrabajo::eliminarHistorial()
  */
 void FormOrdenTrabajo::facturarOrden()
 {
+    /// @TODO: Agregar facturar orden
 }
 
 /*!
@@ -199,6 +209,7 @@ void FormOrdenTrabajo::facturarOrden()
  */
 void FormOrdenTrabajo::imprimir()
 {
+    /// @TODO: Agregar impresion de orden de trabajo
 }
 
 /*!
@@ -206,6 +217,7 @@ void FormOrdenTrabajo::imprimir()
  */
 void FormOrdenTrabajo::pdf()
 {
+    /// @TODO: Agregar creación de pdf de la orden de trabajo
 }
 
 /*!
@@ -213,6 +225,7 @@ void FormOrdenTrabajo::pdf()
  */
 void FormOrdenTrabajo::cancelar()
 {
+    /// @TODO: Agregar cancelación de la orden de trabajo
 }
 
 /*!
@@ -220,6 +233,7 @@ void FormOrdenTrabajo::cancelar()
  */
 void FormOrdenTrabajo::guardar()
 {
+    /// @TODO: Agregar guardado de la orden de trabajo
 }
 
 void FormOrdenTrabajo::changeEvent(QEvent *e)
@@ -232,5 +246,18 @@ void FormOrdenTrabajo::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+/*!
+ * \brief FormOrdenTrabajo::cargarDatosEquipamiento
+ */
+void FormOrdenTrabajo::cargarDatosEquipamiento()
+{
+    LEEquipamientoDescripcion->setText( _modelo_equipamiento->descripcion() );
+    //CBEquipamientoMarca->setCurrentText( _modelo_equipamiento->marca() ); /// @TODO Ver como resolver esto
+    LEEquipamientoModelo->setText( _modelo_equipamiento->modelo() );
+    LEEquipamientoNumeroSerie->setText( _modelo_equipamiento->numeroSerie() );
+    PTEEquipamientoObservaciones->setPlainText( _modelo_equipamiento->observaciones() );
+    CkBEquipamientoGarantia->setChecked( _modelo_equipamiento->enGarantia() );
 }
 

@@ -106,7 +106,7 @@ orQuery::orQuery( const QString &qstrPName, const QString &qstrSQL,
     qryQuery = new XSqlQuery(mql.toQuery(qstrlstParams, _database, doexec));
     if (doexec)
       qryQuery->first();
-    // TODO: actually look for missing parameters?
+    // TODO actually look for missing parameters?
   }
 }
 

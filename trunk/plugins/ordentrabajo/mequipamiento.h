@@ -30,6 +30,10 @@ public:
     bool darDeBaja( const int id_equipamiento, const QString razon, QDateTime fecha = QDateTime::currentDateTime() );
     bool darReAlta( const int id_equipamiento, const QString razon, QDateTime fechahora = QDateTime::currentDateTime() );
 
+    bool existeEquipamientoParaCliente( const int id_cliente );
+    int cantidadEquipamientoParaCliente( const int id_cliente );
+    int buscarIdEquipamientoSegunCliente( const int id_cliente );
+
 private:
     QSqlRecord _datos;
 

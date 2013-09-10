@@ -88,6 +88,78 @@ bool MEquipamiento::darReAlta( const int id_equipamiento, const QString razon, Q
 { return false;
 }
 
+/*!
+ * \brief MEquipamiento::existeEquipamientoParaCliente
+ * Averigua si existe algún equipamiento para el cliente pasado como parametro.
+ * \param id_cliente Identificador del cliente
+ * \return Verdadero si existe al menos uno
+ */
+bool MEquipamiento::existeEquipamientoParaCliente( const int id_cliente )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id_equipamiento) FROM equipamiento WHERE id_cliente = %1" ).arg( id_cliente ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            qDebug() << "Error al hacer next en la cola de averiguación de existencia de equipamiento para un cliente";
+        }
+    } else {
+        qDebug() << "Error al ejecutar la cola de averiguación de existencia de equipamiento para un cliente";
+    }
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
+    return false;
+}
+
+/*!
+ * \brief MEquipamiento::cantidadEquipamientoParaCliente
+ * Devuelve la cantidad de equipamientos designados para un cliente
+ * \param id_cliente Identificador del cliente
+ * \return cantidad de equipamientos declarados o 0 si hubo error
+ */
+int MEquipamiento::cantidadEquipamientoParaCliente( const int id_cliente )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(id_equipamiento) FROM equipamiento WHERE id_cliente = %1" ).arg( id_cliente ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug() << "Error al hacer next en la cola de averiguación de existencia de equipamiento para un cliente";
+        }
+    } else {
+        qDebug() << "Error al ejecutar la cola de averiguación de existencia de equipamiento para un cliente";
+    }
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
+    return 0;
+}
+
+/*!
+ * \brief MEquipamiento::buscarIdEquipamientoSegunCliente
+ * Devuelve el identificador del primer equipamiento dado para un cliente específico.
+ * \param id_cliente Identificador del cliente
+ * \return Identificador del equipamiento o -1 en caso de error
+ */
+int MEquipamiento::buscarIdEquipamientoSegunCliente(const int id_cliente)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_equipamiento FROM equipamiento WHERE id_cliente = %1 LIMIT 1" ).arg( id_cliente ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qDebug() << "Error al hacer next en la cola de averiguación de existencia de equipamiento para un cliente";
+        }
+    } else {
+        qDebug() << "Error al ejecutar la cola de averiguación de existencia de equipamiento para un cliente";
+    }
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
+    return -1;
+}
 
 
 /*!
@@ -107,7 +179,7 @@ Qt::ItemFlags MEquipamiento::flags( const QModelIndex & ) const
 bool MEquipamiento::existe( const int id_equipamiento )
 {
     QSqlQuery cola;
-    if( cola.exec( QString() ) ) {
+    if( cola.exec( QString( "SELECT COUNT(id_equipamiento) FROM equipamiento WHERE id_equipamiento = %1" ).arg( id_equipamiento ) ) ) {
         if( cola.next() ) {
             if( cola.record().value(0).toInt() > 0 ) {
                 return true;
@@ -127,7 +199,8 @@ bool MEquipamiento::existe( const int id_equipamiento )
 
 /*!
  * \brief MEquipamiento::cargarDatos
- * \param id_equipamiento
+ * Carga los datos del equipamiento en el registro interno.
+ * \param id_equipamiento Identificador del equipamiento
  */
 void MEquipamiento::cargarDatos( const int id_equipamiento )
 {
@@ -148,6 +221,7 @@ void MEquipamiento::cargarDatos( const int id_equipamiento )
 
 /*!
  * \brief MEquipamiento::enGarantia
+ * Devuelve verdadero si el equipamiento está en garantía o no.
  * \return
  */
 bool MEquipamiento::enGarantia()
