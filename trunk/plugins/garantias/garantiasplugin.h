@@ -45,13 +45,19 @@ public:
     double version() const;
     void crearToolBar( QToolBar *t );
     QAction *botonPantallaInicial();
-    void crearAccionesGlobales(QMainWindow *){};
+    void crearAccionesGlobales(QMainWindow *){}
 
 private:
     QAction *ActGarantias;
+    QAction *ActAgregarGarantia;
+    QAction *ActVerVencimientos;
 
 public slots:
     void seCierraGestotux();
+    void verGarantias();
+    void agregarGarantia( int id_comprobante, int id_producto, QString nombre_producto, int id_cliente );
+    void agregarGarantia();
+    void verVencimientos();
 
 signals:
     void agregarVentana( QWidget *v );

@@ -9,8 +9,12 @@ TARGET = garantias
 QT += xml \
       network
 
-HEADERS += garantiasplugin.h
-SOURCES += garantiasplugin.cpp
+HEADERS += garantiasplugin.h \
+    vgarantias.h \
+    mgarantias.h
+SOURCES += garantiasplugin.cpp \
+    vgarantias.cpp \
+    mgarantias.cpp
 
 DESTDIR = ../../bin/plugins
 
@@ -28,4 +32,5 @@ win32 {
 }
 
 OTHER_FILES += \
-    garantias.QMYSQL.sql
+    garantias.QMYSQL.sql \
+    garantias.QSQLITE.sql
