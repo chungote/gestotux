@@ -43,6 +43,22 @@ QList<QActionGroup *> GarantiasPlugin::accionesBarra()
 bool GarantiasPlugin::inicializar()
 {
  Q_INIT_RESOURCE(garantias);
+
+    ActGarantias = new QAction( this );
+    ActGarantias->setText( QString::fromUtf8( "Garantías" ) );
+    ActGarantias->setStatusTip( "Muestra el listado de garantías vigentes en el sistema" );
+    connect( ActGarantias, SIGNAL( triggered() ), this, SLOT( verGarantias() ) );
+
+    ActAgregarGarantia = new QAction( this );
+    ActAgregarGarantia->setText( QString::fromUtf8( "Agregar Garantía" ) );
+    ActAgregarGarantia->setStatusTip( "Muestra la ventana para agregar una nueva garantia" );
+    connect( ActAgregarGarantia, SIGNAL( triggered() ), this, SLOT( agregarGarantia() ) );
+
+    ActVerVencimientos = new QAction( this );
+    ActVerVencimientos->setText( "Ver vencimientos" );
+    ActVerVencimientos->setStatusTip( "Ver los vencimientos de garantias cercanas a una fecha" );
+    connect( ActVerVencimientos, SIGNAL( triggered() ), this, SLOT( verVencimientos() ) );
+
  return true;
 }
 
@@ -74,9 +90,11 @@ int GarantiasPlugin::tipo() const
  */
 void GarantiasPlugin::crearMenu( QMenuBar *m )
 {
- /*QMenu *menuHer = m->findChild<QMenu *>( "menuArchivo" );
- menuHer->addSeparator();
- menuHer->addAction( ActBackup );*/
+ QMenu *menuGarantias = m->addMenu( "Garantias" );
+ menuGarantias->addAction( ActGarantias );
+ menuGarantias->addAction( ActAgregarGarantia );
+ menuGarantias->addSeparator();
+ menuGarantias->addAction( ActVerVencimientos );
 }
 
 bool GarantiasPlugin::verificarTablas( QStringList tablas )
@@ -97,7 +115,7 @@ bool GarantiasPlugin::verificarTablas( QStringList tablas )
     \fn GarantiasPlugin::version() const
  */
 double GarantiasPlugin::version() const
-{  return 0.1; }
+{  return 0.2; }
 
 /*!
     \fn GarantiasPlugin::crearToolBar( QToolBar *t )
@@ -111,7 +129,32 @@ void GarantiasPlugin::crearToolBar( QToolBar */*t*/ )
  */
 void GarantiasPlugin::seCierraGestotux()
 {
- Q_CLEANUP_RESOURCE(garantias);
+    Q_CLEANUP_RESOURCE(garantias);
+}
+
+#include "vgarantias.h"
+/*!
+ * \fn GarantiasPlugin::verGarantias()
+ * Muestra el listado de garantias que estan actualmente
+ */
+void GarantiasPlugin::verGarantias()
+{
+    emit agregarVentana( new VGarantias() );
+}
+
+void GarantiasPlugin::agregarGarantia(int id_comprobante, int id_producto, QString nombre_producto, int id_cliente)
+{
+    /// @TODO: Agregar garantia cuando es llamado desde otro lado
+}
+
+void GarantiasPlugin::agregarGarantia()
+{
+    /// @TODO: Agregar garantia por ventana normal.
+}
+
+void GarantiasPlugin::verVencimientos()
+{
+    /// @TODO: Ver garantias cerca a vencerse en una cierta fecha
 }
 
 QAction *GarantiasPlugin::botonPantallaInicial()

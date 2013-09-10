@@ -2,5 +2,6 @@
     <qresource prefix="/"/>
     <qresource prefix="/sql">
         <file>garantias.QMYSQL.sql</file>
+        <file>garantias.QSQLITE.sql</file>
     </qresource>
 </RCC>
