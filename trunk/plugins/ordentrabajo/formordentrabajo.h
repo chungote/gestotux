@@ -45,6 +45,8 @@ private:
 
     bool _agregando;
 
+    int _id_orden_trabajo;
+
     void cargarDatosEquipamiento();
 
     MEquipamiento *_modelo_equipamiento;
