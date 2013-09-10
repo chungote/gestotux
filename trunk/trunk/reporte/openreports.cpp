@@ -196,7 +196,7 @@ bool orReport::beginMultiPrint(QPrinter *pPrinter, bool & userCanceled)
 
 bool orReport::print(QPrinter *prtThis, bool boolSetupPrinter, bool showPreview)
 {
-// TODO: Figure out how all this is supposed to be with the new engine
+// TODO Figure out how all this is supposed to be with the new engine
   bool retval = false;
   bool localPrinter = false;
 
@@ -541,7 +541,7 @@ bool orReport::doesReportExist()
 
 bool orReport::satisfyParams(QWidget * /*widget*/)
 {
-// TODO: implement this somehow
+// TOD implement this somehow
 qDebug("orReport[_wrapper]::satisfyParams() not implemented");
 /*
   // get list of missing parameters

@@ -14,6 +14,13 @@ MHistorialOrdenTrabajo::MHistorialOrdenTrabajo(QObject *parent) :
     setHeaderData( 7, Qt::Horizontal, "Sumatoria" );
     _id_orden_trabajo = 0;
     _mostrar_suma_costos = false;
+    _sumas = new QMap<int, double>();
+}
+
+MHistorialOrdenTrabajo::~MHistorialOrdenTrabajo()
+{
+    delete _sumas;
+    _sumas=0;
 }
 
 /*!
@@ -29,15 +36,15 @@ QVariant MHistorialOrdenTrabajo::data(const QModelIndex &item, int role) const
             case 7: {
                 if( role == Qt::DisplayRole ) {
                     if( item.row() != 0 ) {
-                        double nuevo = _sumas.value( item.row() - 1 );
+                        double nuevo = _sumas->value( item.row() - 1 );
                         nuevo += data( index( item.row(), 6 ), Qt::EditRole ).toDouble();
-                        _sumas[item.row()] = nuevo;
+                        _sumas->insert( item.row(), nuevo );
                     } else {
-                        _sumas[item.row()] = data( index( item.row(), 6 ), Qt::EditRole ).toDouble();
+                        _sumas->insert( item.row(), data( index( item.row(), 6 ), Qt::EditRole ).toDouble() );
                     }
-                    return QString( "$ %L1" ).arg( _sumas.value( item.row() ), 10, 'f', 2 );
+                    return QString( "$ %L1" ).arg( _sumas->value( item.row() ), 10, 'f', 2 );
                 } else if( role == Qt::EditRole ) {
-                    return _sumas.value( item.row() );
+                    return _sumas->value( item.row() );
                 }
                 break;
             }
@@ -75,6 +82,8 @@ QVariant MHistorialOrdenTrabajo::data(const QModelIndex &item, int role) const
  */
 bool MHistorialOrdenTrabajo::agregarHistorial(const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico)
 {
+    return false;
+    /// @TODO implementar esto!
 }
 
 /*!

@@ -340,7 +340,7 @@ bool CrossTab::AutoRepaint()
 //////////////////////////////////////////////////////////////////////////////
 // Get / set rows /columns and values
 //
-// TODO: Row and column index are provided as it is expected to be usefull.
+// TODO Row and column index are provided as it is expected to be usefull.
 //       That should be checked at the end of the implementation.
 //////////////////////////////////////////////////////////////////////////////
 void CrossTab::SetValue(const QString& column, const QString& row, const QString& value)
@@ -385,7 +385,7 @@ QString CrossTab::GetValue(const QString& column, const QString& row)
 //////////////////////////////////////////////////////////////////////////////
 // Get / set rows /columns and values
 //
-// TODO: Row and column index are provided as it is expected to be usefull.
+// TODO Row and column index are provided as it is expected to be usefull.
 //       That should be checked at the end of the implementation.
 //////////////////////////////////////////////////////////////////////////////
 void CrossTab::SetFont(const QFont& font)
@@ -416,7 +416,7 @@ void CrossTab::CalculateCrossTabMeasurements()
       CrossTabColumnIndex::iterator    itCol;
       for (itCol = m_columnIndex.begin(); itCol != m_columnIndex.end(); ++itCol)
       {
-        // TODO: Implicite assumption that first row is index
+        // TODO Implicite assumption that first row is index
         // Get data from index
         if ((itRow == m_rowIndex.begin()) && (itCol != m_columnIndex.begin()))
         {
@@ -446,7 +446,7 @@ void CrossTab::CalculateCrossTabMeasurements()
         // Adjust table properties
         m_tableProperties.m_tableMaxHeight += rect.height();
       }
-      // TODO: Statically set 
+      // TODO Statically set
       itRow.value().m_rowVAlign = Qt::AlignVCenter;
     }
   }
@@ -462,7 +462,7 @@ void CrossTab::CalculateCrossTabMeasurements()
       CrossTabRowIndex::iterator    itRow;
       for (itRow = m_rowIndex.begin(); itRow != m_rowIndex.end(); ++itRow)
       {
-        // TODO: Implicite assumption that first col is index
+        // TODO Implicite assumption that first col is index
         // Get data from row index
         if ((itCol == m_columnIndex.begin()) && (itRow != m_rowIndex.begin()))
         {
@@ -493,12 +493,12 @@ void CrossTab::CalculateCrossTabMeasurements()
         // Adjust table properties
         m_tableProperties.m_tableMaxWidth += rect.width();
       }
-      // TODO: Statically set 
+      // TODO Statically set
       itCol.value().m_columnHAlign = Qt::AlignHCenter;
     }
   }
 
-  // TODO: Should be done somewhere else
+  // TODO Should be done somewhere else
  SetHeight(m_tableProperties.m_tableMaxHeight);
 
  return;
@@ -514,7 +514,7 @@ void CrossTab::CalculateCrossTabMeasurements()
 //   rect       [in]  - available space for display of table
 //              [out] - used space for display of table
 //
-// TODO: Width and height initialised with 2 which is the border of the table.
+// TODO Width and height initialised with 2 which is the border of the table.
 //       There is no way to change the border/inner line of the table.
 //       Thus assumed 1 pixel.
 //////////////////////////////////////////////////////////////////////////////
@@ -658,7 +658,7 @@ void CrossTab::CalculateTableSize(QRect& rect)
 // Parameters
 //   height [out] - Calculated height
 //
-// TODO: Width and height initialised with 1 which is the border of the table.
+// TODO Width and height initialised with 1 which is the border of the table.
 //       There is no way to change the border/inner line of the table.
 //       Thus assumed 1 pixel.
 //////////////////////////////////////////////////////////////////////////////

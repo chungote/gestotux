@@ -45,6 +45,8 @@ private:
 
     bool _agregando;
 
+    void cargarDatosEquipamiento();
+
     MEquipamiento *_modelo_equipamiento;
     MOrdenTrabajo *_modelo_orden;
     MHistorialOrdenTrabajo *_modelo_historial;

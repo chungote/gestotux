@@ -420,7 +420,7 @@ qreal ORPreRenderPrivate::finishCurPage(bool lastPage)
 //   have to be rendered too.
 // 
 //   In this code a query is connected to a detail section.
-//   TODO: add data limit to query
+//   TODO add data limit to query
 //   The data of a section can be one image. The section should get grow and
 //   shrink parameters.
 //
@@ -629,7 +629,7 @@ qreal ORPreRenderPrivate::renderSectionSize(const ORSectionData & sectionData, b
   for(int it = 0; it < sectionData.objects.size(); ++it)
   {
     elemThis = sectionData.objects.at(it);
-    // TODO: See if this can be simplified anymore than it already is.
+    // TODO See if this can be simplified anymore than it already is.
     //       All we need to know is how much strech we are going to get.
     if (elemThis->isText())
     {
@@ -996,7 +996,7 @@ qreal ORPreRenderPrivate::renderSection(const ORSectionData & sectionData)
           // as we just need to setup a painter for the image and pass that along to
           // the graph drawing code.
 
-          // TODO: parameter lastPage
+          // TODO parameter lastPage
           //       lastpage: 1. last detailed section in report list
           //                 2. last element in section list
           //                 3. last query in element if multiquery
@@ -1306,7 +1306,7 @@ double ORPreRenderPrivate::getNearestSubTotalCheckPoint(const ORDataData & d)
     // first check to see if it's a page footer context
     // as that can happen from anywhere at any time.
 
-    // TODO: acutally make this work
+    // TODO acutally make this work
     if(_subtotPageCheckPoints.contains(d))
       return _subtotPageCheckPoints[d];
 

@@ -59,7 +59,7 @@ bool ORPrintRender::setupPrinter(ORODocument * pDocument, QPrinter * pPrinter)
   PageSizeInfo psi = PageSizeInfo::getByName(pDocument->pageOptions().getPageSize());
   if(psi.isNull())
   {
-    // TODO:
+    // TODO
     //psi = PageSizeInfo::findNearest((int)(pDocument->pageOptions().getCustomWidth() * 100), (int)(pDocument->pageOptions().getCustomHeight() * 100));
     //if(psi.isNull())
     //  pPrinter->setPageSize(QPrinter::Custom);
