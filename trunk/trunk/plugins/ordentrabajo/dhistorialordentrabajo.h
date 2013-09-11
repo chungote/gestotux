@@ -19,6 +19,7 @@ public:
     void setearComoCancelacion();
     void setearComoFacturacion();
     void setearComoCierre();
+    void setearComoDevolverAlCliente();
     void setearIdOrdenTrabajo( const int id ) { _id_orden_trabajo = id; }
     void setearModeloHistorial( MHistorialOrdenTrabajo *m ) { _modelo_historial = m; }
     
