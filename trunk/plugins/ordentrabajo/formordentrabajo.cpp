@@ -66,8 +66,8 @@ FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
 
     if( agregar ) {
         // Deshabilito los datos de historial y facturacion.
-        TBGeneral->setItemEnabled( 2, false );
-        TBGeneral->setItemEnabled( 3, false );
+        //TBGeneral->setItemEnabled( 2, false );
+        //TBGeneral->setItemEnabled( 3, false );
         // Coloco el proximo numero de comprobante.
         LNumeroOrdenTrabajo->setText( MOrdenTrabajo::numeroComprobanteProximo().aCadena() );
     } else {
@@ -143,6 +143,7 @@ void FormOrdenTrabajo::cambioCliente( int id_cliente )
 
 /*!
  * \brief FormOrdenTrabajo::cambioTecnico
+ * Slot llamado cuando se cambia el técnico de la orden de trabajo
  * \param id_tecnico
  */
 void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
@@ -173,7 +174,11 @@ void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
  */
 void FormOrdenTrabajo::cerrarOrden()
 {
-    /// @TODO: Agregar cierre de orden
+    DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
+    diag->setearModeloHistorial( _modelo_historial );
+    diag->setearIdOrdenTrabajo( _id_orden_trabajo );
+    diag->setearComoCierre();
+    diag->exec();
 }
 
 /*!
@@ -193,7 +198,7 @@ void FormOrdenTrabajo::agregarFacturacion()
     DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
     diag->setearModeloHistorial( _modelo_historial );
     diag->setearIdOrdenTrabajo( _id_orden_trabajo );
-    //diag->setearComoFacturacion();
+    diag->setearComoFacturacion();
     diag->exec();
 }
 
@@ -210,7 +215,10 @@ void FormOrdenTrabajo::eliminarFacturacion()
  */
 void FormOrdenTrabajo::agregarHistorial()
 {
-    /// @TODO: Agregar agregar historial cualquiera
+    DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
+    diag->setearModeloHistorial( _modelo_historial );
+    diag->setearIdOrdenTrabajo( _id_orden_trabajo );
+    diag->exec();
 }
 
 /*!

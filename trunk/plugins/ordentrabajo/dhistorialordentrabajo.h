@@ -17,6 +17,8 @@ public:
     explicit DHistorialOrdenTrabajo( QWidget *parent = 0 );
     ~DHistorialOrdenTrabajo();
     void setearComoCancelacion();
+    void setearComoFacturacion();
+    void setearComoCierre();
     void setearIdOrdenTrabajo( const int id ) { _id_orden_trabajo = id; }
     void setearModeloHistorial( MHistorialOrdenTrabajo *m ) { _modelo_historial = m; }
     
