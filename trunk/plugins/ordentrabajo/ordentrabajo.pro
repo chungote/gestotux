@@ -35,7 +35,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     mordentrabajo.cpp \
     vordentrabajo.cpp \
     mhistorialordentrabajo.cpp \
-    dhistorialordentrabajo.cpp
+    dhistorialordentrabajo.cpp \
+    ecbtipooperacionordentrabajo.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
@@ -50,7 +51,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     mordentrabajo.h \
     vordentrabajo.h \
     mhistorialordentrabajo.h \
-    dhistorialordentrabajo.h
+    dhistorialordentrabajo.h \
+    ecbtipooperacionordentrabajo.h
 
 RESOURCES += ordentrabajo.qrc
 

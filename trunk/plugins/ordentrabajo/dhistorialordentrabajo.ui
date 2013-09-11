@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>243</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,12 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="LTitulo">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Agregar elemento a orden de trabajo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -31,7 +37,7 @@
       </widget>
      </item>
      <item>
-      <widget class="ECBTecnicos" name="CBTipo">
+      <widget class="ECBTipoOperacionOrdenTrabajo" name="CBTipo">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -102,6 +108,27 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="LTecnico">
+       <property name="text">
+        <string>Tecnico:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ECBTecnicos" name="CBTecnico">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="BBBotones">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -118,6 +145,11 @@
    <class>ECBTecnicos</class>
    <extends>QComboBox</extends>
    <header>ecbtecnicos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBTipoOperacionOrdenTrabajo</class>
+   <extends>QComboBox</extends>
+   <header>ecbtipooperacionordentrabajo.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

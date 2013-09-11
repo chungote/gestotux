@@ -186,7 +186,11 @@ void FormOrdenTrabajo::cerrarOrden()
  */
 void FormOrdenTrabajo::devolverCliente()
 {
-    /// @TODO: Agregar devolución al cliente
+    DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
+    diag->setearModeloHistorial( _modelo_historial );
+    diag->setearIdOrdenTrabajo( _id_orden_trabajo );
+    diag->setearComoDevolverAlCliente();
+    diag->exec();
 }
 
 /*!
@@ -218,6 +222,7 @@ void FormOrdenTrabajo::agregarHistorial()
     DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
     diag->setearModeloHistorial( _modelo_historial );
     diag->setearIdOrdenTrabajo( _id_orden_trabajo );
+    diag->setWindowTitle( "Agregar accion al historial" );
     diag->exec();
 }
 
@@ -226,7 +231,11 @@ void FormOrdenTrabajo::agregarHistorial()
  */
 void FormOrdenTrabajo::eliminarHistorial()
 {
-    /// @TODO: Agregar eliminar Historial
+    if( LVHistorial->selectionModel()->selectedRows().size() <= 0 ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione algún elemento del historial para eliminar" );
+        return;
+    }
+
 }
 
 /*!
