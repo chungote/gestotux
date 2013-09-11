@@ -22,5 +22,26 @@ DHistorialOrdenTrabajo::~DHistorialOrdenTrabajo()
 void DHistorialOrdenTrabajo::setearComoCancelacion()
 {
     ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::Cancelacion );
+    ui->CBTipo->setEditable( false );
+    setWindowTitle( "Cancelar Orden" );
+}
 
+/*!
+ * \brief DHistorialOrdenTrabajo::setearComoFacturacion
+ */
+void DHistorialOrdenTrabajo::setearComoFacturacion()
+{
+    ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::Facturacion );
+    ui->CBTipo->setEditable( false );
+    setWindowTitle( "Facturar item" );
+}
+
+/*!
+ * \brief DHistorialOrdenTrabajo::setearComoCierre
+ */
+void DHistorialOrdenTrabajo::setearComoCierre()
+{
+    ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::CierreOrden );
+    ui->CBTipo->setEditable( false );
+    setWindowTitle( "Cerrar orden" );
 }
