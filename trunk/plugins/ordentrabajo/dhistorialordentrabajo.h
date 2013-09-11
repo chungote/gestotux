@@ -3,8 +3,10 @@
 
 #include <QDialog>
 
+#include "mhistorialordentrabajo.h"
+
 namespace Ui {
-class DHistorialOrdenTrabajo;
+class DHistorialOrdenTrabajoBase;
 }
 
 class DHistorialOrdenTrabajo : public QDialog
@@ -12,11 +14,16 @@ class DHistorialOrdenTrabajo : public QDialog
     Q_OBJECT
     
 public:
-    explicit DHistorialOrdenTrabajo(QWidget *parent = 0);
+    explicit DHistorialOrdenTrabajo( QWidget *parent = 0 );
     ~DHistorialOrdenTrabajo();
+    void setearComoCancelacion();
+    void setearIdOrdenTrabajo( const int id ) { _id_orden_trabajo = id; }
+    void setearModeloHistorial( MHistorialOrdenTrabajo *m ) { _modelo_historial = m; }
     
 private:
-    Ui::DHistorialOrdenTrabajo *ui;
+    Ui::DHistorialOrdenTrabajoBase *ui;
+    MHistorialOrdenTrabajo *_modelo_historial;
+    int _id_orden_trabajo;
 };
 
 #endif // DHISTORIALORDENTRABAJO_H
