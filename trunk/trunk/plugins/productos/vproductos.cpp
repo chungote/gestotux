@@ -70,6 +70,8 @@ VProductos::VProductos(QWidget *parent)
 
  vista->resizeColumnsToContents();
  vista->verticalHeader()->setResizeMode( QHeaderView::ResizeToContents );
+ vista->horizontalHeader()->setResizeMode( rmodelo->fieldIndex( "nombre" ), QHeaderView::ResizeToContents );
+ vista->horizontalHeader()->setResizeMode( rmodelo->fieldIndex( "codigo" ), QHeaderView::ResizeToContents );
  vista->setAlternatingRowColors( true );
  vista->setSortingEnabled( true );
 

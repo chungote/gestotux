@@ -8,6 +8,7 @@
 #include "eactguardar.h"
 #include "mordentrabajo.h"
 #include "mtipooperacionordentrabajo.h"
+#include "dhistorialordentrabajo.h"
 
 FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
     EVentana( parent ), FormOrdenTrabajoBase(), _agregando(agregar)
@@ -189,24 +190,11 @@ void FormOrdenTrabajo::devolverCliente()
  */
 void FormOrdenTrabajo::agregarFacturacion()
 {
-    bool ok = false;
-    QString razon = QInputDialog::getText( this, "Ingrese dato", "Ingrese la razón de facturacion", QLineEdit::Normal, QString(), &ok );
-    if( ok && !razon.isEmpty() && !razon.isNull() ) {
-        // pido el costo
-        double costo = QInputDialog::getDouble( this, "Costo", "Ingrese el costo", 0.0, -2147483647, 2147483647, 2, &ok );
-        if( ok && costo > 0.0 ) {
-            if( _modelo_historial_facturacion->agregarHistorial( _id_orden_trabajo,
-                                                                 QDateTime::currentDateTime(),
-                                                                 razon,
-                                                                 costo,
-                                                                 MTipoOperacionOrdenTrabajo::Facturacion,
-                                                                 _modelo_orden->idTecnico() ) ) {
-                QMessageBox::information( this, "Correcto", "La facturación se agregó correctamente a la orden de trabajo" );
-            } else {
-                QMessageBox::information( this, "Incorrecto", "No se pudo agergar la operacion a la orde de trabajo" );
-            }
-        }
-    }
+    DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
+    diag->setearModeloHistorial( _modelo_historial );
+    diag->setearIdOrdenTrabajo( _id_orden_trabajo );
+    //diag->setearComoFacturacion();
+    diag->exec();
 }
 
 /*!
@@ -262,7 +250,11 @@ void FormOrdenTrabajo::pdf()
  */
 void FormOrdenTrabajo::cancelar()
 {
-    /// @TODO: Agregar cancelación de la orden de trabajo
+    DHistorialOrdenTrabajo *diag = new DHistorialOrdenTrabajo( this );
+    diag->setearModeloHistorial( _modelo_historial );
+    diag->setearIdOrdenTrabajo( _id_orden_trabajo );
+    diag->setearComoCancelacion();
+    diag->exec();
 }
 
 /*!

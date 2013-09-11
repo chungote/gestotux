@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DHistorialOrdenTrabajo</class>
- <widget class="QDialog" name="DHistorialOrdenTrabajo">
+ <class>DHistorialOrdenTrabajoBase</class>
+ <widget class="QDialog" name="DHistorialOrdenTrabajoBase">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -31,7 +31,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="CBTipo">
+      <widget class="ECBTecnicos" name="CBTipo">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -113,12 +113,19 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ECBTecnicos</class>
+   <extends>QComboBox</extends>
+   <header>ecbtecnicos.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
    <sender>BBBotones</sender>
    <signal>accepted()</signal>
-   <receiver>DHistorialOrdenTrabajo</receiver>
+   <receiver>DHistorialOrdenTrabajoBase</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -134,7 +141,7 @@
   <connection>
    <sender>BBBotones</sender>
    <signal>rejected()</signal>
-   <receiver>DHistorialOrdenTrabajo</receiver>
+   <receiver>DHistorialOrdenTrabajoBase</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
