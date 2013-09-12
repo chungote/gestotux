@@ -211,7 +211,10 @@ void FormOrdenTrabajo::agregarFacturacion()
  */
 void FormOrdenTrabajo::eliminarFacturacion()
 {
-    /// @TODO: Agregar eliminar facturacion
+    if( TVFacturacion->selectionModel()->selectedRows().size() <= 0 ) {
+        QMessageBox::information( this, "Error", "Por favor, seleccione algún elemento del historial para eliminar" );
+        return;
+    }
 }
 
 /*!

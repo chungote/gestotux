@@ -40,6 +40,7 @@ protected slots:
     void agregar();
     void eliminar();
     void imprimir();
+    void aPdf();
     void modificar();
     void anular();
     void pagar();
