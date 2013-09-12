@@ -33,6 +33,7 @@
 #include <QMessageBox>
 #include <QPluginLoader>
 #include <QDate>
+#include <QDebug>
 
 #include "gestotux.h"
 #include "preferencias.h"
@@ -440,7 +441,7 @@ int main(int argc, char *argv[])
                                 /*if( !tran.load(QApplication::applicationDirPath() + QDir::separator() + "traducciones" + QDir::separator() + plug->nombre() ) )
                                 {  qDebug( qPrintable( "Error al cargar la traduccion de " + plug->nombre()  ) ); }
                                 else {  QCoreApplication::instance()->installTranslator( &tran ); }*/
-                                qDebug( QString( "Cargando Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
+                                qDebug() << "Cargando Plugin: " << pluginsDir.absoluteFilePath( fileName );
                                 // veo que tipo es para que al inicializar y cargar plugins dependientes, pueda usarse el valor
                                 if( plug->tipo() == EPlugin::info && !ERegistroPlugins::getInstancia()->pluginInfoSeteado() )
                                 {
@@ -453,6 +454,7 @@ int main(int argc, char *argv[])
                                         p->setValue( "Factura", e->reporte( EReporte::Factura ) );
                                         p->setValue( "Presupuesto", e->reporte( EReporte::Presupuesto ) );
                                         p->setValue( "AnulacionFactura", e->reporte( EReporte::AnulacionFactura ) );
+                                        p->setValue( "Remitos", e->reporte( EReporte::Remito ) );
                                         p->endGroup();
                                 }
                         }

@@ -332,7 +332,7 @@ void EReporte::remito() {
     preferencias *p = preferencias::getInstancia();
     p->beginGroup( "carga" );
     p->beginGroup( "Reportes" );
-    _nombre = preferencias::getInstancia()->value( "Remito" ).toString();
+    _nombre = preferencias::getInstancia()->value( "Remitos" ).toString();
     p->endGroup(); p->endGroup(); p=0;
 
     if( _nombre.isEmpty() )

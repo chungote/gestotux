@@ -29,6 +29,8 @@
 #include "EReporte.h"
 #include "eactcerrar.h"
 #include "MRemito.h"
+#include "eactimprimir.h"
+#include "eactpdf.h"
 
 VRemito::VRemito(QWidget *parent)
  : EVLista(parent)
@@ -87,6 +89,8 @@ VRemito::VRemito(QWidget *parent)
     this->addAction( ActVerItems );
     this->addAction( ActPagar );
     this->addAction( ActAnular );
+    this->addAction( new EActImprimir( this ) );
+    this->addAction( new EActPdf( this ) );
     this->addAction( ActSep );
     this->addAction( ActVerAnuladas );
     this->addAction( ActBuscar );
@@ -103,7 +107,49 @@ void VRemito::eliminar()
 { return; }
 
 void VRemito::imprimir()
-{ return; }
+{
+    // Busco todos los IDs a pagar
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    if( lista.size() < 1 ) {
+        QMessageBox::warning( this, "Seleccione un item",
+                        "Por favor, seleccione al menos un item para imprimir.",
+                        QMessageBox::Ok );
+        return;
+    }
+    EReporte *rep = new EReporte( 0 );
+    rep->remito();
+    foreach( QModelIndex indice, lista ) {
+        int id_remito = this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt();
+        ParameterList lista;
+        lista.append( Parameter( "id_remito", id_remito ) );
+        rep->hacer( lista, false, true );
+    }
+    delete rep;
+    return;
+}
+
+void VRemito::aPdf()
+{
+    // Busco todos los IDs a pagar
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    if( lista.size() < 1 ) {
+        QMessageBox::warning( this, "Seleccione un item",
+                        "Por favor, seleccione al menos un item para pasar a PDF.",
+                        QMessageBox::Ok );
+        return;
+    }
+    EReporte *rep = new EReporte( 0 );
+    rep->remito();
+    foreach( QModelIndex indice, lista ) {
+        int id_remito = this->modelo->data( this->modelo->index( indice.row(), 0 ) ).toInt();
+        QString numero = this->modelo->data( this->modelo->index( indice.row(), 1 ) ).toString();
+        ParameterList lista;
+        lista.append( Parameter( "id_remito", id_remito ) );
+        rep->hacerPDF( lista, QString( "Remito#%1" ).arg( numero ) );
+    }
+    delete rep;
+    return;
+}
 
 void VRemito::modificar()
 { return; }
@@ -191,7 +237,7 @@ void VRemito::pagar()
  * \param parametro Parametro si esta o no habilitado el boton.
  */
 void VRemito::cambioVerAnulados( bool parametro )
-{ qobject_cast<MVRemito *>(this->modelo)->verAnulados( !parametro ); }
+{ qobject_cast<MVRemito *>(this->modelo)->verAnulados( parametro ); }
 
 
 /*!

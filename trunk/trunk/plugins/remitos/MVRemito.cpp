@@ -4,7 +4,7 @@
 MVRemito::MVRemito(QObject *parent) :
     QSqlTableModel(parent)
 {
-    this->setTable( "v_remitos" );
+    this->setTable( "v_remito" );
     this->setHeaderData( 0, Qt::Horizontal, "id_remito" );
     this->setHeaderData( 1, Qt::Horizontal, "Numero de Comprobante" );
     this->setHeaderData( 2, Qt::Horizontal, "Cliente" );
