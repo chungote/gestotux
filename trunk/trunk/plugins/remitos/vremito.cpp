@@ -48,7 +48,7 @@ VRemito::VRemito(QWidget *parent)
 
     QAction *ActPagar = new QAction( this );
     ActPagar->setText( "Pagar" );
-    ActPagar->setIcon( QIcon( ":/imagenes/pagarremito.png" ) );
+    ActPagar->setIcon( QIcon( ":/imagenes/pagaremito.png" ) );
     ActPagar->setStatusTip( "Genera un recibo por las facturas seleccionadas." );
     connect( ActPagar, SIGNAL( triggered() ), this, SLOT( pagar() ) );
 
@@ -74,7 +74,7 @@ VRemito::VRemito(QWidget *parent)
     ActVerItems = new QAction( this );
     ActVerItems->setText( "Ver items" );
     ActVerItems->setStatusTip( "Muestra el listado de items de la factura" );
-    //ActVerItems->setIcon( QIcon( ":/imagenes/factura-items.png" ) );
+    ActVerItems->setIcon( QIcon( ":/imagenes/remitoveritems.png" ) );
     connect( ActVerItems, SIGNAL( triggered() ), this, SLOT( verItems() ) );
 
     //agregarFiltroBusqueda( "Numero de Factura", " ``" );
