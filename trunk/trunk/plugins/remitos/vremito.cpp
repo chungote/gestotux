@@ -59,9 +59,9 @@ VRemito::VRemito(QWidget *parent)
     connect( ActAnular, SIGNAL( triggered() ), this, SLOT( anular() ) );
 
     QAction *ActVerAnuladas = new QAction( this );
-    ActVerAnuladas->setText( "Ver anuladas" );
+    ActVerAnuladas->setText( "Ver anulados" );
     ActVerAnuladas->setStatusTip( "Muestra o oculta las facturas anuladas" );
-    //ActVerAnuladas->setIcon( QIcon( ":/imagenes/verfacturaanuladas.png" ) );
+    ActVerAnuladas->setIcon( QIcon( ":/imagenes/remitoveranulados.png" ) );
     ActVerAnuladas->setCheckable( true );
     ActVerAnuladas->setChecked( true );
     connect( ActVerAnuladas, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerAnulados( bool ) ) );

@@ -3,6 +3,7 @@
         <file>imagenes/remito-anular.png</file>
         <file>imagenes/remito-nuevo.png</file>
         <file>imagenes/remito.png</file>
+        <file>imagenes/remitoveranulados.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>remitos.QSQLITE.sql</file>
