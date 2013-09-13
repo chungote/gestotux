@@ -45,7 +45,7 @@ QString Util::formateoFechas( QDate fecha ) {
         return fecha.toString( Qt::ISODate );
 
     } else if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QMYSQL" ) {
-        ///@TODO Verificar si esto se cumple o hay que agregar un DATE()
+        /// @TODO: Verificar si esto se cumple o hay que agregar un DATE()
         return fecha.toString( Qt::ISODate );
 
     } else {
@@ -67,7 +67,7 @@ QString Util::formateoFechas( QDateTime fecha )
         return fecha.toString( Qt::ISODate );
 
     } else if( QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() == "QMYSQL" ) {
-        ///@TODO Verificar si esto se cumple o hay que agregar un DATE()
+        /// @TODO: Verificar si esto se cumple o hay que agregar un DATE()
         return fecha.toString( Qt::ISODate );
 
     } else {

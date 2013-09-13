@@ -215,6 +215,17 @@ void FormOrdenTrabajo::eliminarFacturacion()
         QMessageBox::information( this, "Error", "Por favor, seleccione algún elemento del historial para eliminar" );
         return;
     }
+    int ret = QMessageBox::question( this,
+                                     QString::fromUtf8( "¿Está seguro?" ),
+                                     QString::fromUtf8("¿Está seguro que desea eliminar estos %1 elementos?" ).arg( TVFacturacion->selectionModel()->selectedRows().size() ),
+                                     QMessageBox::Yes,
+                                     QMessageBox::No );
+    if( ret == QMessageBox::Yes ) {
+        foreach( QModelIndex idx, TVFacturacion->selectionModel()->selectedRows() ) {
+            int id_historial = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+            _modelo_historial_facturacion->eliminarHistorial( id_historial );
+        }
+    }
 }
 
 /*!
@@ -238,7 +249,17 @@ void FormOrdenTrabajo::eliminarHistorial()
         QMessageBox::information( this, "Error", "Por favor, seleccione algún elemento del historial para eliminar" );
         return;
     }
-
+    int ret = QMessageBox::question( this,
+                                     QString::fromUtf8( "¿Está seguro?" ),
+                                     QString::fromUtf8("¿Está seguro que desea eliminar estos %1 elementos?" ).arg( TVFacturacion->selectionModel()->selectedRows().size() ),
+                                     QMessageBox::Yes,
+                                     QMessageBox::No );
+    if( ret == QMessageBox::Yes ) {
+        foreach( QModelIndex idx, TVFacturacion->selectionModel()->selectedRows() ) {
+            int id_historial = idx.model()->data( idx.model()->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+            _modelo_historial_facturacion->eliminarHistorial( id_historial );
+        }
+    }
 }
 
 /*!
@@ -246,7 +267,10 @@ void FormOrdenTrabajo::eliminarHistorial()
  */
 void FormOrdenTrabajo::facturarOrden()
 {
-    /// @TODO: Agregar facturar orden
+  // Se facturará todo el costo que se haya acumulado en la orden de trabajo
+  // Se parasará la orden de trabajo a cerrada ( si no lo está ya )
+  // y se devolverá al cliente ( si no lo está ya )
+  /// @TODO: Agregar facturar orden
 }
 
 /*!

@@ -235,7 +235,7 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
         {
                 if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) )
                 {
-                        /// @todo Verificar si no esta pagada ya
+                        /// @TODO: Verificar si no esta pagada ya
                         QAction *ActCrearRecibo = new QAction( this );
                         ActCrearRecibo->setText( "Pagar esta factura..." );
                         connect( ActCrearRecibo, SIGNAL( triggered() ), this, SLOT( pagarFactura() ) );

@@ -82,12 +82,12 @@ void InformesPlugin::crearToolBar(QToolBar*)
 
 void InformesPlugin::seCierraGestotux()
 {
-    ///@todo Ver si emitir señal a los plugins de informes
+    /// @TODO: Ver si emitir señal a los plugins de informes
 }
 
 void InformesPlugin::actualizar()
 {
-    /// @TODO Implementar actualización de informes
+    /// @TODO: Implementar actualización de informes
     qWarning( "No implementado" );
 }
 

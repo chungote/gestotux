@@ -20,7 +20,7 @@ QVariant ETextBrowser::loadResource( int /*type*/, const QUrl &url )
         return QVariant( "" );
     } else {
         if( _he != 0 ) {
-            /// @todo Hacer que tome los datos correctamente... no esta basofia.
+            /// @TODO: Hacer que tome los datos correctamente... no esta basofia.
             return QVariant( _he->fileData( "qthelp://tranfuga.gestotux.0.5/doc/" + url.toString() ) );
         } else {
             qWarning( "Please set Help Engine pointer first" );
