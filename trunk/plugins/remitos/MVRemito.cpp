@@ -81,7 +81,7 @@ QVariant MVRemito::data( const QModelIndex& item, int role ) const {
 void MVRemito::verAnulados( bool sino )
 {
     if( sino ) {
-        this->setFilter( "anulada != 1" );
+        this->setFilter( "anulada != 1" ); /// @TODO: Revisar el filtro de remitos anulados
         this->select();
     } else {
         this->setFilter( "" );
@@ -89,7 +89,7 @@ void MVRemito::verAnulados( bool sino )
     }
 }
 
-Qt::ItemFlags MVRemito::flags(const QModelIndex &/*index*/) const
+Qt::ItemFlags MVRemito::flags( const QModelIndex &/*index*/ ) const
 {
     return QFlags<Qt::ItemFlag>( !Qt::ItemIsEditable |  Qt::ItemIsSelectable | Qt::ItemIsEnabled );
 }

@@ -40,6 +40,7 @@ VRemito::VRemito(QWidget *parent)
     this->setWindowIcon( QIcon( ":/imagenes/remito.png" ) );
 
     this->modelo = new MVRemito( this->vista );
+    qobject_cast<MVRemito *>(this->modelo)->verAnulados( false );
     this->vista->setModel( this->modelo );
 
     this->vista->hideColumn( 0 );
@@ -63,7 +64,7 @@ VRemito::VRemito(QWidget *parent)
     ActVerAnuladas->setStatusTip( "Muestra o oculta las facturas anuladas" );
     ActVerAnuladas->setIcon( QIcon( ":/imagenes/remitoveranulados.png" ) );
     ActVerAnuladas->setCheckable( true );
-    ActVerAnuladas->setChecked( true );
+    ActVerAnuladas->setChecked( false );
     connect( ActVerAnuladas, SIGNAL( toggled( bool ) ), this, SLOT( cambioVerAnulados( bool ) ) );
 
     ActAgregar->setIcon( QIcon( ":/imagenes/remito-nuevo.png" ) );
