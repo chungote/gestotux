@@ -83,7 +83,18 @@ QVariant MHistorialOrdenTrabajo::data(const QModelIndex &item, int role) const
 bool MHistorialOrdenTrabajo::agregarHistorial(const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico)
 {
     return false;
-    /// @TODO implementar esto!
+    /// @TODO: Agregar implementación de agregado de item de historial
+}
+
+/*!
+ * \brief MHistorialOrdenTrabajo::eliminarHistorial
+ * \param id_historial
+ * \return
+ */
+bool MHistorialOrdenTrabajo::eliminarHistorial(const int id_historial)
+{
+    return false;
+    /// @TODO: Agregar implementación de eliminación de historial.
 }
 
 /*!

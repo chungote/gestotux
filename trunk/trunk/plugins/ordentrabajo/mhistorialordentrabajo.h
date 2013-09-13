@@ -14,6 +14,7 @@ public:
     QVariant data( const QModelIndex &item, int role ) const;
     
     static bool agregarHistorial( const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico );
+    bool eliminarHistorial( const int id_historial );
 
     void setearOrdenTrabajo( const int id_orden_trabajo );
     void mostrarCostosSumados();

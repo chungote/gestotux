@@ -140,7 +140,7 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
         qDebug( QString( "ID Cliente: %1" ).arg( id_cliente ).toLocal8Bit() );
         return false;
     }
-    /// @todo Verificar identificador de referencia pasado como parametro a esta funcion
+    /// @TODO: Verificar identificador de referencia pasado como parametro a esta funcion
     // Teoricamente el identificador sirve para vincular de vuelta el item con su origen. ¿Que numero colocamos aca?
     // Que numero de comprobante posee?? teoricamente ninguno,a si que le mandamos una cadena vacia.
     int id_ctacte = MItemCuentaCorriente::agregarOperacion( ctacte,

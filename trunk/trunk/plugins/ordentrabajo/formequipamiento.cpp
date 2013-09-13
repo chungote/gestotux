@@ -49,7 +49,7 @@ void FormEquipamiento::setearAgregar( bool estado )
     GBHistorial->setVisible( true );
     _editar = true;
     this->setWindowTitle( "Editar Equipamiento" );
-    /// @TODO cargar datos del equipamiento
+    /// @TODO: cargar datos del equipamiento
   }
 }
 

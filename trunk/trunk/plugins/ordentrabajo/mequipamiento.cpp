@@ -226,5 +226,5 @@ void MEquipamiento::cargarDatos( const int id_equipamiento )
  */
 bool MEquipamiento::enGarantia()
 {
-    /// @TODO ver esto!
+    /// @TODO: Agregar codigo para saber si un equipamiento está en garantía
 }

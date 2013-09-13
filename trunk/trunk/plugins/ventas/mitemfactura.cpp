@@ -2,6 +2,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlRecord>
+#include <QDebug>
 
 MItemFactura::MItemFactura(QObject *parent) :
     QSqlRelationalTableModel(parent) {
@@ -33,7 +34,7 @@ void MItemFactura::inicializar() {
 }
 
 void MItemFactura::relacionar() {
-  setRelation( 1, QSqlRelation( "factura", "id_factura", "serie" ) ); ///@todo Crear una vista para esto
+  setRelation( 1, QSqlRelation( "factura", "id_factura", "serie" ) ); ///@TODO: Crear una vista para esto
 }
 
 /*!
@@ -49,9 +50,9 @@ void MItemFactura::relacionar() {
 bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad, const QString texto, const double precio_unitario, const int id_producto ) {
     if( id_venta == 0 || cantidad == 0 || texto.isEmpty() ) {
         qWarning( "Datos incorrectos al intentar guardar el item de venta." );
-        qDebug( QString( "id_venta = %1" ).arg( id_venta ).toLocal8Bit() );
-        qDebug( QString( "cantidad: %1" ).arg( cantidad ).toLocal8Bit() );
-        qDebug( QString( "Texto: %1" ).arg( texto ).toLocal8Bit() );
+        qDebug() << "id_venta = " << id_venta;
+        qDebug() << "cantidad: " << cantidad;
+        qDebug() << "Texto:" << texto;
         return false;
     }
     QSqlQuery cola;
@@ -64,14 +65,14 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
                 }
             } else {
                 qDebug( "Error al hacer next en la verificacion de que existe la factura para el item de factura" );
-                qDebug( cola.lastError().text().toLocal8Bit() );
-                qDebug( cola.lastQuery().toLocal8Bit() );
+                qDebug() << cola.lastError().text();
+                qDebug() << cola.lastQuery();
                 return false;
             }
         } else {
             qDebug( "Error al hacer exec en la verificacion de que existe la factura para el item de factura" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
             return false;
         }
     }
@@ -90,7 +91,8 @@ bool MItemFactura::agregarItemFactura( const int id_venta, const double cantidad
         return true;
     } else {
         qDebug( "Error al intentar insertar valor de item de factura" );
-        qDebug( QString( "Error: %1 - %2 - %3" ).arg( cola.lastError().number() ).arg( cola.lastError().text() ).arg( cola.lastQuery() ).toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     }
 

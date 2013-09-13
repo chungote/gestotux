@@ -247,7 +247,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
     rec.setValue( "fecha_pago", fecha );
     rec.setValue( "texto", contenido );
     rec.setValue( "precio", total );
-     /// @todo Ver si esto andaría bien con el formulario de pago retrasado
+     /// @TODO: Ver si esto andaría bien con el formulario de pago retrasado
     if( efectivo && pagado )  {
         rec.setValue( "forma_pago", MPagos::Efectivo );
         rec.setValue( "pagado", true );

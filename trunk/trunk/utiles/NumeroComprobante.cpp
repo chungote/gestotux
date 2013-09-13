@@ -176,5 +176,5 @@ void NumeroComprobante::deNumero( const int numero )
 int NumeroComprobante::aNumero()
 {
     return (this->_dato.first*((10*CANT_DIGITOS)-1) )+this->_dato.second;
-    /// @TODO revisar esta transformación
+    /// @TODO: revisar esta transformación de numero de comprobante a numero
 }

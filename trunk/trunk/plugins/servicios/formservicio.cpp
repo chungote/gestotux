@@ -103,7 +103,7 @@ void FormServicio::guardar()
      if( _mapa->submit() ) {
          if( modelo->submitAll() ) {
             QMessageBox::information( this, "Correcto", "El servicio fue modificado correctamente" );
-            /// @todo Version 0.6 -> Veo la modificacion del precio para ofrecer sistema de aviso en la proxima factura
+            /// @TODO: Version 0.6 -> Veo la modificacion del precio para ofrecer sistema de aviso en la proxima factura
             this->close();
             return;
          } else {

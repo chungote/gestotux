@@ -63,7 +63,7 @@ void ReportesCuotas::resumenCuotasDeudaHistorica()
 {
     QMessageBox::information( 0, "Error", "No implementado" );
     return;
-    /// @TODO Implementar el reporte de cuotas historicas
+    /// @TODO: Implementar el reporte de cuotas historicas
     EReporte *rep = new EReporte( 0 );
     rep->especial( "cuotashistoricas", ParameterList() );
     rep->hacerPDF( ParameterList(), QString( "DeudasCuotasAl" ).arg( QDate::currentDate().toString( Qt::LocaleDate ) ) );
@@ -77,7 +77,7 @@ void ReportesCuotas::resumenCuotasMes()
 {
     QMessageBox::information( 0, "Error", "No implementado" );
     return;
-    /// @TODO Implementar reporte de Deuodas de cuotas según mes.
+    /// @TODO: Implementar reporte de Deuodas de cuotas según mes.
     bool ok = false;
     QStringList meses;
     QString mes = QInputDialog::getItem( 0, "Elija el mes", "Elija el mes:", meses, QDate::currentDate().month(), false, &ok );
@@ -98,7 +98,7 @@ void ReportesCuotas::resumenCuotasCliente()
 {
     QMessageBox::information( 0, "Error", "No implementado" );
     return;
-    /// @TODO Implementar reporte de deuda segun cliente
+    /// @TODO: Implementar reporte de deuda segun cliente
     EReporte *rep = new EReporte( 0 );
     int id_cliente = 1;
     ParameterList lista;

@@ -22,7 +22,7 @@ void MItemRemito::inicializar() {
 }
 
 void MItemRemito::relacionar() {
-  setRelation( 1, QSqlRelation( "remito", "id_remito", "serie" ) ); ///@todo Crear una vista para esto
+  setRelation( 1, QSqlRelation( "remito", "id_remito", "serie" ) ); /// @TODO: Crear una vista para esto
 }
 
 /*!
