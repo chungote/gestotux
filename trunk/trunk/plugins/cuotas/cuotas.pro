@@ -54,6 +54,9 @@ HEADERS += cuotasplugin.h \
            ../remitos/MRemito.h \
            ../remitos/mitemremito.h \
            ../productos/mproductos.h \
+           ../ventas/mfactura.h \
+           ../ventas/mitemfactura.h \
+           ../descuentos/mdescuentos.h \
            formadelantocuotas.h \
             madelantosimularcuotas.h
 
@@ -78,6 +81,9 @@ SOURCES += cuotasplugin.cpp \
            ../remitos/MRemito.cpp \
            ../remitos/mitemremito.cpp \
            ../productos/mproductos.cpp \
+           ../ventas/mfactura.cpp \
+           ../ventas/mitemfactura.cpp \
+           ../descuentos/mdescuentos.cpp \
            formadelantocuotas.cpp \
            madelantosimularcuotas.cpp
 
