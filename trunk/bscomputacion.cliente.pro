@@ -22,6 +22,7 @@ SUBDIRS = utiles/utiles.pro \
           plugins/proveedor/proveedor.pro \
           plugins/feedback/feedback.pro \
           plugins/remitos/remitos.pro \
+          plugins/ordentrabajo/ordentrabajo.pro \
           src/src.pro
 
 NOMBRE_PROGRAMA = ../../bin/BsComputacion
@@ -31,5 +32,5 @@ unix {
   system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }
 win32 {
- #system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+ system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }
