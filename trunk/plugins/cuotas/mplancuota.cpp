@@ -101,12 +101,12 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
             int id_recibo =  mp->agregarRecibo( id_cliente, QDate::currentDate(), contenido, entrega, recibo_efectivo, true );
             if( id_recibo != -1 ) {
                 // Emitir el comprobante
-                EReporte *rep = new EReporte( this );
+                EReporte *rep = new EReporte( 0 );
                 rep->recibo();
                 ParameterList lista;
                 lista.append( "id_recibo", id_recibo );
                 if( !rep->hacer( lista ) ) {
-                    qWarning( "No se pudo emitir el recibo por la entrega inicial del plan de cuotas; Pero el recibo quedó emitido" );
+                    qWarning() << QString::fromUtf8( "No se pudo emitir el recibo por la entrega inicial del plan de cuotas; Pero el recibo quedó emitido." );
                 }
                 delete rep;rep=0;
             } else {
@@ -121,7 +121,7 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
         return true;
     } else {
         qWarning( "Error al intentar insertar el registro del plan de cuotas" );
-        qDebug() << "Error al insertrecord de plan_cuota";
+        qDebug() << "Error al insert record de plan_cuota";
         qDebug() << this->lastError().text();
         qDebug() << this->query().lastQuery();
         *id_plan=-1;
@@ -272,7 +272,7 @@ QString MPlanCuota::obtenerRazonSocial( const int id_plan )
 int MPlanCuota::obtenerIdCliente( const int id_plan )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT c.id FROM plan_cuota AS pc, clientes AS c, factura AS f WHERE c.id = f.id_cliente AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+    if( cola.exec( QString( "SELECT c.id FROM plan_cuota AS pc, clientes AS c, factura AS f, remito AS r WHERE ( c.id = f.id_cliente OR c.id = r.id_cliente ) AND r.id_remito = pc.id_factura AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
         if( cola.next() ) {
             return cola.record().value(0).toInt();
         } else {
@@ -377,9 +377,8 @@ bool MPlanCuota::cancelarPlan( const int id_plan_cuota, QString razon, QDateTime
     }
     if( razon.isEmpty() || razon.isNull() ) {
         // Coloco la razón predeterminada
-        razon.append( QString::fromUtf8("Razón desconocida" ) );
+        razon.append( QString::fromUtf8( "Razón desconocida" ) );
     }
-    return false; /// @TODO: Ver esto!
     QSqlQuery cola;
     if( cola.prepare( "UPDATE plan_cuota SET razon_cancelado = :razon, fechahora_cancelacion = :fechahora_cancelacion WHERE id_plan_cuota = :id_plan_cuota" ) ) {
         return false;

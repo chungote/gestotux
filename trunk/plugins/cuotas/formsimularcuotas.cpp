@@ -275,6 +275,9 @@ void FormSimularCuotas::confirmar()
     if( ret == QMessageBox::Yes ) {
         imprimir();
     }
+    if( CkBEntregaEfectivo->isChecked() ) {
+        QMessageBox::information( this, QString::fromUtf8("Impimir recibo"), QString::fromUtf8("A continuación se imprimirá el recibo correspondiente a la entrega inicial. Inserte el papel correspondiente y presiones Ok" ) );
+    }
     // Genero el plan de cuotas
     int id_plan_cuota = -1;
     MPlanCuota *mpc = new MPlanCuota( this );
