@@ -199,7 +199,7 @@ QString HiComp::reporte( int tipo ) {
         case EReporte::AnulacionFactura:
         { return "AnulacionFactura"; break; }
         case EReporte::Remito:
-        { return "Remito"; break; }
+        { return "Remito-hicomp"; break; }
         default:
         { return ""; break; }
     }
