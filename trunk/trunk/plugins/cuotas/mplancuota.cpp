@@ -219,7 +219,7 @@ int MPlanCuota::diasEnPeriodo( const int tipo_periodo, QDate fecha_calculo )
 
 /*!
  * \brief MPlanCuota::asociarConFactura
- * \param id_plan Plan al cual asociar el identificador de factura
+ * \param id_plan Plan al cual asociar el identificador de factura o remito
  * \param id_factura Identificador de la factura al cual pertenece
  */
 void MPlanCuota::asociarConFactura( int id_plan, int id_factura )
