@@ -19,6 +19,10 @@ QDialog(parent)
     _id_plan_cuota = -1;
     _model = 0;
     _emitir = false;
+
+    DSBFaltante->setEnabled( false );
+    DSBPagado->setEnabled( false );
+    DSBTotal->setEnabled( false );
 }
 
 /*!
@@ -94,6 +98,7 @@ void DPagoCuota::cargarDatos()
     }
     double importe_cuota = MItemPlanCuota::obtenerProximoImporte( this->_id_plan_cuota );
     this->DSBImporte->setValue( importe_cuota );
+    this->DSBPago->setValue( importe_cuota );
     this->_id_item_plan_cuota = MItemPlanCuota::obtenerIdProximaCuota( this->_id_plan_cuota );
 }
 
