@@ -1,6 +1,7 @@
 #include "DPagoCuota.h"
 
 #include <QMessageBox>
+#include <QDebug>
 
 #include "mplancuota.h"
 #include "mitemplancuota.h"
@@ -71,6 +72,7 @@ void DPagoCuota::changeEvent(QEvent *e)
  */
 void DPagoCuota::cargarDatos()
 {
+    qDebug() << "Plan de cuotas: " << this->_id_plan_cuota;
     this->LRazonSocial->setText( MPlanCuota::obtenerRazonSocial( this->_id_plan_cuota ) );
     QPair<int,int> estado_cuotas = MPlanCuota::obtenerEstadoCuotas( this->_id_plan_cuota );
     this->LCDNTotal->display( estado_cuotas.second );

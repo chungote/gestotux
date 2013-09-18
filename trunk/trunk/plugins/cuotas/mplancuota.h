@@ -29,6 +29,7 @@ public:
     };
 
     enum TipoComprobante {
+        TipoInvalido = -1,
         Factura = 0,
         Remito = 1
     };
@@ -41,6 +42,7 @@ public:
 
     static void asociarConFactura( int id_plan, int id_factura );
     static QString obtenerRazonSocial( const int id_plan );
+    static TipoComprobante obtenerTipoComprobante( const int id_plan );
     static int obtenerIdCliente( const int id_plan );
     static QPair<int,int> obtenerEstadoCuotas( const int id_plan );
     static QPair<double,double> obtenerEstadoImportes( const int id_plan );

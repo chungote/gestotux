@@ -248,19 +248,58 @@ void MPlanCuota::asociarConFactura( int id_plan, int id_factura )
 QString MPlanCuota::obtenerRazonSocial( const int id_plan )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT c.razon_social FROM plan_cuota AS pc, clientes AS c, factura AS f WHERE c.id = f.id_cliente AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
-        if( cola.next() ) {
-            return cola.record().value(0).toString();
+    MPlanCuota::TipoComprobante tipo = MPlanCuota::obtenerTipoComprobante( id_plan );
+    if( tipo == MPlanCuota::Factura ) {
+        if( cola.exec( QString( "SELECT c.razon_social FROM plan_cuota AS pc, clientes AS c, factura AS f WHERE c.id = f.id_cliente AND f.id_factura = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+            if( cola.next() ) {
+                return cola.record().value(0).toString();
+            } else {
+                qDebug() << "Error de next al obtención de razon social de un plan de cuotas";
+                qDebug() << cola.lastQuery();
+            }
         } else {
-            qDebug( "Error de next al obtención de razon social de un plan de cuotas" );
+            qDebug() << "Error al ejecutar la cola de obtención de razon social de un plan de cuotas";
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
+        }
+    } else if( tipo == MPlanCuota::Remito ){
+        if( cola.exec( QString( "SELECT c.razon_social FROM plan_cuota AS pc, clientes AS c, remito AS r WHERE c.id = r.id_cliente AND r.id_remito = pc.id_factura AND pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+            if( cola.next() ) {
+                return cola.record().value(0).toString();
+            } else {
+                qDebug() << "Error de next al obtención de razon social de un plan de cuotas";
+                qDebug() << cola.lastQuery();
+            }
+        } else {
+            qDebug( "Error al ejecutar la cola de obtención de razon social de un plan de cuotas" );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
+        }
+    }
+    return QString();
+}
+
+/*!
+ * \brief MPlanCuota::obtenerTipoComprobante
+ * Devuelve el tipo de comprobante que tiene un plan de cuota
+ * \param id_plan Identificador del plan
+ * \return Tipo de comprobante
+ */
+MPlanCuota::TipoComprobante MPlanCuota::obtenerTipoComprobante( const int id_plan ) {
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT pc.tipo_comprobante FROM plan_cuota AS pc WHERE pc.id_plan_cuota = %1" ).arg( id_plan ) ) ) {
+        if( cola.next() ) {
+            return (MPlanCuota::TipoComprobante)cola.record().value(0).toInt();
+        } else {
+            qDebug( "Error de next al obtención del tipo de comprobante de un plan de cuotas" );
             qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug( "Error al ejecutar la cola de obtención de razon social de un plan de cuotas" );
+        qDebug() << "Error al ejecutar la cola de obtención de razon social de un plan de cuotas";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
     }
-    return QString();
+    return MPlanCuota::TipoInvalido;
 }
 
 /*!
