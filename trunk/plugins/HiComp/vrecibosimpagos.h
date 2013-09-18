@@ -10,8 +10,12 @@ class VRecibosImpagos : public EVLista
 public:
     VRecibosImpagos( QWidget *parent = 0 );
 
+protected slots:
+    void pagar();
+
 private:
-    MRecibosImpagos *mp;
+    MRecibosImpagos *modelo;
+    QAction *ActPagar;
     
 };
 

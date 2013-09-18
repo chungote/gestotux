@@ -8,10 +8,7 @@ class MRecibosImpagos : public QSqlTableModel
     Q_OBJECT
 public:
     explicit MRecibosImpagos(QObject *parent = 0);
-    
-signals:
-    
-public slots:
+    QVariant data(const QModelIndex &idx, int role) const;
     
 };
 

@@ -658,11 +658,11 @@ double MPagos::buscarImporte( NumeroComprobante num )
     if( cola.next() ) {
        return cola.record().value(0).toDouble();
     } else {
-       qDebug( "Error al hacer next en cola de importe de recibo" );
+       qDebug() << "Error al hacer next en cola de importe de recibo";
        return -1.1;
     }
   } else {
-    qDebug( "error al hacer exec de cola de importe de recibo" );
+    qDebug() << "error al hacer exec de cola de importe de recibo";
     return -1.1;
   }
 }
@@ -681,10 +681,13 @@ NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
             NumeroComprobante *num = new NumeroComprobante( 0, cola.record().value(0).toInt(), cola.record().value(1).toInt() );
             return *num;
         } else {
-            qDebug( "MPagos::buscarNumeroComprobantePorId::Error al hacer next en la busqueda de los datos" );
+            qDebug() << "MPagos::buscarNumeroComprobantePorId::Error al hacer next en la busqueda de los datos";
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug( "MPagos::buscarNumeroComprobantePorId::Error al hacer el exce en la busaqueda de los datos" );
+        qDebug() << "MPagos::buscarNumeroComprobantePorId::Error al hacer el exce en la busaqueda de los datos";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
     return *invalido;

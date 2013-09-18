@@ -33,6 +33,7 @@
 #include <QSqlDatabase>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QDebug>
 
 DPagarRecibo::DPagarRecibo(QWidget *parent) :
     QDialog(parent), _num_recibo( 0, -1, -1 )
@@ -53,6 +54,27 @@ DPagarRecibo::DPagarRecibo(QWidget *parent) :
     connect( PBPagar, SIGNAL( clicked() ), this, SLOT( accept() ) );
     connect( PBCancelar, SIGNAL( clicked() ), this, SLOT( reject() ) );
 
+}
+
+/*!
+ * \brief DPagarRecibo::setearIdRecibo
+ * \param id_recibo
+ * \return
+ */
+bool DPagarRecibo::setearIdRecibo( const int id_recibo )
+{
+    MPagos *m = new MPagos();
+    NumeroComprobante _num_recibo_temp = m->buscarNumeroComprobantePorId( id_recibo );
+    _num_recibo.setearNumeroSerie( _num_recibo_temp.serie() );
+    _num_recibo.setearNumero( _num_recibo_temp.numero() );
+    if( !_num_recibo.esValido() ) {
+        QMessageBox::warning( this, "Error", "El recibo ingresado no esta registrado o no ha sido emitido." );
+        delete m;
+        return false;
+    }
+    // pongo el numero en el combo box
+    LENumeroRecibo->setText( _num_recibo.aCadena() );
+    return true;
 }
 
 
