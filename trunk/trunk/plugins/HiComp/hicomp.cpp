@@ -116,15 +116,17 @@ void HiComp::crearMenu( QMenuBar *m )
  QMenu *menuHer = m->findChild<QMenu *>( "menuHerramientas" );
  menuHer->addSeparator();
  menuHer->addAction( ActPagarRecibo );
- menuHer->addAction( ActVerImpagos );
+ //menuHer->addAction( ActVerImpagos );
 }
 
-bool HiComp::verificarTablas( QStringList )
+bool HiComp::verificarTablas( QStringList tablas )
 {
- /*if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ).contains( "recibos" ) )
- {qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }
- if( !QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).tables( QSql::Tables ).contains( "clientes" ) )
- {qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }*/
+ if( !tablas.contains( "recibos" ) )
+ { qWarning( "Error al buscar las tablas del plugin hi comp - recibos" ); return false; }
+ if( !tablas.contains( "clientes" ) )
+ { qWarning( "Error al buscar las tablas del plugin hi comp - clientes" ); return false; }
+ if( !tablas.contains( "v_recibos_impagos" ) )
+ { qWarning( "Error al buscar las tablas del plugin hi comp - v_recibos_impagos" ); return false; }
  return true;
 }
 

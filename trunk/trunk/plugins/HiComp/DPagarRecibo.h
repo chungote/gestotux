@@ -35,6 +35,7 @@ class DPagarRecibo : public QDialog, private Ui::DPagarRecibo
 
 public:
     explicit DPagarRecibo( QWidget *parent = 0 );
+    bool setearIdRecibo( const int id_recibo );
 
 protected slots:
     void accept();
