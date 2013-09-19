@@ -1,9 +1,11 @@
 #include "reportescuotas.h"
 #include "EReporte.h"
+#include "mclientes.h"
 
 #include <QDate>
 #include <QMessageBox>
 #include <QInputDialog>
+
 
 /*!
  * \brief ReportesCuotas::version
@@ -93,6 +95,7 @@ void ReportesCuotas::resumenCuotasMes()
 
 /*!
  * \brief ReportesCuotas::resumenCuotasCliente
+ * Muestra el resumen de cuotas de un cliente específico
  */
 void ReportesCuotas::resumenCuotasCliente()
 {
@@ -104,7 +107,10 @@ void ReportesCuotas::resumenCuotasCliente()
     ParameterList lista;
     lista.append( "id_cliente", id_cliente );
     rep->especial( "deudascuotascliente", lista );
-    rep->hacerPDF( ParameterList(), QString( "DeudasCuotasAl" ).arg( QDate::currentDate().toString( Qt::LocaleDate ) ) );
+    rep->hacerPDF( ParameterList(),
+                   QString( "Deudas de Cuotas de %2 Al %1" )
+                   .arg( QDate::currentDate().toString( Qt::LocaleDate ) )
+                   .arg( MClientes::getRazonSocial( id_cliente ) ) );
     delete rep;
 }
 
