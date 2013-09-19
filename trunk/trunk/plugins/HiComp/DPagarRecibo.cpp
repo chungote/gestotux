@@ -29,6 +29,7 @@
 #include "mitemcuentacorriente.h"
 #include "mitemplancuota.h"
 #include "mclientes.h"
+#include "mrecargos.h"
 
 #include <QSqlDatabase>
 #include <QPushButton>
@@ -200,10 +201,14 @@ void DPagarRecibo::cambioNumeroRecibo()
       qWarning( "Error al recibo en cobros echos." );
       return;
   }
+
+  int id_cliente = m->buscarIdCliente( this->_num_recibo );
+
   if( id_periodo_servicio == -1 ) {
-      qDebug( "No corresponde a ningun servicio. No buscando recargos." );
+      qDebug() << "No corresponde a ningun servicio.";
+      // Busco el primer tipo de recargo que existe y lo cargo calculando desde la fecha de emisión
+      DSBRecargos->setValue( MRecargos::calcularRecargoGenerico( DSBImporte->value(), m->buscarFechaEmisionRecibo( this->_num_recibo ) ) );
   } else {
-    int id_cliente = m->buscarIdCliente( this->_num_recibo );
     double recargo = MRecargosHechos::buscarRecargoPorPeriodoServicio( id_periodo_servicio, id_cliente );
     DSBRecargos->setValue( recargo );
   }

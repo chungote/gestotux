@@ -63,6 +63,9 @@ public:
     int buscarIdCliente( NumeroComprobante num );
     double buscarImporte( NumeroComprobante num );
 
+    QDate buscarFechaEmisionRecibo( const int id_recibo );
+    QDate buscarFechaEmisionRecibo( NumeroComprobante mum_recibo );
+
     bool cancelarRecibo( const int id_recibo, QString razon, QDateTime fechahora );
 
     static NumeroComprobante &buscarMenorSerieNumeroPagado();
