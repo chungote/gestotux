@@ -24,6 +24,7 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QDate>
+#include <QDebug>
 
 #include "math.h"
 
@@ -164,14 +165,14 @@ bool MServicios::asociarCliente( int id_cliente, int id_servicio, QDateTime fech
  {
   if( !modelo->submitAll() )
   {
-   qWarning( qPrintable( "Error al hacer submit en el modelo: " + modelo->lastError().text() ) );
+   qWarning() << "Error al hacer submit en el modelo: " << modelo->lastError().text();
    delete modelo;
    return false;
   }
  }
  else
  {
-  qWarning( qPrintable( "Error al hacer insertar en el modelo: " + modelo->lastError().text() ) );
+  qWarning() << "Error al hacer insertar en el modelo: " << modelo->lastError().text();
   delete modelo;
   return false;
  }
@@ -205,7 +206,7 @@ bool MServicios::agregarServicio( QString nombre, QString detalle, QDate fecha_a
   if( this->insertRecord( -1, registro ) ) {
       return true;
   } else {
-      qDebug( QString( "Error MServicios::agregarServicio(): %1").arg( this->lastError().text() ).toLocal8Bit() );
+      qDebug() << "Error MServicios::agregarServicio(): " << this->lastError().text();
       return false;
   }
 }

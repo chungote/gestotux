@@ -664,7 +664,42 @@ double MPagos::buscarImporte( NumeroComprobante num )
   } else {
     qDebug() << "error al hacer exec de cola de importe de recibo";
     return -1.1;
-  }
+    }
+}
+
+/*!
+ * \brief MPagos::buscarFechaEmisionRecibo
+ * Busca la fecha de emision del recibo pasado como parametro
+ * \param id_recibo Identificador del recibo
+ * \return Fecha de emision o fecha invalida si no se encontró ningun dato
+ */
+QDate MPagos::buscarFechaEmisionRecibo( const int id_recibo )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha_pago FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDate();
+        } else {
+            qDebug() << "MPagos::buscarFechaEmisionRecibo::Error al hacer next en la busqueda de los datos";
+            qDebug() << cola.lastQuery();
+        }
+    } else {
+        qDebug() << "MPagos::buscarFechaEmisionRecibo::Error al hacer el exce en la busaqueda de los datos";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return QDate();
+}
+
+/*!
+ * \brief MPagos::buscarFechaEmisionRecibo
+ * Busca la fecha de emision del recibo pasado como parametro
+ * \param id_recibo Identificador del recibo
+ * \return Fecha de emision o fecha invalida si no se encontró ningun dato
+ */
+QDate MPagos::buscarFechaEmisionRecibo( NumeroComprobante num_recibo )
+{
+    return buscarFechaEmisionRecibo( buscarIdPorSerieNumero( num_recibo.serie(), num_recibo.numero() ) );
 }
 
 /*!

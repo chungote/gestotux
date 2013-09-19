@@ -41,6 +41,7 @@ public:
     int columnCount( const QModelIndex & index = QModelIndex() ) const;
 
     static double calcularRecargo( const int id_recargo, bool precio_final = false );
+    static double calcularRecargoGenerico( double precio_base, QDate fecha_emision );
 
 public slots:
     void setearPrecioBase( double precio );

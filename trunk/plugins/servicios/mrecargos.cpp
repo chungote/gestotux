@@ -20,9 +20,11 @@
 #include "mrecargos.h"
 
 #include <QSqlRecord>
-#include "mservicios.h"
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QDebug>
+
+#include "mservicios.h"
 
 MRecargos::MRecargos( QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent), _precio_base(0.0)
@@ -39,7 +41,13 @@ MRecargos::MRecargos( QObject *parent, bool relaciones )
  }
 }
 
-
+/*!
+ * \brief MRecargos::setData
+ * \param idx
+ * \param value
+ * \param role
+ * \return
+ */
 bool MRecargos::setData(const QModelIndex& idx, const QVariant& value, int role)
 {
     switch( idx.column() ) {
@@ -60,6 +68,12 @@ bool MRecargos::setData(const QModelIndex& idx, const QVariant& value, int role)
     }
 }
 
+/*!
+ * \brief MRecargos::data
+ * \param idx
+ * \param role
+ * \return
+ */
 QVariant MRecargos::data(const QModelIndex& idx, int role) const
 {
  switch( role )
@@ -124,9 +138,11 @@ QVariant MRecargos::data(const QModelIndex& idx, int role) const
 void MRecargos::agregarRecargo()
 {
  if( _servicio_actual <= 0 ) {
-   qDebug( "Error, no hay un id de servicio seteado ( id <= 0 )" );
+   qDebug() << "Error, no hay un id de servicio seteado ( id <= 0 )";
    return;
- } else { qDebug( QString( "id_servicio = %1" ).arg( _servicio_actual ).toLocal8Bit() ); }
+ } else {
+   qDebug() << "id_servicio = " << _servicio_actual;
+ }
  QSqlRecord registro = this->record();
  registro.remove( 0 );
  registro.setValue( "id_servicio", _servicio_actual );
@@ -156,7 +172,7 @@ void MRecargos::setearServicio( int id_servicio )
         this->_precio_base = MServicios::precioBase( _servicio_actual );
         this->select();
     } else {
-        qDebug( QString( "MRecargos::setearServicio::id de servicio erroneo: %1" ).arg( id_servicio ).toLocal8Bit() );
+        qDebug() << "MRecargos::setearServicio::id de servicio erroneo: " << id_servicio;
     }
 }
 
@@ -197,13 +213,13 @@ double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )
     cola.prepare( "SELECT porcentaje, recargo, id_servicio FROM recargos WHERE id_recargo = :id_recargo" );
     cola.bindValue( ":id_recargo", id_recargo );
     if( !cola.exec() ) {
-        qDebug( "Error al ejecutar la cola de averiguacionde los datos del recargo" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error al ejecutar la cola de averiguacionde los datos del recargo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return -1.0;
     }
     if( !cola.next() ) {
-        qDebug( "El recargo pasado como parametro no exite!" );
+        qDebug() << "El recargo pasado como parametro no exite!";
         return -1.0;
     }
     double porcentaje = cola.record().value(0).toDouble();
@@ -233,6 +249,17 @@ double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )
         }
     }
     return aplicar;
+}
+
+/*!
+ * \brief MRecargos::calcularRecargoGenerico
+ * Calcula el recargo de un recibo cualquiera sobre los recargos del primer servicio que se encuentre
+ * \param precio_base Precio base del recibo
+ * \param fecha_emision Fecha de emisión del recibo
+ * \return Valor que se debe agregar al precio del recibo por recargo de pago a destermino
+ */
+double MRecargos::calcularRecargoGenerico( double precio_base, QDate fecha_emision )
+{ /// @TODO: Agregar funcion para el calculo del recargo de un recibo cualquiera
 }
 
 /*

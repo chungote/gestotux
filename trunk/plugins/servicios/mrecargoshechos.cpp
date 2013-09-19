@@ -18,10 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mrecargoshechos.h"
+
 #include <QSqlRelation>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QDebug>
+
 #include "mcuentacorriente.h"
 #include "mitemcuentacorriente.h"
 #include "mrecargos.h"
@@ -32,6 +35,9 @@ MRecargosHechos::MRecargosHechos(QObject *parent)
     inicializar();
 }
 
+/*!
+ * \brief MRecargosHechos::inicializar
+ */
 void MRecargosHechos::inicializar()
 {
     setTable( "recargos_hechos" );
@@ -65,17 +71,33 @@ CREATE TABLE `recargo_cobro_servicio_cliente` (
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 */
 
+/*!
+ * \brief MRecargosHechos::relacionar
+ */
 void MRecargosHechos::relacionar()
 {
     setRelation( 2, QSqlRelation( "clientes", "id", "razon_social" ) );
     setRelation( 1, QSqlRelation( "servicios", "id_servicio", "nombre" ) );
 }
 
+/*!
+ * \brief MRecargosHechos::setData
+ * \param item
+ * \param value
+ * \param role
+ * \return
+ */
 bool MRecargosHechos::setData(const QModelIndex& item, const QVariant& value, int role)
 {
     return QSqlRelationalTableModel::setData(item, value, role);
 }
 
+/*!
+ * \brief MRecargosHechos::data
+ * \param item
+ * \param role
+ * \return
+ */
 QVariant MRecargosHechos::data(const QModelIndex& item, int role) const
 {
     switch( role )
@@ -136,11 +158,10 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
     QString ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
     if( ctacte == QString::number( MCuentaCorriente::ErrorNumeroCuenta )
         || ctacte == QString::number( MCuentaCorriente::ErrorClienteInvalido ) ) {
-        qDebug( "El cliente no posee una cuenta corriente!!! ( aseveracion que implica error anterior en el sistema!)" );
-        qDebug( QString( "ID Cliente: %1" ).arg( id_cliente ).toLocal8Bit() );
+        qDebug() << "El cliente no posee una cuenta corriente!!! ( aseveracion que implica error anterior en el sistema!)";
+        qDebug() << "ID Cliente: " << id_cliente;
         return false;
     }
-    /// @TODO: Verificar identificador de referencia pasado como parametro a esta funcion
     // Teoricamente el identificador sirve para vincular de vuelta el item con su origen. ¿Que numero colocamos aca?
     // Que numero de comprobante posee?? teoricamente ninguno,a si que le mandamos una cadena vacia.
     int id_ctacte = MItemCuentaCorriente::agregarOperacion( ctacte,
@@ -151,7 +172,7 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
                                                             detalle,
                                                             costo );
     if( id_ctacte == -1 ) {
-        qDebug( "No se pudo guardar el item en la cuenta corriente. Verificar log." );
+        qDebug() << "No se pudo guardar el item en la cuenta corriente. Verificar log.";
         return false;
     }
 
@@ -162,9 +183,9 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
                 "(  id_periodo_servicio,  id_servicio,  id_cliente,  id_recargo,  fecha_generado,  texto_detalle,  precio,  id_ctacte ) VALUES"
                 "( :id_periodo_servicio, :id_servicio, :id_cliente, :id_recargo, :fecha_generado, :texto_detalle, :precio, :id_ctacte )"
                 ) ) {
-        qDebug( "Error de prepare" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Error de prepare";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     cola.bindValue( ":id_periodo_servicio", id_periodo_servicio );
     cola.bindValue( ":id_servicio", id_servicio );
@@ -176,12 +197,12 @@ bool MRecargosHechos::agregarRecargo( const int id_periodo_servicio, const int i
     cola.bindValue( ":id_ctacte", id_ctacte );
     // id_recibo es colocado cuando es pagado
     if( cola.exec() ) {
-        //qDebug( "Registro de recargo insertado correctamente" );
+        qDebug() << "Registro de recargo insertado correctamente";
         return true;
     } else {
-        qDebug( "Cola de insercion de recargo incorrecta" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << "Cola de insercion de recargo incorrecta";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -197,7 +218,7 @@ double MRecargosHechos::buscarRecargoPorPeriodoServicio( const int id_periodo_se
 {
     // Busco el ID de periodoservicio en los recargos realizados que coincidan
     if( id_periodo_servicio <= 0  ) {
-        qDebug( "Id de periodo servicio incorrecto al buscar recargos hechos" );
+        qDebug() << "Id de periodo servicio incorrecto al buscar recargos hechos";
         return 0.0;
     }
     QSqlQuery cola;
@@ -205,16 +226,25 @@ double MRecargosHechos::buscarRecargoPorPeriodoServicio( const int id_periodo_se
         if( cola.next() ) {
             return cola.record().value(0).toDouble();
         } else {
-            qDebug( "MRecargosHechos::buscarRecargoPorPeriodoServicio: Error al hacer next en buscar recargos" );
+            qDebug() << "MRecargosHechos::buscarRecargoPorPeriodoServicio: Error al hacer next en buscar recargos";
         }
     } else {
-        qDebug( "MRecargosHechos::buscarRecargoPorPeriodoServicio: Error al hacer exec" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "MRecargosHechos::buscarRecargoPorPeriodoServicio: Error al hacer exec";
+        qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
     }
     return 0.0;
 }
 
+/*!
+ * \brief MRecargosHechos::existe
+ * Permite saber si existe algun recargo con los datos pasados como parametro
+ * \param id_periodo_servicio Identificador del periodo de servicio
+ * \param id_servicio Identificador del servicio
+ * \param id_cliente Identificador del Cliente
+ * \param id_recargo Identificador del recargo
+ * \return Verdadero si existe algun recargo cobrado al cliente que corresponda con los 4 parametros
+ */
 bool MRecargosHechos::existe( const int id_periodo_servicio, const int id_servicio, const int id_cliente, const int id_recargo )
 {
     QSqlQuery cola;
@@ -224,9 +254,9 @@ bool MRecargosHechos::existe( const int id_periodo_servicio, const int id_servic
             return true;
         }
     } else {
-        qDebug( "MRecargosHechos::existe: Error al hacer exec" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
-        qDebug( cola.lastError().text().toLocal8Bit() );
+        qDebug() << "MRecargosHechos::existe: Error al hacer exec";
+        qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
     }
     return false;
 }
