@@ -10,6 +10,8 @@ FormRecibo::FormRecibo(QWidget *parent) :
 EVentana(parent)
 {
     setupUi(this);
+    setWindowTitle( "Mostrar Recibo" );
+    setObjectName("visor_recibo");
 
     EActImprimir *ActImprimir = new EActImprimir( this );
     connect( ActImprimir, SIGNAL( triggered() ), this, SLOT( imprimir() ) );
@@ -32,6 +34,11 @@ EVentana(parent)
     _id_actual = -1;
 }
 
+/*!
+ * \brief FormRecibo::setId
+ * Coloca el identificador del recibo y provoca la carga de datos
+ * \param id Identificador del recibo a cargar
+ */
 void FormRecibo::setId(int id)
 {
     if( id <= 0 )
@@ -53,10 +60,15 @@ void FormRecibo::changeEvent(QEvent *e)
     }
 }
 
+/*!
+ * \brief FormRecibo::cargarDatos
+ * Carga los datos del recibo según el id seteado anteriormente
+ */
 void FormRecibo::cargarDatos()
 {
     MPagos *d = new MPagos( this, false );
     d->setearId( _id_actual );
+    setWindowTitle( QString( "Recibo #%1" ).arg( d->buscarNumeroComprobantePorId( _id_actual ).aCadena() ) );
     LNumero->setText( LNumero->text().append( "<b>" ).append( d->buscarNumeroComprobantePorId( _id_actual ).aCadena() ).append( "<b>" ) );
     DEFecha->setDate( d->getFecha() );
     CBCliente->setearId( d->getIdCliente() );
@@ -83,6 +95,10 @@ void FormRecibo::cargarDatos()
     delete d;
 }
 
+/*!
+ * \brief FormRecibo::aPdf
+ * Convierte el recibo actual a PDF
+ */
 void FormRecibo::aPdf() {
     if( _id_actual > 0 ) {
         EReporte *rep = new EReporte( 0 );
@@ -94,6 +110,10 @@ void FormRecibo::aPdf() {
     }
 }
 
+/*!
+ * \brief FormRecibo::imprimir
+ * Reimprime el recibo actual
+ */
 void FormRecibo::imprimir() {
     if( _id_actual > 0 ) {
         EReporte *rep = new EReporte( 0 );

@@ -263,6 +263,7 @@ void VCuentaCorriente::verResumen()
  connect( form, SIGNAL( emitirRecibo( int, QString ,double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
  connect( form, SIGNAL( mostrarRecibo( int ) ), this, SIGNAL( mostrarRecibo( int ) ) );
  connect( form, SIGNAL( mostrarFactura( int ) ), this, SIGNAL( mostrarFactura( int ) ) );
+ connect( form, SIGNAL( mostrarRemito( int ) ), this, SIGNAL( mostrarRemito( int ) ) );
  emit agregarVentana( form );
 }
 

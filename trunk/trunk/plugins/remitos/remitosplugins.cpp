@@ -24,6 +24,7 @@
 #include "formprefremito.h"
 
 #include <QSqlDatabase>
+#include <QDebug>
 
 Q_EXPORT_PLUGIN2( remitos, RemitoPlugin )
 
@@ -168,4 +169,13 @@ void RemitoPlugin::agregarRemito( int id_cliente, QDate fecha, MProductosTotales
     connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
     connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
     emit agregarVentana( f );
+}
+
+/*!
+ * \brief RemitoPlugin::mostrarRemito
+ * \param id_remito Numero de remito a buscar
+ */
+void RemitoPlugin::mostrarRemito( int id_remito )
+{
+    qWarning() << "No implementado";
 }

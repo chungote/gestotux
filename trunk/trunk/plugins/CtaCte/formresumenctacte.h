@@ -47,6 +47,7 @@ protected slots:
     void pagarTodo();
     void verFactura();
     void verRecibo();
+    void verRemito();
     void pagarFactura();
 
 protected:
@@ -59,6 +60,7 @@ signals:
     void emitirRecibo( int id_cliente, QString texto_recibo, double total );
     void mostrarRecibo( int id_recibo );
     void mostrarFactura( int id_factura );
+    void mostrarRemito( int id_remito );
 
 private:
     QAction *ActFiltrar;

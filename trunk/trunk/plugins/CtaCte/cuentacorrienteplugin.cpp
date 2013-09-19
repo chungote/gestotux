@@ -119,5 +119,6 @@ void CuentaCorrientePlugin::verCuentasCorrientes()
  connect( f, SIGNAL( emitirRecibo( int, QString, double ) ), this, SIGNAL( emitirRecibo( int, QString, double ) ) );
  connect( f, SIGNAL( mostrarRecibo( int ) ), this, SIGNAL( mostrarRecibo( int ) ) );
  connect( f, SIGNAL( mostrarFactura( int ) ), this, SIGNAL( mostrarFactura( int ) ) );
+ connect( f, SIGNAL( mostrarRemito( int ) ), this, SIGNAL( mostrarRemito( int ) ) );
  emit agregarVentana( f );
 }

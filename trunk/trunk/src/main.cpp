@@ -158,11 +158,19 @@ void generarInterconexiones( QMainWindow *ventana_principal )
                          egp->pluginQObject( "pagos" ),
                          SLOT( mostrarRecibo( int ) ) );
     }
+    // Integracion de cuentas corrientes con facturas
     if( egp->existePlugin( "ctacte" ) && egp->existePlugin( "ventas" ) ) {
        QObject::connect( egp->pluginQObject( "ctacte" ),
                          SIGNAL( mostrarFactura( int ) ),
                          egp->pluginQObject( "ventas" ),
                          SLOT( mostrarFactura( int ) ) );
+    }
+    // Integracion de cuentas corrientes con remitos
+    if( egp->existePlugin( "ctacte" ) && egp->existePlugin( "remitos" ) ) {
+       QObject::connect( egp->pluginQObject( "ctacte" ),
+                         SIGNAL( mostrarRemito( int ) ),
+                         egp->pluginQObject( "remitos" ),
+                         SLOT( mostrarRemito( int ) ) );
     }
     // Estructura de señales para integración de cuotas con ventas
     if( egp->existePlugin( "ventas" ) && egp->existePlugin( "cuotas" ) ) {
