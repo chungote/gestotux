@@ -202,8 +202,6 @@ void OrdenTrabajoPlugin::verTecnicos()
  * Agrega una nueva orden de trabajo
  */
 void OrdenTrabajoPlugin::agregarOrdenTrabajo()
-{
-    emit agregarVentana( new FormOrdenTrabajo( true ) );
-}
+{ emit agregarVentana( new FormOrdenTrabajo( true ) ); }
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )

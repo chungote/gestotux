@@ -259,16 +259,47 @@ double MRecargos::calcularRecargo( const int id_recargo, bool precio_final )
  * \return Valor que se debe agregar al precio del recibo por recargo de pago a destermino
  */
 double MRecargos::calcularRecargoGenerico( double precio_base, QDate fecha_emision )
-{ /// @TODO: Agregar funcion para el calculo del recargo de un recibo cualquiera
+{
+    // Busco los recargos comunes
+    QSqlQuery cola;
+    if( cola.exec( "SELECT id_servicio FROM recargos GROUP BY id_servicio HAVING COUNT( id_servicio ) >= 2 LIMIT 1" ) ) {
+        if( cola.next() ) {
+            int id_servicio = cola.record().value(0).toInt();
+            // Busco los recargos del servicio.
+            int cantidad_dias_pasados = fecha_emision.daysTo( QDate::currentDate() );
+            double ultimo_porcentaje = 0.0;
+            double ultimo_recargo = 0.0;
+            if( cola.exec( QString( "SELECT cant_dias, porcentaje, recargo FROM recargos WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
+                while( cola.next() ) {
+                    int cant_dias = cola.record().value(0).toInt();
+                    ultimo_porcentaje = cola.record().value(1).toDouble();
+                    ultimo_recargo = cola.record().value(2).toDouble();
+                    if( cantidad_dias_pasados <= cant_dias ) {
+                        if( ultimo_recargo != 0.0 ) {
+                            return ultimo_recargo;
+                        } else {
+                            return ultimo_porcentaje * precio_base;
+                        }
+                    }
+                }
+                // Si llego hasta aca, aplico los ultimos valores
+                if( ultimo_recargo != 0.0 ) {
+                    return ultimo_recargo;
+                } else {
+                    return ultimo_porcentaje * precio_base;
+                }
+            } else {
+                qDebug() << "Error al ejecutar la cola de averiguacion de recargos para un servicio generico";
+                qDebug() << cola.lastError().text();
+                qDebug() << cola.lastQuery();
+            }
+        } else {
+            qDebug() << "No se encontró ningun servcio con 2 recargos echos";
+        }
+    } else {
+        qDebug() << "Error al intentar encontrar un servicio con 2 recargos echos";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return precio_base;
 }
-
-/*
-  CREATE TABLE IF NOT EXISTS `recargos` (
-    `id_recargo` bigint NOT NULL AUTO_INCREMENT,
-    `id_servicio` bigint NOT NULL,
-    `cant_dias` int NOT NULL,
-    `porcentaje` double(4,2) DEFAULT NULL,
-    `recargo` double DEFAULT NULL,
-    PRIMARY KEY (`id_recargo`)
-  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-  */
