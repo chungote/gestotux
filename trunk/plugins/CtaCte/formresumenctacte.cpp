@@ -260,6 +260,15 @@ void FormResumenCtaCte::menuContextual( const QModelIndex &indice )
                 }
                 break;
         }
+        case MItemCuentaCorriente::Remito:
+        {
+                 if( ERegistroPlugins::getInstancia()->existePluginExterno( "remito" ) ) {
+                     QAction *ActVerRemito = new QAction( this );
+                     ActVerRemito->setText( "Ver Remito..." );
+                     connect( ActVerRemito, SIGNAL( triggered() ), this, SLOT( verRemito() ) );
+                     _menuContextual->addAction( ActVerRemito );
+                 }
+        }
         case MItemCuentaCorriente::CobroServicio:
         case MItemCuentaCorriente::RecargoCobroServicio:
         default:
@@ -305,9 +314,7 @@ void FormResumenCtaCte::pagarTodo()
             QMessageBox::warning( this, "Error", QString::fromUtf8( "No se pudo buscar un dato para hacer el recibo. No se realizarÃ¡ nada" ) );
             return;
         }
-        FormAgregarRecibo *f = new FormAgregarRecibo();
-        f->setearDatos( id_cliente, texto, saldo );
-        emit agregarVentana( f );
+        emit emitirRecibo( id_cliente, texto, saldo );
     } else {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal función.\n Contacte su administrador de sistema." ) );
         return;
@@ -315,20 +322,26 @@ void FormResumenCtaCte::pagarTodo()
     return;
 }
 
-#include "evisorinformes.h"
-#include "recibo.h"
 /*!
     \fn FormResumenCtaCte::verRecibo()
  */
 void FormResumenCtaCte::verRecibo()
 {
-    if( ERegistroPlugins::getInstancia()->existePluginExterno( "pagos" ) ) {
-        int id_fila = TVItems->selectionModel()->selectedRows().first().row();
-        int id_recibo = modeloItem->data( modeloItem->index( id_fila, 2 ), Qt::EditRole ).toInt();
+    foreach( QModelIndex idx, TVItems->selectionModel()->selectedRows() ) {
+        int id_recibo = modeloItem->data( modeloItem->index( idx.row(), 2 ), Qt::EditRole ).toInt();
         emit mostrarRecibo( id_recibo );
-    } else {
-        QMessageBox::warning( this, "Error", "No se puede emitir un recibo ya que no se encuentra habilitado el plugin para tal funcion.\n Contacte su administrador de sistema." );
-        return;
+    }
+    return;
+}
+
+/*!
+ * \brief FormResumenCtaCte::verRemito
+ */
+void FormResumenCtaCte::verRemito()
+{
+    foreach( QModelIndex idx, TVItems->selectionModel()->selectedRows() ) {
+        int id_recibo = modeloItem->data( modeloItem->index( idx.row(), 2 ), Qt::EditRole ).toInt();
+        emit mostrarRemito( id_recibo );
     }
     return;
 }
@@ -356,6 +369,7 @@ void FormResumenCtaCte::pagarFactura()
         int id_pos = TVItems->selectionModel()->selectedRows().first().row();
         int id_factura = modeloItem->data( modeloItem->index( id_pos, 2 ), Qt::EditRole ).toInt();
         // Verifico que la factura no este pagada
+        /// @TODO: Verificar que la factura no esté pagada ya
         qWarning( "No implementada verificacion de si la factura se encuentra pagada o no..." );
         // Busco los detalles de la factura
         QString texto_recibo = QString( "Pago de la factura %1" ).arg( MFactura::obtenerComprobante( id_factura ).aCadena() );

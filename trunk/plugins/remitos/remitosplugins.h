@@ -65,6 +65,7 @@ signals:
 public slots:
     void seCierraGestotux();
     void agregarRemito( int, QDate, MProductosTotales * );
+    void mostrarRemito( int );
 
 protected slots:
     void verRemitos();

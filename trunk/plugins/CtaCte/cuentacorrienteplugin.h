@@ -55,6 +55,7 @@ signals:
     void emitirRecibo( int, QString, double );
     void mostrarRecibo( int );
     void mostrarFactura( int );
+    void mostrarRemito( int );
 
 public slots:
     void seCierraGestotux();
