@@ -178,4 +178,5 @@ void RemitoPlugin::agregarRemito( int id_cliente, QDate fecha, MProductosTotales
 void RemitoPlugin::mostrarRemito( int id_remito )
 {
     qWarning() << "No implementado";
+    /// @TODO: Implementar vista de remito.
 }

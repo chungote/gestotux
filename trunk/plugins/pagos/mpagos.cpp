@@ -703,6 +703,32 @@ QDate MPagos::buscarFechaEmisionRecibo( NumeroComprobante num_recibo )
 }
 
 /*!
+ * \brief MPagos::buscarSiAPagarLuego
+ * Busca si el metodo de pago es luego
+ * \param id_recibo Identificador del recibo
+ * \return Verdadero si el metodo de pago es A Pagar Luego
+ */
+bool MPagos::buscarSiAPagarLuego( const int id_recibo )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT forma_pago FROM recibos WHERE id_recibo = %1" ).arg( id_recibo ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() == MPagos::SinPagar ) {
+                return true;
+            }
+        } else {
+            qDebug() << "MPagos::buscarNumeroComprobantePorId::Error al hacer next en la busqueda de los datos";
+            qDebug() << cola.lastQuery();
+        }
+    } else {
+        qDebug() << "MPagos::buscarNumeroComprobantePorId::Error al hacer el exce en la busaqueda de los datos";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return false;
+}
+
+/*!
  * \fn MPagos::buscarNumeroComprobantePorId( const int id_recibo )
  * Devuelve un numero de comprobante para el ID de recibo pasado. Si el ID no existe o hubo error, devuelve un numero de comprobante erroneo.
  * \param id_recibo ID del recibo buscado
