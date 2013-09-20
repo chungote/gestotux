@@ -39,9 +39,14 @@ void FormPrefCuotas::cargar()
  p->inicio();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "Cuotas" );
+
  CBPeriodo->setCurrentIndex( p->value( "id-periodo", 2 ).toInt() );
  dSBInteres->setValue( p->value( "interes", 10.00 ).toDouble() );
  CkBInicioPeriodo->setChecked( p->value( "inicio-periodo", false ).toBool() );
+
+ SBDias->setValue( p->value( "cant_dias", 30 ).toInt() );
+ DSBRecargo->setValue( p->value( "recargo", 13.0 ).toDouble() );
+
  p->endGroup();
  p->endGroup();
  p = 0;
@@ -58,9 +63,14 @@ void FormPrefCuotas::guardar()
     p->inicio();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "Cuotas" );
+
     p->setValue( "id-periodo", CBPeriodo->currentIndex() );
     p->setValue( "interes", dSBInteres->value() );
     p->setValue( "inicio-periodo", CkBInicioPeriodo->isChecked() );
+
+    p->setValue( "cant_dias", SBDias->value() );
+    p->setValue( "recargo", DSBRecargo->value() );
+
     p->endGroup();
     p->endGroup();
     p = 0;

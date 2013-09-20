@@ -406,7 +406,7 @@ void FormFacturarServicio::facturar()
     lista.append( "precio_base", this->_precio_base );
 
     if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
-
+        reporte->recibo();
         reporte->especial( "Recibo-hicomp-venc", ParameterList() );
 
         QSqlQuery cola;

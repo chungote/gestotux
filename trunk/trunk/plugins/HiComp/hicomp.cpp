@@ -31,8 +31,11 @@
 #include <QSqlError>
 #include <QMainWindow>
 #include <QShortcut>
+#include <QDate>
 
 #include "EReporte.h"
+#include "preferencias.h"
+#include "mpagos.h"
 
 QString HiComp::nombrePrograma()  const
 {  return QString( "%1 - %2" ).arg( this->empresa() ).arg( this->version() );  }
@@ -186,7 +189,8 @@ void HiComp::pagarRecibosEmitidos()
 }
 
 #include "vrecibosimpagos.h"
-void HiComp::verRecibosImpagos() {
+void HiComp::verRecibosImpagos()
+{
     emit agregarVentana( new VRecibosImpagos() );
 }
 
@@ -207,8 +211,76 @@ QString HiComp::reporte( int tipo ) {
     }
 }
 
-void HiComp::reporteParametros(int /*tipo*/, QString &/*nombre*/, ParameterList &/*parametros*/)
-{}
+void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parametros )
+{
+    switch( tipo ) {
+        case EReporte::Recibo:
+        {
+            if( nombre == "Recibo-hicomp-venc" ) {
+                double _precio_base = parametros.value( "precio_base" ).toDouble();
+                QDate _fecha_inicio = parametros.value( "fecha_inicio" ).toDate();
+                int _id_servicio = parametros.value( "id_servicio" ).toInt();
+                QSqlQuery cola;
+                if( cola.exec( QString( "SELECT cant_dias, recargo, porcentaje FROM recargos WHERE id_servicio = %1" ).arg( _id_servicio ) ) ) {
+                    int i = 1;
+                    while( cola.next() ) {
+                        if( cola.record().isNull( 1 ) ) {
+                            parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value(2).toDouble() );
+                            parametros.append( QString( "total%1" ).arg( i ), _precio_base * ( 1 + ( cola.record().value(2).toDouble() / 100 ) ));
+                        } else {
+                            parametros.append( QString( "recargo%1" ).arg( i ), cola.record().value(1).toDouble() );
+                            parametros.append( QString( "total%1" ).arg( i ), _precio_base + cola.record().value(1).toDouble() );
+                        }
+                        parametros.append( QString( "fecha%1" ).arg( i ), _fecha_inicio.addDays( cola.record().value("cant_dias" ).toInt() ).toString( "dd/MM/yyyy" ) );
+                        i++;
+                    }
+                    if( i < 4 ) {
+                        for( int j = i; j <= 4; j++ ) {
+                            parametros.append( QString( "recargo%1" ).arg( j ), "" );
+                            parametros.append( QString( "total%1" ).arg( j ), "" );
+                            parametros.append( QString( "fecha%1" ).arg( j ), "" );
+                        }
+                    }
+                } else {
+                    qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
+                    qDebug( cola.lastError().text().toLocal8Bit() );
+                    return;
+                }
+            } else {
+                // Si estamos imprimiendo un recibo ahora es porque es de cuotas si está para pagar luego
+                MPagos *m = new MPagos();
+                int id_recibo = parametros.value( "id_recibo" ).toInt();
+                if( m->buscarSiAPagarLuego( id_recibo ) ) {
+                    // Busco las preferencias de las cuotas
+                    preferencias *p = preferencias::getInstancia();
+                    p->inicio();
+                    p->beginGroup( "Preferencias" );
+                    p->beginGroup( "Cuotas" );
+                    int cant_dias = p->value( "cantidad_dias" ).toInt();
+                    double recargo = p->value( "recargo" ).toDouble();
+                    p->endGroup();
+                    p->endGroup();
+                    p=0;
+
+                    double _precio_base = m->buscarImporte( m->buscarNumeroComprobantePorId( id_recibo ) );
+                    QDate _fecha_inicio = m->buscarFechaEmisionRecibo( id_recibo );
+                    parametros.append( "recargo1", recargo );
+                    parametros.append( "total1"  , _precio_base * ( 1 + ( recargo / 100 ) ) );
+                    parametros.append( "fecha1"  , _fecha_inicio.addDays( cant_dias ).toString( "dd/MM/yyyy" ) );
+                }
+                delete m;
+            }
+            break;
+        }
+        case EReporte::Remito:
+        {
+            return;
+            break;
+        }
+        default:
+        { break; }
+    }
+}
 
 void HiComp::crearAccionesGlobales( QMainWindow *ventana )
 {
