@@ -66,6 +66,8 @@ public:
     QDate buscarFechaEmisionRecibo( const int id_recibo );
     QDate buscarFechaEmisionRecibo( NumeroComprobante mum_recibo );
 
+    bool buscarSiAPagarLuego( const int id_recibo );
+
     bool cancelarRecibo( const int id_recibo, QString razon, QDateTime fechahora );
 
     static NumeroComprobante &buscarMenorSerieNumeroPagado();
