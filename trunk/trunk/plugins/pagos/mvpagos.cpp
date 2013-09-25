@@ -1,5 +1,6 @@
 #include "mvpagos.h"
 #include "mpagos.h"
+#include <QDebug>
 
 MVPagos::MVPagos(QObject *parent) :
     QSqlRelationalTableModel(parent)
@@ -138,5 +139,5 @@ void MVPagos::filtrar()
  }
  this->setFilter( filtro );
  this->select();
- qDebug( this->filter().toLocal8Bit() );
+ qDebug() << this->filter();
 }

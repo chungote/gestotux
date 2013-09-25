@@ -229,12 +229,12 @@ double MServicios::precioBase( int id_servicio )
      return cola.record().value(0).toDouble();
     } else {
         qDebug( "Error al hacer next en la cola de precio base de servicio" );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastQuery();
         return 0.0;
     }
   } else {
       qDebug( "Error al hacer exec en la cola de precio base de servicio" );
-      qDebug( cola.lastQuery().toLocal8Bit() );
+      qDebug() << cola.lastQuery();
       return 0.0;
   }
 }
@@ -326,8 +326,8 @@ MServicios::Periodo MServicios::obtenerPeriodo( const int id_servicio ) {
     } else {
         qDebug( "Error de exec en la cola de obtencion de periodo de un servicio" );
     }
-    qDebug( cola.lastError().text().toLocal8Bit() );
-    qDebug( cola.lastQuery().toLocal8Bit() );
+    qDebug() << cola.lastError().text();
+    qDebug() << cola.lastQuery();
     return MServicios::Invalido;
 }
 
@@ -390,8 +390,8 @@ bool MServicios::dadoDeBaja( const int id_servicio)
     QSqlQuery cola;
     if( !cola.exec( QString( "SELECT COUNT(id_servicio) FROM servicios WHERE id_servicio = %1 AND fecha_baja IS NULL").arg( id_servicio ) ) ) {
         qDebug( "Error al ejecutar la cola de obtenciÃ³n de dato de si el servicio esta dado de baja" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     } else {
         if( cola.next() )  {
             if ( cola.record().value(0).toInt() <= 0 ) {
@@ -399,8 +399,8 @@ bool MServicios::dadoDeBaja( const int id_servicio)
             }
         } else {
             qDebug( "Error al hacer next al ejecutar la cola de obtencion de si el servicio esta dado de baja" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     }
     return false;
@@ -421,8 +421,8 @@ bool MServicios::darDeBaja( const int id_servicio, QModelIndex indice, const QDa
     cola.bindValue( ":fecha", fecha );
     if( !cola.exec() ) {
         qDebug( "Error al ejecutar la cola de dar de baja el servicio especificado" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     }
     qDebug( "Servicio dado de baja correctamente" );
@@ -454,8 +454,8 @@ bool MServicios::existe(const QString nombre)
         }
     } else {
         qDebug( "Error al ejecutar la cola de contar la cantidad de servicios con un nombre" );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     }
 }

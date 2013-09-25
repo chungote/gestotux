@@ -220,7 +220,7 @@ QDate MPagos::buscarFechaUltimoRecibo() const
   @param efectivo indica si el recibo fue pagado en efectivo
   @return Numero de recibo emitido o -1 en caso de cualquier error
 */
-int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado )
+int MPagos::agregarRecibo(int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado , QString texto_ctacte )
 {
     int id_caja = -1;
     if( efectivo && pagado ) {
@@ -293,7 +293,7 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
                                                                 fecha,
                                                                 QString( "Pago de recibo %1" ).arg( proximo.aCadena() ),
                                                                 total * (-1) ) ) {
-                        qDebug( "Item de cuenta corriente agregado correctamente." );
+                        //qDebug( "Item de cuenta corriente agregado correctamente." );
                     } else {
                         qWarning( "No se pudo agregar el item de la cuenta corriente" );
                     }
@@ -314,9 +314,9 @@ int MPagos::agregarRecibo( int id_cliente, QDate fecha, QString contenido, doubl
                                                                     ret,
                                                                     MItemCuentaCorriente::Recibo,
                                                                     fecha,
-                                                                    QString( "Deuda de recibo %1" ).arg( proximo.aCadena() ),
+                                                                    texto_ctacte,
                                                                     total ) ) {
-                            qDebug( "Item de cuenta corriente agregado correctamente." );
+                            //qDebug( "Item de cuenta corriente agregado correctamente." );
                         } else {
                             qWarning( "No se pudo agregar el item de la cuenta corriente" );
                         }
