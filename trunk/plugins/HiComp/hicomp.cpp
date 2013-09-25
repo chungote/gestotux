@@ -32,6 +32,7 @@
 #include <QMainWindow>
 #include <QShortcut>
 #include <QDate>
+#include <QDebug>
 
 #include "EReporte.h"
 #include "preferencias.h"
@@ -242,8 +243,8 @@ void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parame
                         }
                     }
                 } else {
-                    qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
-                    qDebug( cola.lastError().text().toLocal8Bit() );
+                    qDebug() << "HiComp::ReporteParametros::Recibo:: Error de exec de recargos";
+                    qDebug() << cola.lastError().text();
                     return;
                 }
             } else {

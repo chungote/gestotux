@@ -24,6 +24,7 @@
 #include <QTimer>
 #include <QPrintDialog>
 #include <QPrinterInfo>
+#include <QDebug>
 
 #include "mperiodoservicio.h"
 #include "FormFacturarServicio.h"
@@ -234,7 +235,7 @@ void FormFacturarServicio::facturar()
     // Inicializo los valores que voy a ir refrescando
     int id_cliente = -1;
     QString nombre_cliente = "";
-    QHash<int, int> comprobantes; // Guarda el paso con el id del recibo guardado
+    QList<int> comprobantes; // Guarda el paso con el id del recibo guardado
 
     // Genero la transación en la base de datos ( total )
     QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).transaction();
@@ -267,7 +268,7 @@ void FormFacturarServicio::facturar()
         //qDebug( "<----" );
         // Veo si el elemento esta para ser facturado
         if( !mtemp->data( mtemp->index( i, 0 ), Qt::EditRole ).toBool() ) {
-            qDebug( QString( "Item %1: No se facturara" ).arg( i ).toLocal8Bit() );
+            qDebug() << "Item " << i << ": No se facturara";
             // Avanzo la cantidad de pasos que sería por facturarle
             PBProgreso->setValue( PBProgreso->value() + multiplicador_pasos );
             continue;
@@ -286,11 +287,12 @@ void FormFacturarServicio::facturar()
         if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
             LIndicador->setText( QString( "( %1 de %2 ) Generando recibo ..." ).arg( i +1 ).arg( cantidad_total ) );
             id_factura = qobject_cast<MPagos *>(mr)->agregarRecibo( id_cliente,
-                                            this->_fecha_emision,
-                                            QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
-                                            this->_precio_base,
-                                            false, // No efectivo y no pagado para que quede para despues
-                                            false );
+                                                                    this->_fecha_emision,
+                                                                    QString( "%1 periodo %2/%3" ).arg( MServicios::getNombreServicio( this->_id_servicio ) ).arg( this->_periodo ).arg( this->_ano ),
+                                                                    this->_precio_base,
+                                                                    false, // No efectivo y no pagado para que quede para despues
+                                                                    false,
+                                                                    QString( "%2 periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ) );
         } else {
             LIndicador->setText( QString( "Generando factura ( %1 de %2 )..." ).arg( i +1 ).arg( cantidad_total ) );
             id_factura = qobject_cast<MFactura *>(mr)->agregarFactura( id_cliente,
@@ -354,22 +356,36 @@ void FormFacturarServicio::facturar()
         LIndicador->setText( QString( "( %2 de %3 ) Actualizando cuenta corriente del cliente %1  ..." ).arg( nombre_cliente ).arg( i + 1 ).arg( cantidad_total ) );
         // Intento agregar el numero de operación
         QString id_ctacte = MCuentaCorriente::obtenerNumeroCuentaCorriente( id_cliente );
-        int id_op_ctacte = MItemCuentaCorriente::agregarOperacion( id_ctacte,
-                                                                   MFactura::obtenerComprobante( id_factura ),
+        int id_op_ctacte = -1;
+        if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
+            // Esta operación ya se agrega automaticamente cuando se pone el recibo en formato "a Pagar luego"
+            /*id_op_ctacte = MItemCuentaCorriente::agregarOperacion( id_ctacte,
+                                                                   MPagos::buscarNumeroComprobantePorId( id_factura ),
                                                                    id_factura,
-                                                                   MItemCuentaCorriente::Factura,
+                                                                   MItemCuentaCorriente::Recibo,
                                                                    this->_fecha_emision,
                                                                    QString( "%2 periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
-                                                                   this->_precio_base );
-        if( id_op_ctacte == -1 ) {
-            // Error al guardar el  item de cuenta corriente
-            LIndicador->setText( QString( "Error: No se pudo actualizar la cuenta corriente para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
-            PBProgreso->setRange( 0, 1 );
-            PBProgreso->setValue( 1 );
-            QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
-            QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
-            delete mr;
-            break;
+                                                                   this->_precio_base * (-1.0) ); */
+        } else {
+             id_op_ctacte = MItemCuentaCorriente::agregarOperacion( id_ctacte,
+                                                                    MFactura::obtenerComprobante( id_factura ),
+                                                                    id_factura,
+                                                                    MItemCuentaCorriente::Factura,
+                                                                    this->_fecha_emision,
+                                                                    QString( "%2 periodo %1" ).arg( this->LPeriodo->text() ).arg( this->LNombreServicio->text() ),
+                                                                    this->_precio_base );
+
+            if( id_op_ctacte == -1 ) {
+                // Error al guardar el  item de cuenta corriente
+                LIndicador->setText( QString( "Error: No se pudo actualizar la cuenta corriente para el cliente %2" ).arg( i+1 ).arg( nombre_cliente ) );
+                PBProgreso->setRange( 0, 1 );
+                PBProgreso->setValue( 1 );
+                QMessageBox::warning( this, "Cancelado", QString::fromUtf8( "No se guardo ninguna facturación para este servicio. <br /> Consulte el error indicado y contacte al servicio tecnico para ayuda." ) );
+                QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
+                delete mr;
+                return;
+                break;
+            }
         }
         PBProgreso->setValue( PBProgreso->value() + 1 );
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -432,7 +448,7 @@ void FormFacturarServicio::facturar()
             }
         } else {
             qDebug( "HiComp::ReporteParametros::Recibo:: Error de exec de recargos" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
             return;
         }
     } else {
@@ -450,12 +466,14 @@ void FormFacturarServicio::facturar()
     }
 
     int contador = 0;
+    PBProgreso->setRange( 0, comprobantes.size() );
+    PBProgreso->setValue( 0 );
     while( comprobantes.size() > 0 ) {
         QApplication::processEvents();
         // Paso 3
         // Imprimir recibo
         lista.clear();
-        int id_comp = comprobantes.take( contador );
+        int id_comp = comprobantes.takeFirst();
         if( ERegistroPlugins::getInstancia()->existePluginExterno( "hicomp" ) ) {
             lista.append( "id_recibo", id_comp );
             LIndicador->setText( QString::fromUtf8( "Imprimiendo recibo Nº %1 ( %2 de %3 )" ).arg( MPagos::buscarNumeroComprobantePorId( id_comp ).aCadena() ).arg( contador+1 ).arg( cantidad_total ) );
@@ -464,7 +482,7 @@ void FormFacturarServicio::facturar()
             LIndicador->setText( QString::fromUtf8( "Imprimiendo factura Nº %1 ( %2 de %3 )" ).arg( MFactura::obtenerComprobante( id_comp ).aCadena() ).arg( contador+1 ).arg( cantidad_total ) );
         }
         if( !reporte->hacer( lista, false, false ) ) {
-            qDebug( QString( "No se pudo hacer el reporte %1" ).arg( contador ).toLocal8Bit() );
+            qDebug() << "No se pudo hacer el reporte " << contador;
         }
         QApplication::processEvents();
         PBProgreso->setValue( PBProgreso->value() + 1 );

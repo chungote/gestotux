@@ -50,7 +50,7 @@ public:
 
     QVariant data( const QModelIndex& item, int role) const;
 
-    int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true );
+    int agregarRecibo( int id_cliente, QDate fecha, QString contenido, double total, bool efectivo, bool pagado = true, QString texto_ctacte = QString() );
 
     int buscarUltimoNumeroRecibo() const;
     QDate buscarFechaUltimoRecibo() const;

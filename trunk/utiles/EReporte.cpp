@@ -40,6 +40,7 @@ EReporte::EReporte( QObject *padre )
     this->setParent( padre );
     _tipo = EReporte::Invalido;
     _impresora = 0;
+    _rep = 0;
 }
 
 EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parametros )
@@ -48,6 +49,7 @@ EReporte::EReporte( QObject *padre, QString nombre_reporte, ParameterList parame
     especial( nombre_reporte, parametros );
     _parametros = parametros;
     _impresora = 0;
+    _rep = 0;
 }
 
 EReporte::~EReporte()
@@ -357,6 +359,7 @@ bool EReporte::cargar( const QString nombre ) {
         QDir reporte = QApplication::applicationDirPath();
         if( ! reporte.cd( "reportes" ) ) {
             qWarning( "No se pudo ingresar al directorio de reportes -  Consulte el servicio tecnico" );
+            qWarning() << reporte.path();
             _tipo = Invalido;
             return false;
         }
