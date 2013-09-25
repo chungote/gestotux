@@ -100,14 +100,14 @@ bool hacerTablas( QString nombrePlug )
                 QString cadena; QSqlQuery cola;
                 foreach( cadena, cadenas )
                 {
-                        qDebug( qPrintable( cadena ) );
+                        //qDebug() << cadena;
                         if( cadena.isEmpty() || cadena.isNull() ) {
-                                qDebug( "Cadena vacia, salteandola..." );
+                                qDebug() << "Cadena vacia, salteandola...";
                             } else {
                                 if( !cola.exec( cadena ) )
                                 {
-                                        qDebug( qPrintable( cadena ) );
-                                        qDebug( qPrintable( "Fallo...." + cola.lastError().text() ) );
+                                        qDebug() << cadena;
+                                        qDebug() << " Fallo...." << cola.lastError().text();
                                         return false;
                                 }
                                 else
@@ -118,13 +118,13 @@ bool hacerTablas( QString nombrePlug )
         }
         else
         {
-                qWarning(qPrintable( "Error al abrir el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database().driverName()+".sql" ) );
+                qWarning() << "Error al abrir el archivo: :/sql/" << nombrePlug << "." << QSqlDatabase::database().driverName() << ".sql";
                 return false;
         }
  }
  else
  {
-  qWarning( qPrintable( "No se pudo generar las tablas del plugin " + nombrePlug + ". No se encontro el archivo: :/sql/"+nombrePlug+"."+QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName()+".sql" ) );
+  qWarning() << "No se pudo generar las tablas del plugin " << nombrePlug << ". No se encontro el archivo: :/sql/" << nombrePlug << "." << QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() << ".sql";
   return false;
  }
 }
@@ -275,10 +275,7 @@ int main(int argc, char *argv[])
       delete directorio;
       directorio = 0;
       splash.showMessage( "Cargando Base de datos" );
-      for (int i = 0; i < QSqlDatabase::drivers().size(); ++i)
-      {
-              qDebug( QSqlDatabase::drivers().at(i).toLocal8Bit() );
-      }
+      qDebug() << "Drivers disponiles: " << QSqlDatabase::drivers();
       // Chequeo la Base de Datos
       bool fallosql = false;
       if( ( QSqlDatabase::isDriverAvailable( "QMYSQL" ) == true && p->value( "dbExterna", false ).toBool() ) || !p->value( "noForzarMysql", true ).toBool() )
@@ -307,7 +304,7 @@ int main(int argc, char *argv[])
                 }
                 default:
                 {
-                        qWarning( qPrintable( "Retorno desconocido: " + QString::number( ret ) ) );
+                        qWarning() << "Retorno desconocido: " << QString::number( ret );
                         abort();
                         break;
                 }
@@ -328,7 +325,7 @@ int main(int argc, char *argv[])
                 DB.setDatabaseName( QApplication::applicationDirPath().append( QDir::separator() ).append( "gestotux.database" ) );
                 if( !DB.open() )
                 {
-                        qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+                        qDebug() << "Ultimo error: " << DB.lastError().text();
                         abort();
                 }
         }
@@ -345,7 +342,7 @@ int main(int argc, char *argv[])
         DB.setDatabaseName( QApplication::applicationDirPath().append( QDir::separator() ).append( "gestotux.database" ) );
         if( !DB.open() )
         {
-                qDebug( "Ultimo error: " + DB.lastError().text().toLocal8Bit() );
+                qDebug() << "Ultimo error: " << DB.lastError().text();
                 abort();
         } else { qDebug( "Base de datos SQLite abierta correctamente" ); }
         /// FIN SQLITE
@@ -354,12 +351,7 @@ int main(int argc, char *argv[])
        {
         // No se puede usar sqlite para el programa
         qDebug( "No se puede encontrar el plug-in para la Base de Datos" );
-        QStringList drivers = QSqlDatabase::drivers();
-        qDebug( "Lista de Drivers Soportados:" );
-        for (int i = 0; i < drivers.size(); ++i)
-        {
-                qDebug( drivers.at(i).toLocal8Bit() );
-        }
+        qDebug() << "Lista de Drivers Soportados:" << QSqlDatabase::drivers();
         abort();
        }
        ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -468,13 +460,13 @@ int main(int argc, char *argv[])
                         }
                         else
                         {
-                                qWarning( QString( "Error de inicializacion en el plug in %1" ).arg( plug->nombre() ).toLocal8Bit() );
+                                qWarning() << "Error de inicializacion en el plugin " << plug->nombre();
                         }
                  }
                  else
                  {
-                        qWarning( QString( "Error al cargar el plugin" ).toLocal8Bit() );
-                        qWarning( loader.errorString().toLocal8Bit() );
+                        qWarning() << "Error al cargar el plugin";
+                        qWarning() << loader.errorString();
                  }
              }
         /////////////////////////////////////////////////////////////////////////////////////////////////

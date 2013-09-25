@@ -4,6 +4,8 @@
 #include "wizard/paginaclientenuevo.h"
 #include "wizard/paginaequipamiento.h"
 #include "wizard/paginaequipamientonuevo.h"
+//#include "wizard/paginaequipamientoexistente.h"
+#include "wizard/paginafinal.h"
 
 OrdenTrabajoWizard::OrdenTrabajoWizard( QWidget *parent ) :
 QWizard(parent)
@@ -12,7 +14,7 @@ QWizard(parent)
     setPage( Pagina_ClienteNuevo, new PaginaClienteNuevo );
     setPage( Pagina_Equipamiento, new PaginaEquipamiento );
     setPage( Pagina_EquipamientoNuevo, new PaginaEquipamientoNuevo );
-    setPage( Pagina_EquipamientoExistente, new PaginaEquipamientoExistente );
+    //setPage( Pagina_EquipamientoExistente, new PaginaEquipamientoExistente );
     setPage( Pagina_Final, new PaginaFinal );
 
     setStartId( Pagina_Cliente );
