@@ -41,7 +41,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     wizard/paginacliente.cpp \
     wizard/paginaclientenuevo.cpp \
     wizard/paginaequipamiento.cpp \
-    wizard/paginaequipamientonuevo.cpp
+    wizard/paginaequipamientonuevo.cpp \
+    wizard/paginafinal.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
@@ -62,7 +63,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     wizard/paginacliente.h \
     wizard/paginaclientenuevo.h \
     wizard/paginaequipamiento.h \
-    wizard/paginaequipamientonuevo.h
+    wizard/paginaequipamientonuevo.h \
+    wizard/paginafinal.h
 
 RESOURCES += ordentrabajo.qrc
 
@@ -74,7 +76,8 @@ FORMS += formordentrabajobase.ui \
     dhistorialordentrabajo.ui \
     wizard/paginaclientenuevo.ui \
     wizard/paginaequipamiento.ui \
-    wizard/paginaequipamientonuevo.ui
+    wizard/paginaequipamientonuevo.ui \
+    wizard/paginafinal.ui
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"

@@ -72,17 +72,18 @@ QVariant MHistorialOrdenTrabajo::data(const QModelIndex &item, int role) const
 
 /*!
  * \brief MHistorialOrdenTrabajo::agregarHistorial
- * \param id_orden_trabajo
- * \param fecha_hora
- * \param descripcion
- * \param costo
- * \param tipo_operacion
- * \param id_tecnico
- * \return
+ * Agrega un elemento al historial de una orden de trabajo
+ * \param id_orden_trabajo Identificador de la orden de trabajo
+ * \param fecha_hora Fecha y hora en que se realizó el trabajo
+ * \param descripcion Descripción del trabajo
+ * \param costo Costo asociado
+ * \param tipo_operacion Identificador del tipo de operacion
+ * \param id_tecnico Identificador del técnico responsable
+ * \return -1 en caso de error, o el identificador (<0) si la agregado fue correcto
  */
-bool MHistorialOrdenTrabajo::agregarHistorial(const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico)
+int MHistorialOrdenTrabajo::agregarHistorial(const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico)
 {
-    return false;
+    return -1;
     /// @TODO: Agregar implementación de agregado de item de historial
 }
 
