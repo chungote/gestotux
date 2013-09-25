@@ -43,8 +43,6 @@ private:
     QAction *ActPdf;
     QAction *ActCancelarOrden;
 
-    bool _agregando;
-
     int _id_orden_trabajo;
 
     void cargarDatosEquipamiento();

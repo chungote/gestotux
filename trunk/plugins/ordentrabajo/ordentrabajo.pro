@@ -36,7 +36,12 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     vordentrabajo.cpp \
     mhistorialordentrabajo.cpp \
     dhistorialordentrabajo.cpp \
-    ecbtipooperacionordentrabajo.cpp
+    ecbtipooperacionordentrabajo.cpp \
+    ordentrabajowizard.cpp \
+    wizard/paginacliente.cpp \
+    wizard/paginaclientenuevo.cpp \
+    wizard/paginaequipamiento.cpp \
+    wizard/paginaequipamientonuevo.cpp
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \
@@ -52,7 +57,12 @@ HEADERS += OrdenTrabajoPlugin.h \
     vordentrabajo.h \
     mhistorialordentrabajo.h \
     dhistorialordentrabajo.h \
-    ecbtipooperacionordentrabajo.h
+    ecbtipooperacionordentrabajo.h \
+    ordentrabajowizard.h \
+    wizard/paginacliente.h \
+    wizard/paginaclientenuevo.h \
+    wizard/paginaequipamiento.h \
+    wizard/paginaequipamientonuevo.h
 
 RESOURCES += ordentrabajo.qrc
 
@@ -61,7 +71,10 @@ OTHER_FILES += ordentrabajo.QMYSQL.sql \
 
 FORMS += formordentrabajobase.ui \
     formequipamientobase.ui \
-    dhistorialordentrabajo.ui
+    dhistorialordentrabajo.ui \
+    wizard/paginaclientenuevo.ui \
+    wizard/paginaequipamiento.ui \
+    wizard/paginaequipamientonuevo.ui
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
