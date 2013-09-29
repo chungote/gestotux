@@ -196,12 +196,15 @@ void OrdenTrabajoPlugin::verTipoOperacion()
 void OrdenTrabajoPlugin::verTecnicos()
 { emit agregarVentana( new VTecnicos() ); }
 
-#include "formordentrabajo.h"
+#include "ordentrabajowizard.h"
 /*!
  * \brief OrdenTrabajoPlugin::agregarOrdenTrabajo
  * Agrega una nueva orden de trabajo
  */
 void OrdenTrabajoPlugin::agregarOrdenTrabajo()
-{ emit agregarVentana( new FormOrdenTrabajo( true ) ); }
+{
+    OrdenTrabajoWizard *w = new OrdenTrabajoWizard( 0 );
+    w->exec();
+}
 
 Q_EXPORT_PLUGIN2( ordentrabajo, OrdenTrabajoPlugin )

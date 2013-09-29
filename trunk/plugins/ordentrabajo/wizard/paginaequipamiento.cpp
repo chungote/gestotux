@@ -24,7 +24,7 @@ PaginaEquipamiento::PaginaEquipamiento(QWidget *parent) :
     registerField( "equipamiento.nuevo", RBNuevo );
 }
 
-int PaginaEquipamiento::nextId()
+int PaginaEquipamiento::nextId() const
 {
     if( RBExistente->isChecked() ) {
         return OrdenTrabajoWizard::Pagina_EquipamientoExistente;

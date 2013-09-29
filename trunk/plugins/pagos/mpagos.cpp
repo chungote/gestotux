@@ -32,25 +32,6 @@
 #include "../CtaCte/mitemcuentacorriente.h"
 #include "../../src/mclientes.h"
 
-/*
-DROP TABLE `recibos`;
-CREATE TABLE IF NOT EXISTS `recibos` (
-  `id_recibo` bigint(20) NOT NULL AUTO_INCREMENT,
-  `id_cliente` bigint(20) REFERENCES clientes(id),
-  `fecha_pago` datetime NOT NULL,
-  `texto` tinyblob,
-  `precio` double(15,4) DEFAULT NULL,
-  `forma_pago` int(11) NOT NULL,
-  `cancelado` tinyint(4) NOT NULL DEFAULT '0',
-  `pagado` tinyint(4) NOT NULL DEFAULT '1',
-  `serie` int NOT NULL,
-  `numero` int NOT NULL,
-  `id_caja` bigint(20) REFERENCES movimiento_caja(id_movimiento),
-  PRIMARY KEY (`id_recibo`),
-  UNIQUE KEY `numero_recibo` (`serie`,`numero`)
-) ENGINE=InnoDB;
-*/
-
 MPagos::MPagos(QObject *parent, bool relaciones )
  : QSqlRelationalTableModel(parent)
 {

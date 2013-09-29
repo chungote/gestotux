@@ -43,6 +43,7 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     wizard/paginaequipamiento.cpp \
     wizard/paginaequipamientonuevo.cpp \
     wizard/paginafinal.cpp
+
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
     vtecnicos.h \

@@ -8,7 +8,8 @@ class PaginaFinal : public QWizardPage, private Ui::PaginaFinal
     Q_OBJECT
     
 public:
-    explicit PaginaFinal(QWidget *parent = 0);
+    PaginaFinal( QWidget *parent = 0 );
+    int nextId() const;
     
 };
 

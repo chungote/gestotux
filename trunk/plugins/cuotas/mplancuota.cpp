@@ -98,7 +98,12 @@ bool MPlanCuota::agregarPlanCuota( int id_cliente, double cantidad, double inter
         if( entrega > 0.0 ) {
             MPagos *mp = new MPagos( this, false );
             QString contenido = QString( "Pago de entrega inicial de plan de cuota #%1" ).arg( *id_plan );
-            int id_recibo =  mp->agregarRecibo( id_cliente, QDate::currentDate(), contenido, entrega, recibo_efectivo, true );
+            int id_recibo =  mp->agregarRecibo( id_cliente,
+                                                QDate::currentDate(),
+                                                contenido,
+                                                entrega,
+                                                recibo_efectivo,
+                                                true );
             if( id_recibo != -1 ) {
                 // Emitir el comprobante
                 EReporte *rep = new EReporte( 0 );

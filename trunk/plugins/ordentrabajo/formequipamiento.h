@@ -5,6 +5,8 @@
 #include "eventana.h"
 #include "mequipamiento.h"
 
+#include <QDataWidgetMapper>
+
 class FormEquipamiento : public EVentana, private Ui::FormEquipamientoBase
 {
   Q_OBJECT
@@ -27,6 +29,7 @@ private:
   bool _editar;
 
   MEquipamiento *_mequipamiento;
+  QDataWidgetMapper *_mapeador;
 
   void cargarDatos();
 

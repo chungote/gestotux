@@ -13,3 +13,6 @@ PaginaFinal::PaginaFinal(QWidget *parent) :
     registerField( "orden_trabajo.id_tecnico*"   , CBTecnico     ); // Tecnico asignado
 }
 
+int PaginaFinal::nextId() const
+{ return -1; }
+

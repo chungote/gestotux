@@ -14,7 +14,7 @@ PaginaEquipamientoNuevo::PaginaEquipamientoNuevo(QWidget *parent) :
     registerField( "equipamiento.numeroserie", LENumeroSerie );
 }
 
-int PaginaEquipamientoNuevo::nextId()
+int PaginaEquipamientoNuevo::nextId() const
 {
     return OrdenTrabajoWizard::Pagina_Final;
 }
