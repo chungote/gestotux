@@ -9,7 +9,7 @@ class PaginaEquipamiento : public QWizardPage, private Ui::PaginaEquipamiento
     
 public:
     PaginaEquipamiento( QWidget *parent = 0 );
-    int nextId();
+    int nextId() const;
     
 };
 

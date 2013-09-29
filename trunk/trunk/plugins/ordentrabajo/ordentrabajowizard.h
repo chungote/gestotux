@@ -18,6 +18,9 @@ public:
     };
 
     OrdenTrabajoWizard( QWidget *parent = 0 );
+
+ public slots:
+    void done( int result );
     
 };
 

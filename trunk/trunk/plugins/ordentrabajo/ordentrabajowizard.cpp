@@ -20,9 +20,18 @@ QWizard(parent)
     setStartId( Pagina_Cliente );
 
     setOption( HaveHelpButton, false );
+    /// @TODO: Agregar logotipo para titorial de orden de trabajo.
     //setPixmap( QWizard::LogoPixmap, QPixmap( ":/images/logo.png" ) );
 
     setWindowTitle( "Agregar orden trabajo" );
+}
+
+void OrdenTrabajoWizard::done( int result )
+{
+    // Utilizando los datos indicados por el usuario
+    // genero la orden de trabajo.
+    /// @TODO: Agregar logica aquí para guardar la orden de trabajo
+    QDialog::done( result );
 }
 
 

@@ -50,6 +50,7 @@ void FormEquipamiento::setearAgregar( bool estado )
     _editar = true;
     this->setWindowTitle( "Editar Equipamiento" );
     /// @TODO: cargar datos del equipamiento
+
   }
 }
 
@@ -94,5 +95,19 @@ void FormEquipamiento::cargarDatos()
 {
     if( this->_id <= 0 ) {
         return;
+    }
+    // Cargo los datos
+    if( _mequipamiento != 0 ) {
+        _mapeador = new QDataWidgetMapper( this );
+        _mapeador->setModel( _mequipamiento );
+        _mapeador->addMapping( LEDescripcion      , _mequipamiento->fieldIndex( "descripcion" )       );
+        _mapeador->addMapping( CBMarca            , _mequipamiento->fieldIndex( "modelo" )            );
+        _mapeador->addMapping( LEModelo           , _mequipamiento->fieldIndex( "modelo" )            );
+        _mapeador->addMapping( CBCliente          , _mequipamiento->fieldIndex( "id_cliente" )        , "idCliente" );
+        //_mapeador->addMapping( CkBBaja          , _mequipamiento->fieldIndex( "baja" )              , ??          );
+        //_mapeador->addMapping( CkBGarantia      , _mequipamiento->fieldIndex( "garantia" )          , ??          );
+        _mapeador->addMapping( PTEObservaciones   , _mequipamiento->fieldIndex( "observaciones" )     );
+        _mapeador->addMapping( LENumSerie         , _mequipamiento->fieldIndex( "numero_serie" )      );
+        _mapeador->addMapping( SBCantidadElementos, _mequipamiento->fieldIndex( "cant_elementos" )    );
     }
 }
