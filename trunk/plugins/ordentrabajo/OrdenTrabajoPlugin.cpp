@@ -203,7 +203,7 @@ void OrdenTrabajoPlugin::verTecnicos()
  */
 void OrdenTrabajoPlugin::agregarOrdenTrabajo()
 {
-    OrdenTrabajoWizard *w = new OrdenTrabajoWizard( 0 );
+    OrdenTrabajoWizard *w = new OrdenTrabajoWizard();
     w->exec();
 }
 

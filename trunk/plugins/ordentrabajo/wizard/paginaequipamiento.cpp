@@ -8,7 +8,7 @@ PaginaEquipamiento::PaginaEquipamiento(QWidget *parent) :
     setupUi(this);
 
     // Busco si se paso por la info de nuevo cliente
-    if( wizard()->hasVisitedPage( OrdenTrabajoWizard::Pagina_ClienteNuevo ) ) {
+   /* if( wizard()->hasVisitedPage( OrdenTrabajoWizard::Pagina_ClienteNuevo ) ) {
         RBExistente->setEnabled( false );
         RBNuevo->setChecked( true );
     } else {
@@ -21,7 +21,7 @@ PaginaEquipamiento::PaginaEquipamiento(QWidget *parent) :
     }
 
     registerField( "equipamiento.existe", RBExistente );
-    registerField( "equipamiento.nuevo", RBNuevo );
+    registerField( "equipamiento.nuevo", RBNuevo );*/
 }
 
 int PaginaEquipamiento::nextId() const

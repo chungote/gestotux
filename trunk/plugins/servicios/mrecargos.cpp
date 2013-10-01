@@ -267,21 +267,40 @@ double MRecargos::calcularRecargoGenerico( double precio_base, QDate fecha_emisi
             int id_servicio = cola.record().value(0).toInt();
             // Busco los recargos del servicio.
             int cantidad_dias_pasados = fecha_emision.daysTo( QDate::currentDate() );
+            //qDebug() << "Cantidad de días pasados: " << cantidad_dias_pasados;
+            if( cantidad_dias_pasados <= 0 ) {
+                return 0.0; // Evita que se calcule con el primer recargo.
+            }
             double ultimo_porcentaje = 0.0;
             double ultimo_recargo = 0.0;
             if( cola.exec( QString( "SELECT cant_dias, porcentaje, recargo FROM recargos WHERE id_servicio = %1" ).arg( id_servicio ) ) ) {
                 while( cola.next() ) {
                     int cant_dias = cola.record().value(0).toInt();
-                    ultimo_porcentaje = cola.record().value(1).toDouble();
-                    ultimo_recargo = cola.record().value(2).toDouble();
+                    //qDebug() << "Probando contra Ndias="<<cant_dias;
                     if( cantidad_dias_pasados <= cant_dias ) {
-                        if( ultimo_recargo != 0.0 ) {
-                            return ultimo_recargo;
+                        if( ultimo_recargo == 0.0 && ultimo_porcentaje == 0.0 ) {
+                            // Estoy en el caso de que la cantidad de días es menor al primer recargo
+                            // Si entró en el primer recargo, la cantidad de días esta antes de la aplicación.
+                            //qDebug() << "Primer if";
+                            return 0.0;
                         } else {
-                            return ultimo_porcentaje * precio_base;
+
+                            if( ultimo_recargo != 0.0 ) {
+                                return ultimo_recargo;
+                            } else {
+                                return ultimo_porcentaje * precio_base;
+                            }
                         }
+                    } else {
+                        // Actualizo los valores para que me entre bien en el for anterior
+                        ultimo_recargo = cola.record().value(2).toDouble();
+                        //qDebug() << "Ultimo_recargo:"<<ultimo_recargo;
+                        ultimo_porcentaje = cola.record().value(1).toDouble();
+                        //qDebug() << "Ultimo_porcentaje:"<<ultimo_porcentaje;
+                        //qDebug() << "Actualizados datos";
                     }
                 }
+                //qDebug() << "Fin ciclo!";
                 // Si llego hasta aca, aplico los ultimos valores
                 if( ultimo_recargo != 0.0 ) {
                     return ultimo_recargo;
