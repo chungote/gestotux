@@ -100,7 +100,7 @@ bool EReporte::hacer( ParameterList parametros, bool previsualizar, bool mostrar
     _duplicado.append( Parameter( "copia", "Duplicado" ) );
     _rep->setParamList( _duplicado );*/
 
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
+//    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
     _rep->setParamList( _parametros );
 
     if( _impresora == 0 ) {
@@ -158,7 +158,9 @@ bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
         ruta = QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation );
     }
 
-    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
+//#ifndef Q_WS_WIN
+//    ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
+//#endif
     _rep->setParamList( _parametros );
 
     if( ruta.at( 0 ) != '/' ) {
@@ -176,7 +178,7 @@ bool EReporte::hacerPDF( ParameterList parametros, QString ruta ) {
                                          ruta,
                                          "Archivo PDF ( *.pdf *.PDF )" );
     if( ruta.isEmpty() ) {
-        // No se eligió ningun archivo.
+        // No se eligio ningun archivo.
         return true;
     }
 
@@ -427,6 +429,8 @@ void EReporte::setearParametros( ParameterList param )
 void EReporte::imprimir( QPrinter *p )
 {
     this->setearImpresora( p );
+#ifndef Q_WS_WIN
     ERegistroPlugins::getInstancia()->pluginInfo()->reporteParametros( _tipo, _nombre, _parametros );
+#endif
     this->hacer( _parametros, false, false );
 }
