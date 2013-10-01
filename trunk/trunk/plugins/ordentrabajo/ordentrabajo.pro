@@ -42,7 +42,10 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     wizard/paginaclientenuevo.cpp \
     wizard/paginaequipamiento.cpp \
     wizard/paginaequipamientonuevo.cpp \
-    wizard/paginafinal.cpp
+    wizard/paginafinal.cpp \
+    wizard/paginaequipamientoexistente.cpp \
+    ../../src/mestadofiscal.cpp
+
 
 HEADERS += OrdenTrabajoPlugin.h \
     formordentrabajo.h \
@@ -65,7 +68,9 @@ HEADERS += OrdenTrabajoPlugin.h \
     wizard/paginaclientenuevo.h \
     wizard/paginaequipamiento.h \
     wizard/paginaequipamientonuevo.h \
-    wizard/paginafinal.h
+    wizard/paginafinal.h \
+    wizard/paginaequipamientoexistente.h \
+    ../../src/mestadofiscal.h
 
 RESOURCES += ordentrabajo.qrc
 
@@ -78,7 +83,8 @@ FORMS += formordentrabajobase.ui \
     wizard/paginaclientenuevo.ui \
     wizard/paginaequipamiento.ui \
     wizard/paginaequipamientonuevo.ui \
-    wizard/paginafinal.ui
+    wizard/paginafinal.ui \
+    wizard/paginaequipamientoexistente.ui
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
