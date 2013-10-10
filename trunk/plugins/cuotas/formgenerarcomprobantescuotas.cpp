@@ -112,7 +112,7 @@ void FormGenerarComprobantesCuotas::emitirComprobantes()
       LProgreso->setText( QString( "Emitiendo recibo Nº %1" ).arg( modelo->data( modelo->index( contador, 5 ), Qt::EditRole ).toString() ) );
 
       // Emito el recibo con los datos pero lo pongo como "A Pagar luego" o como pagado = false
-      int id_recibo = m->agregarRecibo( id_cliente, fecha, contenido, monto, true, false );
+      int id_recibo = m->agregarRecibo( id_cliente, fecha, contenido, monto, true, false, QString() );
       if ( id_recibo == -1 ) {
           QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();

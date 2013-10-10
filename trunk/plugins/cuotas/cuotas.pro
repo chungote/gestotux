@@ -58,7 +58,7 @@ HEADERS += cuotasplugin.h \
            ../ventas/mitemfactura.h \
            ../descuentos/mdescuentos.h \
            formadelantocuotas.h \
-            madelantosimularcuotas.h
+           madelantosimularcuotas.h
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
