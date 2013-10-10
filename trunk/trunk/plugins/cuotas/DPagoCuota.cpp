@@ -130,7 +130,7 @@ void DPagoCuota::accept()
       QDate fecha_recibo = QDate::currentDate();
       QString contenido = QString( "Pago de cuota %1 de %2 del plan de cuotas #%3"). arg( this->LCDNPagadas->value() + 1 ).arg( this->LCDNTotal->value() ).arg( this->_id_plan_cuota );
       double total = this->DSBPago->value();
-      id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, CkBEfectivo->isChecked(), true );
+      id_recibo = m->agregarRecibo( id_cliente, fecha_recibo, contenido, total, CkBEfectivo->isChecked(), true, QString() );
       if ( id_recibo == -1 ) {
           QMessageBox::information( this, "Error", "El recibo No ha sido agregado correctamente" );
           QSqlDatabase::database( QSqlDatabase::defaultConnection, true ).rollback();

@@ -68,7 +68,8 @@ void FormAdelantoCuotas::confirmar()
                                        contenido,
                                        DSBImporteAdelanto->value(),
                                        CkBAdelantoEfectivo->isChecked(),
-                                       true );
+                                       true,
+                                       QString() );
     if( id_recibo == -1 ) {
         QMessageBox::information( this, "Error", "No se pudo guardar el recibo del pago del adelanto" );
         delete mp;
