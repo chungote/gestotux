@@ -6,6 +6,7 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QSqlDatabase>
+#include <QDebug>
 
 #include "eactcerrar.h"
 #include "mservicios.h"
@@ -227,7 +228,7 @@ void FormVerificarRecargos::iniciar()
                 if( _detener ) { QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback(); return; }
                 QApplication::processEvents();
                 double costo_recargo = MRecargos::calcularRecargo( recargo.key(), false );
-                qDebug( QString( "%1" ).arg( costo_recargo ).toLocal8Bit() );
+                qDebug() << costo_recargo;
                 if( cola.exec(
                     QString( "SELECT id_cliente FROM cobro_servicio_cliente_periodo "
                              " WHERE id_servicio = %1 AND id_periodo_servicio = %2 "
