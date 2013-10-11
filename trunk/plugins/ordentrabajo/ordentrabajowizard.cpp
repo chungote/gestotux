@@ -35,43 +35,46 @@ void OrdenTrabajoWizard::done( int result )
 {
     // Utilizando los datos indicados por el usuario
     // genero la orden de trabajo.
-    QSqlDatabase::database().transaction();
+    if( result == QDialog::Accepted ) {
 
-    int id_cliente = -1;
-    if( visitedPages().contains( Pagina_Cliente ) ) {
-        id_cliente = field( "cliente.id_cliente" ).toInt();
-    } else {
-        // Guardo los datos del cliente
-        /// @TODO: Crear un nuevo cliente con esos datos!
-    }
+        QSqlDatabase::database().transaction();
 
-    int id_equipamiento = -1;
-    if( visitedPages().contains( Pagina_EquipamientoExistente ) ) {
-        id_equipamiento = field( "equipamiento.id_equipamiento" ).toInt();
-    } else {
-        /// @TODO: Crear un nuevo equipamiento con los datos!
-    }
+        int id_cliente = -1;
+        if( visitedPages().contains( Pagina_Cliente ) ) {
+            id_cliente = field( "cliente.id_cliente" ).toInt();
+        } else {
+            // Guardo los datos del cliente
+            /// @TODO: Crear un nuevo cliente con esos datos!
+        }
 
-    MOrdenTrabajo *mot = new MOrdenTrabajo();
-    if( !mot->agregarOrdenTrabajo( id_cliente,
-                                   id_equipamiento,
-                                   field( "orden_trabajo.id_tecnico"    ).toInt()   ,
-                                   field( "orden_trabajo.requerente"    ).toString(),
-                                   field( "orden_trabajo.ingresante"    ).toString(),
-                                   field( "orden_trabajo.fecha_ingreso" ).toDate()  ,
-                                   field( "orden_trabajo.fecha_entrega" ).toDate()  ,
-                                   field( "orden_trabajo.causa_ingreso" ).toString() ) ) {
-        QMessageBox::critical( this, "Error", "No se pudo guardar la orden de trabajo" );
-        QSqlDatabase::database().rollback();
-        return;
-    }
+        int id_equipamiento = -1;
+        if( visitedPages().contains( Pagina_EquipamientoExistente ) ) {
+            id_equipamiento = field( "equipamiento.id_equipamiento" ).toInt();
+        } else {
+            /// @TODO: Crear un nuevo equipamiento con los datos!
+        }
 
-    /// @TODO: Agregar logica aquí para guardar la orden de trabajo
+        MOrdenTrabajo *mot = new MOrdenTrabajo();
+        /*if( !mot->agregarOrdenTrabajo( id_cliente,
+                                       id_equipamiento,
+                                       field( "orden_trabajo.id_tecnico"    ).toInt()   ,
+                                       field( "orden_trabajo.requerente"    ).toString(),
+                                       field( "orden_trabajo.ingresante"    ).toString(),
+                                       field( "orden_trabajo.fecha_ingreso" ).toDate()  ,
+                                       field( "orden_trabajo.fecha_entrega" ).toDate()  ,
+                                       field( "orden_trabajo.causa_ingreso" ).toString() ) ) {
+            QMessageBox::critical( this, "Error", "No se pudo guardar la orden de trabajo" );
+            QSqlDatabase::database().rollback();
+            return;
+        }*/
 
-    if( QSqlDatabase::database().commit() == true ) {
-        QMessageBox::information( this, "Error", "No se pudo hacer el commit de la base de datos" );
-        QSqlDatabase::database().rollback();
-        return;
+        /// @TODO: Agregar logica aquí para guardar la orden de trabajo
+
+        if( QSqlDatabase::database().commit() == true ) {
+            QMessageBox::information( this, "Error", "No se pudo hacer el commit de la base de datos" );
+            QSqlDatabase::database().rollback();
+            return;
+        }
     }
     QDialog::done( result );
 }

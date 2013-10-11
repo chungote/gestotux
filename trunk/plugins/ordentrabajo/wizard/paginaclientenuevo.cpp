@@ -2,6 +2,8 @@
 
 #include "ordentrabajowizard.h"
 #include "mestadofiscal.h"
+#include "preferencias.h"
+#include "paginacliente.h"
 
 PaginaClienteNuevo::PaginaClienteNuevo( QWidget *parent ) :
 QWizardPage( parent )
@@ -19,6 +21,15 @@ QWizardPage( parent )
     registerField( "cliente.telefono", LETelefono );
 
     CBInscripcion->setModel( new MEstadoFiscal( CBInscripcion ) );
+
+    // Cargo los datos del combo box de la pagina anterior
+    LERazonSocial->setText( qobject_cast<PaginaCliente *>(wizard()->page( OrdenTrabajoWizard::Pagina_Cliente ))->clienteIngresado() );
+
+    // Cargo los datos predeterminados
+    preferencias *p = preferencias::getInstancia();
+    p->inicio(); p->beginGroup( "Preferencias" ); p->beginGroup( "Clientes" );
+    CBInscripcion->setCurrentIndex( p->value( "estado-fiscal" ).toInt() );
+    p->endGroup(); p->endGroup(); p=0;
 }
 
 int PaginaClienteNuevo::nextId() const
