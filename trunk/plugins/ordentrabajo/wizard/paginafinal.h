@@ -10,6 +10,7 @@ class PaginaFinal : public QWizardPage, private Ui::PaginaFinal
 public:
     PaginaFinal( QWidget *parent = 0 );
     int nextId() const;
+    void initializePage();
     
 };
 

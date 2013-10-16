@@ -7,6 +7,9 @@ PaginaEquipamientoNuevo::PaginaEquipamientoNuevo(QWidget *parent) :
 {
     setupUi( this );
 
+    setTitle( QString::fromUtf8( "Nuevo equipamiento" ) );
+    setSubTitle( QString::fromUtf8( "Por favor, ingrese los datos correspondientes al equipamiento a reparar." ) );
+
     registerField( "equipamiento.descripcion*", LEDescripcion );
     registerField( "equipamiento.modelo", LEModelo );
     registerField( "equipamiento.marca*", LEMarca );

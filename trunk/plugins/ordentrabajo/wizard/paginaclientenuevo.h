@@ -9,7 +9,7 @@ class PaginaClienteNuevo : public QWizardPage, private Ui::PaginaClienteNuevo
     
 public:
     PaginaClienteNuevo( QWidget *parent = 0 );
-
+    void initializePage();
     int nextId() const;
 
 private slots:

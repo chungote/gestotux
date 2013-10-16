@@ -11,9 +11,7 @@ class PaginaCliente : public QWizardPage
     Q_OBJECT
 public:
     PaginaCliente( QWidget *parent = 0 );
-
     int nextId() const;
-    QString clienteIngresado() { return CBClientes->currentText(); }
 
 private:
     QLabel *arriba;
