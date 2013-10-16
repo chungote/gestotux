@@ -39,7 +39,12 @@ public:
     static bool existe( QString razon_social, QString nombre );
     static bool tieneDatosRelacionados( const int id_cliente );
 
-    static int agregarClientePredeterminado( const QString texto );
+    static int agregarClientePredeterminado( const QString razon_social,
+                                             QString nombre = QString(),
+                                             QString apellido = QString(),
+                                             QString direccion = QString(),
+                                             QString telefono = QString(),
+                                             int inscripcion = -1 );
 
 
 };

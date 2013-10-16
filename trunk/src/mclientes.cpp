@@ -216,9 +216,9 @@ bool MClientes::tieneDatosRelacionados( const int id_cliente )
  * \param texto
  * \return
  */
-int MClientes::agregarClientePredeterminado( const QString texto )
+int MClientes::agregarClientePredeterminado(const QString razon_social , QString nombre, QString apellido, QString direccion, QString telefono, int id_estado_fiscal )
 {
-    if( texto.isEmpty() || texto.isNull() ) {
+    if( razon_social.isEmpty() || razon_social.isNull() ) {
         qWarning() << "El parametro de texto no puede ser nulo";
         return -1;
     }
@@ -229,31 +229,31 @@ int MClientes::agregarClientePredeterminado( const QString texto )
     p->beginGroup( "Clientes" );
     int id_provincia = p->value( "provincia", 0 ).toInt();
     int id_pais = p->value( "pais", 0 ).toInt();
-    int id_estado_fiscal = p->value( "estado-fiscal", 0 ).toInt();
+    if( id_estado_fiscal == -1 ) {
+        id_estado_fiscal = p->value( "estado-fiscal", 0 ).toInt();
+    }
     p->endGroup(); p->endGroup(); p=0;
 
     // Intento extrapolar el texto
-    QString apellido, nombre;
-    if( texto.contains( ',' ) ) {
-        QStringList salida = texto.split( ',', QString::KeepEmptyParts );
+    if( apellido.isEmpty() && nombre.isEmpty() && razon_social.contains( ',' ) ) {
+        QStringList salida = razon_social.split( ',', QString::KeepEmptyParts );
         // Supongo que el apellido está primero
         apellido = salida.takeFirst();
         nombre = salida.takeLast();
-    } else {
-        apellido = texto;
-        nombre = " ";
     }
 
     // Intento agregar el cliente con los datos
     QSqlQuery cola;
-    if( !cola.prepare( "INSERT INTO clientes( razon_social , nombre , apellido , provincia    , pais    , id_estado_fiscal  ) "
-                       "             VALUES ( :razon_social, :nombre, :apellido, :id_provincia, :id_pais, :id_estado_fiscal )" ) ) {
+    if( !cola.prepare( "INSERT INTO clientes( razon_social , nombre , apellido , direccion , telefono , provincia    , pais    , id_estado_fiscal  ) "
+                       "             VALUES ( :razon_social, :nombre, :apellido, :direccion, :telefono, :id_provincia, :id_pais, :id_estado_fiscal )" ) ) {
         qWarning() << "No se pudo preparar la cola para insertar el cliente predeterminado";
         return -1;
     }
-    cola.bindValue( ":razon_social", texto );
+    cola.bindValue( ":razon_social", razon_social );
     cola.bindValue( ":nombre", nombre );
     cola.bindValue( ":apellido", apellido );
+    cola.bindValue( ":direccion", direccion );
+    cola.bindValue( ":telefono", telefono );
     cola.bindValue( ":id_provincia", id_provincia );
     cola.bindValue( ":id_pais", id_pais );
     cola.bindValue( ":id_estado_fiscal", id_estado_fiscal );
