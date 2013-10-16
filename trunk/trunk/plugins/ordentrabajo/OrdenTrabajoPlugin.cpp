@@ -123,12 +123,17 @@ QList< QActionGroup * > OrdenTrabajoPlugin::accionesBarra()
 QString OrdenTrabajoPlugin::nombre() const
 { return "ordentrabajo"; }
 
+#include "formprefordentrabajo.h"
 /*!
  * \brief OrdenTrabajoPlugin::formsPreferencias
  * \return
  */
 QWidgetList OrdenTrabajoPlugin::formsPreferencias()
-{ return QWidgetList(); }
+{
+    QWidgetList lista;
+    lista.append( new FormPrefOrdenTrabajo() );
+    return lista;
+}
 
 /*!
  * \brief OrdenTrabajoPlugin::crearMenu

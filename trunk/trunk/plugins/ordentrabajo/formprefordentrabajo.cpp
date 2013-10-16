@@ -6,7 +6,10 @@ FormPrefOrdenTrabajo::FormPrefOrdenTrabajo(QWidget *parent) :
 QWidget( parent ), Ui::FormPrefOrdenTrabajo()
 {
         setupUi( this );
-        this->setAttribute( Qt::WA_DeleteOnClose );
+        setAttribute( Qt::WA_DeleteOnClose );
+
+        setWindowTitle( "Orden Trabajo" );
+        setWindowIcon( QIcon( ":/imagenes/orden_trabajo.png" ) );
 }
 
 void FormPrefOrdenTrabajo::cargar()
