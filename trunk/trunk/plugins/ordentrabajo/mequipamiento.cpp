@@ -116,6 +116,24 @@ bool MEquipamiento::existeEquipamientoParaCliente( const int id_cliente )
 }
 
 /*!
+ * \brief MEquipamiento::agregarEquipamiento
+ * \param descripcion
+ * \param marca
+ * \param modelo
+ * \param num_serie
+ * \param observaciones
+ * \return
+ */
+bool MEquipamiento::agregarEquipamiento( const int id_cliente,
+                                         const QString descripcion,
+                                         const QString marca,
+                                         const QString modelo,
+                                         const QString num_serie,
+                                         const QString observaciones )
+{
+}
+
+/*!
  * \brief MEquipamiento::cantidadEquipamientoParaCliente
  * Devuelve la cantidad de equipamientos designados para un cliente
  * \param id_cliente Identificador del cliente
