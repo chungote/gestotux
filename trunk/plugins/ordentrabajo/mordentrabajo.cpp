@@ -165,4 +165,21 @@ void MOrdenTrabajo::cargarDatos( const int id_orden )
     }
 }
 
+/*!
+ * \brief MOrdenTrabajo::agregarOrdenTrabajo
+ * Agrega una nueva orden de trabajo con los parametros indicados
+ * \param id_cliente Identificador del cliente
+ * \param id_equipamiento Identificador del equipamiento
+ * \param id_tecnico Identificador del técnico
+ * \param requerente Nombre del requerente
+ * \param ingresante Nombre del ingresante
+ * \param fecha_ingreso Fecha de ingreso de la orden
+ * \param fecha_devolucion Fecha de posible devolucion
+ * \param causa_ingreso Causa del ingreso
+ * \return ID de al nueva orden de trabajo o -1 si hubo algún error
+ */
+int MOrdenTrabajo::agregarOrdenTrabajo(const int id_cliente, const int id_equipamiento, const int id_tecnico, QString requerente, QString ingresante, QDateTime fecha_ingreso, QDateTime fecha_devolucion, QString causa_ingreso)
+{
+}
+
 
