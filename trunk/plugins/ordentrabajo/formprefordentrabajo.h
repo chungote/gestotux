@@ -13,6 +13,7 @@ public:
 public slots:
     void cargar();
     void guardar();
+    void aplicar() {}
     
 };
 
