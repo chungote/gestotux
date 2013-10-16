@@ -366,19 +366,24 @@ void VProductos::eliminar()
                       QMessageBox::Ok );
       return;
     }
-    int neliminados = 0; int eliminados = 0;
-    foreach( QModelIndex idx, indices ) {
-        int id = this->rmodelo->data( this->rmodelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
-        if( !qobject_cast<MProductos *>(this->rmodelo)->tieneDatosRelacionados( id ) ) {
-            this->rmodelo->removeRow( idx.row() );
-            eliminados++;
-        } else {
-            neliminados++;
+    int ret = QMessageBox::question( this,
+                                     QString::fromUtf8( "¿Está seguro?"),
+                                     QString::fromUtf8("¿Está seguro que desea eliminar %1 producto(s)?").arg( indices.size() ) );
+    if( ret == QMessageBox::Yes ) {
+        int neliminados = 0; int eliminados = 0;
+        foreach( QModelIndex idx, indices ) {
+            int id = this->rmodelo->data( this->rmodelo->index( idx.row(), 0 ), Qt::EditRole ).toInt();
+            if( !qobject_cast<MProductos *>(this->rmodelo)->tieneDatosRelacionados( id ) ) {
+                this->rmodelo->removeRow( idx.row() );
+                eliminados++;
+            } else {
+                neliminados++;
+            }
         }
-    }
-    if( neliminados > 0 ) {
-        QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 elementos. Falló eliminar %2 elementos.<br />Si el producto fue utilizado alguna vez, tiene datos relacionados y no podrá ser eliminado. Intente deshabilitarlo.").arg( eliminados ).arg( neliminados ) );
-    } else {
-        QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 productos.").arg( eliminados ) );
+        if( neliminados > 0 ) {
+            QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 elementos. Falló eliminar %2 elementos.<br />Si el producto fue utilizado alguna vez, tiene datos relacionados y no podrá ser eliminado. Intente deshabilitarlo.").arg( eliminados ).arg( neliminados ) );
+        } else {
+            QMessageBox::information( this, "Listo", QString::fromUtf8( "Se eliminaron %1 productos.").arg( eliminados ) );
+        }
     }
 }
