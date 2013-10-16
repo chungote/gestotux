@@ -8,20 +8,19 @@ PaginaEquipamiento::PaginaEquipamiento(QWidget *parent) :
     setupUi(this);
 
     // Busco si se paso por la info de nuevo cliente
-   /* if( wizard()->hasVisitedPage( OrdenTrabajoWizard::Pagina_ClienteNuevo ) ) {
+    if( wizard()->hasVisitedPage( OrdenTrabajoWizard::Pagina_ClienteNuevo ) ) {
         RBExistente->setEnabled( false );
         RBNuevo->setChecked( true );
     } else {
         // Buscar si el cliente actual tiene algún equipamiento
-        /// @TODO: Buscar la existencia de un equipamiento según cliente
-        if( !true ) {
+        if( !MEquipamiento::clienteTieneEquipamientos( id_cliente ) ) {
             RBExistente->setEnabled( false );
             RBNuevo->setChecked( true );
         }
     }
 
     registerField( "equipamiento.existe", RBExistente );
-    registerField( "equipamiento.nuevo", RBNuevo );*/
+    registerField( "equipamiento.nuevo", RBNuevo );
 }
 
 int PaginaEquipamiento::nextId() const

@@ -11,6 +11,7 @@
 #include "wizard/paginafinal.h"
 
 #include "mordentrabajo.h"
+#include "mclientes.h"
 
 OrdenTrabajoWizard::OrdenTrabajoWizard( QWidget *parent ) :
 QWizard(parent)
@@ -33,8 +34,7 @@ QWizard(parent)
 
 void OrdenTrabajoWizard::done( int result )
 {
-    // Utilizando los datos indicados por el usuario
-    // genero la orden de trabajo.
+    // Utilizando los datos indicados por el usuario y genero la orden de trabajo.
     if( result == QDialog::Accepted ) {
 
         QSqlDatabase::database().transaction();
@@ -44,7 +44,17 @@ void OrdenTrabajoWizard::done( int result )
             id_cliente = field( "cliente.id_cliente" ).toInt();
         } else {
             // Guardo los datos del cliente
-            /// @TODO: Crear un nuevo cliente con esos datos!
+            id_cliente = MClientes::agregarClientePredeterminado( field( "cliente.razonsocial" ).toString(),
+                                                                  field( "cliente.nombre" ).toString(),
+                                                                  field( "cliente.apellido" ).toString(),
+                                                                  field( "cliente.direccion" ).toString(),
+                                                                  field( "cliente.telefono" ).toString(),
+                                                                  field( "cliente.inscripcion" ).toInt() );
+            if( id_cliente == -1 ) {
+                QMessageBox::warning( this, "Error", "No se pudo agregar el cliente predeterminado" );
+                QSqlDatabase::database().rollback();
+                return;
+            }
         }
 
         int id_equipamiento = -1;
