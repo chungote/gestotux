@@ -8,11 +8,12 @@
 PaginaCliente::PaginaCliente(QWidget *parent) :
     QWizardPage(parent)
 {
-    setTitle( "Seleccione el cliente");
+    setTitle( "Seleccione el cliente" );
+    setSubTitle( QString::fromUtf8( "Este dialogo le ayudará en la creación de una nueva orden de trabajo." ) );
     //setPixmap( QWizard::WatermarkPixmap, QPixmap( ":/images/watermark.png" ) );
 
     arriba = new QLabel( this );
-    arriba->setText( "Este dialogo le ayudará en la creación de una nueva orden de trabajo. <br />Por favor, seleccione un cliente." );
+    arriba->setText( QString::fromUtf8( "Por favor, seleccione un cliente, para crear un nuevo cliente escriba un nombre directamente" ) );
     arriba->setWordWrap(true);
 
     CBClientes = new ECBClientes( this );
@@ -33,6 +34,7 @@ PaginaCliente::PaginaCliente(QWidget *parent) :
  */
 int PaginaCliente::nextId() const
 {
+    wizard()->setField( "cliente.texto_ingresado", CBClientes->currentText() );
     if( MClientes::existe( CBClientes->currentText(), QString() ) ) {
         return OrdenTrabajoWizard::Pagina_Equipamiento;
     } else {

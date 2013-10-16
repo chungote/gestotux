@@ -8,6 +8,9 @@ PaginaEquipamientoExistente::PaginaEquipamientoExistente(QWidget *parent) :
 {
     setupUi(this);
 
+    setTitle( QString::fromUtf8( "Equipamiento existente" ) );
+    setSubTitle( QString::fromUtf8( "Por favor, seleccione que equipamiento del cliente seleccionado está siendo utilizado para la orden de trabajo." ) );
+
     registerField( "equipamiento.id_equipamiento", TVEquipamientos );
 
     MEquipamiento *modelo = new MEquipamiento( TVEquipamientos );

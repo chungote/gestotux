@@ -10,6 +10,9 @@ QWizardPage( parent )
 {
     setupUi(this);
 
+    setTitle( "Nuevo cliente" );
+    setSubTitle( QString::fromUtf8( "Por favor, ingrese los datos del nuevo cliente. Será dado de alta al completar los pasos." ) );
+
     connect( LENombre, SIGNAL( textChanged( QString ) ), this, SLOT( rehacerRazonSocial( QString ) ) );
     connect( LEApellido, SIGNAL( textChanged( QString ) ), this, SLOT( rehacerRazonSocial( QString ) ) );
 
@@ -21,9 +24,11 @@ QWizardPage( parent )
     registerField( "cliente.telefono", LETelefono );
 
     CBInscripcion->setModel( new MEstadoFiscal( CBInscripcion ) );
+}
 
+void PaginaClienteNuevo::initializePage() {
     // Cargo los datos del combo box de la pagina anterior
-    LERazonSocial->setText( qobject_cast<PaginaCliente *>(wizard()->page( OrdenTrabajoWizard::Pagina_Cliente ))->clienteIngresado() );
+    LERazonSocial->setText( wizard()->field("cliente.texto_ingresado" ).toString() );
 
     // Cargo los datos predeterminados
     preferencias *p = preferencias::getInstancia();

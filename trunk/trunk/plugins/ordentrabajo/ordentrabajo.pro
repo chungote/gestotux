@@ -44,7 +44,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     wizard/paginaequipamientonuevo.cpp \
     wizard/paginafinal.cpp \
     wizard/paginaequipamientoexistente.cpp \
-    ../../src/mestadofiscal.cpp
+    ../../src/mestadofiscal.cpp \
+    formprefordentrabajo.cpp
 
 
 HEADERS += OrdenTrabajoPlugin.h \
@@ -70,7 +71,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     wizard/paginaequipamientonuevo.h \
     wizard/paginafinal.h \
     wizard/paginaequipamientoexistente.h \
-    ../../src/mestadofiscal.h
+    ../../src/mestadofiscal.h \
+    formprefordentrabajo.h
 
 RESOURCES += ordentrabajo.qrc
 
@@ -84,7 +86,8 @@ FORMS += formordentrabajobase.ui \
     wizard/paginaequipamiento.ui \
     wizard/paginaequipamientonuevo.ui \
     wizard/paginafinal.ui \
-    wizard/paginaequipamientoexistente.ui
+    wizard/paginaequipamientoexistente.ui \
+    FormPrefOrdenTrabajo.ui
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
