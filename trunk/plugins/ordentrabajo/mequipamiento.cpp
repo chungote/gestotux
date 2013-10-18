@@ -124,13 +124,35 @@ bool MEquipamiento::existeEquipamientoParaCliente( const int id_cliente )
  * \param observaciones
  * \return
  */
-bool MEquipamiento::agregarEquipamiento( const int id_cliente,
+int MEquipamiento::agregarEquipamiento( const int id_cliente,
                                          const QString descripcion,
                                          const QString marca,
                                          const QString modelo,
                                          const QString num_serie,
                                          const QString observaciones )
 {
+    QSqlQuery cola;
+    QString tcola = "INSERT INTO equipamiento( id_cliente , descripcion , marca , modelo , numero_serie , observaciones  ) "
+                                   "  VALUES ( :id_cliente, :descripcion, :marca, :modelo, :numero_serie, :observaciones ) ";
+    if( cola.prepare( tcola ) ) {
+        qDebug() << "Error al preparar la cola para insertar un nuevo equipamiento";
+        qDebug() << cola.lastError().text(); qDebug() << cola.lastQuery();
+        return -1;
+    }
+    cola.bindValue( ":id_cliente", id_cliente );
+    cola.bindValue( ":descripcion", descripcion );
+    cola.bindValue( ":marca", marca );
+    cola.bindValue( ":modelo", modelo );
+    cola.bindValue( ":numero_serie", num_serie );
+    cola.bindValue( ":observaciones", observaciones );
+    if( !cola.exec() ) {
+        qDebug() << "Error al ejecutar la cola de inservión de nueva orden de trabajo";
+        qDebug() << cola.lastError().text(); qDebug() << cola.lastQuery();
+        return false;
+    } else {
+        /// @TODO: Agregad devolución de ID de equipamiento
+    }
+    return -1;
 }
 
 /*!
