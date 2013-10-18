@@ -26,7 +26,7 @@ public:
 
     static bool tieneDatosRelacionados( const int id_equipamiento );
     static bool existeEquipamientoParaCliente( const int id_cliente );
-    static bool agregarEquipamiento( const int id_cliente, const QString descripcion, const QString marca, const QString modelo, const QString num_serie, const QString observaciones );
+    static int agregarEquipamiento( const int id_cliente, const QString descripcion, const QString marca, const QString modelo, const QString num_serie, const QString observaciones );
 
     bool eliminarConRelacionados( const int id_equipamiento );
     bool darDeBaja( const int id_equipamiento, const QString razon, QDateTime fecha = QDateTime::currentDateTime() );
