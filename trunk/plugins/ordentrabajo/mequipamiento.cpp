@@ -4,6 +4,8 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QSqlDatabase>
+#include <QSqlDriver>
 #include <QDebug>
 
 MEquipamiento::MEquipamiento(QObject *parent) :
@@ -147,10 +149,15 @@ int MEquipamiento::agregarEquipamiento( const int id_cliente,
     cola.bindValue( ":observaciones", observaciones );
     if( !cola.exec() ) {
         qDebug() << "Error al ejecutar la cola de inservión de nueva orden de trabajo";
-        qDebug() << cola.lastError().text(); qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return false;
     } else {
-        /// @TODO: Agregad devolución de ID de equipamiento
+        if( QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
+            return cola.lastInsertId().toInt();
+        } else {
+            /// @TODO: Agregada devolución de ID de equipamiento cuando el driver no lo soporta
+        }
     }
     return -1;
 }
