@@ -15,3 +15,4 @@ INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 4, "Cierre de orden
 INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 5, "Devolución al cliente" );
 INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 6, "Cancelación de la orden" );
 INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 7, "Facturacion de item de orden" );
+INSERT OR IGNORE INTO "tipo_operacion_orden_trabajo" VALUES( 8, "Ingreso al taller" );

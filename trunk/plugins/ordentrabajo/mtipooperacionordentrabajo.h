@@ -16,7 +16,8 @@ public:
         CierreOrden = 4, /** Indica que la orden fue cerrada */
         DevolucionCliente = 5, /** Indica que la orden fue terminada por devolucion al cliente */
         Cancelacion = 6, /** Indica que la orden fue cancelada */
-        Facturacion = 7 /** Indica que el evento es una facturacion */
+        Facturacion = 7, /** Indica que el evento es una facturacion */
+        IngresoAlTaller = 8 /** Indica que el evento es el ingreso al taller */
     };
 
     MTipoOperacionOrdenTrabajo(QObject *parent = 0);
