@@ -1,5 +1,12 @@
 #include "mhistorialordentrabajo.h"
 
+#include <QSqlRecord>
+#include <QSqlError>
+#include <QDebug>
+#include <QSqlQuery>
+#include <QSqlDatabase>
+#include <QSqlDriver>
+
 MHistorialOrdenTrabajo::MHistorialOrdenTrabajo(QObject *parent) :
     QSqlRelationalTableModel(parent)
 {
@@ -81,8 +88,28 @@ QVariant MHistorialOrdenTrabajo::data(const QModelIndex &item, int role) const
  * \param id_tecnico Identificador del técnico responsable
  * \return -1 en caso de error, o el identificador (<0) si la agregado fue correcto
  */
-int MHistorialOrdenTrabajo::agregarHistorial(const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico)
+int MHistorialOrdenTrabajo::agregarHistorial( const int id_orden_trabajo, QDateTime fecha_hora, QString descripcion, double costo, const int tipo_operacion, const int id_tecnico )
 {
+    QSqlRecord r = this->record();
+    r.setGenerated( "id_historial_orden_trabajo", true );
+    r.setValue( "id_orden_trabajo", id_orden_trabajo );
+    r.setValue( "fecha_hora", fecha_hora );
+    r.setValue( "descripcion", descripcion );
+    r.setValue( "costo", costo );
+    r.setValue( "tipo_operacion", tipo_operacion );
+    r.setValue( "id_tecnico", id_tecnico );
+    if( insertRecord( -1, r ) ) {
+        // busco la ultima insercion
+        if( QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
+            return this->query().lastInsertId().toInt();
+        } else {
+            /// @TODO: Agregar retorno cuando no está la feature
+        }
+    } else {
+        qDebug() << "Error al ingresar el nuevo registro";
+        qDebug() << this->query().lastError().text();
+        qDebug() << this->query().lastQuery();
+    }
     return -1;
     /// @TODO: Agregar implementación de agregado de item de historial
 }

@@ -4,6 +4,8 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QDebug>
+#include <QSqlDatabase>
+#include <QSqlDriver>
 
 
 MOrdenTrabajo::MOrdenTrabajo( QObject *parent ) :
@@ -178,8 +180,32 @@ void MOrdenTrabajo::cargarDatos( const int id_orden )
  * \param causa_ingreso Causa del ingreso
  * \return ID de al nueva orden de trabajo o -1 si hubo algún error
  */
-int MOrdenTrabajo::agregarOrdenTrabajo(const int id_cliente, const int id_equipamiento, const int id_tecnico, QString requerente, QString ingresante, QDateTime fecha_ingreso, QDateTime fecha_devolucion, QString causa_ingreso)
+int MOrdenTrabajo::agregarOrdenTrabajo( const int id_cliente, const int id_equipamiento, const int id_tecnico, QString requerente, QString ingresante, QDateTime fecha_ingreso, QDateTime fecha_devolucion, QString causa_ingreso)
 {
+    QSqlRecord r = this->record();
+    r.setGenerated( "id_orden_trabajo", true );
+    r.setValue( "id_cliente"     , id_cliente      );
+    r.setValue( "id_equipamiento", id_equipamiento );
+    r.setValue( "id_tecnico"     , id_tecnico );
+    r.setValue( "requerente", requerente );
+    r.setValue( "ingresante", ingresante );
+    r.setValue( "fecha_ingreso", fecha_ingreso );
+    r.setValue( "fecha_devolucion", fecha_devolucion );
+    r.setValue( "causa_ingreso", causa_ingreso );
+    if( this->insertRecord( -1, r ) ) {
+        // Busco y devuelvo el ID
+        if( QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
+            return this->query().lastInsertId().toInt();
+        } else {
+            /// @TODO: Agregar codigo para esta condicion de ID
+        }
+
+    } else {
+        qDebug() <<  "Error al insertar los datos de la orden de trabajo";
+        qDebug() <<  this->query().lastError().text();
+        qDebug() <<  this->query().lastQuery();
+    }
+    return -1;
 }
 
 
