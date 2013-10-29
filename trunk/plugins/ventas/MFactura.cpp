@@ -496,8 +496,8 @@ bool MFactura::anularFactura( const int id_factura, QString razon, QDateTime fec
                                                                       id_factura,
                                                                       MItemCuentaCorriente::AnulacionFactura,
                                                                       fechahora.date(),
-                                                                      QString( "Anulación de la factura %1" ).arg( num.aCadena() ),
-                                                                      total ) ) {
+                                                                      QString::fromUtf8( "Anulación de la factura %1" ).arg( num.aCadena() ),
+                                                                      (-1.0) * total ) ) {
                             qDebug( "MFactura::anularFactura::No se pudo agregar el movimiento de cuenta corriente" );
                             QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).rollback();
                             return false;
