@@ -17,6 +17,7 @@
 class ECBProvincias : public QComboBox
 {
     Q_OBJECT
+    Q_PROPERTY( int id_provincia READ idActual WRITE setearId USER true )
 public:
     ECBProvincias(QWidget *parent = 0);
     ~ECBProvincias();

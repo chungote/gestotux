@@ -23,6 +23,7 @@
 class ECBPaises : public QComboBox
 {
     Q_OBJECT
+    Q_PROPERTY( int id_pais READ idActual WRITE setearId USER true )
 public:
     explicit ECBPaises(QWidget *parent = 0);
     ~ECBPaises();

@@ -19,7 +19,7 @@
 class ECBProductos : public QComboBox
 {
     Q_OBJECT
-
+    Q_PROPERTY( int id_producto READ idActual USER true )
 public:
     ECBProductos( QWidget *parent = 0 );
     ~ECBProductos();
