@@ -6,6 +6,7 @@
 class ECBProveedor : public QComboBox
 {
     Q_OBJECT
+     Q_PROPERTY( int id_proveedor READ idProveedorActual WRITE setearId USER true )
 public:
     ECBProveedor(QWidget *parent = 0);
     ~ECBProveedor();

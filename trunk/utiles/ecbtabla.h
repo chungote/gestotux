@@ -18,6 +18,7 @@
 class ECBTabla : public QComboBox
 {
     Q_OBJECT
+    Q_PROPERTY( int id READ idActual WRITE setearId USER true )
 public:
     ECBTabla( QWidget *parent = 0 );
     ECBTabla( QWidget *parent, QString tabla, QString tid, QString texto, QString orden = QString() );
@@ -41,7 +42,7 @@ public:
      */
     QList<int> *getListaIDs() { return ids; }
 
-    Q_PROPERTY( int id READ idActual WRITE setearId USER true )
+
 
 signals:
     void cambioId( int id );

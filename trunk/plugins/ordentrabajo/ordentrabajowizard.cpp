@@ -12,6 +12,9 @@
 
 #include "mordentrabajo.h"
 #include "mclientes.h"
+#include "mequipamiento.h"
+#include "mhistorialordentrabajo.h"
+#include "mtipooperacionordentrabajo.h"
 
 OrdenTrabajoWizard::OrdenTrabajoWizard( QWidget *parent ) :
 QWizard(parent)
@@ -36,7 +39,6 @@ void OrdenTrabajoWizard::done( int result )
 {
     // Utilizando los datos indicados por el usuario y genero la orden de trabajo.
     if( result == QDialog::Accepted ) {
-
         QSqlDatabase::database().transaction();
 
         int id_cliente = -1;
@@ -61,24 +63,48 @@ void OrdenTrabajoWizard::done( int result )
         if( visitedPages().contains( Pagina_EquipamientoExistente ) ) {
             id_equipamiento = field( "equipamiento.id_equipamiento" ).toInt();
         } else {
-            /// @TODO: Crear un nuevo equipamiento con los datos!
+            id_equipamiento = MEquipamiento::agregarEquipamiento( id_cliente,
+                                                                  field( "equipamiento.descripcion" ).toString(),
+                                                                  field( "equipamiento.marca" ).toString(),
+                                                                  field( "equipamiento.modelo" ).toString(),
+                                                                  field( "equipamiento.numero_serie" ).toString(),
+                                                                  field( "equipamiento.observaciones" ).toString() );
+            if( id_equipamiento == -1 ) {
+                QMessageBox::warning( this, "Error", "No se pudo agregar el equipamiento" );
+                QSqlDatabase::database().rollback();
+                return;
+            }
         }
 
         MOrdenTrabajo *mot = new MOrdenTrabajo();
-        /*if( !mot->agregarOrdenTrabajo( id_cliente,
-                                       id_equipamiento,
-                                       field( "orden_trabajo.id_tecnico"    ).toInt()   ,
-                                       field( "orden_trabajo.requerente"    ).toString(),
-                                       field( "orden_trabajo.ingresante"    ).toString(),
-                                       field( "orden_trabajo.fecha_ingreso" ).toDate()  ,
-                                       field( "orden_trabajo.fecha_entrega" ).toDate()  ,
-                                       field( "orden_trabajo.causa_ingreso" ).toString() ) ) {
+        int id_orden_trabajo = mot->agregarOrdenTrabajo( id_cliente,
+                                                         id_equipamiento,
+                                                         field( "orden_trabajo.id_tecnico"    ).toInt()   ,
+                                                         field( "orden_trabajo.requerente"    ).toString(),
+                                                         field( "orden_trabajo.ingresante"    ).toString(),
+                                                         field( "orden_trabajo.fecha_ingreso" ).toDateTime()  ,
+                                                         field( "orden_trabajo.fecha_entrega" ).toDateTime()  ,
+                                                         field( "orden_trabajo.causa_ingreso" ).toString() );
+        if( id_orden_trabajo == -1 ) {
             QMessageBox::critical( this, "Error", "No se pudo guardar la orden de trabajo" );
             QSqlDatabase::database().rollback();
             return;
-        }*/
+        }
+        delete mot;
 
-        /// @TODO: Agregar logica aquí para guardar la orden de trabajo
+        MHistorialOrdenTrabajo *mhot = new MHistorialOrdenTrabajo();
+        // Genero el primer elemento de ingreso.
+        if( !mhot->agregarHistorial( id_orden_trabajo,
+                                     QDateTime::currentDateTime(),
+                                     field( "orden_trabajo.causa_ingreso" ).toString(),
+                                     0.0,
+                                     MTipoOperacionOrdenTrabajo::IngresoAlTaller,
+                                     field( "orden_trabajo.id_tecnico"    ).toInt() ) ) {
+            QMessageBox::critical( this, "Error", "No se pudo guardar el primer historial de la orden de trabajo" );
+            QSqlDatabase::database().rollback();
+            return;
+        }
+        delete mhot;
 
         if( QSqlDatabase::database().commit() == true ) {
             QMessageBox::information( this, "Error", "No se pudo hacer el commit de la base de datos" );
@@ -96,6 +122,7 @@ void OrdenTrabajoWizard::done( int result )
  *
  * Pagina_cliente
  * cliente.id_cliente = Identificador del cliente
+ * cliente.texto_ingresado
  *
  * Pagina_ClienteNuevo
  * cliente.nombre      = Nombre del nuevo cliente
