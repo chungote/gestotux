@@ -59,13 +59,14 @@ QVariant MEquipamiento::data(const QModelIndex &item, int role) const
  */
 bool MEquipamiento::tieneDatosRelacionados( const int /* id_equipamiento */ )
 { return false; }
+
 // Los datos relacionados deberán ser eliminados si se elimina un equipamiento
 /*!
  * \brief MEquipamiento::eliminarConRelacionados
  * \param id_equipamiento
  * \return
  */
-bool MEquipamiento::eliminarConRelacionados( const int id_equipamiento )
+bool MEquipamiento::eliminarConRelacionados( const int /*id_equipamiento*/ )
 { return false; }
 
 /*!
@@ -127,28 +128,42 @@ bool MEquipamiento::existeEquipamientoParaCliente( const int id_cliente )
  * \return
  */
 int MEquipamiento::agregarEquipamiento( const int id_cliente,
-                                         const QString descripcion,
-                                         const QString marca,
-                                         const QString modelo,
-                                         const QString num_serie,
-                                         const QString observaciones )
+                                        const QString descripcion,
+                                        const QString marca,
+                                        const QString modelo,
+                                        const QString num_serie,
+                                        const QString observaciones )
 {
     QSqlQuery cola;
     QString tcola = "INSERT INTO equipamiento( id_cliente , descripcion , marca , modelo , numero_serie , observaciones  ) "
                                    "  VALUES ( :id_cliente, :descripcion, :marca, :modelo, :numero_serie, :observaciones ) ";
-    if( cola.prepare( tcola ) ) {
+    if( !cola.prepare( tcola ) ) {
         qDebug() << "Error al preparar la cola para insertar un nuevo equipamiento";
-        qDebug() << cola.lastError().text(); qDebug() << cola.lastQuery();
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
         return -1;
     }
-    cola.bindValue( ":id_cliente", id_cliente );
-    cola.bindValue( ":descripcion", descripcion );
-    cola.bindValue( ":marca", marca );
-    cola.bindValue( ":modelo", modelo );
-    cola.bindValue( ":numero_serie", num_serie );
-    cola.bindValue( ":observaciones", observaciones );
+    cola.bindValue( ":id_cliente"   , id_cliente    );
+    cola.bindValue( ":descripcion"  , descripcion   );
+    cola.bindValue( ":marca"        , marca         );
+    if( !modelo.isEmpty() ) {
+        cola.bindValue( ":modelo", modelo );
+    } else {
+        cola.bindValue( ":modelo", QVariant(QVariant::String) );
+    }
+    if( !num_serie.isEmpty() ) {
+        cola.bindValue( ":numero_serie", num_serie );
+    } else {
+        cola.bindValue( ":numero_serie", QVariant(QVariant::String) );
+    }
+    if( !observaciones.isEmpty()  ) {
+        cola.bindValue( ":observaciones", observaciones );
+    } else {
+        cola.bindValue( ":observaciones", QVariant(QVariant::String) );
+
+    }
     if( !cola.exec() ) {
-        qDebug() << "Error al ejecutar la cola de inservión de nueva orden de trabajo";
+        qDebug() << "Error al ejecutar la cola de inserción de nueva orden de trabajo";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
         return false;
