@@ -13,8 +13,8 @@ PaginaEquipamientoNuevo::PaginaEquipamientoNuevo(QWidget *parent) :
     registerField( "equipamiento.descripcion*", LEDescripcion );
     registerField( "equipamiento.modelo", LEModelo );
     registerField( "equipamiento.marca*", LEMarca );
-    registerField( "equipamiento.observaciones", PTEObservaciones );
-    registerField( "equipamiento.numeroserie", LENumeroSerie );
+    registerField( "equipamiento.observaciones", PTEObservaciones, "plainText" );
+    registerField( "equipamiento.numero_serie", LENumeroSerie );
 }
 
 int PaginaEquipamientoNuevo::nextId() const
