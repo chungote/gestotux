@@ -6,7 +6,7 @@
 #include <QDebug>
 
 ECBProductos::ECBProductos( QWidget *parent ) :
- QComboBox(parent)
+ QComboBox( parent )
 {
     this->setObjectName( "SelectorProductos" );
     // Seteo las propiedades del combobox
@@ -77,6 +77,9 @@ void ECBProductos::inicializar()
     }
 }
 
+/*!
+ * \brief ECBProductos::enterApretado
+ */
 void ECBProductos::enterApretado()
 {
     verificarExiste();
@@ -84,9 +87,19 @@ void ECBProductos::enterApretado()
     return;
 }
 
+/*!
+ * \brief ECBProductos::listadoProductos
+ * Devuelve el listado de productos mapeado
+ * \return
+ */
 QMap<int, QString> *ECBProductos::listadoProductos()
 { return this->_mapa_id_nombre; }
 
+/*!
+ * \brief ECBProductos::setearListado
+ * Coloca el listado puesto como parametro como lista de productos
+ * \param lista Lista de productos
+ */
 void ECBProductos::setearListado( QMap<int, QString> *lista )
 {
     // Verifica que los demás items estén de acuerdo con esta lista
@@ -106,11 +119,20 @@ void ECBProductos::setearListado( QMap<int, QString> *lista )
     }
 }
 
+/*!
+ * \brief ECBProductos::idActual
+ * Devuelve el identificador del producto actual
+ * \return ID o -1 si el producto no está en la lista
+ */
 int ECBProductos::idActual() const
 {
     return this->_mapa_pos_ids->value( this->currentIndex() );
 }
 
+/*!
+ * \brief ECBProductos::verificarExiste
+ * Verifica que el elementos que está actualmente exista
+ */
 void ECBProductos::verificarExiste()
 {
     // Veo que tipo de entrada es
@@ -134,4 +156,14 @@ void ECBProductos::verificarExiste()
             this->_min--;
         }
     }
+}
+
+/*!
+ * \brief ECBProductos::getListaIDs
+ * Devuelve la lista de ID's de productos que hay en seleccion actualmente
+ * \return
+ */
+QList<int> *ECBProductos::getListaIDs()
+{
+    return new QList<int>( _mapa_pos_ids->values() );
 }
