@@ -28,6 +28,8 @@ public:
     int idActual() const;
     void verificarExiste();
 
+    QList<int> *getListaIDs();
+
 protected slots:
     void inicializar();
 

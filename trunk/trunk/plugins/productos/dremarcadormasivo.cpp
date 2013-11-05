@@ -40,10 +40,10 @@ QDialog( parent )
   // Pongo como predeterminado el porcentaje
   RBPorcentaje->setChecked( true );
 
-  CBProductos->setearTabla( "producto" );
+  /*CBProductos->setearTabla( "producto" );
   CBProductos->setearCampoId( "id" );
   CBProductos->setearCampoTexto( "nombre" );
-  CBProductos->setearCampoOrden( "nombre" );
+  CBProductos->setearCampoOrden( "nombre" );*/
 
   GBAvance->setVisible( false );
 
