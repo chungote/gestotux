@@ -20,6 +20,8 @@ class ECBProductos : public QComboBox
 {
     Q_OBJECT
     Q_PROPERTY( int id_producto READ idActual USER true )
+    Q_PROPERTY( bool sin_stock READ mostrarSinStock WRITE setearMostrarSinStock USER true )
+    Q_PROPERTY( bool deshabilitados READ mostrarDeshabilitados WRITE setearMostrarDeshabilitados USER true )
 public:
     ECBProductos( QWidget *parent = 0 );
     ~ECBProductos();
@@ -29,6 +31,12 @@ public:
     void verificarExiste();
 
     QList<int> *getListaIDs();
+
+    bool mostrarDeshabilitados() { return _mostrar_deshabilitados; }
+    void setearMostrarDeshabilitados( bool estado );
+
+    bool mostrarSinStock() { return _mostrar_sin_stock; }
+    void setearMostrarSinStock( bool estado );
 
 protected slots:
     void inicializar();
@@ -45,6 +53,8 @@ private:
     QMap<int, int> *_mapa_pos_ids;
 
     int _min;
+    bool _mostrar_deshabilitados;
+    bool _mostrar_sin_stock;
 };
 
 #endif // ECBPRODUCTOS_H
