@@ -26,6 +26,8 @@ ECBProductos::ECBProductos( QWidget *parent ) :
     _mapa_pos_ids = new QMap<int, int>();
 
     this->_min = -1;
+    this->_mostrar_deshabilitados = false;
+    this->_mostrar_sin_stock = false;
 
     QTimer timer;
     timer.singleShot( 900, this, SLOT( inicializar() ) );
@@ -52,7 +54,19 @@ void ECBProductos::inicializar()
 {
     // Cargo los datos del modelo
     QSqlQuery cola;
-    if( cola.exec( "SELECT id, codigo, nombre FROM producto WHERE habilitado IN ( 1, 'true' ) ORDER BY nombre ASC" ) ) {
+    QString tcola;
+    tcola.append( "SELECT id, codigo, nombre FROM producto WHERE " );
+    if( !_mostrar_deshabilitados ) {
+        tcola.append( " habilitado IN ( 1, 'true' ) " );
+    }
+    if( !_mostrar_sin_stock && !_mostrar_deshabilitados ) {
+        tcola.append( " AND " );
+    }
+    if( !_mostrar_sin_stock ) {
+        tcola.append( " stock > 0 " );
+    }
+    tcola.append( " ORDER BY nombre ASC" );
+    if( cola.exec( tcola ) ) {
         int pos = 0;
         while( cola.next() ) {
             // Pos = currentIndex();
@@ -166,4 +180,28 @@ void ECBProductos::verificarExiste()
 QList<int> *ECBProductos::getListaIDs()
 {
     return new QList<int>( _mapa_pos_ids->values() );
+}
+
+/*!
+ * \brief ECBProductos::setearMostrarHabilitados
+ * \param estado
+ */
+void ECBProductos::setearMostrarDeshabilitados( bool estado )
+{
+    if( _mostrar_deshabilitados != estado ) {
+        _mostrar_deshabilitados = estado;
+        inicializar();
+    }
+}
+
+/*!
+ * \brief ECBProductos::setearMostrarSinStock
+ * \param estado
+ */
+void ECBProductos::setearMostrarSinStock( bool estado )
+{
+    if( _mostrar_sin_stock != estado ) {
+        _mostrar_sin_stock = estado;
+        inicializar();
+    }
 }

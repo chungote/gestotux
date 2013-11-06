@@ -177,14 +177,14 @@ void DRemarcadorMasivo::cambioDeshabilitados( bool estado )
  * Metodo que permite generar el filtro necesario para filtrar los elementos del combo box de seleccion de productos disponibles
  */
 void DRemarcadorMasivo::recalcularFiltro() {
-    QString filtro = " WHERE ";
     if( CkBDeshabilitados->isChecked() ) {
-        filtro.append( " habilitado = 1" );
+        CBProductos->setearMostrarDeshabilitados( true );
     } else {
-        filtro.append( " habilitado = 0" );
+        CBProductos->setearMostrarDeshabilitados( false );
     }
-    if( !CkBSinStock->isChecked() ) {
-        filtro.append( " AND stock > 0" );
+    if( CkBSinStock->isChecked() ) {
+        CBProductos->setearMostrarSinStock( true );
+    } else {
+        CBProductos->setearMostrarSinStock( false );
     }
-    CBProductos->setearFiltro( filtro, true );
 }

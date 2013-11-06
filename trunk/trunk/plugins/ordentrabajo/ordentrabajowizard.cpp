@@ -47,10 +47,10 @@ void OrdenTrabajoWizard::done( int result )
         } else {
             // Guardo los datos del cliente
             id_cliente = MClientes::agregarClientePredeterminado( field( "cliente.razonsocial" ).toString(),
-                                                                  field( "cliente.nombre" ).toString(),
-                                                                  field( "cliente.apellido" ).toString(),
-                                                                  field( "cliente.direccion" ).toString(),
-                                                                  field( "cliente.telefono" ).toString(),
+                                                                  field( "cliente.nombre"      ).toString(),
+                                                                  field( "cliente.apellido"    ).toString(),
+                                                                  field( "cliente.direccion"   ).toString(),
+                                                                  field( "cliente.telefono"    ).toString(),
                                                                   field( "cliente.inscripcion" ).toInt() );
             if( id_cliente == -1 ) {
                 QMessageBox::warning( this, "Error", "No se pudo agregar el cliente predeterminado" );
@@ -64,10 +64,10 @@ void OrdenTrabajoWizard::done( int result )
             id_equipamiento = field( "equipamiento.id_equipamiento" ).toInt();
         } else {
             id_equipamiento = MEquipamiento::agregarEquipamiento( id_cliente,
-                                                                  field( "equipamiento.descripcion" ).toString(),
-                                                                  field( "equipamiento.marca" ).toString(),
-                                                                  field( "equipamiento.modelo" ).toString(),
-                                                                  field( "equipamiento.numero_serie" ).toString(),
+                                                                  field( "equipamiento.descripcion"   ).toString(),
+                                                                  field( "equipamiento.marca"         ).toString(),
+                                                                  field( "equipamiento.modelo"        ).toString(),
+                                                                  field( "equipamiento.numero_serie"  ).toString(),
                                                                   field( "equipamiento.observaciones" ).toString() );
             if( id_equipamiento == -1 ) {
                 QMessageBox::warning( this, "Error", "No se pudo agregar el equipamiento" );
