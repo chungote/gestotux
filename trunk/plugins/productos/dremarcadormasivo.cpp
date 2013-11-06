@@ -1,6 +1,8 @@
 #include "dremarcadormasivo.h"
 
 #include <QMessageBox>
+#include <QInputDialog>
+#include "preferencias.h"
 
 DRemarcadorMasivo::DRemarcadorMasivo(QWidget *parent) :
 QDialog( parent )
@@ -26,6 +28,7 @@ QDialog( parent )
 
   connect( PBAgregar, SIGNAL( clicked() ), this, SLOT( agregarProducto() ) );
   connect( PBAgregarTodos, SIGNAL( clicked() ), this, SLOT( agregarTodos() ) );
+  connect( PBAgregarCategoria, SIGNAL( clicked() ), this, SLOT( agregarCategoria() ) );
   connect( PBEliminar, SIGNAL( clicked() ), this, SLOT( eliminarProducto() ) );
   connect( PBEliminarTodos, SIGNAL( clicked() ), this, SLOT( eliminarTodos() ) );
 
@@ -36,21 +39,30 @@ QDialog( parent )
   PBEliminarTodos->setIcon( QIcon( ":/imagenes/eliminar.png" ) );
   PBEliminar->setText( "Eliminar producto" );
   PBEliminarTodos->setText( "Eliminar todos" );
+  PBAgregarCategoria->setText( "Categoria" );
+  PBAgregarCategoria->setIcon( QIcon( ":/imagenes/add.png" ) );
 
   // Pongo como predeterminado el porcentaje
   RBPorcentaje->setChecked( true );
-
-  /*CBProductos->setearTabla( "producto" );
-  CBProductos->setearCampoId( "id" );
-  CBProductos->setearCampoTexto( "nombre" );
-  CBProductos->setearCampoOrden( "nombre" );*/
 
   GBAvance->setVisible( false );
 
   _total = 0;
 
+  preferencias *p = preferencias::getInstancia();
+  p->inicio();
+  p->beginGroup( "Preferencias" );
+  p->beginGroup( "Productos");
+  PBAgregarCategoria->setVisible( !p->value( "categorias", false ).toBool() );
+  p->endGroup();
+  p->endGroup();
+  p=0;
 }
 
+/*!
+ * \brief DRemarcadorMasivo::avanzarProgreso
+ * \param cantidad
+ */
 void DRemarcadorMasivo::avanzarProgreso( int cantidad )
 {
     int cant = PgBAvance->value() + cantidad;
@@ -58,6 +70,10 @@ void DRemarcadorMasivo::avanzarProgreso( int cantidad )
     LEstado->setText( QString( "Remarcando %1 de %2 productos..." ).arg( cant ).arg( _total ) );
 }
 
+/*!
+ * \brief DRemarcadorMasivo::changeEvent
+ * \param e
+ */
 void DRemarcadorMasivo::changeEvent(QEvent *e)
 {
   QDialog::changeEvent(e);
@@ -70,6 +86,10 @@ void DRemarcadorMasivo::changeEvent(QEvent *e)
     }
 }
 
+/*!
+ * \brief DRemarcadorMasivo::cambioAPorcentaje
+ * \param estado
+ */
 void DRemarcadorMasivo::cambioAPorcentaje( bool estado )
 {
     if( !estado )
@@ -81,6 +101,10 @@ void DRemarcadorMasivo::cambioAPorcentaje( bool estado )
     modelo->setearPorcentaje( true );
 }
 
+/*!
+ * \brief DRemarcadorMasivo::cambioAMontoFijo
+ * \param estado
+ */
 void DRemarcadorMasivo::cambioAMontoFijo( bool estado )
 {
     if( !estado )
@@ -92,11 +116,26 @@ void DRemarcadorMasivo::cambioAMontoFijo( bool estado )
     modelo->setearValorFijo( true );
 }
 
+/*!
+ * \brief DRemarcadorMasivo::agregarProducto
+ */
 void DRemarcadorMasivo::agregarProducto()
 {
     modelo->agregarProducto( CBProductos->idActual() );
 }
 
+/*!
+ * \brief DRemarcadorMasivo::agregarCategoria
+ */
+void DRemarcadorMasivo::agregarCategoria()
+{
+    /// @TODO: Implementar agregado de productos x categoría
+    qWarning( "Todavía no implementado!" );
+}
+
+/*!
+ * \brief DRemarcadorMasivo::agregarTodos
+ */
 void DRemarcadorMasivo::agregarTodos()
 {
     foreach( int id_producto, *(CBProductos->getListaIDs()) ) {
@@ -104,6 +143,9 @@ void DRemarcadorMasivo::agregarTodos()
     }
 }
 
+/*!
+ * \brief DRemarcadorMasivo::eliminarProducto
+ */
 void DRemarcadorMasivo::eliminarProducto()
 {
   if( TVProductos->selectionModel()->selectedRows().size() <= 0 ) {
@@ -115,6 +157,9 @@ void DRemarcadorMasivo::eliminarProducto()
   }
 }
 
+/*!
+ * \brief DRemarcadorMasivo::eliminarTodos
+ */
 void DRemarcadorMasivo::eliminarTodos()
 { modelo->eliminarTodos(); }
 
