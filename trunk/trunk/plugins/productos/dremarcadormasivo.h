@@ -21,6 +21,7 @@ protected slots:
   void cambioAPorcentaje( bool );
   void cambioAMontoFijo( bool );
   void agregarProducto();
+  void agregarCategoria();
   void agregarTodos();
   void eliminarProducto();
   void eliminarTodos();
