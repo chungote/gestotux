@@ -115,7 +115,7 @@ bool GarantiasPlugin::verificarTablas( QStringList tablas )
     \fn GarantiasPlugin::version() const
  */
 double GarantiasPlugin::version() const
-{  return 0.2; }
+{  return 0.1; }
 
 /*!
     \fn GarantiasPlugin::crearToolBar( QToolBar *t )

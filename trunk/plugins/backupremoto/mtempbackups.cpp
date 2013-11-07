@@ -1,7 +1,7 @@
 #include "mtempbackups.h"
 
 MTempBackups::MTempBackups(QObject *parent) :
-    QAbstractTableModel(parent)
+QAbstractTableModel(parent)
 {
     _id_backup = new QHash<int, int>();
     _fechas = new QHash<int, QDate>();
@@ -13,6 +13,11 @@ MTempBackups::~MTempBackups()
     delete _id_backup;
     delete _fechas;
     delete _tamanos;
+}
+
+bool MTempBackups::setData( const QModelIndex &index, const QVariant &value, int role )
+{
+    return false;
 }
 
 
