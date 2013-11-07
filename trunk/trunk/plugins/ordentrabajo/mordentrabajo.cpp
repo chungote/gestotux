@@ -182,24 +182,29 @@ void MOrdenTrabajo::cargarDatos( const int id_orden )
  */
 int MOrdenTrabajo::agregarOrdenTrabajo( const int id_cliente, const int id_equipamiento, const int id_tecnico, QString requerente, QString ingresante, QDateTime fecha_ingreso, QDateTime fecha_devolucion, QString causa_ingreso)
 {
-    QSqlRecord r = this->record();
-    r.setGenerated( "id_orden_trabajo", true );
-    r.setValue( "id_cliente"     , id_cliente      );
-    r.setValue( "id_equipamiento", id_equipamiento );
-    r.setValue( "id_tecnico"     , id_tecnico );
-    r.setValue( "requerente", requerente );
-    r.setValue( "ingresante", ingresante );
-    r.setValue( "fecha_ingreso", fecha_ingreso );
-    r.setValue( "fecha_devolucion", fecha_devolucion );
-    r.setValue( "causa_ingreso", causa_ingreso );
-    if( this->insertRecord( -1, r ) ) {
+    QSqlQuery cola;
+    if( !cola.prepare( "INSERT INTO orden_trabajo(  cliente_id,  id_equipamiento,  id_tecnico,  requerente,  ingresante,  fecha_ingreso,  fecha_devolucion,  causa_ingreso ) "
+                       "               VALUES    ( :id_cliente, :id_equipamiento, :id_tecnico, :requerente, :ingresante, :fecha_ingreso, :fecha_devolucion, :causa_ingreso ) " ) ) {
+        qDebug() << "Error al preparar la cola de inserción";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return -1;
+    }
+    cola.bindValue( ":id_cliente"      , id_cliente       );
+    cola.bindValue( ":id_equipamiento" , id_equipamiento  );
+    cola.bindValue( ":id_tecnico"      , id_tecnico       );
+    cola.bindValue( ":requerente"      , requerente       );
+    cola.bindValue( ":ingresante"      , ingresante       );
+    cola.bindValue( ":fecha_ingreso"   , fecha_ingreso    );
+    cola.bindValue( ":fecha_devolucion", fecha_devolucion );
+    cola.bindValue( ":causa_ingreso"   , causa_ingreso    );
+    if( cola.exec() ) {
         // Busco y devuelvo el ID
         if( QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
-            return this->query().lastInsertId().toInt();
+            return cola.lastInsertId().toInt();
         } else {
             /// @TODO: Agregar codigo para esta condicion de ID
         }
-
     } else {
         qDebug() <<  "Error al insertar los datos de la orden de trabajo";
         qDebug() <<  this->query().lastError().text();
