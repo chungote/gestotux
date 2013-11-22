@@ -112,6 +112,25 @@ void OrdenTrabajoWizard::done( int result )
             QSqlDatabase::database().rollback();
             return;
         }
+
+        // Pregunto si quiere imprimir la orden de trabajo
+        if( QMessageBox::question( this,
+                                   QString::fromUtf8( "Imprimir" ),
+                                   QString::fromUtf8( "Desea imprimir la etiqueta de identificación para el nuevo equipamiento?" ),
+                                   QMessageBox::Yes, QMessageBox::No )
+            == QMessageBox::Yes ) {
+            QMessageBox::information( this, "Error", "Todavia no implementado" );
+        }
+        // Pregunto si quiere imprimir la etiqueta para el equipamiento
+        if( field( "equipamiento.nuevo" ).toBool() ) {
+            if( QMessageBox::question( this,
+                                       QString::fromUtf8( "Imprimir" ),
+                                       QString::fromUtf8( "Desea imprimir la etiqueta de identificación para el nuevo equipamiento?" ),
+                                       QMessageBox::Yes, QMessageBox::No )
+                == QMessageBox::Yes ) {
+                QMessageBox::information( this, "Error", "Todavia no implementado" );
+            }
+        }
     }
     QDialog::done( result );
 }
