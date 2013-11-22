@@ -112,6 +112,9 @@ void OrdenTrabajoWizard::done( int result )
             QSqlDatabase::database().rollback();
             return;
         }
+        emit actualizarModeloClientes();
+        emit actualizarModeloEquipamientos();
+        emit actualizarModeloOrdenTrabajo();
 
         // Pregunto si quiere imprimir la orden de trabajo
         if( QMessageBox::question( this,

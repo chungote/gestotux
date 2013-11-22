@@ -21,6 +21,11 @@ public:
 
  public slots:
     void done( int result );
+
+signals:
+    void actualizarModeloOrdenTrabajo();
+    void actualizarModeloEquipamientos();
+    void actualizarModeloClientes();
     
 };
 
