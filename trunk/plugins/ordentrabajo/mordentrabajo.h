@@ -29,7 +29,11 @@ public:
     QDateTime fechaDevolucion() { return _data.value("fecha_devolucion").toDateTime(); }
     QDateTime fechaIngreso() { return _data.value("fecha_ingreso").toDateTime(); }
 
-    int agregarOrdenTrabajo( const int id_cliente, const int id_equipamiento, const int id_tecnico, QString requerente, QString ingresante, QDateTime fecha_ingreso, QDateTime fecha_devolucion, QString causa_ingreso );
+    int agregarOrdenTrabajo( const int id_cliente, const int id_equipamiento,
+                             const int id_tecnico, QString requerente,
+                             QString ingresante, QDateTime fecha_ingreso,
+                             QDateTime fecha_devolucion, QDateTime fecha_vencimiento,
+                             QString causa_ingreso );
 
 private:
     QSqlRecord _data;

@@ -180,24 +180,28 @@ void MOrdenTrabajo::cargarDatos( const int id_orden )
  * \param causa_ingreso Causa del ingreso
  * \return ID de al nueva orden de trabajo o -1 si hubo algún error
  */
-int MOrdenTrabajo::agregarOrdenTrabajo( const int id_cliente, const int id_equipamiento, const int id_tecnico, QString requerente, QString ingresante, QDateTime fecha_ingreso, QDateTime fecha_devolucion, QString causa_ingreso)
+int MOrdenTrabajo::agregarOrdenTrabajo( const int id_cliente, const int id_equipamiento, const int id_tecnico,
+                                        QString requerente,   QString ingresante, QDateTime fecha_ingreso,
+                                        QDateTime fecha_devolucion, QDateTime fecha_vencimiento,
+                                        QString causa_ingreso )
 {
     QSqlQuery cola;
-    if( !cola.prepare( "INSERT INTO orden_trabajo(  cliente_id,  id_equipamiento,  id_tecnico,  requerente,  ingresante,  fecha_ingreso,  fecha_devolucion,  causa_ingreso ) "
-                       "               VALUES    ( :id_cliente, :id_equipamiento, :id_tecnico, :requerente, :ingresante, :fecha_ingreso, :fecha_devolucion, :causa_ingreso ) " ) ) {
+    if( !cola.prepare( "INSERT INTO orden_trabajo(  cliente_id,  id_equipamiento,  id_tecnico,  requerente,  ingresante,  fecha_ingreso,  fecha_devolucion, fecha_vencimiento,  causa_ingreso ) "
+                       "               VALUES    ( :id_cliente, :id_equipamiento, :id_tecnico, :requerente, :ingresante, :fecha_ingreso, :fecha_devolucion, :fecha_vencimiento, :causa_ingreso ) " ) ) {
         qDebug() << "Error al preparar la cola de inserción";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
         return -1;
     }
-    cola.bindValue( ":id_cliente"      , id_cliente       );
-    cola.bindValue( ":id_equipamiento" , id_equipamiento  );
-    cola.bindValue( ":id_tecnico"      , id_tecnico       );
-    cola.bindValue( ":requerente"      , requerente       );
-    cola.bindValue( ":ingresante"      , ingresante       );
-    cola.bindValue( ":fecha_ingreso"   , fecha_ingreso    );
-    cola.bindValue( ":fecha_devolucion", fecha_devolucion );
-    cola.bindValue( ":causa_ingreso"   , causa_ingreso    );
+    cola.bindValue( ":id_cliente"       , id_cliente        );
+    cola.bindValue( ":id_equipamiento"  , id_equipamiento   );
+    cola.bindValue( ":id_tecnico"       , id_tecnico        );
+    cola.bindValue( ":requerente"       , requerente        );
+    cola.bindValue( ":ingresante"       , ingresante        );
+    cola.bindValue( ":fecha_ingreso"    , fecha_ingreso     );
+    cola.bindValue( ":fecha_vencimiento", fecha_vencimiento );
+    cola.bindValue( ":fecha_devolucion" , fecha_devolucion  );
+    cola.bindValue( ":causa_ingreso"    , causa_ingreso     );
     if( cola.exec() ) {
         // Busco y devuelvo el ID
         if( QSqlDatabase::database().driver()->hasFeature( QSqlDriver::LastInsertId ) ) {
@@ -207,8 +211,8 @@ int MOrdenTrabajo::agregarOrdenTrabajo( const int id_cliente, const int id_equip
         }
     } else {
         qDebug() <<  "Error al insertar los datos de la orden de trabajo";
-        qDebug() <<  this->query().lastError().text();
-        qDebug() <<  this->query().lastQuery();
+        qDebug() <<  cola.lastError().text();
+        qDebug() <<  cola.lastQuery();
     }
     return -1;
 }

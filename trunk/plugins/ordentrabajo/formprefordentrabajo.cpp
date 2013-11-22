@@ -20,6 +20,7 @@ void FormPrefOrdenTrabajo::cargar()
     p->beginGroup( "OrdenTrabajo" );
     SBDias->setValue( p->value("dias",2).toInt() );
     CBTecnico->setearId( p->value("id_tecnico",0).toInt() );
+    SBMeses->setValue( p->value("meses_vencimiento", 2 ).toInt() );
     p->endGroup();
     p->endGroup();
     p=0;
@@ -33,6 +34,7 @@ void FormPrefOrdenTrabajo::guardar()
     p->beginGroup( "OrdenTrabajo" );
     p->setValue( "dias", SBDias->value() );
     p->setValue( "id_tecnico", CBTecnico->idActual() );
+    p->setValue( "meses_vencimiento", SBMeses->value() );
     p->endGroup();
     p->endGroup();
     p=0;

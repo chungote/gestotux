@@ -7,6 +7,8 @@ VGarantias::VGarantias(QWidget *parent) :
 {
 
     setObjectName( "visor-garantias" );
+    setWindowTitle( QString::fromUtf8( "Garantías activas" ) );
+    //setWindowIcon( QIcon( ":/imagenes/garantias.png" ) );
 
     modelo = new MGarantias( this );
 
