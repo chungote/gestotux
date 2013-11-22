@@ -5,11 +5,13 @@
 #include "eactpdf.h"
 #include "mordentrabajo.h"
 
+#include "ordentrabajowizard.h"
+
 #include <QTableView>
 #include <QMenu>
 
-VOrdenTrabajo::VOrdenTrabajo(QWidget *parent) :
-EVLista(parent)
+VOrdenTrabajo::VOrdenTrabajo( QWidget *parent ) :
+EVLista( parent )
 {
     setObjectName( "visor_ordenes_trabajo" );
     setWindowTitle( "Ordenes de trabajo" );
@@ -45,6 +47,10 @@ EVLista(parent)
  */
 void VOrdenTrabajo::agregar( bool )
 {
+    OrdenTrabajoWizard *w = new OrdenTrabajoWizard( this );
+    w->exec();
+    connect( w, SIGNAL( actualizarModeloOrdenTrabajo() ), this, SLOT( verTodos() ) );
+    modelo->select();
 }
 
 /*!
@@ -52,6 +58,7 @@ void VOrdenTrabajo::agregar( bool )
  */
 void VOrdenTrabajo::modificar()
 {
+    /// @TODO: implementar modificar orden de trabajo
 }
 
 /*!
@@ -59,6 +66,7 @@ void VOrdenTrabajo::modificar()
  */
 void VOrdenTrabajo::eliminar()
 {
+    /// @TODO: implementar eliminar orden de trabajo
 }
 
 /*!
@@ -66,6 +74,7 @@ void VOrdenTrabajo::eliminar()
  */
 void VOrdenTrabajo::ver()
 {
+    /// @TODO: implementar ver orden de trabajo
 }
 
 /*!
@@ -74,6 +83,7 @@ void VOrdenTrabajo::ver()
  */
 void VOrdenTrabajo::aPdf()
 {
+    /// @TODO: implementar imprimir orden de trabajo a pdf
 }
 
 /*!
@@ -82,6 +92,7 @@ void VOrdenTrabajo::aPdf()
  */
 void VOrdenTrabajo::imprimir()
 {
+     /// @TODO: implementar imprimir orden de trabajo
 }
 
 

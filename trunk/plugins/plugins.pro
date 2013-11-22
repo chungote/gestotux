@@ -14,9 +14,8 @@ SUBDIRS +=  caja \
             informes/informa.pro \
             informes \
             trsistemas \
-            cuotas \
             ordentrabajo \
-            HiComp \
             garantias \
             backupremoto \
-            remitos
+            remitos \
+            cuotas
