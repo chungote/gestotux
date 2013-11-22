@@ -12,8 +12,17 @@ public:
 signals:
     void agregarVentana( QWidget * );
 
-public slots:
+protected slots:
+    void ver();
+    void agregar( bool autoeliminarid );
+    void modificar();
+    void eliminar();
+    void aPdf();
+    void imprimir();
+    void menuContextual( const QModelIndex &indice, QMenu *menu );
     
+private:
+    QAction *ActVer;
 };
 
 #endif // VORDENTRABAJO_H
