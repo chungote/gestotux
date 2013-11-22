@@ -39,10 +39,13 @@
 QList<QActionGroup *> GarantiasPlugin::accionesBarra()
 { return QList<QActionGroup*>(); }
 
-
+/*!
+ * \brief GarantiasPlugin::inicializar
+ * \return
+ */
 bool GarantiasPlugin::inicializar()
 {
- Q_INIT_RESOURCE(garantias);
+    Q_INIT_RESOURCE(garantias);
 
     ActGarantias = new QAction( this );
     ActGarantias->setText( QString::fromUtf8( "Garantías" ) );
@@ -59,7 +62,7 @@ bool GarantiasPlugin::inicializar()
     ActVerVencimientos->setStatusTip( "Ver los vencimientos de garantias cercanas a una fecha" );
     connect( ActVerVencimientos, SIGNAL( triggered() ), this, SLOT( verVencimientos() ) );
 
- return true;
+    return true;
 }
 
 /*!
@@ -97,6 +100,11 @@ void GarantiasPlugin::crearMenu( QMenuBar *m )
  menuGarantias->addAction( ActVerVencimientos );
 }
 
+/*!
+ * \brief GarantiasPlugin::verificarTablas
+ * \param tablas
+ * \return
+ */
 bool GarantiasPlugin::verificarTablas( QStringList tablas )
 {
     if( !tablas.contains( "factura" ) )
@@ -129,7 +137,7 @@ void GarantiasPlugin::crearToolBar( QToolBar */*t*/ )
  */
 void GarantiasPlugin::seCierraGestotux()
 {
-    Q_CLEANUP_RESOURCE(garantias);
+    Q_CLEANUP_RESOURCE( garantias );
 }
 
 #include "vgarantias.h"
@@ -142,21 +150,38 @@ void GarantiasPlugin::verGarantias()
     emit agregarVentana( new VGarantias() );
 }
 
+/*!
+ * \brief GarantiasPlugin::agregarGarantia
+ * \param id_comprobante
+ * \param id_producto
+ * \param nombre_producto
+ * \param id_cliente
+ */
 void GarantiasPlugin::agregarGarantia(int id_comprobante, int id_producto, QString nombre_producto, int id_cliente)
 {
     /// @TODO: Agregar garantia cuando es llamado desde otro lado
 }
 
+/*!
+ * \brief GarantiasPlugin::agregarGarantia
+ */
 void GarantiasPlugin::agregarGarantia()
 {
     /// @TODO: Agregar garantia por ventana normal.
 }
 
+/*!
+ * \brief GarantiasPlugin::verVencimientos
+ */
 void GarantiasPlugin::verVencimientos()
 {
     /// @TODO: Ver garantias cerca a vencerse en una cierta fecha
 }
 
+/*!
+ * \brief GarantiasPlugin::botonPantallaInicial
+ * \return
+ */
 QAction *GarantiasPlugin::botonPantallaInicial()
 {
     return ( new QAction( this ) );

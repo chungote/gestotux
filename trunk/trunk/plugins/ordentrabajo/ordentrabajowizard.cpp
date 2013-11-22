@@ -29,7 +29,7 @@ QWizard(parent)
     setStartId( Pagina_Cliente );
 
     setOption( HaveHelpButton, false );
-    /// @TODO: Agregar logotipo para titorial de orden de trabajo.
+    /// @TODO: Agregar logotipo para tutorial de orden de trabajo.
     //setPixmap( QWizard::LogoPixmap, QPixmap( ":/images/logo.png" ) );
 
     setWindowTitle( "Agregar orden trabajo" );
@@ -79,12 +79,13 @@ void OrdenTrabajoWizard::done( int result )
         MOrdenTrabajo *mot = new MOrdenTrabajo();
         int id_orden_trabajo = mot->agregarOrdenTrabajo( id_cliente,
                                                          id_equipamiento,
-                                                         field( "orden_trabajo.id_tecnico"    ).toInt()   ,
-                                                         field( "orden_trabajo.requerente"    ).toString(),
-                                                         field( "orden_trabajo.ingresante"    ).toString(),
-                                                         field( "orden_trabajo.fecha_ingreso" ).toDateTime()  ,
-                                                         field( "orden_trabajo.fecha_entrega" ).toDateTime()  ,
-                                                         field( "orden_trabajo.causa_ingreso" ).toString() );
+                                                         field( "orden_trabajo.id_tecnico"    ).toInt()     ,
+                                                         field( "orden_trabajo.requerente"    ).toString()  ,
+                                                         field( "orden_trabajo.ingresante"    ).toString()  ,
+                                                         field( "orden_trabajo.fecha_ingreso" ).toDateTime(),
+                                                         field( "orden_trabajo.fecha_entrega" ).toDateTime(),
+                                                         field( "orden_trabajo.fecha_vencimiento" ).toDateTime(),
+                                                         field( "orden_trabajo.causa_ingreso" ).toString()  );
         if( id_orden_trabajo == -1 ) {
             QMessageBox::critical( this, "Error", "No se pudo guardar la orden de trabajo" );
             QSqlDatabase::database().rollback();
@@ -106,7 +107,7 @@ void OrdenTrabajoWizard::done( int result )
         }
         delete mhot;
 
-        if( QSqlDatabase::database().commit() == true ) {
+        if( QSqlDatabase::database().commit() != true ) {
             QMessageBox::information( this, "Error", "No se pudo hacer el commit de la base de datos" );
             QSqlDatabase::database().rollback();
             return;
