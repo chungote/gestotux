@@ -69,7 +69,7 @@ NumeroComprobante MOrdenTrabajo::numeroComprobanteProximo()
 NumeroComprobante MOrdenTrabajo::numeroComprobanteSegunId( const int id_orden )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_orden_trabajo FROM orden_trabajo WHERE id_orden = %1" ).arg( id_orden ) ) ) {
+    if( cola.exec( QString( "SELECT id_orden_trabajo FROM orden_trabajo WHERE id_orden_trabajo = %1" ).arg( id_orden ) ) ) {
         if( cola.next() ) {
             if( cola.record().value(0).toInt() > 0 ) {
                 NumeroComprobante temp( 0, 0, 1 );
@@ -107,7 +107,7 @@ int MOrdenTrabajo::idSegunNumeroComprobante( NumeroComprobante num )
 int MOrdenTrabajo::obtenerIdEquipamientoSegunId( const int id_orden )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT id_equipamiento FROM orden_trabajo WHERE id_orden = %1" ).arg( id_orden ) ) ) {
+    if( cola.exec( QString( "SELECT id_equipamiento FROM orden_trabajo WHERE id_orden_trabajo = %1" ).arg( id_orden ) ) ) {
         if( cola.next() ) {
             if( cola.record().value(0).toInt() > 0 ) {
                 return cola.record().value(0).toInt();
@@ -134,7 +134,7 @@ int MOrdenTrabajo::obtenerIdEquipamientoSegunId( const int id_orden )
 bool MOrdenTrabajo::cambiarTecnico(const int id_orden_trabajo, const int id_tecnico)
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "UPDATE orden_trabajo SET id_tecnico = %1 WHERE id_orden = %2" ).arg( id_tecnico ).arg( id_orden_trabajo ) ) ) {
+    if( cola.exec( QString( "UPDATE orden_trabajo SET id_tecnico = %1 WHERE id_orden_trabajo = %2" ).arg( id_tecnico ).arg( id_orden_trabajo ) ) ) {
         return true;
     } else {
         qDebug() << "Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
@@ -152,7 +152,7 @@ bool MOrdenTrabajo::cambiarTecnico(const int id_orden_trabajo, const int id_tecn
 void MOrdenTrabajo::cargarDatos( const int id_orden )
 {
     QSqlQuery cola;
-    if( cola.exec( QString( "SELECT * FROM orden_trabajo WHERE id_orden = %1" ).arg( id_orden ) ) ) {
+    if( cola.exec( QString( "SELECT * FROM orden_trabajo WHERE id_orden_trabajo = %1" ).arg( id_orden ) ) ) {
         if( cola.next() ) {
             this->_data = cola.record();
             _id_orden_trabajo = id_orden;

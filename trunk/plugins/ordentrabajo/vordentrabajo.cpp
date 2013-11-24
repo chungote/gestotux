@@ -6,9 +6,11 @@
 #include "mordentrabajo.h"
 
 #include "ordentrabajowizard.h"
+#include "formordentrabajo.h"
 
 #include <QTableView>
 #include <QMenu>
+#include <QMessageBox>
 
 VOrdenTrabajo::VOrdenTrabajo( QWidget *parent ) :
 EVLista( parent )
@@ -58,7 +60,19 @@ void VOrdenTrabajo::agregar( bool )
  */
 void VOrdenTrabajo::modificar()
 {
-    /// @TODO: implementar modificar orden de trabajo
+    if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+        QMessageBox::information( this,
+                                  QString::fromUtf8( "Ninguna selección" ),
+                                  QString::fromUtf8( "Por favor, seleccióne una orden de trabajo para verla" ) );
+        return;
+    }
+    foreach( QModelIndex indice, vista->selectionModel()->selectedRows() ) {
+        int id_orden_trabajo = modelo->data( modelo->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+        FormOrdenTrabajo *form = new FormOrdenTrabajo( this );
+        form->setearIdOrdenTrabajo( id_orden_trabajo );
+        emit agregarVentana( form );
+    }
+    return;
 }
 
 /*!
@@ -71,10 +85,23 @@ void VOrdenTrabajo::eliminar()
 
 /*!
  * \brief VOrdenTrabajo::ver
+ * Muestra el formulario de las ordenes de trabajo
  */
 void VOrdenTrabajo::ver()
 {
-    /// @TODO: implementar ver orden de trabajo
+    if( vista->selectionModel()->selectedRows().count() <= 0 ) {
+        QMessageBox::information( this,
+                                  QString::fromUtf8( "Ninguna selección" ),
+                                  QString::fromUtf8( "Por favor, seleccióne una orden de trabajo para verla" ) );
+        return;
+    }
+    foreach( QModelIndex indice, vista->selectionModel()->selectedRows() ) {
+        int id_orden_trabajo = modelo->data( modelo->index( indice.row(), 0 ), Qt::EditRole ).toInt();
+        FormOrdenTrabajo *form = new FormOrdenTrabajo( this );
+        form->setearIdOrdenTrabajo( id_orden_trabajo );
+        emit agregarVentana( form );
+    }
+    return;
 }
 
 /*!
