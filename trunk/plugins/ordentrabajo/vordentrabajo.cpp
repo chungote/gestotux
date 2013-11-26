@@ -20,9 +20,11 @@ EVLista( parent )
     setWindowIcon( QIcon( ":/imagenes/orden_trabajo.png" ) );
 
     modelo = new MOrdenTrabajo( this );
+    modelo->relacionarDatos();
 
     vista->setModel( modelo );
     vista->hideColumn( modelo->fieldIndex( "id_equipamiento" ) );
+    vista->hideColumn( modelo->fieldIndex( "id_orden_trabajo" ) );
     modelo->select();
 
     ActVer = new QAction( this );
@@ -52,7 +54,6 @@ void VOrdenTrabajo::agregar( bool )
     OrdenTrabajoWizard *w = new OrdenTrabajoWizard( this );
     w->exec();
     connect( w, SIGNAL( actualizarModeloOrdenTrabajo() ), this, SLOT( verTodos() ) );
-    modelo->select();
 }
 
 /*!
@@ -80,6 +81,8 @@ void VOrdenTrabajo::modificar()
  */
 void VOrdenTrabajo::eliminar()
 {
+    QMessageBox::information( this, "No implementado", "Característica no implementada" );
+    return;
     /// @TODO: implementar eliminar orden de trabajo
 }
 
@@ -110,6 +113,8 @@ void VOrdenTrabajo::ver()
  */
 void VOrdenTrabajo::aPdf()
 {
+    QMessageBox::information( this, "No implementado", "Característica no implementada" );
+    return;
     /// @TODO: implementar imprimir orden de trabajo a pdf
 }
 
@@ -119,6 +124,8 @@ void VOrdenTrabajo::aPdf()
  */
 void VOrdenTrabajo::imprimir()
 {
+    QMessageBox::information( this, "No implementado", "Caraterística no implementada" );
+    return;
      /// @TODO: implementar imprimir orden de trabajo
 }
 

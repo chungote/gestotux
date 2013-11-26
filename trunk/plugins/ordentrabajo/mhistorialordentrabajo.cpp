@@ -15,19 +15,41 @@ MHistorialOrdenTrabajo::MHistorialOrdenTrabajo(QObject *parent) :
     setHeaderData( 1, Qt::Horizontal, "#ID Orden Trabajo" );
     setHeaderData( 2, Qt::Horizontal, "Fecha de operacion" );
     setHeaderData( 3, Qt::Horizontal, "Descripcion" );
-    setHeaderData( 4, Qt::Horizontal, "#tipo_operacion" );
-    setHeaderData( 5, Qt::Horizontal, "#Tecnico" );
+    setHeaderData( 4, Qt::Horizontal, "Tipo de operacion" );
+    setHeaderData( 5, Qt::Horizontal, "Tecnico" );
     setHeaderData( 6, Qt::Horizontal, "Costo" );
     setHeaderData( 7, Qt::Horizontal, "Sumatoria" );
     _id_orden_trabajo = 0;
     _mostrar_suma_costos = false;
+    _tiene_relaciones = false;
     _sumas = new QMap<int, double>();
 }
 
+/*!
+ * \brief MHistorialOrdenTrabajo::~MHistorialOrdenTrabajo
+ */
 MHistorialOrdenTrabajo::~MHistorialOrdenTrabajo()
 {
     delete _sumas;
     _sumas=0;
+}
+
+/*!
+ * \brief MHistorialOrdenTrabajo::setearRelacionTecnico
+ */
+void MHistorialOrdenTrabajo::setearRelacionTecnico()
+{
+    setRelation( 5, QSqlRelation( "tecnico", "id_tecnico", "razon_social" ) );
+    _tiene_relaciones = true;
+}
+
+/*!
+ * \brief MHistorialOrdenTrabajo::setearRelacionTipo
+ */
+void MHistorialOrdenTrabajo::setearRelacionTipo()
+{
+    setRelation( 4, QSqlRelation( "tipo_operacion_orden_trabajo", "id_tipo_operacion_orden_trabajo", "nombre" ) );
+    _tiene_relaciones = true;
 }
 
 /*!
@@ -71,10 +93,40 @@ QVariant MHistorialOrdenTrabajo::data(const QModelIndex &item, int role) const
             }
             break;
         }
+        case 6: // Costo
+        {
+            switch( role ) {
+                case Qt::DisplayRole:
+                {
+                    return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data( item, role ).toDouble(), 10, 'f', 2 );
+                    break;
+                }
+                default:
+                {
+                    return QSqlRelationalTableModel::data( item, role );
+                    break;
+                }
+            }
+            break;
+        }
         default:
         { break; }
     }
     return QSqlRelationalTableModel::data( item, role );
+}
+
+/*!
+ * \brief MHistorialOrdenTrabajo::columnCount
+ * \param parent
+ * \return
+ */
+int MHistorialOrdenTrabajo::columnCount(const QModelIndex &parent) const
+{
+    if( _mostrar_suma_costos ) {
+        return QSqlRelationalTableModel::columnCount( parent ) + 1;
+    } else {
+        return QSqlRelationalTableModel::columnCount( parent );
+    }
 }
 
 /*!
@@ -129,20 +181,19 @@ bool MHistorialOrdenTrabajo::eliminarHistorial(const int id_historial)
  * \brief MHistorialOrdenTrabajo::setearOrdenTrabajo
  * \param id_orden_trabajo
  */
-void MHistorialOrdenTrabajo::setearOrdenTrabajo(const int id_orden_trabajo)
+void MHistorialOrdenTrabajo::setearOrdenTrabajo( const int id_orden_trabajo )
 {
     if( id_orden_trabajo <= 0 ) {
         return;
     }
     _id_orden_trabajo = id_orden_trabajo;
-    setFilter( QString( " id_orden_trabajo = %1" ).arg( id_orden_trabajo ) );
-    this->select();
+    setFilter( QString( " id_orden_trabajo = %1 " ).arg( id_orden_trabajo ) );
 }
 
 /*!
  * \brief MHistorialOrdenTrabajo::mostrarCostosSumados
  */
-void MHistorialOrdenTrabajo::mostrarCostosSumados()
+void MHistorialOrdenTrabajo::mostrarCostosSumados( bool activar )
 {
-    _mostrar_suma_costos = !_mostrar_suma_costos;
+    _mostrar_suma_costos = activar;
 }

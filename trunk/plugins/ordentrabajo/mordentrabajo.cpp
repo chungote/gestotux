@@ -21,8 +21,44 @@ QSqlRelationalTableModel( parent )
     setHeaderData( 6, Qt::Horizontal, "Fecha de Devolucion" );
     setHeaderData( 7, Qt::Horizontal, "#Equipamiento" );
     setHeaderData( 8, Qt::Horizontal, "#Factura" );
+    setHeaderData( 9, Qt::Horizontal, "#Tecnico" );
+    setHeaderData( 10, Qt::Horizontal, "Causa de Ingreso" );
     _id_orden_trabajo = -1;
     _data = QSqlRecord();
+}
+
+/*!
+ * \brief MOrdenTrabajo::relacionarDatos
+ */
+void MOrdenTrabajo::relacionarDatos()
+{
+    setRelation( 1, QSqlRelation( "cliente", "id", "razon_social" ) );
+    setRelation( 7, QSqlRelation( "equipamiento", "id_equipamiento", "descripcion" ) );
+    setRelation( 9, QSqlRelation( "tecnico", "id_tecnico", "razon_social" ) );
+}
+
+/*!
+ * \brief MOrdenTrabajo::data
+ * \param item
+ * \param role
+ * \return
+ */
+QVariant MOrdenTrabajo::data( const QModelIndex &item, int role ) const
+{
+    switch( item.column() ) {
+        case 2:
+        case 5:
+        case 6:
+        {
+            return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::SystemLocaleShortDate );
+            break;
+        }
+        default:
+        {
+            return QSqlRelationalTableModel::data( item, role );
+            break;
+        }
+    }
 }
 
 /*!

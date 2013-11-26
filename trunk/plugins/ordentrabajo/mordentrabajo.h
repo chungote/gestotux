@@ -11,6 +11,11 @@ class MOrdenTrabajo : public QSqlRelationalTableModel
     Q_OBJECT
 public:
     MOrdenTrabajo( QObject *parent = 0 );
+
+    void relacionarDatos();
+
+    QVariant data( const QModelIndex &item, int role ) const;
+
     static bool tieneDatosRelacionados( const int id_orden_trabajo );
 
     static NumeroComprobante numeroComprobanteProximo();

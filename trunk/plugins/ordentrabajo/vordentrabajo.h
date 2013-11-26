@@ -2,6 +2,7 @@
 #define VORDENTRABAJO_H
 
 #include "evlista.h"
+#include "mordentrabajo.h"
 
 class VOrdenTrabajo : public EVLista
 {
@@ -23,6 +24,7 @@ protected slots:
     
 private:
     QAction *ActVer;
+    MOrdenTrabajo *modelo;
 };
 
 #endif // VORDENTRABAJO_H

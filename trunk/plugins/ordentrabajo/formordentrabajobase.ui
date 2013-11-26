@@ -43,8 +43,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>579</width>
-        <height>421</height>
+        <width>542</width>
+        <height>186</height>
        </rect>
       </property>
       <attribute name="label">
@@ -209,7 +209,7 @@
         <x>0</x>
         <y>0</y>
         <width>521</width>
-        <height>434</height>
+        <height>452</height>
        </rect>
       </property>
       <attribute name="label">
@@ -242,7 +242,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="CBEquipamientoMarca"/>
+            <widget class="ECBModeloEquipamiento" name="CBEquipamientoMarca"/>
            </item>
           </layout>
          </item>
@@ -342,8 +342,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
-        <height>434</height>
+        <width>374</width>
+        <height>114</height>
        </rect>
       </property>
       <attribute name="label">
@@ -398,8 +398,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
-        <height>434</height>
+        <width>254</width>
+        <height>114</height>
        </rect>
       </property>
       <attribute name="label">
@@ -463,6 +463,11 @@
    <class>ECBTecnicos</class>
    <extends>QComboBox</extends>
    <header>ecbtecnicos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBModeloEquipamiento</class>
+   <extends>QComboBox</extends>
+   <header>ecbmodeloequipamiento.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

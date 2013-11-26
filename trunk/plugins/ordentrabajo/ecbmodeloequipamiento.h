@@ -5,7 +5,6 @@
 
 class ECBModeloEquipamiento : public ECBTabla
 {
-    Q_OBJECT
 public:
     ECBModeloEquipamiento( QWidget *parent = 0 );
     
