@@ -18,4 +18,5 @@ SUBDIRS +=  caja \
             garantias \
             backupremoto \
             remitos \
-            cuotas
+            cuotas \
+            email
