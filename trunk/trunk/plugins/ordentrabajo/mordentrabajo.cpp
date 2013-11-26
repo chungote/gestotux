@@ -32,9 +32,9 @@ QSqlRelationalTableModel( parent )
  */
 void MOrdenTrabajo::relacionarDatos()
 {
-    setRelation( 1, QSqlRelation( "cliente", "id", "razon_social" ) );
-    setRelation( 7, QSqlRelation( "equipamiento", "id_equipamiento", "descripcion" ) );
-    setRelation( 9, QSqlRelation( "tecnico", "id_tecnico", "razon_social" ) );
+    setRelation( 1, QSqlRelation( "clientes"    , "id"             , "razon_social" ) );
+    setRelation( 7, QSqlRelation( "equipamiento", "id_equipamiento", "descripcion"  ) );
+    setRelation( 9, QSqlRelation( "tecnico"     , "id_tecnico"     , "razon_social" ) );
 }
 
 /*!
