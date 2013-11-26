@@ -19,6 +19,7 @@
 class ECBClientes : public QComboBox
 {
     Q_OBJECT
+    Q_PROPERTY( int idCliente READ idClienteActual() )
 public:
     ECBClientes( QWidget *parent = 0 );
     ~ECBClientes();
