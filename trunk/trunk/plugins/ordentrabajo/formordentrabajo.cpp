@@ -36,9 +36,6 @@ EVentana( parent ), FormOrdenTrabajoBase()
     DTEFechaIngreso->setDateTime( QDateTime::currentDateTime() );
     DEFechaDevolucion->setDate( QDate::currentDate().addDays( 2 ) );
 
-//    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
-//    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
-
     PBAgregarFacturacion->setIcon( QIcon( ":/imagenes/add.png" ) );
     connect( PBAgregarFacturacion, SIGNAL( clicked() ), this, SLOT( agregarFacturacion() ) );
 
@@ -89,8 +86,7 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
 
     CBTecnico->setearId( _modelo_orden->idTecnico() );
 
-    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
-    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
+
 
     DEFechaDevolucion->setDateTime( _modelo_orden->fechaDevolucion() );
     DTEFechaIngreso->setDateTime( _modelo_orden->fechaIngreso() );
@@ -99,15 +95,18 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     _modelo_historial->setearOrdenTrabajo( id_orden_trabajo );
     _modelo_historial->mostrarCostosSumados( false );
     LVHistorial->setModel( _modelo_historial );
+    LVHistorial->setModelColumn( _modelo_historial->fieldIndex( "descripcion" ) );
     _modelo_historial->select();
 
     // Modelo del historial de facturación
-
     _modelo_historial_facturacion->setearOrdenTrabajo( id_orden_trabajo );
     _modelo_historial_facturacion->mostrarCostosSumados( true );
     _modelo_historial_facturacion->setearRelacionTecnico();
     _modelo_historial_facturacion->setearRelacionTipo();
     TVFacturacion->setModel( _modelo_historial_facturacion );
+    TVFacturacion->hideColumn( 0 );
+    TVFacturacion->hideColumn( 1 );
+    TVFacturacion->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
     _modelo_historial_facturacion->select();
 
     // Datos del equipamiento
@@ -119,6 +118,8 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     _modelo_equipamiento->cargarDatos( id_equipamiento );
     cargarDatosEquipamiento();
 
+    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
+    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
 }
 
 
