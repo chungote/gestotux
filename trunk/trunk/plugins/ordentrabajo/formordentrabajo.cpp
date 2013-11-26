@@ -3,6 +3,7 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QComboBox>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -10,8 +11,8 @@
 #include "mtipooperacionordentrabajo.h"
 #include "dhistorialordentrabajo.h"
 
-FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
-    EVentana( parent ), FormOrdenTrabajoBase()
+FormOrdenTrabajo::FormOrdenTrabajo( QWidget *parent ) :
+EVentana( parent ), FormOrdenTrabajoBase()
 {
     setupUi(this);
 
@@ -35,8 +36,8 @@ FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
     DTEFechaIngreso->setDateTime( QDateTime::currentDateTime() );
     DEFechaDevolucion->setDate( QDate::currentDate().addDays( 2 ) );
 
-    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
-    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
+//    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
+//    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
 
     PBAgregarFacturacion->setIcon( QIcon( ":/imagenes/add.png" ) );
     connect( PBAgregarFacturacion, SIGNAL( clicked() ), this, SLOT( agregarFacturacion() ) );
@@ -70,7 +71,7 @@ FormOrdenTrabajo::FormOrdenTrabajo( bool agregar, QWidget *parent ) :
 
 /*!
  * \brief FormOrdenTrabajo::setearIdOrdenTrabajo
- * \param id_orden_trabajo
+ * \param id_orden_trabajo Identificador de la orden de trabajo a cargar
  */
 void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
 {
@@ -85,17 +86,29 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     CBCliente->setearId( _modelo_orden->idCliente() );
     LEIngresante->setText( _modelo_orden->ingresante() );
     LERequerente->setText( _modelo_orden->requerente() );
+
     CBTecnico->setearId( _modelo_orden->idTecnico() );
+
+    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
+    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
+
     DEFechaDevolucion->setDateTime( _modelo_orden->fechaDevolucion() );
     DTEFechaIngreso->setDateTime( _modelo_orden->fechaIngreso() );
 
     // Historial de acciones
     _modelo_historial->setearOrdenTrabajo( id_orden_trabajo );
+    _modelo_historial->mostrarCostosSumados( false );
     LVHistorial->setModel( _modelo_historial );
+    _modelo_historial->select();
 
     // Modelo del historial de facturación
+
     _modelo_historial_facturacion->setearOrdenTrabajo( id_orden_trabajo );
+    _modelo_historial_facturacion->mostrarCostosSumados( true );
+    _modelo_historial_facturacion->setearRelacionTecnico();
+    _modelo_historial_facturacion->setearRelacionTipo();
     TVFacturacion->setModel( _modelo_historial_facturacion );
+    _modelo_historial_facturacion->select();
 
     // Datos del equipamiento
     int id_equipamiento = _modelo_orden->obtenerIdEquipamientoSegunId( id_orden_trabajo );
@@ -139,7 +152,12 @@ void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
     if( id_tecnico <= 0 ) { return; }
 
     bool ok = false;
-    QString razon = QInputDialog::getText( this, "Dato necesario", "Ingrese razón de cambio de técnico", QLineEdit::Normal, QString(), &ok );
+    QString razon = QInputDialog::getText( this,
+                                           QString::fromUtf8( "Dato necesario" ),
+                                           QString::fromUtf8( "Ingrese razón de cambio de técnico" ),
+                                           QLineEdit::Normal,
+                                           QString(),
+                                           &ok );
     if( ok && !razon.isEmpty() ) {
         // Busco el técnico actual
         int id_tecnico_actual = _modelo_orden->idTecnico();
@@ -315,7 +333,7 @@ void FormOrdenTrabajo::changeEvent(QEvent *e)
 void FormOrdenTrabajo::cargarDatosEquipamiento()
 {
     LEEquipamientoDescripcion->setText( _modelo_equipamiento->descripcion() );
-    //CBEquipamientoMarca->setCurrentText( _modelo_equipamiento->marca() ); /// @TODO Ver como resolver esto
+    //CBEquipamientoMarca->setCurrentText( _modelo_equipamiento->marca() );
     LEEquipamientoModelo->setText( _modelo_equipamiento->modelo() );
     LEEquipamientoNumeroSerie->setText( _modelo_equipamiento->numeroSerie() );
     PTEEquipamientoObservaciones->setPlainText( _modelo_equipamiento->observaciones() );

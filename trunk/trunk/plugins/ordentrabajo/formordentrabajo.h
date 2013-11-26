@@ -14,7 +14,7 @@ class FormOrdenTrabajo : public EVentana, public FormOrdenTrabajoBase
     Q_OBJECT
     
 public:
-    FormOrdenTrabajo( bool agregar, QWidget *parent = 0 );
+    FormOrdenTrabajo( QWidget *parent = 0 );
     void setearIdOrdenTrabajo( const int id_orden_trabajo );
 
 protected slots:
