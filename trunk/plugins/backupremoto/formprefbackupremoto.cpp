@@ -4,6 +4,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "json.h"
 
@@ -19,6 +20,8 @@ FormPrefBackupRemoto::FormPrefBackupRemoto(QWidget *parent, Qt::WFlags fl )
 
     connect( PBVerificar, SIGNAL( clicked() ), this, SLOT( cargarDatos() ) );
 
+    connect( GBUsar, SIGNAL( toggled( bool ) ), GBHost, SLOT( setChecked( bool ) ) );
+
     GBDatos->setEnabled( false );
 }
 
@@ -33,6 +36,7 @@ void FormPrefBackupRemoto::guardar()
     p->setValue( "habilitado", GBUsar->isChecked() );
     p->setValue( "cliente", LENumeroCliente->text() );
     p->setValue( "contra", LEContra->text() );
+    p->setValue( "servidor", LEServidor->text() );
     p->endGroup();
     p->endGroup();
     delete p;
@@ -60,6 +64,7 @@ void FormPrefBackupRemoto::cargar()
     GBUsar->setChecked( p->value( "habilitado", false ).toBool() );
     LENumeroCliente->setText( p->value( "cliente", "" ).toString() );
     LEContra->setText( p->value( "contra", "" ).toString() );
+    LEServidor->setText( p->value( "servidor", "http://www.gestotux.com.ar/" ).toString() );
     p->endGroup();
     p->endGroup();
     delete p;
@@ -74,7 +79,7 @@ void FormPrefBackupRemoto::cargarDatos()
   manager = new QNetworkAccessManager( this );
   connect( manager, SIGNAL( finished( QNetworkReply* ) ), this, SLOT( respuesta( QNetworkReply* ) ) );
 
-  QUrl url( "http://trafu.no-ip.org/trsis/usuarios/verificar" );
+  QUrl url( LEServidor->text() + "/usuarios/verificar" );
   url.addQueryItem( "num_cliente", LENumeroCliente->text() );
   url.addQueryItem( "codigo", LEContra->text() );
   QNetworkRequest req( url );
@@ -88,14 +93,14 @@ void FormPrefBackupRemoto::respuesta( QNetworkReply *resp )
     PBVerificar->setText( "Comprobar" );
     if( resp->error() != QNetworkReply::NoError ) {
         QMessageBox::warning( this, "Error", resp->errorString().toLocal8Bit() );
-        qDebug( resp->readAll() );
+        qDebug() << resp->readAll();
     } else  if( resp->isFinished() ) {
         QByteArray cont( resp->readAll() );
         bool ok = false;
         QVariantMap mapa = Json::parse( cont, ok ).toMap();
         if( !ok ) {
             QMessageBox::warning( this, "Error", "Error de interpretación de los datos descargados. Intente nuevamente." );
-            qDebug( cont );
+            qDebug() << cont;
             return;
         }
         if( mapa["error"].toBool() ) {

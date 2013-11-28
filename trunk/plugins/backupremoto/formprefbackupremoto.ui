@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>401</width>
-    <height>300</height>
+    <width>417</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,8 +19,8 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout_5">
+   <item>
     <widget class="QGroupBox" name="GBUsar">
      <property name="title">
       <string>Habilitar Backup Remoto</string>
@@ -151,18 +151,34 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item>
+    <widget class="QGroupBox" name="GBHost">
+     <property name="title">
+      <string>Datos del Servidor</string>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
+     <property name="flat">
+      <bool>false</bool>
      </property>
-    </spacer>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="LServidor">
+          <property name="text">
+           <string>Servidor:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEServidor"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>

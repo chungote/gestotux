@@ -100,6 +100,11 @@ private:
 
         QString ids;
         bool terminar;
+
+       /*!
+        * Host configurado
+        */
+        QString _host;
 };
 
 #endif

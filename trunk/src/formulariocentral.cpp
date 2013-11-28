@@ -23,6 +23,7 @@
 #include <QToolBar>
 #include <QPushButton>
 #include <QTabBar>
+#include <QDebug>
 
 FormularioCentral::FormularioCentral( QWidget *parent )
 : QTabWidget( parent )
@@ -87,7 +88,7 @@ void FormularioCentral::agregarForm( QWidget *ventana )
  {
    // Busco el form que tiene la ventana y lo pongo como actual
    qWarning( "Ya existe la ventana que esta intentando abrir.\n Se mostrar la que existe abierta." );
-   qDebug( qPrintable( "Ventana ya abierta: " + ventana->objectName()  ) );
+   qDebug() << "Ventana ya abierta: " << ventana->objectName();
    this->setCurrentWidget( this->findChild<QWidget *>( ventana->objectName() ) );
    ventana->deleteLater();
  }
