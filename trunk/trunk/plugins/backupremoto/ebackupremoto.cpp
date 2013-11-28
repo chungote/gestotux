@@ -103,6 +103,14 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  ids = "";
  terminar = false;
  anteriores = 0;
+ preferencias *p = preferencias::getInstancia();
+ p->inicio();
+ p->beginGroup( "Preferencias" );
+ p->beginGroup( "BackupRemoto" );
+ _host = p->value( "servidor", "http://trafu.no-ip.org/").toString();
+ p->endGroup();
+ p->endGroup();
+ p=0;
 }
 
 
@@ -118,7 +126,7 @@ EBackupRemoto::~EBackupRemoto()
 void EBackupRemoto::cambiopestana( int pes ) {
     if( pes == 1 ) {
         // Busco los datos del sistema para ver cuales hay
-        QUrl url( "http://trafu.no-ip.org/trsis/backups/historial" );
+        QUrl url( _host + "/backups/historial" );
         preferencias *p = preferencias::getInstancia();
         p->beginGroup( "Preferencias" );
         p->beginGroup( "BackupRemoto" );
@@ -181,7 +189,7 @@ void EBackupRemoto::generar_db( bool /*estructura*/ )
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
- QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
+ QUrl url( p->value( "url_envio", _host + "/backups/envio" ).toString() );
  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
  url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 2 ).toString() );
  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
@@ -227,7 +235,7 @@ void EBackupRemoto::enviarColas() {
  preferencias *p = preferencias::getInstancia();
  p->beginGroup( "Preferencias" );
  p->beginGroup( "BackupRemoto" );
- QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
+ QUrl url( p->value( "url_envio", _host + "/backups/envio" ).toString() );
  url.addQueryItem( "ids", this->ids );
  qDebug() << this->ids;
  p->endGroup(); p->endGroup(); p = 0;
@@ -297,7 +305,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
                  preferencias *p = preferencias::getInstancia();
                  p->beginGroup( "Preferencias" );
                  p->beginGroup( "BackupRemoto" );
-                 QUrl url( p->value( "url_envio", "http://trafu.no-ip.org/trsis/backups/envio" ).toString() );
+                 QUrl url( p->value( "url_envio", _host + "/backups/envio" ).toString() );
                  url.addQueryItem( "num_cliente", p->value( "numero_cliente", 1 ).toString() );
                  url.addQueryItem( "id_servicio_backup", p->value( "id_servicio_backup", 2 ).toString() );
                  url.addQueryItem( "driver", QSqlDatabase::database( QSqlDatabase::defaultConnection, false ).driverName() );
@@ -574,7 +582,7 @@ void EBackupRemoto::mostrarError( QNetworkReply::NetworkError e ) {
         { qDebug( "Contenido desconocido." ); break; }
         case QNetworkReply::ProtocolFailure:
         { qDebug( "Falla en el protocolo." ); break; }
-#if QT_VERSION > 0x040801
+#if QT_VERSION >= 0x040801
         case QNetworkReply::TemporaryNetworkFailureError:
         { qDebug( "Error de red temporal" ); break; }
 #endif

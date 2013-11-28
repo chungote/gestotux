@@ -11,10 +11,12 @@ QT += xml \
 
 HEADERS += garantiasplugin.h \
     vgarantias.h \
-    mgarantias.h
+    mgarantias.h \
+    dagregargarantia.h
 SOURCES += garantiasplugin.cpp \
     vgarantias.cpp \
-    mgarantias.cpp
+    mgarantias.cpp \
+    dagregargarantia.cpp
 
 DESTDIR = ../../bin/plugins
 
@@ -34,3 +36,6 @@ win32 {
 OTHER_FILES += \
     garantias.QMYSQL.sql \
     garantias.QSQLITE.sql
+
+FORMS += \
+    dagregargarantia.ui

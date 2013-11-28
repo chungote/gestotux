@@ -14,8 +14,8 @@ PaginaFinal::PaginaFinal(QWidget *parent) :
     registerField( "orden_trabajo.ingresante*"   , LEIngresante  ); // Ingresante de la orden ( empleado )
     registerField( "orden_trabajo.fecha_ingreso*", DEIngreso     ); // Fecha de ingreso de la orden
     registerField( "orden_trabajo.fecha_entrega" , DTEDevolucion ); // Fecha posible de devolucion de la orden
-    registerField( "orden_trabajo.causa_ingreso*", PTEFallas     ); // Causa o falla del ingreso
-    registerField( "orden_trabajo.id_tecnico*"   , CBTecnico     ); // Tecnico asignado
+    registerField( "orden_trabajo.causa_ingreso" , PTEFallas     ); // Causa o falla del ingreso
+    registerField( "orden_trabajo.id_tecnico*"   , CBTecnico     , "idActual" ); // Tecnico asignado
 }
 
 int PaginaFinal::nextId() const

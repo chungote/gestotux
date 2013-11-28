@@ -25,7 +25,7 @@ PaginaCliente::PaginaCliente(QWidget *parent) :
     setLayout(layout);
 
     // Asocio el valor con el identificador del cliente
-    registerField( "cliente.id_cliente", CBClientes );
+    registerField( "cliente.id_cliente", CBClientes, "idActual" );
 }
 
 /*!

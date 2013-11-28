@@ -31,6 +31,7 @@
 #include <QTextEdit>
 #include <QDomNodeList>
 #include <QDir>
+#include <QDebug>
 
 FormActualizacion::FormActualizacion(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormActualizacionBase()
@@ -259,7 +260,7 @@ void FormActualizacion::terminado( int comando, bool  error )
                 QTemporaryFile archivoRecibido( this );
                 archivoRecibido.open();
                 archivoRecibido.write( ftp->readAll() );
-                qDebug( QString( "Creado archivo temporal: %1 ").arg( archivoRecibido.fileName() ).toLocal8Bit() );
+                qDebug() << "Creado archivo temporal: " << archivoRecibido.fileName();
                 // lo coloco en la ubicacion necesaria
                 QDir dir( QApplication::applicationDirPath() );
                 dir.cd( par.second );
