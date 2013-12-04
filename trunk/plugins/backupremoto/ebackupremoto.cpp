@@ -111,6 +111,11 @@ EBackupRemoto::EBackupRemoto( QWidget* parent )
  p->endGroup();
  p->endGroup();
  p=0;
+
+ PBDescarga->setValue( 0 );
+ PBRestauracion->setValue( 0 );
+ PBEnviado->setValue( 0 );
+ PBProgreso->setValue( 0 );
 }
 
 
@@ -237,16 +242,21 @@ void EBackupRemoto::enviarColas() {
  p->beginGroup( "BackupRemoto" );
  QUrl url( p->value( "url_envio", _host + "/backups/envio" ).toString() );
  url.addQueryItem( "ids", this->ids );
- qDebug() << this->ids;
+ //qDebug() << this->ids;
  p->endGroup(); p->endGroup(); p = 0;
  QNetworkRequest *req2 = new QNetworkRequest( url );
  req2->setHeader( QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded" );
 
  int pos = 0;
- foreach( tabla, tablas )
+ _continuar = true;
+ foreach( QString tabla, tablas )
  {
         PBProgreso->setValue( PBProgreso->value() + 1 );
-        cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) );
+        if( !cola.exec( QString( "SELECT * FROM %1" ).arg( tabla ) ) ) {
+            qDebug() << "Error al seleccionar los datos de la tabla " << tabla;
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
+        }
         while( cola.next() && _continuar )
         {
             QUrl temp;
@@ -301,6 +311,7 @@ void EBackupRemoto::respuestaColas( QNetworkReply *resp ) {
             return;
         } else {
             PBEnviado->setValue( PBEnviado->value() + 1 );
+            qDebug() << "Cola recibida";
             if( lista.size() == 0 && terminar == true ) {
                  preferencias *p = preferencias::getInstancia();
                  p->beginGroup( "Preferencias" );

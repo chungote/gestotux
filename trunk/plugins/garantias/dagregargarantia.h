@@ -1,6 +1,7 @@
 #ifndef DAGREGARGARANTIA_H
 #define DAGREGARGARANTIA_H
 
+#include "../ordentrabajo/ecbequipamiento.h"
 #include "ui_dagregargarantia.h"
 
 class DAgregarGarantia : public QDialog, private Ui::DAgregarGarantia
@@ -20,6 +21,10 @@ public slots:
     
 protected:
     void changeEvent(QEvent *e);
+
+protected slots:
+    void buscarEquipamientos( int id_cliente );
+    void buscarFactura( int id_equipamiento );
 
 private:
     int _id_comprobante;

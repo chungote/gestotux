@@ -2,8 +2,8 @@
 
 #include <QMessageBox>
 
-DAgregarGarantia::DAgregarGarantia(QWidget *parent) :
-    QDialog(parent)
+DAgregarGarantia::DAgregarGarantia( QWidget *parent ) :
+QDialog( parent )
 {
     setupUi(this);
     setWindowTitle( "Agegar nueva garantía" );
@@ -13,6 +13,9 @@ DAgregarGarantia::DAgregarGarantia(QWidget *parent) :
     _id_comprobante = -1;
     _id_producto = -1;
     _nombre_producto = QString();
+
+    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( buscarEquipamientos( int ) ) );
+    connect( CBEquipamiento, SIGNAL( cambioId( int ) ), this, SLOT( buscarFactura( int ) ) );
 
 }
 
@@ -45,7 +48,7 @@ void DAgregarGarantia::setearNombreProducto( const QString nombre_producto )
 {
     if( !nombre_producto.isEmpty() ) {
         _nombre_producto = nombre_producto;
-        LEEquipamiento->setText( nombre_producto );
+        CBEquipamiento->insertItem( 0, nombre_producto );
     }
 }
 
@@ -87,4 +90,24 @@ void DAgregarGarantia::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+/*!
+ * \brief DAgregarGarantia::buscarEquipamientos
+ * Genera la lista de equipamientos posibles para el cliente seleccionado
+ * \param id_cliente Identificador del cliente
+ */
+void DAgregarGarantia::buscarEquipamientos( int id_cliente )
+{
+    /// @TODO: Agregar busqueda y filtrado de equipamientos
+}
+
+/*!
+ * \brief DAgregarGarantia::buscarFactura
+ * Busca si existe el identificador de equipamiento y si tiene factura de compra
+ * \param id_equipamiento Identificador de equipamiento
+ */
+void DAgregarGarantia::buscarFactura( int id_equipamiento )
+{
+    /// @TODO: Agregar busqueda de fecha de compra y comproante para el equipamiento.
 }

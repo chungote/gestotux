@@ -33,6 +33,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QSqlError>
+#include <QDebug>
 
 VServicios::VServicios(QWidget *parent)
  : EVLista(parent)
@@ -189,7 +190,7 @@ void VServicios::eliminar()
         return;
     } else {
         qDebug( "Error al eliminar el servicio" );
-        qDebug( qobject_cast<QSqlTableModel *>( this->vista->model() )->lastError().text().toLocal8Bit() );
+        qDebug() << qobject_cast<QSqlTableModel *>( this->vista->model() )->lastError().text();
         return;
     }
 }
