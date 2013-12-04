@@ -28,7 +28,7 @@ p, li { white-space: pre-wrap; }
    <item>
     <widget class="QTabWidget" name="Pestanas">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -45,6 +45,36 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="checked">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="LDebug">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="PBProgreso">
+         <property name="value">
+          <number>24</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="format">
+          <string>Generado %p%</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="PBEnviado">
+         <property name="value">
+          <number>24</number>
+         </property>
+         <property name="format">
+          <string>Enviado %p%</string>
          </property>
         </widget>
        </item>
@@ -71,38 +101,31 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QProgressBar" name="PBDescarga">
+         <property name="value">
+          <number>24</number>
+         </property>
+         <property name="invertedAppearance">
+          <bool>false</bool>
+         </property>
+         <property name="format">
+          <string>Descargando %p%</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="PBRestauracion">
+         <property name="value">
+          <number>24</number>
+         </property>
+         <property name="format">
+          <string>Ejecutando %p%</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="LDebug">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QProgressBar" name="PBProgreso">
-     <property name="value">
-      <number>24</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="format">
-      <string>Generado %p%</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QProgressBar" name="PBEnviado">
-     <property name="value">
-      <number>24</number>
-     </property>
-     <property name="format">
-      <string>Enviado %p%</string>
-     </property>
     </widget>
    </item>
    <item>

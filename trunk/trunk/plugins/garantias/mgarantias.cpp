@@ -1,7 +1,9 @@
 #include "mgarantias.h"
 
+#include <QDate>
+
 MGarantias::MGarantias(QObject *parent) :
-    QSqlRelationalTableModel(parent)
+QSqlRelationalTableModel(parent)
 {
     setTable("garantias");
     setHeaderData( 0, Qt::Horizontal, "#Garantia" );
@@ -11,5 +13,34 @@ MGarantias::MGarantias(QObject *parent) :
     setHeaderData( 4, Qt::Horizontal, "#Equipamiento" );
     setHeaderData( 5, Qt::Horizontal, "#Factura" );
     setHeaderData( 6, Qt::Horizontal, "#Codigo" );
+}
+
+void MGarantias::relacionar()
+{
+    setRelation( 3, QSqlRelation( "cliente", "id", "razon_social" ) );
+    setRelation( 4, QSqlRelation( "equipamiento", "id_equipamiento", "Descripcion" ) );
+}
+
+QVariant MGarantias::data( const QModelIndex &item, int role ) const
+{
+    switch( item.column() ) {
+        case 1:
+        case 2:
+        {
+            switch( role )
+            {
+                case Qt::DisplayRole:
+                {
+                    return QSqlRelationalTableModel::data( item, role ).toDate().toString( Qt::SystemLocaleShortDate );
+                    break;
+                }
+                default: { break; }
+            }
+            break;
+        }
+        default:
+        { break; }
+    }
+    return QSqlRelationalTableModel::data( item, role );
 }
 

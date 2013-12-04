@@ -10,20 +10,21 @@ QT += xml \
       network
 
 HEADERS += garantiasplugin.h \
-    vgarantias.h \
-    mgarantias.h \
-    dagregargarantia.h
+           vgarantias.h \
+           mgarantias.h \
+           dagregargarantia.h
 SOURCES += garantiasplugin.cpp \
-    vgarantias.cpp \
-    mgarantias.cpp \
-    dagregargarantia.cpp
+           vgarantias.cpp \
+           mgarantias.cpp \
+           dagregargarantia.cpp
 
 DESTDIR = ../../bin/plugins
 
 RESOURCES += garantias.qrc
 
 INCLUDEPATH += ../../utiles \
-               ../../src
+               ../../src \
+               ../ordentrabajo
 
 LIBS += ../../bin/libutiles.a
 
@@ -33,9 +34,7 @@ win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
 
-OTHER_FILES += \
-    garantias.QMYSQL.sql \
-    garantias.QSQLITE.sql
+OTHER_FILES += garantias.QMYSQL.sql \
+               garantias.QSQLITE.sql
 
-FORMS += \
-    dagregargarantia.ui
+FORMS += dagregargarantia.ui

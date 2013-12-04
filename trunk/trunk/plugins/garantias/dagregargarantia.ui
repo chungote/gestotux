@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>304</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,11 +52,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="LEEquipamiento">
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
+      <widget class="ECBEquipamiento" name="CBEquipamiento"/>
      </item>
     </layout>
    </item>
@@ -145,6 +141,11 @@
    <class>ECBClientes</class>
    <extends>QComboBox</extends>
    <header>ecbclientes.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBEquipamiento</class>
+   <extends>QComboBox</extends>
+   <header>ecbequipamiento.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

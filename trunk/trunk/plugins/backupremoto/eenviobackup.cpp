@@ -46,6 +46,7 @@ EEnvioBackup::~EEnvioBackup()
 void EEnvioBackup::run()
 {
  preferencias *p = preferencias::getInstancia();
+ p->inicio();
  p->beginGroup( "backup" );
  if( p->value( "enviado", false ).toBool() == true  )
  {
