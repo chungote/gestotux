@@ -204,7 +204,7 @@ void FormAgregarCompra::guardar()
                                                             0.01, 2147483647, 2, &ok );
              if( ok ) {
                 if( !MProductos::actualizarPrecioVenta( mcp->data( mcp->index( i, 1 ), Qt::EditRole ).toInt(), precio_venta ) ) {
-                     qWarning( QString( "No se pudo actualizar el precio de venta del producto %1" ).arg( mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString() ).toLocal8Bit() );
+                     qWarning() << "No se pudo actualizar el precio de venta del producto " << mcp->data( mcp->index( i, 1 ), Qt::DisplayRole ).toString();
                 }
              }
          }

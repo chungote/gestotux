@@ -3,6 +3,7 @@
 
 #include "../ordentrabajo/ecbequipamiento.h"
 #include "ui_dagregargarantia.h"
+class MEquipamiento;
 
 class DAgregarGarantia : public QDialog, private Ui::DAgregarGarantia
 {
@@ -32,6 +33,8 @@ private:
     int _id_cliente;
 
     QString _nombre_producto;
+
+    MEquipamiento *modelo;
 };
 
 #endif // DAGREGARGARANTIA_H

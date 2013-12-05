@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "mproveedor.h"
 #include <QColor>
+#include <QDebug>
 #include "preferencias.h"
 
 MProveedor::MProveedor(QObject *parent)
@@ -145,8 +146,8 @@ bool MProveedor::tieneDatosRelacionados( const int id_proveedor )
         }
     } else {
         qWarning( "Existio un error al intentar obtener los datos relacionados con este proveedor. No se podrá eliminarlo." );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return true;
 }
@@ -165,14 +166,14 @@ bool MProveedor::existenProveedores()
             }
         } else {
             qDebug( "Error al hacer next en la cola de averiguación de cantidad de proveedores." );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qWarning( QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de la cantidad de proveedores" ).toLocal8Bit() );
-        qDebug( "Error al hacer exec en la cola de averiguación de cantidad de proveedores." );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qWarning() << QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de la cantidad de proveedores" );
+        qDebug() << "Error al hacer exec en la cola de averiguación de cantidad de proveedores.";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -191,15 +192,15 @@ bool MProveedor::existeProveedor( QString razon_social )
                 return true;
             }
         } else {
-            qDebug( QString::fromUtf8("Error al hacer next en la cola de averiguación de proveedor segun nombre." ).toLocal8Bit() );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << QString::fromUtf8("Error al hacer next en la cola de averiguación de proveedor segun nombre." );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qWarning( QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de existencia de proveedor" ).toLocal8Bit() );
-        qDebug( "Error al hacer exec en la cola de averiguación de existencia de proveedor." );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qWarning() << QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de existencia de proveedor" );
+        qDebug() << "Error al hacer exec en la cola de averiguación de existencia de proveedor.";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }
@@ -218,15 +219,15 @@ bool MProveedor::existeCuitCuil( QString cuit )
                 return true;
             }
         } else {
-            qDebug( QString::fromUtf8("Error al hacer next en la cola de averiguación de proveedor segun CUIT/CUIL." ).toLocal8Bit() );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << QString::fromUtf8("Error al hacer next en la cola de averiguación de proveedor segun CUIT/CUIL." );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
         }
     } else {
-        qWarning( QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de existencia de proveedor por CUIT/CUIL" ).toLocal8Bit() );
-        qDebug( "Error al hacer exec en la cola de averiguación de existencia de proveedor por CUIT/CUIL." );
-        qDebug( cola.lastError().text().toLocal8Bit() );
-        qDebug( cola.lastQuery().toLocal8Bit() );
+        qWarning() << QString::fromUtf8( "Existió un error al intentar ejecutar la consulta de existencia de proveedor por CUIT/CUIL" );
+        qDebug() << "Error al hacer exec en la cola de averiguación de existencia de proveedor por CUIT/CUIL.";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
     }
     return false;
 }

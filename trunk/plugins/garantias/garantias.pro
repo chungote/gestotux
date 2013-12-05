@@ -12,11 +12,15 @@ QT += xml \
 HEADERS += garantiasplugin.h \
            vgarantias.h \
            mgarantias.h \
-           dagregargarantia.h
+           dagregargarantia.h \
+           ../ordentrabajo/ecbequipamiento.h \
+           ../ordentrabajo/mequipamiento.h
 SOURCES += garantiasplugin.cpp \
            vgarantias.cpp \
            mgarantias.cpp \
-           dagregargarantia.cpp
+           dagregargarantia.cpp \
+           ../ordentrabajo/ecbequipamiento.cpp \
+           ../ordentrabajo/mequipamiento.cpp
 
 DESTDIR = ../../bin/plugins
 
