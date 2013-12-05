@@ -1,6 +1,8 @@
 #include "dagregargarantia.h"
 
 #include <QMessageBox>
+#include "mequipamiento.h"
+#include "ecbequipamiento.h"
 
 DAgregarGarantia::DAgregarGarantia( QWidget *parent ) :
 QDialog( parent )
@@ -17,11 +19,14 @@ QDialog( parent )
     connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( buscarEquipamientos( int ) ) );
     connect( CBEquipamiento, SIGNAL( cambioId( int ) ), this, SLOT( buscarFactura( int ) ) );
 
+    // Permito que se puedan insertar nuevos elementos en el combobox de equipamientos
+    //CBEquipamiento->setInsertionPolicy( QComboBox::InsertAlphabetically );
+
 }
 
 /*!
  * \brief DAgregarGarantia::setearIdComprontante
- * \param id_comprobante
+ * \param id_comprobante Identificador del comprobante de la garantía
  */
 void DAgregarGarantia::setearIdComprontante( const int id_comprobante )
 {
@@ -31,7 +36,7 @@ void DAgregarGarantia::setearIdComprontante( const int id_comprobante )
 
 /*!
  * \brief DAgregarGarantia::setearIdProducto
- * \param id_producto
+ * \param id_producto Identificador del producto
  */
 void DAgregarGarantia::setearIdProducto( const int id_producto )
 {
@@ -42,7 +47,7 @@ void DAgregarGarantia::setearIdProducto( const int id_producto )
 
 /*!
  * \brief DAgregarGarantia::setearNombreProducto
- * \param nombre_producto
+ * \param nombre_producto Nombre del producto
  */
 void DAgregarGarantia::setearNombreProducto( const QString nombre_producto )
 {
@@ -54,7 +59,7 @@ void DAgregarGarantia::setearNombreProducto( const QString nombre_producto )
 
 /*!
  * \brief DAgregarGarantia::setearIdCliente
- * \param id_cliente
+ * \param id_cliente Identificador del cliente
  */
 void DAgregarGarantia::setearIdCliente( const int id_cliente )
 {
@@ -62,7 +67,7 @@ void DAgregarGarantia::setearIdCliente( const int id_cliente )
 
 /*!
  * \brief DAgregarGarantia::setearIdComprobante
- * \param id_comprobante
+ * \param id_comprobante Identificador del Comprobante
  */
 void DAgregarGarantia::setearIdComprobante( const int id_comprobante )
 {
@@ -99,7 +104,12 @@ void DAgregarGarantia::changeEvent(QEvent *e)
  */
 void DAgregarGarantia::buscarEquipamientos( int id_cliente )
 {
-    /// @TODO: Agregar busqueda y filtrado de equipamientos
+    if( MEquipamiento::existeEquipamientoParaCliente( id_cliente ) ) {
+        CBEquipamiento->setearFiltro( QString( " WHERE id_cliente = %1" ).arg( id_cliente ), true  );
+    } else {
+        CBEquipamiento->setEditable( true );
+    }
+
 }
 
 /*!
@@ -109,5 +119,13 @@ void DAgregarGarantia::buscarEquipamientos( int id_cliente )
  */
 void DAgregarGarantia::buscarFactura( int id_equipamiento )
 {
-    /// @TODO: Agregar busqueda de fecha de compra y comproante para el equipamiento.
+    if( modelo != 0 )
+        modelo = new MEquipamiento( this );
+
+    modelo->cargarDatos( id_equipamiento );
+
+    /// @TODO Agregar carga de numero de factura/recibo y fecha de compra
+    //LEFactura->setText( MFactura::NumeroSeriePorId( modelo ) );
+
+
 }

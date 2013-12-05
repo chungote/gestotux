@@ -19,6 +19,7 @@
  ***************************************************************************/
 #include "mcompraproducto.h"
 #include <QSqlRecord>
+#include <QDebug>
 
 MCompraProducto::MCompraProducto(QObject *parent)
  : QSqlRelationalTableModel(parent)
@@ -84,8 +85,8 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
         QSqlQuery cola;
         if( !cola.prepare( "INSERT INTO compras_productos( id_compra, id_producto, precio_compra, cantidad ) VALUES ( :id_compra, :id_producto, :precio_compra, :cantidad )" ) ) {
             qWarning( "Error al preparar la cola de inserción del registro de compra de un producto especifico" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
             return false;
         }
         cola.bindValue( ":id_compra", id_compra );
@@ -94,8 +95,8 @@ bool MCompraProducto::agregarCompraProducto( const int id_compra, const int id_p
         cola.bindValue( ":cantidad", cantidad );
         if( !cola.exec() )  {
             qWarning( "Error al insertar los datos de la compra de un producto" );
-            qDebug( cola.lastError().text().toLocal8Bit() );
-            qDebug( cola.lastQuery().toLocal8Bit() );
+            qDebug() << cola.lastError().text();
+            qDebug() << cola.lastQuery();
             return false;
         }
         return true;
