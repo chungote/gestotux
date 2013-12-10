@@ -22,7 +22,11 @@ public:
     void setearComoDevolverAlCliente();
     void setearIdOrdenTrabajo( const int id ) { _id_orden_trabajo = id; }
     void setearModeloHistorial( MHistorialOrdenTrabajo *m ) { _modelo_historial = m; }
-    
+    void filtrarBloqueantes();
+
+protected slots:
+    void cambioTipo( int tipo );
+
 private:
     Ui::DHistorialOrdenTrabajoBase *ui;
     MHistorialOrdenTrabajo *_modelo_historial;

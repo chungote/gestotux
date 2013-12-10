@@ -77,8 +77,7 @@ bool MEquipamiento::eliminarConRelacionados( const int /*id_equipamiento*/ )
  * \return
  */
 bool MEquipamiento::darDeBaja( const int id_equipamiento, const QString razon, QDateTime fechahora )
-{ return false;
-}
+{ return false; }
 
 /*!
  * \brief MEquipamiento::darReAlta

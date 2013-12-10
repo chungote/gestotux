@@ -10,7 +10,8 @@ DHistorialOrdenTrabajo::DHistorialOrdenTrabajo(QWidget *parent) :
     ui->setupUi( this );
 
     ui->DTEFechaHora->setDateTime( QDateTime::currentDateTime() );
-    // ui->DTEFechaHora->setMaximumDate( );
+
+    connect( ui->CBTipo, SIGNAL( currentIndexChanged( int ) ), this, SLOT( cambioTipo( int ) ) );
 }
 
 DHistorialOrdenTrabajo::~DHistorialOrdenTrabajo()
@@ -25,11 +26,6 @@ DHistorialOrdenTrabajo::~DHistorialOrdenTrabajo()
 void DHistorialOrdenTrabajo::setearComoCancelacion()
 {
     ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::Cancelacion );
-    ui->CBTipo->setEditable( false );
-    ui->CBTipo->setEnabled( false );
-    ui->CBTecnico->setVisible( false );
-    ui->LTecnico->setVisible( false );
-    setWindowTitle( "Cancelar Orden" );
 }
 
 /*!
@@ -38,11 +34,6 @@ void DHistorialOrdenTrabajo::setearComoCancelacion()
 void DHistorialOrdenTrabajo::setearComoFacturacion()
 {
     ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::Facturacion );
-    ui->CBTipo->setEditable( false );
-    ui->CBTipo->setEnabled( false );
-    ui->CBTecnico->setVisible( false );
-    ui->LTecnico->setVisible( false );
-    setWindowTitle( "Facturar item" );
 }
 
 /*!
@@ -51,11 +42,6 @@ void DHistorialOrdenTrabajo::setearComoFacturacion()
 void DHistorialOrdenTrabajo::setearComoCierre()
 {
     ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::CierreOrden );
-    ui->CBTipo->setEditable( false );
-    ui->CBTipo->setEnabled( false );
-    ui->CBTecnico->setVisible( false );
-    ui->LTecnico->setVisible( false );
-    setWindowTitle( "Cerrar orden" );
 }
 
 /*!
@@ -64,9 +50,69 @@ void DHistorialOrdenTrabajo::setearComoCierre()
 void DHistorialOrdenTrabajo::setearComoDevolverAlCliente()
 {
     ui->CBTipo->setearId( MTipoOperacionOrdenTrabajo::DevolucionCliente );
-    ui->CBTipo->setEditable( false );
-    ui->CBTipo->setEnabled( false );
-    ui->CBTecnico->setVisible( false );
-    ui->LTecnico->setVisible( false );
-    setWindowTitle( "Devolver equipo al cliente" );
+}
+
+/*!
+ * \brief DHistorialOrdenTrabajo::filtrarBloqueantes
+ */
+void DHistorialOrdenTrabajo::filtrarBloqueantes()
+{
+    QString filtro;
+    filtro.append( QString( " WHERE id_tipo_operacion NOT IN( %1, %2, %3, %4 ) " )
+                   .arg( MTipoOperacionOrdenTrabajo::Cancelacion       )
+                   .arg( MTipoOperacionOrdenTrabajo::Facturacion       )
+                   .arg( MTipoOperacionOrdenTrabajo::CierreOrden       )
+                   .arg( MTipoOperacionOrdenTrabajo::DevolucionCliente ) );
+    ui->CBTipo->setearFiltro( filtro, true );
+}
+
+/*!
+ * \brief DHistorialOrdenTrabajo::cambioTipo
+ * \param tipo
+ */
+void DHistorialOrdenTrabajo::cambioTipo( int tipo )
+{
+    switch( tipo ) {
+        case MTipoOperacionOrdenTrabajo::Cancelacion:
+        {
+            ui->CBTipo->setEditable( false );
+            ui->CBTipo->setEnabled( false );
+            ui->CBTecnico->setVisible( false );
+            ui->LTecnico->setVisible( false );
+            setWindowTitle( "Cancelar Orden" );
+            break;
+        }
+        case MTipoOperacionOrdenTrabajo::Facturacion:
+        {
+            ui->CBTipo->setEditable( false );
+            ui->CBTipo->setEnabled( false );
+            ui->CBTecnico->setVisible( false );
+            ui->LTecnico->setVisible( false );
+            setWindowTitle( "Facturar item" );
+            break;
+        }
+        case MTipoOperacionOrdenTrabajo::CierreOrden:
+        {
+            ui->CBTipo->setEditable( false );
+            ui->CBTipo->setEnabled( false );
+            ui->CBTecnico->setVisible( false );
+            ui->LTecnico->setVisible( false );
+            setWindowTitle( "Cerrar orden" );
+            break;
+        }
+        case MTipoOperacionOrdenTrabajo::DevolucionCliente:
+        {
+            ui->CBTipo->setEditable( false );
+            ui->CBTipo->setEnabled( false );
+            ui->CBTecnico->setVisible( false );
+            ui->LTecnico->setVisible( false );
+            setWindowTitle( "Devolver equipo al cliente" );
+            break;
+        }
+        default:
+        {
+            setWindowTitle( ui->CBTipo->currentText() );
+            break;
+        }
+    }
 }
