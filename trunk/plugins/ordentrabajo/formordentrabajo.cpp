@@ -63,7 +63,6 @@ EVentana( parent ), FormOrdenTrabajoBase()
     _modelo_orden = new MOrdenTrabajo( this );
 
     LNumeroOrdenTrabajo->setText( MOrdenTrabajo::numeroComprobanteProximo().aCadena() );
-    _modelo_historial_facturacion->mostrarCostosSumados();
 }
 
 /*!
@@ -85,8 +84,6 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     LERequerente->setText( _modelo_orden->requerente() );
 
     CBTecnico->setearId( _modelo_orden->idTecnico() );
-
-
 
     DEFechaDevolucion->setDateTime( _modelo_orden->fechaDevolucion() );
     DTEFechaIngreso->setDateTime( _modelo_orden->fechaIngreso() );
@@ -224,7 +221,7 @@ void FormOrdenTrabajo::eliminarFacturacion()
     }
     int ret = QMessageBox::question( this,
                                      QString::fromUtf8( "¿Está seguro?" ),
-                                     QString::fromUtf8("¿Está seguro que desea eliminar estos %1 elementos?" ).arg( TVFacturacion->selectionModel()->selectedRows().size() ),
+                                     QString::fromUtf8( "¿Está seguro que desea eliminar estos %1 elementos?" ).arg( TVFacturacion->selectionModel()->selectedRows().size() ),
                                      QMessageBox::Yes,
                                      QMessageBox::No );
     if( ret == QMessageBox::Yes ) {
