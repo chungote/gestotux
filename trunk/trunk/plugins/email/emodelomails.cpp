@@ -18,9 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "emodelomails.h"
-#include "mail.h"
 #include "eservidoremail.h"
-#include "eemail.h"
 
 #include <QSqlRecord>
 #include <QSqlQuery>
@@ -35,19 +33,23 @@ EModeloMails::EModeloMails(QObject *parent, QSqlDatabase db)
 
 
 EModeloMails::~EModeloMails()
+{}
+
+bool EModeloMails::existePendiente() const
 {
+    if( this->rowCount() > 0 ) {
+        return true;
+    }
+    return false;
 }
 
 
-/*!
-    \fn EModeloMails::takeFirst()
- */
-Mail * EModeloMails::takeFirst()
+/*Mail * EModeloMails::takeFirst()
 {
  //carga el primer email de la lista y lo elimina de la cola
  this->select();
  QSqlRecord primero = this->record( 0 );
- Mail *mail = EEmail::instancia()->email();
+ //Mail *mail = EEmail::instancia()->email();
  mail->setIdentificadorUnico( QUuid( primero.value("id_unico" ).toString() ) );
  EServidorEmail servidor( this, this->database() );
  mail->setHeader( servidor.de(),
@@ -68,30 +70,7 @@ Mail * EModeloMails::takeFirst()
 }
 
 
-/*!
-    \fn EModeloMails::size()
- */
-int EModeloMails::size()
-{
- QSqlQuery cola( "SELECT COUNT( id_email ) FROM emails", this->database() );
- if( cola.next() )
- {
-  //qDebug( QString( "cant emails: %1" ).arg( cola.record().value(0).toInt() ).toLocal8Bit() );
-  return cola.record().value(0).toInt();
- }
- else
- {
-  qDebug( "Error al contar los emails en la cola" );
-  qDebug( qPrintable( cola.lastError().text() ) );
-  return 0;
- }
-}
-
-
-/*!
-    \fn EModeloMails::append( Mail *mail )
- */
-void EModeloMails::append( Mail *mail )
+void EModeloMails::encolar( void *mail )
 {
  QSqlRecord encolar = this->record();
  encolar.remove(0);
@@ -102,13 +81,11 @@ void EModeloMails::append( Mail *mail )
  encolar.setValue( "asunto", mail->subject() );
  encolar.setValue( "cuerpo", mail->messageBody() );
  encolar.setValue( "content_type", mail->contentType() );
- // Por ahora sin adjuntos
- //encolar.setValue( "
  if( this->insertRecord( -1, encolar ) )
  {
   if( !this->submitAll() )
   {
-    qDebug("error en el submit del email" );
+    qDebug( "Error en el submit del email" );
     qDebug( qPrintable( this->lastError().text() ) );
     return;
   }
@@ -125,3 +102,4 @@ void EModeloMails::append( Mail *mail )
   return;
  }
 }
+*/

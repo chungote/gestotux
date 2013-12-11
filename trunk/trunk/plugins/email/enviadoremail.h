@@ -1,18 +1,19 @@
 #ifndef ENVIADOREMAIL_H
 #define ENVIADOREMAIL_H
 
-#include <QThread>
+#include <QObject>
 #include <QSqlDatabase>
-#include "email.h"
 
-class EnviadorEmail : public QThread
+#include "emodelomails.h"
+
+class EnviadorEmail : public QObject
 {
     Q_OBJECT
 public:
     EnviadorEmail( QString usuario,
                    QString contrasena,
                    QString direccion,
-                   Email *parent,
+                   QObject *parent,
                    QSqlDatabase db );
     void terminarEjecucion();
 
@@ -21,12 +22,14 @@ signals:
 
 public slots:
     void enviarEmail();
+    void iniciar();
 
 private:
     QSqlDatabase db;
     QString _usuario;
     QString _contrasena;
     QString _host;
+    EModeloMails *listaEmails;
 
 };
 
