@@ -19,4 +19,5 @@ SUBDIRS +=  caja \
             backupremoto \
             remitos \
             cuotas \
-            email
+            email \
+            diezmos
