@@ -21,7 +21,6 @@
 #define EMODELOMAILS_H
 
 #include <QSqlTableModel>
-class Mail;
 
 /**
  * @brief Modelo de cola de emails
@@ -34,13 +33,7 @@ Q_OBJECT
 public:
     EModeloMails( QObject *parent = 0, QSqlDatabase db = QSqlDatabase::database() );
     ~EModeloMails();
-    Mail *takeFirst();
-    int size();
-    void agregarMail( Mail *mail );
-    void append( Mail *mail );
-
-signals:
-    void nuevoMail();
+    bool existePendiente() const;
 
 };
 
