@@ -13,14 +13,13 @@ class MDiezmos : public QSqlTableModel
     Q_OBJECT
 public:
     MDiezmos( QObject *parent = 0 );
+    ~MDiezmos();
 
     int columnCount( const QModelIndex &parent ) const;
     QVariant data( const QModelIndex &idx, int role ) const;
 
 private:
-    QVector<double> saldos;
-
-    void recalcularSaldos( const double valor, const int fila, const int columna ) const;
+    QVector<double> *saldos;
     
 };
 

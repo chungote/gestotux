@@ -13,6 +13,13 @@ MDiezmos::MDiezmos(QObject *parent) :
     setHeaderData( 4, Qt::Horizontal, "Diezmado" );
     setHeaderData( 5, Qt::Horizontal, "#Referencia" );
     setHeaderData( 6, Qt::Horizontal, "Saldo" );
+    saldos = new QVector<double>();
+}
+
+MDiezmos::~MDiezmos()
+{
+    delete saldos;
+    saldos = 0;
 }
 
 /*!
@@ -52,7 +59,6 @@ QVariant MDiezmos::data(const QModelIndex &idx, int role) const
                 case Qt::DisplayRole:
                 {
                     double valor = QSqlTableModel::data( idx, role ).toDouble();
-                    recalcularSaldos( valor, idx.row(), idx.column() );
                     return QString( "$ %L1").arg( valor, 10, 'f', 2 );
                     break;
                 }
@@ -65,7 +71,15 @@ QVariant MDiezmos::data(const QModelIndex &idx, int role) const
             switch( role ) {
                 case Qt::DisplayRole:
                 {
-                    return QString( "$ %L1" ).arg( saldos.at( idx.row() ), 10, 'f', 2 );
+                    double nuevo_saldo = 0.0;
+                    if( idx.row() > 1 ) {
+                     nuevo_saldo = saldos->at( idx.row() -1 );
+                    }
+                    nuevo_saldo -= data( index( idx.row(), fieldIndex( "haber" ) ), Qt::EditRole ).toDouble();
+                    nuevo_saldo += data( index( idx.row(), fieldIndex( "debe" ) ), Qt::EditRole ).toDouble();
+                    int pos = idx.row();
+                    this->saldos->insert( pos, nuevo_saldo );
+                    return QString( "$ %L1" ).arg( saldos->at( pos ), 10, 'f', 2 );
                     break;
                 }
                 default: { break; }
@@ -75,12 +89,4 @@ QVariant MDiezmos::data(const QModelIndex &idx, int role) const
         default: { break; }
     }
     return QSqlTableModel::data( idx, role );
-}
-
-/*!
- * \brief MDiezmos::recalcularSaldos
- */
-void MDiezmos::recalcularSaldos( const double valor, const int fila, const int columna ) const
-{
-
 }
