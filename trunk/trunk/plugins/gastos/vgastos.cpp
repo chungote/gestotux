@@ -42,6 +42,7 @@ VGastos::VGastos( QWidget* parent )
  connect( ActAgregar, SIGNAL( triggered() ), this, SLOT( agregarGasto() ) );
 
  modelo = new MGasto( this, true );
+ modelo->setSort( modelo->fieldIndex( "fecha" ), Qt::DescendingOrder );
 
  vista->setModel( modelo );
  vista->hideColumn( 0 );
@@ -63,6 +64,7 @@ VGastos::VGastos( QWidget* parent )
  agregarFiltroBusqueda( QString::fromUtf8( "Descripción" ), " `gastos`.`descripcion` LIKE '%%%1%' " );
  agregarFiltroBusqueda( "Costo mayor a", " `gastos`.`costo` >= %1" );
  agregarFiltroBusqueda( "Costo menor a", " `gastos`.`costo` <= %1" );
+ /// @TODO: Agregar Filtro de fecha
  habilitarBusqueda();
 
  addAction( ActAgregar );
