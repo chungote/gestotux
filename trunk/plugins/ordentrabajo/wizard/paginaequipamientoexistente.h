@@ -2,6 +2,7 @@
 #define PAGINAEQUIPAMIENTOEXISTENTE_H
 
 #include "ui_paginaequipamientoexistente.h"
+class MEquipamiento;
 
 class PaginaEquipamientoExistente : public QWizardPage, private Ui::PaginaEquipamientoExistente
 {
@@ -10,6 +11,10 @@ class PaginaEquipamientoExistente : public QWizardPage, private Ui::PaginaEquipa
 public:
     explicit PaginaEquipamientoExistente(QWidget *parent = 0);
     int nextId() const;
+    bool validatePage();
+
+private:
+    MEquipamiento *modelo;
 
 };
 
