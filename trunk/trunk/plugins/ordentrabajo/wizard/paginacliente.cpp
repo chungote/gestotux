@@ -1,6 +1,7 @@
 #include "paginacliente.h"
 
 #include <QVBoxLayout>
+#include <QLineEdit>
 
 #include "mclientes.h"
 #include "ordentrabajowizard.h"
@@ -24,8 +25,12 @@ PaginaCliente::PaginaCliente(QWidget *parent) :
     layout->addWidget(CBClientes);
     setLayout(layout);
 
+    QLineEdit *temp = new QLineEdit( this );
+    temp->setVisible( false );
+
     // Asocio el valor con el identificador del cliente
     registerField( "cliente.id_cliente", CBClientes, "idActual" );
+    registerField( "cliente.texto_ingresado", temp );
 }
 
 /*!
