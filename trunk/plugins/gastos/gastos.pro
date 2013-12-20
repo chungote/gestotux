@@ -2,15 +2,15 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 SOURCES +=  dgastos.cpp \
             mgasto.cpp \
             vgastos.cpp \
             gastos.cpp \
             formagregargasto.cpp \
-            ../caja/mmovimientoscaja.cpp \
-            ../caja/mcajas.cpp \
             vcategoriasgastos.cpp \
             mcategoriasgastos.cpp
 
@@ -19,8 +19,6 @@ HEADERS +=  dgastos.h \
             vgastos.h \
             gastos.h \
             formagregargasto.h \
-            ../caja/mmovimientoscaja.h \
-            ../caja/mcajas.h \
             vcategoriasgastos.h \
             mcategoriasgastos.h
 
@@ -52,5 +50,13 @@ OTHER_FILES += gastos.QSQLITE.sql \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lcaja \
 
 DISTFILES += ../../bin/reportes/ListadoGastos.xml

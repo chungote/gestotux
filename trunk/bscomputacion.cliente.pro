@@ -32,5 +32,5 @@ unix {
   system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }
 win32 {
- system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
+  system( generar_pri.bat $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
 }

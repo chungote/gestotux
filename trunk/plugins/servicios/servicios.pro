@@ -2,7 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 QT += sql \
       xml
@@ -26,9 +28,7 @@ LIBS += ../../bin/libutiles.a \
 PRE_TARGETDEPS += ../../bin/libreporte.a \
                    ../../bin/libutiles.a
 
-HEADERS =  ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h \
-           servicios.h \
+HEADERS =  servicios.h \
            mservicios.h \
            vservicios.h \
            mrecargos.h \
@@ -41,11 +41,6 @@ HEADERS =  ../caja/mcajas.h \
            MClientesServicios.h \
            FormFacturarServicio.h \
            MTempClientesFacturarServicio.h \
-           ../pagos/mpagos.h \
-           ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../ventas/MFactura.h \
-           ../ventas/mitemfactura.h \
            mperiodoservicio.h \
            mcobroservicioclienteperiodo.h \
            FormVerificarRecargos.h \
@@ -53,7 +48,6 @@ HEADERS =  ../caja/mcajas.h \
            vlistaperiodos.h \
            formfacturacionemitida.h \
            mfacturacionemitida.h \
-           ../descuentos/mdescuentos.h \
            ../../src/mclientes.h
 
 
@@ -70,11 +64,6 @@ SOURCES =  servicios.cpp \
            MClientesServicios.cpp \
            FormFacturarServicio.cpp \
            MTempClientesFacturarServicio.cpp \
-           ../pagos/mpagos.cpp \
-           ../CtaCte/mcuentacorriente.cpp \
-           ../CtaCte/mitemcuentacorriente.cpp \
-           ../ventas/MFactura.cpp \
-           ../ventas/mitemfactura.cpp \
            mperiodoservicio.cpp \
            mcobroservicioclienteperiodo.cpp \
            FormVerificarRecargos.cpp \
@@ -82,7 +71,6 @@ SOURCES =  servicios.cpp \
            vlistaperiodos.cpp \
            formfacturacionemitida.cpp \
            mfacturacionemitida.cpp \
-           ../descuentos/mdescuentos.cpp \
            ../../src/mclientes.cpp
 
 RESOURCES += servicios.qrc
@@ -100,10 +88,19 @@ FORMS += FormAsociarBase.ui \
 OTHER_FILES += servicios.QMYSQL.sql \
                servicios.QSQLITE.sql
 
-SOURCES += ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp
-
 DEFINES += GESTOTUX_HICOMP
+
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lpagos \
+        -lventas \
+        -ldescuentos \
+        -lcaja
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"

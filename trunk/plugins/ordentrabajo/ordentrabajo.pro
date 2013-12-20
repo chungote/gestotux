@@ -46,7 +46,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     wizard/paginaequipamientoexistente.cpp \
     ../../src/mestadofiscal.cpp \
     formprefordentrabajo.cpp \
-    ecbequipamiento.cpp
+    ecbequipamiento.cpp \
+    ../../src/mclientes.cpp
 
 
 HEADERS += OrdenTrabajoPlugin.h \
@@ -74,7 +75,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     wizard/paginaequipamientoexistente.h \
     ../../src/mestadofiscal.h \
     formprefordentrabajo.h \
-    ecbequipamiento.h
+    ecbequipamiento.h \
+    ../../src/mclientes.h
 
 RESOURCES += ordentrabajo.qrc
 
