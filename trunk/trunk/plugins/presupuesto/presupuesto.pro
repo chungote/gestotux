@@ -14,15 +14,7 @@ HEADERS += presupuesto.h \
            ../../src/mclientes.cpp \
            mvpresupuestos.h \
            vlistapresupuesto.h \
-           formmodificarpresupuesto.h \
-           ../descuentos/mdescuentos.h \
-           ../ventas/formagregarventa.h \
-           ../ventas/MFactura.h \
-           ../ventas/mitemfactura.h \
-           ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h
+           formmodificarpresupuesto.h
 
 SOURCES += presupuesto.cpp \
            formagregarpresupuesto.cpp \
@@ -32,15 +24,7 @@ SOURCES += presupuesto.cpp \
            ../../src/mclientes.cpp \
            mvpresupuestos.cpp \
            vlistapresupuesto.cpp \
-           formmodificarpresupuesto.cpp \
-           ../descuentos/mdescuentos.cpp \
-           ../ventas/formagregarventa.cpp \
-           ../ventas/MFactura.cpp \
-           ../ventas/mitemfactura.cpp \
-           ../CtaCte/mcuentacorriente.cpp \
-           ../CtaCte/mitemcuentacorriente.cpp \
-           ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp
+           formmodificarpresupuesto.cpp
 
 FORMS += FormPresupuestoBase.ui \
          ../ventas/FormAgregarVentaBase.ui
@@ -73,5 +57,15 @@ TRANSLATIONS += presupuesto.ts
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lcaja \
+        -ldescuentos
 
 DISTFILES += ../../bin/reportes/Presupuesto.xml

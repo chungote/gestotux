@@ -2,7 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 QT += sql
 
@@ -32,25 +34,16 @@ SOURCES += mcompra.cpp \
            formagregarcompra.cpp \
            compras.cpp \
            mcompraproducto.cpp \
-           ../proveedor/mproveedor.cpp \
-           ../caja/mmovimientoscaja.cpp \
-           ../caja/mcajas.cpp \
            FormActualizarPrecios.cpp \
-           vlistacompra.cpp \
-           ../productos/formagregarproducto.cpp
+           vlistacompra.cpp
 
 HEADERS += formagregarcompra.h \
            mcompra.h \
            vcompras.h \
            compras.h \
            mcompraproducto.h \
-           ../proveedor/mproveedor.h \
-           ../caja/mmovimientoscaja.h \
-           ../caja/mcajas.h \
            FormActualizarPrecios.h \
            vlistacompra.h \
-           ../productos/formagregarproducto.h \
-           ../productos/ecbcategoriasproductos.h
 
 OTHER_FILES += compras.QMYSQL.sql \
                compras.QSQLITE.sql
@@ -58,3 +51,11 @@ OTHER_FILES += compras.QMYSQL.sql \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lproductos \
+        -lcaja

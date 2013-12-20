@@ -2,7 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          excpetions
 
 QT += sql \
       xml
@@ -45,18 +47,7 @@ HEADERS += cuotasplugin.h \
            DPagoCuota.h \
            formgenerarcomprobantescuotas.h \
            mgenerarcuotas.h \
-           ../pagos/mpagos.h \
            ../../src/mclientes.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../CtaCte/mcuentacorriente.h \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h \
-           ../remitos/MRemito.h \
-           ../remitos/mitemremito.h \
-           ../productos/mproductos.h \
-           ../ventas/MFactura.h \
-           ../ventas/mitemfactura.h \
-           ../descuentos/mdescuentos.h \
            formadelantocuotas.h \
            madelantosimularcuotas.h
 
@@ -72,18 +63,7 @@ SOURCES += cuotasplugin.cpp \
            DPagoCuota.cpp \
            formgenerarcomprobantescuotas.cpp \
            mgenerarcuotas.cpp \
-           ../pagos/mpagos.cpp \
            ../../src/mclientes.cpp \
-           ../CtaCte/mitemcuentacorriente.cpp \
-           ../CtaCte/mcuentacorriente.cpp \
-           ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp \
-           ../remitos/MRemito.cpp \
-           ../remitos/mitemremito.cpp \
-           ../productos/mproductos.cpp \
-           ../ventas/MFactura.cpp \
-           ../ventas/mitemfactura.cpp \
-           ../descuentos/mdescuentos.cpp \
            formadelantocuotas.cpp \
            madelantosimularcuotas.cpp
 
@@ -96,3 +76,15 @@ FORMS += formsimularcuotasbase.ui \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lcaja \
+        -lremitos \
+        -lpagos \
+        -lventas

@@ -2,39 +2,29 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 SOURCES +=  ventas.cpp \
             vventas.cpp \
             formagregarventa.cpp \
-            ../CtaCte/mcuentacorriente.cpp \
-            ../CtaCte/mitemcuentacorriente.cpp \
-            ../productos/mproductos.cpp \
             formprefventa.cpp \
             MFactura.cpp \
-           ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp \
             mitemfactura.cpp \
            ../../src/mclientes.cpp \
            MVFacturas.cpp \
-           vitemfactura.cpp \
-           ../descuentos/mdescuentos.cpp
+           vitemfactura.cpp
 
 HEADERS += ventas.h \
            vventas.h \
            formagregarventa.h \
-           ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../productos/mproductos.h \
            formprefventa.h \
            MFactura.h \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h \
            mitemfactura.h \
            ../../src/mclientes.h \
            MVFacturas.h \
-           vitemfactura.h \
-           ../descuentos/mdescuentos.h
+           vitemfactura.h
 
 TRANSLATIONS = ventas.ts
 
@@ -45,8 +35,17 @@ TARGET = ventas
 
 DESTDIR = ../../bin/plugins/
 
-LIBS += ../../bin/libutiles.a \
-        ../../bin/libreporte.a
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lcaja \
+        -lcuotas \
+        -lproductos \
+        -ldescuentos
 
 PRE_TARGETDEPS += ../../bin/libutiles.a \
                    ../../bin/libreporte.a

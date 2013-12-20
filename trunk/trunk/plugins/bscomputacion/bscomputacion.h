@@ -39,6 +39,7 @@ public:
     QString reporte( int tipo );
     QImage imagenPrograma() const;
     void reporteParametros(int tipo, QString &nombre, ParameterList &parametros);
+    void crearAccionesGlobales(QMainWindow *) {}
 
 signals:
     void agregarVentana(QWidget* v);

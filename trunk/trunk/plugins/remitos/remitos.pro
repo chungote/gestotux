@@ -2,16 +2,11 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 SOURCES +=  remitosplugins.cpp \
-            ../CtaCte/mcuentacorriente.cpp \
-            ../CtaCte/mitemcuentacorriente.cpp \
-            ../productos/mproductos.cpp \
-           ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp \
-           ../../src/mclientes.cpp \
-           ../descuentos/mdescuentos.cpp \
            formprefremito.cpp \
            vremito.cpp \
            vitemremito.cpp \
@@ -21,13 +16,6 @@ SOURCES +=  remitosplugins.cpp \
            mitemremito.cpp
 
 HEADERS += remitosplugins.h \
-           ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../productos/mproductos.h \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h \
-           ../../src/mclientes.h \
-           ../descuentos/mdescuentos.h \
            formprefremito.h \
            vremito.h \
            vitemremito.h \
@@ -64,6 +52,17 @@ RESOURCES += remitos.qrc
 
 OTHER_FILES += remitos.QSQLITE.sql \
                remitos.QMYSQL.sql
+
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lcaja \
+        -lcuotas \
+        -ldescuentos
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"

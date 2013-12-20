@@ -2,7 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
 plugin \
-help
+help \
+rtti \
+exceptions
 
 QT += sql \
       xml
@@ -17,10 +19,6 @@ PRE_TARGETDEPS += ../../bin/libreporte.a \
 HEADERS += pagosplugin.h \
            mpagos.h \
            formagregarrecibo.h \
-           ../CtaCte/mcuentacorriente.h \
-           ../CtaCte/mitemcuentacorriente.h \
-           ../caja/mmovimientoscaja.h \
-           ../caja/mcajas.h \
            vpagos.h \
            recibo.h \
            FormPrefRecibos.h \
@@ -31,10 +29,6 @@ HEADERS += pagosplugin.h \
 SOURCES += pagosplugin.cpp \
            mpagos.cpp \
            formagregarrecibo.cpp \
-           ../CtaCte/mcuentacorriente.cpp \
-           ../CtaCte/mitemcuentacorriente.cpp \
-           ../caja/mmovimientoscaja.cpp \
-           ../caja/mcajas.cpp \
            vpagos.cpp \
            recibo.cpp \
            FormPrefRecibos.cpp \
@@ -63,5 +57,13 @@ OTHER_FILES += pagos.QMYSQL.sql \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lcaja \
 
 DISTFILES += ../../bin/reportes/Recibo.xml

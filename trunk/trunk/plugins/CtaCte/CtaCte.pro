@@ -2,7 +2,9 @@ TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 QT += sql \
       xml
@@ -18,14 +20,6 @@ HEADERS += cuentacorrienteplugin.h \
            formnuevactacte.h \
            mitemcuentacorriente.h \
            formresumenctacte.h \
-           ../pagos/recibo.h \
-           ../pagos/formagregarrecibo.h \
-           ../pagos/mpagos.h \
-           ../caja/mcajas.h \
-           ../caja/mmovimientoscaja.h \
-           ../ventas/MFactura.h \
-           ../ventas/mitemfactura.h \
-           ../descuentos/mdescuentos.h \
            ../../src/mclientes.h
 
 SOURCES += cuentacorrienteplugin.cpp \
@@ -35,14 +29,6 @@ SOURCES += cuentacorrienteplugin.cpp \
            formnuevactacte.cpp \
            mitemcuentacorriente.cpp \
            formresumenctacte.cpp \
-           ../pagos/recibo.cpp \
-           ../pagos/formagregarrecibo.cpp \
-           ../pagos/mpagos.cpp \
-           ../caja/mcajas.cpp \
-           ../caja/mmovimientoscaja.cpp \
-           ../ventas/MFactura.cpp \
-           ../ventas/mitemfactura.cpp \
-           ../descuentos/mdescuentos.cpp \
            ../../src/mclientes.cpp
 
 RESOURCES += CtaCte.qrc
@@ -79,6 +65,16 @@ OTHER_FILES +=  CtaCte.ts \
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"
 }
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lcaja \
+        -lventas \
+        -ldescuentos \
+        -lremitos
 
 DISTFILES += ../../bin/reportes/ListadoCtaCteSaldo.xml \
              ../../bin/reportes/ResumenCtaCte.xml \

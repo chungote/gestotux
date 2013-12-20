@@ -1,16 +1,14 @@
-HEADERS += trsistemas.h \
-           ../pagos/mpagos.h \
-           ../CtaCte/mitemcuentacorriente.h
+HEADERS += trsistemas.h
 
-SOURCES += trsistemas.cpp \
-           ../pagos/mpagos.cpp \
-           ../CtaCte/mitemcuentacorriente.cpp
+SOURCES += trsistemas.cpp
 
 TEMPLATE = lib
 
 CONFIG += dll \
           plugin \
-          help
+          help \
+          rtti \
+          exceptions
 
 QT += sql \
       xml
@@ -29,8 +27,14 @@ INCLUDEPATH += ../../src \
                ../CtaCte \
                ../pagos
 
-LIBS += ../../bin/libreporte.a \
-        ../../bin/libutiles.a
+QMAKE_LFLAGS += -Wl,-rpath,./plugins
+
+LIBS += -L../../bin \
+        -L../../bin/plugins \
+        -lutiles \
+        -lreporte \
+        -lctacte \
+        -lpagos
 
 RESOURCES = trsistemas.qrc
 

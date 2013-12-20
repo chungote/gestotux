@@ -214,7 +214,7 @@ QString HiComp::reporte( int tipo ) {
 
 void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parametros )
 {
-    switch( tipo ) {
+/*    switch( tipo ) {
         case EReporte::Recibo:
         {
             if( nombre == "Recibo-hicomp-venc" ) {
@@ -280,7 +280,7 @@ void HiComp::reporteParametros( int tipo, QString &nombre, ParameterList &parame
         }
         default:
         { break; }
-    }
+    }*/
 }
 
 void HiComp::crearAccionesGlobales( QMainWindow *ventana )
