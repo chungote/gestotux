@@ -63,9 +63,6 @@ void ReportesCuotas::hacerMenu( QMenu *m )
  */
 void ReportesCuotas::resumenCuotasDeudaHistorica()
 {
-    QMessageBox::information( 0, "Error", "No implementado" );
-    return;
-    /// @TODO: Implementar el reporte de cuotas historicas
     EReporte *rep = new EReporte( 0 );
     rep->especial( "cuotashistoricas", ParameterList() );
     rep->hacerPDF( ParameterList(), QString( "DeudasCuotasAl" ).arg( QDate::currentDate().toString( Qt::LocaleDate ) ) );

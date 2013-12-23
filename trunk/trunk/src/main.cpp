@@ -456,6 +456,12 @@ int main(int argc, char *argv[])
                                         p->setValue( "AnulacionFactura", e->reporte( EReporte::AnulacionFactura ) );
                                         p->setValue( "Remitos", e->reporte( EReporte::Remito ) );
                                         p->endGroup();
+                                } else if( plug->tipo() == EPlugin::email ) {
+                                        ERegistroPlugins::getInstancia()->setearPluginEmail( qobject_cast<EInterfazEmail *>(obj) );
+                                        preferencias *p = preferencias::getInstancia();
+                                        p->setValue( "pluginEmail", plug->nombre() );
+                                        p=0;
+
                                 }
                         }
                         else

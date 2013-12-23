@@ -162,9 +162,30 @@ p, li { white-space: pre-wrap; }
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Dirección de remitente</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LEDireccionOrigen"/>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QCheckBox" name="CkBPredeterminado">
         <property name="text">
          <string>Predeterminado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="CkBEcriptacion">
+        <property name="text">
+         <string>Usar Encriptacion</string>
         </property>
        </widget>
       </item>
