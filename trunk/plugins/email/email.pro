@@ -1,11 +1,11 @@
 TEMPLATE = lib
 
 CONFIG += dll \
-plugin \
-help
+          plugin \
+          help
 
 QT += sql \
-network
+      network
 
 TARGET = email
 
@@ -30,7 +30,8 @@ SOURCES += emodelomails.cpp \
     mimecontentformatter.cpp \
     mimeattachment.cpp \
     emailaddress.cpp \
-    enviadoremail.cpp
+    enviadoremail.cpp \
+    pluginemail.cpp
 
 HEADERS += emodelomails.h \
            eservidoremail.h \
@@ -48,14 +49,15 @@ HEADERS += emodelomails.h \
     mimecontentformatter.h \
     mimeattachment.h \
     emailaddress.h \
-    enviadoremail.h
+    enviadoremail.h \
+    pluginemail.h
 
 FORMS += FormPrefEmailBase.ui
 
 INCLUDEPATH += ../../src \
                ../../utiles
 
-DISTFILES += email.QMYSQL.sql \
-             email.QSQLITE.sql
+OTHER_FILES += email.QMYSQL.sql \
+              email.QSQLITE.sql
 
 RESOURCES += email.qrc

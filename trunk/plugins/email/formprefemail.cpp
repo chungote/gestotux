@@ -20,6 +20,7 @@
 #include "formprefemail.h"
 
 #include <QSqlError>
+#include <QDebug>
 
 FormPrefEmail::FormPrefEmail(QWidget* parent, Qt::WFlags fl)
 : EVentana( parent, fl ), Ui::FormPrefEmailBase()
@@ -39,6 +40,8 @@ FormPrefEmail::FormPrefEmail(QWidget* parent, Qt::WFlags fl)
         mapeador->addMapping( LEPass, servidores->fieldIndex( "pass" ) );
         mapeador->addMapping( CkBPredeterminado, servidores->fieldIndex( "predeterminado" ) );
         mapeador->addMapping( LEFrom, servidores->fieldIndex( "de" ) );
+        mapeador->addMapping( LEDireccionOrigen, servidores->fieldIndex( "direccion_origen" ) );
+        mapeador->addMapping( CkBEcriptacion, servidores->fieldIndex( "encriptacion" ) );
         mapeador->setSubmitPolicy( QDataWidgetMapper::ManualSubmit );
 
         connect(LVServidores->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
@@ -69,7 +72,7 @@ void FormPrefEmail::guardar()
  if( !mapeador->submit() )
  {
      if( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().isValid() ) {
-        qWarning( QString( "Error de submit:%1" ).arg( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().text() ).toLocal8Bit() );
+        qWarning() << "Error de submit:" << qobject_cast<EServidorEmail *>(mapeador->model())->lastError().text();
      }
  }
 }
@@ -83,7 +86,7 @@ void FormPrefEmail::aplicar()
  if( !mapeador->submit() )
  {
      if( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().isValid() ) {
-        qWarning( QString( "Error de submit:%1" ).arg( qobject_cast<EServidorEmail *>(mapeador->model())->lastError().text() ).toLocal8Bit() );
+        qWarning() << "Error de submit: " << qobject_cast<EServidorEmail *>(mapeador->model())->lastError().text();
      }
  }
 }

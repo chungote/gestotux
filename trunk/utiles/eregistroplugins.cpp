@@ -24,6 +24,7 @@
 #include <QDebug>
 
 ERegistroPlugins *ERegistroPlugins::instance = 0;
+EInterfazEmail *ERegistroPlugins::_plugEmail = 0;
 
 ERegistroPlugins::ERegistroPlugins( QObject */*parent*/ )
 {
@@ -194,4 +195,19 @@ bool ERegistroPlugins::pluginInfoSeteado()
     {
         return true;
     }
+}
+
+void ERegistroPlugins::setearPluginEmail(EInterfazEmail *obj)
+{
+    if( obj != 0 ) {
+        _plugEmail = obj;
+    }
+}
+
+EInterfazEmail *ERegistroPlugins::getPluginEmail()
+{
+    if( _plugEmail != 0 ) {
+        return _plugEmail;
+    }
+    return 0;
 }

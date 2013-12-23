@@ -28,6 +28,7 @@
 #include <QExplicitlySharedDataPointer>
 #include <QSharedData>
 #include "eplugin.h"
+#include "einterfazemail.h"
 #include "preferencias.h"
 
 class EInfoProgramaInterface;
@@ -59,6 +60,9 @@ public:
     bool existePluginExterno( const QString & nombre );
     bool pluginInfoSeteado();
 
+    void setearPluginEmail( EInterfazEmail *obj );
+    EInterfazEmail *getPluginEmail();
+
 private:
    ERegistroPlugins(QObject *parent = 0);
    ERegistroPlugins( const ERegistroPlugins & ); // oculto constructor de copia
@@ -66,6 +70,7 @@ private:
 
    ~ERegistroPlugins();
    static ERegistroPlugins *instance;
+   static EInterfazEmail *_plugEmail;
    QHash<QString, EPlugin *> *_plugins;
    QHash<QString, QObject *> *_plugins2;
    EInfoProgramaInterface *_pluginInfo;
