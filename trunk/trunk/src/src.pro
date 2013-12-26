@@ -101,6 +101,10 @@ LIBS += -lutiles \
         -lpagos \
         -lctacte \
         -lcuotas \
+        -lcaja \
+        -lproductos \
+        -ldescuentos \
+        -lremitos \
         -L../bin \
         -L../bin/plugins
 

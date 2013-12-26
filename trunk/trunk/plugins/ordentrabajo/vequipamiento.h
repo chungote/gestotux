@@ -2,6 +2,7 @@
 #define VEQUIPAMIENTO_H
 
 #include "evlista.h"
+class MVEquipamiento;
 class MEquipamiento;
 /**
  * @brief The VEquipamiento class
@@ -23,7 +24,7 @@ public slots:
     void menuContextual(const QModelIndex &indice, QMenu *menu);
 
 private:
-    MEquipamiento *modelo;
+    MVEquipamiento *modelo;
 
     QAction *ActDarBaja;
     QAction *ActDarAlta;

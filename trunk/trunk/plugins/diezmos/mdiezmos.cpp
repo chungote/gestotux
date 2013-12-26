@@ -1,6 +1,11 @@
 #include "mdiezmos.h"
 
 #include <QDate>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
+#include <QSqlDatabase>
+#include <QSqlDriver>
 
 MDiezmos::MDiezmos(QObject *parent) :
     QSqlTableModel(parent)
@@ -89,4 +94,77 @@ QVariant MDiezmos::data(const QModelIndex &idx, int role) const
         default: { break; }
     }
     return QSqlTableModel::data( idx, role );
+}
+
+/*!
+ * \brief MDiezmos::agregarReciboDiezmo
+ * Agregar un dar diezmo a la tabla de diezmos
+ * \param fecha Fecha en que se dío el diezmo
+ * \param monto Monto de diezmo dado
+ * \return Verdadero si se ingreso el registro correctamente o falso si fallo
+ */
+bool MDiezmos::agregarReciboDiezmo( const QDate fecha, const double monto )
+{
+    QSqlQuery cola;
+    if( !cola.prepare( "INSERT INTO diezmos( fecha, descripcion, haber ) "
+                       " VALURES ( :fecha, :descripcion, :monto )" ) ) {
+        qWarning() << "Error al preparar la cola de ejecucion para dado de diezmo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    cola.bindValue( ":fecha", fecha );
+    cola.bindValue( ":descripcion", "Diezmo dado" );
+    cola.bindValue( ":monto", monto );
+    if( !cola.exec() ) {
+        qWarning() << "Error al ejecutar la cola de ejecucion para dado de diezmo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    } else {
+        return true;
+    }
+    return false;
+}
+
+/*!
+ * \brief MDiezmos::eliminarEntrada
+ * \param id_entrada_diezmo
+ * \return
+ */
+bool MDiezmos::eliminarEntrada(const int id_entrada_diezmo)
+{
+    QSqlQuery cola;
+    if( !cola.exec( QString( "DELETE FROM diezmos WHERE id_item_diezmo = %1" ).arg( id_entrada_diezmo ) ) ) {
+        qWarning() << "Error al ejecutar la cola de eliminacion de item de diezmo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
+    return true;
+}
+
+/*!
+ * \brief MDiezmos::agregarRegistro
+ * \param fecha
+ * \param monto
+ * \param descripcion
+ * \param id_referencia
+ */
+void MDiezmos::agregarRegistro(const QDate fecha, const double monto, const QString descripcion, const int id_referencia)
+{
+    QSqlQuery cola;
+    if( !cola.prepare( "INSERT INTO diezmos( fecha, descripcion, debe, id_referencia ) "
+                       " VALURES ( :fecha, :descripcion, :monto, :id_referencia )" ) ) {
+        qWarning() << "Error al preparar la cola de ejecucion de deuda de diezmo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    cola.bindValue( ":fecha"        , fecha         );
+    cola.bindValue( ":descripcion"  , descripcion   );
+    cola.bindValue( ":monto"        , monto         );
+    cola.bindValue( ":id_referencia", id_referencia );
+    if( !cola.exec() ) {
+        qWarning() << "Error al ejecutar la cola de ejecucion de deuda de diezmo";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
 }

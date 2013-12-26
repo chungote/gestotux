@@ -84,6 +84,8 @@ bool OrdenTrabajoPlugin::verificarTablas( QStringList tablas )
  { qWarning( "OrdenTrabajoPlugin::Error al buscar la tabla tipo_operacion_orden_trabajo" ); return false; }
  if( !tablas.contains( "operacion_orden_trabajo" ) )
  { qWarning( "OrdenTrabajoPlugin::Error al buscar la tabla operacion_orden_trabajo" ); return false; }
+ if( !tablas.contains( "v_equipamiento" ) )
+ { qWarning( "OrdenTrabajoPlugin::Error al buscar al vista de equipamientos" ); return false; }
  return true;
 }
 
