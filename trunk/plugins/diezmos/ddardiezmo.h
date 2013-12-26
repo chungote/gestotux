@@ -10,6 +10,9 @@ class DDarDiezmo : public QDialog, private Ui::DDarDiezmo
 public:
     explicit DDarDiezmo( QWidget *parent = 0 );
 
+signals:
+    void actualizarModelos();
+
 public slots:
     void accept();
     

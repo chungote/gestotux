@@ -8,13 +8,13 @@ class VDiezmos : public EVLista
 {
     Q_OBJECT
 public:
-    explicit VDiezmos(QWidget *parent = 0);
-    
-signals:
-    
-public slots:
+    VDiezmos(QWidget *parent = 0);
 
-private:
+protected slots:
+    void agregar(bool autoeliminarid);
+    void eliminar();
+
+protected:
     MDiezmos *modelo;
     
 };

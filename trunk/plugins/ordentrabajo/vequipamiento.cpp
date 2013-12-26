@@ -1,6 +1,6 @@
 #include "vequipamiento.h"
 
-#include "mequipamiento.h"
+#include "mvequipamiento.h"
 #include "formequipamiento.h"
 
 #include <QTableView>
@@ -15,17 +15,12 @@ EVLista( parent )
     this->setWindowTitle( "Equipamientos" );
     this->setWindowIcon( QIcon( ":/imagenes/equipamiento.png" ) );
 
-    this->modelo = new MEquipamiento( this );
+    this->modelo = new MVEquipamiento( this );
     this->vista->setModel( this->modelo );
     this->vista->setSelectionBehavior( QAbstractItemView::SelectRows );
     this->vista->setAlternatingRowColors( true );
     this->vista->hideColumn( modelo->fieldIndex( "id_equipamiento" ) );
-    this->vista->hideColumn( modelo->fieldIndex( "num_serie"       ) );
-    this->vista->hideColumn( modelo->fieldIndex( "fecha_baja"      ) );
-    this->vista->hideColumn( modelo->fieldIndex( "razon_baja"      ) );
-    this->vista->hideColumn( modelo->fieldIndex( "fecha_compra"    ) );
-    this->vista->hideColumn( modelo->fieldIndex( "modelo"          ) );
-    this->vista->hideColumn( modelo->fieldIndex( "marca"           ) );
+    this->vista->hideColumn( modelo->fieldIndex( "id_cliente"      ) );
     this->vista->setSortingEnabled( true );
     this->modelo->select();
 
@@ -54,7 +49,7 @@ EVLista( parent )
 void VEquipamiento::agregar( bool )
 {
     FormEquipamiento *f = new FormEquipamiento();
-    f->setearModeloEquipamiento( qobject_cast<MEquipamiento *>( this->modelo ) );
+    //f->setearModeloEquipamiento( qobject_cast<MEquipamiento *>( this->modelo ) );
     f->setearAgregar( true );
     emit agregarVentana( f );
 }
@@ -72,7 +67,7 @@ void VEquipamiento::modificar()
     }
     foreach( QModelIndex indice, lista ) {
         FormEquipamiento *f = new FormEquipamiento();
-        f->setearModeloEquipamiento( qobject_cast<MEquipamiento *>( this->modelo ) );
+        //f->setearModeloEquipamiento( qobject_cast<MEquipamiento *>( this->modelo ) );
         f->setearAgregar( false );
         f->setearIndice( indice );
         emit agregarVentana( f );
@@ -93,12 +88,15 @@ void VEquipamiento::eliminar()
     if( QMessageBox::question( this, "¿Está seguro?", "Está seguro que desea eliminar estos equpamientos? \n Se eliminarán todos los registros relacionados con estos datos, exceptuando las facturas y garantías" ) != QMessageBox::Ok ) {
         return;
     }
+    MEquipamiento *mequipamiento = new MEquipamiento();
     foreach( QModelIndex indice, lista ) {
         int id_equipamiento = modelo->data( modelo->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
-        if( !modelo->eliminarConRelacionados( id_equipamiento ) ) {
+        if( !mequipamiento->eliminarConRelacionados( id_equipamiento ) ) {
             QMessageBox::information( this, "Error", "No se pudo eliminar el equipamiento " + id_equipamiento );
         }
     }
+    delete mequipamiento;
+    modelo->select();
 }
 
 /*!
@@ -115,6 +113,7 @@ void VEquipamiento::darBaja()
     if( QMessageBox::question( this, "¿Está seguro?", "Está seguro que desea dar de baja estos equpamientos?" ) != QMessageBox::Ok ) {
         return;
     }
+    MEquipamiento *mequipamiento = new MEquipamiento();
     foreach( QModelIndex indice, lista ) {
         bool ok = false;
         QString razon = QInputDialog::getText( this, QString::fromUtf8( "Razón" ), QString::fromUtf8( "Razón:" ), QLineEdit::Normal, QString(), &ok );
@@ -123,13 +122,15 @@ void VEquipamiento::darBaja()
                 razon.append( "Razón desconocida" );
             }
             int id_equipamiento = modelo->data( modelo->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
-            if( modelo->darDeBaja( id_equipamiento, razon ) ) {
+            if( mequipamiento->darDeBaja( id_equipamiento, razon ) ) {
                 QMessageBox::information( this, "Correcto", "El equipamiento se pudo dar de baja correctamente" );
             } else {
                 QMessageBox::information( this, "Incorrecto", "El equipamiento no se pudo dar de baja" );
             }
         }
     }
+    delete mequipamiento;
+    modelo->select();
 }
 
 /*!

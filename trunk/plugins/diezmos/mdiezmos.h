@@ -18,6 +18,12 @@ public:
     int columnCount( const QModelIndex &parent ) const;
     QVariant data( const QModelIndex &idx, int role ) const;
 
+    bool agregarReciboDiezmo( const QDate fecha, const double monto );
+
+    bool eliminarEntrada( const int id_entrada_diezmo );
+
+    static void agregarRegistro( const QDate fecha, const double monto, const QString descripcion, const int id_referencia );
+
 private:
     QVector<double> *saldos;
     
