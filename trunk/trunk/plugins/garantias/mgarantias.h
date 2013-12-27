@@ -13,6 +13,7 @@ public:
     QVariant data( const QModelIndex &item, int role ) const;
 
     bool darDeBaja( const int id_garantia, const QString razon, const QDate fecha = QDate::currentDate() );
+    bool estaActiva( const int id_garantia );
         
 };
 

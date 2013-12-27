@@ -15,12 +15,12 @@ HEADERS += garantiasplugin.h \
            vgarantias.h \
            mgarantias.h \
            dagregargarantia.h \
-    formprefgarantias.h
+           formprefgarantias.h
 SOURCES += garantiasplugin.cpp \
            vgarantias.cpp \
            mgarantias.cpp \
            dagregargarantia.cpp \
-    formprefgarantias.cpp
+           formprefgarantias.cpp
 
 DESTDIR = ../../bin/plugins
 
@@ -28,6 +28,7 @@ RESOURCES += garantias.qrc
 
 INCLUDEPATH += ../../utiles \
                ../../src \
+               ../../reporte \
                ../ordentrabajo \
                ../ventas
 
