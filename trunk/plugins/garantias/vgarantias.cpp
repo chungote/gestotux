@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
+#include "EReporte.h"
+
 VGarantias::VGarantias(QWidget *parent) :
     EVLista(parent)
 {
@@ -63,8 +65,16 @@ void VGarantias::aPdf()
         QMessageBox::information( this, "Error", "Seleccione una garantía para pasar a pdf" );
         return;
     }
-    qWarning( "No implementado" );
-    return;
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "garantia", ParameterList() );
+    foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
+        int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+        ParameterList lista;
+        lista.append( "id_garantia", id_garantia );
+        rep->hacerPDF( lista );
+    }
+    delete rep;
+    rep = 0;
 }
 
 /*!
@@ -77,12 +87,31 @@ void VGarantias::eliminar()
         QMessageBox::information( this, "Error", "Seleccione una garantía para eliminar" );
         return;
     }
-    qWarning( "No implementado" );
-    return;
+    int ret = QMessageBox::question( this,
+                                     QString::fromUtf8( "¿Está seguro?" ),
+                                     QString::fromUtf8( "¿Està seguro que desea eliminar %1 garantía(s)" ).arg( vista->selectionModel()->selectedRows().count() ),
+                                     QMessageBox::Yes,
+                                     QMessageBox::No );
+    if( ret == QMessageBox::Yes ) {
+        foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
+            int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+            if( !modelo->estaActiva( id_garantia ) ) {
+                if( !modelo->eliminar( id_garantia ) ) {
+                    QMessageBox::information( this, "Error", QString::fromUtf8( "No se pudo dar de baja la garantia %1" ).arg( item.row() ) );
+                } else {
+                    QMessageBox::information( this, "Correcto", QString::fromUtf8( "La garantía %1 fue dada de baja correctamente" ).arg( item.row() ) );
+                }
+            } else {
+                QMessageBox::information( this, "Error", QString::fromUtf8( "El item %1 NO está dado de baja" ).arg( item.row() ) );
+            }
+        }
+    }
+    modelo->select();
 }
 
 /*!
  * \brief VGarantias::darBaja
+ * Da de baja una garantía activa
  */
 void VGarantias::darBaja()
 {
@@ -91,8 +120,8 @@ void VGarantias::darBaja()
         return;
     }
     foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
-        if( item.model()->data( item.model()->index( item.row(), modelo->fieldIndex( "fecha_baja" ) ), Qt::EditRole ).isNull() ) {
-            int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+        int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+        if( modelo->estaActiva( id_garantia ) ) {
             bool ok = false;
             QString razon = QInputDialog::getText( this,
                                                    QString::fromUtf8( "Razón" ),
