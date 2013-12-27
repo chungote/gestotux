@@ -44,3 +44,14 @@ QVariant MGarantias::data( const QModelIndex &item, int role ) const
     return QSqlRelationalTableModel::data( item, role );
 }
 
+/*!
+ * \brief MGarantias::darDeBaja
+ * \param id_garantia Identificador de la garantía
+ * \param razon Razon de la baja
+ * \param fecha Fecha de la baja
+ * \return verdadero si se pudo dar de baja correctamente
+ */
+bool MGarantias::darDeBaja( const int id_garantia, const QString razon, const QDate fecha )
+{
+    /// @TODO: Agregar definicion de metodo
+}

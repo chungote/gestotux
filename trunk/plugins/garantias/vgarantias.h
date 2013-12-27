@@ -8,14 +8,18 @@ class VGarantias : public EVLista
 {
     Q_OBJECT
 public:
-    explicit VGarantias(QWidget *parent = 0);
-    
-signals:
-    
-public slots:
+    VGarantias( QWidget *parent = 0 );
+
+protected slots:
+    void agregar( bool autoeliminarid );
+    void imprimir();
+    void aPdf();
+    void eliminar();
+    void darBaja();
 
 private:
     MGarantias *modelo;
+    QAction *ActDarBaja;
     
 };
 

@@ -263,12 +263,13 @@ bool MEquipamiento::existe( const int id_equipamiento )
  * Carga los datos del equipamiento en el registro interno.
  * \param id_equipamiento Identificador del equipamiento
  */
-void MEquipamiento::cargarDatos( const int id_equipamiento )
+bool MEquipamiento::cargarDatos( const int id_equipamiento )
 {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT * FROM equipamiento WHERE id_equipamiento = %1" ).arg( id_equipamiento ) ) ) {
         if( cola.next() ) {
             this->_datos = cola.record();
+            return true;
         } else {
             qDebug() << "Error al obtener los datos del ID de equipamiento indicado";
         }
@@ -277,7 +278,7 @@ void MEquipamiento::cargarDatos( const int id_equipamiento )
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
     }
-    return;
+    return false;
 }
 
 /*!

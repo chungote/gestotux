@@ -4,6 +4,7 @@
 #include <QSqlRelationalTableModel>
 #include <QDate>
 #include <QSqlRecord>
+#include "NumeroComprobante.h"
 
 class MEquipamiento : public QSqlRelationalTableModel
 {
@@ -15,13 +16,14 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     bool existe( const int id_equipamiento );
-    void cargarDatos( const int id_equipamiento );
+    bool cargarDatos( const int id_equipamiento );
 
     QString descripcion()   { return _datos.value("descripcion").toString();   }
     QString marca()         { return _datos.value("marca").toString();         }
     QString modelo()        { return _datos.value("modelo").toString();        }
     QString numeroSerie()   { return _datos.value("num_serie").toString();     }
     QString observaciones() { return _datos.value("observaciones").toString(); }
+    int numeroComprobante() { return _datos.value("id_factura_compra").toInt();}
     bool enGarantia();
 
     static bool tieneDatosRelacionados( const int id_equipamiento );

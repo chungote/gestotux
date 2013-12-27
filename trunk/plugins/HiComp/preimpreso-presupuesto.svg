@@ -24,7 +24,7 @@
    inkscape:export-ydpi="100"><svg:metadata
    id="metadata2225"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></svg:metadata><sodipodi:namedview
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></svg:metadata><sodipodi:namedview
    inkscape:window-height="959"
    inkscape:window-width="1280"
    inkscape:pageshadow="2"
@@ -36,9 +36,9 @@
    bordercolor="#666666"
    pagecolor="#ffffff"
    id="base"
-   inkscape:zoom="0.7184205"
-   inkscape:cx="343.64438"
-   inkscape:cy="752.377"
+   inkscape:zoom="2.032"
+   inkscape:cx="282.33054"
+   inkscape:cy="621.36772"
    inkscape:window-x="-3"
    inkscape:window-y="-3"
    inkscape:current-layer="svg2833"
@@ -925,6 +925,7 @@
      id="tspan3517"
      x="97.093559"
      y="13.489648">PRESUPUESTO</svg:tspan></svg:text>
+
 <svg:text
    xml:space="preserve"
    style="font-size:14.89566708px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
@@ -936,6 +937,7 @@
      id="tspan3521"
      x="71.832291"
      y="18.099075">P</svg:tspan></svg:text>
+
 <svg:text
    xml:space="preserve"
    style="font-size:3.57143331px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
@@ -948,6 +950,7 @@
      id="tspan3525"
      x="92.193611"
      y="30.940697">Presupuesto Nº</svg:tspan></svg:text>
+
 <svg:text
    xml:space="preserve"
    style="font-size:2.65148091px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
@@ -960,6 +963,7 @@
      id="tspan3529"
      x="81.449326"
      y="46.176533">Cuotas</svg:tspan></svg:text>
+
 <svg:rect
    width="3.4139993"
    height="2.6529837"
@@ -982,6 +986,7 @@
      id="tspan3561">forma de pago acordada. </svg:tspan><svg:tspan
      sodipodi:role="line"
      id="tspan3563">Sujeto a cambio sin previo aviso.</svg:tspan></svg:text>
+
 <svg:rect
    width="134.43015"
    height="196.54102"
@@ -1334,6 +1339,7 @@
      id="tspan3517-5"
      x="253.1488"
      y="13.493475">PRESUPUESTO</svg:tspan></svg:text>
+
 <svg:text
    xml:space="preserve"
    style="font-size:14.89566708px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
@@ -1345,6 +1351,7 @@
      id="tspan3521-2"
      x="220.62889"
      y="18.103086">P</svg:tspan></svg:text>
+
 <svg:text
    xml:space="preserve"
    style="font-size:3.57143331px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
@@ -1357,6 +1364,7 @@
      id="tspan3525-9"
      x="253.7804"
      y="30.944386">Presupuesto Nº</svg:tspan></svg:text>
+
 <svg:text
    xml:space="preserve"
    style="font-size:2.65148091px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
@@ -1369,6 +1377,7 @@
      id="tspan3529-2"
      x="237.11966"
      y="46.180367">Cuotas</svg:tspan></svg:text>
+
 <svg:rect
    width="3.4139993"
    height="2.6529837"
@@ -1397,4 +1406,5 @@
      x="158.2921"
      sodipodi:role="line"
      id="tspan3563-1">Sujeto a cambio sin previo aviso.</svg:tspan></svg:text>
+
 </svg:svg>

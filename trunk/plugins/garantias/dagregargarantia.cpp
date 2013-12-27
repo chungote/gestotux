@@ -1,15 +1,18 @@
 #include "dagregargarantia.h"
 
 #include <QMessageBox>
+
 #include "mequipamiento.h"
 #include "ecbequipamiento.h"
+#include "MFactura.h"
+#include "preferencias.h"
 
 DAgregarGarantia::DAgregarGarantia( QWidget *parent ) :
 QDialog( parent )
 {
     setupUi(this);
-    setWindowTitle( "Agegar nueva garantía" );
-    setWindowIcon( QIcon( ":/imagenes/agregargarantia.png" ) );
+    setWindowTitle( QString::fromUtf8( "Agegar nueva garantía" ) );
+    setWindowIcon( QIcon( ":/imagenes/garantia_agregar.png" ) );
 
     _id_cliente = -1;
     _id_comprobante = -1;
@@ -18,6 +21,8 @@ QDialog( parent )
 
     connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( buscarEquipamientos( int ) ) );
     connect( CBEquipamiento, SIGNAL( cambioId( int ) ), this, SLOT( buscarFactura( int ) ) );
+
+    DECompra->setDate( QDate::currentDate() );
 
     // Permito que se puedan insertar nuevos elementos en el combobox de equipamientos
     //CBEquipamiento->setInsertionPolicy( QComboBox::InsertAlphabetically );
@@ -119,13 +124,25 @@ void DAgregarGarantia::buscarEquipamientos( int id_cliente )
  */
 void DAgregarGarantia::buscarFactura( int id_equipamiento )
 {
+    if( id_equipamiento <= 0 )
+    { return; }
+
     if( modelo != 0 )
-        modelo = new MEquipamiento( this );
+    { modelo = new MEquipamiento( this ); }
 
-    modelo->cargarDatos( id_equipamiento );
+    if( !modelo->cargarDatos( id_equipamiento ) ) {
+        return;
+    }
 
-    /// @TODO Agregar carga de numero de factura/recibo y fecha de compra
-    //LEFactura->setText( MFactura::NumeroSeriePorId( modelo ) );
+    LEFactura->setText( MFactura::obtenerComprobante( modelo->numeroComprobante() ).aCadena() );
+    DECompra->setDate( MFactura::obtenerFecha( modelo->numeroComprobante() ) );
 
-
+    preferencias *p = preferencias::getInstancia();
+    p->inicio();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Garantias" );
+    DEFin->setDate( DECompra->date().addMonths( p->value( "duracion_garantia" ).toInt() ) );
+    p->endGroup();
+    p->endGroup();
+    p=0;
 }
