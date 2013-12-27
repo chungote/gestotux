@@ -55,8 +55,17 @@ void VGarantias::imprimir()
         QMessageBox::information( this, "Error", "Seleccione una garantía para volver a imprimir" );
         return;
     }
-    qWarning( "No implementado" );
-    return;
+    EReporte *rep = new EReporte( 0 );
+    rep->especial( "garantia", ParameterList() );
+    foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
+        int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+        ParameterList lista;
+        lista.append( "id_garantia", id_garantia );
+        rep->setearParametros( lista );
+        rep->imprimir( 0 );
+    }
+    delete rep;
+    rep = 0;
 }
 
 void VGarantias::aPdf()
