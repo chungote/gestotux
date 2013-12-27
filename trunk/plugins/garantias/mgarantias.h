@@ -14,6 +14,7 @@ public:
 
     bool darDeBaja( const int id_garantia, const QString razon, const QDate fecha = QDate::currentDate() );
     bool estaActiva( const int id_garantia );
+    bool eliminar( const int id_garantia );
         
 };
 

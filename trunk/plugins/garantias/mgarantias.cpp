@@ -113,3 +113,22 @@ bool MGarantias::estaActiva( const int id_garantia )
     }
     return false;
 }
+
+/*!
+ * \brief MGarantias::eliminar
+ * \param id_garantia
+ * \return
+ */
+bool MGarantias::eliminar( const int id_garantia )
+{   QSqlQuery cola;
+    if( cola.exec( QString( "DELETE FROM garantias WHERE id_garantia = %1" ).arg( id_garantia ) ) ) {
+        return true;
+    } else {
+        qWarning() << "Error al ejecutar la cola de baja de garantia";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
+    return false;
+}
+
