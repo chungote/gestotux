@@ -49,28 +49,33 @@ bool GarantiasPlugin::inicializar()
 
     ActGarantias = new QAction( this );
     ActGarantias->setText( QString::fromUtf8( "Garantías" ) );
+    ActGarantias->setIcon( QIcon(":/imagenes/garantia.png" ) );
     ActGarantias->setStatusTip( "Muestra el listado de garantías vigentes en el sistema" );
     connect( ActGarantias, SIGNAL( triggered() ), this, SLOT( verGarantias() ) );
 
     ActAgregarGarantia = new QAction( this );
     ActAgregarGarantia->setText( QString::fromUtf8( "Agregar Garantía" ) );
+    ActAgregarGarantia->setIcon( QIcon( ":/imagenes/garantia_agregar.png" ) );
     ActAgregarGarantia->setStatusTip( "Muestra la ventana para agregar una nueva garantia" );
     connect( ActAgregarGarantia, SIGNAL( triggered() ), this, SLOT( agregarGarantia() ) );
 
     ActVerVencimientos = new QAction( this );
     ActVerVencimientos->setText( "Ver vencimientos" );
+    ActVerVencimientos->setIcon( QIcon( ":/imagenes/garantia_vencimiento.png" ) );
     ActVerVencimientos->setStatusTip( "Ver los vencimientos de garantias cercanas a una fecha" );
     connect( ActVerVencimientos, SIGNAL( triggered() ), this, SLOT( verVencimientos() ) );
 
     return true;
 }
 
+#include "formprefgarantias.h"
 /*!
     \fn GarantiasPlugin::formsPreferencias()
  */
 QWidgetList GarantiasPlugin::formsPreferencias()
 {
  QWidgetList lista;
+ lista.append( new FormPrefGarantias() );
  return lista;
 }
 
@@ -162,12 +167,14 @@ void GarantiasPlugin::agregarGarantia(int id_comprobante, int id_producto, QStri
     /// @TODO: Agregar garantia cuando es llamado desde otro lado
 }
 
+#include "dagregargarantia.h"
 /*!
  * \brief GarantiasPlugin::agregarGarantia
  */
 void GarantiasPlugin::agregarGarantia()
 {
-    /// @TODO: Agregar garantia por ventana normal.
+    DAgregarGarantia *d = new DAgregarGarantia();
+    d->exec();
 }
 
 /*!

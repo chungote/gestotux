@@ -1,5 +1,11 @@
 <RCC>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>imagenes/garantia.png</file>
+        <file>imagenes/garantia_agregar.png</file>
+        <file>imagenes/garantia_vencimiento.png</file>
+        <file>imagenes/garantia_cancelar.png</file>
+        <file>imagenes/garantia_eliminar.png</file>
+    </qresource>
     <qresource prefix="/sql">
         <file>garantias.QMYSQL.sql</file>
         <file>garantias.QSQLITE.sql</file>
