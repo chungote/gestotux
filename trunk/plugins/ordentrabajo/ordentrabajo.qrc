@@ -9,6 +9,7 @@
         <file>imagenes/equipamiento.png</file>
         <file>imagenes/equipamiento_agregar.png</file>
         <file>imagenes/equipamiento_eliminar.png</file>
+        <file>imagenes/equipamiento_editar.png</file>
     </qresource>
     <qresource prefix="/sql">
         <file>ordentrabajo.QMYSQL.sql</file>

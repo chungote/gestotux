@@ -21,6 +21,7 @@ EVLista( parent )
     this->vista->setAlternatingRowColors( true );
     this->vista->hideColumn( modelo->fieldIndex( "id_equipamiento" ) );
     this->vista->hideColumn( modelo->fieldIndex( "id_cliente"      ) );
+    this->vista->hideColumn( modelo->fieldIndex( "fecha_baja"      ) );
     this->vista->setSortingEnabled( true );
     this->modelo->select();
 
@@ -36,8 +37,9 @@ EVLista( parent )
     ActDarAlta->setStatusTip( "Da de alta nuevamente el equipamiento seleccionado" );
     connect( ActDarAlta, SIGNAL( triggered() ), this, SLOT( darAlta() ) );
 
-    ActDarBaja->setIcon( QIcon( ":/imagenes/equipamiento_baja.png" ) );
+    ActDarBaja->setIcon( QIcon( ":/imagenes/baja_equipamiento.png" ) );
     ActAgregar->setIcon( QIcon( ":/imagenes/equipamiento_agregar.png" ) );
+    ActModificar->setIcon( QIcon( ":/imagenes/equipamiento_editar.png" ) );
 
     addAction( ActAgregar   );
     addAction( ActModificar );
@@ -139,14 +141,14 @@ void VEquipamiento::darBaja()
 
 /*!
  * \brief VEquipamiento::menuContextual
- * \param indice
- * \param menu
+ * \param indice Indice del item donde se llamó al menú
+ * \param menu Menú a utilizar
  */
 void VEquipamiento::menuContextual(const QModelIndex &indice, QMenu *menu)
 {
     menu->addAction( ActAgregar );
     menu->addAction( ActModificar );
-    if( modelo->data( modelo->index( indice.row(), modelo->fieldIndex( "fecha_baja" ) ), Qt::UserRole ).toBool() ) {
+    if( modelo->data( modelo->index( indice.row(), modelo->fieldIndex( "fecha_baja" ) ), Qt::UserRole ).isNull() ) {
         menu->addAction( ActDarBaja );
     } else {
         menu->addAction( ActDarAlta );
