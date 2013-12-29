@@ -20,6 +20,7 @@ public slots:
     void modificar();
     void eliminar();
     void darBaja();
+    void darAlta();
 
     void menuContextual(const QModelIndex &indice, QMenu *menu);
 

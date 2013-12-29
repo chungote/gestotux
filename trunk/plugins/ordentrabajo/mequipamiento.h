@@ -18,13 +18,16 @@ public:
     bool existe( const int id_equipamiento );
     bool cargarDatos( const int id_equipamiento );
 
-    QString descripcion()   { return _datos.value("descripcion").toString();   }
-    QString marca()         { return _datos.value("marca").toString();         }
-    QString modelo()        { return _datos.value("modelo").toString();        }
-    QString numeroSerie()   { return _datos.value("num_serie").toString();     }
-    QString observaciones() { return _datos.value("observaciones").toString(); }
-    int numeroComprobante() { return _datos.value("id_factura_compra").toInt();}
+    QString descripcion()   { return _datos.value("descripcion").toString();    }
+    QString marca()         { return _datos.value("marca").toString();          }
+    QString modelo()        { return _datos.value("modelo").toString();         }
+    QString numeroSerie()   { return _datos.value("num_serie").toString();      }
+    QString observaciones() { return _datos.value("observaciones").toString();  }
+    int numeroComprobante() { return _datos.value("id_factura_compra").toInt(); }
+    int idCliente()         { return _datos.value("id_cliente").toInt();        }
+    int cantidadElementos() { return _datos.value("cantidad_elementos").toInt();}
     bool enGarantia();
+    bool dadoDeBaja();
 
     static bool tieneDatosRelacionados( const int id_equipamiento );
     static bool existeEquipamientoParaCliente( const int id_cliente );
@@ -32,7 +35,7 @@ public:
 
     bool eliminarConRelacionados( const int id_equipamiento );
     bool darDeBaja( const int id_equipamiento, const QString razon, QDateTime fecha = QDateTime::currentDateTime() );
-    bool darReAlta( const int id_equipamiento, const QString razon, QDateTime fechahora = QDateTime::currentDateTime() );
+    bool darReAlta( const int id_equipamiento );
 
 
     int cantidadEquipamientoParaCliente( const int id_cliente );

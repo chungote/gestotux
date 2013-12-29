@@ -7,6 +7,7 @@
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QDebug>
+#include <QSqlField>
 
 MEquipamiento::MEquipamiento(QObject *parent) :
     QSqlRelationalTableModel(parent)
@@ -71,23 +72,59 @@ bool MEquipamiento::eliminarConRelacionados( const int /*id_equipamiento*/ )
 
 /*!
  * \brief MEquipamiento::darBaja
- * \param id_equipamiento
- * \param razon
- * \param fecha
+ * \param id_equipamiento Identificador del equipamiento
+ * \param razon Razon de baja del equipamiento
+ * \param fecha Fecha de baja
  * \return
  */
 bool MEquipamiento::darDeBaja( const int id_equipamiento, const QString razon, QDateTime fechahora )
-{ return false; }
+{
+    QSqlQuery cola;
+    if( !cola.prepare( "UPDATE equipamientos SET razon = :razon, fecha_baja = :fecha_baja WHERE id_equipamiento = :id_equipamiento" ) ) {
+        qWarning( "No se pudo preparar la cola de baja de equipamiento" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
+    cola.bindValue( ":razon", razon );
+    cola.bindValue( ":fecha_baja", fechahora );
+    cola.bindValue( ":id_equipamiento", id_equipamiento );
+    if( cola.exec() ) {
+        return true;
+    } else {
+        qWarning( "No se pudo ejecutar la cola de baja de equipamiento" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return false;
+}
 
 /*!
  * \brief MEquipamiento::darReAlta
- * \param id_equipamiento
- * \param razon
- * \param fechahora
+ * Coloca los datos de razon y fecha de baja en nulos para que el equipamiento esté como dado de alta nuevamente.
+ * \param id_equipamiento Identificador de equipamiento
  * \return
  */
-bool MEquipamiento::darReAlta( const int id_equipamiento, const QString razon, QDateTime fechahora )
-{ return false;
+bool MEquipamiento::darReAlta( const int id_equipamiento )
+{
+    QSqlQuery cola;
+    if( !cola.prepare( "UPDATE equipamientos SET razon = :razon, fecha_baja = :fecha_baja WHERE id_equipamiento = :id_equipamiento" ) ) {
+        qWarning( "No se pudo preparar la cola de re alta de equipamiento" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+        return false;
+    }
+    cola.bindValue( ":razon", QVariant::String );
+    cola.bindValue( ":fecha_baja", QVariant::Date );
+    cola.bindValue( ":id_equipamiento", id_equipamiento );
+    if( cola.exec() ) {
+        return true;
+    } else {
+        qWarning( "No se pudo ejecutar la cola de re alta de equipamiento" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return false;
 }
 
 /*!
@@ -289,4 +326,16 @@ bool MEquipamiento::cargarDatos( const int id_equipamiento )
 bool MEquipamiento::enGarantia()
 {
     /// @TODO: Agregar codigo para saber si un equipamiento está en garantía
+}
+
+bool MEquipamiento::dadoDeBaja()
+{
+    if( _datos.contains( "fecha_baja" ) ) {
+        if( !_datos.field("fecha_baja").isNull() ) {
+            if( _datos.field( "fecha_baja" ).value().toDate().isValid() ) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
