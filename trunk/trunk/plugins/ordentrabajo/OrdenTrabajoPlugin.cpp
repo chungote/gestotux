@@ -61,7 +61,7 @@ bool OrdenTrabajoPlugin::inicializar()
  ///////////////////////////////////
  ActVerEquipamiento = new QAction( "Equipamientos", this );
  ActVerEquipamiento->setStatusTip( "Muestra el listado de equipamientos dados de alta en el sistema" );
- //ActVerEquipamiento->setIcon( QIcon( ":/imagenes/equipamiento.png" ) );
+ ActVerEquipamiento->setIcon( QIcon( ":/imagenes/equipamiento.png" ) );
  connect( ActVerEquipamiento, SIGNAL( triggered() ), this, SLOT( verEquipamientos() ) );
 
  return true;
