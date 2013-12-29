@@ -30,6 +30,13 @@ QVariant MVEquipamiento::data(const QModelIndex &idx, int role) const
                 {
                     return int( Qt::AlignCenter | Qt::AlignVCenter );
                 }
+                case Qt::BackgroundColorRole:
+                {
+                    if( !QSqlTableModel::data( index( idx.row(), fieldIndex( "fecha_baja" ) ), Qt::EditRole ).isNull() ) {
+                        return Qt::lightGray;
+                    }
+                    break;
+                }
             }
             break;
         }
@@ -40,6 +47,23 @@ QVariant MVEquipamiento::data(const QModelIndex &idx, int role) const
                 case Qt::TextAlignmentRole:
                 {
                     return int( Qt::AlignCenter | Qt::AlignVCenter );
+                }
+                case Qt::BackgroundColorRole:
+                {
+                    if( !QSqlTableModel::data( index( idx.row(), fieldIndex( "fecha_baja" ) ), Qt::EditRole ).isNull() ) {
+                        return Qt::lightGray;
+                    }
+                    break;
+                }
+            }
+            break;
+        }
+        default:
+        {
+            if( role == Qt::BackgroundColorRole )
+            {
+                if( !QSqlTableModel::data( index( idx.row(), fieldIndex( "fecha_baja" ) ), Qt::EditRole ).isNull() ) {
+                    return Qt::lightGray;
                 }
             }
             break;
