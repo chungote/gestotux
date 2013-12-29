@@ -45,12 +45,34 @@ void FormEquipamiento::setearAgregar( bool estado )
     GBHistorial->setVisible( false );
     _editar = false;
     this->setWindowTitle( "Agregar Equipamiento" );
+    this->setWindowIcon( QIcon( ":/imagenes/equipamiento_agregar.png" ) );
+
   } else {
     GBHistorial->setVisible( true );
-    _editar = true;
-    this->setWindowTitle( "Editar Equipamiento" );
-    /// @TODO: cargar datos del equipamiento
 
+    _editar = true;
+
+    this->setWindowTitle( "Editar Equipamiento" );
+    this->setWindowIcon( QIcon( ":/imagenes/equipamiento_editar.png" ) );
+
+    if( _mequipamiento == 0 ) {
+        _mequipamiento = new MEquipamiento( this );
+    }
+
+    if( !_mequipamiento->existe( _id ) ) {
+        qWarning( "El equipamiento no existe!" );
+        return;
+    }
+
+    _mequipamiento->cargarDatos( _id );
+    LEDescripcion->setText( _mequipamiento->descripcion() );
+    CBMarca->setearTexto( _mequipamiento->marca() );
+    LEModelo->setText( _mequipamiento->modelo() );
+    CBCliente->setearId( _mequipamiento->idCliente() );
+    LENumSerie->setText( _mequipamiento->numeroSerie() );
+    SBCantidadElementos->setValue( _mequipamiento->cantidadElementos() );
+    PTEObservaciones->setPlainText( _mequipamiento->observaciones() );
+    CkBBaja->setChecked( _mequipamiento->dadoDeBaja() );
   }
 }
 

@@ -116,7 +116,7 @@ void VEquipamiento::darBaja()
         QMessageBox::information( this, "Error", QString::fromUtf8( "Por favor, seleccione algún equipamiento para dar de baja" ) );
         return;
     }
-    if( QMessageBox::question( this, "¿Está seguro?", "Está seguro que desea dar de baja estos equpamientos?" ) != QMessageBox::Ok ) {
+    if( QMessageBox::question( this, "¿Está seguro?", "Está seguro que desea dar de baja estos equipamientos?" ) != QMessageBox::Ok ) {
         return;
     }
     MEquipamiento *mequipamiento = new MEquipamiento();
@@ -125,7 +125,7 @@ void VEquipamiento::darBaja()
         QString razon = QInputDialog::getText( this, QString::fromUtf8( "Razón" ), QString::fromUtf8( "Razón:" ), QLineEdit::Normal, QString(), &ok );
         if( ok ) {
             if( !razon.isEmpty() ) {
-                razon.append( "Razón desconocida" );
+                razon.append( QString::fromUtf8( "Razón desconocida" ) );
             }
             int id_equipamiento = modelo->data( modelo->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
             if( mequipamiento->darDeBaja( id_equipamiento, razon ) ) {
@@ -133,6 +133,29 @@ void VEquipamiento::darBaja()
             } else {
                 QMessageBox::information( this, "Incorrecto", "El equipamiento no se pudo dar de baja" );
             }
+        }
+    }
+    delete mequipamiento;
+    modelo->select();
+}
+
+void VEquipamiento::darAlta()
+{
+    QModelIndexList lista = this->vista->selectionModel()->selectedRows();
+    if( lista.size() <= 0 ) {
+        QMessageBox::information( this, "Error", QString::fromUtf8( "Por favor, seleccione algún equipamiento para dar de baja" ) );
+        return;
+    }
+    if( QMessageBox::question( this, "¿Está seguro?", "Está seguro que desea dar de alta estos equipamientos?" ) != QMessageBox::Ok ) {
+        return;
+    }
+    MEquipamiento *mequipamiento = new MEquipamiento();
+    foreach( QModelIndex indice, lista ) {
+        int id_equipamiento = modelo->data( modelo->index( indice.row(), 0 ), Qt::DisplayRole ).toInt();
+        if( mequipamiento->darReAlta( id_equipamiento ) ) {
+            QMessageBox::information( this, "Correcto", "El equipamiento se pudo dar de baja correctamente" );
+        } else {
+            QMessageBox::information( this, "Incorrecto", "El equipamiento no se pudo dar de baja" );
         }
     }
     delete mequipamiento;
