@@ -30,16 +30,6 @@ QDialog( parent )
 }
 
 /*!
- * \brief DAgregarGarantia::setearIdComprontante
- * \param id_comprobante Identificador del comprobante de la garantía
- */
-void DAgregarGarantia::setearIdComprontante( const int id_comprobante )
-{
-    _id_comprobante = id_comprobante;
-    LEFactura->setText( QString( "#%1").arg( id_comprobante ) );
-}
-
-/*!
  * \brief DAgregarGarantia::setearIdProducto
  * \param id_producto Identificador del producto
  */
@@ -68,6 +58,8 @@ void DAgregarGarantia::setearNombreProducto( const QString nombre_producto )
  */
 void DAgregarGarantia::setearIdCliente( const int id_cliente )
 {
+    _id_cliente = id_cliente;
+    CBCliente->setearId( id_cliente );
 }
 
 /*!
@@ -76,6 +68,18 @@ void DAgregarGarantia::setearIdCliente( const int id_cliente )
  */
 void DAgregarGarantia::setearIdComprobante( const int id_comprobante )
 {
+    _id_comprobante = id_comprobante;
+    LEFactura->setText( MFactura::obtenerComprobante( _id_comprobante ).aCadena() );
+    DECompra->setDate( MFactura::obtenerFecha( _id_comprobante ) );
+
+    preferencias *p = preferencias::getInstancia();
+    p->inicio();
+    p->beginGroup( "Preferencias" );
+    p->beginGroup( "Garantias" );
+    DEFin->setDate( DECompra->date().addMonths( p->value( "duracion_garantia" ).toInt() ) );
+    p->endGroup();
+    p->endGroup();
+    p=0;
 }
 
 /*!
@@ -109,7 +113,9 @@ void DAgregarGarantia::changeEvent(QEvent *e)
  */
 void DAgregarGarantia::buscarEquipamientos( int id_cliente )
 {
+    _id_cliente = id_cliente;
     if( MEquipamiento::existeEquipamientoParaCliente( id_cliente ) ) {
+        /// @TODO: Agregar listado temporal dentro de este elemento para que conserve el producto
         CBEquipamiento->setearFiltro( QString( " WHERE id_cliente = %1" ).arg( id_cliente ), true  );
     } else {
         CBEquipamiento->setEditable( true );
@@ -134,15 +140,5 @@ void DAgregarGarantia::buscarFactura( int id_equipamiento )
         return;
     }
 
-    LEFactura->setText( MFactura::obtenerComprobante( modelo->numeroComprobante() ).aCadena() );
-    DECompra->setDate( MFactura::obtenerFecha( modelo->numeroComprobante() ) );
-
-    preferencias *p = preferencias::getInstancia();
-    p->inicio();
-    p->beginGroup( "Preferencias" );
-    p->beginGroup( "Garantias" );
-    DEFin->setDate( DECompra->date().addMonths( p->value( "duracion_garantia" ).toInt() ) );
-    p->endGroup();
-    p->endGroup();
-    p=0;
+    setearIdComprobante( modelo->numeroComprobante() );
 }

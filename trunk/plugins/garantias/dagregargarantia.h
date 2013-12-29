@@ -11,7 +11,7 @@ class DAgregarGarantia : public QDialog, private Ui::DAgregarGarantia
     
 public:
     DAgregarGarantia( QWidget *parent = 0 );
-    void setearIdComprontante( const int id_comprobante );
+    void setearIdComprobantante( const int id_comprobante );
     void setearIdProducto( const int id_producto );
     void setearNombreProducto( const QString nombre_producto );
     void setearIdCliente( const int id_cliente );

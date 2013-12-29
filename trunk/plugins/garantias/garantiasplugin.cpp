@@ -155,6 +155,7 @@ void GarantiasPlugin::verGarantias()
     emit agregarVentana( new VGarantias() );
 }
 
+#include "dagregargarantia.h"
 /*!
  * \brief GarantiasPlugin::agregarGarantia
  * \param id_comprobante
@@ -164,10 +165,14 @@ void GarantiasPlugin::verGarantias()
  */
 void GarantiasPlugin::agregarGarantia(int id_comprobante, int id_producto, QString nombre_producto, int id_cliente)
 {
-    /// @TODO: Agregar garantia cuando es llamado desde otro lado
+    DAgregarGarantia *d = new DAgregarGarantia();
+    d->setearIdCliente( id_cliente );
+    d->setearIdComprobante( id_comprobante );
+    d->setearIdProducto( id_producto );
+    d->setearNombreProducto( nombre_producto );
+    d->exec();
 }
 
-#include "dagregargarantia.h"
 /*!
  * \brief GarantiasPlugin::agregarGarantia
  */

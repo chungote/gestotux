@@ -32,8 +32,12 @@ EVLista( parent )
 
     ActDarAlta = new QAction( this );
     ActDarAlta->setText( "Alta" );
+    ActDarAlta->setIcon( QIcon( ":/imagenes/equipamiento_agregar.png" ) );
     ActDarAlta->setStatusTip( "Da de alta nuevamente el equipamiento seleccionado" );
     connect( ActDarAlta, SIGNAL( triggered() ), this, SLOT( darAlta() ) );
+
+    ActDarBaja->setIcon( QIcon( ":/imagenes/equipamiento_baja.png" ) );
+    ActAgregar->setIcon( QIcon( ":/imagenes/equipamiento_agregar.png" ) );
 
     addAction( ActAgregar   );
     addAction( ActModificar );
