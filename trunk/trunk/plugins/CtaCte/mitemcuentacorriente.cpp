@@ -47,7 +47,7 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool saldos )
  this->_saldo = saldos;
  _num_cuenta = "";
  this->sort( 1, Qt::DescendingOrder );
- connect( this, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), this, SLOT( actualizarSaldo( QModelIndex, QModelIndex ) ) );
+ connect( this, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), this, SLOT( actualizarSaldos( QModelIndex, QModelIndex ) ) );
 }
 
 

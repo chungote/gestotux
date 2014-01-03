@@ -369,8 +369,15 @@ void FormResumenCtaCte::pagarFactura()
         int id_pos = TVItems->selectionModel()->selectedRows().first().row();
         int id_factura = modeloItem->data( modeloItem->index( id_pos, 2 ), Qt::EditRole ).toInt();
         // Verifico que la factura no este pagada
-        /// @TODO: Verificar que la factura no esté pagada ya
-        qWarning( "No implementada verificacion de si la factura se encuentra pagada o no..." );
+        if( MPagos::verificarFacturaPagada( MFactura::obtenerComprobante( id_factura ).aCadena() ) ) {
+            if( QMessageBox::information( this,
+                                      QString::fromUtf8( "Ya pagada" ),
+                                      QString::fromUtf8( "La factura parece ya estar pagada. Desea emitir un pago igualmente?" ),
+                                      QMessageBox::Yes,
+                                      QMessageBox::No ) == QMessageBox::No ) {
+                return;
+            }
+        }
         // Busco los detalles de la factura
         QString texto_recibo = QString( "Pago de la factura %1" ).arg( MFactura::obtenerComprobante( id_factura ).aCadena() );
         double total = MFactura::obtenerTotal( id_factura );

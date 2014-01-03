@@ -76,6 +76,8 @@ public:
     static NumeroComprobante &proximoSerieNumeroRecibo();
     static NumeroComprobante &buscarNumeroComprobantePorId( const int id_recibo );
 
+    static bool verificarFacturaPagada( const QString numero );
+
     void setearId( const int id );
     QDate getFecha();
     int getIdCliente();
