@@ -735,6 +735,34 @@ NumeroComprobante &MPagos::buscarNumeroComprobantePorId( const int id_recibo )
     return *invalido;
 }
 
+/*!
+ * \brief MPagos::verificarFacturaPagada
+ * Busca en las descripciones de los recibos para encontrar el identificador de la factua y la palabra factura
+ * \param numero Numero de compobante de la factura.
+ * \returns
+ */
+bool MPagos::verificarFacturaPagada( const QString numero )
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT COUNT(texto) FROM recibos WHERE texto LIKE '%%1%'" ).arg( numero ) ) ) {
+        if( cola.next() ) {
+            if( cola.record().value(0).toInt() > 0 ) {
+                return true;
+            }
+        }
+    } else {
+        qWarning( "Error al ejecutar la cola de averiguacion de factura pagada" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return false;
+}
+
+/*!
+ * \brief MPagos::setearId
+ * Carga los datos en la variable _registro con los elementos del recibo pasado como paremtro
+ * \param id Identificador del recibo
+ */
 void MPagos::setearId( const int id )
 {
     if( id > 0 ) {
@@ -757,6 +785,10 @@ void MPagos::setearId( const int id )
 
 }
 
+/*!
+ * \brief MPagos::getFecha
+ * \return
+ */
 QDate MPagos::getFecha()
 {
     if( _id_actual <= 0 )
@@ -765,6 +797,10 @@ QDate MPagos::getFecha()
     return _registro.value( "fecha_pago" ).toDate();
 }
 
+/*!
+ * \brief MPagos::getIdCliente
+ * \return
+ */
 int MPagos::getIdCliente()
 {
     if( _id_actual <= 0 )
@@ -773,6 +809,10 @@ int MPagos::getIdCliente()
     return _registro.value( "id_cliente" ).toInt();
 }
 
+/*!
+ * \brief MPagos::getTexto
+ * \return
+ */
 QString MPagos::getTexto()
 {
     if( _id_actual <= 0 )
@@ -781,6 +821,10 @@ QString MPagos::getTexto()
     return _registro.value( "texto" ).toString();
 }
 
+/*!
+ * \brief MPagos::getTotal
+ * \return
+ */
 double MPagos::getTotal()
 {
     if( _id_actual <= 0 )
@@ -789,6 +833,10 @@ double MPagos::getTotal()
     return _registro.value( "precio" ).toDouble();
 }
 
+/*!
+ * \brief MPagos::getFormaPago
+ * \return
+ */
 MPagos::FormaPago MPagos::getFormaPago()
 {
     if( _id_actual <= 0 )
