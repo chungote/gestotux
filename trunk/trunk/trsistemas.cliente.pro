@@ -9,6 +9,8 @@ SUBDIRS = utiles/utiles.pro \
           reporte/reporte.pro \
           utiles/estilos/estilos.pro \
           plugins/productos/productos.pro \
+          plugins/descuentos/descuentos.pro \
+          plugins/remitos/remitos.pro \
           plugins/servicios/servicios.pro \
           plugins/pagos/pagos.pro \
           plugins/CtaCte/CtaCte.pro \

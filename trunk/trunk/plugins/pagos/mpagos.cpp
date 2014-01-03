@@ -303,7 +303,7 @@ int MPagos::agregarRecibo(int id_cliente, QDate fecha, QString contenido, double
                         }
                     }
                 } else {
-                    //qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
+                    qDebug( "No se agrego item de ctacte por no estar pagado el recibo" );
                 }
             }
 

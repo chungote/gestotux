@@ -66,6 +66,7 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         TVItems->setSelectionBehavior( QAbstractItemView::SelectRows );
         TVItems->horizontalHeader()->setResizeMode( QHeaderView::ResizeToContents );
         TVItems->horizontalHeader()->setResizeMode( 4, QHeaderView::Stretch );
+        TVItems->horizontalHeader()->setResizeMode( 9, QHeaderView::Interactive );
         TVItems->setTextElideMode( Qt::ElideRight );
         //TVItems->setSortingEnabled( true );
         /// Menu contextual para cada operacion de la cuenta corriente
@@ -116,7 +117,6 @@ FormResumenCtaCte::FormResumenCtaCte ( QWidget* parent, Qt::WFlags fl )
         this->addAction( ActFiltrar );
         //this->addAction( ActBuscar );
         this->addAction( new EActCerrar( this ) );
-
 
 }
 
