@@ -46,7 +46,8 @@ MItemCuentaCorriente::MItemCuentaCorriente(QObject *parent, bool saldos )
  this->saldos->clear();
  this->_saldo = saldos;
  _num_cuenta = "";
- this->sort( 1, Qt::AscendingOrder );
+ this->sort( 1, Qt::DescendingOrder );
+ connect( this, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), this, SLOT( actualizarSaldo( QModelIndex, QModelIndex ) ) );
 }
 
 
@@ -180,7 +181,7 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 5:
                         case 6:
                         {
-                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item, role).toDouble(), 10, 'f', 3 );
+                                return QString( "$ %L1" ).arg( QSqlRelationalTableModel::data(item, role).toDouble(), 10, 'f', 2 );
                                 break;
                         }
                         case 1:
@@ -191,22 +192,21 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 9:
                         {
                                 // Genero el saldo si no esta generado.
-                                if( _saldo && !saldos->keys().contains( item.row() ) )
+                                if( _saldo && item.row() == this->rowCount() - 1 )
                                 {
-                                        // Calcular el saldo
-                                        if( item.row() >= 1 )
-                                        {
-                                                saldos->insert( item.row(),
-                                                        saldos->value(item.row()-1) -
-                                                        this->data( this->index( item.row(), 6 ), Qt::EditRole ).toDouble() +
-                                                        this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() );
-                                        } else {
-                                            saldos->insert( item.row(),
-                                                    0 - this->data( this->index( item.row(), 6 ), Qt::EditRole ).toDouble() +
-                                                    this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble() );
-                                        }
+                                    saldos->insert( item.row(),
+                                                    this->data( this->index( item.row(), 6 ), Qt::EditRole ).toDouble() +
+                                                    this->data( this->index( item.row(), 5 ), Qt::EditRole ).toDouble()
+                                                   );
+                                    for( int i = this->rowCount() - 2; i>= 0; i-- ) {
+                                        saldos->insert( i,
+                                                        saldos->value( i + 1 ) -
+                                                        this->data( this->index( i, 6 ), Qt::EditRole ).toDouble() +
+                                                        this->data( this->index( i, 5 ), Qt::EditRole ).toDouble()
+                                                       );
+                                    }
                                 }
-                                return QString( "$ %L1" ).arg( saldos->value( item.row() ), 10, 'f', 3 );
+                                return QString( "$ %L1" ).arg( saldos->value( item.row() ), 10, 'f', 2 );
                                 break;
                         }
                         default:
@@ -225,11 +225,16 @@ QVariant MItemCuentaCorriente::data(const QModelIndex& item, int role) const
                         case 1:
                         case 2:
                         case 3:
+                        {
+                                return int( Qt::AlignCenter | Qt::AlignVCenter );
+                                break;
+                        }
                         case 5:
                         case 6:
                         case 9:
+                        case 10:
                         {
-                                return int( Qt::AlignCenter | Qt::AlignHCenter );
+                                return int( Qt::AlignRight | Qt::AlignVCenter );
                                 break;
                         }
                         default:
@@ -286,6 +291,24 @@ bool MItemCuentaCorriente::seleccionarNumCuenta( const QString &num_cuenta )
       }
   }
   return true;
+}
+
+void MItemCuentaCorriente::actualizarSaldos( QModelIndex idx_inicio, QModelIndex idx_fin )
+{
+    for( int i = idx_inicio.row(); i<=idx_fin.row(); i++ ) {
+        if( i == rowCount() ) {
+            saldos->insert( 0, this->data( this->index( i, 6 ), Qt::EditRole ).toDouble() +
+                    this->data( this->index( i, 5 ), Qt::EditRole ).toDouble() );
+            emit dataChanged( this->index( i-1, 9 ), this->index( i-1, 9 ) );
+        } else {
+            saldos->insert( i, saldos->value(i+1) -
+                    this->data( this->index( i, 6 ), Qt::EditRole ).toDouble() +
+                    this->data( this->index( i, 5 ), Qt::EditRole ).toDouble() );
+            if( i != 0 ) {
+                emit dataChanged( this->index( i, 9 ), this->index( i-1, 9 ) );
+            }
+        }
+    }
 }
 
 /*!

@@ -63,6 +63,9 @@ public:
     int columnCount(const QModelIndex &parent) const;
     bool seleccionarNumCuenta( const QString &num_cuenta );
 
+private slots:
+    void actualizarSaldos( QModelIndex idx_inicio, QModelIndex idx_fin );
+
 private:
     QHash<int, double> *saldos;
     bool _saldo;
