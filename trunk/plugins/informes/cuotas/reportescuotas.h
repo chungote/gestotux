@@ -19,6 +19,7 @@ protected slots:
     void resumenCuotasDeudaHistorica();
     void resumenCuotasMes();
     void resumenCuotasCliente();
+    void seCierraGestotux(){}
 
 signals:
     void agregarVentana( QWidget * );
