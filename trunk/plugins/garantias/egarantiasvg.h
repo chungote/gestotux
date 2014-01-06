@@ -31,6 +31,7 @@ private:
     QByteArray obtenerByteArray();
     void hacerText( QString texto, QDomNode padre, const double ancho, double x, double y );
     double anchoCaracter( QString car );
+    QString generarNumeroGarantia( int num_recibo );
 
 };
 
