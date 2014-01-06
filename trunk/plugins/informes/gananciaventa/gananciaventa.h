@@ -19,6 +19,7 @@ protected slots:
     void hacerResumenTotal();
     void hacerResumenFechas();
     void hacerResumenDia();
+    void seCierraGestotux() {}
 
 signals:
     void agregarVentana( QWidget * );
