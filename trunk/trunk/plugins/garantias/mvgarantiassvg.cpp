@@ -11,13 +11,18 @@ MVGarantiasSvg::MVGarantiasSvg(QObject *parent) :
     setTable( "v_garantia_svg" );
 }
 
-QSqlRecord MVGarantiasSvg::obtenerRegistro(const int id_garantia)
+QSqlRecord MVGarantiasSvg::obtenerRegistro( const int id_garantia )
 {
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT * FROM %2 WHERE id_garantia = %1" ).arg( id_garantia ).arg( tableName() ) ) ) {
-        return cola.record();
+        if( cola.next() ) {
+            return cola.record();
+        } else {
+            qWarning() << "No existe el registro buscado de garantia para imprimir";
+            qDebug() << cola.lastQuery();
+        }
     } else {
-        qWarning() << "Error al ejecutar la cola de baja de garantia";
+        qWarning() << "Error al ejecutar la cola de averiguacion de datos de garantia";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
     }

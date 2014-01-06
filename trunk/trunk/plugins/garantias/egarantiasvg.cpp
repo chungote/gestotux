@@ -16,6 +16,9 @@
 #include <QTextStream>
 #include <QPrinter>
 
+#include <QApplication>
+#include <QDir>
+
 EGarantiaSVG::EGarantiaSVG(QObject *parent) :
     QObject(parent)
 {
@@ -29,7 +32,7 @@ EGarantiaSVG::EGarantiaSVG(QObject *parent) :
     _mapa["FechaOriginalAno"] = "ano";
     _mapa["NumeroGarantiaOriginal"] = "numero_garantia";
     _mapa["ClienteOriginal"] = "razon_social";
-    _mapa["NombreProducto"] = "nombre_producto";
+    _mapa["NombreProductoOriginal"] = "nombre_producto";
     _mapa["NumeroSerieOriginal"] = "numero_serie";
     _mapa["NumeroComprobanteOriginal"] = "numero_comprobante";
     _mapa["FechaFinOriginal"] = "fecha_fin";
@@ -282,38 +285,72 @@ void EGarantiaSVG::cargarDatos()
                    break;
                }
                case QVariant::Date:
+               case QVariant::DateTime:
                {
                    texto = valor.toDate().toString( Qt::SystemLocaleShortDate );
                    break;
                }
-               case QVariant::DateTime:
+               /*case QVariant::DateTime:
                {
                    texto = valor.toDateTime().toString( Qt::SystemLocaleDate );
                    break;
-               }
+               }*/
                case QVariant::Double:
                {
                    texto = QString( "%L1" ).arg( valor.toDouble(), 8, 'f', 2, QLatin1Char(' ') );
+                   break;
                }
                default:
                {
                    texto = valor.toString();
+                   break;
                }
+           }
+           if( id == "NumeroGarantiaOriginal" || id == "NumeroGarantiaDuplicado" ) {
+               texto = generarNumeroGarantia( valor.toInt() );
            }
 
            // Lo coloco en el elemento
-           lista.item(i).firstChild().toText().setData( texto );
-           qDebug() << "Reemplazado " << id << " con datos de " << nombre_registro;
+           QDomNode nodo = lista.item(i);
+           if( nodo.firstChild().isText() ) {
+               nodo = nodo.firstChild();
+           } else {
+               nodo = nodo.firstChild().firstChild();
+           }
+           nodo.toText().setData( texto );
+           //qDebug() << "Reemplazado " << id << " con datos de " << nombre_registro << " con " << texto;
        }
      }
 
     _valido = true;
 
-     QFile arch( "salida.svg" );
+    /*QFile arch( QApplication::applicationDirPath() + QDir::separator() + "salida.svg" );
      arch.open( QIODevice::WriteOnly );
      QTextStream s( &arch );
      s << _domdoc.toByteArray();
      arch.flush();
-     arch.close();
+     arch.close(); */
 
+}
+
+QString EGarantiaSVG::generarNumeroGarantia( int num_recibo )
+{
+  QString t1 = QString::number( num_recibo );
+  if( t1.length() < 6 )
+  {
+   for( int i = t1.length(); i<=6; i++ )
+   {
+    t1.prepend( "0" );
+   }
+   return t1;
+  }
+  else
+  {
+   for( int i = t1.length(); i<=10; i++ )
+   {
+    t1.prepend( "0" );
+   }
+   t1.insert( 4, '-' );
+   return t1;
+  }
 }
