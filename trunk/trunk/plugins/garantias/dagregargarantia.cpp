@@ -87,6 +87,11 @@ void DAgregarGarantia::setearIdComprobante( const int id_comprobante )
  */
 void DAgregarGarantia::accept()
 {
+    _id_cliente = CBCliente->idClienteActual();
+    //_id_comprobante = LEFactura->text();
+    _id_producto = CBEquipamiento->idActual();
+    _nombre_producto = CBEquipamiento->currentText();
+
     if( _id_cliente == -1 || _id_comprobante == -1 || _id_producto == -1 || _nombre_producto.isEmpty() ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "No se setearon correctamente los datos" ) );
     }
@@ -94,6 +99,10 @@ void DAgregarGarantia::accept()
     QDialog::accept();
 }
 
+/*!
+ * \brief DAgregarGarantia::changeEvent
+ * \param e
+ */
 void DAgregarGarantia::changeEvent(QEvent *e)
 {
     QDialog::changeEvent(e);

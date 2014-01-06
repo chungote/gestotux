@@ -5,6 +5,7 @@
         <file>imagenes/garantia_vencimiento.png</file>
         <file>imagenes/garantia_cancelar.png</file>
         <file>imagenes/garantia_eliminar.png</file>
+        <file>imagenes/garantia.svg</file>
     </qresource>
     <qresource prefix="/sql">
         <file>garantias.QMYSQL.sql</file>

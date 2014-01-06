@@ -9,18 +9,23 @@ CONFIG += plugin \
 TARGET = garantias
 
 QT += xml \
-      network
+      network \
+      svg
 
 HEADERS += garantiasplugin.h \
            vgarantias.h \
            mgarantias.h \
            dagregargarantia.h \
-           formprefgarantias.h
+           formprefgarantias.h \
+    egarantiasvg.h \
+    mvgarantiassvg.h
 SOURCES += garantiasplugin.cpp \
            vgarantias.cpp \
            mgarantias.cpp \
            dagregargarantia.cpp \
-           formprefgarantias.cpp
+           formprefgarantias.cpp \
+    egarantiasvg.cpp \
+    mvgarantiassvg.cpp
 
 DESTDIR = ../../bin/plugins
 
@@ -50,5 +55,4 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lordentrabajo \
-        -lventas
+        -lordentrabajo

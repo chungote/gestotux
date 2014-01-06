@@ -82,7 +82,7 @@ void InformesPlugin::crearToolBar(QToolBar*)
 
 void InformesPlugin::seCierraGestotux()
 {
-    /// @TODO: Ver si emitir señal a los plugins de informes
+    emit seCierraGestotuxSignal();
 }
 
 void InformesPlugin::actualizar()
@@ -136,6 +136,7 @@ bool InformesPlugin::cargarPluginsInformes()
 		if( plug->inicializar() )
 		{
 			connect( obj, SIGNAL( agregarVentana( QWidget * ) ), this, SIGNAL( agregarVentana( QWidget * ) ) );
+                        connect( this, SIGNAL( seCierraGestotuxSignal() ), obj, SLOT( seCierraGestotux() ) );
 			_plugins->insert( plug->nombre(), plug );
                         qDebug( QString( "Cargando Informe Plugin: %1" ).arg( pluginsDir.absoluteFilePath( fileName )).toLocal8Bit() );
 		}
