@@ -3,8 +3,12 @@
 #include <QTableView>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPrinterInfo>
 
-#include "EReporte.h"
+#include "egarantiasvg.h"
+#include "mvgarantiassvg.h"
 
 VGarantias::VGarantias(QWidget *parent) :
     EVLista(parent)
@@ -49,41 +53,60 @@ void VGarantias::agregar(bool)
     d->exec();
 }
 
+/*!
+ * \brief VGarantias::imprimir
+ */
 void VGarantias::imprimir()
 {
     if( vista->selectionModel()->selectedRows().count() <= 0 ) {
-        QMessageBox::information( this, "Error", "Seleccione una garantía para volver a imprimir" );
+        QMessageBox::information( this, "Error", QString::fromUtf8( "Seleccione una garantía para volver a imprimir" ) );
         return;
     }
-    EReporte *rep = new EReporte( 0 );
-    rep->especial( "garantia", ParameterList() );
-    foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
-        int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
-        ParameterList lista;
-        lista.append( "id_garantia", id_garantia );
-        rep->setearParametros( lista );
-        rep->imprimir( 0 );
+
+    #ifndef QT_NO_PRINTER
+     QPrinter printer( QPrinter::HighResolution );
+    #endif
+    #ifdef QT_WS_WIN
+      printer.setOutputFormat( QPrinter::NativeFormat );
+    #endif
+    QPrintDialog printDialog( &printer, this );
+
+    MVGarantiasSvg modelo_svg;
+    if (printDialog.exec() == QDialog::Accepted) {
+         foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
+             int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+             EGarantiaSVG svg;
+             svg.setearRegistro( modelo_svg.obtenerRegistro( id_garantia ) );
+             svg.cargarDatos();
+             svg.imprimir( &printer );
+         }
     }
-    delete rep;
-    rep = 0;
 }
 
+/*!
+ * \brief VGarantias::aPdf
+ */
 void VGarantias::aPdf()
 {
     if( vista->selectionModel()->selectedRows().count() <= 0 ) {
-        QMessageBox::information( this, "Error", "Seleccione una garantía para pasar a pdf" );
+        QMessageBox::information( this, "Error", QString::fromUtf8( "Seleccione una garantía para pasar a pdf" ) );
         return;
     }
-    EReporte *rep = new EReporte( 0 );
-    rep->especial( "garantia", ParameterList() );
-    foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
-        int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
-        ParameterList lista;
-        lista.append( "id_garantia", id_garantia );
-        rep->hacerPDF( lista );
+    MVGarantiasSvg modelo_svg;
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog printDialog( &printer, this );
+    if (printDialog.exec() == QDialog::Accepted) {
+         foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
+             int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+             EGarantiaSVG svg;
+             QSqlRecord registro = modelo_svg.obtenerRegistro( id_garantia );
+             svg.setearRegistro( registro );
+             svg.cargarDatos();
+             QString nombre_archivo = QString( "Garantia #%1" ).arg( registro.value("id_garantia" ).toString() );
+             printer.setOutputFileName( nombre_archivo );
+             svg.imprimir( &printer );
+         }
     }
-    delete rep;
-    rep = 0;
 }
 
 /*!

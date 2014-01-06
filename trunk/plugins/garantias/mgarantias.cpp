@@ -131,4 +131,3 @@ bool MGarantias::eliminar( const int id_garantia )
     }
     return false;
 }
-

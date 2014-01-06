@@ -41,6 +41,7 @@ public:
     virtual bool inicializar() = 0;
     virtual void hacerMenu( QMenu *m ) = 0;
     virtual void agregarVentana( QWidget * ) = 0;
+    virtual void seCierraGestotux() = 0;
 };
 
 Q_DECLARE_INTERFACE( EInformeInterface,
