@@ -1,7 +1,12 @@
 TEMPLATE = subdirs
-SUBDIRS +=  caja \
+SUBDIRS +=  CtaCte/CtaCteLib.pro \
+            ventas/VentasLib.pro \
+            remitos/RemitosLib.pro \
+            caja \
             gastos \
             compras \
+            cuotas \
+            remitos \
             ventas \
             proveedor \
             productos \
@@ -17,6 +22,4 @@ SUBDIRS +=  caja \
             ordentrabajo \
             garantias \
             backupremoto \
-            remitos \
-            cuotas \
             email

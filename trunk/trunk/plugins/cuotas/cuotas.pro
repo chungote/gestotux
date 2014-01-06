@@ -83,8 +83,8 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lctacte \
+        -llibctacte \
         -lcaja \
-        -lremitos \
+        -llibremitos \
         -lpagos \
-        -lventas
+        -llibventas
