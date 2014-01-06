@@ -15,3 +15,10 @@ QT += sql
 TARGET = libremitos
 
 DESTDIR = ../../bin/plugins/
+
+INCLUDEPATH += ../../utiles \
+               ../productos \
+               ../../src \
+               ../CtaCte \
+               ../caja \
+               ../descuentos

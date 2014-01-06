@@ -17,6 +17,7 @@ public:
     
 protected slots:
     void hacerResumen();
+    void seCierraGestotux() {}
 
 signals:
     void agregarVentana( QWidget * );

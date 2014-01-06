@@ -11,10 +11,10 @@ TARGET = libctacte
 
 DESTDIR = ../../bin/plugins/
 
-HEADERS += cuentacorrienteplugin.h \
-           mcuentacorriente.h \
+HEADERS += mcuentacorriente.h \
            mitemcuentacorriente.cpp
 
-SOURCES += cuentacorrienteplugin.cpp \
-           mcuentacorriente.cpp \
+SOURCES += mcuentacorriente.cpp \
            mitemcuentacorriente.cpp
+
+INCLUDEPATH += ../../utiles
