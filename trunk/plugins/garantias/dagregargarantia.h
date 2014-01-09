@@ -34,7 +34,7 @@ private:
 
     QString _nombre_producto;
 
-    MEquipamiento *modelo;
+    MEquipamiento *modelo_equipamiento;
 };
 
 #endif // DAGREGARGARANTIA_H

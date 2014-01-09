@@ -1,11 +1,17 @@
 #include "dagregargarantia.h"
 
 #include <QMessageBox>
+#include <QPrintDialog>
+#include <QPrinter>
+#include <QRegExp>
 
 #include "mequipamiento.h"
 #include "ecbequipamiento.h"
 #include "MFactura.h"
 #include "preferencias.h"
+#include "egarantiasvg.h"
+#include "mvgarantiassvg.h"
+#include "mgarantias.h"
 
 DAgregarGarantia::DAgregarGarantia( QWidget *parent ) :
 QDialog( parent )
@@ -87,13 +93,76 @@ void DAgregarGarantia::setearIdComprobante( const int id_comprobante )
  */
 void DAgregarGarantia::accept()
 {
-    _id_cliente = CBCliente->idClienteActual();
-    //_id_comprobante = LEFactura->text();
-    _id_producto = CBEquipamiento->idActual();
-    _nombre_producto = CBEquipamiento->currentText();
+    if( _id_cliente == -1 )
+        _id_cliente = CBCliente->idClienteActual();
+
+    if( _id_producto == -1 )
+        _id_producto = CBEquipamiento->idActual();
+
+    if( _nombre_producto.isEmpty() )
+        _nombre_producto = CBEquipamiento->currentText();
+
+    if( _id_comprobante == -1 ) {
+        // Si no esta seteado significa que el elemento corresponde a una factura ingresada manualmente
+        // o que fallo la cola de averiguacion
+        if( LEFactura->text().isEmpty() ) {
+            // No tiene numero de factura
+            _id_comprobante = 0; // Para que se pueda guardar igualmente
+        } else {
+            // Tiene forma de expresion regular?
+            QRegExp expresion( "^#{0,1}\\d{5}\\-{1}\\d{5}$" );
+            if( expresion.indexIn( LEFactura->text() ) == -1 ) {
+                QMessageBox::information( this,
+                                          QString::fromUtf8( "No coincide" ),
+                                          QString::fromUtf8( "El contenido del numero de factura no parece valido. No se buscará el numero de comprobante" ) );
+            } else {
+                /// @TODO: Buscar numeros de comprobante
+            }
+        }
+    }
 
     if( _id_cliente == -1 || _id_comprobante == -1 || _id_producto == -1 || _nombre_producto.isEmpty() ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "No se setearon correctamente los datos" ) );
+    }
+
+    if( !QSqlDatabase::database().transaction() ) {
+        QMessageBox::information( this, "Error", "No se pudo empezar la transacción" );
+        return;
+    }
+
+    MGarantias modelo;
+    int id_garantia = modelo.agregarGarantia( _id_cliente,
+                                              _nombre_producto,
+                                              DECompra->date(),
+                                              DEFin->date(),
+                                              CBEquipamiento->idActual(),
+                                              _id_producto,
+                                              _id_comprobante );
+
+    if( id_garantia == -1 ) {
+        QMessageBox::information( this, "Error", "No se pudo guardar la garantía" );
+        QSqlDatabase::database().rollback();
+        return;
+    }
+
+
+    if( !QSqlDatabase::database().commit() ) {
+        QMessageBox::information( this, "Error", "No se pudo hacer el commit" );
+        return;
+    } else {
+        // Imprimo la nueva garantia
+        EGarantiaSVG svg;
+        MVGarantiasSvg msvg;
+        svg.setearRegistro( msvg.obtenerRegistro( id_garantia ) );
+        svg.cargarDatos();
+
+        QPrinter printer;
+
+        QPrintDialog *dialog = new QPrintDialog( &printer, this );
+        dialog->setWindowTitle( QString::fromUtf8( "Imprimir garantía" ) );
+        if( dialog->exec() != QDialog::Accepted ) {
+            svg.imprimir( &printer );
+        }
     }
     return;
     QDialog::accept();
@@ -142,12 +211,12 @@ void DAgregarGarantia::buscarFactura( int id_equipamiento )
     if( id_equipamiento <= 0 )
     { return; }
 
-    if( modelo != 0 )
-    { modelo = new MEquipamiento( this ); }
+    if( modelo_equipamiento != 0 )
+    { modelo_equipamiento = new MEquipamiento( this ); }
 
-    if( !modelo->cargarDatos( id_equipamiento ) ) {
+    if( !modelo_equipamiento->cargarDatos( id_equipamiento ) ) {
         return;
     }
 
-    setearIdComprobante( modelo->numeroComprobante() );
+    setearIdComprobante( modelo_equipamiento->numeroComprobante() );
 }
