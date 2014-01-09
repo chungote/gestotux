@@ -22,6 +22,9 @@ VGarantias::VGarantias(QWidget *parent) :
 
     vista->setModel( modelo );
     vista->hideColumn( 0 );
+    vista->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
+    vista->hideColumn( modelo->fieldIndex( "razon_baja" ) );
+    vista->hideColumn( modelo->fieldIndex( "id_producto" ) );
 
     modelo->select();
 
