@@ -19,7 +19,8 @@ HEADERS += garantiasplugin.h \
            formprefgarantias.h \
     egarantiasvg.h \
     mvgarantiassvg.h \
-    mvgarantias.h
+    mvgarantias.h \
+    formvencimientogarantias.h
 SOURCES += garantiasplugin.cpp \
            vgarantias.cpp \
            mgarantias.cpp \
@@ -27,7 +28,8 @@ SOURCES += garantiasplugin.cpp \
            formprefgarantias.cpp \
     egarantiasvg.cpp \
     mvgarantiassvg.cpp \
-    mvgarantias.cpp
+    mvgarantias.cpp \
+    formvencimientogarantias.cpp
 
 DESTDIR = ../../bin/plugins
 
@@ -49,7 +51,8 @@ OTHER_FILES += garantias.QMYSQL.sql \
                garantias.QSQLITE.sql
 
 FORMS += dagregargarantia.ui \
-    formprefgarantias.ui
+    formprefgarantias.ui \
+    formvencimientogarantias.ui
 
 QMAKE_LFLAGS += -Wl,-rpath,./plugins
 
