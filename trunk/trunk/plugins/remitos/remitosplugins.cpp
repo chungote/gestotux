@@ -136,6 +136,7 @@ void RemitoPlugin::agregarNuevoRemito()
     connect( f, SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ), this, SIGNAL( emitirPlanCuota( int, double, MPlanCuota::TipoComprobante ) ) );
     connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
     connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
+    connect( f, SIGNAL( emitirGarantia( int, int, QString, int ) ), this, SIGNAL( emitirGarantia( int, int, QString, int ) ) );
     emit agregarVentana( f );
 }
 
@@ -168,6 +169,7 @@ void RemitoPlugin::agregarRemito( int id_cliente, QDate fecha, MProductosTotales
     connect( f, SIGNAL( emitirPlanCuota( int, double ) ), this, SIGNAL( emitirPlanCuota( int, double ) ) );
     connect( this, SIGNAL( planCuotaSetearIdCuota( int ) ), f, SLOT( setearIdPlanCuota( int ) ) );
     connect( f, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ), this, SIGNAL( emitirPlanCuotaSetIdFactura( int, int ) ) );
+        connect( f, SIGNAL( emitirGarantia( int, int, QString, int ) ), this, SIGNAL( emitirGarantia( int, int, QString, int ) ) );
     emit agregarVentana( f );
 }
 

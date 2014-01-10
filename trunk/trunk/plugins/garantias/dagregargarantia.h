@@ -17,6 +17,7 @@ public:
     void setearNombreProducto( const QString nombre_producto );
     void setearIdCliente( const int id_cliente );
     void setearIdComprobante( const int id_comprobante );
+    void setearIdEquipamiento( const int id_equipamiento );
 
 signals:
     void actualizarModelos();
@@ -36,6 +37,7 @@ private:
     int _id_comprobante;
     int _id_producto;
     int _id_cliente;
+    int _id_equipamiento;
 
     QString _nombre_producto;
 

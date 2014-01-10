@@ -61,6 +61,7 @@ signals:
     void emitirPlanCuota( int, double, MPlanCuota::TipoComprobante );
     void planCuotaSetearIdCuota( int );
     void emitirPlanCuotaSetIdFactura( int, int );
+    void emitirGarantia( int, int, QString, int );
 
 public slots:
     void seCierraGestotux();

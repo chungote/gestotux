@@ -89,6 +89,16 @@ void DAgregarGarantia::setearIdComprobante( const int id_comprobante )
 }
 
 /*!
+ * \brief DAgregarGarantia::setearIdEquipamiento
+ * \param id_equipamiento
+ */
+void DAgregarGarantia::setearIdEquipamiento( const int id_equipamiento )
+{
+    _id_equipamiento = id_equipamiento;
+    CBEquipamiento->setearId( id_equipamiento );
+}
+
+/*!
  * \brief DAgregarGarantia::actualizarFechaFinGarantia
  * \param fecha
  */

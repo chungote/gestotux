@@ -208,6 +208,19 @@ void generarInterconexiones( QMainWindow *ventana_principal )
                           ventana_principal,
                           SLOT( editarCliente( int ) ) );
     }
+    // Estructura de señales para integración de ventas con garantias
+    if( egp->existePlugin( "ventas" ) && egp->existePlugin( "garantias" ) ) {
+       QObject::connect( egp->pluginQObject( "ventas"  ),
+                         SIGNAL( emitirGarantia( int, int, QString, int ) ),
+                         egp->pluginQObject( "garantias" ),
+                         SLOT( generarPlanCuotas( int, int, QString, int ) ) );
+    }
+    if( egp->existePlugin( "remitos" ) && egp->existePlugin( "garantias" ) ) {
+      QObject::connect( egp->pluginQObject( "remitos"  ),
+                        SIGNAL( emitirGarantia( int, int, QString, int ) ),
+                        egp->pluginQObject( "garantias" ),
+                        SLOT( generarPlanCuotas( int, int, QString, int ) ) );
+    }
 }
 
 /**

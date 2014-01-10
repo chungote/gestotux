@@ -381,6 +381,7 @@ void FormAgregarRemito::guardar()
            break;
     }
    }
+   /// @TODO: Agregar pregunta para garantía!
    this->close();
    return;
 
