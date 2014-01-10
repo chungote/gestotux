@@ -101,8 +101,8 @@ void GarantiasPlugin::crearMenu( QMenuBar *m )
  QMenu *menuGarantias = m->addMenu( "Garantias" );
  menuGarantias->addAction( ActGarantias );
  menuGarantias->addAction( ActAgregarGarantia );
- /*menuGarantias->addSeparator(); /// @TODO: Agregar esta acción cuando este implementado!
- menuGarantias->addAction( ActVerVencimientos );*/
+ menuGarantias->addSeparator();
+ menuGarantias->addAction( ActVerVencimientos );
 }
 
 /*!
@@ -186,12 +186,13 @@ void GarantiasPlugin::agregarGarantia()
     d->exec();
 }
 
+#include "formvencimientogarantias.h"
 /*!
  * \brief GarantiasPlugin::verVencimientos
  */
 void GarantiasPlugin::verVencimientos()
 {
-    /// @TODO: Ver garantias cerca a vencerse en una cierta fecha
+    emit agregarVentana( new FormVencimientoGarantias() );
 }
 
 /*!
