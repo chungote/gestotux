@@ -16,6 +16,7 @@ QWidget(parent)
     TVVencimientos->setModel( mgarantias );
 
     connect( DEFecha, SIGNAL( dateChanged( QDate ) ), this, SLOT( cambioFecha( QDate ) ) );
+    connect( CkBBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambioBaja( bool ) ) );
 
     DEFecha->setDate( QDate::currentDate() );
 
@@ -31,8 +32,24 @@ QWidget(parent)
  */
 void FormVencimientoGarantias::cambioFecha( QDate fecha )
 {
-    mgarantias->setFilter( QString( " fecha_fin <= %1" ).arg( fecha.toString( "Y-m-d" ) ) );
+    QString filtro;
+    filtro.append( " fecha_fin <= %1" ).arg( fecha.toString( "Y-m-d" ) );
+    if( CkBBaja->isChecked() ) {
+        filtro.append( " AND fecha_baja IS NOT NULL " );
+    } else {
+        filtro.append( " AND fecha_baja IS NULL" );
+    }
+    mgarantias->setFilter( filtro );
     mgarantias->select();
+}
+
+/*!
+ * \brief FormVencimientoGarantias::cambioBaja
+ * \param estado
+ */
+void FormVencimientoGarantias::cambioBaja( bool )
+{
+    cambioFecha( DEFecha->date() );
 }
 
 /*!
