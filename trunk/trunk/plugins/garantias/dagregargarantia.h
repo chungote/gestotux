@@ -4,6 +4,7 @@
 #include "../ordentrabajo/ecbequipamiento.h"
 #include "ui_dagregargarantia.h"
 class MEquipamiento;
+#include "NumeroComprobante.h"
 
 class DAgregarGarantia : public QDialog, private Ui::DAgregarGarantia
 {
@@ -17,6 +18,9 @@ public:
     void setearIdCliente( const int id_cliente );
     void setearIdComprobante( const int id_comprobante );
 
+signals:
+    void actualizarModelos();
+
 public slots:
     void accept();
     
@@ -26,6 +30,7 @@ protected:
 protected slots:
     void buscarEquipamientos( int id_cliente );
     void buscarFactura( int id_equipamiento );
+    void actualizarFechaFinGarantia( QDate fecha );
 
 private:
     int _id_comprobante;
@@ -33,6 +38,8 @@ private:
     int _id_cliente;
 
     QString _nombre_producto;
+
+    NumeroComprobante _proxima_garantia;
 
     MEquipamiento *modelo_equipamiento;
 };

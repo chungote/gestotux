@@ -2,7 +2,8 @@
 #define VGARANTIAS_H
 
 #include "evlista.h"
-#include "mgarantias.h"
+class MVGarantias;
+class MGarantias;
 
 class VGarantias : public EVLista
 {
@@ -16,10 +17,13 @@ protected slots:
     void aPdf();
     void eliminar();
     void darBaja();
+    void cambioBaja( bool estado );
 
 private:
     MGarantias *modelo;
+    MVGarantias *mgarantias;
     QAction *ActDarBaja;
+    QAction *ActVerBaja;
     
 };
 

@@ -120,6 +120,10 @@ bool GarantiasPlugin::verificarTablas( QStringList tablas )
     { qWarning() << "Error al buscar la tabla de equipamientos"; return false; }
     if( !tablas.contains( "garantias" ) )
     { qWarning() << "Error al buscar la tabla garantias"; return false; }
+    if( !tablas.contains( "v_garantias" ) )
+    { qWarning() << "Error al buscar la tabla v_garantias"; return false; }
+    if( !tablas.contains( "v_garantias_svg" ) )
+    { qWarning() << "Error al buscar la tabla v_garantias_svg"; return false; }
     return true;
 }
 

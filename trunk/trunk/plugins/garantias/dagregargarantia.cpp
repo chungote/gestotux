@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QDebug>
 #include <QRegExp>
 
 #include "mequipamiento.h"
@@ -12,9 +13,10 @@
 #include "egarantiasvg.h"
 #include "mvgarantiassvg.h"
 #include "mgarantias.h"
+#include "NumeroComprobante.h"
 
 DAgregarGarantia::DAgregarGarantia( QWidget *parent ) :
-QDialog( parent )
+QDialog( parent ), _proxima_garantia( this, -1, -1 )
 {
     setupUi(this);
     setWindowTitle( QString::fromUtf8( "Agegar nueva garantía" ) );
@@ -28,11 +30,16 @@ QDialog( parent )
     connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( buscarEquipamientos( int ) ) );
     connect( CBEquipamiento, SIGNAL( cambioId( int ) ), this, SLOT( buscarFactura( int ) ) );
 
+    connect( DECompra, SIGNAL( dateChanged( QDate ) ), this, SLOT( actualizarFechaFinGarantia( QDate ) ) );
     DECompra->setDate( QDate::currentDate() );
 
-    // Permito que se puedan insertar nuevos elementos en el combobox de equipamientos
-    //CBEquipamiento->setInsertionPolicy( QComboBox::InsertAlphabetically );
+    CkBImprimir->setChecked( true );
+    CkBAvisarEmail->setEnabled( false ); /// @TODO: Habilitar esto cuando se genere el sistema de alertas automaticas
 
+    LECodigoGarantia->setReadOnly( true );
+    LECodigoGarantia->setText( MGarantias::obtenerProximoComprobante().aCadena() );
+
+    this->adjustSize();
 }
 
 /*!
@@ -78,11 +85,19 @@ void DAgregarGarantia::setearIdComprobante( const int id_comprobante )
     LEFactura->setText( MFactura::obtenerComprobante( _id_comprobante ).aCadena() );
     DECompra->setDate( MFactura::obtenerFecha( _id_comprobante ) );
 
+    actualizarFechaFinGarantia( DECompra->date() );
+}
+
+/*!
+ * \brief DAgregarGarantia::actualizarFechaFinGarantia
+ * \param fecha
+ */
+void DAgregarGarantia::actualizarFechaFinGarantia( QDate fecha ) {
     preferencias *p = preferencias::getInstancia();
     p->inicio();
     p->beginGroup( "Preferencias" );
     p->beginGroup( "Garantias" );
-    DEFin->setDate( DECompra->date().addMonths( p->value( "duracion_garantia" ).toInt() ) );
+    DEFin->setDate( fecha.addMonths( p->value( "duracion_garantia", 6 ).toInt() ) );
     p->endGroup();
     p->endGroup();
     p=0;
@@ -108,21 +123,28 @@ void DAgregarGarantia::accept()
         if( LEFactura->text().isEmpty() ) {
             // No tiene numero de factura
             _id_comprobante = 0; // Para que se pueda guardar igualmente
+            _id_producto = 0;
         } else {
             // Tiene forma de expresion regular?
-            QRegExp expresion( "^#{0,1}\\d{5}\\-{1}\\d{5}$" );
+            QRegExp expresion( "^\\d{5}\\-{1}\\d{5}$" );
             if( expresion.indexIn( LEFactura->text() ) == -1 ) {
                 QMessageBox::information( this,
                                           QString::fromUtf8( "No coincide" ),
                                           QString::fromUtf8( "El contenido del numero de factura no parece valido. No se buscará el numero de comprobante" ) );
+                _id_comprobante = 0;
+                _id_producto = 0;
             } else {
                 /// @TODO: Buscar numeros de comprobante
+                _id_comprobante = 0;
+                _id_producto = 0;
             }
         }
     }
 
-    if( _id_cliente == -1 || _id_comprobante == -1 || _id_producto == -1 || _nombre_producto.isEmpty() ) {
+    if( _id_cliente == -1 || _id_comprobante == -1 || _id_producto == -1
+        || _nombre_producto.isEmpty() ) {
         QMessageBox::warning( this, "Error", QString::fromUtf8( "No se setearon correctamente los datos" ) );
+        return;
     }
 
     if( !QSqlDatabase::database().transaction() ) {
@@ -131,7 +153,8 @@ void DAgregarGarantia::accept()
     }
 
     MGarantias modelo;
-    int id_garantia = modelo.agregarGarantia( _id_cliente,
+    int id_garantia = modelo.agregarGarantia( MGarantias::obtenerProximoComprobante(),
+                                              _id_cliente,
                                               _nombre_producto,
                                               DECompra->date(),
                                               DEFin->date(),
@@ -150,21 +173,25 @@ void DAgregarGarantia::accept()
         QMessageBox::information( this, "Error", "No se pudo hacer el commit" );
         return;
     } else {
-        // Imprimo la nueva garantia
-        EGarantiaSVG svg;
-        MVGarantiasSvg msvg;
-        svg.setearRegistro( msvg.obtenerRegistro( id_garantia ) );
-        svg.cargarDatos();
 
-        QPrinter printer;
+        emit actualizarModelos();
 
-        QPrintDialog *dialog = new QPrintDialog( &printer, this );
-        dialog->setWindowTitle( QString::fromUtf8( "Imprimir garantía" ) );
-        if( dialog->exec() != QDialog::Accepted ) {
-            svg.imprimir( &printer );
+        if( CkBImprimir->isChecked() ) {
+            // Imprimo la nueva garantia
+            EGarantiaSVG svg;
+            MVGarantiasSvg msvg;
+            svg.setearRegistro( msvg.obtenerRegistro( id_garantia ) );
+            svg.cargarDatos();
+
+            QPrinter printer;
+
+            QPrintDialog *dialog = new QPrintDialog( &printer, this );
+            dialog->setWindowTitle( QString::fromUtf8( "Imprimir garantía" ) );
+            if( dialog->exec() != QDialog::Accepted ) {
+                svg.imprimir( &printer );
+            }
         }
     }
-    return;
     QDialog::accept();
 }
 
@@ -191,14 +218,16 @@ void DAgregarGarantia::changeEvent(QEvent *e)
  */
 void DAgregarGarantia::buscarEquipamientos( int id_cliente )
 {
+    if( id_cliente <= 0 ) { return; }
+    //qDebug() << "Numero de cliente: "<<id_cliente;
     _id_cliente = id_cliente;
-    if( MEquipamiento::existeEquipamientoParaCliente( id_cliente ) ) {
-        /// @TODO: Agregar listado temporal dentro de este elemento para que conserve el producto
-        CBEquipamiento->setearFiltro( QString( " WHERE id_cliente = %1" ).arg( id_cliente ), true  );
-    } else {
+    //qDebug() << "Aplicando filtro: " << QString( " WHERE id_cliente = %1" ).arg( id_cliente );
+    CBEquipamiento->setearFiltro( QString( " WHERE id_cliente = %1" ).arg( id_cliente ), true  );
+
+    if( !MEquipamiento::existeEquipamientoParaCliente( id_cliente ) ) {
+        //qDebug() << "No existen equipamientos para el cliente!";
         CBEquipamiento->setEditable( true );
     }
-
 }
 
 /*!
@@ -210,11 +239,13 @@ void DAgregarGarantia::buscarFactura( int id_equipamiento )
 {
     if( id_equipamiento <= 0 )
     { return; }
+    qDebug() << "Numero Equipamiento: "<< id_equipamiento;
 
     if( modelo_equipamiento != 0 )
     { modelo_equipamiento = new MEquipamiento( this ); }
 
     if( !modelo_equipamiento->cargarDatos( id_equipamiento ) ) {
+        qDebug() << "No hay datos!";
         return;
     }
 

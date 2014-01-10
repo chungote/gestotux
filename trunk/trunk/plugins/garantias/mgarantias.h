@@ -3,6 +3,7 @@
 
 #include <QSqlRelationalTableModel>
 #include <QDate>
+#include "NumeroComprobante.h"
 
 class MGarantias : public QSqlRelationalTableModel
 {
@@ -16,13 +17,17 @@ public:
     bool estaActiva( const int id_garantia );
     bool eliminar( const int id_garantia );
 
-    int agregarGarantia( const int id_cliente,
+    static NumeroComprobante obtenerProximoComprobante();
+
+    int agregarGarantia( NumeroComprobante codigo_garantia,
+                         const int id_cliente,
                          const QString texto_producto,
                          const QDate fecha_inicio,
                          const QDate fecha_fin,
                          const int id_equipamiento,
                          const int id_producto,
                          const int id_factura );
+
         
 };
 
