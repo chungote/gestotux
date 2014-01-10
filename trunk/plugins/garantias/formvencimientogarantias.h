@@ -14,6 +14,7 @@ public:
 
 protected slots:
     void cambioFecha( QDate fecha );
+    void cambioBaja( bool );
     
 protected:
     void changeEvent(QEvent *e);
