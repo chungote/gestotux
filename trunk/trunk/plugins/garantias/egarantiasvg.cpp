@@ -309,6 +309,10 @@ void EGarantiaSVG::cargarDatos()
            if( id == "NumeroGarantiaOriginal" || id == "NumeroGarantiaDuplicado" ) {
                texto = generarNumeroGarantia( valor.toInt() );
            }
+           if( id == "FechaOriginalAno" || id == "FechaDuplicadoAno" ) {
+               texto = texto.remove( "20" );
+           }
+           texto = texto.trimmed();
 
            // Lo coloco en el elemento
            QDomNode nodo = lista.item(i);
@@ -324,12 +328,12 @@ void EGarantiaSVG::cargarDatos()
 
     _valido = true;
 
-    /*QFile arch( QApplication::applicationDirPath() + QDir::separator() + "salida.svg" );
+    QFile arch( QApplication::applicationDirPath() + QDir::separator() + "salida.svg" );
      arch.open( QIODevice::WriteOnly );
      QTextStream s( &arch );
      s << _domdoc.toByteArray();
      arch.flush();
-     arch.close(); */
+     arch.close();
 
 }
 

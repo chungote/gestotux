@@ -101,8 +101,8 @@ void GarantiasPlugin::crearMenu( QMenuBar *m )
  QMenu *menuGarantias = m->addMenu( "Garantias" );
  menuGarantias->addAction( ActGarantias );
  menuGarantias->addAction( ActAgregarGarantia );
- menuGarantias->addSeparator();
- menuGarantias->addAction( ActVerVencimientos );
+ /*menuGarantias->addSeparator(); /// @TODO: Agregar esta acción cuando este implementado!
+ menuGarantias->addAction( ActVerVencimientos );*/
 }
 
 /*!
