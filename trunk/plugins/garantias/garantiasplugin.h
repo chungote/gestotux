@@ -55,7 +55,8 @@ private:
 public slots:
     void seCierraGestotux();
     void verGarantias();
-    void agregarGarantia( int id_comprobante, int id_producto, QString nombre_producto, int id_cliente );
+    void agregarGarantiaProducto( int id_comprobante, int id_producto, QString nombre_producto, int id_cliente );
+    void agregarGarantiaEquipamiento( int id_comprobante, int id_equipamiento, QString nombre_producto, int id_cliente );
     void agregarGarantia();
     void verVencimientos();
 

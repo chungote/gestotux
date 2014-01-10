@@ -167,7 +167,7 @@ void GarantiasPlugin::verGarantias()
  * \param nombre_producto
  * \param id_cliente
  */
-void GarantiasPlugin::agregarGarantia(int id_comprobante, int id_producto, QString nombre_producto, int id_cliente)
+void GarantiasPlugin::agregarGarantiaProducto( int id_comprobante, int id_producto, QString nombre_producto, int id_cliente )
 {
     DAgregarGarantia *d = new DAgregarGarantia();
     d->setearIdCliente( id_cliente );
@@ -176,6 +176,24 @@ void GarantiasPlugin::agregarGarantia(int id_comprobante, int id_producto, QStri
     d->setearNombreProducto( nombre_producto );
     d->exec();
 }
+
+/*!
+ * \brief GarantiasPlugin::agregarGarantiaEquipamiento
+ * \param id_comprobante
+ * \param id_equipamiento
+ * \param nombre_producto
+ * \param id_cliente
+ */
+void GarantiasPlugin::agregarGarantiaEquipamiento( int id_comprobante, int id_equipamiento, QString nombre_producto, int id_cliente )
+{
+    DAgregarGarantia *d = new DAgregarGarantia();
+    d->setearIdCliente( id_cliente );
+    d->setearIdComprobante( id_comprobante );
+    d->setearIdEquipamiento( id_equipamiento );
+    d->setearNombreProducto( nombre_producto );
+    d->exec();
+}
+
 
 /*!
  * \brief GarantiasPlugin::agregarGarantia

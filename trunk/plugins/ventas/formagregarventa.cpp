@@ -381,6 +381,7 @@ void FormAgregarVenta::guardar()
            break;
     }
    }
+   /// @TODO: Agregar pregunta para garantía!
    this->close();
    emit actualizarListado();
    return;
