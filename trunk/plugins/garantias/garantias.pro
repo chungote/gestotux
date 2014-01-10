@@ -18,14 +18,16 @@ HEADERS += garantiasplugin.h \
            dagregargarantia.h \
            formprefgarantias.h \
     egarantiasvg.h \
-    mvgarantiassvg.h
+    mvgarantiassvg.h \
+    mvgarantias.h
 SOURCES += garantiasplugin.cpp \
            vgarantias.cpp \
            mgarantias.cpp \
            dagregargarantia.cpp \
            formprefgarantias.cpp \
     egarantiasvg.cpp \
-    mvgarantiassvg.cpp
+    mvgarantiassvg.cpp \
+    mvgarantias.cpp
 
 DESTDIR = ../../bin/plugins
 

@@ -9,24 +9,27 @@
 
 #include "egarantiasvg.h"
 #include "mvgarantiassvg.h"
+#include "mvgarantias.h"
+#include "mgarantias.h"
 
 VGarantias::VGarantias(QWidget *parent) :
     EVLista(parent)
 {
-
     setObjectName( "visor-garantias" );
     setWindowTitle( QString::fromUtf8( "Garantías activas" ) );
     setWindowIcon( QIcon( ":/imagenes/garantia.png" ) );
 
+    mgarantias = new MVGarantias( this );
     modelo = new MGarantias( this );
 
-    vista->setModel( modelo );
+    vista->setModel( mgarantias );
     vista->hideColumn( 0 );
-    vista->hideColumn( modelo->fieldIndex( "fecha_baja" ) );
-    vista->hideColumn( modelo->fieldIndex( "razon_baja" ) );
-    vista->hideColumn( modelo->fieldIndex( "id_producto" ) );
+    vista->hideColumn( mgarantias->fieldIndex( "fecha_baja" ) );
+    vista->hideColumn( mgarantias->fieldIndex( "razon_baja" ) );
+    vista->hideColumn( mgarantias->fieldIndex( "id_producto" ) );
+    vista->hideColumn( mgarantias->fieldIndex( "id_equipamiento" ) );
 
-    modelo->select();
+    mgarantias->select();
 
     ActDarBaja = new QAction( this );
     ActDarBaja->setText( "Baja" );
@@ -36,11 +39,20 @@ VGarantias::VGarantias(QWidget *parent) :
     ActEliminar->setIcon( QIcon( ":/imagenes/garantia_eliminar.png" ) );
     ActDarBaja->setIcon( QIcon( ":/imagenes/garantia_cancelar.png" ) );
 
+    ActVerBaja = new QAction( this );
+    ActVerBaja->setText( "Ver Bajas" );
+    ActVerBaja->setStatusTip( "Mostrar Garantías dadas de baja" );
+    ActVerBaja->setCheckable( true );
+    connect( ActVerBaja, SIGNAL( toggled( bool ) ), this, SLOT( cambioBaja( bool ) ) );
+    ActVerBaja->setChecked( false );
+
+
     addAction( ActAgregar  );
     addAction( ActDarBaja  );
     addAction( ActEliminar );
     addAction( ActImprimir );
     addAction( ActPdf      );
+    addAction( ActVerBaja  );
     addAction( ActCerrar   );
 }
 
@@ -52,7 +64,7 @@ VGarantias::VGarantias(QWidget *parent) :
 void VGarantias::agregar(bool)
 {
     DAgregarGarantia *d = new DAgregarGarantia();
-    //d->setearModelo( modelo );
+    connect( d, SIGNAL( actualizarModelos() ), vista, SLOT( update() ) );
     d->exec();
 }
 
@@ -176,4 +188,23 @@ void VGarantias::darBaja()
         }
     }
     modelo->select();
+}
+
+/*!
+ * \brief VGarantias::cambioBaja
+ * \param estado
+ */
+void VGarantias::cambioBaja( bool estado )
+{
+    if( estado ) {
+        vista->showColumn( mgarantias->fieldIndex( "fecha_baja" ) );
+        vista->showColumn( mgarantias->fieldIndex( "razon_baja" ) );
+        mgarantias->setFilter( "fecha_baja IS NOT NULL" );
+        mgarantias->select();
+    } else {
+        vista->hideColumn( mgarantias->fieldIndex( "fecha_baja" ) );
+        vista->hideColumn( mgarantias->fieldIndex( "razon_baja" ) );
+        mgarantias->setFilter( " fecha_baja IS NULL " );
+        mgarantias->select();
+    }
 }

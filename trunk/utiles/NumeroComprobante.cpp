@@ -84,7 +84,11 @@ int NumeroComprobante::numero() const { return _dato.second; }
  * @return
  */
 QString NumeroComprobante::aCadena() {
-  return QString( "%1-%2").arg( QString::number( _dato.first ), CANT_DIGITOS, '0' ).arg( QString::number( _dato.second ), CANT_DIGITOS, '0' );
+    if( esValido() ) {
+        return QString( "%1-%2").arg( QString::number( _dato.first ), CANT_DIGITOS, '0' ).arg( QString::number( _dato.second ), CANT_DIGITOS, '0' );
+    } else {
+        return "";
+    }
 }
 
 int NumeroComprobante::cuentaRecursivo( int dato ) {
