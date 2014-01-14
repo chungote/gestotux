@@ -64,8 +64,8 @@ void ReportesCuotas::hacerMenu( QMenu *m )
 void ReportesCuotas::resumenCuotasDeudaHistorica()
 {
     EReporte *rep = new EReporte( 0 );
-    rep->especial( "cuotashistoricas", ParameterList() );
-    rep->hacerPDF( ParameterList(), QString( "DeudasCuotasAl" ).arg( QDate::currentDate().toString( Qt::LocaleDate ) ) );
+    rep->especial( "CuotasHistoricas", ParameterList() );
+    rep->hacerPDF( ParameterList(), QString( "Deudas Cuotas al %1" ).arg( QDate::currentDate().toString( "dd-MM-yyyy" ) ) );
     delete rep;
 }
 
@@ -76,16 +76,16 @@ void ReportesCuotas::resumenCuotasMes()
 {
     QMessageBox::information( 0, "Error", "No implementado" );
     return;
-    /// @TODO: Implementar reporte de Deuodas de cuotas según mes.
     bool ok = false;
     QStringList meses;
+    meses << "Enero" << "Febrero" << "Marzo" << "Abril" << "Mayo" << "Junio" << "Julio" << "Agosto" << "Septiembre" << "Octubre" << "Noviembre" << "Diciembre";
     QString mes = QInputDialog::getItem( 0, "Elija el mes", "Elija el mes:", meses, QDate::currentDate().month(), false, &ok );
     if( ok ) {
         EReporte *rep = new EReporte( 0 );
         ParameterList lista;
         lista.append( Parameter( "mes", meses.indexOf( mes ) ) );
-        rep->especial( "deudascuotasmes", lista );
-        rep->hacerPDF( ParameterList(), QString( "DeudasCuotasAl" ).arg( QDate::currentDate().toString( Qt::LocaleDate ) ) );
+        rep->especial( "DeudaCuotasMes", lista );
+        rep->hacerPDF( ParameterList(), QString( "Deudas Cuotas del mes %1-%2" ).arg( mes ).arg( QDate::currentDate().toString( "yyyy" ) ) );
         delete rep;
     }
 }

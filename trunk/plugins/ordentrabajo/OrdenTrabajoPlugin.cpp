@@ -165,7 +165,7 @@ void OrdenTrabajoPlugin::crearToolBar(QToolBar* /*t*/)
  * \return
  */
 QAction *OrdenTrabajoPlugin::botonPantallaInicial()
-{ return ActAgregarOrdenTrabajo; }
+{ return ActOrdenTrabajo; }
 
 /*!
     \fn OrdenTrabajoPlugin::seCierraGestotux()

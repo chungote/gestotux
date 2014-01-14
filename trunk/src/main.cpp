@@ -213,13 +213,13 @@ void generarInterconexiones( QMainWindow *ventana_principal )
        QObject::connect( egp->pluginQObject( "ventas"  ),
                          SIGNAL( emitirGarantia( int, int, QString, int ) ),
                          egp->pluginQObject( "garantias" ),
-                         SLOT( generarPlanCuotas( int, int, QString, int ) ) );
+                         SLOT( agregarGarantiaProducto( int, int, QString, int ) ) );
     }
     if( egp->existePlugin( "remitos" ) && egp->existePlugin( "garantias" ) ) {
       QObject::connect( egp->pluginQObject( "remitos"  ),
                         SIGNAL( emitirGarantia( int, int, QString, int ) ),
                         egp->pluginQObject( "garantias" ),
-                        SLOT( generarPlanCuotas( int, int, QString, int ) ) );
+                        SLOT( agregarGarantiaProducto( int, int, QString, int ) ) );
     }
 }
 
