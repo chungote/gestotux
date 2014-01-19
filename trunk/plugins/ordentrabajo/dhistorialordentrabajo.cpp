@@ -67,6 +67,22 @@ void DHistorialOrdenTrabajo::filtrarBloqueantes()
 }
 
 /*!
+ * \brief DHistorialOrdenTrabajo::accept
+ */
+void DHistorialOrdenTrabajo::accept()
+{
+    switch( ui->CBTipo->currentIndex() ) {
+        case MTipoOperacionOrdenTrabajo::Cancelacion:
+        {
+            break;
+        }
+        default:
+        { break; }
+    }
+    QDialog::accept();
+}
+
+/*!
  * \brief DHistorialOrdenTrabajo::cambioTipo
  * \param tipo
  */

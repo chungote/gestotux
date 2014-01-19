@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QComboBox>
+#include <QDebug>
 
 #include "eactcerrar.h"
 #include "eactguardar.h"
@@ -63,6 +64,8 @@ EVentana( parent ), FormOrdenTrabajoBase()
     _modelo_orden = new MOrdenTrabajo( this );
 
     LNumeroOrdenTrabajo->setText( MOrdenTrabajo::numeroComprobanteProximo().aCadena() );
+
+    CBCliente->setEditable( false );
 }
 
 /*!
@@ -72,13 +75,18 @@ EVentana( parent ), FormOrdenTrabajoBase()
 void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
 {
     if( id_orden_trabajo <= 0 ) { return; }
+    qDebug() << "Numero de orden de trabajo: " << id_orden_trabajo;
     _id_orden_trabajo = id_orden_trabajo;
 
     TBGeneral->setItemEnabled( 2, true );
     TBGeneral->setItemEnabled( 3, true );
 
     // Cargo los datos
-    _modelo_orden->cargarDatos( id_orden_trabajo );
+    if( !_modelo_orden->cargarDatos( id_orden_trabajo ) ) {
+        qWarning( "No se pudo cargar los datos necesarios!" );
+        return;
+    }
+    qDebug() << "Numero de cliente: " << _modelo_orden->idCliente();
     CBCliente->setearId( _modelo_orden->idCliente() );
     LEIngresante->setText( _modelo_orden->ingresante() );
     LERequerente->setText( _modelo_orden->requerente() );
@@ -100,6 +108,7 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     _modelo_historial_facturacion->mostrarCostosSumados( true );
     _modelo_historial_facturacion->setearRelacionTecnico();
     _modelo_historial_facturacion->setearRelacionTipo();
+    _modelo_historial_facturacion->setFilter( " costo != 0 " );
     TVFacturacion->setModel( _modelo_historial_facturacion );
     TVFacturacion->hideColumn( 0 );
     TVFacturacion->hideColumn( 1 );
@@ -114,63 +123,6 @@ void FormOrdenTrabajo::setearIdOrdenTrabajo( const int id_orden_trabajo )
     }
     _modelo_equipamiento->cargarDatos( id_equipamiento );
     cargarDatosEquipamiento();
-
-    connect( CBCliente, SIGNAL( cambioIdCliente( int ) ), this, SLOT( cambioCliente( int ) ) );
-    connect( CBTecnico, SIGNAL( cambioId( int ) ), this, SLOT( cambioTecnico( int ) ) );
-}
-
-
-
-/**
- * @brief FormOrdenTrabajo::cambioCliente
- * Slot llamado cada vez que se cambia el cliente
- * @param id_cliente ID del cliente
- */
-void FormOrdenTrabajo::cambioCliente( int id_cliente )
-{
-    if( id_cliente <= 0 ) { return; }
-    // Ingreso el primer equipamiento del cliente
-    if( _modelo_equipamiento->existeEquipamientoParaCliente( id_cliente ) ) {
-        if( _modelo_equipamiento->cantidadEquipamientoParaCliente( id_cliente ) == 1 ) {
-            _modelo_equipamiento->cargarDatos( _modelo_equipamiento->buscarIdEquipamientoSegunCliente( id_cliente ) );
-            cargarDatosEquipamiento();
-        } else {
-            /// @TODO: Mostrar las opciones para elegir el equipamiento
-        }
-    }
-}
-
-/*!
- * \brief FormOrdenTrabajo::cambioTecnico
- * Slot llamado cuando se cambia el técnico de la orden de trabajo
- * \param id_tecnico
- */
-void FormOrdenTrabajo::cambioTecnico( int id_tecnico )
-{
-    if( id_tecnico <= 0 ) { return; }
-
-    bool ok = false;
-    QString razon = QInputDialog::getText( this,
-                                           QString::fromUtf8( "Dato necesario" ),
-                                           QString::fromUtf8( "Ingrese razón de cambio de técnico" ),
-                                           QLineEdit::Normal,
-                                           QString(),
-                                           &ok );
-    if( ok && !razon.isEmpty() ) {
-        // Busco el técnico actual
-        int id_tecnico_actual = _modelo_orden->idTecnico();
-        if( _modelo_historial->agregarHistorial( _id_orden_trabajo,
-                                                 QDateTime::currentDateTime(),
-                                                 QString( "Cambio de técnico responsable. Razón: %1" ).arg( razon ),
-                                                 0.0,
-                                                 MTipoOperacionOrdenTrabajo::CambioTecnico,
-                                                 id_tecnico_actual )
-            && _modelo_orden->cambiarTecnico( _id_orden_trabajo, id_tecnico ) ) {
-            QMessageBox::information( this, "Correcto", QString::fromUtf8( "El técnico fue cambiado correctamente" ) );
-            return;
-        }
-    }
-
 }
 
 /*!
@@ -331,7 +283,7 @@ void FormOrdenTrabajo::changeEvent(QEvent *e)
 void FormOrdenTrabajo::cargarDatosEquipamiento()
 {
     LEEquipamientoDescripcion->setText( _modelo_equipamiento->descripcion() );
-    //CBEquipamientoMarca->setCurrentText( _modelo_equipamiento->marca() );
+    CBEquipamientoMarca->setearTexto( _modelo_equipamiento->marca() );
     LEEquipamientoModelo->setText( _modelo_equipamiento->modelo() );
     LEEquipamientoNumeroSerie->setText( _modelo_equipamiento->numeroSerie() );
     PTEEquipamientoObservaciones->setPlainText( _modelo_equipamiento->observaciones() );

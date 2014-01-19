@@ -19,6 +19,9 @@ public:
 
     static NumeroComprobante obtenerProximoComprobante();
 
+    int obtenerIdSegunEquipamiento( const int id_equipamiento );
+    int obtenerIdSegunProducto( const int id_producto );
+
     int agregarGarantia( NumeroComprobante codigo_garantia,
                          const int id_cliente,
                          const QString texto_producto,

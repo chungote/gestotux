@@ -53,6 +53,7 @@ protected slots:
     void suspenderDesuspender();
     void listadoDeudor();
     void listadoDeudorPDF();
+    void recalcularSaldo();
 
 private:
     MCuentaCorriente *crmodelo;
@@ -60,6 +61,10 @@ private:
     * Accion para modificar el limite de la cuenta corriente elegida
     */
     QAction *ActModificarLimite;
+   /*!
+    * Accion para recalcular manualmente el saldo de una cuenta corriente
+    */
+    QAction *ActRecalcularSaldo;
    /*!
     * Accion que permite filtrar solamente por las cuentas corrientes que tienen saldo positivo
     */

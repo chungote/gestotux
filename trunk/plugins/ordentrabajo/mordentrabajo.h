@@ -26,8 +26,8 @@ public:
 
     bool cambiarTecnico( const int id_orden_trabajo, const int id_tecnico );
 
-    void cargarDatos( const int id_orden );
-    int idCliente() { return _data.value("id_cliente").toInt(); }
+    bool cargarDatos( const int id_orden );
+    int idCliente() { return _data.value("cliente_id").toInt(); }
     int idTecnico() { return _data.value("id_tecnico").toInt(); }
     QString requerente() { return _data.value( "requerente" ).toString(); }
     QString ingresante() { return _data.value( "ingresante" ).toString(); }
