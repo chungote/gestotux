@@ -140,6 +140,13 @@ void ECBTabla::inicializar()
     QSqlQuery cola;
     // Limpio el combobox para que no cargue datos repetidos
     this->clear();
+    qDebug() << QString( "SELECT %1, %2 %6 FROM %3 %4 %5" )
+                .arg( _campo_id )
+                .arg( _campo_texto )
+                .arg( _tabla )
+                .arg( filtro )
+                .arg( _campo_orden )
+                .arg( _campo_busqueda );
     if( cola.exec( QString( "SELECT %1, %2 %6 FROM %3 %4 %5" )
                    .arg( _campo_id )
                    .arg( _campo_texto )

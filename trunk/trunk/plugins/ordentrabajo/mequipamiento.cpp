@@ -1,5 +1,7 @@
 #include "mequipamiento.h"
 
+#include "mgarantias.h"
+
 #include <QDate>
 #include <QSqlQuery>
 #include <QSqlRecord>
@@ -319,15 +321,9 @@ bool MEquipamiento::cargarDatos( const int id_equipamiento )
 }
 
 /*!
- * \brief MEquipamiento::enGarantia
- * Devuelve verdadero si el equipamiento está en garantía o no.
+ * \brief MEquipamiento::dadoDeBaja
  * \return
  */
-bool MEquipamiento::enGarantia()
-{
-    /// @TODO: Agregar codigo para saber si un equipamiento está en garantía
-}
-
 bool MEquipamiento::dadoDeBaja()
 {
     if( _datos.contains( "fecha_baja" ) ) {
@@ -338,4 +334,21 @@ bool MEquipamiento::dadoDeBaja()
         }
     }
     return false;
+}
+
+/*!
+ * \brief MEquipamiento::enGarantia
+ * Devuelve verdadero si el equipamiento está en garantía o no.
+ * \return
+ */
+bool MEquipamiento::enGarantia()
+{
+    if( _datos.contains( "id_equipamiento" ) ) {
+        int id_equipamiento = _datos.value( "id_equipamiento" ).toInt();
+        bool estado = false;
+        MGarantias *mgarantia = new MGarantias();
+        estado = mgarantia->estaActiva( mgarantia->obtenerIdSegunEquipamiento( id_equipamiento ) );
+        delete mgarantia;
+        return estado;
+    }
 }

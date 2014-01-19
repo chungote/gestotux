@@ -18,8 +18,6 @@ public:
     void setearIdOrdenTrabajo( const int id_orden_trabajo );
 
 protected slots:
-    void cambioCliente( int id_cliente );
-    void cambioTecnico( int id_tecnico );
     void cerrarOrden();
     void devolverCliente();
     void agregarFacturacion();

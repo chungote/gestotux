@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>539</width>
+    <width>617</width>
     <height>601</height>
    </rect>
   </property>
@@ -43,8 +43,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>542</width>
-        <height>186</height>
+        <width>599</width>
+        <height>452</height>
        </rect>
       </property>
       <attribute name="label">
@@ -88,6 +88,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
              <property name="displayFormat">
               <string>d MMM yyyy HH:mm</string>
              </property>
@@ -117,6 +120,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="insertPolicy">
+            <enum>QComboBox::NoInsert</enum>
+           </property>
           </widget>
          </item>
         </layout>
@@ -138,35 +144,53 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="insertPolicy">
+            <enum>QComboBox::NoInsert</enum>
+           </property>
+           <property name="frame">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
          <item>
-          <widget class="QLabel" name="LRequerente">
-           <property name="text">
-            <string>Requerente:</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <item>
+            <widget class="QLabel" name="LRequerente">
+             <property name="text">
+              <string>Requerente:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="LERequerente">
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QLineEdit" name="LERequerente"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_14">
-         <item>
-          <widget class="QLabel" name="LIngresante">
-           <property name="text">
-            <string>Ingresante:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="LEIngresante"/>
+          <layout class="QHBoxLayout" name="horizontalLayout_14">
+           <item>
+            <widget class="QLabel" name="LIngresante">
+             <property name="text">
+              <string>Ingresante:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="LEIngresante">
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
@@ -181,10 +205,26 @@
          </item>
          <item>
           <widget class="QDateEdit" name="DEFechaDevolucion">
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
            <property name="calendarPopup">
             <bool>true</bool>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -208,7 +248,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
+        <width>599</width>
         <height>452</height>
        </rect>
       </property>
@@ -242,7 +282,14 @@
             </widget>
            </item>
            <item>
-            <widget class="ECBModeloEquipamiento" name="CBEquipamientoMarca"/>
+            <widget class="ECBModeloEquipamiento" name="CBEquipamientoMarca">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -256,7 +303,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="LEEquipamientoModelo"/>
+            <widget class="QLineEdit" name="LEEquipamientoModelo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -460,14 +514,14 @@
    <header>ecbclientes.h</header>
   </customwidget>
   <customwidget>
-   <class>ECBTecnicos</class>
-   <extends>QComboBox</extends>
-   <header>ecbtecnicos.h</header>
-  </customwidget>
-  <customwidget>
    <class>ECBModeloEquipamiento</class>
    <extends>QComboBox</extends>
    <header>ecbmodeloequipamiento.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ECBTecnicos</class>
+   <extends>QComboBox</extends>
+   <header>ecbtecnicos.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

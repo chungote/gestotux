@@ -94,6 +94,11 @@ VCuentaCorriente::VCuentaCorriente(QWidget *parent)
  ActListadoDeudorPDF->setIcon( QIcon( ":/imagenes/acroread.png" ) );
  connect( ActListadoDeudorPDF, SIGNAL( triggered() ), this, SLOT( listadoDeudorPDF() ) );
 
+ ActRecalcularSaldo = new QAction( this );
+ ActRecalcularSaldo->setStatusTip( "Recalcula el saldo de una cuenta corriente manualmente" );
+ ActRecalcularSaldo->setText( "Recalcular saldo" );
+ connect( ActRecalcularSaldo, SIGNAL( triggered() ), this, SLOT( recalcularSaldo() ) );
+
 /* SELECT ctacte."numero_cuenta",
  *        relTblAl_1.razon_social,
  *        ctacte."fecha_alta",
@@ -189,7 +194,7 @@ void VCuentaCorriente::menuContextual( const QModelIndex &indice, QMenu *menu )
 
  menu->addAction( ActModificarLimite );
  menu->addAction( ActResumen );
-
+ menu->addAction( ActRecalcularSaldo );
 }
 
 
@@ -344,4 +349,23 @@ void VCuentaCorriente::listadoDeudorPDF()
     rep->especial( "ListadoCtaCteSaldo", ParameterList() );
     rep->hacerPDF( ParameterList(), QString( "Listado de Cuenta Corriente con saldo al %1" ).arg( QDate::currentDate().toString( Qt::SystemLocaleShortDate ) ) );
     delete rep;
+}
+
+/*!
+ * \brief VCuentaCorriente::recalcularSaldo
+ */
+void VCuentaCorriente::recalcularSaldo()
+{
+    // Busco el item
+    if( vista->selectionModel()->selectedRows().isEmpty() ) {
+        QMessageBox::warning( this, "Error", QString::fromUtf8( "Por favor, seleccione una cuenta corriente para suspender/sacar de suspensión." ) );
+        return;
+    }
+    QModelIndex indice = vista->selectionModel()->selectedRows().first();
+    QString numero_cuenta = indice.model()->data( indice.model()->index( indice.row(), crmodelo->fieldIndex( "numero_cuenta" ) ), Qt::EditRole ).toString();
+    if( crmodelo->recalcularSaldo( numero_cuenta ) ) {
+        QMessageBox::information( this, "Correcto", "El saldo fue recalculado correctamente" );
+    } else {
+        QMessageBox::warning( this, "Incorrecto", "No se pudo actualizar el saldo de la cuenta" );
+    }
 }

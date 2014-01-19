@@ -24,6 +24,9 @@ public:
     void setearModeloHistorial( MHistorialOrdenTrabajo *m ) { _modelo_historial = m; }
     void filtrarBloqueantes();
 
+public slots:
+    void accept();
+
 protected slots:
     void cambioTipo( int tipo );
 

@@ -173,7 +173,7 @@ bool MOrdenTrabajo::cambiarTecnico(const int id_orden_trabajo, const int id_tecn
     if( cola.exec( QString( "UPDATE orden_trabajo SET id_tecnico = %1 WHERE id_orden_trabajo = %2" ).arg( id_tecnico ).arg( id_orden_trabajo ) ) ) {
         return true;
     } else {
-        qDebug() << "Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
+        qDebug() << "MOrdenTrabajo::cambioTecnico(): Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
     }
@@ -185,22 +185,28 @@ bool MOrdenTrabajo::cambiarTecnico(const int id_orden_trabajo, const int id_tecn
  * Carga los datos de una orden de trabajo pasada como parametro.
  * \param id_orden IDentificador de la orden de trabajo a cargar.
  */
-void MOrdenTrabajo::cargarDatos( const int id_orden )
+bool MOrdenTrabajo::cargarDatos( const int id_orden )
 {
+    if( id_orden <= 0 ) {
+        qDebug() << "MOrdenTrabajo::cargarDatos(): Orden de trabajo invalida: "<< id_orden;
+        return false;
+    }
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT * FROM orden_trabajo WHERE id_orden_trabajo = %1" ).arg( id_orden ) ) ) {
         if( cola.next() ) {
             this->_data = cola.record();
             _id_orden_trabajo = id_orden;
+            return true;
         } else {
-            qDebug() << "Error al intentar cargar los datos de una orden de trabajo";
+            qDebug() << "MOrdenTrabajo::cargarDatos(): Error al intentar cargar los datos de una orden de trabajo";
             qDebug() << cola.lastQuery();
         }
     } else {
-        qDebug() << "Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
+        qDebug() << "MOrdenTrabajo::cargarDatos(): Error al intentar ejecutar la cola de averiguación de datos de una orden de trabajo";
         qDebug() << cola.lastError().text();
         qDebug() << cola.lastQuery();
     }
+    return false;
 }
 
 /*!

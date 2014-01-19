@@ -13,7 +13,8 @@ DESTDIR = ../../bin/plugins/
 
 INCLUDEPATH += ../../src \
                ../../utiles \
-               ../../reporte
+               ../../reporte \
+               ../garantias
 
 LIBS += ../../bin/libutiles.a \
         ../../bin/libreporte.a
@@ -48,7 +49,8 @@ SOURCES += OrdenTrabajoPlugin.cpp \
     formprefordentrabajo.cpp \
     ecbequipamiento.cpp \
     ../../src/mclientes.cpp \
-    mvequipamiento.cpp
+    mvequipamiento.cpp \
+    ../garantias/mgarantias.cpp
 
 
 HEADERS += OrdenTrabajoPlugin.h \
@@ -78,7 +80,8 @@ HEADERS += OrdenTrabajoPlugin.h \
     formprefordentrabajo.h \
     ecbequipamiento.h \
     ../../src/mclientes.h \
-    mvequipamiento.h
+    mvequipamiento.h  \
+    ../garantias/mgarantias.h
 
 RESOURCES += ordentrabajo.qrc
 

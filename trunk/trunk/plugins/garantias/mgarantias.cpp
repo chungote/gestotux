@@ -94,6 +94,9 @@ bool MGarantias::darDeBaja( const int id_garantia, const QString razon, const QD
  */
 bool MGarantias::estaActiva( const int id_garantia )
 {
+    if( id_garantia <= 0 ) {
+        return false;
+    }
     QSqlQuery cola;
     if( cola.exec( QString( "SELECT fecha_inicio, fecha_fin, fecha_baja FROM %1 WHERE id_garantia = %2" ).arg( this->tableName() ).arg( id_garantia ) ) ) {
         if( cola.next() ) {
@@ -177,6 +180,55 @@ NumeroComprobante MGarantias::obtenerProximoComprobante()
     }
     NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
     return *invalido;
+}
+
+/*!
+ * \brief MGarantias::obtenerIdSegunEquipamiento
+ * \param id_equipamiento
+ * \return
+ */
+int MGarantias::obtenerIdSegunEquipamiento( const int id_equipamiento )
+{
+    if( id_equipamiento <= 0 ) {
+        return -1;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_garantia FROM %1 WHERE id_equipamiento = %2" ).arg( this->tableName() ).arg( id_equipamiento ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        }
+    } else {
+        qWarning() << "Error al ejecutar la cola de obtencion de datos garantia <-> equipamiento";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return -1;
+}
+
+/*!
+ * \brief MGarantias::obtenerIdSegunProducto
+ * \param id_producto
+ * \return
+ */
+int MGarantias::obtenerIdSegunProducto( const int id_producto )
+{
+    if( id_producto <= 0 ) {
+        return -1;
+    }
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT id_garantia FROM %1 WHERE id_producto = %2" ).arg( this->tableName() ).arg( id_producto ) ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toInt();
+        } else {
+            qWarning() << "Error al hacer next en la cola de obtencion de datos garantia <-> producto";
+            qDebug() << cola.lastQuery();
+        }
+    } else {
+        qWarning() << "Error al ejecutar la cola de obtencion de datos garantia <-> producto";
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return -1;
 }
 
 /*!
