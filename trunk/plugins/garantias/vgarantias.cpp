@@ -6,6 +6,9 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPrinterInfo>
+#include <QDir>
+#include <QDesktopServices>
+#include <QFileDialog>
 
 #include "egarantiasvg.h"
 #include "mvgarantiassvg.h"
@@ -109,16 +112,28 @@ void VGarantias::aPdf()
     }
     MVGarantiasSvg modelo_svg;
     QPrinter printer(QPrinter::HighResolution);
-    QPrintDialog printDialog( &printer, this );
-    if (printDialog.exec() == QDialog::Accepted) {
-         foreach( QModelIndex item, vista->selectionModel()->selectedRows( 0 ) ) {
-             int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
-             EGarantiaSVG svg;
-             QSqlRecord registro = modelo_svg.obtenerRegistro( id_garantia );
-             svg.setearRegistro( registro );
-             svg.cargarDatos();
-             QString nombre_archivo = QString( "Garantia #%1" ).arg( registro.value("id_garantia" ).toString() );
-             printer.setOutputFileName( nombre_archivo );
+    printer.setOutputFormat( QPrinter::PdfFormat );
+    foreach( QModelIndex item, vista->selectionModel()->selectedRows() ) {
+         int id_garantia = item.model()->data( item.model()->index( item.row(), 0 ), Qt::EditRole ).toInt();
+         EGarantiaSVG svg;
+         QSqlRecord registro = modelo_svg.obtenerRegistro( id_garantia );
+         svg.setearRegistro( registro );
+         svg.cargarDatos();
+         QString nombre_archivo = QString( "Garantia #%1.pdf" ).arg( registro.value("id_garantia" ).toString() );
+         QDir dir;
+         if( !dir.exists( QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation ) ) ) {
+             dir.setPath( QApplication::applicationDirPath() );
+         } else {
+             dir.setPath( QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation ) );
+         }
+         QString ruta = dir.absoluteFilePath( nombre_archivo );
+         // Muestro el dialogo de a donde guardar
+         ruta = QFileDialog::getSaveFileName( 0,
+                                              "Guardar en",
+                                              ruta,
+                                              "Archivo PDF ( *.pdf *.PDF )" );
+         if( !ruta.isEmpty() ) {
+             printer.setOutputFileName( ruta );
              svg.imprimir( &printer );
          }
     }
