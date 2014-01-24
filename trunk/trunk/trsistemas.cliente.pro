@@ -8,6 +8,9 @@ CONFIG += warn_on \
 SUBDIRS = utiles/utiles.pro \
           reporte/reporte.pro \
           utiles/estilos/estilos.pro \
+          plugins/CtaCte/CtaCteLib.pro \
+          plugins/ventas/VentasLib.pro \
+          plugins/remitos/RemitosLib.pro \
           plugins/productos/productos.pro \
           plugins/descuentos/descuentos.pro \
           plugins/remitos/remitos.pro \
@@ -16,13 +19,13 @@ SUBDIRS = utiles/utiles.pro \
           plugins/CtaCte/CtaCte.pro \
           plugins/caja/caja.pro \
           plugins/ventas/ventas.pro \
-          plugins/cuotas/cuotas.pro \
           plugins/presupuesto/presupuesto.pro \
           plugins/gastos/gastos.pro \
           plugins/compras/compras.pro \
           plugins/proveedor/proveedor.pro \
           plugins/informes/informa.pro \
           plugins/informes/informes.pro \
+          plugins/cuotas/cuotas.pro \
           plugins/trsistemas/trsistemas.pro \
           src/src.pro
 

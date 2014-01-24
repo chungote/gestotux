@@ -337,6 +337,11 @@ void EGarantiaSVG::cargarDatos()
 
 }
 
+/*!
+ * \brief EGarantiaSVG::generarNumeroGarantia
+ * \param num_recibo
+ * \return
+ */
 QString EGarantiaSVG::generarNumeroGarantia( int num_recibo )
 {
   QString t1 = QString::number( num_recibo );
