@@ -25,8 +25,6 @@ EGarantiaSVG::EGarantiaSVG(QObject *parent) :
     _nombre_archivo = QString();
     _valido = false;
 
-    _nombre_archivo = ":/imagenes/garantia.svg";
-
     _mapa["FechaOriginalDia"] = "dia";
     _mapa["FechaOriginalMes"] = "mes";
     _mapa["FechaOriginalAno"] = "ano";
@@ -55,11 +53,14 @@ EGarantiaSVG::EGarantiaSVG(QObject *parent) :
  * \brief EGarantiaSVG::setearNombreArchivo
  * \param nombre
  */
-void EGarantiaSVG::setearNombreArchivo( const QString nombre )
+bool EGarantiaSVG::setearNombreArchivo( const QString nombre )
 {
     if( !QFile::exists( nombre ) ) {
         qCritical() << "No se pudo encontrar el archivo " << nombre;
+        return false;
     }
+    this->_nombre_archivo = nombre;
+    return true;
 }
 
 /*!
@@ -230,9 +231,19 @@ void EGarantiaSVG::cargarDatos()
     if( _valido )
         return; // Ya está cargado
 
-    if( _nombre_archivo.isEmpty() ) {
-        qDebug() << "No se seteo el nombre de archivo a cargar";
-        return;
+    if( _nombre_archivo.isEmpty() || _nombre_archivo.isNull() ) {
+        qDebug() << "Entra al predeterminado";
+        QDir dir;
+        dir.setPath( QApplication::applicationDirPath() );
+        if( !dir.cd( "reportes" ) ) {
+            qWarning( "NO se puede ingresar al directorio reportes" );
+            return;
+        }
+        if( !setearNombreArchivo( dir.absoluteFilePath( "garantia.svg" ) ) ) {
+            qWarning() << "NO se pudo encontrar el archivo garantia.svg en " << dir.absolutePath();
+            return;
+        }
+        qDebug() << dir.absoluteFilePath( "garantia.svg" );
     }
     if( _registro.count() == 0 ) {
         qDebug() << "No se seteo ningún registro para extraer los datos";

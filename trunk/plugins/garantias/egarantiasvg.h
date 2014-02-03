@@ -12,7 +12,7 @@ class EGarantiaSVG : public QObject
     Q_OBJECT
 public:
     EGarantiaSVG( QObject *parent = 0 );
-    void setearNombreArchivo( const QString nombre );
+    bool setearNombreArchivo( const QString nombre );
     void setearRegistro( QSqlRecord reg ) { _registro = reg; }
     void cargarDatos();
     void agregarMapeo( QString nombre_svg, QString nombre_registro );
