@@ -46,4 +46,10 @@ private:
     MEquipamiento *modelo_equipamiento;
 };
 
+class MFactura {
+public:
+    static NumeroComprobante& obtenerComprobante( const int id_factura );
+    static QDate obtenerFecha( const int id_factura );
+};
+
 #endif // DAGREGARGARANTIA_H

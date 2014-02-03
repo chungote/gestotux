@@ -31,4 +31,16 @@ private:
 
 };
 
+class MFactura {
+public:
+    static QDate obtenerFechaMinimaVenta();
+    static QDate fechaUltimaVenta();
+};
+
+class MCompra {
+public:
+    static QDate obtenerFechaMinimaCompra();
+    static QDate obtenerFechaMaximaCompra();
+};
+
 #endif // BALANCEGENERAL_H

@@ -89,22 +89,22 @@ TRANSLATIONS += gestotux.ts
 PRE_TARGETDEPS += ../bin/libreporte.a \
                    ../bin/libutiles.a
 
-#DEFINES += GESTOTUX_DESARROLLO
+DEFINES += GESTOTUX_DESARROLLO
 
 INCLUDEPATH += ../reporte \
                ../utiles
 
 LIBS += -lutiles \
         -lreporte \
-        -lventas \
+        -llibventas \
         -lpresupuesto \
         -lpagos \
-        -lctacte \
+        -llibctacte \
         -lcuotas \
         -lcaja \
         -lproductos \
         -ldescuentos \
-        -lremitos \
+        -llibremitos \
         -L../bin \
         -L../bin/plugins
 

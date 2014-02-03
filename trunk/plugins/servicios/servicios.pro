@@ -48,7 +48,8 @@ HEADERS =  servicios.h \
            vlistaperiodos.h \
            formfacturacionemitida.h \
            mfacturacionemitida.h \
-           ../../src/mclientes.h
+           ../../src/mclientes.h \
+           ../productos/mproductos.h
 
 
 SOURCES =  servicios.cpp \
@@ -71,7 +72,8 @@ SOURCES =  servicios.cpp \
            vlistaperiodos.cpp \
            formfacturacionemitida.cpp \
            mfacturacionemitida.cpp \
-           ../../src/mclientes.cpp
+           ../../src/mclientes.cpp \
+           ../productos/mproductos.cpp
 
 RESOURCES += servicios.qrc
 
@@ -82,8 +84,8 @@ FORMS += FormAsociarBase.ui \
          FormRecargoBase.ui \
          FormClientesAdheridosBase.ui \
          FormFacturarServicioBase.ui \
-    FormVerificarRecargos.ui \
-    formfacturacionemitida.ui
+         FormVerificarRecargos.ui \
+         formfacturacionemitida.ui
 
 OTHER_FILES += servicios.QMYSQL.sql \
                servicios.QSQLITE.sql
@@ -96,11 +98,12 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lctacte \
+        -llibctacte \
         -lpagos \
-        -lventas \
+        -llibventas \
         -ldescuentos \
-        -lcaja
+        -lcaja \
+        -lutiles
 
 win32 {
     QMAKE_LFLAGS += "-Wl,-export-all-symbols"

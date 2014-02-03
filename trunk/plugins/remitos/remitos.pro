@@ -13,7 +13,9 @@ SOURCES +=  remitosplugins.cpp \
            MVRemito.cpp \
            formagregarremito.cpp \
            MRemito.cpp \
-           mitemremito.cpp
+           mitemremito.cpp \
+           ../CtaCte/mcuentacorriente.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp
 
 HEADERS += remitosplugins.h \
            formprefremito.h \
@@ -22,7 +24,9 @@ HEADERS += remitosplugins.h \
            MVRemito.h \
            formagregarremito.h \
            MRemito.h \
-           mitemremito.h
+           mitemremito.h \
+           ../CtaCte/mcuentacorriente.h \
+           ../CtaCte/mitemcuentacorriente.h
 
 QT += sql \
       xml
@@ -59,7 +63,7 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lctacte \
+        -llibctacte \
         -lcaja \
         -lcuotas \
         -ldescuentos

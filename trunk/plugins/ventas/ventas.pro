@@ -14,7 +14,8 @@ SOURCES +=  ventas.cpp \
             mitemfactura.cpp \
            ../../src/mclientes.cpp \
            MVFacturas.cpp \
-           vitemfactura.cpp
+           vitemfactura.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp
 
 HEADERS += ventas.h \
            vventas.h \
@@ -24,7 +25,8 @@ HEADERS += ventas.h \
            mitemfactura.h \
            ../../src/mclientes.h \
            MVFacturas.h \
-           vitemfactura.h
+           vitemfactura.h \
+           ../CtaCte/mitemcuentacorriente.h
 
 TRANSLATIONS = ventas.ts
 
@@ -41,7 +43,7 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lctacte \
+        -llibctacte \
         -lcaja \
         -lcuotas \
         -lproductos \
