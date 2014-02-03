@@ -16,16 +16,11 @@ INCLUDEPATH += ../../../reporte \
                ../../../utiles \
                ../../../src \
                ../. \
-               ../../compras \
-               ../../ventas \
-               ../../caja \
-               ../../productos
 
 LIBS += ../../../bin/libutiles.a \
         ../../../bin/libreporte.a
 
-LIBS += -lventas \
-        -lcompras \
+LIBS += -lcompras \
         -L../../../bin \
         -L../../../bin/plugins
 

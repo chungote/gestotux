@@ -49,7 +49,8 @@ HEADERS += cuotasplugin.h \
            mgenerarcuotas.h \
            ../../src/mclientes.h \
            formadelantocuotas.h \
-           madelantosimularcuotas.h
+           madelantosimularcuotas.h \
+           ../productos/mproductos.cpp
 
 SOURCES += cuotasplugin.cpp \
            mplancuota.cpp \
@@ -65,7 +66,8 @@ SOURCES += cuotasplugin.cpp \
            mgenerarcuotas.cpp \
            ../../src/mclientes.cpp \
            formadelantocuotas.cpp \
-           madelantosimularcuotas.cpp
+           madelantosimularcuotas.cpp \
+           ../productos/mproductos.cpp
 
 FORMS += formsimularcuotasbase.ui \
          formprefcuotasbase.ui \
@@ -87,4 +89,7 @@ LIBS += -L../../bin \
         -lcaja \
         -llibremitos \
         -lpagos \
-        -llibventas
+        -llibventas \
+        -lcaja \
+        -ldescuentos \
+        -lutiles

@@ -1,8 +1,6 @@
 #include "gananciaventa.h"
 #include "EReporte.h"
 #include "formrangofechas.h"
-#include "MFactura.h"
-#include "mcompra.h"
 #include "util.h"
 
 #include <QDateTime>
@@ -97,6 +95,82 @@ void GananciaVenta::hacerResumenDia()
     lista.append( "fecha_fin", Util::formateoFechas( fin ) );
     rep->especial( "ListadoGananciaVenta", lista );
     rep->hacer();
+}
+
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlError>
+#include <QDebug>
+/*!
+ * \brief MFactura::obtenerFechaMinimaVenta
+ * Devuelve la fecha de la primera factura
+ * \return Fecha de la primera factura
+ */
+QDate MFactura::obtenerFechaMinimaVenta()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM factura ORDER BY fecha ASC LIMIT 1" ) ) {
+        if( cola.next() ) {
+            return cola.record().value(0).toDate();
+        }
+    } else {
+        qWarning( "Error al buscar la fecha de la factura minima" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return QDate( 1900, 1, 1);
+}
+
+/*!
+ * \brief MCompra::obtenerFechaMinimaCompra
+ * Devuelve la fecha minima de compra echa
+ * \return fecha de primera compra
+ */
+QDate MCompra::obtenerFechaMinimaCompra()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM compras ORDER BY fecha ASC LIMIT 1" ) ) {
+        if( cola.next() )
+            return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar el minimo de compra fecha" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return QDate( 1900, 1, 1 );
+}
+
+/*!
+ * \brief MCompra::obtenerFechaMaximaCompra
+ * Busca la fecha de la compra más actual
+ * \return fecha de la ultima compra
+ */
+QDate MCompra::obtenerFechaMaximaCompra()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM compras ORDER BY fecha DESC LIMIT 1" ) ) {
+        if( cola.next() )
+            return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar el minimo de compra fecha" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return QDate( 1900, 1, 1 );
+}
+
+QDate MFactura::fechaUltimaVenta()
+{
+    QSqlQuery cola;
+    if( cola.exec( "SELECT fecha FROM factura ORDER BY id_factura DESC LIMIT 1" ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar la fecha de la ultima factura" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return QDate();
 }
 
 Q_EXPORT_PLUGIN2( gananciaventa, GananciaVenta )

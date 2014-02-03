@@ -24,7 +24,9 @@ HEADERS += pagosplugin.h \
            FormPrefRecibos.h \
            mvpagos.h \
            formrecibo.h \
-           ../../src/mclientes.h
+           ../../src/mclientes.h \
+           ../CtaCte/mcuentacorriente.h \
+           ../CtaCte/mitemcuentacorriente.h
 
 SOURCES += pagosplugin.cpp \
            mpagos.cpp \
@@ -34,7 +36,9 @@ SOURCES += pagosplugin.cpp \
            FormPrefRecibos.cpp \
            mvpagos.cpp \
            formrecibo.cpp \
-           ../../src/mclientes.cpp
+           ../../src/mclientes.cpp \
+           ../CtaCte/mcuentacorriente.cpp \
+           ../CtaCte/mitemcuentacorriente.cpp
 
 FORMS += FormReciboBase.ui \
          FormPrefRecibos.ui
@@ -63,7 +67,8 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lctacte \
+        -llibctacte \
         -lcaja \
+        -llibventas
 
 DISTFILES += ../../bin/reportes/Recibo.xml

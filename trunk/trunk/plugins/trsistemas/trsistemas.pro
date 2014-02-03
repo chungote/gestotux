@@ -33,7 +33,6 @@ LIBS += -L../../bin \
         -L../../bin/plugins \
         -lutiles \
         -lreporte \
-        -lctacte \
         -lpagos
 
 RESOURCES = trsistemas.qrc

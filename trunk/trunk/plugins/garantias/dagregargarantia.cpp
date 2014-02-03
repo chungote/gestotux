@@ -5,10 +5,11 @@
 #include <QPrinter>
 #include <QDebug>
 #include <QRegExp>
+#include <QSqlQuery>
+#include <QSqlError>
 
 #include "mequipamiento.h"
 #include "ecbequipamiento.h"
-#include "MFactura.h"
 #include "preferencias.h"
 #include "egarantiasvg.h"
 #include "mvgarantiassvg.h"
@@ -260,4 +261,46 @@ void DAgregarGarantia::buscarFactura( int id_equipamiento )
     }
 
     setearIdComprobante( modelo_equipamiento->numeroComprobante() );
+}
+
+/*!
+ * \brief MFactura::obtenerComprobante
+ * \param id_factura
+ * \return
+ */
+NumeroComprobante & MFactura::obtenerComprobante( const int id_factura ) {
+  QSqlQuery cola;
+  if( cola.exec( QString( "SELECT serie, numero FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+    if( cola.next() ) {
+        int serie = cola.record().value(0).toInt();
+        int numero = cola.record().value(1).toInt();
+        NumeroComprobante *num = new NumeroComprobante( 0, serie, numero );
+        return *num;
+    } else {
+        qDebug( "Error de cola al hacer next para obtener el numero de comprobante de factura");
+    }
+  } else {
+    qDebug( "Error de cola al hacer exec para obtener el numero de comprobante maximo" );
+ }
+  NumeroComprobante *invalido = new NumeroComprobante( 0, -1, -1 );
+  return *invalido;
+}
+
+/*!
+ * \fn MFacura::obtenerFecha( const int id_factura )
+ * Devuelve la fecha de la factura pasada con parametro
+ * \param id_factura identificador de factura
+ */
+QDate MFactura::obtenerFecha(const int id_factura)
+{
+    QSqlQuery cola;
+    if( cola.exec( QString( "SELECT fecha FROM factura WHERE id_factura = %1" ).arg( id_factura ) ) ) {
+        cola.next();
+        return cola.record().value(0).toDate();
+    } else {
+        qWarning( "Error al buscar la fecha de la factura" );
+        qDebug() << cola.lastError().text();
+        qDebug() << cola.lastQuery();
+    }
+    return QDate();
 }
