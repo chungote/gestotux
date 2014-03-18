@@ -333,18 +333,18 @@ void EGarantiaSVG::cargarDatos()
                nodo = nodo.firstChild().firstChild();
            }
            nodo.toText().setData( texto );
-           //qDebug() << "Reemplazado " << id << " con datos de " << nombre_registro << " con " << texto;
+           qDebug() << "Reemplazado " << id << " con datos de " << nombre_registro << " con " << texto;
        }
      }
 
     _valido = true;
 
-    QFile arch( QApplication::applicationDirPath() + QDir::separator() + "salida.svg" );
+    /*QFile arch( QApplication::applicationDirPath() + QDir::separator() + "salida.svg" );
      arch.open( QIODevice::WriteOnly );
      QTextStream s( &arch );
      s << _domdoc.toByteArray();
      arch.flush();
-     arch.close();
+     arch.close();*/
 
 }
 
