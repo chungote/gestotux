@@ -7,12 +7,12 @@
 class CancelacionPeriodoServicioTest : public QObject, public EDatabaseTest
 {
     Q_OBJECT
-    
+
 public:
     CancelacionPeriodoServicioTest();
     
 private Q_SLOTS:
-    void initTestCase(); // will be called before the first testfunction is executed
+    void initTestCase(); //  will be called before the first testfunction is executed
     void cleanupTestCase(); // will be called after the last testfunction was executed
     void init(); // will be called before each testfunction is executed
     void cleanup(); // will be called after every testfunction
@@ -22,55 +22,44 @@ private Q_SLOTS:
 
 CancelacionPeriodoServicioTest::CancelacionPeriodoServicioTest()
 {
+    // Pongo la lista de tablas necesarias
+    this->tablas << "servicios" << "periodo_servicio" << "cobro_servicio_cliente_periodo" << "recibos" << "factura";
 }
 
 void CancelacionPeriodoServicioTest::initTestCase()
 {
-    // Tablas vacias que voy a necesitar en cada test
-    this->generarTabla( "servicios" );
-    this->generarTabla( "periodo_servicio" );
-    this->generarTabla( "cobro_periodo_servicio" );
-    this->generarTabla( "recibos" );
-    this->generarTabla( "factura" );
+    EDatabaseTest::generarTablas();
 }
 
 void CancelacionPeriodoServicioTest::cleanupTestCase()
 {
-    this->borrarTabla( "servicios" );
-    this->borrarTabla( "periodo_servicio" );
-    this->borrarTabla( "cobro_periodo_servicio" );
-    this->borrarTabla( "recibos" );
-    this->borrarTabla( "factura" );
+    EDatabaseTest::borrarTablas();
 }
 
 void CancelacionPeriodoServicioTest::init()
 {
-    this->iniciarTabla( "servicios" );
-    this->iniciarTabla( "periodo_servicio" );
-    this->iniciarTabla( "cobro_periodo_servicio" );
-    this->iniciarTabla( "recibos" );
-    this->iniciarTabla( "factura" );
+    EDatabaseTest::iniciarTablas();
 }
 
 void CancelacionPeriodoServicioTest::cleanup()
 {
-    this->borrarTabla( "servicios" );
-    this->borrarTabla( "periodo_servicio" );
-    this->borrarTabla( "cobro_periodo_servicio" );
-    this->borrarTabla( "recibos" );
-    this->borrarTabla( "factura" );
+    EDatabaseTest::vaciarTablas();
 }
 
 void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio()
 {
-    QFETCH(QString, data);
-    QVERIFY2(true, "Failure");
+    QFETCH( int, id_servicio);
+    QFETCH( int, id_periodo_servicio );
+    QFETCH( bool, resultado );
+    QVERIFY( resultado );
 }
 
 void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio_data()
 {
-    QTest::addColumn<QString>("data");
-    QTest::newRow("0") << QString();
+    QTest::addColumn<int>("id_servicio");
+    QTest::addColumn<int>("id_periodo");
+    QTest::addColumn<bool>("resultado");
+    QTest::newRow("Correcto") << 1 << 1 << true;
 }
 
 QTEST_MAIN(CancelacionPeriodoServicioTest)
