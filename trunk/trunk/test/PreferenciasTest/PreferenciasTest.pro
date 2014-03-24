@@ -17,11 +17,11 @@ INCLUDEPATH += ../../utiles \
 
 LIBS += ../../bin/libutiles.a
 
-HEADERS += FormPrefDb.h
+HEADERS += ../../src/formprefdb.h
 
 SOURCES += tst_preferenciastest.cpp \
-           formprefdb.cpp
+           ../../src/formprefdb.cpp
 
-FORMS = ForPrefDb.ui
+FORMS = ../../src/ForPrefDb.ui
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

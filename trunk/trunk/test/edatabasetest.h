@@ -17,14 +17,15 @@
 /*!
  * \brief The EDatabaseTest class
  */
-class EDatabaseTest : public QObject
+class EDatabaseTest
 {
-    Q_OBJECT
 public:
-    EDatabaseTest( QObject *parent = 0 );
+    EDatabaseTest();
     ~EDatabaseTest();
     void generarTabla( QString nombre );
+    void iniciarTabla( QString nombre );
     void limpiarTabla( QString nombre );
+    void borrarTabla( QString nombre );
 
 private:
     /*!
@@ -43,6 +44,12 @@ private:
      */
     QList<QString> *_lista_archivos;
 
+    /*!
+     * \brief _lista_tablas
+     * Lista de tablas inicializadas
+     */
+    QList<QString> _lista_tablas;
+
     void buscarDepenencias( QString nombre );
 };
 
@@ -50,8 +57,7 @@ private:
  * \brief EDatabaseTest::EDatabaseTest
  * \param parent
  */
-EDatabaseTest::EDatabaseTest( QObject *parent )
-: QObject( parent )
+EDatabaseTest::EDatabaseTest()
 {
     if( QSqlDatabase::isDriverAvailable( "QSQLITE" ) )
     {
@@ -160,7 +166,26 @@ void EDatabaseTest::generarTabla( QString nombre )
  */
 void EDatabaseTest::limpiarTabla( QString nombre )
 {
-    /// @TODO: Implementar limpieza
+    if( _lista_tablas.contains( nombre ) ) {
+        QSqlQuery cola;
+        cola.exec( "TRUNCATE TABLE " + nombre );
+    } else {
+        qDebug() << "La tabla " << nombre << " no está inicializada! - No se truncara.";
+    }
+}
+
+/*!
+ * \brief EDatabaseTest::borrarTabla
+ * \param nombre
+ */
+void EDatabaseTest::borrarTabla( QString nombre )
+{
+    if( _lista_tablas.contains( nombre ) ) {
+        QSqlQuery cola;
+        cola.exec( "DROP TABLE " + nombre );
+    } else {
+        qDebug() << "La tabla " << nombre << " no está inicializada. - No se borrará.";
+    }
 }
 
 /*!
@@ -180,6 +205,20 @@ void EDatabaseTest::buscarDepenencias( QString nombre )
         } else {
             this->buscarDepenencias( nombre );
         }
+    }
+}
+
+/*!
+ * \brief EDatabaseTest::iniciarTabla
+ * \param nombre
+ */
+void EDatabaseTest::iniciarTabla( QString nombre ) {
+    // Busco si existe la tabla necesaria
+    if( archivos.contains( nombre ) ) {
+        /// @TODO: Agregar inicialización de tabla aquí
+        _lista_tablas.append( nombre );
+    } else {
+        qDebug() << "No se puede encontrar el archivo de inicialización para la tabla -> " << nombre << " <- No se creará";
     }
 }
 
