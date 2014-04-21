@@ -17,6 +17,8 @@
 
 /*!
  * \brief The EDatabaseTest class
+ *
+ * \author Esteban Zeller
  */
 class EDatabaseTest
 {
@@ -102,9 +104,9 @@ EDatabaseTest::EDatabaseTest()
     }
     dep.beginGroup( "Dependences" );
     QStringList lista_tablas = dep.childKeys();
-    qDebug() << lista_tablas;
+    //qDebug() << lista_tablas;
     foreach( QString tabla, lista_tablas ) {
-        qDebug() << "Dependencia de " << tabla << " -> " << dep.value( tabla ).toStringList();
+        //qDebug() << "Dependencia de " << tabla << " -> " << dep.value( tabla ).toStringList();
         mapa.insert( tabla, dep.value( tabla ).toStringList() );
     }
 

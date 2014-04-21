@@ -44,10 +44,10 @@ LIBS += -L../../bin \
         -lutiles \
         -lreporte \
         -llibctacte \
-        -lcaja \
-        -lcuotas \
+        -llibcaja \
+        -llibcuotas \
         -lproductos \
-        -ldescuentos
+        -llibdescuentos
 
 PRE_TARGETDEPS += ../../bin/libutiles.a \
                    ../../bin/libreporte.a

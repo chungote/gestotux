@@ -4,6 +4,12 @@
 
 #include "edatabasetest.h"
 
+/*!
+ * \brief The CancelacionPeriodoServicioTest class
+ *
+ * Esta clase permite testear las acciones a llevar a cabo para cancelar la emisión de un
+ * periodo de servicio
+ */
 class CancelacionPeriodoServicioTest : public QObject, public EDatabaseTest
 {
     Q_OBJECT
@@ -46,6 +52,10 @@ void CancelacionPeriodoServicioTest::cleanup()
     EDatabaseTest::vaciarTablas();
 }
 
+/*!
+ * \brief CancelacionPeriodoServicioTest::testCancelarPeriodoServicio
+ *
+ */
 void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio()
 {
     QFETCH( int, id_servicio);
@@ -54,6 +64,9 @@ void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio()
     QVERIFY( resultado );
 }
 
+/*!
+ * \brief CancelacionPeriodoServicioTest::testCancelarPeriodoServicio_data
+ */
 void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio_data()
 {
     QTest::addColumn<int>("id_servicio");
