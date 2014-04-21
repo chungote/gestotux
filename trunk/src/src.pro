@@ -97,14 +97,10 @@ INCLUDEPATH += ../reporte \
 LIBS += -lutiles \
         -lreporte \
         -llibventas \
-        -lpresupuesto \
-        -lpagos \
         -llibctacte \
-        -lcuotas \
-        -lcaja \
+        -llibcaja \
         -lproductos \
-        -ldescuentos \
-        -llibremitos \
+        -llibdescuentos \
         -L../bin \
         -L../bin/plugins
 

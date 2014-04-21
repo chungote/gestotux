@@ -2,6 +2,9 @@ TEMPLATE = subdirs
 SUBDIRS +=  CtaCte/CtaCteLib.pro \
             ventas/VentasLib.pro \
             remitos/RemitosLib.pro \
+            caja/CajaLib.pro \
+            cuotas/CuotasLib.pro \
+            descuentos/DescuentosLib.pro \
             caja \
             gastos \
             compras \
