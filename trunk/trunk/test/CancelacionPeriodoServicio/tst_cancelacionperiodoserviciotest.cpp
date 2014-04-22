@@ -10,7 +10,7 @@
  * Esta clase permite testear las acciones a llevar a cabo para cancelar la emisión de un
  * periodo de servicio
  */
-class CancelacionPeriodoServicioTest : public QObject, public EDatabaseTest
+class CancelacionPeriodoServicioTest : public QObject, private EDatabaseTest
 {
     Q_OBJECT
 
@@ -29,17 +29,16 @@ private Q_SLOTS:
 CancelacionPeriodoServicioTest::CancelacionPeriodoServicioTest()
 {
     // Pongo la lista de tablas necesarias
-    this->tablas << "servicios" << "periodo_servicio" << "cobro_servicio_cliente_periodo" << "recibos" << "factura";
+    this->tablas << "servicios"
+                 << "periodo_servicio"
+                 << "cobro_servicio_cliente_periodo"
+                 << "recibos"
+                 << "factura";
 }
 
 void CancelacionPeriodoServicioTest::initTestCase()
 {
     EDatabaseTest::generarTablas();
-}
-
-void CancelacionPeriodoServicioTest::cleanupTestCase()
-{
-    EDatabaseTest::borrarTablas();
 }
 
 void CancelacionPeriodoServicioTest::init()
@@ -48,6 +47,11 @@ void CancelacionPeriodoServicioTest::init()
 }
 
 void CancelacionPeriodoServicioTest::cleanup()
+{
+    EDatabaseTest::borrarTablas();
+}
+
+void CancelacionPeriodoServicioTest::cleanupTestCase()
 {
     EDatabaseTest::vaciarTablas();
 }
@@ -70,7 +74,7 @@ void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio()
 void CancelacionPeriodoServicioTest::testCancelarPeriodoServicio_data()
 {
     QTest::addColumn<int>("id_servicio");
-    QTest::addColumn<int>("id_periodo");
+    QTest::addColumn<int>("id_periodo_servicio");
     QTest::addColumn<bool>("resultado");
     QTest::newRow("Correcto") << 1 << 1 << true;
 }

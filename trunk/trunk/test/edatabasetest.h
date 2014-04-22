@@ -117,12 +117,9 @@ EDatabaseTest::EDatabaseTest()
     }
     dep.beginGroup( "Dependences" );
     QStringList lista_tablas = dep.childKeys();
-    //qDebug() << lista_tablas;
     foreach( QString tabla, lista_tablas ) {
-        //qDebug() << "Dependencia de " << tabla << " -> " << dep.value( tabla ).toStringList();
         mapa.insert( tabla, dep.value( tabla ).toStringList() );
     }
-
 }
 
 /*!
@@ -157,6 +154,7 @@ void EDatabaseTest::generarTabla( QString nombre )
  */
 void EDatabaseTest::vaciarTabla( QString nombre )
 {
+    qDebug() << _lista_tablas << nombre;
     if( _lista_tablas.contains( nombre ) ) {
         QSqlQuery cola;
         cola.exec( "TRUNCATE TABLE " + nombre + ";" );
@@ -183,16 +181,7 @@ void EDatabaseTest::borrarTabla( QString nombre )
 
 void EDatabaseTest::generarTablas()
 {
-    // Busco las tablas en el orden correcto
-    this->_inverso_depenencias.clear();
-    QMapIterator<QString, int> it(this->_dependencias);
-    while (it.hasNext())
-    {
-        it.next();
-        this->_inverso_depenencias.insert( it.value(), it.key() ); // Intercambio clave y valor y quedan ordenados porque QMap ordena automaticamente
-    }
-
-    foreach( QString t, this->_inverso_depenencias ) {
+    foreach( QString t, this->tablas ) {
         this->generarTabla( t );
     }
 }
@@ -210,7 +199,16 @@ void EDatabaseTest::borrarTablas()
 
 void EDatabaseTest::iniciarTablas()
 {
-    foreach( QString t, this->tablas ) {
+    // Busco las tablas en el orden correcto
+    this->_inverso_depenencias.clear();
+    QMapIterator<QString, int> it(this->_dependencias);
+    while (it.hasNext())
+    {
+        it.next();
+        this->_inverso_depenencias.insert( it.value(), it.key() ); // Intercambio clave y valor y quedan ordenados porque QMap ordena automaticamente
+    }
+    qDebug() << this->_inverso_depenencias;
+    foreach( QString t, this->_inverso_depenencias ) {
         this->iniciarTabla( t );
     }
 }
@@ -295,7 +293,7 @@ void EDatabaseTest::iniciarTabla( QString nombre ) {
         }
 
     } else {
-        qDebug() << "No se puede encontrar el archivo de inicialización para la tabla -> " << nombre << " <- No se creará";
+        qDebug() << "No se generó la tabla tabla -> " << nombre << " <- Ya existe";
     }
 }
 
