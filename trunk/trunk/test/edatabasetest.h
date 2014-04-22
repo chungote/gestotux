@@ -51,8 +51,21 @@ private:
      */
     QList<QString> _lista_tablas;
 
+    /*!
+     * \brief _dependencias
+     * Guarda el orden de las dependencias
+     * Por cada vez que una tabla es dependiente de la primera se suma un número a su valor
+     */
+    QMap<QString, int> _dependencias;
+    QMap<int, QString> _inverso_depenencias;
 
+    /*!
+     * \brief buscarDepenencias
+     * \param nombre
+     */
     void buscarDepenencias( QString nombre );
+
+
 };
 
 /*!
@@ -130,6 +143,7 @@ void EDatabaseTest::generarTabla( QString nombre )
     if( mapa.find( nombre ) == mapa.end() ) {
         // Agrego la tabla porque no hay dependencias
         this->tablas.append( nombre );
+        this->_dependencias.insert( nombre, 1 );
         return;
     }
 
@@ -145,7 +159,7 @@ void EDatabaseTest::vaciarTabla( QString nombre )
 {
     if( _lista_tablas.contains( nombre ) ) {
         QSqlQuery cola;
-        cola.exec( "TRUNCATE TABLE " + nombre );
+        cola.exec( "TRUNCATE TABLE " + nombre + ";" );
     } else {
         qDebug() << "La tabla " << nombre << " no está inicializada! - No se truncara.";
     }
@@ -169,15 +183,28 @@ void EDatabaseTest::borrarTabla( QString nombre )
 
 void EDatabaseTest::generarTablas()
 {
-    foreach( QString t, this->tablas ) {
+    // Busco las tablas en el orden correcto
+    this->_inverso_depenencias.clear();
+    QMapIterator<QString, int> it(this->_dependencias);
+    while (it.hasNext())
+    {
+        it.next();
+        this->_inverso_depenencias.insert( it.value(), it.key() ); // Intercambio clave y valor y quedan ordenados porque QMap ordena automaticamente
+    }
+
+    foreach( QString t, this->_inverso_depenencias ) {
         this->generarTabla( t );
     }
 }
 
 void EDatabaseTest::borrarTablas()
 {
-    foreach( QString t, this->tablas ) {
-        this->borrarTabla( t );
+    // Tengo que borrarlas en el orden inverso al que están creadas
+    QMultiMap<int, QString>::iterator it;
+    it = this->_inverso_depenencias.end();
+    while( it != this->_inverso_depenencias.begin() ) {
+        --it;
+        this->borrarTabla( it.value() );
     }
 }
 
@@ -201,11 +228,17 @@ void EDatabaseTest::vaciarTablas()
  */
 void EDatabaseTest::buscarDepenencias( QString nombre )
 {
-
     // Verifico a ver si existen las dependencias
     QList<QString> lista = mapa.value( nombre );
     foreach( QString tabla, lista ) {
+        /// @todo Ver dependencias circulares!
         if( tablas.contains( tabla ) ) {
+            if( this->_dependencias.contains( tabla ) ) {
+                this->_dependencias.insert( tabla, this->_dependencias.value( tabla ) + 1 );
+            } else {
+                this->_dependencias.insert( tabla, 1 );
+            }
+
             continue;
         } else {
             this->buscarDepenencias( tabla );
