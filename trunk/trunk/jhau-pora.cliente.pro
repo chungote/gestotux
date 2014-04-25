@@ -24,8 +24,8 @@ SUBDIRS = reporte/reporte.pro \
           src/src.pro \
           plugins/jhau-pora/jhau-pora.pro
 
-NOMBRE_PROGRAMA = acarcorr
-ARCHIVO_RC = aCarCorr/icono.rc
+NOMBRE_PROGRAMA = jhau-pora
+ARCHIVO_RC = jhau-pora/jhay-pora.rc
 
 unix {
   system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
