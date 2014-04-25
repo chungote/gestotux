@@ -37,3 +37,6 @@ LIBS += -L../../bin \
 RESOURCES = \
     jhaupora.qrc
 
+OTHER_FILES += \
+    jhau-pora.rc
+
