@@ -25,7 +25,7 @@ SUBDIRS = reporte/reporte.pro \
           plugins/jhau-pora/jhau-pora.pro
 
 NOMBRE_PROGRAMA = jhau-pora
-ARCHIVO_RC = jhau-pora/jhay-pora.rc
+ARCHIVO_RC = jhau-pora/jhau-pora.rc
 
 unix {
   system( generar_pri.sh $$NOMBRE_PROGRAMA $$ARCHIVO_RC )
