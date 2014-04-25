@@ -58,4 +58,4 @@ LIBS += -L../../bin \
         -lutiles \
         -lreporte \
         -lproductos \
-        -lcaja
+        -llibcaja
