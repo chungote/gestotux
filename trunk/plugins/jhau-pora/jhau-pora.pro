@@ -34,5 +34,6 @@ LIBS += -L../../bin \
         -lutiles \
         -lreporte
 
-RESOURCES = jhau-pora.qrc
+RESOURCES = \
+    jhaupora.qrc
 
