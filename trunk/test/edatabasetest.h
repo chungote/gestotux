@@ -125,8 +125,16 @@ EDatabaseTest::EDatabaseTest()
 /*!
  * \brief EDatabaseTest::~EDatabaseTest
  */
-EDatabaseTest::~EDatabaseTest() {
+EDatabaseTest::~EDatabaseTest() {}
 
+/**
+ * @brief EDatabaseTest::generarTablas
+ */
+void EDatabaseTest::generarTablas()
+{
+    foreach( QString t, this->tablas ) {
+        this->generarTabla( t );
+    }
 }
 
 /*!
@@ -146,78 +154,6 @@ void EDatabaseTest::generarTabla( QString nombre )
 
     // busco las depenencias
     this->buscarDepenencias( nombre );
-}
-
-/*!
- * \brief EDatabaseTest::vaciarTabla
- * \param nombre
- */
-void EDatabaseTest::vaciarTabla( QString nombre )
-{
-    qDebug() << _lista_tablas << nombre;
-    if( _lista_tablas.contains( nombre ) ) {
-        QSqlQuery cola;
-        cola.exec( "TRUNCATE TABLE " + nombre + ";" );
-    } else {
-        qDebug() << "La tabla " << nombre << " no está inicializada! - No se truncara.";
-    }
-}
-
-/*!
- * \brief EDatabaseTest::borrarTabla
- * \param nombre
- */
-void EDatabaseTest::borrarTabla( QString nombre )
-{
-    if( _lista_tablas.contains( nombre ) ) {
-        QSqlQuery cola;
-        if( cola.exec( "DROP TABLE " + nombre ) ) {
-            _lista_tablas.removeAll( nombre );
-        }
-    } else {
-        qDebug() << "La tabla " << nombre << " no está inicializada. - No se borrará.";
-    }
-}
-
-void EDatabaseTest::generarTablas()
-{
-    foreach( QString t, this->tablas ) {
-        this->generarTabla( t );
-    }
-}
-
-void EDatabaseTest::borrarTablas()
-{
-    // Tengo que borrarlas en el orden inverso al que están creadas
-    QMultiMap<int, QString>::iterator it;
-    it = this->_inverso_depenencias.end();
-    while( it != this->_inverso_depenencias.begin() ) {
-        --it;
-        this->borrarTabla( it.value() );
-    }
-}
-
-void EDatabaseTest::iniciarTablas()
-{
-    // Busco las tablas en el orden correcto
-    this->_inverso_depenencias.clear();
-    QMapIterator<QString, int> it(this->_dependencias);
-    while (it.hasNext())
-    {
-        it.next();
-        this->_inverso_depenencias.insert( it.value(), it.key() ); // Intercambio clave y valor y quedan ordenados porque QMap ordena automaticamente
-    }
-    qDebug() << this->_inverso_depenencias;
-    foreach( QString t, this->_inverso_depenencias ) {
-        this->iniciarTabla( t );
-    }
-}
-
-void EDatabaseTest::vaciarTablas()
-{
-    foreach( QString t, this->tablas ) {
-        this->vaciarTabla( t );
-    }
 }
 
 /*!
@@ -243,6 +179,82 @@ void EDatabaseTest::buscarDepenencias( QString nombre )
         }
     }
 }
+
+/**
+ * @brief EDatabaseTest::borrarTablas
+ */
+void EDatabaseTest::borrarTablas()
+{
+    // Tengo que borrarlas en el orden inverso al que están creadas
+    QMultiMap<int, QString>::iterator it;
+    it = this->_inverso_depenencias.end();
+    while( it != this->_inverso_depenencias.begin() ) {
+        --it;
+        this->borrarTabla( it.value() );
+    }
+}
+
+/*!
+ * \brief EDatabaseTest::borrarTabla
+ * \param nombre
+ */
+void EDatabaseTest::borrarTabla( QString nombre )
+{
+    if( _lista_tablas.contains( nombre ) ) {
+        QSqlQuery cola;
+        if( cola.exec( "DROP TABLE " + nombre ) ) {
+            _lista_tablas.removeAll( nombre );
+        }
+    } else {
+        qDebug() << "La tabla " << nombre << " no está inicializada. - No se borrará.";
+    }
+}
+
+/**
+ * @brief EDatabaseTest::iniciarTablas
+ */
+void EDatabaseTest::iniciarTablas()
+{
+    // Busco las tablas en el orden correcto
+    this->_inverso_depenencias.clear();
+    QMapIterator<QString, int> it(this->_dependencias);
+    while (it.hasNext())
+    {
+        it.next();
+        this->_inverso_depenencias.insert( it.value(), it.key() ); // Intercambio clave y valor y quedan ordenados porque QMap ordena automaticamente
+    }
+    qDebug() << this->_inverso_depenencias;
+    foreach( QString t, this->_inverso_depenencias ) {
+        this->iniciarTabla( t );
+    }
+}
+
+/**
+ * @brief EDatabaseTest::vaciarTablas
+ */
+void EDatabaseTest::vaciarTablas()
+{
+    foreach( QString t, this->tablas ) {
+        this->vaciarTabla( t );
+    }
+}
+
+/*!
+ * \brief EDatabaseTest::vaciarTabla
+ * \param nombre
+ */
+void EDatabaseTest::vaciarTabla( QString nombre )
+{
+    qDebug() << _lista_tablas << nombre;
+    if( _lista_tablas.contains( nombre ) ) {
+        QSqlQuery cola;
+        cola.exec( "TRUNCATE TABLE " + nombre + ";" );
+    } else {
+        qDebug() << "La tabla " << nombre << " no está inicializada! - No se truncara.";
+    }
+}
+
+
 
 /*!
  * \brief EDatabaseTest::iniciarTabla
