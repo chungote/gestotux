@@ -25,7 +25,10 @@
 #include "util.h"
 
 bool JhauPora::inicializar()
-{return true;}
+{
+    Q_INIT_RESOURCE(jhaupora);
+    return true;
+}
 
 bool JhauPora::verificarTablas( QStringList /*tablas*/ )
 { return true; }
@@ -52,15 +55,15 @@ void JhauPora::crearToolBar(QToolBar* /*t*/)
 {}
 
 void JhauPora::seCierraGestotux()
-{}
+{ Q_CLEANUP_RESOURCE(jhaupora); }
 
 QImage JhauPora::imagenPrograma() const
-{ return QImage( ":/imagenes/logoTR.png" ); }
+{ return QImage( ":/imagenes/icono-jhau-pora.png" ); }
 
 QString JhauPora::nombrePrograma() const { return "JHAU-PORA"; }
 
 QIcon JhauPora::iconoPrograma() const
-{ return QIcon( ":/imagenes/iconoTR.png" ); }
+{ return QIcon( ":/imagenes/icono-jhau-pora.png" ); }
 
 QString JhauPora::directorioBackup() const
 { return "jhau-pora"; }
@@ -72,7 +75,7 @@ QString JhauPora::empresa() const
 { return "jhau-pora"; }
 
 QString JhauPora::companeros()
-{ return "Daniel Sequeira"; }
+{ return "Asesor comercial: \n Daniel Sequeira <daniels598@gmail.com> - Celular: +54934255128211"; }
 
 
 bool JhauPora::publicidad()
